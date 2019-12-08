@@ -298,15 +298,16 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.createToolTip = function(triggerer) {
 		if(triggerer) {
+			console.log('butthole');
 			var arr =  {
-				placement: triggerer.data('tooltip-placement'),
-				badge: triggerer.data('tooltip-badge'),
-				badgeBg: triggerer.data('tooltip-badge-background'),
-				badgeSize: triggerer.data('tooltip-badge-size'),
-				content: triggerer.data('tooltip-content'),
-				classes: triggerer.data('tooltip-classes'),
-				centerX: triggerer.data('tooltip-center-x'),
-				centerY: triggerer.data('tooltip-center-y'),
+				placement: triggerer.data('tooltip-placement') || null,
+				badge: triggerer.data('tooltip-badge') || null,
+				badgeBg: triggerer.data('tooltip-badge-background') || null,
+				badgeSize: triggerer.data('tooltip-badge-size') || null,
+				content: triggerer.data('tooltip-content') || null,
+				classes: triggerer.data('tooltip-classes') || null,
+				centerX: triggerer.data('tooltip-center-x') || null,
+				centerY: triggerer.data('tooltip-center-y') || null,
 			};
 
 			var defaults = {
@@ -711,8 +712,9 @@ window.jQuery && jQuery.noConflict();
 
 		$('body').on('click','*',function(e){
 				// e.stopPropagation();
-				if( !$(this).is('[data-toggle="tooltip-click"]') && !$(this).is('[data-toggle="tooltip-click"] *')  )
-				frameWork.destroyToolTip();
+				if( !e.target.matches('[data-toggle="tooltip-click"]') && !e.target.matches('[data-toggle="tooltip-click"] *') ){
+					frameWork.destroyToolTip();
+				}
 		});
 
 

@@ -444,7 +444,7 @@ $prefix: '.input';
 			@include br($mobile-br-max-opposite){
 				flex-direction: row;
 				align-items: flex-start;
-				flex-wrap: wrap;
+				// flex-wrap: wrap;
 
 				> #{$prefix}-label {
 					flex: 0 0 $input-label-horizontal-width;
