@@ -3,8 +3,9 @@
 CUSTOM STYLES FOR TRUMBOWYG
 ****************************************************************************/
 
- $prefix: '.trumbowyg';
+ $prefix: '.fw-trumbowyg';
  
+ #fw-trumbowyg-icons,
  #trumbowyg-icons {
 	 overflow: hidden;
 	 visibility: hidden;
@@ -125,26 +126,6 @@ CUSTOM STYLES FOR TRUMBOWYG
 			background: none;
 		}
 	}
-	
-	button {
-		display: inline-block;
-		position: relative;
-		width: auto;
-		height: $wysiwyg-button-pane-height;
-		color:$wysiwyg-icon-color;
-		overflow: hidden;
-		border: none;
-		cursor: pointer;
-		background: none;
-		vertical-align: middle;
-		transition: background-color $wysiwyg-transition-duration, opacity $wysiwyg-transition-duration;
-
-		&#{$prefix}-textual-button {
-			width: auto;
-			line-height: $wysiwyg-button-pane-height;
-			user-select: none;
-		}
-	}
 
 	&#{$prefix}-disable button:not(#{$prefix}-not-disable):not(#{$prefix}-active),
 	button#{$prefix}-disable,
@@ -184,6 +165,23 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 		button {
 			margin-right: 1em;
+			display: inline-block;
+			position: relative;
+			width: auto;
+			height: $wysiwyg-button-pane-height;
+			color:$wysiwyg-icon-color;
+			overflow: hidden;
+			border: none;
+			cursor: pointer;
+			background: none;
+			vertical-align: middle;
+			transition: background-color $wysiwyg-transition-duration, opacity $wysiwyg-transition-duration;
+	
+			&#{$prefix}-textual-button {
+				width: auto;
+				line-height: $wysiwyg-button-pane-height;
+				user-select: none;
+			}
 		}
 
 		#{$prefix}-right button {

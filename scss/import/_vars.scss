@@ -321,7 +321,7 @@
 		$modal-background-inverse: $global-background-inverse !default;
 		$modal-border-radius: $border-radius-base !default;
 		$modal-box-shadow: $box-shadow-spicy $brand-color-base !default !default;
-		$modal-overlay-bg: rgba($brand-color-base,.2) !default;
+		$modal-overlay-bg: rgba($brand-color-base,.5) !default;
 		$modal-close-button-font-size: 2rem !default;
 
 	// POPPER = DROPDOWN || TOOLTIP
@@ -386,7 +386,7 @@
 		$badge-size-large: 30px !default;
 		$badge-size-small: 20px !default;
 		$badge-border-color: $global-background !default;
-			$badge-border-color-inverse: $global-background-inverse !default;
+			$badge-border-color-inverse: $global-background !default;
 		$badge-border-width: 7px !default;
 		$badge-box-shadow: $box-shadow-base $brand-color-base !default;
 

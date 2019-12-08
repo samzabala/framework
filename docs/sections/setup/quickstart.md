@@ -6,14 +6,15 @@ css/sass
 *	[framework scss files](../../../scss/framework/)
 
 js files (in order)
-*	[jQuery](https://jquery.com/) (for trumbowyg support. sad. This will be expendable soon)
-*	[Trumbowyg](https://alex-d.github.io/Trumbowyg/)
-*	[framework.plugged.js](../../../js/framework.js) 
+*	Dependencies
+	*	[jQuery](https://jquery.com/) (for trumbowyg support. sad. This will be expendable soon)
+	*	[Trumbowyg](https://alex-d.github.io/Trumbowyg/)
+*	[framework.plugged.js](../../../dist/framework.min.js) 
 	*	Note: This script uses jQuery only for trumbowyg, the reset are vanilla. will be updated once vanilla trumbowyg version is released.
-	*	If full on jQuery dependency is preferred, [framework.js](../../../js/framework.plugged.js)
+	*	If full on jQuery dependency is preferred, [framework.js](../../../dist/framework.plugged.js)
 
 ## File structure
-*	Keep framework in the root folder
+*	Put this bitch boy wherever the fuq u want. 69/10 recommend the root folder
 
 ## HTML setup
 
@@ -43,7 +44,7 @@ js files (in order)
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- trumboboi -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.19.1/trumbowyg.min.js"></script>
-		
+
 	<!-- framework -->
 		<script src="framework/dist/framework.js"></script>
 

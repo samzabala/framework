@@ -1,8 +1,9 @@
 # Framework Documentation
 A framework for your appy dashboardy needs :')
 
+
 ##	Setup
-*	[QuickStart](docs/sections/setup/quickstart.md)
+*	[Quick Start](docs/sections/setup/quickstart.md)
 *	[Customize](docs/sections/setup/customize.md)
 
 ##	Layout
@@ -10,6 +11,7 @@ A framework for your appy dashboardy needs :')
 *	[Module](docs/sections/layout/module.md)
 
 ##	Scaffolding
+*	[Breakpoints](docs/sections/scaffolding/breakpoint.md)
 *	[Colors](docs/sections/scaffolding/colors.md)
 *	[Tables](docs/sections/scaffolding/table.md)
 *	[Typography](docs/sections/scaffolding/typography.md)
@@ -37,4 +39,25 @@ A framework for your appy dashboardy needs :')
 ##	Other Obscure things
 *	[Script](docs/sections/components/other/script.md)
 
+### Supports:
+*	Edge 16+
+*	Firefox 31+
+*	Chrome 49+
+*	Safari 9.1+
+*	iOS Safari 36+
+
+### Not supporting
+*	IE... like at all.
+
+
+###	Available features
+*	Modules
+	Create nice grid layouts for app modules
+*	Inverse theme support
+	Ability to toggle to a darker theme through adding a class of `body-inverse` to the bod so its easy on the eyes
+*	Supports up to 35 colors
+	Yes. performance has left the group chat. calm your titties this framework is for dashboard shits
+*	Flex-based grid builds
+	It could be a sweet dream or a beautiful nightmare
+* Tooltips, Modals, Accordions, 
 

@@ -825,8 +825,8 @@ fieldset {
 	#{$prefix},
 	#{$prefix}-single-line,
 	#{$prefix}-multiple-line,
-	.trumbowyg-editor,
-	.trumbowyg-textarea {
+	.fw-trumbowyg-editor,
+	.fw-trumbowyg-textarea {
 
 		outline: none!important;
 		border-color: transparent!important;
@@ -835,8 +835,8 @@ fieldset {
 
 	#{$prefix}-single-line,
 	#{$prefix}-multiple-line,
-	.trumbowyg-editor,
-	.trumbowyg-textarea {
+	.fw-trumbowyg-editor,
+	.fw-trumbowyg-textarea {
 		background-color:transparent;
 		// width:calc(100% + (#{$special-form-gutter-x} * 2));
 		max-width:none;
