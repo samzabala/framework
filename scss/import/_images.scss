@@ -1,0 +1,41 @@
+
+/*** IMAGES ***/
+
+
+
+/* LAZYLOAD */
+
+$prefix: '.lazy';
+#{$prefix} {
+	body:not(.lazy-initialized) & {
+		opacity: 0;
+	}
+}
+
+
+
+/* SVGS */
+
+$prefix: '.svg';
+#{$prefix} {
+	&-gradient {
+		&-start {
+			stop-color: $svg-gradient-color-start;
+		}
+		&-end {
+			stop-color: $svg-gradient-color-end;
+		}
+	}
+}
+
+
+.fill {
+	@each $tag,$color in $calculated-brand-color-declarations {
+		&-#{$tag} {
+			fill: $color;
+		}
+
+	}
+}
+
+

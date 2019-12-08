@@ -1,0 +1,192 @@
+/*** SET ***/
+//internal vars
+
+//table
+$calculated-table-heading-height: $table-heading-height;
+@if internal-is-convertable($table-heading-height) {
+	$calculated-table-heading-height: rem( $table-heading-height / $body-font-size);
+}
+
+
+$calculated-table-cell-height: $table-cell-height;
+@if internal-is-convertable($table-cell-height) {
+	$calculated-table-cell-height: rem( $table-cell-height / $body-font-size);
+}
+
+$calculated-table-cell-height-large: $table-cell-height-large;
+@if internal-is-convertable($table-cell-height-large) {
+	$calculated-table-cell-height-large: rem( $table-cell-height-large / $body-font-size);
+}
+
+/* SUBSET */
+$prefix: '.table';
+#{$prefix} {
+
+	&-wrapper {
+		width:100%;
+		display:block;
+		overflow-x: auto;
+
+		@at-root & .table,
+		& table {
+			width: auto;
+			min-width:100%;
+			margin-bottom:0;
+		}
+	}
+	@at-root &,
+	table {
+		white-space: nowrap;
+		display:table;
+		width: 100%;
+		max-width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: inherit;
+		background:transparent;
+		// table-layout: fixed;
+
+		// &#{$prefix}-wrap {
+		// 	white-space: normal;
+		// }
+
+
+		@at-root thead,
+		tbody,
+		tfoot,
+		tr,
+		#{$prefix}-row {
+			min-width:100%;
+		}
+
+		@at-root thead,
+		tbody,
+		tfoot {
+			vertical-align: inherit;
+			text-align: inherit;
+		}
+		
+		
+
+		@at-root tr,
+		#{$prefix}-row {
+			height:100%;
+			display:table-row;
+			vertical-align: inherit;
+			text-align: inherit;
+
+			&:first-child {
+				border-top: $table-cell-border-width solid $table-cell-border-color;
+
+				.body-inverse & {
+					border-top: $table-cell-border-width solid $table-cell-border-color-inverse;
+				}
+			}
+
+			// &:nth-last-child(n+2),
+			// thead ~ tbody &:last-child {
+				border-bottom: $table-cell-border-width solid $table-cell-border-color;
+
+				.body-inverse & {
+					border-bottom: $table-cell-border-width solid $table-cell-border-color-inverse;
+				}
+
+			// }
+			
+		}
+		@at-root th,td,
+		#{$prefix}-cell,
+		#{$prefix}-cell#{$prefix}-cell-heading {
+			// vertical-align: inherit;
+			text-align: inherit;
+			padding-left: $table-cell-gutter;
+			padding-right: $table-cell-gutter;
+			vertical-align:middle;
+			height:100%;
+			display: table-cell;
+			position:relative;
+		}
+
+
+
+
+		#{$prefix}-cell-no-gutter {
+			padding:0!important;
+		}
+
+		@at-root th,
+		#{$prefix}-cell#{$prefix}-cell-heading {
+			padding-top: calc((#{$calculated-table-heading-height} - (#{ $calculated-body-single-line } )) * .5);
+			padding-bottom: calc((#{$calculated-table-heading-height} - (#{ $calculated-body-single-line } )) * .5);
+			background:$table-heading-background;
+			vertical-align:middle;
+
+			@include type-set((
+				color: $table-heading-color,
+				weight:$table-heading-font-weight,
+				style: $table-heading-font-style,
+				case: $table-heading-text-transform,
+			));
+
+			.body-inverse & {
+				background:$table-heading-background-inverse;
+				color: $table-heading-color-inverse
+			}
+		}
+
+		@at-root td,
+		#{$prefix}-cell {
+			padding-top: calc((#{ $calculated-table-cell-height } - ( #{ $calculated-body-single-line } )) * .5);
+			padding-bottom: calc((#{ $calculated-table-cell-height } - ( #{ $calculated-body-single-line } )) * .5);
+		}
+
+
+
+		@at-root &#{$prefix}-large {
+			td,
+			#{$prefix}-cell {
+				padding-top: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line } )) * .5);
+				padding-bottom: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line } )) * .5);
+			}
+		}
+
+
+		@at-root #{$prefix}-label {
+			width: $table-label-width;
+			height: calc(#{ $calculated-table-cell-height } - (#{$table-label-offset} * 2));
+			border-radius: $table-label-border-radius;
+			display:inline-block;
+			vertical-align:middle;
+
+			#{$prefix}-large & {
+				height: calc(#{ $calculated-table-cell-height-large } - (#{$table-label-offset} * 2));
+			}
+			
+			@each $tag,$color in $calculated-brand-color-declarations {
+				&-#{$tag} {
+					@extend %for-background-#{$tag};
+				}
+			}
+		}
+
+		@at-root #{$prefix}-row {
+			@each $tag,$color in $calculated-brand-color-declarations {
+				&-#{$tag} {
+					background-color: rgba($color,$table-row-background-opacity);
+				}
+
+				&-disabled {
+					td,
+					#{$prefix}-cell {
+						opacity: $global-disabled-opacity;
+						cursor: not-allowed;
+					}
+				}
+			}
+		}
+
+
+	}
+
+
+}

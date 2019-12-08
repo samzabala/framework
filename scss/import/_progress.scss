@@ -1,0 +1,169 @@
+/*** PROGRESS BAR ***/
+
+
+
+$calculated-progress-height: $progress-height;
+@if internal-is-convertable($progress-height) {
+    $calculated-progress-height: rem($progress-height / $body-font-size)
+}
+
+$calculated-progress-title-font-size: $progress-title-font-size;
+	@if internal-is-convertable($progress-title-font-size) {
+		$calculated-progress-title-font-size: em($progress-title-font-size / $body-font-size)
+	}
+
+	$calculated-progress-title-line-height: type-lead( $progress-title-font-size,$progress-title-line-height );
+
+	$calculated-progress-title-margin-bottom: $progress-title-margin-bottom;
+	@if internal-is-convertable($progress-title-margin-bottom) {
+		$calculated-progress-title-margin-bottom: em($progress-title-margin-bottom / $progress-title-font-size)
+	}
+
+	$calculated-progress-title-margin-top: $progress-title-margin-top;
+	@if internal-is-convertable($progress-title-margin-top) {
+		$calculated-progress-title-margin-top: em($progress-title-margin-top / $progress-title-font-size)
+	}
+
+
+%for-progress {
+
+	& {
+		width:100%;
+		display:block;
+		background-color: $progress-background-color;
+		border-radius: $progress-border-radius;
+		overflow:hidden;
+		@extend %cf;
+		// margin-bottom:$calculated-body-text-gutter-y;
+		@include gradient((
+			type: repeating-linear,
+			colors: (
+				(
+					color: $progress-background-stripe-color,
+					offset:0%
+				),
+				(
+					color: $progress-background-stripe-color,
+					offset:1px
+				),
+				(
+					color: $progress-background-color,
+					offset:1px
+				),
+				(
+					color: $progress-background-color,
+					offset:4px
+				)
+			)
+		));
+
+
+
+		&.active {
+			animation-name: progress-bar-stripes;
+			animation-duration: $progress-transition-duration;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+		}
+
+		.body-inverse & {
+			background-color: $progress-background-color-inverse;
+			
+			@include gradient((
+				type: repeating-linear,
+				colors: (
+					(
+						color: $progress-background-stripe-color-inverse,
+						offset:0%
+					),
+					(
+						color: $progress-background-stripe-color-inverse,
+						offset:1px
+					),
+					(
+						color: $progress-background-color-inverse,
+						offset:1px
+					),
+					(
+						color: $progress-background-color-inverse,
+						offset:4px
+					)
+				)
+			));
+		}
+	}
+
+	&-and-bar {
+		height: $calculated-progress-height;
+		transition: $progress-transition-duration all $transition-timing;
+	}
+
+	&-bar {
+		float: left;
+
+		&-default {
+			background-color: $progress-bar-background-color;
+		}
+	}
+}
+
+@keyframes progress-bar-stripes {
+	from {
+		background-position: 50px 0
+	}
+	to {
+		background-position: 0 0
+	}
+}
+
+/* SUBSET */
+$prefix: '.progress';
+#{$prefix} {
+	@extend %for-progress;
+
+	&,
+	&-bar {
+		@extend %for-progress-and-bar;
+	}
+	&-bar {
+		@extend %for-progress-bar;
+		@extend %for-progress-bar-default;
+
+
+		@each $tag,$color in $calculated-brand-color-declarations {
+			&-#{$tag} {
+				@extend %for-background-#{$tag};
+			}
+		}
+
+		&-gradient {
+			@extend %for-background-gradient;
+	
+			@each $angle in $calculated-gradient-angles {
+				&-#{$angle} {
+					@extend %for-background-gradient-#{$angle};
+				}
+			}
+		}
+	}
+
+	&-title {
+
+		@include type-set((
+			size: $calculated-progress-title-font-size,
+			leading: $calculated-progress-title-line-height,
+			color: $progress-title-color,
+			weight:$progress-title-font-weight,
+			style: $progress-title-font-style,
+			case: $progress-title-text-transform,
+		));
+		display:block;
+		margin-bottom: $calculated-progress-title-margin-bottom;
+		margin-top: $calculated-progress-title-margin-top;
+
+		.body-inverse & {
+
+			color: $progress-title-color-inverse;
+		}
+	}
+}

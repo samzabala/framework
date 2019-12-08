@@ -1,0 +1,39 @@
+/*** LIST GROUPS ***/
+
+//internal vars
+$calculated-list-group-height: $list-group-height;
+@if internal-is-convertable($list-group-height) {
+	$calculated-list-group-height: rem( $list-group-height / $body-font-size);
+}
+
+
+$prefix: '.list-group';
+#{$prefix} {
+	padding: 1px 0 0;
+	// border-bottom: $list-group-border-width solid $list-group-border-color;
+
+	.body-inverse & {
+		// border-bottom-color: $list-group-border-color-inverse;
+
+		li,
+		.list-group-item {
+			border-color:  $list-group-border-color-inverse;
+		}
+	}
+
+	li,
+	.list-group-item  {
+		margin-bottom:0;
+		margin-top: $list-group-border-width * -1;
+		border-top: $list-group-border-width solid $list-group-border-color;
+		border-bottom: $list-group-border-width solid $list-group-border-color;
+
+
+        padding-top: calc(  (  (#{$calculated-list-group-height} - #{$list-group-border-width}) - (#{$calculated-body-single-line}) ) * .5 );
+        padding-bottom: calc(  (  (#{$calculated-list-group-height} - #{$list-group-border-width}) - (#{$calculated-body-single-line}) ) * .5 );
+
+		&:before {
+			content: none;
+		}
+	}
+}

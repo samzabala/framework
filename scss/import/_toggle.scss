@@ -1,0 +1,36 @@
+
+/*** TOGGLES ***/
+
+/* to fix children that dont like their parents events. kinda like neutering them idk */
+[data-toggle] *{
+    pointer-events: none;
+}
+
+.accordion {
+    &:not(.accordion-mobile) {
+        display:none;
+        // transition: $transition-duration-long height $transition-timing;
+        // overflow:hidden;
+
+        &.open {
+            display: block;
+        }
+    }
+
+    &#{&}-mobile {
+
+        @include br(#{$mobile-br-max}-max) {
+            display:none;
+            // transition: $transition-duration-long height $transition-timing;
+            // overflow:hidden;
+
+            &.open {
+                display: block;
+            }
+        }
+
+        @include br(#{$mobile-br-max-opposite}) {
+            display:block;
+        }
+    }
+}

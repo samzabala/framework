@@ -1,0 +1,121 @@
+
+/*** IMAGES ***/
+
+
+
+//internal
+
+$calculated-thumbnail-font-size: $thumbnail-font-size;
+@if internal-is-convertable($thumbnail-font-size) {
+    $calculated-thumbnail-font-size: rem($thumbnail-font-size / $body-font-size);
+}
+
+	$calculated-thumbnail-font-size-small: $thumbnail-font-size-small;
+	@if internal-is-convertable($thumbnail-font-size-small) {
+		$calculated-thumbnail-font-size-small: rem($thumbnail-font-size-small / $body-font-size);
+	}
+
+$calculated-thumbnail-size: $thumbnail-size;
+@if internal-is-convertable($thumbnail-size,$thumbnail-font-size) {
+    $calculated-thumbnail-size: em($thumbnail-size / $thumbnail-font-size);
+}
+
+	$calculated-thumbnail-size-small: $thumbnail-size-small;
+	@if internal-is-convertable($thumbnail-size-small,$thumbnail-font-size-small) {
+		$calculated-thumbnail-size-small: em($thumbnail-size-small / $thumbnail-font-size-small);
+	}
+	
+
+$calculated-thumbnail-line-height: $thumbnail-line-height;
+@if internal-is-convertable($thumbnail-line-height) {
+    $calculated-thumbnail-line-height: em($thumbnail-line-height / $thumbnail-font-size);
+}
+
+
+
+$prefix: '.thumbnail';
+#{$prefix} {
+	@extend %for-background-gradient-135;
+	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false);
+	width:$calculated-thumbnail-size;
+	max-width:100%;
+	display:inline-block;
+	position:relative;
+	@include type-set((
+		size: $calculated-thumbnail-font-size,
+		leading: $calculated-thumbnail-line-height,
+		color: $thumbnail-color !important,
+		weight:$thumbnail-font-weight,
+		style: $thumbnail-font-style,
+		case: $thumbnail-text-transform,
+	));
+
+	&[class*=background-] {
+		background-image:none;
+	}
+
+	&,&-image {
+		@extend %for-fit-image;
+		border-radius: $thumbnail-border-radius;
+	}
+
+	&-image {
+		position:absolute;
+	}
+
+	&-image,img {
+		overflow:hidden;
+	}
+
+	> *,
+	img {
+		position:absolute;
+		top:0;
+		bottom:0;
+		right:0;
+		left:0;
+		margin:0;
+		overflow:hidden;
+	}
+
+	img {
+		max-width: none;
+		border-radius:inherit;
+		overflow:hidden;
+	}
+
+	.badge {
+		bottom: auto;
+		right: auto;
+		top: 8%;
+		left: 8%;
+	}
+	
+
+	&#{$prefix}-small {
+		width:$calculated-thumbnail-size-small;
+		display:inline-block;
+		vertical-align:middle;
+		line-height: inherit;
+		font-size: $calculated-thumbnail-font-size-small
+	}
+
+	&-text {
+		display:flex;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+
+		// #{$prefix}#{$prefix}-small & {
+		// 	top: .0625em;
+		// }
+
+	}
+
+	&-content {
+		display:flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

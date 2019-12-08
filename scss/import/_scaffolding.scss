@@ -1,0 +1,129 @@
+/*** SCAFFOLDING ***/
+	$prefix:'.body';
+
+	html,body {
+		width:100%;
+		min-width:320px;
+		@include type-set((
+			size: $body-font-size,
+			font: $body-font-family,
+			weight: $body-font-weight,
+			leading: $body-line-height,
+			color: $body-color,
+		));
+		word-wrap: break-word;
+	}
+
+	body {
+		text-align:left;
+		background: $body-background;
+
+		&.body-inverse {
+			background: $body-background-inverse;
+			color: $body-color-inverse;
+		}
+
+		&#{$prefix}-nav-sticky-offset {
+			padding-top: $calculated-nav-height;
+		}
+
+		&:not(.body-loaded) {
+			*,*:before,*:after {
+				transition:none!important;
+			}
+		}
+	}
+
+
+	/* SUPER GLOBAL STYLE FIXES */
+
+	img,svg {
+		max-width:100%;
+		height:auto;
+	}
+
+	iframe,
+	object,
+	embed {
+		max-width:100%!important;
+	}
+	
+	.clearfix:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: '';
+		clear: both;
+		height: 0;
+	}
+	
+	* html .clearfix {
+		zoom: 1;
+	}
+	
+	/* IE6 */
+	
+	*:first-child+html .clearfix {
+		zoom: 1;
+	}
+	
+	/* IE7 */
+	
+	*,
+	*:before,
+	*:after {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	* {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		/* Firefox 25*/
+	}
+	
+	input,
+	textarea,
+	fieldset,
+	legend,
+	select,
+	option,
+	button {
+		// background:none;
+		// -webkit-border-radius: 0;
+		// border-radius: 0;
+		// border: none;
+		margin: 0;
+		font: inherit;
+		line-height: inherit;
+		// color: inherit;
+	}
+
+	input,
+	textarea,
+	fieldset,
+	legend,
+	select,
+	button {
+		max-width:100%;
+	}
+
+	fieldset {
+
+		min-width: 0;
+		resize: none;
+	}
+	
+	button {
+		margin:0;
+		padding:0;
+		outline:0;
+		border: none;
+		cursor: pointer;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+

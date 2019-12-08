@@ -1,0 +1,314 @@
+/*** SYMBOLS ***/
+
+
+
+
+$prefix: '.symbol';
+#{$prefix} {
+	position:relative;
+	display:inline-block;
+	line-height:0;
+	font-size:inherit;
+	flex: 0 0 auto; //retain dimensions
+	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
+	width: 1em;
+	vertical-align:middle;
+	transform-origin: center center;
+	pointer-events:none;
+	// top:-.25em;
+
+	&:before,&:after {
+		content: "";
+		color: inherit;
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		margin: auto;
+		background: currentColor;
+		// transition:
+		// $transition-duration-short color $transition-timing,
+		// $transition-duration-short background-color $transition-timing;
+	}
+
+	&:not([class*="symbol-"]) {
+		&:before,&:after {
+			background: none; /*s o nothing happends*/
+		}
+	}
+
+	&-arrow-up,
+	&-arrow-down,
+	&-arrow-left,
+	&-arrow-right,
+
+	&-plus,
+	&-minus,
+
+
+	&-close,
+
+	&-search {
+		&:before,&:after {
+			border-radius:  em(3px / $body-font-size) * .5;
+		}
+	}
+
+
+	&-plus,
+	&-minus{
+		
+		&:after{
+			height: em(3px / $body-font-size);
+			width:.9375em;
+		}
+
+		&:before {
+			height:.9375em;
+		}
+	}
+
+	
+	&-burger {
+		&:before {
+			content: none;
+		}
+
+		&:after {
+			box-shadow:
+				0 #{em(2px / $body-font-size) * 3} 0 0,
+				0 #{em(2px / $body-font-size) * -3} 0 0
+				;
+			height:  em(2px / $body-font-size);
+			left: -.1em;
+			right: -.1em;
+			border-radius:  em(2px / $body-font-size) * .5;
+		}
+	}
+
+	&-plus:before,
+	&-minus:before,
+
+	&-close:before,
+	&-close:after,
+
+	&-arrow-up:after,
+	&-arrow-down:after,
+	&-arrow-left:after,
+	&-arrow-right:after,
+
+	&-arrow-up:before,
+	&-arrow-down:before,
+	&-arrow-left:before,
+	&-arrow-right:before,
+
+	&-search:after{
+		width: em(3px / $body-font-size);
+	}
+	
+	&-minus {
+		&:before{
+			content:none;
+		}
+	}
+
+	&-arrow {
+		&-left,
+		&-right {
+			&,&-toggle {
+				top: em(-1px / $body-font-size);
+			}
+		}
+
+		&-left,
+		&-right,
+		&-up,
+		&-down {
+			height:em(10px/$body-font-size);
+
+			&:before,&:after {
+				transform-origin: center em(1.5px / $body-font-size);
+				height: em(11px/$body-font-size);
+				top: em(2px / $body-font-size);
+			}
+
+			&:before{
+				transform: rotate(-45deg);
+			}
+
+			&:after{
+				transform: rotate(45deg);
+			}
+		}
+
+	}
+
+	&-close {
+		&:before,&:after {
+			height: 1.25em;
+		}
+		&:before {
+			transform: rotate(45deg)
+		}
+		&:after {
+			transform: rotate(-45deg)
+		}
+	}
+
+	&-kebab {
+
+		&-vertical,
+		&-horizontal {
+			&:before {
+				content: none;
+			}
+			&:after {
+				width: em(5px/$body-font-size);
+				height: em(5px/$body-font-size);
+				border-radius: em(5px/$body-font-size);
+			}
+		}
+
+		&-vertical {
+			width: em(5px/$body-font-size);
+			&:after {
+				box-shadow: 
+					0 em((5px * -2) /$body-font-size) 0 0,
+					0 em((5px * 2) /$body-font-size) 0 0
+					;
+			}
+		}
+
+		&-horizontal {
+			width: em((5px * 5)/$body-font-size);
+			&:after {
+				box-shadow: 
+					em(-10px/$body-font-size) 0 0 0,
+					em(10px/$body-font-size) 0 0 0
+					;
+			}
+		}
+	}
+
+	&-caret {
+		// width: em(($calculated-symbol-caret-width * .5) / $body-font-size);
+		// width:0;
+
+		&-left,
+		&-right,
+		&-up,
+		&-down {
+			height:$calculated-symbol-caret-height;
+
+			&:before {
+				content:none;
+			}
+
+			@include arrow-triangle((
+				pseudo: after, 
+				direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be opposite of 
+				display: null,
+				size-base: inherit,
+				main-size: $calculated-symbol-caret-height,//orientation of direction
+				cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
+			)){
+				display:inline-block;
+				vertical-align:middle;
+			};
+		}
+
+	}
+
+	&-caret,
+	&-arrow {
+
+
+		&-up,
+		.active > &-up-toggle,
+		.open > &-up-toggle {
+			transform: rotate(0deg);
+		}
+
+		&-down,
+		.active > &-down-toggle,
+		.open > &-down-toggle {
+			transform: rotate(180deg);
+		}
+
+		&-left,
+		.active > &-left-toggle,
+		.open > &-left-toggle {
+			transform: rotate(-90deg);
+		}
+
+		&-right,
+		.active > &-right-toggle,
+		.open > &-right-toggle {
+			transform: rotate(90deg);
+		}
+	}
+
+
+	&-square {
+		&:before {
+			content: none;
+		}
+		&:after {
+			width: .875em;
+			height: .875em;
+		}
+	}
+
+	&-search {
+		transform: rotate(-45deg);
+		
+		
+		&:before {
+			width: 1em;
+			height: 1em;
+			background:none!important;
+			border-radius: 50%;
+			border: em(3px / $body-font-size) solid;
+			bottom: auto;
+			top: -.25em
+
+		}
+
+		&:after {
+			height: .625em;
+			top: calc(.75em - (#{em(3px / $body-font-size)} * .5));
+			bottom: auto;
+		}
+	}
+
+	&-map {
+
+		&:before,&:after {
+			background:none!important;
+			transform:translateY(#{em(5/$body-font-size) * -1});
+			transform-origin: top center;
+			bottom:auto;
+		}
+
+		&:before {
+			border-radius: 50%;
+			height:1em;
+			width:1em;
+			border: #{em(4px / $body-font-size)} solid;
+			
+		}
+
+		&:after {
+			border: #{em(6px / $body-font-size)} solid transparent;
+			border-top: #{em(12px / $body-font-size)} solid;
+			border-bottom:0;
+			width: 0;
+			height: 0;
+			margin: 0 auto;
+			top:calc(1em - #{em(3px / $body-font-size)});
+		}
+	}
+
+	
+}
