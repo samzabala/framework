@@ -179,8 +179,8 @@ $prefix: '.nav';
 				height:0;
 				transition: $transition-duration-short all $transition-timing;
 				@include gradient((
-					color1: $gradient-start,
-					color2: $gradient-end,
+					color1: $brand-gradient-start,
+					color2: $brand-gradient-end,
 					angle: 0deg,
 					use-shorthand:false
 				));
@@ -193,8 +193,8 @@ $prefix: '.nav';
 					left:auto;
 
 					@include gradient((
-						color1: $gradient-start,
-						color2: $gradient-end,
+						color1: $brand-gradient-start,
+						color2: $brand-gradient-end,
 						angle: 90deg,
 						use-shorthand:false
 					));

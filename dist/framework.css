@@ -53,18 +53,18 @@ table {
   --br-md: 1600px;
   --mobile-br-max: sm;
   --brand-color-base: #000000;
-  --brand-color-base-alt: #3d3d3d;
+  --brand-color-base-alt: #1a1a1a;
   --brand-color-background: #FFFFFF;
-  --brand-color-background-alt: #ecedf0;
+  --brand-color-background-alt: #e6e6e6;
   --brand-color-neutral: #8d8d8d;
   --brand-color-neutral-light: #9a9a9a;
   --brand-color-neutral-dark: #747474;
-  --brand-color-primary: #0480fe;
-  --brand-color-primary-light: #1d8dfe;
-  --brand-color-primary-dark: #0167ce;
-  --brand-color-accent: #d415af;
-  --brand-color-accent-light: #fc01a7;
-  --brand-color-accent-dark: #a61089;
+  --brand-color-primary: #235789;
+  --brand-color-primary-light: #28649d;
+  --brand-color-primary-dark: #193d60;
+  --brand-color-accent: #17BEBB;
+  --brand-color-accent-light: #1ad5d1;
+  --brand-color-accent-dark: #11918e;
   --brand-color-success: #15b800;
   --brand-color-success-light: #18d200;
   --brand-color-success-dark: #0f8500;
@@ -74,24 +74,24 @@ table {
   --brand-color-error: #fd0303;
   --brand-color-error-light: #fd3636;
   --brand-color-error-dark: #cb0202;
-  --brand-color-intensity-1: #0480fe;
-  --brand-color-intensity-2: #4b5be3;
-  --brand-color-intensity-3: #843ecd;
-  --brand-color-intensity-4: #d415af;
-  --brand-color-intensity-5: #fc01a7;
-  --gradient-start: #0480fe;
-  --gradient-end: #d415af;
+  --brand-color-intensity-1: #235789;
+  --brand-color-intensity-2: #207196;
+  --brand-color-intensity-3: #1d8ba2;
+  --brand-color-intensity-4: #1aa4af;
+  --brand-color-intensity-5: #17BEBB;
+  --gradient-start: #235789;
+  --gradient-end: #17BEBB;
   --brand-font-primary: Roboto, Helvetica, Arial, sans-serif;
   --brand-font-accent: Georgia, Times, serif;
   --brand-font-monospace: Menlo, Monaco, Consolas, Courier New, monospace;
   --global-color: #000000;
   --global-color-inverse: #FFFFFF;
-  --global-color-contrast: #3d3d3d;
-  --global-color-contrast-inverse: #ecedf0;
+  --global-color-contrast: #1a1a1a;
+  --global-color-contrast-inverse: #e6e6e6;
   --global-background: #FFFFFF;
-  --global-background-inverse: #202020;
-  --global-background-contrast: #ecedf0;
-  --global-background-contrast-inverse: #111; }
+  --global-background-inverse: #1a1a1a;
+  --global-background-contrast: #e6e6e6;
+  --global-background-contrast-inverse: #000000; }
 
 /* heading bars or rules from tiny rectangles to long rules and what not. */
 .progress:after, .fw-trumbowyg-progress:after {
@@ -134,9 +134,9 @@ html, body {
 
 body {
   text-align: left;
-  background: #ecedf0; }
+  background: #e6e6e6; }
   body.body-inverse {
-    background: #111;
+    background: #000000;
     color: #FFFFFF; }
   body.body-nav-sticky-offset {
     padding-top: 4.6875rem; }
@@ -263,7 +263,7 @@ h5, .h5,
 h6, .h6 {
   line-height: calc(1em + 10px);
   font-family: "Georgia", Times, serif;
-  color: #3d3d3d;
+  color: #1a1a1a;
   font-weight: 700;
   text-transform: none;
   font-style: inherit;
@@ -283,7 +283,7 @@ h6, .h6 {
   h4, .body-inverse .h4, .body-inverse
   h5, .body-inverse .h5, .body-inverse
   h6, .body-inverse .h6 {
-    color: #ecedf0; }
+    color: #e6e6e6; }
 
 h1, .h1 {
   font-size: 2.375em; }
@@ -311,11 +311,11 @@ em, i {
   font-style: italic; }
 
 a {
-  color: #0480fe;
+  color: #235789;
   text-decoration: none;
   transition: 0.25s all ease-in-out; }
   a:hover {
-    color: #d415af; }
+    color: #17BEBB; }
 
 p,
 .p,
@@ -357,7 +357,7 @@ ul > li:before {
   line-height: inherit;
   width: 0.375em;
   height: 0.375em;
-  color: #0480fe;
+  color: #235789;
   background: currentColor;
   margin-right: 1.1875em;
   position: absolute;
@@ -369,7 +369,7 @@ ol {
   ol > li {
     counter-increment: fw-list; }
     ol > li:before {
-      color: #0480fe;
+      color: #235789;
       content: counter(fw-list);
       font-weight: 800;
       top: 0;
@@ -386,7 +386,7 @@ blockquote {
   margin-top: 1.875em;
   padding-bottom: 0.9375em;
   padding-top: 0.9375em;
-  border-left: 4px solid #0480fe; }
+  border-left: 4px solid #235789; }
   blockquote > * {
     font-size: inherit;
     line-height: inherit; }
@@ -400,20 +400,20 @@ pre, code, kbd, tt {
   white-space: pre-wrap; }
 
 code, kbd, tt {
-  background: #ecedf0;
+  background: #e6e6e6;
   padding: 0.078125em; }
   .body-inverse code, .body-inverse kbd, .body-inverse tt {
-    background: #111; }
+    background: #000000; }
 
 pre {
-  background: #ecedf0;
+  background: #e6e6e6;
   padding: 0.625em; }
   pre * {
     border: 0;
     margin: 0;
     padding: 1em; }
   .body-inverse pre {
-    background: #111; }
+    background: #000000; }
 
 cite {
   font-size: 1em;
@@ -466,19 +466,19 @@ body:not(.lazy-initialized) .lazy {
 
 /* SVGS */
 .svg-gradient-start {
-  stop-color: #0480fe; }
+  stop-color: #235789; }
 
 .svg-gradient-end {
-  stop-color: #d415af; }
+  stop-color: #17BEBB; }
 
 .fill-base {
   fill: #000000; }
 
 .fill-primary {
-  fill: #0480fe; }
+  fill: #235789; }
 
 .fill-accent {
-  fill: #d415af; }
+  fill: #17BEBB; }
 
 .fill-neutral {
   fill: #8d8d8d; }
@@ -531,16 +531,16 @@ table {
     display: table-row;
     vertical-align: inherit;
     text-align: inherit;
-    border-bottom: 1px solid #ecedf0; }
+    border-bottom: 1px solid #e6e6e6; }
     tr:first-child,
     .table-row:first-child {
-      border-top: 1px solid #ecedf0; }
+      border-top: 1px solid #e6e6e6; }
       .body-inverse tr:first-child, .body-inverse
       .table-row:first-child {
-        border-top: 1px solid #111; }
+        border-top: 1px solid #000000; }
     .body-inverse tr, .body-inverse
     .table-row {
-      border-bottom: 1px solid #111; }
+      border-bottom: 1px solid #000000; }
   th, td,
   .table-cell,
   .table-cell.table-cell-heading {
@@ -558,16 +558,16 @@ table {
   .table-cell.table-cell-heading {
     padding-top: calc((2.8125rem - (1em * 1.5 )) * .5);
     padding-bottom: calc((2.8125rem - (1em * 1.5 )) * .5);
-    background: #ecedf0;
+    background: #e6e6e6;
     vertical-align: middle;
-    color: #3d3d3d;
+    color: #1a1a1a;
     font-weight: 700;
     text-transform: uppercase;
     font-style: normal; }
     .body-inverse th, .body-inverse
     .table-cell.table-cell-heading {
-      background: #111;
-      color: #ecedf0; }
+      background: #000000;
+      color: #e6e6e6; }
   td,
   .table-cell {
     padding-top: calc((4.375rem - ( 1em * 1.5 )) * .5);
@@ -593,13 +593,13 @@ table {
     opacity: 0.5;
     cursor: not-allowed; }
   .table-row-primary {
-    background-color: rgba(4, 128, 254, 0.2); }
+    background-color: rgba(35, 87, 137, 0.2); }
   .table-row-disabled td,
   .table-row-disabled .table-cell {
     opacity: 0.5;
     cursor: not-allowed; }
   .table-row-accent {
-    background-color: rgba(212, 21, 175, 0.2); }
+    background-color: rgba(23, 190, 187, 0.2); }
   .table-row-disabled td,
   .table-row-disabled .table-cell {
     opacity: 0.5;
@@ -794,7 +794,7 @@ table {
   text-transform: none;
   font-style: normal; }
   .body-inverse .nav {
-    background: #202020; }
+    background: #1a1a1a; }
 
 .nav * {
   margin: 0;
@@ -814,9 +814,9 @@ table {
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 2px 5px 0 #ecedf0; }
+  box-shadow: 0 2px 5px 0 #e6e6e6; }
   .body-inverse .nav.nav-sticky {
-    box-shadow: 0 2px 5px 0 #111; }
+    box-shadow: 0 2px 5px 0 #000000; }
 
 .nav.nav-vertical {
   display: block;
@@ -855,7 +855,7 @@ table {
 .nav-item:hover > [data-toggle=dropdown],
 .nav-list li:hover > a,
 .nav-list li:hover > [data-toggle=dropdown] {
-  color: #0480fe; }
+  color: #235789; }
 
 .nav-icon {
   width: 1.5789473684em;
@@ -894,11 +894,11 @@ table {
     left: 0;
     height: 0;
     transition: 0.125s all ease-in-out;
-    background-image: -moz-linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+    background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* FF3.6-15 */
-    background-image: -webkit-linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+    background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* Chrome10-25,Safari5.1-6 */
-    background-image: linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+    background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
     .nav-vertical .nav-list > .nav-item > a:after, .nav-vertical
     .nav-list > .nav-item > [data-toggle=dropdown]:after, .nav-vertical
@@ -908,11 +908,11 @@ table {
       width: 0;
       top: 0;
       left: auto;
-      background-image: -moz-linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+      background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
       /* FF3.6-15 */
-      background-image: -webkit-linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+      background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
       /* Chrome10-25,Safari5.1-6 */
-      background-image: linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+      background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .nav-list > .nav-item:hover > a:after,
@@ -3205,13 +3205,13 @@ table {
   padding: 1px 0 0; }
   .body-inverse .list-group li,
   .body-inverse .list-group .list-group-item {
-    border-color: #111; }
+    border-color: #000000; }
   .list-group li,
   .list-group .list-group-item {
     margin-bottom: 0;
     margin-top: -1px;
-    border-top: 1px solid #ecedf0;
-    border-bottom: 1px solid #ecedf0;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
     padding-top: calc(  (  (3.125rem - 1px) - (1em * 1.5) ) * .5);
     padding-bottom: calc(  (  (3.125rem - 1px) - (1em * 1.5) ) * .5); }
     .list-group li:before,
@@ -3235,7 +3235,7 @@ table {
 
 .module-grid-title {
   font-size: 1.1875rem;
-  color: #0480fe;
+  color: #235789;
   font-weight: 700;
   text-transform: uppercase;
   font-style: normal;
@@ -3259,7 +3259,7 @@ table {
 
 .module {
   background: #FFFFFF;
-  border: 1px solid #ecedf0;
+  border: 1px solid #e6e6e6;
   display: grid;
   align-items: center;
   align-content: center;
@@ -3268,8 +3268,8 @@ table {
   grid-template-areas: "header" "content" "footer";
   transition: 0.5s box-shadow ease-in-out; }
   .body-inverse .module {
-    background: #202020;
-    border-color: #111; }
+    background: #1a1a1a;
+    border-color: #000000; }
   .module[data-toggle]:hover, .module[data-toggle]:focus, .module[data-toggle].focus, .module[href]:hover, .module[href]:focus, .module[href].focus, .module-interactive:hover, .module-interactive:focus, .module-interactive.focus {
     box-shadow: 0px 8px 20px -10px #000000; }
 
@@ -3331,7 +3331,7 @@ table {
 
 .module-title, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-title {
   font-size: 1rem;
-  color: #0480fe;
+  color: #235789;
   font-weight: 700;
   text-transform: uppercase;
   font-style: normal;
@@ -3435,7 +3435,7 @@ table {
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
   width: 100%; }
   .body-inverse .modal-popup, .body-inverse .fw-trumbowyg-modal-box {
-    background: #202020; }
+    background: #1a1a1a; }
 
 .modal-wrapper, .fw-trumbowyg-modal {
   position: fixed;
@@ -3573,7 +3573,7 @@ table {
 .progress-bar, .fw-trumbowyg-progress-bar {
   float: left; }
   .progress-bar, .fw-trumbowyg-progress-bar {
-    background-color: #0480fe; }
+    background-color: #235789; }
 
 @keyframes progress-bar-stripes {
   from {
@@ -3585,7 +3585,7 @@ table {
 .progress-title {
   font-size: 0.875em;
   line-height: 1.4285714286;
-  color: #3d3d3d;
+  color: #1a1a1a;
   font-weight: 700;
   text-transform: uppercase;
   font-style: normal;
@@ -3593,7 +3593,7 @@ table {
   margin-bottom: 0.7142857143em;
   margin-top: 2.1428571429em; }
   .body-inverse .progress-title {
-    color: #ecedf0; }
+    color: #e6e6e6; }
 
 /*** BADGE ***/
 .badge {
@@ -3657,7 +3657,7 @@ table {
   .open.tooltip, .open.dropdown {
     display: block; }
   .body-inverse .tooltip, .body-inverse .dropdown {
-    background: #202020; }
+    background: #1a1a1a; }
 
 .tooltip {
   pointer-events: none;
@@ -3668,7 +3668,7 @@ table {
     position: absolute;
     z-index: -1; }
     .body-inverse .tooltip:before, .body-inverse .tooltip:after {
-      background: #202020; }
+      background: #1a1a1a; }
   .tooltip:after {
     left: 0;
     right: 0;
@@ -4005,7 +4005,7 @@ table {
 .fw-trumbowyg-modal-box .input-group.focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset {
   border-color: transparent ;
   background: transparent ;
-  color: #0480fe ; }
+  color: #235789 ; }
 
 .btn.btn-default:active, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:active,
 .btn-group.btn-group-unite:active .btn.btn-default,
@@ -4021,7 +4021,7 @@ table {
 .input-group.active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
 .fw-trumbowyg-modal-box .input-group.active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset {
   border-color: transparent ;
-  background: #0480fe ;
+  background: #235789 ;
   color: #FFFFFF ; }
 
 .btn.btn-base.btn-no-interaction, .btn.btn-base.btn-no-interaction:hover, .btn.btn-base.btn-no-interaction:focus, .btn.btn-base.btn-no-interaction.focus, .btn.btn-base.btn-no-interaction:active, .btn.btn-base.btn-no-interaction.active, .btn.btn-base.btn-disabled, .btn.btn-base.btn-disabled:hover, .btn.btn-base.btn-disabled:focus, .btn.btn-base.btn-disabled.focus, .btn.btn-base.btn-disabled:active, .btn.btn-base.btn-disabled.active,
@@ -4094,12 +4094,12 @@ table {
 .input-group-disabled:active .btn.btn-primary,
 .input-group-disabled.active .btn.btn-primary {
   border-color: transparent !important;
-  background: #0480fe !important;
+  background: #235789 !important;
   color: #FFFFFF !important; }
 
 .btn.btn-primary, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit {
   border-color: transparent ;
-  background: #0480fe ;
+  background: #235789 ;
   color: #FFFFFF ; }
   .btn.btn-primary.btn-disabled, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-disabled:hover, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:hover, .btn.btn-primary.btn-disabled:focus, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:focus, .btn.btn-primary.btn-disabled.focus, .fw-trumbowyg-modal-box .btn-disabled.focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-disabled:active, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:active, .btn.btn-primary.btn-disabled.active, .fw-trumbowyg-modal-box .btn-disabled.active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
   .btn-group-disabled .btn.btn-primary,
@@ -4160,7 +4160,7 @@ table {
 .input-group.focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
 .fw-trumbowyg-modal-box .input-group.focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit {
   border-color: transparent ;
-  background: #1d8dfe ;
+  background: #28649d ;
   color: #FFFFFF ; }
 
 .btn.btn-primary:active, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:active,
@@ -4177,7 +4177,7 @@ table {
 .input-group.active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
 .fw-trumbowyg-modal-box .input-group.active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit {
   border-color: transparent ;
-  background: #0167ce ;
+  background: #193d60 ;
   color: #FFFFFF ; }
 
 .btn.btn-accent.btn-no-interaction, .btn.btn-accent.btn-no-interaction:hover, .btn.btn-accent.btn-no-interaction:focus, .btn.btn-accent.btn-no-interaction.focus, .btn.btn-accent.btn-no-interaction:active, .btn.btn-accent.btn-no-interaction.active, .btn.btn-accent.btn-disabled, .btn.btn-accent.btn-disabled:hover, .btn.btn-accent.btn-disabled:focus, .btn.btn-accent.btn-disabled.focus, .btn.btn-accent.btn-disabled:active, .btn.btn-accent.btn-disabled.active,
@@ -4194,12 +4194,12 @@ table {
 .input-group-disabled:active .btn.btn-accent,
 .input-group-disabled.active .btn.btn-accent {
   border-color: transparent !important;
-  background: #d415af !important;
+  background: #17BEBB !important;
   color: #FFFFFF !important; }
 
 .btn.btn-accent {
   border-color: transparent ;
-  background: #d415af ;
+  background: #17BEBB ;
   color: #FFFFFF ; }
   .btn.btn-accent.btn-disabled, .btn.btn-accent.btn-disabled:hover, .btn.btn-accent.btn-disabled:focus, .btn.btn-accent.btn-disabled.focus, .btn.btn-accent.btn-disabled:active, .btn.btn-accent.btn-disabled.active,
   .btn-group-disabled .btn.btn-accent,
@@ -4224,7 +4224,7 @@ table {
 .btn-group.btn-group-unite.focus .btn.btn-accent,
 .input-group.focus .btn.btn-accent {
   border-color: transparent ;
-  background: #fc01a7 ;
+  background: #1ad5d1 ;
   color: #FFFFFF ; }
 
 .btn.btn-accent:active,
@@ -4233,7 +4233,7 @@ table {
 .btn-group.btn-group-unite.active .btn.btn-accent,
 .input-group.active .btn.btn-accent {
   border-color: transparent ;
-  background: #a61089 ;
+  background: #11918e ;
   color: #FFFFFF ; }
 
 .btn.btn-neutral.btn-no-interaction, .btn.btn-neutral.btn-no-interaction:hover, .btn.btn-neutral.btn-no-interaction:focus, .btn.btn-neutral.btn-no-interaction.focus, .btn.btn-neutral.btn-no-interaction:active, .btn.btn-neutral.btn-no-interaction.active, .btn.btn-neutral.btn-disabled, .btn.btn-neutral.btn-disabled:hover, .btn.btn-neutral.btn-disabled:focus, .btn.btn-neutral.btn-disabled.focus, .btn.btn-neutral.btn-disabled:active, .btn.btn-neutral.btn-disabled.active,
@@ -4475,12 +4475,12 @@ table {
 .input-group-disabled.active .btn.btn-link {
   border-color: transparent !important;
   background: transparent !important;
-  color: #0480fe !important; }
+  color: #235789 !important; }
 
 .btn.btn-link {
   border-color: transparent ;
   background: transparent ;
-  color: #0480fe ; }
+  color: #235789 ; }
   .btn.btn-link.btn-disabled, .btn.btn-link.btn-disabled:hover, .btn.btn-link.btn-disabled:focus, .btn.btn-link.btn-disabled.focus, .btn.btn-link.btn-disabled:active, .btn.btn-link.btn-disabled.active,
   .btn-group-disabled .btn.btn-link,
   .btn-group-disabled:hover .btn.btn-link,
@@ -4505,7 +4505,7 @@ table {
 .input-group.focus .btn.btn-link {
   border-color: transparent ;
   background: transparent ;
-  color: #d415af ; }
+  color: #17BEBB ; }
 
 .btn.btn-link:active,
 .btn-group.btn-group-unite:active .btn.btn-link,
@@ -4514,7 +4514,7 @@ table {
 .input-group.active .btn.btn-link {
   border-color: transparent ;
   background: transparent ;
-  color: #0480fe ; }
+  color: #235789 ; }
 
 /*** input ***/
 /* input clasees */
@@ -4575,12 +4575,12 @@ select.input[multiple],
 .input-label.input-label-primary,
 .input-wrapper-primary .input-label, .input-label.input-label-primary:focus,
 .input-wrapper-primary .input-label:focus {
-  color: #0480fe !important; }
+  color: #235789 !important; }
 
 .input-label.input-label-accent,
 .input-wrapper-accent .input-label, .input-label.input-label-accent:focus,
 .input-wrapper-accent .input-label:focus {
-  color: #d415af !important; }
+  color: #17BEBB !important; }
 
 .input-label.input-label-neutral,
 .input-wrapper-neutral .input-label, .input-label.input-label-neutral:focus,
@@ -4617,7 +4617,7 @@ select.input[multiple],
   background-color: transparent; }
   .input:focus, .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]) {
     outline: none;
-    box-shadow: 0px 0 5px 0px #0480fe; }
+    box-shadow: 0px 0 5px 0px #235789; }
   .body-inverse .input, .body-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .body-inverse input:not([type="checkbox"]):not([type="radio"]) {
     background-color: transparent; }
   .input[disabled], .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]) {
@@ -4698,7 +4698,7 @@ select.input[multiple],
   .input-disabled.input-single-line, .fw-trumbowyg-modal-box label input.input-disabled:not([type="checkbox"]):not([type="radio"]), select.input-disabled.input[multiple], .input-disabled.input-multiple-line, .input-disabled.input-editor, .input-disabled.fw-trumbowyg-editor, .input-disabled.fw-trumbowyg-textarea, .input-disabled.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-disabled:focus:not([type="checkbox"]):not([type="radio"]), select.input-disabled.input[multiple]:focus, .input-disabled.input-multiple-line:focus, .input-disabled.input-editor:focus, .input-disabled.fw-trumbowyg-editor:focus, .input-disabled.fw-trumbowyg-textarea:focus, .input-disabled.focus.input-single-line, .fw-trumbowyg-modal-box label input.input-disabled.focus:not([type="checkbox"]):not([type="radio"]), select.input-disabled.focus.input[multiple], .input-disabled.focus.input-multiple-line, .input-disabled.focus.input-editor, .input-disabled.focus.fw-trumbowyg-editor, .input-disabled.focus.fw-trumbowyg-textarea, .input-single-line[disabled], .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]), select.input[disabled][multiple], .input-multiple-line[disabled], .input-editor[disabled], .fw-trumbowyg-editor[disabled], .fw-trumbowyg-textarea[disabled], .input-single-line[disabled]:focus, .fw-trumbowyg-modal-box label input[disabled]:focus:not([type="checkbox"]):not([type="radio"]), select.input[disabled][multiple]:focus, .input-multiple-line[disabled]:focus, .input-editor[disabled]:focus, .fw-trumbowyg-editor[disabled]:focus, .fw-trumbowyg-textarea[disabled]:focus, [disabled].focus.input-single-line, .fw-trumbowyg-modal-box label input[disabled].focus:not([type="checkbox"]):not([type="radio"]), select[disabled].focus.input[multiple], [disabled].focus.input-multiple-line, [disabled].focus.input-editor, [disabled].focus.fw-trumbowyg-editor, [disabled].focus.fw-trumbowyg-textarea {
     border-color: transparent; }
   .input-single-line:focus, .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), select.input[multiple]:focus, .input-multiple-line:focus, .input-editor:focus, .fw-trumbowyg-editor:focus, .fw-trumbowyg-textarea:focus, .focus.input-single-line, .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), select.focus.input[multiple], .focus.input-multiple-line, .focus.input-editor, .focus.fw-trumbowyg-editor, .focus.fw-trumbowyg-textarea {
-    box-shadow: 0px 0 5px 0px #0480fe;
+    box-shadow: 0px 0 5px 0px #235789;
     border-color: rgba(141, 141, 141, 0.2); }
 
 .input-base.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-base:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple]:not(:focus):not(.focus), .input-base.input-multiple-line:not(:focus):not(.focus), .input-base.input-editor:not(:focus):not(.focus), .input-base.fw-trumbowyg-editor:not(:focus):not(.focus), .input-base.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-base .input-single-line:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple]:not(:focus):not(.focus), .input-wrapper-base .input-multiple-line:not(:focus):not(.focus), .input-wrapper-base .input-editor:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-textarea:not(:focus):not(.focus) {
@@ -4708,16 +4708,16 @@ select.input[multiple],
   border-color: #000000; }
 
 .input-primary.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-primary:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:not(:focus):not(.focus), .input-primary.input-multiple-line:not(:focus):not(.focus), .input-primary.input-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-primary .input-single-line:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:not(:focus):not(.focus), .input-wrapper-primary .input-multiple-line:not(:focus):not(.focus), .input-wrapper-primary .input-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #0480fe; }
+  box-shadow: 0px 5px 15px -6px #235789; }
 
 .input-primary.input-single-line, .fw-trumbowyg-modal-box label input.input-primary:not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple], .input-primary.input-multiple-line, .input-primary.input-editor, .input-primary.fw-trumbowyg-editor, .input-primary.fw-trumbowyg-textarea, .input-wrapper-primary .input-single-line, .input-wrapper-primary .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple], .input-wrapper-primary .input-multiple-line, .input-wrapper-primary .input-editor, .input-wrapper-primary .fw-trumbowyg-editor, .input-wrapper-primary .fw-trumbowyg-textarea, .input-primary.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-primary:focus:not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:focus, .input-primary.input-multiple-line:focus, .input-primary.input-editor:focus, .input-primary.fw-trumbowyg-editor:focus, .input-primary.fw-trumbowyg-textarea:focus, .input-wrapper-primary .input-single-line:focus, .input-wrapper-primary .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:focus, .input-wrapper-primary .input-multiple-line:focus, .input-wrapper-primary .input-editor:focus, .input-wrapper-primary .fw-trumbowyg-editor:focus, .input-wrapper-primary .fw-trumbowyg-textarea:focus, .focus.input-primary.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-primary:not([type="checkbox"]):not([type="radio"]), select.focus.input-primary.input[multiple], .focus.input-primary.input-multiple-line, .focus.input-primary.input-editor, .focus.input-primary.fw-trumbowyg-editor, .focus.input-primary.fw-trumbowyg-textarea, .input-wrapper-primary .focus.input-single-line, .input-wrapper-primary .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.focus.input[multiple], .input-wrapper-primary .focus.input-multiple-line, .input-wrapper-primary .focus.input-editor, .input-wrapper-primary .focus.fw-trumbowyg-editor, .input-wrapper-primary .focus.fw-trumbowyg-textarea {
-  border-color: #0480fe; }
+  border-color: #235789; }
 
 .input-accent.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-accent:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple]:not(:focus):not(.focus), .input-accent.input-multiple-line:not(:focus):not(.focus), .input-accent.input-editor:not(:focus):not(.focus), .input-accent.fw-trumbowyg-editor:not(:focus):not(.focus), .input-accent.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-accent .input-single-line:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple]:not(:focus):not(.focus), .input-wrapper-accent .input-multiple-line:not(:focus):not(.focus), .input-wrapper-accent .input-editor:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #d415af; }
+  box-shadow: 0px 5px 15px -6px #17BEBB; }
 
 .input-accent.input-single-line, .fw-trumbowyg-modal-box label input.input-accent:not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple], .input-accent.input-multiple-line, .input-accent.input-editor, .input-accent.fw-trumbowyg-editor, .input-accent.fw-trumbowyg-textarea, .input-wrapper-accent .input-single-line, .input-wrapper-accent .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple], .input-wrapper-accent .input-multiple-line, .input-wrapper-accent .input-editor, .input-wrapper-accent .fw-trumbowyg-editor, .input-wrapper-accent .fw-trumbowyg-textarea, .input-accent.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-accent:focus:not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple]:focus, .input-accent.input-multiple-line:focus, .input-accent.input-editor:focus, .input-accent.fw-trumbowyg-editor:focus, .input-accent.fw-trumbowyg-textarea:focus, .input-wrapper-accent .input-single-line:focus, .input-wrapper-accent .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple]:focus, .input-wrapper-accent .input-multiple-line:focus, .input-wrapper-accent .input-editor:focus, .input-wrapper-accent .fw-trumbowyg-editor:focus, .input-wrapper-accent .fw-trumbowyg-textarea:focus, .focus.input-accent.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-accent:not([type="checkbox"]):not([type="radio"]), select.focus.input-accent.input[multiple], .focus.input-accent.input-multiple-line, .focus.input-accent.input-editor, .focus.input-accent.fw-trumbowyg-editor, .focus.input-accent.fw-trumbowyg-textarea, .input-wrapper-accent .focus.input-single-line, .input-wrapper-accent .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.focus.input[multiple], .input-wrapper-accent .focus.input-multiple-line, .input-wrapper-accent .focus.input-editor, .input-wrapper-accent .focus.fw-trumbowyg-editor, .input-wrapper-accent .focus.fw-trumbowyg-textarea {
-  border-color: #d415af; }
+  border-color: #17BEBB; }
 
 .input-neutral.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-neutral:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple]:not(:focus):not(.focus), .input-neutral.input-multiple-line:not(:focus):not(.focus), .input-neutral.input-editor:not(:focus):not(.focus), .input-neutral.fw-trumbowyg-editor:not(:focus):not(.focus), .input-neutral.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-neutral .input-single-line:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple]:not(:focus):not(.focus), .input-wrapper-neutral .input-multiple-line:not(:focus):not(.focus), .input-wrapper-neutral .input-editor:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-textarea:not(:focus):not(.focus) {
   box-shadow: 0px 5px 15px -6px #8d8d8d; }
@@ -4775,7 +4775,7 @@ select.input:not([multiple]) {
   padding-right: 2.5em; }
 
 select.input {
-  background-image: linear-gradient(-130deg, #0480fe 0%, #0480fe 50%, transparent 51%, transparent 100%), linear-gradient(130deg, #0480fe 0%, #0480fe 50%, transparent 51%, transparent 100%);
+  background-image: linear-gradient(-130deg, #235789 0%, #235789 50%, transparent 51%, transparent 100%), linear-gradient(130deg, #235789 0%, #235789 50%, transparent 51%, transparent 100%);
   background-size: 0.25em 0.3125em, 0.25em 0.3125em;
   background-position: calc(100% - (1em + 0.2125em )) 50%, calc(100% - 1em) 50%;
   background-repeat: no-repeat,no-repeat; }
@@ -4932,7 +4932,7 @@ fieldset {
   fieldset,
   fieldset legend,
   fieldset .special-form-label {
-    background: #ecedf0;
+    background: #e6e6e6;
     border-radius: 10px; }
   .special-form legend,
   .special-form .special-form-label,
@@ -4946,7 +4946,7 @@ fieldset {
     border-bottom-left-radius: 0; }
   .body-inverse .special-form, .body-inverse
   fieldset {
-    background: #111; }
+    background: #000000; }
   .special-form .input-wrapper,
   fieldset .input-wrapper {
     max-width: none;
@@ -5089,7 +5089,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 .fw-trumbowyg button:not(.fw-trumbowyg-disable):hover,
 .fw-trumbowyg button:not(.fw-trumbowyg-disable):focus,
 .fw-trumbowyg button.fw-trumbowyg-active {
-  color: #0480fe;
+  color: #235789;
   outline: none; }
 
 .fw-trumbowyg-button-pane {
@@ -5226,7 +5226,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   background: #FFFFFF; }
   .fw-trumbowyg-dark,
   .body-inverse .fw-trumbowyg-fullscreen {
-    background: #202020; }
+    background: #1a1a1a; }
   .fw-trumbowyg-fullscreen.fw-trumbowyg-box,
   .fw-trumbowyg-fullscreen .fw-trumbowyg-editor {
     border: none; }
@@ -5284,21 +5284,21 @@ CUSTOM STYLES FOR TRUMBOWYG
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */
   .color-intensity-1, .color-intensity-1-hover:hover, .color-intensity-1-focus:focus, .color-intensity-1-focus.focus, .color-intensity-1-active:active, .color-intensity-1-toggle.active, .color-intensity-1-toggle.open {
-    color: #0480fe !important; }
+    color: #235789 !important; }
   .color-intensity-2, .color-intensity-2-hover:hover, .color-intensity-2-focus:focus, .color-intensity-2-focus.focus, .color-intensity-2-active:active, .color-intensity-2-toggle.active, .color-intensity-2-toggle.open {
-    color: #4b5be3 !important; }
+    color: #207196 !important; }
   .color-intensity-3, .color-intensity-3-hover:hover, .color-intensity-3-focus:focus, .color-intensity-3-focus.focus, .color-intensity-3-active:active, .color-intensity-3-toggle.active, .color-intensity-3-toggle.open {
-    color: #843ecd !important; }
+    color: #1d8ba2 !important; }
   .color-intensity-4, .color-intensity-4-hover:hover, .color-intensity-4-focus:focus, .color-intensity-4-focus.focus, .color-intensity-4-active:active, .color-intensity-4-toggle.active, .color-intensity-4-toggle.open {
-    color: #d415af !important; }
+    color: #1aa4af !important; }
   .color-intensity-5, .color-intensity-5-hover:hover, .color-intensity-5-focus:focus, .color-intensity-5-focus.focus, .color-intensity-5-active:active, .color-intensity-5-toggle.active, .color-intensity-5-toggle.open {
-    color: #fc01a7 !important; }
+    color: #17BEBB !important; }
   .color-base, .color-base-hover:hover, .color-base-focus:focus, .color-base-focus.focus, .color-base-active:active, .color-base-toggle.active, .color-base-toggle.open {
     color: #000000 !important; }
   .color-primary, .color-primary-hover:hover, .color-primary-focus:focus, .color-primary-focus.focus, .color-primary-active:active, .color-primary-toggle.active, .color-primary-toggle.open {
-    color: #0480fe !important; }
+    color: #235789 !important; }
   .color-accent, .color-accent-hover:hover, .color-accent-focus:focus, .color-accent-focus.focus, .color-accent-active:active, .color-accent-toggle.active, .color-accent-toggle.open {
-    color: #d415af !important; }
+    color: #17BEBB !important; }
   .color-neutral, .color-neutral-hover:hover, .color-neutral-focus:focus, .color-neutral-focus.focus, .color-neutral-active:active, .color-neutral-toggle.active, .color-neutral-toggle.open {
     color: #8d8d8d !important; }
   .color-success, .color-success-hover:hover, .color-success-focus:focus, .color-success-focus.focus, .color-success-active:active, .color-success-toggle.active, .color-success-toggle.open {
@@ -5315,16 +5315,16 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-color: #000000 !important; }
 
 .table-label-primary, .progress-bar-primary, .badge-primary, .tag-primary, .legend-primary {
-  background-color: #0480fe; }
+  background-color: #235789; }
 
 .background-primary, .background-primary-hover:hover, .background-primary-focus:focus, .background-primary-focus.focus, .background-primary-active:active, .background-primary-toggle.active, .background-primary-toggle.open {
-  background-color: #0480fe !important; }
+  background-color: #235789 !important; }
 
 .table-label-accent, .progress-bar-accent, .badge-accent, .tag-accent, .legend-accent {
-  background-color: #d415af; }
+  background-color: #17BEBB; }
 
 .background-accent, .background-accent-hover:hover, .background-accent-focus:focus, .background-accent-focus.focus, .background-accent-active:active, .background-accent-toggle.active, .background-accent-toggle.open {
-  background-color: #d415af !important; }
+  background-color: #17BEBB !important; }
 
 .table-label-neutral, .progress-bar-neutral, .badge-neutral, .tag-neutral, .legend-neutral {
   background-color: #8d8d8d; }
@@ -5350,152 +5350,152 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-error, .background-error-hover:hover, .background-error-focus:focus, .background-error-focus.focus, .background-error-active:active, .background-error-toggle.active, .background-error-toggle.open {
   background-color: #fd0303 !important; }
   .background-intensity-1, .background-intensity-1-hover:hover, .background-intensity-1-focus:focus, .background-intensity-1-focus.focus, .background-intensity-1-active:active, .background-intensity-1-toggle.active, .background-intensity-1-toggle.open {
-    background-color: #0480fe !important; }
+    background-color: #235789 !important; }
   .background-intensity-2, .background-intensity-2-hover:hover, .background-intensity-2-focus:focus, .background-intensity-2-focus.focus, .background-intensity-2-active:active, .background-intensity-2-toggle.active, .background-intensity-2-toggle.open {
-    background-color: #4b5be3 !important; }
+    background-color: #207196 !important; }
   .background-intensity-3, .background-intensity-3-hover:hover, .background-intensity-3-focus:focus, .background-intensity-3-focus.focus, .background-intensity-3-active:active, .background-intensity-3-toggle.active, .background-intensity-3-toggle.open {
-    background-color: #843ecd !important; }
+    background-color: #1d8ba2 !important; }
   .background-intensity-4, .background-intensity-4-hover:hover, .background-intensity-4-focus:focus, .background-intensity-4-focus.focus, .background-intensity-4-active:active, .background-intensity-4-toggle.active, .background-intensity-4-toggle.open {
-    background-color: #d415af !important; }
+    background-color: #1aa4af !important; }
   .background-intensity-5, .background-intensity-5-hover:hover, .background-intensity-5-focus:focus, .background-intensity-5-focus.focus, .background-intensity-5-active:active, .background-intensity-5-toggle.active, .background-intensity-5-toggle.open {
-    background-color: #fc01a7 !important; }
+    background-color: #17BEBB !important; }
 
 .progress-bar-gradient, .legend-gradient {
-  background-image: -moz-linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
   .background-gradient {
-    background-image: -moz-linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+    background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* FF3.6-15 */
-    background-image: -webkit-linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+    background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* Chrome10-25,Safari5.1-6 */
-    background-image: linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+    background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .progress-bar-gradient-45, .legend-gradient-45 {
-  background-image: -moz-linear-gradient(45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-45, .background-gradient-45-hover:hover, .background-gradient-45-focus:focus, .background-gradient-45-focus.focus, .background-gradient-45-active:active, .background-gradient-45-toggle.active, .background-gradient-45-toggle.open {
-  background-image: -moz-linear-gradient(45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .progress-bar-gradient-90, .legend-gradient-90 {
-  background-image: -moz-linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-90, .background-gradient-90-hover:hover, .background-gradient-90-focus:focus, .background-gradient-90-focus.focus, .background-gradient-90-active:active, .background-gradient-90-toggle.active, .background-gradient-90-toggle.open {
-  background-image: -moz-linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(0deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .thumbnail, .progress-bar-gradient-135, .legend-gradient-135 {
-  background-image: -moz-linear-gradient(135deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(135deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-135, .background-gradient-135-hover:hover, .background-gradient-135-focus:focus, .background-gradient-135-focus.focus, .background-gradient-135-active:active, .background-gradient-135-toggle.active, .background-gradient-135-toggle.open {
-  background-image: -moz-linear-gradient(135deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(135deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-45deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .progress-bar-gradient-180, .legend-gradient-180 {
-  background-image: -moz-linear-gradient(180deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(180deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-180, .background-gradient-180-hover:hover, .background-gradient-180-focus:focus, .background-gradient-180-focus.focus, .background-gradient-180-active:active, .background-gradient-180-toggle.active, .background-gradient-180-toggle.open {
-  background-image: -moz-linear-gradient(180deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(180deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-90deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .progress-bar-gradient-225, .legend-gradient-225 {
-  background-image: -moz-linear-gradient(225deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(225deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-135deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-225, .background-gradient-225-hover:hover, .background-gradient-225-focus:focus, .background-gradient-225-focus.focus, .background-gradient-225-active:active, .background-gradient-225-toggle.active, .background-gradient-225-toggle.open {
-  background-image: -moz-linear-gradient(225deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(225deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-135deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .progress-bar-gradient-270, .legend-gradient-270 {
-  background-image: -moz-linear-gradient(270deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(270deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-180deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-270, .background-gradient-270-hover:hover, .background-gradient-270-focus:focus, .background-gradient-270-focus.focus, .background-gradient-270-active:active, .background-gradient-270-toggle.active, .background-gradient-270-toggle.open {
-  background-image: -moz-linear-gradient(270deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(270deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-180deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .progress-bar-gradient-315, .legend-gradient-315 {
-  background-image: -moz-linear-gradient(315deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(315deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-225deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-315, .background-gradient-315-hover:hover, .background-gradient-315-focus:focus, .background-gradient-315-focus.focus, .background-gradient-315-active:active, .background-gradient-315-toggle.active, .background-gradient-315-toggle.open {
-  background-image: -moz-linear-gradient(315deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -moz-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(315deg , #0480fe 0%, #d415af 100%) ;
+  background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-225deg , #0480fe 0%, #d415af 100%) ;
+  background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-global, .background-global-hover:hover, .background-global-focus:focus, .background-global-focus.focus, .background-global-active:active, .background-global-toggle.active, .background-global-toggle.open {
   background-color: #FFFFFF !important; }
   .body-inverse .background-global, .body-inverse .background-global-hover:hover, .body-inverse .background-global-focus:focus, .body-inverse .background-global-focus.focus, .body-inverse .background-global-active:active, .body-inverse .background-global-toggle.active, .body-inverse .background-global-toggle.open {
-    background-color: #202020 !important; }
+    background-color: #1a1a1a !important; }
 
 .background-global-contrast, .background-global-contrast-hover:hover, .background-global-contrast-focus:focus, .background-global-contrast-focus.focus, .background-global-contrast-active:active, .background-global-contrast-toggle.active, .background-global-contrast-toggle.open {
-  background-color: #ecedf0 !important; }
+  background-color: #e6e6e6 !important; }
   .body-inverse .background-global-contrast, .body-inverse .background-global-contrast-hover:hover, .body-inverse .background-global-contrast-focus:focus, .body-inverse .background-global-contrast-focus.focus, .body-inverse .background-global-contrast-active:active, .body-inverse .background-global-contrast-toggle.active, .body-inverse .background-global-contrast-toggle.open {
-    background-color: #111 !important; }
+    background-color: #000000 !important; }
 
 .background-global-color, .background-global-color-hover:hover, .background-global-color-focus:focus, .background-global-color-focus.focus, .background-global-color-active:active, .background-global-color-toggle.active, .background-global-color-toggle.open {
   background-color: #000000 !important; }
@@ -5503,12 +5503,12 @@ CUSTOM STYLES FOR TRUMBOWYG
     background-color: #FFFFFF !important; }
 
 .background-global-color-contrast, .background-global-color-contrast-hover:hover, .background-global-color-contrast-focus:focus, .background-global-color-contrast-focus.focus, .background-global-color-contrast-active:active, .background-global-color-contrast-toggle.active, .background-global-color-contrast-toggle.open {
-  background-color: #3d3d3d !important; }
+  background-color: #1a1a1a !important; }
   .body-inverse .background-global-color-contrast, .body-inverse .background-global-color-contrast-hover:hover, .body-inverse .background-global-color-contrast-focus:focus, .body-inverse .background-global-color-contrast-focus.focus, .body-inverse .background-global-color-contrast-active:active, .body-inverse .background-global-color-contrast-toggle.active, .body-inverse .background-global-color-contrast-toggle.open {
-    background-color: #ecedf0 !important; }
+    background-color: #e6e6e6 !important; }
 
 .background-gradient, .background-gradient-45, .background-gradient-90, .background-gradient-135, .background-gradient-180, .background-gradient-225, .background-gradient-270, .background-gradient-315 {
-  background-color: #0480fe !important; }
+  background-color: #235789 !important; }
 
 .background-transparent, .background-transparent-hover:hover, .background-transparent-focus:focus, .background-transparent-focus.focus, .background-transparent-active:active, .background-transparent-toggle.active, .background-transparent-toggle.open {
   background-color: transparent !important; }
@@ -5520,19 +5520,19 @@ CUSTOM STYLES FOR TRUMBOWYG
     color: #FFFFFF !important; }
 
 .color-global-contrast, .color-global-contrast-hover:hover, .color-global-contrast-focus:focus, .color-global-contrast-focus.focus, .color-global-contrast-active:active, .color-global-contrast-toggle.active, .color-global-contrast-toggle.open {
-  color: #3d3d3d !important; }
+  color: #1a1a1a !important; }
   .body-inverse .color-global-contrast, .body-inverse .color-global-contrast-hover:hover, .body-inverse .color-global-contrast-focus:focus, .body-inverse .color-global-contrast-focus.focus, .body-inverse .color-global-contrast-active:active, .body-inverse .color-global-contrast-toggle.active, .body-inverse .color-global-contrast-toggle.open {
-    color: #ecedf0 !important; }
+    color: #e6e6e6 !important; }
 
 .color-global-background, .color-global-background-hover:hover, .color-global-background-focus:focus, .color-global-background-focus.focus, .color-global-background-active:active, .color-global-background-toggle.active, .color-global-background-toggle.open {
   color: #FFFFFF !important; }
   .body-inverse .color-global-background, .body-inverse .color-global-background-hover:hover, .body-inverse .color-global-background-focus:focus, .body-inverse .color-global-background-focus.focus, .body-inverse .color-global-background-active:active, .body-inverse .color-global-background-toggle.active, .body-inverse .color-global-background-toggle.open {
-    color: #202020 !important; }
+    color: #1a1a1a !important; }
 
 .color-global-background-contrast, .color-global-background-contrast-hover:hover, .color-global-background-contrast-focus:focus, .color-global-background-contrast-focus.focus, .color-global-background-contrast-active:active, .color-global-background-contrast-toggle.active, .color-global-background-contrast-toggle.open {
-  color: #ecedf0 !important; }
+  color: #e6e6e6 !important; }
   .body-inverse .color-global-background-contrast, .body-inverse .color-global-background-contrast-hover:hover, .body-inverse .color-global-background-contrast-focus:focus, .body-inverse .color-global-background-contrast-focus.focus, .body-inverse .color-global-background-contrast-active:active, .body-inverse .color-global-background-contrast-toggle.active, .body-inverse .color-global-background-contrast-toggle.open {
-    color: #111 !important; }
+    color: #000000 !important; }
 
 .color-inherit, .color-inherit-hover:hover, .color-inherit-focus:focus, .color-inherit-focus.focus, .color-inherit-active:active, .color-inherit-toggle.active, .color-inherit-toggle.open {
   color: inherit !important; }
@@ -5649,7 +5649,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 @supports not (-webkit-background-clip: text) {
   .text-clip-background {
     background: transparent !important;
-    color: #0480fe !important; } }
+    color: #235789 !important; } }
 
 @supports (-webkit-background-clip: text) {
   .text-clip-background {

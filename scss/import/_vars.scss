@@ -14,21 +14,21 @@
 
 	// COLOR SCHEMES
 		$brand-color-base: #000000 !default;
-			$brand-color-base-alt: #3d3d3d !default;
+			$brand-color-base-alt: lighten($brand-color-base,10) !default;
 
 		$brand-color-background: #FFFFFF !default;
-			$brand-color-background-alt: #ecedf0 !default;
+			$brand-color-background-alt: darken($brand-color-background,10) !default;
 
 		$brand-color-neutral: #8d8d8d !default;
 			$brand-color-neutral-light:lighten($brand-color-neutral,5) !default;
 			$brand-color-neutral-dark: darken($brand-color-neutral,10) !default;
 		
-		$brand-color-primary: #0480fe !default;
+		$brand-color-primary: #235789 !default;
 			$brand-color-primary-light:lighten($brand-color-primary,5) !default;
 			$brand-color-primary-dark: darken($brand-color-primary,10) !default;
 		
-		$brand-color-accent: #d415af !default;
-			$brand-color-accent-light: #fc01a7 !default;
+		$brand-color-accent: #17BEBB !default;
+			$brand-color-accent-light: lighten($brand-color-accent,5) !default;
 			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
 
 		$brand-color-success: #15b800 !default;
@@ -45,13 +45,14 @@
 
 
 		$brand-color-intensity-1: $brand-color-primary !default;
-		$brand-color-intensity-2: #4b5be3 !default;
-		$brand-color-intensity-3: #843ecd!default;
-		$brand-color-intensity-4: $brand-color-accent !default;
-		$brand-color-intensity-5: $brand-color-accent-light !default;
+		$brand-color-intensity-5: $brand-color-accent !default;
 
-		$gradient-start: $brand-color-primary !default;
-		$gradient-end: $brand-color-accent !default;
+			$brand-color-intensity-2: mix($brand-color-intensity-1,$brand-color-intensity-5,75%) !default;
+			$brand-color-intensity-3: mix($brand-color-intensity-1,$brand-color-intensity-5,50%) !default;
+			$brand-color-intensity-4: mix($brand-color-intensity-1,$brand-color-intensity-5,25%) !default;
+
+		$brand-gradient-start: $brand-color-primary !default;
+		$brand-gradient-end: $brand-color-accent !default;
 
 	// FONT
 		$brand-font-primary: "Roboto",Helvetica,Arial,sans-serif !default;
@@ -67,10 +68,10 @@
 				$global-color-contrast-inverse: $brand-color-background-alt !default;
 
 		$global-background: $brand-color-background !default;
-			$global-background-inverse: #202020 !default;
+			$global-background-inverse: $brand-color-base-alt !default;
 
 			$global-background-contrast: $brand-color-background-alt !default;
-				$global-background-contrast-inverse: #111 !default;
+				$global-background-contrast-inverse: $brand-color-base !default;
 
 	// PADDING
 		$gutter-base: 40px !default;
@@ -165,8 +166,8 @@
 		$body-ellipsis-multiple-factor: 2 !default;
 
 	// SVG
-		$svg-gradient-color-start: $gradient-start !default;
-		$svg-gradient-color-end: $gradient-end !default;
+		$svg-gradient-color-start: $brand-gradient-start !default;
+		$svg-gradient-color-end: $brand-gradient-end !default;
 
 
 	// TABLE
@@ -717,8 +718,8 @@
 		--brand-color-intensity-4: #{$brand-color-intensity-4};
 		--brand-color-intensity-5: #{$brand-color-intensity-5};
 
-		--gradient-start: #{$gradient-start};
-		--gradient-end: #{$gradient-end};
+		--gradient-start: #{$brand-gradient-start};
+		--gradient-end: #{$brand-gradient-end};
 
 	// FONT
 		--brand-font-primary: #{$brand-font-primary};
