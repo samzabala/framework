@@ -10,6 +10,7 @@ All influenced by [color declarations](../scaffolding/colors.md)
 
 *   **`.background-primary`**
 *   **`.background-accent`**
+*   **`.background-neutral`**
 *   **`.background-base` (Not to be confused with theme-color)**
 *   **`.background-background` (Not to be confused with theme-background)**
 *   **`.background-success`**
@@ -21,7 +22,20 @@ All influenced by [color declarations](../scaffolding/colors.md)
 *   **`.background-intensity-4`**
 *   **`.background-intensity-5`**
 *   **`.background-inherit`**
+*   **`.background-transparent`**
 
+#### Background (Gradient)
+
+This will add gradient colors. By default, the gradient will be at angle 0deg, appending -#{$angle} will angle otherwise. **Valid angles are 45,90,135,180,225,270, and 315**
+
+*   **`.background-gradient`** (0deg)
+*   **`.background-gradient-45`** (45deg)
+*   **`.background-gradient-90`** (90deg)
+*   **`.background-gradient-135`** (135deg)
+*   **`.background-gradient-180`** (180deg)
+*   **`.background-gradient-225`** (225deg)
+*   **`.background-gradient-270`** (270deg)
+*   **`.background-gradient-315`** (315deg)
 
 #### Background (Theme Based)
 
@@ -56,6 +70,7 @@ eg: `.background-primary-hover` applies $brand-color-primary on :hover
 
 *   **`.color-primary`**
 *   **`.color-accent`**
+*   **`.color-neutral`**
 *   **`.color-base` (Not to be confused with theme-color)**
 *   **`.color-background` (Not to be confused with theme-background)**
 *   **`.color-success`**

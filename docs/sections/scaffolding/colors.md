@@ -24,6 +24,10 @@ Both schemes has an alt value for contrasting background instances. These values
 
 	Other elements for highlighting and contrasting but not as important
 
+*	**Accent `$brand-color-neutral`**
+
+	Other elements that shouldnt be hightlighted but has to be there
+
 ### User feedback
 
 *	**Success `$brand-color-success`**
