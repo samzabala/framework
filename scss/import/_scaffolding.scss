@@ -9,19 +9,21 @@
 			font: $body-font-family,
 			weight: $body-font-weight,
 			leading: $body-line-height,
-			color: $body-color,
+			color: $theme-color,
 		));
 		word-wrap: break-word;
+		background: $theme-background;
+		min-height: 100vh;
+	}
+
+	html.theme-inverse, 
+	.theme-inverse body {
+		background: $theme-background-inverse;
+		color: $theme-color-inverse;
 	}
 
 	body {
 		text-align:left;
-		background: $body-background;
-
-		&.body-inverse {
-			background: $body-background-inverse;
-			color: $body-color-inverse;
-		}
 
 		&#{$prefix}-nav-sticky-offset {
 			padding-top: $calculated-nav-height;

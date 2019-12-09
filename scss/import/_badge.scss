@@ -34,7 +34,7 @@ $prefix: '.badge';
 	border: $calculated-badge-border-width solid $badge-border-color;
 	box-shadow: $badge-box-shadow;
 
-	.body-inverse & {
+	.theme-inverse & {
 		border-color: $badge-border-color-inverse;
 	}
 

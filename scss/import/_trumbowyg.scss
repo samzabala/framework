@@ -265,7 +265,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 	&-modal-box {
 		@extend %for-modal-popup;
 		max-width: $wysiwyg-modal-max-width;
-		// background-color: $global-background;
+		// background-color: $theme-background;
 	
 		#{$prefix}-modal-title {
 			@extend .module-title;
@@ -370,11 +370,11 @@ CUSTOM STYLES FOR TRUMBOWYG
 		margin: 0;
 		padding: 0;
 		z-index: 99999;
-		background: $global-background;
+		background: $theme-background;
 
 		@at-root #{$prefix}-dark,
-		.body-inverse & {
-			background: $global-background-inverse;
+		.theme-inverse & {
+			background: $theme-background-inverse;
 		}
 	
 		&#{$prefix}-box,

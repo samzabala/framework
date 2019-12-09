@@ -230,7 +230,7 @@ $prefix: '.special';
 			margin-top:0;
 		}
 
-		.body-inverse & {
+		.theme-inverse & {
 			color:$body-heading-color-inverse;
 		}
 		
@@ -409,7 +409,7 @@ code,kbd,tt {
 	background: $body-mono-background;
 	padding: $calculated-body-pre-padding * .125;
 
-	.body-inverse & {
+	.theme-inverse & {
 
 		background: $body-mono-background-inverse;
 	}
@@ -426,7 +426,7 @@ pre {
 		padding:1em;
 	}
 
-	.body-inverse & {
+	.theme-inverse & {
 
 		background: $body-mono-background-inverse;
 	}

@@ -45,10 +45,10 @@ These colors are dependent of custom palette [declared before them by default](.
 
 ### Gradient and Intensity
 
-| Primary by default | Accent by default |
-|--|--|
-| `$brand-gradient-start` | `$brand-gradient-end` |
-| `$brand-intensity-1` | `$brand-intensity-5` |
+| Primary by default 		| Accent by default 	|
+| -- 						| -- 					|
+| `$brand-gradient-start` 	| `$brand-gradient-end` |
+| `$brand-intensity-1` 		| `$brand-intensity-5` 	|
 
 *	**Gradient Start and Gradient End `$brand-gradient-start` and `$brand-gradient-end`**
 
@@ -60,31 +60,31 @@ These colors are dependent of custom palette [declared before them by default](.
 
 ### Scaffolding / Inverse Theme
 
-*	**Global Color `$global-color`**
+*	**Theme Color `$theme-color`**
 
 	body color. defaults to `$brand-color-base`.
 
 	Defaults to `$brand-color-background` on inverse theme
 
-*	**Global Color Contrast `$global-color-contrast`**
+*	**Theme Color Contrast `$theme-color-contrast`**
 
 	slight variation of body color. defaults to `$brand-color-base-alt`.
 
 	Defaults to `$brand-color-background-alt` on inverse theme
 
-*	**Global Background `$global-background`**
+*	**Theme Background `$theme-background`**
 
 	body background. defaults to `$brand-background-base`.
 
 	Defaults to `$brand-color-base-alt` on inverse theme
 
-*	**Global Color Contrast `$global-background-contrast`**
+*	**Theme Color Contrast `$theme-background-contrast`**
 
 	slight variation of body background. defaults to `$brand-background-base-alt`.
 
 	Defaults to `$brand-color-base` on inverse theme
 
-Color and contrast palattes interchange on inverse theme by default. to see this effect, add `.body-inverse` to the body
+Color and contrast palettes interchange on inverse theme by default. to see this effect, add `.theme-inverse` to the `<html>` tag
 
 
 

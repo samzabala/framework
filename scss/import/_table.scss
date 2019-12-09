@@ -79,7 +79,7 @@ $prefix: '.table';
 			&:first-child {
 				border-top: $table-cell-border-width solid $table-cell-border-color;
 
-				.body-inverse & {
+				.theme-inverse & {
 					border-top: $table-cell-border-width solid $table-cell-border-color-inverse;
 				}
 			}
@@ -88,7 +88,7 @@ $prefix: '.table';
 			// thead ~ tbody &:last-child {
 				border-bottom: $table-cell-border-width solid $table-cell-border-color;
 
-				.body-inverse & {
+				.theme-inverse & {
 					border-bottom: $table-cell-border-width solid $table-cell-border-color-inverse;
 				}
 
@@ -129,7 +129,7 @@ $prefix: '.table';
 				case: $table-heading-text-transform,
 			));
 
-			.body-inverse & {
+			.theme-inverse & {
 				background:$table-heading-background-inverse;
 				color: $table-heading-color-inverse
 			}

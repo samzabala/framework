@@ -158,7 +158,7 @@ $prefix: '.input';
 				border-radius: $input-border-radius-small;
 			}
 
-			.body-inverse & {
+			.theme-inverse & {
 				color:$input-label-color-inverse;
 			}
 		}
@@ -203,7 +203,7 @@ $prefix: '.input';
 				box-shadow: $input-box-shadow-focus;
 			}
 
-			.body-inverse & {
+			.theme-inverse & {
 				background-color: $input-background-inverse;
 			}
 
@@ -211,7 +211,7 @@ $prefix: '.input';
 				@extend %for-form-global-disabled;
 				background-color: $input-background-disabled;
 
-				.body-inverse & {
+				.theme-inverse & {
 					background-color: $input-background-disabled-inverse;
 				}
 			}
@@ -255,7 +255,7 @@ $prefix: '.input';
 				border-radius: $input-border-radius-small;
 			}
 
-			.body-inverse & {
+			.theme-inverse & {
 				color:$input-color-inverse;
 				background-color: $input-background-inverse;
 			}
@@ -796,7 +796,7 @@ fieldset {
 		border-bottom-left-radius: 0;
 	}
 
-	.body-inverse & {
+	.theme-inverse & {
 		background: $special-form-background-inverse;
 	}
 

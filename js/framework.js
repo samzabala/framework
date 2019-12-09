@@ -201,15 +201,15 @@ window.jQuery && jQuery.noConflict();
 
 		switch(mode) {
 			case 'below': //max-width
-				return document.body.clientWidth <= _.br_vals[breakpoint];
+				return document.documentElement.clientWidth <= _.br_vals[breakpoint];
 			case 'within':
 				return (
-					document.body.clientWidth <= _.br_vals[breakpoint] //max
+					document.documentElement.clientWidth <= _.br_vals[breakpoint] //max
 				) && (
-					document.body.clientWidth > _.br_vals[ _.br_arr[currIndex - 1] ] //min
+					document.documentElement.clientWidth > _.br_vals[ _.br_arr[currIndex - 1] ] //min
 				)
 			case 'above':
-				return (currIndex > 0) ? ( document.body.clientWidth > _.br_vals[ _.br_arr[currIndex - 1] ] ) : (document.body.clientWidth > _.br_vals[ _.br_arr[currIndex] ]);
+				return (currIndex > 0) ? ( document.documentElement.clientWidth > _.br_vals[ _.br_arr[currIndex - 1] ] ) : (document.documentElement.clientWidth > _.br_vals[ _.br_arr[currIndex] ]);
 		}
 	}
 
@@ -364,7 +364,7 @@ window.jQuery && jQuery.noConflict();
 
 		});
 		
-		document.querySelector('body').classList.add('lazy-initialized');
+		document.documentElement.classList.add('lazy-initialized');
 	}
 
 	frameWork.createToolTip = function(triggerer) {

@@ -54,10 +54,12 @@ A framework for your appy dashboardy needs :')
 *	Modules
 	Create nice grid layouts for app modules
 *	Inverse theme support
-	Ability to toggle to a darker theme through adding a class of `body-inverse` to the bod so its easy on the eyes
+	Ability to toggle to a darker theme through adding a class of `theme-inverse` to the bod so its easy on the eyes
 *	Supports up to 35 colors
 	Yes. performance has left the group chat. calm your titties this framework is for dashboard shits
 *	Flex-based grid builds
 	It could be a sweet dream or a beautiful nightmare
-* Tooltips, Modals, Accordions, 
+*	Tooltips, Modals, Accordions, 
+*	Not optimized
+	Gotta make ya shit pretty bro this is not meant to look sexy to google
 

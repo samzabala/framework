@@ -8,7 +8,7 @@ $prefix: '.symbol';
 	position:relative;
 	display:inline-block;
 	line-height:0;
-	font-size:inherit;
+	font:inherit;
 	flex: 0 0 auto; //retain dimensions
 	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
 	width: 1em;
@@ -62,10 +62,16 @@ $prefix: '.symbol';
 		&:after{
 			height: em(3px / $body-font-size);
 			width:.9375em;
+			top: 50%;
+			bottom: auto;
+			transform: translateY(-50%);
 		}
 
 		&:before {
 			height:.9375em;
+			left: 50%;
+			right: auto;
+			transform: translateX(-50%);
 		}
 	}
 
@@ -300,7 +306,7 @@ $prefix: '.symbol';
 		}
 
 		&:after {
-			border: #{em(6px / $body-font-size)} solid transparent;
+			border: #{em(6.5px / $body-font-size)} solid transparent;
 			border-top: #{em(12px / $body-font-size)} solid;
 			border-bottom:0;
 			width: 0;

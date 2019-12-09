@@ -16,19 +16,19 @@ $calculated-thumbnail-font-size: $thumbnail-font-size;
 	}
 
 $calculated-thumbnail-size: $thumbnail-size;
-@if internal-is-convertable($thumbnail-size,$thumbnail-font-size) {
-    $calculated-thumbnail-size: em($thumbnail-size / $thumbnail-font-size);
+@if internal-is-convertable($thumbnail-size) {
+    $calculated-thumbnail-size: rem($thumbnail-size / $body-font-size);
 }
 
 	$calculated-thumbnail-size-small: $thumbnail-size-small;
-	@if internal-is-convertable($thumbnail-size-small,$thumbnail-font-size-small) {
-		$calculated-thumbnail-size-small: em($thumbnail-size-small / $thumbnail-font-size-small);
+	@if internal-is-convertable($thumbnail-size-small) {
+		$calculated-thumbnail-size-small: rem($thumbnail-size-small / $body-font-size);
 	}
 	
 
 $calculated-thumbnail-line-height: $thumbnail-line-height;
 @if internal-is-convertable($thumbnail-line-height) {
-    $calculated-thumbnail-line-height: em($thumbnail-line-height / $thumbnail-font-size);
+    $calculated-thumbnail-line-height: rem($thumbnail-line-height / $body-font-size);
 }
 
 

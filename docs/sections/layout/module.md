@@ -12,15 +12,18 @@ Container of modules. To allow css grid setup, declare css grid properties as da
     <div class="module">
         <div class="module-header">
             <h3 class="module-title">Title</h3>
+            <div class="module-functions">
+                <div class="module-function">
+                    <button class="btn btn-primary">Do Some shit</button>
+                </div>
+            </div>
         </div>
         <div class="module-content">
-            <p>Hi I'm a piece of content
+            <p>Hi I'm a piece of content</p>
         </div>
         <div class="module-footer">
             <p>Whatever footers have</p>
         </div>
-
-
     </div>
 
 </div>
@@ -46,12 +49,6 @@ Container of modules. To allow css grid setup, declare css grid properties as da
 #### Data Attributes
 
 
-### `.modules-grid`
-container of a box
-### `.module`
-THE BOIS
-
-## Functions
 
 
 

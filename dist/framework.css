@@ -130,14 +130,17 @@ html, body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   color: #000000;
   font-weight: 400;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  background: #FFFFFF;
+  min-height: 100vh; }
+
+html.theme-inverse,
+.theme-inverse body {
+  background: #1a1a1a;
+  color: #FFFFFF; }
 
 body {
-  text-align: left;
-  background: #e6e6e6; }
-  body.body-inverse {
-    background: #000000;
-    color: #FFFFFF; }
+  text-align: left; }
   body.body-nav-sticky-offset {
     padding-top: 4.6875rem; }
   body:not(.body-loaded) *, body:not(.body-loaded) *:before, body:not(.body-loaded) *:after {
@@ -277,12 +280,12 @@ h6, .h6 {
   h5:first-child, .h5:first-child,
   h6:first-child, .h6:first-child {
     margin-top: 0; }
-  .body-inverse h1, .body-inverse .h1, .body-inverse
-  h2, .body-inverse .h2, .body-inverse
-  h3, .body-inverse .h3, .body-inverse
-  h4, .body-inverse .h4, .body-inverse
-  h5, .body-inverse .h5, .body-inverse
-  h6, .body-inverse .h6 {
+  .theme-inverse h1, .theme-inverse .h1, .theme-inverse
+  h2, .theme-inverse .h2, .theme-inverse
+  h3, .theme-inverse .h3, .theme-inverse
+  h4, .theme-inverse .h4, .theme-inverse
+  h5, .theme-inverse .h5, .theme-inverse
+  h6, .theme-inverse .h6 {
     color: #e6e6e6; }
 
 h1, .h1 {
@@ -402,7 +405,7 @@ pre, code, kbd, tt {
 code, kbd, tt {
   background: #e6e6e6;
   padding: 0.078125em; }
-  .body-inverse code, .body-inverse kbd, .body-inverse tt {
+  .theme-inverse code, .theme-inverse kbd, .theme-inverse tt {
     background: #000000; }
 
 pre {
@@ -412,7 +415,7 @@ pre {
     border: 0;
     margin: 0;
     padding: 1em; }
-  .body-inverse pre {
+  .theme-inverse pre {
     background: #000000; }
 
 cite {
@@ -473,6 +476,9 @@ body:not(.lazy-initialized) .lazy {
 
 .fill-base {
   fill: #000000; }
+
+.fill-background {
+  fill: #FFFFFF; }
 
 .fill-primary {
   fill: #235789; }
@@ -536,10 +542,10 @@ table {
     tr:first-child,
     .table-row:first-child {
       border-top: 1px solid #e6e6e6; }
-      .body-inverse tr:first-child, .body-inverse
+      .theme-inverse tr:first-child, .theme-inverse
       .table-row:first-child {
         border-top: 1px solid #000000; }
-    .body-inverse tr, .body-inverse
+    .theme-inverse tr, .theme-inverse
     .table-row {
       border-bottom: 1px solid #000000; }
   th, td,
@@ -564,7 +570,7 @@ table {
     font-weight: 700;
     text-transform: uppercase;
     font-style: normal; }
-    .body-inverse th, .body-inverse
+    .theme-inverse th, .theme-inverse
     .table-cell.table-cell-heading {
       background: #000000;
       color: #e6e6e6; }
@@ -588,6 +594,12 @@ table {
       height: calc(6.5625rem - (5px * 2)); }
   .table-row-base {
     background-color: rgba(0, 0, 0, 0.2); }
+  .table-row-disabled td,
+  .table-row-disabled .table-cell {
+    opacity: 0.5;
+    cursor: not-allowed; }
+  .table-row-background {
+    background-color: rgba(255, 255, 255, 0.2); }
   .table-row-disabled td,
   .table-row-disabled .table-cell {
     opacity: 0.5;
@@ -634,7 +646,7 @@ table {
   position: relative;
   display: inline-block;
   line-height: 0;
-  font-size: inherit;
+  font: inherit;
   flex: 0 0 auto;
   height: 1em;
   width: 1em;
@@ -658,9 +670,15 @@ table {
     border-radius: 0.09375em; }
   .symbol-plus:after, .symbol-minus:after {
     height: 0.1875em;
-    width: .9375em; }
+    width: .9375em;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%); }
   .symbol-plus:before, .symbol-minus:before {
-    height: .9375em; }
+    height: .9375em;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%); }
   .symbol-burger:before {
     content: none; }
   .symbol-burger:after {
@@ -775,7 +793,7 @@ table {
     width: 1em;
     border: 0.25em solid; }
   .symbol-map:after {
-    border: 0.375em solid transparent;
+    border: 0.40625em solid transparent;
     border-top: 0.75em solid;
     border-bottom: 0;
     width: 0;
@@ -793,7 +811,7 @@ table {
   font-weight: 400;
   text-transform: none;
   font-style: normal; }
-  .body-inverse .nav {
+  .theme-inverse .nav {
     background: #1a1a1a; }
 
 .nav * {
@@ -814,9 +832,9 @@ table {
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 2px 5px 0 #e6e6e6; }
-  .body-inverse .nav.nav-sticky {
-    box-shadow: 0 2px 5px 0 #000000; }
+  box-shadow: 0px 8px 20px -10px #e6e6e6; }
+  .theme-inverse .nav.nav-sticky {
+    box-shadow: 0px 8px 20px -10px #000000; }
 
 .nav.nav-vertical {
   display: block;
@@ -874,7 +892,7 @@ table {
 .nav-list > li > a,
 .nav-list > li > [data-toggle=dropdown] {
   font-size: 1.1875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: none;
   font-style: normal;
   position: relative;
@@ -3203,8 +3221,8 @@ table {
 /*** LIST GROUPS ***/
 .list-group {
   padding: 1px 0 0; }
-  .body-inverse .list-group li,
-  .body-inverse .list-group .list-group-item {
+  .theme-inverse .list-group li,
+  .theme-inverse .list-group .list-group-item {
     border-color: #000000; }
   .list-group li,
   .list-group .list-group-item {
@@ -3267,7 +3285,7 @@ table {
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, min-content));
   grid-template-areas: "header" "content" "footer";
   transition: 0.5s box-shadow ease-in-out; }
-  .body-inverse .module {
+  .theme-inverse .module {
     background: #1a1a1a;
     border-color: #000000; }
   .module[data-toggle]:hover, .module[data-toggle]:focus, .module[data-toggle].focus, .module[href]:hover, .module[href]:focus, .module[href].focus, .module-interactive:hover, .module-interactive:focus, .module-interactive.focus {
@@ -3348,7 +3366,7 @@ table {
     margin-top: 10px;
     margin-bottom: 10px; }
   @media (min-width: 1201px) {
-    .module-functions .module-function:nth-child(n+1) {
+    .module-functions .module-function:nth-child(n+2) {
       margin-left: .75rem; } }
   @media (max-width: 1200px) {
     .module-functions .module-function {
@@ -3434,7 +3452,7 @@ table {
   z-index: 2;
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
   width: 100%; }
-  .body-inverse .modal-popup, .body-inverse .fw-trumbowyg-modal-box {
+  .theme-inverse .modal-popup, .theme-inverse .fw-trumbowyg-modal-box {
     background: #1a1a1a; }
 
 .modal-wrapper, .fw-trumbowyg-modal {
@@ -3479,7 +3497,7 @@ table {
 .thumbnail {
   position: relative;
   display: block;
-  width: 3.0769230769em;
+  width: 12.5rem;
   max-width: 100%;
   display: inline-block;
   position: relative;
@@ -3523,7 +3541,7 @@ table {
     top: 8%;
     left: 8%; }
   .thumbnail.thumbnail-small {
-    width: 2.5em;
+    width: 2.8125rem;
     display: inline-block;
     vertical-align: middle;
     line-height: inherit;
@@ -3557,7 +3575,7 @@ table {
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite; }
-  .body-inverse .progress, .body-inverse .fw-trumbowyg-progress {
+  .theme-inverse .progress, .theme-inverse .fw-trumbowyg-progress {
     background-color: transparent;
     background: -moz-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.4) 0%,  rgba(0, 0, 0, 0.4) 1px,  transparent 1px,  transparent 4px) ;
     /* FF3.6-15 */
@@ -3592,7 +3610,7 @@ table {
   display: block;
   margin-bottom: 0.7142857143em;
   margin-top: 2.1428571429em; }
-  .body-inverse .progress-title {
+  .theme-inverse .progress-title {
     color: #e6e6e6; }
 
 /*** BADGE ***/
@@ -3606,7 +3624,7 @@ table {
   border-radius: calc(1.5625rem * .5);
   border: 0.4375rem solid #FFFFFF;
   box-shadow: 0px 5px 15px -6px #000000; }
-  .body-inverse .badge {
+  .theme-inverse .badge {
     border-color: #FFFFFF; }
   .badge.badge-large {
     width: 1.875rem;
@@ -3622,7 +3640,7 @@ table {
 .tag {
   font-size: 0.8125em;
   line-height: 1.25;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   font-style: normal;
   padding-top: calc(  (  (1.9230769231em - (1em * 1.25) ) * .5 ));
@@ -3656,7 +3674,7 @@ table {
   display: none; }
   .open.tooltip, .open.dropdown {
     display: block; }
-  .body-inverse .tooltip, .body-inverse .dropdown {
+  .theme-inverse .tooltip, .theme-inverse .dropdown {
     background: #1a1a1a; }
 
 .tooltip {
@@ -3667,7 +3685,7 @@ table {
     background: #FFFFFF;
     position: absolute;
     z-index: -1; }
-    .body-inverse .tooltip:before, .body-inverse .tooltip:after {
+    .theme-inverse .tooltip:before, .theme-inverse .tooltip:after {
       background: #1a1a1a; }
   .tooltip:after {
     left: 0;
@@ -3761,7 +3779,7 @@ table {
   font-size: 1rem;
   line-height: 1.875;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: none;
   text-decoration: none;
   text-align: center;
@@ -4544,7 +4562,7 @@ select.input[multiple],
   line-height: 1.25;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   color: #8d8d8d;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
   text-align: inherit;
@@ -4564,13 +4582,18 @@ select.input[multiple],
     padding-top: calc(  (2.1875rem - (1em * 1.25) ) * .5);
     padding-bottom: calc(  (2.1875rem - (1em * 1.25) ) * .5);
     border-radius: 10px; }
-  .body-inverse .input-label, .body-inverse .fw-trumbowyg-modal-box label .fw-trumbowyg-input-infos, .fw-trumbowyg-modal-box label .body-inverse .fw-trumbowyg-input-infos {
+  .theme-inverse .input-label, .theme-inverse .fw-trumbowyg-modal-box label .fw-trumbowyg-input-infos, .fw-trumbowyg-modal-box label .theme-inverse .fw-trumbowyg-input-infos {
     color: inherit; }
 
 .input-label.input-label-base,
 .input-wrapper-base .input-label, .input-label.input-label-base:focus,
 .input-wrapper-base .input-label:focus {
   color: #000000 !important; }
+
+.input-label.input-label-background,
+.input-wrapper-background .input-label, .input-label.input-label-background:focus,
+.input-wrapper-background .input-label:focus {
+  color: #FFFFFF !important; }
 
 .input-label.input-label-primary,
 .input-wrapper-primary .input-label, .input-label.input-label-primary:focus,
@@ -4618,11 +4641,11 @@ select.input[multiple],
   .input:focus, .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]) {
     outline: none;
     box-shadow: 0px 0 5px 0px #235789; }
-  .body-inverse .input, .body-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .body-inverse input:not([type="checkbox"]):not([type="radio"]) {
+  .theme-inverse .input, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]) {
     background-color: transparent; }
   .input[disabled], .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]) {
     background-color: rgba(141, 141, 141, 0.2); }
-    .body-inverse .input[disabled], .body-inverse .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .body-inverse input[disabled]:not([type="checkbox"]):not([type="radio"]) {
+    .theme-inverse .input[disabled], .theme-inverse .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input[disabled]:not([type="checkbox"]):not([type="radio"]) {
       background-color: transparent; }
 
 .input-single-line, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), select.input[multiple], .input-multiple-line, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea {
@@ -4632,7 +4655,7 @@ select.input[multiple],
   line-height: 1.25;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   color: inherit;
-  font-weight: inherit;
+  font-weight: 700;
   text-transform: none;
   text-decoration: none;
   text-align: inherit;
@@ -4670,7 +4693,7 @@ select.input[multiple],
     padding-top: calc(  (  (2.1875rem - (1px * 2)) - (1em * 1.25) ) * .5);
     padding-bottom: calc(  (  (2.1875rem - (1px * 2)) - (1em * 1.25) ) * .5);
     border-radius: 10px; }
-  .body-inverse .input-single-line, .body-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .body-inverse input:not([type="checkbox"]):not([type="radio"]), .body-inverse select.input[multiple], .body-inverse .input-multiple-line, .body-inverse .input-editor, .body-inverse .fw-trumbowyg-editor, .body-inverse .fw-trumbowyg-textarea {
+  .theme-inverse .input-single-line, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]), .theme-inverse select.input[multiple], .theme-inverse .input-multiple-line, .theme-inverse .input-editor, .theme-inverse .fw-trumbowyg-editor, .theme-inverse .fw-trumbowyg-textarea {
     color: inherit;
     background-color: transparent; }
   .input-single-line option, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) option, select.input[multiple] option, .input-multiple-line option, .input-editor option, .fw-trumbowyg-editor option, .fw-trumbowyg-textarea option {
@@ -4706,6 +4729,12 @@ select.input[multiple],
 
 .input-base.input-single-line, .fw-trumbowyg-modal-box label input.input-base:not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple], .input-base.input-multiple-line, .input-base.input-editor, .input-base.fw-trumbowyg-editor, .input-base.fw-trumbowyg-textarea, .input-wrapper-base .input-single-line, .input-wrapper-base .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple], .input-wrapper-base .input-multiple-line, .input-wrapper-base .input-editor, .input-wrapper-base .fw-trumbowyg-editor, .input-wrapper-base .fw-trumbowyg-textarea, .input-base.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-base:focus:not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple]:focus, .input-base.input-multiple-line:focus, .input-base.input-editor:focus, .input-base.fw-trumbowyg-editor:focus, .input-base.fw-trumbowyg-textarea:focus, .input-wrapper-base .input-single-line:focus, .input-wrapper-base .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple]:focus, .input-wrapper-base .input-multiple-line:focus, .input-wrapper-base .input-editor:focus, .input-wrapper-base .fw-trumbowyg-editor:focus, .input-wrapper-base .fw-trumbowyg-textarea:focus, .focus.input-base.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-base:not([type="checkbox"]):not([type="radio"]), select.focus.input-base.input[multiple], .focus.input-base.input-multiple-line, .focus.input-base.input-editor, .focus.input-base.fw-trumbowyg-editor, .focus.input-base.fw-trumbowyg-textarea, .input-wrapper-base .focus.input-single-line, .input-wrapper-base .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.focus.input[multiple], .input-wrapper-base .focus.input-multiple-line, .input-wrapper-base .focus.input-editor, .input-wrapper-base .focus.fw-trumbowyg-editor, .input-wrapper-base .focus.fw-trumbowyg-textarea {
   border-color: #000000; }
+
+.input-background.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-background:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-background.input[multiple]:not(:focus):not(.focus), .input-background.input-multiple-line:not(:focus):not(.focus), .input-background.input-editor:not(:focus):not(.focus), .input-background.fw-trumbowyg-editor:not(:focus):not(.focus), .input-background.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-background .input-single-line:not(:focus):not(.focus), .input-wrapper-background .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.input[multiple]:not(:focus):not(.focus), .input-wrapper-background .input-multiple-line:not(:focus):not(.focus), .input-wrapper-background .input-editor:not(:focus):not(.focus), .input-wrapper-background .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-background .fw-trumbowyg-textarea:not(:focus):not(.focus) {
+  box-shadow: 0px 5px 15px -6px #FFFFFF; }
+
+.input-background.input-single-line, .fw-trumbowyg-modal-box label input.input-background:not([type="checkbox"]):not([type="radio"]), select.input-background.input[multiple], .input-background.input-multiple-line, .input-background.input-editor, .input-background.fw-trumbowyg-editor, .input-background.fw-trumbowyg-textarea, .input-wrapper-background .input-single-line, .input-wrapper-background .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.input[multiple], .input-wrapper-background .input-multiple-line, .input-wrapper-background .input-editor, .input-wrapper-background .fw-trumbowyg-editor, .input-wrapper-background .fw-trumbowyg-textarea, .input-background.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-background:focus:not([type="checkbox"]):not([type="radio"]), select.input-background.input[multiple]:focus, .input-background.input-multiple-line:focus, .input-background.input-editor:focus, .input-background.fw-trumbowyg-editor:focus, .input-background.fw-trumbowyg-textarea:focus, .input-wrapper-background .input-single-line:focus, .input-wrapper-background .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.input[multiple]:focus, .input-wrapper-background .input-multiple-line:focus, .input-wrapper-background .input-editor:focus, .input-wrapper-background .fw-trumbowyg-editor:focus, .input-wrapper-background .fw-trumbowyg-textarea:focus, .focus.input-background.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-background:not([type="checkbox"]):not([type="radio"]), select.focus.input-background.input[multiple], .focus.input-background.input-multiple-line, .focus.input-background.input-editor, .focus.input-background.fw-trumbowyg-editor, .focus.input-background.fw-trumbowyg-textarea, .input-wrapper-background .focus.input-single-line, .input-wrapper-background .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.focus.input[multiple], .input-wrapper-background .focus.input-multiple-line, .input-wrapper-background .focus.input-editor, .input-wrapper-background .focus.fw-trumbowyg-editor, .input-wrapper-background .focus.fw-trumbowyg-textarea {
+  border-color: #FFFFFF; }
 
 .input-primary.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-primary:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:not(:focus):not(.focus), .input-primary.input-multiple-line:not(:focus):not(.focus), .input-primary.input-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-primary .input-single-line:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:not(:focus):not(.focus), .input-wrapper-primary .input-multiple-line:not(:focus):not(.focus), .input-wrapper-primary .input-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-textarea:not(:focus):not(.focus) {
   box-shadow: 0px 5px 15px -6px #235789; }
@@ -4943,7 +4972,7 @@ fieldset {
     top: -1em;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0; }
-  .body-inverse .special-form, .body-inverse
+  .theme-inverse .special-form, .theme-inverse
   fieldset {
     background: #000000; }
   .special-form .input-wrapper,
@@ -5224,7 +5253,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   z-index: 99999;
   background: #FFFFFF; }
   .fw-trumbowyg-dark,
-  .body-inverse .fw-trumbowyg-fullscreen {
+  .theme-inverse .fw-trumbowyg-fullscreen {
     background: #1a1a1a; }
   .fw-trumbowyg-fullscreen.fw-trumbowyg-box,
   .fw-trumbowyg-fullscreen .fw-trumbowyg-editor {
@@ -5294,6 +5323,8 @@ CUSTOM STYLES FOR TRUMBOWYG
     color: #17BEBB !important; }
   .color-base, .color-base-hover:hover, .color-base-focus:focus, .color-base-focus.focus, .color-base-active:active, .color-base-toggle.active, .color-base-toggle.open {
     color: #000000 !important; }
+  .color-background, .color-background-hover:hover, .color-background-focus:focus, .color-background-focus.focus, .color-background-active:active, .color-background-toggle.active, .color-background-toggle.open {
+    color: #FFFFFF !important; }
   .color-primary, .color-primary-hover:hover, .color-primary-focus:focus, .color-primary-focus.focus, .color-primary-active:active, .color-primary-toggle.active, .color-primary-toggle.open {
     color: #235789 !important; }
   .color-accent, .color-accent-hover:hover, .color-accent-focus:focus, .color-accent-focus.focus, .color-accent-active:active, .color-accent-toggle.active, .color-accent-toggle.open {
@@ -5312,6 +5343,12 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 .background-base, .background-base-hover:hover, .background-base-focus:focus, .background-base-focus.focus, .background-base-active:active, .background-base-toggle.active, .background-base-toggle.open {
   background-color: #000000 !important; }
+
+.table-label-background, .progress-bar-background, .badge-background, .tag-background, .legend-background {
+  background-color: #FFFFFF; }
+
+.background-background, .background-background-hover:hover, .background-background-focus:focus, .background-background-focus.focus, .background-background-active:active, .background-background-toggle.active, .background-background-toggle.open {
+  background-color: #FFFFFF !important; }
 
 .table-label-primary, .progress-bar-primary, .badge-primary, .tag-primary, .legend-primary {
   background-color: #235789; }
@@ -5486,24 +5523,24 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-global, .background-global-hover:hover, .background-global-focus:focus, .background-global-focus.focus, .background-global-active:active, .background-global-toggle.active, .background-global-toggle.open {
+.background-theme, .background-theme-hover:hover, .background-theme-focus:focus, .background-theme-focus.focus, .background-theme-active:active, .background-theme-toggle.active, .background-theme-toggle.open {
   background-color: #FFFFFF !important; }
-  .body-inverse .background-global, .body-inverse .background-global-hover:hover, .body-inverse .background-global-focus:focus, .body-inverse .background-global-focus.focus, .body-inverse .background-global-active:active, .body-inverse .background-global-toggle.active, .body-inverse .background-global-toggle.open {
+  .theme-inverse .background-theme, .theme-inverse .background-theme-hover:hover, .theme-inverse .background-theme-focus:focus, .theme-inverse .background-theme-focus.focus, .theme-inverse .background-theme-active:active, .theme-inverse .background-theme-toggle.active, .theme-inverse .background-theme-toggle.open {
     background-color: #1a1a1a !important; }
 
-.background-global-contrast, .background-global-contrast-hover:hover, .background-global-contrast-focus:focus, .background-global-contrast-focus.focus, .background-global-contrast-active:active, .background-global-contrast-toggle.active, .background-global-contrast-toggle.open {
+.background-theme-contrast, .background-theme-contrast-hover:hover, .background-theme-contrast-focus:focus, .background-theme-contrast-focus.focus, .background-theme-contrast-active:active, .background-theme-contrast-toggle.active, .background-theme-contrast-toggle.open {
   background-color: #e6e6e6 !important; }
-  .body-inverse .background-global-contrast, .body-inverse .background-global-contrast-hover:hover, .body-inverse .background-global-contrast-focus:focus, .body-inverse .background-global-contrast-focus.focus, .body-inverse .background-global-contrast-active:active, .body-inverse .background-global-contrast-toggle.active, .body-inverse .background-global-contrast-toggle.open {
+  .theme-inverse .background-theme-contrast, .theme-inverse .background-theme-contrast-hover:hover, .theme-inverse .background-theme-contrast-focus:focus, .theme-inverse .background-theme-contrast-focus.focus, .theme-inverse .background-theme-contrast-active:active, .theme-inverse .background-theme-contrast-toggle.active, .theme-inverse .background-theme-contrast-toggle.open {
     background-color: #000000 !important; }
 
-.background-global-color, .background-global-color-hover:hover, .background-global-color-focus:focus, .background-global-color-focus.focus, .background-global-color-active:active, .background-global-color-toggle.active, .background-global-color-toggle.open {
+.background-theme-inverse, .background-theme-inverse-hover:hover, .background-theme-inverse-focus:focus, .background-theme-inverse-focus.focus, .background-theme-inverse-active:active, .background-theme-inverse-toggle.active, .background-theme-inverse-toggle.open {
   background-color: #000000 !important; }
-  .body-inverse .background-global-color, .body-inverse .background-global-color-hover:hover, .body-inverse .background-global-color-focus:focus, .body-inverse .background-global-color-focus.focus, .body-inverse .background-global-color-active:active, .body-inverse .background-global-color-toggle.active, .body-inverse .background-global-color-toggle.open {
+  .theme-inverse .background-theme-inverse, .theme-inverse .background-theme-inverse-hover:hover, .theme-inverse .background-theme-inverse-focus:focus, .theme-inverse .background-theme-inverse-focus.focus, .theme-inverse .background-theme-inverse-active:active, .theme-inverse .background-theme-inverse-toggle.active, .theme-inverse .background-theme-inverse-toggle.open {
     background-color: #FFFFFF !important; }
 
-.background-global-color-contrast, .background-global-color-contrast-hover:hover, .background-global-color-contrast-focus:focus, .background-global-color-contrast-focus.focus, .background-global-color-contrast-active:active, .background-global-color-contrast-toggle.active, .background-global-color-contrast-toggle.open {
+.background-theme-inverse-contrast, .background-theme-inverse-contrast-hover:hover, .background-theme-inverse-contrast-focus:focus, .background-theme-inverse-contrast-focus.focus, .background-theme-inverse-contrast-active:active, .background-theme-inverse-contrast-toggle.active, .background-theme-inverse-contrast-toggle.open {
   background-color: #1a1a1a !important; }
-  .body-inverse .background-global-color-contrast, .body-inverse .background-global-color-contrast-hover:hover, .body-inverse .background-global-color-contrast-focus:focus, .body-inverse .background-global-color-contrast-focus.focus, .body-inverse .background-global-color-contrast-active:active, .body-inverse .background-global-color-contrast-toggle.active, .body-inverse .background-global-color-contrast-toggle.open {
+  .theme-inverse .background-theme-inverse-contrast, .theme-inverse .background-theme-inverse-contrast-hover:hover, .theme-inverse .background-theme-inverse-contrast-focus:focus, .theme-inverse .background-theme-inverse-contrast-focus.focus, .theme-inverse .background-theme-inverse-contrast-active:active, .theme-inverse .background-theme-inverse-contrast-toggle.active, .theme-inverse .background-theme-inverse-contrast-toggle.open {
     background-color: #e6e6e6 !important; }
 
 .background-gradient, .background-gradient-45, .background-gradient-90, .background-gradient-135, .background-gradient-180, .background-gradient-225, .background-gradient-270, .background-gradient-315 {
@@ -5513,24 +5550,24 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-color: transparent !important; }
 
 /* COLOR CLASSES */
-.color-global, .color-global-hover:hover, .color-global-focus:focus, .color-global-focus.focus, .color-global-active:active, .color-global-toggle.active, .color-global-toggle.open {
+.color-theme, .color-theme-hover:hover, .color-theme-focus:focus, .color-theme-focus.focus, .color-theme-active:active, .color-theme-toggle.active, .color-theme-toggle.open {
   color: #000000 !important; }
-  .body-inverse .color-global, .body-inverse .color-global-hover:hover, .body-inverse .color-global-focus:focus, .body-inverse .color-global-focus.focus, .body-inverse .color-global-active:active, .body-inverse .color-global-toggle.active, .body-inverse .color-global-toggle.open {
+  .theme-inverse .color-theme, .theme-inverse .color-theme-hover:hover, .theme-inverse .color-theme-focus:focus, .theme-inverse .color-theme-focus.focus, .theme-inverse .color-theme-active:active, .theme-inverse .color-theme-toggle.active, .theme-inverse .color-theme-toggle.open {
     color: #FFFFFF !important; }
 
-.color-global-contrast, .color-global-contrast-hover:hover, .color-global-contrast-focus:focus, .color-global-contrast-focus.focus, .color-global-contrast-active:active, .color-global-contrast-toggle.active, .color-global-contrast-toggle.open {
+.color-theme-contrast, .color-theme-contrast-hover:hover, .color-theme-contrast-focus:focus, .color-theme-contrast-focus.focus, .color-theme-contrast-active:active, .color-theme-contrast-toggle.active, .color-theme-contrast-toggle.open {
   color: #1a1a1a !important; }
-  .body-inverse .color-global-contrast, .body-inverse .color-global-contrast-hover:hover, .body-inverse .color-global-contrast-focus:focus, .body-inverse .color-global-contrast-focus.focus, .body-inverse .color-global-contrast-active:active, .body-inverse .color-global-contrast-toggle.active, .body-inverse .color-global-contrast-toggle.open {
+  .theme-inverse .color-theme-contrast, .theme-inverse .color-theme-contrast-hover:hover, .theme-inverse .color-theme-contrast-focus:focus, .theme-inverse .color-theme-contrast-focus.focus, .theme-inverse .color-theme-contrast-active:active, .theme-inverse .color-theme-contrast-toggle.active, .theme-inverse .color-theme-contrast-toggle.open {
     color: #e6e6e6 !important; }
 
-.color-global-background, .color-global-background-hover:hover, .color-global-background-focus:focus, .color-global-background-focus.focus, .color-global-background-active:active, .color-global-background-toggle.active, .color-global-background-toggle.open {
+.color-theme-inverse, .color-theme-inverse-hover:hover, .color-theme-inverse-focus:focus, .color-theme-inverse-focus.focus, .color-theme-inverse-active:active, .color-theme-inverse-toggle.active, .color-theme-inverse-toggle.open {
   color: #FFFFFF !important; }
-  .body-inverse .color-global-background, .body-inverse .color-global-background-hover:hover, .body-inverse .color-global-background-focus:focus, .body-inverse .color-global-background-focus.focus, .body-inverse .color-global-background-active:active, .body-inverse .color-global-background-toggle.active, .body-inverse .color-global-background-toggle.open {
+  .theme-inverse .color-theme-inverse, .theme-inverse .color-theme-inverse-hover:hover, .theme-inverse .color-theme-inverse-focus:focus, .theme-inverse .color-theme-inverse-focus.focus, .theme-inverse .color-theme-inverse-active:active, .theme-inverse .color-theme-inverse-toggle.active, .theme-inverse .color-theme-inverse-toggle.open {
     color: #1a1a1a !important; }
 
-.color-global-background-contrast, .color-global-background-contrast-hover:hover, .color-global-background-contrast-focus:focus, .color-global-background-contrast-focus.focus, .color-global-background-contrast-active:active, .color-global-background-contrast-toggle.active, .color-global-background-contrast-toggle.open {
+.color-theme-inverse-contrast, .color-theme-inverse-contrast-hover:hover, .color-theme-inverse-contrast-focus:focus, .color-theme-inverse-contrast-focus.focus, .color-theme-inverse-contrast-active:active, .color-theme-inverse-contrast-toggle.active, .color-theme-inverse-contrast-toggle.open {
   color: #e6e6e6 !important; }
-  .body-inverse .color-global-background-contrast, .body-inverse .color-global-background-contrast-hover:hover, .body-inverse .color-global-background-contrast-focus:focus, .body-inverse .color-global-background-contrast-focus.focus, .body-inverse .color-global-background-contrast-active:active, .body-inverse .color-global-background-contrast-toggle.active, .body-inverse .color-global-background-contrast-toggle.open {
+  .theme-inverse .color-theme-inverse-contrast, .theme-inverse .color-theme-inverse-contrast-hover:hover, .theme-inverse .color-theme-inverse-contrast-focus:focus, .theme-inverse .color-theme-inverse-contrast-focus.focus, .theme-inverse .color-theme-inverse-contrast-active:active, .theme-inverse .color-theme-inverse-contrast-toggle.active, .theme-inverse .color-theme-inverse-contrast-toggle.open {
     color: #000000 !important; }
 
 .color-inherit, .color-inherit-hover:hover, .color-inherit-focus:focus, .color-inherit-focus.focus, .color-inherit-active:active, .color-inherit-toggle.active, .color-inherit-toggle.open {

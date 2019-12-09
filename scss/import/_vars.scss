@@ -61,17 +61,17 @@
 		
 	// GLOBAL html + body coloring..
 
-		$global-color: $brand-color-base !default;
-			$global-color-inverse: $brand-color-background !default;
+		$theme-color: $brand-color-base !default;
+			$theme-color-inverse: $brand-color-background !default;
 
-			$global-color-contrast: $brand-color-base-alt !default;
-				$global-color-contrast-inverse: $brand-color-background-alt !default;
+			$theme-color-contrast: $brand-color-base-alt !default;
+				$theme-color-contrast-inverse: $brand-color-background-alt !default;
 
-		$global-background: $brand-color-background !default;
-			$global-background-inverse: $brand-color-base-alt !default;
+		$theme-background: $brand-color-background !default;
+			$theme-background-inverse: $brand-color-base-alt !default;
 
-			$global-background-contrast: $brand-color-background-alt !default;
-				$global-background-contrast-inverse: $brand-color-base !default;
+			$theme-background-contrast: $brand-color-background-alt !default;
+				$theme-background-contrast-inverse: $brand-color-base !default;
 
 	// PADDING
 		$gutter-base: 40px !default;
@@ -99,15 +99,11 @@
 	// SCAFFOLD
 		$body-font-family: $brand-font-primary !default;
 		$body-font-weight: 400 !default;
-			$body-font-weight-bold:700 !default;
+			$body-font-weight-bold: 700 !default;
 		$body-font-size: 16px !default;
 			$body-font-size-small: 14px !default;
 			$body-font-size-large: 24px !default;
 		$body-line-height: 24px !default;
-		$body-background: $global-background-contrast !default;
-			$body-background-inverse: $global-background-contrast-inverse !default;
-		$body-color: $brand-color-base !default;
-			$body-color-inverse: $brand-color-background !default;
 		$body-text-gutter-y: 30px !default;
 
 
@@ -121,8 +117,8 @@
 		$body-heading-font-style: inherit !default;
 		$body-heading-text-transform: none !default;
 		$body-heading-font-family: $brand-font-accent !default;
-		$body-heading-color: $global-color-contrast !default;
-			$body-heading-color-inverse: $global-color-contrast-inverse !default;
+		$body-heading-color: $theme-color-contrast !default;
+			$body-heading-color-inverse: $theme-color-contrast-inverse !default;
 
 		$body-size-h1: 38px !default;
 		$body-size-h2: 28px !default;
@@ -157,8 +153,8 @@
 		$body-cite-font-style: italic !default;
 		$body-cite-gutter-y: 30px !default;
 
-		$body-mono-background: $global-background-contrast!default;
-		$body-mono-background-inverse: $global-background-contrast-inverse!default;
+		$body-mono-background: $theme-background-contrast!default;
+		$body-mono-background-inverse: $theme-background-contrast-inverse!default;
 			$body-pre-padding: $gutter-micro!default;
 
 		$global-disabled-opacity: .5 !default;
@@ -173,21 +169,21 @@
 	// TABLE
 		$table-cell-height: 70px !default;
 			$table-cell-height-large: 105px !default;
-		$table-cell-border-color: $global-background-contrast !default;
-			$table-cell-border-color-inverse: $global-background-contrast-inverse !default;
+		$table-cell-border-color: $theme-background-contrast !default;
+			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;
 		$table-cell-border-width: 1px !default;
 		$table-cell-gutter-y-compact: 5px !default;
 		$table-cell-gutter: 20px !default;
 
 		$table-heading-font-size: 14px !default;
 		$table-heading-height: 45px !default;
-		$table-heading-font-weight: 700 !default;
+		$table-heading-font-weight: $body-font-weight-bold !default;
 		$table-heading-font-style: normal !default;
-		$table-heading-color: $global-color-contrast !default;
-			$table-heading-color-inverse: $global-color-contrast-inverse !default;
+		$table-heading-color: $theme-color-contrast !default;
+			$table-heading-color-inverse: $theme-color-contrast-inverse !default;
 		$table-heading-text-transform: uppercase !default;
-		$table-heading-background: $global-background-contrast !default;
-			$table-heading-background-inverse: $global-background-contrast-inverse !default;
+		$table-heading-background: $theme-background-contrast !default;
+			$table-heading-background-inverse: $theme-background-contrast-inverse !default;
 		$table-label-width: 12px !default;
 		$table-label-offset: 5px !default;
 		$table-label-border-radius: 2px !default;
@@ -244,9 +240,11 @@
 	// NAV
 		$nav-height: 75px !default;
 		$nav-gutter-x: $gutter-small !default;
-		$nav-background: $global-background !default;
+		$nav-drop-shadow: $box-shadow-spicy $theme-background-contrast !default;
+			$nav-drop-shadow-inverse: $box-shadow-spicy $theme-background-contrast-inverse !default;
+		$nav-background: $theme-background !default;
 			$nav-dropdown-background: $nav-background !default;
-			$nav-background-inverse: $global-background-inverse !default;
+			$nav-background-inverse: $theme-background-inverse !default;
 		$nav-icon-width: $icon-size !default;
 		$nav-icon-height: $icon-size !default;
 		$nav-current-size: 5px !default;
@@ -262,7 +260,7 @@
 
 		$nav-top-font-size: 19px !default;
 		$nav-top-font-style: normal !default;
-		$nav-top-font-weight: 600 !default;
+		$nav-top-font-weight: $body-font-weight-bold !default;
 		$nav-top-font-color: inherit !default;
 		$nav-top-text-transform: none !default;
 
@@ -276,10 +274,10 @@
 		$pagination-gutter-y: 0 !default;
 	
 	// MODULE
-		$module-background-color: $global-background !default;
-			$module-background-color-inverse: $global-background-inverse !default;
-		$module-border-color: $global-background-contrast !default;
-			$module-border-color-inverse: $global-background-contrast-inverse !default;
+		$module-background-color: $theme-background !default;
+			$module-background-color-inverse: $theme-background-inverse !default;
+		$module-border-color: $theme-background-contrast !default;
+			$module-border-color-inverse: $theme-background-contrast-inverse !default;
 		$module-border-width: 1px !default;
 		$module-gutter-x: $gutter-base !default;
 			$module-gutter-x-mobile: $gutter-small !default;
@@ -297,13 +295,13 @@
 		$module-border-radius: $border-radius-base !default;
 
 		$module-title-font-size: $body-font-size !default;
-		$module-title-font-weight: 700 !default;
+		$module-title-font-weight: $body-font-weight-bold !default;
 		$module-title-font-style: normal !default;
 		$module-title-color: $brand-color-primary !default;
 		$module-title-text-transform: none !default;
 
 		$module-grid-title-font-size: 19px !default;
-		$module-grid-title-font-weight: 700 !default;
+		$module-grid-title-font-weight: $body-font-weight-bold !default;
 		$module-grid-title-font-style: normal !default;
 		$module-grid-title-color: $brand-color-primary !default;
 		$module-grid-title-text-transform: none !default;
@@ -317,9 +315,9 @@
 	// modal
 		$modal-gutter-x: $gutter-small !default;
 		$modal-gutter-y: $gutter-base * .75 !default;
-		$modal-background: $global-background !default;
+		$modal-background: $theme-background !default;
 		$modal-close-offset: $gutter-small !default;
-		$modal-background-inverse: $global-background-inverse !default;
+		$modal-background-inverse: $theme-background-inverse !default;
 		$modal-border-radius: $border-radius-base !default;
 		$modal-box-shadow: $box-shadow-spicy $brand-color-base !default !default;
 		$modal-overlay-bg: rgba($brand-color-base,.5) !default;
@@ -331,8 +329,8 @@
 		$popper-border-radius: $border-radius-base !default;
 		$popper-box-shadow: $box-shadow-base $brand-color-base !default;
 		$popper-arrow-box-shadow: $box-shadow-mild $brand-color-base !default;
-		$popper-background: $global-background !default;
-		$popper-background-inverse: $global-background-inverse !default;
+		$popper-background: $theme-background !default;
+		$popper-background-inverse: $theme-background-inverse !default;
 
 		$dropdown-width: 300px !default;
 
@@ -352,7 +350,7 @@
 
 
 		$progress-title-font-size: 14px !default;
-		$progress-title-font-weight: 700 !default;
+		$progress-title-font-weight: $body-font-weight-bold !default;
 		$progress-title-line-height: 20px !default;
 		$progress-title-font-style: normal !default;
 		$progress-title-color: $brand-color-base-alt !default;
@@ -373,12 +371,12 @@
 		$thumbnail-border-radius: 50% !default;
 		$thumbnail-line-height: 1.25 !default;
 		$thumbnail-color: $brand-color-background !default;
-		$thumbnail-font-weight: 700 !default;
+		$thumbnail-font-weight: $body-font-weight-bold !default;
 		$thumbnail-font-style: normal !default;
 		
 	//list groups
-		$list-group-border-color: $global-background-contrast !default;
-			$list-group-border-color-inverse: $global-background-contrast-inverse !default;
+		$list-group-border-color: $theme-background-contrast !default;
+			$list-group-border-color-inverse: $theme-background-contrast-inverse !default;
 		$list-group-border-width: 1px !default;
 		$list-group-height: 50px !default;
 		
@@ -386,8 +384,8 @@
 		$badge-size: 25px !default;
 		$badge-size-large: 30px !default;
 		$badge-size-small: 20px !default;
-		$badge-border-color: $global-background !default;
-			$badge-border-color-inverse: $global-background !default;
+		$badge-border-color: $theme-background !default;
+			$badge-border-color-inverse: $theme-background !default;
 		$badge-border-width: 7px !default;
 		$badge-box-shadow: $box-shadow-base $brand-color-base !default;
 
@@ -403,7 +401,7 @@
 		$tag-height: 25px !default;
 		$tag-gutter-x: 15px !default;
 		$tag-font-size: 13px !default;
-		$tag-font-weight: 600 !default;
+		$tag-font-weight: $body-font-weight-bold !default;
 		$tag-line-height: 1.25 !default;
 		$tag-font-style: normal !default;
 		$tag-color: $brand-color-background !default;
@@ -437,7 +435,7 @@
 			$input-background-inverse: none !default;
 		$input-line-height: 20px !default;
 		$input-font-family: $brand-font-primary !default;
-		$input-font-weight: inherit !default;
+		$input-font-weight: $body-font-weight-bold !default;
 		$input-font-style: normal !default;
 		$input-text-transform: none !default;
 		
@@ -464,7 +462,7 @@
 			$input-label-color-inverse: inherit !default;
 		
 			$input-label-font-family: $brand-font-primary !default;
-			$input-label-font-weight: 600 !default;
+			$input-label-font-weight: $body-font-weight-bold !default;
 			$input-label-font-style: normal !default;
 			$input-label-text-transform: uppercase !default;
 		
@@ -481,8 +479,8 @@
 		//special-form
 			$special-form-gutter-x: 35px !default;
 			$special-form-gutter-y: 30px !default;
-			$special-form-background: $global-background-contrast !default;
-			$special-form-background-inverse: $global-background-contrast-inverse !default;
+			$special-form-background: $theme-background-contrast !default;
+			$special-form-background-inverse: $theme-background-contrast-inverse !default;
 			
 			$special-form-border-radius: $border-radius-base !default;
 
@@ -509,7 +507,7 @@
 			$btn-font-size-small: 16px !default;
 		$btn-line-height: 30px !default;
 		$btn-font-family: $brand-font-primary !default;
-		$btn-font-weight: 600 !default;
+		$btn-font-weight: $body-font-weight-bold !default;
 		$btn-font-style: normal !default;
 		$btn-text-transform: none !default;
 		$btn-gutter-x: 25px !default;
@@ -728,15 +726,15 @@
 		
 	// GLOBAL html + body coloring
 
-		--global-color: #{$global-color};
-			--global-color-inverse: #{$global-color-inverse};
+		--global-color: #{$theme-color};
+			--global-color-inverse: #{$theme-color-inverse};
 
-			--global-color-contrast: #{$global-color-contrast};
-				--global-color-contrast-inverse: #{$global-color-contrast-inverse};
+			--global-color-contrast: #{$theme-color-contrast};
+				--global-color-contrast-inverse: #{$theme-color-contrast-inverse};
 
-		--global-background: #{$global-background};
-			--global-background-inverse: #{$global-background-inverse};
+		--global-background: #{$theme-background};
+			--global-background-inverse: #{$theme-background-inverse};
 
-			--global-background-contrast: #{$global-background-contrast};
-				--global-background-contrast-inverse: #{$global-background-contrast-inverse};
+			--global-background-contrast: #{$theme-background-contrast};
+				--global-background-contrast-inverse: #{$theme-background-contrast-inverse};
 }

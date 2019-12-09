@@ -98,7 +98,7 @@ $prefix: '.module';
 		"footer";
 		transition: $transition-duration-long box-shadow $transition-timing;
 
-		.body-inverse & {
+		.theme-inverse & {
 
 			background: $module-background-color-inverse;
 				border-color: $module-border-color-inverse;
@@ -240,7 +240,7 @@ $prefix: '.module';
 			@include br(#{$mobile-br-max-opposite}) {
 				
 				#{$prefix}-function {
-					&:nth-child(n+1) {
+					&:nth-child(n+2) {
 						margin-left: .75rem;
 					}
 				}

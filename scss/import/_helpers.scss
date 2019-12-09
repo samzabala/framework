@@ -101,61 +101,61 @@
 	$prefix: '.background';
 	#{$prefix} {
 
-		&-global,
-		&-global-hover:hover,
-		&-global-focus:focus,
-		&-global-focus.focus,
-		&-global-active:active,
-		&-global-toggle.active,
-		&-global-toggle.open {
-			background-color: $global-background!important;
+		&-theme,
+		&-theme-hover:hover,
+		&-theme-focus:focus,
+		&-theme-focus.focus,
+		&-theme-active:active,
+		&-theme-toggle.active,
+		&-theme-toggle.open {
+			background-color: $theme-background!important;
 
-			.body-inverse & {
-				background-color: $global-background-inverse!important;
+			.theme-inverse & {
+				background-color: $theme-background-inverse!important;
 			}
 		}
 
 
-		&-global-contrast,
-		&-global-contrast-hover:hover,
-		&-global-contrast-focus:focus,
-		&-global-contrast-focus.focus,
-		&-global-contrast-active:active,
-		&-global-contrast-toggle.active,
-		&-global-contrast-toggle.open {
-			background-color: $global-background-contrast!important;
+		&-theme-contrast,
+		&-theme-contrast-hover:hover,
+		&-theme-contrast-focus:focus,
+		&-theme-contrast-focus.focus,
+		&-theme-contrast-active:active,
+		&-theme-contrast-toggle.active,
+		&-theme-contrast-toggle.open {
+			background-color: $theme-background-contrast!important;
 
-			.body-inverse & {
-				background-color: $global-background-contrast-inverse!important;
+			.theme-inverse & {
+				background-color: $theme-background-contrast-inverse!important;
 			}
 		}
 
-		&-global-color,
-		&-global-color-hover:hover,
-		&-global-color-focus:focus,
-		&-global-color-focus.focus,
-		&-global-color-active:active,
-		&-global-color-toggle.active,
-		&-global-color-toggle.open {
-			background-color: $global-color!important;
+		&-theme-inverse,
+		&-theme-inverse-hover:hover,
+		&-theme-inverse-focus:focus,
+		&-theme-inverse-focus.focus,
+		&-theme-inverse-active:active,
+		&-theme-inverse-toggle.active,
+		&-theme-inverse-toggle.open {
+			background-color: $theme-color!important;
 
-			.body-inverse & {
-				background-color: $global-color-inverse!important;
+			.theme-inverse & {
+				background-color: $theme-color-inverse!important;
 			}
 		}
 
 
-		&-global-color-contrast,
-		&-global-color-contrast-hover:hover,
-		&-global-color-contrast-focus:focus,
-		&-global-color-contrast-focus.focus,
-		&-global-color-contrast-active:active,
-		&-global-color-contrast-toggle.active,
-		&-global-color-contrast-toggle.open {
-			background-color: $global-color-contrast!important;
+		&-theme-inverse-contrast,
+		&-theme-inverse-contrast-hover:hover,
+		&-theme-inverse-contrast-focus:focus,
+		&-theme-inverse-contrast-focus.focus,
+		&-theme-inverse-contrast-active:active,
+		&-theme-inverse-contrast-toggle.active,
+		&-theme-inverse-contrast-toggle.open {
+			background-color: $theme-color-contrast!important;
 
-			.body-inverse & {
-				background-color: $global-color-contrast-inverse!important;
+			.theme-inverse & {
+				background-color: $theme-color-contrast-inverse!important;
 			}
 		}
 
@@ -229,57 +229,57 @@
 /* COLOR CLASSES */
 	$prefix: '.color';
 	#{$prefix} {
-		&-global,
-		&-global-hover:hover,
-		&-global-focus:focus,
-		&-global-focus.focus,
-		&-global-active:active,
-		&-global-toggle.active,
-		&-global-toggle.open{
-			color: $global-color!important;
+		&-theme,
+		&-theme-hover:hover,
+		&-theme-focus:focus,
+		&-theme-focus.focus,
+		&-theme-active:active,
+		&-theme-toggle.active,
+		&-theme-toggle.open{
+			color: $theme-color!important;
 
-			.body-inverse & {
-				color: $global-color-inverse!important;
+			.theme-inverse & {
+				color: $theme-color-inverse!important;
 			}
 		}
-		&-global-contrast,
-		&-global-contrast-hover:hover,
-		&-global-contrast-focus:focus,
-		&-global-contrast-focus.focus,
-		&-global-contrast-active:active,
-		&-global-contrast-toggle.active,
-		&-global-contrast-toggle.open{
-			color: $global-color-contrast!important;
+		&-theme-contrast,
+		&-theme-contrast-hover:hover,
+		&-theme-contrast-focus:focus,
+		&-theme-contrast-focus.focus,
+		&-theme-contrast-active:active,
+		&-theme-contrast-toggle.active,
+		&-theme-contrast-toggle.open{
+			color: $theme-color-contrast!important;
 
-			.body-inverse & {
-				color: $global-color-contrast-inverse!important;
+			.theme-inverse & {
+				color: $theme-color-contrast-inverse!important;
 			}
 		}
 
-		&-global-background,
-		&-global-background-hover:hover,
-		&-global-background-focus:focus,
-		&-global-background-focus.focus,
-		&-global-background-active:active,
-		&-global-background-toggle.active,
-		&-global-background-toggle.open{
-			color: $global-background!important;
+		&-theme-inverse,
+		&-theme-inverse-hover:hover,
+		&-theme-inverse-focus:focus,
+		&-theme-inverse-focus.focus,
+		&-theme-inverse-active:active,
+		&-theme-inverse-toggle.active,
+		&-theme-inverse-toggle.open{
+			color: $theme-background!important;
 
-			.body-inverse & {
-				color: $global-background-inverse!important;
+			.theme-inverse & {
+				color: $theme-background-inverse!important;
 			}
 		}
-		&-global-background-contrast,
-		&-global-background-contrast-hover:hover,
-		&-global-background-contrast-focus:focus,
-		&-global-background-contrast-focus.focus,
-		&-global-background-contrast-active:active,
-		&-global-background-contrast-toggle.active,
-		&-global-background-contrast-toggle.open{
-			color: $global-background-contrast!important;
+		&-theme-inverse-contrast,
+		&-theme-inverse-contrast-hover:hover,
+		&-theme-inverse-contrast-focus:focus,
+		&-theme-inverse-contrast-focus.focus,
+		&-theme-inverse-contrast-active:active,
+		&-theme-inverse-contrast-toggle.active,
+		&-theme-inverse-contrast-toggle.open{
+			color: $theme-background-contrast!important;
 
-			.body-inverse & {
-				color: $global-background-contrast-inverse!important;
+			.theme-inverse & {
+				color: $theme-background-contrast-inverse!important;
 			}
 		}
 
