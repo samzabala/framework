@@ -481,7 +481,7 @@ $prefix: '.btn';
 
 		&#{&}-responsive {
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 
 				&#{$prefix}-group-horizontal {
 					

@@ -24,7 +24,7 @@ $prefix: '.module';
 			margin-top:$module-grid-gutter;
 		}
 		
-		@include br($mobile-br-max-opposite){
+		@include br($mobile-br-max-polar){
 
 			.body-loading & {
 				&,&-title {
@@ -168,7 +168,7 @@ $prefix: '.module';
 	&-header,&-footer {
 		&-break {
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 
 				display:flex;
 				flex-wrap: wrap;
@@ -237,7 +237,7 @@ $prefix: '.module';
 				margin-bottom: $module-gutter-between * .5;
 			}
 
-			@include br(#{$mobile-br-max-opposite}) {
+			@include br(#{$mobile-br-max-polar}) {
 				
 				#{$prefix}-function {
 					&:nth-child(n+2) {

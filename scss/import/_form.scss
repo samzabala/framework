@@ -433,7 +433,7 @@ $prefix: '.input';
 			max-width:100%;
 			position:relative;
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				display:inline-flex;
 				margin-right: 2rem;
 			}
@@ -441,7 +441,7 @@ $prefix: '.input';
 			
 
 		&-horizontal {
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				flex-direction: row;
 				align-items: flex-start;
 				// flex-wrap: wrap;
@@ -460,7 +460,7 @@ $prefix: '.input';
 		}
 
 		&-vertical {
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				flex-direction: column;
 			}
 		}
@@ -714,7 +714,7 @@ $prefix: '.input';
 
         &#{&}-responsive {
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				
 				&#{$prefix}-group-horizontal {
 

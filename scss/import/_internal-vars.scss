@@ -5,7 +5,7 @@ For internal framework sass programming
 this parses unit input
 DO NOT EDIT IF U DONT KNOW WHAT IS GOING ON OR THE FRAMEWORK WILL DIE
 ****************************************************************************/
-$mobile-br-max-opposite: opposite-br(#{$mobile-br-max}-max);
+$mobile-br-max-polar: polar-br(#{$mobile-br-max}-max);
 
 $calculated-br-tags: (xxs,xs,sm,md,lg);
 

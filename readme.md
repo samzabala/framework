@@ -6,17 +6,17 @@ A framework for your appy dashboardy needs :')
 *	[Quick Start](docs/sections/setup/quickstart.md)
 *	[Customize](docs/sections/setup/customize.md)
 
+##	Scaffolding
+*	[Typography](docs/sections/scaffolding/typography.md)
+*	[Images & SVGs](docs/sections/scaffolding/images.md)
+*	[Tables](docs/sections/scaffolding/table.md)
+*	[Breakpoints](docs/sections/scaffolding/breakpoint.md)
+*	[Colors](docs/sections/scaffolding/colors.md)
+*	[Helpers](docs/sections/scaffolding/helpers.md)
+
 ##	Layout
 *	[Flex Grid](docs/sections/layout/flexgrid.md)
 *	[Module](docs/sections/layout/module.md)
-
-##	Scaffolding
-*	[Breakpoints](docs/sections/scaffolding/breakpoint.md)
-*	[Colors](docs/sections/scaffolding/colors.md)
-*	[Tables](docs/sections/scaffolding/table.md)
-*	[Typography](docs/sections/scaffolding/typography.md)
-*	[Images](docs/sections/scaffolding/images.md)
-*	[Helpers](docs/sections/scaffolding/helpers.md)
 
 ##	Components (o lawd)
 *	[Badges](docs/sections/components/badge.md)

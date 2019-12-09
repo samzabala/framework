@@ -1,4 +1,4 @@
-/*** SET ***/
+/*** Tables ***/
 //internal vars
 
 //table
@@ -18,7 +18,7 @@ $calculated-table-cell-height-large: $table-cell-height-large;
 	$calculated-table-cell-height-large: rem( $table-cell-height-large / $body-font-size);
 }
 
-/* SUBSET */
+
 $prefix: '.table';
 #{$prefix} {
 
@@ -175,13 +175,22 @@ $prefix: '.table';
 				&-#{$tag} {
 					background-color: rgba($color,$table-row-background-opacity);
 				}
+			}
 
-				&-disabled {
-					td,
-					#{$prefix}-cell {
-						opacity: $global-disabled-opacity;
-						cursor: not-allowed;
+			&-intensity {
+				@for $i from 1 through length($calculated-color-brand-intensity) {
+
+					&-#{$i} {
+						background-color: rgba(nth($calculated-color-brand-intensity,$i),$table-row-background-opacity);
 					}
+				}
+			}
+
+			&-disabled {
+				td,
+				#{$prefix}-cell {
+					opacity: $global-disabled-opacity;
+					cursor: not-allowed;
 				}
 			}
 		}

@@ -474,32 +474,430 @@ body:not(.lazy-initialized) .lazy {
 .svg-gradient-end {
   stop-color: #17BEBB; }
 
-.fill-base {
-  fill: #000000; }
+.fill-theme,
+.fill-theme-hover:hover,
+.fill-theme-focus:focus,
+.fill-theme-focus.focus,
+.fill-theme-active:active,
+.fill-theme-toggle.active,
+.fill-theme-toggle.open {
+  fill: #000000 !important; }
+  .theme-inverse .fill-theme, .theme-inverse
+  .fill-theme-hover:hover, .theme-inverse
+  .fill-theme-focus:focus, .theme-inverse
+  .fill-theme-focus.focus, .theme-inverse
+  .fill-theme-active:active, .theme-inverse
+  .fill-theme-toggle.active, .theme-inverse
+  .fill-theme-toggle.open {
+    fill: #FFFFFF !important; }
 
-.fill-background {
-  fill: #FFFFFF; }
+.fill-theme-contrast,
+.fill-theme-contrast-hover:hover,
+.fill-theme-contrast-focus:focus,
+.fill-theme-contrast-focus.focus,
+.fill-theme-contrast-active:active,
+.fill-theme-contrast-toggle.active,
+.fill-theme-contrast-toggle.open {
+  fill: #1a1a1a !important; }
+  .theme-inverse .fill-theme-contrast, .theme-inverse
+  .fill-theme-contrast-hover:hover, .theme-inverse
+  .fill-theme-contrast-focus:focus, .theme-inverse
+  .fill-theme-contrast-focus.focus, .theme-inverse
+  .fill-theme-contrast-active:active, .theme-inverse
+  .fill-theme-contrast-toggle.active, .theme-inverse
+  .fill-theme-contrast-toggle.open {
+    fill: #e6e6e6 !important; }
 
-.fill-primary {
-  fill: #235789; }
+.fill-theme-polar,
+.fill-theme-polar-hover:hover,
+.fill-theme-polar-focus:focus,
+.fill-theme-polar-focus.focus,
+.fill-theme-polar-active:active,
+.fill-theme-polar-toggle.active,
+.fill-theme-polar-toggle.open {
+  fill: #FFFFFF !important; }
+  .theme-inverse .fill-theme-polar, .theme-inverse
+  .fill-theme-polar-hover:hover, .theme-inverse
+  .fill-theme-polar-focus:focus, .theme-inverse
+  .fill-theme-polar-focus.focus, .theme-inverse
+  .fill-theme-polar-active:active, .theme-inverse
+  .fill-theme-polar-toggle.active, .theme-inverse
+  .fill-theme-polar-toggle.open {
+    fill: #1a1a1a !important; }
 
-.fill-accent {
-  fill: #17BEBB; }
+.fill-theme-polar-contrast,
+.fill-theme-polar-contrast-hover:hover,
+.fill-theme-polar-contrast-focus:focus,
+.fill-theme-polar-contrast-focus.focus,
+.fill-theme-polar-contrast-active:active,
+.fill-theme-polar-contrast-toggle.active,
+.fill-theme-polar-contrast-toggle.open {
+  fill: #e6e6e6 !important; }
+  .theme-inverse .fill-theme-polar-contrast, .theme-inverse
+  .fill-theme-polar-contrast-hover:hover, .theme-inverse
+  .fill-theme-polar-contrast-focus:focus, .theme-inverse
+  .fill-theme-polar-contrast-focus.focus, .theme-inverse
+  .fill-theme-polar-contrast-active:active, .theme-inverse
+  .fill-theme-polar-contrast-toggle.active, .theme-inverse
+  .fill-theme-polar-contrast-toggle.open {
+    fill: #000000 !important; }
 
-.fill-neutral {
-  fill: #8d8d8d; }
+.fill-intensity-1,
+.fill-intensity-1-hover:hover,
+.fill-intensity-1-focus:focus,
+.fill-intensity-1-focus.focus,
+.fill-intensity-1-active:active,
+.fill-intensity-1-toggle.active,
+.fill-intensity-1-toggle.open {
+  fill: #235789 !important; }
 
-.fill-success {
-  fill: #15b800; }
+.fill-intensity-2,
+.fill-intensity-2-hover:hover,
+.fill-intensity-2-focus:focus,
+.fill-intensity-2-focus.focus,
+.fill-intensity-2-active:active,
+.fill-intensity-2-toggle.active,
+.fill-intensity-2-toggle.open {
+  fill: #207196 !important; }
 
-.fill-caution {
-  fill: #fd7f03; }
+.fill-intensity-3,
+.fill-intensity-3-hover:hover,
+.fill-intensity-3-focus:focus,
+.fill-intensity-3-focus.focus,
+.fill-intensity-3-active:active,
+.fill-intensity-3-toggle.active,
+.fill-intensity-3-toggle.open {
+  fill: #1d8ba2 !important; }
 
-.fill-error {
-  fill: #fd0303; }
+.fill-intensity-4,
+.fill-intensity-4-hover:hover,
+.fill-intensity-4-focus:focus,
+.fill-intensity-4-focus.focus,
+.fill-intensity-4-active:active,
+.fill-intensity-4-toggle.active,
+.fill-intensity-4-toggle.open {
+  fill: #1aa4af !important; }
 
-/*** SET ***/
-/* SUBSET */
+.fill-intensity-5,
+.fill-intensity-5-hover:hover,
+.fill-intensity-5-focus:focus,
+.fill-intensity-5-focus.focus,
+.fill-intensity-5-active:active,
+.fill-intensity-5-toggle.active,
+.fill-intensity-5-toggle.open {
+  fill: #17BEBB !important; }
+
+.fill-currentColor,
+.fill-currentColor-hover:hover,
+.fill-currentColor-focus:focus,
+.fill-currentColor-focus.focus,
+.fill-currentColor-active:active,
+.fill-currentColor-toggle.active,
+.fill-currentColor-toggle.open {
+  fill: currentColor !important; }
+
+.fill-none,
+.fill-none-hover:hover,
+.fill-none-focus:focus,
+.fill-none-focus.focus,
+.fill-none-active:active,
+.fill-none-toggle.active,
+.fill-none-toggle.open {
+  fill: none !important; }
+
+.fill-base,
+.fill-base-hover:hover,
+.fill-base-focus:focus,
+.fill-base-focus.focus,
+.fill-base-active:active,
+.fill-base-toggle.active,
+.fill-base-toggle.open {
+  fill: #000000 !important; }
+
+.fill-background,
+.fill-background-hover:hover,
+.fill-background-focus:focus,
+.fill-background-focus.focus,
+.fill-background-active:active,
+.fill-background-toggle.active,
+.fill-background-toggle.open {
+  fill: #FFFFFF !important; }
+
+.fill-primary,
+.fill-primary-hover:hover,
+.fill-primary-focus:focus,
+.fill-primary-focus.focus,
+.fill-primary-active:active,
+.fill-primary-toggle.active,
+.fill-primary-toggle.open {
+  fill: #235789 !important; }
+
+.fill-accent,
+.fill-accent-hover:hover,
+.fill-accent-focus:focus,
+.fill-accent-focus.focus,
+.fill-accent-active:active,
+.fill-accent-toggle.active,
+.fill-accent-toggle.open {
+  fill: #17BEBB !important; }
+
+.fill-neutral,
+.fill-neutral-hover:hover,
+.fill-neutral-focus:focus,
+.fill-neutral-focus.focus,
+.fill-neutral-active:active,
+.fill-neutral-toggle.active,
+.fill-neutral-toggle.open {
+  fill: #8d8d8d !important; }
+
+.fill-success,
+.fill-success-hover:hover,
+.fill-success-focus:focus,
+.fill-success-focus.focus,
+.fill-success-active:active,
+.fill-success-toggle.active,
+.fill-success-toggle.open {
+  fill: #15b800 !important; }
+
+.fill-caution,
+.fill-caution-hover:hover,
+.fill-caution-focus:focus,
+.fill-caution-focus.focus,
+.fill-caution-active:active,
+.fill-caution-toggle.active,
+.fill-caution-toggle.open {
+  fill: #fd7f03 !important; }
+
+.fill-error,
+.fill-error-hover:hover,
+.fill-error-focus:focus,
+.fill-error-focus.focus,
+.fill-error-active:active,
+.fill-error-toggle.active,
+.fill-error-toggle.open {
+  fill: #fd0303 !important; }
+
+.stroke-theme,
+.stroke-theme-hover:hover,
+.stroke-theme-focus:focus,
+.stroke-theme-focus.focus,
+.stroke-theme-active:active,
+.stroke-theme-toggle.active,
+.stroke-theme-toggle.open {
+  stroke: #000000 !important; }
+  .theme-inverse .stroke-theme, .theme-inverse
+  .stroke-theme-hover:hover, .theme-inverse
+  .stroke-theme-focus:focus, .theme-inverse
+  .stroke-theme-focus.focus, .theme-inverse
+  .stroke-theme-active:active, .theme-inverse
+  .stroke-theme-toggle.active, .theme-inverse
+  .stroke-theme-toggle.open {
+    stroke: #FFFFFF !important; }
+
+.stroke-theme-contrast,
+.stroke-theme-contrast-hover:hover,
+.stroke-theme-contrast-focus:focus,
+.stroke-theme-contrast-focus.focus,
+.stroke-theme-contrast-active:active,
+.stroke-theme-contrast-toggle.active,
+.stroke-theme-contrast-toggle.open {
+  stroke: #1a1a1a !important; }
+  .theme-inverse .stroke-theme-contrast, .theme-inverse
+  .stroke-theme-contrast-hover:hover, .theme-inverse
+  .stroke-theme-contrast-focus:focus, .theme-inverse
+  .stroke-theme-contrast-focus.focus, .theme-inverse
+  .stroke-theme-contrast-active:active, .theme-inverse
+  .stroke-theme-contrast-toggle.active, .theme-inverse
+  .stroke-theme-contrast-toggle.open {
+    stroke: #e6e6e6 !important; }
+
+.stroke-theme-polar,
+.stroke-theme-polar-hover:hover,
+.stroke-theme-polar-focus:focus,
+.stroke-theme-polar-focus.focus,
+.stroke-theme-polar-active:active,
+.stroke-theme-polar-toggle.active,
+.stroke-theme-polar-toggle.open {
+  stroke: #FFFFFF !important; }
+  .theme-inverse .stroke-theme-polar, .theme-inverse
+  .stroke-theme-polar-hover:hover, .theme-inverse
+  .stroke-theme-polar-focus:focus, .theme-inverse
+  .stroke-theme-polar-focus.focus, .theme-inverse
+  .stroke-theme-polar-active:active, .theme-inverse
+  .stroke-theme-polar-toggle.active, .theme-inverse
+  .stroke-theme-polar-toggle.open {
+    stroke: #1a1a1a !important; }
+
+.stroke-theme-polar-contrast,
+.stroke-theme-polar-contrast-hover:hover,
+.stroke-theme-polar-contrast-focus:focus,
+.stroke-theme-polar-contrast-focus.focus,
+.stroke-theme-polar-contrast-active:active,
+.stroke-theme-polar-contrast-toggle.active,
+.stroke-theme-polar-contrast-toggle.open {
+  stroke: #e6e6e6 !important; }
+  .theme-inverse .stroke-theme-polar-contrast, .theme-inverse
+  .stroke-theme-polar-contrast-hover:hover, .theme-inverse
+  .stroke-theme-polar-contrast-focus:focus, .theme-inverse
+  .stroke-theme-polar-contrast-focus.focus, .theme-inverse
+  .stroke-theme-polar-contrast-active:active, .theme-inverse
+  .stroke-theme-polar-contrast-toggle.active, .theme-inverse
+  .stroke-theme-polar-contrast-toggle.open {
+    stroke: #000000 !important; }
+
+.stroke-intensity-1,
+.stroke-intensity-1-hover:hover,
+.stroke-intensity-1-focus:focus,
+.stroke-intensity-1-focus.focus,
+.stroke-intensity-1-active:active,
+.stroke-intensity-1-toggle.active,
+.stroke-intensity-1-toggle.open {
+  stroke: #235789 !important; }
+
+.stroke-intensity-2,
+.stroke-intensity-2-hover:hover,
+.stroke-intensity-2-focus:focus,
+.stroke-intensity-2-focus.focus,
+.stroke-intensity-2-active:active,
+.stroke-intensity-2-toggle.active,
+.stroke-intensity-2-toggle.open {
+  stroke: #207196 !important; }
+
+.stroke-intensity-3,
+.stroke-intensity-3-hover:hover,
+.stroke-intensity-3-focus:focus,
+.stroke-intensity-3-focus.focus,
+.stroke-intensity-3-active:active,
+.stroke-intensity-3-toggle.active,
+.stroke-intensity-3-toggle.open {
+  stroke: #1d8ba2 !important; }
+
+.stroke-intensity-4,
+.stroke-intensity-4-hover:hover,
+.stroke-intensity-4-focus:focus,
+.stroke-intensity-4-focus.focus,
+.stroke-intensity-4-active:active,
+.stroke-intensity-4-toggle.active,
+.stroke-intensity-4-toggle.open {
+  stroke: #1aa4af !important; }
+
+.stroke-intensity-5,
+.stroke-intensity-5-hover:hover,
+.stroke-intensity-5-focus:focus,
+.stroke-intensity-5-focus.focus,
+.stroke-intensity-5-active:active,
+.stroke-intensity-5-toggle.active,
+.stroke-intensity-5-toggle.open {
+  stroke: #17BEBB !important; }
+
+.stroke-currentColor,
+.stroke-currentColor-hover:hover,
+.stroke-currentColor-focus:focus,
+.stroke-currentColor-focus.focus,
+.stroke-currentColor-active:active,
+.stroke-currentColor-toggle.active,
+.stroke-currentColor-toggle.open {
+  stroke: currentColor !important; }
+
+.stroke-none,
+.stroke-none-hover:hover,
+.stroke-none-focus:focus,
+.stroke-none-focus.focus,
+.stroke-none-active:active,
+.stroke-none-toggle.active,
+.stroke-none-toggle.open {
+  stroke: none !important; }
+
+.stroke-base,
+.stroke-base-hover:hover,
+.stroke-base-focus:focus,
+.stroke-base-focus.focus,
+.stroke-base-active:active,
+.stroke-base-toggle.active,
+.stroke-base-toggle.open {
+  stroke: #000000 !important; }
+
+.stroke-background,
+.stroke-background-hover:hover,
+.stroke-background-focus:focus,
+.stroke-background-focus.focus,
+.stroke-background-active:active,
+.stroke-background-toggle.active,
+.stroke-background-toggle.open {
+  stroke: #FFFFFF !important; }
+
+.stroke-primary,
+.stroke-primary-hover:hover,
+.stroke-primary-focus:focus,
+.stroke-primary-focus.focus,
+.stroke-primary-active:active,
+.stroke-primary-toggle.active,
+.stroke-primary-toggle.open {
+  stroke: #235789 !important; }
+
+.stroke-accent,
+.stroke-accent-hover:hover,
+.stroke-accent-focus:focus,
+.stroke-accent-focus.focus,
+.stroke-accent-active:active,
+.stroke-accent-toggle.active,
+.stroke-accent-toggle.open {
+  stroke: #17BEBB !important; }
+
+.stroke-neutral,
+.stroke-neutral-hover:hover,
+.stroke-neutral-focus:focus,
+.stroke-neutral-focus.focus,
+.stroke-neutral-active:active,
+.stroke-neutral-toggle.active,
+.stroke-neutral-toggle.open {
+  stroke: #8d8d8d !important; }
+
+.stroke-success,
+.stroke-success-hover:hover,
+.stroke-success-focus:focus,
+.stroke-success-focus.focus,
+.stroke-success-active:active,
+.stroke-success-toggle.active,
+.stroke-success-toggle.open {
+  stroke: #15b800 !important; }
+
+.stroke-caution,
+.stroke-caution-hover:hover,
+.stroke-caution-focus:focus,
+.stroke-caution-focus.focus,
+.stroke-caution-active:active,
+.stroke-caution-toggle.active,
+.stroke-caution-toggle.open {
+  stroke: #fd7f03 !important; }
+
+.stroke-error,
+.stroke-error-hover:hover,
+.stroke-error-focus:focus,
+.stroke-error-focus.focus,
+.stroke-error-active:active,
+.stroke-error-toggle.active,
+.stroke-error-toggle.open {
+  stroke: #fd0303 !important; }
+
+/* FIT IMAGE */
+/* emulate background cover on image tags */
+.fit-image img, .thumbnail img, .thumbnail-image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  margin: auto;
+  object-fit: cover; }
+
+.fit-image {
+  position: relative; }
+
+/*** Tables ***/
 .table-wrapper {
   width: 100%;
   display: block;
@@ -594,48 +992,30 @@ table {
       height: calc(6.5625rem - (5px * 2)); }
   .table-row-base {
     background-color: rgba(0, 0, 0, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-background {
     background-color: rgba(255, 255, 255, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-primary {
     background-color: rgba(35, 87, 137, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-accent {
     background-color: rgba(23, 190, 187, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-neutral {
     background-color: rgba(141, 141, 141, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-success {
     background-color: rgba(21, 184, 0, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-caution {
     background-color: rgba(253, 127, 3, 0.2); }
-  .table-row-disabled td,
-  .table-row-disabled .table-cell {
-    opacity: 0.5;
-    cursor: not-allowed; }
   .table-row-error {
     background-color: rgba(253, 3, 3, 0.2); }
+  .table-row-intensity-1 {
+    background-color: rgba(35, 87, 137, 0.2); }
+  .table-row-intensity-2 {
+    background-color: rgba(32, 113, 150, 0.2); }
+  .table-row-intensity-3 {
+    background-color: rgba(29, 139, 162, 0.2); }
+  .table-row-intensity-4 {
+    background-color: rgba(26, 164, 175, 0.2); }
+  .table-row-intensity-5 {
+    background-color: rgba(23, 190, 187, 0.2); }
   .table-row-disabled td,
   .table-row-disabled .table-cell {
     opacity: 0.5;
@@ -3599,7 +3979,7 @@ table {
   to {
     background-position: 0 0; } }
 
-/* SUBSET */
+/* Progress bar */
 .progress-title {
   font-size: 0.875em;
   line-height: 1.4285714286;
@@ -3635,8 +4015,7 @@ table {
     height: 1.25rem;
     border-radius: calc(1.25rem * .5); }
 
-/*** SET ***/
-/* SUBSET */
+/*** Tags ***/
 .tag {
   font-size: 0.8125em;
   line-height: 1.25;
@@ -5311,89 +5690,245 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */
-  .color-intensity-1, .color-intensity-1-hover:hover, .color-intensity-1-focus:focus, .color-intensity-1-focus.focus, .color-intensity-1-active:active, .color-intensity-1-toggle.active, .color-intensity-1-toggle.open {
+  .color-intensity-1,
+  .color-intensity-1-hover:hover,
+  .color-intensity-1-focus:focus,
+  .color-intensity-1-focus.focus,
+  .color-intensity-1-active:active,
+  .color-intensity-1-toggle.active,
+  .color-intensity-1-toggle.open {
     color: #235789 !important; }
-  .color-intensity-2, .color-intensity-2-hover:hover, .color-intensity-2-focus:focus, .color-intensity-2-focus.focus, .color-intensity-2-active:active, .color-intensity-2-toggle.active, .color-intensity-2-toggle.open {
+  .color-intensity-2,
+  .color-intensity-2-hover:hover,
+  .color-intensity-2-focus:focus,
+  .color-intensity-2-focus.focus,
+  .color-intensity-2-active:active,
+  .color-intensity-2-toggle.active,
+  .color-intensity-2-toggle.open {
     color: #207196 !important; }
-  .color-intensity-3, .color-intensity-3-hover:hover, .color-intensity-3-focus:focus, .color-intensity-3-focus.focus, .color-intensity-3-active:active, .color-intensity-3-toggle.active, .color-intensity-3-toggle.open {
+  .color-intensity-3,
+  .color-intensity-3-hover:hover,
+  .color-intensity-3-focus:focus,
+  .color-intensity-3-focus.focus,
+  .color-intensity-3-active:active,
+  .color-intensity-3-toggle.active,
+  .color-intensity-3-toggle.open {
     color: #1d8ba2 !important; }
-  .color-intensity-4, .color-intensity-4-hover:hover, .color-intensity-4-focus:focus, .color-intensity-4-focus.focus, .color-intensity-4-active:active, .color-intensity-4-toggle.active, .color-intensity-4-toggle.open {
+  .color-intensity-4,
+  .color-intensity-4-hover:hover,
+  .color-intensity-4-focus:focus,
+  .color-intensity-4-focus.focus,
+  .color-intensity-4-active:active,
+  .color-intensity-4-toggle.active,
+  .color-intensity-4-toggle.open {
     color: #1aa4af !important; }
-  .color-intensity-5, .color-intensity-5-hover:hover, .color-intensity-5-focus:focus, .color-intensity-5-focus.focus, .color-intensity-5-active:active, .color-intensity-5-toggle.active, .color-intensity-5-toggle.open {
+  .color-intensity-5,
+  .color-intensity-5-hover:hover,
+  .color-intensity-5-focus:focus,
+  .color-intensity-5-focus.focus,
+  .color-intensity-5-active:active,
+  .color-intensity-5-toggle.active,
+  .color-intensity-5-toggle.open {
     color: #17BEBB !important; }
-  .color-base, .color-base-hover:hover, .color-base-focus:focus, .color-base-focus.focus, .color-base-active:active, .color-base-toggle.active, .color-base-toggle.open {
+  .color-base,
+  .color-base-hover:hover,
+  .color-base-focus:focus,
+  .color-base-focus.focus,
+  .color-base-active:active,
+  .color-base-toggle.active,
+  .color-base-toggle.open {
     color: #000000 !important; }
-  .color-background, .color-background-hover:hover, .color-background-focus:focus, .color-background-focus.focus, .color-background-active:active, .color-background-toggle.active, .color-background-toggle.open {
+  .color-background,
+  .color-background-hover:hover,
+  .color-background-focus:focus,
+  .color-background-focus.focus,
+  .color-background-active:active,
+  .color-background-toggle.active,
+  .color-background-toggle.open {
     color: #FFFFFF !important; }
-  .color-primary, .color-primary-hover:hover, .color-primary-focus:focus, .color-primary-focus.focus, .color-primary-active:active, .color-primary-toggle.active, .color-primary-toggle.open {
+  .color-primary,
+  .color-primary-hover:hover,
+  .color-primary-focus:focus,
+  .color-primary-focus.focus,
+  .color-primary-active:active,
+  .color-primary-toggle.active,
+  .color-primary-toggle.open {
     color: #235789 !important; }
-  .color-accent, .color-accent-hover:hover, .color-accent-focus:focus, .color-accent-focus.focus, .color-accent-active:active, .color-accent-toggle.active, .color-accent-toggle.open {
+  .color-accent,
+  .color-accent-hover:hover,
+  .color-accent-focus:focus,
+  .color-accent-focus.focus,
+  .color-accent-active:active,
+  .color-accent-toggle.active,
+  .color-accent-toggle.open {
     color: #17BEBB !important; }
-  .color-neutral, .color-neutral-hover:hover, .color-neutral-focus:focus, .color-neutral-focus.focus, .color-neutral-active:active, .color-neutral-toggle.active, .color-neutral-toggle.open {
+  .color-neutral,
+  .color-neutral-hover:hover,
+  .color-neutral-focus:focus,
+  .color-neutral-focus.focus,
+  .color-neutral-active:active,
+  .color-neutral-toggle.active,
+  .color-neutral-toggle.open {
     color: #8d8d8d !important; }
-  .color-success, .color-success-hover:hover, .color-success-focus:focus, .color-success-focus.focus, .color-success-active:active, .color-success-toggle.active, .color-success-toggle.open {
+  .color-success,
+  .color-success-hover:hover,
+  .color-success-focus:focus,
+  .color-success-focus.focus,
+  .color-success-active:active,
+  .color-success-toggle.active,
+  .color-success-toggle.open {
     color: #15b800 !important; }
-  .color-caution, .color-caution-hover:hover, .color-caution-focus:focus, .color-caution-focus.focus, .color-caution-active:active, .color-caution-toggle.active, .color-caution-toggle.open {
+  .color-caution,
+  .color-caution-hover:hover,
+  .color-caution-focus:focus,
+  .color-caution-focus.focus,
+  .color-caution-active:active,
+  .color-caution-toggle.active,
+  .color-caution-toggle.open {
     color: #fd7f03 !important; }
-  .color-error, .color-error-hover:hover, .color-error-focus:focus, .color-error-focus.focus, .color-error-active:active, .color-error-toggle.active, .color-error-toggle.open {
+  .color-error,
+  .color-error-hover:hover,
+  .color-error-focus:focus,
+  .color-error-focus.focus,
+  .color-error-active:active,
+  .color-error-toggle.active,
+  .color-error-toggle.open {
     color: #fd0303 !important; }
 
 .table-label-base, .progress-bar-base, .badge-base, .tag-base, .legend-base {
   background-color: #000000; }
 
-.background-base, .background-base-hover:hover, .background-base-focus:focus, .background-base-focus.focus, .background-base-active:active, .background-base-toggle.active, .background-base-toggle.open {
+.background-base,
+.background-base-hover:hover,
+.background-base-focus:focus,
+.background-base-focus.focus,
+.background-base-active:active,
+.background-base-toggle.active,
+.background-base-toggle.open {
   background-color: #000000 !important; }
 
 .table-label-background, .progress-bar-background, .badge-background, .tag-background, .legend-background {
   background-color: #FFFFFF; }
 
-.background-background, .background-background-hover:hover, .background-background-focus:focus, .background-background-focus.focus, .background-background-active:active, .background-background-toggle.active, .background-background-toggle.open {
+.background-background,
+.background-background-hover:hover,
+.background-background-focus:focus,
+.background-background-focus.focus,
+.background-background-active:active,
+.background-background-toggle.active,
+.background-background-toggle.open {
   background-color: #FFFFFF !important; }
 
 .table-label-primary, .progress-bar-primary, .badge-primary, .tag-primary, .legend-primary {
   background-color: #235789; }
 
-.background-primary, .background-primary-hover:hover, .background-primary-focus:focus, .background-primary-focus.focus, .background-primary-active:active, .background-primary-toggle.active, .background-primary-toggle.open {
+.background-primary,
+.background-primary-hover:hover,
+.background-primary-focus:focus,
+.background-primary-focus.focus,
+.background-primary-active:active,
+.background-primary-toggle.active,
+.background-primary-toggle.open {
   background-color: #235789 !important; }
 
 .table-label-accent, .progress-bar-accent, .badge-accent, .tag-accent, .legend-accent {
   background-color: #17BEBB; }
 
-.background-accent, .background-accent-hover:hover, .background-accent-focus:focus, .background-accent-focus.focus, .background-accent-active:active, .background-accent-toggle.active, .background-accent-toggle.open {
+.background-accent,
+.background-accent-hover:hover,
+.background-accent-focus:focus,
+.background-accent-focus.focus,
+.background-accent-active:active,
+.background-accent-toggle.active,
+.background-accent-toggle.open {
   background-color: #17BEBB !important; }
 
 .table-label-neutral, .progress-bar-neutral, .badge-neutral, .tag-neutral, .legend-neutral {
   background-color: #8d8d8d; }
 
-.background-neutral, .background-neutral-hover:hover, .background-neutral-focus:focus, .background-neutral-focus.focus, .background-neutral-active:active, .background-neutral-toggle.active, .background-neutral-toggle.open {
+.background-neutral,
+.background-neutral-hover:hover,
+.background-neutral-focus:focus,
+.background-neutral-focus.focus,
+.background-neutral-active:active,
+.background-neutral-toggle.active,
+.background-neutral-toggle.open {
   background-color: #8d8d8d !important; }
 
 .table-label-success, .progress-bar-success, .badge-success, .tag-success, .legend-success {
   background-color: #15b800; }
 
-.background-success, .background-success-hover:hover, .background-success-focus:focus, .background-success-focus.focus, .background-success-active:active, .background-success-toggle.active, .background-success-toggle.open {
+.background-success,
+.background-success-hover:hover,
+.background-success-focus:focus,
+.background-success-focus.focus,
+.background-success-active:active,
+.background-success-toggle.active,
+.background-success-toggle.open {
   background-color: #15b800 !important; }
 
 .table-label-caution, .progress-bar-caution, .badge-caution, .tag-caution, .legend-caution {
   background-color: #fd7f03; }
 
-.background-caution, .background-caution-hover:hover, .background-caution-focus:focus, .background-caution-focus.focus, .background-caution-active:active, .background-caution-toggle.active, .background-caution-toggle.open {
+.background-caution,
+.background-caution-hover:hover,
+.background-caution-focus:focus,
+.background-caution-focus.focus,
+.background-caution-active:active,
+.background-caution-toggle.active,
+.background-caution-toggle.open {
   background-color: #fd7f03 !important; }
 
 .table-label-error, .progress-bar-error, .badge-error, .tag-error, .legend-error {
   background-color: #fd0303; }
 
-.background-error, .background-error-hover:hover, .background-error-focus:focus, .background-error-focus.focus, .background-error-active:active, .background-error-toggle.active, .background-error-toggle.open {
+.background-error,
+.background-error-hover:hover,
+.background-error-focus:focus,
+.background-error-focus.focus,
+.background-error-active:active,
+.background-error-toggle.active,
+.background-error-toggle.open {
   background-color: #fd0303 !important; }
-  .background-intensity-1, .background-intensity-1-hover:hover, .background-intensity-1-focus:focus, .background-intensity-1-focus.focus, .background-intensity-1-active:active, .background-intensity-1-toggle.active, .background-intensity-1-toggle.open {
+  .background-intensity-1,
+  .background-intensity-1-hover:hover,
+  .background-intensity-1-focus:focus,
+  .background-intensity-1-focus.focus,
+  .background-intensity-1-active:active,
+  .background-intensity-1-toggle.active,
+  .background-intensity-1-toggle.open {
     background-color: #235789 !important; }
-  .background-intensity-2, .background-intensity-2-hover:hover, .background-intensity-2-focus:focus, .background-intensity-2-focus.focus, .background-intensity-2-active:active, .background-intensity-2-toggle.active, .background-intensity-2-toggle.open {
+  .background-intensity-2,
+  .background-intensity-2-hover:hover,
+  .background-intensity-2-focus:focus,
+  .background-intensity-2-focus.focus,
+  .background-intensity-2-active:active,
+  .background-intensity-2-toggle.active,
+  .background-intensity-2-toggle.open {
     background-color: #207196 !important; }
-  .background-intensity-3, .background-intensity-3-hover:hover, .background-intensity-3-focus:focus, .background-intensity-3-focus.focus, .background-intensity-3-active:active, .background-intensity-3-toggle.active, .background-intensity-3-toggle.open {
+  .background-intensity-3,
+  .background-intensity-3-hover:hover,
+  .background-intensity-3-focus:focus,
+  .background-intensity-3-focus.focus,
+  .background-intensity-3-active:active,
+  .background-intensity-3-toggle.active,
+  .background-intensity-3-toggle.open {
     background-color: #1d8ba2 !important; }
-  .background-intensity-4, .background-intensity-4-hover:hover, .background-intensity-4-focus:focus, .background-intensity-4-focus.focus, .background-intensity-4-active:active, .background-intensity-4-toggle.active, .background-intensity-4-toggle.open {
+  .background-intensity-4,
+  .background-intensity-4-hover:hover,
+  .background-intensity-4-focus:focus,
+  .background-intensity-4-focus.focus,
+  .background-intensity-4-active:active,
+  .background-intensity-4-toggle.active,
+  .background-intensity-4-toggle.open {
     background-color: #1aa4af !important; }
-  .background-intensity-5, .background-intensity-5-hover:hover, .background-intensity-5-focus:focus, .background-intensity-5-focus.focus, .background-intensity-5-active:active, .background-intensity-5-toggle.active, .background-intensity-5-toggle.open {
+  .background-intensity-5,
+  .background-intensity-5-hover:hover,
+  .background-intensity-5-focus:focus,
+  .background-intensity-5-focus.focus,
+  .background-intensity-5-active:active,
+  .background-intensity-5-toggle.active,
+  .background-intensity-5-toggle.open {
     background-color: #17BEBB !important; }
 
 .progress-bar-gradient, .legend-gradient {
@@ -5419,7 +5954,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-45, .background-gradient-45-hover:hover, .background-gradient-45-focus:focus, .background-gradient-45-focus.focus, .background-gradient-45-active:active, .background-gradient-45-toggle.active, .background-gradient-45-toggle.open {
+.background-gradient-45,
+.background-gradient-45-hover:hover,
+.background-gradient-45-focus:focus,
+.background-gradient-45-focus.focus,
+.background-gradient-45-active:active,
+.background-gradient-45-toggle.active,
+.background-gradient-45-toggle.open {
   background-image: -moz-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
@@ -5435,7 +5976,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-90, .background-gradient-90-hover:hover, .background-gradient-90-focus:focus, .background-gradient-90-focus.focus, .background-gradient-90-active:active, .background-gradient-90-toggle.active, .background-gradient-90-toggle.open {
+.background-gradient-90,
+.background-gradient-90-hover:hover,
+.background-gradient-90-focus:focus,
+.background-gradient-90-focus.focus,
+.background-gradient-90-active:active,
+.background-gradient-90-toggle.active,
+.background-gradient-90-toggle.open {
   background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
@@ -5451,7 +5998,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-135, .background-gradient-135-hover:hover, .background-gradient-135-focus:focus, .background-gradient-135-focus.focus, .background-gradient-135-active:active, .background-gradient-135-toggle.active, .background-gradient-135-toggle.open {
+.background-gradient-135,
+.background-gradient-135-hover:hover,
+.background-gradient-135-focus:focus,
+.background-gradient-135-focus.focus,
+.background-gradient-135-active:active,
+.background-gradient-135-toggle.active,
+.background-gradient-135-toggle.open {
   background-image: -moz-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
@@ -5467,7 +6020,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-180, .background-gradient-180-hover:hover, .background-gradient-180-focus:focus, .background-gradient-180-focus.focus, .background-gradient-180-active:active, .background-gradient-180-toggle.active, .background-gradient-180-toggle.open {
+.background-gradient-180,
+.background-gradient-180-hover:hover,
+.background-gradient-180-focus:focus,
+.background-gradient-180-focus.focus,
+.background-gradient-180-active:active,
+.background-gradient-180-toggle.active,
+.background-gradient-180-toggle.open {
   background-image: -moz-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
@@ -5483,7 +6042,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-225, .background-gradient-225-hover:hover, .background-gradient-225-focus:focus, .background-gradient-225-focus.focus, .background-gradient-225-active:active, .background-gradient-225-toggle.active, .background-gradient-225-toggle.open {
+.background-gradient-225,
+.background-gradient-225-hover:hover,
+.background-gradient-225-focus:focus,
+.background-gradient-225-focus.focus,
+.background-gradient-225-active:active,
+.background-gradient-225-toggle.active,
+.background-gradient-225-toggle.open {
   background-image: -moz-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
@@ -5499,7 +6064,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-270, .background-gradient-270-hover:hover, .background-gradient-270-focus:focus, .background-gradient-270-focus.focus, .background-gradient-270-active:active, .background-gradient-270-toggle.active, .background-gradient-270-toggle.open {
+.background-gradient-270,
+.background-gradient-270-hover:hover,
+.background-gradient-270-focus:focus,
+.background-gradient-270-focus.focus,
+.background-gradient-270-active:active,
+.background-gradient-270-toggle.active,
+.background-gradient-270-toggle.open {
   background-image: -moz-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
@@ -5515,7 +6086,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-gradient-315, .background-gradient-315-hover:hover, .background-gradient-315-focus:focus, .background-gradient-315-focus.focus, .background-gradient-315-active:active, .background-gradient-315-toggle.active, .background-gradient-315-toggle.open {
+.background-gradient-315,
+.background-gradient-315-hover:hover,
+.background-gradient-315-focus:focus,
+.background-gradient-315-focus.focus,
+.background-gradient-315-active:active,
+.background-gradient-315-toggle.active,
+.background-gradient-315-toggle.open {
   background-image: -moz-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
@@ -5523,180 +6100,193 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.background-theme, .background-theme-hover:hover, .background-theme-focus:focus, .background-theme-focus.focus, .background-theme-active:active, .background-theme-toggle.active, .background-theme-toggle.open {
+.background-theme,
+.background-theme-hover:hover,
+.background-theme-focus:focus,
+.background-theme-focus.focus,
+.background-theme-active:active,
+.background-theme-toggle.active,
+.background-theme-toggle.open {
   background-color: #FFFFFF !important; }
-  .theme-inverse .background-theme, .theme-inverse .background-theme-hover:hover, .theme-inverse .background-theme-focus:focus, .theme-inverse .background-theme-focus.focus, .theme-inverse .background-theme-active:active, .theme-inverse .background-theme-toggle.active, .theme-inverse .background-theme-toggle.open {
+  .theme-inverse .background-theme, .theme-inverse
+  .background-theme-hover:hover, .theme-inverse
+  .background-theme-focus:focus, .theme-inverse
+  .background-theme-focus.focus, .theme-inverse
+  .background-theme-active:active, .theme-inverse
+  .background-theme-toggle.active, .theme-inverse
+  .background-theme-toggle.open {
     background-color: #1a1a1a !important; }
 
-.background-theme-contrast, .background-theme-contrast-hover:hover, .background-theme-contrast-focus:focus, .background-theme-contrast-focus.focus, .background-theme-contrast-active:active, .background-theme-contrast-toggle.active, .background-theme-contrast-toggle.open {
+.background-theme-contrast,
+.background-theme-contrast-hover:hover,
+.background-theme-contrast-focus:focus,
+.background-theme-contrast-focus.focus,
+.background-theme-contrast-active:active,
+.background-theme-contrast-toggle.active,
+.background-theme-contrast-toggle.open {
   background-color: #e6e6e6 !important; }
-  .theme-inverse .background-theme-contrast, .theme-inverse .background-theme-contrast-hover:hover, .theme-inverse .background-theme-contrast-focus:focus, .theme-inverse .background-theme-contrast-focus.focus, .theme-inverse .background-theme-contrast-active:active, .theme-inverse .background-theme-contrast-toggle.active, .theme-inverse .background-theme-contrast-toggle.open {
+  .theme-inverse .background-theme-contrast, .theme-inverse
+  .background-theme-contrast-hover:hover, .theme-inverse
+  .background-theme-contrast-focus:focus, .theme-inverse
+  .background-theme-contrast-focus.focus, .theme-inverse
+  .background-theme-contrast-active:active, .theme-inverse
+  .background-theme-contrast-toggle.active, .theme-inverse
+  .background-theme-contrast-toggle.open {
     background-color: #000000 !important; }
 
-.background-theme-inverse, .background-theme-inverse-hover:hover, .background-theme-inverse-focus:focus, .background-theme-inverse-focus.focus, .background-theme-inverse-active:active, .background-theme-inverse-toggle.active, .background-theme-inverse-toggle.open {
+.background-theme-polar,
+.background-theme-polar-hover:hover,
+.background-theme-polar-focus:focus,
+.background-theme-polar-focus.focus,
+.background-theme-polar-active:active,
+.background-theme-polar-toggle.active,
+.background-theme-polar-toggle.open {
   background-color: #000000 !important; }
-  .theme-inverse .background-theme-inverse, .theme-inverse .background-theme-inverse-hover:hover, .theme-inverse .background-theme-inverse-focus:focus, .theme-inverse .background-theme-inverse-focus.focus, .theme-inverse .background-theme-inverse-active:active, .theme-inverse .background-theme-inverse-toggle.active, .theme-inverse .background-theme-inverse-toggle.open {
+  .theme-inverse .background-theme-polar, .theme-inverse
+  .background-theme-polar-hover:hover, .theme-inverse
+  .background-theme-polar-focus:focus, .theme-inverse
+  .background-theme-polar-focus.focus, .theme-inverse
+  .background-theme-polar-active:active, .theme-inverse
+  .background-theme-polar-toggle.active, .theme-inverse
+  .background-theme-polar-toggle.open {
     background-color: #FFFFFF !important; }
 
-.background-theme-inverse-contrast, .background-theme-inverse-contrast-hover:hover, .background-theme-inverse-contrast-focus:focus, .background-theme-inverse-contrast-focus.focus, .background-theme-inverse-contrast-active:active, .background-theme-inverse-contrast-toggle.active, .background-theme-inverse-contrast-toggle.open {
+.background-theme-polar-contrast,
+.background-theme-polar-contrast-hover:hover,
+.background-theme-polar-contrast-focus:focus,
+.background-theme-polar-contrast-focus.focus,
+.background-theme-polar-contrast-active:active,
+.background-theme-polar-contrast-toggle.active,
+.background-theme-polar-contrast-toggle.open {
   background-color: #1a1a1a !important; }
-  .theme-inverse .background-theme-inverse-contrast, .theme-inverse .background-theme-inverse-contrast-hover:hover, .theme-inverse .background-theme-inverse-contrast-focus:focus, .theme-inverse .background-theme-inverse-contrast-focus.focus, .theme-inverse .background-theme-inverse-contrast-active:active, .theme-inverse .background-theme-inverse-contrast-toggle.active, .theme-inverse .background-theme-inverse-contrast-toggle.open {
+  .theme-inverse .background-theme-polar-contrast, .theme-inverse
+  .background-theme-polar-contrast-hover:hover, .theme-inverse
+  .background-theme-polar-contrast-focus:focus, .theme-inverse
+  .background-theme-polar-contrast-focus.focus, .theme-inverse
+  .background-theme-polar-contrast-active:active, .theme-inverse
+  .background-theme-polar-contrast-toggle.active, .theme-inverse
+  .background-theme-polar-contrast-toggle.open {
     background-color: #e6e6e6 !important; }
 
 .background-gradient, .background-gradient-45, .background-gradient-90, .background-gradient-135, .background-gradient-180, .background-gradient-225, .background-gradient-270, .background-gradient-315 {
   background-color: #235789 !important; }
 
-.background-transparent, .background-transparent-hover:hover, .background-transparent-focus:focus, .background-transparent-focus.focus, .background-transparent-active:active, .background-transparent-toggle.active, .background-transparent-toggle.open {
+.background-inherit,
+.background-inherit-hover:hover,
+.background-inherit-focus:focus,
+.background-inherit-focus.focus,
+.background-inherit-active:active,
+.background-inherit-toggle.active,
+.background-inherit-toggle.open {
+  background-color: inherit !important; }
+
+.background-transparent,
+.background-transparent-hover:hover,
+.background-transparent-focus:focus,
+.background-transparent-focus.focus,
+.background-transparent-active:active,
+.background-transparent-toggle.active,
+.background-transparent-toggle.open {
   background-color: transparent !important; }
 
 /* COLOR CLASSES */
-.color-theme, .color-theme-hover:hover, .color-theme-focus:focus, .color-theme-focus.focus, .color-theme-active:active, .color-theme-toggle.active, .color-theme-toggle.open {
+.color-theme,
+.color-theme-hover:hover,
+.color-theme-focus:focus,
+.color-theme-focus.focus,
+.color-theme-active:active,
+.color-theme-toggle.active,
+.color-theme-toggle.open {
   color: #000000 !important; }
-  .theme-inverse .color-theme, .theme-inverse .color-theme-hover:hover, .theme-inverse .color-theme-focus:focus, .theme-inverse .color-theme-focus.focus, .theme-inverse .color-theme-active:active, .theme-inverse .color-theme-toggle.active, .theme-inverse .color-theme-toggle.open {
+  .theme-inverse .color-theme, .theme-inverse
+  .color-theme-hover:hover, .theme-inverse
+  .color-theme-focus:focus, .theme-inverse
+  .color-theme-focus.focus, .theme-inverse
+  .color-theme-active:active, .theme-inverse
+  .color-theme-toggle.active, .theme-inverse
+  .color-theme-toggle.open {
     color: #FFFFFF !important; }
 
-.color-theme-contrast, .color-theme-contrast-hover:hover, .color-theme-contrast-focus:focus, .color-theme-contrast-focus.focus, .color-theme-contrast-active:active, .color-theme-contrast-toggle.active, .color-theme-contrast-toggle.open {
+.color-theme-contrast,
+.color-theme-contrast-hover:hover,
+.color-theme-contrast-focus:focus,
+.color-theme-contrast-focus.focus,
+.color-theme-contrast-active:active,
+.color-theme-contrast-toggle.active,
+.color-theme-contrast-toggle.open {
   color: #1a1a1a !important; }
-  .theme-inverse .color-theme-contrast, .theme-inverse .color-theme-contrast-hover:hover, .theme-inverse .color-theme-contrast-focus:focus, .theme-inverse .color-theme-contrast-focus.focus, .theme-inverse .color-theme-contrast-active:active, .theme-inverse .color-theme-contrast-toggle.active, .theme-inverse .color-theme-contrast-toggle.open {
+  .theme-inverse .color-theme-contrast, .theme-inverse
+  .color-theme-contrast-hover:hover, .theme-inverse
+  .color-theme-contrast-focus:focus, .theme-inverse
+  .color-theme-contrast-focus.focus, .theme-inverse
+  .color-theme-contrast-active:active, .theme-inverse
+  .color-theme-contrast-toggle.active, .theme-inverse
+  .color-theme-contrast-toggle.open {
     color: #e6e6e6 !important; }
 
-.color-theme-inverse, .color-theme-inverse-hover:hover, .color-theme-inverse-focus:focus, .color-theme-inverse-focus.focus, .color-theme-inverse-active:active, .color-theme-inverse-toggle.active, .color-theme-inverse-toggle.open {
+.color-theme-polar,
+.color-theme-polar-hover:hover,
+.color-theme-polar-focus:focus,
+.color-theme-polar-focus.focus,
+.color-theme-polar-active:active,
+.color-theme-polar-toggle.active,
+.color-theme-polar-toggle.open {
   color: #FFFFFF !important; }
-  .theme-inverse .color-theme-inverse, .theme-inverse .color-theme-inverse-hover:hover, .theme-inverse .color-theme-inverse-focus:focus, .theme-inverse .color-theme-inverse-focus.focus, .theme-inverse .color-theme-inverse-active:active, .theme-inverse .color-theme-inverse-toggle.active, .theme-inverse .color-theme-inverse-toggle.open {
+  .theme-inverse .color-theme-polar, .theme-inverse
+  .color-theme-polar-hover:hover, .theme-inverse
+  .color-theme-polar-focus:focus, .theme-inverse
+  .color-theme-polar-focus.focus, .theme-inverse
+  .color-theme-polar-active:active, .theme-inverse
+  .color-theme-polar-toggle.active, .theme-inverse
+  .color-theme-polar-toggle.open {
     color: #1a1a1a !important; }
 
-.color-theme-inverse-contrast, .color-theme-inverse-contrast-hover:hover, .color-theme-inverse-contrast-focus:focus, .color-theme-inverse-contrast-focus.focus, .color-theme-inverse-contrast-active:active, .color-theme-inverse-contrast-toggle.active, .color-theme-inverse-contrast-toggle.open {
+.color-theme-polar-contrast,
+.color-theme-polar-contrast-hover:hover,
+.color-theme-polar-contrast-focus:focus,
+.color-theme-polar-contrast-focus.focus,
+.color-theme-polar-contrast-active:active,
+.color-theme-polar-contrast-toggle.active,
+.color-theme-polar-contrast-toggle.open {
   color: #e6e6e6 !important; }
-  .theme-inverse .color-theme-inverse-contrast, .theme-inverse .color-theme-inverse-contrast-hover:hover, .theme-inverse .color-theme-inverse-contrast-focus:focus, .theme-inverse .color-theme-inverse-contrast-focus.focus, .theme-inverse .color-theme-inverse-contrast-active:active, .theme-inverse .color-theme-inverse-contrast-toggle.active, .theme-inverse .color-theme-inverse-contrast-toggle.open {
+  .theme-inverse .color-theme-polar-contrast, .theme-inverse
+  .color-theme-polar-contrast-hover:hover, .theme-inverse
+  .color-theme-polar-contrast-focus:focus, .theme-inverse
+  .color-theme-polar-contrast-focus.focus, .theme-inverse
+  .color-theme-polar-contrast-active:active, .theme-inverse
+  .color-theme-polar-contrast-toggle.active, .theme-inverse
+  .color-theme-polar-contrast-toggle.open {
     color: #000000 !important; }
 
-.color-inherit, .color-inherit-hover:hover, .color-inherit-focus:focus, .color-inherit-focus.focus, .color-inherit-active:active, .color-inherit-toggle.active, .color-inherit-toggle.open {
-  color: inherit !important; }
-
-.display-block {
-  display: block !important; }
-
-.display-inline-block {
-  display: inline-block !important; }
-
-.display-inline {
-  display: inline !important; }
-
-/* FIT IMAGE */
-/* emulate background cover on image tags */
-.thumbnail img, .thumbnail-image img, .fit-image img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  margin: auto;
-  object-fit: cover; }
-
-.fit-image {
-  position: relative; }
-
-/* TEXT CLASSES */
-.text-leading-compact {
-  line-height: 1.3125 !important; }
-
-.text-leading-expanded {
-  line-height: 2.25 !important; }
-
-.text-leading-normalize {
-  line-height: 1.5 !important; }
-
-.text-align-center {
-  text-align: center !important; }
-
-.text-align-left {
-  text-align: left !important; }
-
-.text-align-right {
-  text-align: right !important; }
-
-.text-align-justify {
-  text-align: justify !important; }
-
-.text-transform-uppercase {
-  text-transform: uppercase !important; }
-
-.text-transform-lowercase {
-  text-transform: lowercase !important; }
-
-.text-transform-capitalize {
-  text-transform: capitalize !important; }
-
-.text-vertical-align-middle {
-  vertical-align: middle !important; }
-
-.text-vertical-align-baseline {
-  vertical-align: baseline !important; }
-
-.text-vertical-align-top {
-  vertical-align: top !important; }
-
-.text-vertical-align-bottom {
-  vertical-align: bottom !important; }
-
-.text-vertical-align-text-top {
-  vertical-align: text-top !important; }
-
-.text-vertical-align-text-bottom {
-  vertical-align: text-bottom !important; }
-
-.text-vertical-align-sub {
-  vertical-align: sub !important; }
-
-.text-vertical-align-super {
-  vertical-align: super !important; }
-
-.text-wrap {
-  white-space: normal; }
-  .text-wrap-ellipsis {
-    /* cut overflowing single line to ellipsis */
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    /* gotta be block otherwise shit wont happen */
-    display: block;
-    max-width: 100% !important; }
-    .text-wrap-ellipsis-multiple {
-      white-space: normal !important;
-      text-overflow: ellipsis !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2 !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-      height: calc((1em * 1.5) * 2); }
-      .text-leading-compact .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-compact {
-        height: calc((1em * 1.5 * 0.875) * 2); }
-      .text-leading-expanded .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-expanded {
-        height: calc((1em * 1.5 * 1.5) * 2); }
-  .text-wrap-nowrap {
-    white-space: nowrap !important; }
-  .text-wrap-break {
-    word-break: break-word !important;
-    overflow-wrap: break-word !important; }
-
-@supports not (-webkit-background-clip: text) {
-  .text-clip-background {
-    background: transparent !important;
-    color: #235789 !important; } }
-
-@supports (-webkit-background-clip: text) {
-  .text-clip-background {
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important; } }
+.color-inherit,
+.color-inherit-hover:hover,
+.color-inherit-focus:focus,
+.color-inherit-focus.focus,
+.color-inherit-active:active,
+.color-inherit-toggle.active,
+.color-inherit-toggle.open {
+  background-color: inherit !important; }
 
 .font-family-primary {
   font-family: "Roboto", Helvetica, Arial, sans-serif !important; }
 
 .font-family-accent {
   font-family: "Georgia", Times, serif !important; }
+
+.font-family-inherit {
+  font-family: inherit !important; }
+
+.font-size-large {
+  font-size: 1.5em !important; }
+
+.font-size-small {
+  font-size: 0.875em !important; }
+
+.font-size-normalize {
+  font-size: 1rem !important; }
+
+.font-size-inherit {
+  font-size: inherit !important; }
 
 .font-weight-100 {
   font-weight: 100 !important; }
@@ -5725,20 +6315,168 @@ CUSTOM STYLES FOR TRUMBOWYG
 .font-weight-900 {
   font-weight: 900 !important; }
 
-.font-size-large {
-  font-size: 1.5em !important; }
-
-.font-size-small {
-  font-size: 0.875em !important; }
-
-.font-size-normalize {
-  font-size: 1rem !important; }
+.font-weight-inherit {
+  font-weight: inherit !important; }
 
 .font-style-italic {
   font-style: italic !important; }
 
 .font-style-oblique {
   font-style: oblique !important; }
+
+.font-style-normal {
+  font-style: normal !important; }
+
+.font-style-inherit {
+  font-style: inherit !important; }
+
+.display-block {
+  display: block !important; }
+
+.display-inline-block {
+  display: inline-block !important; }
+
+.display-inline {
+  display: inline !important; }
+
+/* TEXT CLASSES */
+.text-leading-compact {
+  line-height: 1.3125 !important; }
+
+.text-leading-expanded {
+  line-height: 2.25 !important; }
+
+.text-leading-normalize {
+  line-height: 1.5 !important; }
+
+.text-leading-inherit {
+  line-height: inherit !important; }
+
+.text-align-center {
+  text-align: center !important; }
+
+.text-align-left {
+  text-align: left !important; }
+
+.text-align-right {
+  text-align: right !important; }
+
+.text-align-justify {
+  text-align: justify !important; }
+
+.text-align-inherit {
+  text-align: inherit !important; }
+
+.text-transform-uppercase {
+  text-transform: uppercase !important; }
+
+.text-transform-lowercase {
+  text-transform: lowercase !important; }
+
+.text-transform-capitalize {
+  text-transform: capitalize !important; }
+
+.text-transform-inherit {
+  text-transform: inherit !important; }
+
+.text-vertical-align-middle {
+  vertical-align: middle !important; }
+
+.text-vertical-align-baseline {
+  vertical-align: baseline !important; }
+
+.text-vertical-align-top {
+  vertical-align: top !important; }
+
+.text-vertical-align-bottom {
+  vertical-align: bottom !important; }
+
+.text-vertical-align-text-top {
+  vertical-align: text-top !important; }
+
+.text-vertical-align-text-bottom {
+  vertical-align: text-bottom !important; }
+
+.text-vertical-align-sub {
+  vertical-align: sub !important; }
+
+.text-vertical-align-super {
+  vertical-align: super !important; }
+
+.text-vertical-align-inherit {
+  vertical-align: inherit !important; }
+
+.text-wrap {
+  white-space: normal !important; }
+  .text-wrap-nowrap {
+    white-space: nowrap !important; }
+  .text-wrap-break {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important; }
+  .text-wrap-ellipsis {
+    /* cut overflowing single line to ellipsis */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    /* gotta be block otherwise shit wont happen */
+    display: block;
+    max-width: 100% !important; }
+    .text-wrap-ellipsis-multiple {
+      white-space: normal !important;
+      text-overflow: ellipsis !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      height: calc((1em * 1.5) * 2); }
+      .text-leading-compact .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-compact {
+        height: calc((1em * 1.5 * 0.875) * 2); }
+      .text-leading-expanded .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-expanded {
+        height: calc((1em * 1.5 * 1.5) * 2); }
+
+@supports not (-webkit-background-clip: text) {
+  .text-clip-background {
+    background: transparent !important;
+    color: #235789 !important; } }
+
+@supports (-webkit-background-clip: text) {
+  .text-clip-background {
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important; } }
+
+.no-margin {
+  margin: 0 !important; }
+  .no-margin-x {
+    margin-left: 0 !important;
+    margin-right: 0 !important; }
+  .no-margin-y {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important; }
+  .no-margin-top {
+    margin-top: 0 !important; }
+  .no-margin-bottom {
+    margin-bottom: 0 !important; }
+  .no-margin-left {
+    margin-left: 0 !important; }
+  .no-margin-right {
+    margin-right: 0 !important; }
+
+.no-padding {
+  padding: 0 !important; }
+  .no-padding-x {
+    padding-left: 0 !important;
+    padding-right: 0 !important; }
+  .no-padding-y {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important; }
+  .no-padding-top {
+    padding-top: 0 !important; }
+  .no-padding-bottom {
+    padding-bottom: 0 !important; }
+  .no-padding-left {
+    padding-left: 0 !important; }
+  .no-padding-right {
+    padding-right: 0 !important; }
 
 .overflow-visible {
   overflow: visible !important; }
@@ -5806,6 +6544,12 @@ CUSTOM STYLES FOR TRUMBOWYG
 .float-right {
   float: right !important; }
 
+.float-none {
+  float: none !important; }
+
+.float-inherit {
+  float: inherit !important; }
+
 .clear-left {
   clear: left !important; }
 
@@ -5815,39 +6559,11 @@ CUSTOM STYLES FOR TRUMBOWYG
 .clear-both {
   clear: both !important; }
 
-.no-margin {
-  margin: 0 !important; }
-  .no-margin-x {
-    margin-left: 0 !important;
-    margin-right: 0 !important; }
-  .no-margin-y {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important; }
-  .no-margin-top {
-    margin-top: 0 !important; }
-  .no-margin-bottom {
-    margin-bottom: 0 !important; }
-  .no-margin-left {
-    margin-left: 0 !important; }
-  .no-margin-right {
-    margin-right: 0 !important; }
+.clear-none {
+  clear: none !important; }
 
-.no-padding {
-  padding: 0 !important; }
-  .no-padding-x {
-    padding-left: 0 !important;
-    padding-right: 0 !important; }
-  .no-padding-y {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important; }
-  .no-padding-top {
-    padding-top: 0 !important; }
-  .no-padding-bottom {
-    padding-bottom: 0 !important; }
-  .no-padding-left {
-    padding-left: 0 !important; }
-  .no-padding-right {
-    padding-right: 0 !important; }
+.clear-inherit {
+  clear: inherit !important; }
 
 .justify-content-flex-start {
   justify-content: flex-start !important; }
@@ -5885,11 +6601,8 @@ CUSTOM STYLES FOR TRUMBOWYG
 .justify-content-stretch {
   justify-content: stretch !important; }
 
-.align-self-stretch {
-  align-self: stretch !important; }
-
-.align-self-center {
-  align-self: center !important; }
+.justify-content-inherit {
+  justify-content: stretch !important; }
 
 .align-self-flex-start {
   align-self: flex-start !important; }
@@ -5897,20 +6610,29 @@ CUSTOM STYLES FOR TRUMBOWYG
 .align-self-flex-end {
   align-self: flex-end !important; }
 
+.align-self-center {
+  align-self: center !important; }
+
 .align-self-baseline {
   align-self: baseline !important; }
 
-.align-items-stretch {
-  align-items: stretch !important; }
+.align-self-stretch {
+  align-self: stretch !important; }
 
-.align-items-center {
-  align-items: center !important; }
+.align-self-inherit {
+  align-self: inherit !important; }
 
 .align-items-flex-start {
   align-items: flex-start !important; }
 
 .align-items-flex-end {
   align-items: flex-end !important; }
+
+.align-items-stretch {
+  align-items: stretch !important; }
+
+.align-items-center {
+  align-items: center !important; }
 
 .align-items-baseline {
   align-items: baseline !important; }
@@ -5920,6 +6642,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 .align-items-end {
   align-items: end !important; }
+
+.align-items-inherit {
+  align-items: inherit !important; }
 
 .align-content-flex-start {
   align-content: flex-start !important; }
@@ -5939,11 +6664,11 @@ CUSTOM STYLES FOR TRUMBOWYG
 .align-content-space-evenly {
   align-content: space-evenly !important; }
 
-.align-content-stretch {
-  align-content: stretch !important; }
-
 .align-content-baseline {
   align-content: baseline !important; }
+
+.align-content-stretch {
+  align-content: stretch !important; }
 
 .align-content-start {
   align-content: start !important; }
@@ -5959,6 +6684,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 .align-content-normal {
   align-content: normal !important; }
+
+.align-content-inherit {
+  align-content: inherit !important; }
 
 /* FLEX */
 .inline-flex {
@@ -5986,12 +6714,16 @@ CUSTOM STYLES FOR TRUMBOWYG
     flex-direction: column !important; }
   .flex-direction-column-reverse {
     flex-direction: column-reverse !important; }
+  .flex-direction-inherit {
+    flex-direction: inherit !important; }
   .flex-wrap {
     flex-wrap: wrap !important; }
   .flex-nowrap {
     flex-wrap: nowrap !important; }
   .flex-wrap-reverse {
     flex-wrap: wrap-reverse !important; }
+  .flex-wrap-inherit {
+    flex-wrap: inherit !important; }
   .flex-1-1, .flex-1-0 {
     flex-grow: 1 !important; }
   .flex-1-1, .flex-0-1 {

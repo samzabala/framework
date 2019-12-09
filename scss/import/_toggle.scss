@@ -29,7 +29,7 @@
             }
         }
 
-        @include br(#{$mobile-br-max-opposite}) {
+        @include br(#{$mobile-br-max-polar}) {
             display:block;
         }
     }

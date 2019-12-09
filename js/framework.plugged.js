@@ -145,7 +145,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	_.palette = ['primary','accent','base','neutral','error','caution','success']
+	_.palette = ['base','background','primary','accent','neutral','error','caution','success']
 
 	frameWork.initGrid = function(moduleGrid){
 		console.log('grid bitch is running');
@@ -284,7 +284,7 @@ window.jQuery && jQuery.noConflict();
 					(imgSrcset !== 'undefined') && img.attr('srcset', imgSrcset);
 				}
 			}else{
-				// img.css('background-image', 'url(' + imgSrc + ')');
+				img.css('background-image', 'url(' + imgSrc + ')');
 			}
 
 			img.addClass('lazy-loaded');

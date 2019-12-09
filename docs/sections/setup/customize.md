@@ -29,6 +29,17 @@ framework sass
 
 ```
 
+Note, some values especially font sizes are recalculated internally by the framework to create equivalent optimal values, if some variable customization looks weird, there's your answer
+eg:
+
+`$body-line-height`. If set as pixels, this will be converted to its unitless equivalent
+```scss
+$body-font-size: 16px;
+$body-line-height: 24px; // will be outputted as 1.5 
+```
+
+If this causes issues or errors, feel free to hit me up and shit on me so I can troubleshootootoot
+
 # Javascript
 
 

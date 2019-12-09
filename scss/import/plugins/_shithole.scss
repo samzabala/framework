@@ -1108,7 +1108,7 @@
         // sm: $screen-sm,
         // md: $screen-md,
         // lg: $screen-lg
-        @function opposite-br($breakpoint) {
+        @function polar-br($breakpoint) {
             $current-index: index($br-tag-list,$breakpoint);
             
             @if($current-index > 4) {
@@ -1882,7 +1882,7 @@
         $defaults: map-merge((
             pseudo: after, 
             change-directions: false, //if pseudo is both, make their directions oppposite to one another
-            direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be opposite of it
+            direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of it
             color: $color-primary,
             change-color: null,
             size: inherit,
@@ -1986,7 +1986,7 @@
     @mixin arrow-gradient($args:()){
         $defaults: (
             pseudo: after, 
-            direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be opposite of it
+            direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of it
             gradient : (),
             size-base: inherit,
             width: .4em,//orientation of direction
@@ -2051,7 +2051,7 @@
         $defaults: (
             pseudo: after, 
             change-directions: false, //if pseudo is both, make their directions oppposite to one another
-            direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be opposite of it
+            direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of it
             color: null,
             override: false,
             change-color: null,

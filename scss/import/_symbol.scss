@@ -213,7 +213,7 @@ $prefix: '.symbol';
 
 			@include arrow-triangle((
 				pseudo: after, 
-				direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be opposite of 
+				direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
 				display: null,
 				size-base: inherit,
 				main-size: $calculated-symbol-caret-height,//orientation of direction

@@ -116,7 +116,7 @@ $calculated-progress-title-font-size: $progress-title-font-size;
 	}
 }
 
-/* SUBSET */
+/* Progress bar */
 $prefix: '.progress';
 #{$prefix} {
 	@extend %for-progress;
