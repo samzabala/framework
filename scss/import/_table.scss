@@ -17,6 +17,10 @@ $calculated-table-cell-height-large: $table-cell-height-large;
 @if internal-is-convertable($table-cell-height-large) {
 	$calculated-table-cell-height-large: rem( $table-cell-height-large / $body-font-size);
 }
+$calculated-table-cell-height-small: $table-cell-height-small;
+@if internal-is-convertable($table-cell-height-small) {
+	$calculated-table-cell-height-small: rem( $table-cell-height-small / $body-font-size);
+}
 
 
 $prefix: '.table';
@@ -143,11 +147,22 @@ $prefix: '.table';
 
 
 
+
+		@at-root &#{$prefix}-small {
+			td,
+			#{$prefix}-cell {
+				padding-top: calc((#{ $calculated-table-cell-height-small } - ( #{ $calculated-body-single-line-compact } )) * .5);
+				padding-bottom: calc((#{ $calculated-table-cell-height-small } - ( #{ $calculated-body-single-line-compact } )) * .5);
+				line-height: $calculated-body-line-height * $body-line-height-compact-factor;
+			}
+		}
+
 		@at-root &#{$prefix}-large {
 			td,
 			#{$prefix}-cell {
-				padding-top: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line } )) * .5);
-				padding-bottom: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line } )) * .5);
+				padding-top: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line-expanded } )) * .5);
+				padding-bottom: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line-expanded } )) * .5);
+				line-height: $calculated-body-line-height * $body-line-height-expanded-factor;
 			}
 		}
 
@@ -162,10 +177,22 @@ $prefix: '.table';
 			#{$prefix}-large & {
 				height: calc(#{ $calculated-table-cell-height-large } - (#{$table-label-offset} * 2));
 			}
+
+			#{$prefix}-small & {
+				height: calc(#{ $calculated-table-cell-height-small } - (#{$table-label-offset} * 2));
+			}
 			
 			@each $tag,$color in $calculated-brand-color-declarations {
 				&-#{$tag} {
 					@extend %for-background-#{$tag};
+				}
+			}
+
+			&-intensity {
+				@for $i from 1 through length($calculated-color-brand-intensity) {
+					&-#{$i} {
+						@extend %for-background-intensity-#{$i};
+					}
 				}
 			}
 		}

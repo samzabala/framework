@@ -54,7 +54,8 @@ To disable lazyload, do this to ya script
 
 ### SVG
 ####	**`.svg-gradient-start`** and **`.svg-gradient-end`** 
-	Classes to add on `<stop>` tags in a gradient element
+
+Classes to add on `<stop>` tags in a gradient element
 
 ```html
 <linearGradient id="theme-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="194.3924" y2="29">
@@ -85,6 +86,12 @@ To disable lazyload, do this to ya script
 *   **`.['fill' or 'stroke']-currentColor`**
 *   **`.['fill' or 'stroke']-none`**
 
+
+```xml
+<svg>
+	<circle cx="20" cy="50" r="50" class="fill-primary stroke-neutral">
+</svg>
+```
 
 ###### Theme Based
 

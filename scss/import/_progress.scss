@@ -135,13 +135,11 @@ $prefix: '.progress';
 				@extend %for-background-#{$tag};
 			}
 		}
-
-		&-gradient {
-			@extend %for-background-gradient;
 	
-			@each $angle in $calculated-gradient-angles {
-				&-#{$angle} {
-					@extend %for-background-gradient-#{$angle};
+		&-intensity {
+			@for $i from 1 through length($calculated-color-brand-intensity) {
+				&-#{$i} {
+					@extend %for-background-intensity-#{$i};
 				}
 			}
 		}

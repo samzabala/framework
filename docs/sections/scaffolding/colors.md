@@ -98,15 +98,21 @@ Color and contrast palettes interchange on inverse theme by default. to see this
 
 
 ## Color tags
-These are valid color tags for javascript arguments or data attributes
+These are valid color tags for all javascript arguments or data attributes
 *	`base`
-*	`background`
 *	`primary`
 *	`accent`
 *	`neutral`
 *	`error`
 *	`caution`
 *	`success`
+
+These color tags are valid except for [btn](../components/button.md) and [forms](../components/forms.md)
+*	`intensity-1`
+*	`intensity-2`
+*	`intensity-3`
+*	`intensity-4`
+*	`intensity-5`
 
 See [Tooltip](../components/tooltip.md)
 

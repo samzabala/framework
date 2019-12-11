@@ -18,6 +18,17 @@ $calculated-br-tags: (xxs,xs,sm,md,lg);
     }
 
 
+    $calculated-body-single-line-compact: $calculated-body-line-height * $body-line-height-compact-factor;
+    @if unitless($calculated-body-single-line-compact) {
+        $calculated-body-single-line-compact: 1em * #{ type-lead( $body-font-size,$body-line-height ) * $body-line-height-compact-factor }
+    }
+    
+    $calculated-body-single-line-expanded: $calculated-body-line-height * $body-line-height-expanded-factor;
+    @if unitless($calculated-body-single-line-expanded) {
+        $calculated-body-single-line-expanded: 1em * #{ type-lead( $body-font-size,$body-line-height ) * $body-line-height-expanded-factor }
+    }
+
+
     $calculated-nav-height: $nav-height;
     @if internal-is-convertable($nav-height) { 
         $calculated-nav-height: rem( $nav-height / $body-font-size);
@@ -40,7 +51,7 @@ $calculated-symbol-caret-width:$symbol-caret-width;
 //for helpers
 $calculated-brand-color-declarations : (
 	base: $brand-color-base,
-	background: $brand-color-background,
+	// background: $brand-color-background,
 	primary: $brand-color-primary,
 	accent: $brand-color-accent,
 	neutral: $brand-color-neutral,

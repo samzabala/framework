@@ -55,4 +55,12 @@ $prefix: '.tag';
 			@extend %for-background-#{$tag};
 		}
 	}
+
+	&-intensity {
+		@for $i from 1 through length($calculated-color-brand-intensity) {
+			&-#{$i} {
+				@extend %for-background-intensity-#{$i};
+			}
+		}
+	}
 }

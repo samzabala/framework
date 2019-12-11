@@ -39,10 +39,11 @@ Replicate a `<thead>`,`<tbody>`,`<tfoot>` or `<tr>` element
 
 #### Row classes
 
+![Yes](../../images/table-color.png)
+
 ##### Colors 
-The folloing classes style table rows to [framework colors](../scaffolding/colors.md)
+The folloing classes style table rows to [framework colors](../scaffolding/colors.md#color-tags)
 *	**.table-row-base**
-*	**.table-row-background**
 *	**.table-row-primary**
 *	**.table-row-accent**
 *	**.table-row-neutral**
@@ -62,7 +63,7 @@ The folloing classes style table rows to [framework colors](../scaffolding/color
 ```
 
 ##### Disable
-To add disabled styles, add **`.table-row-disabled`** to the row
+To add disabled styles to a row, add **`.table-row-disabled`** to the row
 
 ### **.table-cell**
 
@@ -106,7 +107,43 @@ Remove padding on table cell
 </div>
 ```
 
+### **`.table-large` and `.table-small`**
 
-### **.table-cell-no-gutter**
+Add `.table-large` or `.table-small` to  reduce or expand table rows and line height
+
+### **`.table-label`**
+
+![Yes](../../images/table-label.png)
+
+Add tags on the side for more accent. Works best with a cell classed ass [`.table-cell-no-gutter`](#table-cell-no-gutter).
+
+This can be colorized with `.table-label-[color]` based on [framework colors](../scaffolding/colors.md#color-tags)
+
+
+```html
+<table class="table">
+	<tbody>
+		<tr>
+			<td class="table-cell-no-gutter">
+				<span class="table-label table-label-primary"></span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+```
+
+Custom color labels can be added to by setting background color properties instead of color classes
+
+```html
+<table class="table">
+	<tbody>
+		<tr>
+			<td class="table-cell-no-gutter">
+				<span class="table-label" style="background-color:red;"></span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+```
 
 [Back to TOC](../../../readme.md)

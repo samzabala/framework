@@ -56,4 +56,12 @@ $prefix: '.badge';
 		}
 	}
 
+	&-intensity {
+		@for $i from 1 through length($calculated-color-brand-intensity) {
+			&-#{$i} {
+				@extend %for-background-intensity-#{$i};
+			}
+		}
+	}
+
 }

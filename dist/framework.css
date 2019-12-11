@@ -57,23 +57,11 @@ table {
   --brand-color-background: #FFFFFF;
   --brand-color-background-alt: #e6e6e6;
   --brand-color-neutral: #8d8d8d;
-  --brand-color-neutral-light: #9a9a9a;
-  --brand-color-neutral-dark: #747474;
   --brand-color-primary: #235789;
-  --brand-color-primary-light: #28649d;
-  --brand-color-primary-dark: #193d60;
   --brand-color-accent: #17BEBB;
-  --brand-color-accent-light: #1ad5d1;
-  --brand-color-accent-dark: #11918e;
   --brand-color-success: #15b800;
-  --brand-color-success-light: #18d200;
-  --brand-color-success-dark: #0f8500;
   --brand-color-caution: #fd7f03;
-  --brand-color-caution-light: #fd8c1c;
-  --brand-color-caution-dark: #cb6602;
   --brand-color-error: #fd0303;
-  --brand-color-error-light: #fd3636;
-  --brand-color-error-dark: #cb0202;
   --brand-color-intensity-1: #235789;
   --brand-color-intensity-2: #207196;
   --brand-color-intensity-3: #1d8ba2;
@@ -84,14 +72,14 @@ table {
   --brand-font-primary: Roboto, Helvetica, Arial, sans-serif;
   --brand-font-accent: Georgia, Times, serif;
   --brand-font-monospace: Menlo, Monaco, Consolas, Courier New, monospace;
-  --global-color: #000000;
-  --global-color-inverse: #FFFFFF;
-  --global-color-contrast: #1a1a1a;
-  --global-color-contrast-inverse: #e6e6e6;
-  --global-background: #FFFFFF;
-  --global-background-inverse: #1a1a1a;
-  --global-background-contrast: #e6e6e6;
-  --global-background-contrast-inverse: #000000; }
+  --theme-color: #000000;
+  --theme-color-inverse: #FFFFFF;
+  --theme-color-contrast: #1a1a1a;
+  --theme-color-contrast-inverse: #e6e6e6;
+  --theme-background: #FFFFFF;
+  --theme-background-inverse: #1a1a1a;
+  --theme-background-contrast: #e6e6e6;
+  --theme-background-contrast-inverse: #000000; }
 
 /* heading bars or rules from tiny rectangles to long rules and what not. */
 .progress:after, .fw-trumbowyg-progress:after {
@@ -221,17 +209,17 @@ a {
 /* special */
 .special-primary {
   font-size: 4.0625em !important;
-  line-height: 1.25 !important;
+  line-height: 1 !important;
   color: inherit !important;
   font-weight: 300 !important;
   text-transform: none !important;
   font-style: normal !important;
-  margin-bottom: 0;
-  margin-top: 0;
+  margin-bottom: 0.3076923077em;
+  margin-top: 0.3076923077em;
   display: block; }
   @media (max-width: 1200px) {
     .special-primary {
-      font-size: 1.75em !important; } }
+      font-size: 3.375em !important; } }
 
 .special-secondary {
   font-size: 2.375em !important;
@@ -240,12 +228,26 @@ a {
   font-weight: 300 !important;
   text-transform: none !important;
   font-style: normal !important;
-  margin-bottom: 0.25em;
-  margin-top: 0.25em;
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
   display: block; }
   @media (max-width: 1200px) {
     .special-secondary {
-      font-size: 1.375em !important; } }
+      font-size: 2em !important; } }
+
+.lead {
+  font-size: 1.5em !important;
+  line-height: 1.25 !important;
+  color: inherit !important;
+  font-weight: 300 !important;
+  text-transform: none !important;
+  font-style: normal !important;
+  margin-bottom: 1.6666666667em;
+  margin-top: 1.6666666667em;
+  display: block; }
+  @media (max-width: 1200px) {
+    .lead {
+      font-size: 1.25em !important; } }
 
 p,
 .p,
@@ -614,15 +616,6 @@ body:not(.lazy-initialized) .lazy {
 .fill-base-toggle.open {
   fill: #000000 !important; }
 
-.fill-background,
-.fill-background-hover:hover,
-.fill-background-focus:focus,
-.fill-background-focus.focus,
-.fill-background-active:active,
-.fill-background-toggle.active,
-.fill-background-toggle.open {
-  fill: #FFFFFF !important; }
-
 .fill-primary,
 .fill-primary-hover:hover,
 .fill-primary-focus:focus,
@@ -817,15 +810,6 @@ body:not(.lazy-initialized) .lazy {
 .stroke-base-toggle.open {
   stroke: #000000 !important; }
 
-.stroke-background,
-.stroke-background-hover:hover,
-.stroke-background-focus:focus,
-.stroke-background-focus.focus,
-.stroke-background-active:active,
-.stroke-background-toggle.active,
-.stroke-background-toggle.open {
-  stroke: #FFFFFF !important; }
-
 .stroke-primary,
 .stroke-primary-hover:hover,
 .stroke-primary-focus:focus,
@@ -976,12 +960,20 @@ table {
   .table-cell {
     padding-top: calc((4.375rem - ( 1em * 1.5 )) * .5);
     padding-bottom: calc((4.375rem - ( 1em * 1.5 )) * .5); }
+  .table.table-small td,
+  .table.table-small .table-cell,
+  table.table-small td,
+  table.table-small .table-cell {
+    padding-top: calc((3.125rem - ( 1em * 1.3125 )) * .5);
+    padding-bottom: calc((3.125rem - ( 1em * 1.3125 )) * .5);
+    line-height: 1.3125; }
   .table.table-large td,
   .table.table-large .table-cell,
   table.table-large td,
   table.table-large .table-cell {
-    padding-top: calc((6.5625rem - ( 1em * 1.5 )) * .5);
-    padding-bottom: calc((6.5625rem - ( 1em * 1.5 )) * .5); }
+    padding-top: calc((6.5625rem - ( 1em * 2.25 )) * .5);
+    padding-bottom: calc((6.5625rem - ( 1em * 2.25 )) * .5);
+    line-height: 2.25; }
   .table-label {
     width: 12px;
     height: calc(4.375rem - (5px * 2));
@@ -990,10 +982,10 @@ table {
     vertical-align: middle; }
     .table-large .table-label {
       height: calc(6.5625rem - (5px * 2)); }
+    .table-small .table-label {
+      height: calc(3.125rem - (5px * 2)); }
   .table-row-base {
     background-color: rgba(0, 0, 0, 0.2); }
-  .table-row-background {
-    background-color: rgba(255, 255, 255, 0.2); }
   .table-row-primary {
     background-color: rgba(35, 87, 137, 0.2); }
   .table-row-accent {
@@ -4003,7 +3995,7 @@ table {
   height: 1.5625rem;
   border-radius: calc(1.5625rem * .5);
   border: 0.4375rem solid #FFFFFF;
-  box-shadow: 0px 5px 15px -6px #000000; }
+  box-shadow: 0px 5px 15px -8px #000000; }
   .theme-inverse .badge {
     border-color: #FFFFFF; }
   .badge.badge-large {
@@ -4048,7 +4040,7 @@ table {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 20px 20px;
-  box-shadow: 0px 5px 15px -6px #000000;
+  box-shadow: 0px 5px 15px -8px #000000;
   z-index: 2;
   display: none; }
   .open.tooltip, .open.dropdown {
@@ -4194,11 +4186,11 @@ table {
 
 .btn, .btn-group, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button {
   border-radius: 10px;
-  box-shadow: 0px 5px 15px -6px #000000;
+  box-shadow: 0px 5px 15px -8px #000000;
   background-color: transparent;
   color: inherit; }
   .btn:hover, .btn-group:hover, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button:hover {
-    box-shadow: 0px 5px 15px -6px #000000; }
+    box-shadow: 0px 5px 15px -8px #000000; }
 
 .btn.btn-large,
 .btn-group.btn-large .btn {
@@ -4925,7 +4917,7 @@ table {
 select.input[multiple],
 .input-group, .input-single-line, .input-multiple-line, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   border-radius: 10px;
-  box-shadow: 0px 5px 15px -6px #000000; }
+  box-shadow: 0px 5px 15px -8px #000000; }
   select.input-no-radius.input[multiple],
   .input-no-radius.input-group, .input-no-radius.input-single-line, .input-no-radius.input-multiple-line, .input-no-radius.input-editor, .input-no-radius.fw-trumbowyg-editor, .input-no-radius.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-no-radius:not([type="checkbox"]):not([type="radio"]) {
     border-radius: 0 !important; }
@@ -4968,11 +4960,6 @@ select.input[multiple],
 .input-wrapper-base .input-label, .input-label.input-label-base:focus,
 .input-wrapper-base .input-label:focus {
   color: #000000 !important; }
-
-.input-label.input-label-background,
-.input-wrapper-background .input-label, .input-label.input-label-background:focus,
-.input-wrapper-background .input-label:focus {
-  color: #FFFFFF !important; }
 
 .input-label.input-label-primary,
 .input-wrapper-primary .input-label, .input-label.input-label-primary:focus,
@@ -5031,7 +5018,7 @@ select.input[multiple],
   -webkit-appearance: none;
   appearance: none;
   font-size: 1rem;
-  line-height: 1.25;
+  line-height: 1.5;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   color: inherit;
   font-weight: 700;
@@ -5044,8 +5031,8 @@ select.input[multiple],
   border: 1px solid transparent;
   padding-right: 1.25em;
   padding-left: 1.25em;
-  padding-top: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.25) ) * .5);
-  padding-bottom: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.25) ) * .5); }
+  padding-top: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.5) ) * .5);
+  padding-bottom: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.5) ) * .5); }
   .input-large.input-single-line, .fw-trumbowyg-modal-box label input.input-large:not([type="checkbox"]):not([type="radio"]), select.input-large.input[multiple], .input-large.input-multiple-line, .input-large.input-editor, .input-large.fw-trumbowyg-editor, .input-large.fw-trumbowyg-textarea,
   .input-group.input-group-large .input-single-line,
   .input-group.input-group-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
@@ -5056,8 +5043,8 @@ select.input[multiple],
   .input-group.input-group-large .fw-trumbowyg-editor,
   .input-group.input-group-large .fw-trumbowyg-textarea {
     font-size: 1.5625rem;
-    padding-top: calc(  (  (3.125rem - (1px * 2)) - (1em * 1.25) ) * .5);
-    padding-bottom: calc(  (  (3.125rem - (1px * 2)) - (1em * 1.25) ) * .5);
+    padding-top: calc(  (  (3.125rem - (1px * 2)) - (1em * 1.5) ) * .5);
+    padding-bottom: calc(  (  (3.125rem - (1px * 2)) - (1em * 1.5) ) * .5);
     border-radius: 10px; }
   .input-small.input-single-line, .fw-trumbowyg-modal-box label input.input-small:not([type="checkbox"]):not([type="radio"]), select.input-small.input[multiple], .input-small.input-multiple-line, .input-small.input-editor, .input-small.fw-trumbowyg-editor, .input-small.fw-trumbowyg-textarea,
   .input-group.input-group-small .input-single-line,
@@ -5069,8 +5056,8 @@ select.input[multiple],
   .input-group.input-group-small .fw-trumbowyg-editor,
   .input-group.input-group-small .fw-trumbowyg-textarea {
     font-size: 0.875rem;
-    padding-top: calc(  (  (2.1875rem - (1px * 2)) - (1em * 1.25) ) * .5);
-    padding-bottom: calc(  (  (2.1875rem - (1px * 2)) - (1em * 1.25) ) * .5);
+    padding-top: calc(  (  (2.1875rem - (1px * 2)) - (1em * 1.5) ) * .5);
+    padding-bottom: calc(  (  (2.1875rem - (1px * 2)) - (1em * 1.5) ) * .5);
     border-radius: 10px; }
   .theme-inverse .input-single-line, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]), .theme-inverse select.input[multiple], .theme-inverse .input-multiple-line, .theme-inverse .input-editor, .theme-inverse .fw-trumbowyg-editor, .theme-inverse .fw-trumbowyg-textarea {
     color: inherit;
@@ -5104,49 +5091,43 @@ select.input[multiple],
     border-color: rgba(141, 141, 141, 0.2); }
 
 .input-base.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-base:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple]:not(:focus):not(.focus), .input-base.input-multiple-line:not(:focus):not(.focus), .input-base.input-editor:not(:focus):not(.focus), .input-base.fw-trumbowyg-editor:not(:focus):not(.focus), .input-base.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-base .input-single-line:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple]:not(:focus):not(.focus), .input-wrapper-base .input-multiple-line:not(:focus):not(.focus), .input-wrapper-base .input-editor:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #000000; }
+  box-shadow: 0px 5px 15px -8px #000000; }
 
 .input-base.input-single-line, .fw-trumbowyg-modal-box label input.input-base:not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple], .input-base.input-multiple-line, .input-base.input-editor, .input-base.fw-trumbowyg-editor, .input-base.fw-trumbowyg-textarea, .input-wrapper-base .input-single-line, .input-wrapper-base .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple], .input-wrapper-base .input-multiple-line, .input-wrapper-base .input-editor, .input-wrapper-base .fw-trumbowyg-editor, .input-wrapper-base .fw-trumbowyg-textarea, .input-base.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-base:focus:not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple]:focus, .input-base.input-multiple-line:focus, .input-base.input-editor:focus, .input-base.fw-trumbowyg-editor:focus, .input-base.fw-trumbowyg-textarea:focus, .input-wrapper-base .input-single-line:focus, .input-wrapper-base .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple]:focus, .input-wrapper-base .input-multiple-line:focus, .input-wrapper-base .input-editor:focus, .input-wrapper-base .fw-trumbowyg-editor:focus, .input-wrapper-base .fw-trumbowyg-textarea:focus, .focus.input-base.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-base:not([type="checkbox"]):not([type="radio"]), select.focus.input-base.input[multiple], .focus.input-base.input-multiple-line, .focus.input-base.input-editor, .focus.input-base.fw-trumbowyg-editor, .focus.input-base.fw-trumbowyg-textarea, .input-wrapper-base .focus.input-single-line, .input-wrapper-base .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.focus.input[multiple], .input-wrapper-base .focus.input-multiple-line, .input-wrapper-base .focus.input-editor, .input-wrapper-base .focus.fw-trumbowyg-editor, .input-wrapper-base .focus.fw-trumbowyg-textarea {
   border-color: #000000; }
 
-.input-background.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-background:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-background.input[multiple]:not(:focus):not(.focus), .input-background.input-multiple-line:not(:focus):not(.focus), .input-background.input-editor:not(:focus):not(.focus), .input-background.fw-trumbowyg-editor:not(:focus):not(.focus), .input-background.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-background .input-single-line:not(:focus):not(.focus), .input-wrapper-background .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.input[multiple]:not(:focus):not(.focus), .input-wrapper-background .input-multiple-line:not(:focus):not(.focus), .input-wrapper-background .input-editor:not(:focus):not(.focus), .input-wrapper-background .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-background .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #FFFFFF; }
-
-.input-background.input-single-line, .fw-trumbowyg-modal-box label input.input-background:not([type="checkbox"]):not([type="radio"]), select.input-background.input[multiple], .input-background.input-multiple-line, .input-background.input-editor, .input-background.fw-trumbowyg-editor, .input-background.fw-trumbowyg-textarea, .input-wrapper-background .input-single-line, .input-wrapper-background .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.input[multiple], .input-wrapper-background .input-multiple-line, .input-wrapper-background .input-editor, .input-wrapper-background .fw-trumbowyg-editor, .input-wrapper-background .fw-trumbowyg-textarea, .input-background.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-background:focus:not([type="checkbox"]):not([type="radio"]), select.input-background.input[multiple]:focus, .input-background.input-multiple-line:focus, .input-background.input-editor:focus, .input-background.fw-trumbowyg-editor:focus, .input-background.fw-trumbowyg-textarea:focus, .input-wrapper-background .input-single-line:focus, .input-wrapper-background .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.input[multiple]:focus, .input-wrapper-background .input-multiple-line:focus, .input-wrapper-background .input-editor:focus, .input-wrapper-background .fw-trumbowyg-editor:focus, .input-wrapper-background .fw-trumbowyg-textarea:focus, .focus.input-background.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-background:not([type="checkbox"]):not([type="radio"]), select.focus.input-background.input[multiple], .focus.input-background.input-multiple-line, .focus.input-background.input-editor, .focus.input-background.fw-trumbowyg-editor, .focus.input-background.fw-trumbowyg-textarea, .input-wrapper-background .focus.input-single-line, .input-wrapper-background .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-background input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-background select.focus.input[multiple], .input-wrapper-background .focus.input-multiple-line, .input-wrapper-background .focus.input-editor, .input-wrapper-background .focus.fw-trumbowyg-editor, .input-wrapper-background .focus.fw-trumbowyg-textarea {
-  border-color: #FFFFFF; }
-
 .input-primary.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-primary:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:not(:focus):not(.focus), .input-primary.input-multiple-line:not(:focus):not(.focus), .input-primary.input-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-primary .input-single-line:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:not(:focus):not(.focus), .input-wrapper-primary .input-multiple-line:not(:focus):not(.focus), .input-wrapper-primary .input-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #235789; }
+  box-shadow: 0px 5px 15px -8px #235789; }
 
 .input-primary.input-single-line, .fw-trumbowyg-modal-box label input.input-primary:not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple], .input-primary.input-multiple-line, .input-primary.input-editor, .input-primary.fw-trumbowyg-editor, .input-primary.fw-trumbowyg-textarea, .input-wrapper-primary .input-single-line, .input-wrapper-primary .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple], .input-wrapper-primary .input-multiple-line, .input-wrapper-primary .input-editor, .input-wrapper-primary .fw-trumbowyg-editor, .input-wrapper-primary .fw-trumbowyg-textarea, .input-primary.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-primary:focus:not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:focus, .input-primary.input-multiple-line:focus, .input-primary.input-editor:focus, .input-primary.fw-trumbowyg-editor:focus, .input-primary.fw-trumbowyg-textarea:focus, .input-wrapper-primary .input-single-line:focus, .input-wrapper-primary .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:focus, .input-wrapper-primary .input-multiple-line:focus, .input-wrapper-primary .input-editor:focus, .input-wrapper-primary .fw-trumbowyg-editor:focus, .input-wrapper-primary .fw-trumbowyg-textarea:focus, .focus.input-primary.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-primary:not([type="checkbox"]):not([type="radio"]), select.focus.input-primary.input[multiple], .focus.input-primary.input-multiple-line, .focus.input-primary.input-editor, .focus.input-primary.fw-trumbowyg-editor, .focus.input-primary.fw-trumbowyg-textarea, .input-wrapper-primary .focus.input-single-line, .input-wrapper-primary .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.focus.input[multiple], .input-wrapper-primary .focus.input-multiple-line, .input-wrapper-primary .focus.input-editor, .input-wrapper-primary .focus.fw-trumbowyg-editor, .input-wrapper-primary .focus.fw-trumbowyg-textarea {
   border-color: #235789; }
 
 .input-accent.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-accent:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple]:not(:focus):not(.focus), .input-accent.input-multiple-line:not(:focus):not(.focus), .input-accent.input-editor:not(:focus):not(.focus), .input-accent.fw-trumbowyg-editor:not(:focus):not(.focus), .input-accent.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-accent .input-single-line:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple]:not(:focus):not(.focus), .input-wrapper-accent .input-multiple-line:not(:focus):not(.focus), .input-wrapper-accent .input-editor:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #17BEBB; }
+  box-shadow: 0px 5px 15px -8px #17BEBB; }
 
 .input-accent.input-single-line, .fw-trumbowyg-modal-box label input.input-accent:not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple], .input-accent.input-multiple-line, .input-accent.input-editor, .input-accent.fw-trumbowyg-editor, .input-accent.fw-trumbowyg-textarea, .input-wrapper-accent .input-single-line, .input-wrapper-accent .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple], .input-wrapper-accent .input-multiple-line, .input-wrapper-accent .input-editor, .input-wrapper-accent .fw-trumbowyg-editor, .input-wrapper-accent .fw-trumbowyg-textarea, .input-accent.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-accent:focus:not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple]:focus, .input-accent.input-multiple-line:focus, .input-accent.input-editor:focus, .input-accent.fw-trumbowyg-editor:focus, .input-accent.fw-trumbowyg-textarea:focus, .input-wrapper-accent .input-single-line:focus, .input-wrapper-accent .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple]:focus, .input-wrapper-accent .input-multiple-line:focus, .input-wrapper-accent .input-editor:focus, .input-wrapper-accent .fw-trumbowyg-editor:focus, .input-wrapper-accent .fw-trumbowyg-textarea:focus, .focus.input-accent.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-accent:not([type="checkbox"]):not([type="radio"]), select.focus.input-accent.input[multiple], .focus.input-accent.input-multiple-line, .focus.input-accent.input-editor, .focus.input-accent.fw-trumbowyg-editor, .focus.input-accent.fw-trumbowyg-textarea, .input-wrapper-accent .focus.input-single-line, .input-wrapper-accent .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.focus.input[multiple], .input-wrapper-accent .focus.input-multiple-line, .input-wrapper-accent .focus.input-editor, .input-wrapper-accent .focus.fw-trumbowyg-editor, .input-wrapper-accent .focus.fw-trumbowyg-textarea {
   border-color: #17BEBB; }
 
 .input-neutral.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-neutral:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple]:not(:focus):not(.focus), .input-neutral.input-multiple-line:not(:focus):not(.focus), .input-neutral.input-editor:not(:focus):not(.focus), .input-neutral.fw-trumbowyg-editor:not(:focus):not(.focus), .input-neutral.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-neutral .input-single-line:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple]:not(:focus):not(.focus), .input-wrapper-neutral .input-multiple-line:not(:focus):not(.focus), .input-wrapper-neutral .input-editor:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #8d8d8d; }
+  box-shadow: 0px 5px 15px -8px #8d8d8d; }
 
 .input-neutral.input-single-line, .fw-trumbowyg-modal-box label input.input-neutral:not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple], .input-neutral.input-multiple-line, .input-neutral.input-editor, .input-neutral.fw-trumbowyg-editor, .input-neutral.fw-trumbowyg-textarea, .input-wrapper-neutral .input-single-line, .input-wrapper-neutral .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple], .input-wrapper-neutral .input-multiple-line, .input-wrapper-neutral .input-editor, .input-wrapper-neutral .fw-trumbowyg-editor, .input-wrapper-neutral .fw-trumbowyg-textarea, .input-neutral.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-neutral:focus:not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple]:focus, .input-neutral.input-multiple-line:focus, .input-neutral.input-editor:focus, .input-neutral.fw-trumbowyg-editor:focus, .input-neutral.fw-trumbowyg-textarea:focus, .input-wrapper-neutral .input-single-line:focus, .input-wrapper-neutral .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple]:focus, .input-wrapper-neutral .input-multiple-line:focus, .input-wrapper-neutral .input-editor:focus, .input-wrapper-neutral .fw-trumbowyg-editor:focus, .input-wrapper-neutral .fw-trumbowyg-textarea:focus, .focus.input-neutral.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-neutral:not([type="checkbox"]):not([type="radio"]), select.focus.input-neutral.input[multiple], .focus.input-neutral.input-multiple-line, .focus.input-neutral.input-editor, .focus.input-neutral.fw-trumbowyg-editor, .focus.input-neutral.fw-trumbowyg-textarea, .input-wrapper-neutral .focus.input-single-line, .input-wrapper-neutral .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.focus.input[multiple], .input-wrapper-neutral .focus.input-multiple-line, .input-wrapper-neutral .focus.input-editor, .input-wrapper-neutral .focus.fw-trumbowyg-editor, .input-wrapper-neutral .focus.fw-trumbowyg-textarea {
   border-color: #8d8d8d; }
 
 .input-success.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-success:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-success.input[multiple]:not(:focus):not(.focus), .input-success.input-multiple-line:not(:focus):not(.focus), .input-success.input-editor:not(:focus):not(.focus), .input-success.fw-trumbowyg-editor:not(:focus):not(.focus), .input-success.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-success .input-single-line:not(:focus):not(.focus), .input-wrapper-success .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.input[multiple]:not(:focus):not(.focus), .input-wrapper-success .input-multiple-line:not(:focus):not(.focus), .input-wrapper-success .input-editor:not(:focus):not(.focus), .input-wrapper-success .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-success .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #15b800; }
+  box-shadow: 0px 5px 15px -8px #15b800; }
 
 .input-success.input-single-line, .fw-trumbowyg-modal-box label input.input-success:not([type="checkbox"]):not([type="radio"]), select.input-success.input[multiple], .input-success.input-multiple-line, .input-success.input-editor, .input-success.fw-trumbowyg-editor, .input-success.fw-trumbowyg-textarea, .input-wrapper-success .input-single-line, .input-wrapper-success .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.input[multiple], .input-wrapper-success .input-multiple-line, .input-wrapper-success .input-editor, .input-wrapper-success .fw-trumbowyg-editor, .input-wrapper-success .fw-trumbowyg-textarea, .input-success.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-success:focus:not([type="checkbox"]):not([type="radio"]), select.input-success.input[multiple]:focus, .input-success.input-multiple-line:focus, .input-success.input-editor:focus, .input-success.fw-trumbowyg-editor:focus, .input-success.fw-trumbowyg-textarea:focus, .input-wrapper-success .input-single-line:focus, .input-wrapper-success .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.input[multiple]:focus, .input-wrapper-success .input-multiple-line:focus, .input-wrapper-success .input-editor:focus, .input-wrapper-success .fw-trumbowyg-editor:focus, .input-wrapper-success .fw-trumbowyg-textarea:focus, .focus.input-success.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-success:not([type="checkbox"]):not([type="radio"]), select.focus.input-success.input[multiple], .focus.input-success.input-multiple-line, .focus.input-success.input-editor, .focus.input-success.fw-trumbowyg-editor, .focus.input-success.fw-trumbowyg-textarea, .input-wrapper-success .focus.input-single-line, .input-wrapper-success .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.focus.input[multiple], .input-wrapper-success .focus.input-multiple-line, .input-wrapper-success .focus.input-editor, .input-wrapper-success .focus.fw-trumbowyg-editor, .input-wrapper-success .focus.fw-trumbowyg-textarea {
   border-color: #15b800; }
 
 .input-caution.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-caution:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-caution.input[multiple]:not(:focus):not(.focus), .input-caution.input-multiple-line:not(:focus):not(.focus), .input-caution.input-editor:not(:focus):not(.focus), .input-caution.fw-trumbowyg-editor:not(:focus):not(.focus), .input-caution.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-caution .input-single-line:not(:focus):not(.focus), .input-wrapper-caution .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.input[multiple]:not(:focus):not(.focus), .input-wrapper-caution .input-multiple-line:not(:focus):not(.focus), .input-wrapper-caution .input-editor:not(:focus):not(.focus), .input-wrapper-caution .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-caution .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -6px #fd7f03; }
+  box-shadow: 0px 5px 15px -8px #fd7f03; }
 
 .input-caution.input-single-line, .fw-trumbowyg-modal-box label input.input-caution:not([type="checkbox"]):not([type="radio"]), select.input-caution.input[multiple], .input-caution.input-multiple-line, .input-caution.input-editor, .input-caution.fw-trumbowyg-editor, .input-caution.fw-trumbowyg-textarea, .input-wrapper-caution .input-single-line, .input-wrapper-caution .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.input[multiple], .input-wrapper-caution .input-multiple-line, .input-wrapper-caution .input-editor, .input-wrapper-caution .fw-trumbowyg-editor, .input-wrapper-caution .fw-trumbowyg-textarea, .input-caution.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-caution:focus:not([type="checkbox"]):not([type="radio"]), select.input-caution.input[multiple]:focus, .input-caution.input-multiple-line:focus, .input-caution.input-editor:focus, .input-caution.fw-trumbowyg-editor:focus, .input-caution.fw-trumbowyg-textarea:focus, .input-wrapper-caution .input-single-line:focus, .input-wrapper-caution .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.input[multiple]:focus, .input-wrapper-caution .input-multiple-line:focus, .input-wrapper-caution .input-editor:focus, .input-wrapper-caution .fw-trumbowyg-editor:focus, .input-wrapper-caution .fw-trumbowyg-textarea:focus, .focus.input-caution.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-caution:not([type="checkbox"]):not([type="radio"]), select.focus.input-caution.input[multiple], .focus.input-caution.input-multiple-line, .focus.input-caution.input-editor, .focus.input-caution.fw-trumbowyg-editor, .focus.input-caution.fw-trumbowyg-textarea, .input-wrapper-caution .focus.input-single-line, .input-wrapper-caution .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.focus.input[multiple], .input-wrapper-caution .focus.input-multiple-line, .input-wrapper-caution .focus.input-editor, .input-wrapper-caution .focus.fw-trumbowyg-editor, .input-wrapper-caution .focus.fw-trumbowyg-textarea {
   border-color: #fd7f03; }
 
 .input-error.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-error:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-error.input[multiple]:not(:focus):not(.focus), .input-error.input-multiple-line:not(:focus):not(.focus), .input-error.input-editor:not(:focus):not(.focus), .input-error.fw-trumbowyg-editor:not(:focus):not(.focus), .input-error.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-error .input-single-line:not(:focus):not(.focus), .input-wrapper-error .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.input[multiple]:not(:focus):not(.focus), .input-wrapper-error .input-multiple-line:not(:focus):not(.focus), .input-wrapper-error .input-editor:not(:focus):not(.focus), .input-wrapper-error .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-error .fw-trumbowyg-textarea:not(:focus):not(.focus), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]) {
-  box-shadow: 0px 5px 15px -6px #fd0303; }
+  box-shadow: 0px 5px 15px -8px #fd0303; }
 
 .input-error.input-single-line, .fw-trumbowyg-modal-box label input.input-error:not([type="checkbox"]):not([type="radio"]), select.input-error.input[multiple], .input-error.input-multiple-line, .input-error.input-editor, .input-error.fw-trumbowyg-editor, .input-error.fw-trumbowyg-textarea, .input-wrapper-error .input-single-line, .input-wrapper-error .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.input[multiple], .input-wrapper-error .input-multiple-line, .input-wrapper-error .input-editor, .input-wrapper-error .fw-trumbowyg-editor, .input-wrapper-error .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]), .input-error.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-error:focus:not([type="checkbox"]):not([type="radio"]), select.input-error.input[multiple]:focus, .input-error.input-multiple-line:focus, .input-error.input-editor:focus, .input-error.fw-trumbowyg-editor:focus, .input-error.fw-trumbowyg-textarea:focus, .input-wrapper-error .input-single-line:focus, .input-wrapper-error .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.input[multiple]:focus, .input-wrapper-error .input-multiple-line:focus, .input-wrapper-error .input-editor:focus, .input-wrapper-error .fw-trumbowyg-editor:focus, .input-wrapper-error .fw-trumbowyg-textarea:focus, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]), .focus.input-error.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-error:not([type="checkbox"]):not([type="radio"]), select.focus.input-error.input[multiple], .focus.input-error.input-multiple-line, .focus.input-error.input-editor, .focus.input-error.fw-trumbowyg-editor, .focus.input-error.fw-trumbowyg-textarea, .input-wrapper-error .focus.input-single-line, .input-wrapper-error .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.focus.input[multiple], .input-wrapper-error .focus.input-multiple-line, .input-wrapper-error .focus.input-editor, .input-wrapper-error .focus.fw-trumbowyg-editor, .input-wrapper-error .focus.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]) {
   border-color: #fd0303; }
@@ -5246,8 +5227,8 @@ select.input {
     margin-left: auto; }
 
 .nav select.input[multiple], .nav .input-single-line, .nav .input-multiple-line, .nav .input-editor {
-  padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.25) ) * .5);
-  padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.25) ) * .5);
+  padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
+  padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
   height: 4.6875rem; }
 
 .input-wrapper select.input[multiple], .input-wrapper .input-single-line, .input-wrapper .input-multiple-line, .input-wrapper .input-editor {
@@ -5738,14 +5719,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   .color-base-toggle.active,
   .color-base-toggle.open {
     color: #000000 !important; }
-  .color-background,
-  .color-background-hover:hover,
-  .color-background-focus:focus,
-  .color-background-focus.focus,
-  .color-background-active:active,
-  .color-background-toggle.active,
-  .color-background-toggle.open {
-    color: #FFFFFF !important; }
   .color-primary,
   .color-primary-hover:hover,
   .color-primary-focus:focus,
@@ -5806,18 +5779,6 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-base-toggle.active,
 .background-base-toggle.open {
   background-color: #000000 !important; }
-
-.table-label-background, .progress-bar-background, .badge-background, .tag-background, .legend-background {
-  background-color: #FFFFFF; }
-
-.background-background,
-.background-background-hover:hover,
-.background-background-focus:focus,
-.background-background-focus.focus,
-.background-background-active:active,
-.background-background-toggle.active,
-.background-background-toggle.open {
-  background-color: #FFFFFF !important; }
 
 .table-label-primary, .progress-bar-primary, .badge-primary, .tag-primary, .legend-primary {
   background-color: #235789; }
@@ -5890,6 +5851,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-error-toggle.active,
 .background-error-toggle.open {
   background-color: #fd0303 !important; }
+
+.table-label-intensity-1, .progress-bar-intensity-1, .badge-intensity-1, .tag-intensity-1, .legend-intensity-1 {
+  background-color: #235789; }
   .background-intensity-1,
   .background-intensity-1-hover:hover,
   .background-intensity-1-focus:focus,
@@ -5898,6 +5862,9 @@ CUSTOM STYLES FOR TRUMBOWYG
   .background-intensity-1-toggle.active,
   .background-intensity-1-toggle.open {
     background-color: #235789 !important; }
+
+.table-label-intensity-2, .progress-bar-intensity-2, .badge-intensity-2, .tag-intensity-2, .legend-intensity-2 {
+  background-color: #207196; }
   .background-intensity-2,
   .background-intensity-2-hover:hover,
   .background-intensity-2-focus:focus,
@@ -5906,6 +5873,9 @@ CUSTOM STYLES FOR TRUMBOWYG
   .background-intensity-2-toggle.active,
   .background-intensity-2-toggle.open {
     background-color: #207196 !important; }
+
+.table-label-intensity-3, .progress-bar-intensity-3, .badge-intensity-3, .tag-intensity-3, .legend-intensity-3 {
+  background-color: #1d8ba2; }
   .background-intensity-3,
   .background-intensity-3-hover:hover,
   .background-intensity-3-focus:focus,
@@ -5914,6 +5884,9 @@ CUSTOM STYLES FOR TRUMBOWYG
   .background-intensity-3-toggle.active,
   .background-intensity-3-toggle.open {
     background-color: #1d8ba2 !important; }
+
+.table-label-intensity-4, .progress-bar-intensity-4, .badge-intensity-4, .tag-intensity-4, .legend-intensity-4 {
+  background-color: #1aa4af; }
   .background-intensity-4,
   .background-intensity-4-hover:hover,
   .background-intensity-4-focus:focus,
@@ -5922,6 +5895,9 @@ CUSTOM STYLES FOR TRUMBOWYG
   .background-intensity-4-toggle.active,
   .background-intensity-4-toggle.open {
     background-color: #1aa4af !important; }
+
+.table-label-intensity-5, .progress-bar-intensity-5, .badge-intensity-5, .tag-intensity-5, .legend-intensity-5 {
+  background-color: #17BEBB; }
   .background-intensity-5,
   .background-intensity-5-hover:hover,
   .background-intensity-5-focus:focus,
@@ -5930,14 +5906,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   .background-intensity-5-toggle.active,
   .background-intensity-5-toggle.open {
     background-color: #17BEBB !important; }
-
-.progress-bar-gradient, .legend-gradient {
-  background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
   .background-gradient {
     background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* FF3.6-15 */
@@ -5945,14 +5913,6 @@ CUSTOM STYLES FOR TRUMBOWYG
     /* Chrome10-25,Safari5.1-6 */
     background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-
-.progress-bar-gradient-45, .legend-gradient-45 {
-  background-image: -moz-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-45,
 .background-gradient-45-hover:hover,
@@ -5966,14 +5926,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-
-.progress-bar-gradient-90, .legend-gradient-90 {
-  background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-90,
@@ -5990,7 +5942,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.thumbnail, .progress-bar-gradient-135, .legend-gradient-135 {
+.thumbnail {
   background-image: -moz-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
@@ -6012,14 +5964,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.progress-bar-gradient-180, .legend-gradient-180 {
-  background-image: -moz-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-
 .background-gradient-180,
 .background-gradient-180-hover:hover,
 .background-gradient-180-focus:focus,
@@ -6032,14 +5976,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-
-.progress-bar-gradient-225, .legend-gradient-225 {
-  background-image: -moz-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-225,
@@ -6056,14 +5992,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
-.progress-bar-gradient-270, .legend-gradient-270 {
-  background-image: -moz-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-
 .background-gradient-270,
 .background-gradient-270-hover:hover,
 .background-gradient-270-focus:focus,
@@ -6076,14 +6004,6 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-
-.progress-bar-gradient-315, .legend-gradient-315 {
-  background-image: -moz-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
-  /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-315,
@@ -6265,7 +6185,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 .color-inherit-active:active,
 .color-inherit-toggle.active,
 .color-inherit-toggle.open {
-  background-color: inherit !important; }
+  color: inherit !important; }
 
 .font-family-primary {
   font-family: "Roboto", Helvetica, Arial, sans-serif !important; }

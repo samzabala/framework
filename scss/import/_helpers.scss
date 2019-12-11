@@ -249,7 +249,7 @@
 		//inherit
 		@include create-palette-helper(
 			#{&}-inherit,
-			background-color,
+			color,
 			inherit
 		);
 

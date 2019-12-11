@@ -92,7 +92,7 @@
 		$transition-timing: ease-in-out !default;
 
 	//BOX SHADOW
-		$box-shadow-base: 0px 5px 15px -6px!default;
+		$box-shadow-base: 0px 5px 15px -8px!default;
 			$box-shadow-mild: 0px 2px 20px -5px!default;
 			$box-shadow-spicy: 0px 8px 20px -10px!default;
 // CONTENT
@@ -172,6 +172,7 @@
 	// TABLE
 		$table-cell-height: 70px !default;
 			$table-cell-height-large: 105px !default;
+			$table-cell-height-small: 50px !default;
 		$table-cell-border-color: $theme-background-contrast !default;
 			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;
 		$table-cell-border-width: 1px !default;
@@ -211,20 +212,31 @@
 	
 	// speshal bois
 		$special-primary-font-size: 65px !default;
+			$special-primary-font-size-mobile: 54px !default;
 		$special-primary-font-weight: 300 !default;
-		$special-primary-line-height: 1.25 !default;
+		$special-primary-line-height: 1 !default;
 		$special-primary-font-style: normal !default;
 		$special-primary-color: inherit !default;
 		$special-primary-text-transform: none !default;
-		$special-primary-gutter-y: 0 !default;
+		$special-primary-gutter-y: $gutter-small !default;
 
 		$special-secondary-font-size: 38px !default;
+			$special-secondary-font-size-mobile: 32px !default;
 		$special-secondary-font-weight: 300 !default;
 		$special-secondary-line-height: 1.25 !default;
 		$special-secondary-font-style: normal !default;
 		$special-secondary-color: inherit !default;
 		$special-secondary-text-transform: none !default;
-		$special-secondary-gutter-y: .25em !default;
+		$special-secondary-gutter-y: .75em !default;
+
+		$lead-font-size: 24px !default;
+			$lead-font-size-mobile: 20px !default;
+		$lead-font-weight: 300 !default;
+		$lead-line-height: 1.25 !default;
+		$lead-font-style: normal !default;
+		$lead-color: inherit !default;
+		$lead-text-transform: none !default;
+		$lead-gutter-y: $gutter-base !default;
 
 // UI ELEMENTS
 
@@ -436,7 +448,7 @@
 			$input-placeholder-color-inverse: rgba($brand-color-background,.5) !default;
 		$input-background: none !default;
 			$input-background-inverse: none !default;
-		$input-line-height: 20px !default;
+		$input-line-height: $body-line-height !default;
 		$input-font-family: $brand-font-primary !default;
 		$input-font-weight: $body-font-weight-bold !default;
 		$input-font-style: normal !default;
@@ -689,28 +701,28 @@
 			--brand-color-background-alt: #{$brand-color-background-alt};
 
 		--brand-color-neutral: #{$brand-color-neutral};
-			--brand-color-neutral-light: #{$brand-color-neutral-light};
-			--brand-color-neutral-dark: #{$brand-color-neutral-dark};
+			// --brand-color-neutral-light: #{$brand-color-neutral-light};
+			// --brand-color-neutral-dark: #{$brand-color-neutral-dark};
 		
 		--brand-color-primary: #{$brand-color-primary};
-			--brand-color-primary-light: #{$brand-color-primary-light};
-			--brand-color-primary-dark: #{$brand-color-primary-dark};
+			// --brand-color-primary-light: #{$brand-color-primary-light};
+			// --brand-color-primary-dark: #{$brand-color-primary-dark};
 		
 		--brand-color-accent: #{$brand-color-accent};
-			--brand-color-accent-light: #{$brand-color-accent-light};
-			--brand-color-accent-dark: #{$brand-color-accent-dark};
+			// --brand-color-accent-light: #{$brand-color-accent-light};
+			// --brand-color-accent-dark: #{$brand-color-accent-dark};
 
 		--brand-color-success: #{$brand-color-success};
-			--brand-color-success-light: #{$brand-color-success-light};
-			--brand-color-success-dark: #{$brand-color-success-dark};
+			// --brand-color-success-light: #{$brand-color-success-light};
+			// --brand-color-success-dark: #{$brand-color-success-dark};
 
 		--brand-color-caution: #{$brand-color-caution};
-			--brand-color-caution-light: #{$brand-color-caution-light};
-			--brand-color-caution-dark: #{$brand-color-caution-dark};
+			// --brand-color-caution-light: #{$brand-color-caution-light};
+			// --brand-color-caution-dark: #{$brand-color-caution-dark};
 
 		--brand-color-error: #{$brand-color-error};
-			--brand-color-error-light: #{$brand-color-error-light};
-			--brand-color-error-dark: #{$brand-color-error-dark};
+			// --brand-color-error-light: #{$brand-color-error-light};
+			// --brand-color-error-dark: #{$brand-color-error-dark};
 
 
 		--brand-color-intensity-1: #{$brand-color-intensity-1};
@@ -729,15 +741,15 @@
 		
 	// GLOBAL html + body coloring
 
-		--global-color: #{$theme-color};
-			--global-color-inverse: #{$theme-color-inverse};
+		--theme-color: #{$theme-color};
+			--theme-color-inverse: #{$theme-color-inverse};
 
-			--global-color-contrast: #{$theme-color-contrast};
-				--global-color-contrast-inverse: #{$theme-color-contrast-inverse};
+			--theme-color-contrast: #{$theme-color-contrast};
+				--theme-color-contrast-inverse: #{$theme-color-contrast-inverse};
 
-		--global-background: #{$theme-background};
-			--global-background-inverse: #{$theme-background-inverse};
+		--theme-background: #{$theme-background};
+			--theme-background-inverse: #{$theme-background-inverse};
 
-			--global-background-contrast: #{$theme-background-contrast};
-				--global-background-contrast-inverse: #{$theme-background-contrast-inverse};
+			--theme-background-contrast: #{$theme-background-contrast};
+				--theme-background-contrast-inverse: #{$theme-background-contrast-inverse};
 }

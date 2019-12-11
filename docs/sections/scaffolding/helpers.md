@@ -45,8 +45,8 @@ These classes will set the proper color based off of html tag having the `.theme
 | --								| --		| --														|
 | **`.background-theme`** 			| `$theme-background`			| `$theme-background-inverse` 			|
 | **`.background-theme-contrast`** 	| `$theme-background-contrast`	| `$theme-background-contrast-inverse`	|
-| **`.background-polar`** 			| `$theme-color`				| `$theme-color-inverse`				|
-| **`.background-polar-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
+| **`.background-theme-polar`** 			| `$theme-color`				| `$theme-color-inverse`				|
+| **`.background-theme-polar-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
 
 To set any background classes only on pseudo classes or interactive conditions, append whichever is needed
 
@@ -95,8 +95,8 @@ These classes will set the proper color based off of html tag having the `.theme
 | --							| --		| --														|
 | **`.color-theme`**			| `$theme-color` 				| `$theme-color-inverse`				|
 | **`.color-theme-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
-| **`.color-polar`** 			| `$theme-background`			| `$theme-background-inverse`			|
-| **`.color-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
+| **`.color-theme-polar`** 			| `$theme-background`			| `$theme-background-inverse`			|
+| **`.color-theme-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
 
 
 #### Pseudo/Toggle Based

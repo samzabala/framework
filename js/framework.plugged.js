@@ -145,7 +145,20 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	_.palette = ['base','background','primary','accent','neutral','error','caution','success']
+	_.palette = [
+		'base',
+		'primary',
+		'accent',
+		'neutral',
+		'error',
+		'caution',
+		'success',
+		'intensity-1',
+		'intensity-2',
+		'intensity-3',
+		'intensity-4',
+		'intensity-5',
+	]
 
 	frameWork.initGrid = function(moduleGrid){
 		console.log('grid bitch is running');
