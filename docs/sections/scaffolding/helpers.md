@@ -9,7 +9,6 @@ All influenced by [color declarations](../scaffolding/colors.md)
 #### Absolute values
 
 *   **`.background-base` (Not to be confused with theme-color)**
-*   **`.background-background` (Not to be confused with theme-background)**
 *   **`.background-primary`**
 *   **`.background-accent`**
 *   **`.background-neutral`**
@@ -72,7 +71,6 @@ eg: `.background-primary-hover` applies $brand-color-primary on :hover
 #### Absolute values
 
 *   **`.color-base` (Not to be confused with theme-color)**
-*   **`.color-background` (Not to be confused with theme-background)**
 *   **`.color-primary`**
 *   **`.color-accent`**
 *   **`.color-neutral`**
@@ -181,9 +179,9 @@ Set to whatever font weight ya need boi
 [More info on the css property](https://www.w3schools.com/cssref/pr_font_font-style.asp)
 
 ## Display
-*   **`.color-block`**
-*   **`.color-inline-block`**
-*   **`.color-inline`**
+*   **`.display-block`**
+*   **`.display-inline-block`**
+*   **`.display-inline`**
 
 [More info on the css property](https://www.w3schools.com/css/css_display_visibility.asp)
 

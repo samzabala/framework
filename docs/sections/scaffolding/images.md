@@ -71,7 +71,6 @@ Classes to add on `<stop>` tags in a gradient element
 
 ###### Absolute values
 *   **`.['fill' or 'stroke']-base` (Not to be confused with theme-color)**
-*   **`.['fill' or 'stroke']-background` (Not to be confused with theme-background)**
 *   **`.['fill' or 'stroke']-primary`**
 *   **`.['fill' or 'stroke']-accent`**
 *   **`.['fill' or 'stroke']-neutral`**
