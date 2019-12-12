@@ -610,7 +610,7 @@ window.jQuery && jQuery.noConflict();
 			var defaults = {
 				header: '',
 				close: true,
-				disableOverlay: false,
+				disableOverlay: true,
 				maxWidth: null
 			};
 			
