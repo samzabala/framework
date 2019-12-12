@@ -11,7 +11,9 @@ window.jQuery && jQuery.noConflict();
 	//internal shit
 	var _ = {};
 
+	//settings
 	frameWork.lazyLoad = frameWork.lazyLoad || true;
+	frameWork.initializeModal = frameWork.initializeModal || true;
 
 	if(!$) {
 		throw new Error('jQuery not found bro, what did you do?');
@@ -620,7 +622,7 @@ window.jQuery && jQuery.noConflict();
 			fn();
 		})
 
-		frameWork.createModal();
+		frameWork.initializeModal && frameWork.createModal();
 
 		if(window.location.hash !== ''){
 

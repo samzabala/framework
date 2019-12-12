@@ -11,7 +11,9 @@ window.jQuery && jQuery.noConflict();
 	//internal shit
 	var _ = {};
 
+	//settings
 	frameWork.lazyLoad = frameWork.lazyLoad || true;
+	frameWork.initializeModal = frameWork.initializeModal || true;
 
 	//hacks around trumbo bitch wyg
 	frameWork.trumbowyg = {};
@@ -708,7 +710,7 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.lazyLoad && frameWork.loadImages();
 
-		frameWork.createModal();
+		frameWork.initializeModal && frameWork.createModal();
 
 		if(window.location.hash !== ''){
 
