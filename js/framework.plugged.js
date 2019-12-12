@@ -90,24 +90,33 @@ window.jQuery && jQuery.noConflict();
 	_.getTheToggled = function(clicked,toggleMode){
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || null;
+		if(clicked){
+			if( clicked.attr('href') ){
+				return $( clicked.attr('href') );
+
+			}else if( clicked.attr('data-href') ){
+				return $( clicked.attr('data-href') )
 				
-		if( clicked.attr('href') ){
-			return $( clicked.attr('href') );
+			}else if( clicked.next(selector).first().length > 0 ){
+				return clicked.next(selector).first();
 
-		}else if( clicked.attr('data-href') ){
-			return $( clicked.attr('data-href') )
-			
-		}else if( clicked.next(selector).first().length > 0 ){
-			return clicked.next(selector).first();
+			}else if( clicked.siblings(selector).first().length > 0 ){
+				return clicked.siblings(selector).first();
 
-		}else if( clicked.siblings(selector).first().length > 0 ){
-			return clicked.siblings(selector).first();
+			}else if(clicked.closest('[data-toggle="'+toggleMode+'"]').length){
+				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else{
 
-		}else if(clicked.closest('[data-toggle="'+toggleMode+'"]').length){
-			return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+				return false;
+			}
 		}else{
-
-			return false;
+			if (
+				window.location.hash !== ''
+				&& $(window.location.hash)
+				&& $(window.location.hash).hasClass( toggleMode.replace('-open','').replace('-close','') )
+			){
+				return $(window.location.hash)
+			}
 		}
 	};
 
@@ -482,13 +491,25 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.destroyModal();
 
-		if(triggerer && contentWrap) {
+		if(triggerer || contentWrap) {
 
 			var arr =  {
-				header: contentWrap.data('modal-title') || triggerer.data('modal-title') || null,
-				close: contentWrap.data('modal-close') || triggerer.data('modal-close') || null,
-				disableOverlay: contentWrap.data('modal-disable-overlay') || triggerer.data('modal-disable-overlay') || null,
-				maxWidth: contentWrap.data('modal-max-width') || triggerer.data('modal-max-width') || null
+				header:
+					contentWrap.data('modal-title')
+					|| (triggerer && (triggerer.data('modal-title')))
+					|| null,
+				close:
+					contentWrap.data('modal-close')
+					|| (triggerer && (triggerer.data('modal-close')))
+					|| null,
+				disableOverlay:
+					contentWrap.data('modal-disable-overlay')
+					|| triggerer && ((triggerer.data('modal-disable-overlay')))
+					|| null,
+				maxWidth:
+					contentWrap.data('modal-max-width')
+					|| (triggerer && (triggerer.data('modal-max-width')))
+					|| null
 			};
 
 			var defaults = {
@@ -598,6 +619,18 @@ window.jQuery && jQuery.noConflict();
 		_.functions_on_load.forEach(function(fn){
 			fn();
 		})
+
+		frameWork.createModal();
+
+		if(window.location.hash !== ''){
+
+			var possiblyAccordion = _.getTheToggled(null,'accordion');
+
+			if(possiblyAccordion) {
+				$('.accordion').removeClass('open');
+				$(window.hash.location).addClass('open');
+			}
+		}
 
 
 		var resizeTimerInternal;

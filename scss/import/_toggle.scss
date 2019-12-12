@@ -2,8 +2,11 @@
 /*** TOGGLES ***/
 
 /* to fix children that dont like their parents events. kinda like neutering them idk */
-[data-toggle] *{
-    pointer-events: none;
+[data-toggle]{
+    cursor: pointer!important;
+    *{
+        pointer-events: none!important;
+    }
 }
 
 .accordion {

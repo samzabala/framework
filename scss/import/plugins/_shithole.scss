@@ -283,7 +283,7 @@
         /// @return: clearfix styles
         @mixin cf($extend: false){
             @if $extend == true {
-                @extend %cf;
+                @extend %for-cf;
             }@else {
                 &:after {
                     content: "";
@@ -2480,7 +2480,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 // CF    
-%cf {
+ %for-cf {
     @include cf;
 }
 

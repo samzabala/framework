@@ -17,6 +17,7 @@ A framework for your appy dashboardy needs :')
 ##	Layout
 *	[Flex Grid](docs/sections/layout/flexgrid.md)
 *	[Module](docs/sections/layout/module.md)
+*	[Container](docs/sections/layout/container.md)
 
 ##	Components (o lawd)
 *	[Badges](docs/sections/components/badge.md)
@@ -61,5 +62,5 @@ A framework for your appy dashboardy needs :')
 	It could be a sweet dream or a beautiful nightmare
 *	Tooltips, Modals, Accordions, 
 *	Not optimized
-	Gotta make ya shit pretty bro this is not meant to look sexy to google
+	Gotta make ya shit pretty bro this is not meant to look sexy to google. I mean this has like 11,000+ more characters that bootstrap tho for real
 

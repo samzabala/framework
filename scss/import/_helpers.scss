@@ -693,45 +693,47 @@
 
 // align and justify shit
 
-	.justify-content {
-		&-flex-start {
-			justify-content: flex-start!important;
-		}
-		&-flex-end {
-			justify-content: flex-end!important;
-		}
-		&-center {
-			justify-content: center!important;
-		}
-		&-space-between {
-			justify-content: space-between!important;
-		}
-		&-space-around {
-			justify-content: space-around!important;
-		}
-		&-space-evenly {
-			justify-content: space-evenly!important;
-		}
-		&-start {
-			justify-content: start!important;
-		}
-		&-end {
-			justify-content: end!important;
-		}
-		&-left {
-			justify-content: left!important;
-		}
-		&-right {
-			justify-content: right!important;
-		}
-		&-normal {
-			justify-content: normal!important;
-		}
-		&-stretch {
-			justify-content: stretch!important;
-		}
-		&-inherit {
-			justify-content: stretch!important;
+	.justify {
+		&-content {
+			&-flex-start {
+				justify-content: flex-start!important;
+			}
+			&-flex-end {
+				justify-content: flex-end!important;
+			}
+			&-center {
+				justify-content: center!important;
+			}
+			&-space-between {
+				justify-content: space-between!important;
+			}
+			&-space-around {
+				justify-content: space-around!important;
+			}
+			&-space-evenly {
+				justify-content: space-evenly!important;
+			}
+			&-start {
+				justify-content: start!important;
+			}
+			&-end {
+				justify-content: end!important;
+			}
+			&-left {
+				justify-content: left!important;
+			}
+			&-right {
+				justify-content: right!important;
+			}
+			&-normal {
+				justify-content: normal!important;
+			}
+			&-stretch {
+				justify-content: stretch!important;
+			}
+			&-inherit {
+				justify-content: stretch!important;
+			}
 		}
 	}
 
@@ -1037,4 +1039,8 @@
 
 .sr-only {
 	display:none!important;
+}
+
+.cf {
+	@extend %for-cf;
 }

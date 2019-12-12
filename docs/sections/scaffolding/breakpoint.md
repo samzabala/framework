@@ -1,4 +1,4 @@
-### Breakpoints
+# Breakpoints
 
 Breakpoints are where media queries separate. Declared values or maximums
 

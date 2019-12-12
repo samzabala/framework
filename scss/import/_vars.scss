@@ -62,42 +62,42 @@
 	// GLOBAL html + body coloring..
 
 		$theme-color: $brand-color-base !default;
-			$theme-color-inverse: $brand-color-background !default;
+			$theme-color-inverse: $brand-color-background !default; //.dark mode version of boi
 
 			$theme-color-contrast: $brand-color-base-alt !default;
-				$theme-color-contrast-inverse: $brand-color-background-alt !default;
+				$theme-color-contrast-inverse: $brand-color-background-alt !default; //.dark mode version of boi
 
 		$theme-background: $brand-color-background !default;
-			$theme-background-inverse: $brand-color-base-alt !default;
+			$theme-background-inverse: $brand-color-base-alt !default; //.dark mode version of boi
 
 			$theme-background-contrast: $brand-color-background-alt !default;
-				$theme-background-contrast-inverse: $brand-color-base !default;
+				$theme-background-contrast-inverse: $brand-color-base !default; //.dark mode version of boi
 
-	// PADDING
+	// PADDING globals
 		$gutter-base: 40px !default;
 			$gutter-large: 70px !default;
 			$gutter-small: 20px !default;
 			$gutter-micro: 10px !default;
 
-	// Border radius
+	// Border radius globals
 		$border-radius-base: 10px !default;
 			$border-radius-small: $border-radius-base * .5 !default;
 			$border-radius-large: $border-radius-base * 2 !default;
 	
 
-	// ANIMATION
+	// ANIMATION glbals
 		$transition-duration-base: .25s !default;
 			$transition-duration-short: .125s !default;
 			$transition-duration-long: .5s !default;
 		$transition-timing: ease-in-out !default;
 
-	//BOX SHADOW
+	//BOX SHADOW globals
 		$box-shadow-base: 0px 5px 15px -8px!default;
 			$box-shadow-mild: 0px 2px 20px -5px!default;
 			$box-shadow-spicy: 0px 8px 20px -10px!default;
 // CONTENT
 
-	// SCAFFOLD
+	// SCAFFOLD typography
 		$body-font-family: $brand-font-primary !default;
 		$body-font-weight: 400 !default;
 			$body-font-weight-bold: 700 !default;
@@ -742,14 +742,15 @@
 	// GLOBAL html + body coloring
 
 		--theme-color: #{$theme-color};
-			--theme-color-inverse: #{$theme-color-inverse};
-
-			--theme-color-contrast: #{$theme-color-contrast};
-				--theme-color-contrast-inverse: #{$theme-color-contrast-inverse};
-
+		--theme-color-contrast: #{$theme-color-contrast};
 		--theme-background: #{$theme-background};
-			--theme-background-inverse: #{$theme-background-inverse};
+		--theme-background-contrast: #{$theme-background-contrast};
+}
 
-			--theme-background-contrast: #{$theme-background-contrast};
-				--theme-background-contrast-inverse: #{$theme-background-contrast-inverse};
+.theme-inverse {
+	--theme-color: #{$theme-color-inverse};
+	--theme-color-contrast: #{$theme-color-contrast-inverse};
+	--theme-background: #{$theme-background-inverse};
+	--theme-background-contrast: #{$theme-background-contrast-inverse};
+
 }

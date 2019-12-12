@@ -6,7 +6,12 @@
 
 
 You can refer to existing sass variables [here](../../../scss/import/_vars.scss)
-Note: All sass fariables in the list are required for the stylesheet to properly compile
+
+Although lengthy, most variables are values of what is described, if it don't make sense to you ask sam because she's the dumbass who built this
+
+woah i'm sam
+
+Note: All sass variables in the list are required for the stylesheet to properly compile
 Example:
 ```scss
 /*! 

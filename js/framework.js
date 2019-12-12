@@ -153,28 +153,38 @@ window.jQuery && jQuery.noConflict();
 
 
 	_.getTheToggled = function(clicked,toggleMode){
-		toggleMode = toggleMode || null;
-		var selector = '.'+toggleMode || null;
+		if(clicked) {
+			toggleMode = toggleMode || null;
+			var selector = '.'+toggleMode || null;
+					
+			if( clicked.getAttribute('href') ){
+				return document.querySelector( clicked.getAttribute('href') );
+
+			}else if( clicked.getAttribute('data-href') ){
+				return document.querySelector( clicked.getAttribute('data-href') )
 				
-		if( clicked.getAttribute('href') ){
-			return document.querySelector( clicked.getAttribute('href') );
+			}else if (clicked.closest('[data-toggle="'+toggleMode+'"]').length){
+				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else{
+				var possibleSiblings = clicked.nextElementSibling;
 
-		}else if( clicked.getAttribute('data-href') ){
-			return document.querySelector( clicked.getAttribute('data-href') )
-			
-		}else if (clicked.closest('[data-toggle="'+toggleMode+'"]').length){
-			return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
-		}else{
-			var possibleSiblings = clicked.nextElementSibling;
-
-			while (possibleSiblings) {
-				if (possibleSiblings.matches(selector)){
-					return possibleSiblings;
+				while (possibleSiblings) {
+					if (possibleSiblings.matches(selector)){
+						return possibleSiblings;
+					}
+					possibleSiblings = possibleSiblings.nextElementSibling
 				}
-				possibleSiblings = possibleSiblings.nextElementSibling
-			}
 
-			return possibleSiblings;
+				return possibleSiblings;
+			}
+		}else{
+			if (
+				window.location.hash !== ''
+				&& document.querySelector(window.location.hash)
+				&& document.querySelector(window.location.hash).classList.contains( toggleMode.replace('-open','').replace('-close','') )
+			){
+				return document.querySelector(window.location.hash)
+			}
 		}
 	};
 
@@ -569,15 +579,30 @@ window.jQuery && jQuery.noConflict();
 	frameWork.createModal = function(triggerer){
 		
 		var contentWrap =  _.getTheToggled(triggerer,'modal');
+
+		console.log('huy',contentWrap);
+
 		frameWork.destroyModal();
 
-		if(triggerer && contentWrap) {
+		if(triggerer || contentWrap) {
 
 			var arr =  {
-				header: contentWrap.getAttribute('data-modal-title') || triggerer.getAttribute('data-modal-title') || null,
-				close: contentWrap.getAttribute('data-modal-close') || triggerer.getAttribute('data-modal-header')  || null,
-				disableOverlay: contentWrap.getAttribute('data-modal-disable-overlay') || triggerer.getAttribute('data-modal-disable-overlay') || null,
-				maxWidth: contentWrap.getAttribute('data-modal-max-width') || triggerer.getAttribute('data-modal-header')  || null
+				header:
+					contentWrap.getAttribute('data-modal-title')
+					|| (triggerer && (triggerer.getAttribute('data-modal-title')))
+					|| null,
+				close:
+					contentWrap.getAttribute('data-modal-close')
+					|| (triggerer && (triggerer.getAttribute('data-modal-header'))) 
+					|| null,
+				disableOverlay:
+					contentWrap.getAttribute('data-modal-disable-overlay')
+					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay')))
+					|| null,
+				maxWidth:
+					contentWrap.getAttribute('data-modal-max-width')
+					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))) 
+					|| null
 			};
 
 			var defaults = {
@@ -683,6 +708,18 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.lazyLoad && frameWork.loadImages();
 
+		frameWork.createModal();
+
+		if(window.location.hash !== ''){
+
+			var possiblyAccordion = _.getTheToggled(null,'accordion');
+
+			if(possiblyAccordion) {
+				document.querySelectorAll('.accordion').classList.remove('open');
+				document.querySelector(window.hash.location).classList.add('open');
+			}
+		}
+
 		_.functions_on_load.forEach(function(fn){
 			fn();
 		});
@@ -733,15 +770,6 @@ window.jQuery && jQuery.noConflict();
 						selector.classList.remove('open'); 
 
 					}else{
-
-						/*
-						if(selector.closest('.accordion-group:not(.accordion-group-multiple)').length) {
-							// console.log('bitch ass');
-							selector.closest('.accordion-group:not(.accordion-group-multiple)').find('.accordion').frameWork.slideUp(); 
-							$(this).closest('.accordion-group:not(.accordion-group-multiple)').find('[data-toggle="accordion"]').removeClass('open'); 
-							selector.closest('.accordion-group:not(.accordion-group-multiple)').find('.accordion').removeClass('open'); 
-						}
-						*/
 						
 						if(selectorAncestor && !selectorAncestor.matches('.accordion-group-multiple') ) {
 

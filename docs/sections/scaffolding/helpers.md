@@ -549,4 +549,10 @@ Show only on breakpoint or device
 
 Yea boi
 
+
+# Clearfix
+
+**`.cf`**
+
+
 [Back to TOC](../../../readme.md)
