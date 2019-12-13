@@ -57,7 +57,7 @@ To disable lazyload, do this to ya script
 
 Classes to add on `<stop>` tags in a gradient element
 
-```html
+```xml
 <linearGradient id="theme-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="194.3924" y2="29">
 	<stop offset="0" class="svg-gradient-start"></stop>
 	<stop offset="1" class="svg-gradient-end"></stop>
@@ -66,6 +66,8 @@ Classes to add on `<stop>` tags in a gradient element
 
 
 #### Fill and stroke
+
+These helper classes follow the same setup as [background and color helpers](../scaffolding/helpers.md#background-and-colors)
 
 ##### Basic
 

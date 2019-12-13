@@ -7,12 +7,15 @@ $prefix: '.symbol';
 #{$prefix} {
 	position:relative;
 	display:inline-block;
-	line-height:0;
+	line-height:1;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
 	font:inherit;
 	flex: 0 0 auto; //retain dimensions
 	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
 	width: 1em;
-	vertical-align:middle;
+	vertical-align:inherit;
 	transform-origin: center center;
 	pointer-events:none;
 	// top:-.25em;
@@ -58,20 +61,27 @@ $prefix: '.symbol';
 
 	&-plus,
 	&-minus{
-		
-		&:after{
-			height: em(3px / $body-font-size);
-			width:.9375em;
-			top: 50%;
-			bottom: auto;
-			transform: translateY(-50%);
-		}
 
-		&:before {
-			height:.9375em;
-			left: 50%;
-			right: auto;
-			transform: translateX(-50%);
+		&,
+		.active > &-toggle,
+		.open > &-toggle {
+		
+			&:after{
+				content:"";
+				height: em(3px / $body-font-size);
+				width:.9375em;
+				// top: 50%;
+				// bottom: auto;
+				// transform: translateY(-50%);
+			}
+
+			&:before {
+				content:"";
+				height:.9375em;
+				// left: 50%;
+				// right: auto;
+				// transform: translateX(-50%);
+			}
 		}
 	}
 
@@ -114,18 +124,23 @@ $prefix: '.symbol';
 	}
 	
 	&-minus {
-		&:before{
-			content:none;
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			&:before{
+				content:none;
+			}
 		}
 	}
 
 	&-arrow {
-		&-left,
-		&-right {
-			&,&-toggle {
-				top: em(-1px / $body-font-size);
-			}
-		}
+		// &-left,
+		// &-right {
+		// 	&,&-toggle {
+		// 		top: em(-1px / $body-font-size);
+		// 	}
+		// }
 
 		&-left,
 		&-right,
@@ -166,6 +181,7 @@ $prefix: '.symbol';
 
 		&-vertical,
 		&-horizontal {
+			
 			&:before {
 				content: none;
 			}
@@ -306,7 +322,7 @@ $prefix: '.symbol';
 		}
 
 		&:after {
-			border: #{em(6.5px / $body-font-size)} solid transparent;
+			border: #{em(6px / $body-font-size)} solid transparent;
 			border-top: #{em(12px / $body-font-size)} solid;
 			border-bottom:0;
 			width: 0;

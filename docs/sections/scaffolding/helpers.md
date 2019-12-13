@@ -1,12 +1,12 @@
 # Helpers
 
-## Background
+## Background and Colors
 
 All influenced by [color declarations](../scaffolding/colors.md)
 
 ###  Basic
 
-#### Absolute values
+#### Background
 
 *   **`.background-base` (Not to be confused with theme-color)**
 *   **`.background-primary`**
@@ -23,7 +23,7 @@ All influenced by [color declarations](../scaffolding/colors.md)
 *   **`.background-inherit`**
 *   **`.background-transparent`**
 
-#### Gradient
+##### Background Gradient
 
 This will add gradient colors. By default, the gradient will be at angle 0deg, appending -#{$angle} will angle otherwise. **Valid angles are 45,90,135,180,225,270, and 315**
 
@@ -36,39 +36,8 @@ This will add gradient colors. By default, the gradient will be at angle 0deg, a
 *   **`.background-gradient-270`** (270deg)
 *   **`.background-gradient-315`** (315deg)
 
-#### Theme Based
 
-These classes will set the proper color based off of html tag having the `.theme-inverse` class
-
-| Class 							| Set color | Set color when `.theme-inverse is active` 				|
-| --								| --		| --														|
-| **`.background-theme`** 			| `$theme-background`			| `$theme-background-inverse` 			|
-| **`.background-theme-contrast`** 	| `$theme-background-contrast`	| `$theme-background-contrast-inverse`	|
-| **`.background-theme-polar`** 			| `$theme-color`				| `$theme-color-inverse`				|
-| **`.background-theme-polar-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
-
-To set any background classes only on pseudo classes or interactive conditions, append whichever is needed
-
-#### Pseudo/Toggle Based
-
-| Appendage | Condition when the color is applied |
-| -- | -- |
-| **.background-[color]-hover** | &:hover |
-| **.background-[color]-focus** | &:focus,&.focus |
-| **.background-[color]-active** | &:active |
-| **.background-[color]-toggle** | &.open,&.active |
-
-
-
-eg: `.background-primary-hover` applies $brand-color-primary on :hover
-
-
-
-## Color
-
-### Basic
-
-#### Absolute values
+#### Color
 
 *   **`.color-base` (Not to be confused with theme-color)**
 *   **`.color-primary`**
@@ -85,7 +54,24 @@ eg: `.background-primary-hover` applies $brand-color-primary on :hover
 *   **`.color-inherit`**
 
 
-#### Theme Based
+### Theme Based
+
+These classes will set the proper color based off of html tag having the `.theme-inverse` class
+
+
+#### Background
+
+| Class 							| Set color | Set color when `.theme-inverse is active` 				|
+| --								| --		| --														|
+| **`.background-theme`** 			| `$theme-background`			| `$theme-background-inverse` 			|
+| **`.background-theme-contrast`** 	| `$theme-background-contrast`	| `$theme-background-contrast-inverse`	|
+| **`.background-theme-polar`** 			| `$theme-color`				| `$theme-color-inverse`				|
+| **`.background-theme-polar-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
+
+To set any background classes only on pseudo classes or interactive conditions, append whichever is needed
+
+
+#### Color
 
 These classes will set the proper color based off of html tag having the `.theme-inverse` class
 
@@ -97,7 +83,23 @@ These classes will set the proper color based off of html tag having the `.theme
 | **`.color-theme-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
 
 
-#### Pseudo/Toggle Based
+### Pseudo/Toggle Based
+
+#### Background
+
+| Appendage | Condition when the color is applied |
+| -- | -- |
+| **.background-[color-tag]-hover** | &:hover |
+| **.background-[color-tag]-focus** | &:focus,&.focus |
+| **.background-[color-tag]-active** | &:active |
+| **.background-[color-tag]-toggle** | &.open,&.active |
+
+
+
+eg: `.background-primary-hover` applies $brand-color-primary on :hover
+
+
+#### Color
 
 | Appendage | Condition when the color is applied |
 | -- | -- |
@@ -107,7 +109,7 @@ These classes will set the proper color based off of html tag having the `.theme
 | **.color-[color]-toggle** | &.open,&.active |
 
 
-##Fill and Stroke
+## Fill and Stroke
 [See SVGs](../scaffolding/images.md#svg);
 
 

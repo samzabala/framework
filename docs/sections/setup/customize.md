@@ -3,7 +3,7 @@
 - Set up The sass file that will be compiled into the stylesheet
 - Framework sass variables can be customized by declaring custom variables fist before integrating the framework
 
-
+EVRYTHING CAN BE CUSTOMIZED FIGHT ME
 
 You can refer to existing sass variables [here](../../../scss/import/_vars.scss)
 

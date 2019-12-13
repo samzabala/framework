@@ -20,23 +20,23 @@
 			$brand-color-background-alt: darken($brand-color-background,10) !default;
 
 		$brand-color-neutral: #8d8d8d !default;
-			$brand-color-neutral-light:lighten($brand-color-neutral,5) !default;
+			$brand-color-neutral-light:lighten($brand-color-neutral,10) !default;
 			$brand-color-neutral-dark: darken($brand-color-neutral,10) !default;
 		
 		$brand-color-primary: #235789 !default;
-			$brand-color-primary-light:lighten($brand-color-primary,5) !default;
+			$brand-color-primary-light:lighten($brand-color-primary,10) !default;
 			$brand-color-primary-dark: darken($brand-color-primary,10) !default;
 		
 		$brand-color-accent: #17BEBB !default;
-			$brand-color-accent-light: lighten($brand-color-accent,5) !default;
+			$brand-color-accent-light: lighten($brand-color-accent,10) !default;
 			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
 
 		$brand-color-success: #15b800 !default;
-			$brand-color-success-light:lighten($brand-color-success,5) !default;
+			$brand-color-success-light:lighten($brand-color-success,10) !default;
 			$brand-color-success-dark: darken($brand-color-success,10) !default;
 
 		$brand-color-caution: #fd7f03 !default;
-			$brand-color-caution-light:lighten($brand-color-caution,5) !default;
+			$brand-color-caution-light:lighten($brand-color-caution,10) !default;
 			$brand-color-caution-dark: darken($brand-color-caution,10) !default;
 
 		$brand-color-error: #fd0303 !default;
@@ -426,10 +426,13 @@
 
 
 	// input
+
 		$input-height: 45px !default;
-			$input-height-large: 50px !default;
-			$input-height-small: 35px !default;
+			$input-height-large: 75px !default;
+			$input-height-small: 30px !default;
 		$input-height-multiple-factor: 3 !default;
+
+		$input-min-width: 100px !default;
 
 		$input-background: transparent !default;
 			$input-background-inverse: transparent !default;
@@ -524,7 +527,7 @@
 		$btn-font-family: $brand-font-primary !default;
 		$btn-font-weight: $body-font-weight-bold !default;
 		$btn-font-style: normal !default;
-		$btn-text-transform: none !default;
+		$btn-text-transform: capitalize !default;
 		$btn-gutter-x: 25px !default;
 		$btn-border-width: 1px !default;
 		$btn-border-radius: $border-radius-base !default;
