@@ -1,5 +1,7 @@
 window.jQuery && jQuery.noConflict();
 (function($,window){
+
+	console.info('Framework mostly vanilla script is initiated');
 	
 	if(window.fw) {
 		throw new Error('fw already exists oh boi');	
@@ -11,7 +13,11 @@ window.jQuery && jQuery.noConflict();
 	//internal shit
 	var _ = {};
 
+	//settings
 	frameWork.lazyLoad = frameWork.lazyLoad || true;
+	frameWork.initializeModal = frameWork.initializeModal || true;
+	frameWork.initializeAccordion = frameWork.initializeAccordion || true;
+	frameWork.dynamicHash = frameWork.dynamicHash || true;
 
 	//hacks around trumbo bitch wyg
 	frameWork.trumbowyg = {};
@@ -152,29 +158,60 @@ window.jQuery && jQuery.noConflict();
 	}
 
 
+
+	_.changeHash = function(id) {
+
+		id = id || '';
+
+		if(frameWork.dynamicHash){
+			
+
+			if(history.pushState) {
+				history.pushState(null, null, '#'+id);
+			}
+			else {
+				location.hash = '#'+id;
+			}
+		}
+	}
+
+
 	_.getTheToggled = function(clicked,toggleMode){
+
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || null;
+
 				
-		if( clicked.getAttribute('href') ){
-			return document.querySelector( clicked.getAttribute('href') );
+		if(clicked) {
+			if( clicked.getAttribute('href') ){
+				return document.querySelector( clicked.getAttribute('href') );
 
-		}else if( clicked.getAttribute('data-href') ){
-			return document.querySelector( clicked.getAttribute('data-href') )
-			
-		}else if (clicked.closest('[data-toggle="'+toggleMode+'"]').length){
-			return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
-		}else{
-			var possibleSiblings = clicked.nextElementSibling;
+			}else if( clicked.getAttribute('data-href') ){
+				return document.querySelector( clicked.getAttribute('data-href') )
+				
+			}else if (clicked.closest('[data-toggle="'+toggleMode+'"]').length){
+				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else{
+				var possibleSiblings = clicked.nextElementSibling;
 
-			while (possibleSiblings) {
-				if (possibleSiblings.matches(selector)){
-					return possibleSiblings;
+				while (possibleSiblings) {
+					if (possibleSiblings.matches(selector)){
+						return possibleSiblings;
+					}
+					possibleSiblings = possibleSiblings.nextElementSibling
 				}
-				possibleSiblings = possibleSiblings.nextElementSibling
-			}
 
-			return possibleSiblings;
+				return possibleSiblings;
+			}
+		}else{
+			
+			if (
+				window.location.hash !== ''
+				&& document.querySelector(window.location.hash)
+				&& document.querySelector(window.location.hash).classList.contains( toggleMode.replace('-open','').replace('-close','') )
+			){
+				return document.querySelector(window.location.hash)
+			}
 		}
 	};
 
@@ -213,7 +250,20 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	_.palette = ['primary','accent','base','neutral','error','caution','success']
+	_.palette = [
+		'base',
+		'primary',
+		'accent',
+		'neutral',
+		'error',
+		'caution',
+		'success',
+		'intensity-1',
+		'intensity-2',
+		'intensity-3',
+		'intensity-4',
+		'intensity-5'
+	]
 
 	frameWork.initGrid = function(moduleGrid){
 		
@@ -556,21 +606,34 @@ window.jQuery && jQuery.noConflict();
 	frameWork.createModal = function(triggerer){
 		
 		var contentWrap =  _.getTheToggled(triggerer,'modal');
+
 		frameWork.destroyModal();
 
-		if(triggerer && contentWrap) {
+		if(triggerer || contentWrap) {
 
 			var arr =  {
-				header: contentWrap.getAttribute('data-modal-title') || triggerer.getAttribute('data-modal-title') || null,
-				close: contentWrap.getAttribute('data-modal-close') || triggerer.getAttribute('data-modal-header')  || null,
-				disableOverlay: contentWrap.getAttribute('data-modal-disable-overlay') || triggerer.getAttribute('data-modal-disable-overlay') || null,
-				maxWidth: contentWrap.getAttribute('data-modal-max-width') || triggerer.getAttribute('data-modal-header')  || null
+				header:
+					contentWrap.getAttribute('data-modal-title')
+					|| (triggerer && (triggerer.getAttribute('data-modal-title')))
+					|| null,
+				close:
+					contentWrap.getAttribute('data-modal-close')
+					|| (triggerer && (triggerer.getAttribute('data-modal-header'))) 
+					|| null,
+				disableOverlay:
+					contentWrap.getAttribute('data-modal-disable-overlay')
+					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay')))
+					|| null,
+				maxWidth:
+					contentWrap.getAttribute('data-modal-max-width')
+					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))) 
+					|| null
 			};
 
 			var defaults = {
 				header: '',
 				close: true,
-				disableOverlay: false,
+				disableOverlay: true,
 				maxWidth: null
 			};
 			
@@ -578,6 +641,7 @@ window.jQuery && jQuery.noConflict();
 
 			var id = contentWrap.getAttribute('id') || 'the-modal';
 
+			_.changeHash(id);
 
 			var modal = document.createElement('div');
 
@@ -617,14 +681,114 @@ window.jQuery && jQuery.noConflict();
 	}
 
 
-	frameWork.destroyModal = function(){
+	frameWork.destroyModal = function(removeHash){
 		var modal = document.querySelector('.modal-wrapper');
 		if (modal){
 			modal.classList.remove('active');
 			modal.parentNode.removeChild(modal);
 		}
 		document.body.classList.remove('body-modal-active');
+
+		if(removeHash) {
+			_.changeHash('');
+		}
 	}
+
+
+	frameWork.toggleAccordion = function(triggerer) {
+
+
+		var selector = _.getTheToggled(triggerer,'accordion');
+		
+
+
+		if( selector ){
+
+
+			var selectorAncestor = selector.closest('.accordion-group');
+			var selectorSiblings = frameWork.getSiblings(selector).filter(function(sibling){
+					return sibling.matches('.accordion');
+				});
+			var clickedSiblings = frameWork.getSiblings(selector).filter(function(sibling){
+					return sibling.matches('*[data-toggle="accordion"]');
+				})
+			
+
+			if(
+				!(
+					selector.classList.contains('accordion-mobile')
+					&& !frameWork.validateBr(_.br_mobile_max,'below')
+				)
+			){
+
+				if(triggerer){
+						
+					if(
+						selector.classList.contains('open')
+						&& triggerer.classList.contains('open')
+					){
+
+						frameWork.slideUp(selector); 
+						triggerer.classList.remove('open'); 
+						selector.classList.remove('open'); 
+
+						
+						_.changeHash('');
+
+					}else{
+						
+						if(selectorAncestor && !selectorAncestor.matches('.accordion-group-multiple') ) {
+
+							var accordions = selectorAncestor.querySelectorAll('.accordion');
+
+							var toggles = selectorAncestor.querySelectorAll('[data-toggle="accordion"]');
+							
+							accordions.forEach(function(accordion){
+								frameWork.slideUp(accordion)
+								accordion.classList.remove('open');
+							});
+
+							toggles.forEach(function(toggle){
+								toggle.classList.remove('open');
+							});
+						
+						}; 
+
+						frameWork.slideDown(selector); 
+						triggerer.classList.add('open'); 
+						selector.classList.add('open'); 
+
+						_.changeHash(selector.getAttribute('id'));
+					}
+				}else{
+
+					var allSelector = document.querySelectorAll('.accordion');
+					if(allSelector){
+						allSelector.forEach(function(selector){
+							selector.classList.remove('open'); 
+						});
+					}
+
+					var allTriggerer = document.querySelectorAll('[data-toggle="accordion"]');
+					if(allTriggerer){
+						allTriggerer.forEach(function(triggerer){
+							triggerer.classList.remove('open'); 
+						});
+					}
+
+					selector.classList.add('open'); 
+
+					var allToggle = document.querySelectorAll('[data-toggle="accordion"][href="#'+selector.getAttribute('id')+'"], [data-toggle="accordion"][data-href="#'+selector.getAttribute('id')+'"]');
+
+					allToggle.forEach(function(toggle){
+						toggle.classList.add('open');
+					});
+
+				}
+			}
+		}
+	}
+
 
 	_.readyGrid = function(){
 		
@@ -670,6 +834,9 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.lazyLoad && frameWork.loadImages();
 
+		frameWork.initializeModal && frameWork.createModal();
+		frameWork.initializeAccordion && frameWork.toggleAccordion();
+
 		_.functions_on_load.forEach(function(fn){
 			fn();
 		});
@@ -691,68 +858,14 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="accordion"]',function(e){
 			e.preventDefault();
-			var clicked = e.target;
-			var selector = _.getTheToggled(e.target,'accordion');
-			var selectorAncestor = selector.closest('.accordion-group');
-			var selectorSiblings = frameWork.getSiblings(selector).filter(function(sibling){
-					return sibling.matches('.accordion');
-				});
-			var clickedSiblings = frameWork.getSiblings(selector).filter(function(sibling){
-					return sibling.matches('*[data-toggle="accordion"]');
-				})
 
-			if( selector ){
+			frameWork.toggleAccordion(e.target);
+		});
 
-				if(
-					!(
-						selector.classList.contains('accordion-mobile')
-						&& !frameWork.validateBr(_.br_mobile_max,'below')
-					)
-				){
-						
-					if(
-						selector.classList.contains('open')
-						&& clicked.classList.contains('open')
-					){
+		frameWork.addEvent(document.body,'click','.btn-disabled,.input-disabled,[disabled]',function(e){
+			
+			e.preventDefault();
 
-						frameWork.slideUp(selector); 
-						clicked.classList.remove('open'); 
-						selector.classList.remove('open'); 
-
-					}else{
-
-						/*
-						if(selector.closest('.accordion-group:not(.accordion-group-multiple)').length) {
-							// console.log('bitch ass');
-							selector.closest('.accordion-group:not(.accordion-group-multiple)').find('.accordion').frameWork.slideUp(); 
-							$(this).closest('.accordion-group:not(.accordion-group-multiple)').find('[data-toggle="accordion"]').removeClass('open'); 
-							selector.closest('.accordion-group:not(.accordion-group-multiple)').find('.accordion').removeClass('open'); 
-						}
-						*/
-						
-						if(selectorAncestor && !selectorAncestor.matches('.accordion-group-multiple') ) {
-
-							var accordions = selectorAncestor.querySelectorAll('.accordion');
-
-							var toggles = selectorAncestor.querySelectorAll('[data-toggle="accordion"]');
-							
-							accordions.forEach(function(accordion){
-								frameWork.slideUp(accordion)
-								accordion.classList.remove('open');
-							});
-
-							toggles.forEach(function(toggle){
-								toggle.classList.remove('open');
-							});
-						
-						}; 
-
-						frameWork.slideDown(selector); 
-						clicked.classList.add('open'); 
-						selector.classList.add('open'); 
-					}
-				}
-			}
 		});
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="dropdown"]',function(e){
@@ -868,11 +981,11 @@ window.jQuery && jQuery.noConflict();
 
 			frameWork.addEvent(document.body,'click','*[data-toggle="modal-close"]',function(e){
 				e.preventDefault();
-				frameWork.destroyModal();
+				frameWork.destroyModal(true);
 			});
 
 			frameWork.addEvent(document.body,'click','*[data-toggle="modal"]',function(e){
-				(document.querySelector('body > .modal-wrapper')) ? frameWork.destroyModal() : frameWork.createModal(e.target);
+				frameWork.createModal(e.target);
 			});
 
 		document.querySelector('body').classList.remove('body-loading');

@@ -1,4 +1,4 @@
-/*** SET ***/
+/*** Tags ***/
 //internal
 $calculated-tag-font-size: $tag-font-size;
 @if internal-is-convertable($tag-font-size) {
@@ -21,7 +21,7 @@ $calculated-tag-gutter-x: $tag-gutter-x;
     $calculated-tag-gutter-x: $calculated-tag-gutter-x
 }
 
-/* SUBSET */
+
 $prefix: '.tag';
 #{$prefix} {
 	@include type-set((
@@ -53,6 +53,14 @@ $prefix: '.tag';
 	@each $tag,$color in $calculated-brand-color-declarations {
 		&-#{$tag} {
 			@extend %for-background-#{$tag};
+		}
+	}
+
+	&-intensity {
+		@for $i from 1 through length($calculated-color-brand-intensity) {
+			&-#{$i} {
+				@extend %for-background-intensity-#{$i};
+			}
 		}
 	}
 }

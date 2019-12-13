@@ -5,7 +5,7 @@ The framework has its own styles for trumbowyg but also minimal script customiza
 <textarea class="input-trumbowyg"></textarea>
 ```
 
-If you want to initiate your own trumbowyg add `.input-trumbowyg-custom`
+If you want to initiate your own trumbowyg with the framework's own styles and settings add `.input-trumbowyg-custom`
 
 
 ```html
@@ -25,11 +25,18 @@ $('#custom-trumbo').trumbowyg({
 
 The framework has its own settings for trumbowyg, to manipulate this, declare your custom settings for all trumbowygs' default settings, declare them like this in js:
 ```js
-fw.trumbowyg.defaults = {
-    //trumbo settings here
-    btns: [['strong', 'em',], ['insertImage']],
-    autogrow: true
-}
+
+window.jQuery && jQuery.noConflict();
+(function(fw,$){
+
+    fw.trumbowyg.defaults = {
+        //trumbo settings here
+        btns: [['strong', 'em',], ['insertImage']],
+        autogrow: true
+    }
+
+}(frameWork,jQuery));
+
 ```
 
 [Trumbowyg documentation](https://alex-d.github.io/Trumbowyg/documentation/)

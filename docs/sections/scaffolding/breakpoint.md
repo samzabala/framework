@@ -1,6 +1,6 @@
-### Breakpoints
+# Breakpoints
 
-Breakpoints are where media queries separate.
+Breakpoints are where media queries separate. Declared values or maximums
 
 
 **`xs`**
@@ -15,17 +15,22 @@ Breakpoints are where media queries separate.
 *	framework var: `$br-md`
 *	Laptop (1799px by default)
 
+## Special breakpoints
 **`lg`**
 *	Mobile (+1 of md breakpoint value)
 *	For desktop elements. Since it's the largest breakpoint, it does not have a max value, instead it's minimum is based on md breakpoints value
-
-**Special breakpoints**
 
 **`xxs`**
 *	framework var: `$br-xxs`
 *	True Mobile (0px - 400px by default)
 *	UI Design may have elements designed too large for many mobile devices. use this to fix or tweak them. This breakpoint is for adding custom css for the framework and is not natively by the core framework's styles although used at some places by js bois.
 
+
+## Mobile split
+
+**`$mobile-br-max`**
+*	Defaults to `sm`
+*	Can't be used by shithole functionalities, but declares which breakpoint tag the mobile and nonmobile devices split. The set tag will be the maximum of the framework mobile styles
 
 #### Internal Sass Functions (All from shithole)
 

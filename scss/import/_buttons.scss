@@ -82,15 +82,12 @@ $prefix: '.btn';
 		
 			@at-root &:hover,
 			#{$prefix}-group#{$prefix}-group-unite:hover &,
-			.input-group:hover &,
 			
 			&:focus,
 			#{$prefix}-group#{$prefix}-group-unite:focus &,
-			.input-group:focus &,
 
 			&.focus,
-			#{$prefix}-group#{$prefix}-group-unite.focus &,
-			.input-group.focus & {
+			#{$prefix}-group#{$prefix}-group-unite.focus & {
 				@include internal-btn-set-scheme($properties)
 			}
 			// @at-root &:hover,
@@ -102,35 +99,29 @@ $prefix: '.btn';
 		}@else if $state == 'active' {
 			@at-root &:active,
 			#{$prefix}-group#{$prefix}-group-unite:active &,
-			.input-group:active &,
 
 			&.active,
-			#{$prefix}-group#{$prefix}-group-unite.active &,
-			.input-group.active & {
+			#{$prefix}-group#{$prefix}-group-unite.active & {
 				@include internal-btn-set-scheme($properties);
 			}
 			
 		}@else{
 
 			@at-root %for-#{$scheme}-no-change {
-				@include internal-btn-set-scheme($properties,false,true);
+				@include internal-btn-set-scheme($properties);
 			}
 		
 			&{
-				@include internal-btn-set-scheme($properties);
 
 				@at-root
+					&,
 					&#{$prefix}-no-interaction,
 					&#{$prefix}-no-interaction:hover,
 					&#{$prefix}-no-interaction:focus,
 					&#{$prefix}-no-interaction.focus,
 					&#{$prefix}-no-interaction:active,
-					&#{$prefix}-no-interaction.active {
-						// @include internal-btn-set-scheme($properties,false,true);
-						@extend %for-#{$scheme}-no-change;
-					}
-				
-				@at-root
+					&#{$prefix}-no-interaction.active,
+
 					&#{$prefix}-disabled,
 					&#{$prefix}-disabled:hover,
 					&#{$prefix}-disabled:focus,
@@ -138,27 +129,13 @@ $prefix: '.btn';
 					&#{$prefix}-disabled:active,
 					&#{$prefix}-disabled.active,
 					
-					#{$prefix}-group-disabled &,
-					#{$prefix}-group-disabled:hover &,
-					#{$prefix}-group-disabled:focus &,
-					#{$prefix}-group-disabled.focus &,
-					#{$prefix}-group-disabled:active &,
-					#{$prefix}-group-disabled.active &,
-					
-					
-					.input-group-disabled &,
-					.input-group-disabled:hover &,
-					.input-group-disabled:focus &,
-					.input-group-disabled.focus &,
-					.input-group-disabled:active &,
-					.input-group-disabled.active & {
-
-						opacity: $global-disabled-opacity;
-						@extend %for-#{$scheme}-no-change;
-						// @include internal-btn-set-scheme($properties,true,true);
-						// @if $add-disable-opacity == true {
-						// 	opacity: $global-disabled-opacity;
-						// }
+					#{$prefix}-disabled &,
+					#{$prefix}-disabled:hover &,
+					#{$prefix}-disabled:focus &,
+					#{$prefix}-disabled.focus &,
+					#{$prefix}-disabled:active &,
+					#{$prefix}-disabled.active & {
+						@include internal-btn-set-scheme($properties);
 					}
 			}
 		}
@@ -166,7 +143,7 @@ $prefix: '.btn';
 
 }
 
-@mixin internal-btn-set-scheme($properties,$is-disabled: false,$add-important: false) {
+@mixin internal-btn-set-scheme($properties,$add-important: false) {
 
 
 	$important: '';
@@ -177,27 +154,15 @@ $prefix: '.btn';
 	}
 
 	@if map-get($properties,border) {
-		@if $is-disabled {
-			border-color: internal-btn-calculate-disabled( map-get($properties,border) ) #{$important};
-		}@else{
-			border-color: map-get($properties,border) #{$important};
-		}
+		border-color: map-get($properties,border) #{$important};
 	}
 
 	@if map-get($properties,background) {
-		@if $is-disabled {
-			background: internal-btn-calculate-disabled( map-get($properties,background) ) #{$important};
-		}@else{
-			background: map-get($properties,background) #{$important};
-		}
+		background: map-get($properties,background) #{$important};
 	}
 
 	@if map-get($properties,color) {
-		@if $is-disabled {
-			color: internal-btn-calculate-disabled( map-get($properties,color) ) #{$important};
-		}@else{
-			color: map-get($properties,color) #{$important};
-		}
+		color: map-get($properties,color) #{$important};
 	}
 
 }
@@ -271,8 +236,13 @@ $prefix: '.btn';
 		background-color:transparent;
 		color:inherit;
 
-		&:hover {
+		&:hover,
+		&:focus,
+		&.focus,
+		&:active,
+		&.active {
 			box-shadow: $btn-box-shadow-hover;
+			color:inherit;
 		}
 	}
 
@@ -296,7 +266,8 @@ $prefix: '.btn';
 	}
 
 	&-disabled{
-		cursor:not-allowed;
+		cursor:not-allowed!important;
+		opacity: $global-disabled-opacity;
 	}
 
 	&-symbol {
@@ -337,8 +308,14 @@ $prefix: '.btn';
 		height: #{ $calculated-nav-height };
 	}
 
-	&#{$prefix}-no-radius {
+	&#{$prefix}-no-radius,
+	&-group#{$prefix}-no-radius {
 		border-radius: 0!important;
+	}
+
+	&,&-group {
+		@extend %for-btn-itself-and-group;
+		@extend %for-btn-on-mobile;
 	}
 
 	#{$prefix}-group & {
@@ -347,12 +324,8 @@ $prefix: '.btn';
 		}
 	}
 
-	&,&-group {
-		@extend %for-btn-itself-and-group;
-		@extend %for-btn-on-mobile;
-	}
-
 	&#{$prefix}-no-shadow,
+	&-group#{$prefix}-no-shadow,
 	&#{$prefix}-link {
 		box-shadow:none!important;
 	}
@@ -370,8 +343,8 @@ $prefix: '.btn';
 	}
 
 
-	&-disabled,
-	#{$prefix}-group-disabled & {
+	&#{$prefix}-disabled,
+	#{$prefix}-disabled & {
 		@extend %for-btn-disabled;
 	}
 
@@ -410,6 +383,7 @@ $prefix: '.btn';
 
 		#{$prefix} {
 			position:relative;
+			border-radius:0!important;
 
 			&:hover,
 			&:active,
@@ -443,14 +417,14 @@ $prefix: '.btn';
 
 			&:not(#{$prefix}-group-responsive) {
 
-				> #{$prefix}:nth-last-child(n+2) {
-					border-top-right-radius: 0;
-					border-bottom-right-radius: 0;
-				}
+				// > #{$prefix}:nth-last-child(n+2) {
+				// 	border-top-right-radius: 0;
+				// 	border-bottom-right-radius: 0;
+				// }
 
 				> #{$prefix}:nth-child(n+2) {
-					border-top-left-radius: 0;
-					border-bottom-left-radius: 0;
+					// border-top-left-radius: 0;
+					// border-bottom-left-radius: 0;
 
 					&,
 					&:hover {
@@ -463,14 +437,14 @@ $prefix: '.btn';
 		&#{&}-vertical {
 			flex-direction:column;
 
-			> #{$prefix}:nth-last-child(n+2) {
-				border-bottom-right-radius: 0;
-				border-bottom-left-radius: 0;
-			}
+			// > #{$prefix}:nth-last-child(n+2) {
+			// 	border-bottom-right-radius: 0;
+			// 	border-bottom-left-radius: 0;
+			// }
 
 			> #{$prefix}:nth-child(n+2) {
-				border-top-right-radius: 0;
-				border-top-left-radius: 0;
+				// border-top-right-radius: 0;
+				// border-top-left-radius: 0;
 
 				&,
 				&:hover {
@@ -481,18 +455,18 @@ $prefix: '.btn';
 
 		&#{&}-responsive {
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 
 				&#{$prefix}-group-horizontal {
 					
-					> #{$prefix}:nth-last-child(n+2) {
-						border-top-right-radius: 0;
-						border-bottom-right-radius: 0;
-					}
+					// > #{$prefix}:nth-last-child(n+2) {
+					// 	border-top-right-radius: 0;
+					// 	border-bottom-right-radius: 0;
+					// }
 
 					> #{$prefix}:nth-child(n+2) {
-						border-top-left-radius: 0;
-						border-bottom-left-radius: 0;
+						// border-top-left-radius: 0;
+						// border-bottom-left-radius: 0;
 
 						&,
 						&:hover {
@@ -508,14 +482,14 @@ $prefix: '.btn';
 				display:flex;
 				flex-direction:column;
 
-				> #{$prefix}:nth-last-child(n+2) {
-					border-bottom-right-radius: 0;
-					border-bottom-left-radius: 0;
-				}
+				// > #{$prefix}:nth-last-child(n+2) {
+				// 	border-bottom-right-radius: 0;
+				// 	border-bottom-left-radius: 0;
+				// }
 
 				> #{$prefix}:nth-child(n+2) {
-					border-top-right-radius: 0;
-					border-top-left-radius: 0;
+					// border-top-right-radius: 0;
+					// border-top-left-radius: 0;
 
 					&,
 					&:hover {

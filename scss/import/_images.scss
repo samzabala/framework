@@ -30,12 +30,169 @@ $prefix: '.svg';
 
 
 .fill {
-	@each $tag,$color in $calculated-brand-color-declarations {
-		&-#{$tag} {
-			fill: $color;
-		}
 
+	// Theme
+	@include create-palette-helper(
+		#{&}-theme,
+		fill,
+		$theme-color,
+		$theme-color-inverse
+	);
+
+
+	// Theme Contrast
+	@include create-palette-helper(
+		#{&}-theme-contrast,
+		fill,
+		$theme-color-contrast,
+		$theme-color-contrast-inverse
+	);
+
+
+	// Theme Polar 
+	@include create-palette-helper(
+		#{&}-theme-polar,
+		fill,
+		$theme-background,
+		$theme-background-inverse
+	);
+
+
+	// Theme Contrast Polar 
+	@include create-palette-helper(
+		#{&}-theme-polar-contrast,
+		fill,
+		$theme-background-contrast,
+		$theme-background-contrast-inverse
+	);
+
+	//intensity
+	&-intensity {
+		@for $i from 1 through length($calculated-color-brand-intensity) {
+			@include create-palette-helper(
+				#{&}-#{$i},
+				fill,
+				nth($calculated-color-brand-intensity,$i)
+			);
+		}
+	}
+
+	//current
+	@include create-palette-helper(
+		#{&}-currentColor,
+		fill,
+		currentColor
+	);
+
+	//none
+	@include create-palette-helper(
+		#{&}-none,
+		fill,
+		none
+	);
+	
+	@each $tag,$color in $calculated-brand-color-declarations {
+		@include create-palette-helper(
+			#{&}-#{$tag},
+			fill,
+			$color
+		);
+	}
+
+}
+
+
+
+.stroke {
+	// Theme
+	@include create-palette-helper(
+		#{&}-theme,
+		stroke,
+		$theme-color,
+		$theme-color-inverse
+	);
+
+
+	// Theme Contrast
+	@include create-palette-helper(
+		#{&}-theme-contrast,
+		stroke,
+		$theme-color-contrast,
+		$theme-color-contrast-inverse
+	);
+
+
+	// Theme Polar 
+	@include create-palette-helper(
+		#{&}-theme-polar,
+		stroke,
+		$theme-background,
+		$theme-background-inverse
+	);
+
+
+	// Theme Contrast Polar 
+	@include create-palette-helper(
+		#{&}-theme-polar-contrast,
+		stroke,
+		$theme-background-contrast,
+		$theme-background-contrast-inverse
+	);
+
+	//intensity
+	&-intensity {
+		@for $i from 1 through length($calculated-color-brand-intensity) {
+			@include create-palette-helper(
+				#{&}-#{$i},
+				stroke,
+				nth($calculated-color-brand-intensity,$i)
+			);
+		}
+	}
+
+	//current
+	@include create-palette-helper(
+		#{&}-currentColor,
+		stroke,
+		currentColor
+	);
+
+	//none
+	@include create-palette-helper(
+		#{&}-none,
+		stroke,
+		none
+	);
+	
+	@each $tag,$color in $calculated-brand-color-declarations {
+		@include create-palette-helper(
+			#{&}-#{$tag},
+			stroke,
+			$color
+		);
 	}
 }
 
+
+/* FIT IMAGE */	
+
+	/* emulate background cover on image tags */
+	%for-fit-image {
+		img {
+			position:absolute;
+			width: 100%;
+			height: 100%;
+			max-width:none;
+			top:-50%;
+			left:-50%;
+			right:-50%;
+			bottom:-50%;
+			margin:auto;
+			object-fit: cover;
+		}
+	}
+	.fit-image {
+		position: relative;
+		@extend %for-fit-image;
+	}
 

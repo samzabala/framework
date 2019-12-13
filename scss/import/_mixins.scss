@@ -8,3 +8,37 @@
 		@return false;
 	}
 }
+
+// for colors with hover and shit
+@mixin create-palette-helper($tag,$property:'', $value:'',$value-inverse: '') {
+
+	
+	@at-root
+	#{$tag},
+	#{$tag}-hover:hover,
+	#{$tag}-focus:focus,
+	#{$tag}-focus.focus,
+	#{$tag}-active:active,
+	#{$tag}-active.active,
+	#{$tag}-toggle.active,
+	#{$tag}-toggle.open {
+		
+		@if $property != '' {
+			
+			@if $value != '' {
+				#{$property}: #{$value}!important;
+			}
+
+			@if $value-inverse != '' {
+				
+				.theme-inverse & {
+					#{$property}: #{$value-inverse}!important;
+				}
+				
+			}
+		}
+
+		@content;
+
+	}
+}

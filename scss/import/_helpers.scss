@@ -100,79 +100,53 @@
 
 	$prefix: '.background';
 	#{$prefix} {
-
-		&-theme,
-		&-theme-hover:hover,
-		&-theme-focus:focus,
-		&-theme-focus.focus,
-		&-theme-active:active,
-		&-theme-toggle.active,
-		&-theme-toggle.open {
-			background-color: $theme-background!important;
-
-			.theme-inverse & {
-				background-color: $theme-background-inverse!important;
-			}
-		}
+		// Theme
+		@include create-palette-helper(
+			#{&}-theme,
+			background-color,
+			$theme-background,
+			$theme-background-inverse
+		);
 
 
-		&-theme-contrast,
-		&-theme-contrast-hover:hover,
-		&-theme-contrast-focus:focus,
-		&-theme-contrast-focus.focus,
-		&-theme-contrast-active:active,
-		&-theme-contrast-toggle.active,
-		&-theme-contrast-toggle.open {
-			background-color: $theme-background-contrast!important;
-
-			.theme-inverse & {
-				background-color: $theme-background-contrast-inverse!important;
-			}
-		}
-
-		&-theme-inverse,
-		&-theme-inverse-hover:hover,
-		&-theme-inverse-focus:focus,
-		&-theme-inverse-focus.focus,
-		&-theme-inverse-active:active,
-		&-theme-inverse-toggle.active,
-		&-theme-inverse-toggle.open {
-			background-color: $theme-color!important;
-
-			.theme-inverse & {
-				background-color: $theme-color-inverse!important;
-			}
-		}
+		// Theme Contrast
+		@include create-palette-helper(
+			#{&}-theme-contrast,
+			background-color,
+			$theme-background-contrast,
+			$theme-background-contrast-inverse
+		);
 
 
-		&-theme-inverse-contrast,
-		&-theme-inverse-contrast-hover:hover,
-		&-theme-inverse-contrast-focus:focus,
-		&-theme-inverse-contrast-focus.focus,
-		&-theme-inverse-contrast-active:active,
-		&-theme-inverse-contrast-toggle.active,
-		&-theme-inverse-contrast-toggle.open {
-			background-color: $theme-color-contrast!important;
+		// Theme Polar 
+		@include create-palette-helper(
+			#{&}-theme-polar,
+			background-color,
+			$theme-color,
+			$theme-color-inverse
+		);
 
-			.theme-inverse & {
-				background-color: $theme-color-contrast-inverse!important;
-			}
-		}
 
+		// Theme Contrast Polar 
+		@include create-palette-helper(
+			#{&}-theme-polar-contrast,
+			background-color,
+			$theme-color-contrast,
+			$theme-color-contrast-inverse
+		);
+
+		//intensity
 		&-intensity {
 			@for $i from 1 through length($calculated-color-brand-intensity) {
-				&-#{$i},
-				&-#{$i}-hover:hover,
-				&-#{$i}-focus:focus,
-				&-#{$i}-focus.focus,
-				&-#{$i}-active:active,
-				&-#{$i}-toggle.active,
-				&-#{$i}-toggle.open {
+				@include create-palette-helper(
+					#{&}-#{$i}
+				){
 					@extend %for-background-intensity-#{$i}-important;
-				}
+				};
 			}
 		}
 
+		//gradient
 		&-gradient {
 			@extend %for-background-gradient-important;
 
@@ -187,305 +161,111 @@
 			}
 
 			@each $angle in $calculated-gradient-angles {
-				
-				&-#{$angle},
-				&-#{$angle}-hover:hover,
-				&-#{$angle}-focus:focus,
-				&-#{$angle}-focus.focus,
-				&-#{$angle}-active:active,
-				&-#{$angle}-toggle.active,
-				&-#{$angle}-toggle.open {
+
+				@include create-palette-helper(
+					#{&}-#{$angle}
+				){
 					@extend %for-background-gradient-#{$angle}-important;
-				}
+				};
 
 			}
 		}
 
-		&-transparent,
-		&-transparent-hover:hover,
-		&-transparent-focus:focus,
-		&-transparent-focus.focus,
-		&-transparent-active:active,
-		&-transparent-toggle.active,
-		&-transparent-toggle.open {
-			background-color:transparent!important;
-		}
+		//inherit
+		@include create-palette-helper(
+			#{&}-inherit,
+			background-color,
+			inherit
+		);
 
+		//transparent
+		@include create-palette-helper(
+			#{&}-transparent,
+			background-color,
+			transparent
+		);
+
+		//color tag
 		@each $tag,$color in $calculated-brand-color-declarations {
 			
-			&-#{$tag},
-			&-#{$tag}-hover:hover,
-			&-#{$tag}-focus:focus,
-			&-#{$tag}-focus.focus,
-			&-#{$tag}-active:active,
-			&-#{$tag}-toggle.active,
-			&-#{$tag}-toggle.open {
+			@include create-palette-helper(
+				#{&}-#{$tag}
+			){
 				@extend %for-background-#{$tag}-important;
-			}
-
+			};
 		}
 	}
 
 /* COLOR CLASSES */
 	$prefix: '.color';
 	#{$prefix} {
-		&-theme,
-		&-theme-hover:hover,
-		&-theme-focus:focus,
-		&-theme-focus.focus,
-		&-theme-active:active,
-		&-theme-toggle.active,
-		&-theme-toggle.open{
-			color: $theme-color!important;
 
-			.theme-inverse & {
-				color: $theme-color-inverse!important;
-			}
-		}
-		&-theme-contrast,
-		&-theme-contrast-hover:hover,
-		&-theme-contrast-focus:focus,
-		&-theme-contrast-focus.focus,
-		&-theme-contrast-active:active,
-		&-theme-contrast-toggle.active,
-		&-theme-contrast-toggle.open{
-			color: $theme-color-contrast!important;
+		// Theme
+		@include create-palette-helper(
+			#{&}-theme,
+			color,
+			$theme-color,
+			$theme-color-inverse
+		);
 
-			.theme-inverse & {
-				color: $theme-color-contrast-inverse!important;
-			}
-		}
 
-		&-theme-inverse,
-		&-theme-inverse-hover:hover,
-		&-theme-inverse-focus:focus,
-		&-theme-inverse-focus.focus,
-		&-theme-inverse-active:active,
-		&-theme-inverse-toggle.active,
-		&-theme-inverse-toggle.open{
-			color: $theme-background!important;
+		// Theme Contrast
+		@include create-palette-helper(
+			#{&}-theme-contrast,
+			color,
+			$theme-color-contrast,
+			$theme-color-contrast-inverse
+		);
 
-			.theme-inverse & {
-				color: $theme-background-inverse!important;
-			}
-		}
-		&-theme-inverse-contrast,
-		&-theme-inverse-contrast-hover:hover,
-		&-theme-inverse-contrast-focus:focus,
-		&-theme-inverse-contrast-focus.focus,
-		&-theme-inverse-contrast-active:active,
-		&-theme-inverse-contrast-toggle.active,
-		&-theme-inverse-contrast-toggle.open{
-			color: $theme-background-contrast!important;
 
-			.theme-inverse & {
-				color: $theme-background-contrast-inverse!important;
-			}
-		}
+		// Theme Polar 
+		@include create-palette-helper(
+			#{&}-theme-polar,
+			color,
+			$theme-background,
+			$theme-background-inverse
+		);
 
+
+		// Theme Contrast Polar 
+		@include create-palette-helper(
+			#{&}-theme-polar-contrast,
+			color,
+			$theme-background-contrast,
+			$theme-background-contrast-inverse
+		);
+
+		//intensity
 		&-intensity {
 			@for $i from 1 through length($calculated-color-brand-intensity) {
-				&-#{$i},
-				&-#{$i}-hover:hover,
-				&-#{$i}-focus:focus,
-				&-#{$i}-focus.focus,
-				&-#{$i}-active:active,
-				&-#{$i}-toggle.active,
-				&-#{$i}-toggle.open {
+				@include create-palette-helper(
+					#{&}-#{$i}
+				){
 					@extend %for-color-intensity-#{$i}-important;
-				}
+				};
 			}
 		}
 
-		&-inherit,
-		&-inherit-hover:hover,
-		&-inherit-focus:focus,
-		&-inherit-focus.focus,
-		&-inherit-active:active,
-		&-inherit-toggle.active,
-		&-inherit-toggle.open {
-			color: inherit!important;
-		}
+		//inherit
+		@include create-palette-helper(
+			#{&}-inherit,
+			color,
+			inherit
+		);
 
-
-		@each $tag,$color in $calculated-brand-color-declarations {
-			&-#{$tag},
-			&-#{$tag}-hover:hover,
-			&-#{$tag}-focus:focus,
-			&-#{$tag}-focus.focus,
-			&-#{$tag}-active:active,
-			&-#{$tag}-toggle.active,
-			&-#{$tag}-toggle.open {
-				@extend %for-color-#{$tag}-important;
-			}
-		}
-	}
-
-	.display {
-		&-block {
-			display:block!important;
-		}
-		&-inline-block {
-			display:inline-block!important;
-		}
-		&-inline {
-			display:inline!important;
-		}
-	}
-
-
-	/* FIT IMAGE */	
-
-		/* emulate background cover on image tags */
-		%for-fit-image {
-			img {
-				position:absolute;
-				width: 100%;
-				height: 100%;
-				max-width:none;
-				top:-50%;
-				left:-50%;
-				right:-50%;
-				bottom:-50%;
-				margin:auto;
-				object-fit: cover;
-			}
-		}
-		.fit-image {
-			position: relative;
-			@extend %for-fit-image;
-		}
-
-	/* TEXT CLASSES */
-	$prefix: '.text';
-	#{$prefix}{
-
-		&-leading {
-			
-			&-compact {
-				line-height: $calculated-body-line-height * $body-line-height-compact-factor!important;
-			}
-			
-			&-expanded {
-				line-height: $calculated-body-line-height * $body-line-height-expanded-factor!important;
-			}
-			
-			&-normalize {
-				line-height: $calculated-body-line-height!important;
-			}
-		}
 		
 
-		&-align {
-			&-center {
-				text-align: center!important;
-			}
-			&-left {
-				text-align: left!important;
-			}
-			&-right {
-				text-align: right!important;
-			}
-			&-justify {
-				text-align: justify!important;
-			}
-		}
-
-		&-transform {
-			&-uppercase {
-				text-transform: uppercase!important;
-			}
-			&-lowercase {
-				text-transform: lowercase!important;
-			}
-			&-capitalize {
-				text-transform: capitalize!important;
-			}
-		}
-
-		&-vertical-align {
-			&-middle {
-				vertical-align:middle!important;
-			}
-			&-baseline {
-				vertical-align:baseline!important;
-			}
-			&-top {
-				vertical-align:top!important;
-			}
-			&-bottom {
-				vertical-align:bottom!important;
-			}
-			&-text-top {
-				vertical-align:text-top!important;
-			}
-			&-text-bottom {
-				vertical-align:text-bottom!important;
-			}
-			&-sub {
-				vertical-align:sub!important;
-			}
-			&-super {
-				vertical-align:super!important;
-			}
-		}
-
-		&-wrap {
-
-			white-space: normal;
-
-			&-ellipsis {
-				/* cut overflowing single line to ellipsis */
-				white-space: nowrap!important;
-				overflow: hidden!important;
-				text-overflow: ellipsis!important;
-				/* gotta be block otherwise shit wont happen */
-				display:block;
-				max-width:100%!important;
-
-				&-multiple {
-					white-space: normal!important;
-					text-overflow: ellipsis!important;
-					display: -webkit-box!important;
-					-webkit-line-clamp: $body-ellipsis-multiple-factor!important;
-					-webkit-box-orient: vertical!important;
-					overflow: hidden!important;
-					height: calc((#{$calculated-body-single-line}) * #{$body-ellipsis-multiple-factor});
-
-					#{$prefix}-leading-compact &,
-					&#{$prefix}-leading-compact {
-						height: calc((#{$calculated-body-single-line} * #{$body-line-height-compact-factor}) * #{$body-ellipsis-multiple-factor});
-					}
-					#{$prefix}-leading-expanded &,
-					&#{$prefix}-leading-expanded {
-						height: calc((#{$calculated-body-single-line} * #{$body-line-height-expanded-factor}) * #{$body-ellipsis-multiple-factor});
-					}
-				}
-			}
-
-			&-nowrap {
-
-				white-space: nowrap!important;
-			}
-
-			&-break {
-				word-break: break-word!important;
-				overflow-wrap: break-word!important;
-			}
-		}
-
-		&-clip-background {
-			@supports not (-webkit-background-clip: text) {
-				background: transparent!important;
-				color: color(p)!important;
-			}
-
-			@supports (-webkit-background-clip: text) {
-				-webkit-background-clip: text!important;
-				-webkit-text-fill-color: transparent!important;
-			}
+		//color tag
+		@each $tag,$color in $calculated-brand-color-declarations {
+			
+			@include create-palette-helper(
+				#{&}-#{$tag}
+			){
+				@extend %for-color-#{$tag}-important;
+			};
 		}
 	}
+
 
 
 
@@ -498,6 +278,25 @@
 
 		&-accent {
 			font-family: $brand-font-accent !important;
+		}
+
+		&-inherit {
+			font-family: inherit !important;
+		}
+	}
+
+	&-size {
+		&-large {
+			font-size: $calculated-body-size-large!important;
+		}
+		&-small {
+			font-size: $calculated-body-size-small!important;
+		}
+		&-normalize {
+			font-size: 1rem!important;
+		}
+		&-inherit {
+			font-size: inherit!important;
 		}
 	}
 
@@ -530,19 +329,10 @@
 		&-900 {
 			font-weight: 900!important;
 		}
+		&-inherit {
+			font-weight: inherit!important;
+		}
 
-	}
-
-	&-size {
-		&-large {
-			font-size: $calculated-body-size-large!important;
-		}
-		&-small {
-			font-size: $calculated-body-size-small!important;
-		}
-		&-normalize {
-			font-size: 1rem!important;
-		}
 	}
 
 	&-style {
@@ -552,8 +342,240 @@
 		&-oblique {
 			font-style: oblique!important;
 		}
+		&-normal {
+			font-style: normal!important;
+		}
+		&-inherit {
+			font-style: inherit!important;
+		}
 	}
 }
+
+
+	.display {
+		&-block {
+			display:block!important;
+		}
+		&-inline-block {
+			display:inline-block!important;
+		}
+		&-inline {
+			display:inline!important;
+		}
+	}
+
+
+
+	/* TEXT CLASSES */
+	$prefix: '.text';
+	#{$prefix}{
+
+		&-leading {
+			
+			&-compact {
+				line-height: $calculated-body-line-height * $body-line-height-compact-factor!important;
+			}
+			
+			&-expanded {
+				line-height: $calculated-body-line-height * $body-line-height-expanded-factor!important;
+			}
+			
+			&-normalize {
+				line-height: $calculated-body-line-height!important;
+			}
+			
+			&-inherit {
+				line-height: inherit!important;
+			}
+		}
+		
+
+		&-align {
+			&-center {
+				text-align: center!important;
+			}
+			&-left {
+				text-align: left!important;
+			}
+			&-right {
+				text-align: right!important;
+			}
+			&-justify {
+				text-align: justify!important;
+			}
+			&-inherit {
+				text-align: inherit!important;
+			}
+		}
+
+		&-transform {
+			&-uppercase {
+				text-transform: uppercase!important;
+			}
+			&-lowercase {
+				text-transform: lowercase!important;
+			}
+			&-capitalize {
+				text-transform: capitalize!important;
+			}
+			&-inherit {
+				text-transform: inherit!important;
+			}
+		}
+
+		&-vertical-align {
+			&-middle {
+				vertical-align:middle!important;
+			}
+			&-baseline {
+				vertical-align:baseline!important;
+			}
+			&-top {
+				vertical-align:top!important;
+			}
+			&-bottom {
+				vertical-align:bottom!important;
+			}
+			&-text-top {
+				vertical-align:text-top!important;
+			}
+			&-text-bottom {
+				vertical-align:text-bottom!important;
+			}
+			&-sub {
+				vertical-align:sub!important;
+			}
+			&-super {
+				vertical-align:super!important;
+			}
+			&-inherit {
+				vertical-align:inherit!important;
+			}
+		}
+
+		&-wrap {
+
+			white-space: normal!important;
+
+			&-nowrap {
+
+				white-space: nowrap!important;
+			}
+
+			&-break {
+				word-break: break-word!important;
+				overflow-wrap: break-word!important;
+			}
+
+			&-ellipsis {
+				/* cut overflowing single line to ellipsis */
+				white-space: nowrap!important;
+				overflow: hidden!important;
+				text-overflow: ellipsis!important;
+				/* gotta be block otherwise shit wont happen */
+				display:block;
+				max-width:100%!important;
+
+				&-multiple {
+					white-space: normal!important;
+					text-overflow: ellipsis!important;
+					display: -webkit-box!important;
+					-webkit-line-clamp: $body-ellipsis-multiple-factor!important;
+					-webkit-box-orient: vertical!important;
+					overflow: hidden!important;
+					height: calc((#{$calculated-body-single-line}) * #{$body-ellipsis-multiple-factor});
+
+					#{$prefix}-leading-compact &,
+					&#{$prefix}-leading-compact {
+						height: calc((#{$calculated-body-single-line} * #{$body-line-height-compact-factor}) * #{$body-ellipsis-multiple-factor});
+					}
+					#{$prefix}-leading-expanded &,
+					&#{$prefix}-leading-expanded {
+						height: calc((#{$calculated-body-single-line} * #{$body-line-height-expanded-factor}) * #{$body-ellipsis-multiple-factor});
+					}
+				}
+			}
+		}
+
+		&-clip-background {
+			@supports not (-webkit-background-clip: text) {
+				background: transparent!important;
+				color: color(p)!important;
+			}
+
+			@supports (-webkit-background-clip: text) {
+				-webkit-background-clip: text!important;
+				-webkit-text-fill-color: transparent!important;
+			}
+		}
+	}
+
+
+
+//gutters and paddings
+
+	.no-margin {
+		margin:0!important;
+
+		&-x {
+			margin-left:0!important;
+			margin-right:0!important;
+		}
+
+
+		&-y {
+			margin-top:0!important;
+			margin-bottom:0!important;
+		}
+
+		&-top {
+			margin-top:0!important;
+		}
+
+		&-bottom {
+			margin-bottom:0!important;
+		}
+
+		&-left {
+			margin-left:0!important;
+		}
+
+		&-right {
+			margin-right:0!important;
+		}
+	}
+
+
+	.no-padding {
+		padding:0!important;
+
+		&-x {
+			padding-left:0!important;
+			padding-right:0!important;
+		}
+
+
+		&-y {
+			padding-top:0!important;
+			padding-bottom:0!important;
+		}
+
+		&-top {
+			padding-top:0!important;
+		}
+
+		&-bottom {
+			padding-bottom:0!important;
+		}
+
+		&-left {
+			padding-left:0!important;
+		}
+
+		&-right {
+			padding-right:0!important;
+		}
+	}
 
 .overflow {
 
@@ -640,6 +662,12 @@
 	&-right {
 		float: right!important;
 	}
+	&-none {
+		float: none!important;
+	}
+	&-inherit {
+		float: inherit!important;
+	}
 }
 
 
@@ -654,146 +682,95 @@
 	&-both {
 		clear: both!important;
 	}
-}
-
-//gutters and paddings
-
-.no-margin {
-	margin:0!important;
-
-	&-x {
-		margin-left:0!important;
-		margin-right:0!important;
+	&-none {
+		clear: none!important;
 	}
-
-
-	&-y {
-		margin-top:0!important;
-		margin-bottom:0!important;
-	}
-
-	&-top {
-		margin-top:0!important;
-	}
-
-	&-bottom {
-		margin-bottom:0!important;
-	}
-
-	&-left {
-		margin-left:0!important;
-	}
-
-	&-right {
-		margin-right:0!important;
-	}
-}
-
-
-.no-padding {
-	padding:0!important;
-
-	&-x {
-		padding-left:0!important;
-		padding-right:0!important;
-	}
-
-
-	&-y {
-		padding-top:0!important;
-		padding-bottom:0!important;
-	}
-
-	&-top {
-		padding-top:0!important;
-	}
-
-	&-bottom {
-		padding-bottom:0!important;
-	}
-
-	&-left {
-		padding-left:0!important;
-	}
-
-	&-right {
-		padding-right:0!important;
+	&-inherit {
+		clear: inherit!important;
 	}
 }
 
 
 // align and justify shit
 
-	.justify-content {
-		&-flex-start {
-			justify-content: flex-start!important;
-		}
-		&-flex-end {
-			justify-content: flex-end!important;
-		}
-		&-center {
-			justify-content: center!important;
-		}
-		&-space-between {
-			justify-content: space-between!important;
-		}
-		&-space-around {
-			justify-content: space-around!important;
-		}
-		&-space-evenly {
-			justify-content: space-evenly!important;
-		}
-		&-start {
-			justify-content: start!important;
-		}
-		&-end {
-			justify-content: end!important;
-		}
-		&-left {
-			justify-content: left!important;
-		}
-		&-right {
-			justify-content: right!important;
-		}
-		&-normal {
-			justify-content: normal!important;
-		}
-		&-stretch {
-			justify-content: stretch!important;
+	.justify {
+		&-content {
+			&-flex-start {
+				justify-content: flex-start!important;
+			}
+			&-flex-end {
+				justify-content: flex-end!important;
+			}
+			&-center {
+				justify-content: center!important;
+			}
+			&-space-between {
+				justify-content: space-between!important;
+			}
+			&-space-around {
+				justify-content: space-around!important;
+			}
+			&-space-evenly {
+				justify-content: space-evenly!important;
+			}
+			&-start {
+				justify-content: start!important;
+			}
+			&-end {
+				justify-content: end!important;
+			}
+			&-left {
+				justify-content: left!important;
+			}
+			&-right {
+				justify-content: right!important;
+			}
+			&-normal {
+				justify-content: normal!important;
+			}
+			&-stretch {
+				justify-content: stretch!important;
+			}
+			&-inherit {
+				justify-content: stretch!important;
+			}
 		}
 	}
 
 	.align {
 		&-self {
 
-			&-stretch {
-				align-self: stretch!important;
-			}
-			&-center {
-				align-self: center!important;
-			}
 			&-flex-start {
 				align-self: flex-start!important;
 			}
 			&-flex-end {
 				align-self: flex-end!important;
 			}
+			&-center {
+				align-self: center!important;
+			}
 			&-baseline {
 				align-self: baseline!important;
 			}
+			&-stretch {
+				align-self: stretch!important;
+			}
+			&-inherit {
+				align-self: inherit!important;
+			}
 		}
 		&-items {
-			&-stretch {
-				align-items: stretch!important;
-			}
-			&-center {
-				align-items: center!important;
-			}
 			&-flex-start {
 				align-items: flex-start!important;
 			}
 			&-flex-end {
 				align-items: flex-end!important;
+			}
+			&-stretch {
+				align-items: stretch!important;
+			}
+			&-center {
+				align-items: center!important;
 			}
 			&-baseline {
 				align-items: baseline!important;
@@ -803,6 +780,9 @@
 			}
 			&-end {
 				align-items: end!important;
+			}
+			&-inherit {
+				align-items: inherit!important;
 			}
 		}
 
@@ -825,11 +805,11 @@
 			&-space-evenly {
 				align-content: space-evenly!important;
 			}
-			&-stretch {
-				align-content: stretch!important;
-			}
 			&-baseline {
 				align-content: baseline!important;
+			}
+			&-stretch {
+				align-content: stretch!important;
 			}
 			&-start {
 				align-content: start!important;
@@ -845,6 +825,9 @@
 			}
 			&-normal {
 				align-content: normal!important;
+			}
+			&-inherit {
+				align-content: inherit!important;
 			}
 		}
 	}
@@ -912,6 +895,9 @@
 		&-column-reverse {
 			flex-direction: column-reverse!important;
 		}
+		&-inherit {
+			flex-direction: inherit!important;
+		}
 	}
 
 	
@@ -926,6 +912,10 @@
 
 	&-wrap-reverse {
 		flex-wrap:wrap-reverse!important;
+	}
+
+	&-wrap-inherit {
+		flex-wrap:inherit!important;
 	}
 
 	&-1-1,
@@ -1036,7 +1026,7 @@
 }
 
 
-@include breakpoint(#{$mobile-br-max-opposite}) {
+@include breakpoint(#{$mobile-br-max-polar}) {
 
 	.only-nonmobile {
 		display: block !important;
@@ -1049,4 +1039,8 @@
 
 .sr-only {
 	display:none!important;
+}
+
+.cf {
+	@extend %for-cf;
 }

@@ -206,7 +206,8 @@ $prefix: '.input';
 			.theme-inverse & {
 				background-color: $input-background-inverse;
 			}
-
+			
+			&#{$prefix}-disabled,
 			&[disabled] {
 				@extend %for-form-global-disabled;
 				background-color: $input-background-disabled;
@@ -218,6 +219,7 @@ $prefix: '.input';
 		}
 
 		& {
+			font: inherit;
 			-webkit-appearance: none;
 			appearance: none;
 			@include type-set((
@@ -232,6 +234,7 @@ $prefix: '.input';
 				case: $input-text-transform,
 			));
 			display:inline-block;
+			min-width:$input-min-width;
 			background-color: $input-background;
 			border: $input-border-width solid $input-border-color;
 			padding-right: $calculated-input-gutter-x;
@@ -433,7 +436,7 @@ $prefix: '.input';
 			max-width:100%;
 			position:relative;
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				display:inline-flex;
 				margin-right: 2rem;
 			}
@@ -441,7 +444,7 @@ $prefix: '.input';
 			
 
 		&-horizontal {
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				flex-direction: row;
 				align-items: flex-start;
 				// flex-wrap: wrap;
@@ -460,7 +463,7 @@ $prefix: '.input';
 		}
 
 		&-vertical {
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				flex-direction: column;
 			}
 		}
@@ -497,17 +500,18 @@ $prefix: '.input';
 			@extend %for-form-input-select-multiple;
 		}
 
-		&-radio,
-		&-checkbox {
+		&-inline {
 			@extend %for-form-input-inlines;
 		}
 	}
 
-	&#{$prefix}-no-radius {
+	&#{$prefix}-no-radius,
+	&-group#{$prefix}-no-radius {
 		border-radius: 0!important;
 	}
 
-	&#{$prefix}-no-shadow {
+	&#{$prefix}-no-shadow,
+	&-group#{$prefix}-no-shadow {
 		box-shadow:none!important;
 	}
 
@@ -620,9 +624,12 @@ $prefix: '.input';
 		max-width:100%;
 		overflow-x:auto;
 		overflow-y:visible;
+		align-items:stretch;
 		
 		#{$prefix} {
 			position:relative;
+			border-radius:0!important;
+			border-color:transparent;
 
 			&:hover,
 			&:active,
@@ -668,17 +675,17 @@ $prefix: '.input';
 
             &:not(#{$prefix}-group-responsive) {
 
-				> #{$prefix},.btn, .trumbowyg {
-					&:nth-last-child(n+2) {
-						border-top-right-radius: 0;
-						border-bottom-right-radius: 0;
-					}
-				}
+				// > #{$prefix},.btn, .trumbowyg {
+				// 	&:nth-last-child(n+2) {
+				// 		border-top-right-radius: 0;
+				// 		border-bottom-right-radius: 0;
+				// 	}
+				// }
 
 				> #{$prefix},.btn, .trumbowyg {
 					&:nth-child(n+2) {
-						border-top-left-radius: 0;
-						border-bottom-left-radius: 0;
+						// border-top-left-radius: 0;
+						// border-bottom-left-radius: 0;
 
 						&,
 						&:hover {
@@ -692,17 +699,17 @@ $prefix: '.input';
         &#{&}-vertical {
             flex-direction:column;
 
-			> #{$prefix},.btn, .trumbowyg {
-				&:nth-last-child(n+2) {
-					border-bottom-right-radius: 0;
-					border-bottom-left-radius: 0;
-				}
-			}
+			// > #{$prefix},.btn, .trumbowyg {
+			// 	&:nth-last-child(n+2) {
+			// 		border-bottom-right-radius: 0;
+			// 		border-bottom-left-radius: 0;
+			// 	}
+			// }
 
 			> #{$prefix},.btn, .trumbowyg {
 				&:nth-child(n+2) {
-					border-top-right-radius: 0;
-					border-top-left-radius: 0;
+					// border-top-right-radius: 0;
+					// border-top-left-radius: 0;
 
 					&,
 					&:hover {
@@ -714,21 +721,21 @@ $prefix: '.input';
 
         &#{&}-responsive {
 
-			@include br($mobile-br-max-opposite){
+			@include br($mobile-br-max-polar){
 				
 				&#{$prefix}-group-horizontal {
 
-					> #{$prefix},.btn, .trumbowyg {
-						&:nth-last-child(n+2) {
-							border-top-right-radius: 0;
-							border-bottom-right-radius: 0;
-						}
-					}
+					// > #{$prefix},.btn, .trumbowyg {
+					// 	&:nth-last-child(n+2) {
+					// 		border-top-right-radius: 0;
+					// 		border-bottom-right-radius: 0;
+					// 	}
+					// }
 
 					> #{$prefix},.btn, .trumbowyg {
 						&:nth-child(n+2) {
-							border-top-left-radius: 0;
-							border-bottom-left-radius: 0;
+							// border-top-left-radius: 0;
+							// border-bottom-left-radius: 0;
 
 							&,
 							&:hover {
@@ -747,17 +754,17 @@ $prefix: '.input';
 				display:flex;
 				flex-direction:column;
 
-				> #{$prefix},.btn, .trumbowyg {
-					&:nth-last-child(n+2) {
-						border-bottom-right-radius: 0;
-						border-bottom-left-radius: 0;
-					}
-				}
+				// > #{$prefix},.btn, .trumbowyg {
+				// 	&:nth-last-child(n+2) {
+				// 		border-bottom-right-radius: 0;
+				// 		border-bottom-left-radius: 0;
+				// 	}
+				// }
 	
 				> #{$prefix},.btn, .trumbowyg {
 					&:nth-child(n+2) {
-						border-top-right-radius: 0;
-						border-top-left-radius: 0;
+						// border-top-right-radius: 0;
+						// border-top-left-radius: 0;
 		
 						&,
 						&:hover {

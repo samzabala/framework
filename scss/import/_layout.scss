@@ -4,6 +4,10 @@
 	/* CONTAINER */
 		$prefix: '.container';
 		#{$prefix} {
+
+			&,&-fluid {
+				@extend %for-cf;
+			}
 			& {
 				width:100%;
 				padding-left: $container-gutter;
@@ -16,7 +20,7 @@
 				max-width: none;
 			}
 
-			@include br($mobile-br-max-opposite) {
+			@include br($mobile-br-max-polar) {
 				&#{$prefix}-wide {
 					padding-left: $container-gutter-wide;
 					padding-right: $container-gutter-wide;

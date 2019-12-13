@@ -14,7 +14,9 @@ The theme supports 14 colors and adds necessary variations of these colors as we
 
 	lightest color, usually for body background
 
-Both schemes has an alt value for contrasting background instances. These values interchange on dark mode by default (eg: `$background-base-alt` )
+*Both schemes has an alt value for contrasting background instances.*
+
+*These values interchange on dark mode by default (eg: `$background-base-alt` )*
 
 *	**Primary `$brand-color-primary`**
 
@@ -23,10 +25,9 @@ Both schemes has an alt value for contrasting background instances. These values
 *	**Accent `$brand-color-accent`**
 
 	Other elements for highlighting and contrasting but not as important
+	
+*Both schemes are used by [gradient and intensity](#gradient-and-intensity) palette variables by default*
 
-*	**Accent `$brand-color-neutral`**
-
-	Other elements that shouldnt be hightlighted but has to be there
 
 ### User feedback
 
@@ -42,6 +43,10 @@ Both schemes has an alt value for contrasting background instances. These values
 
 	Fatal feedback
 
+*	**Accent `$brand-color-neutral`**
+
+	Other elements that shouldnt be hightlighted but has to be there
+
 
 ## Dependent schemes
 
@@ -56,7 +61,7 @@ These colors are dependent of custom palette [declared before them by default](.
 
 *	**Gradient Start and Gradient End `$brand-gradient-start` and `$brand-gradient-end`**
 
-	Colors for gradient starts and stops for both css helpers and [svg classes](../scaffolding/images.md);
+	Colors for gradient starts and stops for both css helpers and [svg classes](../scaffolding/images.md#svg);
 
 *	**Brand Intensity `$brand-intensity-[1 - 5]`**
 
@@ -92,6 +97,35 @@ Color and contrast palettes interchange on inverse theme by default. to see this
 
 
 
+## Color tags
+These are valid color tags for all javascript arguments or data attributes
+*	`base`
+*	`primary`
+*	`accent`
+*	`neutral`
+*	`error`
+*	`caution`
+*	`success`
 
+These color tags are valid except for [btn](../components/button.md) and [forms](../components/forms.md)
+*	`intensity-1`
+*	`intensity-2`
+*	`intensity-3`
+*	`intensity-4`
+*	`intensity-5`
+
+See [Tooltip](../components/tooltip.md)
+
+## Background helper classes
+
+See [Helpers](../scaffolding/helpers.md#background)
+
+## Color helper classes
+
+See [Helpers](../scaffolding/helpers.md#color)
+
+
+## SVG Classes
+See [Images](../scaffolding/images.md#svg)
 
 [Back to TOC](../../../readme.md)

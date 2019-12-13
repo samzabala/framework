@@ -6,6 +6,11 @@
 		$calculated-special-primary-font-size: em($special-primary-font-size / $body-font-size)
 	}
 
+	$calculated-special-primary-font-size-mobile: $special-primary-font-size-mobile;
+	@if internal-is-convertable($special-primary-font-size-mobile) {
+		$calculated-special-primary-font-size-mobile: em($special-primary-font-size-mobile / $body-font-size)
+	}
+
 	$calculated-special-primary-line-height: type-lead( $special-primary-font-size,$special-primary-line-height );
 
 	$calculated-special-primary-gutter-y: $special-primary-gutter-y;
@@ -13,17 +18,43 @@
 		$calculated-special-primary-gutter-y: em($special-primary-gutter-y / $special-primary-font-size)
 	}
 
+//secondary
 
 	$calculated-special-secondary-font-size: $special-secondary-font-size;
 	@if internal-is-convertable($special-secondary-font-size) {
 		$calculated-special-secondary-font-size: em($special-secondary-font-size / $body-font-size)
 	}
 
+	$calculated-special-secondary-font-size-mobile: $special-secondary-font-size-mobile;
+	@if internal-is-convertable($special-secondary-font-size-mobile) {
+		$calculated-special-secondary-font-size-mobile: em($special-secondary-font-size-mobile / $body-font-size)
+	}
+
+
 	$calculated-special-secondary-line-height: type-lead( $special-secondary-font-size,$special-secondary-line-height );
 
 	$calculated-special-secondary-gutter-y: $special-secondary-gutter-y;
 	@if internal-is-convertable($special-secondary-gutter-y) {
 		$calculated-special-secondary-gutter-y: em($special-secondary-gutter-y / $special-secondary-font-size)
+	}
+
+
+// lead
+	$calculated-lead-font-size: $lead-font-size;
+	@if internal-is-convertable($lead-font-size) {
+		$calculated-lead-font-size: em($lead-font-size / $body-font-size)
+	}
+
+	$calculated-lead-font-size-mobile: $lead-font-size-mobile;
+	@if internal-is-convertable($lead-font-size-mobile) {
+		$calculated-lead-font-size-mobile: em($lead-font-size-mobile / $body-font-size)
+	}
+
+	$calculated-lead-line-height: type-lead( $lead-font-size,$lead-line-height );
+
+	$calculated-lead-gutter-y: $lead-gutter-y;
+	@if internal-is-convertable($lead-gutter-y) {
+		$calculated-lead-gutter-y: em($lead-gutter-y / $lead-font-size)
 	}
 
 
@@ -78,15 +109,14 @@
 		$calculated-body-heading-gutter-top: rem($body-heading-gutter-top / $body-font-size);
 	}
 
-
-	$calculated-body-heading-size: (
-		$calculated-body-size-h1,
-		$calculated-body-size-h2,
-		$calculated-body-size-h3,
-		$calculated-body-size-h4,
-		$calculated-body-size-h5,
-		$calculated-body-size-h6
-	);
+$calculated-body-heading-size: (
+	$calculated-body-size-h1,
+	$calculated-body-size-h2,
+	$calculated-body-size-h3,
+	$calculated-body-size-h4,
+	$calculated-body-size-h5,
+	$calculated-body-size-h6
+);
 
 //list
 	$calculated-body-list-offset: $body-list-offset;
@@ -175,7 +205,7 @@ $prefix: '.special';
 			display:block;
 
 			@include br(#{$mobile-br-max}-max) {
-				font-size: $calculated-body-size-h2!important
+				font-size: $calculated-special-primary-font-size-mobile!important
 			}
 		}
 		&-secondary {
@@ -192,10 +222,29 @@ $prefix: '.special';
 			display:block;
 
 			@include br(#{$mobile-br-max}-max) {
-				font-size: $calculated-body-size-h3!important;
+				font-size: $calculated-special-secondary-font-size-mobile!important;
 			}
 		}
-    }
+	}
+	
+
+	.lead {
+		@include type-set((
+			size: $calculated-lead-font-size!important,
+			leading: $calculated-lead-line-height!important,
+			color: $lead-color!important,
+			weight:$lead-font-weight!important,
+			style: $lead-font-style!important,
+			case: $lead-text-transform!important,
+		));
+		margin-bottom: $calculated-lead-gutter-y;
+		margin-top: $calculated-lead-gutter-y;
+		display:block;
+
+		@include br(#{$mobile-br-max}-max) {
+			font-size: $calculated-lead-font-size-mobile!important;
+		}
+	}
 
 	%for {
 		&-p {
@@ -291,14 +340,20 @@ ol,ul,dd{
 }
 ol,ul{
 
-	&.unstyled,&.inline {
+	&.unstyled,
+	&.inline {
 
 		&,li {
 			padding-left:0;
 		}
+	}
+
+	&.unstyled,
+	&.inline,
+	&.style-none {
 
 		li:before {
-			content: none;
+			content: none!important;
 		}
 	}
 
@@ -326,7 +381,8 @@ ol,ul{
 }
 
 ul{
-	> li{
+	&.style-disc li,
+	& > li {
 		&:before {
 			content:"";
 			display:inline-block;
@@ -342,13 +398,27 @@ ul{
 			border-radius: $body-list-bullet-border-radius;
 		};
 	}
+
+	&.style {
+		&-circle {
+			li:before {
+				background:none!important;
+				border: .05em solid $body-list-bullet-color!important;
+			}
+		}
+		&-square {
+			li:before {
+				border-radius: 0!important;
+			}
+		}
+	}
 }
 
 ol {
-	counter-reset: fw-list;
+	counter-reset: fwList;
 
-	> li {
-		counter-increment: fw-list;
+	& > li {
+		counter-increment: fwList;
 		// padding-left: em(15px / $content-font-size);
 
 		&:before {
@@ -356,10 +426,41 @@ ol {
 				color: $body-list-bullet-color,
 				// family: font(a)
 			));
-			content: counter(fw-list);
 			font-weight: 800;
 			top: 0;
 			margin-right: 1em;
+		}
+	}
+	&.style-decimal li,
+	& > li:before {
+		content: counter(fwList,decimal)!important;
+	}
+
+	&.style {
+		&-decimal-leading-zero {
+			li:before {
+				content: counter(fwList,decimal-leading-zero)!important;
+			}
+		}
+		&-lower-alpha {
+			li:before {
+				content: counter(fwList,lower-alpha)!important;
+			}
+		}
+		&-lower-roman {
+			li:before {
+				content: counter(fwList,lower-roman)!important;
+			}
+		}
+		&-upper-alpha {
+			li:before {
+				content: counter(fwList,upper-alpha)!important;
+			}
+		}
+		&-upper-roman {
+			li:before {
+				content: counter(fwList,upper-roman)!important;
+			}
 		}
 	}
 }
@@ -438,6 +539,11 @@ cite {
 		weight: $body-cite-font-weight,
 		style: $body-cite-font-style
 	));
+
+	blockquote & {
+		display:block;
+		margin-top: $calculated-body-text-gutter-y;
+	}
 }
 
 

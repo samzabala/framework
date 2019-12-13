@@ -3,10 +3,15 @@
 - Set up The sass file that will be compiled into the stylesheet
 - Framework sass variables can be customized by declaring custom variables fist before integrating the framework
 
-
+EVRYTHING CAN BE CUSTOMIZED FIGHT ME
 
 You can refer to existing sass variables [here](../../../scss/import/_vars.scss)
-Note: All sass fariables in the list are required for the stylesheet to properly compile
+
+Although lengthy, most variables are values of what is described, if it don't make sense to you ask sam because she's the dumbass who built this
+
+woah i'm sam
+
+Note: All sass variables in the list are required for the stylesheet to properly compile
 Example:
 ```scss
 /*! 
@@ -28,6 +33,17 @@ framework sass
 // ya custom css after
 
 ```
+
+Note, some values especially font sizes are recalculated internally by the framework to create equivalent optimal values, if some variable customization looks weird, there's your answer
+eg:
+
+`$body-line-height`. If set as pixels, this will be converted to its unitless equivalent
+```scss
+$body-font-size: 16px;
+$body-line-height: 24px; // will be outputted as 1.5 
+```
+
+If this causes issues or errors, feel free to hit me up and shit on me so I can troubleshootootoot
 
 # Javascript
 

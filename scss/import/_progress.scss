@@ -33,7 +33,7 @@ $calculated-progress-title-font-size: $progress-title-font-size;
 		background-color: $progress-background-color;
 		border-radius: $progress-border-radius;
 		overflow:hidden;
-		@extend %cf;
+		@extend %for-cf;
 		// margin-bottom:$calculated-body-text-gutter-y;
 		@include gradient((
 			type: repeating-linear,
@@ -116,7 +116,7 @@ $calculated-progress-title-font-size: $progress-title-font-size;
 	}
 }
 
-/* SUBSET */
+/* Progress bar */
 $prefix: '.progress';
 #{$prefix} {
 	@extend %for-progress;
@@ -135,13 +135,11 @@ $prefix: '.progress';
 				@extend %for-background-#{$tag};
 			}
 		}
-
-		&-gradient {
-			@extend %for-background-gradient;
 	
-			@each $angle in $calculated-gradient-angles {
-				&-#{$angle} {
-					@extend %for-background-gradient-#{$angle};
+		&-intensity {
+			@for $i from 1 through length($calculated-color-brand-intensity) {
+				&-#{$i} {
+					@extend %for-background-intensity-#{$i};
 				}
 			}
 		}
