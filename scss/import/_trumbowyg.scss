@@ -329,21 +329,22 @@ CUSTOM STYLES FOR TRUMBOWYG
 			display: block;
 			color: $brand-color-error;
 		}
+	}
 	
-		#{$prefix}-modal-button {
-			@extend %for-btn;
-			@extend %for-btn-itself-and-group;
-			@extend %for-btn-on-mobile;
-			margin: 0 .125em;
-	
-			&#{$prefix}-modal-submit {
-				@extend .btn.btn-primary;
-			}
-	
-			&#{$prefix}-modal-reset {
-				@extend .btn.btn-default;
-			}
-		}
+	&-modal-button {
+		@extend %for-btn;
+		@extend %for-btn-itself-and-group;
+		@extend %for-btn-on-mobile;
+		margin: 0 .125em;
+	}
+
+
+	&-modal-submit {
+		@extend %for-btn-primary;
+	}
+
+	&-modal-reset {
+		@extend %for-btn-default;
 	}
 	
 	&-overlay {
@@ -427,8 +428,8 @@ CUSTOM STYLES FOR TRUMBOWYG
 		}
 	}
 
-	&-progress 
-		{@extend %for-progress;
+	&-progress {
+			@extend %for-progress;
 
 		&,
 		&-bar {

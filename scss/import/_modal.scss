@@ -5,62 +5,46 @@ $prefix: '.modal';
 
 
 //also used by module
-%for-modal {
-
-	&-popup {
-
-
-		padding: $modal-gutter-y $modal-gutter-x;
-		border-radius: $modal-border-radius;
-		background: $modal-background;
-		backface-visibility: hidden;
-		position:relative;
-		margin: auto;
-		z-index:2;
-		box-shadow: rgba(0, 0, 0, .2) 0 2px 3px;
-		width: 100%;
-	
-		.theme-inverse & {
-			background: $modal-background-inverse;
-		}
-	}
-
-	&-wrapper { 
-		position: fixed;
-		top: 0!important;
-		left: 0!important;
-		right: 0!important;
-		bottom: 0!important;
-		margin: auto;
-		width: 100vw!important;
-		height: 100vh!important;
-		padding: $gutter-base;
-		overflow-y: scroll;
-		background: $modal-overlay-bg;
-		z-index: 99999;
-
-		&::-webkit-scrollbar {
-			display:none;
-		}
-
-		@include br(#{$mobile-br-max}-max) {
-			padding: $gutter-small;
-		}
-
-	}
-}
 
 .body-modal-active {
 	overflow-y:hidden;
 }
 
 #{$prefix} {
-		display:none!important;
+	display:none!important;
 
 
-	&-wrapper {
-		@extend %for-modal-wrapper;
+	@at-root %for-modal {
+
+		&-wrapper { 
+			position: fixed;
+			top: 0!important;
+			left: 0!important;
+			right: 0!important;
+			bottom: 0!important;
+			margin: auto;
+			width: 100vw!important;
+			height: 100vh!important;
+			padding: $gutter-base;
+			overflow-y: scroll;
+			background: $modal-overlay-bg;
+			z-index: 99999;
+
+			&::-webkit-scrollbar {
+				display:none;
+			}
+
+			@include br(#{$mobile-br-max}-max) {
+				padding: $gutter-small;
+			}
+
+		}
 	}
+
+		&-wrapper {
+			@extend %for-modal-wrapper;
+		}
+
 
 	&-close {
 		& {
@@ -78,6 +62,29 @@ $prefix: '.modal';
 
 			&:not([data-toggle="modal-close"]) {
 				pointer-events:none;
+			}
+		}
+	}
+
+
+
+	@at-root %for-modal {
+
+		&-popup {
+	
+	
+			padding: $modal-gutter-y $modal-gutter-x;
+			border-radius: $modal-border-radius;
+			background: $modal-background;
+			backface-visibility: hidden;
+			position:relative;
+			margin: auto;
+			z-index:2;
+			box-shadow: rgba(0, 0, 0, .2) 0 2px 3px;
+			width: 100%;
+		
+			.theme-inverse & {
+				background: $modal-background-inverse;
 			}
 		}
 	}

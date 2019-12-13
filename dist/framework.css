@@ -91,18 +91,22 @@ table {
   width: 100%; }
 
 .flex-xs {
+  display: -webkit-box!important;
   display: flex!important; }
 
 @media (min-width: 601px) {
   .flex-sm {
+    display: -webkit-box!important;
     display: flex!important; } }
 
 @media (min-width: 1201px) {
   .flex-md {
+    display: -webkit-box!important;
     display: flex!important; } }
 
 @media (min-width: 1601px) {
   .flex-lg {
+    display: -webkit-box!important;
     display: flex!important; } }
 
 /* 
@@ -134,6 +138,7 @@ body {
   body.body-nav-sticky-offset {
     padding-top: 4.6875rem; }
   body:not(.body-loaded) *, body:not(.body-loaded) *:before, body:not(.body-loaded) *:after {
+    -webkit-transition: none !important;
     transition: none !important; }
 
 /* SUPER GLOBAL STYLE FIXES */
@@ -165,8 +170,6 @@ embed {
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 * {
@@ -249,16 +252,6 @@ a {
     .lead {
       font-size: 1.25em !important; } }
 
-p,
-.p,
-ul,
-ol,
-address,
-pre,
-dl,
-hr, .fw-trumbowyg-modal-box label {
-  margin-bottom: 1.875em; }
-
 /* heading */
 h1, .h1,
 h2, .h2,
@@ -318,9 +311,20 @@ em, i {
 a {
   color: #235789;
   text-decoration: none;
+  -webkit-transition: 0.25s all ease-in-out;
   transition: 0.25s all ease-in-out; }
   a:hover {
     color: #17BEBB; }
+
+p,
+.p,
+ul,
+ol,
+address,
+pre,
+dl,
+hr, .fw-trumbowyg-modal-box label {
+  margin-bottom: 1.875em; }
 
 p,
 .p,
@@ -478,7 +482,8 @@ hr {
   height: 1px;
   opacity: .2;
   width: 100%;
-  flex: 0 0;
+  -webkit-box-flex: 0;
+          flex: 0 0;
   margin-top: 1.875em; }
 
 small {
@@ -943,7 +948,8 @@ body:not(.lazy-initialized) .lazy {
   right: -50%;
   bottom: -50%;
   margin: auto;
-  object-fit: cover; }
+  -o-object-fit: cover;
+     object-fit: cover; }
 
 .fit-image {
   position: relative; }
@@ -1089,11 +1095,13 @@ table {
   font-variant: normal;
   text-rendering: auto;
   font: inherit;
-  flex: 0 0 auto;
+  -webkit-box-flex: 0;
+          flex: 0 0 auto;
   height: 1em;
   width: 1em;
   vertical-align: inherit;
-  transform-origin: center center;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
   pointer-events: none; }
   .symbol:before, .symbol:after {
     content: "";
@@ -1142,19 +1150,24 @@ table {
   .symbol-arrow-left, .symbol-arrow-right, .symbol-arrow-up, .symbol-arrow-down {
     height: 0.625em; }
     .symbol-arrow-left:before, .symbol-arrow-left:after, .symbol-arrow-right:before, .symbol-arrow-right:after, .symbol-arrow-up:before, .symbol-arrow-up:after, .symbol-arrow-down:before, .symbol-arrow-down:after {
-      transform-origin: center 0.09375em;
+      -webkit-transform-origin: center 0.09375em;
+              transform-origin: center 0.09375em;
       height: 0.6875em;
       top: 0.125em; }
     .symbol-arrow-left:before, .symbol-arrow-right:before, .symbol-arrow-up:before, .symbol-arrow-down:before {
-      transform: rotate(-45deg); }
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg); }
     .symbol-arrow-left:after, .symbol-arrow-right:after, .symbol-arrow-up:after, .symbol-arrow-down:after {
-      transform: rotate(45deg); }
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
   .symbol-close:before, .symbol-close:after {
     height: 1.25em; }
   .symbol-close:before {
-    transform: rotate(45deg); }
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); }
   .symbol-close:after {
-    transform: rotate(-45deg); }
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
   .symbol-kebab-vertical:before, .symbol-kebab-horizontal:before {
     content: none; }
   .symbol-kebab-vertical:after, .symbol-kebab-horizontal:after {
@@ -1190,32 +1203,37 @@ table {
   .open > .symbol-caret-up-toggle, .symbol-arrow-up,
   .active > .symbol-arrow-up-toggle,
   .open > .symbol-arrow-up-toggle {
-    transform: rotate(0deg); }
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
   .symbol-caret-down,
   .active > .symbol-caret-down-toggle,
   .open > .symbol-caret-down-toggle, .symbol-arrow-down,
   .active > .symbol-arrow-down-toggle,
   .open > .symbol-arrow-down-toggle {
-    transform: rotate(180deg); }
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg); }
   .symbol-caret-left,
   .active > .symbol-caret-left-toggle,
   .open > .symbol-caret-left-toggle, .symbol-arrow-left,
   .active > .symbol-arrow-left-toggle,
   .open > .symbol-arrow-left-toggle {
-    transform: rotate(-90deg); }
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg); }
   .symbol-caret-right,
   .active > .symbol-caret-right-toggle,
   .open > .symbol-caret-right-toggle, .symbol-arrow-right,
   .active > .symbol-arrow-right-toggle,
   .open > .symbol-arrow-right-toggle {
-    transform: rotate(90deg); }
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
   .symbol-square:before {
     content: none; }
   .symbol-square:after {
     width: .875em;
     height: .875em; }
   .symbol-search {
-    transform: rotate(-45deg); }
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
     .symbol-search:before {
       width: 1em;
       height: 1em;
@@ -1230,8 +1248,10 @@ table {
       bottom: auto; }
   .symbol-map:before, .symbol-map:after {
     background: none !important;
-    transform: translateY(-0.3125em);
-    transform-origin: top center;
+    -webkit-transform: translateY(-0.3125em);
+            transform: translateY(-0.3125em);
+    -webkit-transform-origin: top center;
+            transform-origin: top center;
     bottom: auto; }
   .symbol-map:before {
     border-radius: 50%;
@@ -1269,6 +1289,7 @@ table {
   color: inherit; }
 
 .nav, .nav-list {
+  display: -webkit-box;
   display: flex;
   padding: 0;
   margin: 0; }
@@ -1342,6 +1363,7 @@ table {
   text-transform: none;
   font-style: normal;
   position: relative;
+  -webkit-transition: 0.125s all ease-in-out;
   transition: 0.125s all ease-in-out;
   padding-left: 20px;
   padding-right: 20px;
@@ -1357,11 +1379,11 @@ table {
     right: 0;
     left: 0;
     height: 0;
+    -webkit-transition: 0.125s all ease-in-out;
     transition: 0.125s all ease-in-out;
-    background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* FF3.6-15 */
-    background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* Chrome10-25,Safari5.1-6 */
+    background-image: -webkit-gradient(linear , left top, right top , from(#235789), to(#17BEBB)) ;
     background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
     .nav-vertical .nav-list > .nav-item > a:after, .nav-vertical
@@ -1372,10 +1394,9 @@ table {
       width: 0;
       top: 0;
       left: auto;
-      background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
       /* FF3.6-15 */
-      background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
       /* Chrome10-25,Safari5.1-6 */
+      background-image: -webkit-gradient(linear , left bottom, left top , from(#235789), to(#17BEBB)) ;
       background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -1416,8 +1437,10 @@ table {
 /*** PAGINATION ***/
 /* it */
 .pagination {
+  display: -webkit-inline-box;
   display: inline-flex;
-  align-items: center; }
+  -webkit-box-align: center;
+          align-items: center; }
 
 /*** LAYOUTING CONTAINERS AND SHIT ***/
 /* CONTAINER */
@@ -1449,6 +1472,7 @@ table {
 .flex-grid {
   margin-left: -40px;
   margin-bottom: 40px;
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap; }
   .flex-grid-compact {
@@ -1495,7 +1519,8 @@ table {
   max-width: calc(100% - 40px); }
   .flex-grid-fixed > [class*=flex-col-], .flex-grid-fixed >
   .flex-child {
-    flex-grow: 0;
+    -webkit-box-flex: 0;
+            flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto; }
   .flex-grid-no-gutter > [class*=flex-col-],
@@ -1507,7 +1532,8 @@ table {
 
 [class*=flex-col-] {
   flex-basis: calc(100% - 40px);
-  flex-grow: 1;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
   flex-shrink: 1; }
   .flex-grid-no-gutter > [class*=flex-col-],
   .flex-grid-no-gutter-x > [class*=flex-col-] {
@@ -3687,6 +3713,7 @@ table {
   grid-template-columns: 100%;
   display: grid;
   grid-gap: 15px;
+  -webkit-transition: 0.5s opacity ease-in-out;
   transition: 0.5s opacity ease-in-out;
   max-width: 100%; }
   .module-grid:nth-child(n+2) {
@@ -3703,8 +3730,10 @@ table {
   font-weight: 700;
   text-transform: none;
   font-style: normal;
+  display: -webkit-box;
   display: flex;
-  align-items: center; }
+  -webkit-box-align: center;
+          align-items: center; }
   .module-grid-title:nth-last-child(n+2) {
     margin-bottom: 1em; }
   .module-grid-title:nth-child(n+2) {
@@ -3715,7 +3744,8 @@ table {
     width: 72px;
     height: 1px;
     background-color: #8d8d8d;
-    flex: 1 1;
+    -webkit-box-flex: 1;
+            flex: 1 1;
     margin-left: 1em; }
 
 .module, .module-grid {
@@ -3725,11 +3755,14 @@ table {
   background: #FFFFFF;
   border: 1px solid #e6e6e6;
   display: grid;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
   align-content: center;
   grid-template-columns: 100%;
+  grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, -webkit-min-content));
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, min-content));
   grid-template-areas: "header" "content" "footer";
+  -webkit-transition: 0.5s box-shadow ease-in-out;
   transition: 0.5s box-shadow ease-in-out; }
   .theme-inverse .module {
     background: #1a1a1a;
@@ -3764,15 +3797,19 @@ table {
 
 @media (min-width: 1201px) {
   .module-header-break, .module-footer-break {
+    display: -webkit-box;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center; }
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+            align-items: center; }
     .module-header-break .module-functions:not(:first-child:last-child), .module-footer-break .module-functions:not(:first-child:last-child) {
       width: 50%; }
     .module-header-break .module-functions, .module-footer-break .module-functions {
       margin-top: 0;
-      flex: 1 1;
+      -webkit-box-flex: 1;
+              flex: 1 1;
       text-align: right;
       margin-top: -10px;
       margin-bottom: -10px; }
@@ -3786,6 +3823,7 @@ table {
       .module-footer-break .module-functions > .input-group,
       .module-footer-break .module-functions > .input-wrapper {
         margin-top: 0;
+        display: -webkit-inline-box;
         display: inline-flex; } }
 
 .module-header {
@@ -3804,6 +3842,7 @@ table {
 
 .module-function {
   position: relative;
+  display: -webkit-inline-box;
   display: inline-flex; }
 
 .module-functions {
@@ -3818,7 +3857,9 @@ table {
     .module-functions .module-function {
       display: block; } }
   .module-functions .btn-group, .module-functions .input-group {
-    flex-direction: row; }
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row; }
   .module-functions .input-wrapper {
     margin-right: 0; }
 
@@ -3888,43 +3929,29 @@ table {
   border-radius: 0 !important; }
 
 /*** MODAL ***/
-.modal-popup, .fw-trumbowyg-modal-box {
-  padding: 30px 20px;
-  border-radius: 10px;
-  background: #FFFFFF;
-  backface-visibility: hidden;
-  position: relative;
-  margin: auto;
-  z-index: 2;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
-  width: 100%; }
-  .theme-inverse .modal-popup, .theme-inverse .fw-trumbowyg-modal-box {
-    background: #1a1a1a; }
-
-.modal-wrapper, .fw-trumbowyg-modal {
-  position: fixed;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  margin: auto;
-  width: 100vw !important;
-  height: 100vh !important;
-  padding: 40px;
-  overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 99999; }
-  .modal-wrapper::-webkit-scrollbar, .fw-trumbowyg-modal::-webkit-scrollbar {
-    display: none; }
-  @media (max-width: 1200px) {
-    .modal-wrapper, .fw-trumbowyg-modal {
-      padding: 20px; } }
-
 .body-modal-active {
   overflow-y: hidden; }
 
 .modal {
   display: none !important; }
+  .modal-wrapper, .fw-trumbowyg-modal {
+    position: fixed;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: auto;
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 40px;
+    overflow-y: scroll;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999; }
+    .modal-wrapper::-webkit-scrollbar, .fw-trumbowyg-modal::-webkit-scrollbar {
+      display: none; }
+    @media (max-width: 1200px) {
+      .modal-wrapper, .fw-trumbowyg-modal {
+        padding: 20px; } }
   .modal-close {
     font-size: 2rem;
     position: absolute;
@@ -3938,6 +3965,19 @@ table {
     right: 0; }
     .modal-close-overlay:not([data-toggle="modal-close"]) {
       pointer-events: none; }
+  .modal-popup, .fw-trumbowyg-modal-box {
+    padding: 30px 20px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    position: relative;
+    margin: auto;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
+    width: 100%; }
+    .theme-inverse .modal-popup, .theme-inverse .fw-trumbowyg-modal-box {
+      background: #1a1a1a; }
 
 /*** IMAGES ***/
 .thumbnail {
@@ -3993,15 +4033,21 @@ table {
     line-height: inherit;
     font-size: 1.125rem; }
   .thumbnail-text {
+    display: -webkit-box;
     display: flex;
     text-align: center;
-    justify-content: center;
+    -webkit-box-pack: center;
+            justify-content: center;
     align-content: center;
-    align-items: center; }
+    -webkit-box-align: center;
+            align-items: center; }
   .thumbnail-content {
+    display: -webkit-box;
     display: flex;
-    align-items: center;
-    justify-content: center; }
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center; }
 
 /*** PROGRESS BAR ***/
 .progress, .fw-trumbowyg-progress {
@@ -4010,20 +4056,22 @@ table {
   background-color: transparent;
   border-radius: 20px;
   overflow: hidden;
-  background: -moz-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.2) 0%,  rgba(0, 0, 0, 0.2) 1px,  transparent 1px,  transparent 4px) ;
   /* FF3.6-15 */
   background: -webkit-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.2) 0%,  rgba(0, 0, 0, 0.2) 1px,  transparent 1px,  transparent 4px) ;
   /* Chrome10-25,Safari5.1-6 */
   background: repeating-linear-gradient(135deg ,  rgba(0, 0, 0, 0.2) 0%,  rgba(0, 0, 0, 0.2) 1px,  transparent 1px,  transparent 4px) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
   .active.progress, .active.fw-trumbowyg-progress {
-    animation-name: progress-bar-stripes;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite; }
+    -webkit-animation-name: progress-bar-stripes;
+            animation-name: progress-bar-stripes;
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite; }
   .theme-inverse .progress, .theme-inverse .fw-trumbowyg-progress {
     background-color: transparent;
-    background: -moz-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.4) 0%,  rgba(0, 0, 0, 0.4) 1px,  transparent 1px,  transparent 4px) ;
     /* FF3.6-15 */
     background: -webkit-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.4) 0%,  rgba(0, 0, 0, 0.4) 1px,  transparent 1px,  transparent 4px) ;
     /* Chrome10-25,Safari5.1-6 */
@@ -4032,12 +4080,19 @@ table {
 
 .progress, .progress-bar, .fw-trumbowyg-progress, .fw-trumbowyg-progress-bar {
   height: 1.25rem;
+  -webkit-transition: 2s all ease-in-out;
   transition: 2s all ease-in-out; }
 
 .progress-bar, .fw-trumbowyg-progress-bar {
   float: left; }
   .progress-bar, .fw-trumbowyg-progress-bar {
     background-color: #235789; }
+
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 50px 0; }
+  to {
+    background-position: 0 0; } }
 
 @keyframes progress-bar-stripes {
   from {
@@ -4063,7 +4118,8 @@ table {
 .badge {
   display: inline-block;
   vertical-align: middle;
-  flex: 0 0 auto;
+  -webkit-box-flex: 0;
+          flex: 0 0 auto;
   line-height: inherit;
   width: 1.5625rem;
   height: 1.5625rem;
@@ -4143,8 +4199,10 @@ table {
     box-shadow: 0px 2px 20px -5px #000000;
     width: 20px;
     height: 20px;
-    transform-origin: center center;
-    transform: rotate(45deg); }
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); }
   .tooltip-badge {
     position: absolute;
     margin: auto; }
@@ -4210,17 +4268,19 @@ table {
       right: 100%; }
   .dropdown.dropdown-center-x {
     left: 50%;
-    transform: translateX(-50%); }
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%); }
   .dropdown.dropdown-center-y {
     top: 50%;
-    transform: translateY(-50%); }
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
   .dropdown.open {
     display: block; }
   .dropdown li:before {
     content: none; }
 
 /*  BUTTONS ***/
-.btn, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button {
+.btn, .fw-trumbowyg-modal-button {
   font-size: 1rem;
   line-height: 1.875;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
@@ -4235,37 +4295,69 @@ table {
   padding-right: 1.5625em;
   padding-left: 1.5625em;
   border: 1px solid transparent;
+  -webkit-transition: 0.25s all ease-in-out;
   transition: 0.25s all ease-in-out;
   max-width: 100%;
   width: auto;
+  display: -webkit-inline-box;
   display: inline-flex;
   align-content: center;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
   vertical-align: middle;
   background: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-  .btn .symbol:last-child, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button .symbol:last-child, .btn .badge:last-child, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button .badge:last-child {
+  .btn .symbol:last-child, .fw-trumbowyg-modal-button .symbol:last-child, .btn .badge:last-child, .fw-trumbowyg-modal-button .badge:last-child {
     margin-left: .25em; }
-  .btn .symbol:first-child, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button .symbol:first-child, .btn .badge:first-child, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button .badge:first-child {
+  .btn .symbol:first-child, .fw-trumbowyg-modal-button .symbol:first-child, .btn .badge:first-child, .fw-trumbowyg-modal-button .badge:first-child {
     margin-right: .25em; }
 
+.nav .btn {
+  padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5);
+  padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5);
+  height: 4.6875rem; }
+
+.btn.btn-no-radius, .btn-group.btn-no-radius {
+  border-radius: 0 !important; }
+
 @media (max-width: 1200px) {
-  .btn, .btn-group, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button {
+  .btn, .btn-group, .fw-trumbowyg-modal-button {
+    display: -webkit-box;
     display: flex;
     width: 100%; } }
 
-.btn, .btn-group, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button {
+.btn, .btn-group, .fw-trumbowyg-modal-button {
   border-radius: 10px;
   box-shadow: 0px 5px 15px -8px #000000;
   background-color: transparent;
   color: inherit; }
-  .btn:hover, .btn-group:hover, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button:hover, .btn:focus, .btn-group:focus, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button:focus, .focus.btn, .focus.btn-group, .fw-trumbowyg-modal-box .focus.fw-trumbowyg-modal-button, .btn:active, .btn-group:active, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button:active, .active.btn, .active.btn-group, .fw-trumbowyg-modal-box .active.fw-trumbowyg-modal-button {
+  .btn:hover, .btn-group:hover, .fw-trumbowyg-modal-button:hover, .btn:focus, .btn-group:focus, .fw-trumbowyg-modal-button:focus, .focus.btn, .focus.btn-group, .focus.fw-trumbowyg-modal-button, .btn:active, .btn-group:active, .fw-trumbowyg-modal-button:active, .active.btn, .active.btn-group, .active.fw-trumbowyg-modal-button {
     box-shadow: 0px 5px 15px -8px #000000;
     color: inherit; }
+
+.btn-group .btn, .btn-group .btn:hover {
+  box-shadow: none; }
+
+.btn.btn-no-shadow, .btn-group.btn-no-shadow, .btn.btn-link {
+  box-shadow: none !important; }
+
+.btn-block {
+  display: block;
+  width: 100%; }
+  @media (max-width: 1200px) {
+    .btn-block-mobile {
+      display: block;
+      width: 100%; } }
+
+.btn.btn-disabled,
+.btn-disabled .btn {
+  cursor: not-allowed !important;
+  opacity: 0.5; }
 
 .btn.btn-large,
 .btn-group.btn-large .btn {
@@ -4286,11 +4378,6 @@ table {
   border-radius: 10px;
   min-height: 1.875em; }
 
-.btn.btn-disabled,
-.btn-disabled .btn {
-  cursor: not-allowed !important;
-  opacity: 0.5; }
-
 .btn-symbol {
   width: 2.8125em;
   padding-left: 0;
@@ -4305,45 +4392,27 @@ table {
 .btn-small .btn-symbol, .btn-symbol.btn-small {
   width: 1.875em; }
 
-.nav .btn {
-  padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5);
-  padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5);
-  height: 4.6875rem; }
-
-.btn.btn-no-radius, .btn-group.btn-no-radius {
-  border-radius: 0 !important; }
-
-.btn-group .btn, .btn-group .btn:hover {
-  box-shadow: none; }
-
-.btn.btn-no-shadow, .btn-group.btn-no-shadow, .btn.btn-link {
-  box-shadow: none !important; }
-
-.btn-block {
-  display: block;
-  width: 100%; }
-  @media (max-width: 1200px) {
-    .btn-block-mobile {
-      display: block;
-      width: 100%; } }
-
 .btn-group {
+  display: -webkit-inline-box;
   display: inline-flex;
   position: relative;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: visible;
-  align-items: stretch; }
+  -webkit-box-align: stretch;
+          align-items: stretch; }
   .btn-group .btn {
     position: relative;
     border-radius: 0 !important; }
     .btn-group .btn:hover, .btn-group .btn:active, .btn-group .btn.active, .btn-group .btn:focus, .btn-group .btn.focus, .btn-group .btn.open {
       z-index: 1; }
   .btn-group-block {
+    display: -webkit-box;
     display: flex;
     width: 100%; }
-    .btn-group-block .btn:not(.btn-symbol) {
-      flex: 1 1; }
+    .btn-group-block > .btn:not(.btn-symbol) {
+      -webkit-box-flex: 1;
+              flex: 1 1; }
   .btn-group.btn-large {
     border-radius: 20px; }
   .btn-group.btn-small {
@@ -4351,70 +4420,68 @@ table {
   .btn-group.btn-group-horizontal:not(.btn-group-responsive) > .btn:nth-child(n+2), .btn-group.btn-group-horizontal:not(.btn-group-responsive) > .btn:nth-child(n+2):hover {
     border-left-color: rgba(0, 0, 0, 0.1) !important; }
   .btn-group.btn-group-vertical {
-    flex-direction: column; }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column; }
+    .btn-group.btn-group-vertical > .btn-symbol {
+      width: auto; }
     .btn-group.btn-group-vertical > .btn:nth-child(n+2), .btn-group.btn-group-vertical > .btn:nth-child(n+2):hover {
       border-top-color: rgba(0, 0, 0, 0.1) !important; }
   @media (min-width: 1201px) {
+    .btn-group.btn-group-responsive.btn-group-horizontal > .btn-symbol {
+      width: auto; }
     .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2), .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2):hover {
       border-left-color: rgba(0, 0, 0, 0.1) !important; } }
   @media (max-width: 1200px) {
     .btn-group.btn-group-responsive {
       width: 100%;
       flex-wrap: wrap;
+      display: -webkit-box;
       display: flex;
-      flex-direction: column; }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column; }
       .btn-group.btn-group-responsive > .btn:nth-child(n+2), .btn-group.btn-group-responsive > .btn:nth-child(n+2):hover {
         border-top-color: rgba(0, 0, 0, 0.1) !important; } }
 
-.btn.btn-default, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.btn-no-interaction, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.btn-no-interaction:hover, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:hover, .btn.btn-default.btn-no-interaction:focus, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:focus, .btn.btn-default.btn-no-interaction.focus, .fw-trumbowyg-modal-box .btn-no-interaction.focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.btn-no-interaction:active, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:active, .btn.btn-default.btn-no-interaction.active, .fw-trumbowyg-modal-box .btn-no-interaction.active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.btn-disabled, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.btn-disabled:hover, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:hover, .btn.btn-default.btn-disabled:focus, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:focus, .btn.btn-default.btn-disabled.focus, .fw-trumbowyg-modal-box .btn-disabled.focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.btn-disabled:active, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:active, .btn.btn-default.btn-disabled.active, .fw-trumbowyg-modal-box .btn-disabled.active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn.btn-default, .fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default, .btn-no-interaction.fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default:hover, .btn-no-interaction.fw-trumbowyg-modal-reset:hover, .btn-no-interaction.btn.btn-default:focus, .btn-no-interaction.fw-trumbowyg-modal-reset:focus, .btn-no-interaction.focus.btn.btn-default, .btn-no-interaction.focus.fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default:active, .btn-no-interaction.fw-trumbowyg-modal-reset:active, .btn-no-interaction.active.btn.btn-default, .btn-no-interaction.active.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default, .btn-disabled.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default:hover, .btn-disabled.fw-trumbowyg-modal-reset:hover, .btn-disabled.btn.btn-default:focus, .btn-disabled.fw-trumbowyg-modal-reset:focus, .btn-disabled.focus.btn.btn-default, .btn-disabled.focus.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default:active, .btn-disabled.fw-trumbowyg-modal-reset:active, .btn-disabled.active.btn.btn-default, .btn-disabled.active.fw-trumbowyg-modal-reset,
 .btn-disabled .btn.btn-default,
-.btn-disabled .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-disabled .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-disabled .fw-trumbowyg-modal-reset,
 .btn-disabled:hover .btn.btn-default,
-.btn-disabled:hover .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-disabled:hover .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-disabled:hover .fw-trumbowyg-modal-reset,
 .btn-disabled:focus .btn.btn-default,
-.btn-disabled:focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-disabled:focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-disabled:focus .fw-trumbowyg-modal-reset,
 .btn-disabled.focus .btn.btn-default,
-.btn-disabled.focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-disabled.focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-disabled.focus .fw-trumbowyg-modal-reset,
 .btn-disabled:active .btn.btn-default,
-.btn-disabled:active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-disabled:active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-disabled:active .fw-trumbowyg-modal-reset,
 .btn-disabled.active .btn.btn-default,
-.btn-disabled.active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-disabled.active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset {
+.btn-disabled.active .fw-trumbowyg-modal-reset {
   border-color: transparent ;
   background: transparent ;
   color: inherit ; }
 
-.btn.btn-default:hover, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:hover,
+.btn.btn-default:hover, .fw-trumbowyg-modal-reset:hover,
 .btn-group.btn-group-unite:hover .btn.btn-default,
-.btn-group.btn-group-unite:hover .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite:hover .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default:focus, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:focus,
+.btn-group.btn-group-unite:hover .fw-trumbowyg-modal-reset, .btn.btn-default:focus, .fw-trumbowyg-modal-reset:focus,
 .btn-group.btn-group-unite:focus .btn.btn-default,
-.btn-group.btn-group-unite:focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite:focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.focus, .fw-trumbowyg-modal-box .focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-group.btn-group-unite:focus .fw-trumbowyg-modal-reset, .focus.btn.btn-default, .focus.fw-trumbowyg-modal-reset,
 .btn-group.btn-group-unite.focus .btn.btn-default,
-.btn-group.btn-group-unite.focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite.focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset {
+.btn-group.btn-group-unite.focus .fw-trumbowyg-modal-reset {
   border-color: transparent ;
   background: transparent ;
   color: #235789 ; }
 
-.btn.btn-default:active, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset:active,
+.btn.btn-default:active, .fw-trumbowyg-modal-reset:active,
 .btn-group.btn-group-unite:active .btn.btn-default,
-.btn-group.btn-group-unite:active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite:active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset, .btn.btn-default.active, .fw-trumbowyg-modal-box .active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
+.btn-group.btn-group-unite:active .fw-trumbowyg-modal-reset, .active.btn.btn-default, .active.fw-trumbowyg-modal-reset,
 .btn-group.btn-group-unite.active .btn.btn-default,
-.btn-group.btn-group-unite.active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite.active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-reset {
+.btn-group.btn-group-unite.active .fw-trumbowyg-modal-reset {
   border-color: transparent ;
   background: #235789 ;
   color: #FFFFFF ; }
 
-.btn.btn-base, .btn.btn-base.btn-no-interaction, .btn.btn-base.btn-no-interaction:hover, .btn.btn-base.btn-no-interaction:focus, .btn.btn-base.btn-no-interaction.focus, .btn.btn-base.btn-no-interaction:active, .btn.btn-base.btn-no-interaction.active, .btn.btn-base.btn-disabled, .btn.btn-base.btn-disabled:hover, .btn.btn-base.btn-disabled:focus, .btn.btn-base.btn-disabled.focus, .btn.btn-base.btn-disabled:active, .btn.btn-base.btn-disabled.active,
+.btn.btn-base, .btn-no-interaction.btn.btn-base, .btn-no-interaction.btn.btn-base:hover, .btn-no-interaction.btn.btn-base:focus, .btn-no-interaction.focus.btn.btn-base, .btn-no-interaction.btn.btn-base:active, .btn-no-interaction.active.btn.btn-base, .btn-disabled.btn.btn-base, .btn-disabled.btn.btn-base:hover, .btn-disabled.btn.btn-base:focus, .btn-disabled.focus.btn.btn-base, .btn-disabled.btn.btn-base:active, .btn-disabled.active.btn.btn-base,
 .btn-disabled .btn.btn-base,
 .btn-disabled:hover .btn.btn-base,
 .btn-disabled:focus .btn.btn-base,
@@ -4427,68 +4494,57 @@ table {
 
 .btn.btn-base:hover,
 .btn-group.btn-group-unite:hover .btn.btn-base, .btn.btn-base:focus,
-.btn-group.btn-group-unite:focus .btn.btn-base, .btn.btn-base.focus,
+.btn-group.btn-group-unite:focus .btn.btn-base, .focus.btn.btn-base,
 .btn-group.btn-group-unite.focus .btn.btn-base {
   border-color: transparent ;
   background: #747474 ;
   color: #FFFFFF ; }
 
 .btn.btn-base:active,
-.btn-group.btn-group-unite:active .btn.btn-base, .btn.btn-base.active,
+.btn-group.btn-group-unite:active .btn.btn-base, .active.btn.btn-base,
 .btn-group.btn-group-unite.active .btn.btn-base {
   border-color: transparent ;
   background: #000000 ;
   color: #FFFFFF ; }
 
-.btn.btn-primary, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-no-interaction, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-no-interaction:hover, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:hover, .btn.btn-primary.btn-no-interaction:focus, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:focus, .btn.btn-primary.btn-no-interaction.focus, .fw-trumbowyg-modal-box .btn-no-interaction.focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-no-interaction:active, .fw-trumbowyg-modal-box .btn-no-interaction.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:active, .btn.btn-primary.btn-no-interaction.active, .fw-trumbowyg-modal-box .btn-no-interaction.active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-disabled, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-disabled:hover, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:hover, .btn.btn-primary.btn-disabled:focus, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:focus, .btn.btn-primary.btn-disabled.focus, .fw-trumbowyg-modal-box .btn-disabled.focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.btn-disabled:active, .fw-trumbowyg-modal-box .btn-disabled.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:active, .btn.btn-primary.btn-disabled.active, .fw-trumbowyg-modal-box .btn-disabled.active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn.btn-primary, .fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary, .btn-no-interaction.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:hover, .btn-no-interaction.fw-trumbowyg-modal-submit:hover, .btn-no-interaction.btn.btn-primary:focus, .btn-no-interaction.fw-trumbowyg-modal-submit:focus, .btn-no-interaction.focus.btn.btn-primary, .btn-no-interaction.focus.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:active, .btn-no-interaction.fw-trumbowyg-modal-submit:active, .btn-no-interaction.active.btn.btn-primary, .btn-no-interaction.active.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary, .btn-disabled.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:hover, .btn-disabled.fw-trumbowyg-modal-submit:hover, .btn-disabled.btn.btn-primary:focus, .btn-disabled.fw-trumbowyg-modal-submit:focus, .btn-disabled.focus.btn.btn-primary, .btn-disabled.focus.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:active, .btn-disabled.fw-trumbowyg-modal-submit:active, .btn-disabled.active.btn.btn-primary, .btn-disabled.active.fw-trumbowyg-modal-submit,
 .btn-disabled .btn.btn-primary,
-.btn-disabled .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-disabled .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-disabled .fw-trumbowyg-modal-submit,
 .btn-disabled:hover .btn.btn-primary,
-.btn-disabled:hover .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-disabled:hover .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-disabled:hover .fw-trumbowyg-modal-submit,
 .btn-disabled:focus .btn.btn-primary,
-.btn-disabled:focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-disabled:focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-disabled:focus .fw-trumbowyg-modal-submit,
 .btn-disabled.focus .btn.btn-primary,
-.btn-disabled.focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-disabled.focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-disabled.focus .fw-trumbowyg-modal-submit,
 .btn-disabled:active .btn.btn-primary,
-.btn-disabled:active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-disabled:active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-disabled:active .fw-trumbowyg-modal-submit,
 .btn-disabled.active .btn.btn-primary,
-.btn-disabled.active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-disabled.active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit {
+.btn-disabled.active .fw-trumbowyg-modal-submit {
   border-color: transparent ;
   background: #235789 ;
   color: #FFFFFF ; }
 
-.btn.btn-primary:hover, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:hover,
+.btn.btn-primary:hover, .fw-trumbowyg-modal-submit:hover,
 .btn-group.btn-group-unite:hover .btn.btn-primary,
-.btn-group.btn-group-unite:hover .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite:hover .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary:focus, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:focus,
+.btn-group.btn-group-unite:hover .fw-trumbowyg-modal-submit, .btn.btn-primary:focus, .fw-trumbowyg-modal-submit:focus,
 .btn-group.btn-group-unite:focus .btn.btn-primary,
-.btn-group.btn-group-unite:focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite:focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.focus, .fw-trumbowyg-modal-box .focus.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-group.btn-group-unite:focus .fw-trumbowyg-modal-submit, .focus.btn.btn-primary, .focus.fw-trumbowyg-modal-submit,
 .btn-group.btn-group-unite.focus .btn.btn-primary,
-.btn-group.btn-group-unite.focus .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite.focus .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit {
+.btn-group.btn-group-unite.focus .fw-trumbowyg-modal-submit {
   border-color: transparent ;
   background: #2d71b2 ;
   color: #FFFFFF ; }
 
-.btn.btn-primary:active, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit:active,
+.btn.btn-primary:active, .fw-trumbowyg-modal-submit:active,
 .btn-group.btn-group-unite:active .btn.btn-primary,
-.btn-group.btn-group-unite:active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite:active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit, .btn.btn-primary.active, .fw-trumbowyg-modal-box .active.fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
+.btn-group.btn-group-unite:active .fw-trumbowyg-modal-submit, .active.btn.btn-primary, .active.fw-trumbowyg-modal-submit,
 .btn-group.btn-group-unite.active .btn.btn-primary,
-.btn-group.btn-group-unite.active .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit,
-.fw-trumbowyg-modal-box .btn-group.btn-group-unite.active .fw-trumbowyg-modal-button.fw-trumbowyg-modal-submit {
+.btn-group.btn-group-unite.active .fw-trumbowyg-modal-submit {
   border-color: transparent ;
   background: #193d60 ;
   color: #FFFFFF ; }
 
-.btn.btn-accent, .btn.btn-accent.btn-no-interaction, .btn.btn-accent.btn-no-interaction:hover, .btn.btn-accent.btn-no-interaction:focus, .btn.btn-accent.btn-no-interaction.focus, .btn.btn-accent.btn-no-interaction:active, .btn.btn-accent.btn-no-interaction.active, .btn.btn-accent.btn-disabled, .btn.btn-accent.btn-disabled:hover, .btn.btn-accent.btn-disabled:focus, .btn.btn-accent.btn-disabled.focus, .btn.btn-accent.btn-disabled:active, .btn.btn-accent.btn-disabled.active,
+.btn.btn-accent, .btn-no-interaction.btn.btn-accent, .btn-no-interaction.btn.btn-accent:hover, .btn-no-interaction.btn.btn-accent:focus, .btn-no-interaction.focus.btn.btn-accent, .btn-no-interaction.btn.btn-accent:active, .btn-no-interaction.active.btn.btn-accent, .btn-disabled.btn.btn-accent, .btn-disabled.btn.btn-accent:hover, .btn-disabled.btn.btn-accent:focus, .btn-disabled.focus.btn.btn-accent, .btn-disabled.btn.btn-accent:active, .btn-disabled.active.btn.btn-accent,
 .btn-disabled .btn.btn-accent,
 .btn-disabled:hover .btn.btn-accent,
 .btn-disabled:focus .btn.btn-accent,
@@ -4501,20 +4557,20 @@ table {
 
 .btn.btn-accent:hover,
 .btn-group.btn-group-unite:hover .btn.btn-accent, .btn.btn-accent:focus,
-.btn-group.btn-group-unite:focus .btn.btn-accent, .btn.btn-accent.focus,
+.btn-group.btn-group-unite:focus .btn.btn-accent, .focus.btn.btn-accent,
 .btn-group.btn-group-unite.focus .btn.btn-accent {
   border-color: transparent ;
   background: #24e4e1 ;
   color: #FFFFFF ; }
 
 .btn.btn-accent:active,
-.btn-group.btn-group-unite:active .btn.btn-accent, .btn.btn-accent.active,
+.btn-group.btn-group-unite:active .btn.btn-accent, .active.btn.btn-accent,
 .btn-group.btn-group-unite.active .btn.btn-accent {
   border-color: transparent ;
   background: #11918e ;
   color: #FFFFFF ; }
 
-.btn.btn-neutral, .btn.btn-neutral.btn-no-interaction, .btn.btn-neutral.btn-no-interaction:hover, .btn.btn-neutral.btn-no-interaction:focus, .btn.btn-neutral.btn-no-interaction.focus, .btn.btn-neutral.btn-no-interaction:active, .btn.btn-neutral.btn-no-interaction.active, .btn.btn-neutral.btn-disabled, .btn.btn-neutral.btn-disabled:hover, .btn.btn-neutral.btn-disabled:focus, .btn.btn-neutral.btn-disabled.focus, .btn.btn-neutral.btn-disabled:active, .btn.btn-neutral.btn-disabled.active,
+.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral:hover, .btn-no-interaction.btn.btn-neutral:focus, .btn-no-interaction.focus.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral:active, .btn-no-interaction.active.btn.btn-neutral, .btn-disabled.btn.btn-neutral, .btn-disabled.btn.btn-neutral:hover, .btn-disabled.btn.btn-neutral:focus, .btn-disabled.focus.btn.btn-neutral, .btn-disabled.btn.btn-neutral:active, .btn-disabled.active.btn.btn-neutral,
 .btn-disabled .btn.btn-neutral,
 .btn-disabled:hover .btn.btn-neutral,
 .btn-disabled:focus .btn.btn-neutral,
@@ -4527,20 +4583,20 @@ table {
 
 .btn.btn-neutral:hover,
 .btn-group.btn-group-unite:hover .btn.btn-neutral, .btn.btn-neutral:focus,
-.btn-group.btn-group-unite:focus .btn.btn-neutral, .btn.btn-neutral.focus,
+.btn-group.btn-group-unite:focus .btn.btn-neutral, .focus.btn.btn-neutral,
 .btn-group.btn-group-unite.focus .btn.btn-neutral {
   border-color: transparent ;
   background: #a7a7a7 ;
   color: #FFFFFF ; }
 
 .btn.btn-neutral:active,
-.btn-group.btn-group-unite:active .btn.btn-neutral, .btn.btn-neutral.active,
+.btn-group.btn-group-unite:active .btn.btn-neutral, .active.btn.btn-neutral,
 .btn-group.btn-group-unite.active .btn.btn-neutral {
   border-color: transparent ;
   background: #747474 ;
   color: #FFFFFF ; }
 
-.btn.btn-success, .btn.btn-success.btn-no-interaction, .btn.btn-success.btn-no-interaction:hover, .btn.btn-success.btn-no-interaction:focus, .btn.btn-success.btn-no-interaction.focus, .btn.btn-success.btn-no-interaction:active, .btn.btn-success.btn-no-interaction.active, .btn.btn-success.btn-disabled, .btn.btn-success.btn-disabled:hover, .btn.btn-success.btn-disabled:focus, .btn.btn-success.btn-disabled.focus, .btn.btn-success.btn-disabled:active, .btn.btn-success.btn-disabled.active,
+.btn.btn-success, .btn-no-interaction.btn.btn-success, .btn-no-interaction.btn.btn-success:hover, .btn-no-interaction.btn.btn-success:focus, .btn-no-interaction.focus.btn.btn-success, .btn-no-interaction.btn.btn-success:active, .btn-no-interaction.active.btn.btn-success, .btn-disabled.btn.btn-success, .btn-disabled.btn.btn-success:hover, .btn-disabled.btn.btn-success:focus, .btn-disabled.focus.btn.btn-success, .btn-disabled.btn.btn-success:active, .btn-disabled.active.btn.btn-success,
 .btn-disabled .btn.btn-success,
 .btn-disabled:hover .btn.btn-success,
 .btn-disabled:focus .btn.btn-success,
@@ -4553,20 +4609,20 @@ table {
 
 .btn.btn-success:hover,
 .btn-group.btn-group-unite:hover .btn.btn-success, .btn.btn-success:focus,
-.btn-group.btn-group-unite:focus .btn.btn-success, .btn.btn-success.focus,
+.btn-group.btn-group-unite:focus .btn.btn-success, .focus.btn.btn-success,
 .btn-group.btn-group-unite.focus .btn.btn-success {
   border-color: transparent ;
   background: #1beb00 ;
   color: #FFFFFF ; }
 
 .btn.btn-success:active,
-.btn-group.btn-group-unite:active .btn.btn-success, .btn.btn-success.active,
+.btn-group.btn-group-unite:active .btn.btn-success, .active.btn.btn-success,
 .btn-group.btn-group-unite.active .btn.btn-success {
   border-color: transparent ;
   background: #0f8500 ;
   color: #FFFFFF ; }
 
-.btn.btn-caution, .btn.btn-caution.btn-no-interaction, .btn.btn-caution.btn-no-interaction:hover, .btn.btn-caution.btn-no-interaction:focus, .btn.btn-caution.btn-no-interaction.focus, .btn.btn-caution.btn-no-interaction:active, .btn.btn-caution.btn-no-interaction.active, .btn.btn-caution.btn-disabled, .btn.btn-caution.btn-disabled:hover, .btn.btn-caution.btn-disabled:focus, .btn.btn-caution.btn-disabled.focus, .btn.btn-caution.btn-disabled:active, .btn.btn-caution.btn-disabled.active,
+.btn.btn-caution, .btn-no-interaction.btn.btn-caution, .btn-no-interaction.btn.btn-caution:hover, .btn-no-interaction.btn.btn-caution:focus, .btn-no-interaction.focus.btn.btn-caution, .btn-no-interaction.btn.btn-caution:active, .btn-no-interaction.active.btn.btn-caution, .btn-disabled.btn.btn-caution, .btn-disabled.btn.btn-caution:hover, .btn-disabled.btn.btn-caution:focus, .btn-disabled.focus.btn.btn-caution, .btn-disabled.btn.btn-caution:active, .btn-disabled.active.btn.btn-caution,
 .btn-disabled .btn.btn-caution,
 .btn-disabled:hover .btn.btn-caution,
 .btn-disabled:focus .btn.btn-caution,
@@ -4579,20 +4635,20 @@ table {
 
 .btn.btn-caution:hover,
 .btn-group.btn-group-unite:hover .btn.btn-caution, .btn.btn-caution:focus,
-.btn-group.btn-group-unite:focus .btn.btn-caution, .btn.btn-caution.focus,
+.btn-group.btn-group-unite:focus .btn.btn-caution, .focus.btn.btn-caution,
 .btn-group.btn-group-unite.focus .btn.btn-caution {
   border-color: transparent ;
   background: #fd9936 ;
   color: #FFFFFF ; }
 
 .btn.btn-caution:active,
-.btn-group.btn-group-unite:active .btn.btn-caution, .btn.btn-caution.active,
+.btn-group.btn-group-unite:active .btn.btn-caution, .active.btn.btn-caution,
 .btn-group.btn-group-unite.active .btn.btn-caution {
   border-color: transparent ;
   background: #cb6602 ;
   color: #FFFFFF ; }
 
-.btn.btn-error, .btn.btn-error.btn-no-interaction, .btn.btn-error.btn-no-interaction:hover, .btn.btn-error.btn-no-interaction:focus, .btn.btn-error.btn-no-interaction.focus, .btn.btn-error.btn-no-interaction:active, .btn.btn-error.btn-no-interaction.active, .btn.btn-error.btn-disabled, .btn.btn-error.btn-disabled:hover, .btn.btn-error.btn-disabled:focus, .btn.btn-error.btn-disabled.focus, .btn.btn-error.btn-disabled:active, .btn.btn-error.btn-disabled.active,
+.btn.btn-error, .btn-no-interaction.btn.btn-error, .btn-no-interaction.btn.btn-error:hover, .btn-no-interaction.btn.btn-error:focus, .btn-no-interaction.focus.btn.btn-error, .btn-no-interaction.btn.btn-error:active, .btn-no-interaction.active.btn.btn-error, .btn-disabled.btn.btn-error, .btn-disabled.btn.btn-error:hover, .btn-disabled.btn.btn-error:focus, .btn-disabled.focus.btn.btn-error, .btn-disabled.btn.btn-error:active, .btn-disabled.active.btn.btn-error,
 .btn-disabled .btn.btn-error,
 .btn-disabled:hover .btn.btn-error,
 .btn-disabled:focus .btn.btn-error,
@@ -4605,20 +4661,20 @@ table {
 
 .btn.btn-error:hover,
 .btn-group.btn-group-unite:hover .btn.btn-error, .btn.btn-error:focus,
-.btn-group.btn-group-unite:focus .btn.btn-error, .btn.btn-error.focus,
+.btn-group.btn-group-unite:focus .btn.btn-error, .focus.btn.btn-error,
 .btn-group.btn-group-unite.focus .btn.btn-error {
   border-color: transparent ;
   background: #fd3636 ;
   color: #FFFFFF ; }
 
 .btn.btn-error:active,
-.btn-group.btn-group-unite:active .btn.btn-error, .btn.btn-error.active,
+.btn-group.btn-group-unite:active .btn.btn-error, .active.btn.btn-error,
 .btn-group.btn-group-unite.active .btn.btn-error {
   border-color: transparent ;
   background: #cb0202 ;
   color: #FFFFFF ; }
 
-.btn.btn-link, .btn.btn-link.btn-no-interaction, .btn.btn-link.btn-no-interaction:hover, .btn.btn-link.btn-no-interaction:focus, .btn.btn-link.btn-no-interaction.focus, .btn.btn-link.btn-no-interaction:active, .btn.btn-link.btn-no-interaction.active, .btn.btn-link.btn-disabled, .btn.btn-link.btn-disabled:hover, .btn.btn-link.btn-disabled:focus, .btn.btn-link.btn-disabled.focus, .btn.btn-link.btn-disabled:active, .btn.btn-link.btn-disabled.active,
+.btn.btn-link, .btn-no-interaction.btn.btn-link, .btn-no-interaction.btn.btn-link:hover, .btn-no-interaction.btn.btn-link:focus, .btn-no-interaction.focus.btn.btn-link, .btn-no-interaction.btn.btn-link:active, .btn-no-interaction.active.btn.btn-link, .btn-disabled.btn.btn-link, .btn-disabled.btn.btn-link:hover, .btn-disabled.btn.btn-link:focus, .btn-disabled.focus.btn.btn-link, .btn-disabled.btn.btn-link:active, .btn-disabled.active.btn.btn-link,
 .btn-disabled .btn.btn-link,
 .btn-disabled:hover .btn.btn-link,
 .btn-disabled:focus .btn.btn-link,
@@ -4631,14 +4687,14 @@ table {
 
 .btn.btn-link:hover,
 .btn-group.btn-group-unite:hover .btn.btn-link, .btn.btn-link:focus,
-.btn-group.btn-group-unite:focus .btn.btn-link, .btn.btn-link.focus,
+.btn-group.btn-group-unite:focus .btn.btn-link, .focus.btn.btn-link,
 .btn-group.btn-group-unite.focus .btn.btn-link {
   border-color: transparent ;
   background: transparent ;
   color: #17BEBB ; }
 
 .btn.btn-link:active,
-.btn-group.btn-group-unite:active .btn.btn-link, .btn.btn-link.active,
+.btn-group.btn-group-unite:active .btn.btn-link, .active.btn.btn-link,
 .btn-group.btn-group-unite.active .btn.btn-link {
   border-color: transparent ;
   background: transparent ;
@@ -4647,6 +4703,7 @@ table {
 /*** input ***/
 /* input clasees */
 .input-label, select.input[multiple], .input-single-line, .input-multiple-line, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
+  -webkit-transition: 0.125s color ease-in-out, 0.125s border ease-in-out, 0.125s box-shadow ease-in-out;
   transition: 0.125s color ease-in-out, 0.125s border ease-in-out, 0.125s box-shadow ease-in-out;
   max-width: 100%; }
   .input-disabled.input, .fw-trumbowyg-modal-box label input.input-disabled:not([type="checkbox"]):not([type="radio"]), .input[disabled], .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]), .input-label-disabled, .input-disabled {
@@ -4677,7 +4734,8 @@ select.input[multiple],
   text-decoration: none;
   text-align: inherit;
   font-style: normal;
-  order: -1;
+  -webkit-box-ordinal-group: 0;
+          order: -1;
   margin-right: 1rem;
   display: inline-block;
   padding-top: calc( (2.8125rem - (1em * 1.25) ) * .5);
@@ -4685,13 +4743,11 @@ select.input[multiple],
   .input-label-large.input-label, .fw-trumbowyg-modal-box label .input-label-large.fw-trumbowyg-input-infos {
     font-size: 1.5625rem;
     padding-top: calc(   (4.6875rem - (1em * 1.25) ) * .5);
-    padding-bottom: calc(  (4.6875rem - (1em * 1.25) ) * .5);
-    border-radius: 10px; }
+    padding-bottom: calc(  (4.6875rem - (1em * 1.25) ) * .5); }
   .input-label-small.input-label, .fw-trumbowyg-modal-box label .input-label-small.fw-trumbowyg-input-infos {
     font-size: 0.875rem;
     padding-top: calc(  (1.875rem - (1em * 1.25) ) * .5);
-    padding-bottom: calc(  (1.875rem - (1em * 1.25) ) * .5);
-    border-radius: 10px; }
+    padding-bottom: calc(  (1.875rem - (1em * 1.25) ) * .5); }
   .theme-inverse .input-label, .theme-inverse .fw-trumbowyg-modal-box label .fw-trumbowyg-input-infos, .fw-trumbowyg-modal-box label .theme-inverse .fw-trumbowyg-input-infos {
     color: inherit; }
 
@@ -4733,11 +4789,13 @@ select.input[multiple],
 @media (max-width: 1200px) {
   .input,
   .input-group {
+    display: -webkit-box;
     display: flex;
     width: 100%; } }
 
 .input, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   font: inherit;
+  vertical-align: middle;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -4748,15 +4806,20 @@ select.input[multiple],
     box-shadow: 0px 0 5px 0px #235789; }
   .theme-inverse .input, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]) {
     background-color: transparent; }
-  .input-disabled.input, .fw-trumbowyg-modal-box label input.input-disabled:not([type="checkbox"]):not([type="radio"]), .input[disabled], .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]) {
-    background-color: rgba(141, 141, 141, 0.2); }
-    .theme-inverse .input-disabled.input, .theme-inverse .fw-trumbowyg-modal-box label input.input-disabled:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input.input-disabled:not([type="checkbox"]):not([type="radio"]), .theme-inverse .input[disabled], .theme-inverse .fw-trumbowyg-modal-box label input[disabled]:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input[disabled]:not([type="checkbox"]):not([type="radio"]) {
-      background-color: transparent; }
+
+.input.input-large,
+.input-group.input-large .input {
+  border-radius: 10px; }
+
+.input.input-small,
+.input-group.input-small .input {
+  border-radius: 10px; }
 
 .input-single-line, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), select.input[multiple], .input-multiple-line, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea {
   font: inherit;
   -webkit-appearance: none;
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   font-size: 1rem;
   line-height: 1.5;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
@@ -4767,7 +4830,6 @@ select.input[multiple],
   text-align: inherit;
   font-style: normal;
   display: inline-block;
-  min-width: 100px;
   background-color: transparent;
   border: 1px solid transparent;
   padding-right: 1.25em;
@@ -4775,31 +4837,29 @@ select.input[multiple],
   padding-top: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.5) ) * .5);
   padding-bottom: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.5) ) * .5); }
   .input-large.input-single-line, .fw-trumbowyg-modal-box label input.input-large:not([type="checkbox"]):not([type="radio"]), select.input-large.input[multiple], .input-large.input-multiple-line, .input-large.input-editor, .input-large.fw-trumbowyg-editor, .input-large.fw-trumbowyg-textarea,
-  .input-group.input-group-large .input-single-line,
-  .input-group.input-group-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
-  .fw-trumbowyg-modal-box label .input-group.input-group-large input:not([type="checkbox"]):not([type="radio"]),
-  .input-group.input-group-large select.input[multiple],
-  .input-group.input-group-large .input-multiple-line,
-  .input-group.input-group-large .input-editor,
-  .input-group.input-group-large .fw-trumbowyg-editor,
-  .input-group.input-group-large .fw-trumbowyg-textarea {
+  .input-group.input-large .input-single-line,
+  .input-group.input-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
+  .fw-trumbowyg-modal-box label .input-group.input-large input:not([type="checkbox"]):not([type="radio"]),
+  .input-group.input-large select.input[multiple],
+  .input-group.input-large .input-multiple-line,
+  .input-group.input-large .input-editor,
+  .input-group.input-large .fw-trumbowyg-editor,
+  .input-group.input-large .fw-trumbowyg-textarea {
     font-size: 1.5625rem;
     padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
-    padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
-    border-radius: 10px; }
+    padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5); }
   .input-small.input-single-line, .fw-trumbowyg-modal-box label input.input-small:not([type="checkbox"]):not([type="radio"]), select.input-small.input[multiple], .input-small.input-multiple-line, .input-small.input-editor, .input-small.fw-trumbowyg-editor, .input-small.fw-trumbowyg-textarea,
-  .input-group.input-group-small .input-single-line,
-  .input-group.input-group-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
-  .fw-trumbowyg-modal-box label .input-group.input-group-small input:not([type="checkbox"]):not([type="radio"]),
-  .input-group.input-group-small select.input[multiple],
-  .input-group.input-group-small .input-multiple-line,
-  .input-group.input-group-small .input-editor,
-  .input-group.input-group-small .fw-trumbowyg-editor,
-  .input-group.input-group-small .fw-trumbowyg-textarea {
+  .input-group.input-small .input-single-line,
+  .input-group.input-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
+  .fw-trumbowyg-modal-box label .input-group.input-small input:not([type="checkbox"]):not([type="radio"]),
+  .input-group.input-small select.input[multiple],
+  .input-group.input-small .input-multiple-line,
+  .input-group.input-small .input-editor,
+  .input-group.input-small .fw-trumbowyg-editor,
+  .input-group.input-small .fw-trumbowyg-textarea {
     font-size: 0.875rem;
     padding-top: calc(  (  (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5);
-    padding-bottom: calc(  (  (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5);
-    border-radius: 10px; }
+    padding-bottom: calc(  (  (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5); }
   .theme-inverse .input-single-line, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]), .theme-inverse select.input[multiple], .theme-inverse .input-multiple-line, .theme-inverse .input-editor, .theme-inverse .fw-trumbowyg-editor, .theme-inverse .fw-trumbowyg-textarea {
     color: inherit;
     background-color: transparent; }
@@ -4831,60 +4891,137 @@ select.input[multiple],
     box-shadow: 0px 0 5px 0px #235789;
     border-color: rgba(141, 141, 141, 0.2); }
 
-.input-base.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-base:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple]:not(:focus):not(.focus), .input-base.input-multiple-line:not(:focus):not(.focus), .input-base.input-editor:not(:focus):not(.focus), .input-base.fw-trumbowyg-editor:not(:focus):not(.focus), .input-base.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-base .input-single-line:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple]:not(:focus):not(.focus), .input-wrapper-base .input-multiple-line:not(:focus):not(.focus), .input-wrapper-base .input-editor:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-base .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -8px #000000; }
+.input.input-base:not(:focus):not(.focus),
+.input-wrapper-base .input:not(:focus):not(.focus) {
+  color: #000000 !important;
+  box-shadow: 0px 5px 15px -8px #000000 !important;
+  background-color: rgba(0, 0, 0, 0.05); }
 
-.input-base.input-single-line, .fw-trumbowyg-modal-box label input.input-base:not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple], .input-base.input-multiple-line, .input-base.input-editor, .input-base.fw-trumbowyg-editor, .input-base.fw-trumbowyg-textarea, .input-wrapper-base .input-single-line, .input-wrapper-base .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple], .input-wrapper-base .input-multiple-line, .input-wrapper-base .input-editor, .input-wrapper-base .fw-trumbowyg-editor, .input-wrapper-base .fw-trumbowyg-textarea, .input-base.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-base:focus:not([type="checkbox"]):not([type="radio"]), select.input-base.input[multiple]:focus, .input-base.input-multiple-line:focus, .input-base.input-editor:focus, .input-base.fw-trumbowyg-editor:focus, .input-base.fw-trumbowyg-textarea:focus, .input-wrapper-base .input-single-line:focus, .input-wrapper-base .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.input[multiple]:focus, .input-wrapper-base .input-multiple-line:focus, .input-wrapper-base .input-editor:focus, .input-wrapper-base .fw-trumbowyg-editor:focus, .input-wrapper-base .fw-trumbowyg-textarea:focus, .focus.input-base.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-base:not([type="checkbox"]):not([type="radio"]), select.focus.input-base.input[multiple], .focus.input-base.input-multiple-line, .focus.input-base.input-editor, .focus.input-base.fw-trumbowyg-editor, .focus.input-base.fw-trumbowyg-textarea, .input-wrapper-base .focus.input-single-line, .input-wrapper-base .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-base input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-base select.focus.input[multiple], .input-wrapper-base .focus.input-multiple-line, .input-wrapper-base .focus.input-editor, .input-wrapper-base .focus.fw-trumbowyg-editor, .input-wrapper-base .focus.fw-trumbowyg-textarea {
-  border-color: #000000; }
+.input.input-base,
+.input-wrapper-base .input, .input.input-base:focus,
+.input-wrapper-base .input:focus, .focus.input.input-base,
+.input-wrapper-base .focus.input {
+  border-color: #000000 !important; }
+  .input-group .input.input-base,
+  .input-group .input-wrapper-base .input, .input-wrapper-base .input-group .input, .input-group .input.input-base:focus,
+  .input-group .input-wrapper-base .input:focus, .input-wrapper-base .input-group .input:focus, .input-group .focus.input.input-base,
+  .input-group .input-wrapper-base .focus.input, .input-wrapper-base .input-group .focus.input {
+    border-color: transparent !important; }
 
-.input-primary.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-primary:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:not(:focus):not(.focus), .input-primary.input-multiple-line:not(:focus):not(.focus), .input-primary.input-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-editor:not(:focus):not(.focus), .input-primary.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-primary .input-single-line:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:not(:focus):not(.focus), .input-wrapper-primary .input-multiple-line:not(:focus):not(.focus), .input-wrapper-primary .input-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-primary .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -8px #235789; }
+.input.input-primary:not(:focus):not(.focus),
+.input-wrapper-primary .input:not(:focus):not(.focus) {
+  color: #235789 !important;
+  box-shadow: 0px 5px 15px -8px #235789 !important;
+  background-color: rgba(35, 87, 137, 0.05); }
 
-.input-primary.input-single-line, .fw-trumbowyg-modal-box label input.input-primary:not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple], .input-primary.input-multiple-line, .input-primary.input-editor, .input-primary.fw-trumbowyg-editor, .input-primary.fw-trumbowyg-textarea, .input-wrapper-primary .input-single-line, .input-wrapper-primary .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple], .input-wrapper-primary .input-multiple-line, .input-wrapper-primary .input-editor, .input-wrapper-primary .fw-trumbowyg-editor, .input-wrapper-primary .fw-trumbowyg-textarea, .input-primary.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-primary:focus:not([type="checkbox"]):not([type="radio"]), select.input-primary.input[multiple]:focus, .input-primary.input-multiple-line:focus, .input-primary.input-editor:focus, .input-primary.fw-trumbowyg-editor:focus, .input-primary.fw-trumbowyg-textarea:focus, .input-wrapper-primary .input-single-line:focus, .input-wrapper-primary .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.input[multiple]:focus, .input-wrapper-primary .input-multiple-line:focus, .input-wrapper-primary .input-editor:focus, .input-wrapper-primary .fw-trumbowyg-editor:focus, .input-wrapper-primary .fw-trumbowyg-textarea:focus, .focus.input-primary.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-primary:not([type="checkbox"]):not([type="radio"]), select.focus.input-primary.input[multiple], .focus.input-primary.input-multiple-line, .focus.input-primary.input-editor, .focus.input-primary.fw-trumbowyg-editor, .focus.input-primary.fw-trumbowyg-textarea, .input-wrapper-primary .focus.input-single-line, .input-wrapper-primary .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-primary input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-primary select.focus.input[multiple], .input-wrapper-primary .focus.input-multiple-line, .input-wrapper-primary .focus.input-editor, .input-wrapper-primary .focus.fw-trumbowyg-editor, .input-wrapper-primary .focus.fw-trumbowyg-textarea {
-  border-color: #235789; }
+.input.input-primary,
+.input-wrapper-primary .input, .input.input-primary:focus,
+.input-wrapper-primary .input:focus, .focus.input.input-primary,
+.input-wrapper-primary .focus.input {
+  border-color: #235789 !important; }
+  .input-group .input.input-primary,
+  .input-group .input-wrapper-primary .input, .input-wrapper-primary .input-group .input, .input-group .input.input-primary:focus,
+  .input-group .input-wrapper-primary .input:focus, .input-wrapper-primary .input-group .input:focus, .input-group .focus.input.input-primary,
+  .input-group .input-wrapper-primary .focus.input, .input-wrapper-primary .input-group .focus.input {
+    border-color: transparent !important; }
 
-.input-accent.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-accent:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple]:not(:focus):not(.focus), .input-accent.input-multiple-line:not(:focus):not(.focus), .input-accent.input-editor:not(:focus):not(.focus), .input-accent.fw-trumbowyg-editor:not(:focus):not(.focus), .input-accent.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-accent .input-single-line:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple]:not(:focus):not(.focus), .input-wrapper-accent .input-multiple-line:not(:focus):not(.focus), .input-wrapper-accent .input-editor:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-accent .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -8px #17BEBB; }
+.input.input-accent:not(:focus):not(.focus),
+.input-wrapper-accent .input:not(:focus):not(.focus) {
+  color: #17BEBB !important;
+  box-shadow: 0px 5px 15px -8px #17BEBB !important;
+  background-color: rgba(23, 190, 187, 0.05); }
 
-.input-accent.input-single-line, .fw-trumbowyg-modal-box label input.input-accent:not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple], .input-accent.input-multiple-line, .input-accent.input-editor, .input-accent.fw-trumbowyg-editor, .input-accent.fw-trumbowyg-textarea, .input-wrapper-accent .input-single-line, .input-wrapper-accent .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple], .input-wrapper-accent .input-multiple-line, .input-wrapper-accent .input-editor, .input-wrapper-accent .fw-trumbowyg-editor, .input-wrapper-accent .fw-trumbowyg-textarea, .input-accent.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-accent:focus:not([type="checkbox"]):not([type="radio"]), select.input-accent.input[multiple]:focus, .input-accent.input-multiple-line:focus, .input-accent.input-editor:focus, .input-accent.fw-trumbowyg-editor:focus, .input-accent.fw-trumbowyg-textarea:focus, .input-wrapper-accent .input-single-line:focus, .input-wrapper-accent .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.input[multiple]:focus, .input-wrapper-accent .input-multiple-line:focus, .input-wrapper-accent .input-editor:focus, .input-wrapper-accent .fw-trumbowyg-editor:focus, .input-wrapper-accent .fw-trumbowyg-textarea:focus, .focus.input-accent.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-accent:not([type="checkbox"]):not([type="radio"]), select.focus.input-accent.input[multiple], .focus.input-accent.input-multiple-line, .focus.input-accent.input-editor, .focus.input-accent.fw-trumbowyg-editor, .focus.input-accent.fw-trumbowyg-textarea, .input-wrapper-accent .focus.input-single-line, .input-wrapper-accent .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-accent input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-accent select.focus.input[multiple], .input-wrapper-accent .focus.input-multiple-line, .input-wrapper-accent .focus.input-editor, .input-wrapper-accent .focus.fw-trumbowyg-editor, .input-wrapper-accent .focus.fw-trumbowyg-textarea {
-  border-color: #17BEBB; }
+.input.input-accent,
+.input-wrapper-accent .input, .input.input-accent:focus,
+.input-wrapper-accent .input:focus, .focus.input.input-accent,
+.input-wrapper-accent .focus.input {
+  border-color: #17BEBB !important; }
+  .input-group .input.input-accent,
+  .input-group .input-wrapper-accent .input, .input-wrapper-accent .input-group .input, .input-group .input.input-accent:focus,
+  .input-group .input-wrapper-accent .input:focus, .input-wrapper-accent .input-group .input:focus, .input-group .focus.input.input-accent,
+  .input-group .input-wrapper-accent .focus.input, .input-wrapper-accent .input-group .focus.input {
+    border-color: transparent !important; }
 
-.input-neutral.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-neutral:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple]:not(:focus):not(.focus), .input-neutral.input-multiple-line:not(:focus):not(.focus), .input-neutral.input-editor:not(:focus):not(.focus), .input-neutral.fw-trumbowyg-editor:not(:focus):not(.focus), .input-neutral.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-neutral .input-single-line:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple]:not(:focus):not(.focus), .input-wrapper-neutral .input-multiple-line:not(:focus):not(.focus), .input-wrapper-neutral .input-editor:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-neutral .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -8px #8d8d8d; }
+.input.input-neutral:not(:focus):not(.focus),
+.input-wrapper-neutral .input:not(:focus):not(.focus) {
+  color: #8d8d8d !important;
+  box-shadow: 0px 5px 15px -8px #8d8d8d !important;
+  background-color: rgba(141, 141, 141, 0.05); }
 
-.input-neutral.input-single-line, .fw-trumbowyg-modal-box label input.input-neutral:not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple], .input-neutral.input-multiple-line, .input-neutral.input-editor, .input-neutral.fw-trumbowyg-editor, .input-neutral.fw-trumbowyg-textarea, .input-wrapper-neutral .input-single-line, .input-wrapper-neutral .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple], .input-wrapper-neutral .input-multiple-line, .input-wrapper-neutral .input-editor, .input-wrapper-neutral .fw-trumbowyg-editor, .input-wrapper-neutral .fw-trumbowyg-textarea, .input-neutral.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-neutral:focus:not([type="checkbox"]):not([type="radio"]), select.input-neutral.input[multiple]:focus, .input-neutral.input-multiple-line:focus, .input-neutral.input-editor:focus, .input-neutral.fw-trumbowyg-editor:focus, .input-neutral.fw-trumbowyg-textarea:focus, .input-wrapper-neutral .input-single-line:focus, .input-wrapper-neutral .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.input[multiple]:focus, .input-wrapper-neutral .input-multiple-line:focus, .input-wrapper-neutral .input-editor:focus, .input-wrapper-neutral .fw-trumbowyg-editor:focus, .input-wrapper-neutral .fw-trumbowyg-textarea:focus, .focus.input-neutral.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-neutral:not([type="checkbox"]):not([type="radio"]), select.focus.input-neutral.input[multiple], .focus.input-neutral.input-multiple-line, .focus.input-neutral.input-editor, .focus.input-neutral.fw-trumbowyg-editor, .focus.input-neutral.fw-trumbowyg-textarea, .input-wrapper-neutral .focus.input-single-line, .input-wrapper-neutral .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-neutral input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-neutral select.focus.input[multiple], .input-wrapper-neutral .focus.input-multiple-line, .input-wrapper-neutral .focus.input-editor, .input-wrapper-neutral .focus.fw-trumbowyg-editor, .input-wrapper-neutral .focus.fw-trumbowyg-textarea {
-  border-color: #8d8d8d; }
+.input.input-neutral,
+.input-wrapper-neutral .input, .input.input-neutral:focus,
+.input-wrapper-neutral .input:focus, .focus.input.input-neutral,
+.input-wrapper-neutral .focus.input {
+  border-color: #8d8d8d !important; }
+  .input-group .input.input-neutral,
+  .input-group .input-wrapper-neutral .input, .input-wrapper-neutral .input-group .input, .input-group .input.input-neutral:focus,
+  .input-group .input-wrapper-neutral .input:focus, .input-wrapper-neutral .input-group .input:focus, .input-group .focus.input.input-neutral,
+  .input-group .input-wrapper-neutral .focus.input, .input-wrapper-neutral .input-group .focus.input {
+    border-color: transparent !important; }
 
-.input-success.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-success:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-success.input[multiple]:not(:focus):not(.focus), .input-success.input-multiple-line:not(:focus):not(.focus), .input-success.input-editor:not(:focus):not(.focus), .input-success.fw-trumbowyg-editor:not(:focus):not(.focus), .input-success.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-success .input-single-line:not(:focus):not(.focus), .input-wrapper-success .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.input[multiple]:not(:focus):not(.focus), .input-wrapper-success .input-multiple-line:not(:focus):not(.focus), .input-wrapper-success .input-editor:not(:focus):not(.focus), .input-wrapper-success .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-success .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -8px #15b800; }
+.input.input-success:not(:focus):not(.focus),
+.input-wrapper-success .input:not(:focus):not(.focus) {
+  color: #15b800 !important;
+  box-shadow: 0px 5px 15px -8px #15b800 !important;
+  background-color: rgba(21, 184, 0, 0.05); }
 
-.input-success.input-single-line, .fw-trumbowyg-modal-box label input.input-success:not([type="checkbox"]):not([type="radio"]), select.input-success.input[multiple], .input-success.input-multiple-line, .input-success.input-editor, .input-success.fw-trumbowyg-editor, .input-success.fw-trumbowyg-textarea, .input-wrapper-success .input-single-line, .input-wrapper-success .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.input[multiple], .input-wrapper-success .input-multiple-line, .input-wrapper-success .input-editor, .input-wrapper-success .fw-trumbowyg-editor, .input-wrapper-success .fw-trumbowyg-textarea, .input-success.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-success:focus:not([type="checkbox"]):not([type="radio"]), select.input-success.input[multiple]:focus, .input-success.input-multiple-line:focus, .input-success.input-editor:focus, .input-success.fw-trumbowyg-editor:focus, .input-success.fw-trumbowyg-textarea:focus, .input-wrapper-success .input-single-line:focus, .input-wrapper-success .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.input[multiple]:focus, .input-wrapper-success .input-multiple-line:focus, .input-wrapper-success .input-editor:focus, .input-wrapper-success .fw-trumbowyg-editor:focus, .input-wrapper-success .fw-trumbowyg-textarea:focus, .focus.input-success.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-success:not([type="checkbox"]):not([type="radio"]), select.focus.input-success.input[multiple], .focus.input-success.input-multiple-line, .focus.input-success.input-editor, .focus.input-success.fw-trumbowyg-editor, .focus.input-success.fw-trumbowyg-textarea, .input-wrapper-success .focus.input-single-line, .input-wrapper-success .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-success input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-success select.focus.input[multiple], .input-wrapper-success .focus.input-multiple-line, .input-wrapper-success .focus.input-editor, .input-wrapper-success .focus.fw-trumbowyg-editor, .input-wrapper-success .focus.fw-trumbowyg-textarea {
-  border-color: #15b800; }
+.input.input-success,
+.input-wrapper-success .input, .input.input-success:focus,
+.input-wrapper-success .input:focus, .focus.input.input-success,
+.input-wrapper-success .focus.input {
+  border-color: #15b800 !important; }
+  .input-group .input.input-success,
+  .input-group .input-wrapper-success .input, .input-wrapper-success .input-group .input, .input-group .input.input-success:focus,
+  .input-group .input-wrapper-success .input:focus, .input-wrapper-success .input-group .input:focus, .input-group .focus.input.input-success,
+  .input-group .input-wrapper-success .focus.input, .input-wrapper-success .input-group .focus.input {
+    border-color: transparent !important; }
 
-.input-caution.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-caution:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-caution.input[multiple]:not(:focus):not(.focus), .input-caution.input-multiple-line:not(:focus):not(.focus), .input-caution.input-editor:not(:focus):not(.focus), .input-caution.fw-trumbowyg-editor:not(:focus):not(.focus), .input-caution.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-caution .input-single-line:not(:focus):not(.focus), .input-wrapper-caution .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.input[multiple]:not(:focus):not(.focus), .input-wrapper-caution .input-multiple-line:not(:focus):not(.focus), .input-wrapper-caution .input-editor:not(:focus):not(.focus), .input-wrapper-caution .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-caution .fw-trumbowyg-textarea:not(:focus):not(.focus) {
-  box-shadow: 0px 5px 15px -8px #fd7f03; }
+.input.input-caution:not(:focus):not(.focus),
+.input-wrapper-caution .input:not(:focus):not(.focus) {
+  color: #fd7f03 !important;
+  box-shadow: 0px 5px 15px -8px #fd7f03 !important;
+  background-color: rgba(253, 127, 3, 0.05); }
 
-.input-caution.input-single-line, .fw-trumbowyg-modal-box label input.input-caution:not([type="checkbox"]):not([type="radio"]), select.input-caution.input[multiple], .input-caution.input-multiple-line, .input-caution.input-editor, .input-caution.fw-trumbowyg-editor, .input-caution.fw-trumbowyg-textarea, .input-wrapper-caution .input-single-line, .input-wrapper-caution .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.input[multiple], .input-wrapper-caution .input-multiple-line, .input-wrapper-caution .input-editor, .input-wrapper-caution .fw-trumbowyg-editor, .input-wrapper-caution .fw-trumbowyg-textarea, .input-caution.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-caution:focus:not([type="checkbox"]):not([type="radio"]), select.input-caution.input[multiple]:focus, .input-caution.input-multiple-line:focus, .input-caution.input-editor:focus, .input-caution.fw-trumbowyg-editor:focus, .input-caution.fw-trumbowyg-textarea:focus, .input-wrapper-caution .input-single-line:focus, .input-wrapper-caution .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.input[multiple]:focus, .input-wrapper-caution .input-multiple-line:focus, .input-wrapper-caution .input-editor:focus, .input-wrapper-caution .fw-trumbowyg-editor:focus, .input-wrapper-caution .fw-trumbowyg-textarea:focus, .focus.input-caution.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-caution:not([type="checkbox"]):not([type="radio"]), select.focus.input-caution.input[multiple], .focus.input-caution.input-multiple-line, .focus.input-caution.input-editor, .focus.input-caution.fw-trumbowyg-editor, .focus.input-caution.fw-trumbowyg-textarea, .input-wrapper-caution .focus.input-single-line, .input-wrapper-caution .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-caution input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-caution select.focus.input[multiple], .input-wrapper-caution .focus.input-multiple-line, .input-wrapper-caution .focus.input-editor, .input-wrapper-caution .focus.fw-trumbowyg-editor, .input-wrapper-caution .focus.fw-trumbowyg-textarea {
-  border-color: #fd7f03; }
+.input.input-caution,
+.input-wrapper-caution .input, .input.input-caution:focus,
+.input-wrapper-caution .input:focus, .focus.input.input-caution,
+.input-wrapper-caution .focus.input {
+  border-color: #fd7f03 !important; }
+  .input-group .input.input-caution,
+  .input-group .input-wrapper-caution .input, .input-wrapper-caution .input-group .input, .input-group .input.input-caution:focus,
+  .input-group .input-wrapper-caution .input:focus, .input-wrapper-caution .input-group .input:focus, .input-group .focus.input.input-caution,
+  .input-group .input-wrapper-caution .focus.input, .input-wrapper-caution .input-group .focus.input {
+    border-color: transparent !important; }
 
-.input-error.input-single-line:not(:focus):not(.focus), .fw-trumbowyg-modal-box label input.input-error:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), select.input-error.input[multiple]:not(:focus):not(.focus), .input-error.input-multiple-line:not(:focus):not(.focus), .input-error.input-editor:not(:focus):not(.focus), .input-error.fw-trumbowyg-editor:not(:focus):not(.focus), .input-error.fw-trumbowyg-textarea:not(:focus):not(.focus), .input-wrapper-error .input-single-line:not(:focus):not(.focus), .input-wrapper-error .fw-trumbowyg-modal-box label input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.input[multiple]:not(:focus):not(.focus), .input-wrapper-error .input-multiple-line:not(:focus):not(.focus), .input-wrapper-error .input-editor:not(:focus):not(.focus), .input-wrapper-error .fw-trumbowyg-editor:not(:focus):not(.focus), .input-wrapper-error .fw-trumbowyg-textarea:not(:focus):not(.focus), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]) {
-  box-shadow: 0px 5px 15px -8px #fd0303; }
+.input.input-error:not(:focus):not(.focus),
+.input-wrapper-error .input:not(:focus):not(.focus), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]) {
+  color: #fd0303 !important;
+  box-shadow: 0px 5px 15px -8px #fd0303 !important;
+  background-color: rgba(253, 3, 3, 0.05); }
 
-.input-error.input-single-line, .fw-trumbowyg-modal-box label input.input-error:not([type="checkbox"]):not([type="radio"]), select.input-error.input[multiple], .input-error.input-multiple-line, .input-error.input-editor, .input-error.fw-trumbowyg-editor, .input-error.fw-trumbowyg-textarea, .input-wrapper-error .input-single-line, .input-wrapper-error .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.input[multiple], .input-wrapper-error .input-multiple-line, .input-wrapper-error .input-editor, .input-wrapper-error .fw-trumbowyg-editor, .input-wrapper-error .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]), .input-error.input-single-line:focus, .fw-trumbowyg-modal-box label input.input-error:focus:not([type="checkbox"]):not([type="radio"]), select.input-error.input[multiple]:focus, .input-error.input-multiple-line:focus, .input-error.input-editor:focus, .input-error.fw-trumbowyg-editor:focus, .input-error.fw-trumbowyg-textarea:focus, .input-wrapper-error .input-single-line:focus, .input-wrapper-error .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input:focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.input[multiple]:focus, .input-wrapper-error .input-multiple-line:focus, .input-wrapper-error .input-editor:focus, .input-wrapper-error .fw-trumbowyg-editor:focus, .input-wrapper-error .fw-trumbowyg-textarea:focus, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]), .focus.input-error.input-single-line, .fw-trumbowyg-modal-box label input.focus.input-error:not([type="checkbox"]):not([type="radio"]), select.focus.input-error.input[multiple], .focus.input-error.input-multiple-line, .focus.input-error.input-editor, .focus.input-error.fw-trumbowyg-editor, .focus.input-error.fw-trumbowyg-textarea, .input-wrapper-error .focus.input-single-line, .input-wrapper-error .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper-error input.focus:not([type="checkbox"]):not([type="radio"]), .input-wrapper-error select.focus.input[multiple], .input-wrapper-error .focus.input-multiple-line, .input-wrapper-error .focus.input-editor, .input-wrapper-error .focus.fw-trumbowyg-editor, .input-wrapper-error .focus.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]) {
-  border-color: #fd0303; }
+.input.input-error,
+.input-wrapper-error .input, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]), .input.input-error:focus,
+.input-wrapper-error .input:focus, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]), .focus.input.input-error,
+.input-wrapper-error .focus.input, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]) {
+  border-color: #fd0303 !important; }
+  .input-group .input.input-error,
+  .input-group .input-wrapper-error .input, .input-wrapper-error .input-group .input, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input:not([type="checkbox"]):not([type="radio"]), .input-group .input.input-error:focus,
+  .input-group .input-wrapper-error .input:focus, .input-wrapper-error .input-group .input:focus, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input:focus:not([type="checkbox"]):not([type="radio"]), .input-group .focus.input.input-error,
+  .input-group .input-wrapper-error .focus.input, .input-wrapper-error .input-group .focus.input, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input.focus:not([type="checkbox"]):not([type="radio"]) {
+    border-color: transparent !important; }
 
 .input-single-line, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   height: 2.8125rem;
   vertical-align: middle; }
   .input-large.input-single-line, .fw-trumbowyg-modal-box label input.input-large:not([type="checkbox"]):not([type="radio"]),
-  .input-group.input-group-large .input-single-line,
-  .input-group.input-group-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
-  .fw-trumbowyg-modal-box label .input-group.input-group-large input:not([type="checkbox"]):not([type="radio"]) {
+  .input-large .input-single-line,
+  .input-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
+  .fw-trumbowyg-modal-box label .input-large input:not([type="checkbox"]):not([type="radio"]) {
     height: 4.6875rem; }
   .input-small.input-single-line, .fw-trumbowyg-modal-box label input.input-small:not([type="checkbox"]):not([type="radio"]),
-  .input-group.input-group-small .input-single-line,
-  .input-group.input-group-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
-  .fw-trumbowyg-modal-box label .input-group.input-group-small input:not([type="checkbox"]):not([type="radio"]) {
+  .input-small .input-single-line,
+  .input-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]),
+  .fw-trumbowyg-modal-box label .input-small input:not([type="checkbox"]):not([type="radio"]) {
     height: 1.875rem; }
 
 select.input[multiple], .input-multiple-line, .input-editor {
@@ -4897,6 +5034,16 @@ select.input[multiple], .input-multiple-line, .input-editor {
     padding-left: 1.25em;
     margin-right: -1.25em;
     margin-left: -1.25em; }
+  select.input-large.input[multiple], .input-large.input-multiple-line, .input-large.input-editor,
+  .input-large select.input[multiple],
+  .input-large .input-multiple-line,
+  .input-large .input-editor {
+    height: 14.0625rem; }
+  select.input-small.input[multiple], .input-small.input-multiple-line, .input-small.input-editor,
+  .input-small select.input[multiple],
+  .input-small .input-multiple-line,
+  .input-small .input-editor {
+    height: 5.625rem; }
 
 select.input[multiple] {
   background-image: none; }
@@ -4920,30 +5067,42 @@ select.input {
   position: relative; }
   @media (min-width: 1201px) {
     .input-wrapper, .fw-trumbowyg-modal-box label {
+      display: -webkit-inline-box;
       display: inline-flex;
       margin-right: 2rem; } }
 
 @media (min-width: 1201px) {
   .input-wrapper-horizontal, .fw-trumbowyg-modal-box label {
-    flex-direction: row;
-    align-items: flex-start; }
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+    -webkit-box-align: start;
+            align-items: flex-start; }
     .input-wrapper-horizontal > .input-label, .fw-trumbowyg-modal-box label > .input-label {
-      flex: 0 0 25%;
-      order: -1; }
+      -webkit-box-flex: 0;
+              flex: 0 0 25%;
+      -webkit-box-ordinal-group: 0;
+              order: -1; }
       .input-wrapper-horizontal > .input-label:first-child:last-child, .fw-trumbowyg-modal-box label > .input-label:first-child:last-child {
         /* labels that typically wrapp radio and checboxes*/
-        flex: 1 1 auto; } }
+        -webkit-box-flex: 1;
+                flex: 1 1 auto; } }
 
 @media (min-width: 1201px) {
   .input-wrapper-vertical {
-    flex-direction: column; } }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column; } }
 
 .input-wrapper.input-wrapper-block, .fw-trumbowyg-modal-box label {
+  display: -webkit-box;
   display: flex;
   margin-right: 0; }
   @media (max-width: 1200px) {
     .input-wrapper.input-wrapper-block, .fw-trumbowyg-modal-box label {
-      flex-direction: column; } }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column; } }
 
 .input.input-no-radius, .input-group.input-no-radius {
   border-radius: 0 !important; }
@@ -4961,7 +5120,8 @@ select.input {
   margin-top: 1em;
   margin-bottom: 1em;
   display: block;
-  order: 3; }
+  -webkit-box-ordinal-group: 4;
+          order: 3; }
   .input-wrapper-horizontal .input-info {
     width: calc(100% - 25%);
     align-self: flex-end;
@@ -4974,8 +5134,10 @@ select.input {
 
 .input-wrapper select.input[multiple], .input-wrapper .input-single-line, .input-wrapper .input-multiple-line, .input-wrapper .input-editor {
   display: block;
-  flex: 1 1;
-  order: 2; }
+  -webkit-box-flex: 1;
+          flex: 1 1;
+  -webkit-box-ordinal-group: 3;
+          order: 2; }
 
 .input-wrapper-horizontal.input-wrapper-block select.input[multiple], .input-wrapper-horizontal.input-wrapper-block .input-single-line, .input-wrapper-horizontal.input-wrapper-block .input-multiple-line, .input-wrapper-horizontal.input-wrapper-block .input-editor {
   width: calc(100% - 25%); }
@@ -4984,29 +5146,66 @@ select.input {
   display: block; }
 
 .input-group {
+  display: -webkit-inline-box;
   display: inline-flex;
   position: relative;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: visible;
-  align-items: stretch; }
-  .input-group .input {
+  -webkit-box-align: stretch;
+          align-items: stretch; }
+  .input-group .input,
+  .input-group .input,
+  .input-group .input:focus,
+  .input-group .input.focus,
+  .input-group .btn {
     position: relative;
     border-radius: 0 !important;
-    border-color: transparent; }
-    .input-group .input:hover, .input-group .input:active, .input-group .input.active, .input-group .input:focus, .input-group .input.focus, .input-group .input.open {
+    resize: none;
+    max-width: 100%; }
+    .input-group .input:hover, .input-group .input:active, .input-group .input.active, .input-group .input:focus, .input-group .input.focus, .input-group .input.open,
+    .input-group .input:hover,
+    .input-group .input:active,
+    .input-group .input.active,
+    .input-group .input:focus,
+    .input-group .input.focus,
+    .input-group .input.open,
+    .input-group .input:focus:hover,
+    .input-group .input:focus:active,
+    .input-group .input:focus.active,
+    .input-group .input:focus:focus,
+    .input-group .input:focus.focus,
+    .input-group .input:focus.open,
+    .input-group .input.focus:hover,
+    .input-group .input.focus:active,
+    .input-group .input.focus.active,
+    .input-group .input.focus:focus,
+    .input-group .input.focus.focus,
+    .input-group .input.focus.open,
+    .input-group .btn:hover,
+    .input-group .btn:active,
+    .input-group .btn.active,
+    .input-group .btn:focus,
+    .input-group .btn.focus,
+    .input-group .btn.open {
       z-index: 1; }
   .input-group-block {
+    display: -webkit-box;
     display: flex;
     width: 100%; }
-    .input-group-block .btn:not(.btn-symbol) {
-      flex: 1 1; }
+    .input-group-block > .input,
+    .input-group-block > .trumbowyg,
+    .input-group-block > .btn:not(.btn-symbol) {
+      -webkit-box-flex: 1;
+              flex: 1 1; }
     @media (max-width: 1200px) {
       .input-group-block-mobile {
+        display: -webkit-box;
         display: flex;
         width: 100%; }
         .input-group-block-mobile .btn:not(.btn-symbol) {
-          flex: 1 1; } }
+          -webkit-box-flex: 1;
+                  flex: 1 1; } }
   .input-group.input-group-large {
     border-radius: 10px; }
   .input-group.input-group-small {
@@ -5014,18 +5213,27 @@ select.input {
   .input-group.input-group-horizontal:not(.input-group-responsive) > .input:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input:nth-child(n+2):hover, .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2):hover, .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-child(n+2):hover {
     border-left-color: rgba(0, 0, 0, 0.1) !important; }
   .input-group.input-group-vertical {
-    flex-direction: column; }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column; }
+    .input-group.input-group-vertical > .btn-symbol {
+      width: auto; }
     .input-group.input-group-vertical > .input:nth-child(n+2), .input-group.input-group-vertical > .input:nth-child(n+2):hover, .input-group.input-group-vertical .btn:nth-child(n+2), .input-group.input-group-vertical .btn:nth-child(n+2):hover, .input-group.input-group-vertical .trumbowyg:nth-child(n+2), .input-group.input-group-vertical .trumbowyg:nth-child(n+2):hover {
       border-top-color: rgba(0, 0, 0, 0.1) !important; }
   @media (min-width: 1201px) {
+    .input-group.input-group-responsive.input-group-horizontal > .btn-symbol {
+      width: auto; }
     .input-group.input-group-responsive.input-group-horizontal > .input:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input:nth-child(n+2):hover, .input-group.input-group-responsive.input-group-horizontal .btn:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-child(n+2):hover, .input-group.input-group-responsive.input-group-horizontal .trumbowyg:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal .trumbowyg:nth-child(n+2):hover {
       border-left-color: rgba(0, 0, 0, 0.1) !important; } }
   @media (max-width: 1200px) {
     .input-group.input-group-responsive {
       width: 100%;
       flex-wrap: wrap;
+      display: -webkit-box;
       display: flex;
-      flex-direction: column; }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column; }
       .input-group.input-group-responsive > .input:nth-child(n+2), .input-group.input-group-responsive > .input:nth-child(n+2):hover, .input-group.input-group-responsive .btn:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2):hover, .input-group.input-group-responsive .trumbowyg:nth-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-child(n+2):hover {
         border-top-color: rgba(0, 0, 0, 0.1) !important; } }
 
@@ -5042,6 +5250,13 @@ fieldset {
   fieldset .special-form-label {
     background: #e6e6e6;
     border-radius: 10px; }
+    .theme-inverse .special-form, .theme-inverse
+    .special-form legend, .theme-inverse
+    .special-form .special-form-label, .theme-inverse
+    fieldset, .theme-inverse
+    fieldset legend, .theme-inverse
+    fieldset .special-form-label {
+      background: #000000; }
   .special-form legend,
   .special-form .special-form-label,
   fieldset legend,
@@ -5052,12 +5267,10 @@ fieldset {
     top: -1em;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0; }
-  .theme-inverse .special-form, .theme-inverse
-  fieldset {
-    background: #000000; }
   .special-form .input-wrapper,
   fieldset .input-wrapper {
     max-width: none;
+    display: -webkit-box;
     display: flex;
     margin-right: 0; }
     .special-form .input-wrapper-horizontal .input,
@@ -5155,10 +5368,14 @@ CUSTOM STYLES FOR TRUMBOWYG
   resize: none;
   outline: none;
   overflow: auto;
-  user-select: text;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
   font-size: 1rem;
   line-height: 1.5; }
   .fw-trumbowyg-editor.fw-trumbowyg-autogrow-on-enter, .fw-trumbowyg-textarea.fw-trumbowyg-autogrow-on-enter {
+    -webkit-transition: height 0.25s ease-out;
     transition: height 0.25s ease-out; }
   .fw-trumbowyg-box.fw-trumbowyg-fullscreen .fw-trumbowyg-editor, .fw-trumbowyg-box.fw-trumbowyg-fullscreen .fw-trumbowyg-textarea {
     border-radius: 0;
@@ -5207,7 +5424,8 @@ CUSTOM STYLES FOR TRUMBOWYG
   padding: 0;
   position: relative;
   list-style-type: none;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   z-index: 11; }
   .fw-trumbowyg-fullscreen .fw-trumbowyg-button-pane {
     box-shadow: 0 1px 0 0 rgba(141, 141, 141, 0.5); }
@@ -5223,11 +5441,15 @@ CUSTOM STYLES FOR TRUMBOWYG
     cursor: pointer;
     background: none;
     vertical-align: middle;
+    -webkit-transition: background-color 0.125s, opacity 0.125s;
     transition: background-color 0.125s, opacity 0.125s; }
     .fw-trumbowyg-button-pane button.fw-trumbowyg-textual-button {
       width: auto;
       line-height: 40px;
-      user-select: none; }
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
   .fw-trumbowyg-button-pane .fw-trumbowyg-right button {
     margin-right: 0;
     margin-left: 1em; }
@@ -5277,6 +5499,7 @@ CUSTOM STYLES FOR TRUMBOWYG
     cursor: pointer;
     text-align: left;
     font-size: 15px;
+    -webkit-transition: all 0.125s;
     transition: all 0.125s; }
     .fw-trumbowyg-dropdown button svg {
       float: left;
@@ -5288,8 +5511,10 @@ CUSTOM STYLES FOR TRUMBOWYG
     margin-right: 0; }
     @media (min-width: 1201px) {
       .fw-trumbowyg-modal-box label .fw-trumbowyg-input-infos {
-        flex: 0 0 25%;
-        order: -1; } }
+        -webkit-box-flex: 0;
+                flex: 0 0 25%;
+        -webkit-box-ordinal-group: 0;
+                order: -1; } }
   @media (min-width: 1201px) {
     .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
       width: calc(100% - 25%); } }
@@ -5306,8 +5531,9 @@ CUSTOM STYLES FOR TRUMBOWYG
     margin-top: 25px;
     display: block;
     color: #fd0303; }
-  .fw-trumbowyg-modal-box .fw-trumbowyg-modal-button {
-    margin: 0 .125em; }
+
+.fw-trumbowyg-modal-button {
+  margin: 0 .125em; }
 
 .fw-trumbowyg-overlay {
   position: absolute;
@@ -5393,115 +5619,6 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */
-  .color-intensity-1,
-  .color-intensity-1-hover:hover,
-  .color-intensity-1-focus:focus,
-  .color-intensity-1-focus.focus,
-  .color-intensity-1-active:active,
-  .color-intensity-1-active.active,
-  .color-intensity-1-toggle.active,
-  .color-intensity-1-toggle.open {
-    color: #235789 !important; }
-  .color-intensity-2,
-  .color-intensity-2-hover:hover,
-  .color-intensity-2-focus:focus,
-  .color-intensity-2-focus.focus,
-  .color-intensity-2-active:active,
-  .color-intensity-2-active.active,
-  .color-intensity-2-toggle.active,
-  .color-intensity-2-toggle.open {
-    color: #207196 !important; }
-  .color-intensity-3,
-  .color-intensity-3-hover:hover,
-  .color-intensity-3-focus:focus,
-  .color-intensity-3-focus.focus,
-  .color-intensity-3-active:active,
-  .color-intensity-3-active.active,
-  .color-intensity-3-toggle.active,
-  .color-intensity-3-toggle.open {
-    color: #1d8ba2 !important; }
-  .color-intensity-4,
-  .color-intensity-4-hover:hover,
-  .color-intensity-4-focus:focus,
-  .color-intensity-4-focus.focus,
-  .color-intensity-4-active:active,
-  .color-intensity-4-active.active,
-  .color-intensity-4-toggle.active,
-  .color-intensity-4-toggle.open {
-    color: #1aa4af !important; }
-  .color-intensity-5,
-  .color-intensity-5-hover:hover,
-  .color-intensity-5-focus:focus,
-  .color-intensity-5-focus.focus,
-  .color-intensity-5-active:active,
-  .color-intensity-5-active.active,
-  .color-intensity-5-toggle.active,
-  .color-intensity-5-toggle.open {
-    color: #17BEBB !important; }
-  .color-base,
-  .color-base-hover:hover,
-  .color-base-focus:focus,
-  .color-base-focus.focus,
-  .color-base-active:active,
-  .color-base-active.active,
-  .color-base-toggle.active,
-  .color-base-toggle.open {
-    color: #000000 !important; }
-  .color-primary,
-  .color-primary-hover:hover,
-  .color-primary-focus:focus,
-  .color-primary-focus.focus,
-  .color-primary-active:active,
-  .color-primary-active.active,
-  .color-primary-toggle.active,
-  .color-primary-toggle.open {
-    color: #235789 !important; }
-  .color-accent,
-  .color-accent-hover:hover,
-  .color-accent-focus:focus,
-  .color-accent-focus.focus,
-  .color-accent-active:active,
-  .color-accent-active.active,
-  .color-accent-toggle.active,
-  .color-accent-toggle.open {
-    color: #17BEBB !important; }
-  .color-neutral,
-  .color-neutral-hover:hover,
-  .color-neutral-focus:focus,
-  .color-neutral-focus.focus,
-  .color-neutral-active:active,
-  .color-neutral-active.active,
-  .color-neutral-toggle.active,
-  .color-neutral-toggle.open {
-    color: #8d8d8d !important; }
-  .color-success,
-  .color-success-hover:hover,
-  .color-success-focus:focus,
-  .color-success-focus.focus,
-  .color-success-active:active,
-  .color-success-active.active,
-  .color-success-toggle.active,
-  .color-success-toggle.open {
-    color: #15b800 !important; }
-  .color-caution,
-  .color-caution-hover:hover,
-  .color-caution-focus:focus,
-  .color-caution-focus.focus,
-  .color-caution-active:active,
-  .color-caution-active.active,
-  .color-caution-toggle.active,
-  .color-caution-toggle.open {
-    color: #fd7f03 !important; }
-  .color-error,
-  .color-error-hover:hover,
-  .color-error-focus:focus,
-  .color-error-focus.focus,
-  .color-error-active:active,
-  .color-error-active.active,
-  .color-error-toggle.active,
-  .color-error-toggle.open {
-    color: #fd0303 !important; }
-
 .table-label-base, .progress-bar-base, .badge-base, .tag-base, .legend-base {
   background-color: #000000; }
 
@@ -5653,10 +5770,9 @@ CUSTOM STYLES FOR TRUMBOWYG
   .background-intensity-5-toggle.open {
     background-color: #17BEBB !important; }
   .background-gradient {
-    background-image: -moz-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* FF3.6-15 */
-    background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* Chrome10-25,Safari5.1-6 */
+    background-image: -webkit-gradient(linear , left top, right top , from(#235789), to(#17BEBB)) ;
     background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5668,9 +5784,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-45-active.active,
 .background-gradient-45-toggle.active,
 .background-gradient-45-toggle.open {
-  background-image: -moz-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
@@ -5683,17 +5797,14 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-90-active.active,
 .background-gradient-90-toggle.active,
 .background-gradient-90-toggle.open {
-  background-image: -moz-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-gradient(linear , left bottom, left top , from(#235789), to(#17BEBB)) ;
   background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .thumbnail {
-  background-image: -moz-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
@@ -5706,9 +5817,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-135-active.active,
 .background-gradient-135-toggle.active,
 .background-gradient-135-toggle.open {
-  background-image: -moz-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
@@ -5721,10 +5830,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-180-active.active,
 .background-gradient-180-toggle.active,
 .background-gradient-180-toggle.open {
-  background-image: -moz-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-gradient(linear , right top, left top , from(#235789), to(#17BEBB)) ;
   background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5736,9 +5844,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-225-active.active,
 .background-gradient-225-toggle.active,
 .background-gradient-225-toggle.open {
-  background-image: -moz-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
@@ -5751,10 +5857,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-270-active.active,
 .background-gradient-270-toggle.active,
 .background-gradient-270-toggle.open {
-  background-image: -moz-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-gradient(linear , left top, left bottom , from(#235789), to(#17BEBB)) ;
   background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5766,9 +5871,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-315-active.active,
 .background-gradient-315-toggle.active,
 .background-gradient-315-toggle.open {
-  background-image: -moz-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
@@ -5873,6 +5976,115 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-color: transparent !important; }
 
 /* COLOR CLASSES */
+  .color-intensity-1,
+  .color-intensity-1-hover:hover,
+  .color-intensity-1-focus:focus,
+  .color-intensity-1-focus.focus,
+  .color-intensity-1-active:active,
+  .color-intensity-1-active.active,
+  .color-intensity-1-toggle.active,
+  .color-intensity-1-toggle.open {
+    color: #235789 !important; }
+  .color-intensity-2,
+  .color-intensity-2-hover:hover,
+  .color-intensity-2-focus:focus,
+  .color-intensity-2-focus.focus,
+  .color-intensity-2-active:active,
+  .color-intensity-2-active.active,
+  .color-intensity-2-toggle.active,
+  .color-intensity-2-toggle.open {
+    color: #207196 !important; }
+  .color-intensity-3,
+  .color-intensity-3-hover:hover,
+  .color-intensity-3-focus:focus,
+  .color-intensity-3-focus.focus,
+  .color-intensity-3-active:active,
+  .color-intensity-3-active.active,
+  .color-intensity-3-toggle.active,
+  .color-intensity-3-toggle.open {
+    color: #1d8ba2 !important; }
+  .color-intensity-4,
+  .color-intensity-4-hover:hover,
+  .color-intensity-4-focus:focus,
+  .color-intensity-4-focus.focus,
+  .color-intensity-4-active:active,
+  .color-intensity-4-active.active,
+  .color-intensity-4-toggle.active,
+  .color-intensity-4-toggle.open {
+    color: #1aa4af !important; }
+  .color-intensity-5,
+  .color-intensity-5-hover:hover,
+  .color-intensity-5-focus:focus,
+  .color-intensity-5-focus.focus,
+  .color-intensity-5-active:active,
+  .color-intensity-5-active.active,
+  .color-intensity-5-toggle.active,
+  .color-intensity-5-toggle.open {
+    color: #17BEBB !important; }
+  .color-base,
+  .color-base-hover:hover,
+  .color-base-focus:focus,
+  .color-base-focus.focus,
+  .color-base-active:active,
+  .color-base-active.active,
+  .color-base-toggle.active,
+  .color-base-toggle.open {
+    color: #000000 !important; }
+  .color-primary,
+  .color-primary-hover:hover,
+  .color-primary-focus:focus,
+  .color-primary-focus.focus,
+  .color-primary-active:active,
+  .color-primary-active.active,
+  .color-primary-toggle.active,
+  .color-primary-toggle.open {
+    color: #235789 !important; }
+  .color-accent,
+  .color-accent-hover:hover,
+  .color-accent-focus:focus,
+  .color-accent-focus.focus,
+  .color-accent-active:active,
+  .color-accent-active.active,
+  .color-accent-toggle.active,
+  .color-accent-toggle.open {
+    color: #17BEBB !important; }
+  .color-neutral,
+  .color-neutral-hover:hover,
+  .color-neutral-focus:focus,
+  .color-neutral-focus.focus,
+  .color-neutral-active:active,
+  .color-neutral-active.active,
+  .color-neutral-toggle.active,
+  .color-neutral-toggle.open {
+    color: #8d8d8d !important; }
+  .color-success,
+  .color-success-hover:hover,
+  .color-success-focus:focus,
+  .color-success-focus.focus,
+  .color-success-active:active,
+  .color-success-active.active,
+  .color-success-toggle.active,
+  .color-success-toggle.open {
+    color: #15b800 !important; }
+  .color-caution,
+  .color-caution-hover:hover,
+  .color-caution-focus:focus,
+  .color-caution-focus.focus,
+  .color-caution-active:active,
+  .color-caution-active.active,
+  .color-caution-toggle.active,
+  .color-caution-toggle.open {
+    color: #fd7f03 !important; }
+  .color-error,
+  .color-error-hover:hover,
+  .color-error-focus:focus,
+  .color-error-focus.focus,
+  .color-error-active:active,
+  .color-error-active.active,
+  .color-error-toggle.active,
+  .color-error-toggle.open {
+    color: #fd0303 !important; }
+
 .color-theme,
 .color-theme-hover:hover,
 .color-theme-focus:focus,
@@ -6228,6 +6440,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   position: fixed !important; }
 
 .position-sticky {
+  position: -webkit-sticky !important;
   position: sticky !important; }
 
 .float-left {
@@ -6258,43 +6471,55 @@ CUSTOM STYLES FOR TRUMBOWYG
   clear: inherit !important; }
 
 .justify-content-flex-start {
-  justify-content: flex-start !important; }
+  -webkit-box-pack: start !important;
+          justify-content: flex-start !important; }
 
 .justify-content-flex-end {
-  justify-content: flex-end !important; }
+  -webkit-box-pack: end !important;
+          justify-content: flex-end !important; }
 
 .justify-content-center {
-  justify-content: center !important; }
+  -webkit-box-pack: center !important;
+          justify-content: center !important; }
 
 .justify-content-space-between {
-  justify-content: space-between !important; }
+  -webkit-box-pack: justify !important;
+          justify-content: space-between !important; }
 
 .justify-content-space-around {
   justify-content: space-around !important; }
 
 .justify-content-space-evenly {
-  justify-content: space-evenly !important; }
+  -webkit-box-pack: space-evenly !important;
+          justify-content: space-evenly !important; }
 
 .justify-content-start {
-  justify-content: start !important; }
+  -webkit-box-pack: start !important;
+          justify-content: start !important; }
 
 .justify-content-end {
-  justify-content: end !important; }
+  -webkit-box-pack: end !important;
+          justify-content: end !important; }
 
 .justify-content-left {
-  justify-content: left !important; }
+  -webkit-box-pack: left !important;
+          justify-content: left !important; }
 
 .justify-content-right {
-  justify-content: right !important; }
+  -webkit-box-pack: right !important;
+          justify-content: right !important; }
 
 .justify-content-normal {
-  justify-content: normal !important; }
+  -webkit-box-pack: normal !important;
+          justify-content: normal !important; }
 
 .justify-content-stretch {
-  justify-content: stretch !important; }
+  -webkit-box-pack: stretch !important;
+          justify-content: stretch !important; }
 
 .justify-content-inherit {
-  justify-content: stretch !important; }
+  -webkit-box-pack: stretch !important;
+          justify-content: stretch !important; }
 
 .align-self-flex-start {
   align-self: flex-start !important; }
@@ -6315,28 +6540,36 @@ CUSTOM STYLES FOR TRUMBOWYG
   align-self: inherit !important; }
 
 .align-items-flex-start {
-  align-items: flex-start !important; }
+  -webkit-box-align: start !important;
+          align-items: flex-start !important; }
 
 .align-items-flex-end {
-  align-items: flex-end !important; }
+  -webkit-box-align: end !important;
+          align-items: flex-end !important; }
 
 .align-items-stretch {
-  align-items: stretch !important; }
+  -webkit-box-align: stretch !important;
+          align-items: stretch !important; }
 
 .align-items-center {
-  align-items: center !important; }
+  -webkit-box-align: center !important;
+          align-items: center !important; }
 
 .align-items-baseline {
-  align-items: baseline !important; }
+  -webkit-box-align: baseline !important;
+          align-items: baseline !important; }
 
 .align-items-start {
-  align-items: start !important; }
+  -webkit-box-align: start !important;
+          align-items: start !important; }
 
 .align-items-end {
-  align-items: end !important; }
+  -webkit-box-align: end !important;
+          align-items: end !important; }
 
 .align-items-inherit {
-  align-items: inherit !important; }
+  -webkit-box-align: inherit !important;
+          align-items: inherit !important; }
 
 .align-content-flex-start {
   align-content: flex-start !important; }
@@ -6382,32 +6615,48 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 /* FLEX */
 .inline-flex {
+  display: -webkit-inline-box !important;
   display: inline-flex !important; }
   @media (min-width: 401px) {
     .inline-flex-xs {
+      display: -webkit-inline-box !important;
       display: inline-flex !important; } }
   @media (min-width: 601px) {
     .inline-flex-sm {
+      display: -webkit-inline-box !important;
       display: inline-flex !important; } }
   @media (min-width: 1201px) {
     .inline-flex-md {
+      display: -webkit-inline-box !important;
       display: inline-flex !important; } }
   @media (min-width: 1601px) {
     .inline-flex-lg {
+      display: -webkit-inline-box !important;
       display: inline-flex !important; } }
 
 .flex {
+  display: -webkit-box !important;
   display: flex !important; }
   .flex-direction-row {
-    flex-direction: row !important; }
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+            flex-direction: row !important; }
   .flex-direction-row-reverse {
-    flex-direction: row-reverse !important; }
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: reverse !important;
+            flex-direction: row-reverse !important; }
   .flex-direction-column {
-    flex-direction: column !important; }
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+            flex-direction: column !important; }
   .flex-direction-column-reverse {
-    flex-direction: column-reverse !important; }
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: reverse !important;
+            flex-direction: column-reverse !important; }
   .flex-direction-inherit {
-    flex-direction: inherit !important; }
+    -webkit-box-orient: inherit !important;
+    -webkit-box-direction: inherit !important;
+            flex-direction: inherit !important; }
   .flex-wrap {
     flex-wrap: wrap !important; }
   .flex-nowrap {
@@ -6417,11 +6666,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   .flex-wrap-inherit {
     flex-wrap: inherit !important; }
   .flex-1-1, .flex-1-0 {
-    flex-grow: 1 !important; }
+    -webkit-box-flex: 1 !important;
+            flex-grow: 1 !important; }
   .flex-1-1, .flex-0-1 {
     flex-shrink: 1 !important; }
   .flex-0-1, .flex-0-0 {
-    flex-grow: 0 !important; }
+    -webkit-box-flex: 0 !important;
+            flex-grow: 0 !important; }
   .flex-1-0, .flex-1-0 {
     flex-shrink: 0 !important; }
 

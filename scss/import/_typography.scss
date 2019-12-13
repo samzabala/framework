@@ -246,16 +246,6 @@ $prefix: '.special';
 		}
 	}
 
-	%for {
-		&-p {
-			margin-bottom: $calculated-body-text-gutter-y;
-		}
-
-		// &-micro-p {
-		// 	margin-bottom: $calculated-body-text-gutter-y * .5;
-		// }
-	}
-
 /* heading */
 	h1,.h1,
 	h2,.h2,
@@ -314,17 +304,25 @@ a {
 	}
 }
 // margined shit
-p,
-.p,
-ul,
-ol,
-address,
-pre,
-dl,
-hr {
-	@extend %for-p;
-	display:block;
+
+
+%for {
+	&-p {
+		margin-bottom: $calculated-body-text-gutter-y;
+	}
 }
+
+	p,
+	.p,
+	ul,
+	ol,
+	address,
+	pre,
+	dl,
+	hr {
+		@extend %for-p;
+		display:block;
+	}
 
 // li {
 // 	&,

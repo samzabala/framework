@@ -149,6 +149,8 @@ NOTE if there are too much btns, there will be a scrollbar on the button group c
 
 ![](../../images/btn-group-vertical.png)
 
+`.btn` styles also works in [`.input-group`](../components/form.md#input-group) containers... i hope
+
 ## Btn group helpers
 
 ### **`.btn-group-responsive`**

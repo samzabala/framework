@@ -54,7 +54,7 @@ $calculated-btn-gutter-x: $btn-gutter-x;
 }
 
 $prefix: '.btn';
-@mixin button-generate-schemes($args:(),$add-disable-opacity:false,$scheme:''){
+@mixin button-generate-schemes($args:(),$scheme:''){
 	$defaults: (
 		init: (
 			border: '',
@@ -175,9 +175,9 @@ $prefix: '.btn';
 	}
 }
 
-%for-btn {
-
-	& {
+#{$prefix} {
+	
+	@at-root %for-btn {
 		@include type-set((
 			size: #{$calculated-btn-font-size},
 			leading: #{$calculated-btn-line-height},
@@ -218,89 +218,9 @@ $prefix: '.btn';
 			}
 		}
 	}
-
-
-
-	&-on-mobile {
-		@include br(#{$mobile-br-max}-max) {
-
-			display:flex;
-			width:100%;
-		}
-	}
-
-	&-itself-and-group {
-
-		border-radius: $btn-border-radius;
-		box-shadow: $btn-box-shadow;
-		background-color:transparent;
-		color:inherit;
-
-		&:hover,
-		&:focus,
-		&.focus,
-		&:active,
-		&.active {
-			box-shadow: $btn-box-shadow-hover;
-			color:inherit;
-		}
-	}
-
-	&-large {
-		padding-top: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		padding-bottom: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		border-radius: $btn-border-radius-large;
-		min-height:$calculated-btn-height-large;
-		@include br(xs){
-			font-size: $calculated-btn-font-size-large;
-		}
-	}
-
-	&-small {
-
-		font-size: $calculated-btn-font-size-small;
-		padding-top: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		padding-bottom: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		border-radius: $btn-border-radius-small;
-		min-height:$calculated-btn-height-small;
-	}
-
-	&-disabled{
-		cursor:not-allowed!important;
-		opacity: $global-disabled-opacity;
-	}
-
-	&-symbol {
-
 		& {
-			width: $calculated-btn-height;
-			padding-left:0;
-			padding-right:0;
-
-
-			.symbol {
-				margin-left:auto;
-				margin-right:auto;
-			}
+			@extend %for-btn;
 		}
-
-		&-large {
-			width: $calculated-btn-height-large ;
-
-		}
-
-		&-small {
-			width: $calculated-btn-height-small;
-
-		}
-	}
-
-}
-
-#{$prefix} {
-	& {
-		@extend %for-btn;
-	}
 
 	.nav & {
 		padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
@@ -313,10 +233,38 @@ $prefix: '.btn';
 		border-radius: 0!important;
 	}
 
-	&,&-group {
-		@extend %for-btn-itself-and-group;
-		@extend %for-btn-on-mobile;
+	@at-root %for-btn {
+
+		&-on-mobile {
+			@include br(#{$mobile-br-max}-max) {
+	
+				display:flex;
+				width:100%;
+			}
+		}
+	
+		&-itself-and-group {
+	
+			border-radius: $btn-border-radius;
+			box-shadow: $btn-box-shadow;
+			background-color:transparent;
+			color:inherit;
+	
+			&:hover,
+			&:focus,
+			&.focus,
+			&:active,
+			&.active {
+				box-shadow: $btn-box-shadow-hover;
+				color:inherit;
+			}
+		}
 	}
+
+		&,&-group {
+			@extend %for-btn-itself-and-group;
+			@extend %for-btn-on-mobile;
+		}
 
 	#{$prefix}-group & {
 		&,&:hover {
@@ -343,34 +291,94 @@ $prefix: '.btn';
 	}
 
 
-	&#{$prefix}-disabled,
-	#{$prefix}-disabled & {
-		@extend %for-btn-disabled;
-	}
+	@at-root %for-btn {
 
-	&#{$prefix}-large,
-	#{$prefix}-group#{$prefix}-large & {
-		@extend %for-btn-large;
-	}
-
-	&#{$prefix}-small,
-	#{$prefix}-group#{$prefix}-small & {
-		@extend %for-btn-small;
-	}
-
-	&-symbol {
-		@extend %for-btn-symbol;
-
-		#{$prefix}-small &,
-		&#{$prefix}-small {
-			@extend %for-btn-symbol-small;
-		}
-
-		#{$prefix}-large &,
-		&#{$prefix}-large {
-			@extend %for-btn-symbol-large;
+		&-disabled{
+			cursor:not-allowed!important;
+			opacity: $global-disabled-opacity;
 		}
 	}
+
+		&#{$prefix}-disabled,
+		#{$prefix}-disabled & {
+			@extend %for-btn-disabled;
+		}
+
+	@at-root %for-btn {
+
+		&-large {
+			padding-top: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			border-radius: $btn-border-radius-large;
+			min-height:$calculated-btn-height-large;
+			@include br(xs){
+				font-size: $calculated-btn-font-size-large;
+			}
+		}
+	
+		&-small {
+	
+			font-size: $calculated-btn-font-size-small;
+			padding-top: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			border-radius: $btn-border-radius-small;
+			min-height:$calculated-btn-height-small;
+		}
+	}
+
+		&#{$prefix}-large,
+		#{$prefix}-group#{$prefix}-large & {
+			@extend %for-btn-large;
+		}
+
+		&#{$prefix}-small,
+		#{$prefix}-group#{$prefix}-small & {
+			@extend %for-btn-small;
+		}
+
+	
+
+	@at-root %for-btn {
+
+		&-symbol {
+
+			& {
+				width: $calculated-btn-height;
+				padding-left:0;
+				padding-right:0;
+
+
+				.symbol {
+					margin-left:auto;
+					margin-right:auto;
+				}
+			}
+
+			&-large {
+				width: $calculated-btn-height-large ;
+
+			}
+
+			&-small {
+				width: $calculated-btn-height-small;
+
+			}
+		}
+	}
+
+		&-symbol {
+			@extend %for-btn-symbol;
+
+			#{$prefix}-small &,
+			&#{$prefix}-small {
+				@extend %for-btn-symbol-small;
+			}
+
+			#{$prefix}-large &,
+			&#{$prefix}-large {
+				@extend %for-btn-symbol-large;
+			}
+		}
 	
 	///updates here should match input-group 
 	&-group {
@@ -399,7 +407,7 @@ $prefix: '.btn';
 			display:flex;
 			width:100%;
 
-			.btn:not(.btn-symbol) {
+			& > .btn:not(.btn-symbol) {
 				flex: 1 1;
 			}
 		}
@@ -437,6 +445,10 @@ $prefix: '.btn';
 		&#{&}-vertical {
 			flex-direction:column;
 
+			> .btn-symbol {
+				width:auto;
+			}
+
 			// > #{$prefix}:nth-last-child(n+2) {
 			// 	border-bottom-right-radius: 0;
 			// 	border-bottom-left-radius: 0;
@@ -458,6 +470,10 @@ $prefix: '.btn';
 			@include br($mobile-br-max-polar){
 
 				&#{$prefix}-group-horizontal {
+
+					> .btn-symbol {
+						width:auto;
+					}
 					
 					// > #{$prefix}:nth-last-child(n+2) {
 					// 	border-top-right-radius: 0;
@@ -501,14 +517,12 @@ $prefix: '.btn';
 	}
 
 	@each $scheme,$properties in $calculated-btn-schemes {
+		@at-root %for-btn-#{$scheme} {
+
+			@include button-generate-schemes($properties,$scheme);
+		}
 		&#{&}-#{$scheme} {
-			$add-disable-opacity: false;
-			@if $scheme == 'default' {
-				$add-disable-opacity: true;
-			}
-			@include button-generate-schemes($properties,$add-disable-opacity,$scheme);
-
-
+			@extend %for-btn-#{$scheme};
 		}
 	}
 }

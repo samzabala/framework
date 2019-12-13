@@ -6,29 +6,6 @@
 
 // extend for elements that needs backgrounds so we can extend with responsibility
 	%for{
-		&-color {
-			&-intensity {
-				@for $i from 1 through length($calculated-color-brand-intensity) {
-					&-#{$i} {
-						color: nth($calculated-color-brand-intensity,$i);
-	
-						&-important {
-							color: nth($calculated-color-brand-intensity,$i) !important;
-						}
-					}
-				}
-			}
-	
-			@each $tag,$color in $calculated-brand-color-declarations {
-				&-#{$tag} {
-					color: $color;
-	
-					&-important {
-						color: $color !important;
-					}
-				}
-			}
-		}
 
 		&-background {
 			@each $tag,$color in $calculated-brand-color-declarations {
@@ -197,6 +174,32 @@
 	}
 
 /* COLOR CLASSES */
+	%for{
+		&-color {
+			&-intensity {
+				@for $i from 1 through length($calculated-color-brand-intensity) {
+					&-#{$i} {
+						color: nth($calculated-color-brand-intensity,$i);
+
+						&-important {
+							color: nth($calculated-color-brand-intensity,$i) !important;
+						}
+					}
+				}
+			}
+
+			@each $tag,$color in $calculated-brand-color-declarations {
+				&-#{$tag} {
+					color: $color;
+
+					&-important {
+						color: $color !important;
+					}
+				}
+			}
+		}
+	}
+	
 	$prefix: '.color';
 	#{$prefix} {
 

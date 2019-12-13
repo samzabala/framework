@@ -432,12 +432,10 @@
 			$input-height-small: 30px !default;
 		$input-height-multiple-factor: 3 !default;
 
-		$input-min-width: 100px !default;
-
 		$input-background: transparent !default;
 			$input-background-inverse: transparent !default;
-			$input-background-disabled: rgba($brand-color-neutral,.2) !default;
-				$input-background-disabled-inverse: transparent !default;
+			// $input-background-disabled: rgba($brand-color-neutral,.2) !default;
+			// 	$input-background-disabled-inverse: transparent !default;
 
 		$input-font-size: 16px !default;
 			$input-font-size-large: 25px !default;
