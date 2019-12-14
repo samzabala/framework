@@ -361,7 +361,7 @@
 		$progress-transition-duration: $transition-duration-long * 4 !default;
 
 
-		$progress-bar-background-color: $brand-color-primary !default;
+		$progress-bar-background-color: rgba($brand-color-neutral,.75) !default;
 
 
 		$progress-title-font-size: 14px !default;
@@ -431,9 +431,9 @@
 			$input-height-large: 75px !default;
 			$input-height-small: 30px !default;
 		$input-height-multiple-factor: 3 !default;
-
-		$input-background: transparent !default;
-			$input-background-inverse: transparent !default;
+		$input-placeholder-opacity: .5 !default;
+		$input-background: $theme-background !default;
+			$input-background-inverse: $theme-background-inverse !default;
 			// $input-background-disabled: rgba($brand-color-neutral,.2) !default;
 			// 	$input-background-disabled-inverse: transparent !default;
 

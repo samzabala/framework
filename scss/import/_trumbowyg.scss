@@ -48,9 +48,10 @@ CUSTOM STYLES FOR TRUMBOWYG
 	
 	&-editor,
 	&-textarea {
-		@extend %for-form-global;
-		@extend %for-form-shadow-and-border;
-		@extend %for-form-input;
+		@extend %for-form-input-and-label;
+		@extend %for-form-input-class;
+		@extend %for-form-input-boxy;
+		@extend %for-form-input-boxy-and-group;
 		min-height: 140px;
 		min-width:100%;
 	}
@@ -287,11 +288,12 @@ CUSTOM STYLES FOR TRUMBOWYG
 			}
 	
 			input:not([type="checkbox"]):not([type="radio"]) {
-				@extend %for-form-global;
-				@extend %for-form-input;
-				@extend %for-form-input-itself;
-				@extend %for-form-shadow-and-border;
-				@extend %for-form-input-single-line;
+				
+				@extend %for-form-input-and-label;
+				@extend %for-form-input-class;
+				@extend %for-form-input-boxy;
+				@extend %for-form-input-boxy-and-group;
+				@extend %for-form-input-boxy-single;
 				//@COPIEDOVER
 				@include br($mobile-br-max-polar){
 					width: calc(100% - #{$input-label-horizontal-width});
@@ -314,7 +316,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 			&#{$prefix}-input-error {
 
-				input:not([type="checkbox"]):not([type="radio"]) {
+				input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
 					@extend %for-form-input-color-error;
 				}
 

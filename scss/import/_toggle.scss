@@ -11,28 +11,38 @@
 
 .accordion {
     &:not(.accordion-mobile) {
+        // max-height:0;
+        // overflow:hidden;
         display:none;
-        // transition: $transition-duration-long height $transition-timing;
+        // transition: $transition-duration-long max-height $transition-timing;
         // overflow:hidden;
 
         &.open {
-            display: block;
+            // max-height:none;
+            // overflow:visible;
+            display:block;
         }
     }
 
     &#{&}-mobile {
 
         @include br(#{$mobile-br-max}-max) {
+            // max-height:0;
+            // overflow:hidden;
             display:none;
-            // transition: $transition-duration-long height $transition-timing;
+            // transition: $transition-duration-long max-height $transition-timing;
             // overflow:hidden;
 
             &.open {
-                display: block;
+                // max-height:none;
+                // overflow:visible;
+                display:block;
             }
         }
 
         @include br(#{$mobile-br-max-polar}) {
+            // max-height:none;
+            // overflow:visible;
             display:block;
         }
     }

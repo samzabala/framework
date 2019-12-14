@@ -103,22 +103,22 @@ Container for functions. Each [`.input`](../components/form.md) or [`.btn`](../c
         <div class="module-functions">
             <div class="module-function">
                 <div class=" input-group input-group-horizontal input-group-responsive">
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 1</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
                     
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 2</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
                     
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 3</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
                     
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 4</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
@@ -134,22 +134,22 @@ Container for functions. Each [`.input`](../components/form.md) or [`.btn`](../c
         <div class="module-functions">
             <div class="module-function">
                 <div class=" input-group input-group-horizontal input-group-responsive">
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 1</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
                     
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 2</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
                     
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 3</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>
                     
-                    <select class="input input-single-line">
+                    <select class="input input-select">
                         <option value="" selected="">Select 4</option>
                         <option class="REPLACE" value="VAL">VAL</option>
                     </select>

@@ -1,2 +1,98 @@
+# Tooltip
+
+
+Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle="tooltip-click"]`** or hover with **`[data-toggle="tooltip-hover"]`** 
+
+NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your page to dIE 
+
+Example tooltip that toggles on click
+
+```html
+<a href="#" class="btn btn-primary"
+	data-toggle="tooltip-click"
+	data-tooltip-placement="top"
+	data-tooltip-content="<strong>YEET</strong>">
+	Bitch boi on the top
+</a>
+```
+
+A bitch boy toggled on hover
+
+```html
+<a href="#" class="btn btn-primary"
+	data-toggle="tooltip-hover"
+	data-tooltip-placement="top"
+	data-tooltip-content="<strong>YEET</strong>">
+	Bitch boi on the top
+</a>
+```
+
+
+![](../../images/tooltip.png)
+
+
+# Toggler
+
+**`[data-toggle="tooltip-click"]`** or **`[data-toggle="tooltip-hover"]`** depending on how the fuck you want it to appear. This shit makes it happen. Add this to the element you need to hava a tooltip on
+
+```html
+<span data-toggle="tooltip-hover"></span>
+```
+
+This makes a tooltip, but there's nothing in it yet because you need...
+
+# Other Attributes
+
+## **`data-tooltip-placement`**
+
+defaults to `left`
+
+It places the boi somewhere you want
+
+Other Available parameters: `top`,`bottom`,`right`,
+
+## **`data-tooltip-badge`**
+
+defaults to false
+
+Whether or not you want the tooltip's pointy boi have a [badge](../components/badge.md) element on it
+
+## **`data-tooltip-badge-background`**
+
+defaults to `'primary'`
+
+This sets a color on the badge boi
+
+Only useful if `data-tooltip-badge` is true. It accepts valid [color tags](../scaffolding/colors.md#color-tags) values or valid `background-color` value
+
+## **`data-tooltip-badge-size`**
+
+defaults to `''`
+
+How big do you want the boi?
+
+Other Available parameters: `small`,`big`
+
+## **`data-tooltip-content`**
+
+defaults to `''`
+
+This is the content for the tooltip
+
+## **`data-tooltip-classes`**
+
+Idk this is how you add classes or [helper classes](../scaffolding/helpers.md) but you have to be careful because some css may not work on the tooltip
+
+## **`data-tooltip-center-x`**
+
+By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled horizontally
+
+## **`data-tooltip-center-y`**
+
+By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled vertically
+
+
+
+![](../../images/tooltip-with-center.png)
 
 [Back to TOC](../../../readme.md)

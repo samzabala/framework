@@ -223,8 +223,8 @@ $prefix: '.btn';
 		}
 
 	.nav & {
-		padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+		padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+		padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
 		height: #{ $calculated-nav-height };
 	}
 

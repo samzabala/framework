@@ -8,7 +8,7 @@
 	%for{
 
 		&-background {
-			@each $tag,$color in $calculated-brand-color-declarations {
+			@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
 				&-#{$tag} {
 					background-color: $color ;
 				}
@@ -163,7 +163,7 @@
 		);
 
 		//color tag
-		@each $tag,$color in $calculated-brand-color-declarations {
+		@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
 			
 			@include create-palette-helper(
 				#{&}-#{$tag}
@@ -188,7 +188,7 @@
 				}
 			}
 
-			@each $tag,$color in $calculated-brand-color-declarations {
+			@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
 				&-#{$tag} {
 					color: $color;
 
@@ -259,7 +259,7 @@
 		
 
 		//color tag
-		@each $tag,$color in $calculated-brand-color-declarations {
+		@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
 			
 			@include create-palette-helper(
 				#{&}-#{$tag}

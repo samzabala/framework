@@ -164,6 +164,8 @@ You get it...
 
 ### **`[data-dropdown-width="['css width property']"]`**
 
+Defaults to nothing, or closest positioned element's width
+
 Can be applied to either `.dropdown` or `[data-toggle="dropdown"]`
 
 This sets a custom width for the dropdown

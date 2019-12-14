@@ -25,87 +25,7 @@ $calculated-progress-title-margin-top: $progress-title-margin-top;
 }
 
 
-%for-progress {
 
-	& {
-		width:100%;
-		display:block;
-		background-color: $progress-background-color;
-		border-radius: $progress-border-radius;
-		overflow:hidden;
-		@extend %for-cf;
-		// margin-bottom:$calculated-body-text-gutter-y;
-		@include gradient((
-			type: repeating-linear,
-			colors: (
-				(
-					color: $progress-background-stripe-color,
-					offset:0%
-				),
-				(
-					color: $progress-background-stripe-color,
-					offset:1px
-				),
-				(
-					color: $progress-background-color,
-					offset:1px
-				),
-				(
-					color: $progress-background-color,
-					offset:4px
-				)
-			)
-		));
-
-
-
-		&.active {
-			animation-name: progress-bar-stripes;
-			animation-duration: $progress-transition-duration;
-			animation-timing-function: linear;
-			animation-iteration-count: infinite;
-		}
-
-		.theme-inverse & {
-			background-color: $progress-background-color-inverse;
-			
-			@include gradient((
-				type: repeating-linear,
-				colors: (
-					(
-						color: $progress-background-stripe-color-inverse,
-						offset:0%
-					),
-					(
-						color: $progress-background-stripe-color-inverse,
-						offset:1px
-					),
-					(
-						color: $progress-background-color-inverse,
-						offset:1px
-					),
-					(
-						color: $progress-background-color-inverse,
-						offset:4px
-					)
-				)
-			));
-		}
-	}
-
-	&-and-bar {
-		height: $calculated-progress-height;
-		transition: $progress-transition-duration all $transition-timing;
-	}
-
-	&-bar {
-		float: left;
-
-		&-default {
-			background-color: $progress-bar-background-color;
-		}
-	}
-}
 
 @keyframes progress-bar-stripes {
 	from {
@@ -119,12 +39,98 @@ $calculated-progress-title-margin-top: $progress-title-margin-top;
 /* Progress bar */
 $prefix: '.progress';
 #{$prefix} {
-	@extend %for-progress;
+	@at-root %for-progress {
+
+		& {
+			width:100%;
+			display:block;
+			background-color: $progress-background-color;
+			border-radius: $progress-border-radius;
+			overflow:hidden;
+			@extend %for-cf;
+			// margin-bottom:$calculated-body-text-gutter-y;
+			@include gradient((
+				type: repeating-linear,
+				colors: (
+					(
+						color: $progress-background-stripe-color,
+						offset:0%
+					),
+					(
+						color: $progress-background-stripe-color,
+						offset:1px
+					),
+					(
+						color: $progress-background-color,
+						offset:1px
+					),
+					(
+						color: $progress-background-color,
+						offset:4px
+					)
+				)
+			));
+	
+	
+	
+			&.active {
+				animation-name: progress-bar-stripes;
+				animation-duration: $progress-transition-duration;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+	
+			.theme-inverse & {
+				background-color: $progress-background-color-inverse;
+				
+				@include gradient((
+					type: repeating-linear,
+					colors: (
+						(
+							color: $progress-background-stripe-color-inverse,
+							offset:0%
+						),
+						(
+							color: $progress-background-stripe-color-inverse,
+							offset:1px
+						),
+						(
+							color: $progress-background-color-inverse,
+							offset:1px
+						),
+						(
+							color: $progress-background-color-inverse,
+							offset:4px
+						)
+					)
+				));
+			}
+		}
+	}
+	
+	& {
+		@extend %for-progress;
+	}
+	@at-root %for-progress-and-bar {
+		height: $calculated-progress-height;
+		transition: $progress-transition-duration width $transition-timing;
+	}
 
 	&,
 	&-bar {
 		@extend %for-progress-and-bar;
 	}
+
+
+	@at-root %for-progress-bar {
+		float: left;
+
+		&-default {
+			background-color: $progress-bar-background-color;
+		}
+	}
+
+
 	&-bar {
 		@extend %for-progress-bar;
 		@extend %for-progress-bar-default;

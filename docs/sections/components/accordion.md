@@ -163,5 +163,18 @@ Color based [Helper classes](../scaffolding/helpers.md#background-and-colors) as
 This makes the `<h1>`'s color to the set primary one when the accordion is open
 
 
+## Javascript
+
+If a url's hash location matches an element with that id and it has an `accordion` class, the accordion will automatically open and scroll there
+
+to disable this write ya script
+
+
+```js
+(function(fw){
+	frameWork.settings.initializeAccordion = false;
+}(frameWork));
+```
+NOTE: this is useless if `frameWork.settings.dynamicHash` is set to `false`
 
 [Back to TOC](../../../readme.md)

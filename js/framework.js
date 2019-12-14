@@ -14,10 +14,11 @@ window.jQuery && jQuery.noConflict();
 	var _ = {};
 
 	//settings
-	frameWork.lazyLoad = frameWork.lazyLoad || true;
-	frameWork.initializeModal = frameWork.initializeModal || true;
-	frameWork.initializeAccordion = frameWork.initializeAccordion || true;
-	frameWork.dynamicHash = frameWork.dynamicHash || true;
+	frameWork.settings = frameWork.settings || {};
+	frameWork.settings.lazyLoad = frameWork.settings.lazyLoad || true;
+	frameWork.settings.initializeModal = frameWork.settings.initializeModal || true;
+	frameWork.settings.initializeAccordion = frameWork.settings.initializeAccordion || true;
+	frameWork.settings.dynamicHash = frameWork.settings.dynamicHash || true;
 
 	//hacks around trumbo bitch wyg
 	frameWork.trumbowyg = {};
@@ -163,7 +164,7 @@ window.jQuery && jQuery.noConflict();
 
 		id = id || '';
 
-		if(frameWork.dynamicHash){
+		if(frameWork.settings.dynamicHash){
 			
 
 			if(history.pushState) {
@@ -618,7 +619,7 @@ window.jQuery && jQuery.noConflict();
 					|| null,
 				close:
 					contentWrap.getAttribute('data-modal-close')
-					|| (triggerer && (triggerer.getAttribute('data-modal-header'))) 
+					|| (triggerer && (triggerer.getAttribute('data-modal-close'))) 
 					|| null,
 				disableOverlay:
 					contentWrap.getAttribute('data-modal-disable-overlay')
@@ -784,6 +785,12 @@ window.jQuery && jQuery.noConflict();
 						toggle.classList.add('open');
 					});
 
+					window.scrollTo({
+						top: selector.getBoundingClientRect().top + window.pageYOffset,
+						left: selector.getBoundingClientRect().top + window.pageXOffset,
+						behavior: 'smooth'
+					  });
+
 				}
 			}
 		}
@@ -832,10 +839,10 @@ window.jQuery && jQuery.noConflict();
 	
 	window.addEventListener('load',function(){
 
-		frameWork.lazyLoad && frameWork.loadImages();
+		frameWork.settings.lazyLoad && frameWork.loadImages();
 
-		frameWork.initializeModal && frameWork.createModal();
-		frameWork.initializeAccordion && frameWork.toggleAccordion();
+		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 
 		_.functions_on_load.forEach(function(fn){
 			fn();

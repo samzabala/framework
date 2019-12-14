@@ -8,7 +8,8 @@ $calculated-list-group-height: $list-group-height;
 
 
 $prefix: '.list-group';
-#{$prefix} {
+#{$prefix},
+#{$prefix} ul {
 	padding: 1px 0 0;
 	// border-bottom: $list-group-border-width solid $list-group-border-color;
 

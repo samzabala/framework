@@ -96,305 +96,359 @@ $calculated-input-info-gutter-y: $input-info-gutter-y;
 $prefix: '.input';
 
 
-// extends so trumbowyg's stupid ass can use too
-%for-form {
-	&-global {
+#{$prefix} {
+
+
+	
+	@at-root %for-form-input-and-label {
+
 		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
 		max-width:100%;
 
-		&-disabled {
+		&#{$prefix}-disabled,
+		&[disabled] {
 
 			opacity: $global-disabled-opacity!important;
 			cursor: not-allowed!important;
+			// background-color: $input-background-disabled;
+
+			// .theme-inverse & {
+			// 	background-color: $input-background-disabled-inverse;
+			// }
 		}
 	}
 
-	&-shadow-and-border {
+		&,
+		&-label{
+			@extend %for-form-input-and-label;
+		}
+
+	@at-root %for-form-input-class {
+		font: inherit;
+		color:inherit;
+		vertical-align: middle;
+		background-color: $input-background;
+		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
+		max-width:100%;
+
+		&:focus {
+			outline: none;
+			box-shadow: $input-box-shadow-focus;
+		}
+
+		.theme-inverse & {
+			background-color: $input-background-inverse;
+		}
+
+		&#{$prefix}-large,
+		#{$prefix}-group#{$prefix}-large & {
+			font-size: $calculated-input-font-size-large;
+		}
+
+		&#{$prefix}-small,
+		#{$prefix}-group#{$prefix}-small & {
+			font-size: $calculated-input-font-size-small;
+		}
+	}
+
+		& { //scaffold
+			@extend %for-form-input-class;
+		}
+
+
+
+
+	@at-root %for-form-label {
+		@include type-set((
+			size: #{$calculated-input-label-font-size},
+			color:$input-label-color,
+			leading: $calculated-input-label-line-height ,
+			weight: $input-label-font-weight,
+			style: $input-label-font-style,
+			font: $input-label-font-family,
+			align:inherit,
+			decoration:none,
+			case: $input-label-text-transform,
+		));
+		order:-1;
+		margin-right: 1rem;
+		display:inline-block;
+		padding-top: calc( (#{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
+		padding-bottom: calc( (  #{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
+
+		&#{$prefix}-large,
+		#{$prefix}-large & {
+			font-size: $calculated-input-font-size-large;
+			padding-top: calc(   (#{ $calculated-input-height-large } - (#{$calculated-input-label-single-line}) ) * .5 );
+			padding-bottom: calc(  (#{ $calculated-input-height-large } - (#{$calculated-input-label-single-line}) ) * .5 );
+		}
+
+		&#{$prefix}-small,
+		#{$prefix}-small & {
+			font-size: $calculated-input-font-size-small;
+			padding-top: calc(  (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line}) ) * .5 );
+			padding-bottom: calc(  (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line}) ) * .5 );
+		}
+
+		.theme-inverse & {
+			color:$input-label-color-inverse;
+		}
+	}
+
+		&-label {
+			@extend %for-form-label;	
+		}
+
+	&-info {
+		@include type-set((
+			size: $calculated-input-info-font-size,
+			leading: $calculated-input-info-line-height,
+			color: $input-info-color,
+			weight:$input-info-font-weight,
+			style: $input-info-font-style,
+			case: $input-info-text-transform,
+		));
+		margin-top:$calculated-input-info-gutter-y;
+		margin-bottom:$calculated-input-info-gutter-y;
+		display:block;
+
+		order: 3;
+
+		#{$prefix}-wrapper-horizontal & {
+			width: calc(100% - #{$input-label-horizontal-width});
+			align-self: flex-end;
+			margin-left: auto;
+		}
+	}
+
+	&-inline {
+		vertical-align: middle;
+		display:inline-block;
+		margin-right: .5em;
+	}
+
+	//shitstorm 
+	@at-root %for-form-input-boxy {
+
+		-webkit-appearance: none;
+		appearance: none;
+		@include type-set((
+			size: #{$calculated-input-font-size},
+			color:$input-color,
+			leading: #{ $calculated-input-line-height } ,
+			weight: $input-font-weight,
+			style: $input-font-style,
+			font: $input-font-family,
+			align:inherit,
+			decoration:none,
+			case: $input-text-transform,
+		));
+		display:inline-block;
+		background-color: $input-background;
+		border: $input-border-width solid $input-border-color;
+		padding-right: $calculated-input-gutter-x;
+		padding-left: $calculated-input-gutter-x;
+		padding-top: calc(  (  (#{ $calculated-input-height } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+		padding-bottom: calc(  (  (#{ $calculated-input-height } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+
+		.theme-inverse & {
+			color:$input-color-inverse;
+			background-color: $input-background-inverse;
+		}
+		
+		option {
+			font:inherit;
+		}
+
+
+		#{$prefix}-group & {
+			box-shadow: none;
+			border-radius:0!important;
+		}
+
+		#{$prefix}-wrapper & {
+			display: block;
+			flex: 1 1;
+			order: 2;
+		}
+
+		&::-webkit-input-placeholder {
+			color: inherit;
+			opacity: $input-placeholder-opacity;
+		}
+		
+		&::-moz-placeholder {
+			color: inherit;
+			opacity: $input-placeholder-opacity;
+		}
+		
+		&:-ms-input-placeholder{
+			color: inherit;
+			opacity: $input-placeholder-opacity;
+		}
+		&:-moz-placeholder { /* Firefox 18- */
+			color: inherit;
+			opacity: $input-placeholder-opacity;
+		}
+
+		
+
+		&[type=color] {
+			min-width:100px;
+			padding: .5em;
+		}
+
+		//file
+			&::-webkit-file-upload-button {
+				appearance: none;
+				border: none;
+				font:inherit;
+				color:inherit;
+				opacity: $input-placeholder-opacity;
+				background: none;
+				margin: 0;
+				padding: 0;
+				vertical-align:middle;
+				display:flex;
+			}
+			// &::-webkit-file-upload-text {
+			// 	-webkit-appearance: none;
+			// }
+		
+		// &:focus::-webkit-input-placeholder {
+		// 	color: transparent !important;
+		// }
+		
+		// &:focus:-moz-placeholder {
+		// 	color: transparent !important;
+		// }
+		
+		// &:focus:-ms-input-placeholder{
+		// 	color: transparent !important;
+		// }
+
+		
+		// &.focus::-webkit-input-placeholder {
+		// 	color: transparent !important;
+		// }
+		
+		// &.focus:-moz-placeholder {
+		// 	color: transparent !important;
+		// }
+		
+		// &.focus:-ms-input-placeholder{
+		// 	color: transparent !important;
+		// }
+
+		.nav & {
+			border-radius: 0 !important;
+			padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			height: #{ $calculated-nav-height };
+
+			&:not(.focus):not(:focus) {
+				box-shadow:none;
+			}
+
+		}
+
+		&:focus,
+		&.focus {
+			box-shadow: $input-box-shadow-focus;
+			border-color: $input-border-color-focus;
+		}
+
+		&#{$prefix}-large,
+		#{$prefix}-group#{$prefix}-large & {
+			padding-top: calc(  (  (#{ $calculated-input-height-large } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-input-height-large } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+		}
+
+		&#{$prefix}-small,
+		#{$prefix}-group#{$prefix}-small & {
+			padding-top: calc(  (  (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+		}
+	}
+
+		&-select,
+		&-single-line,
+		&-multiple-line,
+		&-editor {
+			@extend %for-form-input-boxy;
+		}
+
+	
+
+
+
+
+	@at-root %for-form-input-boxy-and-group {
+
 		border-radius: $input-border-radius;
 		box-shadow: $input-box-shadow;
+
+		.nav & {
+			border-radius: 0 !important;
+
+			&:not(.focus):not(:focus) {
+				box-shadow:none;
+			}
+
+		}
 
 		&#{$prefix}-no-radius {
 			border-radius: 0!important;
 		}
 
-		.nav & {
-			border-radius: 0 !important;
-			&:not(.focus):not(:focus) {
-				box-shadow:none;
-			}
+		&#{$prefix}-no-shadow {
+			box-shadow:none!important;
 		}
 	}
 
-	&-label {
-		& {
-			@include type-set((
-				size: #{$calculated-input-label-font-size},
-				color:$input-label-color,
-				leading: $calculated-input-label-line-height ,
-				weight: $input-label-font-weight,
-				style: $input-label-font-style,
-				font: $input-label-font-family,
-				align:inherit,
-				decoration:none,
-				case: $input-label-text-transform,
-			));
-			order:-1;
-			margin-right: 1rem;
-			display:inline-block;
-			padding-top: calc( (#{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
-			padding-bottom: calc( (  #{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
-
-			&#{$prefix}-label-large {
-				font-size: $calculated-input-font-size-large;
-				padding-top: calc(   (#{ $calculated-input-height-large } - (#{$calculated-input-label-single-line}) ) * .5 );
-				padding-bottom: calc(  (#{ $calculated-input-height-large } - (#{$calculated-input-label-single-line}) ) * .5 );
-			}
-
-			&#{$prefix}-label-small {
-				font-size: $calculated-input-font-size-small;
-				padding-top: calc(  (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line}) ) * .5 );
-				padding-bottom: calc(  (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line}) ) * .5 );
-			}
-
-			.theme-inverse & {
-				color:$input-label-color-inverse;
-			}
-		}
-		
-		&-color {
-			
-			@each $tag,$color in $calculated-brand-color-declarations {
-				
-				&-#{$tag} {
-					&,&:focus {
-						color: $color!important;
-					}
-				}
-				
-			}
-		}
+	&-select,
+	&-single-line,
+	&-multiple-line,
+	&-editor,
+	&-group {
+		@extend %for-form-input-boxy-and-group;
 	}
 
-	&-input {
+	@at-root %for-form-input-boxy-single{
 
+		height: $calculated-input-height;
+		vertical-align: middle;
 
-		&-on-mobile {
-			@include br(#{$mobile-br-max}-max) {
-
-				display:flex;
-				width:100%;
-			}
-		}
-		
-		
-		&-itself {
-			font: inherit;
-			vertical-align: middle;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			background-color: $input-background;
-
-			&:focus {
-
-				outline: none;
-				box-shadow: $input-box-shadow-focus;
-			}
-
-			.theme-inverse & {
-				background-color: $input-background-inverse;
-			}
-			
-			&#{$prefix}-disabled,
-			&[disabled] {
-				@extend %for-form-global-disabled;
-				// background-color: $input-background-disabled;
-
-				// .theme-inverse & {
-				// 	background-color: $input-background-disabled-inverse;
-				// }
-			}
+		&#{$prefix}-large,
+		#{$prefix}-large & {
+			height: $calculated-input-height-large;
 		}
 
-
-		&-large {
-			border-radius: $input-border-radius-large;
+		&#{$prefix}-small,
+		#{$prefix}-small & {
+			height: $calculated-input-height-small;
 		}
-
-		&-small {
-			border-radius: $input-border-radius-small;
-		}
-
-		& {
-			font: inherit;
-			-webkit-appearance: none;
-			appearance: none;
-			@include type-set((
-				size: #{$calculated-input-font-size},
-				color:$input-color,
-				leading: #{ $calculated-input-line-height } ,
-				weight: $input-font-weight,
-				style: $input-font-style,
-				font: $input-font-family,
-				align:inherit,
-				decoration:none,
-				case: $input-text-transform,
-			));
-			display:inline-block;
-			background-color: $input-background;
-			border: $input-border-width solid $input-border-color;
-			padding-right: $calculated-input-gutter-x;
-			padding-left: $calculated-input-gutter-x;
-			padding-top: calc(  (  (#{ $calculated-input-height } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			padding-bottom: calc(  (  (#{ $calculated-input-height } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-
-			&#{$prefix}-large,
-			#{$prefix}-group#{$prefix}-large & {
-				font-size: $calculated-input-font-size-large;
-				padding-top: calc(  (  (#{ $calculated-input-height-large } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-				padding-bottom: calc(  (  (#{ $calculated-input-height-large } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			}
-
-			&#{$prefix}-small,
-			#{$prefix}-group#{$prefix}-small & {
-				font-size: $calculated-input-font-size-small;
-				padding-top: calc(  (  (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-				padding-bottom: calc(  (  (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			}
-
-			.theme-inverse & {
-				color:$input-color-inverse;
-				background-color: $input-background-inverse;
-			}
-			
-			option {
-				font:inherit;
-			}
-
-
-			#{$prefix}-group & {
-				box-shadow: none;
-			}
-
-			&::-webkit-input-placeholder {
-				color: inherit;
-			}
-			
-			&:-moz-placeholder {
-				color: inherit;
-			}
-			
-			&:-ms-input-placeholder{
-				color: inherit;
-			}
-			
-			&:focus::-webkit-input-placeholder {
-				color: transparent !important;
-			}
-			
-			&:focus:-moz-placeholder {
-				color: transparent !important;
-			}
-			
-			&:focus:-ms-input-placeholder{
-				color: transparent !important;
-			}
-
-			
-			&.focus::-webkit-input-placeholder {
-				color: transparent !important;
-			}
-			
-			&.focus:-moz-placeholder {
-				color: transparent !important;
-			}
-			
-			&.focus:-ms-input-placeholder{
-				color: transparent !important;
-			}
-
-			&#{$prefix}-disabled,
-			&[disabled] {
-
-				&,
-				&:focus,
-				&.focus {
-					border-color: $input-border-color;
-				}
-			}
-
-			&:focus,
-			&.focus {
-				box-shadow: $input-box-shadow-focus;
-				border-color: $input-border-color-focus;
-			}
-
-
-		}
-		
-		&-color {
-			@each $tag,$color in $calculated-brand-color-declarations {
-			
-				&-#{$tag}  {
-		
-					&:not(:focus):not(.focus) {
-		
-						color: $color!important;
-						box-shadow: $input-box-shadow-brand-basis $color!important;
-						
-						@if type-of($color) == color && $color != transparent {
-							background-color: rgba($color,.05);
-						}
-					}
-		
-					&,
-					&:focus,
-					&.focus {
-						border-color: $color!important;
-
-						.input-group & {
-
-							border-color:transparent!important;
-						}
-					}
-				}
-			}
-		}
-
+	}
 
 		&-single-line {
-			@extend %for-form-input;
-			height: $calculated-input-height;
-			vertical-align: middle;
-
-			&#{$prefix}-large,
-			#{$prefix}-large & {
-				height: $calculated-input-height-large;
-			}
-	
-			&#{$prefix}-small,
-			#{$prefix}-small & {
-				height: $calculated-input-height-small;
-			}
-
+			@extend %for-form-input-boxy-single;
 		}
 
+	@at-root %for-form-input-boxy-multiple{
 
-		&-multiple-line,
-		&-editor {
-			@extend %for-form-input;
+		vertical-align: top;
+		max-height:100%;
+		overflow-y: auto;
+
+		option {
+			padding-right: $calculated-input-gutter-x;
+			padding-left: $calculated-input-gutter-x;
+			margin-right: $calculated-input-gutter-x * -1;
+			margin-left: $calculated-input-gutter-x * -1;
+		}
+
+		&-height {
 			min-height: $calculated-input-height * $input-height-multiple-factor;
-			vertical-align: top;
-			max-height:100%;
-			overflow-y: auto;
-
-			option {
-				padding-right: $calculated-input-gutter-x;
-				padding-left: $calculated-input-gutter-x;
-				margin-right: $calculated-input-gutter-x * -1;
-				margin-left: $calculated-input-gutter-x * -1;
-			}
 
 			&#{$prefix}-large,
 			#{$prefix}-large & {
@@ -407,43 +461,55 @@ $prefix: '.input';
 			}
 
 		}
+	}
 
-		&-select {
-			&-multiple {
-				background-image: none;
-			}
-
-			&-not-multiple {
-				padding-right: $calculated-input-gutter-x * 2;
-			}
-
-			& {
-				background-image:
-					linear-gradient(-130deg, $input-select-dropdown-color 0%, $input-select-dropdown-color 50%, transparent 51%, transparent 100%),
-					linear-gradient(130deg, $input-select-dropdown-color 0%, $input-select-dropdown-color 50%, transparent 51%, transparent 100%)
-					;
-				background-size:
-					#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height,
-					#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height
-					;
-				background-position:
-					calc(100% - (1em + #{$calculated-symbol-caret-width * .425} )) 50%,
-					calc(100% - 1em) 50%
-					;
-				background-repeat: no-repeat,no-repeat;
-
-			}
-			
+		&-select[multiple],
+		&-multiple-line {
+			@extend %for-form-input-boxy-multiple;
 		}
 
-		&-inlines {
-			vertical-align: baseline;
-			display:inline-block;
-			margin-right: .5em;
+		&-multiple-line {
+			@extend %for-form-input-boxy-multiple-height;
+		}
+
+	&-multiple-line {
+		display:block;
+		
+	}
+
+
+	
+	@at-root %for-form-input-boxy-select {
+
+		background-image:
+			linear-gradient(-130deg, $input-select-dropdown-color 0%, $input-select-dropdown-color 50%, transparent 51%, transparent 100%),
+			linear-gradient(130deg, $input-select-dropdown-color 0%, $input-select-dropdown-color 50%, transparent 51%, transparent 100%)
+			;
+		background-size:
+			#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height,
+			#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height
+			;
+		background-position:
+			calc(100% - (1em + #{$calculated-symbol-caret-width * .425} )) 50%,
+			calc(100% - 1em) 50%
+			;
+		background-repeat: no-repeat,no-repeat;
+
+		&:not([multiple]) {
+			padding-right: $calculated-input-gutter-x * 2;
+		}
+		@at-root select#{&}[multiple] {
+			background-image: none;
 		}
 	}
 
-	&-wrapper {
+		&-select {
+			@extend %for-form-input-boxy-select;
+		}
+
+
+
+	@at-root %for-form-wrapper {
 		& {
 			max-width:100%;
 			position:relative;
@@ -459,6 +525,12 @@ $prefix: '.input';
 			@include br($mobile-br-max-polar){
 				flex-direction: row;
 				align-items: flex-start;
+			
+				&#{$prefix}-wrapper-block & {
+					%for-form-input-boxy {
+						width: calc(100% - #{$input-label-horizontal-width});
+					}
+				}
 				// flex-wrap: wrap;
 
 				> #{$prefix}-label {
@@ -487,184 +559,38 @@ $prefix: '.input';
 
 			@include br(#{$mobile-br-max}-max) {
 				flex-direction: column;
+
+				%for-form-input-boxy {
+					width:100%;
+				}
 			}
 
 		}
 	}
-}
 
+		&-wrapper {
+			& {
+				@extend %for-form-wrapper;
+			}
+				
 
+			&#{&}-horizontal {
+				@extend %for-form-wrapper-horizontal;
+				
+			}
 
+			&#{&}-vertical {
+				@extend %for-form-wrapper-vertical;
+			}
 
+			&#{&}-block {
 
-
-
-
-
-#{$prefix} {
-
-	& {
-		@extend %for-form-input-itself;
-
-		@at-root select#{$prefix} {
-			@extend %for-form-input-select;
-			
-		}
-		
-		
-		@at-root select#{$prefix}:not([multiple]) {
-			@extend %for-form-input-select-not-multiple;
+				
+				@extend %for-form-wrapper-block;
+			}
 		}
 
-		@at-root select#{$prefix}[multiple]{
-			@extend %for-form-input-select-multiple;
-		}
 
-		&-inline {
-			@extend %for-form-input-inlines;
-		}
-	}
-	&#{$prefix}-no-radius,
-	&-group#{$prefix}-no-radius {
-		border-radius: 0!important;
-	}
-
-	&#{$prefix}-no-shadow,
-	&-group#{$prefix}-no-shadow {
-		box-shadow:none!important;
-	}
-
-	&-info {
-
-		@include type-set((
-			size: $calculated-input-info-font-size,
-			leading: $calculated-input-info-line-height,
-			color: $input-info-color,
-			weight:$input-info-font-weight,
-			style: $input-info-font-style,
-			case: $input-info-text-transform,
-		));
-		margin-top:$calculated-input-info-gutter-y;
-		margin-bottom:$calculated-input-info-gutter-y;
-		display:block;
-
-		order: 3;
-
-		#{$prefix}-wrapper-horizontal & {
-			width: calc(100% - #{$input-label-horizontal-width});
-			align-self: flex-end;
-			margin-left: auto;
-		}
-	}
-
-	&-label  {
-		@extend %for-form-global;
-		@extend %for-form-label;
-	}
-
-
-
-
-	&#{$prefix}-large,
-	#{$prefix}-group#{$prefix}-large & {
-		@extend %for-form-input-large;
-	}
-
-	&#{$prefix}-small,
-	#{$prefix}-group#{$prefix}-small & {
-		@extend %for-form-input-small;
-	}
-
-
-	@each $tag,$color in $calculated-brand-color-declarations {
-		@at-root #{$prefix}-label#{$prefix}-label-#{$tag},
-		#{$prefix}-wrapper-#{$tag} #{$prefix}-label {
-			@extend %for-form-label-color-#{$tag};
-		}
-
-		@at-root &#{$prefix}-#{$tag},
-		#{$prefix}-wrapper-#{$tag} &  {
-
-			@extend %for-form-input-color-#{$tag};
-		}
-	}
-
-
-	&-label-disabled,
-	&-disabled {
-		@extend %for-form-global-disabled;
-	}
-
-
-	@at-root select#{$prefix}[multiple],
-	&-single-line,
-	&-multiple-line,
-	&-editor {
-		@extend %for-form-global;
-		@extend %for-form-input;
-
-		.nav & {
-			padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			height: #{ $calculated-nav-height };
-		}
-
-		#{$prefix}-wrapper & {
-			display: block;
-			flex: 1 1;
-			order: 2;
-		}
-		
-		#{$prefix}-wrapper-horizontal#{$prefix}-wrapper-block & {
-			width: calc(100% - #{$input-label-horizontal-width});
-		}
-
-		@at-root &,
-		#{$prefix}-group {
-			@extend %for-form-shadow-and-border;
-		}
-		
-	}
-	
-
-	&-single-line {
-		@extend %for-form-input-single-line;
-	}
-	
-
-	@at-root select#{$prefix}[multiple],
-	&-multiple-line,
-	&-editor {
-		@extend %for-form-input-multiple-line;
-	}
-	&-editor {
-		display:block;
-	}
-
-
-	&-wrapper {
-
-		@extend %for-form-wrapper;
-
-		&#{&}-block {
-			@extend %for-form-wrapper-block;
-		}
-
-		&-horizontal {
-			@extend %for-form-wrapper-horizontal;
-		}
-
-		&-vertical {
-			@extend %for-form-wrapper-vertical;
-		}
-		
-	}
-
-	&,&-group {
-		@extend %for-form-input-on-mobile;
-	}
-
-	///updates here should match btn-group 
 	&-group {
 		display:inline-flex;
         position:relative;
@@ -834,9 +760,57 @@ $prefix: '.input';
 					}
 				}
 			}
-        } 
+        }
+	}
+
+
+
+	
+
+	//color
+	@each $tag,$color in $calculated-brand-color-declarations {
+
+		@at-root %for-form-label-color-#{$tag} {
+			&,&:focus,&.focus {
+				color: $color!important;
+			}
+		}
+			//label
+			@at-root #{$prefix}-label#{$prefix}-label-#{$tag},
+			#{$prefix}-wrapper-#{$tag} #{$prefix}-label {
+				@extend %for-form-label-color-#{$tag};
+			}
+
+		@at-root %for-form-input-color-#{$tag} {
+			&:not(:focus):not(.focus) {
+		
+				color: $color!important;
+				box-shadow: $input-box-shadow-brand-basis $color!important;
+				
+				@if type-of($color) == color && $color != transparent {
+					background-color: rgba($color,.05);
+				}
+			}
+
+			&,
+			&:focus,
+			&.focus {
+				border-color: $color!important;
+
+				.input-group & {
+
+					border-color:transparent!important;
+				}
+			}
+		}
+			//inputs
+			@at-root &#{$prefix}-#{$tag},
+			#{$prefix}-wrapper-#{$tag} &  {
+				@extend %for-form-input-color-#{$tag};
+			}
 	}
 }
+
 
 
 
@@ -877,7 +851,9 @@ fieldset {
 		&-horizontal {
 			#{$prefix},
 			#{$prefix}-single-line,
-			#{$prefix}-multiple-line {
+			#{$prefix}-multiple-line,
+			#{$prefix}-select,
+			#{$prefix}-inline {
 				margin-left:0;
 				margin-right:0;
 				padding-left:0;
@@ -893,6 +869,8 @@ fieldset {
 	#{$prefix},
 	#{$prefix}-single-line,
 	#{$prefix}-multiple-line,
+	#{$prefix}-select,
+	#{$prefix}-inline,
 	.fw-trumbowyg-editor,
 	.fw-trumbowyg-textarea {
 
@@ -903,6 +881,8 @@ fieldset {
 
 	#{$prefix}-single-line,
 	#{$prefix}-multiple-line,
+	#{$prefix}-select,
+	#{$prefix}-inline,
 	.fw-trumbowyg-editor,
 	.fw-trumbowyg-textarea {
 		background-color:transparent;

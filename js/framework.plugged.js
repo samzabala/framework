@@ -14,10 +14,11 @@ window.jQuery && jQuery.noConflict();
 	var _ = {};
 
 	//settings
-	frameWork.lazyLoad = frameWork.lazyLoad || true;
-	frameWork.initializeModal = frameWork.initializeModal || true;
-	frameWork.initializeAccordion = frameWork.initializeAccordion || true;
-	frameWork.dynamicHash = frameWork.dynamicHash || true;
+	frameWork.settings = frameWork.settings || {};
+	frameWork.settings.lazyLoad = frameWork.settings.lazyLoad || true;
+	frameWork.settings.initializeModal = frameWork.settings.initializeModal || true;
+	frameWork.settings.initializeAccordion = frameWork.settings.initializeAccordion || true;
+	frameWork.settings.dynamicHash = frameWork.settings.dynamicHash || true;
 
 	if(!$) {
 		throw new Error('jQuery not found bro, what did you do?');
@@ -95,7 +96,7 @@ window.jQuery && jQuery.noConflict();
 
 		id = id || '';
 
-		if(frameWork.dynamicHash){
+		if(frameWork.settings.dynamicHash){
 			
 
 			if(history.pushState) {
@@ -640,6 +641,10 @@ window.jQuery && jQuery.noConflict();
 					selector.addClass('open'); 
 	
 					$('[data-toggle="accordion"][href="#'+selector.attr('id')+'"], [data-toggle="accordion"][data-href="#'+selector.attr('id')+'"]').addClass('open');
+
+					$([document.documentElement, document.body]).animate({
+						scrollTop: selector.offset().top
+					}, 500);
 				}
 			}
 		}
@@ -684,14 +689,14 @@ window.jQuery && jQuery.noConflict();
 
 	$(window).on('load',function(){
 
-		frameWork.lazyLoad && frameWork.loadImages();
+		frameWork.settings.lazyLoad && frameWork.loadImages();
 
 		_.functions_on_load.forEach(function(fn){
 			fn();
 		})
 
-		frameWork.initializeModal && frameWork.createModal();
-		frameWork.initializeAccordion && frameWork.toggleAccordion();
+		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 
 		// if(window.location.hash !== ''){
 

@@ -60,6 +60,18 @@ $calculated-brand-color-declarations : (
 	error: $brand-color-error,
 );
 
+
+$calculated-brand-color-declarations-for-helpers : (
+	base: $brand-color-base,
+	background: $brand-color-background,
+	primary: $brand-color-primary,
+	accent: $brand-color-accent,
+	neutral: $brand-color-neutral,
+	success: $brand-color-success,
+	caution: $brand-color-caution,
+	error: $brand-color-error,
+);
+
 $calculated-color-brand-intensity: (
 	$brand-color-intensity-1,
 	$brand-color-intensity-2,

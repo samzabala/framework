@@ -37,7 +37,7 @@ This way you can utilize [SVG Classes](#svg) tto :')
 To disable lazyload, do this to ya script
 ```js
 (function(fw){
-	frameWork.lazyLoad = false;
+	frameWork.settings.lazyLoad = false;
 }(frameWork));
 ```
 
@@ -114,7 +114,6 @@ These classes will set the proper color based off of html tag having the `.theme
 | **.['fill' or 'stroke']-[color]-focus** | &:focus,&.focus |
 | **.['fill' or 'stroke']-[color]-active** | &:active |
 | **.['fill' or 'stroke']-[color]-toggle** | &.open,&.active |
-
 
 
 

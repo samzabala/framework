@@ -11,7 +11,23 @@ Although styles are reset, To normalize or basically allow the framework to styl
 <input type="checkbox" class="input">
 ```
 
-## Input helpers
+
+
+### Support
+
+| Element | do it support? |
+| -- | -- |
+| `button` | a little bit, or just use [`.btn`](../components/button.md) |
+| `select` | yes |
+| `textarea` | yes |
+| `datalist` | no |
+| `input` | yes |
+
+## Form element helpers
+
+These are further classes to add to `.input` to style the boy better dpending on the type of input it is
+
+More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 
 ### **`.input-single-line`**
 
@@ -19,6 +35,81 @@ Although styles are reset, To normalize or basically allow the framework to styl
 
 This styles an input field as a field for single line input.... uuhhhhhh yea
 
+#### Support
+
+##### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | no |
+| `select` | somewhat. just use `.input-select` instead |
+| `textarea` | no (if this is the only class present) | no | yes | no |
+| `datalist` | no |
+
+#####  Input tags
+
+| `input[type*]` 	| do it support? |
+| -- | -- |
+|`submit`, `reset`,`button` | no |
+| `checkbox` | no |
+| `color` | sure |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes |
+| `email` | yes |
+| `file` | yes |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | somewhat.. it depends... why would you do that? |
+| `number` | yes |
+| `password` | yes |
+| `radio` | no |
+| `range` | no | no | yes |
+| `search` | yes |
+| `tel` | yes |
+| `text` | yes, it was built for this bitch |
+| `url` | yes |
+| `list` | yes |
+
+
+
+### **`.input-select`**
+
+![](../images/../../images/input-select.png)
+
+For a dropdown looking fuck...
+also supports `select[multiple]` shit
+
+
+#### Support
+
+##### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | no |
+| `select` | FUCK YES |
+| `textarea` | no, why that doesn't even make sense |
+| `datalist` | no wtf |
+
+#####  Input tags
+
+| `input[type*]` 	| do it support? |
+| -- | -- |
+|`submit`, `reset`,`button` | NO |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes |
+| `email` | yes |
+| `file` | yes |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | somewhat.. it depends... why would you do that? |
+| `number` | yes |
+| `password` | yes |
+| `radio` | no |
+| `range` | no |
+| `search` | yes |
+| `tel` | yes |
+| `text` | yes, it was built for this bitch |
+| `url` | yes |
+| `list` | yes |
 
 
 ### **`.input-multiple-line`**
@@ -27,61 +118,94 @@ This styles an input field as a field for single line input.... uuhhhhhh yea
 
 This styles an input field as a field for multiple line input.... uuhhhhhh yea
 
+
+
+#### Support
+
+##### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | no |
+| `select` | no |
+| `textarea` | YAS BITCH |
+| `datalist` | no |
+
+#####  Input tags
+
+| `input[type*]` 	| do it support? |
+| -- | -- |
+|`submit`, `reset`,`button` | NO |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | no |
+| `email` | no |
+| `file` | no |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | no |
+| `number` | no |
+| `password` | no |
+| `radio` | no |
+| `range` | no |
+| `search` | no |
+| `tel` | no |
+| `text` | uh no, use a `textarea` |
+| `url` | no |
+| `list` | yes.. jk NO |
+
 ### **`.input-inline`**
 
 For inline shit or fields that dont necessarily accept text looking input like radio, checkbox, sliders and stuff
 
 
-### Styling class support
 
-Here's how the classes above support things
+#### Support
 
-I tried my best, but I guess my best wasn't good enough
+##### Non input tags
 
-## Non input tags
+| Element | do it support? |
+| -- | -- |
+| `button` | yes, or just use [`.btn`](../components/button.md) |
+| `select` | yes |
+| `textarea` | yes, but would you want to? |
+| `datalist` | no |
 
-| Element | `.input` | `.input-single-line` | `.input-multiple-line `| `.input-inline` |
-| -- | -- | -- | -- | -- |
-| `button` | no | NO | NOO | JUST USE FUCKiNG [`.btn`](../components/button.md) |
-| `select` | no (if this is the only class present) | yes | yes( if [multiple] ) | no |
-| `textarea` | no (if this is the only class present) | no | yes | no |
-| `datalist` | no | no | no | no |
+#####  Input tags
+
+| `input[type*]` 	| do it support? |
+| -- | -- |
+|`submit`, `reset`,`button` |  yes, or just use [`.btn`](../components/button.md) |
+| `checkbox` | yes |
+| `color` | yes on chrome and firefox but not everywhere else |
+| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure |
+| `email` | if you want it ugly-ish, sure |
+| `file` | if you want it ugly-ish, sure |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | yis |
+| `number` | if you want it ugly-ish, sure |
+| `password` | if you want it ugly-ish, sure |
+| `radio` | yes |
+| `range` | yes |
+| `search` | if you want it ugly-ish, sure |
+| `tel` | if you want it ugly-ish, sure |
+| `text` | if you want it ugly-ish, sure |
+| `url` | if you want it ugly-ish, sure |
+| `list` | no |
 
 
-##  Input tags
-
-
-| `input[type*]` 	| `.input` 	| `.input-single-line` 	| `.input-multiple-line `	| `.input-inline` 	|
-| -- | -- | -- | -- | -- |
-|`submit`, `reset`,`button` | no | NO | NOO | i guess, but you can use [`.btn`](../components/button.md) |
-| `checkbox` | yes | no | no | yes |
-| `color` | yes | no | no | yes |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes | yes | no | no |
-| `email` | yes | yes | no | no |
-| `file` | yes | yes | no | no |
-| `hidden` | no | no | NO | IT'S NO USE IT'S HIDDEN |
-| `image` | yes | yes | no | no |
-| `number` | yes | yes | no | no |
-| `password` | yes | yes | no | no |
-| `radio` | yes | no | no | yes |
-| `range` | yes | no | no | yes |
-| `search` | yes | yes | no | no |
-| `tel` | yes | yes | no | no |
-| `text` | yes | yes | no | no |
-| `url` | yes | yes | no | no |
-| `list` | yes | yes | no | no |
+### Input templates
 
 ```html
 <!-- Bitches that can be setup -->
 <input class="input input-inline" type="button" value="Bitch">
 <input class="input input-inline" type="checkbox">
-<input class="input input-inline" type="color">
+<input class="input input-single-line" type="color">
 <input class="input input-single-line" type="date">
 <input class="input input-single-line" type="datetime-local">
 <input class="input input-single-line" type="email">
 <input class="input input-single-line" type="file">
 <input class="input input-single-line" type="hidden">
-<input class="input input-single-line" type="image">
+<input class="input input-inline" type="image" data-src="#">
 <input class="input input-single-line" type="month">
 <input class="input input-single-line" type="number">
 <input class="input input-single-line" type="password">
@@ -96,7 +220,7 @@ I tried my best, but I guess my best wasn't good enough
 <input class="input input-single-line" type="url">
 <input class="input input-single-line" type="week">
 <input class="input input-single-line" list="browsers">
-<datalist class="input" id="browsers">
+<datalist id="browsers">
 	<option value="Internet Explorer">
 	</option><option value="Firefox">
 	</option><option value="Chrome">
@@ -104,7 +228,7 @@ I tried my best, but I guess my best wasn't good enough
 	</option><option value="Safari">
 </option></datalist>
 
-<select class="input input-single-line" name="cars">
+<select class="input input-select" name="cars">
 <option value="volvo">Volvo</option>
 <option value="saab">Saab</option>
 <option value="fiat">Fiat</option>
@@ -112,7 +236,7 @@ I tried my best, but I guess my best wasn't good enough
 </select>
 
 
-<select class="input input-multiple-line" name="cars" multiple>
+<select class="input input-select" name="cars" multiple>
 <option value="volvo">Volvo</option>
 <option value="saab">Saab</option>
 <option value="fiat">Fiat</option>
@@ -131,6 +255,18 @@ To style a label, add class of `.input-label`
 <input class="input input-single-line" placeholder="Basic Ass" type="text">
 ```
 
+# **`.input-info`**
+
+Add helper text along the field to help out the user `.input-info`
+
+
+![](../images/../../images/input-multiple-line.png)
+
+```html
+<label class="input-label" for="textArea">Textarea + vertical wrapper</label>						
+<textarea placeholder="git wrecked" class="input input-multiple-line" id="textArea"></textarea>
+<span class="input-info">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+```
 
 # **`.input-group`**
 
@@ -143,7 +279,7 @@ NOTE this only works best for `.input-single-line` fields
 ```html
 <span class="input-group input-group-horizontal">
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -151,7 +287,7 @@ NOTE this only works best for `.input-single-line` fields
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -159,7 +295,7 @@ NOTE this only works best for `.input-single-line` fields
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -191,7 +327,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 
 <span class="input-group input-group-horizontal">
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -199,7 +335,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -207,7 +343,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -235,7 +371,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 
 <span class="input-group input-group-vertical">
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -243,7 +379,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -251,7 +387,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -293,9 +429,42 @@ See [Trumbowyg](../components/trumbowyg.md)
 
 # **`.input-wrapper`**
 
-]@TODO
+Use to layout an input label and input without doing so much css. These are inline-flex elementos. 
 
-# Helpers
+I must have either  **`.input-wrapper-horizontal`** or **`.input-wrapper-vertical`** to actually have a layout
+
+To set the wrapper to a full width block, add **`.input-wrapper-block`**
+
+```html
+<h4>inline horizontal</h4>
+<p class="input-wrapper input-wrapper-horizontal">
+	<label class="input-label" >Basic Ass</label>
+	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+</p>
+
+<h4>block horizontal</h4>
+<p class="input-wrapper input-wrapper-horizontal input-wrapper-block">
+	<label class="input-label" >Basic Ass</label>
+	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+</p>
+
+<h4>inline vertical</h4>
+<p class="input-wrapper input-wrapper-vertical">
+	<label class="input-label" >Basic Ass</label>
+	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+</p>
+<h4>block vertical</h4>
+<p class="input-wrapper input-wrapper-vertical input-wrapper-block">
+	<label class="input-label" >Basic Ass</label>
+	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+</p>
+```
+
+
+![](../../images/input-wrapper.png)
+
+
+# Color Helpers
 
 ## Input colors
 
@@ -336,11 +505,6 @@ Adding the color class on `.input-group` styles both the `.input-label` and `.in
 *	**`.input-wrapper-success`**
 
 
-## Size
-
-[]@TODO
-
-
 ### Input color support
 
 Fuck this shit bro whhyyy
@@ -378,6 +542,51 @@ Fuck this shit bro whhyyy
 | `url` | yes |
 | `list` | yes |
 
-This lays out input fields
+
+
+
+
+## Size
+
+### **`.input-large`** and  **`.input-small`**
+
+Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and `.input-wrapper`
+
+![](../../images/input-single-line.png)
+
+
+
+### Non input tags
+
+| Element | Support it? |
+| -- | -- |
+| `button` | yes, or just use [`.btn`](../components/button.md) |
+| `select` | yes |
+| `textarea` | yes |
+| `datalist` | no |
+
+
+###  Input tags
+
+
+| `input[type*]` | Support it? |
+| -- | -- |
+|`submit`, `reset`,`button` | i guess, but you can use [`.btn`](../components/button.md) |
+| `checkbox` | no |
+| `color` | no but kinda on safari |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes |
+| `email` | yes |
+| `file` | yes |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | yes |
+| `number` | yes |
+| `password` | yes |
+| `radio` | no |
+| `range` | no |
+| `search` | yes |
+| `tel` | yes |
+| `text` | yes |
+| `url` | yes |
+| `list` | yes |
 
 [Back to TOC](../../../readme.md)
