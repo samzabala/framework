@@ -114,7 +114,6 @@ This is the markup our framework generates in case you need to make your own.
 
 ## Javascript
 
-NOTE: this is useless if `frameWork.settings.dynamicHash` is set to `false`
 
 ### Functions
 
