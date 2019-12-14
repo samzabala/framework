@@ -16,6 +16,8 @@ $prefix: '.modal';
 
 	@at-root %for-modal {
 
+
+
 		&-wrapper { 
 			position: fixed;
 			top: 0!important;
@@ -43,6 +45,11 @@ $prefix: '.modal';
 
 		&-wrapper {
 			@extend %for-modal-wrapper;
+			display:none!important;
+
+			&.active {
+				display:block!important;
+			}
 		}
 
 

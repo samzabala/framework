@@ -166,12 +166,18 @@ window.jQuery && jQuery.noConflict();
 
 		if(frameWork.settings.dynamicHash){
 			
+			var idToGoTo = id !== '' ? '#'+id : null;
 
-			if(history.pushState) {
-				history.pushState(null, null, '#'+id);
-			}
-			else {
-				location.hash = '#'+id;
+			if(idToGoTo){
+				if(history.pushState) {
+					history.pushState(null, null, idToGoTo);
+				}
+				else {
+					location.hash = idToGoTo;
+				}
+			}else{
+				var noHashURL = window.location.href.replace(/#.*$/, '');
+				window.history.pushState('', document.title, noHashURL)
 			}
 		}
 	}
@@ -451,29 +457,32 @@ window.jQuery && jQuery.noConflict();
 			var toolTip = document.createElement('div');
 			document.querySelector('body').appendChild(toolTip);
 			
-			toolTip.className = 'tooltip tooltip-'+ args.placement+' '+ args.classes;
+			toolTip.className = 'tooltip tooltip-'+ args.placement+' ';
 
-			var ttHtml = ''
+			var ttHtml = '';
 
-
-			if( args.badge ) {
-				ttHtml += '<span class="badge tooltip-badge';
-				if(args.badgeSize == 'small' || args.badgeSize == 'large' ) {
-					ttHtml += ' badge-'+args.badgeSize;
-				}
-				if(args.badgeBg) {
-					if(_.palette.includes(args.badgeBg)) {
-						ttHtml += ' badge-'+args.badgeBg;
-					}else{
-
-						ttHtml += '" style="background-color:'+args.badgeBg+';';
+				if( args.badge ) {
+					ttHtml += '<span class="badge tooltip-badge';
+					if(args.badgeSize == 'small' || args.badgeSize == 'large' ) {
+						ttHtml += ' badge-'+args.badgeSize;
 					}
+					if(args.badgeBg) {
+						if(_.palette.includes(args.badgeBg)) {
+							ttHtml += ' badge-'+args.badgeBg;
+						}else{
+
+							ttHtml += '" style="background-color:'+args.badgeBg+';';
+						}
+					}
+					
+					ttHtml += '"></span>'
 				}
-				
-				ttHtml += '"></span>'
-			}
-			ttHtml += args.content;
-			ttHtml += '</div>';
+
+				ttHtml += '<div class="tooltip-content '+ args.classes + '">';
+
+					ttHtml += args.content;
+
+				ttHtml += '</div>';
 
 			toolTip.innerHTML += ttHtml;
 
@@ -658,7 +667,7 @@ window.jQuery && jQuery.noConflict();
 				modHttml += '<div class="modal-popup">';
 
 					if(args.header !== '') {
-						modHttml += '<div class="modal-header"><h1 class="modal-heading">'+ args.header +'</h1></div>';
+						modHttml += '<div class="modal-header"><h1 class="modal-title">'+ args.header +'</h1></div>';
 					}
 
 					if(args.close !== false) {
@@ -833,8 +842,11 @@ window.jQuery && jQuery.noConflict();
 	}
 	_.functions_on_load.push(_.initTrumbo);
 
-
-
+	
+	window.addEventListener('hashchange',function(){
+		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
+	});
 
 	
 	window.addEventListener('load',function(){

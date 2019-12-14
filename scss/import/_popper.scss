@@ -10,11 +10,6 @@ $calculated-gutter-hypotenus: to-unit( sqrt((strip-unit($tooltip-point) * strip-
 	padding: $popper-gutter-x $popper-gutter-y;
 	box-shadow: $popper-box-shadow;
 	z-index:2;
-	display: none;
-
-	&.open {
-		display: block;
-	}
 
 	.theme-inverse & {
 
@@ -29,6 +24,11 @@ $prefix: '.tooltip';
 	@extend %for-pop;
 	pointer-events:none;
 	max-width: $tooltip-max-width;
+	display: none!important;
+
+	&.active {
+		display: block!important;
+	}
 
 	&:before,&:after {
 		content:"";
@@ -143,7 +143,11 @@ $prefix: '.dropdown';
 	width: $dropdown-width;
 	display:none;
 	color: $nav-color;
-	/* undo scadffold*/
+	display: none!important;
+
+	&.open {
+		display: block!important;
+	}
 
 	&,ul,li {
 		margin-bottom:0;

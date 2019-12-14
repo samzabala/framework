@@ -101,7 +101,7 @@
 
 	$calculated-body-heading-gutter-bottom: $body-heading-gutter-bottom;
 	@if internal-is-convertable($body-heading-gutter-bottom) {
-		$calculated-body-heading-gutter-bottom: em($body-heading-gutter-bottom / $body-font-size);
+		$calculated-body-heading-gutter-bottom: rem($body-heading-gutter-bottom / $body-font-size);
 	}
 
 	$calculated-body-heading-gutter-top: $body-heading-gutter-top;

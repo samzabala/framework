@@ -65,18 +65,18 @@
 ```
 
 
-![](../../images/symbol`.png)
+![](../../images/symbol.png)
 
 ## Toggle classes
 
-The following symbols be toggled to another symbol class when a direct parent has a class of either `.active` or `.open` by
+The following symbols be toggled to another symbol class when a direct parent has a class of either `.active` or `.open`
 
 
 | symbol | Can toggle to.. |
 | -- | -- |
-| `.symbol-arrow-up`<br>`.symbol-arrow-down`<br>`.symbol-arrow-left`<br>`.symbol-arrow-right` 	| `.symbol-arrow-up-toggle`<br>`.symbol-arrow-down-toggle`<br>`.symbol-arrow-left-toggle`<br>`.symbol-arrow-right-toggle 	|
-| `.symbol-caret-up`<br>`.symbol-caret-down`<br>`.symbol-caret-left`<br>`.symbol-caret-right` 	| `.symbol-caret-up-toggle`<br>`.symbol-caret-down-toggle`<br>`.symbol-caret-left-toggle`<br>`.symbol-caret-right-toggle`  |
-| `.symbol-plus,`<br>`.symbol-minus` | `.symbol-plus-toggle,`<br>`.symbol-minus-toggle` |
+| `.symbol-arrow-up`<br><br>`.symbol-arrow-down`<br><br>`.symbol-arrow-left`<br><br>`.symbol-arrow-right` 	| `.symbol-arrow-up-toggle`<br><br>`.symbol-arrow-down-toggle`<br><br>`.symbol-arrow-left-toggle`<br><br>`.symbol-arrow-right-toggle` 	|
+| `.symbol-caret-up`<br><br>`.symbol-caret-down`<br><br>`.symbol-caret-left`<br><br>`.symbol-caret-right` 	| `.symbol-caret-up-toggle`<br><br>`.symbol-caret-down-toggle`<br><br>`.symbol-caret-left-toggle`<br><br>`.symbol-caret-right-toggle`  |
+| `.symbol-plus,`<br><br>`.symbol-minus` | `.symbol-plus-toggle`<br><br>`.symbol-minus-toggle` |
 
 
 [Back to TOC](../../../readme.md)

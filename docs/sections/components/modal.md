@@ -1,5 +1,6 @@
 # Modal
 
+NOTE: only one instance of a modal (not counting trumbowyg modals) can be rendered a time because it makes managing the modal easier 
 
 This is how to setup a basic modal
 
@@ -49,10 +50,11 @@ Another way but [data-toggle="modal"] looks for a sibling because there's no `hr
 </div>
 ```
 
+#### **`[data-toggle=modal-open]`** and **`[data-toggle=modal-close]`**
 
-## Toggle Attribuetes
+Unlike just `[data-toggle=modal]`, these attributes are more specific whether to close, or to open the modal
 
-### ****
+## Toggle Attributes
 
 ### **`data-modal-title`**
 
@@ -94,6 +96,42 @@ data-href="#modal-demo">Modal boi with max width and no close butt <i class="sym
 
 ![](../../images/modal.png)
 
+# Advanced
+
+## Modal markup
+
+This is the markup our framework generates in case you need to make your own. 
+
+```html
+<!-- Wrapper and color overlay... adding .active shows the boi -->
+<div class="modal-wrapper active" id="modal-demo">
+	
+	<!-- This goes around the background to allow closing the modal -->
+	<a class="modal-close-overlay" href="#"></a>
+	
+	<!-- The popup itself -->
+	<div class="modal-popup">
+		<!-- duh -->
+		<div class="modal-header">
+			<!-- duh -->
+			<h1 class="modal-title"></h1>
+		</div>
+
+		<!-- That cute close button -->
+		<a class="modal-close" data-toggle="modal-close" href="#"><i class="symbol symbol-close"></i></a>
+
+		<!-- duh -->
+		<div class="modal-popup-content">
+		<!-- Content here -->
+		</div>
+
+	</div>
+
+</div>
+```
+
+NOTE add `.body-modal-active` to the body tag so scrolling doesnt conflict with the modal's scrolling capability
+
 
 ## Javascript
 
@@ -104,11 +142,25 @@ to disable this write ya script
 
 ```js
 (function(fw){
-	frameWork.settings.initializeModal = false;
+	fw.settings.initializeModal = false;
 }(frameWork));
 ```
 
 NOTE: this is useless if `frameWork.settings.dynamicHash` is set to `false`
+
+### Functions
+
+#### **`fw.createModal(triggerer)`**
+
+Creates a modal
+
+`triggerer` is the element that toggles the modal or [data-toggle="modal*"],
+
+If empty, the framework looks for a hash in the current url and if it matches an element with a `.modal` class on it, them it makes the boi
+
+#### **`fw.destroyModal()`**
+
+Kills ya boi
 
 
 [Back to TOC](../../../readme.md)

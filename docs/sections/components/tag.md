@@ -1,6 +1,6 @@
 # Tags
 
-This is to display.. a circle boi.. :)
+This is to display a tag bitch :)
 
 ```html
 <span class="tag tag-primary"></span> Primary 
@@ -31,7 +31,7 @@ More info on [color tags](../scaffolding/colors.md#color-tags)
 The color can be customized by adding a background-color property to the tag
 
 ```html
-<span class="tag" style="background-color:pink;"></span> Primary 
+<span class="tag" style="background-color:pink;">Custom</span> 
 ```
 
 

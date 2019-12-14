@@ -81,7 +81,7 @@ This is the content for the tooltip
 
 ## **`data-tooltip-classes`**
 
-Idk this is how you add classes or [helper classes](../scaffolding/helpers.md) but you have to be careful because some css may not work on the tooltip
+Idk this is how you add classes or [helper classes](../scaffolding/helpers.md) to the tooltip content but you have to be careful because some css may not work on the tooltip
 
 ## **`data-tooltip-center-x`**
 
@@ -91,8 +91,44 @@ By default tooltips attaches the tip by the edge, enable this to center the tool
 
 By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled vertically
 
-
-
 ![](../../images/tooltip-with-center.png)
+
+# Advanced
+
+## Modal markup
+
+This is the markup our framework generates in case you need to make your own. 
+
+```html
+<!-- Wrapper and color overlay... adding .active shows the boi.. tooltip-[position] styles the tooltip tail's position -->
+<div class="tooltip tooltip-top active">
+
+	<div class="tooltip-content">
+		<!-- content here -->
+	</div>
+
+</div>
+```
+
+
+
+## Javascript
+
+NOTE: this is useless if `frameWork.settings.dynamicHash` is set to `false`
+
+### Functions
+
+#### **`fw.createTooltip(triggerer)`**
+
+Creates a modal
+
+`triggerer` is the element that toggles the modal or [data-toggle="modal*"],
+
+the parameter is required
+
+#### **`fw.destroyTooltip()`**
+
+Kills ya boi
+
 
 [Back to TOC](../../../readme.md)

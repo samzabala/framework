@@ -1,6 +1,8 @@
 # Form and input fields
 
-Please forgive me
+Please `form`give me
+
+More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 
 ## Form elements
 
@@ -21,19 +23,22 @@ Although styles are reset, To normalize or basically allow the framework to styl
 | `select` | yes |
 | `textarea` | yes |
 | `datalist` | no |
-| `input` | yes |
+| `input` | yes, but depends |
 
 ## Form element helpers
 
 These are further classes to add to `.input` to style the boy better dpending on the type of input it is
 
-More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 
 ### **`.input-single-line`**
 
 ![](../images/../../images/input-single-line.png)
 
 This styles an input field as a field for single line input.... uuhhhhhh yea
+
+```html
+<input type="checkbox" class="input">
+```
 
 #### Support
 
@@ -43,7 +48,7 @@ This styles an input field as a field for single line input.... uuhhhhhh yea
 | -- | -- |
 | `button` | no |
 | `select` | somewhat. just use `.input-select` instead |
-| `textarea` | no (if this is the only class present) | no | yes | no |
+| `textarea` | yeah or just use `.input-multiple-line` |
 | `datalist` | no |
 
 #####  Input tags
@@ -74,9 +79,28 @@ This styles an input field as a field for single line input.... uuhhhhhh yea
 
 ![](../images/../../images/input-select.png)
 
-For a dropdown looking fuck...
-also supports `select[multiple]` shit
+For a dropdown looking singlie line fuck...
 
+It styles it kinda like a `.input-single-line` but with a cute arrow :>
+
+Adding `.input-select` to a `select[multiple].input` styles it like... it should, but nicely. basta
+
+```html
+<select class="input input-select" name="shits">
+	<option value="1">Available option 1</option>
+	<option value="2">Available option 2</option>
+	<option value="3">Available option 3</option>
+	<option value="4">Available option 4</option>
+</select>
+
+
+<select class="input input-select" name="other-shits" multiple>
+	<option value="1">Available option 1</option>
+	<option value="2">Available option 2</option>
+	<option value="3">Available option 3</option>
+	<option value="4">Available option 4</option>
+</select>
+```
 
 #### Support
 
@@ -118,7 +142,9 @@ also supports `select[multiple]` shit
 
 This styles an input field as a field for multiple line input.... uuhhhhhh yea
 
-
+```html
+<textarea class="input input-multiple-line" name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+```
 
 #### Support
 
@@ -149,7 +175,7 @@ This styles an input field as a field for multiple line input.... uuhhhhhh yea
 | `range` | no |
 | `search` | no |
 | `tel` | no |
-| `text` | uh no, use a `textarea` |
+| `text` | uh no, use a `textarea` element instead |
 | `url` | no |
 | `list` | yes.. jk NO |
 
@@ -197,53 +223,65 @@ For inline shit or fields that dont necessarily accept text looking input like r
 
 ```html
 <!-- Bitches that can be setup -->
-<input class="input input-inline" type="button" value="Bitch">
-<input class="input input-inline" type="checkbox">
-<input class="input input-single-line" type="color">
-<input class="input input-single-line" type="date">
-<input class="input input-single-line" type="datetime-local">
-<input class="input input-single-line" type="email">
-<input class="input input-single-line" type="file">
-<input class="input input-single-line" type="hidden">
-<input class="input input-inline" type="image" data-src="#">
-<input class="input input-single-line" type="month">
-<input class="input input-single-line" type="number">
-<input class="input input-single-line" type="password">
-<input class="input input-inline" type="radio">
-<input class="input input-inline" type="range">
-<input class="input input-inline" type="reset">
-<input class="input input-single-line" type="search">
-<input class="input input-inline" type="submit">
-<input class="input input-single-line" type="tel">
-<input class="input input-single-line" type="text">
-<input class="input input-single-line" type="time">
-<input class="input input-single-line" type="url">
-<input class="input input-single-line" type="week">
-<input class="input input-single-line" list="browsers">
-<datalist id="browsers">
-	<option value="Internet Explorer">
-	</option><option value="Firefox">
-	</option><option value="Chrome">
-	</option><option value="Opera">
-	</option><option value="Safari">
+<input class="input input-inline" type="button" name="">
+
+<input class="input input-inline" type="checkbox" name="">
+
+<input class="input input-single-line" type="color" name="">
+
+<input class="input input-single-line" type="date" name="">
+
+<input class="input input-single-line" type="datetime-local" name="">
+
+<input class="input input-single-line" type="email" name="">
+
+<input class="input input-single-line" type="file" name="">
+
+<input class="input input-single-line" type="hidden" name="">
+
+<input class="input input-inline" type="image" data-src="" name="">
+
+<input class="input input-single-line" type="month" name="">
+
+<input class="input input-single-line" type="number" name="">
+
+<input class="input input-single-line" type="password" name="">
+
+<input class="input input-inline" type="radio" name="">
+
+<input class="input input-inline" type="range" name="">
+
+<input class="input input-inline" type="reset" name="">
+
+<input class="input input-single-line" type="search" name="">
+
+<input class="input input-inline" type="submit" name="">
+
+<input class="input input-single-line" type="tel" name="">
+
+<input class="input input-single-line" type="text" name="">
+
+<input class="input input-single-line" type="time" name="">
+
+<input class="input input-single-line" type="url" name="">
+
+<input class="input input-single-line" type="week" name="">
+
+<input class="input input-single-line" list="" name="">
+<datalist>
+	<option value="">
 </option></datalist>
 
-<select class="input input-select" name="cars">
-<option value="volvo">Volvo</option>
-<option value="saab">Saab</option>
-<option value="fiat">Fiat</option>
-<option value="audi">Audi</option>
+<select class="input input-select" name="">
+	<option value=""></option>
 </select>
 
-
-<select class="input input-select" name="cars" multiple>
-<option value="volvo">Volvo</option>
-<option value="saab">Saab</option>
-<option value="fiat">Fiat</option>
-<option value="audi">Audi</option>
+<select class="input input-select" multiple name="">
+	<option value=""></option>
 </select>
 
-<textarea class="input input-multiple-line" name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+<textarea class="input input-multiple-line" name="" rows="" cols="">	
+</textarea>
 ```
 
 # **`.input-label`**
@@ -251,8 +289,8 @@ For inline shit or fields that dont necessarily accept text looking input like r
 To style a label, add class of `.input-label`
 
 ```html
-<label class="input-label" >Basic Ass</label>
-<input class="input input-single-line" placeholder="Basic Ass" type="text">
+<label class="input-label" for="bitch" >Basic Ass</label>
+<input class="input input-single-line" id="bitch" name="bitch" placeholder="Basic Ass" type="text">
 ```
 
 # **`.input-info`**
@@ -263,8 +301,8 @@ Add helper text along the field to help out the user `.input-info`
 ![](../images/../../images/input-multiple-line.png)
 
 ```html
-<label class="input-label" for="textArea">Textarea + vertical wrapper</label>						
-<textarea placeholder="git wrecked" class="input input-multiple-line" id="textArea"></textarea>
+<label class="input-label" for="message">Textarea + vertical wrapper</label>						
+<textarea placeholder="git wrecked" class="input input-multiple-line" id="message"></textarea>
 <span class="input-info">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
 ```
 
@@ -314,8 +352,6 @@ NOTE this only works best for `.input-single-line` fields
 </span>
 ```
 
-![](../../images/input-group-horizontal.png)
-
 
 ## Basic examples
 
@@ -323,8 +359,9 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 
 ### Horizontal
 
-```html
+![](../../images/input-group-horizontal.png)
 
+```html
 <span class="input-group input-group-horizontal">
 
 	<select class="input input-select" >
@@ -351,7 +388,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line input-accent" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -395,7 +432,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line input-accent" >
+	<select class="input input-select" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>

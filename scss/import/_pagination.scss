@@ -5,4 +5,20 @@ $prefix: '.pagination';
 #{$prefix} {
 	display:inline-flex;
 	align-items: center;
+
+	&-current {
+
+	} 
+
+	&-total {
+
+	}
+
+	.next {
+
+	}
+
+	.prev {
+		
+	}
 }

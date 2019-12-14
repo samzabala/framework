@@ -98,12 +98,18 @@ window.jQuery && jQuery.noConflict();
 
 		if(frameWork.settings.dynamicHash){
 			
+			var idToGoTo = id !== '' ? '#'+id : null;
 
-			if(history.pushState) {
-				history.pushState(null, null, '#'+id);
-			}
-			else {
-				location.hash = '#'+id;
+			if(idToGoTo){
+				if(history.pushState) {
+					history.pushState(null, null, idToGoTo);
+				}
+				else {
+					location.hash = idToGoTo;
+				}
+			}else{
+				var noHashURL = window.location.href.replace(/#.*$/, '');
+				window.history.pushState('', document.title, noHashURL)
 			}
 		}
 	}
@@ -374,7 +380,9 @@ window.jQuery && jQuery.noConflict();
 
 
 			$('body').append(function(){
-				var html = '<div class="tooltip tooltip-'+ args.placement+' '+args.classes+'">';
+				var html = '<div class="tooltip tooltip-'+ args.placement+'">';
+
+
 				if( args.badge ) {
 					html += '<span class="badge tooltip-badge';
 					if(args.badgeSize == 'small' || args.badgeSize == 'large' ) {
@@ -391,8 +399,12 @@ window.jQuery && jQuery.noConflict();
 					
 					html += '"></span>'
 				}
-				html += args.content
-				html += '</div>';
+				
+				html += '<div class="tooltip-content '+ args.classes + '">';
+
+					html += args.content
+
+				html += '</div></div>';
 
 				return html;
 			});
@@ -556,7 +568,7 @@ window.jQuery && jQuery.noConflict();
 						html += '<div class="modal-popup">';
 
 							if(args.header !== '') {
-								html += '<div class="modal-header"><h1 class="modal-heading">'+ args.header +'</h1></div>';
+								html += '<div class="modal-header"><h1 class="modal-title">'+ args.header +'</h1></div>';
 							}
 
 							if(args.close !== false) {
@@ -685,7 +697,10 @@ window.jQuery && jQuery.noConflict();
 
 	
 
-
+	$(window).on('hashchange',function(){
+		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
+	})
 
 	$(window).on('load',function(){
 

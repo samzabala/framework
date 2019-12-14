@@ -1,6 +1,6 @@
 # Legends
 
-This is to display.. a circle boi.. :)
+This is to display graph color legends or whatever has colors and needs some legends.. :)
 
 ```html
 <span class="legend legend-primary"></span> Primary 

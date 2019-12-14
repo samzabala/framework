@@ -221,7 +221,7 @@ $prefix: '.symbol';
 		&-right,
 		&-up,
 		&-down {
-			height:$calculated-symbol-caret-height;
+			height:.625em;
 
 			&:before {
 				content:none;

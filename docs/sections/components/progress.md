@@ -11,7 +11,7 @@ A bitch that shows progress using **.progress** and  **.progress-bar**
 
 ## Colors
 
-To color the progress, add `.badge-[color-tag]` to `.progress-bar`
+To color the progress, add `.progress-bar-[color-tag]` to `.progress-bar`
 
 *	**`.progress-bar-base`**
 *	**`.progress-bar-primary`**
@@ -86,7 +86,6 @@ To color the progress, add `.badge-[color-tag]` to `.progress-bar`
 the color can be customized by adding a background-color property to `.progress-bar`
 
 ```html
-
 <div class="progress">
 	<div class="progress-bar progress-bar-base" style="background-color:pink;"></div>
 </div>
@@ -120,6 +119,12 @@ you can also stack **`.progress-bar`** elements
 ![](../../images/progress-stacked.png)
 
 ## Customizing
+
+The color of `.progress-bar` can be customized by adding a background-color
+
+```html
+<span class="progress-bar" style="background-color:pink;"></span> Primary 
+```
 
 
 [Back to TOC](../../../readme.md)
