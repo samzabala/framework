@@ -133,6 +133,10 @@ This is the markup our framework generates in case you need to make your own.
 NOTE add `.body-modal-active` to the body tag so scrolling doesnt conflict with the modal's scrolling capability
 
 
+## Styling a modal
+
+lol good luck
+
 ## Javascript
 
 If a url's hash location matches an element with that id and it has an `modal` class, the modal will automatically open

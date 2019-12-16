@@ -411,7 +411,7 @@ window.jQuery && jQuery.noConflict();
 
 			var tooltip = $('body').children('.tooltip').first();
 				tooltip.fadeIn()
-				tooltip.addClass('open');
+				tooltip.addClass('active');
 
 			var toolPoint = parseFloat(window.getComputedStyle( tooltip[0], ':before').getPropertyValue('width'));
 				toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;

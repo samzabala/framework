@@ -3,7 +3,7 @@
 
 Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle="tooltip-click"]`** or hover with **`[data-toggle="tooltip-hover"]`** 
 
-NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your page to dIE 
+NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your tooltip to dIE... or position itself like shit
 
 Example tooltip that toggles on click
 
@@ -112,6 +112,11 @@ This is the markup our framework generates in case you need to make your own.
 
 
 
+## Styling a tooltip
+
+you can try but be careful
+
+
 ## Javascript
 
 
@@ -119,7 +124,7 @@ This is the markup our framework generates in case you need to make your own.
 
 #### **`fw.createTooltip(triggerer)`**
 
-Creates a modal
+Creates a boi
 
 `triggerer` is the element that toggles the modal or [data-toggle="modal*"],
 

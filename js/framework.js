@@ -488,7 +488,7 @@ window.jQuery && jQuery.noConflict();
 
 
 			// var tooltip = $('body').children('.tooltip').first();
-				toolTip.classList.add('open');
+				toolTip.classList.add('active');
 
 			var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
 				toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
