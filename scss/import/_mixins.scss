@@ -15,9 +15,9 @@
 	
 	@at-root
 	#{$tag},
-	#{$tag}-hover:hover,
-	#{$tag}-focus:focus,
-	#{$tag}-active:active,
+	#{$tag}-hover:hover:not(.open):not(.active),
+	#{$tag}-focus:focus:not(.open):not(.active),
+	#{$tag}-active:active:not(.open):not(.active),
 	#{$tag}-focus.focus,
 	#{$tag}-active.active,
 	#{$tag}-toggle.active,
