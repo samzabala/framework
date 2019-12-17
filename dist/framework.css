@@ -199,10 +199,7 @@ fieldset {
   resize: none; }
 
 button {
-  margin: 0;
-  padding: 0;
   outline: 0;
-  border: none;
   cursor: pointer; }
 
 a {
@@ -266,8 +263,8 @@ h6, .h6 {
   text-transform: none;
   font-style: inherit;
   display: block;
-  margin-bottom: 0.5rem;
-  margin-top: 1.75em; }
+  margin-bottom: 0.75em;
+  margin-top: 1.5em; }
   h1:first-child, .h1:first-child,
   h2:first-child, .h2:first-child,
   h3:first-child, .h3:first-child,
@@ -1102,7 +1099,8 @@ table {
   vertical-align: inherit;
   -webkit-transform-origin: center center;
           transform-origin: center center;
-  pointer-events: none; }
+  pointer-events: none;
+  margin: 0 .5em; }
   .symbol:before, .symbol:after {
     content: "";
     color: inherit;
@@ -4372,7 +4370,10 @@ table {
   border-radius: 10px;
   box-shadow: 0px 5px 15px -8px #000000;
   background-color: transparent;
-  color: inherit; }
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none; }
   .btn:hover, .btn-group:hover, .fw-trumbowyg-modal-button:hover, .btn:focus, .btn-group:focus, .fw-trumbowyg-modal-button:focus, .focus.btn, .focus.btn-group, .focus.fw-trumbowyg-modal-button, .btn:active, .btn-group:active, .fw-trumbowyg-modal-button:active, .active.btn, .active.btn-group, .active.fw-trumbowyg-modal-button {
     box-shadow: 0px 5px 15px -8px #000000;
     color: inherit; }
@@ -4419,7 +4420,7 @@ table {
   width: 2.8125em;
   padding-left: 0;
   padding-right: 0; }
-  .btn-symbol .symbol {
+  .btn-symbol > .symbol {
     margin-left: auto;
     margin-right: auto; }
 
@@ -4434,6 +4435,10 @@ table {
   display: inline-flex;
   position: relative;
   max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
   overflow-x: auto;
   overflow-y: visible;
   -webkit-box-align: stretch;

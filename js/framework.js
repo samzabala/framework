@@ -389,7 +389,7 @@ window.jQuery && jQuery.noConflict();
 			var imgSrc = img.getAttribute('data-src'),
 				imgSrcset = img.getAttribute('data-srcset');
 
-			if(img.matches('img') || img.closest('picture').length) {
+			if(img.matches('img') || img.closest('picture')) {
 
 				if(imgSrc.getFileExtension() == 'svg' ){
 					var imgID = img.getAttribute('id') || null;

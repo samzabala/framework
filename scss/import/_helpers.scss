@@ -456,14 +456,14 @@
 			}
 		}
 
+		&-nowrap {
+
+			white-space: nowrap!important;
+		}
+
 		&-wrap {
 
 			white-space: normal!important;
-
-			&-nowrap {
-
-				white-space: nowrap!important;
-			}
 
 			&-break {
 				word-break: break-word!important;

@@ -249,6 +249,8 @@ $prefix: '.btn';
 			box-shadow: $btn-box-shadow;
 			background-color:transparent;
 			color:inherit;
+			-webkit-appearance:none;
+			appearance:none;
 	
 			&:hover,
 			&:focus,
@@ -348,7 +350,7 @@ $prefix: '.btn';
 				padding-right:0;
 
 
-				.symbol {
+				> .symbol {
 					margin-left:auto;
 					margin-right:auto;
 				}
@@ -385,6 +387,10 @@ $prefix: '.btn';
 		display:inline-flex;
 		position:relative;
 		max-width:100%;
+		padding:0;
+		border:0;
+		background:none;
+		font:inherit;
 		overflow-x:auto;
 		overflow-y:visible;
 		align-items:stretch;
