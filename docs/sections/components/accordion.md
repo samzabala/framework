@@ -128,7 +128,7 @@ Note that all descentants of `[data-toggle="accordion"]` has pointer-events none
 
 `.accordion` on the other hand is being styled with just a `display:none;` or `display:block;` depending on its status.
 
-Also the width is full width.. of parent... like always.. BECAUSE
+Also the width is full width.. of parent... like always.. because flex be a bitch sometimes
 
 As long as you avoid these properties on each element ya good.
 

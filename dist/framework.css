@@ -84,7 +84,7 @@ table {
   --theme-background-contrast: #000000; }
 
 /* heading bars or rules from tiny rectangles to long rules and what not. */
-.container:after, .container-fluid:after, .progress:after, .fw-trumbowyg-progress:after, .cf:after {
+.container:after, .container-fluid:after, .module:after, .module-header:after, .module-content:after, .module-footer:after, .progress:after, .fw-trumbowyg-progress:after, .cf:after {
   content: "";
   clear: both;
   display: table;
@@ -505,435 +505,435 @@ body:not(.lazy-initialized) .lazy {
   stop-color: #17BEBB; }
 
 .fill-theme,
+.fill-theme-hover:hover,
+.fill-theme-focus:focus,
+.fill-theme-active:active,
 .fill-theme-focus.focus,
 .fill-theme-active.active,
 .fill-theme-toggle.active,
-.fill-theme-toggle.open,
-.fill-theme-hover:hover:not(.open):not(.active),
-.fill-theme-focus:focus:not(.open):not(.active),
-.fill-theme-active:active:not(.open):not(.active) {
+.fill-theme-toggle.open {
   fill: #000000 !important; }
   .theme-inverse .fill-theme, .theme-inverse
+  .fill-theme-hover:hover, .theme-inverse
+  .fill-theme-focus:focus, .theme-inverse
+  .fill-theme-active:active, .theme-inverse
   .fill-theme-focus.focus, .theme-inverse
   .fill-theme-active.active, .theme-inverse
   .fill-theme-toggle.active, .theme-inverse
-  .fill-theme-toggle.open, .theme-inverse
-  .fill-theme-hover:hover:not(.open):not(.active), .theme-inverse
-  .fill-theme-focus:focus:not(.open):not(.active), .theme-inverse
-  .fill-theme-active:active:not(.open):not(.active) {
+  .fill-theme-toggle.open {
     fill: #FFFFFF !important; }
 
 .fill-theme-contrast,
+.fill-theme-contrast-hover:hover,
+.fill-theme-contrast-focus:focus,
+.fill-theme-contrast-active:active,
 .fill-theme-contrast-focus.focus,
 .fill-theme-contrast-active.active,
 .fill-theme-contrast-toggle.active,
-.fill-theme-contrast-toggle.open,
-.fill-theme-contrast-hover:hover:not(.open):not(.active),
-.fill-theme-contrast-focus:focus:not(.open):not(.active),
-.fill-theme-contrast-active:active:not(.open):not(.active) {
+.fill-theme-contrast-toggle.open {
   fill: #1a1a1a !important; }
   .theme-inverse .fill-theme-contrast, .theme-inverse
+  .fill-theme-contrast-hover:hover, .theme-inverse
+  .fill-theme-contrast-focus:focus, .theme-inverse
+  .fill-theme-contrast-active:active, .theme-inverse
   .fill-theme-contrast-focus.focus, .theme-inverse
   .fill-theme-contrast-active.active, .theme-inverse
   .fill-theme-contrast-toggle.active, .theme-inverse
-  .fill-theme-contrast-toggle.open, .theme-inverse
-  .fill-theme-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .fill-theme-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .fill-theme-contrast-active:active:not(.open):not(.active) {
+  .fill-theme-contrast-toggle.open {
     fill: #e6e6e6 !important; }
 
 .fill-theme-polar,
+.fill-theme-polar-hover:hover,
+.fill-theme-polar-focus:focus,
+.fill-theme-polar-active:active,
 .fill-theme-polar-focus.focus,
 .fill-theme-polar-active.active,
 .fill-theme-polar-toggle.active,
-.fill-theme-polar-toggle.open,
-.fill-theme-polar-hover:hover:not(.open):not(.active),
-.fill-theme-polar-focus:focus:not(.open):not(.active),
-.fill-theme-polar-active:active:not(.open):not(.active) {
+.fill-theme-polar-toggle.open {
   fill: #FFFFFF !important; }
   .theme-inverse .fill-theme-polar, .theme-inverse
+  .fill-theme-polar-hover:hover, .theme-inverse
+  .fill-theme-polar-focus:focus, .theme-inverse
+  .fill-theme-polar-active:active, .theme-inverse
   .fill-theme-polar-focus.focus, .theme-inverse
   .fill-theme-polar-active.active, .theme-inverse
   .fill-theme-polar-toggle.active, .theme-inverse
-  .fill-theme-polar-toggle.open, .theme-inverse
-  .fill-theme-polar-hover:hover:not(.open):not(.active), .theme-inverse
-  .fill-theme-polar-focus:focus:not(.open):not(.active), .theme-inverse
-  .fill-theme-polar-active:active:not(.open):not(.active) {
+  .fill-theme-polar-toggle.open {
     fill: #1a1a1a !important; }
 
 .fill-theme-polar-contrast,
+.fill-theme-polar-contrast-hover:hover,
+.fill-theme-polar-contrast-focus:focus,
+.fill-theme-polar-contrast-active:active,
 .fill-theme-polar-contrast-focus.focus,
 .fill-theme-polar-contrast-active.active,
 .fill-theme-polar-contrast-toggle.active,
-.fill-theme-polar-contrast-toggle.open,
-.fill-theme-polar-contrast-hover:hover:not(.open):not(.active),
-.fill-theme-polar-contrast-focus:focus:not(.open):not(.active),
-.fill-theme-polar-contrast-active:active:not(.open):not(.active) {
+.fill-theme-polar-contrast-toggle.open {
   fill: #e6e6e6 !important; }
   .theme-inverse .fill-theme-polar-contrast, .theme-inverse
+  .fill-theme-polar-contrast-hover:hover, .theme-inverse
+  .fill-theme-polar-contrast-focus:focus, .theme-inverse
+  .fill-theme-polar-contrast-active:active, .theme-inverse
   .fill-theme-polar-contrast-focus.focus, .theme-inverse
   .fill-theme-polar-contrast-active.active, .theme-inverse
   .fill-theme-polar-contrast-toggle.active, .theme-inverse
-  .fill-theme-polar-contrast-toggle.open, .theme-inverse
-  .fill-theme-polar-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .fill-theme-polar-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .fill-theme-polar-contrast-active:active:not(.open):not(.active) {
+  .fill-theme-polar-contrast-toggle.open {
     fill: #000000 !important; }
 
 .fill-intensity-1,
+.fill-intensity-1-hover:hover,
+.fill-intensity-1-focus:focus,
+.fill-intensity-1-active:active,
 .fill-intensity-1-focus.focus,
 .fill-intensity-1-active.active,
 .fill-intensity-1-toggle.active,
-.fill-intensity-1-toggle.open,
-.fill-intensity-1-hover:hover:not(.open):not(.active),
-.fill-intensity-1-focus:focus:not(.open):not(.active),
-.fill-intensity-1-active:active:not(.open):not(.active) {
+.fill-intensity-1-toggle.open {
   fill: #235789 !important; }
 
 .fill-intensity-2,
+.fill-intensity-2-hover:hover,
+.fill-intensity-2-focus:focus,
+.fill-intensity-2-active:active,
 .fill-intensity-2-focus.focus,
 .fill-intensity-2-active.active,
 .fill-intensity-2-toggle.active,
-.fill-intensity-2-toggle.open,
-.fill-intensity-2-hover:hover:not(.open):not(.active),
-.fill-intensity-2-focus:focus:not(.open):not(.active),
-.fill-intensity-2-active:active:not(.open):not(.active) {
+.fill-intensity-2-toggle.open {
   fill: #207196 !important; }
 
 .fill-intensity-3,
+.fill-intensity-3-hover:hover,
+.fill-intensity-3-focus:focus,
+.fill-intensity-3-active:active,
 .fill-intensity-3-focus.focus,
 .fill-intensity-3-active.active,
 .fill-intensity-3-toggle.active,
-.fill-intensity-3-toggle.open,
-.fill-intensity-3-hover:hover:not(.open):not(.active),
-.fill-intensity-3-focus:focus:not(.open):not(.active),
-.fill-intensity-3-active:active:not(.open):not(.active) {
+.fill-intensity-3-toggle.open {
   fill: #1d8ba2 !important; }
 
 .fill-intensity-4,
+.fill-intensity-4-hover:hover,
+.fill-intensity-4-focus:focus,
+.fill-intensity-4-active:active,
 .fill-intensity-4-focus.focus,
 .fill-intensity-4-active.active,
 .fill-intensity-4-toggle.active,
-.fill-intensity-4-toggle.open,
-.fill-intensity-4-hover:hover:not(.open):not(.active),
-.fill-intensity-4-focus:focus:not(.open):not(.active),
-.fill-intensity-4-active:active:not(.open):not(.active) {
+.fill-intensity-4-toggle.open {
   fill: #1aa4af !important; }
 
 .fill-intensity-5,
+.fill-intensity-5-hover:hover,
+.fill-intensity-5-focus:focus,
+.fill-intensity-5-active:active,
 .fill-intensity-5-focus.focus,
 .fill-intensity-5-active.active,
 .fill-intensity-5-toggle.active,
-.fill-intensity-5-toggle.open,
-.fill-intensity-5-hover:hover:not(.open):not(.active),
-.fill-intensity-5-focus:focus:not(.open):not(.active),
-.fill-intensity-5-active:active:not(.open):not(.active) {
+.fill-intensity-5-toggle.open {
   fill: #17BEBB !important; }
 
 .fill-currentColor,
+.fill-currentColor-hover:hover,
+.fill-currentColor-focus:focus,
+.fill-currentColor-active:active,
 .fill-currentColor-focus.focus,
 .fill-currentColor-active.active,
 .fill-currentColor-toggle.active,
-.fill-currentColor-toggle.open,
-.fill-currentColor-hover:hover:not(.open):not(.active),
-.fill-currentColor-focus:focus:not(.open):not(.active),
-.fill-currentColor-active:active:not(.open):not(.active) {
+.fill-currentColor-toggle.open {
   fill: currentColor !important; }
 
 .fill-none,
+.fill-none-hover:hover,
+.fill-none-focus:focus,
+.fill-none-active:active,
 .fill-none-focus.focus,
 .fill-none-active.active,
 .fill-none-toggle.active,
-.fill-none-toggle.open,
-.fill-none-hover:hover:not(.open):not(.active),
-.fill-none-focus:focus:not(.open):not(.active),
-.fill-none-active:active:not(.open):not(.active) {
+.fill-none-toggle.open {
   fill: none !important; }
 
 .fill-base,
+.fill-base-hover:hover,
+.fill-base-focus:focus,
+.fill-base-active:active,
 .fill-base-focus.focus,
 .fill-base-active.active,
 .fill-base-toggle.active,
-.fill-base-toggle.open,
-.fill-base-hover:hover:not(.open):not(.active),
-.fill-base-focus:focus:not(.open):not(.active),
-.fill-base-active:active:not(.open):not(.active) {
+.fill-base-toggle.open {
   fill: #000000 !important; }
 
 .fill-primary,
+.fill-primary-hover:hover,
+.fill-primary-focus:focus,
+.fill-primary-active:active,
 .fill-primary-focus.focus,
 .fill-primary-active.active,
 .fill-primary-toggle.active,
-.fill-primary-toggle.open,
-.fill-primary-hover:hover:not(.open):not(.active),
-.fill-primary-focus:focus:not(.open):not(.active),
-.fill-primary-active:active:not(.open):not(.active) {
+.fill-primary-toggle.open {
   fill: #235789 !important; }
 
 .fill-accent,
+.fill-accent-hover:hover,
+.fill-accent-focus:focus,
+.fill-accent-active:active,
 .fill-accent-focus.focus,
 .fill-accent-active.active,
 .fill-accent-toggle.active,
-.fill-accent-toggle.open,
-.fill-accent-hover:hover:not(.open):not(.active),
-.fill-accent-focus:focus:not(.open):not(.active),
-.fill-accent-active:active:not(.open):not(.active) {
+.fill-accent-toggle.open {
   fill: #17BEBB !important; }
 
 .fill-neutral,
+.fill-neutral-hover:hover,
+.fill-neutral-focus:focus,
+.fill-neutral-active:active,
 .fill-neutral-focus.focus,
 .fill-neutral-active.active,
 .fill-neutral-toggle.active,
-.fill-neutral-toggle.open,
-.fill-neutral-hover:hover:not(.open):not(.active),
-.fill-neutral-focus:focus:not(.open):not(.active),
-.fill-neutral-active:active:not(.open):not(.active) {
+.fill-neutral-toggle.open {
   fill: #8d8d8d !important; }
 
 .fill-success,
+.fill-success-hover:hover,
+.fill-success-focus:focus,
+.fill-success-active:active,
 .fill-success-focus.focus,
 .fill-success-active.active,
 .fill-success-toggle.active,
-.fill-success-toggle.open,
-.fill-success-hover:hover:not(.open):not(.active),
-.fill-success-focus:focus:not(.open):not(.active),
-.fill-success-active:active:not(.open):not(.active) {
+.fill-success-toggle.open {
   fill: #15b800 !important; }
 
 .fill-caution,
+.fill-caution-hover:hover,
+.fill-caution-focus:focus,
+.fill-caution-active:active,
 .fill-caution-focus.focus,
 .fill-caution-active.active,
 .fill-caution-toggle.active,
-.fill-caution-toggle.open,
-.fill-caution-hover:hover:not(.open):not(.active),
-.fill-caution-focus:focus:not(.open):not(.active),
-.fill-caution-active:active:not(.open):not(.active) {
+.fill-caution-toggle.open {
   fill: #fd7f03 !important; }
 
 .fill-error,
+.fill-error-hover:hover,
+.fill-error-focus:focus,
+.fill-error-active:active,
 .fill-error-focus.focus,
 .fill-error-active.active,
 .fill-error-toggle.active,
-.fill-error-toggle.open,
-.fill-error-hover:hover:not(.open):not(.active),
-.fill-error-focus:focus:not(.open):not(.active),
-.fill-error-active:active:not(.open):not(.active) {
+.fill-error-toggle.open {
   fill: #fd0303 !important; }
 
 .stroke-theme,
+.stroke-theme-hover:hover,
+.stroke-theme-focus:focus,
+.stroke-theme-active:active,
 .stroke-theme-focus.focus,
 .stroke-theme-active.active,
 .stroke-theme-toggle.active,
-.stroke-theme-toggle.open,
-.stroke-theme-hover:hover:not(.open):not(.active),
-.stroke-theme-focus:focus:not(.open):not(.active),
-.stroke-theme-active:active:not(.open):not(.active) {
+.stroke-theme-toggle.open {
   stroke: #000000 !important; }
   .theme-inverse .stroke-theme, .theme-inverse
+  .stroke-theme-hover:hover, .theme-inverse
+  .stroke-theme-focus:focus, .theme-inverse
+  .stroke-theme-active:active, .theme-inverse
   .stroke-theme-focus.focus, .theme-inverse
   .stroke-theme-active.active, .theme-inverse
   .stroke-theme-toggle.active, .theme-inverse
-  .stroke-theme-toggle.open, .theme-inverse
-  .stroke-theme-hover:hover:not(.open):not(.active), .theme-inverse
-  .stroke-theme-focus:focus:not(.open):not(.active), .theme-inverse
-  .stroke-theme-active:active:not(.open):not(.active) {
+  .stroke-theme-toggle.open {
     stroke: #FFFFFF !important; }
 
 .stroke-theme-contrast,
+.stroke-theme-contrast-hover:hover,
+.stroke-theme-contrast-focus:focus,
+.stroke-theme-contrast-active:active,
 .stroke-theme-contrast-focus.focus,
 .stroke-theme-contrast-active.active,
 .stroke-theme-contrast-toggle.active,
-.stroke-theme-contrast-toggle.open,
-.stroke-theme-contrast-hover:hover:not(.open):not(.active),
-.stroke-theme-contrast-focus:focus:not(.open):not(.active),
-.stroke-theme-contrast-active:active:not(.open):not(.active) {
+.stroke-theme-contrast-toggle.open {
   stroke: #1a1a1a !important; }
   .theme-inverse .stroke-theme-contrast, .theme-inverse
+  .stroke-theme-contrast-hover:hover, .theme-inverse
+  .stroke-theme-contrast-focus:focus, .theme-inverse
+  .stroke-theme-contrast-active:active, .theme-inverse
   .stroke-theme-contrast-focus.focus, .theme-inverse
   .stroke-theme-contrast-active.active, .theme-inverse
   .stroke-theme-contrast-toggle.active, .theme-inverse
-  .stroke-theme-contrast-toggle.open, .theme-inverse
-  .stroke-theme-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .stroke-theme-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .stroke-theme-contrast-active:active:not(.open):not(.active) {
+  .stroke-theme-contrast-toggle.open {
     stroke: #e6e6e6 !important; }
 
 .stroke-theme-polar,
+.stroke-theme-polar-hover:hover,
+.stroke-theme-polar-focus:focus,
+.stroke-theme-polar-active:active,
 .stroke-theme-polar-focus.focus,
 .stroke-theme-polar-active.active,
 .stroke-theme-polar-toggle.active,
-.stroke-theme-polar-toggle.open,
-.stroke-theme-polar-hover:hover:not(.open):not(.active),
-.stroke-theme-polar-focus:focus:not(.open):not(.active),
-.stroke-theme-polar-active:active:not(.open):not(.active) {
+.stroke-theme-polar-toggle.open {
   stroke: #FFFFFF !important; }
   .theme-inverse .stroke-theme-polar, .theme-inverse
+  .stroke-theme-polar-hover:hover, .theme-inverse
+  .stroke-theme-polar-focus:focus, .theme-inverse
+  .stroke-theme-polar-active:active, .theme-inverse
   .stroke-theme-polar-focus.focus, .theme-inverse
   .stroke-theme-polar-active.active, .theme-inverse
   .stroke-theme-polar-toggle.active, .theme-inverse
-  .stroke-theme-polar-toggle.open, .theme-inverse
-  .stroke-theme-polar-hover:hover:not(.open):not(.active), .theme-inverse
-  .stroke-theme-polar-focus:focus:not(.open):not(.active), .theme-inverse
-  .stroke-theme-polar-active:active:not(.open):not(.active) {
+  .stroke-theme-polar-toggle.open {
     stroke: #1a1a1a !important; }
 
 .stroke-theme-polar-contrast,
+.stroke-theme-polar-contrast-hover:hover,
+.stroke-theme-polar-contrast-focus:focus,
+.stroke-theme-polar-contrast-active:active,
 .stroke-theme-polar-contrast-focus.focus,
 .stroke-theme-polar-contrast-active.active,
 .stroke-theme-polar-contrast-toggle.active,
-.stroke-theme-polar-contrast-toggle.open,
-.stroke-theme-polar-contrast-hover:hover:not(.open):not(.active),
-.stroke-theme-polar-contrast-focus:focus:not(.open):not(.active),
-.stroke-theme-polar-contrast-active:active:not(.open):not(.active) {
+.stroke-theme-polar-contrast-toggle.open {
   stroke: #e6e6e6 !important; }
   .theme-inverse .stroke-theme-polar-contrast, .theme-inverse
+  .stroke-theme-polar-contrast-hover:hover, .theme-inverse
+  .stroke-theme-polar-contrast-focus:focus, .theme-inverse
+  .stroke-theme-polar-contrast-active:active, .theme-inverse
   .stroke-theme-polar-contrast-focus.focus, .theme-inverse
   .stroke-theme-polar-contrast-active.active, .theme-inverse
   .stroke-theme-polar-contrast-toggle.active, .theme-inverse
-  .stroke-theme-polar-contrast-toggle.open, .theme-inverse
-  .stroke-theme-polar-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .stroke-theme-polar-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .stroke-theme-polar-contrast-active:active:not(.open):not(.active) {
+  .stroke-theme-polar-contrast-toggle.open {
     stroke: #000000 !important; }
 
 .stroke-intensity-1,
+.stroke-intensity-1-hover:hover,
+.stroke-intensity-1-focus:focus,
+.stroke-intensity-1-active:active,
 .stroke-intensity-1-focus.focus,
 .stroke-intensity-1-active.active,
 .stroke-intensity-1-toggle.active,
-.stroke-intensity-1-toggle.open,
-.stroke-intensity-1-hover:hover:not(.open):not(.active),
-.stroke-intensity-1-focus:focus:not(.open):not(.active),
-.stroke-intensity-1-active:active:not(.open):not(.active) {
+.stroke-intensity-1-toggle.open {
   stroke: #235789 !important; }
 
 .stroke-intensity-2,
+.stroke-intensity-2-hover:hover,
+.stroke-intensity-2-focus:focus,
+.stroke-intensity-2-active:active,
 .stroke-intensity-2-focus.focus,
 .stroke-intensity-2-active.active,
 .stroke-intensity-2-toggle.active,
-.stroke-intensity-2-toggle.open,
-.stroke-intensity-2-hover:hover:not(.open):not(.active),
-.stroke-intensity-2-focus:focus:not(.open):not(.active),
-.stroke-intensity-2-active:active:not(.open):not(.active) {
+.stroke-intensity-2-toggle.open {
   stroke: #207196 !important; }
 
 .stroke-intensity-3,
+.stroke-intensity-3-hover:hover,
+.stroke-intensity-3-focus:focus,
+.stroke-intensity-3-active:active,
 .stroke-intensity-3-focus.focus,
 .stroke-intensity-3-active.active,
 .stroke-intensity-3-toggle.active,
-.stroke-intensity-3-toggle.open,
-.stroke-intensity-3-hover:hover:not(.open):not(.active),
-.stroke-intensity-3-focus:focus:not(.open):not(.active),
-.stroke-intensity-3-active:active:not(.open):not(.active) {
+.stroke-intensity-3-toggle.open {
   stroke: #1d8ba2 !important; }
 
 .stroke-intensity-4,
+.stroke-intensity-4-hover:hover,
+.stroke-intensity-4-focus:focus,
+.stroke-intensity-4-active:active,
 .stroke-intensity-4-focus.focus,
 .stroke-intensity-4-active.active,
 .stroke-intensity-4-toggle.active,
-.stroke-intensity-4-toggle.open,
-.stroke-intensity-4-hover:hover:not(.open):not(.active),
-.stroke-intensity-4-focus:focus:not(.open):not(.active),
-.stroke-intensity-4-active:active:not(.open):not(.active) {
+.stroke-intensity-4-toggle.open {
   stroke: #1aa4af !important; }
 
 .stroke-intensity-5,
+.stroke-intensity-5-hover:hover,
+.stroke-intensity-5-focus:focus,
+.stroke-intensity-5-active:active,
 .stroke-intensity-5-focus.focus,
 .stroke-intensity-5-active.active,
 .stroke-intensity-5-toggle.active,
-.stroke-intensity-5-toggle.open,
-.stroke-intensity-5-hover:hover:not(.open):not(.active),
-.stroke-intensity-5-focus:focus:not(.open):not(.active),
-.stroke-intensity-5-active:active:not(.open):not(.active) {
+.stroke-intensity-5-toggle.open {
   stroke: #17BEBB !important; }
 
 .stroke-currentColor,
+.stroke-currentColor-hover:hover,
+.stroke-currentColor-focus:focus,
+.stroke-currentColor-active:active,
 .stroke-currentColor-focus.focus,
 .stroke-currentColor-active.active,
 .stroke-currentColor-toggle.active,
-.stroke-currentColor-toggle.open,
-.stroke-currentColor-hover:hover:not(.open):not(.active),
-.stroke-currentColor-focus:focus:not(.open):not(.active),
-.stroke-currentColor-active:active:not(.open):not(.active) {
+.stroke-currentColor-toggle.open {
   stroke: currentColor !important; }
 
 .stroke-none,
+.stroke-none-hover:hover,
+.stroke-none-focus:focus,
+.stroke-none-active:active,
 .stroke-none-focus.focus,
 .stroke-none-active.active,
 .stroke-none-toggle.active,
-.stroke-none-toggle.open,
-.stroke-none-hover:hover:not(.open):not(.active),
-.stroke-none-focus:focus:not(.open):not(.active),
-.stroke-none-active:active:not(.open):not(.active) {
+.stroke-none-toggle.open {
   stroke: none !important; }
 
 .stroke-base,
+.stroke-base-hover:hover,
+.stroke-base-focus:focus,
+.stroke-base-active:active,
 .stroke-base-focus.focus,
 .stroke-base-active.active,
 .stroke-base-toggle.active,
-.stroke-base-toggle.open,
-.stroke-base-hover:hover:not(.open):not(.active),
-.stroke-base-focus:focus:not(.open):not(.active),
-.stroke-base-active:active:not(.open):not(.active) {
+.stroke-base-toggle.open {
   stroke: #000000 !important; }
 
 .stroke-primary,
+.stroke-primary-hover:hover,
+.stroke-primary-focus:focus,
+.stroke-primary-active:active,
 .stroke-primary-focus.focus,
 .stroke-primary-active.active,
 .stroke-primary-toggle.active,
-.stroke-primary-toggle.open,
-.stroke-primary-hover:hover:not(.open):not(.active),
-.stroke-primary-focus:focus:not(.open):not(.active),
-.stroke-primary-active:active:not(.open):not(.active) {
+.stroke-primary-toggle.open {
   stroke: #235789 !important; }
 
 .stroke-accent,
+.stroke-accent-hover:hover,
+.stroke-accent-focus:focus,
+.stroke-accent-active:active,
 .stroke-accent-focus.focus,
 .stroke-accent-active.active,
 .stroke-accent-toggle.active,
-.stroke-accent-toggle.open,
-.stroke-accent-hover:hover:not(.open):not(.active),
-.stroke-accent-focus:focus:not(.open):not(.active),
-.stroke-accent-active:active:not(.open):not(.active) {
+.stroke-accent-toggle.open {
   stroke: #17BEBB !important; }
 
 .stroke-neutral,
+.stroke-neutral-hover:hover,
+.stroke-neutral-focus:focus,
+.stroke-neutral-active:active,
 .stroke-neutral-focus.focus,
 .stroke-neutral-active.active,
 .stroke-neutral-toggle.active,
-.stroke-neutral-toggle.open,
-.stroke-neutral-hover:hover:not(.open):not(.active),
-.stroke-neutral-focus:focus:not(.open):not(.active),
-.stroke-neutral-active:active:not(.open):not(.active) {
+.stroke-neutral-toggle.open {
   stroke: #8d8d8d !important; }
 
 .stroke-success,
+.stroke-success-hover:hover,
+.stroke-success-focus:focus,
+.stroke-success-active:active,
 .stroke-success-focus.focus,
 .stroke-success-active.active,
 .stroke-success-toggle.active,
-.stroke-success-toggle.open,
-.stroke-success-hover:hover:not(.open):not(.active),
-.stroke-success-focus:focus:not(.open):not(.active),
-.stroke-success-active:active:not(.open):not(.active) {
+.stroke-success-toggle.open {
   stroke: #15b800 !important; }
 
 .stroke-caution,
+.stroke-caution-hover:hover,
+.stroke-caution-focus:focus,
+.stroke-caution-active:active,
 .stroke-caution-focus.focus,
 .stroke-caution-active.active,
 .stroke-caution-toggle.active,
-.stroke-caution-toggle.open,
-.stroke-caution-hover:hover:not(.open):not(.active),
-.stroke-caution-focus:focus:not(.open):not(.active),
-.stroke-caution-active:active:not(.open):not(.active) {
+.stroke-caution-toggle.open {
   stroke: #fd7f03 !important; }
 
 .stroke-error,
+.stroke-error-hover:hover,
+.stroke-error-focus:focus,
+.stroke-error-active:active,
 .stroke-error-focus.focus,
 .stroke-error-active.active,
 .stroke-error-toggle.active,
-.stroke-error-toggle.open,
-.stroke-error-hover:hover:not(.open):not(.active),
-.stroke-error-focus:focus:not(.open):not(.active),
-.stroke-error-active:active:not(.open):not(.active) {
+.stroke-error-toggle.open {
   stroke: #fd0303 !important; }
 
 /* FIT IMAGE */
@@ -1442,16 +1442,16 @@ table {
     .nav-list {
       display: block;
       min-width: 100%; }
+      .nav-list .dropdown {
+        border-radius: 0;
+        width: auto;
+        position: static;
+        box-shadow: none; }
     .nav-list > .nav-item > a,
     .nav-list > .nav-item > [data-toggle=dropdown],
     .nav-list > li > a,
     .nav-list > li > [data-toggle=dropdown] {
-      display: block; }
-    .nav .dropdown {
-      border-radius: 0;
-      width: auto;
-      position: static;
-      box-shadow: none; } }
+      display: block; } }
 
 /*** PAGINATION ***/
 /* it */
@@ -3875,6 +3875,8 @@ table {
 
 .module-functions {
   margin-top: 20px; }
+  .module-functions:first-child {
+    margin-top: 0; }
   .module-functions .module-function {
     margin-top: 10px;
     margin-bottom: 10px; }
@@ -5658,20 +5660,22 @@ CUSTOM STYLES FOR TRUMBOWYG
   [data-toggle] * {
     pointer-events: none !important; }
 
-.accordion {
-  min-width: 100%; }
-  .accordion:not(.accordion-mobile) {
+.accordion:not(.accordion-mobile) {
+  min-width: 100%;
+  display: none; }
+  .accordion:not(.accordion-mobile).open {
+    display: block; }
+
+@media (max-width: 1200px) {
+  .accordion.accordion-mobile {
+    min-width: 100%;
     display: none; }
-    .accordion:not(.accordion-mobile).open {
-      display: block; }
-  @media (max-width: 1200px) {
-    .accordion.accordion-mobile {
-      display: none; }
-      .accordion.accordion-mobile.open {
-        display: block; } }
-  @media (min-width: 1201px) {
-    .accordion.accordion-mobile {
+    .accordion.accordion-mobile.open {
       display: block; } }
+
+@media (min-width: 1201px) {
+  .accordion.accordion-mobile {
+    display: block; } }
 
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */
@@ -5679,161 +5683,161 @@ CUSTOM STYLES FOR TRUMBOWYG
   background-color: #000000; }
 
 .background-base,
+.background-base-hover:hover,
+.background-base-focus:focus,
+.background-base-active:active,
 .background-base-focus.focus,
 .background-base-active.active,
 .background-base-toggle.active,
-.background-base-toggle.open,
-.background-base-hover:hover:not(.open):not(.active),
-.background-base-focus:focus:not(.open):not(.active),
-.background-base-active:active:not(.open):not(.active) {
+.background-base-toggle.open {
   background-color: #000000 !important; }
 
 .background-background,
+.background-background-hover:hover,
+.background-background-focus:focus,
+.background-background-active:active,
 .background-background-focus.focus,
 .background-background-active.active,
 .background-background-toggle.active,
-.background-background-toggle.open,
-.background-background-hover:hover:not(.open):not(.active),
-.background-background-focus:focus:not(.open):not(.active),
-.background-background-active:active:not(.open):not(.active) {
+.background-background-toggle.open {
   background-color: #FFFFFF !important; }
 
 .table-label-primary, .progress-bar-primary, .badge-primary, .tag-primary, .legend-primary {
   background-color: #235789; }
 
 .background-primary,
+.background-primary-hover:hover,
+.background-primary-focus:focus,
+.background-primary-active:active,
 .background-primary-focus.focus,
 .background-primary-active.active,
 .background-primary-toggle.active,
-.background-primary-toggle.open,
-.background-primary-hover:hover:not(.open):not(.active),
-.background-primary-focus:focus:not(.open):not(.active),
-.background-primary-active:active:not(.open):not(.active) {
+.background-primary-toggle.open {
   background-color: #235789 !important; }
 
 .table-label-accent, .progress-bar-accent, .badge-accent, .tag-accent, .legend-accent {
   background-color: #17BEBB; }
 
 .background-accent,
+.background-accent-hover:hover,
+.background-accent-focus:focus,
+.background-accent-active:active,
 .background-accent-focus.focus,
 .background-accent-active.active,
 .background-accent-toggle.active,
-.background-accent-toggle.open,
-.background-accent-hover:hover:not(.open):not(.active),
-.background-accent-focus:focus:not(.open):not(.active),
-.background-accent-active:active:not(.open):not(.active) {
+.background-accent-toggle.open {
   background-color: #17BEBB !important; }
 
 .table-label-neutral, .progress-bar-neutral, .badge-neutral, .tag-neutral, .legend-neutral {
   background-color: #8d8d8d; }
 
 .background-neutral,
+.background-neutral-hover:hover,
+.background-neutral-focus:focus,
+.background-neutral-active:active,
 .background-neutral-focus.focus,
 .background-neutral-active.active,
 .background-neutral-toggle.active,
-.background-neutral-toggle.open,
-.background-neutral-hover:hover:not(.open):not(.active),
-.background-neutral-focus:focus:not(.open):not(.active),
-.background-neutral-active:active:not(.open):not(.active) {
+.background-neutral-toggle.open {
   background-color: #8d8d8d !important; }
 
 .table-label-success, .progress-bar-success, .badge-success, .tag-success, .legend-success {
   background-color: #15b800; }
 
 .background-success,
+.background-success-hover:hover,
+.background-success-focus:focus,
+.background-success-active:active,
 .background-success-focus.focus,
 .background-success-active.active,
 .background-success-toggle.active,
-.background-success-toggle.open,
-.background-success-hover:hover:not(.open):not(.active),
-.background-success-focus:focus:not(.open):not(.active),
-.background-success-active:active:not(.open):not(.active) {
+.background-success-toggle.open {
   background-color: #15b800 !important; }
 
 .table-label-caution, .progress-bar-caution, .badge-caution, .tag-caution, .legend-caution {
   background-color: #fd7f03; }
 
 .background-caution,
+.background-caution-hover:hover,
+.background-caution-focus:focus,
+.background-caution-active:active,
 .background-caution-focus.focus,
 .background-caution-active.active,
 .background-caution-toggle.active,
-.background-caution-toggle.open,
-.background-caution-hover:hover:not(.open):not(.active),
-.background-caution-focus:focus:not(.open):not(.active),
-.background-caution-active:active:not(.open):not(.active) {
+.background-caution-toggle.open {
   background-color: #fd7f03 !important; }
 
 .table-label-error, .progress-bar-error, .badge-error, .tag-error, .legend-error {
   background-color: #fd0303; }
 
 .background-error,
+.background-error-hover:hover,
+.background-error-focus:focus,
+.background-error-active:active,
 .background-error-focus.focus,
 .background-error-active.active,
 .background-error-toggle.active,
-.background-error-toggle.open,
-.background-error-hover:hover:not(.open):not(.active),
-.background-error-focus:focus:not(.open):not(.active),
-.background-error-active:active:not(.open):not(.active) {
+.background-error-toggle.open {
   background-color: #fd0303 !important; }
 
 .table-label-intensity-1, .progress-bar-intensity-1, .badge-intensity-1, .tag-intensity-1, .legend-intensity-1 {
   background-color: #235789; }
   .background-intensity-1,
+  .background-intensity-1-hover:hover,
+  .background-intensity-1-focus:focus,
+  .background-intensity-1-active:active,
   .background-intensity-1-focus.focus,
   .background-intensity-1-active.active,
   .background-intensity-1-toggle.active,
-  .background-intensity-1-toggle.open,
-  .background-intensity-1-hover:hover:not(.open):not(.active),
-  .background-intensity-1-focus:focus:not(.open):not(.active),
-  .background-intensity-1-active:active:not(.open):not(.active) {
+  .background-intensity-1-toggle.open {
     background-color: #235789 !important; }
 
 .table-label-intensity-2, .progress-bar-intensity-2, .badge-intensity-2, .tag-intensity-2, .legend-intensity-2 {
   background-color: #207196; }
   .background-intensity-2,
+  .background-intensity-2-hover:hover,
+  .background-intensity-2-focus:focus,
+  .background-intensity-2-active:active,
   .background-intensity-2-focus.focus,
   .background-intensity-2-active.active,
   .background-intensity-2-toggle.active,
-  .background-intensity-2-toggle.open,
-  .background-intensity-2-hover:hover:not(.open):not(.active),
-  .background-intensity-2-focus:focus:not(.open):not(.active),
-  .background-intensity-2-active:active:not(.open):not(.active) {
+  .background-intensity-2-toggle.open {
     background-color: #207196 !important; }
 
 .table-label-intensity-3, .progress-bar-intensity-3, .badge-intensity-3, .tag-intensity-3, .legend-intensity-3 {
   background-color: #1d8ba2; }
   .background-intensity-3,
+  .background-intensity-3-hover:hover,
+  .background-intensity-3-focus:focus,
+  .background-intensity-3-active:active,
   .background-intensity-3-focus.focus,
   .background-intensity-3-active.active,
   .background-intensity-3-toggle.active,
-  .background-intensity-3-toggle.open,
-  .background-intensity-3-hover:hover:not(.open):not(.active),
-  .background-intensity-3-focus:focus:not(.open):not(.active),
-  .background-intensity-3-active:active:not(.open):not(.active) {
+  .background-intensity-3-toggle.open {
     background-color: #1d8ba2 !important; }
 
 .table-label-intensity-4, .progress-bar-intensity-4, .badge-intensity-4, .tag-intensity-4, .legend-intensity-4 {
   background-color: #1aa4af; }
   .background-intensity-4,
+  .background-intensity-4-hover:hover,
+  .background-intensity-4-focus:focus,
+  .background-intensity-4-active:active,
   .background-intensity-4-focus.focus,
   .background-intensity-4-active.active,
   .background-intensity-4-toggle.active,
-  .background-intensity-4-toggle.open,
-  .background-intensity-4-hover:hover:not(.open):not(.active),
-  .background-intensity-4-focus:focus:not(.open):not(.active),
-  .background-intensity-4-active:active:not(.open):not(.active) {
+  .background-intensity-4-toggle.open {
     background-color: #1aa4af !important; }
 
 .table-label-intensity-5, .progress-bar-intensity-5, .badge-intensity-5, .tag-intensity-5, .legend-intensity-5 {
   background-color: #17BEBB; }
   .background-intensity-5,
+  .background-intensity-5-hover:hover,
+  .background-intensity-5-focus:focus,
+  .background-intensity-5-active:active,
   .background-intensity-5-focus.focus,
   .background-intensity-5-active.active,
   .background-intensity-5-toggle.active,
-  .background-intensity-5-toggle.open,
-  .background-intensity-5-hover:hover:not(.open):not(.active),
-  .background-intensity-5-focus:focus:not(.open):not(.active),
-  .background-intensity-5-active:active:not(.open):not(.active) {
+  .background-intensity-5-toggle.open {
     background-color: #17BEBB !important; }
   .background-gradient {
     /* FF3.6-15 */
@@ -5845,13 +5849,13 @@ CUSTOM STYLES FOR TRUMBOWYG
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-45,
+.background-gradient-45-hover:hover,
+.background-gradient-45-focus:focus,
+.background-gradient-45-active:active,
 .background-gradient-45-focus.focus,
 .background-gradient-45-active.active,
 .background-gradient-45-toggle.active,
-.background-gradient-45-toggle.open,
-.background-gradient-45-hover:hover:not(.open):not(.active),
-.background-gradient-45-focus:focus:not(.open):not(.active),
-.background-gradient-45-active:active:not(.open):not(.active) {
+.background-gradient-45-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5860,13 +5864,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-90,
+.background-gradient-90-hover:hover,
+.background-gradient-90-focus:focus,
+.background-gradient-90-active:active,
 .background-gradient-90-focus.focus,
 .background-gradient-90-active.active,
 .background-gradient-90-toggle.active,
-.background-gradient-90-toggle.open,
-.background-gradient-90-hover:hover:not(.open):not(.active),
-.background-gradient-90-focus:focus:not(.open):not(.active),
-.background-gradient-90-active:active:not(.open):not(.active) {
+.background-gradient-90-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5884,13 +5888,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-135,
+.background-gradient-135-hover:hover,
+.background-gradient-135-focus:focus,
+.background-gradient-135-active:active,
 .background-gradient-135-focus.focus,
 .background-gradient-135-active.active,
 .background-gradient-135-toggle.active,
-.background-gradient-135-toggle.open,
-.background-gradient-135-hover:hover:not(.open):not(.active),
-.background-gradient-135-focus:focus:not(.open):not(.active),
-.background-gradient-135-active:active:not(.open):not(.active) {
+.background-gradient-135-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5899,13 +5903,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-180,
+.background-gradient-180-hover:hover,
+.background-gradient-180-focus:focus,
+.background-gradient-180-active:active,
 .background-gradient-180-focus.focus,
 .background-gradient-180-active.active,
 .background-gradient-180-toggle.active,
-.background-gradient-180-toggle.open,
-.background-gradient-180-hover:hover:not(.open):not(.active),
-.background-gradient-180-focus:focus:not(.open):not(.active),
-.background-gradient-180-active:active:not(.open):not(.active) {
+.background-gradient-180-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5915,13 +5919,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-225,
+.background-gradient-225-hover:hover,
+.background-gradient-225-focus:focus,
+.background-gradient-225-active:active,
 .background-gradient-225-focus.focus,
 .background-gradient-225-active.active,
 .background-gradient-225-toggle.active,
-.background-gradient-225-toggle.open,
-.background-gradient-225-hover:hover:not(.open):not(.active),
-.background-gradient-225-focus:focus:not(.open):not(.active),
-.background-gradient-225-active:active:not(.open):not(.active) {
+.background-gradient-225-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5930,13 +5934,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-270,
+.background-gradient-270-hover:hover,
+.background-gradient-270-focus:focus,
+.background-gradient-270-active:active,
 .background-gradient-270-focus.focus,
 .background-gradient-270-active.active,
 .background-gradient-270-toggle.active,
-.background-gradient-270-toggle.open,
-.background-gradient-270-hover:hover:not(.open):not(.active),
-.background-gradient-270-focus:focus:not(.open):not(.active),
-.background-gradient-270-active:active:not(.open):not(.active) {
+.background-gradient-270-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5946,13 +5950,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-gradient-315,
+.background-gradient-315-hover:hover,
+.background-gradient-315-focus:focus,
+.background-gradient-315-active:active,
 .background-gradient-315-focus.focus,
 .background-gradient-315-active.active,
 .background-gradient-315-toggle.active,
-.background-gradient-315-toggle.open,
-.background-gradient-315-hover:hover:not(.open):not(.active),
-.background-gradient-315-focus:focus:not(.open):not(.active),
-.background-gradient-315-active:active:not(.open):not(.active) {
+.background-gradient-315-toggle.open {
   /* FF3.6-15 */
   background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
@@ -5961,307 +5965,307 @@ CUSTOM STYLES FOR TRUMBOWYG
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .background-theme,
+.background-theme-hover:hover,
+.background-theme-focus:focus,
+.background-theme-active:active,
 .background-theme-focus.focus,
 .background-theme-active.active,
 .background-theme-toggle.active,
-.background-theme-toggle.open,
-.background-theme-hover:hover:not(.open):not(.active),
-.background-theme-focus:focus:not(.open):not(.active),
-.background-theme-active:active:not(.open):not(.active) {
+.background-theme-toggle.open {
   background-color: #FFFFFF !important; }
   .theme-inverse .background-theme, .theme-inverse
+  .background-theme-hover:hover, .theme-inverse
+  .background-theme-focus:focus, .theme-inverse
+  .background-theme-active:active, .theme-inverse
   .background-theme-focus.focus, .theme-inverse
   .background-theme-active.active, .theme-inverse
   .background-theme-toggle.active, .theme-inverse
-  .background-theme-toggle.open, .theme-inverse
-  .background-theme-hover:hover:not(.open):not(.active), .theme-inverse
-  .background-theme-focus:focus:not(.open):not(.active), .theme-inverse
-  .background-theme-active:active:not(.open):not(.active) {
+  .background-theme-toggle.open {
     background-color: #1a1a1a !important; }
 
 .background-theme-contrast,
+.background-theme-contrast-hover:hover,
+.background-theme-contrast-focus:focus,
+.background-theme-contrast-active:active,
 .background-theme-contrast-focus.focus,
 .background-theme-contrast-active.active,
 .background-theme-contrast-toggle.active,
-.background-theme-contrast-toggle.open,
-.background-theme-contrast-hover:hover:not(.open):not(.active),
-.background-theme-contrast-focus:focus:not(.open):not(.active),
-.background-theme-contrast-active:active:not(.open):not(.active) {
+.background-theme-contrast-toggle.open {
   background-color: #e6e6e6 !important; }
   .theme-inverse .background-theme-contrast, .theme-inverse
+  .background-theme-contrast-hover:hover, .theme-inverse
+  .background-theme-contrast-focus:focus, .theme-inverse
+  .background-theme-contrast-active:active, .theme-inverse
   .background-theme-contrast-focus.focus, .theme-inverse
   .background-theme-contrast-active.active, .theme-inverse
   .background-theme-contrast-toggle.active, .theme-inverse
-  .background-theme-contrast-toggle.open, .theme-inverse
-  .background-theme-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .background-theme-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .background-theme-contrast-active:active:not(.open):not(.active) {
+  .background-theme-contrast-toggle.open {
     background-color: #000000 !important; }
 
 .background-theme-polar,
+.background-theme-polar-hover:hover,
+.background-theme-polar-focus:focus,
+.background-theme-polar-active:active,
 .background-theme-polar-focus.focus,
 .background-theme-polar-active.active,
 .background-theme-polar-toggle.active,
-.background-theme-polar-toggle.open,
-.background-theme-polar-hover:hover:not(.open):not(.active),
-.background-theme-polar-focus:focus:not(.open):not(.active),
-.background-theme-polar-active:active:not(.open):not(.active) {
+.background-theme-polar-toggle.open {
   background-color: #000000 !important; }
   .theme-inverse .background-theme-polar, .theme-inverse
+  .background-theme-polar-hover:hover, .theme-inverse
+  .background-theme-polar-focus:focus, .theme-inverse
+  .background-theme-polar-active:active, .theme-inverse
   .background-theme-polar-focus.focus, .theme-inverse
   .background-theme-polar-active.active, .theme-inverse
   .background-theme-polar-toggle.active, .theme-inverse
-  .background-theme-polar-toggle.open, .theme-inverse
-  .background-theme-polar-hover:hover:not(.open):not(.active), .theme-inverse
-  .background-theme-polar-focus:focus:not(.open):not(.active), .theme-inverse
-  .background-theme-polar-active:active:not(.open):not(.active) {
+  .background-theme-polar-toggle.open {
     background-color: #FFFFFF !important; }
 
 .background-theme-polar-contrast,
+.background-theme-polar-contrast-hover:hover,
+.background-theme-polar-contrast-focus:focus,
+.background-theme-polar-contrast-active:active,
 .background-theme-polar-contrast-focus.focus,
 .background-theme-polar-contrast-active.active,
 .background-theme-polar-contrast-toggle.active,
-.background-theme-polar-contrast-toggle.open,
-.background-theme-polar-contrast-hover:hover:not(.open):not(.active),
-.background-theme-polar-contrast-focus:focus:not(.open):not(.active),
-.background-theme-polar-contrast-active:active:not(.open):not(.active) {
+.background-theme-polar-contrast-toggle.open {
   background-color: #1a1a1a !important; }
   .theme-inverse .background-theme-polar-contrast, .theme-inverse
+  .background-theme-polar-contrast-hover:hover, .theme-inverse
+  .background-theme-polar-contrast-focus:focus, .theme-inverse
+  .background-theme-polar-contrast-active:active, .theme-inverse
   .background-theme-polar-contrast-focus.focus, .theme-inverse
   .background-theme-polar-contrast-active.active, .theme-inverse
   .background-theme-polar-contrast-toggle.active, .theme-inverse
-  .background-theme-polar-contrast-toggle.open, .theme-inverse
-  .background-theme-polar-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .background-theme-polar-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .background-theme-polar-contrast-active:active:not(.open):not(.active) {
+  .background-theme-polar-contrast-toggle.open {
     background-color: #e6e6e6 !important; }
 
 .background-gradient, .background-gradient-45, .background-gradient-90, .background-gradient-135, .background-gradient-180, .background-gradient-225, .background-gradient-270, .background-gradient-315 {
   background-color: #235789 !important; }
 
 .background-inherit,
+.background-inherit-hover:hover,
+.background-inherit-focus:focus,
+.background-inherit-active:active,
 .background-inherit-focus.focus,
 .background-inherit-active.active,
 .background-inherit-toggle.active,
-.background-inherit-toggle.open,
-.background-inherit-hover:hover:not(.open):not(.active),
-.background-inherit-focus:focus:not(.open):not(.active),
-.background-inherit-active:active:not(.open):not(.active) {
+.background-inherit-toggle.open {
   background-color: inherit !important; }
 
 .background-transparent,
+.background-transparent-hover:hover,
+.background-transparent-focus:focus,
+.background-transparent-active:active,
 .background-transparent-focus.focus,
 .background-transparent-active.active,
 .background-transparent-toggle.active,
-.background-transparent-toggle.open,
-.background-transparent-hover:hover:not(.open):not(.active),
-.background-transparent-focus:focus:not(.open):not(.active),
-.background-transparent-active:active:not(.open):not(.active) {
+.background-transparent-toggle.open {
   background-color: transparent !important; }
 
 /* COLOR CLASSES */
   .color-intensity-1,
+  .color-intensity-1-hover:hover,
+  .color-intensity-1-focus:focus,
+  .color-intensity-1-active:active,
   .color-intensity-1-focus.focus,
   .color-intensity-1-active.active,
   .color-intensity-1-toggle.active,
-  .color-intensity-1-toggle.open,
-  .color-intensity-1-hover:hover:not(.open):not(.active),
-  .color-intensity-1-focus:focus:not(.open):not(.active),
-  .color-intensity-1-active:active:not(.open):not(.active) {
+  .color-intensity-1-toggle.open {
     color: #235789 !important; }
   .color-intensity-2,
+  .color-intensity-2-hover:hover,
+  .color-intensity-2-focus:focus,
+  .color-intensity-2-active:active,
   .color-intensity-2-focus.focus,
   .color-intensity-2-active.active,
   .color-intensity-2-toggle.active,
-  .color-intensity-2-toggle.open,
-  .color-intensity-2-hover:hover:not(.open):not(.active),
-  .color-intensity-2-focus:focus:not(.open):not(.active),
-  .color-intensity-2-active:active:not(.open):not(.active) {
+  .color-intensity-2-toggle.open {
     color: #207196 !important; }
   .color-intensity-3,
+  .color-intensity-3-hover:hover,
+  .color-intensity-3-focus:focus,
+  .color-intensity-3-active:active,
   .color-intensity-3-focus.focus,
   .color-intensity-3-active.active,
   .color-intensity-3-toggle.active,
-  .color-intensity-3-toggle.open,
-  .color-intensity-3-hover:hover:not(.open):not(.active),
-  .color-intensity-3-focus:focus:not(.open):not(.active),
-  .color-intensity-3-active:active:not(.open):not(.active) {
+  .color-intensity-3-toggle.open {
     color: #1d8ba2 !important; }
   .color-intensity-4,
+  .color-intensity-4-hover:hover,
+  .color-intensity-4-focus:focus,
+  .color-intensity-4-active:active,
   .color-intensity-4-focus.focus,
   .color-intensity-4-active.active,
   .color-intensity-4-toggle.active,
-  .color-intensity-4-toggle.open,
-  .color-intensity-4-hover:hover:not(.open):not(.active),
-  .color-intensity-4-focus:focus:not(.open):not(.active),
-  .color-intensity-4-active:active:not(.open):not(.active) {
+  .color-intensity-4-toggle.open {
     color: #1aa4af !important; }
   .color-intensity-5,
+  .color-intensity-5-hover:hover,
+  .color-intensity-5-focus:focus,
+  .color-intensity-5-active:active,
   .color-intensity-5-focus.focus,
   .color-intensity-5-active.active,
   .color-intensity-5-toggle.active,
-  .color-intensity-5-toggle.open,
-  .color-intensity-5-hover:hover:not(.open):not(.active),
-  .color-intensity-5-focus:focus:not(.open):not(.active),
-  .color-intensity-5-active:active:not(.open):not(.active) {
+  .color-intensity-5-toggle.open {
     color: #17BEBB !important; }
   .color-base,
+  .color-base-hover:hover,
+  .color-base-focus:focus,
+  .color-base-active:active,
   .color-base-focus.focus,
   .color-base-active.active,
   .color-base-toggle.active,
-  .color-base-toggle.open,
-  .color-base-hover:hover:not(.open):not(.active),
-  .color-base-focus:focus:not(.open):not(.active),
-  .color-base-active:active:not(.open):not(.active) {
+  .color-base-toggle.open {
     color: #000000 !important; }
   .color-background,
+  .color-background-hover:hover,
+  .color-background-focus:focus,
+  .color-background-active:active,
   .color-background-focus.focus,
   .color-background-active.active,
   .color-background-toggle.active,
-  .color-background-toggle.open,
-  .color-background-hover:hover:not(.open):not(.active),
-  .color-background-focus:focus:not(.open):not(.active),
-  .color-background-active:active:not(.open):not(.active) {
+  .color-background-toggle.open {
     color: #FFFFFF !important; }
   .color-primary,
+  .color-primary-hover:hover,
+  .color-primary-focus:focus,
+  .color-primary-active:active,
   .color-primary-focus.focus,
   .color-primary-active.active,
   .color-primary-toggle.active,
-  .color-primary-toggle.open,
-  .color-primary-hover:hover:not(.open):not(.active),
-  .color-primary-focus:focus:not(.open):not(.active),
-  .color-primary-active:active:not(.open):not(.active) {
+  .color-primary-toggle.open {
     color: #235789 !important; }
   .color-accent,
+  .color-accent-hover:hover,
+  .color-accent-focus:focus,
+  .color-accent-active:active,
   .color-accent-focus.focus,
   .color-accent-active.active,
   .color-accent-toggle.active,
-  .color-accent-toggle.open,
-  .color-accent-hover:hover:not(.open):not(.active),
-  .color-accent-focus:focus:not(.open):not(.active),
-  .color-accent-active:active:not(.open):not(.active) {
+  .color-accent-toggle.open {
     color: #17BEBB !important; }
   .color-neutral,
+  .color-neutral-hover:hover,
+  .color-neutral-focus:focus,
+  .color-neutral-active:active,
   .color-neutral-focus.focus,
   .color-neutral-active.active,
   .color-neutral-toggle.active,
-  .color-neutral-toggle.open,
-  .color-neutral-hover:hover:not(.open):not(.active),
-  .color-neutral-focus:focus:not(.open):not(.active),
-  .color-neutral-active:active:not(.open):not(.active) {
+  .color-neutral-toggle.open {
     color: #8d8d8d !important; }
   .color-success,
+  .color-success-hover:hover,
+  .color-success-focus:focus,
+  .color-success-active:active,
   .color-success-focus.focus,
   .color-success-active.active,
   .color-success-toggle.active,
-  .color-success-toggle.open,
-  .color-success-hover:hover:not(.open):not(.active),
-  .color-success-focus:focus:not(.open):not(.active),
-  .color-success-active:active:not(.open):not(.active) {
+  .color-success-toggle.open {
     color: #15b800 !important; }
   .color-caution,
+  .color-caution-hover:hover,
+  .color-caution-focus:focus,
+  .color-caution-active:active,
   .color-caution-focus.focus,
   .color-caution-active.active,
   .color-caution-toggle.active,
-  .color-caution-toggle.open,
-  .color-caution-hover:hover:not(.open):not(.active),
-  .color-caution-focus:focus:not(.open):not(.active),
-  .color-caution-active:active:not(.open):not(.active) {
+  .color-caution-toggle.open {
     color: #fd7f03 !important; }
   .color-error,
+  .color-error-hover:hover,
+  .color-error-focus:focus,
+  .color-error-active:active,
   .color-error-focus.focus,
   .color-error-active.active,
   .color-error-toggle.active,
-  .color-error-toggle.open,
-  .color-error-hover:hover:not(.open):not(.active),
-  .color-error-focus:focus:not(.open):not(.active),
-  .color-error-active:active:not(.open):not(.active) {
+  .color-error-toggle.open {
     color: #fd0303 !important; }
 
 .color-theme,
+.color-theme-hover:hover,
+.color-theme-focus:focus,
+.color-theme-active:active,
 .color-theme-focus.focus,
 .color-theme-active.active,
 .color-theme-toggle.active,
-.color-theme-toggle.open,
-.color-theme-hover:hover:not(.open):not(.active),
-.color-theme-focus:focus:not(.open):not(.active),
-.color-theme-active:active:not(.open):not(.active) {
+.color-theme-toggle.open {
   color: #000000 !important; }
   .theme-inverse .color-theme, .theme-inverse
+  .color-theme-hover:hover, .theme-inverse
+  .color-theme-focus:focus, .theme-inverse
+  .color-theme-active:active, .theme-inverse
   .color-theme-focus.focus, .theme-inverse
   .color-theme-active.active, .theme-inverse
   .color-theme-toggle.active, .theme-inverse
-  .color-theme-toggle.open, .theme-inverse
-  .color-theme-hover:hover:not(.open):not(.active), .theme-inverse
-  .color-theme-focus:focus:not(.open):not(.active), .theme-inverse
-  .color-theme-active:active:not(.open):not(.active) {
+  .color-theme-toggle.open {
     color: #FFFFFF !important; }
 
 .color-theme-contrast,
+.color-theme-contrast-hover:hover,
+.color-theme-contrast-focus:focus,
+.color-theme-contrast-active:active,
 .color-theme-contrast-focus.focus,
 .color-theme-contrast-active.active,
 .color-theme-contrast-toggle.active,
-.color-theme-contrast-toggle.open,
-.color-theme-contrast-hover:hover:not(.open):not(.active),
-.color-theme-contrast-focus:focus:not(.open):not(.active),
-.color-theme-contrast-active:active:not(.open):not(.active) {
+.color-theme-contrast-toggle.open {
   color: #1a1a1a !important; }
   .theme-inverse .color-theme-contrast, .theme-inverse
+  .color-theme-contrast-hover:hover, .theme-inverse
+  .color-theme-contrast-focus:focus, .theme-inverse
+  .color-theme-contrast-active:active, .theme-inverse
   .color-theme-contrast-focus.focus, .theme-inverse
   .color-theme-contrast-active.active, .theme-inverse
   .color-theme-contrast-toggle.active, .theme-inverse
-  .color-theme-contrast-toggle.open, .theme-inverse
-  .color-theme-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .color-theme-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .color-theme-contrast-active:active:not(.open):not(.active) {
+  .color-theme-contrast-toggle.open {
     color: #e6e6e6 !important; }
 
 .color-theme-polar,
+.color-theme-polar-hover:hover,
+.color-theme-polar-focus:focus,
+.color-theme-polar-active:active,
 .color-theme-polar-focus.focus,
 .color-theme-polar-active.active,
 .color-theme-polar-toggle.active,
-.color-theme-polar-toggle.open,
-.color-theme-polar-hover:hover:not(.open):not(.active),
-.color-theme-polar-focus:focus:not(.open):not(.active),
-.color-theme-polar-active:active:not(.open):not(.active) {
+.color-theme-polar-toggle.open {
   color: #FFFFFF !important; }
   .theme-inverse .color-theme-polar, .theme-inverse
+  .color-theme-polar-hover:hover, .theme-inverse
+  .color-theme-polar-focus:focus, .theme-inverse
+  .color-theme-polar-active:active, .theme-inverse
   .color-theme-polar-focus.focus, .theme-inverse
   .color-theme-polar-active.active, .theme-inverse
   .color-theme-polar-toggle.active, .theme-inverse
-  .color-theme-polar-toggle.open, .theme-inverse
-  .color-theme-polar-hover:hover:not(.open):not(.active), .theme-inverse
-  .color-theme-polar-focus:focus:not(.open):not(.active), .theme-inverse
-  .color-theme-polar-active:active:not(.open):not(.active) {
+  .color-theme-polar-toggle.open {
     color: #1a1a1a !important; }
 
 .color-theme-polar-contrast,
+.color-theme-polar-contrast-hover:hover,
+.color-theme-polar-contrast-focus:focus,
+.color-theme-polar-contrast-active:active,
 .color-theme-polar-contrast-focus.focus,
 .color-theme-polar-contrast-active.active,
 .color-theme-polar-contrast-toggle.active,
-.color-theme-polar-contrast-toggle.open,
-.color-theme-polar-contrast-hover:hover:not(.open):not(.active),
-.color-theme-polar-contrast-focus:focus:not(.open):not(.active),
-.color-theme-polar-contrast-active:active:not(.open):not(.active) {
+.color-theme-polar-contrast-toggle.open {
   color: #e6e6e6 !important; }
   .theme-inverse .color-theme-polar-contrast, .theme-inverse
+  .color-theme-polar-contrast-hover:hover, .theme-inverse
+  .color-theme-polar-contrast-focus:focus, .theme-inverse
+  .color-theme-polar-contrast-active:active, .theme-inverse
   .color-theme-polar-contrast-focus.focus, .theme-inverse
   .color-theme-polar-contrast-active.active, .theme-inverse
   .color-theme-polar-contrast-toggle.active, .theme-inverse
-  .color-theme-polar-contrast-toggle.open, .theme-inverse
-  .color-theme-polar-contrast-hover:hover:not(.open):not(.active), .theme-inverse
-  .color-theme-polar-contrast-focus:focus:not(.open):not(.active), .theme-inverse
-  .color-theme-polar-contrast-active:active:not(.open):not(.active) {
+  .color-theme-polar-contrast-toggle.open {
     color: #000000 !important; }
 
 .color-inherit,
+.color-inherit-hover:hover,
+.color-inherit-focus:focus,
+.color-inherit-active:active,
 .color-inherit-focus.focus,
 .color-inherit-active.active,
 .color-inherit-toggle.active,
-.color-inherit-toggle.open,
-.color-inherit-hover:hover:not(.open):not(.active),
-.color-inherit-focus:focus:not(.open):not(.active),
-.color-inherit-active:active:not(.open):not(.active) {
+.color-inherit-toggle.open {
   color: inherit !important; }
 
 .font-family-primary {

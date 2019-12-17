@@ -232,6 +232,9 @@ $prefix: '.module';
 
 		&-functions {
 			margin-top: $module-gutter-between;
+			&:first-child {
+				margin-top:0;
+			}
 
 			#{$prefix}-function {
 				margin-top: $module-gutter-between * .5;

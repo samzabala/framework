@@ -241,6 +241,15 @@ $prefix: '.nav';
 		&-list {
 			display:block;
 			min-width:100%;
+
+			.dropdown {
+				border-radius:0;
+				// padding-left:0;
+				// padding-right:0;
+				width: auto;
+				position:static;
+				box-shadow: none;
+			}
 		}
 
 		&-list > #{$prefix}-item,
@@ -249,15 +258,6 @@ $prefix: '.nav';
 			> [data-toggle=dropdown] {
 				display:block;
 			}
-		}
-
-		.dropdown {
-			border-radius:0;
-			// padding-left:0;
-			// padding-right:0;
-			width: auto;
-			position:static;
-			box-shadow: none;
 		}
 	}
 }

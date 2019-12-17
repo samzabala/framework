@@ -10,10 +10,10 @@
 }
 
 .accordion {
-    min-width:100%;
     &:not(.accordion-mobile) {
         // max-height:0;
         // overflow:hidden;
+        min-width:100%;
         display:none;
         // transition: $transition-duration-long max-height $transition-timing;
         // overflow:hidden;
@@ -30,6 +30,7 @@
         @include br(#{$mobile-br-max}-max) {
             // max-height:0;
             // overflow:hidden;
+            min-width:100%;
             display:none;
             // transition: $transition-duration-long max-height $transition-timing;
             // overflow:hidden;
