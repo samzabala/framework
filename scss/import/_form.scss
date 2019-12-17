@@ -232,6 +232,7 @@ $prefix: '.input';
 
 		-webkit-appearance: none;
 		appearance: none;
+		outline:none;
 		@include type-set((
 			size: #{$calculated-input-font-size},
 			color:$input-color,
@@ -258,6 +259,7 @@ $prefix: '.input';
 		
 		option {
 			font:inherit;
+			outline:none;
 		}
 
 
@@ -516,7 +518,7 @@ $prefix: '.input';
 
 			@include br($mobile-br-max-polar){
 				display:inline-flex;
-				margin-right: 2rem;
+				padding-right: 2rem;
 			}
 		}
 			
@@ -555,7 +557,7 @@ $prefix: '.input';
 		&-block {
 
 			display:flex;
-			margin-right: 0;
+			padding-right: 0;
 
 			@include br(#{$mobile-br-max}-max) {
 				flex-direction: column;
