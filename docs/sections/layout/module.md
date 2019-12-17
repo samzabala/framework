@@ -41,6 +41,10 @@ Or go basic
 </div>
 ```
 
+If you want some hover fx on that shit add **`.module-interactive`**
+
+A module with an href or data-href automatically gets this too
+
 
 
 ## Module Elements
