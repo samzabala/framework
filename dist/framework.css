@@ -5653,6 +5653,10 @@ CUSTOM STYLES FOR TRUMBOWYG
 .fw-trumbowyg-editor img {
   cursor: move; }
 
+@media (max-width: 1200px) {
+  .fw-trumbowyg-modal-button {
+    margin-top: 1em; } }
+
 /*** TOGGLES ***/
 /* to fix children that dont like their parents events. kinda like neutering them idk */
 [data-toggle] {
@@ -5662,20 +5666,20 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 .accordion:not(.accordion-mobile) {
   min-width: 100%;
-  display: none; }
+  display: none !important; }
   .accordion:not(.accordion-mobile).open {
-    display: block; }
+    display: block !important; }
 
 @media (max-width: 1200px) {
   .accordion.accordion-mobile {
     min-width: 100%;
-    display: none; }
+    display: none !important; }
     .accordion.accordion-mobile.open {
-      display: block; } }
+      display: block !important; } }
 
 @media (min-width: 1201px) {
   .accordion.accordion-mobile {
-    display: block; } }
+    display: block !important; } }
 
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */

@@ -443,3 +443,10 @@ CUSTOM STYLES FOR TRUMBOWYG
 		}
 	}
  }
+
+
+ @include br(#{$mobile-br-max}-max) {
+	.fw-trumbowyg-modal-button {
+		margin-top: 1em;
+	}
+ }

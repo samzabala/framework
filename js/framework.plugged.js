@@ -627,7 +627,7 @@ window.jQuery && jQuery.noConflict();
 				
 					if( selector.hasClass('open') && triggerer.hasClass('open') ){
 
-						selector.slideUp(); 
+						// selector.slideUp(); 
 						triggerer.removeClass('open'); 
 						selector.removeClass('open'); 
 
@@ -640,7 +640,7 @@ window.jQuery && jQuery.noConflict();
 							selector.closest('.accordion-group').find('.accordion').removeClass('open'); 
 						}
 
-						selector.slideDown(); 
+						// selector.slideDown(); 
 						triggerer.addClass('open'); 
 						selector.addClass('open'); 
 
@@ -767,7 +767,7 @@ window.jQuery && jQuery.noConflict();
 				
 				if( selector.hasClass('open') && $(this).hasClass('open') ){
 
-					selector.slideUp(); 
+					// selector.slideUp(); 
 					$(this).closest('li,.nav-item').removeClass('open'); 
 					$(this).removeClass('open'); 
 					selector.removeClass('open'); 
@@ -785,7 +785,7 @@ window.jQuery && jQuery.noConflict();
 					$('.dropdown').removeClass('open'); 
 					$('*[data-toggle="dropdown"]').removeClass('open'); 
 
-					selector.slideDown(); 
+					// selector.slideDown(); 
 					$(this).closest('li,.nav-item').addClass('open'); 
 					$(this).addClass('open'); 
 					selector.addClass('open'); 

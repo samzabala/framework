@@ -14,14 +14,14 @@
         // max-height:0;
         // overflow:hidden;
         min-width:100%;
-        display:none;
+        display:none!important;
         // transition: $transition-duration-long max-height $transition-timing;
         // overflow:hidden;
 
         &.open {
             // max-height:none;
             // overflow:visible;
-            display:block;
+            display:block!important;
         }
     }
 
@@ -31,21 +31,21 @@
             // max-height:0;
             // overflow:hidden;
             min-width:100%;
-            display:none;
+            display:none!important;
             // transition: $transition-duration-long max-height $transition-timing;
             // overflow:hidden;
 
             &.open {
                 // max-height:none;
                 // overflow:visible;
-                display:block;
+                display:block!important;
             }
         }
 
         @include br(#{$mobile-br-max-polar}) {
             // max-height:none;
             // overflow:visible;
-            display:block;
+            display:block!important;
         }
     }
 }
