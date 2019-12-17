@@ -149,8 +149,15 @@ window.jQuery && jQuery.noConflict();
 	_.parseArgs = function(arr,defaults) {
 		var args = defaults;
 		for (var prop in arr) {
-			if(arr.hasOwnProperty(prop) && arr[prop] !== null) {
+			
+			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined) {
 				// Push each value from `obj` into `extended`
+				
+				// catch boolean
+				if(arr[prop] == 'false' || arr[prop] == 'true') {
+					arr[prop] = arr[prop] == 'true' ? true : false;
+				}
+
 				args[prop] = arr[prop];
 			}
 		}
@@ -624,20 +631,16 @@ window.jQuery && jQuery.noConflict();
 			var arr =  {
 				header:
 					contentWrap.getAttribute('data-modal-title')
-					|| (triggerer && (triggerer.getAttribute('data-modal-title')))
-					|| null,
+					|| (triggerer && (triggerer.getAttribute('data-modal-title'))),
 				close:
 					contentWrap.getAttribute('data-modal-close')
-					|| (triggerer && (triggerer.getAttribute('data-modal-close'))) 
-					|| null,
+					|| (triggerer && (triggerer.getAttribute('data-modal-close'))) ,
 				disableOverlay:
 					contentWrap.getAttribute('data-modal-disable-overlay')
-					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay')))
-					|| null,
+					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay'))),
 				maxWidth:
 					contentWrap.getAttribute('data-modal-max-width')
 					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))) 
-					|| null
 			};
 
 			var defaults = {

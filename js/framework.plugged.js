@@ -1,3 +1,4 @@
+
 window.jQuery && jQuery.noConflict();
 (function($,window){
 
@@ -82,8 +83,14 @@ window.jQuery && jQuery.noConflict();
 	_.parseArgs = function(arr,defaults) {
 		var args = defaults;
 		for (var prop in arr) {
-			if(arr.hasOwnProperty(prop) && arr[prop] !== null) {
+			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined) {
 				// Push each value from `obj` into `extended`
+				
+				// catch boolean
+				if(arr[prop] == 'false' || arr[prop] == 'true') {
+					arr[prop] = arr[prop] == 'true' ? true : false;
+				}
+
 				args[prop] = arr[prop];
 			}
 		}
@@ -351,14 +358,14 @@ window.jQuery && jQuery.noConflict();
 		if(triggerer) {
 			
 			var arr =  {
-				placement: triggerer.data('tooltip-placement') || null,
-				badge: triggerer.data('tooltip-badge') || null,
-				badgeBg: triggerer.data('tooltip-badge-background') || null,
-				badgeSize: triggerer.data('tooltip-badge-size') || null,
-				content: triggerer.data('tooltip-content') || null,
-				classes: triggerer.data('tooltip-classes') || null,
-				centerX: triggerer.data('tooltip-center-x') || null,
-				centerY: triggerer.data('tooltip-center-y') || null,
+				placement: triggerer.data('tooltip-placement') || false,
+				badge: triggerer.data('tooltip-badge') || false,
+				badgeBg: triggerer.data('tooltip-badge-background') || false,
+				badgeSize: triggerer.data('tooltip-badge-size') || false,
+				content: triggerer.data('tooltip-content') || false,
+				classes: triggerer.data('tooltip-classes') || false,
+				centerX: triggerer.data('tooltip-center-x') || false,
+				centerY: triggerer.data('tooltip-center-y') || false,
 			};
 
 			var defaults = {
@@ -531,20 +538,16 @@ window.jQuery && jQuery.noConflict();
 			var arr =  {
 				header:
 					contentWrap.data('modal-title')
-					|| (triggerer && (triggerer.data('modal-title')))
-					|| null,
+					|| (triggerer && (triggerer.data('modal-title'))),
 				close:
 					contentWrap.data('modal-close')
-					|| (triggerer && (triggerer.data('modal-close')))
-					|| null,
+					|| (triggerer && (triggerer.data('modal-close'))),
 				disableOverlay:
 					contentWrap.data('modal-disable-overlay')
-					|| triggerer && ((triggerer.data('modal-disable-overlay')))
-					|| null,
+					|| triggerer && ((triggerer.data('modal-disable-overlay'))),
 				maxWidth:
 					contentWrap.data('modal-max-width')
-					|| (triggerer && (triggerer.data('modal-max-width')))
-					|| null
+					|| (triggerer && (triggerer.data('modal-max-width'))),
 			};
 
 			var defaults = {
@@ -553,6 +556,8 @@ window.jQuery && jQuery.noConflict();
 				disableOverlay: true,
 				maxWidth: null
 			};
+
+			console.log(arr);
 			
 			var args = _.parseArgs(arr,defaults);
 
