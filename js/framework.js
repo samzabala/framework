@@ -669,7 +669,7 @@ window.jQuery && jQuery.noConflict();
 				modHttml += '<a href="#" class="modal-close-overlay" '+( !args.disableOverlay ? 'data-toggle="modal-close"' : '' )+'></a>';
 				modHttml += '<div class="modal-popup">';
 
-					if(args.header !== '') {
+					if(args.header) {
 						modHttml += '<div class="modal-header"><h1 class="modal-title">'+ args.header +'</h1></div>';
 					}
 

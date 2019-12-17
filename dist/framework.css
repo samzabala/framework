@@ -1101,6 +1101,10 @@ table {
           transform-origin: center center;
   pointer-events: none;
   margin: 0 .5em; }
+  .symbol:last-child {
+    margin-right: 0; }
+  .symbol:first-child {
+    margin-left: 0; }
   .symbol:before, .symbol:after {
     content: "";
     color: inherit;
@@ -4347,9 +4351,9 @@ table {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-  .btn .symbol:last-child, .fw-trumbowyg-modal-button .symbol:last-child, .btn .badge:last-child, .fw-trumbowyg-modal-button .badge:last-child {
+  .btn .badge:last-child, .fw-trumbowyg-modal-button .badge:last-child {
     margin-left: .25em; }
-  .btn .symbol:first-child, .fw-trumbowyg-modal-button .symbol:first-child, .btn .badge:first-child, .fw-trumbowyg-modal-button .badge:first-child {
+  .btn .badge:first-child, .fw-trumbowyg-modal-button .badge:first-child {
     margin-right: .25em; }
 
 .nav .btn {

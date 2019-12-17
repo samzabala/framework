@@ -572,7 +572,7 @@ window.jQuery && jQuery.noConflict();
 
 						html += '<div class="modal-popup">';
 
-							if(args.header !== '') {
+							if(args.header) {
 								html += '<div class="modal-header"><h1 class="modal-title">'+ args.header +'</h1></div>';
 							}
 
