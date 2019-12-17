@@ -73,6 +73,7 @@ $prefix-raw: str-replace($prefix,'.','');
 			margin-bottom: $grid-gap;
 			display:flex;
 			flex-wrap:wrap;
+			min-width: 100%;
 
 			&-compact {
 				margin-left: $grid-gap-compact * -1;

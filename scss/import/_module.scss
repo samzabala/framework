@@ -124,6 +124,7 @@ $prefix: '.module';
 	&-footer {
 		padding-left: $module-gutter-x;
 		padding-right: $module-gutter-x;
+		@extend %for-cf;
 		// overflow:hidden;
 	}
 

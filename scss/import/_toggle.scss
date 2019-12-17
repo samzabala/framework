@@ -10,6 +10,7 @@
 }
 
 .accordion {
+    min-width:100%;
     &:not(.accordion-mobile) {
         // max-height:0;
         // overflow:hidden;

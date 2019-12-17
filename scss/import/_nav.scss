@@ -96,6 +96,7 @@ $prefix: '.nav';
 
 	&#{$prefix}-vertical {
 		display:block;
+		min-width:100%;
 		height: auto;
 
 		#{$prefix}-list {
@@ -239,6 +240,7 @@ $prefix: '.nav';
 
 		&-list {
 			display:block;
+			min-width:100%;
 		}
 
 		&-list > #{$prefix}-item,

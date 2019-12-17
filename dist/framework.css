@@ -347,7 +347,7 @@ ol.unstyled li:before, ol.inline li:before, ol.style-none li:before, ul.unstyled
 
 ol.inline li, ul.inline li {
   display: inline-block;
-  margin: 0 1.5em; }
+  margin: 0 1em; }
 
 ol li, ul li {
   list-style: none;
@@ -1313,6 +1313,7 @@ table {
 
 .nav.nav-vertical {
   display: block;
+  min-width: 100%;
   height: auto; }
   .nav.nav-vertical .nav-list {
     display: block; }
@@ -1390,8 +1391,10 @@ table {
     -webkit-transition: 0.125s all ease-in-out;
     transition: 0.125s all ease-in-out;
     /* FF3.6-15 */
+    background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* Chrome10-25,Safari5.1-6 */
     background-image: -webkit-gradient(linear , left top, right top , from(#235789), to(#17BEBB)) ;
+    background-image: -webkit-linear-gradient(left , #235789 0%, #17BEBB 100%) ;
     background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
     .nav-vertical .nav-list > .nav-item > a:after, .nav-vertical
@@ -1403,8 +1406,10 @@ table {
       top: 0;
       left: auto;
       /* FF3.6-15 */
+      background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
       /* Chrome10-25,Safari5.1-6 */
       background-image: -webkit-gradient(linear , left bottom, left top , from(#235789), to(#17BEBB)) ;
+      background-image: -webkit-linear-gradient(bottom , #235789 0%, #17BEBB 100%) ;
       background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -1435,7 +1440,8 @@ table {
   .nav {
     height: auto; }
     .nav-list {
-      display: block; }
+      display: block;
+      min-width: 100%; }
     .nav-list > .nav-item > a,
     .nav-list > .nav-item > [data-toggle=dropdown],
     .nav-list > li > a,
@@ -1487,7 +1493,8 @@ table {
   margin-bottom: 40px;
   display: -webkit-box;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  min-width: 100%; }
   .flex-grid-compact {
     margin-left: -20px;
     margin-bottom: 20px; }
@@ -4096,6 +4103,7 @@ table {
   /* FF3.6-15 */
   background: -webkit-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.2) 0%,  rgba(0, 0, 0, 0.2) 1px,  transparent 1px,  transparent 4px) ;
   /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-repeating-linear-gradient(315deg ,  rgba(0, 0, 0, 0.2) 0%,  rgba(0, 0, 0, 0.2) 1px,  transparent 1px,  transparent 4px) ;
   background: repeating-linear-gradient(135deg ,  rgba(0, 0, 0, 0.2) 0%,  rgba(0, 0, 0, 0.2) 1px,  transparent 1px,  transparent 4px) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
   .active.progress, .active.fw-trumbowyg-progress {
@@ -4112,6 +4120,7 @@ table {
     /* FF3.6-15 */
     background: -webkit-repeating-linear-gradient(-45deg ,  rgba(0, 0, 0, 0.4) 0%,  rgba(0, 0, 0, 0.4) 1px,  transparent 1px,  transparent 4px) ;
     /* Chrome10-25,Safari5.1-6 */
+    background: -webkit-repeating-linear-gradient(315deg ,  rgba(0, 0, 0, 0.4) 0%,  rgba(0, 0, 0, 0.4) 1px,  transparent 1px,  transparent 4px) ;
     background: repeating-linear-gradient(135deg ,  rgba(0, 0, 0, 0.4) 0%,  rgba(0, 0, 0, 0.4) 1px,  transparent 1px,  transparent 4px) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -4202,9 +4211,9 @@ table {
 .tooltip {
   pointer-events: none;
   max-width: 300px;
-  display: none !important; }
+  display: none; }
   .tooltip.active {
-    display: block !important; }
+    display: block; }
   .tooltip:before, .tooltip:after {
     content: "";
     background: #FFFFFF;
@@ -4267,9 +4276,9 @@ table {
   width: 300px;
   display: none;
   color: inherit;
-  display: none !important; }
+  display: none; }
   .dropdown.open {
-    display: block !important; }
+    display: block; }
   .dropdown, .dropdown ul, .dropdown li {
     margin-bottom: 0;
     margin-top: 0; }
@@ -4963,6 +4972,7 @@ table {
   display: block; }
 
 .input-select {
+  background-image: -webkit-linear-gradient(220deg, #235789 0%, #235789 50%, transparent 51%, transparent 100%), -webkit-linear-gradient(320deg, #235789 0%, #235789 50%, transparent 51%, transparent 100%);
   background-image: linear-gradient(-130deg, #235789 0%, #235789 50%, transparent 51%, transparent 100%), linear-gradient(130deg, #235789 0%, #235789 50%, transparent 51%, transparent 100%);
   background-size: 0.25em 0.3125em, 0.25em 0.3125em;
   background-position: calc(100% - (1em + 0.2125em )) 50%, calc(100% - 1em) 50%;
@@ -5648,20 +5658,20 @@ CUSTOM STYLES FOR TRUMBOWYG
   [data-toggle] * {
     pointer-events: none !important; }
 
-.accordion:not(.accordion-mobile) {
-  display: none; }
-  .accordion:not(.accordion-mobile).open {
-    display: block; }
-
-@media (max-width: 1200px) {
-  .accordion.accordion-mobile {
+.accordion {
+  min-width: 100%; }
+  .accordion:not(.accordion-mobile) {
     display: none; }
-    .accordion.accordion-mobile.open {
+    .accordion:not(.accordion-mobile).open {
+      display: block; }
+  @media (max-width: 1200px) {
+    .accordion.accordion-mobile {
+      display: none; }
+      .accordion.accordion-mobile.open {
+        display: block; } }
+  @media (min-width: 1201px) {
+    .accordion.accordion-mobile {
       display: block; } }
-
-@media (min-width: 1201px) {
-  .accordion.accordion-mobile {
-    display: block; } }
 
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */
@@ -5827,8 +5837,10 @@ CUSTOM STYLES FOR TRUMBOWYG
     background-color: #17BEBB !important; }
   .background-gradient {
     /* FF3.6-15 */
+    background-image: -webkit-linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
     /* Chrome10-25,Safari5.1-6 */
     background-image: -webkit-gradient(linear , left top, right top , from(#235789), to(#17BEBB)) ;
+    background-image: -webkit-linear-gradient(left , #235789 0%, #17BEBB 100%) ;
     background-image: linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5841,7 +5853,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-45-focus:focus:not(.open):not(.active),
 .background-gradient-45-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5854,14 +5868,18 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-90-focus:focus:not(.open):not(.active),
 .background-gradient-90-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(90deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: -webkit-gradient(linear , left bottom, left top , from(#235789), to(#17BEBB)) ;
+  background-image: -webkit-linear-gradient(bottom , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(0deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
 .thumbnail {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5874,7 +5892,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-135-focus:focus:not(.open):not(.active),
 .background-gradient-135-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-linear-gradient(135deg , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(-45deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5887,8 +5907,10 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-180-focus:focus:not(.open):not(.active),
 .background-gradient-180-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(180deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: -webkit-gradient(linear , right top, left top , from(#235789), to(#17BEBB)) ;
+  background-image: -webkit-linear-gradient(right , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(-90deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5901,7 +5923,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-225-focus:focus:not(.open):not(.active),
 .background-gradient-225-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-linear-gradient(225deg , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(-135deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5914,8 +5938,10 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-270-focus:focus:not(.open):not(.active),
 .background-gradient-270-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(270deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
   background-image: -webkit-gradient(linear , left top, left bottom , from(#235789), to(#17BEBB)) ;
+  background-image: -webkit-linear-gradient(top , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(-180deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
@@ -5928,7 +5954,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-gradient-315-focus:focus:not(.open):not(.active),
 .background-gradient-315-active:active:not(.open):not(.active) {
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   /* Chrome10-25,Safari5.1-6 */
+  background-image: -webkit-linear-gradient(315deg , #235789 0%, #17BEBB 100%) ;
   background-image: linear-gradient(-225deg , #235789 0%, #17BEBB 100%) ;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 

@@ -24,10 +24,10 @@ $prefix: '.tooltip';
 	@extend %for-pop;
 	pointer-events:none;
 	max-width: $tooltip-max-width;
-	display: none!important;
+	display: none;
 
 	&.active {
-		display: block!important;
+		display: block;
 	}
 
 	&:before,&:after {
@@ -143,10 +143,10 @@ $prefix: '.dropdown';
 	width: $dropdown-width;
 	display:none;
 	color: $nav-color;
-	display: none!important;
+	display: none;
 
 	&.open {
-		display: block!important;
+		display: block;
 	}
 
 	&,ul,li {

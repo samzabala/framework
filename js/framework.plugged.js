@@ -603,7 +603,7 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.destroyModal = function(removeHash){
 		
-		$('body').children('.modal-wrapper').removeClass('active').fadeOut().remove();
+		$('body').children('.modal-wrapper').fadeOut().removeClass('active').remove();
 		$('body').removeClass('body-modal-active');
 
 		if(removeHash) {
