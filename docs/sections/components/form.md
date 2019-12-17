@@ -310,7 +310,7 @@ Add helper text along the field to help out the user `.input-info`
 
 To group `.input` bois together
 
-NOTE this only works best for `.input-single-line` fields
+NOTE this only works best for `.input-single-line` and or `.input-select` fields
 
 `.btn` elements will work innit as well
 
