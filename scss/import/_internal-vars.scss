@@ -103,25 +103,7 @@ $calculated-btn-schemes: (
             color: $btn-color-default,
         )
     ),
-    base: (
-
-        hover: (
-            background: $btn-background-base-hover,
-            border: $btn-border-base-hover,
-            color: $btn-color-base-hover,
-        ),
-
-        active: (
-            background: $btn-background-base-active,
-            border: $btn-border-base-active,
-            color: $btn-color-base-active,
-        ),
-        init: (
-            background: $btn-background-base,
-            border: $btn-border-base,
-            color: $btn-color-base,
-        )
-    ),
+    
 	primary: (
 
         hover: (
