@@ -171,7 +171,7 @@ $prefix: '.input';
 			case: $input-label-text-transform,
 		));
 		order:-1;
-		margin-right: 1rem;
+		padding-right: 1rem;
 		display:inline-block;
 		padding-top: calc( (#{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
 		padding-bottom: calc( (  #{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
@@ -536,12 +536,19 @@ $prefix: '.input';
 				// flex-wrap: wrap;
 
 				> #{$prefix}-label {
-					flex: 0 0 $input-label-horizontal-width;
+					flex-grow:0;
+					flex-shrink:0;
+					flex-basis:auto;
 					order: -1;
+					
 
 					&:first-child:last-child {
 					/* labels that typically wrapp radio and checboxes*/
 						flex: 1 1 auto;
+					}
+
+					@at-root #{$prefix}-wrapper-block#{&} {
+						flex-basis:$input-label-horizontal-width;
 					}
 				}
 			}
@@ -848,7 +855,7 @@ fieldset {
 	#{$prefix}-wrapper {
 		max-width: none;
 		display:flex;
-		margin-right:0;
+		padding-right:0;
 
 		&-horizontal {
 			#{$prefix},

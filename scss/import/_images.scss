@@ -6,8 +6,12 @@
 /* LAZYLOAD */
 
 $prefix: '.lazy';
-#{$prefix} {
-	body:not(.lazy-initialized) & {
+#{$prefix},
+*[data-src],
+*[data-srcset] {
+	opacity: 1;
+	transition: $transition-duration-base opacity $transition-timing;
+	html:not(.lazy-initialized) & {
 		opacity: 0;
 	}
 }

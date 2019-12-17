@@ -136,6 +136,14 @@ window.jQuery && jQuery.noConflict();
 		return siblings;
 	
 	};
+
+	frameWork.docReady = function(fn) {
+		if (document.readyState != 'loading'){
+		  fn();
+		} else {
+		  document.addEventListener('DOMContentLoaded', fn);
+		}
+	  }
 	
 	_.reverseArray = function(arr) {
 		var newArray = [];
@@ -851,10 +859,12 @@ window.jQuery && jQuery.noConflict();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 	});
 
+	frameWork.docReady(function(){
+		frameWork.settings.lazyLoad && frameWork.loadImages();
+	});
+
 	
 	window.addEventListener('load',function(){
-
-		frameWork.settings.lazyLoad && frameWork.loadImages();
 
 		frameWork.settings.initializeModal && frameWork.createModal();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();

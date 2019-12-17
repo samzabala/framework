@@ -705,11 +705,14 @@ window.jQuery && jQuery.noConflict();
 	$(window).on('hashchange',function(){
 		frameWork.settings.initializeModal && frameWork.createModal();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
+	});
+
+	$(document).ready(function(){
+		frameWork.settings.lazyLoad && frameWork.loadImages();
 	})
 
 	$(window).on('load',function(){
 
-		frameWork.settings.lazyLoad && frameWork.loadImages();
 
 		_.functions_on_load.forEach(function(fn){
 			fn();

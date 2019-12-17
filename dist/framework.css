@@ -491,8 +491,16 @@ big {
 
 /*** IMAGES ***/
 /* LAZYLOAD */
-body:not(.lazy-initialized) .lazy {
-  opacity: 0; }
+.lazy,
+*[data-src],
+*[data-srcset] {
+  opacity: 1;
+  -webkit-transition: 0.25s opacity ease-in-out;
+  transition: 0.25s opacity ease-in-out; }
+  html:not(.lazy-initialized) .lazy, html:not(.lazy-initialized)
+  *[data-src], html:not(.lazy-initialized)
+  *[data-srcset] {
+    opacity: 0; }
 
 /* SVGS */
 .svg-gradient-start {
@@ -4424,6 +4432,9 @@ table {
   width: 2.8125em;
   padding-left: 0;
   padding-right: 0; }
+  .nav .btn-symbol {
+    padding-left: .125rem;
+    padding-right: .125rem; }
   .btn-symbol > .symbol {
     margin-left: auto;
     margin-right: auto; }
@@ -4796,7 +4807,7 @@ table {
   font-style: normal;
   -webkit-box-ordinal-group: 0;
           order: -1;
-  margin-right: 1rem;
+  padding-right: 1rem;
   display: inline-block;
   padding-top: calc( (2.8125rem - (1em * 1.25) ) * .5);
   padding-bottom: calc( (  2.8125rem - (1em * 1.25) ) * .5); }
@@ -4843,6 +4854,7 @@ table {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
+  outline: none;
   font-size: 1rem;
   line-height: 1.5;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
@@ -4863,7 +4875,8 @@ table {
     color: inherit;
     background-color: #1a1a1a; }
   .input-select option, .input-single-line option, .input-multiple-line option, .input-editor option, .fw-trumbowyg-editor option, .fw-trumbowyg-textarea option, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) option {
-    font: inherit; }
+    font: inherit;
+    outline: none; }
   .input-group .input-select, .input-group .input-single-line, .input-group .input-multiple-line, .input-group .input-editor, .input-group .fw-trumbowyg-editor, .input-group .fw-trumbowyg-textarea, .input-group .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group input:not([type="checkbox"]):not([type="radio"]) {
     box-shadow: none;
     border-radius: 0 !important; }
@@ -5000,7 +5013,7 @@ table {
     .input-wrapper, .fw-trumbowyg-modal-box label {
       display: -webkit-inline-box;
       display: inline-flex;
-      margin-right: 2rem; } }
+      padding-right: 2rem; } }
 
 @media (min-width: 1201px) {
   .input-wrapper.input-wrapper-horizontal, .fw-trumbowyg-modal-box label {
@@ -5013,13 +5026,17 @@ table {
       width: calc(100% - 25%); }
     .input-wrapper.input-wrapper-horizontal > .input-label, .fw-trumbowyg-modal-box label > .input-label {
       -webkit-box-flex: 0;
-              flex: 0 0 25%;
+              flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
       -webkit-box-ordinal-group: 0;
               order: -1; }
       .input-wrapper.input-wrapper-horizontal > .input-label:first-child:last-child, .fw-trumbowyg-modal-box label > .input-label:first-child:last-child {
         /* labels that typically wrapp radio and checboxes*/
         -webkit-box-flex: 1;
-                flex: 1 1 auto; } }
+                flex: 1 1 auto; }
+      .input-wrapper-block.input-wrapper.input-wrapper-horizontal > .input-label, .fw-trumbowyg-modal-box label.input-wrapper-block > .input-label {
+        flex-basis: 25%; } }
 
 @media (min-width: 1201px) {
   .input-wrapper.input-wrapper-vertical {
@@ -5030,7 +5047,7 @@ table {
 .input-wrapper.input-wrapper-block, .fw-trumbowyg-modal-box label {
   display: -webkit-box;
   display: flex;
-  margin-right: 0; }
+  padding-right: 0; }
   @media (max-width: 1200px) {
     .input-wrapper.input-wrapper-block, .fw-trumbowyg-modal-box label {
       -webkit-box-orient: vertical;
@@ -5327,7 +5344,7 @@ fieldset {
     max-width: none;
     display: -webkit-box;
     display: flex;
-    margin-right: 0; }
+    padding-right: 0; }
     .special-form .input-wrapper-horizontal .input,
     .special-form .input-wrapper-horizontal .input-single-line,
     .special-form .input-wrapper-horizontal .input-multiple-line,
@@ -6503,6 +6520,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   overflow: scroll !important; }
 
 .overflow-overlay {
+  overflow: scroll !important;
   overflow: overlay !important; }
 
 .overflow-auto {
@@ -6518,6 +6536,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   overflow-x: scroll !important; }
 
 .overflow-x-overlay {
+  overflow-x: scroll !important;
   overflow-x: overlay !important; }
 
 .overflow-x-auto {
@@ -6533,6 +6552,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   overflow-y: scroll !important; }
 
 .overflow-y-overlay {
+  overflow-y: scroll !important;
   overflow-y: overlay !important; }
 
 .overflow-y-auto {
