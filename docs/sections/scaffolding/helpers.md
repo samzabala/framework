@@ -9,6 +9,7 @@ All influenced by [color declarations](../scaffolding/colors.md)
 #### Background
 
 *   **`.background-base` (Not to be confused with theme-color)**
+*   **`.background-background` (Not to be confused with theme-background)**
 *   **`.background-primary`**
 *   **`.background-accent`**
 *   **`.background-neutral`**
@@ -40,6 +41,7 @@ This will add gradient colors. By default, the gradient will be at angle 0deg, a
 #### Color
 
 *   **`.color-base` (Not to be confused with theme-color)**
+*   **`.color-background` (Not to be confused with theme-background)**
 *   **`.color-primary`**
 *   **`.color-accent`**
 *   **`.color-neutral`**

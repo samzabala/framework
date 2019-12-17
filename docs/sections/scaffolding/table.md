@@ -43,7 +43,7 @@ Replicate a `<thead>`,`<tbody>`,`<tfoot>` or `<tr>` element
 
 ##### Colors 
 The folloing classes style table rows to [framework colors](../scaffolding/colors.md#color-tags)
-*	**.table-row-base**
+
 *	**.table-row-primary**
 *	**.table-row-accent**
 *	**.table-row-neutral**

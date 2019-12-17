@@ -99,7 +99,6 @@ Color and contrast palettes interchange on inverse theme by default. to see this
 
 ## Color tags
 These are valid color tags for all javascript arguments or data attributes
-*	`base`
 *	`primary`
 *	`accent`
 *	`neutral`

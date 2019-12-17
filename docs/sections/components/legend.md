@@ -12,7 +12,6 @@ This is to display graph color legends or whatever has colors and needs some leg
 
 To color the legends, add `.legend-[color-tag]`
 
-*	**`.legend-base`**
 *	**`.legend-primary`**
 *	**`.legend-accent`**
 *	**`.legend-neutral`**

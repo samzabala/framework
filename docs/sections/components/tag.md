@@ -11,7 +11,6 @@ This is to display a tag bitch :)
 
 To color the tags, add `.tag-[color-tag]`
 
-*	**`.tag-base`**
 *	**`.tag-primary`**
 *	**`.tag-accent`**
 *	**`.tag-neutral`**

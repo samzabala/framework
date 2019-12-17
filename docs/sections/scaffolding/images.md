@@ -72,7 +72,7 @@ These helper classes follow the same setup as [background and color helpers](../
 ##### Basic
 
 ###### Absolute values
-*   **`.['fill' or 'stroke']-base` (Not to be confused with theme-color)**
+
 *   **`.['fill' or 'stroke']-primary`**
 *   **`.['fill' or 'stroke']-accent`**
 *   **`.['fill' or 'stroke']-neutral`**

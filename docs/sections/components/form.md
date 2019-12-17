@@ -507,7 +507,6 @@ To set the wrapper to a full width block, add **`.input-wrapper-block`**
 
 To add feedback color the `.input`, add `.input-[color-tag]`.
 
-*	**`.input-base`**
 *	**`.input-primary`**
 *	**`.input-accent`**
 *	**`.input-neutral`**
@@ -519,7 +518,6 @@ To add feedback color the `.input`, add `.input-[color-tag]`.
 
 To add feedback color the `.input-label`, add `.input-[color-tag]`.
 
-*	**`.label-base`**
 *	**`.label-primary`**
 *	**`.label-accent`**
 *	**`.label-neutral`**
@@ -533,7 +531,6 @@ To add feedback color the `.input-label`, add `.input-[color-tag]`.
 
 Adding the color class on `.input-group` styles both the `.input-label` and `.input` within it
 
-*	**`.input-wrapper-base`**
 *	**`.input-wrapper-primary`**
 *	**`.input-wrapper-accent`**
 *	**`.input-wrapper-neutral`**
