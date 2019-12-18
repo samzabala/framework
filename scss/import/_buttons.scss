@@ -223,9 +223,16 @@ $prefix: '.btn';
 		}
 
 	.nav & {
-		padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		height: #{ $calculated-nav-height };
+		&,
+		&#{$prefix}-large,
+		&#{$prefix}-small,
+		#{$prefix}-large &,
+		#{$prefix}-small & {
+
+			padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			height: #{ $calculated-nav-height };
+		}
 	}
 
 	&#{$prefix}-no-radius,
@@ -358,12 +365,10 @@ $prefix: '.btn';
 
 			&-large {
 				width: $calculated-btn-height-large ;
-
 			}
 
 			&-small {
 				width: $calculated-btn-height-small;
-
 			}
 		}
 	}

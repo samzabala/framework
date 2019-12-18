@@ -4341,7 +4341,9 @@ table {
   .btn .badge:first-child, .fw-trumbowyg-modal-button .badge:first-child {
     margin-right: .25em; }
 
-.nav .btn {
+.nav .btn, .nav .btn.btn-large, .nav .btn.btn-small,
+.btn-large .nav .btn,
+.btn-small .nav .btn {
   padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5);
   padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5);
   height: 4.6875rem; }
@@ -4409,9 +4411,6 @@ table {
   width: 2.8125em;
   padding-left: 0;
   padding-right: 0; }
-  .nav .btn-symbol {
-    padding-left: .125rem;
-    padding-right: .125rem; }
   .btn-symbol > .symbol {
     margin-left: auto;
     margin-right: auto; }
@@ -4421,6 +4420,13 @@ table {
 
 .btn-small .btn-symbol, .btn-symbol.btn-small {
   width: 1.875em; }
+
+.nav .btn-symbol,
+.nav .btn-small .btn-symbol,
+.nav .btn-symbol.btn-small,
+.nav .btn-large .btn-symbol,
+.nav .btn-symbol.btn-large {
+  width: 4.6875rem; }
 
 .btn-group {
   display: -webkit-inline-box;
