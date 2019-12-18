@@ -71,7 +71,7 @@ While javascript is initialized. some modules are at opacity: 0; while this is t
 
 When bitch is ready. JS adds this shit, you don't have to fuck with it
 
-## **`.them-inverse`**
+## **`.theme-inverse`**
 
 This switches color or background properties to allow dark mode
 
