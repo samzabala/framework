@@ -38,7 +38,7 @@ A framework for your appy dashboardy needs :')
 *	[Trumbowyg](docs/sections/components/trumbowyg.md)
 
 ##	Other Obscure things
-*	[Script](docs/sections/components/other/script.md)
+*	[Script](docs/sections/other/script.md)
 
 ### Supports:
 *	Edge 16+
