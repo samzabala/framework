@@ -316,7 +316,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 			&#{$prefix}-input-error {
 
-				input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+				input:not([type="checkbox"]):not([type="radio"]) {
 					@extend %for-form-input-color-error;
 				}
 
@@ -432,6 +432,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 	&-progress {
 			@extend %for-progress;
+			@extend %for-p;
 
 		&,
 		&-bar {

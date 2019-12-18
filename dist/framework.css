@@ -320,7 +320,7 @@ ol,
 address,
 pre,
 dl,
-hr, .fw-trumbowyg-modal-box label {
+hr, .fw-trumbowyg-modal-box label, .fw-trumbowyg-progress {
   margin-bottom: 1.875em; }
 
 p,
@@ -4421,13 +4421,6 @@ table {
 .btn-small .btn-symbol, .btn-symbol.btn-small {
   width: 1.875em; }
 
-.nav .btn-symbol,
-.nav .btn-small .btn-symbol,
-.nav .btn-symbol.btn-small,
-.nav .btn-large .btn-symbol,
-.nav .btn-symbol.btn-large {
-  width: 4.6875rem; }
-
 .btn-group {
   display: -webkit-inline-box;
   display: inline-flex;
@@ -5227,20 +5220,20 @@ table {
   color: #fd0303 !important; }
 
 .input.input-error:not(:focus):not(.focus),
-.input-wrapper-error .input:not(:focus):not(.focus), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+.input-wrapper-error .input:not(:focus):not(.focus), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]) {
   color: #fd0303 !important;
   box-shadow: 0px 5px 15px -8px #fd0303 !important;
   background-color: rgba(253, 3, 3, 0.05); }
 
 .input.input-error,
-.input-wrapper-error .input, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .input.input-error:focus,
-.input-wrapper-error .input:focus, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .focus.input.input-error,
-.input-wrapper-error .focus.input, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+.input-wrapper-error .input, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]), .input.input-error:focus,
+.input-wrapper-error .input:focus, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]), .focus.input.input-error,
+.input-wrapper-error .focus.input, .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]) {
   border-color: #fd0303 !important; }
   .input-group .input.input-error,
-  .input-group .input-wrapper-error .input, .input-wrapper-error .input-group .input, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .input-group .input.input-error:focus,
-  .input-group .input-wrapper-error .input:focus, .input-wrapper-error .input-group .input:focus, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input:focus:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .input-group .focus.input.input-error,
-  .input-group .input-wrapper-error .focus.input, .input-wrapper-error .input-group .focus.input, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]):not([type="file"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input.focus:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+  .input-group .input-wrapper-error .input, .input-wrapper-error .input-group .input, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input:not([type="checkbox"]):not([type="radio"]), .input-group .input.input-error:focus,
+  .input-group .input-wrapper-error .input:focus, .input-wrapper-error .input-group .input:focus, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input:focus:not([type="checkbox"]):not([type="radio"]), .input-group .focus.input.input-error,
+  .input-group .input-wrapper-error .focus.input, .input-wrapper-error .input-group .focus.input, .input-group .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input.focus:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error .input-group input.focus:not([type="checkbox"]):not([type="radio"]) {
     border-color: transparent !important; }
 
 .special-form,
