@@ -36,22 +36,22 @@ js files (in order)
 		<!-- your styles -->
 			<link href="/style.css" rel="stylesheet">
 	</head>
-<body>
+	<body class="body-loading"">
 
-	<!-- blahblahblah -->
+		<!-- blahblahblah -->
 
 
-	<!-- jquery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- trumboboi -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.19.1/trumbowyg.min.js"></script>
+		<!-- jquery -->
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- trumboboi -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.19.1/trumbowyg.min.js"></script>
 
-	<!-- framework -->
-		<script src="framework/dist/framework.js"></script>
+		<!-- framework -->
+			<script src="framework/dist/framework.js"></script>
 
-	<!-- ya custom js -->
-		<script src="/site.js"></script>
-</body>
+		<!-- ya custom js -->
+			<script src="/site.js"></script>
+	</body>
 </html>
 
 

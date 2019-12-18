@@ -68,6 +68,7 @@ if a vertical layout is desired on all breakpoints, add a **`.nav-vertical`** to
 ### **`.nav-sticky`**
 
 This sticks the nav up top foREVER
+add **.body-nav-sticky-offset** to body to push down the body content for some space for the nav too
 
 
 # **`.nav-list`**

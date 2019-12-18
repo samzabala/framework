@@ -709,60 +709,20 @@ window.jQuery && jQuery.noConflict();
 
 	$(document).ready(function(){
 		frameWork.settings.lazyLoad && frameWork.loadImages();
-	})
 
-	$(window).on('load',function(){
-
-
-		_.functions_on_load.forEach(function(fn){
-			fn();
-		})
-
-		frameWork.settings.initializeModal && frameWork.createModal();
-		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
-
-		// if(window.location.hash !== ''){
-
-		// 	var possiblyAccordion = _.getTheToggled(null,'accordion');
-
-		// 	if(possiblyAccordion) {
-		// 		$('.accordion').removeClass('open');
-		// 		$(window.hash.location).addClass('open');
-		// 	}
-		// }
-
-
-		var resizeTimerInternal;
-		$(window).on('resize', function() {
-		
-			clearTimeout(resizeTimerInternal)
-		
-			resizeTimerInternal = setTimeout(function() {
-				_.functions_on_resize.forEach(function(fn){
-					fn();
-				})
-			}, 100)
-		
-		});
-	
-		$('body').on('click','*[data-toggle="accordion"]',function(e){
-			
+		$('body').on('click','*[data-toggle="accordion"]',function(e){	
 			e.preventDefault();
-
 			frameWork.toggleAccordion($(this));
 		});
 
 	
 		$('body').on('click','.btn-disabled,.input-disabled,[disabled]',function(e){
-			
 			e.preventDefault();
-
 		});
 
 
 		$('body').on('click','*[data-toggle="dropdown"]',function(e){
 			e.preventDefault();
-
 
 			var selector =  _.getTheToggled($(this),'dropdown');
 
@@ -855,7 +815,41 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('click','*[data-toggle="modal"]',function(e){
 			frameWork.createModal($(this));
 		});
+	})
 
+	$(window).on('load',function(){
+
+
+		_.functions_on_load.forEach(function(fn){
+			fn();
+		})
+
+		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
+
+		// if(window.location.hash !== ''){
+
+		// 	var possiblyAccordion = _.getTheToggled(null,'accordion');
+
+		// 	if(possiblyAccordion) {
+		// 		$('.accordion').removeClass('open');
+		// 		$(window.hash.location).addClass('open');
+		// 	}
+		// }
+
+
+		var resizeTimerInternal;
+		$(window).on('resize', function() {
+		
+			clearTimeout(resizeTimerInternal)
+		
+			resizeTimerInternal = setTimeout(function() {
+				_.functions_on_resize.forEach(function(fn){
+					fn();
+				})
+			}, 100)
+		
+		});
 
 		$('body').removeClass('body-loading').addClass('body-loaded');
 
