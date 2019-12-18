@@ -655,16 +655,6 @@ big {
 .fill-none-toggle.open {
   fill: none !important; }
 
-.fill-base,
-.fill-base-hover:hover:not(.open):not(.active),
-.fill-base-focus:focus:not(.open):not(.active),
-.fill-base-active:active:not(.open):not(.active),
-.fill-base-focus.focus,
-.fill-base-active.active,
-.fill-base-toggle.active,
-.fill-base-toggle.open {
-  fill: #000000 !important; }
-
 .fill-primary,
 .fill-primary-hover:hover:not(.open):not(.active),
 .fill-primary-focus:focus:not(.open):not(.active),
@@ -871,16 +861,6 @@ big {
 .stroke-none-toggle.open {
   stroke: none !important; }
 
-.stroke-base,
-.stroke-base-hover:hover:not(.open):not(.active),
-.stroke-base-focus:focus:not(.open):not(.active),
-.stroke-base-active:active:not(.open):not(.active),
-.stroke-base-focus.focus,
-.stroke-base-active.active,
-.stroke-base-toggle.active,
-.stroke-base-toggle.open {
-  stroke: #000000 !important; }
-
 .stroke-primary,
 .stroke-primary-hover:hover:not(.open):not(.active),
 .stroke-primary-focus:focus:not(.open):not(.active),
@@ -1062,8 +1042,6 @@ table {
       height: calc(6.5625rem - (5px * 2)); }
     .table-small .table-label {
       height: calc(3.125rem - (5px * 2)); }
-  .table-row-base {
-    background-color: rgba(0, 0, 0, 0.2); }
   .table-row-primary {
     background-color: rgba(35, 87, 137, 0.2); }
   .table-row-accent {
@@ -1362,8 +1340,8 @@ table {
   color: #235789; }
 
 .nav-icon {
-  width: 1.5789473684em;
-  height: 1.5789473684em;
+  width: 1.875em;
+  height: 1.875em;
   max-width: none;
   display: inline-block;
   vertical-align: middle;
@@ -1377,7 +1355,7 @@ table {
 .nav-list > .nav-item > [data-toggle=dropdown],
 .nav-list > li > a,
 .nav-list > li > [data-toggle=dropdown] {
-  font-size: 1.1875rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: none;
   font-style: normal;
@@ -4538,32 +4516,6 @@ table {
   background: #235789 ;
   color: #FFFFFF ; }
 
-.btn.btn-base, .btn-no-interaction.btn.btn-base, .btn-no-interaction.btn.btn-base:hover, .btn-no-interaction.btn.btn-base:focus, .btn-no-interaction.focus.btn.btn-base, .btn-no-interaction.btn.btn-base:active, .btn-no-interaction.active.btn.btn-base, .btn-disabled.btn.btn-base, .btn-disabled.btn.btn-base:hover, .btn-disabled.btn.btn-base:focus, .btn-disabled.focus.btn.btn-base, .btn-disabled.btn.btn-base:active, .btn-disabled.active.btn.btn-base,
-.btn-disabled .btn.btn-base,
-.btn-disabled:hover .btn.btn-base,
-.btn-disabled:focus .btn.btn-base,
-.btn-disabled.focus .btn.btn-base,
-.btn-disabled:active .btn.btn-base,
-.btn-disabled.active .btn.btn-base {
-  border-color: transparent ;
-  background: #000000 ;
-  color: #FFFFFF ; }
-
-.btn.btn-base:hover,
-.btn-group.btn-group-unite:hover .btn.btn-base, .btn.btn-base:focus,
-.btn-group.btn-group-unite:focus .btn.btn-base, .focus.btn.btn-base,
-.btn-group.btn-group-unite.focus .btn.btn-base {
-  border-color: transparent ;
-  background: #747474 ;
-  color: #FFFFFF ; }
-
-.btn.btn-base:active,
-.btn-group.btn-group-unite:active .btn.btn-base, .active.btn.btn-base,
-.btn-group.btn-group-unite.active .btn.btn-base {
-  border-color: transparent ;
-  background: #000000 ;
-  color: #FFFFFF ; }
-
 .btn.btn-primary, .fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary, .btn-no-interaction.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:hover, .btn-no-interaction.fw-trumbowyg-modal-submit:hover, .btn-no-interaction.btn.btn-primary:focus, .btn-no-interaction.fw-trumbowyg-modal-submit:focus, .btn-no-interaction.focus.btn.btn-primary, .btn-no-interaction.focus.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:active, .btn-no-interaction.fw-trumbowyg-modal-submit:active, .btn-no-interaction.active.btn.btn-primary, .btn-no-interaction.active.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary, .btn-disabled.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:hover, .btn-disabled.fw-trumbowyg-modal-submit:hover, .btn-disabled.btn.btn-primary:focus, .btn-disabled.fw-trumbowyg-modal-submit:focus, .btn-disabled.focus.btn.btn-primary, .btn-disabled.focus.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:active, .btn-disabled.fw-trumbowyg-modal-submit:active, .btn-disabled.active.btn.btn-primary, .btn-disabled.active.fw-trumbowyg-modal-submit,
 .btn-disabled .btn.btn-primary,
 .btn-disabled .fw-trumbowyg-modal-submit,
@@ -5148,29 +5100,6 @@ table {
       .input-group.input-group-responsive > .input:nth-child(n+2), .input-group.input-group-responsive > .input:nth-child(n+2):hover, .input-group.input-group-responsive .btn:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2):hover, .input-group.input-group-responsive .trumbowyg:nth-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-child(n+2):hover {
         border-top-color: rgba(0, 0, 0, 0.1) !important; } }
 
-.input-label.input-label-base,
-.input-wrapper-base .input-label, .input-label.input-label-base:focus,
-.input-wrapper-base .input-label:focus, .focus.input-label.input-label-base,
-.input-wrapper-base .focus.input-label {
-  color: #000000 !important; }
-
-.input.input-base:not(:focus):not(.focus),
-.input-wrapper-base .input:not(:focus):not(.focus) {
-  color: #000000 !important;
-  box-shadow: 0px 5px 15px -8px #000000 !important;
-  background-color: rgba(0, 0, 0, 0.05); }
-
-.input.input-base,
-.input-wrapper-base .input, .input.input-base:focus,
-.input-wrapper-base .input:focus, .focus.input.input-base,
-.input-wrapper-base .focus.input {
-  border-color: #000000 !important; }
-  .input-group .input.input-base,
-  .input-group .input-wrapper-base .input, .input-wrapper-base .input-group .input, .input-group .input.input-base:focus,
-  .input-group .input-wrapper-base .input:focus, .input-wrapper-base .input-group .input:focus, .input-group .focus.input.input-base,
-  .input-group .input-wrapper-base .focus.input, .input-wrapper-base .input-group .focus.input {
-    border-color: transparent !important; }
-
 .input-label.input-label-primary,
 .input-wrapper-primary .input-label, .input-label.input-label-primary:focus,
 .input-wrapper-primary .input-label:focus, .focus.input-label.input-label-primary,
@@ -5709,9 +5638,6 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 /*** HELPERS ***/
 /* BACKGROUND CLASSES */
-.table-label-base, .progress-bar-base, .badge-base, .tag-base, .legend-base {
-  background-color: #000000; }
-
 .background-base,
 .background-base-hover:hover:not(.open):not(.active),
 .background-base-focus:focus:not(.open):not(.active),
