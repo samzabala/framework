@@ -59,6 +59,31 @@ js files (in order)
 
 and done
 
+# Body Classes
+
+There are classes for our bod to be aware of
+
+## **`.body-loading`**
+
+While javascript is initialized. some modules are at opacity: 0; while this is there. Add this to your html so shit can happen
+
+## **`.body-loaded`**
+
+When bitch is ready. JS adds this shit, you don't have to fuck with it
+
+## **`.them-inverse`**
+
+This switches color or background properties to allow dark mode
+
+## **`.body-modal-active`**
+
+Disables overflow scroll on the bod so user can focus on the active [modal](../components/modal.md). JS adds this shit, you don't have to fuck with it
+
+## **`.body-nav-sticky-offset`**
+
+Offsets the body to the set height of the [nav](../components/nav.md)
+
+
 
 
 [Back to TOC](../../../readme.md)
