@@ -23,19 +23,16 @@ $prefix: '.module';
 		&:nth-child(n+2) {
 			margin-top:$module-grid-gutter;
 		}
-		
-		@include br($mobile-br-max-polar){
 
-			.body-loading & {
-				&,&-title {
-					opacity: 0;
-				}
+		.body-loading & {
+			&,&-title {
+				opacity: 0;
 			}
+		}
 
-			.body-loaded & {
-				&,&-title {
-					opacity: 1;
-				}
+		.body-loaded & {
+			&,&-title {
+				opacity: 1;
 			}
 		}
 	}

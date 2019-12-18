@@ -3734,11 +3734,10 @@ table {
   max-width: 100%; }
   .module-grid:nth-child(n+2) {
     margin-top: 30px; }
-  @media (min-width: 1201px) {
-    .body-loading .module-grid, .body-loading .module-grid-title {
-      opacity: 0; }
-    .body-loaded .module-grid, .body-loaded .module-grid-title {
-      opacity: 1; } }
+  .body-loading .module-grid, .body-loading .module-grid-title {
+    opacity: 0; }
+  .body-loaded .module-grid, .body-loaded .module-grid-title {
+    opacity: 1; }
 
 .module-grid-title {
   font-size: 1.1875rem;
