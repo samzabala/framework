@@ -3,7 +3,8 @@
 include the following files:
 
 css/sass
-*	[framework scss files](../../../scss/framework/)
+*	[framework.scss](../../../scss/framework.scss)
+	*	If you want to be a basic bitch just [framework.css](../../../dist/framework.css) is super cool too :)
 
 js files (in order)
 *	Dependencies
