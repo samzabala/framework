@@ -4147,7 +4147,7 @@ table {
   height: 1.5625rem;
   border-radius: calc(1.5625rem * .5);
   border: 0.4375rem solid #FFFFFF;
-  box-shadow: 0px 5px 20px -12px #000000; }
+  box-shadow: 0px 8px 20px -10px #000000; }
   .theme-inverse .badge {
     border-color: #FFFFFF; }
   .badge.badge-large {
@@ -4192,7 +4192,7 @@ table {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 20px 20px;
-  box-shadow: 0px 5px 20px -12px #000000;
+  box-shadow: 0px 3px 10px -6px #000000;
   z-index: 2; }
   .theme-inverse .tooltip, .theme-inverse .dropdown {
     background: #1a1a1a; }
@@ -4359,14 +4359,14 @@ table {
 
 .btn, .btn-group, .fw-trumbowyg-modal-button {
   border-radius: 10px;
-  box-shadow: 0px 5px 20px -12px #000000;
+  box-shadow: 0px 3px 10px -6px #000000;
   background-color: transparent;
   color: inherit;
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none; }
   .btn:hover, .btn-group:hover, .fw-trumbowyg-modal-button:hover, .btn:focus, .btn-group:focus, .fw-trumbowyg-modal-button:focus, .focus.btn, .focus.btn-group, .focus.fw-trumbowyg-modal-button, .btn:active, .btn-group:active, .fw-trumbowyg-modal-button:active, .active.btn, .active.btn-group, .active.fw-trumbowyg-modal-button {
-    box-shadow: 0px 5px 20px -12px #000000;
+    box-shadow: 0px 3px 10px -6px #000000;
     color: inherit; }
 
 .btn-group .btn, .btn-group .btn:hover {
@@ -4900,7 +4900,7 @@ table {
 
 .input-select, .input-single-line, .input-multiple-line, .input-editor, .input-group, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   border-radius: 10px;
-  box-shadow: 0px 5px 20px -12px #000000; }
+  box-shadow: 0px 3px 10px -6px #000000; }
   .nav .input-select, .nav .input-single-line, .nav .input-multiple-line, .nav .input-editor, .nav .input-group, .nav .fw-trumbowyg-editor, .nav .fw-trumbowyg-textarea, .nav .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not([type="checkbox"]):not([type="radio"]) {
     border-radius: 0 !important; }
     .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus), .nav .input-group:not(.focus):not(:focus), .nav .fw-trumbowyg-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-textarea:not(.focus):not(:focus), .nav .fw-trumbowyg-modal-box label input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]) {
@@ -5107,7 +5107,7 @@ table {
 .input.input-primary:not(:focus):not(.focus),
 .input-wrapper-primary .input:not(:focus):not(.focus) {
   color: #235789 !important;
-  box-shadow: 0px 5px 20px -12px #235789 !important;
+  box-shadow: 0px 3px 10px -6px #235789 !important;
   background-color: rgba(35, 87, 137, 0.05); }
 
 .input.input-primary,
@@ -5130,7 +5130,7 @@ table {
 .input.input-accent:not(:focus):not(.focus),
 .input-wrapper-accent .input:not(:focus):not(.focus) {
   color: #17BEBB !important;
-  box-shadow: 0px 5px 20px -12px #17BEBB !important;
+  box-shadow: 0px 3px 10px -6px #17BEBB !important;
   background-color: rgba(23, 190, 187, 0.05); }
 
 .input.input-accent,
@@ -5153,7 +5153,7 @@ table {
 .input.input-neutral:not(:focus):not(.focus),
 .input-wrapper-neutral .input:not(:focus):not(.focus) {
   color: #8d8d8d !important;
-  box-shadow: 0px 5px 20px -12px #8d8d8d !important;
+  box-shadow: 0px 3px 10px -6px #8d8d8d !important;
   background-color: rgba(141, 141, 141, 0.05); }
 
 .input.input-neutral,
@@ -5176,7 +5176,7 @@ table {
 .input.input-success:not(:focus):not(.focus),
 .input-wrapper-success .input:not(:focus):not(.focus) {
   color: #15b800 !important;
-  box-shadow: 0px 5px 20px -12px #15b800 !important;
+  box-shadow: 0px 3px 10px -6px #15b800 !important;
   background-color: rgba(21, 184, 0, 0.05); }
 
 .input.input-success,
@@ -5199,7 +5199,7 @@ table {
 .input.input-caution:not(:focus):not(.focus),
 .input-wrapper-caution .input:not(:focus):not(.focus) {
   color: #fd7f03 !important;
-  box-shadow: 0px 5px 20px -12px #fd7f03 !important;
+  box-shadow: 0px 3px 10px -6px #fd7f03 !important;
   background-color: rgba(253, 127, 3, 0.05); }
 
 .input.input-caution,
@@ -5222,7 +5222,7 @@ table {
 .input.input-error:not(:focus):not(.focus),
 .input-wrapper-error .input:not(:focus):not(.focus), .fw-trumbowyg-modal-box label.fw-trumbowyg-input-error input:not(:focus):not(.focus):not([type="checkbox"]):not([type="radio"]) {
   color: #fd0303 !important;
-  box-shadow: 0px 5px 20px -12px #fd0303 !important;
+  box-shadow: 0px 3px 10px -6px #fd0303 !important;
   background-color: rgba(253, 3, 3, 0.05); }
 
 .input.input-error,
