@@ -402,7 +402,7 @@
 		$badge-border-color: $theme-background !default;
 			$badge-border-color-inverse: $theme-background !default;
 		$badge-border-width: 7px !default;
-		$badge-box-shadow: $box-shadow-spicy $brand-color-base !default;
+		$badge-box-shadow: 0px 3px 10px -5px $brand-color-base !default;
 
 	// legend
 		$badge-size: 25px !default;
