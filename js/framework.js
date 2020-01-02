@@ -443,6 +443,8 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.createToolTip = function(triggerer) {
 		if(triggerer) {
+
+			frameWork.destroyToolTip();
 			
 			var arr =  {
 				placement: triggerer.getAttribute('data-tooltip-placement'),
@@ -474,8 +476,6 @@ window.jQuery && jQuery.noConflict();
 			
 			
 			var args = _.parseArgs(arr,defaults);
-
-			frameWork.destroyToolTip();
 
 			var toolTip = document.createElement('div');
 			document.querySelector('body').appendChild(toolTip);
@@ -589,85 +589,88 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.positionToolTip = function(posX,posY){
 
-		var toolTip = frameWork.toolTip.current;
-		var args = frameWork.toolTip.args;
+		if(frameWork.toolTip.current && frameWork.toolTip.args){
 
-		var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
-			toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
-			isNaN(toolPoint) && (toolPoint = 15);
-			
-		var toolTipProps = {
-			height: toolTip.getBoundingClientRect().height,
-			width: toolTip.getBoundingClientRect().width,
-		};
+			var toolTip = frameWork.toolTip.current;
+			var args = frameWork.toolTip.args;
 
-		var toolTipBadge = toolTip.querySelector('.tooltip-badge');
+			var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
+				toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
+				isNaN(toolPoint) && (toolPoint = 15);
+				
+			var toolTipProps = {
+				height: toolTip.getBoundingClientRect().height,
+				width: toolTip.getBoundingClientRect().width,
+			};
+
+			var toolTipBadge = toolTip.querySelector('.tooltip-badge');
 
 
-		var off = {
-			x: function(){
-				var toReturn = toolTipProps.width * -.5; //top and bottom
-				var badgeOffset = 0;
+			var off = {
+				x: function(){
+					var toReturn = toolTipProps.width * -.5; //top and bottom
+					var badgeOffset = 0;
 
-				switch(args.placement){
-					case 'right':
-						toReturn = toolPoint;
+					switch(args.placement){
+						case 'right':
+							toReturn = toolPoint;
+								break;
+						case 'left':
+							toReturn = -(toolTipProps.width + toolPoint);
 							break;
-					case 'left':
-						toReturn = -(toolTipProps.width + toolPoint);
-						break;
-				}
+					}
 
-				if(
-					( toolTipBadge )
-					&& (
-						(
-							args.placement == 'left'
-							|| args.placement == 'right'
+					if(
+						( toolTipBadge )
+						&& (
+							(
+								args.placement == 'left'
+								|| args.placement == 'right'
+							)
 						)
-					)
-				) {
-					badgeOffset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : (toolTipBadge.getBoundingClientRect().width * .5);
+					) {
+						badgeOffset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : (toolTipBadge.getBoundingClientRect().width * .5);
+					}
+					
+
+					toReturn += badgeOffset;
+					
+					return toReturn;
+				},
+				y: function(){
+					var toReturn = toolTipProps.height * -.5; // left and right
+					var badgeOffset = 0;
+
+					switch(args.placement){
+						case 'bottom':
+							toReturn = toolPoint;
+							break;
+						case 'top':
+							toReturn = -(toolTipProps.height + toolPoint);
+							break;
+					}
+
+					if(
+						( toolTipBadge )
+						&& (
+							args.placement == 'top'
+							|| args.placement == 'bottom'
+						)
+					) {
+						badgeOffset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().height * -.5) : (toolTipBadge.getBoundingClientRect().height * .5);
+					}
+
+					toReturn += badgeOffset;
+
+					return toReturn;
 				}
-				
-
-				toReturn += badgeOffset;
-				
-				return toReturn;
-			},
-			y: function(){
-				var toReturn = toolTipProps.height * -.5; // left and right
-				var badgeOffset = 0;
-
-				switch(args.placement){
-					case 'bottom':
-						toReturn = toolPoint;
-						break;
-					case 'top':
-						toReturn = -(toolTipProps.height + toolPoint);
-						break;
-				}
-
-				if(
-					( toolTipBadge )
-					&& (
-						args.placement == 'top'
-						|| args.placement == 'bottom'
-					)
-				) {
-					badgeOffset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().height * -.5) : (toolTipBadge.getBoundingClientRect().height * .5);
-				}
-
-				toReturn += badgeOffset;
-
-				return toReturn;
 			}
-		}
 
 			toolTip.style.left = (posX + off.x())+'px';
 			toolTip.style.top = (posY + off.y()) +'px';
 			// toolTip.style.left = (posX)+'px';
 			// toolTip.style.top = (posY) +'px';
+		}
 			
 	}
 

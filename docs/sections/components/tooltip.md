@@ -144,7 +144,14 @@ the parameter is required
 
 #### **`fw.destroyTooltip()`**
 
-Kills ya boi
+Kills ya boi. This function is ran first thing in `fw.createTooltip(triggerer)` too
+
+
+#### **`fw.positionToolTip( x:number, y:number )`**
+
+Positions ya boi. You can only run this if a tooltip is triggered and active.
+
+NOTE: offset is calculated based on position offset from body
 
 
 [Back to TOC](../../../readme.md)
