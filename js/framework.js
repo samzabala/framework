@@ -627,8 +627,7 @@ window.jQuery && jQuery.noConflict();
 						)
 					)
 				) {
-
-					badgeOffset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : toolTipBadge.getBoundingClientRect().width * .5;
+					badgeOffset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : (toolTipBadge.getBoundingClientRect().width * .5);
 				}
 				
 
@@ -656,7 +655,7 @@ window.jQuery && jQuery.noConflict();
 						|| args.placement == 'bottom'
 					)
 				) {
-					offset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().height * -.5) : toolTipBadge.getBoundingClientRect().height * .5;
+					badgeOffset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().height * -.5) : (toolTipBadge.getBoundingClientRect().height * .5);
 				}
 
 				toReturn += badgeOffset;
@@ -667,6 +666,8 @@ window.jQuery && jQuery.noConflict();
 
 			toolTip.style.left = (posX + off.x())+'px';
 			toolTip.style.top = (posY + off.y()) +'px';
+			// toolTip.style.left = (posX)+'px';
+			// toolTip.style.top = (posY) +'px';
 			
 	}
 
