@@ -275,4 +275,15 @@ Disclaimer I didn't setup css grid specific helpers because it completely slippe
 
 This sets a weird column setup starting in the sm breakpoint
 
+## Javascript
+
+
+### Functions
+
+#### **`fw.readyGrid(triggerer)`**
+
+Keeps track of module grids and sets up css for them. this is also triggered on load and resize
+
+Creates a boi
+
 [Back to TOC](../../../readme.md)

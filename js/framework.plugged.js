@@ -727,14 +727,14 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	_.readyGrid = function(){
+	frameWork.readyGrid = function(){
 
 		$('.module-grid:not(.module-grid-custom)').each(function(){
 			frameWork.initGrid($(this));
 		});
 	}
-	_.functions_on_load.push(_.readyGrid);
-	_.functions_on_resize.push(_.readyGrid);
+	_.functions_on_load.push(frameWork.readyGrid);
+	_.functions_on_resize.push(frameWork.readyGrid);
 
 	
 	_.initTrumbo = function(selector){
