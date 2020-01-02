@@ -289,7 +289,7 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.initGrid = function(moduleGrid){
 		
-		var availablePropetiesParent = [
+		var availablePropertiesParent = [
 			'grid-template-rows',
 			'grid-template-columns',
 			'grid-template-areas',
@@ -372,7 +372,7 @@ window.jQuery && jQuery.noConflict();
 			}); 
 		}
 
-		renderProps(moduleGrid,availablePropetiesParent);
+		renderProps(moduleGrid,availablePropertiesParent);
 		
 		var moduleChildren = Array.from(moduleGrid.children).filter(function(child){
 			return child.matches('.module');

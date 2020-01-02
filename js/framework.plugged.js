@@ -209,7 +209,7 @@ window.jQuery && jQuery.noConflict();
 	frameWork.initGrid = function(moduleGrid){
 		
 
-		var availablePropetiesParent = [
+		var availablePropertiesParent = [
 			'grid-template-columns',
 			'grid-template-rows',
 			'grid-template-areas',
@@ -294,7 +294,7 @@ window.jQuery && jQuery.noConflict();
 		}
 
 
-		renderProps(moduleGrid,availablePropetiesParent);
+		renderProps(moduleGrid,availablePropertiesParent);
 
 		//chchchchchildren
 
