@@ -240,6 +240,12 @@ $prefix: '.btn';
 		border-radius: 0!important;
 	}
 
+	&#{$prefix}-no-shadow,
+	&-group#{$prefix}-no-shadow,
+	&#{$prefix}-link {
+		box-shadow:none!important;
+	}
+
 	@at-root %for-btn {
 
 		&-on-mobile {
@@ -251,7 +257,6 @@ $prefix: '.btn';
 		}
 	
 		&-itself-and-group {
-	
 			border-radius: $btn-border-radius;
 			box-shadow: $btn-box-shadow;
 			background-color:transparent;
@@ -279,12 +284,6 @@ $prefix: '.btn';
 		&,&:hover {
 			box-shadow: none;
 		}
-	}
-
-	&#{$prefix}-no-shadow,
-	&-group#{$prefix}-no-shadow,
-	&#{$prefix}-link {
-		box-shadow:none!important;
 	}
 
 	&-block {
@@ -398,11 +397,9 @@ $prefix: '.btn';
 		font:inherit;
 		overflow-x:auto;
 		overflow-y:visible;
-		align-items:stretch;
 
 		#{$prefix} {
 			position:relative;
-			border-radius:0!important;
 
 			&:hover,
 			&:active,
@@ -436,14 +433,14 @@ $prefix: '.btn';
 
 			&:not(#{$prefix}-group-responsive) {
 
-				// > #{$prefix}:nth-last-child(n+2) {
-				// 	border-top-right-radius: 0;
-				// 	border-bottom-right-radius: 0;
-				// }
+				> #{$prefix}:nth-last-child(n+2) {
+					border-top-right-radius: 0!important;
+					border-bottom-right-radius: 0!important;
+				}
 
 				> #{$prefix}:nth-child(n+2) {
-					// border-top-left-radius: 0;
-					// border-bottom-left-radius: 0;
+					border-top-left-radius: 0!important;
+					border-bottom-left-radius: 0!important;
 
 					&,
 					&:hover {
@@ -460,14 +457,14 @@ $prefix: '.btn';
 				width:auto;
 			}
 
-			// > #{$prefix}:nth-last-child(n+2) {
-			// 	border-bottom-right-radius: 0;
-			// 	border-bottom-left-radius: 0;
-			// }
+			> #{$prefix}:nth-last-child(n+2) {
+				border-bottom-right-radius: 0!important;
+				border-bottom-left-radius: 0!important;
+			}
 
 			> #{$prefix}:nth-child(n+2) {
-				// border-top-right-radius: 0;
-				// border-top-left-radius: 0;
+				border-top-right-radius: 0!important;
+				border-top-left-radius: 0!important;
 
 				&,
 				&:hover {

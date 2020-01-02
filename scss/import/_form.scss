@@ -265,7 +265,6 @@ $prefix: '.input';
 
 		#{$prefix}-group & {
 			box-shadow: none;
-			border-radius:0!important;
 		}
 
 		#{$prefix}-wrapper & {
@@ -604,17 +603,13 @@ $prefix: '.input';
 		display:inline-flex;
         position:relative;
 		max-width:100%;
+		padding:0;
+		border:0;
 		overflow-x:auto;
 		overflow-y:visible;
-		align-items:stretch;
 		
-		#{$prefix},
-		#{$prefix},
-		#{$prefix}:focus,
-		#{$prefix}.focus,
-		.btn {
+		#{$prefix} {
 			position:relative;
-			border-radius:0!important;
 			resize:none;
 			max-width:100%;
 
@@ -664,17 +659,17 @@ $prefix: '.input';
 
             &:not(#{$prefix}-group-responsive) {
 
-				// > #{$prefix},.btn, .trumbowyg {
-				// 	&:nth-last-child(n+2) {
-				// 		border-top-right-radius: 0;
-				// 		border-bottom-right-radius: 0;
-				// 	}
-				// }
+				> #{$prefix},.btn, .trumbowyg {
+					&:nth-last-child(n+2) {
+						border-top-right-radius: 0;
+						border-bottom-right-radius: 0;
+					}
+				}
 
 				> #{$prefix},.btn, .trumbowyg {
 					&:nth-child(n+2) {
-						// border-top-left-radius: 0;
-						// border-bottom-left-radius: 0;
+						border-top-left-radius: 0;
+						border-bottom-left-radius: 0;
 
 						&,
 						&:hover {
@@ -692,17 +687,17 @@ $prefix: '.input';
 				width:auto;
 			}
 
-			// > #{$prefix},.btn, .trumbowyg {
-			// 	&:nth-last-child(n+2) {
-			// 		border-bottom-right-radius: 0;
-			// 		border-bottom-left-radius: 0;
-			// 	}
-			// }
+			> #{$prefix},.btn, .trumbowyg {
+				&:nth-last-child(n+2) {
+					border-bottom-right-radius: 0!important;
+					border-bottom-left-radius: 0!important;
+				}
+			}
 
 			> #{$prefix},.btn, .trumbowyg {
 				&:nth-child(n+2) {
-					// border-top-right-radius: 0;
-					// border-top-left-radius: 0;
+					border-top-right-radius: 0!important;
+					border-top-left-radius: 0!important;
 
 					&,
 					&:hover {
@@ -721,17 +716,17 @@ $prefix: '.input';
 						width:auto;
 					}
 
-					// > #{$prefix},.btn, .trumbowyg {
-					// 	&:nth-last-child(n+2) {
-					// 		border-top-right-radius: 0;
-					// 		border-bottom-right-radius: 0;
-					// 	}
-					// }
+					> #{$prefix},.btn, .trumbowyg {
+						&:nth-child(n-2) {
+							border-top-right-radius: 0!important;
+							border-bottom-right-radius: 0!important;
+						}
+					}
 
 					> #{$prefix},.btn, .trumbowyg {
 						&:nth-child(n+2) {
-							// border-top-left-radius: 0;
-							// border-bottom-left-radius: 0;
+							border-top-left-radius: 0!important;
+							border-bottom-left-radius: 0!important;
 
 							&,
 							&:hover {
@@ -901,7 +896,7 @@ fieldset {
 		padding-right:0;
 		// margin-left: $special-form-gutter-x * -1;
 		// margin-right:$special-form-gutter-x * -1;
-		border-radius:0;
+		border-radius:0!important;
 	}
 
 	.btn:last-child {
