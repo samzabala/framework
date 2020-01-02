@@ -158,7 +158,7 @@ window.jQuery && jQuery.noConflict();
 		var args = defaults;
 		for (var prop in arr) {
 			
-			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined) {
+			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined && arr[prop] !== null) {
 				// Push each value from `obj` into `extended`
 				
 				// catch boolean
@@ -439,18 +439,22 @@ window.jQuery && jQuery.noConflict();
 		document.documentElement.classList.add('lazy-initialized');
 	}
 
+	frameWork.toolTip = {};
+
 	frameWork.createToolTip = function(triggerer) {
 		if(triggerer) {
-			frameWork.destroyToolTip();
+			
 			var arr =  {
-				placement: triggerer.getAttribute('data-tooltip-placement') || null,
-				badge: triggerer.getAttribute('data-tooltip-badge') || null,
-				badgeBg: triggerer.getAttribute('data-tooltip-badge-background') || null,
-				badgeSize: triggerer.getAttribute('data-tooltip-badge-size') || null,
-				content: triggerer.getAttribute('data-tooltip-content') || null,
-				classes: triggerer.getAttribute('data-tooltip-classes') || null,
-				centerX: triggerer.getAttribute('data-tooltip-center-x') || null,
-				centerY: triggerer.getAttribute('data-tooltip-center-y') || null,
+				placement: triggerer.getAttribute('data-tooltip-placement'),
+				badge: triggerer.getAttribute('data-tooltip-badge'),
+				badgeBg: triggerer.getAttribute('data-tooltip-badge-background'),
+				badgeSize: triggerer.getAttribute('data-tooltip-badge-size'),
+				content: triggerer.getAttribute('data-tooltip-content'),
+				classes: triggerer.getAttribute('data-tooltip-classes'),
+				centerX: triggerer.getAttribute('data-tooltip-center-x'),
+				centerY: triggerer.getAttribute('data-tooltip-center-y'),
+				x: triggerer.getAttribute('data-tooltip-x'),
+				y: triggerer.getAttribute('data-tooltip-y'),
 			};
 
 			var defaults = {
@@ -463,11 +467,15 @@ window.jQuery && jQuery.noConflict();
 				content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
 				centerX: false,
 				centerY: false,
+				x: false,
+				y: false
 
 			};
 			
 			
 			var args = _.parseArgs(arr,defaults);
+
+			frameWork.destroyToolTip();
 
 			var toolTip = document.createElement('div');
 			document.querySelector('body').appendChild(toolTip);
@@ -501,132 +509,166 @@ window.jQuery && jQuery.noConflict();
 
 			toolTip.innerHTML += ttHtml;
 
+			toolTip.classList.add('active');
+			
+			frameWork.toolTip.current = toolTip;
+			frameWork.toolTip.activeTriggerer = triggerer;
+			frameWork.toolTip.args = args;
 
-			// var tooltip = $('body').children('.tooltip').first();
-				toolTip.classList.add('active');
+			console.log(frameWork.toolTip.current);
 
-			var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
-				toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
-				isNaN(toolPoint) && (toolPoint = 15);
+			var triggererProps = {
+				top: triggerer.getBoundingClientRect().top + window.pageYOffset,
+				left: triggerer.getBoundingClientRect().left + window.pageXOffset,
+				height: triggerer.getBoundingClientRect().height,
+				width: triggerer.getBoundingClientRect().width,
+			};
 
+			var origin = {
+				x: function(){
+					var toReturn = triggererProps.left + (triggererProps.width * .5); //top and bottom
 
+					if(!args.x) {
 
-				var triggererProps = {
-					top: triggerer.getBoundingClientRect().top + window.pageYOffset,
-					left: triggerer.getBoundingClientRect().left + window.pageXOffset,
-					height: triggerer.getBoundingClientRect().height,
-					width: triggerer.getBoundingClientRect().width,
-				};
-
-				var toolTipProps = {
-					height: toolTip.getBoundingClientRect().height,
-					width: toolTip.getBoundingClientRect().width,
-				};
-
-				var toolTipBadge = toolTip.querySelector('.tooltip-badge');
-
-				var pos = {
-					x: function(){
-						var toReturn = triggererProps.left + ((triggererProps.width * .5) - (toolTipProps.width * .5));
-						var offset = 0;
-
-						if(args.centerX){
-
+						if(!args.centerX){
 							switch(args.placement){
 								case 'right':
-									toReturn = triggererProps.left + ( triggererProps.width * .5) + toolPoint;
-										break;
-								case 'left':
-									toReturn = triggererProps.left - (toolTipProps.width + toolPoint) + (triggererProps.width * .5);
-									break;
-							}
-							
-						}else{
-
-							switch(args.placement){
-								case 'right':
-									toReturn = triggererProps.left + triggererProps.width + toolPoint;
+									toReturn = triggererProps.left + triggererProps.width;
 									break;
 								case 'left':
-									toReturn = triggererProps.left - (toolTipProps.width + toolPoint);
-									break;
-							}
-
-						}
-
-						if(
-							( toolTipBadge )
-							&& (
-								(
-									args.placement == 'left'
-									|| args.placement == 'right'
-								)
-							)
-						) {
-
-							offset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : toolTipBadge.getBoundingClientRect().width * .5;
-						}
-						
-
-						toReturn += offset;
-						
-						return toReturn;
-					},
-					y: function(){
-						var toReturn = (triggererProps.top + (triggererProps.height * .5)) - (toolTipProps.height * .5); // left and right
-						var offset = 0;
-						if(args.centerY){
-							
-							switch(args.placement){
-								case 'top':
-									toReturn = (triggererProps.top - (toolTipProps.height + toolPoint) + (triggererProps.height * .5));
-									break;
-								case 'bottom':
-									toReturn = (triggererProps.top + ((triggererProps.height * .5)) + toolPoint);
-									break;
-							}
-
-						}else{
-							
-							switch(args.placement){
-								case 'top':
-									toReturn = triggererProps.top - (toolTipProps.height + toolPoint);
-									break;
-								case 'bottom':
-									toReturn = triggererProps.top + (triggererProps.height + toolPoint);
+									toReturn = triggererProps.left;
 									break;
 							}
 						}
 
-						if(
-							( toolTipBadge )
-							&& (
-								args.placement == 'top'
-								|| args.placement == 'bottom'
-							)
-						) {
-							offset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : toolTipBadge.getBoundingClientRect().width * .5;
-						}
-
-						toReturn += offset;
-
-						return toReturn;
+					}else{
+						toReturn = parseFloat(args.x);
 					}
-				}
+					
+					return toReturn;
+				},
+				y: function(){
+					var toReturn = triggererProps.top + (triggererProps.height * .5); // left and right
+					if(!args.y) {
 
-			toolTip.style.top = pos.y()+'px';
-			toolTip.style.left = pos.x()+'px';
-			frameWork.activeToolTipTrigger = triggerer
+						if(!args.centerY){
+							switch(args.placement){
+								case 'bottom':
+									toReturn = triggererProps.top + triggererProps.height;
+									break;
+								case 'top':
+									toReturn = triggererProps.top;
+									break;
+							}
+						}
+
+					}else{
+						toReturn = parseFloat(args.y);
+					}
+
+
+					return toReturn;
+				}
+			}
+
+			frameWork.positionToolTip(origin.x(),origin.y());
 
 		}
 
 	}
 
 	frameWork.destroyToolTip = function(){
-		var toolTip = document.querySelector('body > .tooltip');
-		toolTip && toolTip.parentNode.removeChild(toolTip);
+		if(frameWork.toolTip.current) {
+			frameWork.toolTip.current.parentNode.removeChild(frameWork.toolTip.current);
+		}
+		frameWork.toolTip.current = null;
+		frameWork.toolTip.activeTriggerer = null;
+		frameWork.toolTip.args = null;
 	}
+	_.functions_on_resize.push(frameWork.destroyToolTip);
 
+	frameWork.positionToolTip = function(posX,posY){
+
+		var toolTip = frameWork.toolTip.current;
+		var args = frameWork.toolTip.args;
+
+		var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
+			toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
+			isNaN(toolPoint) && (toolPoint = 15);
+			
+		var toolTipProps = {
+			height: toolTip.getBoundingClientRect().height,
+			width: toolTip.getBoundingClientRect().width,
+		};
+
+		var toolTipBadge = toolTip.querySelector('.tooltip-badge');
+
+
+		var off = {
+			x: function(){
+				var toReturn = toolTipProps.width * -.5; //top and bottom
+				var badgeOffset = 0;
+
+				switch(args.placement){
+					case 'right':
+						toReturn = toolPoint;
+							break;
+					case 'left':
+						toReturn = -(toolTipProps.width + toolPoint);
+						break;
+				}
+
+				if(
+					( toolTipBadge )
+					&& (
+						(
+							args.placement == 'left'
+							|| args.placement == 'right'
+						)
+					)
+				) {
+
+					badgeOffset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : toolTipBadge.getBoundingClientRect().width * .5;
+				}
+				
+
+				toReturn += badgeOffset;
+				
+				return toReturn;
+			},
+			y: function(){
+				var toReturn = toolTipProps.height * -.5; // left and right
+				var badgeOffset = 0;
+
+				switch(args.placement){
+					case 'bottom':
+						toReturn = toolPoint;
+						break;
+					case 'top':
+						toReturn = -(toolTipProps.height + toolPoint);
+						break;
+				}
+
+				if(
+					( toolTipBadge )
+					&& (
+						args.placement == 'top'
+						|| args.placement == 'bottom'
+					)
+				) {
+					offset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().height * -.5) : toolTipBadge.getBoundingClientRect().height * .5;
+				}
+
+				toReturn += badgeOffset;
+
+				return toReturn;
+			}
+		}
+
+			toolTip.style.left = (posX + off.x())+'px';
+			toolTip.style.top = (posY + off.y()) +'px';
+			
+	}
 
 	frameWork.createModal = function(triggerer){
 		
@@ -967,7 +1009,12 @@ window.jQuery && jQuery.noConflict();
 		frameWork.addEvent(document.body,'click','*',function(e){
 			// e.stopPropagation();
 
-			if( !e.target.matches('[data-toggle="tooltip-click"]') && !e.target.matches('[data-toggle="tooltip-click"] *') ){
+			if(
+				!e.target.matches('[data-toggle="tooltip-click"]')
+				&& !e.target.matches('[data-toggle="tooltip-click"] *')
+				&& !e.target.matches('[data-toggle="tooltip-hover"]')
+				&& !e.target.matches('[data-toggle="tooltip-hover"] *')
+			){
 				frameWork.destroyToolTip();
 			}
 		});
