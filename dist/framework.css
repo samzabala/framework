@@ -3852,7 +3852,7 @@ table {
   font-weight: 700;
   text-transform: none;
   font-style: normal;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   margin-top: 10px;
   align-self: flex-start; }
 
@@ -3905,7 +3905,10 @@ table {
   .module-header:first-child, .module-content:first-child, .module-footer:first-child {
     margin-top: -20px; }
   .module-header:last-child, .module-content:last-child, .module-footer:last-child {
-    margin-bottom: -20px; } }
+    margin-bottom: -20px; }
+  .module-title, .fw-trumbowyg-modal-box .fw-trumbowyg-modal-title {
+    margin-top: 0;
+    margin-bottom: 0; } }
 
 .module-no-gutter,
 .module-no-gutter .module-header,

@@ -218,7 +218,7 @@ $prefix: '.module';
 				weight: $module-title-font-weight,
 				style: $module-title-font-style
 			));
-			margin-bottom:0;
+			margin-bottom:$module-gutter-between * .5;
 			margin-top: $module-gutter-between * .5;
 			align-self:flex-start;
 		}
@@ -336,6 +336,11 @@ $prefix: '.module';
 		&-content:last-child,
 		&-footer:last-child {
 			margin-bottom: $module-gutter-y-mobile * -1;
+		}
+
+		&-title {
+			margin-top:0;
+			margin-bottom:0;
 		}
 
 	}
