@@ -4472,8 +4472,14 @@ table {
   @media (min-width: 1201px) {
     .btn-group.btn-group-responsive.btn-group-horizontal > .btn-symbol {
       width: auto; }
-    .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2), .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2):hover {
-      border-left-color: rgba(0, 0, 0, 0.1) !important; } }
+    .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-last-child(n+2) {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important; }
+    .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2) {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important; }
+      .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2), .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-child(n+2):hover {
+        border-left-color: rgba(0, 0, 0, 0.1) !important; } }
   @media (max-width: 1200px) {
     .btn-group.btn-group-responsive {
       width: 100%;
@@ -4483,238 +4489,260 @@ table {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
               flex-direction: column; }
-      .btn-group.btn-group-responsive > .btn:nth-child(n+2), .btn-group.btn-group-responsive > .btn:nth-child(n+2):hover {
-        border-top-color: rgba(0, 0, 0, 0.1) !important; } }
+      .btn-group.btn-group-responsive > .btn:nth-last-child(n+2) {
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important; }
+      .btn-group.btn-group-responsive > .btn:nth-child(n+2) {
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important; }
+        .btn-group.btn-group-responsive > .btn:nth-child(n+2), .btn-group.btn-group-responsive > .btn:nth-child(n+2):hover {
+          border-top-color: rgba(0, 0, 0, 0.1) !important; } }
 
-.btn.btn-default, .fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default, .btn-no-interaction.fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default:hover, .btn-no-interaction.fw-trumbowyg-modal-reset:hover, .btn-no-interaction.btn.btn-default:focus, .btn-no-interaction.fw-trumbowyg-modal-reset:focus, .btn-no-interaction.focus.btn.btn-default, .btn-no-interaction.focus.fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default:active, .btn-no-interaction.fw-trumbowyg-modal-reset:active, .btn-no-interaction.active.btn.btn-default, .btn-no-interaction.active.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default, .btn-disabled.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default:hover, .btn-disabled.fw-trumbowyg-modal-reset:hover, .btn-disabled.btn.btn-default:focus, .btn-disabled.fw-trumbowyg-modal-reset:focus, .btn-disabled.focus.btn.btn-default, .btn-disabled.focus.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default:active, .btn-disabled.fw-trumbowyg-modal-reset:active, .btn-disabled.active.btn.btn-default, .btn-disabled.active.fw-trumbowyg-modal-reset,
-.btn-disabled .btn.btn-default,
-.btn-disabled .fw-trumbowyg-modal-reset,
-.btn-disabled:hover .btn.btn-default,
-.btn-disabled:hover .fw-trumbowyg-modal-reset,
-.btn-disabled:focus .btn.btn-default,
-.btn-disabled:focus .fw-trumbowyg-modal-reset,
-.btn-disabled.focus .btn.btn-default,
-.btn-disabled.focus .fw-trumbowyg-modal-reset,
-.btn-disabled:active .btn.btn-default,
-.btn-disabled:active .fw-trumbowyg-modal-reset,
-.btn-disabled.active .btn.btn-default,
-.btn-disabled.active .fw-trumbowyg-modal-reset {
+.btn.btn-default, .fw-trumbowyg-modal-reset {
   border-color: transparent ;
   background: transparent ;
   color: inherit ; }
+  .btn-no-interaction.btn.btn-default, .btn-no-interaction.fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default:hover, .btn-no-interaction.fw-trumbowyg-modal-reset:hover, .btn-no-interaction.btn.btn-default:focus, .btn-no-interaction.fw-trumbowyg-modal-reset:focus, .btn-no-interaction.focus.btn.btn-default, .btn-no-interaction.focus.fw-trumbowyg-modal-reset, .btn-no-interaction.btn.btn-default:active, .btn-no-interaction.fw-trumbowyg-modal-reset:active, .btn-no-interaction.active.btn.btn-default, .btn-no-interaction.active.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default, .btn-disabled.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default:hover, .btn-disabled.fw-trumbowyg-modal-reset:hover, .btn-disabled.btn.btn-default:focus, .btn-disabled.fw-trumbowyg-modal-reset:focus, .btn-disabled.focus.btn.btn-default, .btn-disabled.focus.fw-trumbowyg-modal-reset, .btn-disabled.btn.btn-default:active, .btn-disabled.fw-trumbowyg-modal-reset:active, .btn-disabled.active.btn.btn-default, .btn-disabled.active.fw-trumbowyg-modal-reset,
+  .btn-disabled .btn.btn-default,
+  .btn-disabled .fw-trumbowyg-modal-reset,
+  .btn-disabled:hover .btn.btn-default,
+  .btn-disabled:hover .fw-trumbowyg-modal-reset,
+  .btn-disabled:focus .btn.btn-default,
+  .btn-disabled:focus .fw-trumbowyg-modal-reset,
+  .btn-disabled.focus .btn.btn-default,
+  .btn-disabled.focus .fw-trumbowyg-modal-reset,
+  .btn-disabled:active .btn.btn-default,
+  .btn-disabled:active .fw-trumbowyg-modal-reset,
+  .btn-disabled.active .btn.btn-default,
+  .btn-disabled.active .fw-trumbowyg-modal-reset {
+    border-color: transparent !important;
+    background: transparent !important;
+    color: inherit !important; }
+  .btn.btn-default:hover, .fw-trumbowyg-modal-reset:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-default,
+  .btn-group.btn-group-unite:hover .fw-trumbowyg-modal-reset, .btn.btn-default:focus, .fw-trumbowyg-modal-reset:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-default,
+  .btn-group.btn-group-unite:focus .fw-trumbowyg-modal-reset, .focus.btn.btn-default, .focus.fw-trumbowyg-modal-reset,
+  .btn-group.btn-group-unite.focus .btn.btn-default,
+  .btn-group.btn-group-unite.focus .fw-trumbowyg-modal-reset {
+    border-color: transparent ;
+    background: transparent ;
+    color: #235789 ; }
+  .btn.btn-default:active, .fw-trumbowyg-modal-reset:active,
+  .btn-group.btn-group-unite:active .btn.btn-default,
+  .btn-group.btn-group-unite:active .fw-trumbowyg-modal-reset, .active.btn.btn-default, .active.fw-trumbowyg-modal-reset,
+  .btn-group.btn-group-unite.active .btn.btn-default,
+  .btn-group.btn-group-unite.active .fw-trumbowyg-modal-reset {
+    border-color: transparent ;
+    background: #235789 ;
+    color: #FFFFFF ; }
 
-.btn.btn-default:hover, .fw-trumbowyg-modal-reset:hover,
-.btn-group.btn-group-unite:hover .btn.btn-default,
-.btn-group.btn-group-unite:hover .fw-trumbowyg-modal-reset, .btn.btn-default:focus, .fw-trumbowyg-modal-reset:focus,
-.btn-group.btn-group-unite:focus .btn.btn-default,
-.btn-group.btn-group-unite:focus .fw-trumbowyg-modal-reset, .focus.btn.btn-default, .focus.fw-trumbowyg-modal-reset,
-.btn-group.btn-group-unite.focus .btn.btn-default,
-.btn-group.btn-group-unite.focus .fw-trumbowyg-modal-reset {
-  border-color: transparent ;
-  background: transparent ;
-  color: #235789 ; }
-
-.btn.btn-default:active, .fw-trumbowyg-modal-reset:active,
-.btn-group.btn-group-unite:active .btn.btn-default,
-.btn-group.btn-group-unite:active .fw-trumbowyg-modal-reset, .active.btn.btn-default, .active.fw-trumbowyg-modal-reset,
-.btn-group.btn-group-unite.active .btn.btn-default,
-.btn-group.btn-group-unite.active .fw-trumbowyg-modal-reset {
+.btn.btn-primary, .fw-trumbowyg-modal-submit {
   border-color: transparent ;
   background: #235789 ;
   color: #FFFFFF ; }
+  .btn-no-interaction.btn.btn-primary, .btn-no-interaction.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:hover, .btn-no-interaction.fw-trumbowyg-modal-submit:hover, .btn-no-interaction.btn.btn-primary:focus, .btn-no-interaction.fw-trumbowyg-modal-submit:focus, .btn-no-interaction.focus.btn.btn-primary, .btn-no-interaction.focus.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:active, .btn-no-interaction.fw-trumbowyg-modal-submit:active, .btn-no-interaction.active.btn.btn-primary, .btn-no-interaction.active.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary, .btn-disabled.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:hover, .btn-disabled.fw-trumbowyg-modal-submit:hover, .btn-disabled.btn.btn-primary:focus, .btn-disabled.fw-trumbowyg-modal-submit:focus, .btn-disabled.focus.btn.btn-primary, .btn-disabled.focus.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:active, .btn-disabled.fw-trumbowyg-modal-submit:active, .btn-disabled.active.btn.btn-primary, .btn-disabled.active.fw-trumbowyg-modal-submit,
+  .btn-disabled .btn.btn-primary,
+  .btn-disabled .fw-trumbowyg-modal-submit,
+  .btn-disabled:hover .btn.btn-primary,
+  .btn-disabled:hover .fw-trumbowyg-modal-submit,
+  .btn-disabled:focus .btn.btn-primary,
+  .btn-disabled:focus .fw-trumbowyg-modal-submit,
+  .btn-disabled.focus .btn.btn-primary,
+  .btn-disabled.focus .fw-trumbowyg-modal-submit,
+  .btn-disabled:active .btn.btn-primary,
+  .btn-disabled:active .fw-trumbowyg-modal-submit,
+  .btn-disabled.active .btn.btn-primary,
+  .btn-disabled.active .fw-trumbowyg-modal-submit {
+    border-color: transparent !important;
+    background: #235789 !important;
+    color: #FFFFFF !important; }
+  .btn.btn-primary:hover, .fw-trumbowyg-modal-submit:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-primary,
+  .btn-group.btn-group-unite:hover .fw-trumbowyg-modal-submit, .btn.btn-primary:focus, .fw-trumbowyg-modal-submit:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-primary,
+  .btn-group.btn-group-unite:focus .fw-trumbowyg-modal-submit, .focus.btn.btn-primary, .focus.fw-trumbowyg-modal-submit,
+  .btn-group.btn-group-unite.focus .btn.btn-primary,
+  .btn-group.btn-group-unite.focus .fw-trumbowyg-modal-submit {
+    border-color: transparent ;
+    background: #2d71b2 ;
+    color: #FFFFFF ; }
+  .btn.btn-primary:active, .fw-trumbowyg-modal-submit:active,
+  .btn-group.btn-group-unite:active .btn.btn-primary,
+  .btn-group.btn-group-unite:active .fw-trumbowyg-modal-submit, .active.btn.btn-primary, .active.fw-trumbowyg-modal-submit,
+  .btn-group.btn-group-unite.active .btn.btn-primary,
+  .btn-group.btn-group-unite.active .fw-trumbowyg-modal-submit {
+    border-color: transparent ;
+    background: #193d60 ;
+    color: #FFFFFF ; }
 
-.btn.btn-primary, .fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary, .btn-no-interaction.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:hover, .btn-no-interaction.fw-trumbowyg-modal-submit:hover, .btn-no-interaction.btn.btn-primary:focus, .btn-no-interaction.fw-trumbowyg-modal-submit:focus, .btn-no-interaction.focus.btn.btn-primary, .btn-no-interaction.focus.fw-trumbowyg-modal-submit, .btn-no-interaction.btn.btn-primary:active, .btn-no-interaction.fw-trumbowyg-modal-submit:active, .btn-no-interaction.active.btn.btn-primary, .btn-no-interaction.active.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary, .btn-disabled.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:hover, .btn-disabled.fw-trumbowyg-modal-submit:hover, .btn-disabled.btn.btn-primary:focus, .btn-disabled.fw-trumbowyg-modal-submit:focus, .btn-disabled.focus.btn.btn-primary, .btn-disabled.focus.fw-trumbowyg-modal-submit, .btn-disabled.btn.btn-primary:active, .btn-disabled.fw-trumbowyg-modal-submit:active, .btn-disabled.active.btn.btn-primary, .btn-disabled.active.fw-trumbowyg-modal-submit,
-.btn-disabled .btn.btn-primary,
-.btn-disabled .fw-trumbowyg-modal-submit,
-.btn-disabled:hover .btn.btn-primary,
-.btn-disabled:hover .fw-trumbowyg-modal-submit,
-.btn-disabled:focus .btn.btn-primary,
-.btn-disabled:focus .fw-trumbowyg-modal-submit,
-.btn-disabled.focus .btn.btn-primary,
-.btn-disabled.focus .fw-trumbowyg-modal-submit,
-.btn-disabled:active .btn.btn-primary,
-.btn-disabled:active .fw-trumbowyg-modal-submit,
-.btn-disabled.active .btn.btn-primary,
-.btn-disabled.active .fw-trumbowyg-modal-submit {
-  border-color: transparent ;
-  background: #235789 ;
-  color: #FFFFFF ; }
-
-.btn.btn-primary:hover, .fw-trumbowyg-modal-submit:hover,
-.btn-group.btn-group-unite:hover .btn.btn-primary,
-.btn-group.btn-group-unite:hover .fw-trumbowyg-modal-submit, .btn.btn-primary:focus, .fw-trumbowyg-modal-submit:focus,
-.btn-group.btn-group-unite:focus .btn.btn-primary,
-.btn-group.btn-group-unite:focus .fw-trumbowyg-modal-submit, .focus.btn.btn-primary, .focus.fw-trumbowyg-modal-submit,
-.btn-group.btn-group-unite.focus .btn.btn-primary,
-.btn-group.btn-group-unite.focus .fw-trumbowyg-modal-submit {
-  border-color: transparent ;
-  background: #2d71b2 ;
-  color: #FFFFFF ; }
-
-.btn.btn-primary:active, .fw-trumbowyg-modal-submit:active,
-.btn-group.btn-group-unite:active .btn.btn-primary,
-.btn-group.btn-group-unite:active .fw-trumbowyg-modal-submit, .active.btn.btn-primary, .active.fw-trumbowyg-modal-submit,
-.btn-group.btn-group-unite.active .btn.btn-primary,
-.btn-group.btn-group-unite.active .fw-trumbowyg-modal-submit {
-  border-color: transparent ;
-  background: #193d60 ;
-  color: #FFFFFF ; }
-
-.btn.btn-accent, .btn-no-interaction.btn.btn-accent, .btn-no-interaction.btn.btn-accent:hover, .btn-no-interaction.btn.btn-accent:focus, .btn-no-interaction.focus.btn.btn-accent, .btn-no-interaction.btn.btn-accent:active, .btn-no-interaction.active.btn.btn-accent, .btn-disabled.btn.btn-accent, .btn-disabled.btn.btn-accent:hover, .btn-disabled.btn.btn-accent:focus, .btn-disabled.focus.btn.btn-accent, .btn-disabled.btn.btn-accent:active, .btn-disabled.active.btn.btn-accent,
-.btn-disabled .btn.btn-accent,
-.btn-disabled:hover .btn.btn-accent,
-.btn-disabled:focus .btn.btn-accent,
-.btn-disabled.focus .btn.btn-accent,
-.btn-disabled:active .btn.btn-accent,
-.btn-disabled.active .btn.btn-accent {
+.btn.btn-accent {
   border-color: transparent ;
   background: #17BEBB ;
   color: #FFFFFF ; }
+  .btn-no-interaction.btn.btn-accent, .btn-no-interaction.btn.btn-accent:hover, .btn-no-interaction.btn.btn-accent:focus, .btn-no-interaction.focus.btn.btn-accent, .btn-no-interaction.btn.btn-accent:active, .btn-no-interaction.active.btn.btn-accent, .btn-disabled.btn.btn-accent, .btn-disabled.btn.btn-accent:hover, .btn-disabled.btn.btn-accent:focus, .btn-disabled.focus.btn.btn-accent, .btn-disabled.btn.btn-accent:active, .btn-disabled.active.btn.btn-accent,
+  .btn-disabled .btn.btn-accent,
+  .btn-disabled:hover .btn.btn-accent,
+  .btn-disabled:focus .btn.btn-accent,
+  .btn-disabled.focus .btn.btn-accent,
+  .btn-disabled:active .btn.btn-accent,
+  .btn-disabled.active .btn.btn-accent {
+    border-color: transparent !important;
+    background: #17BEBB !important;
+    color: #FFFFFF !important; }
+  .btn.btn-accent:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-accent, .btn.btn-accent:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-accent, .focus.btn.btn-accent,
+  .btn-group.btn-group-unite.focus .btn.btn-accent {
+    border-color: transparent ;
+    background: #24e4e1 ;
+    color: #FFFFFF ; }
+  .btn.btn-accent:active,
+  .btn-group.btn-group-unite:active .btn.btn-accent, .active.btn.btn-accent,
+  .btn-group.btn-group-unite.active .btn.btn-accent {
+    border-color: transparent ;
+    background: #11918e ;
+    color: #FFFFFF ; }
 
-.btn.btn-accent:hover,
-.btn-group.btn-group-unite:hover .btn.btn-accent, .btn.btn-accent:focus,
-.btn-group.btn-group-unite:focus .btn.btn-accent, .focus.btn.btn-accent,
-.btn-group.btn-group-unite.focus .btn.btn-accent {
-  border-color: transparent ;
-  background: #24e4e1 ;
-  color: #FFFFFF ; }
-
-.btn.btn-accent:active,
-.btn-group.btn-group-unite:active .btn.btn-accent, .active.btn.btn-accent,
-.btn-group.btn-group-unite.active .btn.btn-accent {
-  border-color: transparent ;
-  background: #11918e ;
-  color: #FFFFFF ; }
-
-.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral:hover, .btn-no-interaction.btn.btn-neutral:focus, .btn-no-interaction.focus.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral:active, .btn-no-interaction.active.btn.btn-neutral, .btn-disabled.btn.btn-neutral, .btn-disabled.btn.btn-neutral:hover, .btn-disabled.btn.btn-neutral:focus, .btn-disabled.focus.btn.btn-neutral, .btn-disabled.btn.btn-neutral:active, .btn-disabled.active.btn.btn-neutral,
-.btn-disabled .btn.btn-neutral,
-.btn-disabled:hover .btn.btn-neutral,
-.btn-disabled:focus .btn.btn-neutral,
-.btn-disabled.focus .btn.btn-neutral,
-.btn-disabled:active .btn.btn-neutral,
-.btn-disabled.active .btn.btn-neutral {
+.btn.btn-neutral {
   border-color: transparent ;
   background: #8d8d8d ;
   color: #000000 ; }
+  .btn-no-interaction.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral:hover, .btn-no-interaction.btn.btn-neutral:focus, .btn-no-interaction.focus.btn.btn-neutral, .btn-no-interaction.btn.btn-neutral:active, .btn-no-interaction.active.btn.btn-neutral, .btn-disabled.btn.btn-neutral, .btn-disabled.btn.btn-neutral:hover, .btn-disabled.btn.btn-neutral:focus, .btn-disabled.focus.btn.btn-neutral, .btn-disabled.btn.btn-neutral:active, .btn-disabled.active.btn.btn-neutral,
+  .btn-disabled .btn.btn-neutral,
+  .btn-disabled:hover .btn.btn-neutral,
+  .btn-disabled:focus .btn.btn-neutral,
+  .btn-disabled.focus .btn.btn-neutral,
+  .btn-disabled:active .btn.btn-neutral,
+  .btn-disabled.active .btn.btn-neutral {
+    border-color: transparent !important;
+    background: #8d8d8d !important;
+    color: #000000 !important; }
+  .btn.btn-neutral:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-neutral, .btn.btn-neutral:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-neutral, .focus.btn.btn-neutral,
+  .btn-group.btn-group-unite.focus .btn.btn-neutral {
+    border-color: transparent ;
+    background: #a7a7a7 ;
+    color: #FFFFFF ; }
+  .btn.btn-neutral:active,
+  .btn-group.btn-group-unite:active .btn.btn-neutral, .active.btn.btn-neutral,
+  .btn-group.btn-group-unite.active .btn.btn-neutral {
+    border-color: transparent ;
+    background: #747474 ;
+    color: #FFFFFF ; }
 
-.btn.btn-neutral:hover,
-.btn-group.btn-group-unite:hover .btn.btn-neutral, .btn.btn-neutral:focus,
-.btn-group.btn-group-unite:focus .btn.btn-neutral, .focus.btn.btn-neutral,
-.btn-group.btn-group-unite.focus .btn.btn-neutral {
-  border-color: transparent ;
-  background: #a7a7a7 ;
-  color: #FFFFFF ; }
-
-.btn.btn-neutral:active,
-.btn-group.btn-group-unite:active .btn.btn-neutral, .active.btn.btn-neutral,
-.btn-group.btn-group-unite.active .btn.btn-neutral {
-  border-color: transparent ;
-  background: #747474 ;
-  color: #FFFFFF ; }
-
-.btn.btn-success, .btn-no-interaction.btn.btn-success, .btn-no-interaction.btn.btn-success:hover, .btn-no-interaction.btn.btn-success:focus, .btn-no-interaction.focus.btn.btn-success, .btn-no-interaction.btn.btn-success:active, .btn-no-interaction.active.btn.btn-success, .btn-disabled.btn.btn-success, .btn-disabled.btn.btn-success:hover, .btn-disabled.btn.btn-success:focus, .btn-disabled.focus.btn.btn-success, .btn-disabled.btn.btn-success:active, .btn-disabled.active.btn.btn-success,
-.btn-disabled .btn.btn-success,
-.btn-disabled:hover .btn.btn-success,
-.btn-disabled:focus .btn.btn-success,
-.btn-disabled.focus .btn.btn-success,
-.btn-disabled:active .btn.btn-success,
-.btn-disabled.active .btn.btn-success {
+.btn.btn-success {
   border-color: transparent ;
   background: #15b800 ;
   color: #FFFFFF ; }
+  .btn-no-interaction.btn.btn-success, .btn-no-interaction.btn.btn-success:hover, .btn-no-interaction.btn.btn-success:focus, .btn-no-interaction.focus.btn.btn-success, .btn-no-interaction.btn.btn-success:active, .btn-no-interaction.active.btn.btn-success, .btn-disabled.btn.btn-success, .btn-disabled.btn.btn-success:hover, .btn-disabled.btn.btn-success:focus, .btn-disabled.focus.btn.btn-success, .btn-disabled.btn.btn-success:active, .btn-disabled.active.btn.btn-success,
+  .btn-disabled .btn.btn-success,
+  .btn-disabled:hover .btn.btn-success,
+  .btn-disabled:focus .btn.btn-success,
+  .btn-disabled.focus .btn.btn-success,
+  .btn-disabled:active .btn.btn-success,
+  .btn-disabled.active .btn.btn-success {
+    border-color: transparent !important;
+    background: #15b800 !important;
+    color: #FFFFFF !important; }
+  .btn.btn-success:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-success, .btn.btn-success:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-success, .focus.btn.btn-success,
+  .btn-group.btn-group-unite.focus .btn.btn-success {
+    border-color: transparent ;
+    background: #1beb00 ;
+    color: #FFFFFF ; }
+  .btn.btn-success:active,
+  .btn-group.btn-group-unite:active .btn.btn-success, .active.btn.btn-success,
+  .btn-group.btn-group-unite.active .btn.btn-success {
+    border-color: transparent ;
+    background: #0f8500 ;
+    color: #FFFFFF ; }
 
-.btn.btn-success:hover,
-.btn-group.btn-group-unite:hover .btn.btn-success, .btn.btn-success:focus,
-.btn-group.btn-group-unite:focus .btn.btn-success, .focus.btn.btn-success,
-.btn-group.btn-group-unite.focus .btn.btn-success {
-  border-color: transparent ;
-  background: #1beb00 ;
-  color: #FFFFFF ; }
-
-.btn.btn-success:active,
-.btn-group.btn-group-unite:active .btn.btn-success, .active.btn.btn-success,
-.btn-group.btn-group-unite.active .btn.btn-success {
-  border-color: transparent ;
-  background: #0f8500 ;
-  color: #FFFFFF ; }
-
-.btn.btn-caution, .btn-no-interaction.btn.btn-caution, .btn-no-interaction.btn.btn-caution:hover, .btn-no-interaction.btn.btn-caution:focus, .btn-no-interaction.focus.btn.btn-caution, .btn-no-interaction.btn.btn-caution:active, .btn-no-interaction.active.btn.btn-caution, .btn-disabled.btn.btn-caution, .btn-disabled.btn.btn-caution:hover, .btn-disabled.btn.btn-caution:focus, .btn-disabled.focus.btn.btn-caution, .btn-disabled.btn.btn-caution:active, .btn-disabled.active.btn.btn-caution,
-.btn-disabled .btn.btn-caution,
-.btn-disabled:hover .btn.btn-caution,
-.btn-disabled:focus .btn.btn-caution,
-.btn-disabled.focus .btn.btn-caution,
-.btn-disabled:active .btn.btn-caution,
-.btn-disabled.active .btn.btn-caution {
+.btn.btn-caution {
   border-color: transparent ;
   background: #fd7f03 ;
   color: #FFFFFF ; }
+  .btn-no-interaction.btn.btn-caution, .btn-no-interaction.btn.btn-caution:hover, .btn-no-interaction.btn.btn-caution:focus, .btn-no-interaction.focus.btn.btn-caution, .btn-no-interaction.btn.btn-caution:active, .btn-no-interaction.active.btn.btn-caution, .btn-disabled.btn.btn-caution, .btn-disabled.btn.btn-caution:hover, .btn-disabled.btn.btn-caution:focus, .btn-disabled.focus.btn.btn-caution, .btn-disabled.btn.btn-caution:active, .btn-disabled.active.btn.btn-caution,
+  .btn-disabled .btn.btn-caution,
+  .btn-disabled:hover .btn.btn-caution,
+  .btn-disabled:focus .btn.btn-caution,
+  .btn-disabled.focus .btn.btn-caution,
+  .btn-disabled:active .btn.btn-caution,
+  .btn-disabled.active .btn.btn-caution {
+    border-color: transparent !important;
+    background: #fd7f03 !important;
+    color: #FFFFFF !important; }
+  .btn.btn-caution:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-caution, .btn.btn-caution:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-caution, .focus.btn.btn-caution,
+  .btn-group.btn-group-unite.focus .btn.btn-caution {
+    border-color: transparent ;
+    background: #fd9936 ;
+    color: #FFFFFF ; }
+  .btn.btn-caution:active,
+  .btn-group.btn-group-unite:active .btn.btn-caution, .active.btn.btn-caution,
+  .btn-group.btn-group-unite.active .btn.btn-caution {
+    border-color: transparent ;
+    background: #cb6602 ;
+    color: #FFFFFF ; }
 
-.btn.btn-caution:hover,
-.btn-group.btn-group-unite:hover .btn.btn-caution, .btn.btn-caution:focus,
-.btn-group.btn-group-unite:focus .btn.btn-caution, .focus.btn.btn-caution,
-.btn-group.btn-group-unite.focus .btn.btn-caution {
-  border-color: transparent ;
-  background: #fd9936 ;
-  color: #FFFFFF ; }
-
-.btn.btn-caution:active,
-.btn-group.btn-group-unite:active .btn.btn-caution, .active.btn.btn-caution,
-.btn-group.btn-group-unite.active .btn.btn-caution {
-  border-color: transparent ;
-  background: #cb6602 ;
-  color: #FFFFFF ; }
-
-.btn.btn-error, .btn-no-interaction.btn.btn-error, .btn-no-interaction.btn.btn-error:hover, .btn-no-interaction.btn.btn-error:focus, .btn-no-interaction.focus.btn.btn-error, .btn-no-interaction.btn.btn-error:active, .btn-no-interaction.active.btn.btn-error, .btn-disabled.btn.btn-error, .btn-disabled.btn.btn-error:hover, .btn-disabled.btn.btn-error:focus, .btn-disabled.focus.btn.btn-error, .btn-disabled.btn.btn-error:active, .btn-disabled.active.btn.btn-error,
-.btn-disabled .btn.btn-error,
-.btn-disabled:hover .btn.btn-error,
-.btn-disabled:focus .btn.btn-error,
-.btn-disabled.focus .btn.btn-error,
-.btn-disabled:active .btn.btn-error,
-.btn-disabled.active .btn.btn-error {
+.btn.btn-error {
   border-color: transparent ;
   background: #fd0303 ;
   color: #FFFFFF ; }
+  .btn-no-interaction.btn.btn-error, .btn-no-interaction.btn.btn-error:hover, .btn-no-interaction.btn.btn-error:focus, .btn-no-interaction.focus.btn.btn-error, .btn-no-interaction.btn.btn-error:active, .btn-no-interaction.active.btn.btn-error, .btn-disabled.btn.btn-error, .btn-disabled.btn.btn-error:hover, .btn-disabled.btn.btn-error:focus, .btn-disabled.focus.btn.btn-error, .btn-disabled.btn.btn-error:active, .btn-disabled.active.btn.btn-error,
+  .btn-disabled .btn.btn-error,
+  .btn-disabled:hover .btn.btn-error,
+  .btn-disabled:focus .btn.btn-error,
+  .btn-disabled.focus .btn.btn-error,
+  .btn-disabled:active .btn.btn-error,
+  .btn-disabled.active .btn.btn-error {
+    border-color: transparent !important;
+    background: #fd0303 !important;
+    color: #FFFFFF !important; }
+  .btn.btn-error:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-error, .btn.btn-error:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-error, .focus.btn.btn-error,
+  .btn-group.btn-group-unite.focus .btn.btn-error {
+    border-color: transparent ;
+    background: #fd3636 ;
+    color: #FFFFFF ; }
+  .btn.btn-error:active,
+  .btn-group.btn-group-unite:active .btn.btn-error, .active.btn.btn-error,
+  .btn-group.btn-group-unite.active .btn.btn-error {
+    border-color: transparent ;
+    background: #cb0202 ;
+    color: #FFFFFF ; }
 
-.btn.btn-error:hover,
-.btn-group.btn-group-unite:hover .btn.btn-error, .btn.btn-error:focus,
-.btn-group.btn-group-unite:focus .btn.btn-error, .focus.btn.btn-error,
-.btn-group.btn-group-unite.focus .btn.btn-error {
-  border-color: transparent ;
-  background: #fd3636 ;
-  color: #FFFFFF ; }
-
-.btn.btn-error:active,
-.btn-group.btn-group-unite:active .btn.btn-error, .active.btn.btn-error,
-.btn-group.btn-group-unite.active .btn.btn-error {
-  border-color: transparent ;
-  background: #cb0202 ;
-  color: #FFFFFF ; }
-
-.btn.btn-link, .btn-no-interaction.btn.btn-link, .btn-no-interaction.btn.btn-link:hover, .btn-no-interaction.btn.btn-link:focus, .btn-no-interaction.focus.btn.btn-link, .btn-no-interaction.btn.btn-link:active, .btn-no-interaction.active.btn.btn-link, .btn-disabled.btn.btn-link, .btn-disabled.btn.btn-link:hover, .btn-disabled.btn.btn-link:focus, .btn-disabled.focus.btn.btn-link, .btn-disabled.btn.btn-link:active, .btn-disabled.active.btn.btn-link,
-.btn-disabled .btn.btn-link,
-.btn-disabled:hover .btn.btn-link,
-.btn-disabled:focus .btn.btn-link,
-.btn-disabled.focus .btn.btn-link,
-.btn-disabled:active .btn.btn-link,
-.btn-disabled.active .btn.btn-link {
-  border-color: transparent ;
-  background: transparent ;
-  color: #235789 ; }
-
-.btn.btn-link:hover,
-.btn-group.btn-group-unite:hover .btn.btn-link, .btn.btn-link:focus,
-.btn-group.btn-group-unite:focus .btn.btn-link, .focus.btn.btn-link,
-.btn-group.btn-group-unite.focus .btn.btn-link {
-  border-color: transparent ;
-  background: transparent ;
-  color: #17BEBB ; }
-
-.btn.btn-link:active,
-.btn-group.btn-group-unite:active .btn.btn-link, .active.btn.btn-link,
-.btn-group.btn-group-unite.active .btn.btn-link {
+.btn.btn-link {
   border-color: transparent ;
   background: transparent ;
   color: #235789 ; }
+  .btn-no-interaction.btn.btn-link, .btn-no-interaction.btn.btn-link:hover, .btn-no-interaction.btn.btn-link:focus, .btn-no-interaction.focus.btn.btn-link, .btn-no-interaction.btn.btn-link:active, .btn-no-interaction.active.btn.btn-link, .btn-disabled.btn.btn-link, .btn-disabled.btn.btn-link:hover, .btn-disabled.btn.btn-link:focus, .btn-disabled.focus.btn.btn-link, .btn-disabled.btn.btn-link:active, .btn-disabled.active.btn.btn-link,
+  .btn-disabled .btn.btn-link,
+  .btn-disabled:hover .btn.btn-link,
+  .btn-disabled:focus .btn.btn-link,
+  .btn-disabled.focus .btn.btn-link,
+  .btn-disabled:active .btn.btn-link,
+  .btn-disabled.active .btn.btn-link {
+    border-color: transparent !important;
+    background: transparent !important;
+    color: #235789 !important; }
+  .btn.btn-link:hover,
+  .btn-group.btn-group-unite:hover .btn.btn-link, .btn.btn-link:focus,
+  .btn-group.btn-group-unite:focus .btn.btn-link, .focus.btn.btn-link,
+  .btn-group.btn-group-unite.focus .btn.btn-link {
+    border-color: transparent ;
+    background: transparent ;
+    color: #17BEBB ; }
+  .btn.btn-link:active,
+  .btn-group.btn-group-unite:active .btn.btn-link, .active.btn.btn-link,
+  .btn-group.btn-group-unite.active .btn.btn-link {
+    border-color: transparent ;
+    background: transparent ;
+    color: #235789 ; }
 
 /*** input ***/
 /* input clasees */
@@ -5051,11 +5079,11 @@ table {
   .input-group.input-group-small {
     border-radius: 10px; }
   .input-group.input-group-horizontal:not(.input-group-responsive) > .input:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-last-child(n+2) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0; }
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important; }
   .input-group.input-group-horizontal:not(.input-group-responsive) > .input:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-child(n+2) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0; }
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important; }
     .input-group.input-group-horizontal:not(.input-group-responsive) > .input:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input:nth-child(n+2):hover, .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2):hover, .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-child(n+2):hover {
       border-left-color: rgba(0, 0, 0, 0.1) !important; }
   .input-group.input-group-vertical {
@@ -5092,8 +5120,14 @@ table {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
               flex-direction: column; }
-      .input-group.input-group-responsive > .input:nth-child(n+2), .input-group.input-group-responsive > .input:nth-child(n+2):hover, .input-group.input-group-responsive .btn:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2):hover, .input-group.input-group-responsive .trumbowyg:nth-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-child(n+2):hover {
-        border-top-color: rgba(0, 0, 0, 0.1) !important; } }
+      .input-group.input-group-responsive > .input:nth-last-child(n+2), .input-group.input-group-responsive .btn:nth-last-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-last-child(n+2) {
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important; }
+      .input-group.input-group-responsive > .input:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-child(n+2) {
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important; }
+        .input-group.input-group-responsive > .input:nth-child(n+2), .input-group.input-group-responsive > .input:nth-child(n+2):hover, .input-group.input-group-responsive .btn:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2):hover, .input-group.input-group-responsive .trumbowyg:nth-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-child(n+2):hover {
+          border-top-color: rgba(0, 0, 0, 0.1) !important; } }
 
 .input-label.input-label-primary,
 .input-wrapper-primary .input-label, .input-label.input-label-primary:focus,

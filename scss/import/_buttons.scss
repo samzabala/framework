@@ -107,14 +107,11 @@ $prefix: '.btn';
 			
 		}@else{
 
-			@at-root %for-#{$scheme}-no-change {
-				@include internal-btn-set-scheme($properties);
-			}
+			@include internal-btn-set-scheme($properties);
 		
 			&{
 
 				@at-root
-					&,
 					&#{$prefix}-no-interaction,
 					&#{$prefix}-no-interaction:hover,
 					&#{$prefix}-no-interaction:focus,
@@ -135,7 +132,7 @@ $prefix: '.btn';
 					#{$prefix}-disabled.focus &,
 					#{$prefix}-disabled:active &,
 					#{$prefix}-disabled.active & {
-						@include internal-btn-set-scheme($properties);
+						@include internal-btn-set-scheme($properties,true);
 					}
 			}
 		}
@@ -483,14 +480,14 @@ $prefix: '.btn';
 						width:auto;
 					}
 					
-					// > #{$prefix}:nth-last-child(n+2) {
-					// 	border-top-right-radius: 0;
-					// 	border-bottom-right-radius: 0;
-					// }
+					> #{$prefix}:nth-last-child(n+2) {
+						border-top-right-radius: 0!important;
+						border-bottom-right-radius: 0!important;
+					}
 
 					> #{$prefix}:nth-child(n+2) {
-						// border-top-left-radius: 0;
-						// border-bottom-left-radius: 0;
+						border-top-left-radius: 0!important;
+						border-bottom-left-radius: 0!important;
 
 						&,
 						&:hover {
@@ -506,14 +503,14 @@ $prefix: '.btn';
 				display:flex;
 				flex-direction:column;
 
-				// > #{$prefix}:nth-last-child(n+2) {
-				// 	border-bottom-right-radius: 0;
-				// 	border-bottom-left-radius: 0;
-				// }
+				> #{$prefix}:nth-last-child(n+2) {
+					border-bottom-right-radius: 0!important;
+					border-bottom-left-radius: 0!important;
+				}
 
 				> #{$prefix}:nth-child(n+2) {
-					// border-top-right-radius: 0;
-					// border-top-left-radius: 0;
+					border-top-right-radius: 0!important;
+					border-top-left-radius: 0!important;
 
 					&,
 					&:hover {

@@ -661,15 +661,15 @@ $prefix: '.input';
 
 				> #{$prefix},.btn, .trumbowyg {
 					&:nth-last-child(n+2) {
-						border-top-right-radius: 0;
-						border-bottom-right-radius: 0;
+						border-top-right-radius: 0!important;
+						border-bottom-right-radius: 0!important;
 					}
 				}
 
 				> #{$prefix},.btn, .trumbowyg {
 					&:nth-child(n+2) {
-						border-top-left-radius: 0;
-						border-bottom-left-radius: 0;
+						border-top-left-radius: 0!important;
+						border-bottom-left-radius: 0!important;
 
 						&,
 						&:hover {
@@ -745,17 +745,17 @@ $prefix: '.input';
 				display:flex;
 				flex-direction:column;
 
-				// > #{$prefix},.btn, .trumbowyg {
-				// 	&:nth-last-child(n+2) {
-				// 		border-bottom-right-radius: 0;
-				// 		border-bottom-left-radius: 0;
-				// 	}
-				// }
+				> #{$prefix},.btn, .trumbowyg {
+					&:nth-last-child(n+2) {
+						border-bottom-right-radius: 0!important;
+						border-bottom-left-radius: 0!important;
+					}
+				}
 	
 				> #{$prefix},.btn, .trumbowyg {
 					&:nth-child(n+2) {
-						// border-top-right-radius: 0;
-						// border-top-left-radius: 0;
+						border-top-right-radius: 0!important;
+						border-top-left-radius: 0!important;
 		
 						&,
 						&:hover {
