@@ -3853,7 +3853,7 @@ table {
   text-transform: none;
   font-style: normal;
   margin-bottom: 0;
-  margin-top: 0; }
+  margin-top: -10px; }
 
 .module-function {
   position: relative;
