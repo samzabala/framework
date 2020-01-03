@@ -3853,7 +3853,8 @@ table {
   text-transform: none;
   font-style: normal;
   margin-bottom: 0;
-  margin-top: -10px; }
+  margin-top: 10px;
+  align-self: flex-start; }
 
 .module-function {
   position: relative;

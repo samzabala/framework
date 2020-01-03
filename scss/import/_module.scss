@@ -219,7 +219,8 @@ $prefix: '.module';
 				style: $module-title-font-style
 			));
 			margin-bottom:0;
-			margin-top: $module-gutter-between * -.5;
+			margin-top: $module-gutter-between * .5;
+			align-self:flex-start;
 		}
 
 		@at-root #{$prefix}-function {
