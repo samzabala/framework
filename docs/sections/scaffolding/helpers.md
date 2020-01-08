@@ -261,13 +261,13 @@ Set to whatever font weight ya need boi
 
 	king words to break
 
-*   **`.text-ellipsis`**
+*   **`.text-wrap-ellipsis`**
 
 	Single line of text that cuts off any overflow with a an ellipsis
 
 	[More info](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/)
 
-*   **`.text-ellipsis-multiple`**
+*   **`.text-wrap-ellipsis-multiple`**
 
 	Allows multiple lines based on given `$body-ellipsis-multiple-factor`. 2 by default
 
