@@ -279,6 +279,12 @@ Set to whatever font weight ya need boi
 	
 	[More info](https://css-tricks.com/how-to-do-knockout-text/)
 
+# Scaffolding Margins
+
+
+*   **`.p`**
+
+	Adds margins to element as if it were a `<p>` tag
 
 
 # Reset Margins

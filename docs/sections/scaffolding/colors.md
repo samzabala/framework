@@ -106,7 +106,7 @@ These are valid color tags for all javascript arguments or data attributes
 *	`caution`
 *	`success`
 
-These color tags are valid except for [btn](../components/button.md) and [forms](../components/forms.md)
+These color tags are valid except for [btn](../components/button.md), [forms](../components/forms.md) and [alerts](../components/alert.md)
 *	`intensity-1`
 *	`intensity-2`
 *	`intensity-3`

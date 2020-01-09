@@ -49,6 +49,39 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/docs/images/alert-close.png": {
+		"ft": 32768,
+		"iS": 28486,
+		"oA": 0,
+		"oAP": "/docs/images/alert-close.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/alert-colors.png": {
+		"ft": 32768,
+		"iS": 206564,
+		"oA": 0,
+		"oAP": "/docs/images/alert-colors.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/alert.png": {
+		"ft": 32768,
+		"iS": 27779,
+		"oA": 0,
+		"oAP": "/docs/images/alert.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/badge.png": {
 		"ft": 32768,
 		"iS": 93440,
@@ -661,6 +694,25 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"/docs/sections/components/alert.md": {
+		"cB": 0,
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/docs/sections/components/alert.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
 	"/docs/sections/components/badge.md": {
 		"cB": 0,
 		"cS": 0,
@@ -1235,6 +1287,19 @@
 		"oA": 0,
 		"oAP": "/dist/framework.css",
 		"oF": 3,
+		"oS": 0,
+		"uL": 1
+		},
+	"/scss/import/_alert.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/import/_alert.css",
+		"oF": 0,
 		"oS": 0,
 		"uL": 1
 		},

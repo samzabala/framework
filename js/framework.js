@@ -205,13 +205,19 @@ window.jQuery && jQuery.noConflict();
 
 				
 		if(clicked) {
-			if( clicked.getAttribute('href') ){
+			if( clicked.hasAttribute('href') ){
 				return document.querySelector( clicked.getAttribute('href') );
 
-			}else if( clicked.getAttribute('data-href') ){
+			}else if( clicked.hasAttribute('data-href') ){
 				return document.querySelector( clicked.getAttribute('data-href') )
 				
-			}else if (clicked.closest('[data-toggle="'+toggleMode+'"]').length){
+			}else if (toggleMode == 'alert-close'){
+
+				if(clicked.parentNode.closest('.alert')) {
+					return clicked.closest('.alert');
+				}
+
+			}else if (clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
 				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
 			}else{
 				var possibleSiblings = clicked.nextElementSibling;
@@ -912,6 +918,27 @@ window.jQuery && jQuery.noConflict();
 			e.preventDefault();
 
 			frameWork.toggleAccordion(e.target);
+		});
+
+		frameWork.addEvent(document.body,'click','*[data-toggle="alert-close"]',function(e){
+			e.preventDefault();
+			var selector =  _.getTheToggled(e.target,'alert-close');
+
+			if(selector) {
+				selector.parentNode.removeChild(selector);
+			}
+		});
+
+
+		frameWork.addEvent(document.body,'click','*[data-toggle="alert-close-all"]',function(e){
+			e.preventDefault();
+			var selector =  document.querySelectorAll('.alert');
+
+			if(selector) {
+				selector.forEach(function(alert){
+					alert.parentNode.removeChild(alert)
+				});
+			}
 		});
 
 		frameWork.addEvent(document.body,'click','.btn-disabled,.input-disabled,[disabled]',function(e){

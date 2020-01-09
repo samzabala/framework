@@ -156,8 +156,7 @@
 		$body-cite-font-style: italic !default;
 		$body-cite-gutter-y: 30px !default;
 
-		$body-mono-background: $theme-background-contrast!default;
-		$body-mono-background-inverse: $theme-background-contrast-inverse!default;
+		$body-mono-background: rgba($brand-color-base,.1)!default;
 			$body-pre-padding: $gutter-micro!default;
 
 		$global-disabled-opacity: .5 !default;
@@ -287,6 +286,44 @@
 		$pagination-color: inherit !default;
 		$pagination-text-transform: none !default;
 		$pagination-gutter-y: 0 !default;
+
+	//alert
+		$alert-border-width: 1px !default;
+		$alert-gutter-x: $gutter-small !default;
+			$alert-gutter-x-mobile: $gutter-micro !default;
+		$alert-gutter-y: $gutter-small !default;
+			$alert-gutter-y-mobile: $gutter-micro !default;
+		$alert-box-shadow: $box-shadow-base $brand-color-base !default;
+		$alert-border-radius: $border-radius-small !default;
+
+			//schemes
+			$alert-border-default: rgba($brand-color-neutral,.5) !default;
+			$alert-background-default: rgba($brand-color-neutral,.1) !default;
+			$alert-color-default: inherit !default;
+
+			$alert-border-primary: $brand-color-primary !default;
+			$alert-background-primary: $brand-color-primary-light !default;
+			$alert-color-primary: darken($brand-color-primary-dark,15) !default;
+
+			$alert-border-accent: $brand-color-accent !default;
+			$alert-background-accent: $brand-color-accent-light !default;
+			$alert-color-accent: darken($brand-color-accent-dark,12) !default;
+
+			$alert-border-neutral: $brand-color-neutral !default;
+			$alert-background-neutral: $brand-color-neutral-light !default;
+			$alert-color-neutral: darken($brand-color-neutral-dark,12) !default;
+
+			$alert-border-success: $brand-color-success !default;
+			$alert-background-success: $brand-color-success-light !default;
+			$alert-color-success: darken($brand-color-success-dark,10) !default;
+
+			$alert-border-caution: $brand-color-caution !default;
+			$alert-background-caution: $brand-color-caution-light !default;
+			$alert-color-caution: darken($brand-color-caution-dark,12) !default;
+
+			$alert-border-error: $brand-color-error !default;
+			$alert-background-error: $brand-color-error-light !default;
+			$alert-color-error: darken($brand-color-error-dark,15) !default;
 	
 	// MODULE
 		$module-background-color: $theme-background !default;
@@ -294,11 +331,10 @@
 		$module-border-color: $theme-background-contrast !default;
 			$module-border-color-inverse: $theme-background-contrast-inverse !default;
 		$module-border-width: 1px !default;
-		$module-gutter-x: $gutter-base !default;
-			$module-gutter-x-mobile: $gutter-small !default;
 		$module-box-shadow-hover: $box-shadow-spicy $brand-color-base !default; 
 		
-		$module-gutter-y: 40px !default;
+		$module-gutter-x: $gutter-base !default;
+			$module-gutter-x-mobile: $gutter-small !default;
 		$module-gutter-y: $gutter-small !default;
 			$module-gutter-y-mobile: $gutter-small !default;
 		

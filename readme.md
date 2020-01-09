@@ -21,6 +21,7 @@ A framework for your appy dashboardy needs :')
 
 ##	Components (o lawd)
 *	[Accordions](docs/sections/components/accordion.md)
+*	[Alerts](docs/sections/components/alert.md)
 *	[Badges](docs/sections/components/badge.md)
 *	[Buttons](docs/sections/components/button.md)
 *	[Dropdown](docs/sections/components/dropdown.md)
