@@ -6415,6 +6415,9 @@ CUSTOM STYLES FOR TRUMBOWYG
 .display-inline {
   display: inline !important; }
 
+.display-none {
+  display: none !important; }
+
 /* TEXT CLASSES */
 .text-leading-compact {
   line-height: 1.3125 !important; }
