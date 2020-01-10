@@ -4537,6 +4537,7 @@ fieldset {
   fieldset .input-inline,
   fieldset .fw-trumbowyg-editor,
   fieldset .fw-trumbowyg-textarea {
+    background-color: transparent !important;
     outline: none !important;
     border-color: transparent !important;
     box-shadow: none !important; }
