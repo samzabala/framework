@@ -13,11 +13,6 @@ $prefix: '.alert';
 	box-shadow: $alert-box-shadow;
 	position:relative;
 	@extend %for-cf;
-
-	* {
-		color:inherit;
-	}
-
 	a {
 		color:inherit;
 		font-weight: $body-font-weight-bold;
