@@ -1257,8 +1257,8 @@
                 background-position: 
                     #{$stroke} #{( $size * .5 ) + ($stroke * .5)},
                     #{$stroke} #{( $size * .5 ) + ($stroke * .5)},
-                    #{($size * .5) + ($stroke)} #{( $size * -.5 ) + ($stroke * .5)},
-                    #{($size * .5) + ($stroke)} #{( $size * -.5 ) + ($stroke * .5)};
+                    #{($size * .5) + ($stroke)} #{($size * -.5)  + ($stroke * .5)} #{','}
+                    #{($size * .5) + ($stroke)} #{($size * -.5) + ($stroke * .5)};
                 
 
                 @if $autoprefix == true {
