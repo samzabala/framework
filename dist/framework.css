@@ -882,6 +882,8 @@ table {
     .theme-inverse tr,
     .theme-inverse .table-row {
       border-bottom: 1px solid #000000; }
+    .alert tr, .theme-inverse .alert tr, .alert .table-row, .theme-inverse .alert .table-row {
+      border-color: currentColor; }
   th, td,
   .table-cell,
   .table-cell.table-cell-heading {
@@ -907,6 +909,9 @@ table {
     .theme-inverse .table-cell.table-cell-heading {
       background: #000000;
       color: #e6e6e6; }
+    .alert th, .theme-inverse .alert th, .alert .table-cell.table-cell-heading, .theme-inverse .alert .table-cell.table-cell-heading {
+      background: none;
+      color: inherit; }
   td,
   .table-cell {
     padding-top: calc((4.375rem - ( 1em * 1.5 )) * .5);

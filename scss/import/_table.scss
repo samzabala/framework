@@ -98,6 +98,11 @@ $prefix: '.table';
 
 			// }
 			
+
+			.alert &,
+			.theme-inverse .alert & {
+				border-color: currentColor;
+			}
 		}
 		@at-root th,td,
 		#{$prefix}-cell,
@@ -136,6 +141,12 @@ $prefix: '.table';
 			.theme-inverse & {
 				background:$table-heading-background-inverse;
 				color: $table-heading-color-inverse
+			}
+
+			.alert &,
+			.theme-inverse .alert & {
+				background: none;
+				color:inherit;
 			}
 		}
 
