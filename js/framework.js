@@ -256,8 +256,8 @@ window.jQuery && jQuery.noConflict();
 	_.br_mobile_max = parseFloat( getComputedStyle(document.documentElement).getPropertyValue('--mobile-br-max') ) ||  'sm';
 
 
-	_.functions_on_load = [];
-	_.functions_on_resize = [];
+	_.fns_on_load = [];
+	_.fns_on_resize = [];
 
 
 	frameWork.validateBr = function(breakpoint,mode) {
@@ -591,7 +591,7 @@ window.jQuery && jQuery.noConflict();
 		frameWork.toolTip.activeTriggerer = null;
 		frameWork.toolTip.args = null;
 	}
-	_.functions_on_resize.push(frameWork.destroyToolTip);
+	_.fns_on_resize.push(frameWork.destroyToolTip);
 
 	frameWork.positionToolTip = function(posX,posY){
 
@@ -876,8 +876,8 @@ window.jQuery && jQuery.noConflict();
 			frameWork.initGrid(grid);
 		});
 	}
-	_.functions_on_load.push(frameWork.readyGrid);
-	_.functions_on_resize.push(frameWork.readyGrid);
+	_.fns_on_load.push(frameWork.readyGrid);
+	_.fns_on_resize.push(frameWork.readyGrid);
 
 	_.initTrumbo = function(selector){
 
@@ -903,7 +903,7 @@ window.jQuery && jQuery.noConflict();
 			})
 		}
 	}
-	_.functions_on_load.push(_.initTrumbo);
+	_.fns_on_load.push(_.initTrumbo);
 
 	
 	window.addEventListener('hashchange',function(){
@@ -1079,7 +1079,7 @@ window.jQuery && jQuery.noConflict();
 		frameWork.settings.initializeModal && frameWork.createModal();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 
-		_.functions_on_load.forEach(function(fn){
+		_.fns_on_load.forEach(function(fn){
 			fn();
 		});
 
@@ -1089,7 +1089,7 @@ window.jQuery && jQuery.noConflict();
 			clearTimeout(resizeTimerInternal)
 		
 			resizeTimerInternal = setTimeout(function() {
-				_.functions_on_resize.forEach(function(fn){
+				_.fns_on_resize.forEach(function(fn){
 					fn();
 				});
 			}, 50)

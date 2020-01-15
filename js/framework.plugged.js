@@ -58,6 +58,10 @@ window.jQuery && jQuery.noConflict();
 	
 	
 
+	// For convenience...
+	Date.prototype.format = function (mask, utc) {
+		return dateFormat(this, mask, utc);
+	};
 
 	String.prototype.getFileExtension = function() {
 		return this.split('.').pop();
@@ -70,6 +74,53 @@ window.jQuery && jQuery.noConflict();
 			return index == 0 ? word.toLowerCase() : word.toUpperCase();
 		}).replace(/-|\s/g, '');
 
+	}
+
+
+	//dates shit
+	_.formatDate = function(template, date) {
+		var specs = 'YYYY:MM:DD:HH:mm:ss'.split(':');
+		date = new Date(date || Date.now() - new Date().getTimezoneOffset() * 6e4);
+		return date.toISOString().split(/[-:.TZ]/).reduce(function(template, item, i) {
+			return template.split(specs[i]).join(item);
+		}, template);
+	}
+
+	_.parseDate = function(date) {
+
+		if (date instanceof Date && !isNaN(date.valueOf())) {  // d.valueOf() could also work
+			return new Date(date);
+		} else {
+			return false;
+		}
+	}
+
+	_.parseDates = function(datesString) {
+		var toReturn = datesString.split('|');
+		
+		toReturn.filter(function(date){
+			return _.parseDate(date);
+		});
+
+		toReturn.forEach(function(date,i){
+			toReturn[i] = _.parseDate(date);
+		})
+
+
+		return toReturn;
+	}
+
+
+
+	_.formatDates = function(template,datesString) {
+		var toReturn = datesString.join('|');
+		
+		toReturn.filter(function(date){
+			return _.formatDate(template, date);
+		});
+
+
+		return toReturn;
 	}
 
 	_.reverseArray = function(arr) {
@@ -175,8 +226,8 @@ window.jQuery && jQuery.noConflict();
 
 	_.br_mobile_max = parseFloat( getComputedStyle(document.documentElement).getPropertyValue('--mobile-br-max') ) || 'sm';
 
-	_.functions_on_load = [];
-	_.functions_on_resize = [];
+	_.fns_on_load = [];
+	_.fns_on_resize = [];
 
 
 	frameWork.validateBr = function(breakpoint,mode) {
@@ -309,6 +360,105 @@ window.jQuery && jQuery.noConflict();
 			renderProps(moduleChild,availablePropertiesChildren);
 		});
 		
+	}
+
+	frameWork.initCalendar = function(inputCalendar){
+		console.log('sup chonky boi');
+
+		if(inputCalendar) {
+
+
+			var theValue = _.parseDates(inputCalendar.val()) ||  new Date();
+
+			console.log(inputCalendar.val(),theValue);
+			
+			
+				
+			var arr =  {
+				class: inputCalendar.attr('class'),
+				addBrowse:  inputCalendar.data('calendar-add-nav'), //arrow arrow
+				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
+				dayLength: inputCalendar.data('calendar-day-length'),
+				displayTitle : inputCalendar.data('calendar-display-title'),
+				disabledDates: inputCalendar.data('calendar-disabled-dates'),
+	
+	
+				multiple: inputCalendar.data('calendar-multiple') || false,
+				returnFormat: inputCalendar.data('calendar-return-format') || 'dd/mm/yy',
+			};
+	
+			var defaults = {
+				class: '',
+				showDay: false, // dayday
+				addBrowse: false, //arrow arrow
+				startDay: 'su', // su,mo,tu,we,th,fr,sa,
+				dayLength: 3,
+				displayTitle : true,
+				disabledDates: '',
+	
+	
+				multiple: inputCalendar.data('calendar-multiple') || false,
+				returnFormat: inputCalendar.data('calendar-return-format') || 'dd/mm/yy',
+	
+			};
+
+			console.log(_.parseDates('01/05/1995'));
+			var calendarProps = {
+				year: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getFullYear(),
+				month: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getMonth(),
+				getDisabled: _.parseDates(args.disabledDates),
+				getCurrentActive: _.parseDates(theValue)
+			}
+			
+			var args = _.parseArgs(arr,defaults);
+
+	
+			var dayStrings = [
+				[
+					'Su',
+					'M',
+					'Tu',
+					'W',
+					'Th',
+					'F',
+					'S'
+				],
+				[
+					'Su',
+					'Mo',
+					'Tu',
+					'We',
+					'Th',
+					'Fr',
+					'Sa'
+				],
+				[
+					'Sun',
+					'Mon',
+					'Tue',
+					'Wed',
+					'Thu',
+					'Fri',
+					'Sat'
+				]
+			]
+	
+			var theUi = $('<div class="input-calendar-ui"></div>');
+	
+			inputCalendar.after(theUi);
+	
+			//clone same classes to the shitbitch
+			theUi.addClass( inputCalendar.attr('class').replace('input-calendar','') );
+	
+			//parse disable dates
+	
+	
+			if(inputCalendar.attr('disabled')){
+				theUi.addClass('input-disabled')
+			}
+
+			// console.log(args,calendarProps,calendarProps.getDisabled());
+		}
 	}
 
 
@@ -499,7 +649,7 @@ window.jQuery && jQuery.noConflict();
 		frameWork.toolTip.activeTriggerer = null;
 		frameWork.toolTip.args = null;
 	}
-	_.functions_on_resize.push(frameWork.destroyToolTip);
+	_.fns_on_resize.push(frameWork.destroyToolTip);
 
 	//only use when the tooltip is finally active
 	frameWork.positionToolTip = function(posX,posY){
@@ -739,8 +889,18 @@ window.jQuery && jQuery.noConflict();
 			frameWork.initGrid($(this));
 		});
 	}
-	_.functions_on_load.push(frameWork.readyGrid);
-	_.functions_on_resize.push(frameWork.readyGrid);
+	_.fns_on_load.push(frameWork.readyGrid);
+	_.fns_on_resize.push(frameWork.readyGrid);
+
+
+
+	frameWork.readyCalendar = function(){
+
+		$('.input-calendar').each(function(){
+			frameWork.initCalendar($(this));
+		});
+	}
+	_.fns_on_load.push(frameWork.readyCalendar);
 
 	
 	_.initTrumbo = function(selector){
@@ -764,7 +924,7 @@ window.jQuery && jQuery.noConflict();
 			}
 		})
 	}
-	_.functions_on_load.push(_.initTrumbo);
+	_.fns_on_load.push(_.initTrumbo);
 
 	
 
@@ -905,7 +1065,7 @@ window.jQuery && jQuery.noConflict();
 	$(window).on('load',function(){
 
 
-		_.functions_on_load.forEach(function(fn){
+		_.fns_on_load.forEach(function(fn){
 			fn();
 		})
 
@@ -929,7 +1089,7 @@ window.jQuery && jQuery.noConflict();
 			clearTimeout(resizeTimerInternal)
 		
 			resizeTimerInternal = setTimeout(function() {
-				_.functions_on_resize.forEach(function(fn){
+				_.fns_on_resize.forEach(function(fn){
 					fn();
 				})
 			}, 100)

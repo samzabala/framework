@@ -365,9 +365,13 @@
 		&-inline {
 			display:inline!important;
 		}
-		&-none {
+
+		@at-root %for-display-none {
 			display:none!important;
 		}
+			&-none {
+				@extend %for-display-none;
+			}
 	}
 
 
@@ -1047,7 +1051,7 @@
 }
 
 .sr-only {
-	display:none!important;
+	@extend %for-display-none;
 }
 
 .cf {

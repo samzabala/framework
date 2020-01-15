@@ -528,6 +528,27 @@
 			$input-info-text-transform: none !default;
 			$input-info-gutter-y: 1em !default;
 
+			//calendar
+				$input-calendar-gap: 2px;
+
+				$input-calendar-block-gutter-x: .5em !default;
+				$input-calendar-block-gutter-y: .75em !default;
+				$input-calendar-block-border-radius: $border-radius-base !default;
+
+				$input-calendar-date-hover-color: inherit !default;
+				$input-calendar-date-hover-background: rgba($brand-color-neutral,.5) !default;
+
+				$input-calendar-date-active-color: $brand-color-background !default;
+				$input-calendar-date-active-background: $brand-color-primary !default;
+
+				$input-calendar-days-border-width: 1px !default;
+				$input-calendar-days-font-size: .75em !default;
+				$input-calendar-days-border-color: $brand-color-neutral !default;
+				$input-calendar-days-color: $brand-color-neutral !default;
+
+					$input-calendar-days-border-color-inverse:$input-calendar-days-border-color !default;
+					$input-calendar-days-color-inverse: $input-calendar-days-color !default;
+
 		//special-form
 			$special-form-gutter-x: 35px !default;
 			$special-form-gutter-y: 30px !default;
