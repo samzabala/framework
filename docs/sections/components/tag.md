@@ -9,7 +9,7 @@ This is to display a tag bitch :)
 
 ## Colors
 
-Aside from `.tag-default`, to color the tags, add `.tag-[color-tag]`
+Aside from `.tag-default`. There are other color schemes available to color the tags, add `.tag-[color-tag]`
 
 *	**`.tag-primary`**
 *	**`.tag-accent`**
