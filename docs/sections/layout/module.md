@@ -193,8 +193,6 @@ A class to put on module containers to allow grid setup. The framework's javascr
 </div>
 ```
 
-If you want the framework to modify or do any of the default dynamic shit on the grid add the class `.module-grid-custom`
-
 
 ## Data Attributes
 
