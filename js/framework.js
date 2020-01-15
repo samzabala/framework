@@ -836,14 +836,14 @@ window.jQuery && jQuery.noConflict();
 				}else{
 
 					var allSelector = document.querySelectorAll('.accordion');
-					if(allSelector){
+					if(allSelector.length){
 						allSelector.forEach(function(selector){
 							selector.classList.remove('open'); 
 						});
 					}
 
 					var allTriggerer = document.querySelectorAll('[data-toggle="accordion"]');
-					if(allTriggerer){
+					if(allTriggerer.length){
 						allTriggerer.forEach(function(triggerer){
 							triggerer.classList.remove('open'); 
 						});
@@ -932,11 +932,14 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="alert-close-all"]',function(e){
 			e.preventDefault();
-			var selector =  document.querySelectorAll('.alert');
+			var selector =  document.querySelectorAll('.aloort');
 
-			if(selector) {
+			console.log(selector,selector.length);
+			if(selector.length) {
 				selector.forEach(function(alert){
-					alert.parentNode.removeChild(alert)
+					if(alert.querySelectorAll('[data-toggle="alert-close"]').length){
+						alert.parentNode.removeChild(alert)
+					}
 				});
 			}
 		});

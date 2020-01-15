@@ -75,17 +75,7 @@ window.jQuery && jQuery.noConflict();
 		}).replace(/-|\s/g, '');
 
 	}
-
-
-	//dates shit
-	_.formatDate = function(template, date) {
-		var specs = 'YYYY:MM:DD:HH:mm:ss'.split(':');
-		date = new Date(date || Date.now() - new Date().getTimezoneOffset() * 6e4);
-		return date.toISOString().split(/[-:.TZ]/).reduce(function(template, item, i) {
-			return template.split(specs[i]).join(item);
-		}, template);
-	}
-
+	
 	_.parseDate = function(date) {
 
 		if (date instanceof Date && !isNaN(date.valueOf())) {  // d.valueOf() could also work
@@ -98,6 +88,7 @@ window.jQuery && jQuery.noConflict();
 	_.parseDates = function(datesString) {
 		var toReturn = datesString.split('|');
 		
+		//validate
 		toReturn.filter(function(date){
 			return _.parseDate(date);
 		});
@@ -106,22 +97,46 @@ window.jQuery && jQuery.noConflict();
 			toReturn[i] = _.parseDate(date);
 		})
 
-
 		return toReturn;
 	}
 
 
 
-	_.formatDates = function(template,datesString) {
-		var toReturn = datesString.join('|');
+
+	//dates shit
+	_.formatDate = function(date) {
+		var d = _.parseDate(date);
+
+		if(d){
+
+			month = '' + (d.getMonth() + 1),
+			day = '' + d.getDate(),
+			year = d.getFullYear();
+	
+			if (month.length < 2) 
+				month = '0' + month;
+			if (day.length < 2) 
+				day = '0' + day;
 		
-		toReturn.filter(function(date){
-			return _.formatDate(template, date);
-		});
+			return [year, month, day].join('-');
+		}else{
+			return false;
+		}
+	}
+
+	_.formatDates = function(dates) {
+
+		dates.forEach(function(date,i){
+			dates[i] = _.formatDate(template,date);
+		})
+		var toReturn = dates.join('|');
+		
 
 
 		return toReturn;
 	}
+
+	
 
 	_.reverseArray = function(arr) {
 		var newArray = [];
@@ -187,17 +202,17 @@ window.jQuery && jQuery.noConflict();
 				
 			}else if (toggleMode == 'alert-close'){
 
-				if(clicked.parent().closest('.alert').length > 0) {
+				if(clicked.parent().closest('.alert').length > -1) {
 					return clicked.closest('.alert');
 				}
 
-			}else if( clicked.next(selector).first().length > 0 ){
+			}else if( clicked.next(selector).first().length > -1){
 				return clicked.next(selector).first();
 
-			}else if( clicked.siblings(selector).first().length > 0 ){
+			}else if( clicked.siblings(selector).first().length > -1){
 				return clicked.siblings(selector).first();
 
-			}else if(clicked.parent().closest('[data-toggle="'+toggleMode+'"]').length){
+			}else if(clicked.parent().closest('[data-toggle="'+toggleMode+'"]').length > -1){
 				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
 			}else{
 
@@ -379,12 +394,12 @@ window.jQuery && jQuery.noConflict();
 				addBrowse:  inputCalendar.data('calendar-add-nav'), //arrow arrow
 				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
 				dayLength: inputCalendar.data('calendar-day-length'),
-				displayTitle : inputCalendar.data('calendar-display-title'),
 				disabledDates: inputCalendar.data('calendar-disabled-dates'),
+				min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
+				max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
 	
 	
 				multiple: inputCalendar.data('calendar-multiple') || false,
-				returnFormat: inputCalendar.data('calendar-return-format') || 'dd/mm/yy',
 			};
 	
 			var defaults = {
@@ -401,7 +416,8 @@ window.jQuery && jQuery.noConflict();
 				returnFormat: inputCalendar.data('calendar-return-format') || 'dd/mm/yy',
 	
 			};
-
+			console.log(Array.isArray(theValue));
+			/*
 			console.log(_.parseDates('01/05/1995'));
 			var calendarProps = {
 				year: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getFullYear(),
@@ -409,6 +425,7 @@ window.jQuery && jQuery.noConflict();
 				getDisabled: _.parseDates(args.disabledDates),
 				getCurrentActive: _.parseDates(theValue)
 			}
+			*/
 			
 			var args = _.parseArgs(arr,defaults);
 
@@ -458,6 +475,16 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			// console.log(args,calendarProps,calendarProps.getDisabled());
+		}
+	}
+
+		//updates both input field and UI
+	frameWork.updateCalendar = function(inputCalendar,newStringValue){
+		var theUi = inputCalendar.next('.input-calendar-ui');
+		var theValue = _.parseDates(newStringValue) || inputCalendar.val();
+
+		if(theUi.length > -1) {
+			inputCalendar.val(theValue);
 		}
 	}
 
@@ -896,7 +923,7 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.readyCalendar = function(){
 
-		$('.input-calendar').each(function(){
+		$('.input-calendar:not(.override-debug)').each(function(){
 			frameWork.initCalendar($(this));
 		});
 	}
@@ -936,6 +963,25 @@ window.jQuery && jQuery.noConflict();
 	$(document).ready(function(){
 		frameWork.settings.lazyLoad && frameWork.loadImages();
 
+		$('body').on('click','a.input-calendar-ui-date',function(e){	
+			e.preventDefault();
+			var inputCalendar = $(this).closest('.input-calendar-ui').prev('.input-calendar');
+			if(inputCalendar.length > -1){
+				console.log('ha shiet')
+				frameWork.updateCalendar(inputCalendar,$(this).data('value'))
+			}
+			//if multiple
+		});
+
+
+
+		$('body').on('change','.input-calendar',function(e){	
+			e.preventDefault();
+			var inputCalendar = $(this);
+			frameWork.updateCalendar(inputCalendar);
+			//if multiple
+		});
+
 		$('body').on('click','*[data-toggle="accordion"]',function(e){	
 			e.preventDefault();
 			frameWork.toggleAccordion($(this));
@@ -952,7 +998,12 @@ window.jQuery && jQuery.noConflict();
 
 		$('body').on('click','*[data-toggle="alert-close-all"]',function(e){	
 			e.preventDefault();
-			$('.alert').hide().remove()
+
+			$('.alert').each(function(){
+				if($(this).find('[data-toggle="alert-close"]').length > -1) {
+					$(this).hide().remove();
+				}
+			})
 		});
 
 	
@@ -981,7 +1032,7 @@ window.jQuery && jQuery.noConflict();
 					selector.removeClass('open'); 
 				}else{
 
-					if(selector.closest('li , .nav-item').length) {
+					if(selector.closest('li , .nav-item').length > -1) {
 						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
 						$(this).closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
 						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open'); 
@@ -1009,7 +1060,7 @@ window.jQuery && jQuery.noConflict();
 			$(this).siblings('.btn-toggle-reset').removeClass('active');
 
 			if(
-				(!$(this).closest('.btn-group-toggle-multiple').length)
+				(!$(this).closest('.btn-group-toggle-multiple').length > -1)
 				|| ($(this).hasClass('btn-toggle-reset'))
 			){
 				$(this).siblings('.btn').removeClass('active');

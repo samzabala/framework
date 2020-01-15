@@ -84,7 +84,7 @@ This one looks for the `.alert` ancestor and it's a close symbol because it look
 
 Well what if there's too many notifications and the user is too overwhelmed by the amount and you wanna give them the ability to close all them alerty bois?
 
-Set this data attribute to a bitch up no href or data-href required... it just.. destroys eveRYTHING
+Set this data attribute to a bitch up no href or data-href required... it just.. destroys eveRYTHING THAT HAS AN `.alert-close` INNIIIIT
 
 ```html
 	<a href="#bitch-alert" class="btn btn-default" data-toggle="alert-close-all">Clear Notifications... good lord this is too much</a>

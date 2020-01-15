@@ -297,31 +297,31 @@
 		$alert-border-radius: $border-radius-small !default;
 
 			//schemes
-			$alert-border-default: rgba($brand-color-neutral,.5) !default;
+			$alert-border-default: transparent !default;
 			$alert-background-default: rgba($brand-color-neutral,.1) !default;
 			$alert-color-default: inherit !default;
 
-			$alert-border-primary: $brand-color-primary !default;
+			$alert-border-primary: transparent !default;
 			$alert-background-primary: $brand-color-primary-light !default;
 			$alert-color-primary: darken($brand-color-primary-dark,15) !default;
 
-			$alert-border-accent: $brand-color-accent !default;
+			$alert-border-accent: transparent !default;
 			$alert-background-accent: $brand-color-accent-light !default;
 			$alert-color-accent: darken($brand-color-accent-dark,12) !default;
 
-			$alert-border-neutral: $brand-color-neutral !default;
+			$alert-border-neutral: transparent !default;
 			$alert-background-neutral: $brand-color-neutral-light !default;
 			$alert-color-neutral: darken($brand-color-neutral-dark,12) !default;
 
-			$alert-border-success: $brand-color-success !default;
+			$alert-border-success: transparent !default;
 			$alert-background-success: $brand-color-success-light !default;
 			$alert-color-success: darken($brand-color-success-dark,10) !default;
 
-			$alert-border-caution: $brand-color-caution !default;
+			$alert-border-caution: transparent !default;
 			$alert-background-caution: $brand-color-caution-light !default;
 			$alert-color-caution: darken($brand-color-caution-dark,12) !default;
 
-			$alert-border-error: $brand-color-error !default;
+			$alert-border-error: transparent !default;
 			$alert-background-error: $brand-color-error-light !default;
 			$alert-color-error: darken($brand-color-error-dark,15) !default;
 	
@@ -469,7 +469,7 @@
 		$input-height-multiple-factor: 3 !default;
 		$input-placeholder-opacity: .5 !default;
 		$input-background: $theme-background !default;
-			$input-background-inverse: $theme-background-inverse !default;
+			$input-background-inverse: rgba($brand-color-neutral,.1) !default;
 			// $input-background-disabled: rgba($brand-color-neutral,.2) !default;
 			// 	$input-background-disabled-inverse: transparent !default;
 

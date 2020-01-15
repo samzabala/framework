@@ -3731,31 +3731,31 @@ table {
       padding-right: 10px;
       padding-left: 10px; } }
   .alert.alert-default {
-    border-color: rgba(141, 141, 141, 0.5);
+    border-color: transparent;
     color: inherit;
     background-color: rgba(141, 141, 141, 0.1); }
   .alert.alert-primary {
-    border-color: #235789;
+    border-color: transparent;
     color: #091723;
     background-color: #2d71b2; }
   .alert.alert-accent {
-    border-color: #17BEBB;
+    border-color: transparent;
     color: #0b5a58;
     background-color: #24e4e1; }
   .alert.alert-neutral {
-    border-color: #8d8d8d;
+    border-color: transparent;
     color: #555555;
     background-color: #a7a7a7; }
   .alert.alert-success {
-    border-color: #15b800;
+    border-color: transparent;
     color: #095200;
     background-color: #1beb00; }
   .alert.alert-caution {
-    border-color: #fd7f03;
+    border-color: transparent;
     color: #8f4701;
     background-color: #fd9936; }
   .alert.alert-error {
-    border-color: #fd0303;
+    border-color: transparent;
     color: #7f0101;
     background-color: #fd3636; }
 
@@ -4084,7 +4084,7 @@ table {
     outline: none;
     box-shadow: 0px 0 5px 0px #235789; }
   .theme-inverse .input, .theme-inverse .fw-trumbowyg-editor, .theme-inverse .fw-trumbowyg-textarea, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]) {
-    background-color: #1a1a1a; }
+    background-color: rgba(141, 141, 141, 0.1); }
   .input-large.input, .input-large.fw-trumbowyg-editor, .input-large.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-large:not([type="checkbox"]):not([type="radio"]), .input-group.input-large .input, .input-group.input-large .fw-trumbowyg-editor, .input-group.input-large .fw-trumbowyg-textarea, .input-group.input-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group.input-large input:not([type="checkbox"]):not([type="radio"]) {
     font-size: 1.5625rem; }
   .input-small.input, .input-small.fw-trumbowyg-editor, .input-small.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-small:not([type="checkbox"]):not([type="radio"]), .input-group.input-small .input, .input-group.input-small .fw-trumbowyg-editor, .input-group.input-small .fw-trumbowyg-textarea, .input-group.input-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group.input-small input:not([type="checkbox"]):not([type="radio"]) {
@@ -4135,7 +4135,56 @@ table {
   vertical-align: middle;
   display: inline-block;
   margin-right: .5em; }
-.input-select, .input-single-line, .input-multiple-line, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
+input.input-calendar {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  display: inline-block; }
+.input-calendar-ui-block {
+  padding: 0.75em 0.5em;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  color: inherit; }
+.input-calendar-ui-date:hover, .input-calendar-ui-date:focus, .input-calendar-ui-date.focus {
+  color: inherit;
+  background: rgba(141, 141, 141, 0.5); }
+.input-calendar-ui-date.active, .input-calendar-ui-date.active:hover {
+  color: #FFFFFF;
+  background: #235789; }
+.input-calendar-ui-grid {
+  padding-bottom: 0.75em; }
+.input-calendar-ui-heading {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em; }
+.input-calendar-ui-prev {
+  -webkit-box-ordinal-group: 0;
+          order: -1;
+  margin-right: 1em; }
+.input-calendar-ui-next {
+  margin-left: 1em; }
+.input-calendar-ui-days, .input-calendar-ui-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
+  grid-gap: 2px; }
+  .input-calendar-ui-days:nth-child(n+2), .input-calendar-ui-dates:nth-child(n+2) {
+    margin-top: 2px; }
+.input-calendar-ui-days {
+  margin-bottom: 0.75em;
+  border-bottom: 1px solid #8d8d8d;
+  color: #8d8d8d;
+  font-size: 0.75em; }
+  .theme-inverse .input-calendar-ui-days {
+    border-bottom: 1px solid #8d8d8d;
+    color: #8d8d8d; }
+.input-calendar-ui-dates {
+  margin-bottom: 0.375em; }
+.input-select, .input-single-line, .input-multiple-line, .input-calendar-ui, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
@@ -4156,37 +4205,37 @@ table {
   padding-left: 1.25em;
   padding-top: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.5) ) * .5 );
   padding-bottom: calc(  (  (2.8125rem - (1px * 2)) - (1em * 1.5) ) * .5 ); }
-  .theme-inverse .input-select, .theme-inverse .input-single-line, .theme-inverse .input-multiple-line, .theme-inverse .input-editor, .theme-inverse .fw-trumbowyg-editor, .theme-inverse .fw-trumbowyg-textarea, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]) {
+  .theme-inverse .input-select, .theme-inverse .input-single-line, .theme-inverse .input-multiple-line, .theme-inverse .input-calendar-ui, .theme-inverse .input-editor, .theme-inverse .fw-trumbowyg-editor, .theme-inverse .fw-trumbowyg-textarea, .theme-inverse .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .theme-inverse input:not([type="checkbox"]):not([type="radio"]) {
     color: inherit;
-    background-color: #1a1a1a; }
-  .input-select option, .input-single-line option, .input-multiple-line option, .input-editor option, .fw-trumbowyg-editor option, .fw-trumbowyg-textarea option, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) option {
+    background-color: rgba(141, 141, 141, 0.1); }
+  .input-select option, .input-single-line option, .input-multiple-line option, .input-calendar-ui option, .input-editor option, .fw-trumbowyg-editor option, .fw-trumbowyg-textarea option, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) option {
     font: inherit;
     outline: none; }
-  .input-group .input-select, .input-group .input-single-line, .input-group .input-multiple-line, .input-group .input-editor, .input-group .fw-trumbowyg-editor, .input-group .fw-trumbowyg-textarea, .input-group .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group input:not([type="checkbox"]):not([type="radio"]) {
+  .input-group .input-select, .input-group .input-single-line, .input-group .input-multiple-line, .input-group .input-calendar-ui, .input-group .input-editor, .input-group .fw-trumbowyg-editor, .input-group .fw-trumbowyg-textarea, .input-group .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group input:not([type="checkbox"]):not([type="radio"]) {
     box-shadow: none; }
-  .input-wrapper .input-select, .input-wrapper .input-single-line, .input-wrapper .input-multiple-line, .input-wrapper .input-editor, .input-wrapper .fw-trumbowyg-editor, .input-wrapper .fw-trumbowyg-textarea, .input-wrapper .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper input:not([type="checkbox"]):not([type="radio"]) {
+  .input-wrapper .input-select, .input-wrapper .input-single-line, .input-wrapper .input-multiple-line, .input-wrapper .input-calendar-ui, .input-wrapper .input-editor, .input-wrapper .fw-trumbowyg-editor, .input-wrapper .fw-trumbowyg-textarea, .input-wrapper .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper input:not([type="checkbox"]):not([type="radio"]) {
     display: block;
     -webkit-box-flex: 1;
             flex: 1 1;
     -webkit-box-ordinal-group: 3;
             order: 2; }
-  .input-select::-webkit-input-placeholder, .input-single-line::-webkit-input-placeholder, .input-multiple-line::-webkit-input-placeholder, .input-editor::-webkit-input-placeholder, .fw-trumbowyg-editor::-webkit-input-placeholder, .fw-trumbowyg-textarea::-webkit-input-placeholder, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-webkit-input-placeholder {
+  .input-select::-webkit-input-placeholder, .input-single-line::-webkit-input-placeholder, .input-multiple-line::-webkit-input-placeholder, .input-calendar-ui::-webkit-input-placeholder, .input-editor::-webkit-input-placeholder, .fw-trumbowyg-editor::-webkit-input-placeholder, .fw-trumbowyg-textarea::-webkit-input-placeholder, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-webkit-input-placeholder {
     color: inherit;
     opacity: 0.5; }
-  .input-select::-moz-placeholder, .input-single-line::-moz-placeholder, .input-multiple-line::-moz-placeholder, .input-editor::-moz-placeholder, .fw-trumbowyg-editor::-moz-placeholder, .fw-trumbowyg-textarea::-moz-placeholder, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-moz-placeholder {
+  .input-select::-moz-placeholder, .input-single-line::-moz-placeholder, .input-multiple-line::-moz-placeholder, .input-calendar-ui::-moz-placeholder, .input-editor::-moz-placeholder, .fw-trumbowyg-editor::-moz-placeholder, .fw-trumbowyg-textarea::-moz-placeholder, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-moz-placeholder {
     color: inherit;
     opacity: 0.5; }
-  .input-select:-ms-input-placeholder, .input-single-line:-ms-input-placeholder, .input-multiple-line:-ms-input-placeholder, .input-editor:-ms-input-placeholder, .fw-trumbowyg-editor:-ms-input-placeholder, .fw-trumbowyg-textarea:-ms-input-placeholder, .fw-trumbowyg-modal-box label input:-ms-input-placeholder:not([type="checkbox"]):not([type="radio"]) {
+  .input-select:-ms-input-placeholder, .input-single-line:-ms-input-placeholder, .input-multiple-line:-ms-input-placeholder, .input-calendar-ui:-ms-input-placeholder, .input-editor:-ms-input-placeholder, .fw-trumbowyg-editor:-ms-input-placeholder, .fw-trumbowyg-textarea:-ms-input-placeholder, .fw-trumbowyg-modal-box label input:-ms-input-placeholder:not([type="checkbox"]):not([type="radio"]) {
     color: inherit;
     opacity: 0.5; }
-  .input-select:-moz-placeholder, .input-single-line:-moz-placeholder, .input-multiple-line:-moz-placeholder, .input-editor:-moz-placeholder, .fw-trumbowyg-editor:-moz-placeholder, .fw-trumbowyg-textarea:-moz-placeholder, .fw-trumbowyg-modal-box label input:-moz-placeholder:not([type="checkbox"]):not([type="radio"]) {
+  .input-select:-moz-placeholder, .input-single-line:-moz-placeholder, .input-multiple-line:-moz-placeholder, .input-calendar-ui:-moz-placeholder, .input-editor:-moz-placeholder, .fw-trumbowyg-editor:-moz-placeholder, .fw-trumbowyg-textarea:-moz-placeholder, .fw-trumbowyg-modal-box label input:-moz-placeholder:not([type="checkbox"]):not([type="radio"]) {
     /* Firefox 18- */
     color: inherit;
     opacity: 0.5; }
-  [type=color].input-select, [type=color].input-single-line, [type=color].input-multiple-line, [type=color].input-editor, [type=color].fw-trumbowyg-editor, [type=color].fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input[type=color]:not([type="checkbox"]):not([type="radio"]) {
+  [type=color].input-select, [type=color].input-single-line, [type=color].input-multiple-line, [type=color].input-calendar-ui, [type=color].input-editor, [type=color].fw-trumbowyg-editor, [type=color].fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input[type=color]:not([type="checkbox"]):not([type="radio"]) {
     min-width: 100px;
     padding: .5em; }
-  .input-select::-webkit-file-upload-button, .input-single-line::-webkit-file-upload-button, .input-multiple-line::-webkit-file-upload-button, .input-editor::-webkit-file-upload-button, .fw-trumbowyg-editor::-webkit-file-upload-button, .fw-trumbowyg-textarea::-webkit-file-upload-button, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-webkit-file-upload-button {
+  .input-select::-webkit-file-upload-button, .input-single-line::-webkit-file-upload-button, .input-multiple-line::-webkit-file-upload-button, .input-calendar-ui::-webkit-file-upload-button, .input-editor::-webkit-file-upload-button, .fw-trumbowyg-editor::-webkit-file-upload-button, .fw-trumbowyg-textarea::-webkit-file-upload-button, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-webkit-file-upload-button {
     -webkit-appearance: none;
             appearance: none;
     border: none;
@@ -4199,32 +4248,32 @@ table {
     vertical-align: middle;
     display: -webkit-box;
     display: flex; }
-  .nav .input-select, .nav .input-single-line, .nav .input-multiple-line, .nav .input-editor, .nav .fw-trumbowyg-editor, .nav .fw-trumbowyg-textarea, .nav .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not([type="checkbox"]):not([type="radio"]) {
+  .nav .input-select, .nav .input-single-line, .nav .input-multiple-line, .nav .input-calendar-ui, .nav .input-editor, .nav .fw-trumbowyg-editor, .nav .fw-trumbowyg-textarea, .nav .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not([type="checkbox"]):not([type="radio"]) {
     border-radius: 0 !important;
     padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5 );
     padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.875) ) * .5 );
     height: 4.6875rem; }
-    .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-textarea:not(.focus):not(:focus), .nav .fw-trumbowyg-modal-box label input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]) {
+    .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-calendar-ui:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-textarea:not(.focus):not(:focus), .nav .fw-trumbowyg-modal-box label input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]) {
       box-shadow: none; }
-  .input-select:focus, .input-single-line:focus, .input-multiple-line:focus, .input-editor:focus, .fw-trumbowyg-editor:focus, .fw-trumbowyg-textarea:focus, .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .focus.input-select, .focus.input-single-line, .focus.input-multiple-line, .focus.input-editor, .focus.fw-trumbowyg-editor, .focus.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]) {
+  .input-select:focus, .input-single-line:focus, .input-multiple-line:focus, .input-calendar-ui:focus, .input-editor:focus, .fw-trumbowyg-editor:focus, .fw-trumbowyg-textarea:focus, .fw-trumbowyg-modal-box label input:focus:not([type="checkbox"]):not([type="radio"]), .focus.input-select, .focus.input-single-line, .focus.input-multiple-line, .focus.input-calendar-ui, .focus.input-editor, .focus.fw-trumbowyg-editor, .focus.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.focus:not([type="checkbox"]):not([type="radio"]) {
     box-shadow: 0px 0 5px 0px #235789;
     border-color: rgba(141, 141, 141, 0.2); }
-  .input-large.input-select, .input-large.input-single-line, .input-large.input-multiple-line, .input-large.input-editor, .input-large.fw-trumbowyg-editor, .input-large.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-large:not([type="checkbox"]):not([type="radio"]), .input-group.input-large .input-select, .input-group.input-large .input-single-line, .input-group.input-large .input-multiple-line, .input-group.input-large .input-editor, .input-group.input-large .fw-trumbowyg-editor, .input-group.input-large .fw-trumbowyg-textarea, .input-group.input-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group.input-large input:not([type="checkbox"]):not([type="radio"]) {
+  .input-large.input-select, .input-large.input-single-line, .input-large.input-multiple-line, .input-large.input-calendar-ui, .input-large.input-editor, .input-large.fw-trumbowyg-editor, .input-large.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-large:not([type="checkbox"]):not([type="radio"]), .input-group.input-large .input-select, .input-group.input-large .input-single-line, .input-group.input-large .input-multiple-line, .input-group.input-large .input-calendar-ui, .input-group.input-large .input-editor, .input-group.input-large .fw-trumbowyg-editor, .input-group.input-large .fw-trumbowyg-textarea, .input-group.input-large .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group.input-large input:not([type="checkbox"]):not([type="radio"]) {
     padding-top: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5 );
     padding-bottom: calc(  (  (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5 ); }
-  .input-small.input-select, .input-small.input-single-line, .input-small.input-multiple-line, .input-small.input-editor, .input-small.fw-trumbowyg-editor, .input-small.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-small:not([type="checkbox"]):not([type="radio"]), .input-group.input-small .input-select, .input-group.input-small .input-single-line, .input-group.input-small .input-multiple-line, .input-group.input-small .input-editor, .input-group.input-small .fw-trumbowyg-editor, .input-group.input-small .fw-trumbowyg-textarea, .input-group.input-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group.input-small input:not([type="checkbox"]):not([type="radio"]) {
+  .input-small.input-select, .input-small.input-single-line, .input-small.input-multiple-line, .input-small.input-calendar-ui, .input-small.input-editor, .input-small.fw-trumbowyg-editor, .input-small.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-small:not([type="checkbox"]):not([type="radio"]), .input-group.input-small .input-select, .input-group.input-small .input-single-line, .input-group.input-small .input-multiple-line, .input-group.input-small .input-calendar-ui, .input-group.input-small .input-editor, .input-group.input-small .fw-trumbowyg-editor, .input-group.input-small .fw-trumbowyg-textarea, .input-group.input-small .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-group.input-small input:not([type="checkbox"]):not([type="radio"]) {
     padding-top: calc(  (  (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5 );
     padding-bottom: calc(  (  (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5 ); }
-.input-select, .input-single-line, .input-multiple-line, .input-editor, .input-group, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
+.input-select, .input-single-line, .input-multiple-line, .input-editor, .input-calendar-ui, .input-group, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   border-radius: 10px;
   box-shadow: 0px 3px 10px -6px #000000; }
-  .nav .input-select, .nav .input-single-line, .nav .input-multiple-line, .nav .input-editor, .nav .input-group, .nav .fw-trumbowyg-editor, .nav .fw-trumbowyg-textarea, .nav .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not([type="checkbox"]):not([type="radio"]) {
+  .nav .input-select, .nav .input-single-line, .nav .input-multiple-line, .nav .input-editor, .nav .input-calendar-ui, .nav .input-group, .nav .fw-trumbowyg-editor, .nav .fw-trumbowyg-textarea, .nav .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not([type="checkbox"]):not([type="radio"]) {
     border-radius: 0 !important; }
-    .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus), .nav .input-group:not(.focus):not(:focus), .nav .fw-trumbowyg-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-textarea:not(.focus):not(:focus), .nav .fw-trumbowyg-modal-box label input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]) {
+    .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus), .nav .input-calendar-ui:not(.focus):not(:focus), .nav .input-group:not(.focus):not(:focus), .nav .fw-trumbowyg-editor:not(.focus):not(:focus), .nav .fw-trumbowyg-textarea:not(.focus):not(:focus), .nav .fw-trumbowyg-modal-box label input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .nav input:not(.focus):not(:focus):not([type="checkbox"]):not([type="radio"]) {
       box-shadow: none; }
-  .input-no-radius.input-select, .input-no-radius.input-single-line, .input-no-radius.input-multiple-line, .input-no-radius.input-editor, .input-no-radius.input-group, .input-no-radius.fw-trumbowyg-editor, .input-no-radius.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-no-radius:not([type="checkbox"]):not([type="radio"]) {
+  .input-no-radius.input-select, .input-no-radius.input-single-line, .input-no-radius.input-multiple-line, .input-no-radius.input-editor, .input-no-radius.input-calendar-ui, .input-no-radius.input-group, .input-no-radius.fw-trumbowyg-editor, .input-no-radius.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-no-radius:not([type="checkbox"]):not([type="radio"]) {
     border-radius: 0 !important; }
-  .input-no-shadow.input-select, .input-no-shadow.input-single-line, .input-no-shadow.input-multiple-line, .input-no-shadow.input-editor, .input-no-shadow.input-group, .input-no-shadow.fw-trumbowyg-editor, .input-no-shadow.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-no-shadow:not([type="checkbox"]):not([type="radio"]) {
+  .input-no-shadow.input-select, .input-no-shadow.input-single-line, .input-no-shadow.input-multiple-line, .input-no-shadow.input-editor, .input-no-shadow.input-calendar-ui, .input-no-shadow.input-group, .input-no-shadow.fw-trumbowyg-editor, .input-no-shadow.fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input.input-no-shadow:not([type="checkbox"]):not([type="radio"]) {
     box-shadow: none !important; }
 .input-single-line, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   height: 2.8125rem;
@@ -4245,9 +4294,9 @@ table {
   .input-multiple-line {
     min-height: 8.4375rem; }
     .input-large.input-multiple-line, .input-large .input-multiple-line {
-      height: 14.0625rem; }
+      min-height: 14.0625rem; }
     .input-small.input-multiple-line, .input-small .input-multiple-line {
-      height: 5.625rem; }
+      min-height: 5.625rem; }
 .input-multiple-line {
   display: block; }
 .input-select {
@@ -4275,7 +4324,7 @@ table {
             flex-direction: row;
     -webkit-box-align: start;
             align-items: flex-start; }
-    .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-select, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-select, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-select, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-select, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-select, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-single-line, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-single-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-single-line, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-single-line, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-single-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-multiple-line, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-multiple-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-multiple-line, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-multiple-line, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-multiple-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-editor, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-editor, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-editor, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-editor, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .fw-trumbowyg-editor, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .fw-trumbowyg-editor, .fw-trumbowyg-modal-box label.input-wrapper-block label .fw-trumbowyg-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-textarea, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.input-wrapper-block label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.input-wrapper-block label input:not([type="checkbox"]):not([type="radio"]) {
+    .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-select, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-select, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-select, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-select, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-select, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-single-line, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-single-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-single-line, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-single-line, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-single-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-multiple-line, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-multiple-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-multiple-line, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-multiple-line, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-multiple-line, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-calendar-ui, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-calendar-ui, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-calendar-ui, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-calendar-ui, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-calendar-ui, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .input-editor, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .input-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .input-editor, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .input-editor, .fw-trumbowyg-modal-box label.input-wrapper-block label .input-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-editor, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .fw-trumbowyg-editor, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .fw-trumbowyg-editor, .fw-trumbowyg-modal-box label.input-wrapper-block label .fw-trumbowyg-editor, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal .fw-trumbowyg-textarea, .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label.input-wrapper-block label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label .input-wrapper-block.input-wrapper.input-wrapper-horizontal .input-wrapper.input-wrapper-horizontal input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.input-wrapper-block .input-wrapper.input-wrapper-horizontal input:not([type="checkbox"]):not([type="radio"]), .input-wrapper-block.input-wrapper.input-wrapper-horizontal .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box .input-wrapper-block.input-wrapper.input-wrapper-horizontal label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label.input-wrapper-block label input:not([type="checkbox"]):not([type="radio"]) {
       width: calc(100% - 25%); }
     .input-wrapper.input-wrapper-horizontal > .input-label, .fw-trumbowyg-modal-box label > .input-label {
       -webkit-box-flex: 0;
@@ -4304,7 +4353,7 @@ table {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
               flex-direction: column; }
-      .input-wrapper.input-wrapper-block .input-select, .fw-trumbowyg-modal-box label .input-select, .input-wrapper.input-wrapper-block .input-single-line, .fw-trumbowyg-modal-box label .input-single-line, .input-wrapper.input-wrapper-block .input-multiple-line, .fw-trumbowyg-modal-box label .input-multiple-line, .input-wrapper.input-wrapper-block .input-editor, .fw-trumbowyg-modal-box label .input-editor, .input-wrapper.input-wrapper-block .fw-trumbowyg-editor, .fw-trumbowyg-modal-box label .fw-trumbowyg-editor, .input-wrapper.input-wrapper-block .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
+      .input-wrapper.input-wrapper-block .input-select, .fw-trumbowyg-modal-box label .input-select, .input-wrapper.input-wrapper-block .input-single-line, .fw-trumbowyg-modal-box label .input-single-line, .input-wrapper.input-wrapper-block .input-multiple-line, .fw-trumbowyg-modal-box label .input-multiple-line, .input-wrapper.input-wrapper-block .input-calendar-ui, .fw-trumbowyg-modal-box label .input-calendar-ui, .input-wrapper.input-wrapper-block .input-editor, .fw-trumbowyg-modal-box label .input-editor, .input-wrapper.input-wrapper-block .fw-trumbowyg-editor, .fw-trumbowyg-modal-box label .fw-trumbowyg-editor, .input-wrapper.input-wrapper-block .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
         width: 100%; } }
 .input-group {
   display: -webkit-inline-box;
@@ -5384,7 +5433,7 @@ CUSTOM STYLES FOR TRUMBOWYG
   display: inline-block !important; }
 .display-inline {
   display: inline !important; }
-.display-none {
+input.input-calendar, .display-none, .sr-only {
   display: none !important; }
 
 /* TEXT CLASSES */
@@ -5790,5 +5839,3 @@ CUSTOM STYLES FOR TRUMBOWYG
 
   .hide-nonmobile {
     display: none !important; } }
-.sr-only {
-  display: none !important; }
