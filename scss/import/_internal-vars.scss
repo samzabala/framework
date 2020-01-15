@@ -282,4 +282,14 @@ $calculated-btn-schemes: (
     )
 );
 
+$calculated-tag-schemes-color: (
+    default:$tag-default-color,
+    primary:$tag-primary-color,
+    accent:$tag-accent-color,
+    neutral:$tag-neutral-color,
+    success:$tag-success-color,
+    caution:$tag-caution-color,
+    error:$tag-error-color
+);
+
 $calculated-gradient-angles:(45,90,135,180,225,270,315);

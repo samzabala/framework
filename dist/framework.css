@@ -3571,6 +3571,21 @@ table {
   vertical-align: middle; }
   .tag, .tag:hover, .tag:focus, .tag:active, .tag.focus, .tag.active {
     color: #FFFFFF; }
+  .tag.tag-default {
+    background-color: #000000;
+    color: #FFFFFF; }
+  .tag-primary {
+    color: #FFFFFF; }
+  .tag-accent {
+    color: #FFFFFF; }
+  .tag-neutral {
+    color: #FFFFFF; }
+  .tag-success {
+    color: #FFFFFF; }
+  .tag-caution {
+    color: #FFFFFF; }
+  .tag-error {
+    color: #FFFFFF; }
 
 /*** LEGENDS ***/
 .legend {

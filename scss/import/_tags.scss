@@ -50,9 +50,17 @@ $prefix: '.tag';
 		color: $tag-color;
 	}
 
+
+	&#{&}-default {
+		background-color: $tag-default-background;
+		color: $tag-default-color;
+	}
+
+
 	@each $tag,$color in $calculated-brand-color-declarations {
 		&-#{$tag} {
 			@extend %for-background-#{$tag};
+			color: map-get($calculated-tag-schemes-color,$tag);
 		}
 	}
 

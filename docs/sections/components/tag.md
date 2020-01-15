@@ -3,13 +3,13 @@
 This is to display a tag bitch :)
 
 ```html
-<span class="tag tag-primary"></span> Primary 
+<span class="tag tag-default">#blessed</span>
 ```
 
 
 ## Colors
 
-To color the tags, add `.tag-[color-tag]`
+Aside from `.tag-default`, to color the tags, add `.tag-[color-tag]`
 
 *	**`.tag-primary`**
 *	**`.tag-accent`**
