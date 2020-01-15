@@ -85,24 +85,6 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	_.parseDates = function(datesString) {
-		var toReturn = datesString.split('|');
-		
-		//validate
-		toReturn.filter(function(date){
-			return _.parseDate(date);
-		});
-
-		toReturn.forEach(function(date,i){
-			toReturn[i] = _.parseDate(date);
-		})
-
-		return toReturn;
-	}
-
-
-
-
 	//dates shit
 	_.formatDate = function(date) {
 		var d = _.parseDate(date);
@@ -123,20 +105,6 @@ window.jQuery && jQuery.noConflict();
 			return false;
 		}
 	}
-
-	_.formatDates = function(dates) {
-
-		dates.forEach(function(date,i){
-			dates[i] = _.formatDate(template,date);
-		})
-		var toReturn = dates.join('|');
-		
-
-
-		return toReturn;
-	}
-
-	
 
 	_.reverseArray = function(arr) {
 		var newArray = [];
@@ -383,7 +351,7 @@ window.jQuery && jQuery.noConflict();
 		if(inputCalendar) {
 
 
-			var theValue = _.parseDates(inputCalendar.val()) ||  new Date();
+			var theValue = _.parseDate(inputCalendar.val()) ||  new Date();
 
 			console.log(inputCalendar.val(),theValue);
 			
@@ -481,7 +449,7 @@ window.jQuery && jQuery.noConflict();
 		//updates both input field and UI
 	frameWork.updateCalendar = function(inputCalendar,newStringValue){
 		var theUi = inputCalendar.next('.input-calendar-ui');
-		var theValue = _.parseDates(newStringValue) || inputCalendar.val();
+		var theValue = _.parseDate(newStringValue) || inputCalendar.val();
 
 		if(theUi.length > -1) {
 			inputCalendar.val(theValue);
