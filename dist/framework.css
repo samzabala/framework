@@ -629,6 +629,15 @@ big {
 .fill-neutral-toggle.active,
 .fill-neutral-toggle.open {
   fill: #8d8d8d!important; }
+.fill-info,
+.fill-info-hover:hover:not(.open):not(.active),
+.fill-info-focus:focus:not(.open):not(.active),
+.fill-info-active:active:not(.open):not(.active),
+.fill-info-focus.focus,
+.fill-info-active.active,
+.fill-info-toggle.active,
+.fill-info-toggle.open {
+  fill: #6c92c5!important; }
 .fill-success,
 .fill-success-hover:hover:not(.open):not(.active),
 .fill-success-focus:focus:not(.open):not(.active),
@@ -791,6 +800,15 @@ big {
 .stroke-neutral-toggle.active,
 .stroke-neutral-toggle.open {
   stroke: #8d8d8d!important; }
+.stroke-info,
+.stroke-info-hover:hover:not(.open):not(.active),
+.stroke-info-focus:focus:not(.open):not(.active),
+.stroke-info-active:active:not(.open):not(.active),
+.stroke-info-focus.focus,
+.stroke-info-active.active,
+.stroke-info-toggle.active,
+.stroke-info-toggle.open {
+  stroke: #6c92c5!important; }
 .stroke-success,
 .stroke-success-hover:hover:not(.open):not(.active),
 .stroke-success-focus:focus:not(.open):not(.active),
@@ -946,6 +964,8 @@ table {
     background-color: rgba(23, 190, 187, 0.2); }
   .table-row-neutral {
     background-color: rgba(141, 141, 141, 0.2); }
+  .table-row-info {
+    background-color: rgba(108, 146, 197, 0.2); }
   .table-row-success {
     background-color: rgba(21, 184, 0, 0.2); }
   .table-row-caution {
@@ -4446,6 +4466,19 @@ table {
   border-color: #8d8d8d !important; }
   .input-group .input.input-neutral, .input-group .input-wrapper-neutral .input, .input-wrapper-neutral .input-group .input, .input-group .input.input-neutral:focus, .input-group .input-wrapper-neutral .input:focus, .input-wrapper-neutral .input-group .input:focus, .input-group .focus.input.input-neutral, .input-group .input-wrapper-neutral .focus.input, .input-wrapper-neutral .input-group .focus.input {
     border-color: transparent !important; }
+.input-label.input-label-info,
+.input-wrapper-info .input-label, .input-label.input-label-info:focus,
+.input-wrapper-info .input-label:focus, .focus.input-label.input-label-info,
+.input-wrapper-info .focus.input-label {
+  color: #6c92c5 !important; }
+.input.input-info:not(:focus):not(.focus), .input-wrapper-info .input:not(:focus):not(.focus) {
+  color: #6c92c5 !important;
+  box-shadow: 0px 3px 10px -6px #6c92c5 !important;
+  background-color: rgba(108, 146, 197, 0.05); }
+.input.input-info, .input-wrapper-info .input, .input.input-info:focus, .input-wrapper-info .input:focus, .focus.input.input-info, .input-wrapper-info .focus.input {
+  border-color: #6c92c5 !important; }
+  .input-group .input.input-info, .input-group .input-wrapper-info .input, .input-wrapper-info .input-group .input, .input-group .input.input-info:focus, .input-group .input-wrapper-info .input:focus, .input-wrapper-info .input-group .input:focus, .input-group .focus.input.input-info, .input-group .input-wrapper-info .focus.input, .input-wrapper-info .input-group .focus.input {
+    border-color: transparent !important; }
 .input-label.input-label-success,
 .input-wrapper-success .input-label, .input-label.input-label-success:focus,
 .input-wrapper-success .input-label:focus, .focus.input-label.input-label-success,
@@ -4907,6 +4940,17 @@ CUSTOM STYLES FOR TRUMBOWYG
 .background-neutral-toggle.active,
 .background-neutral-toggle.open {
   background-color: #8d8d8d !important; }
+.table-label-info, .progress-bar-info, .badge-info, .tag-info, .legend-info {
+  background-color: #6c92c5; }
+.background-info,
+.background-info-hover:hover:not(.open):not(.active),
+.background-info-focus:focus:not(.open):not(.active),
+.background-info-active:active:not(.open):not(.active),
+.background-info-focus.focus,
+.background-info-active.active,
+.background-info-toggle.active,
+.background-info-toggle.open {
+  background-color: #6c92c5 !important; }
 .table-label-success, .progress-bar-success, .badge-success, .tag-success, .legend-success {
   background-color: #15b800; }
 .background-success,
@@ -5268,6 +5312,15 @@ CUSTOM STYLES FOR TRUMBOWYG
   .color-neutral-toggle.active,
   .color-neutral-toggle.open {
     color: #8d8d8d !important; }
+  .color-info,
+  .color-info-hover:hover:not(.open):not(.active),
+  .color-info-focus:focus:not(.open):not(.active),
+  .color-info-active:active:not(.open):not(.active),
+  .color-info-focus.focus,
+  .color-info-active.active,
+  .color-info-toggle.active,
+  .color-info-toggle.open {
+    color: #6c92c5 !important; }
   .color-success,
   .color-success-hover:hover:not(.open):not(.active),
   .color-success-focus:focus:not(.open):not(.active),

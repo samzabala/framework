@@ -31,6 +31,10 @@
 			$brand-color-accent-light: lighten($brand-color-accent,10) !default;
 			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
 
+		$brand-color-info: #6c92c5!default;
+			$brand-color-neutral-light:lighten($brand-color-info,10) !default;
+			$brand-color-neutral-dark: darken($brand-color-info,10) !default;
+
 		$brand-color-success: #15b800 !default;
 			$brand-color-success-light:lighten($brand-color-success,10) !default;
 			$brand-color-success-dark: darken($brand-color-success,10) !default;
