@@ -27,6 +27,17 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/dist/framework.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/framework.min.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/dist/framework.plugged.min.js": {
 		"bF": 0,
 		"ft": 64,
@@ -1896,7 +1907,7 @@
 "projectAttributes": {
 	"creationDate": 597863011.85669196,
 	"displayValue": "framework",
-	"displayValueWasSetByUser": 1,
+	"displayValueWasSetByUser": 0,
 	"iconImageName": "brackets_gray",
 	"iconImageWasSetByUser": 0
 	},

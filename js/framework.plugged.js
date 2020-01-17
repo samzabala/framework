@@ -214,7 +214,6 @@ window.jQuery && jQuery.noConflict();
 	_.fns_on_resize = [];
 	_.fns_on_rightAway = [];
 
-
 	frameWork.validateBr = function(breakpoint,mode) {
 		mode = mode || 'below'; //below,within,above
 		var currIndex = _.br_arr.indexOf(breakpoint);
