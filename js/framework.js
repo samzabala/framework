@@ -923,17 +923,11 @@ window.jQuery && jQuery.noConflict();
 	frameWork.docReady(function(){
 		frameWork.settings.lazyLoad && frameWork.loadImages();
 
-<<<<<<< HEAD
 
 
 		_.fns_on_ready.forEach(function(fn){
 			fn();
 		});
-=======
-		_.fns_on_ready.forEach(function(fn){	
-			fn();	
-		})
->>>>>>> 07849c47fab698999f4b6f7c2a3c7806b8628e52
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="accordion"]',function(e){
 			e.preventDefault();
