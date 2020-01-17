@@ -58,6 +58,10 @@ window.jQuery && jQuery.noConflict();
 	
 	
 
+	// For convenience...
+	Date.prototype.format = function (mask, utc) {
+		return dateFormat(this, mask, utc);
+	};
 
 	String.prototype.getFileExtension = function() {
 		return this.split('.').pop();
@@ -70,6 +74,36 @@ window.jQuery && jQuery.noConflict();
 			return index == 0 ? word.toLowerCase() : word.toUpperCase();
 		}).replace(/-|\s/g, '');
 
+	}
+	
+	_.parseDate = function(date) {
+
+		if (date instanceof Date && !isNaN(date.valueOf())) {  // d.valueOf() could also work
+			return new Date(date);
+		} else {
+			return false;
+		}
+	}
+
+	//dates shit
+	_.formatDate = function(date) {
+		var d = _.parseDate(date);
+
+		if(d){
+
+			month = '' + (d.getMonth() + 1),
+			day = '' + d.getDate(),
+			year = d.getFullYear();
+	
+			if (month.length < 2) 
+				month = '0' + month;
+			if (day.length < 2) 
+				day = '0' + day;
+		
+			return [year, month, day].join('-');
+		}else{
+			return false;
+		}
 	}
 
 	_.reverseArray = function(arr) {
@@ -136,17 +170,17 @@ window.jQuery && jQuery.noConflict();
 				
 			}else if (toggleMode == 'alert-close'){
 
-				if(clicked.parent().closest('.alert').length > 0) {
+				if(clicked.parent().closest('.alert').length > -1) {
 					return clicked.closest('.alert');
 				}
 
-			}else if( clicked.next(selector).first().length > 0 ){
+			}else if( clicked.next(selector).first().length > -1){
 				return clicked.next(selector).first();
 
-			}else if( clicked.siblings(selector).first().length > 0 ){
+			}else if( clicked.siblings(selector).first().length > -1){
 				return clicked.siblings(selector).first();
 
-			}else if(clicked.parent().closest('[data-toggle="'+toggleMode+'"]').length){
+			}else if(clicked.parent().closest('[data-toggle="'+toggleMode+'"]').length > -1){
 				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
 			}else{
 
@@ -175,8 +209,8 @@ window.jQuery && jQuery.noConflict();
 
 	_.br_mobile_max = parseFloat( getComputedStyle(document.documentElement).getPropertyValue('--mobile-br-max') ) || 'sm';
 
-	_.functions_on_load = [];
-	_.functions_on_resize = [];
+	_.fns_on_load = [];
+	_.fns_on_resize = [];
 
 
 	frameWork.validateBr = function(breakpoint,mode) {
@@ -310,6 +344,117 @@ window.jQuery && jQuery.noConflict();
 			renderProps(moduleChild,availablePropertiesChildren);
 		});
 		
+	}
+
+	frameWork.initCalendar = function(inputCalendar){
+		console.log('sup chonky boi');
+
+		if(inputCalendar) {
+
+
+			var theValue = _.parseDate(inputCalendar.val()) ||  new Date();
+
+			console.log(inputCalendar.val(),theValue);
+			
+			
+				
+			var arr =  {
+				class: inputCalendar.attr('class'),
+				addBrowse:  inputCalendar.data('calendar-add-nav'), //arrow arrow
+				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
+				dayLength: inputCalendar.data('calendar-day-length'),
+				disabledDates: inputCalendar.data('calendar-disabled-dates'),
+				min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
+				max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
+	
+	
+				multiple: inputCalendar.data('calendar-multiple') || false,
+			};
+	
+			var defaults = {
+				class: '',
+				showDay: false, // dayday
+				addBrowse: false, //arrow arrow
+				startDay: 'su', // su,mo,tu,we,th,fr,sa,
+				dayLength: 3,
+				displayTitle : true,
+				disabledDates: '',
+	
+	
+				multiple: inputCalendar.data('calendar-multiple') || false,
+				returnFormat: inputCalendar.data('calendar-return-format') || 'dd/mm/yy',
+	
+			};
+			console.log(Array.isArray(theValue));
+			/*
+			console.log(_.parseDates('01/05/1995'));
+			var calendarProps = {
+				year: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getFullYear(),
+				month: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getMonth(),
+				getDisabled: _.parseDates(args.disabledDates),
+				getCurrentActive: _.parseDates(theValue)
+			}
+			*/
+			
+			var args = _.parseArgs(arr,defaults);
+
+	
+			var dayStrings = [
+				[
+					'Su',
+					'M',
+					'Tu',
+					'W',
+					'Th',
+					'F',
+					'S'
+				],
+				[
+					'Su',
+					'Mo',
+					'Tu',
+					'We',
+					'Th',
+					'Fr',
+					'Sa'
+				],
+				[
+					'Sun',
+					'Mon',
+					'Tue',
+					'Wed',
+					'Thu',
+					'Fri',
+					'Sat'
+				]
+			]
+	
+			var theUi = $('<div class="input-calendar-ui"></div>');
+	
+			inputCalendar.after(theUi);
+	
+			//clone same classes to the shitbitch
+			theUi.addClass( inputCalendar.attr('class').replace('input-calendar','') );
+	
+			//parse disable dates
+	
+	
+			if(inputCalendar.attr('disabled')){
+				theUi.addClass('input-disabled')
+			}
+
+			// console.log(args,calendarProps,calendarProps.getDisabled());
+		}
+	}
+
+		//updates both input field and UI
+	frameWork.updateCalendar = function(inputCalendar,newStringValue){
+		var theUi = inputCalendar.next('.input-calendar-ui');
+		var theValue = _.parseDate(newStringValue) || inputCalendar.val();
+
+		if(theUi.length > -1) {
+			inputCalendar.val(theValue);
+		}
 	}
 
 
@@ -500,7 +645,7 @@ window.jQuery && jQuery.noConflict();
 		frameWork.toolTip.activeTriggerer = null;
 		frameWork.toolTip.args = null;
 	}
-	_.functions_on_resize.push(frameWork.destroyToolTip);
+	_.fns_on_resize.push(frameWork.destroyToolTip);
 
 	//only use when the tooltip is finally active
 	frameWork.positionToolTip = function(posX,posY){
@@ -740,8 +885,18 @@ window.jQuery && jQuery.noConflict();
 			frameWork.initGrid($(this));
 		});
 	}
-	_.functions_on_load.push(frameWork.readyGrid);
-	_.functions_on_resize.push(frameWork.readyGrid);
+	_.fns_on_load.push(frameWork.readyGrid);
+	_.fns_on_resize.push(frameWork.readyGrid);
+
+
+
+	frameWork.readyCalendar = function(){
+
+		$('.input-calendar:not(.override-debug)').each(function(){
+			frameWork.initCalendar($(this));
+		});
+	}
+	_.fns_on_load.push(frameWork.readyCalendar);
 
 	
 	_.initTrumbo = function(selector){
@@ -765,7 +920,7 @@ window.jQuery && jQuery.noConflict();
 			}
 		})
 	}
-	_.functions_on_load.push(_.initTrumbo);
+	_.fns_on_load.push(_.initTrumbo);
 
 	
 
@@ -776,6 +931,25 @@ window.jQuery && jQuery.noConflict();
 
 	$(document).ready(function(){
 		frameWork.settings.lazyLoad && frameWork.loadImages();
+
+		$('body').on('click','a.input-calendar-ui-date',function(e){	
+			e.preventDefault();
+			var inputCalendar = $(this).closest('.input-calendar-ui').prev('.input-calendar');
+			if(inputCalendar.length > -1){
+				console.log('ha shiet')
+				frameWork.updateCalendar(inputCalendar,$(this).data('value'))
+			}
+			//if multiple
+		});
+
+
+
+		$('body').on('change','.input-calendar',function(e){	
+			e.preventDefault();
+			var inputCalendar = $(this);
+			frameWork.updateCalendar(inputCalendar);
+			//if multiple
+		});
 
 		$('body').on('click','*[data-toggle="accordion"]',function(e){	
 			e.preventDefault();
@@ -793,7 +967,12 @@ window.jQuery && jQuery.noConflict();
 
 		$('body').on('click','*[data-toggle="alert-close-all"]',function(e){	
 			e.preventDefault();
-			$('.alert').hide().remove()
+
+			$('.alert').each(function(){
+				if($(this).find('[data-toggle="alert-close"]').length > -1) {
+					$(this).hide().remove();
+				}
+			})
 		});
 
 	
@@ -822,7 +1001,7 @@ window.jQuery && jQuery.noConflict();
 					selector.removeClass('open'); 
 				}else{
 
-					if(selector.closest('li , .nav-item').length) {
+					if(selector.closest('li , .nav-item').length > -1) {
 						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
 						$(this).closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
 						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open'); 
@@ -850,7 +1029,7 @@ window.jQuery && jQuery.noConflict();
 			$(this).siblings('.btn-toggle-reset').removeClass('active');
 
 			if(
-				(!$(this).closest('.btn-group-toggle-multiple').length)
+				(!$(this).closest('.btn-group-toggle-multiple').length > -1)
 				|| ($(this).hasClass('btn-toggle-reset'))
 			){
 				$(this).siblings('.btn').removeClass('active');
@@ -906,7 +1085,7 @@ window.jQuery && jQuery.noConflict();
 	$(window).on('load',function(){
 
 
-		_.functions_on_load.forEach(function(fn){
+		_.fns_on_load.forEach(function(fn){
 			fn();
 		})
 
@@ -930,7 +1109,7 @@ window.jQuery && jQuery.noConflict();
 			clearTimeout(resizeTimerInternal)
 		
 			resizeTimerInternal = setTimeout(function() {
-				_.functions_on_resize.forEach(function(fn){
+				_.fns_on_resize.forEach(function(fn){
 					fn();
 				})
 			}, 100)
