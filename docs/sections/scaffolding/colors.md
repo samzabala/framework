@@ -22,9 +22,13 @@ The theme supports 14 colors and adds necessary variations of these colors as we
 
 	For elements worth highlighting or contrasting from the rest of the ui
 
-*	**Accent `$brand-color-accent`**
+*	**secondary `$brand-color-secondary`**
 
 	Other elements for highlighting and contrasting but not as important
+
+*	**accent `$brand-color-accent`**
+
+	For adding a little bit of pizzazzz
 	
 *Both schemes are used by [gradient and intensity](#gradient-and-intensity) palette variables by default*
 
@@ -43,10 +47,6 @@ The theme supports 14 colors and adds necessary variations of these colors as we
 
 	Fatal feedback
 
-*	**Accent `$brand-color-neutral`**
-
-	Other elements that shouldnt be hightlighted but has to be there
-
 
 ## Dependent schemes
 
@@ -54,7 +54,7 @@ These colors are dependent of custom palette [declared before them by default](.
 
 ### Gradient and Intensity
 
-| Primary by default 		| Accent by default 	|
+| Primary by default 		| secondary by default 	|
 | -- 						| -- 					|
 | `$brand-gradient-start` 	| `$brand-gradient-end` |
 | `$brand-intensity-1` 		| `$brand-intensity-5` 	|
@@ -100,7 +100,7 @@ Color and contrast palettes interchange on inverse theme by default. to see this
 ## Color tags
 These are valid color tags for all javascript arguments or data attributes
 *	`primary`
-*	`accent`
+*	`secondary`
 *	`neutral`
 *	`error`
 *	`caution`

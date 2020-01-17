@@ -613,6 +613,10 @@ $prefix: '.input';
 			resize:none;
 			max-width:100%;
 
+			&:not(:focus):not(.focus) {
+				border-color:transparent!important;
+			}
+
 			&:hover,
 			&:active,
 			&.active,
@@ -671,7 +675,7 @@ $prefix: '.input';
 						border-top-left-radius: 0!important;
 						border-bottom-left-radius: 0!important;
 
-						&,
+						&:not(:focus):not(.focus),
 						&:hover {
 							border-left-color: $input-group-separator-color !important;
 						}
@@ -699,7 +703,7 @@ $prefix: '.input';
 					border-top-right-radius: 0!important;
 					border-top-left-radius: 0!important;
 
-					&,
+					&:not(:focus):not(.focus),
 					&:hover {
 						border-top-color: $input-group-separator-color !important;
 					}
@@ -717,7 +721,7 @@ $prefix: '.input';
 					}
 
 					> #{$prefix},.btn, .trumbowyg {
-						&:nth-child(n-2) {
+						&:nth-last-child(n+2) {
 							border-top-right-radius: 0!important;
 							border-bottom-right-radius: 0!important;
 						}
@@ -728,7 +732,7 @@ $prefix: '.input';
 							border-top-left-radius: 0!important;
 							border-bottom-left-radius: 0!important;
 
-							&,
+							&:not(:focus):not(.focus),
 							&:hover {
 								border-left-color: $input-group-separator-color !important;
 							}
@@ -757,7 +761,7 @@ $prefix: '.input';
 						border-top-right-radius: 0!important;
 						border-top-left-radius: 0!important;
 		
-						&,
+						&:not(:focus):not(.focus),
 						&:hover {
 							border-top-color: $input-group-separator-color !important;
 						}
@@ -776,20 +780,20 @@ $prefix: '.input';
 
 		@at-root %for-form-label-color-#{$tag} {
 			&,&:focus,&.focus {
-				color: $color!important;
+				color: $color;
 			}
 		}
 			//label
-			@at-root #{$prefix}-label#{$prefix}-label-#{$tag},
-			#{$prefix}-wrapper-#{$tag} #{$prefix}-label {
+			@at-root #{$prefix}-label#{$prefix}-#{$tag},
+			#{$prefix}-#{$tag} #{$prefix}-label {
 				@extend %for-form-label-color-#{$tag};
 			}
 
 		@at-root %for-form-input-color-#{$tag} {
 			&:not(:focus):not(.focus) {
 		
-				color: $color!important;
-				box-shadow: $input-box-shadow-brand-basis $color!important;
+				color: $color;
+				box-shadow: $input-box-shadow-brand-basis $color;
 				
 				@if type-of($color) == color && $color != transparent {
 					background-color: rgba($color,.05);
@@ -799,17 +803,12 @@ $prefix: '.input';
 			&,
 			&:focus,
 			&.focus {
-				border-color: $color!important;
-
-				.input-group & {
-
-					border-color:transparent!important;
-				}
+				border-color: $color;
 			}
 		}
 			//inputs
 			@at-root &#{$prefix}-#{$tag},
-			#{$prefix}-wrapper-#{$tag} &  {
+			#{$prefix}-#{$tag} &  {
 				@extend %for-form-input-color-#{$tag};
 			}
 	}

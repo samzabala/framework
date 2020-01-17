@@ -12,6 +12,7 @@ This is to display a tag bitch :)
 Aside from `.tag-default`. There are other color schemes available to color the tags, add `.tag-[color-tag]`
 
 *	**`.tag-primary`**
+*	**`.tag-secondary`**
 *	**`.tag-accent`**
 *	**`.tag-neutral`**
 *	**`.tag-error`**

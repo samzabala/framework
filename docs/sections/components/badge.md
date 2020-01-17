@@ -12,6 +12,7 @@ This is to display.. a circle boi.. :)
 To color the badges, add `.badge-[color-tag]`
 
 *	**`.badge-primary`**
+*	**`.badge-secondary`**
 *	**`.badge-accent`**
 *	**`.badge-neutral`**
 *	**`.badge-error`**

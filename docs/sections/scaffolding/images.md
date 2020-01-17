@@ -74,6 +74,7 @@ These helper classes follow the same setup as [background and color helpers](../
 ###### Absolute values
 
 *   **`.['fill' or 'stroke']-primary`**
+*   **`.['fill' or 'stroke']-secondary`**
 *   **`.['fill' or 'stroke']-accent`**
 *   **`.['fill' or 'stroke']-neutral`**
 *   **`.['fill' or 'stroke']-success`**

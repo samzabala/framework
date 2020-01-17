@@ -53,9 +53,9 @@ $calculated-brand-color-declarations : (
 	// base: $brand-color-base,
 	// background: $brand-color-background,
 	primary: $brand-color-primary,
+	secondary: $brand-color-secondary,
 	accent: $brand-color-accent,
 	neutral: $brand-color-neutral,
-	info: $brand-color-info,
 	success: $brand-color-success,
 	caution: $brand-color-caution,
 	error: $brand-color-error,
@@ -66,9 +66,9 @@ $calculated-brand-color-declarations-for-helpers : (
 	base: $brand-color-base,
 	background: $brand-color-background,
 	primary: $brand-color-primary,
+	secondary: $brand-color-secondary,
 	accent: $brand-color-accent,
 	neutral: $brand-color-neutral,
-	info: $brand-color-info,
 	success: $brand-color-success,
 	caution: $brand-color-caution,
 	error: $brand-color-error,
@@ -93,6 +93,12 @@ $calculated-alert-schemes: (
         background: $alert-background-primary,
         border: $alert-border-primary,
         color: $alert-color-primary,
+    ),
+
+    secondary:(
+        background: $alert-background-secondary,
+        border: $alert-border-secondary,
+        color: $alert-color-secondary,
     ),
 
     accent:(
@@ -168,6 +174,26 @@ $calculated-btn-schemes: (
             color: $btn-color-primary,
         )
     ),
+	secondary: (
+
+        hover: (
+            background: $btn-background-secondary-hover,
+            border: $btn-border-secondary-hover,
+            color: $btn-color-secondary-hover,
+        ),
+
+        active: (
+            background: $btn-background-secondary-active,
+            border: $btn-border-secondary-active,
+            color: $btn-color-secondary-active,
+        ),
+        init: (
+            background: $btn-background-secondary,
+            border: $btn-border-secondary,
+            color: $btn-color-secondary,
+        )
+    ),
+
 	accent: (
 
         hover: (
@@ -287,6 +313,7 @@ $calculated-btn-schemes: (
 $calculated-tag-schemes-color: (
     default:$tag-default-color,
     primary:$tag-primary-color,
+    secondary:$tag-secondary-color,
     accent:$tag-accent-color,
     neutral:$tag-neutral-color,
     success:$tag-success-color,
