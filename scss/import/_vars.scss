@@ -23,12 +23,16 @@
 			$brand-color-neutral-light:lighten($brand-color-neutral,10) !default;
 			$brand-color-neutral-dark: darken($brand-color-neutral,10) !default;
 		
-		$brand-color-primary: #235789 !default;
+		$brand-color-primary: #007ece !default;
 			$brand-color-primary-light:lighten($brand-color-primary,10) !default;
 			$brand-color-primary-dark: darken($brand-color-primary,10) !default;
 		
-		$brand-color-accent: #17BEBB !default;
-			$brand-color-accent-light: lighten($brand-color-accent,10) !default;
+		$brand-color-secondary: #ff009c !default;
+			$brand-color-secondary-light: lighten($brand-color-secondary,10) !default;
+			$brand-color-secondary-dark: darken($brand-color-secondary,10) !default;
+
+		$brand-color-accent: #f5b83d!default;
+			$brand-color-accent-light:lighten($brand-color-accent,10) !default;
 			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
 
 		$brand-color-success: #15b800 !default;
@@ -44,15 +48,15 @@
 			$brand-color-error-dark: darken($brand-color-error,10) !default;
 
 
-		$brand-color-intensity-1: $brand-color-primary !default;
-		$brand-color-intensity-5: $brand-color-accent !default;
+		$brand-color-intensity-1: $brand-color-accent !default;
+		$brand-color-intensity-5: $brand-color-secondary !default;
 
 			$brand-color-intensity-2: mix($brand-color-intensity-1,$brand-color-intensity-5,75%) !default;
 			$brand-color-intensity-3: mix($brand-color-intensity-1,$brand-color-intensity-5,50%) !default;
 			$brand-color-intensity-4: mix($brand-color-intensity-1,$brand-color-intensity-5,25%) !default;
 
 		$brand-gradient-start: $brand-color-primary !default;
-		$brand-gradient-end: $brand-color-accent !default;
+		$brand-gradient-end: $brand-color-secondary !default;
 
 	// FONT
 		$brand-font-primary: "Roboto",Helvetica,Arial,sans-serif !default;
@@ -131,7 +135,7 @@
 		$body-size-h6: 12px !default;
 
 		$body-anchor-color: $brand-color-primary !default;
-		$body-anchor-color-hover: $brand-color-accent !default;
+		$body-anchor-color-hover: $brand-color-secondary !default;
 
 		$body-list-bullet-size: 6px !default;
 		$body-list-bullet-color: $brand-color-primary !default;
@@ -297,31 +301,35 @@
 		$alert-border-radius: $border-radius-small !default;
 
 			//schemes
-			$alert-border-default: rgba($brand-color-neutral,.5) !default;
+			$alert-border-default: transparent !default;
 			$alert-background-default: rgba($brand-color-neutral,.1) !default;
 			$alert-color-default: inherit !default;
 
-			$alert-border-primary: $brand-color-primary !default;
+			$alert-border-primary: transparent !default;
 			$alert-background-primary: $brand-color-primary-light !default;
 			$alert-color-primary: darken($brand-color-primary-dark,15) !default;
 
-			$alert-border-accent: $brand-color-accent !default;
+			$alert-border-secondary: transparent !default;
+			$alert-background-secondary: $brand-color-secondary-light !default;
+			$alert-color-secondary: darken($brand-color-secondary-dark,12) !default;
+
+			$alert-border-accent: transparent !default;
 			$alert-background-accent: $brand-color-accent-light !default;
 			$alert-color-accent: darken($brand-color-accent-dark,12) !default;
 
-			$alert-border-neutral: $brand-color-neutral !default;
+			$alert-border-neutral: transparent !default;
 			$alert-background-neutral: $brand-color-neutral-light !default;
 			$alert-color-neutral: darken($brand-color-neutral-dark,12) !default;
 
-			$alert-border-success: $brand-color-success !default;
+			$alert-border-success: transparent !default;
 			$alert-background-success: $brand-color-success-light !default;
 			$alert-color-success: darken($brand-color-success-dark,10) !default;
 
-			$alert-border-caution: $brand-color-caution !default;
+			$alert-border-caution: transparent !default;
 			$alert-background-caution: $brand-color-caution-light !default;
 			$alert-color-caution: darken($brand-color-caution-dark,12) !default;
 
-			$alert-border-error: $brand-color-error !default;
+			$alert-border-error: transparent !default;
 			$alert-background-error: $brand-color-error-light !default;
 			$alert-color-error: darken($brand-color-error-dark,15) !default;
 	
@@ -460,6 +468,18 @@
 		$tag-gutter-x: 20px !default;
 		$tag-border-radius: $border-radius-small !default;
 
+		$tag-default-color: $tag-color !default;
+		$tag-default-background: $brand-color-base !default;
+
+
+		$tag-primary-color: $tag-color !default;
+		$tag-secondary-color: $tag-color !default;
+		$tag-accent-color: $tag-color !default;
+		$tag-neutral-color: $tag-color !default;
+		$tag-success-color: $tag-color !default;
+		$tag-caution-color: $tag-color !default;
+		$tag-error-color: $tag-color !default;
+
 
 	// input
 
@@ -597,6 +617,17 @@
 				$btn-background-primary-active: $brand-color-primary-dark !default;
 				$btn-color-primary-active: $brand-color-background !default;
 
+			$btn-border-secondary: transparent !default;
+			$btn-background-secondary: $brand-color-secondary !default;
+			$btn-color-secondary: $brand-color-background !default;
+
+				$btn-border-secondary-hover: transparent !default;
+				$btn-background-secondary-hover: $brand-color-secondary-light !default;
+				$btn-color-secondary-hover: $brand-color-background !default;
+				
+				$btn-border-secondary-active: transparent !default;
+				$btn-background-secondary-active: $brand-color-secondary-dark !default;
+				$btn-color-secondary-active: $brand-color-background !default;
 
 			$btn-border-accent: transparent !default;
 			$btn-background-accent: $brand-color-accent !default;
@@ -686,8 +717,8 @@
 			$color-base-alt: $brand-color-base-alt;
 		$color-primary: $brand-color-primary;
 			$color-primary-alt:$brand-color-primary-dark;
-		$color-accent: $brand-color-accent;
-			$color-accent-alt: $brand-color-accent-dark;
+		$color-accent: $brand-color-secondary;
+			$color-accent-alt: $brand-color-secondary-dark;
 
 		$white: $brand-color-background;
 			$white-alt: $brand-color-background-alt;
@@ -732,9 +763,13 @@
 			// --brand-color-primary-light: #{$brand-color-primary-light};
 			// --brand-color-primary-dark: #{$brand-color-primary-dark};
 		
+		--brand-color-secondary: #{$brand-color-secondary};
+			// --brand-color-secondary-light: #{$brand-color-secondary-light};
+			// --brand-color-secondary-dark: #{$brand-color-secondary-dark};
+		
 		--brand-color-accent: #{$brand-color-accent};
-			// --brand-color-accent-light: #{$brand-color-accent-light};
-			// --brand-color-accent-dark: #{$brand-color-accent-dark};
+		// --brand-color-accent-light: #{$brand-color-accent-light};
+		// --brand-color-accent-dark: #{$brand-color-accent-dark};
 
 		--brand-color-success: #{$brand-color-success};
 			// --brand-color-success-light: #{$brand-color-success-light};

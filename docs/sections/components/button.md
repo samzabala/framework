@@ -23,6 +23,7 @@ Other styles are available in the framework aside from `.btn-default`
 To color the butts, add `.btn-[color-tag]`
 
 *	**`.btn-primary`**
+*	**`.btn-secondary`**
 *	**`.btn-accent`**
 *	**`.btn-neutral`**
 *	**`.btn-error`**
@@ -36,6 +37,7 @@ To style a button like it's a basic link (but it's not hihihi) use **`.btn-link`
 ```html
 <button type="button" class="btn btn-default">Default</button>
 <button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">secondary</button>
 <button type="button" class="btn btn-accent">accent</button>
 <button type="button" class="btn btn-neutral">neutral</button>
 <button type="button" class="btn btn-success">Success</button>
@@ -217,6 +219,7 @@ Styles the button as disabled and also prevents it from doing shit
 
 <a href="#" class="btn btn-disabled btn-default">Default</a>
 <a href="#" class="btn btn-disabled btn-primary">Primary</a>
+<a href="#" class="btn btn-disabled btn-secondary">secondary</a>
 <a href="#" class="btn btn-disabled btn-accent">accent</a>
 <a href="#" class="btn btn-disabled btn-neutral">neutral</a>
 <a href="#" class="btn btn-disabled btn-success">Success</a>
@@ -234,7 +237,7 @@ The whole group... DISABLED
 <button class="btn-group btn-group-horizontal btn-disabled">
 	<span class="btn btn-default">Default</span>
 	<span class="btn btn-primary">Primary</span>
-	<span class="btn btn-accent">accent</span>
+	<span class="btn btn-secondary">secondary</span>
 </button>
 ```
 ![](../../images/btn-group-disabled.png)
@@ -266,6 +269,7 @@ Individually
 ```html
 <button type="button" class="btn btn-small btn-default">Default</button>
 <button type="button" class="btn btn-small btn-primary">Primary</button>
+<button type="button" class="btn btn-small btn-secondary">secondary</button>
 <button type="button" class="btn btn-small btn-accent">accent</button>
 <button type="button" class="btn btn-small btn-neutral">neutral</button>
 <button type="button" class="btn btn-small btn-success">Success</button>
@@ -283,6 +287,7 @@ Add this class to make ya boi chonky
 ```html
 <button type="button" class="btn btn-large btn-default">Default</button>
 <button type="button" class="btn btn-large btn-primary">Primary</button>
+<button type="button" class="btn btn-large btn-secondary">secondary</button>
 <button type="button" class="btn btn-large btn-accent">accent</button>
 <button type="button" class="btn btn-large btn-neutral">neutral</button>
 <button type="button" class="btn btn-large btn-success">Success</button>

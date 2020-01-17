@@ -14,6 +14,7 @@ A bitch that shows progress using **.progress** and  **.progress-bar**
 To color the progress, add `.progress-bar-[color-tag]` to `.progress-bar`
 
 *	**`.progress-bar-primary`**
+*	**`.progress-bar-secondary`**
 *	**`.progress-bar-accent`**
 *	**`.progress-bar-neutral`**
 *	**`.progress-bar-error`**
@@ -37,7 +38,11 @@ To color the progress, add `.progress-bar-[color-tag]` to `.progress-bar`
 </div>
 <br>
 <div class="progress">
-	<div class="progress-bar progress-bar-accent" style="width: 60%;"></div>
+	<div class="progress-bar progress-bar-secondary" style="width: 60%;"></div>
+</div>
+<br>
+<div class="progress">
+	<div class="progress-bar progress-bar-accent" style="width: 26%;"></div>
 </div>
 <br>
 <div class="progress">
