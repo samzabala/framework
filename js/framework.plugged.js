@@ -234,6 +234,7 @@ window.jQuery && jQuery.noConflict();
 	_.palette = [
 		'base',
 		'primary',
+		'secondary',
 		'accent',
 		'neutral',
 		'error',
