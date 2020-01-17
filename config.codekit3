@@ -71,6 +71,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/docs/images/alert.png": {
+		"ft": 32768,
+		"iS": 28820,
+		"oA": 0,
+		"oAP": "/docs/images/alert.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/badge.png": {
 		"ft": 32768,
 		"iS": 134287,
@@ -1896,7 +1907,7 @@
 "projectAttributes": {
 	"creationDate": 597863011.85669196,
 	"displayValue": "framework",
-	"displayValueWasSetByUser": 0,
+	"displayValueWasSetByUser": 1,
 	"iconImageName": "brackets_gray",
 	"iconImageWasSetByUser": 0
 	},
