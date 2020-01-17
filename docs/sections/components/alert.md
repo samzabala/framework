@@ -18,6 +18,7 @@ Other styles are available in the framework aside from `.alert-default`
 These are valid color classes for your boi
 
 *	`.alert-primary`
+*	`.alert-secondary`
 *	`.alert-accent`
 *	`.alert-neutral`
 *	`.alert-error`

@@ -179,6 +179,7 @@ This styles an input field as a field for multiple line input.... uuhhhhhh yea
 | `url` | no |
 | `list` | yes.. jk NO |
 
+
 ### **`.input-inline`**
 
 For inline shit or fields that dont necessarily accept text looking input like radio, checkbox, sliders and stuff
@@ -218,6 +219,47 @@ For inline shit or fields that dont necessarily accept text looking input like r
 | `url` | if you want it ugly-ish, sure |
 | `list` | no |
 
+### Custom UI
+
+#### **`.input-calendar`**
+
+For date input except it fancy
+
+
+
+##### Support
+
+###### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | yes |
+| `select` | no |
+| `textarea` | i guess??? but pls don't |
+| `datalist` | no |
+
+######  Input tags
+
+| `input[type*]` 	| do it support? |
+| -- | -- |
+|`submit`, `reset`,`button` |  NOPE |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure |
+| `email` | if you want it ugly-ish, sure |
+| `file` | if you want it ugly-ish, sure |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | yis |
+| `number` | if you want it ugly-ish, sure |
+| `password` | if you want it ugly-ish, sure |
+| `radio` | yes |
+| `range` | yes |
+| `search` | if you want it ugly-ish, sure |
+| `tel` | if you want it ugly-ish, sure |
+| `text` | if you want it ugly-ish, sure |
+| `url` | if you want it ugly-ish, sure |
+| `list` | no |
+
 
 ### Input templates
 
@@ -229,7 +271,7 @@ For inline shit or fields that dont necessarily accept text looking input like r
 
 <input class="input input-single-line" type="color" name="">
 
-<input class="input input-single-line" type="date" name="">
+<input class="input input-calendar" type="date" name="">
 
 <input class="input input-single-line" type="datetime-local" name="">
 
@@ -341,7 +383,7 @@ NOTE this only works best for `.input-single-line` and or `.input-select` fields
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line input-accent" >
+	<select class="input input-single-line input-secondary" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -506,38 +548,16 @@ To set the wrapper to a full width block, add **`.input-wrapper-block`**
 ## Input colors
 
 To add feedback color the `.input`, add `.input-[color-tag]`.
+To add feedback color the `.input-label`, add `.input-[color-tag]`.
+Adding the color class on `.input-group` or `.input-wrapper` styles both the `.input-label` and `.input` within it
 
 *	**`.input-primary`**
+*	**`.input-secondary`**
 *	**`.input-accent`**
 *	**`.input-neutral`**
 *	**`.input-error`**
 *	**`.input-caution`**
 *	**`.input-success`**
-
-## Label colors
-
-To add feedback color the `.input-label`, add `.input-[color-tag]`.
-
-*	**`.label-primary`**
-*	**`.label-accent`**
-*	**`.label-neutral`**
-*	**`.label-error`**
-*	**`.label-caution`**
-*	**`.label-success`**
-
-
-
-## Input wrapper colors
-
-Adding the color class on `.input-group` styles both the `.input-label` and `.input` within it
-
-*	**`.input-wrapper-primary`**
-*	**`.input-wrapper-accent`**
-*	**`.input-wrapper-neutral`**
-*	**`.input-wrapper-error`**
-*	**`.input-wrapper-caution`**
-*	**`.input-wrapper-success`**
-
 
 ### Input color support
 
