@@ -76,8 +76,10 @@ window.jQuery && jQuery.noConflict();
 
 	}
 	
+	//make it objoct
 	_.parseDate = function(date) {
 
+		console.log(date);
 		if (date instanceof Date && !isNaN(date.valueOf())) {  // d.valueOf() could also work
 			return new Date(date);
 		} else {
@@ -85,9 +87,11 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	//dates shit
+	//make it ready for input of datata
 	_.formatDate = function(date) {
 		var d = _.parseDate(date);
+
+		console.log('date to format:',date,d);
 
 		if(d){
 
@@ -361,44 +365,32 @@ window.jQuery && jQuery.noConflict();
 				
 			var arr =  {
 				class: inputCalendar.attr('class'),
-				addBrowse:  inputCalendar.data('calendar-add-nav'), //arrow arrow
 				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
 				dayLength: inputCalendar.data('calendar-day-length'),
-				disabledDates: inputCalendar.data('calendar-disabled-dates'),
 				min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
 				max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
-	
-	
-				multiple: inputCalendar.data('calendar-multiple') || false,
+				textInput : inputCalendar.data('text-input')
 			};
 	
 			var defaults = {
 				class: '',
-				showDay: false, // dayday
-				addBrowse: false, //arrow arrow
 				startDay: 'su', // su,mo,tu,we,th,fr,sa,
 				dayLength: 3,
-				displayTitle : true,
-				disabledDates: '',
-	
-	
-				multiple: inputCalendar.data('calendar-multiple') || false,
-				returnFormat: inputCalendar.data('calendar-return-format') || 'dd/mm/yy',
-	
+				min: null,
+				max:null,
+				textInput:false
 			};
-			console.log(Array.isArray(theValue));
-			/*
-			console.log(_.parseDates('01/05/1995'));
+
+			
 			var calendarProps = {
-				year: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getFullYear(),
-				month: Array.isArray(theValue) ? theValue[ theValue.length ] : _.parseDate(theValue).getMonth(),
-				getDisabled: _.parseDates(args.disabledDates),
-				getCurrentActive: _.parseDates(theValue)
+				year: _.parseDate(theValue).getFullYear(),
+				month: _.parseDate(theValue).getMonth(),
+				getCurrentActive: _.parseDate(theValue)
 			}
-			*/
 			
 			var args = _.parseArgs(arr,defaults);
 
+			console.log(calendarProps);
 	
 			var dayStrings = [
 				[
@@ -449,12 +441,21 @@ window.jQuery && jQuery.noConflict();
 	}
 
 		//updates both input field and UI
-	frameWork.updateCalendar = function(inputCalendar,newStringValue){
+	frameWork.updateCalendar = function(inputCalendar,newValue){
 		var theUi = inputCalendar.next('.input-calendar-ui');
-		var theValue = _.parseDate(newStringValue) || inputCalendar.val();
+		var theValue = _.parseDate(newValue) || inputCalendar.val();
+
+
 
 		if(theUi.length > -1) {
+			//update the actual butt
 			inputCalendar.val(theValue);
+
+			console.log('the value to update: ',theValue);
+
+			//update its fake hoes
+			theUi.find('.input-calendar-ui-date').removeClass('active');
+			theUi.find('.input-calendar-ui-date[data-value='+_.formatDate(theValue)+']').addClass('active');
 		}
 	}
 
@@ -948,7 +949,6 @@ window.jQuery && jQuery.noConflict();
 			e.preventDefault();
 			var inputCalendar = $(this).closest('.input-calendar-ui').prev('.input-calendar');
 			if(inputCalendar.length > -1){
-				console.log('ha shiet')
 				frameWork.updateCalendar(inputCalendar,$(this).data('value'))
 			}
 			//if multiple

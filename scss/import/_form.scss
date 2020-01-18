@@ -308,6 +308,10 @@ $prefix: '.input';
 				padding-bottom:$calculated-input-calendar-block-gutter-y;
 			}
 
+			&-prev,&-next{
+				color:inherit;
+			}
+
 			&-prev {
 				order: -1;
 				margin-right: 1em;

@@ -4219,6 +4219,8 @@ input.input-calendar {
           justify-content: space-between;
   padding-top: 0.75em;
   padding-bottom: 0.75em; }
+.input-calendar-ui-prev, .input-calendar-ui-next {
+  color: inherit; }
 .input-calendar-ui-prev {
   -webkit-box-ordinal-group: 0;
           order: -1;
