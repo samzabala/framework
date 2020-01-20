@@ -342,13 +342,13 @@ ol.unstyled li:before, ol.inline li:before, ol.style-none li:before, ul.unstyled
 ol.inline li, ul.inline li {
   display: inline-block;
   margin: 0 1em; }
-ol li, ul li {
+li {
   list-style: none;
   position: relative; }
-  ol li:before, ul li:before {
+  li:before {
     position: absolute;
     right: 100%; }
-    .alert ol li:before, .alert ul li:before {
+    .alert li:before {
       color: inherit;
       opacity: .5; }
 li ol, li ul {
@@ -4244,6 +4244,9 @@ input.input-calendar {
     color: #8d8d8d; }
 .input-calendar-ui-dates {
   margin-bottom: 0.375em; }
+@media (max-width: 1200px) {
+  .input-calendar-ui-block {
+    padding: 0.5em 0.25em; } }
 .input-select, .input-single-line, .input-multiple-line, .input-calendar-ui, .input-editor, .fw-trumbowyg-editor, .fw-trumbowyg-textarea, .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -367,7 +367,7 @@ ol,ul{
 		}
 	}
 
-	li {
+	@at-root li {
 		list-style: none;
 		position: relative;
 		// margin-bottom: em(20px / $content-font-size);

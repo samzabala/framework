@@ -552,7 +552,9 @@
 				$input-calendar-gap: 2px;
 
 				$input-calendar-block-gutter-x: .5em !default;
-				$input-calendar-block-gutter-y: .75em !default;
+					$input-calendar-block-gutter-x-mobile: .25em !default;
+					$input-calendar-block-gutter-y: .75em !default;
+						$input-calendar-block-gutter-y-mobile: .5em !default;
 				$input-calendar-block-border-radius: $border-radius-base !default;
 
 				$input-calendar-date-hover-color: inherit !default;

@@ -447,6 +447,7 @@ window.jQuery && jQuery.noConflict();
 		
 		document.documentElement.classList.add('lazy-initialized');
 	}
+	frameWork.settings.lazyLoad && _.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.toolTip = {};
 
@@ -921,7 +922,7 @@ window.jQuery && jQuery.noConflict();
 	});
 
 	frameWork.docReady(function(){
-		frameWork.settings.lazyLoad && frameWork.loadImages();
+		
 
 
 

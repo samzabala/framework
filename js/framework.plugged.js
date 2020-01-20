@@ -75,11 +75,13 @@ window.jQuery && jQuery.noConflict();
 		}).replace(/-|\s/g, '');
 
 	}
+
+	//always passing script
 	
 	//make it objoct
-	_.parseDate = function(date) {
+	_.dateToObj = function(date) {
 
-		console.log(date);
+		console.warn('date to parse',date);
 		if (date instanceof Date && !isNaN(date.valueOf())) {  // d.valueOf() could also work
 			return new Date(date);
 		} else {
@@ -87,11 +89,16 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	//make it ready for input of datata
-	_.formatDate = function(date) {
-		var d = _.parseDate(date);
+	//make it human readable
+	_.dateToHuman = function(date,format){
 
-		console.log('date to format:',date,d);
+	}
+
+	//make it ready for input value of datata
+	_.dateToVal = function(date) {
+		var d = _.dateToObj(date);
+
+		console.warn('date to format:',date,d);
 
 		if(d){
 
@@ -357,7 +364,7 @@ window.jQuery && jQuery.noConflict();
 		if(inputCalendar) {
 
 
-			var theValue = _.parseDate(inputCalendar.val()) ||  new Date();
+			var theValue = _.dateToObj(inputCalendar.val()) ||  new Date();
 
 			console.log(inputCalendar.val(),theValue);
 			
@@ -366,7 +373,6 @@ window.jQuery && jQuery.noConflict();
 			var arr =  {
 				class: inputCalendar.attr('class'),
 				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
-				dayLength: inputCalendar.data('calendar-day-length'),
 				min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
 				max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
 				textInput : inputCalendar.data('text-input')
@@ -383,44 +389,15 @@ window.jQuery && jQuery.noConflict();
 
 			
 			var calendarProps = {
-				year: _.parseDate(theValue).getFullYear(),
-				month: _.parseDate(theValue).getMonth(),
-				getCurrentActive: _.parseDate(theValue)
+				year: _.dateToObj(theValue).getFullYear(),
+				month: _.dateToObj(theValue).getMonth(),
+				getCurrentActive: _.dateToObj(theValue)
 			}
 			
 			var args = _.parseArgs(arr,defaults);
 
 			console.log(calendarProps);
-	
-			var dayStrings = [
-				[
-					'Su',
-					'M',
-					'Tu',
-					'W',
-					'Th',
-					'F',
-					'S'
-				],
-				[
-					'Su',
-					'Mo',
-					'Tu',
-					'We',
-					'Th',
-					'Fr',
-					'Sa'
-				],
-				[
-					'Sun',
-					'Mon',
-					'Tue',
-					'Wed',
-					'Thu',
-					'Fri',
-					'Sat'
-				]
-			]
+			
 	
 			var theUi = $('<div class="input-calendar-ui"></div>');
 	
@@ -443,7 +420,7 @@ window.jQuery && jQuery.noConflict();
 		//updates both input field and UI
 	frameWork.updateCalendar = function(inputCalendar,newValue){
 		var theUi = inputCalendar.next('.input-calendar-ui');
-		var theValue = _.parseDate(newValue) || inputCalendar.val();
+		var theValue = newValue || inputCalendar.val();
 
 
 
@@ -455,7 +432,7 @@ window.jQuery && jQuery.noConflict();
 
 			//update its fake hoes
 			theUi.find('.input-calendar-ui-date').removeClass('active');
-			theUi.find('.input-calendar-ui-date[data-value='+_.formatDate(theValue)+']').addClass('active');
+			theUi.find('.input-calendar-ui-date[data-value='+_.dateToVal(theValue)+']').addClass('active');
 		}
 	}
 
@@ -505,6 +482,8 @@ window.jQuery && jQuery.noConflict();
 		//css images
 		$('html').addClass('lazy-initialized');
 	}
+
+	frameWork.settings.lazyLoad && _.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.toolTip = {};
 
@@ -938,7 +917,6 @@ window.jQuery && jQuery.noConflict();
 	})
 
 	$(document).ready(function(){
-		frameWork.settings.lazyLoad && frameWork.loadImages();
 
 
 		_.fns_on_ready.forEach(function(fn){

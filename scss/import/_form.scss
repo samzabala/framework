@@ -104,6 +104,17 @@ $calculated-input-calendar-block-gutter-y: $input-calendar-block-gutter-y;
 @if internal-is-convertable($input-calendar-block-gutter-y){
 	$calculated-input-calendar-block-gutter-y: rem($input-calendar-block-gutter-y/$body-font-size);
 }
+
+$calculated-input-calendar-block-gutter-x-mobile: $input-calendar-block-gutter-x-mobile;
+@if internal-is-convertable($input-calendar-block-gutter-x-mobile){
+	$calculated-input-calendar-block-gutter-x-mobile: rem($input-calendar-block-gutter-x-mobile/$body-font-size);
+}
+
+
+$calculated-input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y-mobile;
+@if internal-is-convertable($input-calendar-block-gutter-y-mobile){
+	$calculated-input-calendar-block-gutter-y-mobile: rem($input-calendar-block-gutter-y-mobile/$body-font-size);
+}
 /*** input ***/
 
 
@@ -350,6 +361,14 @@ $prefix: '.input';
 			&-dates {
 
 				margin-bottom:$calculated-input-calendar-block-gutter-y * .5;
+			}
+		}
+
+		@include br(#{$mobile-br-max}-max) {
+			&-ui {
+				&-block {
+					padding:$calculated-input-calendar-block-gutter-y-mobile $calculated-input-calendar-block-gutter-x-mobile;
+				}
 			}
 		}
 	}
