@@ -100,15 +100,27 @@ window.jQuery && jQuery.noConflict();
 		return theDateObj;
 	}
 
-	_.dateFormatPresets = {
-		Basic: "MM dd, yy",
-		ATOM: "yy-MM-dd", // RFC 3339 (ISO 8601)
-		COOKIE: "dd M yy",
-		ISO_8601: "yy-MM-ddThh:mm",
-		W3C: "yy-MM-dd", // ISO 8601
+	_.datetimeFormatPresets = {
+		
+		HumanDate: {
+			template:"mm/dd/yy",
+			placeholder: "MM/DD/YYYY",
+		},
+		
+		HumanTime24: {
+			template:"HH:MM",
+			placeholder: "hh:gg",
+		},
+		
+		HumanTime12: {
+			template:"HH:MM",
+			placeholder: "HH:GG",
+		},
 
-		_ticksTo1970: ( ( ( 1970 - 1 ) * 365 + Math.floor( 1970 / 4 ) - Math.floor( 1970 / 100 ) +
-			Math.floor( 1970 / 400 ) ) * 24 * 60 * 60 * 10000000 )
+		Value: {
+			template:"yy-mm-ddThh:gg",
+			placeholder: "YYYY-MM-DD HH:MM",
+		}
 	}
 
 
@@ -121,7 +133,7 @@ window.jQuery && jQuery.noConflict();
 	//make it human readable
 	_.dateToHuman = function( dateTimeFromVal,format ) {
 		dateTimeFromVal = _.dateToObj(dateTimeFromVal);
-		format = format || _.dateFormatPresets.Basic;
+		format = format || _.datetimeFormatPresets.Value.template;
 		if ( dateTimeFromVal ) {
 
 			var iFormat;
@@ -224,20 +236,30 @@ window.jQuery && jQuery.noConflict();
 								break;
 							case "H"://12 hour but 1 digit
 								output += formatNumber(
-									"g",
+									"H",
 									(dateTimeFromVal.getHours() >= 12 ? dateTimeFromVal.getHours() - 12 : dateTimeFromVal.getHours()),
+									2
+								);
+								break;
+								
+
+								
+							case "i"://24 hour
+								output += formatNumber(
+									"i",
+									dateTimeFromVal.getMinutes(),
 									2
 								);
 								break;
 
 								
-							case "a": //min 
+							case "a": //am /pm
 								output += (
 									dateTimeFromVal.getHours() >= 12 ? 'pm' : 'am'
 								);
 								break;
 
-							case "A": //min 
+							case "A": //AM/PM 
 								output += (
 									dateTimeFromVal.getHours() >= 12 ? 'PM' : 'AM'
 								);
@@ -271,7 +293,7 @@ window.jQuery && jQuery.noConflict();
 		console.warn('date to format:',date,d);
 
 		if(d){
-			return _.dateToHuman( date,'yy-mm-dd' );
+			return _.dateToHuman( date,_.datetimeFormatPresets.Value.template );
 		}
 	}
 
@@ -562,23 +584,15 @@ window.jQuery && jQuery.noConflict();
 			console.log(calendarProps);
 			
 	
-			var theUi = $('<div class="input-calendar-ui"></div>');
-	
-			inputCalendar.after(theUi);
 	
 			//clone same classes to the shitbitch
 			theUi.addClass( inputCalendar.attr('class').replace('input-calendar','') );
 	
 			//parse disable dates
-	
-	
 			if(inputCalendar.attr('disabled')){
 				theUi.addClass('input-disabled')
 			}
-			// @TODO
-			// theUi.html(createMarkup())
-
-			//create
+			
 
 			frameWork.updateCalendar(inputCalendar,inputCalendar.val());
 
@@ -588,57 +602,62 @@ window.jQuery && jQuery.noConflict();
 
 		//updates both input field and UI
 	frameWork.updateCalendar = function(inputCalendar,newValue){
-		var theUi = inputCalendar.next('.input-calendar-ui');
-		var theValue = newValue || inputCalendar.val();
+		var theUi,
+		theValue = newValue || inputCalendar.val();
+
+
+		var defaults = {
+			class: '',
+			startDay: 'su', // su,mo,tu,we,th,fr,sa,
+			dayLength: 3,
+			min: null,
+			max:null,
+			textInput:false
+		};
+
+		
+		var calendarProps = {
+			year: _.dateToObj(theValue).getFullYear(),
+			month: _.dateToObj(theValue).getMonth(),
+			getCurrentActive: _.dateToObj(theValue)
+		}
+		
+		var args = _.parseArgs(arr,defaults);
 
 		console.log(
 			'debug\n',
 			'raw: '+theValue+'\n',
 			'val: '+_.dateToVal(theValue)+'\n',
 			'obj: '+_.dateToObj(theValue)+'\n',
-			'hooman: '+_.dateToHuman(theValue,'24: h H; 12r: g G A a')+'\n',
+			'hooman: '+_.dateToHuman(theValue,'24: h H; 12r: g G A a') + '\n'
 		);
 
-		if(theUi.length > -1) {
-
-
-			
-			
-				
-			var arr =  {
-				class: inputCalendar.attr('class'),
-				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
-				min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
-				max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
-				textInput : inputCalendar.data('text-input')
-			};
-	
-			var defaults = {
-				class: '',
-				startDay: 'su', // su,mo,tu,we,th,fr,sa,
-				dayLength: 3,
-				min: null,
-				max:null,
-				textInput:false
-			};
-
-			
-			var calendarProps = {
-				year: _.dateToObj(theValue).getFullYear(),
-				month: _.dateToObj(theValue).getMonth(),
-				getCurrentActive: _.dateToObj(theValue)
-			}
-			
-			var args = _.parseArgs(arr,defaults);
-
-
-			//update the actual butt
-			inputCalendar.val(theValue);
-
-			//update its fake hoes
-			theUi.find('.input-calendar-ui-date').removeClass('active');
-			theUi.find('.input-calendar-ui-date[data-value='+_.dateToVal(theValue)+']').addClass('active');
+		//create container
+		if(inputCalendar.next('.input-calendar-ui').length > -1){
+			theUi = inputCalendar.next('.input-calendar-ui');
+		}else{
+			theUi = $('<div class="input-calendar-ui"></div>');
+			inputCalendar.after(theUi);
 		}
+
+
+
+		var arr =  {
+			class: inputCalendar.attr('class'),
+			startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
+			min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
+			max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
+			textInput : inputCalendar.data('text-input')
+		};
+
+
+
+		//update the actual butt
+		inputCalendar.val(theValue);
+
+		//update its fake hoes
+		theUi.find('.input-calendar-ui-date').removeClass('active');
+		theUi.find('.input-calendar-ui-date[data-value='+_.dateToVal(theValue)+']').addClass('active');
 	}
 
 
@@ -1189,7 +1208,6 @@ window.jQuery && jQuery.noConflict();
 				}
 				
 				if( selector.hasClass('open') && $(this).hasClass('open') ){
-
 					// selector.slideUp(); 
 					$(this).closest('li,.nav-item').removeClass('open'); 
 					$(this).removeClass('open'); 
@@ -1197,14 +1215,14 @@ window.jQuery && jQuery.noConflict();
 				}else{
 
 					if(selector.closest('li , .nav-item').length > -1) {
-						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
+						// selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
 						$(this).closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
 						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open'); 
 					}
 
 
 					$('.dropdown').closest('li,.nav-item').removeClass('open'); 
-					$('.dropdown').slideUp();
+					// $('.dropdown').slideUp();
 					$('.dropdown').removeClass('open'); 
 					$('*[data-toggle="dropdown"]').removeClass('open'); 
 
@@ -1214,7 +1232,6 @@ window.jQuery && jQuery.noConflict();
 					selector.addClass('open'); 
 				}
 			}
-			
 		});
 
 

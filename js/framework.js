@@ -989,7 +989,7 @@ window.jQuery && jQuery.noConflict();
 
 						selectorAncestor && selectorAncestor.classList.remove('open');
 
-						frameWork.slideUp(selector);  
+						// frameWork.slideUp(selector);  
 						clicked.classList.remove('open'); 
 						selector.classList.remove('open'); 
 
@@ -1006,7 +1006,7 @@ window.jQuery && jQuery.noConflict();
 						}
 
 						document.querySelectorAll('.dropdown').forEach(function(dropdown){
-							frameWork.slideUp( dropdown );
+							// frameWork.slideUp( dropdown );
 							dropdown.classList.remove('open');
 						});
 						document.querySelectorAll('*[data-toggle="dropdown"]').forEach(function(toggler){
@@ -1014,7 +1014,7 @@ window.jQuery && jQuery.noConflict();
 						});
 
 
-						frameWork.slideDown(selector); 
+						// frameWork.slideDown(selector); 
 						clicked.classList.add('open'); 
 						selector.classList.add('open'); 
 					}
