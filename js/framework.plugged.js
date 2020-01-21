@@ -118,6 +118,11 @@ window.jQuery && jQuery.noConflict();
 		},
 
 		Value: {
+			template:"yy-mm-dd",
+			placeholder: "YYYY-MM-DD",
+		},
+
+		ValueDateTime: {
 			template:"yy-mm-ddThh:gg",
 			placeholder: "YYYY-MM-DD HH:MM",
 		}
@@ -227,20 +232,34 @@ window.jQuery && jQuery.noConflict();
 								
 
 								
-							case "h"://24 hour
+							case "h"://12 hour
+							console.log('ayaw gumana nitong ponyita',formatNumber(
+								"h",
+								(dateTimeFromVal.getHours() >= 12 ? dateTimeFromVal.getHours() - 12 : dateTimeFromVal.getHours()),
+								2
+							));
 								output += formatNumber(
 									"h",
-									dateTimeFromVal.getHours(),
-									2
-								);
-								break;
-							case "H"://12 hour but 1 digit
-								output += formatNumber(
-									"H",
 									(dateTimeFromVal.getHours() >= 12 ? dateTimeFromVal.getHours() - 12 : dateTimeFromVal.getHours()),
 									2
 								);
 								break;
+							case "H"://12 hour but 1 digit
+								output += (dateTimeFromVal.getHours() >= 12 ? dateTimeFromVal.getHours() - 12 : dateTimeFromVal.getHours());
+								break;
+
+
+								
+						case "g"://24 hour
+							output += formatNumber(
+								"g",
+								dateTimeFromVal.getHours(),
+								2
+							);
+							break;
+						case "G"://24 hour but 1 digit
+							output += dateTimeFromVal.getHours();
+							break;
 								
 
 								
@@ -550,51 +569,9 @@ window.jQuery && jQuery.noConflict();
 	frameWork.createCalendar = function(inputCalendar){
 		if(inputCalendar){
 			var theValue = inputCalendar.val();
-
-			console.log(inputCalendar.val(),theValue);
-			
-			
-				
-			var arr =  {
-				class: inputCalendar.attr('class'),
-				startDay: inputCalendar.data('calendar-start-day'), // su,mo,tu,we,th,fr,sa,
-				min: inputCalendar.data('calendar-min') || inputCalendar.attr('min'),
-				max: inputCalendar.data('calendar-max') || inputCalendar.attr('max'),
-				textInput : inputCalendar.data('text-input')
-			};
-	
-			var defaults = {
-				class: '',
-				startDay: 'su', // su,mo,tu,we,th,fr,sa,
-				dayLength: 3,
-				min: null,
-				max:null,
-				textInput:false
-			};
-
-			
-			var calendarProps = {
-				year: _.dateToObj(theValue).getFullYear(),
-				month: _.dateToObj(theValue).getMonth(),
-				getCurrentActive: _.dateToObj(theValue)
-			}
-			
-			var args = _.parseArgs(arr,defaults);
-
-			console.log(calendarProps);
-			
-	
-	
-			//clone same classes to the shitbitch
-			theUi.addClass( inputCalendar.attr('class').replace('input-calendar','') );
-	
-			//parse disable dates
-			if(inputCalendar.attr('disabled')){
-				theUi.addClass('input-disabled')
-			}
 			
 
-			frameWork.updateCalendar(inputCalendar,inputCalendar.val());
+			frameWork.updateCalendar(inputCalendar,theValue);
 
 			// console.log(args,calendarProps,calendarProps.getDisabled());
 		}
@@ -608,11 +585,12 @@ window.jQuery && jQuery.noConflict();
 
 		var defaults = {
 			class: '',
-			startDay: 'su', // su,mo,tu,we,th,fr,sa,
+			// startDay: 'su', // su,mo,tu,we,th,fr,sa,
 			dayLength: 3,
 			min: null,
 			max:null,
-			textInput:false
+			// textInput:false,
+			returnFormat: _.datetimeFormatPresets.Value.template
 		};
 
 		
@@ -629,10 +607,10 @@ window.jQuery && jQuery.noConflict();
 			'raw: '+theValue+'\n',
 			'val: '+_.dateToVal(theValue)+'\n',
 			'obj: '+_.dateToObj(theValue)+'\n',
-			'hooman: '+_.dateToHuman(theValue,'24: h H; 12r: g G A a') + '\n'
+			'hooman: '+_.dateToHuman(theValue,'24: hh H; 12r: gg G A a') + '\n'
 		);
 
-		//create container
+		//create ui container
 		if(inputCalendar.next('.input-calendar-ui').length > -1){
 			theUi = inputCalendar.next('.input-calendar-ui');
 		}else{
