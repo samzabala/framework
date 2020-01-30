@@ -614,9 +614,9 @@ Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and
 
 | Element | Support it? |
 | -- | -- |
-| `button` | yes, or just use [`.btn`](../components/button.md) |
-| `select` | yes |
-| `textarea` | yes |
+| `button` | no |
+| `select` | no |
+| `textarea` | no |
 | `datalist` | no |
 
 
@@ -642,5 +642,130 @@ Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and
 | `text` | yes |
 | `url` | yes |
 | `list` | yes |
+
+
+#Custom framework fields
+
+## Calendar
+
+
+It's an input where you have a date input type except it's fancier :')
+
+To allow the framework to generate a UI for this, add a class of `input-calendar`
+The generated UI will wrap the input field and also replicate the classes added to the input tag except `input-calendar` will now be `input-calendar-ui` to avoid clashing outfits and what not
+
+```html
+<input type="text" class="input input-calendar">
+```
+![Calendar](../../images/input-calendar.png)
+
+One a user sets the value, the it will return an ISO8601 or `yyyy-mm-dd` formattted value into the `.input-calendar`
+
+
+### Support 
+| `input[type*]` | Support it? |
+| -- | -- |
+|`submit`, `reset`,`button` | no |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | no. you either use the actual type or use something else :(((( |
+| `email` | no |
+| `file` | no |
+| `hidden` | yes |
+| `image` | no |
+| `number` | no |
+| `password` | no |
+| `radio` | no |
+| `range` | no |
+| `search` | no |
+| `tel` | no |
+| `text` | yes |
+| `url` | no |
+| `list` | no |
+
+
+### Size
+
+Like other reguler input fields, the UI also supports **`.input-large`** and  **`.input-small`**
+
+```html
+<input type="text" class="input input-calendar input-large">
+<input type="text" class="input input-calendar input-small">
+```
+![Calendar](../../images/input-calendar-size.png)
+
+### Colors
+
+Also supports [input color helpers](#input-colors)
+
+```html
+<input type="text" class="input input-calendar input-primary" value="2020-01-05" />
+<input type="text" class="input input-calendar input-secondary" value="2020-02-05" />
+<input type="text" class="input input-calendar input-accent" value="2020-03-05" />
+<input type="text" class="input input-calendar input-success" value="2020-04-05" />
+<input type="text" class="input input-calendar input-caution" value="2020-05-05" />
+<input type="text" class="input input-calendar input-error" value="2020-06-05" />
+```
+![Calendar](../../images/input-calendar-color.png)
+
+### Attributes
+
+Add these to customize ya boi further
+
+**`data-calendar-start-day`**
+
+Defaults to `0`
+
+This is the index of the day the calendar starts. meaning...
+```
+0 = Sunday
+1 = Monday
+2 = Tuesday
+3 = Wednesday
+4 = Thursday
+5 = Friday
+6 = Saturday
+```
+
+
+**`data-calendar-max`**
+
+Defaults to ``
+
+Maximum date allowed. Must be in ISO8601 format.
+
+
+**`data-calendar-min`**
+
+Defaults to ``
+
+Minimum date allowed. Must be in ISO8601 format.
+
+
+**`data-calendar-dropdown-year-span`**
+
+Defaults to `1`
+
+Number of years the heading dropdown will output
+
+`data-calendar-disabled-dates`
+
+Defaults to ``
+
+Disables specific dates or keywords that must be separated with commas. Dates must be in ISO8601 format.
+
+There also available keywords too
+
+`weekends` - disables weekends
+`past` - disables dates from the past
+
+
+**`data-calendar-text-input`**
+
+Defaults to `false`
+
+Enables a text input field to input dates along with the calendar as well
+
+#### 
 
 [Back to TOC](../../../readme.md)

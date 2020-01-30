@@ -184,6 +184,7 @@ $prefix: '.table';
 			border-radius: $table-label-border-radius;
 			display:inline-block;
 			vertical-align:middle;
+			margin: #{$table-label-offset} 0;
 
 			#{$prefix}-large & {
 				height: calc(#{ $calculated-table-cell-height-large } - (#{$table-label-offset} * 2));
@@ -227,8 +228,7 @@ $prefix: '.table';
 			&-disabled {
 				td,
 				#{$prefix}-cell {
-					opacity: $global-disabled-opacity;
-					cursor: not-allowed;
+					@extend %for-disabled;
 				}
 			}
 		}

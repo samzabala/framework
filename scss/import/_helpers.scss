@@ -1056,3 +1056,15 @@
 .cf {
 	@extend %for-cf;
 }
+
+
+
+
+@at-root %for-disabled{
+	cursor:not-allowed!important;
+	opacity: $global-disabled-opacity;
+}
+
+.disabled {
+	@extend %for-disabled;
+}
