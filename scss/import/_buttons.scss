@@ -296,18 +296,9 @@ $prefix: '.btn';
 		}
 	}
 
-
-	@at-root %for-btn {
-
-		&-disabled{
-			cursor:not-allowed!important;
-			opacity: $global-disabled-opacity;
-		}
-	}
-
 		&#{$prefix}-disabled,
 		#{$prefix}-disabled & {
-			@extend %for-btn-disabled;
+			@extend %for-disabled;
 		}
 
 	@at-root %for-btn {

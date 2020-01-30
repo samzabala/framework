@@ -301,7 +301,7 @@ em,i{
 a {
 	color: $body-anchor-color;
 	text-decoration: none;
-	transition: $transition-duration-base all $transition-timing;
+	transition: $transition-duration-base color $transition-timing;
 
 	&:hover {
 		color: $body-anchor-color-hover;
