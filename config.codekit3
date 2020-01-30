@@ -340,6 +340,39 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/docs/images/input-calendar-color.png": {
+		"ft": 32768,
+		"iS": 400906,
+		"oA": 0,
+		"oAP": "/docs/images/input-calendar-color.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/input-calendar-size.png": {
+		"ft": 32768,
+		"iS": 146040,
+		"oA": 0,
+		"oAP": "/docs/images/input-calendar-size.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/input-calendar.png": {
+		"ft": 32768,
+		"iS": 59011,
+		"oA": 0,
+		"oAP": "/docs/images/input-calendar.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/input-fieldset.png": {
 		"ft": 32768,
 		"iS": 120996,
