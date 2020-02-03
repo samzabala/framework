@@ -70,58 +70,6 @@ window.jQuery && jQuery.noConflict();
 
 	}
 
-	//make it objoct
-	_.dateToParse = function(date) {
-
-
-	
-		var yr,mo,dy,hr,mn;
-
-		var dateArr = [];
-		var timeArr = [];
-
-		if(date){
-
-			if(Object.prototype.toString.call(date) === '[object Date]'){
-
-				//make a new date out of its methods because js will think u are referring to the same date everythere and ur math becomes a hellhole... dont.. hOE
-				yr = date.getFullYear() || null;
-				mo = date.getMonth() || null;
-				dy = date.getDate() || null;
-				hr = date.getHours() || null;
-				mn = date.getMinutes() || null;
-
-
-			}else{
-
-				var dateTimeArr = date.split('T') || [];
-		
-				//date
-				if(dateTimeArr[0]){
-					dateArr = dateTimeArr[0].split('-');
-				}
-		
-				//time
-				if(dateTimeArr[1]){
-					timeArr = dateTimeArr[1].split(':');
-				}
-		
-				yr = parseInt(dateArr[0]) || null;
-				mo = parseInt((dateArr[1]) - 1) || null;
-				dy = parseInt(dateArr[2]) || null;
-				hr = parseInt(timeArr[0]) || null;
-				mn = parseInt(timeArr[1]) || null;
-			}
-
-			var toReturn = false;
-			if(Object.prototype.toString.call(new Date(yr,mo,dy,hr,mn)) == '[object Date]'){
-				toReturn = new Date(yr,mo,dy,hr,mn);
-			}
-
-			return toReturn;
-		}
-	}
-
 	_.datetimeFormatPresets = {
 		HumanDate: {
 			placeholder:"mm/dd/yyyy",
@@ -148,6 +96,66 @@ window.jQuery && jQuery.noConflict();
 		// 	pattern:"",
 		// 	template:"yy-mm-ddThh:gg"
 		// },
+	}
+
+	//make it objoct
+	_.dateToParse = function(date) {
+
+
+	
+		var yr,mo,dy,hr,mn;
+
+		var dateArr = [];
+		var timeArr = [];
+
+		if(date){
+
+			if(Object.prototype.toString.call(date) === '[object Date]'){
+
+				//make a new date out of its methods because js will think u are referring to the same date everythere and ur math becomes a hellhole... dont.. hOE
+				yr = date.getFullYear() || null;
+				mo = date.getMonth() || null;
+				dy = date.getDate() || null;
+				hr = date.getHours() || null;
+				mn = date.getMinutes() || null;
+
+
+			}else{
+
+				var pattern = new RegExp(_.datetimeFormatPresets.Value.pattern);
+
+				var isValid = pattern.test(date);
+
+				if(isValid){
+
+
+					var dateTimeArr = date.split('T') || [];
+		
+					//date
+					if(dateTimeArr[0]){
+						dateArr = dateTimeArr[0].split('-');
+					}
+			
+					//time
+					if(dateTimeArr[1]){
+						timeArr = dateTimeArr[1].split(':');
+					}
+			
+					yr = parseInt(dateArr[0]) || null;
+					mo = parseInt((dateArr[1]) - 1) || null;
+					dy = parseInt(dateArr[2]) || null;
+					hr = parseInt(timeArr[0]) || null;
+					mn = parseInt(timeArr[1]) || null;
+				}
+			}
+
+			var toReturn = false;
+			if(Object.prototype.toString.call(new Date(yr,mo,dy,hr,mn)) == '[object Date]'){
+				toReturn = new Date(yr,mo,dy,hr,mn);
+			}
+
+			return toReturn;
+		}
 	}
 
 
@@ -440,44 +448,59 @@ window.jQuery && jQuery.noConflict();
 
 
 	_.getTheToggled = function(clicked,toggleMode){
+		clicked = clicked || null;
 
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || null;
+		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
+		var toReturn = null;
 
 		if(clicked){
 			if( clicked.attr('href') ){
-				return $( clicked.attr('href') );
+				toReturn =  $( clicked.attr('href') );
 
 			}else if( clicked.attr('data-href') ){
-				return $( clicked.attr('data-href') )
+				toReturn =  $( clicked.attr('data-href') )
 				
-			}else if (toggleMode == 'alert-close'){
+			}else if(toggleMode && clicked.parent().closest('[data-toggle="'+toggleMode+'"]').length){
+				toReturn =  _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else if( clicked.next(selector).first().length){
+				toReturn =  clicked.next(selector).first();
 
-				if(clicked.parent().closest('.alert').length > -1) {
-					return clicked.closest('.alert');
-				}
+			}else if( clicked.siblings(selector).first().length){
+				toReturn =  clicked.siblings(selector).first();
 
-			}else if( clicked.next(selector).first().length > -1){
-				return clicked.next(selector).first();
-
-			}else if( clicked.siblings(selector).first().length > -1){
-				return clicked.siblings(selector).first();
-
-			}else if(clicked.parent().closest('[data-toggle="'+toggleMode+'"]').length > -1){
-				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
-			}else{
-
-				return false;
 			}
 		}else{
+			
 			if (
 				window.location.hash !== ''
-				&& $(window.location.hash)
-				&& $(window.location.hash).hasClass( toggleMode.replace('-open','').replace('-close','') )
+				&& $(window.location.hash).length > -1
+				&& $(window.location.hash).hasClass( toggledClass )
 			){
-				return $(window.location.hash)
+				toReturn =  $(window.location.hash)
 			}
 		}
+
+
+		if(!toReturn){
+
+			//look if theres an ancestor it can toggle. last prioroty
+			switch(toggleMode){
+				case 'dropdown':
+				case 'modal':
+				case 'alert-close':
+					if(clicked && toggleMode && clicked.parent().closest(toggledClass).length) {
+						toReturn = clicked.parent().closest(toggledClass);
+					}
+					break;
+
+			}
+			
+
+		}
+
+		return toReturn;
 	};
 
 	_.br_vals = {
@@ -672,12 +695,20 @@ window.jQuery && jQuery.noConflict();
 		}
 
 
+		if(
+			(checkAgainst.indexOf('future') > -1)
+			&& (d > dateNow)
+		){
+			// console.warn('value was in the future || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			toReturn = false;
+		}
+
 		//if  in range of min or max
 		if(
-			(args.max && _.dateToParse(args.max) <= d)
-			|| (args.min && d <= _.dateToParse(args.min))
+			(_.dateToParse(args.max) && _.dateToParse(args.max) < d)
+			|| (_.dateToParse(args.min) && d < _.dateToParse(args.min))
 		) {
-			// console.warn('value not in max and width || ',_.dateToVal(d));;
+			// console.warn('value not in max and width || ',_.dateToVal(d));
 			toReturn = false;
 		}
 
@@ -1403,9 +1434,9 @@ window.jQuery && jQuery.noConflict();
 
 			var args = _.parseArgs(arr,defaults);
 
-			var id = contentWrap.attr('id') || 'the-modal';
+			var id = contentWrap.attr('id') || 'fw-modal';
 
-			_.changeHash(id);
+			(id !== 'fw-modal') && _.changeHash(id);
 
 			$('body').append(function(){
 				var html = '<div id="'+id+'" class="modal-wrapper">';
@@ -1623,8 +1654,7 @@ window.jQuery && jQuery.noConflict();
 				var d = theValue[1] || '';
 	
 				var preParsedVal = y+'-'+m+'-'+d;
-
-				console.log
+				
 
 				frameWork.updateCalendar(inputCalendar,preParsedVal);
 			}
@@ -1663,13 +1693,11 @@ window.jQuery && jQuery.noConflict();
 			e.preventDefault();
 		});
 
-
 		$('body').on('click','*[data-toggle="dropdown"]',function(e){
 			e.preventDefault();
 
 			var selector =  _.getTheToggled($(this),'dropdown');
 
-			console.log(selector);
 
 			if( selector ){
 
@@ -1677,25 +1705,38 @@ window.jQuery && jQuery.noConflict();
 				if(width) {
 					selector.css('width',width);
 				}
+
 				
-				if( selector.hasClass('open') && $(this).hasClass('open') ){
+				if( selector.hasClass('open') ){
 					// selector.slideUp(); 
 					$(this).closest('li,.nav-item').removeClass('open'); 
 					$(this).removeClass('open'); 
 					selector.removeClass('open'); 
 				}else{
 
-					if(selector.closest('li , .nav-item').length > -1) {
-						// selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
-						$(this).closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
-						selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open'); 
-					}
 
 
+
+					//close all the bois
 					$('.dropdown').closest('li,.nav-item').removeClass('open'); 
+					$('.dropdown').closest('li,.nav-item').find('.dropdown').removeClass('open');
 					// $('.dropdown').slideUp();
-					$('.dropdown').not($(this).closest('.dropdown')).removeClass('open'); 
+
+					$('.dropdown').not(selector).each(function(){
+						if(!selector.closest($(this)).length) {
+							$(this).removeClass('open')
+						}
+					})
+
+
+
 					$('*[data-toggle="dropdown"]').removeClass('open'); 
+
+					// if(selector.closest('li , .nav-item').length > -1) {
+					// 	// selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
+					// 	$(this).closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
+					// 	selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open'); 
+					// }
 
 					// selector.slideDown(); 
 					$(this).closest('li,.nav-item').addClass('open'); 

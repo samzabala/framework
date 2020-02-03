@@ -15,24 +15,24 @@ $prefix-raw: str-replace($prefix,'.','');
 
 			@if $nest == true {
 
-				#{$prepend-sel}-#{$i} {
+				@at-root & > #{$prepend-sel}-#{$i} {
 					// width: ( 100% / $i );
 					@if $gap != null {
 						flex-basis: calc( #{ $col-width } - #{$gap} );
 
-						#{$prefix}-grid-fixed > & {
+						@at-root #{$prefix}-grid-fixed#{&} {
 							width: calc(#{ $col-width } - #{$gap})
 						}
 					}@else {
 						flex-basis: #{ $col-width };
 						
-						#{$prefix}-grid-fixed > & {
+						@at-root #{$prefix}-grid-fixed#{&} {
 							width: #{ $col-width }
 						}
 					}
 					
-					#{$prefix}-grid-no-gutter#{$prefix}-grid-fixed > &,
-					#{$prefix}-grid-no-gutter-x#{$prefix}-grid-fixed > & {
+					@at-root #{$prefix}-grid-no-gutter#{$prefix}-grid-fixed#{&},
+					#{$prefix}-grid-no-gutter-x#{$prefix}-grid-fixed#{&} {
 						width: #{ $col-width };
 					}
 				}

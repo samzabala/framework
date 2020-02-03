@@ -164,6 +164,7 @@ $prefix: '.module';
 	}
 
 	&-header,&-footer {
+		position:relative;
 		&-break {
 
 			@include br($mobile-br-max-polar){

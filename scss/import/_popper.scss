@@ -158,7 +158,7 @@ $prefix: '.dropdown';
 		margin-top:0;
 	}
 
-	> .active {
+	li.active {
 		color: $dropdown-active-color;
 	}
 

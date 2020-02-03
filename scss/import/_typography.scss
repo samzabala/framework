@@ -265,9 +265,9 @@ $prefix: '.special';
 		margin-bottom: $calculated-body-heading-gutter-bottom;
 		margin-top: $calculated-body-heading-gutter-top;
 
-		&:first-child {
-			margin-top:0;
-		}
+		// &:first-child {
+		// 	margin-top:0;
+		// }
 
 		.theme-inverse & {
 			color:$body-heading-color-inverse;

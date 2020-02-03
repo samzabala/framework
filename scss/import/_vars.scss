@@ -108,7 +108,7 @@
 		$body-font-size: 16px !default;
 			$body-font-size-small: 14px !default;
 			$body-font-size-large: 24px !default;
-		$body-line-height: 24px !default;
+		$body-line-height: 21px !default;
 		$body-text-gutter-y: 30px !default;
 
 
@@ -511,7 +511,7 @@
 			$input-background-inverse: none !default;
 		$input-line-height: $body-line-height !default;
 		$input-font-family: $brand-font-primary !default;
-		$input-font-weight: $body-font-weight-bold !default;
+		$input-font-weight: $body-font-weight !default;
 		$input-font-style: normal !default;
 		$input-text-transform: none !default;
 		

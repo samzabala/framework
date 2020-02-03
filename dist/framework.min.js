@@ -509,25 +509,23 @@ window.jQuery && jQuery.noConflict();
 
 	_.getTheToggled = function(clicked,toggleMode){
 
+		clicked = clicked || null;
+
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || null;
+		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
+		var toReturn = null;
 
 				
 		if(clicked) {
 			if( clicked.hasAttribute('href') ){
-				return document.querySelector( clicked.getAttribute('href') );
+				toReturn = document.querySelector( clicked.getAttribute('href') );
 
 			}else if( clicked.hasAttribute('data-href') ){
-				return document.querySelector( clicked.getAttribute('data-href') )
+				toReturn = document.querySelector( clicked.getAttribute('data-href') )
 				
-			}else if (toggleMode == 'alert-close'){
-
-				if(clicked.parentNode.closest('.alert')) {
-					return clicked.closest('.alert');
-				}
-
-			}else if (clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
-				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else if (toggleMode && clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
+				toReturn = _.getTheToggled(clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
 			}else{
 				var possibleSiblings = clicked.nextElementSibling;
 
@@ -538,18 +536,35 @@ window.jQuery && jQuery.noConflict();
 					possibleSiblings = possibleSiblings.nextElementSibling
 				}
 
-				return possibleSiblings;
+				toReturn = possibleSiblings;
 			}
 		}else{
 			
 			if (
 				window.location.hash !== ''
 				&& document.querySelector(window.location.hash)
-				&& document.querySelector(window.location.hash).classList.contains( toggleMode.replace('-open','').replace('-close','') )
+				&& document.querySelector(window.location.hash).classList.contains( toggledClass.replace('.','') )
 			){
-				return document.querySelector(window.location.hash)
+				toReturn = document.querySelector(window.location.hash)
 			}
 		}
+
+		if(!toReturn) {
+
+			//look if theres an ancestor it can toggle. last prioroty
+			switch(toggleMode){
+				case 'dropdown':
+				case 'modal':
+				case 'alert-close':
+					if(clicked && toggleMode && clicked.parentNode.closest(toggledClass)) {
+						toReturn = clicked.parentNode.closest(toggledClass);
+					}
+					break;
+
+			}
+		}
+
+		return toReturn;
 	};
 
 	_.br_vals = {
@@ -745,10 +760,18 @@ window.jQuery && jQuery.noConflict();
 		}
 
 
+		if(
+			(checkAgainst.indexOf('future') > -1)
+			&& (d > dateNow)
+		){
+			// console.warn('value was in the future || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			toReturn = false;
+		}
+
 		//if  in range of min or max
 		if(
-			(args.max && _.dateToParse(args.max) <= d)
-			|| (args.min && d <= _.dateToParse(args.min))
+			(_.dateToParse(args.max) && _.dateToParse(args.max) < d)
+			|| (_.dateToParse(args.min) && d < _.dateToParse(args.min))
 		) {
 			// console.warn('value not in max and width || ',_.dateToVal(d));;
 			toReturn = false;
@@ -1503,9 +1526,9 @@ window.jQuery && jQuery.noConflict();
 			
 			var args = _.parseArgs(arr,defaults);
 
-			var id = contentWrap.getAttribute('id') || 'the-modal';
+			var id = contentWrap.getAttribute('id') || 'fw-modal';
 
-			_.changeHash(id);
+			(id !== 'fw-modal') && _.changeHash(id);
 
 			var modal = document.createElement('div');
 
@@ -1775,8 +1798,6 @@ window.jQuery && jQuery.noConflict();
 	
 				var preParsedVal = y+'-'+m+'-'+d;
 
-				console.log
-
 				frameWork.updateCalendar(inputCalendar,preParsedVal);
 			}
 
@@ -1824,15 +1845,13 @@ window.jQuery && jQuery.noConflict();
 			e.preventDefault();
 			var clicked = e.target;
 				selector = _.getTheToggled(clicked,'dropdown');
-				
-				var selectorAncestor = selector.parentNode;
 
 
 				if( selector ){
+				
+					var selectorAncestor = selector.closest('li,.nav-item');
 
 					var width =  selector.getAttribute('data-dropdown-width') || clicked.getAttribute('data-dropdown-width') || null;
-
-					console.log('what the dick', selector.getAttribute('data-dropdown-width'));
 					
 					if(width) {
 						selector.style.width = width;
@@ -1840,7 +1859,6 @@ window.jQuery && jQuery.noConflict();
 
 					if(
 						selector.classList.contains('open')
-						&& clicked.classList.contains('open')
 					){
 
 						selectorAncestor && selectorAncestor.classList.remove('open');
@@ -1863,10 +1881,14 @@ window.jQuery && jQuery.noConflict();
 
 						document.querySelectorAll('.dropdown').forEach(function(dropdown){
 							// frameWork.slideUp( dropdown );
-							if (!dropdown.querySelectorAll('.dropdown')){
+
+							hasSelector = true;
+
+							if(dropdown !== selector && !dropdown.contains(selector)){
 								dropdown.classList.remove('open');
 							}
 						});
+
 						document.querySelectorAll('*[data-toggle="dropdown"]').forEach(function(toggler){
 							toggler.classList.remove('open');
 						});
