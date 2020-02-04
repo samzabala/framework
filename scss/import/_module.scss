@@ -94,6 +94,7 @@ $prefix: '.module';
 		"content"
 		"footer";
 		transition: $transition-duration-long box-shadow $transition-timing;
+		padding: calc(#{$module-gutter-y} - #{$module-border-width}) calc(#{$module-gutter-x} - #{$module-border-width});
 
 		.theme-inverse & {
 
@@ -115,7 +116,6 @@ $prefix: '.module';
 		
 	}
 
-	&,
 	&-header,
 	&-content,
 	&-footer {
@@ -125,7 +125,6 @@ $prefix: '.module';
 		// overflow:hidden;
 	}
 
-	&,
 	&-header:first-child,
 	&-content:first-child,
 	&-footer:first-child {
@@ -134,7 +133,6 @@ $prefix: '.module';
 		border-top-right-radius: $module-border-radius;
 	}
 
-	&,
 	&-header:last-child,
 	&-content:last-child,
 	&-footer:last-child {
@@ -297,7 +295,10 @@ $prefix: '.module';
 
 	@include br(#{$mobile-br-max}-max) {
 
-		&,
+		& {
+			padding: calc(#{$module-gutter-y-mobile} - #{$module-border-width}) calc(#{$module-gutter-x-mobile} - #{$module-border-width});
+		}
+
 		&-header,
 		&-content,
 		&-footer {
@@ -306,14 +307,12 @@ $prefix: '.module';
 			// overflow:hidden;
 		}
 
-		&,
 		&-header:first-child,
 		&-content:first-child,
 		&-footer:first-child {
 			padding-top: $module-gutter-y-mobile;
 		}
 
-		&,
 		&-header:last-child,
 		&-content:last-child,
 		&-footer:last-child {
