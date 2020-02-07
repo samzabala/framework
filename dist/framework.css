@@ -3436,6 +3436,8 @@ table {
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, -webkit-min-content));
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, min-content));
   grid-template-areas: "header" "content" "footer";
+  min-width: 0;
+  min-height: 0;
   -webkit-transition: 0.5s box-shadow ease-in-out;
   transition: 0.5s box-shadow ease-in-out;
   padding: calc(20px - 1px) calc(40px - 1px); }
@@ -3447,14 +3449,16 @@ table {
 .module-header, .module-content, .module-footer {
   padding-left: 40px;
   padding-right: 40px; }
-.module-header:first-child, .module-content:first-child, .module-footer:first-child {
-  padding-top: 20px;
+.module, .module-header:first-child, .module-content:first-child, .module-footer:first-child {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px; }
-.module-header:last-child, .module-content:last-child, .module-footer:last-child {
-  padding-bottom: 20px;
+.module-header:first-child, .module-content:first-child, .module-footer:first-child {
+  padding-top: 20px; }
+.module, .module-header:last-child, .module-content:last-child, .module-footer:last-child {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px; }
+.module-header:last-child, .module-content:last-child, .module-footer:last-child {
+  padding-bottom: 20px; }
 .module-header, .module-content, .module-footer {
   margin-left: -40px;
   margin-right: -40px;

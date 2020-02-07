@@ -298,7 +298,7 @@
         /// @param $extend: false !default | (boolean) | extend the extend or nah
         /// @param $br: xs | (string) | set breakpoint where flex starts happening. xs wond generate a media query huhuhu
         /// @param $add-important: false | (boolean) | add important to flex becausE SOME BITCHES FEEL LIKE THERE SHOULD BE AN !IMPORTANT TO SHIT???
-        @mixin flex($extend: false,$br: xs,$add-important: false,$add-wrap:false){
+        @mixin flex($extend: false,$br: false,$add-important: false,$add-wrap:false){
             
             $important: '';
 
@@ -309,7 +309,7 @@
             @if  $extend == true {
                 @extend %flex-#{$br};
             } @else {
-                @if $br != xs {
+                @if $br != xs and $br != false {
                     @include br($br) {
                         display:flex#{$important};
                         @if $add-wrap {
@@ -684,7 +684,7 @@
                 $gap-x-opts: map-get($opts,gap-x);//because margin-left doesn need to repeat if its the same shit right??
 
                 @if $declare-method == true and $br == $br-to-grid and $method == flex{
-                    @include flex($extend);
+                    @include flex($extend,false,false,true);
                 }
 
 
