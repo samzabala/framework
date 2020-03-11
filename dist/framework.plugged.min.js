@@ -455,6 +455,7 @@ window.jQuery && jQuery.noConflict();
 		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
 		var toReturn = null;
 
+
 		if(clicked){
 			if( clicked.attr('href') ){
 				toReturn =  $( clicked.attr('href') );
@@ -476,7 +477,7 @@ window.jQuery && jQuery.noConflict();
 			if (
 				window.location.hash !== ''
 				&& $(window.location.hash).length > -1
-				&& $(window.location.hash).hasClass( toggledClass )
+				&& $(window.location.hash).hasClass( toggledClass.replace('.','') )
 			){
 				toReturn =  $(window.location.hash)
 			}
@@ -1423,23 +1424,29 @@ window.jQuery && jQuery.noConflict();
 				maxWidth:
 					contentWrap.attr('data-modal-max-width')
 					|| (triggerer && (triggerer.attr('data-modal-max-width'))),
+				callback:
+					contentWrap.attr('data-modal-callback')
+					|| (triggerer && (triggerer.attr('data-modal-callback'))),
 			};
 
 			var defaults = {
 				header: '',
 				close: true,
 				disableOverlay: true,
-				maxWidth: null
+				maxWidth: null,
+				callback: null
 			};
+
+			var actualModalId = 'fw-modal';
 
 			var args = _.parseArgs(arr,defaults);
 
-			var id = contentWrap.attr('id') || 'fw-modal';
+			var id = contentWrap.attr('id') || actualModalId;
 
-			(id !== 'fw-modal') && _.changeHash(id);
+			(id !== '#'+actualModalId) && _.changeHash(id);
 
 			$('body').append(function(){
-				var html = '<div id="'+id+'" class="modal-wrapper">';
+				var html = '<div id="'+actualModalId+'" class="modal-wrapper">';
 						//overlay 
 						html += '<a href="#" class="modal-close-overlay" '+( args.disableOverlay == false ? 'data-toggle="modal-close"' : '' )+'></a>';
 
@@ -1472,6 +1479,11 @@ window.jQuery && jQuery.noConflict();
 
 				if(args.maxWidth) {
 					modal.find('.modal-popup').css('max-width',args.maxWidth)
+				}
+
+				if(args.callback) {
+					var f = new Function(args.callback);
+					f();
 				}
 
 				modal.fadeIn()

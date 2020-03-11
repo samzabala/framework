@@ -1514,28 +1514,34 @@ window.jQuery && jQuery.noConflict();
 					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay'))),
 				maxWidth:
 					contentWrap.getAttribute('data-modal-max-width')
-					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))) 
+					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))),
+				callback:
+					contentWrap.getAttribute('data-modal-callback')
+					|| (triggerer && (triggerer.getAttribute('data-modal-callback'))),
 			};
 
 			var defaults = {
 				header: '',
 				close: true,
 				disableOverlay: true,
-				maxWidth: null
+				maxWidth: null,
+				callback: null
 			};
+
+			var actualModalId = 'fw-modal';
 			
 			var args = _.parseArgs(arr,defaults);
 
-			var id = contentWrap.getAttribute('id') || 'fw-modal';
+			var id = contentWrap.getAttribute('id') || actualModalId;
 
-			(id !== 'fw-modal') && _.changeHash(id);
+			(id !== '#'+actualModalId) && _.changeHash(id);
 
 			var modal = document.createElement('div');
 
 			document.querySelector('body').appendChild(modal);
 			
 			modal.className = 'modal-wrapper';
-			modal.setAttribute('id',id)
+			modal.setAttribute('id',actualModalId)
 
 			var modHttml = '';
 			
@@ -1563,6 +1569,13 @@ window.jQuery && jQuery.noConflict();
 			if(args.maxWidth) {
 				modal.querySelector('.modal-popup').style.maxWidth = args.maxWidth;
 			}
+
+			
+			if(args.callback) {
+				var f = new Function(args.callback);
+				f();
+			}
+
 			modal.classList.add('active');
 		}
 	}
