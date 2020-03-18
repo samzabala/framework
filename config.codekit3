@@ -33,7 +33,7 @@
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "/dist/framework.min.min.js",
+		"oAP": "/dist/framework.min-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -44,7 +44,7 @@
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "/dist/framework.plugged.min.min.js",
+		"oAP": "/dist/framework.plugged.min-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -1146,7 +1146,7 @@
 		"eSQ": 1,
 		"ft": 4096,
 		"hM": 0,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "/docs/sections/scaffolding/helpers.html",
 		"oF": 0,
 		"oFM": 0,
@@ -3833,7 +3833,7 @@
 		},
 	"languageDefaultsJS": {
 		"autoOutputAction": 0,
-		"autoOutputPathFilenamePattern": "*.min.js",
+		"autoOutputPathFilenamePattern": "*-min.js",
 		"autoOutputPathRelativePath": "/min",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
@@ -3883,7 +3883,7 @@
 		"strictUnits": 0
 		},
 	"languageDefaultsMARKDOWN": {
-		"autoOutputAction": 1,
+		"autoOutputAction": 0,
 		"autoOutputPathFilenamePattern": "*.html",
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
