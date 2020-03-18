@@ -13,8 +13,8 @@ A bitch that shows progress using **.progress** and  **.progress-bar**
 
 To color the progress, add `.progress-bar-[color-tag]` to `.progress-bar`
 
-*	**`.progress-bar-base`**
 *	**`.progress-bar-primary`**
+*	**`.progress-bar-secondary`**
 *	**`.progress-bar-accent`**
 *	**`.progress-bar-neutral`**
 *	**`.progress-bar-error`**
@@ -32,16 +32,17 @@ To color the progress, add `.progress-bar-[color-tag]` to `.progress-bar`
 	<div class="progress-bar" style="width: 10%"></div>
 </div>
 <br>
-<div class="progress">
-	<div class="progress-bar progress-bar-base" style="width: 46%"></div>
-</div>
 <br>
 <div class="progress">
 	<div class="progress-bar progress-bar-primary" style="width: 20%"></div>
 </div>
 <br>
 <div class="progress">
-	<div class="progress-bar progress-bar-accent" style="width: 60%;"></div>
+	<div class="progress-bar progress-bar-secondary" style="width: 60%;"></div>
+</div>
+<br>
+<div class="progress">
+	<div class="progress-bar progress-bar-accent" style="width: 26%;"></div>
 </div>
 <br>
 <div class="progress">
@@ -87,7 +88,7 @@ the color can be customized by adding a background-color property to `.progress-
 
 ```html
 <div class="progress">
-	<div class="progress-bar progress-bar-base" style="background-color:pink;"></div>
+	<div class="progress-bar" style="background-color:pink;"></div>
 </div>
 ```
 

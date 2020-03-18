@@ -41,6 +41,10 @@ Or go basic
 </div>
 ```
 
+If you want some hover fx on that shit add **`.module-interactive`**
+
+A module with an href or data-href automatically gets this too
+
 
 
 ## Module Elements
@@ -270,5 +274,16 @@ Like [flex grids](../layout/flexgrid.md), this is also setup mobile first. To se
 Disclaimer I didn't setup css grid specific helpers because it completely slipped my dumbass mind whoopsie
 
 This sets a weird column setup starting in the sm breakpoint
+
+## Javascript
+
+
+### Functions
+
+#### **`fw.readyGrid(triggerer)`**
+
+Keeps track of module grids and sets up css for them. this is also triggered on load and resize
+
+Creates a boi
 
 [Back to TOC](../../../readme.md)

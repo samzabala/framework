@@ -22,6 +22,15 @@
 		color: $theme-color-inverse;
 	}
 
+	::-moz-selection{
+		background: $body-selection-background;
+		color: $body-selection-color;
+	}
+	::selection{
+		background: $body-selection-background;
+		color: $body-selection-color;
+	}
+
 	body {
 		text-align:left;
 
@@ -118,10 +127,10 @@
 	}
 	
 	button {
-		margin:0;
-		padding:0;
+		// margin:0;
+		// padding:0;
 		outline:0;
-		border: none;
+		// border: none;
 		cursor: pointer;
 	}
 	

@@ -179,6 +179,7 @@ This styles an input field as a field for multiple line input.... uuhhhhhh yea
 | `url` | no |
 | `list` | yes.. jk NO |
 
+
 ### **`.input-inline`**
 
 For inline shit or fields that dont necessarily accept text looking input like radio, checkbox, sliders and stuff
@@ -218,6 +219,47 @@ For inline shit or fields that dont necessarily accept text looking input like r
 | `url` | if you want it ugly-ish, sure |
 | `list` | no |
 
+### Custom UI
+
+#### **`.input-calendar`**
+
+For date input except it fancy
+
+
+
+##### Support
+
+###### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | yes |
+| `select` | no |
+| `textarea` | i guess??? but pls don't |
+| `datalist` | no |
+
+######  Input tags
+
+| `input[type*]` 	| do it support? |
+| -- | -- |
+|`submit`, `reset`,`button` |  NOPE |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure |
+| `email` | if you want it ugly-ish, sure |
+| `file` | if you want it ugly-ish, sure |
+| `hidden` | IT'S NO USE IT'S HIDDEN |
+| `image` | yis |
+| `number` | if you want it ugly-ish, sure |
+| `password` | if you want it ugly-ish, sure |
+| `radio` | yes |
+| `range` | yes |
+| `search` | if you want it ugly-ish, sure |
+| `tel` | if you want it ugly-ish, sure |
+| `text` | if you want it ugly-ish, sure |
+| `url` | if you want it ugly-ish, sure |
+| `list` | no |
+
 
 ### Input templates
 
@@ -229,7 +271,7 @@ For inline shit or fields that dont necessarily accept text looking input like r
 
 <input class="input input-single-line" type="color" name="">
 
-<input class="input input-single-line" type="date" name="">
+<input class="input input-calendar" type="date" name="">
 
 <input class="input input-single-line" type="datetime-local" name="">
 
@@ -310,7 +352,7 @@ Add helper text along the field to help out the user `.input-info`
 
 To group `.input` bois together
 
-NOTE this only works best for `.input-single-line` fields
+NOTE this only works best for `.input-single-line` and or `.input-select` fields
 
 `.btn` elements will work innit as well
 
@@ -341,7 +383,7 @@ NOTE this only works best for `.input-single-line` fields
 		<option>Available option 5</option>
 	</select>
 
-	<select class="input input-single-line input-accent" >
+	<select class="input input-single-line input-secondary" >
 		<option>Available option 1</option>
 		<option>Available option 2</option>
 		<option>Available option 3</option>
@@ -506,41 +548,16 @@ To set the wrapper to a full width block, add **`.input-wrapper-block`**
 ## Input colors
 
 To add feedback color the `.input`, add `.input-[color-tag]`.
+To add feedback color the `.input-label`, add `.input-[color-tag]`.
+Adding the color class on `.input-group` or `.input-wrapper` styles both the `.input-label` and `.input` within it
 
-*	**`.input-base`**
 *	**`.input-primary`**
+*	**`.input-secondary`**
 *	**`.input-accent`**
 *	**`.input-neutral`**
 *	**`.input-error`**
 *	**`.input-caution`**
 *	**`.input-success`**
-
-## Label colors
-
-To add feedback color the `.input-label`, add `.input-[color-tag]`.
-
-*	**`.label-base`**
-*	**`.label-primary`**
-*	**`.label-accent`**
-*	**`.label-neutral`**
-*	**`.label-error`**
-*	**`.label-caution`**
-*	**`.label-success`**
-
-
-
-## Input wrapper colors
-
-Adding the color class on `.input-group` styles both the `.input-label` and `.input` within it
-
-*	**`.input-wrapper-base`**
-*	**`.input-wrapper-primary`**
-*	**`.input-wrapper-accent`**
-*	**`.input-wrapper-neutral`**
-*	**`.input-wrapper-error`**
-*	**`.input-wrapper-caution`**
-*	**`.input-wrapper-success`**
-
 
 ### Input color support
 
@@ -597,9 +614,9 @@ Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and
 
 | Element | Support it? |
 | -- | -- |
-| `button` | yes, or just use [`.btn`](../components/button.md) |
-| `select` | yes |
-| `textarea` | yes |
+| `button` | no |
+| `select` | no |
+| `textarea` | no |
 | `datalist` | no |
 
 
@@ -625,5 +642,135 @@ Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and
 | `text` | yes |
 | `url` | yes |
 | `list` | yes |
+
+
+#Custom framework fields
+
+## Calendar
+
+
+It's an input where you have a date input type except it's fancier :')
+
+To allow the framework to generate a UI for this, add a class of `input-calendar`
+The generated UI will wrap the input field and also replicate the classes added to the input tag except `input-calendar` will now be `input-calendar-ui` to avoid clashing outfits and what not
+
+```html
+<input type="text" class="input input-calendar" value="2020-01-23" />
+```
+![Calendar](../../images/input-calendar.png)
+
+Once a value is set, the it will return an ISO8601 or `yyyy-mm-dd` formattted value into the `.input-calendar`
+
+It will also render the date active in the calendar ui
+
+This is also how to set a default value to the calendar as well
+
+
+### Support 
+| `input[type*]` | Support it? |
+| -- | -- |
+|`submit`, `reset`,`button` | no |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | no. you either use the actual type or use something else :(((( |
+| `email` | no |
+| `file` | no |
+| `hidden` | yes |
+| `image` | no |
+| `number` | no |
+| `password` | no |
+| `radio` | no |
+| `range` | no |
+| `search` | no |
+| `tel` | no |
+| `text` | yes |
+| `url` | no |
+| `list` | no |
+
+
+### Size
+
+Like other reguler input fields, the UI also supports **`.input-large`** and  **`.input-small`**
+
+```html
+<input type="text" class="input input-calendar input-large">
+<input type="text" class="input input-calendar input-small">
+```
+![Calendar](../../images/input-calendar-size.png)
+
+### Colors
+
+Also supports [input color helpers](#input-colors)
+
+```html
+<input type="text" class="input input-calendar input-primary" value="2020-01-05" />
+<input type="text" class="input input-calendar input-secondary" value="2020-02-05" />
+<input type="text" class="input input-calendar input-accent" value="2020-03-05" />
+<input type="text" class="input input-calendar input-success" value="2020-04-05" />
+<input type="text" class="input input-calendar input-caution" value="2020-05-05" />
+<input type="text" class="input input-calendar input-error" value="2020-06-05" />
+```
+![Calendar](../../images/input-calendar-color.png)
+
+### Attributes
+
+Add these to customize ya boi further
+
+**`data-calendar-start-day`**
+
+Defaults to `0`
+
+This is the index of the day the calendar starts. meaning...
+```
+0 = Sunday
+1 = Monday
+2 = Tuesday
+3 = Wednesday
+4 = Thursday
+5 = Friday
+6 = Saturday
+```
+
+
+**`data-calendar-max`**
+
+Defaults to ``
+
+Maximum date allowed. Must be in ISO8601 format.
+
+
+**`data-calendar-min`**
+
+Defaults to ``
+
+Minimum date allowed. Must be in ISO8601 format.
+
+
+**`data-calendar-dropdown-year-span`**
+
+Defaults to `1`
+
+Number of years the heading dropdown will output
+
+**`data-calendar-disabled-dates`**
+
+Defaults to ``
+
+Disables specific dates or keywords that must be separated with commas. Dates must be in ISO8601 format.
+
+There also available keywords too
+
+*	`weekends` - disables weekends
+*	`past` - disables dates from before today's date
+*	`future` - disables dates from after today's date
+
+
+**`data-calendar-text-input`**
+
+Defaults to `false`
+
+Enables a text input field to input dates along with the calendar as well
+
+#### 
 
 [Back to TOC](../../../readme.md)

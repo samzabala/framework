@@ -43,8 +43,9 @@ Replicate a `<thead>`,`<tbody>`,`<tfoot>` or `<tr>` element
 
 ##### Colors 
 The folloing classes style table rows to [framework colors](../scaffolding/colors.md#color-tags)
-*	**.table-row-base**
+
 *	**.table-row-primary**
+*	**.table-row-secondary**
 *	**.table-row-accent**
 *	**.table-row-neutral**
 *	**.table-row-success**
@@ -115,7 +116,7 @@ Add `.table-large` or `.table-small` to  reduce or expand table rows and line he
 
 ![Yes](../../images/table-label.png)
 
-Add tags on the side for more accent. Works best with a cell classed ass [`.table-cell-no-gutter`](#table-cell-no-gutter).
+Add tags on the side for more secondary. Works best with a cell classed ass [`.table-cell-no-gutter`](#table-cell-no-gutter).
 
 This can be colorized with `.table-label-[color]` based on [framework colors](../scaffolding/colors.md#color-tags)
 

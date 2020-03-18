@@ -23,19 +23,16 @@ $prefix: '.module';
 		&:nth-child(n+2) {
 			margin-top:$module-grid-gutter;
 		}
-		
-		@include br($mobile-br-max-polar){
 
-			.body-loading & {
-				&,&-title {
-					opacity: 0;
-				}
+		.body-loading & {
+			&,&-title {
+				opacity: 0;
 			}
+		}
 
-			.body-loaded & {
-				&,&-title {
-					opacity: 1;
-				}
+		.body-loaded & {
+			&,&-title {
+				opacity: 1;
 			}
 		}
 	}
@@ -96,7 +93,10 @@ $prefix: '.module';
 		"header"
 		"content"
 		"footer";
+		min-width: 0;
+		min-height: 0;
 		transition: $transition-duration-long box-shadow $transition-timing;
+		padding: calc(#{$module-gutter-y} - #{$module-border-width}) calc(#{$module-gutter-x} - #{$module-border-width});
 
 		.theme-inverse & {
 
@@ -118,12 +118,12 @@ $prefix: '.module';
 		
 	}
 
-	&,
 	&-header,
 	&-content,
 	&-footer {
 		padding-left: $module-gutter-x;
 		padding-right: $module-gutter-x;
+		@extend %for-cf;
 		// overflow:hidden;
 	}
 
@@ -131,18 +131,30 @@ $prefix: '.module';
 	&-header:first-child,
 	&-content:first-child,
 	&-footer:first-child {
-		padding-top: $module-gutter-y;
 		border-top-left-radius: $module-border-radius;
 		border-top-right-radius: $module-border-radius;
 	}
+
+	&-header:first-child,
+	&-content:first-child,
+	&-footer:first-child {
+		padding-top: $module-gutter-y;
+	}
+
+
 
 	&,
 	&-header:last-child,
 	&-content:last-child,
 	&-footer:last-child {
-		padding-bottom: $module-gutter-y;
 		border-bottom-left-radius: $module-border-radius;
 		border-bottom-right-radius: $module-border-radius;
+	}
+
+	&-header:last-child,
+	&-content:last-child,
+	&-footer:last-child {
+		padding-bottom: $module-gutter-y;
 	}
 
 	&-header,
@@ -166,6 +178,7 @@ $prefix: '.module';
 	}
 
 	&-header,&-footer {
+		position:relative;
 		&-break {
 
 			@include br($mobile-br-max-polar){
@@ -220,8 +233,9 @@ $prefix: '.module';
 				weight: $module-title-font-weight,
 				style: $module-title-font-style
 			));
-			margin-bottom:0;
-			margin-top:0;
+			margin-bottom:$module-gutter-between * .5;
+			margin-top: $module-gutter-between * .5;
+			align-self:flex-start;
 		}
 
 		@at-root #{$prefix}-function {
@@ -231,6 +245,9 @@ $prefix: '.module';
 
 		&-functions {
 			margin-top: $module-gutter-between;
+			&:first-child {
+				margin-top:0;
+			}
 
 			#{$prefix}-function {
 				margin-top: $module-gutter-between * .5;
@@ -294,7 +311,10 @@ $prefix: '.module';
 
 	@include br(#{$mobile-br-max}-max) {
 
-		&,
+		& {
+			padding: calc(#{$module-gutter-y-mobile} - #{$module-border-width}) calc(#{$module-gutter-x-mobile} - #{$module-border-width});
+		}
+
 		&-header,
 		&-content,
 		&-footer {
@@ -303,14 +323,12 @@ $prefix: '.module';
 			// overflow:hidden;
 		}
 
-		&,
 		&-header:first-child,
 		&-content:first-child,
 		&-footer:first-child {
 			padding-top: $module-gutter-y-mobile;
 		}
 
-		&,
 		&-header:last-child,
 		&-content:last-child,
 		&-footer:last-child {
@@ -334,6 +352,11 @@ $prefix: '.module';
 		&-content:last-child,
 		&-footer:last-child {
 			margin-bottom: $module-gutter-y-mobile * -1;
+		}
+
+		&-title {
+			margin-top:0;
+			margin-bottom:0;
 		}
 
 	}

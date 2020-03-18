@@ -365,6 +365,12 @@
 		&-inline {
 			display:inline!important;
 		}
+		@at-root %for-display-none {
+			display:none!important;
+		}
+		&-none {
+			@extend %for-display-none;
+		}
 	}
 
 
@@ -424,6 +430,10 @@
 			&-inherit {
 				text-transform: inherit!important;
 			}
+
+			&-none {
+				text-transform: none!important;
+			}
 		}
 
 		&-vertical-align {
@@ -456,14 +466,14 @@
 			}
 		}
 
+		&-nowrap {
+
+			white-space: nowrap!important;
+		}
+
 		&-wrap {
 
 			white-space: normal!important;
-
-			&-nowrap {
-
-				white-space: nowrap!important;
-			}
 
 			&-break {
 				word-break: break-word!important;
@@ -593,6 +603,7 @@
 			overflow:scroll!important;
 		}
 		&-overlay {
+			overflow:scroll!important;
 			overflow:overlay!important;
 		}
 		&-auto {
@@ -612,6 +623,7 @@
 			overflow-x:scroll!important;
 		}
 		&-overlay {
+			overflow-x:scroll!important;
 			overflow-x:overlay!important;
 		}
 		&-auto {
@@ -631,6 +643,7 @@
 			overflow-y:scroll!important;
 		}
 		&-overlay {
+			overflow-y:scroll!important;
 			overflow-y:overlay!important;
 		}
 		&-auto {
@@ -1041,9 +1054,21 @@
 }
 
 .sr-only {
-	display:none!important;
+	@extend %for-display-none;
 }
 
 .cf {
 	@extend %for-cf;
+}
+
+
+
+
+@at-root %for-disabled{
+	cursor:not-allowed!important;
+	opacity: $global-disabled-opacity;
+}
+
+.disabled {
+	@extend %for-disabled;
 }

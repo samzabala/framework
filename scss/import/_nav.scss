@@ -54,6 +54,7 @@ $prefix: '.nav';
 
 		.theme-inverse & {
 			background: $nav-background-inverse;
+			color: $nav-color-inverse;
 		}
 	}
 
@@ -96,6 +97,7 @@ $prefix: '.nav';
 
 	&#{$prefix}-vertical {
 		display:block;
+		min-width:100%;
 		height: auto;
 
 		#{$prefix}-list {
@@ -154,7 +156,7 @@ $prefix: '.nav';
 		line-height: inherit;
 
 		+ #{$prefix}-item-text {
-			margin-left: 1rem;
+			margin-left: .5rem;
 			display:inline-block;
 			vertical-align: middle;
 		}
@@ -239,6 +241,16 @@ $prefix: '.nav';
 
 		&-list {
 			display:block;
+			min-width:100%;
+
+			.dropdown {
+				border-radius:0;
+				// padding-left:0;
+				// padding-right:0;
+				width: auto;
+				position:static;
+				box-shadow: none;
+			}
 		}
 
 		&-list > #{$prefix}-item,
@@ -247,15 +259,6 @@ $prefix: '.nav';
 			> [data-toggle=dropdown] {
 				display:block;
 			}
-		}
-
-		.dropdown {
-			border-radius:0;
-			// padding-left:0;
-			// padding-right:0;
-			width: auto;
-			position:static;
-			box-shadow: none;
 		}
 	}
 }

@@ -29,6 +29,22 @@
 </p>
 
 <p>
+	arrow down &nbsp;<i class="color-primary symbol symbol-arrow-double-down"></i>
+</p>
+
+<p>
+	arrow up &nbsp;<i class="color-primary symbol symbol-arrow-double-up"></i>
+</p>
+
+<p>
+	arrow left &nbsp;<i class="color-primary symbol symbol-arrow-double-left"></i>
+</p>
+
+<p>
+	arrow right &nbsp;<i class="color-primary symbol symbol-arrow-double-right"></i>
+</p>
+
+<p>
 	plus &nbsp;<i class="color-primary symbol symbol-plus"></i>
 </p>
 
@@ -75,6 +91,7 @@ The following symbols be toggled to another symbol class when a direct parent ha
 | symbol | Can toggle to.. |
 | -- | -- |
 | `.symbol-arrow-up`<br><br>`.symbol-arrow-down`<br><br>`.symbol-arrow-left`<br><br>`.symbol-arrow-right` 	| `.symbol-arrow-up-toggle`<br><br>`.symbol-arrow-down-toggle`<br><br>`.symbol-arrow-left-toggle`<br><br>`.symbol-arrow-right-toggle` 	|
+| `.symbol-arrow-double-up`<br><br>`.symbol-arrow-double-down`<br><br>`.symbol-arrow-double-left`<br><br>`.symbol-arrow-double-right` 	| `.symbol-arrow-double-up-toggle`<br><br>`.symbol-arrow-double-down-toggle`<br><br>`.symbol-arrow-double-left-toggle`<br><br>`.symbol-arrow-double-right-toggle` 	|
 | `.symbol-caret-up`<br><br>`.symbol-caret-down`<br><br>`.symbol-caret-left`<br><br>`.symbol-caret-right` 	| `.symbol-caret-up-toggle`<br><br>`.symbol-caret-down-toggle`<br><br>`.symbol-caret-left-toggle`<br><br>`.symbol-caret-right-toggle`  |
 | `.symbol-plus,`<br><br>`.symbol-minus` | `.symbol-plus-toggle`<br><br>`.symbol-minus-toggle` |
 

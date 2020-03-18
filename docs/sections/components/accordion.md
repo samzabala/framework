@@ -128,6 +128,8 @@ Note that all descentants of `[data-toggle="accordion"]` has pointer-events none
 
 `.accordion` on the other hand is being styled with just a `display:none;` or `display:block;` depending on its status.
 
+Also the width is full width.. of parent... like always.. because flex be a bitch sometimes
+
 As long as you avoid these properties on each element ya good.
 
 [Symbols toggle classes](../components/symbol.md#toggle-classes) change based on the status of the accordion as well as long as they are a direct children of either `[data-toggle="accordion"]` or `.accordion`

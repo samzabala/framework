@@ -21,6 +21,7 @@ A framework for your appy dashboardy needs :')
 
 ##	Components (o lawd)
 *	[Accordions](docs/sections/components/accordion.md)
+*	[Alerts](docs/sections/components/alert.md)
 *	[Badges](docs/sections/components/badge.md)
 *	[Buttons](docs/sections/components/button.md)
 *	[Dropdown](docs/sections/components/dropdown.md)
@@ -38,7 +39,7 @@ A framework for your appy dashboardy needs :')
 *	[Trumbowyg](docs/sections/components/trumbowyg.md)
 
 ##	Other Obscure things
-*	[Script](docs/sections/components/other/script.md)
+*	[Script](docs/sections/other/script.md)
 
 ### Supports:
 *	Edge 16+

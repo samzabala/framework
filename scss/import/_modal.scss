@@ -51,7 +51,9 @@ $prefix: '.modal';
 				display:block!important;
 			}
 		}
-
+		&-title {
+			margin-top:0;
+		}
 
 	&-close {
 		& {

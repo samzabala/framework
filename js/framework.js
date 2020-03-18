@@ -117,25 +117,336 @@ window.jQuery && jQuery.noConflict();
 	frameWork.slideUp = function(elem) {
 		elem && (elem.style.display = 'none');
 	}
-
-
 	frameWork.getSiblings = function (elem) {
 
-		// Setup siblings array and get the first sibling
-		var siblings = [];
-		var sibling = elem.parentNode.firstChild;
-	
-		// Loop through each sibling and push to the array
-		while (sibling) {
-			if (sibling.nodeType === 1 && sibling !== elem) {
-				siblings.push(sibling);
-			}
-			sibling = sibling.nextSibling
-		}
-	
-		return siblings;
+		
+		return Array.prototype.filter.call(elem.parentNode.children, function(child){
+			return child !== elem;
+		});
 	
 	};
+
+	frameWork.docReady = function(fn) {
+		if (document.readyState != 'loading'){
+			fn();
+		} else {
+			document.addEventListener('DOMContentLoaded', fn);
+		}
+	}
+
+	
+
+	//make it objoct
+	_.dateToParse = function(date) {
+
+
+	
+		var yr,mo,dy,hr,mn;
+
+		var dateArr = [];
+		var timeArr = [];
+
+		if(date){
+
+			if(Object.prototype.toString.call(date) === '[object Date]'){
+
+				//make a new date out of its methods because js will think u are referring to the same date everythere and ur math becomes a hellhole... dont.. hOE
+				yr = date.getFullYear() || null;
+				mo = date.getMonth() || null;
+				dy = date.getDate() || null;
+				hr = date.getHours() || null;
+				mn = date.getMinutes() || null;
+
+
+			}else{
+
+				var dateTimeArr = date.split('T') || [];
+		
+				//date
+				if(dateTimeArr[0]){
+					dateArr = dateTimeArr[0].split('-');
+				}
+		
+				//time
+				if(dateTimeArr[1]){
+					timeArr = dateTimeArr[1].split(':');
+				}
+		
+				yr = parseInt(dateArr[0]) || null;
+				mo = parseInt((dateArr[1]) - 1) || null;
+				dy = parseInt(dateArr[2]) || null;
+				hr = parseInt(timeArr[0]) || null;
+				mn = parseInt(timeArr[1]) || null;
+			}
+
+			var toReturn = false;
+			if(Object.prototype.toString.call(new Date(yr,mo,dy,hr,mn)) == '[object Date]'){
+				toReturn = new Date(yr,mo,dy,hr,mn);
+			}
+
+			return toReturn;
+		}
+	}
+
+	_.datetimeFormatPresets = {
+		HumanDate: {
+			placeholder:"mm/dd/yyyy",
+			pattern:/^\d{2}\/\d{2}\/\d{4}$/,
+			template:"mm/dd/yy"
+		},
+		// HumanTime24: {
+		// 	placeholder:"hh:mm",
+		// 	pattern:"",
+		// 	template:"HH:MM"
+		// },
+		// HumanTime12: {
+		// 	placeholder:"hh:mm",
+		// 	pattern:"",
+		// 	template:"HH:MM"
+		// },
+		Value: {
+			placeholder:"yyyy-mm-dd",
+			pattern:/^\d{4}[-]\d{2}[-]\d{2}$/,
+			template:"yy-mm-dd"
+		},
+		// ValueDateTime:{
+		// 	placeholder:"yy-mm-ddThh:gg",
+		// 	pattern:"",
+		// 	template:"yy-mm-ddThh:gg"
+		// },
+	}
+
+
+	_.dayFormatNames = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
+	_.dayFormatNamesShort = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
+	_.dayFormatNamesShorter = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ], // For formatting
+	_.monthFormatNames = [ "January","February","March","April","May","June","July","August","September","October","November","December" ],
+	_.monthFormatNamesShort = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
+
+	//make it human readable
+	_.dateToHuman = function( date,format ) {
+		date = _.dateToParse(date);
+		format = format || _.datetimeFormatPresets.HumanDate.template;
+		if ( date ) {
+
+			var iFormat;
+
+				// Check whether a format character is doubled
+				lookAhead = function( match ) {
+					var matches = ( iFormat + 1 < format.length && format.charAt( iFormat + 1 ) === match );
+					if ( matches ) {
+						iFormat++;
+					}
+					return matches;
+				},
+
+				// Format a number, with leading zero if necessary
+				formatNumber = function( match, value, len ) {
+					var num = "" + value;
+					if ( lookAhead( match ) ) {
+						while ( num.length < len ) {
+							num = "0" + num;
+						}
+					}
+					return num;
+				},
+
+				// Format a name, short or long as requested
+				formatName = function( match, value, shortNames, longNames ) {
+					return ( lookAhead( match ) ? longNames[ value ] : shortNames[ value ] );
+				},
+				output = "",
+				literal = false;
+
+			if ( date ) {
+				for ( iFormat = 0; iFormat < format.length; iFormat++ ) {
+					if ( literal ) {
+						if ( format.charAt( iFormat ) === "'" && !lookAhead( "'" ) ) {
+							literal = false;
+						} else {
+							output += format.charAt( iFormat );
+						}
+					} else {
+						switch ( format.charAt( iFormat ) ) {
+
+							case "d": //date number
+								output += formatNumber(
+									"d",
+									date.getDate(),
+									2
+								);
+								break;
+							case "D": //day of the week
+								output += formatName(
+									"D",
+									date.getDay(),
+									_.dayFormatNamesShort,
+									_.dayFormatNames
+								);
+								break;
+
+
+							case "o": //day of year hmm
+								output += formatNumber(
+									"o",
+									Math.round( ( new Date( date.getFullYear(), date.getMonth(), date.getDate() ).getTime() - new Date( date.getFullYear(), 0, 0 ).getTime() ) / 86400000 ),
+									3
+								);
+								break;
+
+
+							case "m": //month
+								output += formatNumber(
+									"m",
+									date.getMonth() + 1,
+									2
+								);
+								break;
+							case "M": //month but name
+								output += formatName(
+									"M", date.getMonth(),
+									_.monthFormatNamesShort,
+									_.monthFormatNames
+								);
+								break;
+
+
+							case "y": //year
+								output += (
+									lookAhead( "y" ) ? date.getFullYear() :
+									( date.getFullYear() % 100 < 10 ? "0" : "" ) + date.getFullYear() % 100
+								);
+								break;
+								
+
+								
+							case "H"://12 hour
+								output += formatNumber(
+									"H",
+									(date.getHours() % 12 || 12),
+									2
+								);
+								break;
+							case "h"://24 hour
+								output += formatNumber(
+									"h",
+									date.getHours(),
+									2
+								);
+								break;
+								
+
+								
+							case "i"://minute
+								output += formatNumber(
+									"i",
+									date.getMinutes(),
+									2
+								);
+								break;
+
+								
+							case "a": //am /pm
+								output += (
+									date.getHours() >= 12 ? 'pm' : 'am'
+								);
+								break;
+
+							case "A": //AM/PM 
+								output += (
+									date.getHours() >= 12 ? 'PM' : 'AM'
+								);
+								break;
+
+							case "'":
+								if ( lookAhead( "'" ) ) {
+									output += "'";
+								} else {
+									literal = true;
+								}
+								break;
+
+							default:
+								output += format.charAt( iFormat );
+						}
+					}
+				}
+			}
+			return output;
+		}else{
+			return false;
+		}
+		
+	}
+
+	//make it ready for input value of datata
+	_.dateToVal = function(date) {
+		var d = _.dateToParse(date);
+
+		if(d){
+			return _.dateToHuman( d,_.datetimeFormatPresets.Value.template );
+		}
+	}
+
+	_.dateGetAdjacent = function(date,offsetByMonth,dateOverride){
+
+
+		var d = _.dateToParse(date);
+
+		if(d){
+
+			var currMonth = d.getMonth();
+			var currYear = d.getFullYear();
+	
+			dateOverride = dateOverride || null;
+	
+	
+			var newMonth = (function(){
+				var toReturn;
+				if(
+					((currMonth + offsetByMonth) % 12) > 12
+				){
+					toReturn = (((currMonth + offsetByMonth) % 12) - 12);
+				}else if(
+					((currMonth + offsetByMonth) % 12) < 0
+				){
+					toReturn = (((currMonth + offsetByMonth) % 12) + 12);
+				}else{
+					toReturn = ((currMonth + offsetByMonth) % 12);
+				}
+	
+				return toReturn
+			}());
+	
+			var newYear = (function(){
+				var defOffset = parseInt(offsetByMonth / 12);
+				var toReturn = currYear + defOffset;
+	
+				//offset to adjacent year
+				if(offsetByMonth < 0 && ((currMonth + (offsetByMonth % 12) ) ) < 0){
+					toReturn -= 1;
+				}else if(offsetByMonth > 0 && ((currMonth + (offsetByMonth % 12) ) ) > 11){
+	
+					toReturn += 1;
+				}
+				return toReturn;
+			}());
+			
+	
+			d.setMonth(newMonth);
+			d.setFullYear(newYear);
+	
+			if(dateOverride) {
+				d.setDate(dateOverride);
+			}
+	
+	
+			return d;
+		}else{
+			return false;
+		}
+
+	}
 	
 	_.reverseArray = function(arr) {
 		var newArray = [];
@@ -147,10 +458,23 @@ window.jQuery && jQuery.noConflict();
 
 
 	_.parseArgs = function(arr,defaults) {
-		var args = defaults;
+		
+		var args = {};
+
+		for(var def in defaults){
+			args[def] = defaults[def];
+		}
+
 		for (var prop in arr) {
-			if(arr.hasOwnProperty(prop) && arr[prop] !== null) {
+			
+			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined && arr[prop] !== null) {
 				// Push each value from `obj` into `extended`
+				
+				// catch boolean
+				if(arr[prop] == 'false' || arr[prop] == 'true') {
+					arr[prop] = arr[prop] == 'true' ? true : false;
+				}
+
 				args[prop] = arr[prop];
 			}
 		}
@@ -185,19 +509,23 @@ window.jQuery && jQuery.noConflict();
 
 	_.getTheToggled = function(clicked,toggleMode){
 
+		clicked = clicked || null;
+
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || null;
+		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
+		var toReturn = null;
 
 				
 		if(clicked) {
-			if( clicked.getAttribute('href') ){
-				return document.querySelector( clicked.getAttribute('href') );
+			if( clicked.hasAttribute('href') ){
+				toReturn = document.querySelector( clicked.getAttribute('href') );
 
-			}else if( clicked.getAttribute('data-href') ){
-				return document.querySelector( clicked.getAttribute('data-href') )
+			}else if( clicked.hasAttribute('data-href') ){
+				toReturn = document.querySelector( clicked.getAttribute('data-href') )
 				
-			}else if (clicked.closest('[data-toggle="'+toggleMode+'"]').length){
-				return _.getTheToggled(clicked.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else if (toggleMode && clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
+				toReturn = _.getTheToggled(clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
 			}else{
 				var possibleSiblings = clicked.nextElementSibling;
 
@@ -208,18 +536,35 @@ window.jQuery && jQuery.noConflict();
 					possibleSiblings = possibleSiblings.nextElementSibling
 				}
 
-				return possibleSiblings;
+				toReturn = possibleSiblings;
 			}
 		}else{
 			
 			if (
 				window.location.hash !== ''
 				&& document.querySelector(window.location.hash)
-				&& document.querySelector(window.location.hash).classList.contains( toggleMode.replace('-open','').replace('-close','') )
+				&& document.querySelector(window.location.hash).classList.contains( toggledClass.replace('.','') )
 			){
-				return document.querySelector(window.location.hash)
+				toReturn = document.querySelector(window.location.hash)
 			}
 		}
+
+		if(!toReturn) {
+
+			//look if theres an ancestor it can toggle. last prioroty
+			switch(toggleMode){
+				case 'dropdown':
+				case 'modal':
+				case 'alert-close':
+					if(clicked && toggleMode && clicked.parentNode.closest(toggledClass)) {
+						toReturn = clicked.parentNode.closest(toggledClass);
+					}
+					break;
+
+			}
+		}
+
+		return toReturn;
 	};
 
 	_.br_vals = {
@@ -235,8 +580,10 @@ window.jQuery && jQuery.noConflict();
 	_.br_mobile_max = parseFloat( getComputedStyle(document.documentElement).getPropertyValue('--mobile-br-max') ) ||  'sm';
 
 
-	_.functions_on_load = [];
-	_.functions_on_resize = [];
+	_.fns_on_load = [];
+	_.fns_on_ready = [];
+	_.fns_on_resize = [];
+	_.fns_on_rightAway = [];
 
 
 	frameWork.validateBr = function(breakpoint,mode) {
@@ -260,6 +607,7 @@ window.jQuery && jQuery.noConflict();
 	_.palette = [
 		'base',
 		'primary',
+		'secondary',
 		'accent',
 		'neutral',
 		'error',
@@ -274,7 +622,7 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.initGrid = function(moduleGrid){
 		
-		var availablePropetiesParent = [
+		var availablePropertiesParent = [
 			'grid-template-rows',
 			'grid-template-columns',
 			'grid-template-areas',
@@ -357,7 +705,7 @@ window.jQuery && jQuery.noConflict();
 			}); 
 		}
 
-		renderProps(moduleGrid,availablePropetiesParent);
+		renderProps(moduleGrid,availablePropertiesParent);
 		
 		var moduleChildren = Array.from(moduleGrid.children).filter(function(child){
 			return child.matches('.module');
@@ -369,6 +717,493 @@ window.jQuery && jQuery.noConflict();
 		});
 		
 	}
+	
+	//range only is pag kwan di sya isa isang date pangmaramihan
+	_.dateIsValid = function(date,args,rangeOnly){
+		var d = _.dateToParse(date);
+		var checkAgainst = args.disabledDates.split(',');
+		var toReturn = true;
+
+		rangeOnly = rangeOnly || false; //range,spot
+
+
+		if(!rangeOnly){
+			//if in disabled dates
+			if(
+				checkAgainst.indexOf(_.dateToVal(d)) > -1
+			){
+				// console.warn('value is declared disabled specifically || ',_.dateToVal(d));;
+				toReturn = false;
+			}
+
+			//weekend
+			if(
+				(checkAgainst.indexOf('weekends') > -1)
+				&& (d.getDay() == 0 || d.getDay() == 6)
+			){
+				// console.warn('value was a weekend || ',_.dateToVal(d),_.dateToVal(date));
+				toReturn = false;
+			}
+
+		}
+
+		//in the past
+		var dateNow = new Date();
+
+		dateNow.setHours(0,0,0,0);
+		if(
+			(checkAgainst.indexOf('past') > -1)
+			&& (d < dateNow)
+		){
+			// console.warn('value was in the past || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			toReturn = false;
+		}
+
+
+		if(
+			(checkAgainst.indexOf('future') > -1)
+			&& (d > dateNow)
+		){
+			// console.warn('value was in the future || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			toReturn = false;
+		}
+
+		//if  in range of min or max
+		if(
+			(_.dateToParse(args.max) && _.dateToParse(args.max) < d)
+			|| (_.dateToParse(args.min) && d < _.dateToParse(args.min))
+		) {
+			// console.warn('value not in max and width || ',_.dateToVal(d));;
+			toReturn = false;
+		}
+
+
+		return toReturn;
+	};
+	
+	
+	_.createCalendarUi = function(inputCalendar,valueForGrid,args){
+
+
+		if(inputCalendar){
+		
+			valueForGrid = valueForGrid ||  _.dateToVal(inputCalendar.value ) || _.dateToVal(new Date());
+
+		
+			uiPrefix = function(noDash) {
+				noDash = noDash || false;
+				return noDash ? 'input-calendar-ui' : 'input-calendar-ui-';
+			};
+
+			var theUi = {};
+
+			theUi.container = inputCalendar.closest('.'+ uiPrefix(true));
+
+			if( !(theUi.container) ){
+				theUi.container = document.createElement('div');
+
+				inputCalendar.parentNode.insertBefore(theUi.container,inputCalendar)
+				theUi.container.appendChild(inputCalendar);
+				theUi.container.setAttribute(
+					'class',
+					inputCalendar.getAttribute('class').toString().replace('input-calendar',uiPrefix(true) )
+				);
+			}
+
+			theUi.input = theUi.container.querySelector('.'+uiPrefix()+'input');
+			
+
+			var components = frameWork.getSiblings(inputCalendar);
+
+			components.forEach(function(component){
+				if(component !== theUi.input){
+					component.parentNode.removeChild(component);
+				}
+			})
+
+			
+			//input
+			if(args.textInput) {
+				if(!theUi.input){
+					theUi.input = document.createElement('div');
+					theUi.container.appendChild(theUi.input);
+					theUi.input.setAttribute('class',uiPrefix()+'input')
+
+					theUi.input.innerHTML = '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
+				}
+
+			}
+
+			var currYear = _.dateToParse(valueForGrid).getFullYear();
+			var currMonth = _.dateToParse(valueForGrid).getMonth();
+			var currentCalendarDate = new Date(currYear,currMonth,1); //IT ALSO FIRST DAY MOTHERFUCKER
+
+
+			//heading
+			theUi.heading = document.createElement('div');
+			theUi.container.appendChild(theUi.heading);
+			theUi.heading.setAttribute('class',uiPrefix()+'heading');
+			
+
+				//arrowz
+				function generateArrow(buttonClass){
+
+					var symbolClass,arrowDate,validness;
+					//set a new date with no date because fuck that boi
+
+					// console.warn(buttonClass,'hello i fucked up','\n',_.dateToParse(valueForGrid),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
+
+					switch(buttonClass){
+						case 'prev-month':
+							symbolClass = 'symbol-arrow-left';
+							arrowDate = _.dateToVal(
+								_.dateGetAdjacent(
+									currentCalendarDate,
+									-1
+								)
+							);
+							validness = _.dateIsValid(new Date(currYear,currMonth,0),args,true);
+							break;
+						
+						case 'prev-year':
+							symbolClass = 'symbol-arrow-double-left';
+							arrowDate = _.dateToVal(
+								_.dateGetAdjacent(
+									currentCalendarDate,
+									-12
+								)
+							);
+							validness = _.dateIsValid(new Date(currYear-1,currMonth,0),args,true);
+							break;
+
+						case 'next-month':
+							symbolClass = 'symbol-arrow-right';
+							arrowDate = _.dateToVal(
+								_.dateGetAdjacent(
+									currentCalendarDate,
+									1
+								)
+							);
+							validness = _.dateIsValid(new Date(currYear,currMonth+1,1),args,true);
+							break;
+
+						case 'next-year':
+							symbolClass = 'symbol-arrow-double-right';
+							arrowDate = _.dateToVal(
+								_.dateGetAdjacent(
+									currentCalendarDate,
+									12
+								)
+							);
+							validness = _.dateIsValid(new Date(currYear+1,currMonth,1),args,true);
+							break;
+					}
+
+					//kung yung at least yung last day nang prev or first day ng next man lang ay valid pwidi sya i doot doot
+
+					var htmlString = '<a href=""class="'
+						+ (!validness ? 'disabled ' : '')
+						+uiPrefix()+'navigation '
+						+uiPrefix()+'button '
+						+uiPrefix()+buttonClass+'" data-value="'+arrowDate+'">'
+							+'<i class="'+uiPrefix()+'symbol symbol '+symbolClass+'"></i>'
+						+'</a>';
+
+
+					return htmlString;
+				}
+
+				var butts = ['prev-year','prev-month','next-month','next-year'];
+
+				butts.forEach(function(butt){
+					theUi.heading.innerHTML += generateArrow(butt);
+				});
+
+
+				//title
+				theUi.title = document.createElement('div');
+				theUi.heading.appendChild(theUi.title);
+				theUi.title.setAttribute('class',uiPrefix()+'title ' + uiPrefix()+'dropdown-toggle');
+				theUi.title.setAttribute('data-toggle','dropdown')
+				
+				
+					theUi.title.innerHTML =  '<span class="'+uiPrefix()+'month-text">'
+							+_.monthFormatNamesShort[ currMonth ]
+						+'</span>'
+						+ ' <span class="'+uiPrefix()+'year-text">'+currYear+'</span>'
+						+ ' <i class="'+uiPrefix()+'symbol symbol symbol-arrow-down no-margin-x"></i>';
+				
+				//dropdown
+
+				theUi.dropdown = document.createElement('ul');
+				theUi.heading.appendChild(theUi.dropdown);
+				theUi.dropdown.setAttribute('data-dropdown-width','100%');
+				theUi.dropdown.setAttribute('class',uiPrefix()+'dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center');
+				
+
+
+				theUi.dropdown.innerHTML += 
+					'<li class="'+uiPrefix()+'current-month-year active">'
+					+ '<a href="#" class="'+uiPrefix()+'month" data-value="'+ _.dateToVal(currentCalendarDate) +'">'
+					+ _.monthFormatNamesShort[ currMonth ]+ ' ' + currYear
+					+ '</a>'
+					+ '</li><li><hr class="dropdown-separator"></li>';
+
+				//update dropdown
+				for(i = parseInt(-12 * parseInt(args.dropdownYearSpan)); i <= parseInt(12 * parseInt(args.dropdownYearSpan)); i++){
+
+
+					
+						var listItemDate = _.dateGetAdjacent(
+							currentCalendarDate,
+							i
+						);
+
+
+						var dateForValidation = (function(){
+							var toReturn;
+
+							if(i >= 0 ){ //first day of month
+								// console.log('kinabukasan sya');
+								toReturn = new Date(listItemDate.getFullYear(),listItemDate.getMonth(),1)
+							}else{ //last day of month
+
+								// console.log('nakaraan sya');
+								toReturn = new Date(listItemDate.getFullYear(),listItemDate.getMonth()+1,0)
+							}
+
+							return toReturn
+						}())
+						// console.warn(i,'\nkwan ano ni\n',listItemDate,dateForValidation);
+
+
+						if(_.dateIsValid(dateForValidation,args,true)){
+			
+							var currClass = (i == 0) ? 'active' : '';
+							var listItem = '<li class=" '+currClass+'">'
+									+ '<a href="#" class="'+uiPrefix()+'month" data-value="'+ _.dateToVal(listItemDate) +'">'
+									+ _.monthFormatNamesShort[ listItemDate.getMonth() ]+ ' ' + listItemDate.getFullYear()
+									+ '</a>'
+									+ ((listItemDate.getMonth() == 11 ) ? '</li><li><hr class="dropdown-separator">' : '')
+								+ '</li>';
+			
+							theUi.dropdown.innerHTML += listItem;
+						}
+
+				}
+
+
+
+			//generate grid
+			theUi.grid = document.createElement('div');
+			theUi.container.append(theUi.grid);
+			theUi.grid.setAttribute('class',uiPrefix()+'grid');
+
+
+				function generateBlock(date,customClass){
+					customClass = customClass || '';
+					return '<a href="#" data-value="'+ _.dateToVal(date) +'" class="'
+					+uiPrefix()+ 'block '
+					+uiPrefix()+'date '
+					+customClass
+					+'"><span>'
+						+ date.getDate()
+					+ '</span></a>';
+
+				}
+
+
+				//days heading
+					theUi.days = document.createElement('div');
+					theUi.grid.append(theUi.days);
+					theUi.days.setAttribute('class',uiPrefix()+'days');
+					
+				
+
+					var daysHTML = '';
+					var dayToRetrieve = parseInt(args.startDay);
+
+					for(i = 0; i < 7; i++){
+
+						if(dayToRetrieve > 6){
+							dayToRetrieve -= 7;
+						}
+
+
+						daysHTML += '<div class="'
+						+uiPrefix()+'block '
+						+uiPrefix()+'day">'
+							+_.dayFormatNamesShorter[dayToRetrieve]
+						+'</div>';
+
+						dayToRetrieve++;
+					}
+
+					theUi.days.innerHTML = daysHTML;
+
+				//days
+
+				theUi.dates = document.createElement('div');
+				theUi.grid.append(theUi.dates);
+				theUi.dates.setAttribute('class',uiPrefix()+'dates');
+
+				//previous month
+					var currPrevLastDate = (function(){
+						return new Date(currYear, currMonth, 0)
+					}());
+
+					
+
+					var currPrevLastDateDay = currPrevLastDate.getDay();
+
+					
+					var freeGridSpacePrev = (currentCalendarDate.getDay() - parseInt(args.startDay) + 7) % 7;
+
+					var currPrevLastDayOnStart = currPrevLastDateDay == 6 ? 0 : (currPrevLastDateDay + 1);
+					
+					if(
+						currPrevLastDayOnStart !== parseInt(args.startDay)
+					){ //if it doenst take its own row of shit
+
+						// i = 0; i <= freeGridSpacePrev; i++
+						// @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
+						// for( dayLoopI = currPrevLastDateDay; dayLoopI >= (parseInt(args.startDay)); dayLoopI--){
+						// for(i = 0; i < 7; i++){
+						for(i = 0; i < freeGridSpacePrev; i++){
+
+							
+								var offset = (currPrevLastDate.getDate() - i);
+
+								var loopDatePrev = new Date(
+									currPrevLastDate.getFullYear(),
+									currPrevLastDate.getMonth(),
+									offset
+								);
+			
+								var dateBlockPrev = generateBlock(
+									loopDatePrev,
+									(uiPrefix()+ 'block-adjacent ') + (!_.dateIsValid(loopDatePrev,args) ? 'disabled' : '')
+								);
+			
+			
+			
+								//prepend because we loopped this bitch in reverse
+								theUi.dates.innerHTML += dateBlockPrev;
+		
+						}
+		
+					}
+
+				//curr month
+					var currLastDate = new Date(currYear, currMonth+1, 0);
+
+
+					for(i = 1; i <= currLastDate.getDate(); i++) {
+						var dateBlockCurr = generateBlock(
+							new Date(currYear,currMonth,i),
+							(!_.dateIsValid(new Date(currYear,currMonth,i),args)) ? 'disabled' : ''
+						);
+
+
+						theUi.dates.innerHTML += dateBlockCurr;
+					}
+
+				//next month just fill the shit
+
+					
+					var currNextFirstDay = new Date(currYear, currMonth+1, 1).getDay();
+
+					var freeGridSpaceNext = (7 - currNextFirstDay + parseInt(args.startDay)) % 7;
+
+					if(currNextFirstDay !== parseInt(args.startDay)){
+
+						for(i = 1; i <= freeGridSpaceNext; i++){
+
+							var loopDateNext = new Date(currYear, currMonth+1, i);
+
+							var dateBlockNext = generateBlock(
+								loopDateNext,
+								(uiPrefix()+ 'block-adjacent ') + (!_.dateIsValid(loopDateNext,args) ? 'disabled' : '')
+							);
+
+							theUi.dates.innerHTML += dateBlockNext;
+						}
+					}
+		}
+	}
+
+		//updates both input field and UI
+	frameWork.updateCalendar = function(inputCalendar,newValue,valueForGrid){
+		
+		theValue = newValue || _.dateToVal(inputCalendar.value );
+		valueForGrid = valueForGrid || theValue || _.dateToVal(new Date());
+
+		var arr =  {
+			class: inputCalendar.getAttribute('class'),
+			startDay: inputCalendar.getAttribute('data-calendar-start-day'), // 0,1,2,3,4,5,6
+			min: inputCalendar.getAttribute('data-calendar-min') || inputCalendar.getAttribute('min'),
+			max: inputCalendar.getAttribute('data-calendar-max') || inputCalendar.getAttribute('max'),
+			dropdownYearSpan: inputCalendar.getAttribute('data-calendar-dropdown-year-span'),
+			disabledDates: inputCalendar.getAttribute('data-calendar-disabled-dates'),
+			textInput:inputCalendar.getAttribute('data-calendar-text-input'),
+		};
+
+		var defaults = {
+			class: '',
+			startDay: 0, // su,mo,tu,we,th,fr,sa,
+			min: null,
+			max:null,
+			dropdownYearSpan: 1,
+			disabledDates: '',
+			textInput:false,
+		};
+		
+		var args = _.parseArgs(arr,defaults);
+	
+	
+		if(parseInt(arr.dropdownYearSpan) <= 0){
+			args.dropdownYearSpan = defaults.dropdownYearSpan;
+		}
+
+		args.startDay = parseInt(args.startDay) % 7;
+
+		if(_.dateIsValid(theValue,args) || !theValue){
+			//set up calendar
+			_.createCalendarUi(inputCalendar,valueForGrid,args);
+		}
+
+		if(theValue){
+
+			//update the actual butt
+			inputCalendar.setAttribute('value',theValue);
+		
+			//date
+			//update fake hoes
+				var dates = inputCalendar.parentNode.querySelectorAll('.input-calendar-ui-date');
+				
+				dates.forEach(function(date){
+	
+					if(date.getAttribute('data-value') == _.dateToVal(theValue)){
+						date.classList.add('active')
+					}else{
+	
+						date.classList.remove('active');
+					}
+				});
+
+				var inputField = inputCalendar.parentNode.querySelector('.input-calendar-ui-input input');
+
+				if(inputField) {
+					inputField.value = _.dateToHuman(theValue)
+				}
+		}
+			
+
+		
+
+	}
+
+	
 
 	// //will run. right away. boi
 	// //lazyload
@@ -382,7 +1217,7 @@ window.jQuery && jQuery.noConflict();
 			var imgSrc = img.getAttribute('data-src'),
 				imgSrcset = img.getAttribute('data-srcset');
 
-			if(img.matches('img') || img.closest('picture').length) {
+			if(img.matches('img') || img.closest('picture')) {
 
 				if(imgSrc.getFileExtension() == 'svg' ){
 					var imgID = img.getAttribute('id') || null;
@@ -423,19 +1258,26 @@ window.jQuery && jQuery.noConflict();
 		
 		document.documentElement.classList.add('lazy-initialized');
 	}
+	frameWork.settings.lazyLoad && _.fns_on_rightAway.push(frameWork.loadImages);
+
+	frameWork.toolTip = {};
 
 	frameWork.createToolTip = function(triggerer) {
 		if(triggerer) {
+
 			frameWork.destroyToolTip();
+			
 			var arr =  {
-				placement: triggerer.getAttribute('data-tooltip-placement') || null,
-				badge: triggerer.getAttribute('data-tooltip-badge') || null,
-				badgeBg: triggerer.getAttribute('data-tooltip-badge-background') || null,
-				badgeSize: triggerer.getAttribute('data-tooltip-badge-size') || null,
-				content: triggerer.getAttribute('data-tooltip-content') || null,
-				classes: triggerer.getAttribute('data-tooltip-classes') || null,
-				centerX: triggerer.getAttribute('data-tooltip-center-x') || null,
-				centerY: triggerer.getAttribute('data-tooltip-center-y') || null,
+				placement: triggerer.getAttribute('data-tooltip-placement'),
+				badge: triggerer.getAttribute('data-tooltip-badge'),
+				badgeBg: triggerer.getAttribute('data-tooltip-badge-background'),
+				badgeSize: triggerer.getAttribute('data-tooltip-badge-size'),
+				content: triggerer.getAttribute('data-tooltip-content'),
+				classes: triggerer.getAttribute('data-tooltip-classes'),
+				centerX: triggerer.getAttribute('data-tooltip-center-x'),
+				centerY: triggerer.getAttribute('data-tooltip-center-y'),
+				x: triggerer.getAttribute('data-tooltip-x'),
+				y: triggerer.getAttribute('data-tooltip-y'),
 			};
 
 			var defaults = {
@@ -448,6 +1290,8 @@ window.jQuery && jQuery.noConflict();
 				content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
 				centerX: false,
 				centerY: false,
+				x: false,
+				y: false
 
 			};
 			
@@ -486,132 +1330,169 @@ window.jQuery && jQuery.noConflict();
 
 			toolTip.innerHTML += ttHtml;
 
-
-			// var tooltip = $('body').children('.tooltip').first();
-				toolTip.classList.add('open');
-
-			var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
-				toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
-				isNaN(toolPoint) && (toolPoint = 15);
+			toolTip.classList.add('active');
+			
+			frameWork.toolTip.current = toolTip;
+			frameWork.toolTip.activeTriggerer = triggerer;
+			frameWork.toolTip.args = args;
 
 
+			var triggererProps = {
+				top: triggerer.getBoundingClientRect().top + window.pageYOffset,
+				left: triggerer.getBoundingClientRect().left + window.pageXOffset,
+				height: triggerer.getBoundingClientRect().height,
+				width: triggerer.getBoundingClientRect().width,
+			};
 
-				var triggererProps = {
-					top: triggerer.getBoundingClientRect().top + window.pageYOffset,
-					left: triggerer.getBoundingClientRect().left + window.pageXOffset,
-					height: triggerer.getBoundingClientRect().height,
-					width: triggerer.getBoundingClientRect().width,
-				};
+			var origin = {
+				x: function(){
+					var toReturn = triggererProps.left + (triggererProps.width * .5); //top and bottom
 
-				var toolTipProps = {
-					height: toolTip.getBoundingClientRect().height,
-					width: toolTip.getBoundingClientRect().width,
-				};
+					if(!args.x) {
 
-				var toolTipBadge = toolTip.querySelector('.tooltip-badge');
-
-				var pos = {
-					x: function(){
-						var toReturn = triggererProps.left + ((triggererProps.width * .5) - (toolTipProps.width * .5));
-						var offset = 0;
-
-						if(args.centerX){
-
+						if(!args.centerX){
 							switch(args.placement){
 								case 'right':
-									toReturn = triggererProps.left + ( triggererProps.width * .5) + toolPoint;
-										break;
-								case 'left':
-									toReturn = triggererProps.left - (toolTipProps.width + toolPoint) + (triggererProps.width * .5);
-									break;
-							}
-							
-						}else{
-
-							switch(args.placement){
-								case 'right':
-									toReturn = triggererProps.left + triggererProps.width + toolPoint;
+									toReturn = triggererProps.left + triggererProps.width;
 									break;
 								case 'left':
-									toReturn = triggererProps.left - (toolTipProps.width + toolPoint);
-									break;
-							}
-
-						}
-
-						if(
-							( toolTipBadge )
-							&& (
-								(
-									args.placement == 'left'
-									|| args.placement == 'right'
-								)
-							)
-						) {
-
-							offset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : toolTipBadge.getBoundingClientRect().width * .5;
-						}
-						
-
-						toReturn += offset;
-						
-						return toReturn;
-					},
-					y: function(){
-						var toReturn = (triggererProps.top + (triggererProps.height * .5)) - (toolTipProps.height * .5); // left and right
-						var offset = 0;
-						if(args.centerY){
-							
-							switch(args.placement){
-								case 'top':
-									toReturn = (triggererProps.top - (toolTipProps.height + toolPoint) + (triggererProps.height * .5));
-									break;
-								case 'bottom':
-									toReturn = (triggererProps.top + ((triggererProps.height * .5)) + toolPoint);
-									break;
-							}
-
-						}else{
-							
-							switch(args.placement){
-								case 'top':
-									toReturn = triggererProps.top - (toolTipProps.height + toolPoint);
-									break;
-								case 'bottom':
-									toReturn = triggererProps.top + (triggererProps.height + toolPoint);
+									toReturn = triggererProps.left;
 									break;
 							}
 						}
 
-						if(
-							( toolTipBadge )
-							&& (
-								args.placement == 'top'
-								|| args.placement == 'bottom'
-							)
-						) {
-							offset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : toolTipBadge.getBoundingClientRect().width * .5;
-						}
-
-						toReturn += offset;
-
-						return toReturn;
+					}else{
+						toReturn = parseFloat(args.x);
 					}
-				}
+					
+					return toReturn;
+				},
+				y: function(){
+					var toReturn = triggererProps.top + (triggererProps.height * .5); // left and right
+					if(!args.y) {
 
-			toolTip.style.top = pos.y()+'px';
-			toolTip.style.left = pos.x()+'px';
-			frameWork.activeToolTipTrigger = triggerer
+						if(!args.centerY){
+							switch(args.placement){
+								case 'bottom':
+									toReturn = triggererProps.top + triggererProps.height;
+									break;
+								case 'top':
+									toReturn = triggererProps.top;
+									break;
+							}
+						}
+
+					}else{
+						toReturn = parseFloat(args.y);
+					}
+
+
+					return toReturn;
+				}
+			}
+
+			frameWork.positionToolTip(origin.x(),origin.y());
 
 		}
 
 	}
 
 	frameWork.destroyToolTip = function(){
-		var toolTip = document.querySelector('body > .tooltip');
-		toolTip && toolTip.parentNode.removeChild(toolTip);
+		if(frameWork.toolTip.current) {
+			frameWork.toolTip.current.parentNode.removeChild(frameWork.toolTip.current);
+		}
+		frameWork.toolTip.current = null;
+		frameWork.toolTip.activeTriggerer = null;
+		frameWork.toolTip.args = null;
 	}
+	_.fns_on_resize.push(frameWork.destroyToolTip);
 
+	frameWork.positionToolTip = function(posX,posY){
+
+		if(frameWork.toolTip.current && frameWork.toolTip.args){
+
+			var toolTip = frameWork.toolTip.current;
+			var args = frameWork.toolTip.args;
+
+			var toolPoint = parseFloat(window.getComputedStyle( toolTip, ':before').getPropertyValue('width'));
+				toolPoint = Math.sqrt((toolPoint * toolPoint) * 2) * .5;
+				isNaN(toolPoint) && (toolPoint = 15);
+				
+			var toolTipProps = {
+				height: toolTip.getBoundingClientRect().height,
+				width: toolTip.getBoundingClientRect().width,
+			};
+
+			var toolTipBadge = toolTip.querySelector('.tooltip-badge');
+
+
+			var off = {
+				x: function(){
+					var toReturn = toolTipProps.width * -.5; //top and bottom
+					var badgeOffset = 0;
+
+					switch(args.placement){
+						case 'right':
+							toReturn = toolPoint;
+								break;
+						case 'left':
+							toReturn = -(toolTipProps.width + toolPoint);
+							break;
+					}
+
+					if(
+						( toolTipBadge )
+						&& (
+							(
+								args.placement == 'left'
+								|| args.placement == 'right'
+							)
+						)
+					) {
+						badgeOffset = (args.placement == 'left' ) ? (toolTipBadge.getBoundingClientRect().width * -.5) : (toolTipBadge.getBoundingClientRect().width * .5);
+					}
+					
+
+					toReturn += badgeOffset;
+					
+					return toReturn;
+				},
+				y: function(){
+					var toReturn = toolTipProps.height * -.5; // left and right
+					var badgeOffset = 0;
+
+					switch(args.placement){
+						case 'bottom':
+							toReturn = toolPoint;
+							break;
+						case 'top':
+							toReturn = -(toolTipProps.height + toolPoint);
+							break;
+					}
+
+					if(
+						( toolTipBadge )
+						&& (
+							args.placement == 'top'
+							|| args.placement == 'bottom'
+						)
+					) {
+						badgeOffset = (args.placement == 'top' ) ? (toolTipBadge.getBoundingClientRect().height * -.5) : (toolTipBadge.getBoundingClientRect().height * .5);
+					}
+
+					toReturn += badgeOffset;
+
+					return toReturn;
+				}
+			}
+
+			toolTip.style.left = (posX + off.x())+'px';
+			toolTip.style.top = (posY + off.y()) +'px';
+			// toolTip.style.left = (posX)+'px';
+			// toolTip.style.top = (posY) +'px';
+		}
+			
+	}
 
 	frameWork.createModal = function(triggerer){
 		
@@ -624,41 +1505,43 @@ window.jQuery && jQuery.noConflict();
 			var arr =  {
 				header:
 					contentWrap.getAttribute('data-modal-title')
-					|| (triggerer && (triggerer.getAttribute('data-modal-title')))
-					|| null,
+					|| (triggerer && (triggerer.getAttribute('data-modal-title'))),
 				close:
 					contentWrap.getAttribute('data-modal-close')
-					|| (triggerer && (triggerer.getAttribute('data-modal-close'))) 
-					|| null,
+					|| (triggerer && (triggerer.getAttribute('data-modal-close'))) ,
 				disableOverlay:
 					contentWrap.getAttribute('data-modal-disable-overlay')
-					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay')))
-					|| null,
+					|| (triggerer && (triggerer.getAttribute('data-modal-disable-overlay'))),
 				maxWidth:
 					contentWrap.getAttribute('data-modal-max-width')
-					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))) 
-					|| null
+					|| (triggerer && (triggerer.getAttribute('data-modal-max-width'))),
+				callback:
+					contentWrap.getAttribute('data-modal-callback')
+					|| (triggerer && (triggerer.getAttribute('data-modal-callback'))),
 			};
 
 			var defaults = {
 				header: '',
 				close: true,
 				disableOverlay: true,
-				maxWidth: null
+				maxWidth: null,
+				callback: null
 			};
+
+			var actualModalId = 'fw-modal';
 			
 			var args = _.parseArgs(arr,defaults);
 
-			var id = contentWrap.getAttribute('id') || 'the-modal';
+			var id = contentWrap.getAttribute('id') || actualModalId;
 
-			_.changeHash(id);
+			(id !== '#'+actualModalId) && _.changeHash(id);
 
 			var modal = document.createElement('div');
 
 			document.querySelector('body').appendChild(modal);
 			
 			modal.className = 'modal-wrapper';
-			modal.setAttribute('id',id)
+			modal.setAttribute('id',actualModalId)
 
 			var modHttml = '';
 			
@@ -666,7 +1549,7 @@ window.jQuery && jQuery.noConflict();
 				modHttml += '<a href="#" class="modal-close-overlay" '+( !args.disableOverlay ? 'data-toggle="modal-close"' : '' )+'></a>';
 				modHttml += '<div class="modal-popup">';
 
-					if(args.header !== '') {
+					if(args.header) {
 						modHttml += '<div class="modal-header"><h1 class="modal-title">'+ args.header +'</h1></div>';
 					}
 
@@ -686,6 +1569,13 @@ window.jQuery && jQuery.noConflict();
 			if(args.maxWidth) {
 				modal.querySelector('.modal-popup').style.maxWidth = args.maxWidth;
 			}
+
+			
+			if(args.callback) {
+				var f = new Function(args.callback);
+				f();
+			}
+
 			modal.classList.add('active');
 		}
 	}
@@ -716,12 +1606,6 @@ window.jQuery && jQuery.noConflict();
 
 
 			var selectorAncestor = selector.closest('.accordion-group');
-			var selectorSiblings = frameWork.getSiblings(selector).filter(function(sibling){
-					return sibling.matches('.accordion');
-				});
-			var clickedSiblings = frameWork.getSiblings(selector).filter(function(sibling){
-					return sibling.matches('*[data-toggle="accordion"]');
-				})
 			
 
 			if(
@@ -773,14 +1657,14 @@ window.jQuery && jQuery.noConflict();
 				}else{
 
 					var allSelector = document.querySelectorAll('.accordion');
-					if(allSelector){
+					if(allSelector.length){
 						allSelector.forEach(function(selector){
 							selector.classList.remove('open'); 
 						});
 					}
 
 					var allTriggerer = document.querySelectorAll('[data-toggle="accordion"]');
-					if(allTriggerer){
+					if(allTriggerer.length){
 						allTriggerer.forEach(function(triggerer){
 							triggerer.classList.remove('open'); 
 						});
@@ -806,15 +1690,26 @@ window.jQuery && jQuery.noConflict();
 	}
 
 
-	_.readyGrid = function(){
+	frameWork.readyGrid = function(){
 		
 		var grids = document.querySelectorAll('.module-grid:not(.module-grid-custom)');
 		grids.forEach(function(grid){
 			frameWork.initGrid(grid);
 		});
 	}
-	_.functions_on_load.push(_.readyGrid);
-	_.functions_on_resize.push(_.readyGrid);
+	_.fns_on_rightAway.push(frameWork.readyGrid);
+	_.fns_on_resize.push(frameWork.readyGrid);
+
+
+	frameWork.readyCalendar = function(){
+		var calendars = document.querySelectorAll('.input-calendar');
+
+
+		calendars.forEach(function(calendar){
+			frameWork.updateCalendar(calendar);
+		});
+	}
+	_.fns_on_ready.push(frameWork.readyCalendar);
 
 	_.initTrumbo = function(selector){
 
@@ -840,7 +1735,13 @@ window.jQuery && jQuery.noConflict();
 			})
 		}
 	}
-	_.functions_on_load.push(_.initTrumbo);
+	_.fns_on_load.push(_.initTrumbo);
+
+
+
+	_.fns_on_rightAway.forEach(function(fn){
+		fn();
+	});
 
 	
 	window.addEventListener('hashchange',function(){
@@ -848,37 +1749,103 @@ window.jQuery && jQuery.noConflict();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 	});
 
-	
-	window.addEventListener('load',function(){
+	frameWork.docReady(function(){
+		
 
-		frameWork.settings.lazyLoad && frameWork.loadImages();
 
-		frameWork.settings.initializeModal && frameWork.createModal();
-		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 
-		_.functions_on_load.forEach(function(fn){
+		_.fns_on_ready.forEach(function(fn){
 			fn();
 		});
 
-		var resizeTimerInternal;
-		window.addEventListener('resize', function() {
-		
-			clearTimeout(resizeTimerInternal)
-		
-			resizeTimerInternal = setTimeout(function() {
-				_.functions_on_resize.forEach(function(fn){
-					fn();
-				});
-			}, 50)
-		
+		frameWork.addEvent(document.body,'click','a.input-calendar-ui-date',function(e){	
+			e.preventDefault();
+			var clicked = e.target;
+			var inputCalendar = clicked.closest('.input-calendar-ui').querySelector('.input-calendar');
+			
+			if(inputCalendar && !clicked.classList.contains('disabled') && !clicked.closest('input-disabled')){
+				frameWork.updateCalendar(inputCalendar,e.target.getAttribute('data-value'),null)
+			}
 		});
 
+			frameWork.addEvent(document.body,'click','a.input-calendar-ui-navigation,.input-calendar-ui-month',function(e){	
+				e.preventDefault();
+				var clicked = e.target;
+				var inputCalendar = clicked.closest('.input-calendar-ui').querySelector('.input-calendar');
+				if(inputCalendar && !clicked.classList.contains('disabled') && !clicked.closest('input-disabled')){
+					frameWork.updateCalendar(inputCalendar,null,e.target.getAttribute('data-value'))
+				}
+			});
 
+
+
+		frameWork.addEvent(document.body,'blur','.input-calendar',function(e){	
+			e.preventDefault();
+			var inputCalendar = e.target;
+			frameWork.updateCalendar(inputCalendar);
+		});
+
+		frameWork.addEvent(document.body,'keyup','.input-calendar-ui-input input',function(e){	
+			var inputCalendar = e.target.closest('.input-calendar-ui').querySelector('.input.input-calendar');
+
+
+			var v = e.target.value;
+			if (v.match(/^\d{2}$/) !== null) {
+				e.target.value = v + '/';
+			} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+				e.target.value = v + '/';
+			}
+
+			var pattern = new RegExp(_.datetimeFormatPresets.HumanDate.pattern);
+
+			var isValid = pattern.test(v);
+
+
+
+			if(isValid){
+				var theValue = v.split('/');
+
+				var y = theValue[2] ||  '';
+				var m = theValue[0] || '';
+				var d = theValue[1] || '';
+	
+				var preParsedVal = y+'-'+m+'-'+d;
+
+				frameWork.updateCalendar(inputCalendar,preParsedVal);
+			}
+
+		
+			
+			
+		});
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="accordion"]',function(e){
 			e.preventDefault();
 
 			frameWork.toggleAccordion(e.target);
+		});
+
+		frameWork.addEvent(document.body,'click','*[data-toggle="alert-close"]',function(e){
+			e.preventDefault();
+			var selector =  _.getTheToggled(e.target,'alert-close');
+
+			if(selector) {
+				selector.parentNode.removeChild(selector);
+			}
+		});
+
+
+		frameWork.addEvent(document.body,'click','*[data-toggle="alert-close-all"]',function(e){
+			e.preventDefault();
+			var selector =  document.querySelectorAll('.aloort');
+
+			if(selector.length) {
+				selector.forEach(function(alert){
+					if(alert.querySelectorAll('[data-toggle="alert-close"]').length){
+						alert.parentNode.removeChild(alert)
+					}
+				});
+			}
 		});
 
 		frameWork.addEvent(document.body,'click','.btn-disabled,.input-disabled,[disabled]',function(e){
@@ -891,11 +1858,11 @@ window.jQuery && jQuery.noConflict();
 			e.preventDefault();
 			var clicked = e.target;
 				selector = _.getTheToggled(clicked,'dropdown');
-				
-				var selectorAncestor = selector.parentNode;
 
 
 				if( selector ){
+				
+					var selectorAncestor = selector.closest('li,.nav-item');
 
 					var width =  selector.getAttribute('data-dropdown-width') || clicked.getAttribute('data-dropdown-width') || null;
 					
@@ -905,12 +1872,11 @@ window.jQuery && jQuery.noConflict();
 
 					if(
 						selector.classList.contains('open')
-						&& clicked.classList.contains('open')
 					){
 
 						selectorAncestor && selectorAncestor.classList.remove('open');
 
-						frameWork.slideUp(selector);  
+						// frameWork.slideUp(selector);  
 						clicked.classList.remove('open'); 
 						selector.classList.remove('open'); 
 
@@ -927,15 +1893,21 @@ window.jQuery && jQuery.noConflict();
 						}
 
 						document.querySelectorAll('.dropdown').forEach(function(dropdown){
-							frameWork.slideUp( dropdown );
-							dropdown.classList.remove('open');
+							// frameWork.slideUp( dropdown );
+
+							hasSelector = true;
+
+							if(dropdown !== selector && !dropdown.contains(selector)){
+								dropdown.classList.remove('open');
+							}
 						});
+
 						document.querySelectorAll('*[data-toggle="dropdown"]').forEach(function(toggler){
 							toggler.classList.remove('open');
 						});
 
 
-						frameWork.slideDown(selector); 
+						// frameWork.slideDown(selector); 
 						clicked.classList.add('open'); 
 						selector.classList.add('open'); 
 					}
@@ -980,32 +1952,62 @@ window.jQuery && jQuery.noConflict();
 		frameWork.addEvent(document.body,'click','*',function(e){
 			// e.stopPropagation();
 
-			if( !e.target.matches('[data-toggle="tooltip-click"]') && !e.target.matches('[data-toggle="tooltip-click"] *') ){
+			if(
+				!e.target.matches('[data-toggle="tooltip-click"]')
+				&& !e.target.matches('[data-toggle="tooltip-click"] *')
+				&& !e.target.matches('[data-toggle="tooltip-hover"]')
+				&& !e.target.matches('[data-toggle="tooltip-hover"] *')
+			){
 				frameWork.destroyToolTip();
 			}
 		});
 			
-			frameWork.addEvent(document.body,'mouseenter','*[data-toggle="tooltip-hover"]',function(e){
-				frameWork.createToolTip(e.target);
-			});
+		frameWork.addEvent(document.body,'mouseenter','*[data-toggle="tooltip-hover"]',function(e){
+			frameWork.createToolTip(e.target);
+		});
 
-			frameWork.addEvent(document.body,'mouseleave','*[data-toggle="tooltip-hover"]',function(e){
-				frameWork.destroyToolTip();
-			});
+		frameWork.addEvent(document.body,'mouseleave','*[data-toggle="tooltip-hover"]',function(e){
+			frameWork.destroyToolTip();
+		});
 
-			frameWork.addEvent(document.body,'click','*[data-toggle="modal-open"]',function(e){
-				e.preventDefault();
-				frameWork.createModal(e.target);
-			});
+		frameWork.addEvent(document.body,'click','*[data-toggle="modal-open"]',function(e){
+			e.preventDefault();
+			frameWork.createModal(e.target);
+		});
 
-			frameWork.addEvent(document.body,'click','*[data-toggle="modal-close"]',function(e){
-				e.preventDefault();
-				frameWork.destroyModal(true);
-			});
+		frameWork.addEvent(document.body,'click','*[data-toggle="modal-close"]',function(e){
+			e.preventDefault();
+			frameWork.destroyModal(true);
+		});
 
-			frameWork.addEvent(document.body,'click','*[data-toggle="modal"]',function(e){
-				frameWork.createModal(e.target);
-			});
+		frameWork.addEvent(document.body,'click','*[data-toggle="modal"]',function(e){
+			frameWork.createModal(e.target);
+		});
+	});
+
+	
+	window.addEventListener('load',function(){
+
+		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
+
+		_.fns_on_load.forEach(function(fn){
+			fn();
+		});
+
+		var resizeTimerInternal;
+		window.addEventListener('resize', function() {
+		
+			clearTimeout(resizeTimerInternal)
+		
+			resizeTimerInternal = setTimeout(function() {
+				_.fns_on_resize.forEach(function(fn){
+					fn();
+				});
+			}, 50)
+		
+		});
+		
 
 		document.querySelector('body').classList.remove('body-loading');
 		document.querySelector('body').classList.add('body-loaded');

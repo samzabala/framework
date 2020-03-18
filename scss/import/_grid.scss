@@ -15,24 +15,24 @@ $prefix-raw: str-replace($prefix,'.','');
 
 			@if $nest == true {
 
-				#{$prepend-sel}-#{$i} {
+				@at-root & > #{$prepend-sel}-#{$i} {
 					// width: ( 100% / $i );
 					@if $gap != null {
 						flex-basis: calc( #{ $col-width } - #{$gap} );
 
-						#{$prefix}-grid-fixed > & {
+						@at-root #{$prefix}-grid-fixed#{&} {
 							width: calc(#{ $col-width } - #{$gap})
 						}
 					}@else {
 						flex-basis: #{ $col-width };
 						
-						#{$prefix}-grid-fixed > & {
+						@at-root #{$prefix}-grid-fixed#{&} {
 							width: #{ $col-width }
 						}
 					}
 					
-					#{$prefix}-grid-no-gutter#{$prefix}-grid-fixed > &,
-					#{$prefix}-grid-no-gutter-x#{$prefix}-grid-fixed > & {
+					@at-root #{$prefix}-grid-no-gutter#{$prefix}-grid-fixed#{&},
+					#{$prefix}-grid-no-gutter-x#{$prefix}-grid-fixed#{&} {
 						width: #{ $col-width };
 					}
 				}
@@ -73,6 +73,7 @@ $prefix-raw: str-replace($prefix,'.','');
 			margin-bottom: $grid-gap;
 			display:flex;
 			flex-wrap:wrap;
+			min-width: 100%;
 
 			&-compact {
 				margin-left: $grid-gap-compact * -1;
@@ -199,10 +200,27 @@ $prefix-raw: str-replace($prefix,'.','');
 		}
 
 		@each $tag in $calculated-br-tags {
-			@include br($tag) {
+			@if($tag != xs){
+				@include br($tag) {
 
+					@include internal-set-grid-col-width(#{&}-col-#{$tag},$grid-gap,false);
+					
+					&-grid-compact {
+						@include internal-set-grid-col-width(#{$prefix}-col-#{$tag},$grid-gap-compact);
+					}
+		
+					&-grid-expanded {
+						@include internal-set-grid-col-width(#{$prefix}-col-#{$tag},$grid-gap-expanded);
+					}
+					
+					&-grid-no-gutter,
+					&-grid-no-gutter-x {
+						@include internal-set-grid-col-width(#{$prefix}-col-#{$tag},null);
+					}
+				}
+			}@else {
 				@include internal-set-grid-col-width(#{&}-col-#{$tag},$grid-gap,false);
-				
+					
 				&-grid-compact {
 					@include internal-set-grid-col-width(#{$prefix}-col-#{$tag},$grid-gap-compact);
 				}

@@ -13,14 +13,15 @@
     &:not(.accordion-mobile) {
         // max-height:0;
         // overflow:hidden;
-        display:none;
+        min-width:100%;
+        display:none!important;
         // transition: $transition-duration-long max-height $transition-timing;
         // overflow:hidden;
 
         &.open {
             // max-height:none;
             // overflow:visible;
-            display:block;
+            display:block!important;
         }
     }
 
@@ -29,21 +30,22 @@
         @include br(#{$mobile-br-max}-max) {
             // max-height:0;
             // overflow:hidden;
-            display:none;
+            min-width:100%;
+            display:none!important;
             // transition: $transition-duration-long max-height $transition-timing;
             // overflow:hidden;
 
             &.open {
                 // max-height:none;
                 // overflow:visible;
-                display:block;
+                display:block!important;
             }
         }
 
         @include br(#{$mobile-br-max-polar}) {
             // max-height:none;
             // overflow:visible;
-            display:block;
+            display:block!important;
         }
     }
 }

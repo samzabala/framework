@@ -9,7 +9,9 @@ All influenced by [color declarations](../scaffolding/colors.md)
 #### Background
 
 *   **`.background-base` (Not to be confused with theme-color)**
+*   **`.background-background` (Not to be confused with theme-background)**
 *   **`.background-primary`**
+*   **`.background-secondary`**
 *   **`.background-accent`**
 *   **`.background-neutral`**
 *   **`.background-success`**
@@ -40,7 +42,9 @@ This will add gradient colors. By default, the gradient will be at angle 0deg, a
 #### Color
 
 *   **`.color-base` (Not to be confused with theme-color)**
+*   **`.color-background` (Not to be confused with theme-background)**
 *   **`.color-primary`**
+*   **`.color-secondary`**
 *   **`.color-accent`**
 *   **`.color-neutral`**
 *   **`.color-success`**
@@ -184,6 +188,7 @@ Set to whatever font weight ya need boi
 *   **`.display-block`**
 *   **`.display-inline-block`**
 *   **`.display-inline`**
+*   **`.display-none`**
 
 [More info on the css property](https://www.w3schools.com/css/css_display_visibility.asp)
 
@@ -225,6 +230,7 @@ Set to whatever font weight ya need boi
 *   **`.text-transform-lowercase`**
 *   **`.text-transform-capitalize`**
 *   **`.text-transform-inherit`**
+*   **`.text-transform-none`**
 
 [More info on the css property](https://www.w3schools.com/cssref/pr_text_text-transform.asp)
 
@@ -259,13 +265,13 @@ Set to whatever font weight ya need boi
 
 	king words to break
 
-*   **`.text-ellipsis`**
+*   **`.text-wrap-ellipsis`**
 
 	Single line of text that cuts off any overflow with a an ellipsis
 
 	[More info](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/)
 
-*   **`.text-ellipsis-multiple`**
+*   **`.text-wrap-ellipsis-multiple`**
 
 	Allows multiple lines based on given `$body-ellipsis-multiple-factor`. 2 by default
 
@@ -277,6 +283,12 @@ Set to whatever font weight ya need boi
 	
 	[More info](https://css-tricks.com/how-to-do-knockout-text/)
 
+# Scaffolding Margins
+
+
+*   **`.p`**
+
+	Adds margins to element as if it were a `<p>` tag
 
 
 # Reset Margins

@@ -95,7 +95,8 @@
     //breakpoints
     $brxs: 600px !default;
     $brsm: 1200px !default;
-    $brmd: 1800px !default;
+    $brmd: 1500px !default;
+    $brlg: 1800px !default;
 
     //extra breakpoints
     $brxxs: 400px !default; //for fixing designs that donnt fit average mobile screens
@@ -109,6 +110,7 @@
     $brsm-mn: $brxs + 1!default;
     $brmd-mn: $brsm + 1!default;
     $brlg-mn: $brmd + 1!default;
+    $brxl-mn: $brlg + 1!default;
 
     //configs
     $autoprefix: true !default; // turn off if ya compiler is gonna do this shit then goooood
@@ -126,12 +128,14 @@
         $screen-xs-max:  #{'max-width: ' + $brxs};
         $screen-sm-max:  #{'max-width: ' + $brsm};
         $screen-md-max:  #{'max-width: ' + $brmd};
+        $screen-lg-max:  #{'max-width: ' + $brlg};
 
         //Min widths
         $screen-xs:  #{'min-width: ' + $brxs-mn}; //mobile
         $screen-sm:  #{'min-width: ' + $brsm-mn}; //tablet
         $screen-md:  #{'min-width: ' + $brmd-mn}; //laptop
         $screen-lg:  #{'min-width: ' + $brlg-mn}; //desktop
+        $screen-xl:  #{'min-width: ' + $brxl-mn}; //desktop
 
         // Breakpoint tags
         $br-tag: (
@@ -139,13 +143,15 @@
             xs-max: $screen-xs-max,
             sm-max: $screen-sm-max,
             md-max: $screen-md-max,
+            lg-max: $screen-lg-max,
             xs: $screen-xs,
             sm: $screen-sm,
             md: $screen-md,
-            lg: $screen-lg
+            lg: $screen-lg,
+            xl: $screen-xl
         );
 
-        $br-tag-list: (xxs-max, xs-max, sm-max, md-max, xs, sm, md, lg);
+        $br-tag-list: (xxs-max, xs-max, sm-max, md-max, lg-max, xs, sm, md, lg, xl);
 
 
 ////////////////////////////////////////////////////////////////////////////// 
@@ -298,7 +304,7 @@
         /// @param $extend: false !default | (boolean) | extend the extend or nah
         /// @param $br: xs | (string) | set breakpoint where flex starts happening. xs wond generate a media query huhuhu
         /// @param $add-important: false | (boolean) | add important to flex becausE SOME BITCHES FEEL LIKE THERE SHOULD BE AN !IMPORTANT TO SHIT???
-        @mixin flex($extend: false,$br: xs,$add-important: false,$add-wrap:false){
+        @mixin flex($extend: false,$br: false,$add-important: false,$add-wrap:false){
             
             $important: '';
 
@@ -309,7 +315,7 @@
             @if  $extend == true {
                 @extend %flex-#{$br};
             } @else {
-                @if $br != xs {
+                @if $br != xs and $br != false {
                     @include br($br) {
                         display:flex#{$important};
                         @if $add-wrap {
@@ -409,6 +415,7 @@
                 sm,
                 md,
                 lg,
+                xl,
             );
             $breakable-parameters: map-get($opts, col-number), map-get($opts, gap-x),map-get($opts, gap-y),map-get($opts, custom-css),map-get($opts, custom-css-child);
 
@@ -684,7 +691,7 @@
                 $gap-x-opts: map-get($opts,gap-x);//because margin-left doesn need to repeat if its the same shit right??
 
                 @if $declare-method == true and $br == $br-to-grid and $method == flex{
-                    @include flex($extend);
+                    @include flex($extend,false,false,true);
                 }
 
 
@@ -981,7 +988,7 @@
                 /// @param $should-be-the-value-from-photoshop: !required | (number) | duh
                 /// @return font size relative value equivalent
                 @function type-track($should-be-the-value-from-photoshop) {
-                    @if unitless($should-be-the-value-from-photoshop){
+                    @if type-of($should-be-the-value-from-photoshop) == number and unitless($should-be-the-value-from-photoshop){
 
                         @return ($should-be-the-value-from-photoshop / 1000) * 1em;
                     }@else{
@@ -1108,6 +1115,7 @@
         // sm: $screen-sm,
         // md: $screen-md,
         // lg: $screen-lg
+        // xl: $screen-xl
         @function polar-br($breakpoint) {
             $current-index: index($br-tag-list,$breakpoint);
             
@@ -1257,8 +1265,8 @@
                 background-position: 
                     #{$stroke} #{( $size * .5 ) + ($stroke * .5)},
                     #{$stroke} #{( $size * .5 ) + ($stroke * .5)},
-                    #{($size * .5) + ($stroke)} #{( $size * -.5 ) + ($stroke * .5)},
-                    #{($size * .5) + ($stroke)} #{( $size * -.5 ) + ($stroke * .5)};
+                    #{($size * .5) + ($stroke)} #{($size * -.5)  + ($stroke * .5)} #{','}
+                    #{($size * .5) + ($stroke)} #{($size * -.5) + ($stroke * .5)};
                 
 
                 @if $autoprefix == true {
@@ -2501,5 +2509,9 @@
 
     &-lg {
         @include flex(false,lg,true);
+    }
+
+    &-xl {
+        @include flex(false,xl,true);
     }
 }

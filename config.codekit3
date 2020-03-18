@@ -49,9 +49,42 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/docs/images/alert-close.png": {
+		"ft": 32768,
+		"iS": 29019,
+		"oA": 0,
+		"oAP": "/docs/images/alert-close.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/alert-colors.png": {
+		"ft": 32768,
+		"iS": 245033,
+		"oA": 0,
+		"oAP": "/docs/images/alert-colors.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/alert.png": {
+		"ft": 32768,
+		"iS": 28820,
+		"oA": 0,
+		"oAP": "/docs/images/alert.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/badge.png": {
 		"ft": 32768,
-		"iS": 93440,
+		"iS": 134287,
 		"oA": 0,
 		"oAP": "/docs/images/badge.png",
 		"oF": 0,
@@ -73,7 +106,7 @@
 		},
 	"/docs/images/btn-disabled.png": {
 		"ft": 32768,
-		"iS": 61285,
+		"iS": 88548,
 		"oA": 0,
 		"oAP": "/docs/images/btn-disabled.png",
 		"oF": 0,
@@ -84,7 +117,7 @@
 		},
 	"/docs/images/btn-group-disabled.png": {
 		"ft": 32768,
-		"iS": 19199,
+		"iS": 23136,
 		"oA": 0,
 		"oAP": "/docs/images/btn-group-disabled.png",
 		"oF": 0,
@@ -95,7 +128,7 @@
 		},
 	"/docs/images/btn-group-multiple-resetter.gif": {
 		"ft": 4194304,
-		"iS": 288744,
+		"iS": 1030803,
 		"oA": 0,
 		"oAP": "/docs/images/btn-group-multiple-resetter.gif",
 		"oF": 0,
@@ -103,7 +136,7 @@
 		},
 	"/docs/images/btn-group-size.png": {
 		"ft": 32768,
-		"iS": 30096,
+		"iS": 26546,
 		"oA": 0,
 		"oAP": "/docs/images/btn-group-size.png",
 		"oF": 0,
@@ -112,21 +145,13 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/docs/images/btn-group-toggle-multiple-and-resetter.gif": {
-		"ft": 4194304,
-		"iS": 232343,
-		"oA": 0,
-		"oAP": "/docs/images/btn-group-toggle-multiple-and-resetter.gif",
-		"oF": 0,
-		"opt": 1
-		},
 	"/docs/images/btn-group-toggle.gif": {
 		"ft": 4194304,
-		"iS": 227871,
+		"iS": 1049616,
 		"oA": 0,
 		"oAP": "/docs/images/btn-group-toggle.gif",
 		"oF": 0,
-		"opt": 1
+		"opt": 0
 		},
 	"/docs/images/btn-group-vertical.png": {
 		"ft": 32768,
@@ -141,7 +166,7 @@
 		},
 	"/docs/images/btn-group.png": {
 		"ft": 32768,
-		"iS": 23668,
+		"iS": 20235,
 		"oA": 0,
 		"oAP": "/docs/images/btn-group.png",
 		"oF": 0,
@@ -152,29 +177,29 @@
 		},
 	"/docs/images/btn-large.png": {
 		"ft": 32768,
-		"iS": 103472,
+		"iS": 89647,
 		"oA": 0,
 		"oAP": "/docs/images/btn-large.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
 	"/docs/images/btn-small.png": {
 		"ft": 32768,
-		"iS": 62468,
+		"iS": 55394,
 		"oA": 0,
 		"oAP": "/docs/images/btn-small.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
 	"/docs/images/btn-symbol.png": {
 		"ft": 32768,
-		"iS": 10665,
+		"iS": 8144,
 		"oA": 0,
 		"oAP": "/docs/images/btn-symbol.png",
 		"oF": 0,
@@ -185,18 +210,18 @@
 		},
 	"/docs/images/btn.png": {
 		"ft": 32768,
-		"iS": 392148,
+		"iS": 59878,
 		"oA": 0,
 		"oAP": "/docs/images/btn.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
 	"/docs/images/dropdown-center.png": {
 		"ft": 32768,
-		"iS": 53400,
+		"iS": 52391,
 		"oA": 0,
 		"oAP": "/docs/images/dropdown-center.png",
 		"oF": 0,
@@ -207,18 +232,18 @@
 		},
 	"/docs/images/dropdown-flush.png": {
 		"ft": 32768,
-		"iS": 63060,
+		"iS": 64919,
 		"oA": 0,
 		"oAP": "/docs/images/dropdown-flush.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
 	"/docs/images/dropdown.png": {
 		"ft": 32768,
-		"iS": 48486,
+		"iS": 56369,
 		"oA": 0,
 		"oAP": "/docs/images/dropdown.png",
 		"oF": 0,
@@ -315,6 +340,39 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/docs/images/input-calendar-color.png": {
+		"ft": 32768,
+		"iS": 400906,
+		"oA": 0,
+		"oAP": "/docs/images/input-calendar-color.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/input-calendar-size.png": {
+		"ft": 32768,
+		"iS": 146040,
+		"oA": 0,
+		"oAP": "/docs/images/input-calendar-size.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/input-calendar.png": {
+		"ft": 32768,
+		"iS": 59011,
+		"oA": 0,
+		"oAP": "/docs/images/input-calendar.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/input-fieldset.png": {
 		"ft": 32768,
 		"iS": 120996,
@@ -328,7 +386,7 @@
 		},
 	"/docs/images/input-group-horizontal.png": {
 		"ft": 32768,
-		"iS": 24320,
+		"iS": 20099,
 		"oA": 0,
 		"oAP": "/docs/images/input-group-horizontal.png",
 		"oF": 0,
@@ -339,7 +397,7 @@
 		},
 	"/docs/images/input-group-responsive.png": {
 		"ft": 32768,
-		"iS": 46478,
+		"iS": 36947,
 		"oA": 0,
 		"oAP": "/docs/images/input-group-responsive.png",
 		"oF": 0,
@@ -350,7 +408,7 @@
 		},
 	"/docs/images/input-group-vertical.png": {
 		"ft": 32768,
-		"iS": 34988,
+		"iS": 29398,
 		"oA": 0,
 		"oAP": "/docs/images/input-group-vertical.png",
 		"oF": 0,
@@ -372,7 +430,7 @@
 		},
 	"/docs/images/input-select.png": {
 		"ft": 32768,
-		"iS": 83696,
+		"iS": 61931,
 		"oA": 0,
 		"oAP": "/docs/images/input-select.png",
 		"oF": 0,
@@ -416,7 +474,7 @@
 		},
 	"/docs/images/legend.png": {
 		"ft": 32768,
-		"iS": 81910,
+		"iS": 61696,
 		"oA": 0,
 		"oAP": "/docs/images/legend.png",
 		"oF": 0,
@@ -427,7 +485,7 @@
 		},
 	"/docs/images/list-group.png": {
 		"ft": 32768,
-		"iS": 30145,
+		"iS": 27739,
 		"oA": 0,
 		"oAP": "/docs/images/list-group.png",
 		"oF": 0,
@@ -438,7 +496,7 @@
 		},
 	"/docs/images/modal.png": {
 		"ft": 32768,
-		"iS": 286859,
+		"iS": 171383,
 		"oA": 0,
 		"oAP": "/docs/images/modal.png",
 		"oF": 0,
@@ -449,7 +507,7 @@
 		},
 	"/docs/images/module-grid.png": {
 		"ft": 32768,
-		"iS": 294187,
+		"iS": 346836,
 		"oA": 0,
 		"oAP": "/docs/images/module-grid.png",
 		"oF": 0,
@@ -460,7 +518,7 @@
 		},
 	"/docs/images/module-header-break.png": {
 		"ft": 32768,
-		"iS": 787908,
+		"iS": 1149319,
 		"oA": 0,
 		"oAP": "/docs/images/module-header-break.png",
 		"oF": 0,
@@ -471,18 +529,18 @@
 		},
 	"/docs/images/module.png": {
 		"ft": 32768,
-		"iS": 296558,
+		"iS": 336792,
 		"oA": 0,
 		"oAP": "/docs/images/module.png",
 		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
+		"oIPL": 1,
+		"opt": 1,
 		"oT": 1,
 		"q": 100
 		},
 	"/docs/images/nav-horizontal.png": {
 		"ft": 32768,
-		"iS": 32302,
+		"iS": 33896,
 		"oA": 0,
 		"oAP": "/docs/images/nav-horizontal.png",
 		"oF": 0,
@@ -493,7 +551,7 @@
 		},
 	"/docs/images/nav-vertical.png": {
 		"ft": 32768,
-		"iS": 61351,
+		"iS": 55300,
 		"oA": 0,
 		"oAP": "/docs/images/nav-vertical.png",
 		"oF": 0,
@@ -504,7 +562,7 @@
 		},
 	"/docs/images/progress-animated.gif": {
 		"ft": 4194304,
-		"iS": 125458,
+		"iS": 177039,
 		"oA": 0,
 		"oAP": "/docs/images/progress-animated.gif",
 		"oF": 0,
@@ -512,7 +570,7 @@
 		},
 	"/docs/images/progress-stacked.png": {
 		"ft": 32768,
-		"iS": 12357,
+		"iS": 9748,
 		"oA": 0,
 		"oAP": "/docs/images/progress-stacked.png",
 		"oF": 0,
@@ -523,7 +581,7 @@
 		},
 	"/docs/images/progress.png": {
 		"ft": 32768,
-		"iS": 120792,
+		"iS": 81225,
 		"oA": 0,
 		"oAP": "/docs/images/progress.png",
 		"oF": 0,
@@ -545,7 +603,7 @@
 		},
 	"/docs/images/symbol.png": {
 		"ft": 32768,
-		"iS": 117833,
+		"iS": 102274,
 		"oA": 0,
 		"oAP": "/docs/images/symbol.png",
 		"oF": 0,
@@ -556,7 +614,7 @@
 		},
 	"/docs/images/table-color.png": {
 		"ft": 32768,
-		"iS": 161845,
+		"iS": 221064,
 		"oA": 0,
 		"oAP": "/docs/images/table-color.png",
 		"oF": 0,
@@ -567,7 +625,7 @@
 		},
 	"/docs/images/table-label.png": {
 		"ft": 32768,
-		"iS": 83416,
+		"iS": 76744,
 		"oA": 0,
 		"oAP": "/docs/images/table-label.png",
 		"oF": 0,
@@ -578,7 +636,7 @@
 		},
 	"/docs/images/table.png": {
 		"ft": 32768,
-		"iS": 172768,
+		"iS": 214227,
 		"oA": 0,
 		"oAP": "/docs/images/table.png",
 		"oF": 0,
@@ -589,7 +647,7 @@
 		},
 	"/docs/images/tags.png": {
 		"ft": 32768,
-		"iS": 61930,
+		"iS": 69321,
 		"oA": 0,
 		"oAP": "/docs/images/tags.png",
 		"oF": 0,
@@ -600,7 +658,7 @@
 		},
 	"/docs/images/thumbnail.png": {
 		"ft": 32768,
-		"iS": 433401,
+		"iS": 438328,
 		"oA": 0,
 		"oAP": "/docs/images/thumbnail.png",
 		"oF": 0,
@@ -611,7 +669,7 @@
 		},
 	"/docs/images/tooltip-width-badge.png": {
 		"ft": 32768,
-		"iS": 35457,
+		"iS": 29220,
 		"oA": 0,
 		"oAP": "/docs/images/tooltip-width-badge.png",
 		"oF": 0,
@@ -622,7 +680,7 @@
 		},
 	"/docs/images/tooltip-with-center.png": {
 		"ft": 32768,
-		"iS": 31588,
+		"iS": 22699,
 		"oA": 0,
 		"oAP": "/docs/images/tooltip-with-center.png",
 		"oF": 0,
@@ -633,7 +691,7 @@
 		},
 	"/docs/images/tooltip.png": {
 		"ft": 32768,
-		"iS": 30607,
+		"iS": 25967,
 		"oA": 0,
 		"oAP": "/docs/images/tooltip.png",
 		"oF": 0,
@@ -653,6 +711,25 @@
 		"hM": 0,
 		"oA": 1,
 		"oAP": "/docs/sections/components/accordion.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"/docs/sections/components/alert.md": {
+		"cB": 0,
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/docs/sections/components/alert.html",
 		"oF": 0,
 		"oFM": 0,
 		"oS": 0,
@@ -1188,7 +1265,7 @@
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "/dist/framework.min.js",
 		"oF": 2,
@@ -1199,7 +1276,7 @@
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "/dist/framework.plugged.min.js",
 		"oF": 2,
@@ -1235,6 +1312,19 @@
 		"oA": 0,
 		"oAP": "/dist/framework.css",
 		"oF": 3,
+		"oS": 0,
+		"uL": 0
+		},
+	"/scss/import/_alert.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/import/_alert.css",
+		"oF": 0,
 		"oS": 0,
 		"uL": 1
 		},
@@ -1273,19 +1363,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/scss/import/_form.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/scss/import/_form_bu.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/scss/import/_form_bu.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1

@@ -1,0 +1,61 @@
+/*** ALERT ***/
+
+/* it */
+$prefix: '.alert';
+#{$prefix} {
+	padding-top: $alert-gutter-y;
+	padding-bottom: $alert-gutter-y;
+	// padding-right: calc(#{$alert-gutter-x} + 2em);
+	padding-right: $alert-gutter-x;
+	padding-left: $alert-gutter-x;
+	border: $alert-border-width solid transparent;
+	border-radius: $alert-border-radius;
+	box-shadow: $alert-box-shadow;
+	position:relative;
+	@extend %for-cf;
+	a {
+		color:inherit;
+		font-weight: $body-font-weight-bold;
+
+		&:hover {
+			text-decoration:underline;
+		}
+	}
+
+	&-close {
+		// position:absolute;
+		// top:$alert-gutter-y;
+		// right:$alert-gutter-x;
+		float:right;
+		color:inherit;
+		opacity:.8;
+		margin-left:.5em;
+		transition: $transition-duration-short opacity $transition-timing;
+
+		&:hover {
+			opacity:1;
+		}
+	}
+
+	@include br(#{$mobile-br-max}-max) {
+		padding-top: $alert-gutter-y-mobile;
+		padding-bottom: $alert-gutter-y-mobile;
+		// padding-right: calc(#{$alert-gutter-x-mobile} + 2em);
+		padding-right: $alert-gutter-x-mobile;
+		padding-left: $alert-gutter-x-mobile;
+
+		&-close {
+		// top:$alert-gutter-y-mobile;
+		// right:$alert-gutter-x-mobile;
+		}
+	}
+
+
+	@each $tag,$color in $calculated-alert-schemes {
+		&#{$prefix}-#{$tag} {
+			border-color: map-get($color,border);
+			color: map-get($color,color);
+			background-color: map-get($color,background);
+		}
+	}
+}

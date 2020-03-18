@@ -3,7 +3,7 @@
 
 Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle="tooltip-click"]`** or hover with **`[data-toggle="tooltip-hover"]`** 
 
-NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your page to dIE 
+NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your tooltip to dIE... or position itself like shit
 
 Example tooltip that toggles on click
 
@@ -85,13 +85,25 @@ Idk this is how you add classes or [helper classes](../scaffolding/helpers.md) t
 
 ## **`data-tooltip-center-x`**
 
-By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled horizontally
+By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled horizontally. NOTE: will not work if `data-tooltip-x` is set
 
 ## **`data-tooltip-center-y`**
 
-By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled vertically
+By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled vertically. NOTE: will not work if `data-tooltip-y` is set
 
 ![](../../images/tooltip-with-center.png)
+
+## **`data-tooltip-x`**
+
+Custom x offset. has to be a number,
+
+NOTE: the tooltip is appended to the body so position ofset will be calculated based on the body
+
+## **`data-tooltip-y`**
+
+Custom y offset. has to be a number,
+
+NOTE: the tooltip is appended to the body so position ofset will be calculated based on the body
 
 # Advanced
 
@@ -112,6 +124,11 @@ This is the markup our framework generates in case you need to make your own.
 
 
 
+## Styling a tooltip
+
+you can try but be careful
+
+
 ## Javascript
 
 
@@ -119,7 +136,7 @@ This is the markup our framework generates in case you need to make your own.
 
 #### **`fw.createTooltip(triggerer)`**
 
-Creates a modal
+Creates a boi
 
 `triggerer` is the element that toggles the modal or [data-toggle="modal*"],
 
@@ -127,7 +144,14 @@ the parameter is required
 
 #### **`fw.destroyTooltip()`**
 
-Kills ya boi
+Kills ya boi. This function is ran first thing in `fw.createTooltip(triggerer)` too
+
+
+#### **`fw.positionToolTip( x:number, y:number )`**
+
+Positions ya boi. You can only run this if a tooltip is triggered and active.
+
+NOTE: offset is calculated based on position offset from body
 
 
 [Back to TOC](../../../readme.md)
