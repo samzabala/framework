@@ -51,6 +51,7 @@ table {
   --br-xs: 600px;
   --br-sm: 1200px;
   --br-md: 1600px;
+  --br-lg: 1800px;
   --mobile-br-max: sm;
   --brand-color-base: #000000;
   --brand-color-base-alt: #1a1a1a;
@@ -1341,7 +1342,7 @@ table {
   max-width: 1600px; }
 .container.container-fluid {
   max-width: none; }
-@media (min-width: 601px) {
+@media (min-width: 1201px) {
   .container.container-wide {
     padding-left: 20px;
     padding-right: 20px; }
@@ -3478,7 +3479,7 @@ table {
   margin-bottom: -20px; }
 .module-header, .module-footer {
   position: relative; }
-  @media (min-width: 601px) {
+  @media (min-width: 1201px) {
     .module-header-break, .module-footer-break {
       display: -webkit-box;
       display: flex;
@@ -3532,7 +3533,7 @@ table {
   .module-functions .module-function {
     margin-top: 10px;
     margin-bottom: 10px; }
-  @media (min-width: 601px) {
+  @media (min-width: 1201px) {
     .module-functions .module-function:nth-child(n+2) {
       margin-left: .75rem; } }
   @media (max-width: 1200px) {
@@ -4192,7 +4193,7 @@ table {
       border-top-left-radius: 0 !important; }
       .btn-group.btn-group-vertical > .btn:nth-child(n+2), .btn-group.btn-group-vertical > .btn:nth-child(n+2):hover {
         border-top-color: rgba(0, 0, 0, 0.1) !important; }
-  @media (min-width: 601px) {
+  @media (min-width: 1201px) {
     .btn-group.btn-group-responsive.btn-group-horizontal > .btn-symbol {
       width: auto; }
     .btn-group.btn-group-responsive.btn-group-horizontal > .btn:nth-last-child(n+2) {
@@ -4575,12 +4576,12 @@ table {
 .input-wrapper, .fw-trumbowyg-modal-box label {
   max-width: 100%;
   position: relative; }
-  @media (min-width: 601px) {
+  @media (min-width: 1201px) {
     .input-wrapper, .fw-trumbowyg-modal-box label {
       display: -webkit-inline-box;
       display: inline-flex;
       padding-right: 2rem; } }
-@media (min-width: 601px) {
+@media (min-width: 1201px) {
   .input-wrapper.input-wrapper-horizontal, .fw-trumbowyg-modal-box label {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -4602,7 +4603,7 @@ table {
                 flex: 1 1 auto; }
       .input-wrapper-block.input-wrapper.input-wrapper-horizontal > .input-label, .fw-trumbowyg-modal-box label.input-wrapper-block > .input-label {
         flex-basis: 25%; } }
-@media (min-width: 601px) {
+@media (min-width: 1201px) {
   .input-wrapper.input-wrapper-vertical {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -4678,7 +4679,7 @@ table {
       border-top-left-radius: 0 !important; }
       .input-group.input-group-vertical > .input:nth-child(n+2):not(:focus):not(.focus), .input-group.input-group-vertical .btn:nth-child(n+2):not(:focus):not(.focus), .input-group.input-group-vertical .trumbowyg:nth-child(n+2):not(:focus):not(.focus) {
         border-top-color: rgba(0, 0, 0, 0.1); }
-  @media (min-width: 601px) {
+  @media (min-width: 1201px) {
     .input-group.input-group-responsive.input-group-horizontal > .btn-symbol {
       width: auto; }
     .input-group.input-group-responsive.input-group-horizontal > .input:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .trumbowyg:nth-last-child(n+2) {
@@ -5177,13 +5178,13 @@ CUSTOM STYLES FOR TRUMBOWYG
   max-width: 520px; }
   .fw-trumbowyg-modal-box label .fw-trumbowyg-input-infos {
     margin-right: 0; }
-    @media (min-width: 601px) {
+    @media (min-width: 1201px) {
       .fw-trumbowyg-modal-box label .fw-trumbowyg-input-infos {
         -webkit-box-flex: 0;
                 flex: 0 0 25%;
         -webkit-box-ordinal-group: 0;
                 order: -1; } }
-  @media (min-width: 601px) {
+  @media (min-width: 1201px) {
     .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]) {
       width: calc(100% - 25%); } }
   .fw-trumbowyg-modal-box label input[type="checkbox"] {
@@ -5276,7 +5277,7 @@ CUSTOM STYLES FOR TRUMBOWYG
     display: none !important; }
     .accordion.accordion-mobile.open {
       display: block !important; } }
-@media (min-width: 601px) {
+@media (min-width: 1201px) {
   .accordion.accordion-mobile {
     display: block !important; } }
 
@@ -6229,7 +6230,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 
   .hide-mobile {
     display: none !important; } }
-@media (min-width: 601px) {
+@media (min-width: 1201px) {
   .only-nonmobile {
     display: block !important; }
 

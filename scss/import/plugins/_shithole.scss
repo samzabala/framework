@@ -224,15 +224,16 @@
         @mixin media($query){
 
             //spaces are to track only the tags built for this mixin because sass doesnt haVE FUCJKING REGEX
-            $query: #{ ' ' + $query + ' ' };
+            $query-ready: #{ ' ' + $query + ' ' };
+
 
             @each $tag,$breakpoint in $br-tag {
-                $query: str-replace($query,#{' '+ $tag + ' ' }, ' (' + $breakpoint  + ') ');
+                $query-ready: str-replace($query-ready,#{' '+ $tag + ' ' }, ' (' + $breakpoint  + ') ');
             }  
 
             // @error $query;
 
-            @media #{$query}  { 
+            @media #{$query-ready}  { 
                 @content;
             }
             
@@ -258,9 +259,11 @@
         /// basic ass bitchin container that centers ya shiet
         /// @param $padding: gutter(.75) or $gutter * .75 !default | (number) | padding for left and right
         /// @return: container styles
-        @mixin container($padding: gutter(.75)) {
-            padding-left: $padding;
-            padding-right: $padding;
+        @mixin container($padding:'') {
+            @if $padding != '' {
+                padding-left: $padding;
+                padding-right: $padding;
+            }
             margin: 0 auto; 
             width:100%;
             position:relative;
@@ -879,74 +882,79 @@
         @mixin type-set($args:()) {
 
             $opts: map-merge((
-                size: '',
-                leading: '',
-                font: '',
-                color: '',
-                weight: '',
-                tracking: '',
-                case: '',
-                decoration: '',
-                variant: '',
-                align:'',
-                indent:'',
-                word-spacing:'',
-                style: '',
+                size: null,
+                leading: null,
+                font: null,
+                color: null,
+                weight: null,
+                tracking: null,
+                case: null,
+                decoration: null,
+                variant: null,
+                align:null,
+                indent:null,
+                word-spacing:null,
+                root-size: null,
+                style: null,
                 //@TODO other fancy shit
             ),$args);
             
-            @if map-get($opts,size) != '' {
-                font-size: map-get($opts,size);
-            }
-            @if map-get($opts,leading) != '' {
-                @if type-of(map-get($opts,size)) == number {
-                    line-height: type-lead(map-get($opts,size),map-get($opts,leading));
+            @if map-get($opts,size) {
+
+                @if map-get($opts,root-size) and (type-of( map-get($opts,root-size) ) == number ) and (type-of( map-get($opts,size) ) == number ) {
+                    font-size: rem(map-get($opts,size)/map-get($opts,root-size));
                 }@else{
-                    line-height: map-get($opts,leading);
+                    font-size: map-get($opts,size);
                 }
+
+
+            }
+            @if map-get($opts,leading) {
+                
+                line-height: type-lead(map-get($opts,size),map-get($opts,leading));
             }
             
-            @if map-get($opts,font) != ''{
+            @if map-get($opts,font){
                 font-family: map-get($opts,font);
             }
             
-            @if map-get($opts,color) != ''{
+            @if map-get($opts,color){
                 color: map-get($opts,color);
             }
             
-            @if map-get($opts,weight) != ''{
+            @if map-get($opts,weight){
                 font-weight: map-get($opts,weight);
             }
             
-            @if map-get($opts,tracking) != ''{
+            @if map-get($opts,tracking){
                 letter-spacing: type-track(map-get($opts,tracking));
             }
             
-            @if map-get($opts,case) != ''{
+            @if map-get($opts,case){
                 text-transform: map-get($opts,case);
             }
             
-            @if map-get($opts,decoration) != ''{
+            @if map-get($opts,decoration){
                 text-decoration: map-get($opts,decoration);
             }
             
-            @if map-get($opts,variant) != ''{
+            @if map-get($opts,variant){
                 font-variant: map-get($opts,variant);
             }
             
-            @if map-get($opts,align) != ''{
+            @if map-get($opts,align){
                 text-align: map-get($opts,align);
             }
             
-            @if map-get($opts,indent) != ''{
+            @if map-get($opts,indent){
                 text-indent: map-get($opts,indent);
             }
             
-            @if map-get($opts,style) != ''{
+            @if map-get($opts,style){
                 font-style: map-get($opts,style);
             }
             
-            @if map-get($opts,word-spacing) != ''{
+            @if map-get($opts,word-spacing){
                 word-spacing: map-get($opts,word-spacing);
             }
             
@@ -957,18 +965,19 @@
             /// @param $font-size: !required | (number) | duh
             /// @param $line-height: !required | (number) | duh
             /// @return stripped font size relative value without unit
-            @mixin type($font-size,$line-height:''){
-                font-size: $font-size;
-                @if $line-height != '' {
-                    line-height: type-lead($font-size,$line-height);
-                }
+            @mixin type($font-size,$line-height:'',$root-size:null){
+                @include type-set((
+                    size: $font-size,
+                    root-size: $root-size,
+                    leading: $line-height
+                ));
             }
 
             //mixins and functions that shit above relies on but u can use to ur butthole's content
                 /// line height generator. values have to be the same and shit
                 /// @param $font-size: !required | (number) | duh
                 /// @param $line-height: !required | (number) | duh
-                /// @return stripped font size relative value without unit
+                /// @return stripped font size relative value wi thout unit
                 @function type-lead($font-size,$line-height) {
                     @if (type-of($font-size) == number and type-of($line-height) == number)
                     and (unit($font-size) == unit($line-height))
@@ -1107,23 +1116,39 @@
         }
 
 
+        
         // xxs-max: $screen-xxs-max,
         // xs-max: $screen-xs-max,
         // sm-max: $screen-sm-max,
         // md-max: $screen-md-max,
+        // lg-max: $screen-lg-max,
         // xs: $screen-xs,
         // sm: $screen-sm,
         // md: $screen-md,
-        // lg: $screen-lg
+        // lg: $screen-lg,
         // xl: $screen-xl
+        // gets the max of ya boi or the min of ya boi
+
         @function polar-br($breakpoint) {
             $current-index: index($br-tag-list,$breakpoint);
             
-            @if($current-index > 4) {
-                @return  nth($br-tag-list,$current-index - 4);
+            @if($current-index > 5) {
+                @return  nth($br-tag-list,$current-index - 5);
             }@else {
-                @return  nth($br-tag-list,$current-index + 4);
+                @return  nth($br-tag-list,$current-index + 5);
             }
+        }
+
+        
+        @function color_is_light($color: null, $threshold: 136) {
+            @if (
+                type-of($color) == color
+                and ( (red($color) + green($color) + blue($color)) / 3 ) > $threshold
+            ) {
+                @return true; // Lighter backgorund, return dark color
+              } @else {
+                @return false; // Darker background, return light color
+              }
         }
 
 
@@ -2284,13 +2309,13 @@
     /// @return {String} - Updated string
     @function str-replace($string, $search, $replace: '') {
         $index: str-index($string, $search);
-
+        
         @if $index {
-            @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+          @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
         }
-
+        
         @return $string;
-    }
+      }
 
     /// for maps and shit
     @function map-set($map, $key, $value) {

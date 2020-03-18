@@ -6,6 +6,7 @@
 	$br-xs-max: 600px !default;
 	$br-sm-max: 1200px !default;
 	$br-md-max: 1600px !default;
+	$br-lg-max: 1800px !default;
 
 	//extra breakpoints
 	$br-xxs-max: 400px !default;
@@ -769,6 +770,7 @@
 		--br-xs: #{$br-xs-max};
 		--br-sm: #{$br-sm-max};
 		--br-md: #{$br-md-max};
+		--br-lg: #{$br-lg-max};
 
 		--mobile-br-max: #{$mobile-br-max};
 
