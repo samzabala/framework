@@ -4467,9 +4467,7 @@ table {
   .input-wrapper .input-select, .input-wrapper .input-single-line, .input-wrapper .input-multiple-line, .input-wrapper .input-calendar-ui, .input-wrapper .input-editor, .input-wrapper .fw-trumbowyg-editor, .input-wrapper .fw-trumbowyg-textarea, .input-wrapper .fw-trumbowyg-modal-box label input:not([type="checkbox"]):not([type="radio"]), .fw-trumbowyg-modal-box label .input-wrapper input:not([type="checkbox"]):not([type="radio"]) {
     display: block;
     -webkit-box-flex: 1;
-            flex: 1 1;
-    -webkit-box-ordinal-group: 3;
-            order: 2; }
+            flex: 1 1; }
   .input-select::-webkit-input-placeholder, .input-single-line::-webkit-input-placeholder, .input-multiple-line::-webkit-input-placeholder, .input-calendar-ui::-webkit-input-placeholder, .input-editor::-webkit-input-placeholder, .fw-trumbowyg-editor::-webkit-input-placeholder, .fw-trumbowyg-textarea::-webkit-input-placeholder, .fw-trumbowyg-modal-box label input:not([type="radio"]):not([type="checkbox"])::-webkit-input-placeholder {
     color: inherit;
     opacity: 0.5; }
