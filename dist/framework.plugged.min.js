@@ -1613,7 +1613,7 @@ window.jQuery && jQuery.noConflict();
 			frameWork.updateCalendar($(this));
 		});
 	}
-	_.fns_on_ready.push(frameWork.readyCalendar);
+	_.fns_on_rightAway.push(frameWork.readyCalendar);
 
 	
 	_.initTrumbo = function(selector){
