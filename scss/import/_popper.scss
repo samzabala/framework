@@ -149,7 +149,7 @@ $prefix: '.dropdown';
 	.theme-inverse & {
 		color: $nav-color-inverse;
 	}
-	.modal &,
+	
 	&.open {
 		display: block;
 	}
