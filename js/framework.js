@@ -1558,17 +1558,13 @@ window.jQuery && jQuery.noConflict();
 						modHttml += '<a href="#" class="modal-close" data-toggle="modal-close"><i class="symbol symbol-close"></i></a>';
 					}
 
-					modHttml += '<div class="modal-popup-content"></div>';
+					modHttml += '<div class="modal-popup-content">'+contentWrap.innerHTML+'</div>';
 				
 				modHttml += '</div>';
-			modal.insertAdjacentHTML('afterbegin',modHttml);
-
-			contentWrap.childNodes.forEach(function(nud,i){
-				console.log(nud.cloneNode(true));
-				modal.querySelector('.modal-popup-content').appendChild(nud.cloneNode(true));
-			});
 
 			_.initTrumbo(modal);
+
+			modal.innerHTML = modHttml;
 
 			document.body.classList.add('body-modal-active');
 
@@ -1931,10 +1927,15 @@ window.jQuery && jQuery.noConflict();
 
 			var selector =  _.getTheToggled(e.target,'dropdown');
 
-			if( selector ){
-				frameWork.setDropdown(selector,'close');
-			}
-			e.target.classList.remove('focus');
+
+			setTimeout(function(){
+
+				if( selector ){
+					frameWork.setDropdown(selector,'close');
+				}
+				e.target.classList.remove('focus');
+				
+			},100);
 		});
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="dropdown"]:not(input)',function(e){

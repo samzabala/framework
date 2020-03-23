@@ -3941,10 +3941,13 @@ table {
   width: 300px;
   display: none;
   color: #000000;
-  display: none; }
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d; }
   .theme-inverse .dropdown {
     color: #FFFFFF; }
-  .dropdown.open {
+  .modal .dropdown, .dropdown.open {
     display: block; }
   .dropdown, .dropdown ul, .dropdown li {
     margin-bottom: 0;
@@ -3980,8 +3983,6 @@ table {
     top: 50%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%); }
-  .dropdown.open {
-    display: block; }
   .dropdown li:before {
     content: none; }
 
