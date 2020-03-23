@@ -1933,9 +1933,9 @@ window.jQuery && jQuery.noConflict();
 				if( selector ){
 					frameWork.setDropdown(selector,'close');
 				}
-				e.target.classList.remove('focus');
-				
-			},100);
+			},200);
+			e.target.classList.remove('focus');
+			
 		});
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="dropdown"]:not(input)',function(e){
