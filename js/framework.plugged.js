@@ -70,6 +70,18 @@ window.jQuery && jQuery.noConflict();
 
 	}
 
+
+
+	frameWork.addEvent = function(parent, evt, selector, handler) {
+		parent = parent || selector;
+		parent.addEventListener(evt, function(event) {
+		  if (event.target.matches(selector + ', ' + selector + ' *')) {
+			handler.apply(event.target.closest(selector), arguments);
+		  }
+		}, true);
+	  }
+
+
 	_.datetimeFormatPresets = {
 		HumanDate: {
 			placeholder:"mm/dd/yyyy",
@@ -1460,7 +1472,7 @@ window.jQuery && jQuery.noConflict();
 								html += '<a href="#" class="modal-close" data-toggle="modal-close"><i class="symbol symbol-close"></i></a>';
 							}
 
-							html += '<div class="modal-popup-content">' + contentWrap.html() + '</div>';
+							html += '<div class="modal-popup-content"></div>';
 						
 						
 						
@@ -1470,6 +1482,8 @@ window.jQuery && jQuery.noConflict();
 
 				return html;
 			});
+
+			$('#'+actualModalId+' .modal-popup-content').append(contentWrap.html());
 
 			var modal = $('body').children('.modal-wrapper').first();
 

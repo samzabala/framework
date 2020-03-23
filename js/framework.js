@@ -1558,10 +1558,15 @@ window.jQuery && jQuery.noConflict();
 						modHttml += '<a href="#" class="modal-close" data-toggle="modal-close"><i class="symbol symbol-close"></i></a>';
 					}
 
-					modHttml += '<div class="modal-popup-content">' + contentWrap.innerHTML + '</div>';
+					modHttml += '<div class="modal-popup-content"></div>';
 				
 				modHttml += '</div>';
-			modal.innerHTML += modHttml;
+			modal.insertAdjacentHTML('afterbegin',modHttml);
+
+			contentWrap.childNodes.forEach(function(nud,i){
+				console.log(nud.cloneNode(true));
+				modal.querySelector('.modal-popup-content').appendChild(nud.cloneNode(true));
+			});
 
 			_.initTrumbo(modal);
 
