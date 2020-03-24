@@ -1765,7 +1765,7 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('blur','input[data-toggle="dropdown"]',function(e){
 
 			var selector =  _.getTheToggled($(this),'dropdown');
-			console.log(e);
+			
 			setTimeout(function(){
 				if( selector ){
 					frameWork.setDropdown(selector,'close');
