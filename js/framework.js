@@ -25,7 +25,7 @@ window.jQuery && jQuery.noConflict();
 
 	_.trumboPrefix = 'fw-trumbowyg-';
 
-	$ && ($.trumbowyg.prefix = _.trumboPrefix);
+	$.trumbowyg && ($.trumbowyg.prefix = _.trumboPrefix);
 	// $.trumbowyg.svgPath = false;
 
 	frameWork.trumbowyg.defaults = {
@@ -1769,7 +1769,7 @@ window.jQuery && jQuery.noConflict();
 
 	_.initTrumbo = function(selector){
 
-		if($){
+		if($.trumbowyg){
 
 			selector = selector || document.body;
 

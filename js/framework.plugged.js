@@ -25,15 +25,15 @@ window.jQuery && jQuery.noConflict();
 		throw new Error('jQuery not found bro, what did you do?');
 	}
 
-	if(!$.trumbowyg) {
-		throw new Error('Trumbowyg is not included. woa boi');
-	}
+	// if(!$.trumbowyg) {
+	// 	throw new Error('Trumbowyg is not included. woa boi');
+	// }
 	
 	frameWork.trumbowyg = {};
 
 	_.trumboPrefix = 'fw-trumbowyg-';
 
-	$ && ($.trumbowyg.prefix = _.trumboPrefix);
+	$.trumbowyg && ($.trumbowyg.prefix = _.trumboPrefix);
 	// $.trumbowyg.svgPath = false;
 
 	frameWork.trumbowyg.defaults = {
@@ -1618,24 +1618,28 @@ window.jQuery && jQuery.noConflict();
 	
 	_.initTrumbo = function(selector){
 
-		selector = selector || document.body;
-
-		$(selector).find('.input-trumbowyg:not(.input-trumbowyg-custom)').each(function(){
-			
-			if(!($(this).closest('.modal').length > 0)) { //catch dynamo trumbobois
+		if($.trumbowyg){
 
 
-				//load icons svg into dom because what a bitch
-				if(!$('#'+_.trumboPrefix+'icons').length){
-					$(document.body).prepend('<div id="'+_.trumboPrefix+'icons">'+frameWork.trumbowyg.iconsMarkup+'</div>');
+			selector = selector || document.body;
+
+			$(selector).find('.input-trumbowyg:not(.input-trumbowyg-custom)').each(function(){
+				
+				if(!($(this).closest('.modal').length > 0)) { //catch dynamo trumbobois
+	
+	
+					//load icons svg into dom because what a bitch
+					if(!$('#'+_.trumboPrefix+'icons').length){
+						$(document.body).prepend('<div id="'+_.trumboPrefix+'icons">'+frameWork.trumbowyg.iconsMarkup+'</div>');
+					}
+	
+					frameWork.trumbowyg.defaults.prefix = frameWork.trumbowyg.defaults.prefix || _.trumboPrefix;
+	
+					$(this).trumbowyg('destroy');
+					$(this).trumbowyg(frameWork.trumbowyg.defaults);
 				}
-
-				frameWork.trumbowyg.defaults.prefix = frameWork.trumbowyg.defaults.prefix || _.trumboPrefix;
-
-				$(this).trumbowyg('destroy');
-				$(this).trumbowyg(frameWork.trumbowyg.defaults);
-			}
-		})
+			})
+		}
 	}
 	_.fns_on_load.push(_.initTrumbo);
 
