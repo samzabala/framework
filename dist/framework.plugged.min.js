@@ -837,7 +837,24 @@ window.jQuery && jQuery.noConflict();
 				var butts = ['prev-year','prev-month','next-month','next-year'];
 
 				butts.forEach(function(butt){
-					theUi.heading.append(generateArrow(butt));
+					if(
+						(
+							args.yearSkip
+							&& (
+								butt == 'prev-year'
+								|| butt == 'next-year'
+							)
+						)
+						|| (
+							args.monthSkip
+							&& (
+								butt == 'prev-month'
+								|| butt == 'next-month'
+							)
+						)
+					){
+						theUi.heading.append(generateArrow(butt));
+					}
 				});
 
 
@@ -1070,6 +1087,8 @@ window.jQuery && jQuery.noConflict();
 			dropdownYearSpan: inputCalendar.attr('data-calendar-dropdown-year-span'),
 			disabledDates: inputCalendar.attr('data-calendar-disabled-dates'),
 			textInput:inputCalendar.attr('data-calendar-text-input'),
+			monthSkip:inputCalendar.attr('data-calendar-month-skip'),
+			yearSkip:inputCalendar.attr('data-calendar-year-skip'),
 		};
 
 		var defaults = {
@@ -1080,6 +1099,8 @@ window.jQuery && jQuery.noConflict();
 			dropdownYearSpan: 1,
 			disabledDates: '',
 			textInput:false,
+			monthSkip:true,
+			yearSkip:true,
 		};
 		
 		var args = _.parseArgs(arr,defaults);
