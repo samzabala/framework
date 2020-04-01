@@ -457,7 +457,13 @@ window.jQuery && jQuery.noConflict();
 
 
 		if(clicked){
-			if( clicked.attr('href') ){
+			if(
+				clicked.attr('href')
+				&& !(
+					clicked.attr('href') !== ''
+					|| clicked.attr('href') !== '#'
+				)
+			){
 				toReturn =  $( clicked.attr('href') );
 
 			}else if( clicked.attr('data-href') ){
@@ -1533,18 +1539,17 @@ window.jQuery && jQuery.noConflict();
 				}
 			})
 		}else{
-			console.log('test');;
 			$('.dropdown').removeClass('open');
 		}
 	}
 
-	frameWork.setDropdown = function(selector,mode) {
+	frameWork.setDropdown = function(selector,clicked,mode) {
 		selector = selector || false;
 		mode = mode || 'toggle';
 
 		if(selector){
 
-			var width =  selector.attr('data-dropdown-width') || $(this).attr('data-dropdown-width') || null;
+			var width =  selector.attr('data-dropdown-width') || clicked.attr('data-dropdown-width') || null;
 			
 			if(width) {
 				selector.css('width',width);
@@ -1790,7 +1795,7 @@ window.jQuery && jQuery.noConflict();
 			var selector =  _.getTheToggled($(this),'dropdown');
 
 			if( selector ){
-				frameWork.setDropdown(selector,'open');
+				frameWork.setDropdown(selector,$(this),'open');
 			}
 
 			$(this).addClass('focus');
@@ -1804,7 +1809,7 @@ window.jQuery && jQuery.noConflict();
 			
 			setTimeout(function(){
 				if( selector ){
-					frameWork.setDropdown(selector,'close');
+					frameWork.setDropdown(selector,$(this),'close');
 				}
 			},200);
 			$(this).removeClass('focus');
@@ -1813,18 +1818,19 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('click','*[data-toggle="dropdown"]:not(input)',function(e){
 			e.preventDefault();
 
-			var selector =  _.getTheToggled($(this),'dropdown');
+			var clicked = $(this),
+			selector =  _.getTheToggled(clicked,'dropdown');
 
 
 			if( selector ){
 
-				frameWork.setDropdown(selector);
+				frameWork.setDropdown(selector,clicked);
 
 				
 				if( selector.hasClass('open') ){
 					// selector.slideUp(); 
-					$(this).closest('li,.nav-item').removeClass('open'); 
-					$(this).removeClass('open'); 
+					clicked.closest('li,.nav-item').removeClass('open'); 
+					clicked.removeClass('open'); 
 				}else{
 
 
@@ -1840,13 +1846,13 @@ window.jQuery && jQuery.noConflict();
 
 					// if(selector.closest('li , .nav-item').length > -1) {
 					// 	// selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp(); 
-					// 	$(this).closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
+					// 	clicked.closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open'); 
 					// 	selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open'); 
 					// }
 
 					// selector.slideDown(); 
-					$(this).closest('li,.nav-item').addClass('open'); 
-					$(this).addClass('open'); 
+					clicked.closest('li,.nav-item').addClass('open'); 
+					clicked.addClass('open'); 
 				}
 			}
 		});
@@ -1876,22 +1882,21 @@ window.jQuery && jQuery.noConflict();
 			frameWork.createToolTip($(this));
 		});
 
-		$('html').on('click','*',function(e){
-				console.log('clicked',e.target);
-				//tooltip
-				if(
-					!e.target.matches('[data-toggle="tooltip-click"]')
-					&& !e.target.matches('[data-toggle="tooltip-click"] *')
-					&& !e.target.matches('[data-toggle="tooltip-hover"]')
-					&& !e.target.matches('[data-toggle="tooltip-hover"] *')
-				){
-					frameWork.destroyToolTip();
-				}
+		$('html,body').on('click','*',function(e){
+			//tooltip
+			if(
+				!e.target.matches('[data-toggle="tooltip-click"]')
+				&& !e.target.matches('[data-toggle="tooltip-click"] *')
+				&& !e.target.matches('[data-toggle="tooltip-hover"]')
+				&& !e.target.matches('[data-toggle="tooltip-hover"] *')
+			){
+				frameWork.destroyToolTip();
+			}
 
-				//dropdown
-				if(!e.target.matches('[data-toggle="dropdown"]') && !$(e.target).parents('.dropdown').last().length ){
-					frameWork.closeDropdowns( $(this).parents('.dropdown').last() );
-				}
+			//dropdown
+			if(!e.target.matches('[data-toggle="dropdown"]') && !$(e.target).parents('.dropdown').length ){
+				frameWork.closeDropdowns( false );
+			}
 		});
 
 
