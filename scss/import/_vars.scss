@@ -107,8 +107,8 @@
 		$body-font-weight: 400 !default;
 			$body-font-weight-bold: 700 !default;
 		$body-font-size: 16px !default;
-			$body-font-size-small: 14px !default;
-			$body-font-size-large: 24px !default;
+			$body-font-size-small: $body-font-size * .75 !default;
+			$body-font-size-large: $body-font-size * 1.25 !default;
 		$body-line-height: 21px !default;
 		$body-text-gutter-y: 30px !default;
 
