@@ -574,9 +574,9 @@ window.jQuery && jQuery.noConflict();
 				
 		if(clicked) {
 			if( clicked.hasAttribute('href') 
-				&& !(
+				&& (
 					clicked.getAttribute('href') !== ''
-					|| clicked.getAttribute('href') !== '#'
+					&& clicked.getAttribute('href') !== '#'
 				)
 			){
 				toReturn = document.querySelector( clicked.getAttribute('href') );

@@ -459,9 +459,9 @@ window.jQuery && jQuery.noConflict();
 		if(clicked){
 			if(
 				clicked.attr('href')
-				&& !(
+				&& (
 					clicked.attr('href') !== ''
-					|| clicked.attr('href') !== '#'
+					&& clicked.attr('href') !== '#'
 				)
 			){
 				toReturn =  $( clicked.attr('href') );
