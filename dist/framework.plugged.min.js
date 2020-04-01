@@ -1522,6 +1522,22 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
+	frameWork.closeDropdowns = function(currentDropdown) {
+		currentDropdown = currentDropdown || false;
+
+		if(currentDropdown){
+			$('.dropdown').not(currentDropdown).each(function(){
+
+				if(!currentDropdown.closest($(this)).length) {
+					$(this).removeClass('open')
+				}
+			})
+		}else{
+			console.log('test');;
+			$('.dropdown').removeClass('open');
+		}
+	}
+
 	frameWork.setDropdown = function(selector,mode) {
 		selector = selector || false;
 		mode = mode || 'toggle';
@@ -1538,13 +1554,8 @@ window.jQuery && jQuery.noConflict();
 			if(mode == 'toggle' || mode == 'open' ){
 
 				$('*[data-toggle="dropdown"]').removeClass('open'); 
-
-				$('.dropdown').not(selector).each(function(){
-					if(!selector.closest($(this)).length) {
-						$(this).removeClass('open')
-					}
-				})
-
+				
+				frameWork.closeDropdowns(selector);
 			}
 
 			if(
@@ -1865,8 +1876,9 @@ window.jQuery && jQuery.noConflict();
 			frameWork.createToolTip($(this));
 		});
 
-		$('body').on('click','*',function(e){
-				// e.stopPropagation();
+		$('html').on('click','*',function(e){
+				console.log('clicked',e.target);
+				//tooltip
 				if(
 					!e.target.matches('[data-toggle="tooltip-click"]')
 					&& !e.target.matches('[data-toggle="tooltip-click"] *')
@@ -1874,6 +1886,11 @@ window.jQuery && jQuery.noConflict();
 					&& !e.target.matches('[data-toggle="tooltip-hover"] *')
 				){
 					frameWork.destroyToolTip();
+				}
+
+				//dropdown
+				if(!e.target.matches('[data-toggle="dropdown"]') && !$(e.target).parents('.dropdown').last().length ){
+					frameWork.closeDropdowns( $(this).parents('.dropdown').last() );
 				}
 		});
 

@@ -993,10 +993,13 @@ big {
   overflow-x: auto; }
   .table-wrapper .table,
   .table-wrapper table {
-    white-space: nowrap;
     width: auto;
     min-width: 100%;
     margin-bottom: 0; }
+    .table-wrapper .table .tag, .table-wrapper .table .btn,
+    .table-wrapper table .tag,
+    .table-wrapper table .btn {
+      white-space: nowrap; }
 
 .table,
 table {
