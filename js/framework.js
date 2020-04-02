@@ -1360,6 +1360,8 @@ window.jQuery && jQuery.noConflict();
 				centerY: triggerer.getAttribute('data-tooltip-center-y'),
 				x: triggerer.getAttribute('data-tooltip-x'),
 				y: triggerer.getAttribute('data-tooltip-y'),
+				width: triggerer.getAttribute('data-tooltip-width'),
+				allowInteraction: triggerer.getAttribute('data-tooltip-allow-interaction')
 			};
 
 			var defaults = {
@@ -1373,7 +1375,9 @@ window.jQuery && jQuery.noConflict();
 				centerX: false,
 				centerY: false,
 				x: false,
-				y: false
+				y: false,
+				width: null,
+				allowInteraction: false
 
 			};
 			
@@ -1383,7 +1387,12 @@ window.jQuery && jQuery.noConflict();
 			var toolTip = document.createElement('div');
 			document.querySelector('body').appendChild(toolTip);
 			
-			toolTip.className = 'tooltip tooltip-'+ args.placement+' ';
+			toolTip.className = 'tooltip tooltip-'+ args.placement+( args.allowInteraction ? ' tooltip-allow-interaction' : '' );
+
+
+			if(args.width) {
+				toolTip.style.width = args.width;
+			}
 
 			var ttHtml = '';
 

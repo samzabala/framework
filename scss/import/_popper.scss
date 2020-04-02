@@ -26,6 +26,10 @@ $prefix: '.tooltip';
 	max-width: $tooltip-max-width;
 	display: none;
 
+	&#{&}-allow-interaction {
+		pointer-events: auto;
+	}
+
 	&.active {
 		display: block;
 	}

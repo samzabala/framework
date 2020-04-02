@@ -105,6 +105,14 @@ Custom y offset. has to be a number,
 
 NOTE: the tooltip is appended to the body so position ofset will be calculated based on the body
 
+## **`data-tooltip-width`**
+
+duh
+
+## **`data-tooltip-allow-interaction`**
+
+defaults to false. tooltips are disabled for pointer interactions so it doesn't get in the way of the clickiness of elements in the page. set to tru so you can interact with things in it
+
 # Advanced
 
 ## Modal markup

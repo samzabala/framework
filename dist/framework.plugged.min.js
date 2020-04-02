@@ -1213,6 +1213,8 @@ window.jQuery && jQuery.noConflict();
 				centerY: triggerer.attr('data-tooltip-center-y'),
 				x: triggerer.attr('data-tooltip-x'),
 				y: triggerer.attr('data-tooltip-y'),
+				width: triggerer.attr('data-tooltip-width'),
+				allowInteraction: triggerer.attr('data-tooltip-allow-interaction')
 			};
 
 			var defaults = {
@@ -1225,13 +1227,21 @@ window.jQuery && jQuery.noConflict();
 				content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
 				centerX: false,
 				centerY: false,
+				width: null,
+				allowInteraction: false
 
 			};
 			
 			var args = _.parseArgs(arr,defaults);
 
 			$('body').append(function(){
-				var html = '<div class="tooltip tooltip-'+ args.placement+'">';
+				var html = '<div class="tooltip tooltip-'+ args.placement+( args.allowInteraction ? ' tooltip-allow-interaction' : '' )+'"';
+				
+				if(args.width) {
+					html += ' style="width:'+args.width+';"';
+				}
+				
+				html+='>';
 
 
 				if( args.badge ) {
@@ -1261,8 +1271,6 @@ window.jQuery && jQuery.noConflict();
 			});
 
 			var toolTip = $('body').children('.tooltip:last-child').first();
-				toolTip.show()
-				toolTip.addClass('active');
 			
 			frameWork.toolTip.current = toolTip;
 			frameWork.toolTip.activeTriggerer = triggerer;
@@ -1323,6 +1331,9 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			frameWork.positionToolTip(origin.x(),origin.y());
+
+			toolTip.show()
+			toolTip.addClass('active');
 
 		}
 

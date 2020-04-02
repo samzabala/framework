@@ -4297,6 +4297,8 @@ table {
   pointer-events: none;
   max-width: 300px;
   display: none; }
+  .tooltip.tooltip-allow-interaction {
+    pointer-events: auto; }
   .tooltip.active {
     display: block; }
   .tooltip:before, .tooltip:after {
