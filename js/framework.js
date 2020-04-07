@@ -571,7 +571,7 @@ window.jQuery && jQuery.noConflict();
 		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
 		var toReturn = null;
 
-		console.log(clicked);
+		
 
 				
 		if(clicked) {

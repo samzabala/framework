@@ -179,4 +179,16 @@ to disable this write ya script
 ```
 NOTE: this is useless if `frameWork.settings.dynamicHash` is set to `false`
 
+### Functions
+
+#### **`fw.toggleAccordion(triggerer,changeHash)`**
+
+toggles the accordion
+
+`triggerer` is the element that triggers the accordion. if left blank, this triggers the present hash in the url
+
+
+`changeHash` is a boolean that sets if the `window.location.hash` should change when the function fires. NOTE: this will not work if no triggerer is declared
+
+
 [Back to TOC](../../../readme.md)
