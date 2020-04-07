@@ -1593,7 +1593,8 @@ window.jQuery && jQuery.noConflict();
 
 	}
 
-	frameWork.toggleAccordion = function(triggerer) {
+	frameWork.toggleAccordion = function(triggerer,changeHash) {
+		changeHash = changeHash || true;
 		var selector =  _.getTheToggled(triggerer,'accordion');
 
 		if( selector ){
@@ -1612,8 +1613,11 @@ window.jQuery && jQuery.noConflict();
 						// selector.slideUp(); 
 						triggerer.removeClass('open'); 
 						selector.removeClass('open'); 
+						
+						if(changeHash){
+							_.changeHash('');
+						}
 
-						_.changeHash('');
 					}else{
 
 						if(selector.closest('.accordion-group').length && !selector.closest('.accordion-group').is('.accordion-group-multiple')) {
@@ -1626,7 +1630,9 @@ window.jQuery && jQuery.noConflict();
 						triggerer.addClass('open'); 
 						selector.addClass('open'); 
 
-						_.changeHash(selector.attr('id'));
+						if(changeHash){
+							_.changeHash(selector.attr('id'));
+						}
 					}
 				}else{
 					$('.accordion').removeClass('open');
