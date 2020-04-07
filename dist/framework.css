@@ -5664,6 +5664,11 @@ fieldset {
   fieldset .input-calendar-ui {
     max-width: 400px; }
 
+.body-modal-active {
+  overflow-y: hidden; }
+  .body-modal-active .tox {
+    z-index: 99999 !important; }
+
 /* 
 CUSTOM STYLES FOR TRUMBOWYG
 ****************************************************************************/
