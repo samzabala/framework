@@ -571,6 +571,8 @@ window.jQuery && jQuery.noConflict();
 		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
 		var toReturn = null;
 
+		console.log(clicked);
+
 				
 		if(clicked) {
 			if( clicked.hasAttribute('href') 
@@ -1752,7 +1754,7 @@ window.jQuery && jQuery.noConflict();
 
 
 	frameWork.toggleAccordion = function(triggerer,changeHash) {
-		changeHash = changeHash || true;
+		changeHash = !changeHash ? false : true;
 
 		var selector = _.getTheToggled(triggerer,'accordion');
 		

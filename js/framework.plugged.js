@@ -1594,9 +1594,9 @@ window.jQuery && jQuery.noConflict();
 	}
 
 	frameWork.toggleAccordion = function(triggerer,changeHash) {
-		changeHash = changeHash || true;
+		changeHash = !changeHash ? false : true;
 		var selector =  _.getTheToggled(triggerer,'accordion');
-
+		
 		if( selector ){
 			if(
 				!(
