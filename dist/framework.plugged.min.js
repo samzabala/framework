@@ -1465,6 +1465,9 @@ window.jQuery && jQuery.noConflict();
 				callback:
 					contentWrap.attr('data-modal-callback')
 					|| (triggerer && (triggerer.attr('data-modal-callback'))),
+				classes:
+					contentWrap.attr('data-modal-classes')
+					|| (triggerer && (triggerer.attr('data-modal-classes'))),
 			};
 
 			var defaults = {
@@ -1472,7 +1475,8 @@ window.jQuery && jQuery.noConflict();
 				close: true,
 				disableOverlay: true,
 				maxWidth: null,
-				callback: null
+				callback: null,
+				classes: ''
 			};
 
 			var actualModalId = 'fw-modal';
@@ -1484,7 +1488,7 @@ window.jQuery && jQuery.noConflict();
 			(id !== '#'+actualModalId) && _.changeHash(id);
 
 			$('body').append(function(){
-				var html = '<div id="'+actualModalId+'" class="modal-wrapper">';
+				var html = '<div id="'+actualModalId+'" class="modal-wrapper '+ args.classes +'">';
 						//overlay 
 						html += '<a href="#" class="modal-close-overlay" '+( args.disableOverlay == false ? 'data-toggle="modal-close"' : '' )+'></a>';
 

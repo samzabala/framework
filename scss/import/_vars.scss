@@ -147,7 +147,7 @@
 		$body-blockquote-font-size: inherit !default;
 		$body-blockquote-font-weight: 300 !default;
 		$body-blockquote-line-height: inherit !default;
-		$body-blockquote-text-transform: normal !default;
+		$body-blockquote-text-transform: none !default;
 		$body-blockquote-font-style: normal !default;
 		$body-blockquote-color: $brand-color-neutral !default;
 		$body-blockquote-gutter-x: $gutter-small !default;
@@ -381,7 +381,7 @@
 		$modal-background: $theme-background !default;
 		$modal-close-offset: $gutter-small !default;
 		$modal-background-inverse: $theme-background-inverse !default;
-		$modal-border-radius: $border-radius-base !default;
+		$modal-border-radius: $border-radius-small !default;
 		$modal-box-shadow: $box-shadow-spicy $brand-color-base !default !default;
 		$modal-overlay-bg: rgba($brand-color-base,.5) !default;
 		$modal-close-button-font-size: 2rem !default;

@@ -584,7 +584,7 @@ window.jQuery && jQuery.noConflict();
 				toReturn = document.querySelector( clicked.getAttribute('href') );
 
 			}else if( clicked.hasAttribute('data-href') && clicked.getAttribute('data-href') !== '' ){
-				console.log(clicked.getAttribute('data-href'));
+				
 				toReturn = document.querySelector( clicked.getAttribute('data-href') )
 				
 			}else if (toggleMode && clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
@@ -1611,6 +1611,9 @@ window.jQuery && jQuery.noConflict();
 				callback:
 					contentWrap.getAttribute('data-modal-callback')
 					|| (triggerer && (triggerer.getAttribute('data-modal-callback'))),
+				classes:
+					contentWrap.getAttribute('data-modal-classes')
+					|| (triggerer && (triggerer.getAttribute('data-modal-classes'))),
 			};
 
 			var defaults = {
@@ -1618,7 +1621,8 @@ window.jQuery && jQuery.noConflict();
 				close: true,
 				disableOverlay: true,
 				maxWidth: null,
-				callback: null
+				callback: null,
+				classes: ''
 			};
 
 			var actualModalId = 'fw-modal';
@@ -1633,7 +1637,7 @@ window.jQuery && jQuery.noConflict();
 
 			document.querySelector('body').appendChild(modal);
 			
-			modal.className = 'modal-wrapper';
+			modal.className = 'modal-wrapper '+ args.classes;
 			modal.setAttribute('id',actualModalId)
 
 			var modHttml = '';
