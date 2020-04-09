@@ -1,0 +1,9 @@
+
+.body-modal-active {
+	overflow-y:hidden;
+
+	//vendor
+	.tox-tinymce-aux {
+		z-index:99999!important
+	}
+}
