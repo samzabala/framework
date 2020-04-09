@@ -155,6 +155,24 @@ Function to run after the modal is ready but before it's displays
 </script>
 ```
 
+
+
+
+
+### **`data-modal-classes`**
+
+Dafaults to `null`
+
+classes to add to the generated modal or `#fw-modal`
+
+
+```html
+<a
+	data-toggle="modal"
+	data-modal-classes="theme-inverse"
+	href="#modal-demo">Modal boi with classes</a>
+```
+
 ### All together now
 
 ```html
