@@ -895,9 +895,20 @@ window.jQuery && jQuery.noConflict();
 					+ '</li><li><hr class="dropdown-separator"></li>'
 				);
 
-				//update dropdown
-				for(i = parseInt(-12 * parseInt(args.dropdownYearSpan)); i <= parseInt(12 * parseInt(args.dropdownYearSpan)); i++){
+				var dropdownInit;
+				var dropdownLimit;
 
+				if(args.dropdownYearSpan == 0 ){
+					dropdownInit = currentCalendarDate.getMonth() * -1;
+					dropdownLimit = 11 - currentCalendarDate.getMonth();
+				} else{
+
+					dropdownInit = parseInt(-12 * parseInt(args.dropdownYearSpan));
+					dropdownLimit = parseInt(12 * parseInt(args.dropdownYearSpan));
+				}
+
+				//update dropdown
+				for(i = dropdownInit; i <= dropdownLimit; i++){
 
 					
 						var listItemDate = _.dateGetAdjacent(
@@ -931,7 +942,7 @@ window.jQuery && jQuery.noConflict();
 									+ '<a href="#" class="'+uiPrefix()+'month" data-value="'+ _.dateToVal(listItemDate) +'">'
 									+ _.monthFormatNamesShort[ listItemDate.getMonth() ]+ ' ' + listItemDate.getFullYear()
 									+ '</a>'
-									+ ((listItemDate.getMonth() == 11 ) ? '</li><li><hr class="dropdown-separator">' : '')
+									+ ((listItemDate.getMonth() == 11 && i !== dropdownLimit) ? '</li><li><hr class="dropdown-separator">' : '')
 								+ '</li>'
 							);
 			
@@ -1102,7 +1113,7 @@ window.jQuery && jQuery.noConflict();
 			startDay: 0, // su,mo,tu,we,th,fr,sa,
 			min: null,
 			max:null,
-			dropdownYearSpan: 1,
+			dropdownYearSpan: 0,
 			disabledDates: '',
 			textInput:false,
 			monthSkip:true,
@@ -1553,8 +1564,6 @@ window.jQuery && jQuery.noConflict();
 					$(this).removeClass('open')
 				}
 			})
-		}else{
-			$('.dropdown').removeClass('open');
 		}
 	}
 

@@ -1029,8 +1029,23 @@ window.jQuery && jQuery.noConflict();
 					+ '</a>'
 					+ '</li><li><hr class="dropdown-separator"></li>';
 
-				//update dropdown
-				for(i = parseInt(-12 * parseInt(args.dropdownYearSpan)); i <= parseInt(12 * parseInt(args.dropdownYearSpan)); i++){
+				
+
+					var dropdownInit;
+					var dropdownLimit;
+	
+					if(args.dropdownYearSpan == 0 ){
+						dropdownInit = currentCalendarDate.getMonth() * -1;
+						dropdownLimit = 11 - currentCalendarDate.getMonth();
+					} else{
+	
+						dropdownInit = parseInt(-12 * parseInt(args.dropdownYearSpan));
+						dropdownLimit = parseInt(12 * parseInt(args.dropdownYearSpan));
+					}
+	
+					//update dropdown
+					for(i = dropdownInit; i <= dropdownLimit; i++){
+	
 
 
 					
@@ -1064,7 +1079,7 @@ window.jQuery && jQuery.noConflict();
 									+ '<a href="#" class="'+uiPrefix()+'month" data-value="'+ _.dateToVal(listItemDate) +'">'
 									+ _.monthFormatNamesShort[ listItemDate.getMonth() ]+ ' ' + listItemDate.getFullYear()
 									+ '</a>'
-									+ ((listItemDate.getMonth() == 11 ) ? '</li><li><hr class="dropdown-separator">' : '')
+									+ ((listItemDate.getMonth() == 11  && i !== dropdownLimit ) ? '</li><li><hr class="dropdown-separator">' : '')
 								+ '</li>';
 			
 							theUi.dropdown.innerHTML += listItem;
@@ -1702,11 +1717,6 @@ window.jQuery && jQuery.noConflict();
 				if(dropdown !== currentDropdown && !dropdown.contains(currentDropdown)){
 					dropdown.classList.remove('open');
 				}
-			});
-		}else{
-			document.querySelectorAll('.dropdown').forEach(function(dropdown){
-				
-				dropdown.classList.remove('open');
 			});
 		}
 	}

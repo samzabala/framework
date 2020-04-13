@@ -529,12 +529,12 @@
 		},
 	"/docs/images/module.png": {
 		"ft": 32768,
-		"iS": 336792,
+		"iS": 70364,
 		"oA": 0,
 		"oAP": "/docs/images/module.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
@@ -1265,7 +1265,7 @@
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
-		"mi": 0,
+		"mi": 1,
 		"oA": 0,
 		"oAP": "/dist/framework.min.js",
 		"oF": 2,
@@ -1276,7 +1276,7 @@
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
-		"mi": 0,
+		"mi": 1,
 		"oA": 0,
 		"oAP": "/dist/framework.plugged.min.js",
 		"oF": 2,
@@ -1302,256 +1302,26 @@
 		"rFN": 0,
 		"uCM": 0
 		},
-	"/scss/.sass-cache/0aefaaa9c7acde690659bb88770d57603a81ffbd/framework.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
+	"/scss/framework.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
 		"oA": 0,
-		"oAP": "/scss/.sass-cache/0aefaaa9c7acde690659bb88770d57603a81ffbd/framework.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/5a5d01b6ddcbdd54b12e8689e740684974489300/_shithole.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/5a5d01b6ddcbdd54b12e8689e740684974489300/_shithole.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_alert.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_alert.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_badge.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_badge.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_buttons.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_buttons.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_form.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_form.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_grid.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_grid.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_helpers.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_helpers.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_images.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_images.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_internal-vars.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_internal-vars.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_layout.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_layout.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_legend.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_legend.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_list-groups.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_list-groups.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_mixins.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_mixins.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_modal.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_modal.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_module.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_module.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_nav.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_nav.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_pagination.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_pagination.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_popper.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_popper.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_progress.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_progress.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_reset.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_reset.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_scaffolding.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_scaffolding.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_symbol.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_symbol.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_table.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_table.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_tags.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_tags.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_thumbnail.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_thumbnail.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_toggle.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_toggle.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_trumbowyg.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_trumbowyg.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_typography.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_typography.scssc",
-		"oF": 0
-		},
-	"/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_vars.scssc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/scss/.sass-cache/bada7330232e0367cb983e575b451618a16fa6cd/_vars.scssc",
-		"oF": 0
+		"oAP": "/scss/framework-min.css",
+		"oF": 0,
+		"oS": 3
 		},
 	"/scss/framework.scss": {
-		"aP": 1,
+		"aP": 0,
 		"bl": 0,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "/dist/framework.css",
-		"oF": 3,
+		"oAP": "/scss/framework.css",
+		"oF": 0,
 		"oS": 0,
 		"uL": 1
 		},
@@ -1863,19 +1633,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/scss/import/_thumbnail.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/scss/import/_tinymce.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/scss/import/_tinymce.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
