@@ -1250,7 +1250,7 @@ window.jQuery && jQuery.noConflict();
 			startDay: 0, // su,mo,tu,we,th,fr,sa,
 			min: null,
 			max:null,
-			dropdownYearSpan: 1,
+			dropdownYearSpan: 0,
 			disabledDates: '',
 			textInput:false,
 			monthSkip:true,
