@@ -1021,6 +1021,13 @@ table {
   .table-cell {
     padding-top: calc((2.8125rem - ( 1em * 1.5 )) * .5);
     padding-bottom: calc((2.8125rem - ( 1em * 1.5 )) * .5); }
+  .table.table-col-separation td:nth-child(n+2),
+  .table.table-col-separation .table-cell:nth-child(n+2),
+  table.table-col-separation td:nth-child(n+2),
+  table.table-col-separation .table-cell:nth-child(n+2) {
+    border-left: 1px solid #e6e6e6; }
+    .theme-inverse .table.table-col-separation td:nth-child(n+2), .theme-inverse .table.table-col-separation .table-cell:nth-child(n+2), .theme-inverse table.table-col-separation td:nth-child(n+2), .theme-inverse table.table-col-separation .table-cell:nth-child(n+2) {
+      border-left: 1px solid #000000; }
   .table.table-small td,
   .table.table-small .table-cell,
   table.table-small td,
@@ -1455,7 +1462,8 @@ table {
     border-color: currentColor; }
   @media (max-width: 1200px) {
     .tabs.tabs-responsive {
-      flex-direction: column; }
+      flex-direction: column;
+      border-bottom: 0; }
       .tabs.tabs-responsive .tab,
       .tabs.tabs-responsive .tabs li {
         border-bottom: 1px solid currentColor !important; }

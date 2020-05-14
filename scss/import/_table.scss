@@ -161,7 +161,18 @@ $prefix: '.table';
 			padding-bottom: calc((#{ $calculated-table-cell-height } - ( #{ $calculated-body-single-line } )) * .5);
 		}
 
+		@at-root &#{$prefix}-col-separation {
+			td,
+			#{$prefix}-cell {
+				&:nth-child(n+2) {
+					border-left: $table-cell-border-width solid $table-cell-border-color;
 
+					.theme-inverse & {
+						border-left: $table-cell-border-width solid $table-cell-border-color-inverse;
+					}
+				}
+			}
+		}
 
 
 		@at-root &#{$prefix}-small {

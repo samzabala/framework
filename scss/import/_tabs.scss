@@ -54,6 +54,7 @@ $prefix: '.tab';
 		&#{&}-responsive {
 			@include br(#{$mobile-br-max}-max) {
 				flex-direction:column;
+				border-bottom:0;
 
 				#{$prefix},
 				#{$prefix}s li {
