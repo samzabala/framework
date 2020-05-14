@@ -38,6 +38,8 @@
     $gray-darker:darken($gray, 40) !default;
 
 
+
+    $force-responsive-units: false !default;
     //map because sass wont fucking interpolate variable names
     $color: (
         base: $color-base,
@@ -338,19 +340,29 @@
         /// @param $width: !required | (number) | duh
         /// @param $height: !required | (number) | duh
         /// @content: styles for wrapped children
-        @mixin aspect-ratio($width, $height,$add-important:false,$auto-position: true, $clip: true,$position:true) {
+        @mixin aspect-ratio(
+            $width,
+            $height,
+            $add-important:false,
+            $auto-position: true,
+            $clip: true,
+            $position:true,
+            $declare-display: true
+        ) {
             @if $add-important {
                 $add-important: #{'!important'};
             }@else{
 
                 $add-important: #{''};
             }
+            @if $clip == true {
+                overflow:hidden;
+            }
             @if $position {
                 position: relative;
             }
-            display:block;
-            @if $clip == true {
-                overflow:hidden;
+            @if $declare-display {
+                display:block;
             }
             &:before {
                 content: "";
@@ -405,6 +417,7 @@
                 declare-method: true,
                 extend: false,
                 negate-gap-y: true,
+                set-all-br: true,
             ), $args);
             
             // set up clear float or flex
@@ -441,7 +454,7 @@
 
                     // col-number dictates when to shitstorm. if its a map and a breakpoint is setup and br to flex is not set up, SET IT UP on that breakpoint lang
                     //set autoflex. flex on the smolest breakpoint where it applies 
-                    @if  ( map-get(map-get($opts,col-number),$br)  != null and map-get(map-get($opts,col-number),$br) > 1 ) and $br-to-grid-is-set == false {
+                    @if  ( map-get(map-get($opts,col-number),$br)  != null and map-get(map-get($opts,col-number),$br) > 1 ) and (map-get($opts,set-all-br) != true) and $br-to-grid-is-set == false {
                         $br-to-grid: $br;
                         $br-to-grid-is-set: true;
                     }
@@ -909,7 +922,7 @@
 
 
             }
-            @if map-get($opts,leading) {
+            @if (map-get($opts,leading) and $force-responsive-units == false) or ($force-responsive-units == true and map-get($opts,size) and map-get($opts,leading) ) {
                 
                 line-height: type-lead(map-get($opts,size),map-get($opts,leading));
             }
@@ -1116,30 +1129,27 @@
         }
 
 
-        
         // xxs-max: $screen-xxs-max,
         // xs-max: $screen-xs-max,
         // sm-max: $screen-sm-max,
         // md-max: $screen-md-max,
-        // lg-max: $screen-lg-max,
+        // lg-max: $screen-md-max,
         // xs: $screen-xs,
         // sm: $screen-sm,
         // md: $screen-md,
-        // lg: $screen-lg,
+        // lg: $screen-lg
         // xl: $screen-xl
         // gets the max of ya boi or the min of ya boi
-
         @function polar-br($breakpoint) {
             $current-index: index($br-tag-list,$breakpoint);
             
-            @if($current-index > 5) {
+            @if($current-index > 4) {
                 @return  nth($br-tag-list,$current-index - 5);
             }@else {
                 @return  nth($br-tag-list,$current-index + 5);
             }
         }
 
-        
         @function color_is_light($color: null, $threshold: 136) {
             @if (
                 type-of($color) == color
@@ -1336,7 +1346,7 @@
 
             angle: -45deg,
             autoprefix: true,
-            use-fallback: false,
+            use-fallback: true,
             use-shorthand: true,
             type: linear,
             colors: (
@@ -1353,7 +1363,7 @@
 
         $important: '';
 
-        @if(map-get($opts,use-important) == true) {
+        @if(map-get($opts,add-important) == true) {
 
         $important: ' !important';
         }
@@ -1368,7 +1378,7 @@
 
         @if length(map-get($opts,colors)) > 0 {
             @if(map-get($opts,use-fallback) == true) {
-                background#{ $shorthand-color }: map-get(nth(map-get($opts,colors),1),color); /* Old browsers */
+                background#{ $shorthand-color }: map-get(nth(map-get($opts,colors),1),color) #{$important}; /* Old browsers */
             }
 
 
@@ -1378,7 +1388,7 @@
             
         }@else{
             @if(map-get($opts,use-fallback) == true) {
-                background#{ $shorthand-color }: map-get($opts,color1);
+                background#{ $shorthand-color }: map-get($opts,color1) #{$important};
             }
 
             $points: #{', ' + map-get($opts,color1) +' '+ map-get($opts,color1-offset) +', '+ map-get($opts,color2) +' '+ map-get($opts,color2-offset)};
@@ -2379,11 +2389,20 @@
             vmax: 100vmax
         );
         @if $unit {
-            @if type-of($number) == number {
-                @return strip-unit($number) * map-get($available-units,$unit);
-            }@else{
-                @return $number;
-            }
+            // @if $force-responsive-units == true {
+            //     @if unit($number) == px or unitless($number) {
+            //         @return strip-unit($number) * map-get($available-units,$unit);
+            //     }@else {
+            //         @return $number;
+            //     }
+            // } @else {
+
+                @if type-of($number) == number {
+                    @return strip-unit($number) * map-get($available-units,$unit);
+                }@else{
+                    @return $number;
+                }
+            // }
         }
     }
 

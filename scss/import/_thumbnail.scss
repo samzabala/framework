@@ -5,20 +5,15 @@
 
 //internal
 
-$calculated-thumbnail-font-size: $thumbnail-font-size;
-@if internal-is-convertable($thumbnail-font-size) {
-    $calculated-thumbnail-font-size: rem($thumbnail-font-size / $body-font-size);
-}
-
-	$calculated-thumbnail-font-size-small: $thumbnail-font-size-small;
-	@if internal-is-convertable($thumbnail-font-size-small) {
-		$calculated-thumbnail-font-size-small: rem($thumbnail-font-size-small / $body-font-size);
-	}
-
 $calculated-thumbnail-size: $thumbnail-size;
 @if internal-is-convertable($thumbnail-size) {
-    $calculated-thumbnail-size: rem($thumbnail-size / $body-font-size);
+	$calculated-thumbnail-size: rem($thumbnail-size / $body-font-size);
 }
+
+	$calculated-thumbnail-size-medium: $thumbnail-size-medium;
+	@if internal-is-convertable($thumbnail-size-medium) {
+		$calculated-thumbnail-size-medium: rem($thumbnail-size-medium / $body-font-size);
+	}
 
 	$calculated-thumbnail-size-small: $thumbnail-size-small;
 	@if internal-is-convertable($thumbnail-size-small) {
@@ -26,9 +21,31 @@ $calculated-thumbnail-size: $thumbnail-size;
 	}
 	
 
+$calculated-thumbnail-font-size: $thumbnail-font-size;
+@if internal-is-convertable($thumbnail-font-size,$thumbnail-size) {
+	$calculated-thumbnail-font-size: em($thumbnail-font-size / $thumbnail-size);
+}@else if internal-is-convertable($thumbnail-font-size) {
+	$calculated-thumbnail-font-size: rem($thumbnail-font-size / $body-font-size);
+}
+
+	$calculated-thumbnail-font-size-medium: $thumbnail-font-size-medium;
+	@if internal-is-convertable($thumbnail-font-size-medium,$thumbnail-size-medium) {
+		$calculated-thumbnail-font-size-medium: em($thumbnail-font-size-medium / $thumbnail-size-medium);
+	}@else if internal-is-convertable($thumbnail-font-size-medium) {
+		$calculated-thumbnail-font-size-medium: rem($thumbnail-font-size-medium / $body-font-size);
+	}
+
+	$calculated-thumbnail-font-size-small: $thumbnail-font-size-small;
+	@if internal-is-convertable($thumbnail-font-size-small,$thumbnail-size-small) {
+		$calculated-thumbnail-font-size-small: em($thumbnail-font-size-small / $thumbnail-size-small);
+	}@else if internal-is-convertable($thumbnail-font-size-small) {
+		$calculated-thumbnail-font-size-small: rem($thumbnail-font-size-small / $body-font-size);
+	}
+
+
 $calculated-thumbnail-line-height: $thumbnail-line-height;
 @if internal-is-convertable($thumbnail-line-height) {
-    $calculated-thumbnail-line-height: rem($thumbnail-line-height / $body-font-size);
+	$calculated-thumbnail-line-height: rem($thumbnail-line-height / $body-font-size);
 }
 
 
@@ -36,19 +53,32 @@ $calculated-thumbnail-line-height: $thumbnail-line-height;
 $prefix: '.thumbnail';
 #{$prefix} {
 	@extend %for-background-gradient-135;
-	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false);
-	width:$calculated-thumbnail-size;
+	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false,true,false);
+	width: 1em;
 	max-width:100%;
 	display:inline-block;
+	vertical-align:middle;
+	line-height: inherit;
 	position:relative;
-	@include type-set((
-		size: $calculated-thumbnail-font-size,
-		leading: $calculated-thumbnail-line-height,
-		color: $thumbnail-color !important,
-		weight:$thumbnail-font-weight,
-		style: $thumbnail-font-style,
-		case: $thumbnail-text-transform,
-	));
+	font-size: $calculated-thumbnail-size;
+
+	&-text {
+		display:flex;
+		text-align: center;
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+
+		@include type-set((
+			size: $calculated-thumbnail-font-size,
+			leading: $calculated-thumbnail-line-height,
+			color: $thumbnail-color !important,
+			weight:$thumbnail-font-weight,
+			style: $thumbnail-font-style,
+			case: $thumbnail-text-transform,
+		));
+	}
+
 
 	&[class*=background-] {
 		background-image:none;
@@ -90,27 +120,28 @@ $prefix: '.thumbnail';
 		top: 8%;
 		left: 8%;
 	}
+
+	&-small,
+	&-medium {
+
+	}
+
+	&#{$prefix}-medium {
+		font-size: $calculated-thumbnail-size-medium;
+
+		#{$prefix}-text {
+			font-size: $calculated-thumbnail-font-size-medium;
+		}
+	}
+
 	
 
 	&#{$prefix}-small {
-		width:$calculated-thumbnail-size-small;
-		display:inline-block;
-		vertical-align:middle;
-		line-height: inherit;
-		font-size: $calculated-thumbnail-font-size-small
-	}
+		font-size: $calculated-thumbnail-size-small;
 
-	&-text {
-		display:flex;
-		text-align: center;
-		justify-content: center;
-		align-content: center;
-		align-items: center;
-
-		// #{$prefix}#{$prefix}-small & {
-		// 	top: .0625em;
-		// }
-
+		#{$prefix}-text {
+			font-size: $calculated-thumbnail-font-size-small;
+		}
 	}
 
 	&-content {

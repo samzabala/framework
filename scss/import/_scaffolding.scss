@@ -9,27 +9,36 @@
 			font: $body-font-family,
 			weight: $body-font-weight,
 			leading: $body-line-height,
-			color: $theme-color,
 		));
-		word-wrap: break-word;
-		background: $theme-background;
 		min-height: 100vh;
 	}
 
+	html {
 
-	.theme-inverse,
+		word-wrap: break-word;
+		color: var(--theme-color);
+		background-color: var(--theme-background);
+	}
+
+
+	*.theme-inverse,
+	.module.theme-inverse,
 	html.theme-inverse, 
 	.theme-inverse body {
-		background: $theme-background-inverse;
-		color: $theme-color-inverse;
+		--theme-color: #{$theme-color-inverse};
+		--theme-color-contrast: #{$theme-color-contrast-inverse};
+		--theme-background: #{$theme-background-inverse};
+		--theme-background-contrast: #{$theme-background-contrast-inverse};
+		color: var(--theme-color);
+		background-color: var(--theme-background);
 	}
 
 	::-moz-selection{
-		background: $body-selection-background;
+		background-color: $body-selection-background;
 		color: $body-selection-color;
 	}
 	::selection{
-		background: $body-selection-background;
+		background-color: $body-selection-background;
 		color: $body-selection-color;
 	}
 

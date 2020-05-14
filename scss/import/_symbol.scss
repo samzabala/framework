@@ -49,6 +49,11 @@ $prefix: '.symbol';
 		}
 	}
 
+	&-text-left,
+	&-text-right,
+	&-text-center,
+	&-text-justify,
+
 	&-arrow-up,
 	&-arrow-down,
 	&-arrow-left,
@@ -61,6 +66,7 @@ $prefix: '.symbol';
 
 	&-plus,
 	&-minus,
+	&-check,
 
 
 	&-close,
@@ -119,6 +125,9 @@ $prefix: '.symbol';
 	&-plus:before,
 	&-minus:before,
 
+	&-check:before,
+	&-check:after,
+
 	&-close:before,
 	&-close:after,
 
@@ -157,6 +166,61 @@ $prefix: '.symbol';
 		}
 	}
 
+
+	&-text {
+
+		&-left,
+		&-right,
+		&-center,
+		&-justify {
+			&:before,&:after {
+				height: em(2px / $body-font-size);
+				width: .5em;
+			}
+		}
+
+		&-left {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $body-font-size) * -2} 0 0,
+				.25em #{em(2px / $body-font-size) * -2} 0 0,
+				0 #{em(2px / $body-font-size) * -2} 0 0,
+				-.25em 0 0 0,
+				.25em 0 0 0,
+				-.25em #{em(2px / $body-font-size) * 2} 0 0,
+				0em #{em(2px / $body-font-size) * 2} 0 0,
+				;
+			}
+		}
+
+		&-right {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $body-font-size) * -2} 0 0,
+				.25em #{em(2px / $body-font-size) * -2} 0 0,
+				0 #{em(2px / $body-font-size) * -2} 0 0,
+				-.25em 0 0 0,
+				.25em 0 0 0,
+				.25em #{em(2px / $body-font-size) * 2} 0 0,
+				0 #{em(2px / $body-font-size) * 2} 0 0,
+				;
+			}
+		}
+
+		&-center {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $body-font-size) * -2} 0 0,
+				.25em #{em(2px / $body-font-size) * -2} 0 0,
+				0 #{em(2px / $body-font-size) * -2} 0 0,
+				-.25em 0 0 0,
+				.25em 0 0 0,
+				-.125em #{em(2px / $body-font-size) * 2} 0 0,
+				.125em #{em(2px / $body-font-size) * 2} 0 0,
+				;
+			}
+		}
+	}
 	&-arrow {
 		// &-left,
 		// &-right {
@@ -175,7 +239,7 @@ $prefix: '.symbol';
 				height:em(10px/$body-font-size);
 	
 				&:before,&:after {
-					transform-origin: center em(1.5px / $body-font-size);
+					transform-origin: center em((3px * .5) / $body-font-size);
 					height: em(11px/$body-font-size);
 					top: em(2px / $body-font-size);
 				}
@@ -212,11 +276,11 @@ $prefix: '.symbol';
 				}
 
 				&:before{
-					box-shadow: em((1.5px  * 3.5)/$body-font-size) em((1.5px  * -3.5)/$body-font-size) 0 0;
+					box-shadow: em(((3px * .5)  * 3.5)/$body-font-size) em(((3px * .5)  * -3.5)/$body-font-size) 0 0;
 				}
 
 				&:after{
-					box-shadow: em((1.5px  * -3.5)/$body-font-size) em((1.5px  * -3.5)/$body-font-size) 0 0;
+					box-shadow: em(((3px * .5)  * -3.5)/$body-font-size) em(((3px * .5)  * -3.5)/$body-font-size) 0 0;
 				}
 			}
 		}
@@ -234,6 +298,28 @@ $prefix: '.symbol';
 			transform: rotate(-45deg)
 		}
 	}
+	
+	&-check {
+		&:before,&:after {
+			right: auto;
+			top: auto;
+			left: .2125em;
+			bottom: .1875em;
+			transform-origin: center bottom;
+		}
+
+		&:before {
+			height: .5em;
+			transform: rotate(-45deg);
+			margin-left: em((3px * .5)/$body-font-size);
+		}
+
+		&:after {
+			height: 1em;
+			transform: rotate(45deg);
+		}
+	}
+
 
 	&-kebab {
 
@@ -350,8 +436,8 @@ $prefix: '.symbol';
 			background:none;
 			border-top: .5em solid transparent;
 			border-bottom: .5em solid transparent;
-			border-left: 1em solid;
-			left: .125em;
+			border-left: .875em solid;
+			left: .1875em;
 		}
 	}
 
@@ -362,11 +448,11 @@ $prefix: '.symbol';
 		}
 
 		&:before {
-			right: auto;
+			right: .5em;
 		}
 
 		&:after {
-			left: auto;
+			left: .5em;
 		}
 	}
 

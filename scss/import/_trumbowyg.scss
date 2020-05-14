@@ -66,7 +66,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 	&-textarea {
 		position: relative;
 		box-sizing: border-box;
-		// padding: $wysiwyg-gutter-x $wysiwyg-gutter-y;
+		// padding: $trumbowyg-gutter-x $trumbowyg-gutter-y;
 		border-style: none;
 		resize: none;
 		outline: none;
@@ -77,7 +77,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 		// min-height: rem()
 	
 		&#{$prefix}-autogrow-on-enter {
-			transition: height $wysiwyg-transition-duration-slow ease-out;
+			transition: height $trumbowyg-transition-duration-slow ease-out;
 		}
 
 		#{$prefix}-box#{$prefix}-fullscreen & {
@@ -145,13 +145,13 @@ CUSTOM STYLES FOR TRUMBOWYG
 	button:not(#{$prefix}-disable):hover,
 	button:not(#{$prefix}-disable):focus,
 	button#{$prefix}-active {
-		color: $wysiwyg-icon-color-hover;
+		color: $trumbowyg-icon-color-hover;
 		outline: none;
 	}
 	
 	&-button-pane {
 		width: 100%;
-		min-height: $wysiwyg-button-pane-height;
+		min-height: $trumbowyg-button-pane-height;
 		margin: 0;
 		padding: 0;
 		position: relative;
@@ -169,18 +169,18 @@ CUSTOM STYLES FOR TRUMBOWYG
 			display: inline-block;
 			position: relative;
 			width: auto;
-			height: $wysiwyg-button-pane-height;
-			color:$wysiwyg-icon-color;
+			height: $trumbowyg-button-pane-height;
+			color:$trumbowyg-icon-color;
 			overflow: hidden;
 			border: none;
 			cursor: pointer;
 			background: none;
 			vertical-align: middle;
-			transition: background-color $wysiwyg-transition-duration, opacity $wysiwyg-transition-duration;
+			transition: background-color $trumbowyg-transition-duration, opacity $trumbowyg-transition-duration;
 	
 			&#{$prefix}-textual-button {
 				width: auto;
-				line-height: $wysiwyg-button-pane-height;
+				line-height: $trumbowyg-button-pane-height;
 				user-select: none;
 			}
 		}
@@ -250,7 +250,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 			cursor: pointer;
 			text-align: left;
 			font-size: 15px;
-			transition: all $wysiwyg-transition-duration;
+			transition: all $trumbowyg-transition-duration;
 	
 			svg {
 				float: left;
@@ -265,7 +265,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 	
 	&-modal-box {
 		@extend %for-modal-popup;
-		max-width: $wysiwyg-modal-max-width;
+		max-width: $trumbowyg-modal-max-width;
 		// background-color: $theme-background;
 	
 		#{$prefix}-modal-title {
@@ -336,7 +336,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 	&-modal-button {
 		@extend %for-btn;
 		@extend %for-btn-itself-and-group;
-		@extend %for-btn-on-mobile;
+		@extend %for-btn-flex-on-mobile;
 		margin: 0 .125em;
 	}
 
@@ -404,7 +404,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 
 	
 		&-button svg  {
-			fill: $wysiwyg-icon-color;
+			fill: $trumbowyg-icon-color;
 			color: transparent;
 		}
 

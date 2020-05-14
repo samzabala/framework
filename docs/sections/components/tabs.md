@@ -1,0 +1,108 @@
+# Tabs
+
+yes. to make it happen. have a block with `.tabs`
+
+its children are `.tab`
+
+All `.tab`s will have a child of `.tab-text` or an `<a>` tag
+
+```html
+<div class="tabs">
+	<div class="tab active"> 
+		<span href="#today" >Today's Activity</span>
+	</div>
+	<div class="tab">
+		<a href="#week">Weekly shit</a>
+	</div>
+	<div class="tab tab-disabled">
+		<a href="#porn">Disabled huhu can't click me boi</a>
+	</div>
+</div>
+```
+
+Or if you're feeling too lazy, just a `<ul>` with `<li>`s with `.tab-text` or `<a>` hids is fine too
+
+```html
+<ul class="tabs">
+	<li class="active"> 
+		<span class="tab-text" href="#today" >Today's Activity</span>
+	</li>
+	<li>
+		<a href="#week">Weekly shit</a>
+	</li>
+	<li class="tab-disabled">
+		<a href="#porn">Disabled huhu can't click me boi</a>
+	</li>
+</ul>
+```
+
+![](../../../docs/images/tabs.png)
+
+## Classes/ Elements
+
+### `.tabs`
+
+Container of ya boi
+
+#### `.tabs-responsive`
+
+Class to add to `.tabs`.  Stacks the tabs on mobile breakpoint
+
+
+![](../../../docs/images/tabs.png)
+
+[See breakpoint documentation](../../../docs/sections/scaffolding/breakpoint.md)
+
+### `.tab`
+
+or `<li>` child of `.tabs`. makes shit look like tabs.
+
+On click, a class of `.active` is toggled
+
+Except for `.tab-disabled`. because this bitch, you're not even suppose to click
+
+#### `.tab-disabled`
+
+Class to add to `.tab`.  Disables clicking ya boi
+
+### `.tab-text`
+
+or `<a>` child of `.tab`. speshal styles for ur needs
+
+
+## Accordion usage
+
+Best practice for accordions to work seamlessly
+
+```html
+<div class="accordion-group accordion-group-no-close">
+	<ul class="tabs">
+		<li class=" active"> 
+			<a href="#activity-log-today" class="open" data-toggle="accordion">Today's Activity</a>
+		</li>
+		<li>
+			<a href="#activity-log-week" data-toggle="accordion">Weekly shit</a>
+		</li>
+		<li class="tab-disabled" data-toggle="accordion">
+			<a href="#porn">Disabled huhu can't click me boi</a>
+		</li>
+	</ul>
+
+	<div class="accordion open" id="activity-log-today">
+		todee
+	</div>
+
+
+	<div class="accordion" id="activity-log-week">
+		weeku
+	</div>
+
+	<div class="accordion" id="porn">
+		omg mom get out
+	</div>
+</div>
+```
+
+[See accordion documentation](../../../docs/sections/components/accordion.md)
+
+[Back to TOC](../../../readme.md)

@@ -1,0 +1,69 @@
+/*** zone ***/
+
+$calculated-zone-font-size: $zone-font-size;
+@if internal-is-convertable($zone-font-size) {
+	$calculated-zone-font-size: rem($zone-font-size / $body-font-size);
+}
+/* it */
+$prefix: '.zone';
+#{$prefix} {
+
+	@include type-set((
+
+		size:$calculated-zone-font-size,
+		// leading: strip-unit($zone-line-height/$zone-font-size),
+		case: $zone-text-transform,
+		weight: $zone-font-weight,
+		style: $zone-font-style
+	));
+	padding-top: $zone-gutter-y;
+	padding-bottom: $zone-gutter-y;
+	padding-right: $zone-gutter-x;
+	padding-left: $zone-gutter-x;
+	margin-top: $zone-margin-y;
+	margin-bottom: $zone-margin-y;
+	border: $zone-border-width dashed transparent;
+	border-radius: $zone-border-radius;
+	text-align: center;
+	position:relative;
+	display:block;
+	transition: $transition-duration-short opacity $transition-timing;
+	@extend %for-cf;
+	a {
+		color:inherit;
+		font-weight: $body-font-weight-bold;
+
+		&:hover {
+			text-decoration:underline;
+		}
+	}
+
+	@include br(#{$mobile-br-max}-max) {
+		padding-top: $zone-gutter-y-mobile;
+		padding-bottom: $zone-gutter-y-mobile;
+		padding-right: $zone-gutter-x-mobile;
+		padding-left: $zone-gutter-x-mobile;
+		margin-top: $zone-margin-y-mobile;
+		margin-bottom: $zone-margin-y-mobile;
+	}
+
+
+	@each $tag,$maps in $calculated-zone-schemes {
+		&#{$prefix}-#{$tag} {
+			border-color: map-get(map-get($maps,init),border);
+			color: map-get(map-get($maps,init),color);
+			background-color: map-get(map-get($maps,init),background);
+
+			&:hover,
+			&:focus,
+			&.focus,
+			&:active,
+			&.active {
+
+				border-color: map-get(map-get($maps,active),border);
+				color: map-get(map-get($maps,active),color);
+				background-color: map-get(map-get($maps,active),background);
+			}
+		}
+	}
+}

@@ -97,6 +97,7 @@ These classes will set the proper color based off of html tag having the `.theme
 | **.background-[color-tag]-focus** | &:focus,&.focus |
 | **.background-[color-tag]-active** | &:active |
 | **.background-[color-tag]-toggle** | &.open,&.active |
+| **.background-[color-tag]-inverse** | .theme-inverse & |
 
 
 
@@ -107,10 +108,11 @@ eg: `.background-primary-hover` applies $brand-color-primary on :hover
 
 | Appendage | Condition when the color is applied |
 | -- | -- |
-| **.color-[color]-hover** | &:hover |
-| **.color-[color]-focus** | &:focus,&.focus |
-| **.color-[color]-active** | &:active |
-| **.color-[color]-toggle** | &.open,&.active |
+| **.color-[color-tag]-hover** | &:hover |
+| **.color-[color-tag]-focus** | &:focus,&.focus |
+| **.color-[color-tag]-active** | &:active |
+| **.color-[color-tag]-toggle** | &.open,&.active |
+| **.color-[color-tag]-inverse** | .theme-inverse & |
 
 
 ## Fill and Stroke
@@ -211,6 +213,10 @@ Set to whatever font weight ya need boi
 *	**`.text-leading-inherit`**
 
 	line-height is set to inherit line-height.
+
+*	**`.text-leading-whole`**
+
+	line-height is set to 1. which means no line-height. just the same height as the font.
 
 [More info on the css property](https://www.w3schools.com/cssref/pr_dim_line-height.asp)
 

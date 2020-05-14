@@ -29,6 +29,12 @@
 					}
 				}
 			}
+
+
+
+			&-image-none-important {
+				background-image: none!important;
+			}
 	
 			&-gradient {
 	
@@ -77,6 +83,16 @@
 
 	$prefix: '.background';
 	#{$prefix} {
+
+
+		&-image-none {
+			@include create-palette-helper(
+				#{&}
+			){
+				@extend %for-background-image-none-important;
+			};
+		}
+
 		// Theme
 		@include create-palette-helper(
 			#{&}-theme,
@@ -146,6 +162,7 @@
 				};
 
 			}
+			
 		}
 
 		//inherit
@@ -395,6 +412,10 @@
 			
 			&-inherit {
 				line-height: inherit!important;
+			}
+			
+			&-whole {
+				line-height: 1!important;
 			}
 		}
 		

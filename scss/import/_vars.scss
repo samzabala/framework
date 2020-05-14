@@ -21,32 +21,46 @@
 			$brand-color-background-alt: darken($brand-color-background,10) !default;
 
 		$brand-color-neutral: #8d8d8d !default;
-			$brand-color-neutral-light:lighten($brand-color-neutral,10) !default;
+			$brand-color-neutral-light: lighten($brand-color-neutral,10) !default;
+			$brand-color-neutral-lighter: lighten($brand-color-neutral-light,6) !default;
 			$brand-color-neutral-dark: darken($brand-color-neutral,10) !default;
+			$brand-color-neutral-darker: darken($brand-color-neutral,25) !default;
 		
 		$brand-color-primary: #007ece !default;
-			$brand-color-primary-light:lighten($brand-color-primary,10) !default;
+			$brand-color-primary-light: lighten($brand-color-primary,10) !default;
+			$brand-color-primary-lighter: lighten($brand-color-primary-light,6) !default;
 			$brand-color-primary-dark: darken($brand-color-primary,10) !default;
+			$brand-color-primary-darker: darken($brand-color-primary,25) !default;
 		
 		$brand-color-secondary: #ff009c !default;
 			$brand-color-secondary-light: lighten($brand-color-secondary,10) !default;
+			$brand-color-secondary-lighter: lighten($brand-color-secondary-light,6) !default;
 			$brand-color-secondary-dark: darken($brand-color-secondary,10) !default;
+			$brand-color-secondary-darker: darken($brand-color-secondary,25) !default;
 
 		$brand-color-accent: #f5b83d!default;
-			$brand-color-accent-light:lighten($brand-color-accent,10) !default;
+			$brand-color-accent-light: lighten($brand-color-accent,10) !default;
+			$brand-color-accent-lighter: lighten($brand-color-accent-light,6) !default;
 			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
+			$brand-color-accent-darker: darken($brand-color-accent,25) !default;
 
 		$brand-color-success: #15b800 !default;
-			$brand-color-success-light:lighten($brand-color-success,10) !default;
+			$brand-color-success-light: lighten($brand-color-success,10) !default;
+			$brand-color-success-lighter: lighten($brand-color-success-light,6) !default;
 			$brand-color-success-dark: darken($brand-color-success,10) !default;
+			$brand-color-success-darker: darken($brand-color-success,25) !default;
 
 		$brand-color-caution: #fd7f03 !default;
-			$brand-color-caution-light:lighten($brand-color-caution,10) !default;
+			$brand-color-caution-light: lighten($brand-color-caution,10) !default;
+			$brand-color-caution-lighter: lighten($brand-color-caution-light,6) !default;
 			$brand-color-caution-dark: darken($brand-color-caution,10) !default;
+			$brand-color-caution-darker: darken($brand-color-caution,25) !default;
 
 		$brand-color-error: #fd0303 !default;
-			$brand-color-error-light:lighten($brand-color-error,10) !default;
+			$brand-color-error-light: lighten($brand-color-error,10) !default;
+			$brand-color-error-lighter: lighten($brand-color-error-light,6) !default;
 			$brand-color-error-dark: darken($brand-color-error,10) !default;
+			$brand-color-error-darker: darken($brand-color-error,25) !default;
 
 
 		$brand-color-intensity-1: $brand-color-accent !default;
@@ -108,9 +122,9 @@
 			$body-font-weight-bold: 700 !default;
 		$body-font-size: 16px !default;
 			$body-font-size-small: $body-font-size * .75 !default;
-			$body-font-size-large: $body-font-size * 1.25 !default;
-		$body-line-height: 21px !default;
-		$body-text-gutter-y: 30px !default;
+			$body-font-size-large: $body-font-size * 1.5 !default;
+		$body-line-height: $body-font-size * 1.5 !default;
+		$body-text-gutter-y: $body-font-size !default;
 
 
 		$body-line-height-compact-factor: .875 !default;
@@ -143,6 +157,7 @@
 		$body-list-bullet-border-radius:50% !default;
 		$body-list-offset: 25px !default;
 		$body-list-offset-inline: 1em !default;
+		$body-list-gutter-y: $body-text-gutter-y * .5 !default;
 
 		$body-blockquote-font-size: inherit !default;
 		$body-blockquote-font-weight: 300 !default;
@@ -152,7 +167,7 @@
 		$body-blockquote-color: $brand-color-neutral !default;
 		$body-blockquote-gutter-x: $gutter-small !default;
 		$body-blockquote-border-width: 4px !default;
-		$body-blockquote-border-color: $brand-color-neutral !default;
+		$body-blockquote-border-color: rgba($brand-color-neutral,.5) !default;
 		$body-blockquote-margin-y: $body-text-gutter-y !default;
 		$body-blockquote-padding-y: $body-text-gutter-y * .5 !default;
 
@@ -170,6 +185,12 @@
 		$global-disabled-opacity: .5 !default;
 
 		$body-ellipsis-multiple-factor: 2 !default;
+
+	//hr
+		$hr-color: $brand-color-neutral !default;
+		$hr-height: 1px !default;
+		$hr-gutter-y: $body-text-gutter-y !default;
+			
 
 	// SVG
 		$svg-gradient-color-start: $brand-gradient-start !default;
@@ -197,7 +218,7 @@
 		$table-label-width: 12px !default;
 		$table-label-offset: 2px !default;
 		$table-label-border-radius: 2px !default;
-		$table-row-background-opacity: .2 !default;
+		$table-row-background-opacity: .1 !default;
 
 
 // LAYOUT
@@ -270,6 +291,8 @@
 		$nav-icon-height: $icon-size !default;
 		$nav-current-size: 5px !default;
 			$nav-item-height: 35px !default;
+		$nav-current-gradient-start: $brand-gradient-start !default;
+		$nav-current-gradient-end: $brand-gradient-end !default;
 		$nav-font-size: $body-font-size !default;
 		$nav-line-height: $body-line-height !default;
 		$nav-color: $theme-color !default;
@@ -286,6 +309,51 @@
 		$nav-top-font-color: inherit !default;
 		$nav-top-text-transform: none !default;
 
+	
+
+	//tab
+		$tabs-font-size: $nav-top-font-size !default;
+			$tab-font-size-mobile: $tabs-font-size !default;
+		$tabs-font-weight: $body-font-weight-bold !default;
+		$tabs-font-style: normal !default;
+		$tabs-text-transform: none !default;
+		$tabs-transition-duration: $transition-duration-base !default;
+		
+		$tabs-color: rgba($brand-color-neutral,.8) !default;
+			$tabs-color-inverse: $tabs-color !default;
+
+		$tabs-border-width: 1px !default;
+
+		$tabs-border-color: currentColor !default;
+			$tabs-border-color-inverse: $tabs-border-color !default;
+
+		$tabs-item-height: 45px !default;
+		$tabs-item-gutter-x: 0 !default;
+		$tabs-item-margin-x: 45px !default;
+
+		$tabs-item-disabled-opacity: $global-disabled-opacity!default;
+		$tab-item-border-radius: $border-radius-small !default;
+
+		$tabs-item-background: transparent !default;
+			$tabs-item-background-inverse: $tabs-item-background !default;
+			$tabs-item-background-active: $tabs-item-background !default;
+				$tabs-item-background-active-inverse: $tabs-item-background-active !default;
+
+		$tabs-item-border-width: 1px !default;
+		$tabs-item-border-color: transparent !default;
+			$tabs-item-border-color-inverse: $tabs-item-border-color !default;
+			$tabs-item-border-color-active: $tabs-item-border-color !default;
+				$tabs-item-border-color-active-inverse: $tabs-item-border-color-active !default;
+
+		$tabs-item-color-active: $theme-color !default;
+			$tabs-item-color-active-inverse: $theme-color-inverse !default;
+		
+		$tabs-item-box-shadow: none !default;
+
+		$tabs-current-height: 5px !default;
+		$tabs-current-color: $brand-color-primary !default;
+			$tabs-current-color-inverse: $brand-color-primary !default;
+
 	//pagination
 		$pagination-font-size: 65px !default;
 		$pagination-font-weight: 300 !default;
@@ -294,6 +362,98 @@
 		$pagination-color: inherit !default;
 		$pagination-text-transform: none !default;
 		$pagination-gutter-y: 0 !default;
+
+	//zone
+
+		$zone-font-size: $body-font-size !default;
+		$zone-font-weight: $body-font-weight-bold !default;
+		$zone-font-style: normal !default;
+		$zone-text-transform: none !default;
+
+		$zone-border-width: 1px !default;
+		
+		$zone-gutter-x: $gutter-small !default;
+			$zone-gutter-x-mobile: $gutter-micro !default;
+		$zone-gutter-y: $gutter-small !default;
+			$zone-gutter-y-mobile: $gutter-micro !default;
+
+		$zone-margin-y: $gutter-small !default;
+			$zone-margin-y-mobile: $gutter-micro !default;
+
+		$zone-border-radius: 0 !default;
+
+			//schemes
+			$zone-border-default: currentColor !default;
+			$zone-background-default: rgba($brand-color-neutral,.25) !default;
+			$zone-color-default: inherit !default;
+
+				$zone-border-default-hover: $brand-color-neutral-dark !default;
+				$zone-background-default-hover: rgba($brand-color-neutral,.2) !default;
+				$zone-color-default-hover: $brand-color-neutral-dark !default;
+
+
+			$zone-border-primary: $brand-color-primary !default;
+			$zone-background-primary: rgba($brand-color-primary,.1) !default;
+			$zone-color-primary: $brand-color-primary !default;
+
+				$zone-border-primary-hover: $brand-color-primary-dark !default;
+				$zone-background-primary-hover: rgba($brand-color-primary,.2) !default;
+				$zone-color-primary-hover: $brand-color-primary-dark !default;
+
+
+			$zone-border-secondary: $brand-color-secondary !default;
+			$zone-background-secondary: rgba($brand-color-secondary,.1) !default;
+			$zone-color-secondary: $brand-color-secondary !default;
+
+				$zone-border-secondary-hover: $brand-color-secondary-dark !default;
+				$zone-background-secondary-hover: rgba($brand-color-secondary,.2) !default;
+				$zone-color-secondary-hover: $brand-color-secondary-dark !default;
+
+
+			$zone-border-accent: $brand-color-accent !default;
+			$zone-background-accent: rgba($brand-color-accent,.1) !default;
+			$zone-color-accent: $brand-color-accent !default;
+
+				$zone-border-accent-hover: $brand-color-accent-dark !default;
+				$zone-background-accent-hover: rgba($brand-color-accent,.2) !default;
+				$zone-color-accent-hover: $brand-color-primary-dark !default;
+				
+
+			$zone-border-neutral: $brand-color-neutral !default;
+			$zone-background-neutral: rgba($brand-color-neutral,.1) !default;
+			$zone-color-neutral: $brand-color-neutral !default;
+
+				$zone-border-neutral-hover: $brand-color-neutral-dark !default;
+				$zone-background-neutral-hover: rgba($brand-color-neutral,.2) !default;
+				$zone-color-neutral-hover: $brand-color-neutral-dark !default;
+				
+
+			$zone-border-success: $brand-color-success !default;
+			$zone-background-success: rgba($brand-color-success,.1) !default;
+			$zone-color-success: $brand-color-success !default;
+
+				$zone-border-success-hover: $brand-color-success-dark !default;
+				$zone-background-success-hover: rgba($brand-color-success,.2) !default;
+				$zone-color-success-hover: $brand-color-success-dark !default;
+				
+
+			$zone-border-caution: $brand-color-caution !default;
+			$zone-background-caution: rgba($brand-color-caution,.1) !default;
+			$zone-color-caution: $brand-color-caution !default;
+
+				$zone-border-caution-hover: $brand-color-caution-dark !default;
+				$zone-background-caution-hover: rgba($brand-color-caution,.2) !default;
+				$zone-color-caution-hover: $brand-color-caution-dark !default;
+				
+
+			$zone-border-error: $brand-color-error !default;
+			$zone-background-error: rgba($brand-color-error,.1) !default;
+			$zone-color-error: $brand-color-error !default;
+
+				$zone-border-error-hover: $brand-color-error-dark !default;
+				$zone-background-error-hover: rgba($brand-color-error,.2) !default;
+				$zone-color-error-hover: $brand-color-error-dark !default;
+				
 
 	//alert
 		$alert-border-width: 1px !default;
@@ -311,31 +471,31 @@
 
 			$alert-border-primary: transparent !default;
 			$alert-background-primary: $brand-color-primary-light !default;
-			$alert-color-primary: darken($brand-color-primary-dark,15) !default;
+			$alert-color-primary: $brand-color-primary-darker !default;
 
 			$alert-border-secondary: transparent !default;
 			$alert-background-secondary: $brand-color-secondary-light !default;
-			$alert-color-secondary: darken($brand-color-secondary-dark,12) !default;
+			$alert-color-secondary: $brand-color-secondary-darker !default;
 
 			$alert-border-accent: transparent !default;
 			$alert-background-accent: $brand-color-accent-light !default;
-			$alert-color-accent: darken($brand-color-accent-dark,12) !default;
+			$alert-color-accent: $brand-color-accent-darker !default;
 
 			$alert-border-neutral: transparent !default;
 			$alert-background-neutral: $brand-color-neutral-light !default;
-			$alert-color-neutral: darken($brand-color-neutral-dark,12) !default;
+			$alert-color-neutral: $brand-color-neutral-darker !default;
 
 			$alert-border-success: transparent !default;
 			$alert-background-success: $brand-color-success-light !default;
-			$alert-color-success: darken($brand-color-success-dark,10) !default;
+			$alert-color-success: $brand-color-success-darker !default;
 
 			$alert-border-caution: transparent !default;
 			$alert-background-caution: $brand-color-caution-light !default;
-			$alert-color-caution: darken($brand-color-caution-dark,12) !default;
+			$alert-color-caution: $brand-color-caution-darker !default;
 
 			$alert-border-error: transparent !default;
 			$alert-background-error: $brand-color-error-light !default;
-			$alert-color-error: darken($brand-color-error-dark,15) !default;
+			$alert-color-error: $brand-color-error-darker !default;
 	
 	// MODULE
 		$module-background-color: $theme-background !default;
@@ -422,14 +582,25 @@
 		$progress-title-text-transform: uppercase !default;
 		$progress-title-margin-bottom: 10px !default;
 		$progress-title-margin-top: 30px !default;
+
+	
+	// WELL
+		$well-spread: 7px !default;
+			$well-spread-expanded: 14px !default;
+			$well-spread-compact: 3px !default;
+
+		$well-color: rgba($brand-color-base,.1) !default;
+			$well-color-inverse: rgba($brand-color-base,.1) !default;
 	
 
 	// THUMBNAIL
 		$thumbnail-font-size: 65px !default;
+			$thumbnail-font-size-medium: 32px !default;
 			$thumbnail-font-size-small: 18px !default;
 		$thumbnail-text-transform: uppercase !default;
 
 		$thumbnail-size: 200px !default;
+			$thumbnail-size-medium: 70px !default;
 			$thumbnail-size-small: 45px !default;
 
 		$thumbnail-border-radius: 50% !default;
@@ -463,7 +634,7 @@
 	
 	// tag
 		$tag-height: 25px !default;
-		$tag-gutter-x: 15px !default;
+		$tag-gutter-x: 8px !default;
 		$tag-font-size: 13px !default;
 		$tag-font-weight: $body-font-weight-bold !default;
 		$tag-line-height: 1.25 !default;
@@ -583,17 +754,17 @@
 			$special-form-border-radius: $border-radius-base !default;
 
 
-		//wysiwyg
-			$wysiwyg-modal-max-width: 520px !default;
+		//trumbowyg
+			$trumbowyg-modal-max-width: 520px !default;
 
-			$wysiwyg-icon-color: $brand-color-neutral !default;
-				$wysiwyg-icon-color-hover: $brand-color-primary !default;
-			$wysiwyg-button-pane-height: 40px !default;
+			$trumbowyg-icon-color: $brand-color-neutral !default;
+				$trumbowyg-icon-color-hover: $brand-color-primary !default;
+			$trumbowyg-button-pane-height: 40px !default;
 
 
 		
-			$wysiwyg-transition-duration: $transition-duration-short !default;
-			$wysiwyg-transition-duration-slow: $transition-duration-base !default;
+			$trumbowyg-transition-duration: $transition-duration-short !default;
+			$trumbowyg-transition-duration-slow: $transition-duration-base !default;
 
 	// BTN
 		$btn-height: 45px !default;
@@ -669,7 +840,7 @@
 
 			$btn-border-neutral: transparent !default;
 			$btn-background-neutral: $brand-color-neutral !default;
-			$btn-color-neutral: $brand-color-base !default;
+			$btn-color-neutral: $brand-color-background !default;
 
 				$btn-border-neutral-hover: transparent !default;
 				$btn-background-neutral-hover: $brand-color-neutral-light !default;

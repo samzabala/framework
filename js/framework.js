@@ -1794,13 +1794,18 @@ window.jQuery && jQuery.noConflict();
 						&& triggerer.classList.contains('open')
 					){
 
-						frameWork.slideUp(selector); 
-						triggerer.classList.remove('open'); 
-						selector.classList.remove('open'); 
+						var probablyNoClose = selector.closest('.accordion-group.accordion-group-no-close');
 
-						
-						if(changeHash){
-							_.changeHash('');
+						if( !probablyNoClose ){
+
+							frameWork.slideUp(selector); 
+							triggerer.classList.remove('open'); 
+							selector.classList.remove('open'); 
+
+							
+							if(changeHash){
+								_.changeHash('');
+							}
 						}
 
 					}else{
@@ -2095,6 +2100,28 @@ window.jQuery && jQuery.noConflict();
 					}
 				}
 		})
+
+
+
+		frameWork.addEvent(document.body,'click','.tab, .tab > *',function(e){
+			var clicked = e.target;
+			var theTab  = clicked.closest('.tab');
+			if( theTab && !theTab.classList.contains('tab-disabled') ) {
+				if(!theTab.classList.contains('active')){
+					var clickedSiblings = frameWork.getSiblings(theTab);
+					clickedSiblings
+						.filter(function(sibling){
+							return sibling.matches('.tab') || sibling.matches('li');
+						})
+						.forEach(function(sibling){
+							sibling.classList.remove('active');
+						})
+
+					theTab.classList.add('active');
+				}
+			}
+			
+		});
 
 		// btn group
 		frameWork.addEvent(document.body,'click','.btn-group-toggle > .btn',function(e){

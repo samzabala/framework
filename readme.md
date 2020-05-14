@@ -33,10 +33,12 @@ A framework for your appy dashboardy needs :')
 *	[Pagination](docs/sections/components/pagination.md)
 *	[Progress](docs/sections/components/progress.md)
 *	[Symbols](docs/sections/components/symbol.md)
+*	[Tabs](docs/sections/components/tabs.md)
 *	[Tags](docs/sections/components/tag.md)
 *	[Tooltip](docs/sections/components/tooltip.md)
 *	[Thumbnails](docs/sections/components/thumbnail.md)
 *	[Trumbowyg](docs/sections/components/trumbowyg.md)
+*	[Well](docs/sections/components/trumbowyg.md)
 
 ##	Other Obscure things
 *	[Script](docs/sections/other/script.md)

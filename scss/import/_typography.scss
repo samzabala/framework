@@ -109,6 +109,19 @@
 		$calculated-body-heading-gutter-top: rem($body-heading-gutter-top / $body-font-size);
 	}
 
+
+//hr
+	$calculated-hr-height: $hr-height;
+	@if internal-is-convertable($hr-height) {
+		$calculated-hr-height: rem($hr-height / $body-font-size);
+	}
+
+
+	$calculated-hr-gutter-y: $hr-gutter-y;
+	@if internal-is-convertable($hr-gutter-y) {
+		$calculated-hr-gutter-y: rem($hr-gutter-y / $body-font-size);
+	}
+
 $calculated-body-heading-size: (
 	$calculated-body-size-h1,
 	$calculated-body-size-h2,
@@ -134,6 +147,11 @@ $calculated-body-heading-size: (
 	$calculated-body-list-bullet-size: $body-list-bullet-size;
 	@if internal-is-convertable($body-list-bullet-size){
 		$calculated-body-list-bullet-size: em($body-list-bullet-size / $body-font-size)
+	}
+
+	$calculated-body-list-gutter-y: $body-list-gutter-y;
+	@if internal-is-convertable($body-list-gutter-y){
+		$calculated-body-list-gutter-y: em($body-list-gutter-y / $body-font-size)
 	}
 
 	$calculated-body-list-margin-right: calc(#{$body-list-offset} - #{$body-list-bullet-size});
@@ -323,20 +341,18 @@ a {
 	ol,
 	address,
 	pre,
-	dl,
-	hr {
+	dl {
 		@extend %for-p;
 		display:block;
 	}
 
-// li {
-// 	&,
-// 	ul,
-// 	ol,
-// 	dl {
-// 		@extend %for-micro-p;
-// 	}
-// }
+	li,
+	li ul,
+	li ol,
+	dl,
+	dt {
+		margin-top: $calculated-body-list-gutter-y
+	}
 
 ol,ul,dd{
 	padding-left: $calculated-body-list-offset;
@@ -577,12 +593,15 @@ var {
 hr {
 	display: block;
 	border:0;
-	border-top: 1px solid;
-	height: 1px;
+	height: $calculated-hr-height;
+	background: $hr-color;
 	opacity: .2;
 	width:100%;
 	flex: 0 0;
-	margin-top: $calculated-body-text-gutter-y;
+	margin-top: $calculated-hr-gutter-y;
+	margin-bottom: $calculated-hr-gutter-y;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 small {

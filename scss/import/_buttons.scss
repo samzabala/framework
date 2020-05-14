@@ -206,7 +206,8 @@ $prefix: '.btn';
 		-ms-user-select: none;
 		user-select: none;
 
-		.badge {
+		.badge,
+		.symbol {
 			&:last-child {
 				margin-left: .25em;
 			}
@@ -244,14 +245,6 @@ $prefix: '.btn';
 	}
 
 	@at-root %for-btn {
-
-		&-on-mobile {
-			@include br(#{$mobile-br-max}-max) {
-	
-				display:flex;
-				width:100%;
-			}
-		}
 	
 		&-itself-and-group {
 			border-radius: $btn-border-radius;
@@ -275,8 +268,8 @@ $prefix: '.btn';
 
 		&,&-group {
 			@extend %for-btn-itself-and-group;
-			@extend %for-btn-on-mobile;
 		}
+
 
 	#{$prefix}-group & {
 		&,&:hover {
@@ -359,6 +352,10 @@ $prefix: '.btn';
 				width: $calculated-btn-height-small;
 			}
 		}
+
+		&-symbol-round {
+			border-radius: 50%!important;
+		}
 	}
 
 		&-symbol {
@@ -372,6 +369,10 @@ $prefix: '.btn';
 			#{$prefix}-large &,
 			&#{$prefix}-large {
 				@extend %for-btn-symbol-large;
+			}
+
+			&#{&}-round {
+				@extend %for-btn-symbol-round;
 			}
 		}
 	
@@ -398,6 +399,8 @@ $prefix: '.btn';
 			&.open {
 				z-index:1;
 			}
+
+
 		}
 		
 		&-block {
@@ -405,6 +408,18 @@ $prefix: '.btn';
 			width:100%;
 
 			& > .btn:not(.btn-symbol) {
+				flex: 1 1;
+			}
+		}
+
+
+
+		@include br(#{$mobile-br-max}-max) {
+	
+			display:flex;
+			width:100%;
+
+			#{$prefix} {
 				flex: 1 1;
 			}
 		}
@@ -418,6 +433,10 @@ $prefix: '.btn';
 		}
 
 		&#{&}-horizontal {
+
+			#{$prefix}-symbol {
+				flex: 0 0 auto;
+			}
 			
 
 			&:not(#{$prefix}-group-responsive) {

@@ -122,6 +122,36 @@ a class to add with `.accordion-group` if you want to allow multiple accordions 
 </div>
 ```
 
+
+
+#### **`.accordion-group-no-close`**
+
+a class to add with `.accordion-group` if you want to have at least one open accordion.
+
+Note: It's recommended that one of the accordions must have an open class on initial load at least for this to be seamless. if not, that's fine too
+
+```html
+<div class="accordion-group accordion-group-no-close">
+
+	<a href="#bitch-ass-accordion" data-toggle="accordion">Open a bitch</a>
+	<div id="bitch-ass-accordion" class="accordion open">
+		Sup mofos, I'm an accordion content
+	</div>
+
+
+	<a href="#other-bitch-ass-accordion" data-toggle="accordion">Open the other bitch</a>
+	<div id="other-bitch-ass-accordion" class="accordion">
+		Sup mofos, I'm an the other accordion content
+	</div>
+
+
+	<a href="#another-bitch-ass-accordion" data-toggle="accordion">Open another bitch</a>
+	<div id="another-bitch-ass-accordion" class="accordion">
+		Sup mofos, I'm an accordion content
+	</div>
+</div>
+```
+
 ## Styling accordion setup
 
 Note that all descentants of `[data-toggle="accordion"]` has pointer-events none to allow the toggle to do its thing without being bugged out by its content

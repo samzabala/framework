@@ -25,6 +25,7 @@ $prefix: '.list-group';
 	li,
 	.list-group-item  {
 		margin-bottom:0;
+		display: block;
 		margin-top: $list-group-border-width * -1;
 		border-top: $list-group-border-width solid $list-group-border-color;
 		border-bottom: $list-group-border-width solid $list-group-border-color;
