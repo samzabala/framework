@@ -217,7 +217,7 @@ $prefix: '.btn';
 		}
 	}
 		& {
-			@extend %for-btn;
+			@extend %for-btn !optional;
 		}
 
 	.nav & {
@@ -267,7 +267,7 @@ $prefix: '.btn';
 	}
 
 		&,&-group {
-			@extend %for-btn-itself-and-group;
+			@extend %for-btn-itself-and-group !optional;
 		}
 
 
@@ -291,7 +291,7 @@ $prefix: '.btn';
 
 		&#{$prefix}-disabled,
 		#{$prefix}-disabled & {
-			@extend %for-disabled;
+			@extend %for-disabled !optional;
 		}
 
 	@at-root %for-btn {
@@ -318,12 +318,12 @@ $prefix: '.btn';
 
 		&#{$prefix}-large,
 		#{$prefix}-group#{$prefix}-large & {
-			@extend %for-btn-large;
+			@extend %for-btn-large !optional;
 		}
 
 		&#{$prefix}-small,
 		#{$prefix}-group#{$prefix}-small & {
-			@extend %for-btn-small;
+			@extend %for-btn-small !optional;
 		}
 
 	
@@ -359,20 +359,20 @@ $prefix: '.btn';
 	}
 
 		&-symbol {
-			@extend %for-btn-symbol;
+			@extend %for-btn-symbol !optional;
 
 			#{$prefix}-small &,
 			&#{$prefix}-small {
-				@extend %for-btn-symbol-small;
+				@extend %for-btn-symbol-small !optional;
 			}
 
 			#{$prefix}-large &,
 			&#{$prefix}-large {
-				@extend %for-btn-symbol-large;
+				@extend %for-btn-symbol-large !optional;
 			}
 
 			&#{&}-round {
-				@extend %for-btn-symbol-round;
+				@extend %for-btn-symbol-round !optional;
 			}
 		}
 	
@@ -538,7 +538,7 @@ $prefix: '.btn';
 			@include button-generate-schemes($properties,$scheme);
 		}
 		&#{&}-#{$scheme} {
-			@extend %for-btn-#{$scheme};
+			@extend %for-btn-#{$scheme} !optional;
 		}
 	}
 }

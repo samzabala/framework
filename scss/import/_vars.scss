@@ -121,7 +121,7 @@
 		$body-font-weight: 400 !default;
 			$body-font-weight-bold: 700 !default;
 		$body-font-size: 16px !default;
-			$body-font-size-small: $body-font-size * .75 !default;
+			$body-font-size-small: $body-font-size * .875 !default;
 			$body-font-size-large: $body-font-size * 1.5 !default;
 		$body-line-height: $body-font-size * 1.5 !default;
 		$body-text-gutter-y: 20px  !default;
@@ -142,12 +142,12 @@
 		$body-heading-color: $theme-color-contrast !default;
 			$body-heading-color-inverse: $theme-color-contrast-inverse !default;
 
-		$body-size-h1: 32px !default;
-		$body-size-h2: 28px !default;
-		$body-size-h3: 24px !default;
-		$body-size-h4: 20px !default;
+		$body-size-h1: $body-font-size * 2.125 !default;
+		$body-size-h2: $body-font-size * 1.875 !default;
+		$body-size-h3: $body-font-size * 1.625 !default;
+		$body-size-h4: $body-font-size * 1.125 !default;
 		$body-size-h5: $body-font-size !default;
-		$body-size-h6: 12px !default;
+		$body-size-h6: $body-font-size * .875 !default;
 
 		$body-anchor-color: $brand-color-primary !default;
 		$body-anchor-color-hover: $brand-color-secondary !default;
@@ -198,8 +198,8 @@
 
 
 	// TABLE
-		$table-cell-height: 45px !default;
-			$table-cell-height-large: 65px !default;
+		$table-cell-height: 40px !default;
+			$table-cell-height-large: 75px !default;
 			$table-cell-height-small: 25px !default;
 		$table-cell-border-color: $theme-background-contrast !default;
 			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;

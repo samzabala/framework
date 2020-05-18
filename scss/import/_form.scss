@@ -156,13 +156,13 @@ $calculated-calendar-exception: '';
 			// // .theme-inverse & {
 			// // 	background-color: $input-background-disabled-inverse;
 			// // }
-			@extend %for-disabled;
+			@extend %for-disabled !optional;
 		}
 	}
 
 		&,
 		&-label{
-			@extend %for-form-input-and-label;
+			@extend %for-form-input-and-label !optional;
 		}
 
 	@at-root %for-form-input-class {
@@ -194,7 +194,7 @@ $calculated-calendar-exception: '';
 	}
 
 		& { //scaffold
-			@extend %for-form-input-class;
+			@extend %for-form-input-class !optional;
 		}
 
 
@@ -238,7 +238,7 @@ $calculated-calendar-exception: '';
 	}
 
 		&-label {
-			@extend %for-form-label;	
+			@extend %for-form-label !optional;	
 		}
 
 	&-info {
@@ -418,7 +418,7 @@ $calculated-calendar-exception: '';
 		&-multiple-line,
 		&-calendar-ui,
 		&-editor {
-			@extend %for-form-input-boxy;
+			@extend %for-form-input-boxy !optional;
 		}
 
 
@@ -453,7 +453,7 @@ $calculated-calendar-exception: '';
 	&-editor,
 	&-calendar-ui,
 	&-group {
-		@extend %for-form-input-boxy-and-group;
+		@extend %for-form-input-boxy-and-group !optional;
 	}
 
 	@at-root %for-form-input-boxy-single{
@@ -473,7 +473,7 @@ $calculated-calendar-exception: '';
 	}
 
 		&-single-line {
-			@extend %for-form-input-boxy-single;
+			@extend %for-form-input-boxy-single !optional;
 		}
 
 	@at-root %for-form-input-boxy-multiple{
@@ -511,11 +511,11 @@ $calculated-calendar-exception: '';
 
 		&-select[multiple],
 		&-multiple-line {
-			@extend %for-form-input-boxy-multiple;
+			@extend %for-form-input-boxy-multiple !optional;
 		}
 
 		&-multiple-line {
-			@extend %for-form-input-boxy-multiple-height;
+			@extend %for-form-input-boxy-multiple-height !optional;
 		}
 
 	&-multiple-line {
@@ -550,7 +550,7 @@ $calculated-calendar-exception: '';
 	}
 
 		&-select {
-			@extend %for-form-input-boxy-select;
+			@extend %for-form-input-boxy-select !optional;
 		}
 
 
@@ -623,23 +623,23 @@ $calculated-calendar-exception: '';
 
 		&-wrapper {
 			& {
-				@extend %for-form-wrapper;
+				@extend %for-form-wrapper !optional;
 			}
 				
 
 			&#{&}-horizontal {
-				@extend %for-form-wrapper-horizontal;
+				@extend %for-form-wrapper-horizontal !optional;
 				
 			}
 
 			&#{&}-vertical {
-				@extend %for-form-wrapper-vertical;
+				@extend %for-form-wrapper-vertical !optional;
 			}
 
 			&#{&}-block {
 
 				
-				@extend %for-form-wrapper-block;
+				@extend %for-form-wrapper-block !optional;
 			}
 		}
 
@@ -820,7 +820,7 @@ $calculated-calendar-exception: '';
 	//components of component
 	&-calendar {
 
-		@extend %for-display-none;
+		@extend %for-display-none !optional;
 		//fallback
 		height:0!important;
 		width:0!important;
@@ -1114,7 +1114,7 @@ $calculated-calendar-exception: '';
 			//label
 			@at-root #{$prefix}-label#{$prefix}-#{$tag},
 			#{$prefix}-#{$tag} #{$prefix}-label {
-				@extend %for-form-label-color-#{$tag};
+				@extend %for-form-label-color-#{$tag} !optional;
 			}
 
 		@at-root %for-form-input-color-#{$tag} {
@@ -1132,7 +1132,7 @@ $calculated-calendar-exception: '';
 			//inputs
 			@at-root &#{$prefix}-#{$tag},
 			#{$prefix}-#{$tag} & {
-				@extend %for-form-input-color-#{$tag};
+				@extend %for-form-input-color-#{$tag} !optional;
 			}
 	}
 }

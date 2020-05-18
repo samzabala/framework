@@ -12,7 +12,7 @@ $prefix: '.alert';
 	border-radius: $alert-border-radius;
 	box-shadow: $alert-box-shadow;
 	position:relative;
-	@extend %for-cf;
+	@extend %for-cf !optional;
 	a {
 		color:inherit;
 		font-weight: $body-font-weight-bold;

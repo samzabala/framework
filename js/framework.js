@@ -1788,22 +1788,36 @@ window.jQuery && jQuery.noConflict();
 			){
 
 				if(triggerer){
+
+
+					var arr =  {
+						changeHash:
+						selector.getAttribute('data-accordion-change-hash')
+							|| (triggerer && (triggerer.getAttribute('data-accordion-change-hash')))
+					};
+		
+					var defaults = {
+						changeHash: changeHash,
+					};
+		
+					var args = _.parseArgs(arr,defaults);
+
 						
 					if(
 						selector.classList.contains('open')
 						&& triggerer.classList.contains('open')
 					){
 
-						var probablyNoClose = selector.closest('.accordion-group.accordion-group-no-close');
+						var probablyNoClose = selector.closest('.accordion-group');
 
-						if( !probablyNoClose ){
+						if( !probablyNoClose || (probablyNoClose && !probablyNoClose.matches('.accordion-group-no-close')) ){
 
-							frameWork.slideUp(selector); 
+							// frameWork.slideUp(selector); 
 							triggerer.classList.remove('open'); 
 							selector.classList.remove('open'); 
 
 							
-							if(changeHash){
+							if(args.changeHash){
 								_.changeHash('');
 							}
 						}
@@ -1817,7 +1831,7 @@ window.jQuery && jQuery.noConflict();
 							var toggles = selectorAncestor.querySelectorAll('[data-toggle="accordion"]');
 							
 							accordions.forEach(function(accordion){
-								frameWork.slideUp(accordion)
+								// frameWork.slideUp(accordion)
 								accordion.classList.remove('open');
 							});
 
@@ -1827,10 +1841,10 @@ window.jQuery && jQuery.noConflict();
 						
 						}; 
 
-						frameWork.slideDown(selector); 
+						// frameWork.slideDown(selector); 
 						triggerer.classList.add('open'); 
 						selector.classList.add('open'); 
-						if(changeHash){
+						if(args.changeHash){
 							_.changeHash(selector.getAttribute('id'));
 						}
 					}
@@ -2002,7 +2016,7 @@ window.jQuery && jQuery.noConflict();
 		frameWork.addEvent(document.body,'click','*[data-toggle="accordion"]',function(e){
 			e.preventDefault();
 
-			frameWork.toggleAccordion(e.target);
+			frameWork.toggleAccordion(e.target,true);
 		});
 
 		frameWork.addEvent(document.body,'click','*[data-toggle="alert-close"]',function(e){

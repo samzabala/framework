@@ -1624,20 +1624,33 @@ window.jQuery && jQuery.noConflict();
 
 				if(triggerer){
 
+					var arr =  {
+						changeHash:
+						selector.attr('data-accordion-change-hash')
+							|| (triggerer && (triggerer.attr('data-accordion-change-hash')))
+					};
+		
+					var defaults = {
+						changeHash: changeHash,
+					};
+		
+					var args = _.parseArgs(arr,defaults);
+
+					console.warn(changeHash);
 				
 					if(
 						selector.hasClass('open')
 						&& triggerer.hasClass('open')
 					){
 
-						if( !selector.closest('.accordion-group.accordion-group-no-close').length ){
+						if( !selector.closest('.accordion-group').is('.accordion-group-no-close').length ){
 
 
 							// selector.slideUp(); 
 							triggerer.removeClass('open'); 
 							selector.removeClass('open'); 
 							
-							if(changeHash){
+							if(args.changeHash){
 								_.changeHash('');
 							}
 						}
@@ -1645,7 +1658,7 @@ window.jQuery && jQuery.noConflict();
 					}else{
 
 						if(selector.closest('.accordion-group').length && !selector.closest('.accordion-group').is('.accordion-group-multiple')) {
-							selector.closest('.accordion-group').find('.accordion').slideUp(); 
+							// selector.closest('.accordion-group').find('.accordion').slideUp(); 
 							triggerer.closest('.accordion-group').find('[data-toggle="accordion"]').removeClass('open'); 
 							selector.closest('.accordion-group').find('.accordion').removeClass('open'); 
 						}
@@ -1654,7 +1667,7 @@ window.jQuery && jQuery.noConflict();
 						triggerer.addClass('open'); 
 						selector.addClass('open'); 
 
-						if(changeHash){
+						if(args.changeHash){
 							_.changeHash(selector.attr('id'));
 						}
 					}

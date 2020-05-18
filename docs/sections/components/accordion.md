@@ -43,6 +43,11 @@ Another way but [data-toggle="accordion"] looks for a sibling because there's no
 </div>
 ```
 
+
+### Change hash
+
+If you dont wish for the accordion to change the hashand shit addd an attribute of `data-accordion-change-hash="false"` to either the toffler or accordion and it should not do the thing. hopefully
+
 ## Accordion itself
 
 ### **`.accordion`**

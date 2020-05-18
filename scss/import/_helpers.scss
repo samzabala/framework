@@ -89,7 +89,7 @@
 			@include create-palette-helper(
 				#{&}
 			){
-				@extend %for-background-image-none-important;
+				@extend %for-background-image-none-important !optional;
 			};
 		}
 
@@ -134,14 +134,14 @@
 				@include create-palette-helper(
 					#{&}-#{$i}
 				){
-					@extend %for-background-intensity-#{$i}-important;
+					@extend %for-background-intensity-#{$i}-important !optional;
 				};
 			}
 		}
 
 		//gradient
 		&-gradient {
-			@extend %for-background-gradient-important;
+			@extend %for-background-gradient-important !optional;
 
 			$calculated-gradient-selector: #{&};
 
@@ -158,7 +158,7 @@
 				@include create-palette-helper(
 					#{&}-#{$angle}
 				){
-					@extend %for-background-gradient-#{$angle}-important;
+					@extend %for-background-gradient-#{$angle}-important !optional;
 				};
 
 			}

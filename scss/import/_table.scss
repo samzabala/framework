@@ -54,6 +54,7 @@ $prefix: '.table';
 		border-spacing: 0;
 		text-align: inherit;
 		background:transparent;
+		text-align: inherit;
 		// table-layout: fixed;
 
 		// &#{$prefix}-wrap {
@@ -161,7 +162,7 @@ $prefix: '.table';
 			padding-bottom: calc((#{ $calculated-table-cell-height } - ( #{ $calculated-body-single-line } )) * .5);
 		}
 
-		@at-root &#{$prefix}-col-separation {
+		@at-root #{$prefix}-col-separation {
 			td,
 			#{$prefix}-cell {
 				&:nth-child(n+2) {
@@ -175,7 +176,7 @@ $prefix: '.table';
 		}
 
 
-		@at-root &#{$prefix}-small {
+		@at-root #{$prefix}-small {
 			td,
 			#{$prefix}-cell {
 				padding-top: calc((#{ $calculated-table-cell-height-small } - ( #{ $calculated-body-single-line-compact } )) * .5);
@@ -184,7 +185,7 @@ $prefix: '.table';
 			}
 		}
 
-		@at-root &#{$prefix}-large {
+		@at-root #{$prefix}-large {
 			td,
 			#{$prefix}-cell {
 				padding-top: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line-expanded } )) * .5);
