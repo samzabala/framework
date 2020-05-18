@@ -1615,6 +1615,9 @@ window.jQuery && jQuery.noConflict();
 
 		
 		if( selector ){
+			
+			var ancGroup = selector.closest('.accordion-group');
+
 			if(
 				!(
 					selector.hasClass('accordion-mobile')
@@ -1635,15 +1638,16 @@ window.jQuery && jQuery.noConflict();
 					};
 		
 					var args = _.parseArgs(arr,defaults);
-
-					console.warn(changeHash);
 				
 					if(
 						selector.hasClass('open')
 						&& triggerer.hasClass('open')
 					){
 
-						if( !selector.closest('.accordion-group').is('.accordion-group-no-close').length ){
+						if(
+							!ancGroup.length
+							|| (ancGroup.length && !ancGroup.matches('.accordion-group-no-close'))
+						){
 
 
 							// selector.slideUp(); 
@@ -1657,10 +1661,10 @@ window.jQuery && jQuery.noConflict();
 
 					}else{
 
-						if(selector.closest('.accordion-group').length && !selector.closest('.accordion-group').is('.accordion-group-multiple')) {
+						if(ancGroup.length && !ancGroup.is('.accordion-group-multiple')) {
 							// selector.closest('.accordion-group').find('.accordion').slideUp(); 
-							triggerer.closest('.accordion-group').find('[data-toggle="accordion"]').removeClass('open'); 
-							selector.closest('.accordion-group').find('.accordion').removeClass('open'); 
+							ancGroup.find('[data-toggle="accordion"]').removeClass('open'); 
+							ancGroup.find('.accordion').removeClass('open'); 
 						}
 
 						// selector.slideDown(); 
@@ -1672,12 +1676,17 @@ window.jQuery && jQuery.noConflict();
 						}
 					}
 				}else{
-					$('.accordion').removeClass('open');
-					$('[data-toggle="accordion"]').removeClass('open');
+
+					selector.siblings('.accordion').removeClass('open');
+					ancGroup.children('.accordion').removeClass('open');
+
+
+					var probablyToggle = $('[data-toggle="accordion"][href="#'+selector.attr('id')+'"], [data-toggle="accordion"][data-href="#'+selector.attr('id')+'"]');
+					probablyToggle.siblings('[data-toggle="accordion"]').removeClass('open');
+					probablyToggle.closest('.accordion-group').children('[data-toggle="accordion"]').removeClass('open');
 					
 					selector.addClass('open'); 
-	
-					$('[data-toggle="accordion"][href="#'+selector.attr('id')+'"], [data-toggle="accordion"][data-href="#'+selector.attr('id')+'"]').addClass('open');
+					probablyToggle.addClass('open');
 
 					$([document.documentElement, document.body]).animate({
 						scrollTop: selector.offset().top

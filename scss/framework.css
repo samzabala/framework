@@ -1238,7 +1238,7 @@ table {
     border-left: .875em solid;
     left: .1875em; }
   .symbol-pause:before, .symbol-pause:after {
-    width: .375em;
+    width: .3125em;
     height: .875em; }
   .symbol-pause:before {
     right: .5em; }
