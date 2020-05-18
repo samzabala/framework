@@ -20,17 +20,17 @@ All `.tab`s will have a child of `.tab-text` or an `<a>` tag
 </div>
 ```
 
-Or if you're feeling too lazy, just a `<ul>` with `<li>`s with `.tab-text` or `<a>` hids is fine too
+Or if you're feeling too lazy, just a `<ul>` with `li.tab`s with `.tab-text` or `<a>` hids is fine too
 
 ```html
 <ul class="tabs">
-	<li class="active"> 
+	<li class="tab active"> 
 		<span class="tab-text" href="#today" >Today's Activity</span>
 	</li>
-	<li>
+	<li class="tab ">
 		<a href="#week">Weekly shit</a>
 	</li>
-	<li class="tab-disabled">
+	<li class="tab tab-disabled">
 		<a href="#porn">Disabled huhu can't click me boi</a>
 	</li>
 </ul>
@@ -76,14 +76,14 @@ Best practice for accordions to work seamlessly
 
 ```html
 <div class="accordion-group accordion-group-no-close">
-	<ul class="tabs">
-		<li class=" active"> 
-			<a href="#activity-log-today" class="open" data-toggle="accordion">Today's Activity</a>
+	<ul class="tabs	tabs-responsive">
+		<li class="tab open" data-toggle="accordion" data-href="#activity-log-today"> 
+			<a href="#activity-log-today" >Today's Activity</a>
 		</li>
-		<li>
-			<a href="#activity-log-week" data-toggle="accordion">Weekly shit</a>
+		<li class="tab" data-toggle="accordion" data-href="#activity-log-week">
+			<a href="#activity-log-week" >Weekly Timesheet</a>
 		</li>
-		<li class="tab-disabled" data-toggle="accordion">
+		<li class="tab tab-disabled"  data-toggle="accordion" data-href="#porn">
 			<a href="#porn">Disabled huhu can't click me boi</a>
 		</li>
 	</ul>

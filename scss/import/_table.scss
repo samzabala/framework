@@ -225,7 +225,8 @@ $prefix: '.table';
 			}
 		}
 
-		@at-root #{$prefix}-row {
+		@at-root #{$prefix}-row,
+		#{$prefix}-cell {
 			@each $tag,$color in $calculated-brand-color-declarations {
 				&-#{$tag} {
 					background-color: rgba($color,$table-row-background-opacity);

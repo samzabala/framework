@@ -652,6 +652,10 @@ $calculated-calendar-exception: '';
 		border:0;
 		overflow-x:auto;
 		overflow-y:visible;
+
+		.btn.btn-symbol {
+			flex: 0 0 auto;
+		}
 		
 		#{$prefix} {
 			position:relative;

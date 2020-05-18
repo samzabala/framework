@@ -63,6 +63,37 @@ The folloing classes style table rows to [framework colors](../scaffolding/color
 </table>
 ```
 
+
+#### Cell classes
+
+![Yes](../../images/table-color.png)
+
+##### Colors 
+The folloing classes style a single table cell to [framework colors](../scaffolding/colors.md#color-tags)
+
+*	**.table-cell-primary**
+*	**.table-cell-secondary**
+*	**.table-cell-accent**
+*	**.table-cell-neutral**
+*	**.table-cell-success**
+*	**.table-cell-caution**
+*	**.table-cell-error**
+*	**.table-cell-intensity-1**
+*	**.table-cell-intensity-2**
+*	**.table-cell-intensity-3**
+*	**.table-cell-intensity-4**
+*	**.table-cell-intensity-5**
+
+```html
+<table>
+	<tr class="table-row">
+		<td class=" table-row-succes">
+			weeee
+		</td>
+	</tr>
+</table>
+```
+
 ##### Disable
 To add disabled styles to a row, add **`.table-row-disabled`** to the row
 

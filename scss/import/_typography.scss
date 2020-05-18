@@ -280,6 +280,7 @@ $prefix: '.special';
 			case: $body-heading-text-transform,
 		));
 		display:block;
+		hyphens: auto;
 		margin-bottom: $calculated-body-heading-gutter-bottom;
 		margin-top: $calculated-body-heading-gutter-top;
 

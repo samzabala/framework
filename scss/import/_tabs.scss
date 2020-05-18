@@ -2,6 +2,10 @@ $calculated-tabs-font-size: $tabs-font-size;
 @if internal-is-convertable($tabs-font-size) {
 	$calculated-tabs-font-size: rem($tabs-font-size / $body-font-size);
 }
+$calculated-tabs-font-size-mobile: $tabs-font-size-mobile;
+@if internal-is-convertable($tabs-font-size-mobile) {
+	$calculated-tabs-font-size-mobile: rem($tabs-font-size-mobile / $body-font-size);
+}
 
 
 $calculated-tabs-item-height: $tabs-item-height;
@@ -51,8 +55,12 @@ $prefix: '.tab';
 			border-color:  $tabs-border-color-inverse;
 		}
 
-		&#{&}-responsive {
-			@include br(#{$mobile-br-max}-max) {
+		@include br(#{$mobile-br-max}-max) {
+
+			font-size: $calculated-tabs-font-size-mobile;
+
+			&#{&}-responsive {
+			
 				flex-direction:column;
 				border-bottom:0;
 
@@ -112,7 +120,8 @@ $prefix: '.tab';
 			&.active,
 			&:hover,
 			&:focus,
-			&.focus {
+			&.focus,
+			&.open {
 				background-color: $tabs-item-background-active;
 				border-color: $tabs-item-border-color-active;
 				color: $tabs-item-color-active;

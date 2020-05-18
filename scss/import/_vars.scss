@@ -124,7 +124,7 @@
 			$body-font-size-small: $body-font-size * .75 !default;
 			$body-font-size-large: $body-font-size * 1.5 !default;
 		$body-line-height: $body-font-size * 1.5 !default;
-		$body-text-gutter-y: $body-font-size !default;
+		$body-text-gutter-y: 20px  !default;
 
 
 		$body-line-height-compact-factor: .875 !default;
@@ -313,13 +313,13 @@
 
 	//tab
 		$tabs-font-size: $nav-top-font-size !default;
-			$tab-font-size-mobile: $tabs-font-size !default;
+			$tabs-font-size-mobile: $tabs-font-size !default;
 		$tabs-font-weight: $body-font-weight-bold !default;
 		$tabs-font-style: normal !default;
 		$tabs-text-transform: none !default;
 		$tabs-transition-duration: $transition-duration-base !default;
 		
-		$tabs-color: rgba($brand-color-neutral,.8) !default;
+		$tabs-color: rgba($brand-color-neutral,.75) !default;
 			$tabs-color-inverse: $tabs-color !default;
 
 		$tabs-border-width: 1px !default;
@@ -331,7 +331,6 @@
 		$tabs-item-gutter-x: 0 !default;
 		$tabs-item-margin-x: 45px !default;
 
-		$tabs-item-disabled-opacity: $global-disabled-opacity!default;
 		$tab-item-border-radius: $border-radius-small !default;
 
 		$tabs-item-background: transparent !default;

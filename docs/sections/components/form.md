@@ -500,6 +500,12 @@ Keep input-group full width all the fucking time
 
 
 
+### **`.input-group-block-mobile`**
+
+Keep input-group full width only on mobile
+
+
+
 ## Trumbowyg
 
 See [Trumbowyg](../components/trumbowyg.md)

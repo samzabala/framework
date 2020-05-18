@@ -1610,7 +1610,9 @@ window.jQuery && jQuery.noConflict();
 
 	frameWork.toggleAccordion = function(triggerer,changeHash) {
 		changeHash = !changeHash ? false : true;
+
 		var selector =  _.getTheToggled(triggerer,'accordion');
+
 		
 		if( selector ){
 			if(
@@ -1802,7 +1804,7 @@ window.jQuery && jQuery.noConflict();
 
 		$('body').on('click','*[data-toggle="accordion"]',function(e){	
 			e.preventDefault();
-			frameWork.toggleAccordion($(this));
+			frameWork.toggleAccordion($(this),true);
 		});
 
 		$('body').on('click','*[data-toggle="alert-close"]',function(e){	
