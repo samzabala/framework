@@ -19,6 +19,7 @@ window.jQuery && jQuery.noConflict();
 	frameWork.settings.initializeModal = frameWork.settings.initializeModal || true;
 	frameWork.settings.initializeAccordion = frameWork.settings.initializeAccordion || true;
 	frameWork.settings.dynamicHash = frameWork.settings.dynamicHash || true;
+	frameWork.settings.uiClass = 'fw-ui';
 
 	//hacks around trumbo bitch wyg
 	frameWork.trumbowyg = {};
@@ -869,7 +870,7 @@ window.jQuery && jQuery.noConflict();
 				theUi.container.appendChild(inputCalendar);
 				theUi.container.setAttribute(
 					'class',
-					inputCalendar.getAttribute('class').toString().replace('input-calendar',uiPrefix(true) )
+					frameWork.settings.uiClass+' '+inputCalendar.getAttribute('class').toString().replace('input-calendar',uiPrefix(true) )
 				);
 			}
 
@@ -1720,6 +1721,11 @@ window.jQuery && jQuery.noConflict();
 					dropdown.classList.remove('open');
 				}
 			});
+		}else{
+			document.querySelectorAll('.dropdown').forEach(function(dropdown){
+
+				dropdown.classList.remove('open');
+			})
 		}
 	}
 
@@ -1864,8 +1870,6 @@ window.jQuery && jQuery.noConflict();
 					//siblings
 					var allSiblings = frameWork.getSiblings(selector,'.accordion');
 					closeRelativeAccordions(allSiblings);
-
-					console.log(allSiblings);
 
 					//Lineage
 					if(ancGroup) {
@@ -2201,17 +2205,24 @@ window.jQuery && jQuery.noConflict();
 			
 			//tooltip
 			if(
-				!e.target.matches('[data-toggle="tooltip-click"]')
-				&& !e.target.matches('[data-toggle="tooltip-click"] *')
-				&& !e.target.matches('[data-toggle="tooltip-hover"]')
-				&& !e.target.matches('[data-toggle="tooltip-hover"] *')
+				!e.target.closest('[data-toggle="tooltip-click"]')
+				&& !e.target.closest('[data-toggle="tooltip-hover"]')
 			){
 				frameWork.destroyToolTip();
 			}
 
 			var dropdownLineage = frameWork.getAncestors(e.target,'.dropdown') || [];
 
-			if(!e.target.matches('[data-toggle="dropdown"]') && !dropdownLineage.length ){
+			console.log(
+				!e.target.matches('[data-toggle="dropdown"],[data-toggle="dropdown"] *'),!dropdownLineage.length
+				
+				);
+
+			if(
+				!e.target.closest('[data-toggle="dropdown"]')
+				&& !dropdownLineage.length
+			){
+				console.log('ok to close everything but no. it shits itself when theres dynamic bitches involved');
 				frameWork.closeDropdowns( false );
 			}
 			
