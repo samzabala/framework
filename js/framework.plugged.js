@@ -1962,39 +1962,44 @@ window.jQuery && jQuery.noConflict();
 
 		$('html,body').on('click','*',function(e){
 
-			//extra fallback
-			// function targetWithinComp(selector,clicked) {
+
+			// //extra fallback
+			// function targetWithinComp(selector,child) {
 			// 	var toReturn = false;
-			// 	if(selector) {
-			// 		$(selector).each(function(){
-			// 			var sel = $(this);
-			// 			console.log(clicked,sel,$.contains(sel,clicked));
-			// 			if($.contains(sel,clicked) && clicked.parents(selector).length){
+			// 	let elms = document.querySelectorAll(selector);
+			// 	if(elms) {
+			// 		elms.forEach(function(el){
+			// 			if(el !== child && el.contains(child)){
 			// 				toReturn = true;
 			// 			}
-		
 			// 		});
 			// 	}
 
+			// 	console.log(toReturn);
+
 			// 	return toReturn;
 			// }
-			// //tooltip
-			var clicked = e.target;
+			var clicked = $(e.target);
+
+			
+			//tooltip
 			if(
-				!clicked.closest('[data-toggle="tooltip-click"]')
+				!clicked.closest('[data-toggle="tooltip-click"]').length
 				// && !clicked.matches('[data-toggle="tooltip-click"] *')
-				&& !clicked.closest('[data-toggle="tooltip-hover"]')
+				&& !clicked.closest('[data-toggle="tooltip-hover"]').length
 				// && !clicked.matches('[data-toggle="tooltip-hover"] *')
+				&& !clicked.attr('data-value') //temp fix for ui elements not getting ancestry
 			){
 				frameWork.destroyToolTip();
 			}
 
+
 			//dropdown
 			if(
-				!clicked.closest('[data-toggle="dropdown"]')
-				&& !clicked.closest('.dropdown')
-				){
-					console.log('ok to close everything but no. it shits itself when theres dynamic bitches involved');
+				!clicked.closest('[data-toggle="dropdown"]').length
+				&& !clicked.closest('.dropdown').length
+				&& !clicked.attr('data-value') //temp fix for ui elements not getting ancestry
+			){
 				frameWork.closeDropdowns( false );
 			}
 		});

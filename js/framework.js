@@ -2203,26 +2203,23 @@ window.jQuery && jQuery.noConflict();
 
 		frameWork.addEvent(document.body,'click','*',function(e){
 			
+			var clicked = e.target;
 			//tooltip
 			if(
-				!e.target.closest('[data-toggle="tooltip-click"]')
-				&& !e.target.closest('[data-toggle="tooltip-hover"]')
+				!clicked.closest('[data-toggle="tooltip-click"]')
+				&& !clicked.closest('[data-toggle="tooltip-hover"]')
+				&& !clicked.hasAttribute('data-value') //temp fix for ui elements not getting ancestry
 			){
 				frameWork.destroyToolTip();
 			}
 
-			var dropdownLineage = frameWork.getAncestors(e.target,'.dropdown') || [];
-
-			console.log(
-				!e.target.matches('[data-toggle="dropdown"],[data-toggle="dropdown"] *'),!dropdownLineage.length
-				
-				);
+			var dropdownLineage = frameWork.getAncestors(clicked,'.dropdown') || [];
 
 			if(
-				!e.target.closest('[data-toggle="dropdown"]')
-				&& !dropdownLineage.length
+				!clicked.closest('[data-toggle="dropdown"]')
+				&& !clicked.closest('.dropdown')
+				&& !clicked.hasAttribute('data-value') //temp fix for ui elements not getting ancestry
 			){
-				console.log('ok to close everything but no. it shits itself when theres dynamic bitches involved');
 				frameWork.closeDropdowns( false );
 			}
 			
