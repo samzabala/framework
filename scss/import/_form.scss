@@ -94,35 +94,43 @@ $calculated-input-info-gutter-y: $input-info-gutter-y;
 }
 
 //calendar
-$calculated-input-calendar-block-gutter-x: $input-calendar-block-gutter-x;
-@if internal-is-convertable($input-calendar-block-gutter-x,$input-font-size){
-	$calculated-input-calendar-block-gutter-x: em($input-calendar-block-gutter-x/$input-font-size);
-}@else if internal-is-convertable($input-calendar-block-gutter-x){
-	$calculated-input-calendar-block-gutter-x: rem($input-calendar-block-gutter-x/$body-font-size);
-}
+	$calculated-input-calendar-block-gutter-x: $input-calendar-block-gutter-x;
+	@if internal-is-convertable($input-calendar-block-gutter-x,$input-font-size){
+		$calculated-input-calendar-block-gutter-x: em($input-calendar-block-gutter-x/$input-font-size);
+	}@else if internal-is-convertable($input-calendar-block-gutter-x){
+		$calculated-input-calendar-block-gutter-x: rem($input-calendar-block-gutter-x/$body-font-size);
+	}
 
-$calculated-input-calendar-block-gutter-y: $input-calendar-block-gutter-y;
-@if internal-is-convertable($input-calendar-block-gutter-y,$input-font-size){
-	$calculated-input-calendar-block-gutter-y: em($input-calendar-block-gutter-y/$input-font-size);
-}@else if internal-is-convertable($input-calendar-block-gutter-y){
-	$calculated-input-calendar-block-gutter-y: rem($input-calendar-block-gutter-y/$body-font-size);
-}
+	$calculated-input-calendar-block-gutter-y: $input-calendar-block-gutter-y;
+	@if internal-is-convertable($input-calendar-block-gutter-y,$input-font-size){
+		$calculated-input-calendar-block-gutter-y: em($input-calendar-block-gutter-y/$input-font-size);
+	}@else if internal-is-convertable($input-calendar-block-gutter-y){
+		$calculated-input-calendar-block-gutter-y: rem($input-calendar-block-gutter-y/$body-font-size);
+	}
 
 
-$calculated-input-calendar-block-gutter-x-mobile: $input-calendar-block-gutter-x-mobile;
-@if internal-is-convertable($input-calendar-block-gutter-x-mobile,$input-font-size){
-	$calculated-input-calendar-block-gutter-x-mobile: em($input-calendar-block-gutter-x-mobile/$input-font-size);
-}@else if internal-is-convertable($input-calendar-block-gutter-x-mobile){
-	$calculated-input-calendar-block-gutter-x-mobile: rem($input-calendar-block-gutter-x-mobile/$body-font-size);
-}
+	$calculated-input-calendar-block-gutter-x-mobile: $input-calendar-block-gutter-x-mobile;
+	@if internal-is-convertable($input-calendar-block-gutter-x-mobile,$input-font-size){
+		$calculated-input-calendar-block-gutter-x-mobile: em($input-calendar-block-gutter-x-mobile/$input-font-size);
+	}@else if internal-is-convertable($input-calendar-block-gutter-x-mobile){
+		$calculated-input-calendar-block-gutter-x-mobile: rem($input-calendar-block-gutter-x-mobile/$body-font-size);
+	}
 
-$calculated-input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y-mobile;
-@if internal-is-convertable($input-calendar-block-gutter-y-mobile,$input-font-size){
-	$calculated-input-calendar-block-gutter-y-mobile: em($input-calendar-block-gutter-y-mobile/$input-font-size);
-}@else if internal-is-convertable($input-calendar-block-gutter-y-mobile){
-	$calculated-input-calendar-block-gutter-y-mobile: rem($input-calendar-block-gutter-y-mobile/$body-font-size);
-}
+	$calculated-input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y-mobile;
+	@if internal-is-convertable($input-calendar-block-gutter-y-mobile,$input-font-size){
+		$calculated-input-calendar-block-gutter-y-mobile: em($input-calendar-block-gutter-y-mobile/$input-font-size);
+	}@else if internal-is-convertable($input-calendar-block-gutter-y-mobile){
+		$calculated-input-calendar-block-gutter-y-mobile: rem($input-calendar-block-gutter-y-mobile/$body-font-size);
+	}
 
+
+//tags
+// $calculated-input-tags-padding-y: $input-tags-padding-y;
+// 	@if internal-is-convertable($input-tags-padding-y,$input-font-size){
+// 		$calculated-input-tags-padding-y: em($input-tags-padding-y/$input-font-size);
+// 	}@else if internal-is-convertable($input-tags-padding-y){
+// 		$calculated-input-tags-padding-y: rem($input-tags-padding-y/$body-font-size);
+// 	}
 
 /*** input ***/
 
@@ -276,6 +284,7 @@ $calculated-calendar-exception: '';
 		-webkit-appearance: none;
 		appearance: none;
 		outline:none;
+		max-width:100%;
 		@include type-set((
 			size: #{$calculated-input-font-size},
 			color:$input-color,
@@ -417,6 +426,7 @@ $calculated-calendar-exception: '';
 		&-single-line,
 		&-multiple-line,
 		&-calendar-ui,
+		&-tags-ui,
 		&-editor {
 			@extend %for-form-input-boxy !optional;
 		}
@@ -452,6 +462,7 @@ $calculated-calendar-exception: '';
 	&-multiple-line,
 	&-editor,
 	&-calendar-ui,
+	&-tags-ui,
 	&-group {
 		@extend %for-form-input-boxy-and-group !optional;
 	}
@@ -816,9 +827,8 @@ $calculated-calendar-exception: '';
 		}
 	}
 
+	%for-form-input-ui-control {
 
-	//components of component
-	&-calendar {
 
 		@extend %for-display-none !optional;
 		//fallback
@@ -826,6 +836,12 @@ $calculated-calendar-exception: '';
 		width:0!important;
 		overflow:hidden!important;
 
+	}
+
+
+	//components of component
+	&-calendar {
+		@extend %for-form-input-ui-control !optional;
 
 		&-ui {
 			vertical-align: top;
@@ -1100,6 +1116,43 @@ $calculated-calendar-exception: '';
 		}
 	}
 
+	// &-tags {
+	// 	@extend %for-form-input-ui-control !optional;
+
+	// 	&-ui {
+	// 		display:inline-flex;
+	// 		overflow-x:auto;
+	// 		overflow-y:visible;
+
+	// 		&-wrapper {
+	// 			display:flex;
+	// 			margin-top: -.25em;
+	// 			margin-bottom: -.25em;
+	// 		}
+
+	// 		&-tag {
+	// 			display:inline-block;
+	// 			padding: .25em 1em;
+	// 			margin-right: .5em;
+	// 			background: rgba($brand-color-primary,.2);
+	// 		}
+
+	// 		&-input {
+	// 			padding: 0;
+	// 			border:0;
+	// 			padding:0;
+	// 			font:inherit;
+	// 			color:inherit;
+	// 			-webkit-appearance: none;
+	// 			appearance: none;
+	// 			outline:none;
+
+	// 			&,
+	// 			&:hover,
+	// 		}
+	// 	}
+	// }
+
 
 
 
@@ -1125,7 +1178,7 @@ $calculated-calendar-exception: '';
 				border-color: $color;
 				
 				@if type-of($color) == color && $color != transparent {
-					background-color: rgba($color,.05);
+					background-color: rgba($color,$input-color-feedback-opacity);
 				}
 			}
 		}

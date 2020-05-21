@@ -697,6 +697,7 @@
 		$input-box-shadow-brand-basis: $box-shadow-base !default;
 			$input-box-shadow-focus: 0px 0 5px 0px $brand-color-primary !default;
 		$input-group-separator-color: rgba($brand-color-base,.1) !default;
+		$input-color-feedback-opacity: .05 !default;
 
 		$input-label-gutter: 20px !default;
 
@@ -743,6 +744,12 @@
 
 				$input-calendar-days-border-width: 1px !default;
 				$input-calendar-days-font-size: .75em !default;
+
+			//tags
+				// $input-tags-padding-y: .25em !default;
+				// $input-tags-padding-y: 1em !default;
+				// $input-tags-gutter-x: .25em;
+				
 
 		//special-form
 			$special-form-gutter-x: 35px !default;

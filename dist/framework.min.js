@@ -846,12 +846,12 @@ window.jQuery && jQuery.noConflict();
 	};
 	
 	
-	_.createCalendarUi = function(inputCalendar,valueForGrid,args){
+	_.createCalendarUi = function(inputCalendar,valueForUi,args){
 
 
 		if(inputCalendar){
 		
-			valueForGrid = valueForGrid ||  _.dateToVal(inputCalendar.value ) || _.dateToVal(new Date());
+			valueForUi = valueForUi ||  _.dateToVal(inputCalendar.value ) || _.dateToVal(new Date());
 
 		
 			uiPrefix = function(noDash) {
@@ -898,8 +898,8 @@ window.jQuery && jQuery.noConflict();
 
 			}
 
-			var currYear = _.dateToParse(valueForGrid).getFullYear();
-			var currMonth = _.dateToParse(valueForGrid).getMonth();
+			var currYear = _.dateToParse(valueForUi).getFullYear();
+			var currMonth = _.dateToParse(valueForUi).getMonth();
 			var currentCalendarDate = new Date(currYear,currMonth,1); //IT ALSO FIRST DAY MOTHERFUCKER
 
 
@@ -915,7 +915,7 @@ window.jQuery && jQuery.noConflict();
 					var symbolClass,arrowDate,validness;
 					//set a new date with no date because fuck that boi
 
-					// console.warn(buttonClass,'hello i fucked up','\n',_.dateToParse(valueForGrid),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
+					// console.warn(buttonClass,'hello i fucked up','\n',_.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
 
 					switch(buttonClass){
 						case 'prev-month':
@@ -1229,10 +1229,10 @@ window.jQuery && jQuery.noConflict();
 	}
 
 		//updates both input field and UI
-	frameWork.updateCalendar = function(inputCalendar,newValue,valueForGrid){
+	frameWork.updateCalendar = function(inputCalendar,newValue,valueForUi){
 		
 		theValue = newValue || _.dateToVal(inputCalendar.value );
-		valueForGrid = valueForGrid || theValue || _.dateToVal(new Date());
+		valueForUi = valueForUi || theValue || _.dateToVal(new Date());
 
 		var arr =  {
 			class: inputCalendar.getAttribute('class'),
@@ -1269,7 +1269,7 @@ window.jQuery && jQuery.noConflict();
 
 		if(_.dateIsValid(theValue,args) || !theValue){
 			//set up calendar
-			_.createCalendarUi(inputCalendar,valueForGrid,args);
+			_.createCalendarUi(inputCalendar,valueForUi,args);
 		}
 
 		if(theValue){
@@ -1816,7 +1816,7 @@ window.jQuery && jQuery.noConflict();
 
 						if(
 							!ancGroup
-							|| (ancGroup && !ancGroup.matches('.accordion-group-no-close'))
+							|| (ancGroup && !ancGroup.classList.contains('accordion-group-no-close'))
 						){
 
 							// frameWork.slideUp(selector); 
