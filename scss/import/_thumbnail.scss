@@ -149,4 +149,12 @@ $prefix: '.thumbnail';
 		align-items: center;
 		justify-content: center;
 	}
+
+	&-cluster {
+		#{$prefix} {
+			&:nth-last-child(n+2) {
+				margin-right: -.5em;
+			}
+		}
+	}
 }

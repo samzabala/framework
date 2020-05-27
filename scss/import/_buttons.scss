@@ -155,7 +155,7 @@ $prefix: '.btn';
 	}
 
 	@if map-get($properties,background) {
-		background: map-get($properties,background) #{$important};
+		background-color: map-get($properties,background) #{$important};
 	}
 
 	@if map-get($properties,color) {
