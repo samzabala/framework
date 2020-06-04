@@ -2643,7 +2643,7 @@ window.jQuery && jQuery.noConflict();
 					&& !triggerer.closest('.dropdown').length
 					&& !triggerer.closest('data-value').length //temp fix for ui elements not getting ancestry
 				){
-					console.log('close it ALL')
+					
 					frameWork.closeDropdowns( false );
 				}
 			}
