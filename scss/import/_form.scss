@@ -140,6 +140,23 @@ $calculated-input-info-gutter-y: $input-info-gutter-y;
 	}
 
 
+		
+		$calculated-input-tags-padding-y-small: $input-tags-padding-y-small;
+		@if internal-is-convertable($input-tags-padding-y-small,$input-font-size){
+			$calculated-input-tags-padding-y-small: em($input-tags-padding-y-small/$input-font-size);
+		}@else if internal-is-convertable($input-tags-padding-y-small){
+			$calculated-input-tags-padding-y-small: rem($input-tags-padding-y-small/$body-font-size);
+		}
+
+		$calculated-input-tags-padding-y-large: $input-tags-padding-y-large;
+		@if internal-is-convertable($input-tags-padding-y-large,$input-font-size){
+			$calculated-input-tags-padding-y-large: em($input-tags-padding-y-large/$input-font-size);
+		}@else if internal-is-convertable($input-tags-padding-y-large){
+			$calculated-input-tags-padding-y-large: rem($input-tags-padding-y-large/$body-font-size);
+		}
+
+
+
 	$calculated-input-tags-gutter-x: $input-tags-gutter-x;
 	@if internal-is-convertable($input-tags-gutter-x,$input-font-size){
 		$calculated-input-tags-gutter-x: em($input-tags-gutter-x/$input-font-size);
@@ -147,7 +164,39 @@ $calculated-input-info-gutter-y: $input-info-gutter-y;
 		$calculated-input-tags-gutter-x: rem($input-tags-gutter-x/$body-font-size);
 	}
 
-/*** input ***/
+
+	$calculated-input-tags-gutter-y: $input-tags-gutter-y;
+	@if internal-is-convertable($input-tags-gutter-y,$input-font-size){
+		$calculated-input-tags-gutter-y: em($input-tags-gutter-y/$input-font-size);
+	}@else if internal-is-convertable($input-tags-gutter-y){
+		$calculated-input-tags-gutter-y: rem($input-tags-gutter-y/$body-font-size);
+	}
+
+
+
+
+	$value-input-paddiny-y:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+	
+	$value-input-paddiny-y-large:	calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+	
+	$value-input-paddiny-y-small:	calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+	
+	$value-input-paddiny-y-nav: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+
+
+
+	$value-input-paddiny-y-negative:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
+	
+	$value-input-paddiny-y-large-negative:	calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
+	
+	$value-input-paddiny-y-small-negative:	calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
+	
+	$value-input-paddiny-y-nav-negative: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * -.5 );
+
+
+
+
+	/*** input ***/
 
 
 /* input clasees */
@@ -316,8 +365,8 @@ $calculated-calendar-exception: '';
 		border: $input-border-width solid $input-border-color;
 		padding-right: $calculated-input-gutter-x;
 		padding-left: $calculated-input-gutter-x;
-		padding-top: calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-		padding-bottom: calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+		padding-top: $value-input-paddiny-y;
+		padding-bottom: $value-input-paddiny-y;
 
 		.theme-inverse & {
 			color:$input-color-inverse;
@@ -408,8 +457,9 @@ $calculated-calendar-exception: '';
 
 		.nav & {
 			border-radius: 0 !important;
-			padding-top: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			padding-bottom: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+
+			padding-top: $value-input-paddiny-y-nav;
+			padding-bottom: $value-input-paddiny-y-nav;
 			height: #{ $calculated-nav-height };
 
 			&:not(.focus):not(:focus) {
@@ -426,14 +476,14 @@ $calculated-calendar-exception: '';
 
 		&#{$prefix}-large,
 		#{$prefix}-group#{$prefix}-large & {
-			padding-top: calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			padding-bottom: calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+			padding-top: $value-input-paddiny-y-large;
+			padding-bottom: $value-input-paddiny-y-large;
 		}
 
 		&#{$prefix}-small,
 		#{$prefix}-group#{$prefix}-small & {
-			padding-top: calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
-			padding-bottom: calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+			padding-top: $value-input-paddiny-y-small;
+			padding-bottom: $value-input-paddiny-y-small;
 		}
 	}
 
@@ -1097,7 +1147,12 @@ $calculated-calendar-exception: '';
 
 			&-dropdown {
 				max-height: 300px;
+				overflow-x:auto;
 				overflow-y: scroll;
+
+				&::-webkit-scrollbar {
+					display:none;
+				}
 			}
 
 			&-days,
@@ -1136,21 +1191,57 @@ $calculated-calendar-exception: '';
 
 		&-ui {
 			display:inline-flex;
-			overflow-x:auto;
-			overflow-y:visible;
+			overflow-x: auto;
+			overflow-y:hidden;
+			max-width:100%!important;
+			direction: ltr;
+			position: relative;
+
+			&::-webkit-scrollbar {
+				display:none;
+			}
 
 			&-wrapper {
+				flex: 1 1;
 				display:flex;
+				max-width:100%;
+				min-height:100%;
 				margin-top: $calculated-input-tags-padding-y * -1;
 				margin-bottom: $calculated-input-tags-padding-y * -1;
 			}
 
+			&-tag,
+			&-input {
+				// @todo//ellipsis
+				margin-bottom: $calculated-input-tags-gutter-y;
+				margin-top: $calculated-input-tags-gutter-y;
+				padding-top: $calculated-input-tags-padding-y;
+				padding-bottom: $calculated-input-tags-padding-y;
+				padding-left: $calculated-input-tags-padding-x;
+				padding-right: $calculated-input-tags-padding-x;
+
+				#{$prefix}-small & {
+
+					padding-top: $calculated-input-tags-padding-y-small;
+					padding-bottom: $calculated-input-tags-padding-y-small;
+				}
+				
+				#{$prefix}-large & {
+
+					padding-top: $calculated-input-tags-padding-y-large;
+					padding-bottom: $calculated-input-tags-padding-y-large;
+				}
+
+
+			}
+
+
 			&-tag {
-				display:inline-flex;
+				display:flex;
 				align-items:center;
-				padding: $calculated-input-tags-padding-y $calculated-input-tags-padding-x;
+				max-width:100%;
 				margin-right: $calculated-input-tags-gutter-x;
-				background: rgba($brand-color-primary,.2);
+				background: rgba($input-tags-background,$input-tags-background-opacity);
 				border-radius: $input-tags-border-radius;
 
 				&-text,
@@ -1158,20 +1249,51 @@ $calculated-calendar-exception: '';
 					vertical-align: middle;
 				}
 
+				&-text {
+					max-width: 10em;
+					cursor:pointer;
+					white-space: nowrap!important;
+					overflow: hidden!important;
+					text-overflow: ellipsis!important;
+				}
+
 				&-close {
 					margin-left: .25em;
 					line-height:1;
 					font-size: .75em;
+
+					@each $tag,$color in $calculated-brand-color-declarations {
+						#{$prefix}-#{$tag} & {
+							color: $color;
+						}
+					}
+				}
+
+				@each $tag,$color in $calculated-brand-color-declarations {
+					#{$prefix}-#{$tag} & {
+						background: rgba($color,$input-tags-background-opacity);
+					}
 				}
 			}
 
 			&-input {
-				padding: 0;
 				border:0;
-				padding:0;
 				-webkit-appearance: none;
+				background:none!important;
 				appearance: none;
 				outline:none;
+				white-space: nowrap;
+				padding-left:  $calculated-input-tags-padding-x;
+
+				&:last-child {
+					flex: 1 1 auto;
+					padding-right:0;
+					min-width: 4em;
+
+					&:first-child {
+						width: 12em;
+					}
+				}
 
 				&,
 				&:hover,

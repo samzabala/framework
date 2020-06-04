@@ -716,7 +716,7 @@ Also supports [input color helpers](#input-colors)
 <input type="text" class="input input-calendar input-caution" value="2020-05-05" />
 <input type="text" class="input input-calendar input-error" value="2020-06-05" />
 ```
-![Calendar](../../images/input-calendar-color.png)
+![Calendar](../../images/input-calendar-colors.png)
 
 ### Attributes
 
@@ -776,6 +776,94 @@ There also available keywords too
 Defaults to `false`
 
 Enables a text input field to input dates along with the calendar as well
+
+
+## Tags (Plugged bversion only for now)
+
+Imagine inputting stuff separated by commas... but gucci :')
+
+To allow the framework to generate a UI for this, add a class of `input-tags`
+The generated UI will wrap the input field and also replicate the classes added to the input tag except `input-tags` will now be `input-tags-ui` to avoid clashing outfits and what not
+
+```html
+	<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
+```
+![Tagas](../../images/input-tags.png)
+
+Once a value is set, the values separated with commas will be separated as tags
+
+
+### Support 
+| `input[type*]` | Support it? |
+| -- | -- |
+|`submit`, `reset`,`button` | no |
+| `checkbox` | no |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | no |
+| `email` | no |
+| `file` | no |
+| `hidden` | yes |
+| `image` | no |
+| `number` | no |
+| `password` | no |
+| `radio` | no |
+| `range` | no |
+| `search` | no |
+| `tel` | no |
+| `text` | yes |
+| `url` | no |
+| `list` | no |
+
+
+### Size
+
+The UI also supports **`.input-large`** and  **`.input-small`**
+
+```html
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-small" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-large" />
+```
+![Calendar](../../images/input-tags-size.png)
+
+### Colors
+
+Also supports [input color helpers](#input-colors)
+
+```html
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-primary" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-secondary" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-accent" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-success" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-error" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-caution" />
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-disabled" />
+```
+![Calendar](../../images/input-tags-colors.png)
+
+### Attributes
+
+Add these to customize ya boi further
+
+**`data-tags-width`**
+
+```html
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-width="69em" />
+```
+
+Defaults to `auto`
+
+Set a width for the input field. Note that there is a set max-width on ya boi so this will shrink if its containing element becomes too small
+
+**`data-tags-callback`**
+
+callback for after rendering the ui
+
+
+```html
+<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback="doSomehing()" />
+```
+
 
 #### 
 

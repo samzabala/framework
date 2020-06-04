@@ -31,6 +31,7 @@ Shares some styles with [tooltip](../components/tooltip.md)
 
 Elements with this attribute looks for an dropdown to toggle
 
+NOTE: this works on almost any clickable items. this will also work on input most types of fields or `[contenteditable="true]` elements
 
 
 The most frequent setup [data-toggle="dropdown"] looks for a sibling because there's no `href` or `data-href`

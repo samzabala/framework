@@ -1088,6 +1088,10 @@
 @at-root %for-disabled{
 	cursor:not-allowed!important;
 	opacity: $global-disabled-opacity;
+
+	* {
+		pointer-events:none;
+	}
 }
 
 .disabled {

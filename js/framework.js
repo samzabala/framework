@@ -54,12 +54,13 @@ window.jQuery && jQuery.noConflict();
 
 
 		
-	String.prototype.getFileExtension = function() {
-		return this.split('.').pop();
+	_.strGetFileExtension = function(str) {
+		str = str || '';
+		return str.split('.').pop();
 	}
-	String.prototype.toCamelCase = function(){
+	_.strToCamelCase = function(str){
+		str = str || '';
 
-		var str = this;
 
 		return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
 			return index == 0 ? word.toLowerCase() : word.toUpperCase();
@@ -93,6 +94,12 @@ window.jQuery && jQuery.noConflict();
 		  }
 		}, true);
 	  }
+	  
+	 frameWork.triggerEvent = function(el,evt){
+		var event = document.createEvent('HTMLEvents');
+		event.initEvent(evt, true, false);
+		el.dispatchEvent(event);
+	 }
 
 	/*
 	Element to slide gets the following CSS:
@@ -728,7 +735,7 @@ window.jQuery && jQuery.noConflict();
 		function renderProps(modElement,props){
 
 			props.forEach(function(prop){
-				// modElement.style[prop.toCamelCase()] = '';
+				// modElement.style[_.strToCamelCase(prop)] = '';
 				var propsSet = false;
 				var propSetBr = false;
 				var smallestStyledBr = null;
@@ -739,7 +746,7 @@ window.jQuery && jQuery.noConflict();
 					if( modElement.hasAttribute('data-'+prop+'-'+br) && !propsSet) {
 						smallestStyledBr = br;
 						if( frameWork.validateBr(br,'above') ){
-							modElement.style[prop.toCamelCase()] = modElement.getAttribute('data-'+prop+'-'+br)
+							modElement.style[_.strToCamelCase(prop)] = modElement.getAttribute('data-'+prop+'-'+br)
 							propsSet = true;
 							propSetBr = true;
 						}
@@ -751,18 +758,18 @@ window.jQuery && jQuery.noConflict();
 				
 					//check for all breakpoint
 					if(!propsSet && !propSetBr) {
-						modElement.style[prop.toCamelCase()] = modElement.getAttribute('data-'+prop)
+						modElement.style[_.strToCamelCase(prop)] = modElement.getAttribute('data-'+prop)
 						propsSet = true;
 					}
 
 				}else{
 					
 					if(
-						modElement.style[prop.toCamelCase()] !== null
+						modElement.style[_.strToCamelCase(prop)] !== null
 						&& smallestStyledBr
 						&& !frameWork.validateBr(smallestStyledBr,'above')
 					){
-						modElement.style[prop.toCamelCase()] = null;
+						modElement.style[_.strToCamelCase(prop)] = null;
 					}
 				}
 				
@@ -1319,7 +1326,7 @@ window.jQuery && jQuery.noConflict();
 
 			if(img.matches('img') || img.closest('picture')) {
 
-				if(imgSrc.getFileExtension() == 'svg' ){
+				if(_.strGetFileExtension(imgSrc) == 'svg' ){
 					var imgID = img.getAttribute('id') || null;
 					var imgClass = img.getAttribute('class') || null;
 
