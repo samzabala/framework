@@ -21,6 +21,44 @@ window.jQuery && jQuery.noConflict();
 	frameWork.settings.dynamicHash = frameWork.settings.dynamicHash || true;
 	frameWork.settings.uiClass = 'fw-ui';
 
+	_.modifierKeys = {
+		ctrl : false,
+		shift: false,
+		alt : false,
+		meta : false,
+	}
+
+
+	_.modifierIsActive = function(mode){
+		mode = mode || false;
+
+		if(mode && _.modifierKeys.hasOwnProperty(mode)){
+
+			return _.modifierKeys[mode];
+		}else{
+			return _.modifierKeys.ctrl || _.modifierKeys.shift || _.modifierKeys.alt || _.modifierKeys.meta;
+		}
+	}
+
+	// if(!$.trumbowyg) {
+	// 	throw new Error('Trumbowyg is not included. woa boi');
+	// }
+
+	$.fn.scrollTo = function(elem,direction) { 
+		direction = direction || 'y';
+		var methods = direction == 'x' ? ['scrollLeft','left'] : ['scrollTop','top'];
+		var scrollResult = $(this)[ methods[0] ]() - $(this).offset()[ methods[1] ] + $(elem).offset()[ methods[1] ];
+		
+		
+		$(this)[ methods[0] ]( scrollResult ); 
+
+
+		// console.log( scrollResult,'\nscroll parent', $(this)[ methods[0] ](),'\nchild offset', $(elem).offset()[ methods[1] ]   )
+
+
+		return this; 
+	};
+
 	//hacks around trumbo bitch wyg
 	frameWork.trumbowyg = {};
 
@@ -67,6 +105,24 @@ window.jQuery && jQuery.noConflict();
 		}).replace(/-|\s/g, '');
 
 	}
+
+	_.arrMoveItem = function(arr,oi,ni){
+		while (oi < 0) {
+			oi += arr.length;
+		}
+		while (ni < 0) {
+			ni += arr.length;
+		}
+		if (ni >= arr.length) {
+			var k = ni - arr.length;
+			while ((k--) + 1) {
+				arr.push(undefined);
+			}
+		}
+		 arr.splice(ni, 0, arr.splice(oi, 1)[0]);  
+	   return arr;
+	}
+
 
 	//polyifiulls
 	if (!Element.prototype.matches) {

@@ -757,8 +757,7 @@ $calculated-calendar-exception: '';
 			width:100%;
 
 			> #{$prefix},
-			> .trumbowyg,
-			> .btn:not(.btn-symbol) {
+			> .trumbowyg {
 				flex: 1 1;
 			}
 

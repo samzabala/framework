@@ -33,7 +33,6 @@ window.jQuery && jQuery.noConflict();
 		meta : false,
 	}
 
-	_.inputHadText = false;
 
 	_.modifierIsActive = function(mode){
 		mode = mode || false;
@@ -1332,13 +1331,19 @@ window.jQuery && jQuery.noConflict();
 				theUi.input = theUi.wrapper.children('.'+uiPrefix()+'input');
 			}
 
-
+			//nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
 			if(inputTags.attr('data-toggle')) {
 				theUi.input.attr('data-toggle',inputTags.attr('data-toggle'));
 			}
 
 			if(frameWork.isDisabled(inputTags)){
 				theUi.input.addClass('disabled');
+			}
+
+			if(args.callbackOnKeyup) {
+				
+				var fOnKeyUp = new Function(args.callbackOnKeyup);
+				theUi.input.on('keyup',fOnKeyUp)
 			}
 
 			
@@ -1414,12 +1419,14 @@ window.jQuery && jQuery.noConflict();
 
 		var arr =  {
 			width: inputTags.attr('data-tags-width'),
-			callback: inputTags.attr('data-tags-callback')
+			callback: inputTags.attr('data-tags-callback'),
+			callbackOnKeyup: inputTags.attr('data-tags-callback-on-keyup')
 		};
 
 		var defaults = {
 			width: 'auto',
-			callback: null
+			callback: null,
+			callbackOnKeyup : null
 		};
 		
 		var args = _.parseArgs(arr,defaults);
@@ -1433,14 +1440,30 @@ window.jQuery && jQuery.noConflict();
 			//update the actual butt
 			inputTags.attr('value',_.tagsToVal(theValue,false));
 			inputTags.val(_.tagsToVal(theValue,false));
-		}
 
 		
-		//ATODO UPDATE SETUP HERE
-		//update fake hoes
-		if(args.callback) {
-			var f = new Function(args.callback);
-			f();
+			//ATODO UPDATE SETUP HERE
+			//update fake hoes
+			if(args.callback) {
+
+				let fn;
+
+				try {
+					fn = eval(/^[^(]+/.exec(args.callback)[0])
+				} catch(err) {
+				}
+
+				if ( typeof(fn) === 'function' ){
+					eval(args.callback);
+				}
+
+				// var f = new Function(args.callback);
+				// if ( typeof(eval(/^[^(]+/.exec(args.callback)[0])) === 'function' ){
+				// 	$(document).ready(function(){
+				// 		eval(args.callback);
+				// 	});
+				// }
+			}
 		}
 
 		
@@ -1848,8 +1871,16 @@ window.jQuery && jQuery.noConflict();
 				}
 
 				if(args.callback) {
-					var f = new Function(args.callback);
-					f();
+					let fn;
+
+					try {
+						fn = eval(/^[^(]+/.exec(args.callback)[0])
+					} catch(err) {
+					}
+
+					if ( typeof(fn) === 'function' ){
+						eval(args.callback);
+					}
 				}
 
 				modal.fadeIn()
@@ -2602,7 +2633,6 @@ window.jQuery && jQuery.noConflict();
 
 		$('html,body').on('click','*',function(e){
 
-
 			// //extra fallback
 			// function targetWithinComp(selector,child) {
 			// 	var toReturn = false;
@@ -2631,19 +2661,19 @@ window.jQuery && jQuery.noConflict();
 					// && !triggerer.matches('[data-toggle="tooltip-click"] *')
 					&& !triggerer.closest('[data-toggle="tooltip-hover"]').length
 					// && !triggerer.matches('[data-toggle="tooltip-hover"] *')
-					&& !triggerer.closest('[data-value]') //temp fix for ui elements not getting ancestry
+					&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
 				){
 					frameWork.destroyToolTip();
 				}
-
 
 				//dropdown
 				if(
 					!triggerer.closest('[data-toggle="dropdown"]').length
 					&& !triggerer.closest('.dropdown').length
-					&& !triggerer.closest('data-value').length //temp fix for ui elements not getting ancestry
+					&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
 				){
 					
+
 					frameWork.closeDropdowns( false );
 				}
 			}

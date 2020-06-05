@@ -5140,8 +5140,7 @@ table {
     display: flex;
     width: 100%; }
     .input-group-block > .input,
-    .input-group-block > .trumbowyg,
-    .input-group-block > .btn:not(.btn-symbol) {
+    .input-group-block > .trumbowyg {
       flex: 1 1; }
     @media (max-width: 1200px) {
       .input-group-block-mobile {

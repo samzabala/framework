@@ -780,17 +780,17 @@ Enables a text input field to input dates along with the calendar as well
 
 ## Tags (Plugged bversion only for now)
 
-Imagine inputting stuff separated by commas... but gucci :')
+Imagine inputting in a text field some tags separated by commas... but gucci :')
 
 To allow the framework to generate a UI for this, add a class of `input-tags`
 The generated UI will wrap the input field and also replicate the classes added to the input tag except `input-tags` will now be `input-tags-ui` to avoid clashing outfits and what not
 
 ```html
-	<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
+	<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
 ```
 ![Tagas](../../images/input-tags.png)
 
-Once a value is set, the values separated with commas will be separated as tags
+Once a value is set, the values separated with commas will be separated as tags in the front end
 
 
 ### Support 
@@ -820,9 +820,9 @@ Once a value is set, the values separated with commas will be separated as tags
 The UI also supports **`.input-large`** and  **`.input-small`**
 
 ```html
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-small" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-large" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-small" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-large" />
 ```
 ![Calendar](../../images/input-tags-size.png)
 
@@ -831,13 +831,13 @@ The UI also supports **`.input-large`** and  **`.input-small`**
 Also supports [input color helpers](#input-colors)
 
 ```html
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-primary" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-secondary" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-accent" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-success" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-error" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-caution" />
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-disabled" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-primary" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-secondary" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-accent" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-success" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-error" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-caution" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-disabled" />
 ```
 ![Calendar](../../images/input-tags-colors.png)
 
@@ -848,7 +848,7 @@ Add these to customize ya boi further
 **`data-tags-width`**
 
 ```html
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-width="69em" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-width="69em" />
 ```
 
 Defaults to `auto`
@@ -857,11 +857,26 @@ Set a width for the input field. Note that there is a set max-width on ya boi so
 
 **`data-tags-callback`**
 
-callback for after rendering the ui
+callback function for after rendering the ui and changing the value
+
+```html
+<script>
+	function doSomething(){
+		alert('i did something');
+	}
+</script>
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback="doSomehing()" />
+```
+
+
+
+**`data-tags-callback-on-keyup`**
+
+callback function after keyup on the input field. NOTE. the field is actually a `span[contenteditable]`
 
 
 ```html
-<input value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback="doSomehing()" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback-on-keyup="logSomeFuckers(e)" />
 ```
 
 
