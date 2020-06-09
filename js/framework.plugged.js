@@ -2310,6 +2310,7 @@ window.jQuery && jQuery.noConflict();
 		
 		
 		$('body').on('change','.input-tags',function(e){
+			const triggerer = $(e.target);
 			frameWork.updateTags(triggerer);
 		});
 
