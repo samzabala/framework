@@ -511,6 +511,26 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
+	//good for descendants of ui shitsc as long as ui component gets data attribues of element that start is
+	_.getTheUiTriggerer = function(triggerer) {
+
+		triggerer = triggerer || false;
+
+		if(triggerer){
+
+
+			if(triggerer.closest('.input-group'+frameWork.settings.uiClass).length){
+
+			}else if(triggerer.closest('.'+frameWork.settings.uiClass).length && !_.getTheToggled(triggerer,'dropdown')) {
+				toReturn = triggerer.closest('.'+frameWork.settings.uiClass).first();
+			}else{
+				toReturn = triggerer;
+			}
+	
+			return toReturn;
+		}
+	}
+
 
 	_.getTheToggled = function(triggerer,toggleMode){
 		triggerer = triggerer || null;
@@ -533,15 +553,17 @@ window.jQuery && jQuery.noConflict();
 
 			}else if( triggerer.attr('data-href') ){
 				toReturn =  $( triggerer.attr('data-href') )
-				
 			}else if(toggleMode && triggerer.parent().closest('[data-toggle="'+toggleMode+'"]').length){
-				toReturn =  _.getTheToggled(triggerer.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+				toReturn = _.getTheToggled(triggerer.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
 			}else if( triggerer.next(selector).first().length){
 				toReturn =  triggerer.next(selector).first();
-
 			}else if( triggerer.siblings(selector).first().length){
 				toReturn =  triggerer.siblings(selector).first();
 
+			}else if(toggleMode && triggerer.parent('.input-group').length){
+				toReturn = _.getTheToggled(triggerer.parent('.input-group'),toggleMode)
+			}else if( toggleMode && triggerer.parent('.btn-group').length ){
+				toReturn = _.getTheToggled(triggerer.parent('.btn-group'),toggleMode)
 			}
 		}else{
 			
@@ -571,6 +593,7 @@ window.jQuery && jQuery.noConflict();
 			
 
 		}
+
 
 		return toReturn;
 	};
@@ -1246,9 +1269,11 @@ window.jQuery && jQuery.noConflict();
 		toReturn = Array.isArray(value) ? value : value.split(',');
 
 		var hasInput = false;
+
 		
 		//check for ya boi
 		toReturn.forEach(function(tag,i){
+			
 			if(!tag || tag == ''){
 				toReturn.splice(i,1);
 			}
@@ -1262,6 +1287,15 @@ window.jQuery && jQuery.noConflict();
 		if(!hasInput && returnWithInput){
 			toReturn.push(_.tagsInputString );
 		}
+
+		//remove duplicates
+		toReturn = toReturn.reduce(function(acc,tag){
+			if(!acc.includes(tag)){
+				acc.push( tag );
+			}
+			
+			return acc;
+		},[]);
 
 
 		return toReturn;
@@ -1408,43 +1442,75 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	frameWork.updateTags = function(inputTags,newValue,valueForUi,inputText){
+	frameWork.updateTags = function(inputTags,allowFilter,newValue,valueForUi,inputText){
 		
 		var theValue = newValue || inputTags.val() || '';
 
 		inputText = inputText || false;
 
 		valueForUi = valueForUi || theValue || '';
+
+		allowFilter = (allowFilter == false) ? false : true;
 		
 
 		var arr =  {
 			width: inputTags.attr('data-tags-width'),
 			callback: inputTags.attr('data-tags-callback'),
-			callbackOnKeyup: inputTags.attr('data-tags-callback-on-keyup')
+			callbackOnKeyup: inputTags.attr('data-tags-callback-on-keyup'),
+			callbackNameFilter: inputTags.attr('data-tags-callback-name-filter')
 		};
 
 		var defaults = {
 			width: 'auto',
 			callback: null,
+			callbackNameFilter: null,
 			callbackOnKeyup : null
 		};
 		
 		var args = _.parseArgs(arr,defaults);
 
-	
 
 		if(inputTags){
+
+
+			if(args.callbackNameFilter && allowFilter){
+				let fnToFilter;
+
+				try {
+					fnToFilter = eval(args.callbackNameFilter);
+				} catch(err) {
+				}
+
+
+				if ( typeof(fnToFilter) === 'function' ){
+
+					function applyFilter(valueToFilter,filterFnName){
+						var inputIndex = _.tagsToParse(valueToFilter).indexOf(_.tagsInputString),
+						toReturn =  _.tagsToParse( eval(filterFnName +'("'+valueToFilter+'")'),false );
+
+						toReturn.splice(
+							(inputIndex > -1 && (inputIndex < _.tagsToParse(valueToFilter).length - 1) ) ? inputIndex : toReturn.length,
+							0,
+							_.tagsInputString
+						);
+
+						return _.tagsToVal(toReturn);
+					}
+					
+				}
+			}
+
 			
 			_.createTagsUi(inputTags,_.tagsToVal(valueForUi),inputText,args);
-			
+		
 			//update the actual butt
 			inputTags.attr('value',_.tagsToVal(theValue,false));
 			inputTags.val(_.tagsToVal(theValue,false));
-
 		
 			//ATODO UPDATE SETUP HERE
 			//update fake hoes
 			if(args.callback) {
+
 
 				let fn;
 
@@ -1454,7 +1520,9 @@ window.jQuery && jQuery.noConflict();
 				}
 
 				if ( typeof(fn) === 'function' ){
-					eval(args.callback);
+					// $(window).on('load',function(){
+						eval(args.callback);
+					// });
 				}
 
 				// var f = new Function(args.callback);
@@ -2065,7 +2133,7 @@ window.jQuery && jQuery.noConflict();
 			frameWork.updateTags($(this));
 		});
 	}
-	_.fns_on_rightAway.push(frameWork.readyTags);
+	_.fns_on_load.push(frameWork.readyTags);
 
 	
 	_.initTrumbo = function(selector){
@@ -2251,13 +2319,13 @@ window.jQuery && jQuery.noConflict();
 					var 
 						inputTags = triggerer.closest('.input-tags-ui').children('.input-tags'),
 						inputUiIndex = triggerer.attr('data-value'),
-						currValue = _.tagsToParse(inputTags.attr('data-value-ui'));
+						currValue = _.tagsToParse(inputTags.val());
 
 
 					
 						currValue.splice(
 							(parseInt(inputUiIndex)),
-							1,
+							0,
 							triggerer.text().replace(',','')
 						);
 
@@ -2267,7 +2335,7 @@ window.jQuery && jQuery.noConflict();
 					// var newValue = _.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
 
-					frameWork.updateTags(inputTags,currValue,currValue);
+					frameWork.updateTags(inputTags,true,currValue,currValue);
 				}
 
 			});
@@ -2282,6 +2350,7 @@ window.jQuery && jQuery.noConflict();
 					e.preventDefault();
 				}else{
 					var newValue,
+					allowFilter = false,
 					inputTags = triggerer.closest('.input-tags-ui').children('.input-tags'),
 					inputUiIndex = triggerer.attr('data-value'),
 					currValue = _.tagsToParse(inputTags.attr('data-value-ui'));
@@ -2293,12 +2362,14 @@ window.jQuery && jQuery.noConflict();
 
 					switch(e.keyCode){
 
+						//enter
 						case 13:
 							e.preventDefault();
 							break;
 						//comma
 						case 188:
 							if(!_.modifierIsActive()){
+								allowFilter = true;
 								e.preventDefault();
 								currValue.splice(
 									(parseInt(inputUiIndex)),
@@ -2340,6 +2411,7 @@ window.jQuery && jQuery.noConflict();
 						case 8:
 							if(!triggerer.text()){
 								e.preventDefault();
+								allowFilter = true;
 								currValue.splice((parseInt(inputUiIndex)-1),1);
 							}
 							break;
@@ -2348,6 +2420,7 @@ window.jQuery && jQuery.noConflict();
 						case 46:
 							if(!triggerer.text()){
 								e.preventDefault();
+								allowFilter = true;
 								currValue.splice((parseInt(inputUiIndex)+1),1);
 							}
 							break;
@@ -2357,7 +2430,7 @@ window.jQuery && jQuery.noConflict();
 
 					newValue = _.tagsToVal(currValue);
 
-					frameWork.updateTags(inputTags,newValue);
+					frameWork.updateTags(inputTags,allowFilter,newValue);
 				}
 			});
 
@@ -2378,7 +2451,7 @@ window.jQuery && jQuery.noConflict();
 						
 					var	newValue  = _.tagsToVal(currValue);
 
-					frameWork.updateTags(inputTags,newValue);
+					frameWork.updateTags(inputTags,true,newValue);
 				}
 			});
 
@@ -2397,7 +2470,7 @@ window.jQuery && jQuery.noConflict();
 						
 					var	uiValue  = _.tagsToVal(currValue);
 
-					frameWork.updateTags(inputTags,null,uiValue,tagText);
+					frameWork.updateTags(inputTags,false,null,uiValue,tagText);
 				}
 			});
 			
@@ -2444,15 +2517,10 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('focus','input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"]',function(e){
 			const uiTrigger = $(e.target);
 			
-			var triggerer;
 			if( frameWork.isDisabled(uiTrigger) ){
 				uiTrigger.blur();
 			}else{
-				if(uiTrigger.parents('.fw-ui').length && !_.getTheToggled(uiTrigger,'dropdown')) {
-					triggerer = uiTrigger.parents('.fw-ui').first();
-				}else{
-					triggerer = uiTrigger;
-				}
+				var triggerer = _.getTheUiTriggerer(uiTrigger);
 
 				var selector =  _.getTheToggled(triggerer,'dropdown');
 
@@ -2470,13 +2538,8 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('blur','input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"]',function(e){
 			const uiTrigger = $(e.target);
 			
-			var triggerer;
 			if( !frameWork.isDisabled(uiTrigger) ){
-				if(uiTrigger.parents('.fw-ui').length && !_.getTheToggled(uiTrigger,'dropdown')) {
-					triggerer = uiTrigger.parents('.fw-ui').first();
-				}else{
-					triggerer = uiTrigger;
-				}
+				var triggerer = _.getTheUiTriggerer(uiTrigger);
 
 				var selector =  _.getTheToggled(triggerer,'dropdown');
 
@@ -2496,13 +2559,8 @@ window.jQuery && jQuery.noConflict();
 
 			if( !frameWork.isDisabled(uiTrigger) ){
 					
-				var triggerer;
-
-				if(uiTrigger.parents('.fw-ui').length && !_.getTheToggled(uiTrigger,'dropdown')) {
-					triggerer = uiTrigger.parents('.fw-ui').first();
-				}else{
-					triggerer = uiTrigger;
-				};
+				var 
+				triggerer = _.getTheUiTriggerer(uiTrigger);
 
 				selector =  _.getTheToggled(triggerer,'dropdown');
 

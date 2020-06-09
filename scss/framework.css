@@ -3963,7 +3963,8 @@ table {
     font-size: 2rem;
     position: absolute;
     right: 20px;
-    top: 20px; }
+    top: 20px;
+    z-index: 9; }
   .modal-close-overlay {
     position: fixed;
     top: 0;

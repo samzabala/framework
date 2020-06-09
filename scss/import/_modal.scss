@@ -59,6 +59,7 @@ $prefix: '.modal';
 			position:absolute;
 			right: $modal-close-offset;
 			top: $modal-close-offset;
+			z-index:9;
 		}
 		&-overlay {
 			position:fixed;

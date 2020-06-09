@@ -868,6 +868,24 @@ callback function for after rendering the ui and changing the value
 <input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback="doSomehing()" />
 ```
 
+**`data-tags-callback-name-filter`**
+
+name of the function to callback to manipulating and return the value before rendering of the input tags
+
+
+```html
+<script>
+	function changeCurseWord(value){
+		//manipulate value
+		value = value.replace('bitch','shitbag');
+
+
+		//return value for render 
+		return value;
+	}
+</script>
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback-name-filter="changeCurseWord" />
+```
 
 
 **`data-tags-callback-on-keyup`**
