@@ -1496,6 +1496,10 @@ window.jQuery && jQuery.noConflict();
 
 						return _.tagsToVal(toReturn);
 					}
+
+					
+					valueForUi = applyFilter(valueForUi,args.callbackNameFilter);
+					theValue = applyFilter(theValue,args.callbackNameFilter);
 					
 				}
 			}
