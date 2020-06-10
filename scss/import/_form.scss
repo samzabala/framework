@@ -165,14 +165,6 @@ $calculated-input-info-gutter-y: $input-info-gutter-y;
 	}
 
 
-	$calculated-input-tags-gutter-y: $input-tags-gutter-y;
-	@if internal-is-convertable($input-tags-gutter-y,$input-font-size){
-		$calculated-input-tags-gutter-y: em($input-tags-gutter-y/$input-font-size);
-	}@else if internal-is-convertable($input-tags-gutter-y){
-		$calculated-input-tags-gutter-y: rem($input-tags-gutter-y/$body-font-size);
-	}
-
-
 
 
 	$value-input-paddiny-y:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
@@ -1212,21 +1204,26 @@ $calculated-calendar-exception: '';
 			&-tag,
 			&-input {
 				// @todo//ellipsis
-				margin-bottom: $calculated-input-tags-gutter-y;
-				margin-top: $calculated-input-tags-gutter-y;
+				display:flex;
+				align-items:center;
+				margin-bottom: $calculated-input-tags-padding-y * -1;
+				margin-top: $calculated-input-tags-padding-y * -1;
 				padding-top: $calculated-input-tags-padding-y;
 				padding-bottom: $calculated-input-tags-padding-y;
 				padding-left: $calculated-input-tags-padding-x;
 				padding-right: $calculated-input-tags-padding-x;
 
 				#{$prefix}-small & {
-
+					margin-bottom: $calculated-input-tags-padding-y-small * -1;
+					margin-top: $calculated-input-tags-padding-y-small * -1;
 					padding-top: $calculated-input-tags-padding-y-small;
 					padding-bottom: $calculated-input-tags-padding-y-small;
 				}
 				
 				#{$prefix}-large & {
 
+					margin-bottom: $calculated-input-tags-padding-y-large * -1;
+					margin-top: $calculated-input-tags-padding-y-large * -1;
 					padding-top: $calculated-input-tags-padding-y-large;
 					padding-bottom: $calculated-input-tags-padding-y-large;
 				}
@@ -1236,8 +1233,6 @@ $calculated-calendar-exception: '';
 
 
 			&-tag {
-				display:flex;
-				align-items:center;
 				max-width:100%;
 				margin-right: $calculated-input-tags-gutter-x;
 				background: rgba($input-tags-background,$input-tags-background-opacity);

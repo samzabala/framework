@@ -1260,6 +1260,7 @@ window.jQuery && jQuery.noConflict();
 
 		//remove duplicates
 		toReturn = toReturn.reduce(function(acc,tag){
+			
 			if(!acc.includes(tag)){
 				acc.push( tag );
 			}
@@ -2296,6 +2297,15 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('change','.input-tags',function(e){
 			const triggerer = $(e.target);
 			frameWork.updateTags(triggerer);
+		});
+
+		$('body').on('paste','.input-tags-ui .input-tags-ui-input',function(e){
+			const triggerer = $(e.target);
+			e.preventDefault();
+			if( !frameWork.isDisabled(triggerer) ){
+				triggerer.html(e.originalEvent.clipboardData.getData('text'));
+				triggerer.blur();
+			}
 		});
 
 			//blur bitch blurr

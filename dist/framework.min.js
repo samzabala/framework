@@ -44,20 +44,21 @@ window.jQuery && jQuery.noConflict();
 	// 	throw new Error('Trumbowyg is not included. woa boi');
 	// }
 
-	$.fn.scrollTo = function(elem,direction) { 
-		direction = direction || 'y';
-		var methods = direction == 'x' ? ['scrollLeft','left'] : ['scrollTop','top'];
-		var scrollResult = $(this)[ methods[0] ]() - $(this).offset()[ methods[1] ] + $(elem).offset()[ methods[1] ];
+	//vanilla already has
+	// _.scrollTo = function(elem,direction) { 
+	// 	direction = direction || 'y';
+	// 	var methods = direction == 'x' ? ['scrollLeft','left'] : ['scrollTop','top'];
+	// 	var scrollResult = $(this)[ methods[0] ]() - $(this).offset()[ methods[1] ] + $(elem).offset()[ methods[1] ];
 		
 		
-		$(this)[ methods[0] ]( scrollResult ); 
+	// 	$(this)[ methods[0] ]( scrollResult ); 
 
 
-		// console.log( scrollResult,'\nscroll parent', $(this)[ methods[0] ](),'\nchild offset', $(elem).offset()[ methods[1] ]   )
+	// 	// console.log( scrollResult,'\nscroll parent', $(this)[ methods[0] ](),'\nchild offset', $(elem).offset()[ methods[1] ]   )
 
 
-		return this; 
-	};
+	// 	return this; 
+	// };
 
 	//hacks around trumbo bitch wyg
 	frameWork.trumbowyg = {};
@@ -119,8 +120,8 @@ window.jQuery && jQuery.noConflict();
 				arr.push(undefined);
 			}
 		}
-		 arr.splice(ni, 0, arr.splice(oi, 1)[0]);  
-	   return arr;
+		arr.splice(ni, 0, arr.splice(oi, 1)[0]);  
+		return arr;
 	}
 
 
@@ -253,7 +254,41 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	
+	_.datetimeFormatPresets = {
+		HumanDate: {
+			placeholder:"mm/dd/yyyy",
+			pattern:/^\d{2}\/\d{2}\/\d{4}$/,
+			template:"mm/dd/yy"
+		},
+		// HumanTime24: {
+		// 	placeholder:"hh:mm",
+		// 	pattern:"",
+		// 	template:"HH:MM"
+		// },
+		// HumanTime12: {
+		// 	placeholder:"hh:mm",
+		// 	pattern:"",
+		// 	template:"HH:MM"
+		// },
+		Value: {
+			placeholder:"yyyy-mm-dd",
+			pattern:/^\d{4}[-]\d{2}[-]\d{2}$/,
+			template:"yy-mm-dd"
+		},
+		// ValueDateTime:{
+		// 	placeholder:"yy-mm-ddThh:gg",
+		// 	pattern:"",
+		// 	template:"yy-mm-ddThh:gg"
+		// },
+	}
+
+
+	_.dayFormatNames = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]; // For formatting
+	_.dayFormatNamesShort = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ]; // For formatting
+	_.dayFormatNamesShorter = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]; // For formatting
+	_.monthFormatNames = [ "January","February","March","April","May","June","July","August","September","October","November","December" ];
+	_.monthFormatNamesShort = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+
 
 	//make it objoct
 	_.dateToParse = function(date) {
@@ -306,41 +341,6 @@ window.jQuery && jQuery.noConflict();
 			return toReturn;
 		}
 	}
-
-	_.datetimeFormatPresets = {
-		HumanDate: {
-			placeholder:"mm/dd/yyyy",
-			pattern:/^\d{2}\/\d{2}\/\d{4}$/,
-			template:"mm/dd/yy"
-		},
-		// HumanTime24: {
-		// 	placeholder:"hh:mm",
-		// 	pattern:"",
-		// 	template:"HH:MM"
-		// },
-		// HumanTime12: {
-		// 	placeholder:"hh:mm",
-		// 	pattern:"",
-		// 	template:"HH:MM"
-		// },
-		Value: {
-			placeholder:"yyyy-mm-dd",
-			pattern:/^\d{4}[-]\d{2}[-]\d{2}$/,
-			template:"yy-mm-dd"
-		},
-		// ValueDateTime:{
-		// 	placeholder:"yy-mm-ddThh:gg",
-		// 	pattern:"",
-		// 	template:"yy-mm-ddThh:gg"
-		// },
-	}
-
-
-	_.dayFormatNames = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
-	_.dayFormatNamesShort = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
-	_.dayFormatNamesShorter = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ], // For formatting
-	_.monthFormatNames = [ "January","February","March","April","May","June","July","August","September","October","November","December" ],
-	_.monthFormatNamesShort = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
 
 	//make it human readable
 	_.dateToHuman = function( date,format ) {
@@ -584,9 +584,9 @@ window.jQuery && jQuery.noConflict();
 			args[def] = defaults[def];
 		}
 
+
 		for (var prop in arr) {
-			
-			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined && arr[prop] !== null) {
+			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined) {
 				// Push each value from `obj` into `extended`
 				
 				// catch boolean
@@ -600,7 +600,6 @@ window.jQuery && jQuery.noConflict();
 
 		return args;
 	}
-
 
 
 	_.changeHash = function(id) {
@@ -625,10 +624,30 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
+	//good for descendants of ui shitsc as long as ui component gets data attribues of element that start is
+	_.getTheUiTriggerer = function(triggerer) {
+
+		triggerer = triggerer || false;
+
+		if(triggerer){
+
+
+			if(triggerer.closest('.input-group'+frameWork.settings.uiClass).length){
+
+			}else if(triggerer.closest('.'+frameWork.settings.uiClass).length && !_.getTheToggled(triggerer,'dropdown')) {
+				toReturn = triggerer.closest('.'+frameWork.settings.uiClass).first();
+			}else{
+				toReturn = triggerer;
+			}
+	
+			return toReturn;
+		}
+	}
+
 
 	_.getTheToggled = function(clicked,toggleMode){
 
-		clicked = clicked || null;
+		triggerer = triggerer || null;
 
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || null;
@@ -638,23 +657,25 @@ window.jQuery && jQuery.noConflict();
 		
 
 				
-		if(clicked) {
-			if( clicked.hasAttribute('href') 
+		if(triggerer) {
+			if( triggerer.hasAttribute('href') 
 				&& (
-					clicked.getAttribute('href') !== ''
-					&& clicked.getAttribute('href') !== '#'
+					triggerer.getAttribute('href') !== ''
+					&& triggerer.getAttribute('href') !== '#'
 				)
 			){
-				toReturn = document.querySelector( clicked.getAttribute('href') );
+				toReturn = document.querySelector( triggerer.getAttribute('href') );
 
-			}else if( clicked.hasAttribute('data-href') && clicked.getAttribute('data-href') !== '' ){
-				
-				toReturn = document.querySelector( clicked.getAttribute('data-href') )
-				
-			}else if (toggleMode && clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
-				toReturn = _.getTheToggled(clicked.parentNode.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else if( triggerer.hasAttribute('data-href') && triggerer.getAttribute('data-href') !== '' ){
+				toReturn = document.querySelector( triggerer.getAttribute('data-href') )	
+			}else if (toggleMode && triggerer.parentNode.closest('[data-toggle="'+toggleMode+'"]')){
+				toReturn = _.getTheToggled(triggerer.parentNode.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else if(toggleMode && triggerer.parentNode.classList.contains('.input-group')){
+				toReturn = _.getTheToggled(triggerer.parentNode,toggleMode);
+			}else if(toggleMode && triggerer.parentNode.classList.contains('.btn-group')){
+				toReturn = _.getTheToggled(triggerer.parentNode,toggleMode);
 			}else{
-				var possibleSiblings = clicked.nextElementSibling;
+				var possibleSiblings = triggerer.nextElementSibling;
 
 				while (possibleSiblings) {
 					if (possibleSiblings.matches(selector)){
@@ -666,7 +687,6 @@ window.jQuery && jQuery.noConflict();
 				toReturn = possibleSiblings;
 			}
 		}else{
-			
 			if (
 				window.location.hash !== ''
 				&& document.querySelector(window.location.hash)
@@ -683,11 +703,10 @@ window.jQuery && jQuery.noConflict();
 				case 'dropdown':
 				case 'modal':
 				case 'alert-close':
-					if(clicked && toggleMode && clicked.parentNode.closest(toggledClass)) {
-						toReturn = clicked.parentNode.closest(toggledClass);
+					if(triggerer && toggleMode && triggerer.parentNode.closest(toggledClass)) {
+						toReturn = triggerer.parentNode.closest(toggledClass);
 					}
 					break;
-
 			}
 		}
 
@@ -1339,6 +1358,7 @@ window.jQuery && jQuery.noConflict();
 
 			//update the actual butt
 			inputCalendar.setAttribute('value',theValue);
+			inputCalendar.value = theValue;
 		
 			//date
 			//update fake hoes
@@ -1357,12 +1377,56 @@ window.jQuery && jQuery.noConflict();
 				var inputField = inputCalendar.parentNode.querySelector('.input-calendar-ui-input input');
 
 				if(inputField) {
+					inputField.setAttribute('value',_.dateToHuman(theValue));
 					inputField.value = _.dateToHuman(theValue)
 				}
 		}
-			
+
+	}
+
+	_.tagsInputString = '__fw_input__';
+
+	//because input field is gonna go in between for backspacing capabilities
+	//because input field is gonna go in between for backspacing capabilities
+	_.tagsToParse = function(value,returnWithInput){
+		returnWithInput = (returnWithInput !== false) || (returnWithInput == true);
+		toReturn = Array.isArray(value) ? value : value.split(',') || [];
 
 		
+		//check for ya boi
+		toReturn.forEach(function(tag,i){
+			
+			if(!tag || tag == ''){
+				toReturn.splice(i,1);
+			}else if(tag === _.tagsInputString && !returnWithInput){
+				toReturn.splice(i,1);
+			}
+		})
+
+		if(returnWithInput && toReturn.indexOf(_.tagsInputString) < 0){
+			toReturn.push(_.tagsInputString );
+		}
+
+		//remove duplicates
+		toReturn = toReturn.reduce(function(acc,tag){
+			if(!acc.includes(tag)){
+				acc.push( tag );
+			}
+
+			
+			return acc;
+		},[]);
+
+
+		return toReturn;
+
+	}
+
+
+	//because input field is gonna go in between for backspacing capabilities
+	_.tagsToVal = function(value,returnWithInput){
+		value = value || '';
+		return  _.tagsToParse(value,returnWithInput).join(',');
 
 	}
 

@@ -243,6 +243,11 @@ $prefix: '.module';
 			display:inline-flex;
 		}
 
+		&-function,
+		&-functions {
+			max-width:100%;
+		}
+
 		&-functions {
 			margin-top: $module-gutter-between;
 			&:first-child {

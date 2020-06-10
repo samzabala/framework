@@ -105,35 +105,39 @@ $prefix: '.btn';
 				@include internal-btn-set-scheme($properties);
 			}
 			
-		}@else{
+		}@else if $state == 'init' {
+			@at-root %extend-internal-btn-init-#{$scheme} {
+				@include internal-btn-set-scheme($properties);
+			}
 
-			@include internal-btn-set-scheme($properties);
+
+			@at-root &,
+			&#{$prefix}-no-interaction,
+			&#{$prefix}-disabled,
+			#{$prefix}-disabled & {
+				@extend %extend-internal-btn-init-#{$scheme};
+			}
 		
-			&{
+		@at-root 
+			&#{$prefix}-no-interaction:hover,
+			&#{$prefix}-no-interaction:focus,
+			&#{$prefix}-no-interaction.focus,
+			&#{$prefix}-no-interaction:active,
+			&#{$prefix}-no-interaction.active,
 
-				@at-root
-					&#{$prefix}-no-interaction,
-					&#{$prefix}-no-interaction:hover,
-					&#{$prefix}-no-interaction:focus,
-					&#{$prefix}-no-interaction.focus,
-					&#{$prefix}-no-interaction:active,
-					&#{$prefix}-no-interaction.active,
-
-					&#{$prefix}-disabled,
-					&#{$prefix}-disabled:hover,
-					&#{$prefix}-disabled:focus,
-					&#{$prefix}-disabled.focus,
-					&#{$prefix}-disabled:active,
-					&#{$prefix}-disabled.active,
-					
-					#{$prefix}-disabled &,
-					#{$prefix}-disabled:hover &,
-					#{$prefix}-disabled:focus &,
-					#{$prefix}-disabled.focus &,
-					#{$prefix}-disabled:active &,
-					#{$prefix}-disabled.active & {
-						@include internal-btn-set-scheme($properties,true);
-					}
+			&#{$prefix}-disabled:hover,
+			&#{$prefix}-disabled:focus,
+			&#{$prefix}-disabled.focus,
+			&#{$prefix}-disabled:active,
+			&#{$prefix}-disabled.active,
+			
+			#{$prefix}-disabled:hover &,
+			#{$prefix}-disabled:focus &,
+			#{$prefix}-disabled.focus &,
+			#{$prefix}-disabled:active &,
+			#{$prefix}-disabled.active &
+			{
+				@extend %extend-internal-btn-init-#{$scheme};
 			}
 		}
 	}
