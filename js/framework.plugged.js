@@ -1,4 +1,3 @@
-
 window.jQuery && jQuery.noConflict();
 (function($,window){
 
@@ -120,8 +119,8 @@ window.jQuery && jQuery.noConflict();
 				arr.push(undefined);
 			}
 		}
-		 arr.splice(ni, 0, arr.splice(oi, 1)[0]);  
-	   return arr;
+		arr.splice(ni, 0, arr.splice(oi, 1)[0]);  
+		return arr;
 	}
 
 	_.datetimeFormatPresets = {
@@ -151,6 +150,14 @@ window.jQuery && jQuery.noConflict();
 		// 	template:"yy-mm-ddThh:gg"
 		// },
 	}
+
+
+	_.dayFormatNames = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]; // For formatting
+	_.dayFormatNamesShort = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ]; // For formatting
+	_.dayFormatNamesShorter = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]; // For formatting
+	_.monthFormatNames = [ "January","February","March","April","May","June","July","August","September","October","November","December" ];
+	_.monthFormatNamesShort = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+
 
 	//make it objoct
 	_.dateToParse = function(date) {
@@ -211,13 +218,6 @@ window.jQuery && jQuery.noConflict();
 			return toReturn;
 		}
 	}
-
-
-	_.dayFormatNames = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
-	_.dayFormatNamesShort = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
-	_.dayFormatNamesShorter = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ], // For formatting
-	_.monthFormatNames = [ "January","February","March","April","May","June","July","August","September","October","November","December" ],
-	_.monthFormatNamesShort = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
 
 	//make it human readable
 	_.dateToHuman = function( date,format ) {
@@ -444,17 +444,6 @@ window.jQuery && jQuery.noConflict();
 
 	}
 
-	_.removeArr = function() {
-		var what, a = arguments, L = a.length, ax;
-		while (L && this.length) {
-			what = a[--L];
-			while ((ax = this.indexOf(what)) !== -1) {
-				this.splice(ax, 1);
-			}
-		}
-		return this;
-	};
-
 	_.reverseArray = function(arr) {
 		var newArray = [];
 		for (var i = arr.length - 1; i >= 0; i--) {
@@ -550,23 +539,20 @@ window.jQuery && jQuery.noConflict();
 				)
 			){
 				toReturn =  $( triggerer.attr('href') );
-
 			}else if( triggerer.attr('data-href') ){
 				toReturn =  $( triggerer.attr('data-href') )
 			}else if(toggleMode && triggerer.parent().closest('[data-toggle="'+toggleMode+'"]').length){
 				toReturn = _.getTheToggled(triggerer.closest('[data-toggle="'+toggleMode+'"]'),toggleMode)
+			}else if(toggleMode && triggerer.parent('.input-group').length){
+				toReturn = _.getTheToggled(triggerer.parent('.input-group'),toggleMode);
+			}else if( toggleMode && triggerer.parent('.btn-group').length ){
+				toReturn = _.getTheToggled(triggerer.parent('.btn-group'),toggleMode);
 			}else if( triggerer.next(selector).first().length){
 				toReturn =  triggerer.next(selector).first();
 			}else if( triggerer.siblings(selector).first().length){
 				toReturn =  triggerer.siblings(selector).first();
-
-			}else if(toggleMode && triggerer.parent('.input-group').length){
-				toReturn = _.getTheToggled(triggerer.parent('.input-group'),toggleMode)
-			}else if( toggleMode && triggerer.parent('.btn-group').length ){
-				toReturn = _.getTheToggled(triggerer.parent('.btn-group'),toggleMode)
 			}
 		}else{
-			
 			if (
 				window.location.hash !== ''
 				&& $(window.location.hash).length > -1
@@ -588,12 +574,8 @@ window.jQuery && jQuery.noConflict();
 						toReturn = triggerer.parent().closest(toggledClass);
 					}
 					break;
-
 			}
-			
-
 		}
-
 
 		return toReturn;
 	};
@@ -1258,17 +1240,8 @@ window.jQuery && jQuery.noConflict();
 
 	//because input field is gonna go in between for backspacing capabilities
 	_.tagsToParse = function(value,returnWithInput){
-
-		
-
-
-		returnWithInput = (returnWithInput == false) ? false : true;
-
-		
-
-		toReturn = Array.isArray(value) ? value : value.split(',');
-
-		var hasInput = false;
+		returnWithInput = (returnWithInput !== false) || (returnWithInput == true);
+		toReturn = Array.isArray(value) ? value : value.split(',') || [];
 
 		
 		//check for ya boi
@@ -1276,15 +1249,12 @@ window.jQuery && jQuery.noConflict();
 			
 			if(!tag || tag == ''){
 				toReturn.splice(i,1);
-			}
-			if(tag == _.tagsInputString){
-				hasInput =  true;
-
-				!returnWithInput && toReturn.splice(i,1);
+			}else if(tag === _.tagsInputString && !returnWithInput){
+				toReturn.splice(i,1);
 			}
 		})
 
-		if(!hasInput && returnWithInput){
+		if(returnWithInput && toReturn.indexOf(_.tagsInputString) < 0){
 			toReturn.push(_.tagsInputString );
 		}
 
@@ -1293,6 +1263,7 @@ window.jQuery && jQuery.noConflict();
 			if(!acc.includes(tag)){
 				acc.push( tag );
 			}
+
 			
 			return acc;
 		},[]);
@@ -1306,11 +1277,7 @@ window.jQuery && jQuery.noConflict();
 	//because input field is gonna go in between for backspacing capabilities
 	_.tagsToVal = function(value,returnWithInput){
 		value = value || '';
-		returnWithInput = (returnWithInput == false) ? false : true;
-		var toReturn = _.tagsToParse(value, returnWithInput).join(',');
-
-
-		return toReturn;
+		return  _.tagsToParse(value,returnWithInput).join(',');
 
 	}
 	
@@ -1450,7 +1417,7 @@ window.jQuery && jQuery.noConflict();
 
 		valueForUi = valueForUi || theValue || '';
 
-		allowFilter = (allowFilter == false) ? false : true;
+		allowFilter = (allowFilter != false);
 		
 
 		var arr =  {
@@ -1485,22 +1452,38 @@ window.jQuery && jQuery.noConflict();
 				if ( typeof(fnToFilter) === 'function' ){
 
 					function applyFilter(valueToFilter,filterFnName){
-						var inputIndex = _.tagsToParse(valueToFilter).indexOf(_.tagsInputString),
-						// turn to array ya bopi without the input tag string
-						toReturn =  _.tagsToParse( eval(filterFnName +'("'+ _.tagsToVal(valueToFilter,false) +'")'),false );
+						const inputIndex = _.tagsToParse(valueToFilter).indexOf(_.tagsInputString);
+						const noInputValueToFilter = (function(){ return _.tagsToVal(valueToFilter,false)}());
 
-						toReturn.splice(
-							(inputIndex > -1 && (inputIndex < _.tagsToParse(valueToFilter).length - 1) ) ? inputIndex : toReturn.length,
-							0,
-							_.tagsInputString
-						);
+						// turn to array ya bopi without the input tag string
+						var toReturn =  _.tagsToParse( eval(filterFnName +'("'+ noInputValueToFilter +'")'), false );
+
+						// console.log(
+						// 	'index of input\n',inputIndex,
+						// 	'\n\n\nfiltered and ready for splice\n',toReturn,
+						// 	'\n\n\npassed to the fil;ter\n',_.tagsToVal(valueToFilter,false),
+						// 	'\n\n\nrar array\n',_.tagsToParse(valueToFilter),
+						// 	'\n\n\n no input field\n',noInputValueToFilter,_.tagsToVal(valueToFilter,false),
+						// 	'\n\n\n no input fieldas array\n',_.tagsToParse(valueToFilter,false),
+						// 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
+						// 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
+						// 	'whAT ETHE FUCK'
+						// );
+
+						if(inputIndex > -1){
+							toReturn.splice(
+								((inputIndex < _.tagsToParse(valueToFilter).length - 1) ) ? inputIndex : toReturn.length,
+								0,
+								_.tagsInputString
+							);
+						}
 
 						return _.tagsToVal(toReturn);
 					}
 
 					
-					valueForUi = applyFilter(valueForUi,args.callbackNameFilter);
 					theValue = applyFilter(theValue,args.callbackNameFilter);
+					valueForUi = applyFilter(valueForUi,args.callbackNameFilter);
 					
 				}
 			}
@@ -2025,7 +2008,7 @@ window.jQuery && jQuery.noConflict();
 	}
 
 	frameWork.toggleAccordion = function(triggerer,changeHash) {
-		changeHash = !changeHash ? false : true;
+		changeHash = !(changeHash) ? false : true;
 
 		var selector =  _.getTheToggled(triggerer,'accordion');
 
