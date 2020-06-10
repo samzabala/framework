@@ -1486,7 +1486,8 @@ window.jQuery && jQuery.noConflict();
 
 					function applyFilter(valueToFilter,filterFnName){
 						var inputIndex = _.tagsToParse(valueToFilter).indexOf(_.tagsInputString),
-						toReturn =  _.tagsToParse( eval(filterFnName +'("'+valueToFilter+'")'),false );
+						// turn to array ya bopi without the input tag string
+						toReturn =  _.tagsToParse( eval(filterFnName +'("'+ _.tagsToVal(valueToFilter,false) +'")'),false );
 
 						toReturn.splice(
 							(inputIndex > -1 && (inputIndex < _.tagsToParse(valueToFilter).length - 1) ) ? inputIndex : toReturn.length,
