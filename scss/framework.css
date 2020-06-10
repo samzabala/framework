@@ -5331,16 +5331,14 @@ table {
     flex: 1 1;
     display: flex;
     max-width: 100%;
-    min-height: 100%;
-    margin-top: -0.125em;
-    margin-bottom: -0.125em; }
+    min-height: 100%; }
   .input-tags-ui-tag, .input-tags-ui-input {
     display: flex;
     align-items: center;
-    margin-bottom: -0.125em;
-    margin-top: -0.125em;
-    padding-top: 0.125em;
-    padding-bottom: 0.125em;
+    margin-bottom: -0.25em;
+    margin-top: -0.25em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
     padding-left: 1em;
     padding-right: 1em; }
     .input-small .input-tags-ui-tag, .input-small .input-tags-ui-input {
@@ -5349,10 +5347,10 @@ table {
       padding-top: 0.0625em;
       padding-bottom: 0.0625em; }
     .input-large .input-tags-ui-tag, .input-large .input-tags-ui-input {
-      margin-bottom: -0.125em;
-      margin-top: -0.125em;
-      padding-top: 0.125em;
-      padding-bottom: 0.125em; }
+      margin-bottom: -0.25em;
+      margin-top: -0.25em;
+      padding-top: 0.25em;
+      padding-bottom: 0.25em; }
   .input-tags-ui-tag {
     max-width: 100%;
     margin-right: 0.25em;
