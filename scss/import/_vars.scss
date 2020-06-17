@@ -371,13 +371,15 @@
 
 		$zone-border-width: 1px !default;
 		
-		$zone-gutter-x: $gutter-small !default;
-			$zone-gutter-x-mobile: $gutter-micro !default;
-		$zone-gutter-y: $gutter-small !default;
-			$zone-gutter-y-mobile: $gutter-micro !default;
+		$zone-gutter-x: $gutter-base !default;
+		$zone-gutter-y: $gutter-base !default;
+		$zone-margin-y: $gutter-base !default;
 
-		$zone-margin-y: $gutter-small !default;
-			$zone-margin-y-mobile: $gutter-micro !default;
+			$zone-gutter-x-small: $gutter-small !default;
+			$zone-gutter-y-small: $gutter-small !default;
+			
+			$zone-gutter-x-large: $gutter-large !default;
+			$zone-gutter-y-large: $gutter-large !default;
 
 		$zone-border-radius: 0 !default;
 
@@ -456,46 +458,65 @@
 
 	//alert
 		$alert-border-width: 1px !default;
+
 		$alert-gutter-x: $gutter-small !default;
-			$alert-gutter-x-mobile: $gutter-micro !default;
 		$alert-gutter-y: $gutter-small !default;
-			$alert-gutter-y-mobile: $gutter-micro !default;
+		$alert-gutter-y-ends: $alert-gutter-y * .5 !default;
+
+			$alert-gutter-x-small: $gutter-micro !default;
+			$alert-gutter-y-small: $gutter-micro !default;
+			$alert-gutter-y-ends-small: $alert-gutter-y-small * .5 !default;
+
+			$alert-gutter-x-large: $gutter-base !default;
+			$alert-gutter-y-large: $gutter-base !default;
+			$alert-gutter-y-ends-large: $alert-gutter-y-large * .5 !default;
+
 		$alert-box-shadow: $box-shadow-base $brand-color-base !default;
 		$alert-border-radius: $border-radius-small !default;
 
+
+			// $alert-title-font-size: 1em !default;
+			$alert-title-font-weight: $body-font-weight-bold !default;
+			$alert-title-font-style: normal !default;
+			$alert-title-color: inherit !default;
+			$alert-title-text-transform: uppercase !default;
+
 			//schemes
-			$alert-border-default: transparent !default;
-			$alert-background-default: rgba($brand-color-neutral,.1) !default;
+			$alert-border-default: $brand-color-neutral !default;
+			$alert-background-default: transparent !default;
 			$alert-color-default: inherit !default;
 
-			$alert-border-primary: transparent !default;
+			$alert-border-primary: rgba($brand-color-primary-dark,.1) !default;
 			$alert-background-primary: $brand-color-primary-light !default;
 			$alert-color-primary: $brand-color-primary-darker !default;
 
-			$alert-border-secondary: transparent !default;
+			$alert-border-secondary: rgba($brand-color-secondary-dark,.1) !default;
 			$alert-background-secondary: $brand-color-secondary-light !default;
 			$alert-color-secondary: $brand-color-secondary-darker !default;
 
-			$alert-border-accent: transparent !default;
+			$alert-border-accent: rgba($brand-color-accent-dark,.1) !default;
 			$alert-background-accent: $brand-color-accent-light !default;
 			$alert-color-accent: $brand-color-accent-darker !default;
 
-			$alert-border-neutral: transparent !default;
+			$alert-border-neutral: rgba($brand-color-neutral-dark,.1) !default;
 			$alert-background-neutral: $brand-color-neutral-light !default;
 			$alert-color-neutral: $brand-color-neutral-darker !default;
 
-			$alert-border-success: transparent !default;
+			$alert-border-success: rgba($brand-color-success-dark,.1) !default;
 			$alert-background-success: $brand-color-success-light !default;
 			$alert-color-success: $brand-color-success-darker !default;
 
-			$alert-border-caution: transparent !default;
+			$alert-border-caution: rgba($brand-color-caution-dark,.1) !default;
 			$alert-background-caution: $brand-color-caution-light !default;
 			$alert-color-caution: $brand-color-caution-darker !default;
 
-			$alert-border-error: transparent !default;
+			$alert-border-error: rgba($brand-color-error-dark,.1) !default;
 			$alert-background-error: $brand-color-error-light !default;
 			$alert-color-error: $brand-color-error-darker !default;
+
 	
+	
+			
 	// MODULE
 		$module-background-color: $theme-background !default;
 			$module-background-color-inverse: $theme-background-inverse !default;
@@ -544,6 +565,18 @@
 		$modal-box-shadow: $box-shadow-spicy $brand-color-base !default !default;
 		$modal-overlay-bg: rgba($brand-color-base,.5) !default;
 		$modal-close-button-font-size: 2rem !default;
+		$modal-gutter: $gutter-base !default;
+			$modal-gutter-mobile: $gutter-small !default;
+
+		//modal board
+			$board-padding-spacer: $gutter-large !default;
+			$board-close-button-font-size: 1rem !default;
+			$board-close-offset-x: 1.25em !default;
+			$board-close-offset-y: 1.25em !default;
+			$board-close-width: 20px !default; //not yet
+			$board-close-height: 55px !default; //not yet
+			$board-close-size: 2.5em !default;
+			$board-close-box-shadow: $box-shadow-base $brand-color-base !default;
 
 	// POPPER = DROPDOWN || TOOLTIP
 		$popper-gutter-x: $gutter-small !default;

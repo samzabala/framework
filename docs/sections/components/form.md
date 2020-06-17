@@ -9,6 +9,8 @@ More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 Although styles are reset, To normalize or basically allow the framework to style them items add **`.input`** to your input bitch boy
 
 
+
+
 ```html
 <input type="checkbox" class="input">
 ```
@@ -218,6 +220,16 @@ For inline shit or fields that dont necessarily accept text looking input like r
 | `text` | if you want it ugly-ish, sure |
 | `url` | if you want it ugly-ish, sure |
 | `list` | no |
+
+#### **`.input-round`**
+
+Makes the edges of your stylized `.input` or `.input group` half circle round.
+
+```html
+<button type="button" class="btn btn-round btn-default">
+	my edges are round like the fuCKING EARTH
+</button>
+```
 
 ### Custom UI
 

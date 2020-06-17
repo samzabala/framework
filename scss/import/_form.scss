@@ -488,7 +488,11 @@ $calculated-calendar-exception: '';
 			@extend %for-form-input-boxy !optional;
 		}
 
-
+		@at-root %for-input {
+			&-no-shadow {
+				box-shadow:none!important;
+			}
+		}
 
 
 	@at-root %for-form-input-boxy-and-group {
@@ -510,7 +514,21 @@ $calculated-calendar-exception: '';
 		}
 
 		&#{$prefix}-no-shadow {
-			box-shadow:none!important;
+			@extend %for-input-no-shadow !optional;
+		}
+
+
+
+		&#{$prefix}-round {
+			border-radius: $calculated-input-height * .5;
+
+			&#{$prefix}-large {
+				border-radius: $calculated-input-height-large * .5;
+			}
+
+			&#{$prefix}-small {
+				border-radius: $calculated-input-height-small * .5;
+			}
 		}
 	}
 

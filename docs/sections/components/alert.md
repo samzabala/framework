@@ -29,6 +29,10 @@ These are valid color classes for your boi
 
 [More info on colors](../../sections/scaffolding/colors.md)
 
+## Size classes
+
+`.alert` supports sizes by adding `alert-large` or `alert-small` to its classes
+
 ## Toggler
 
 ### **`[data-toggle=alert-close]`**
@@ -78,8 +82,52 @@ This one looks for the `.alert` ancestor and it's a close symbol because it look
 ```
 
 
-
 ![Alert](../../images/alert-close.png)
+
+## Elements
+
+Like modules this bitch can have a header and footer and other shiit too
+
+
+### **`.alert-content`**
+
+This is where you put alert-contents. The block stretches to 1fr by default so flexing content is possible.
+
+
+```html
+<div class="alert">
+    <div class="alert-content">
+        Hi I'm content
+    </div>
+</div>
+```
+
+### **`.alert-header`** and **`.alert-footer`**
+
+Duh
+
+
+```html
+<div class="alert">
+
+    <div class="alert-header">
+        Hi I'm header
+    </div>
+    <div class="alert-content">
+        Hi I'm content
+    </div>
+
+    <div class="alert-footer">
+        Hi I'm footer
+    </div>
+</div>
+```
+
+### **`.alert-title`**
+
+Typically placed in the `.alert-header`. It's used to title your alert
+
+
 
 ### **`[data-toggle=alert-close-all]`**
 

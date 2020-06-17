@@ -237,15 +237,10 @@ $prefix: '.btn';
 		}
 	}
 
-	&#{$prefix}-no-radius,
-	&-group#{$prefix}-no-radius {
-		border-radius: 0!important;
-	}
-
-	&#{$prefix}-no-shadow,
-	&-group#{$prefix}-no-shadow,
-	&#{$prefix}-link {
-		box-shadow:none!important;
+	@at-root %for-btn {
+		&-no-shadow {
+			box-shadow:none!important;
+		}
 	}
 
 	@at-root %for-btn {
@@ -266,6 +261,28 @@ $prefix: '.btn';
 				box-shadow: $btn-box-shadow-hover;
 				color:inherit;
 				text-decoration:none;
+			}
+
+
+
+			&#{$prefix}-no-radius {
+				border-radius: 0!important;
+			}
+			
+			&#{$prefix}-no-shadow {
+				@extend %for-btn-no-shadow !optional;
+			}
+
+			&#{$prefix}-round {
+				border-radius: $calculated-btn-height * .5;
+
+				&#{$prefix}-large {
+					border-radius: $calculated-btn-height-large * .5;
+				}
+
+				&#{$prefix}-small {
+					border-radius: $calculated-btn-height-small * .5;
+				}
 			}
 		}
 	}
@@ -308,6 +325,7 @@ $prefix: '.btn';
 			@include br(xs){
 				font-size: $calculated-btn-font-size-large;
 			}
+
 		}
 	
 		&-small {
@@ -317,6 +335,7 @@ $prefix: '.btn';
 			padding-bottom: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
 			border-radius: $btn-border-radius-small;
 			min-height:$calculated-btn-height-small;
+
 		}
 	}
 
@@ -540,6 +559,10 @@ $prefix: '.btn';
 		@at-root %for-btn-#{$scheme} {
 
 			@include button-generate-schemes($properties,$scheme);
+
+			@if $scheme == 'link' or str-index($scheme, '-outline'){
+				@extend %for-btn-no-shadow !optional;
+			}
 		}
 		&#{&}-#{$scheme} {
 			@extend %for-btn-#{$scheme} !optional;

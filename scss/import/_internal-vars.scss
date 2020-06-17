@@ -240,6 +240,8 @@ $calculated-alert-schemes: (
 );
 
 
+
+
 // not the palettes good lord the design is a god
 $calculated-btn-theme-relation: (
 	theme : (
@@ -460,30 +462,168 @@ $calculated-btn-schemes: (
 	),
 
 
-	theme: (
-		hover: map-get($calculated-btn-theme-relation,theme-contrast),
-		active: map-get($calculated-btn-theme-relation,theme-contrast),
-		init: map-get($calculated-btn-theme-relation,theme)
-	),
+	//schemes tthat vars or hooman shouldnt have control over
+	
+		primary-outline: (
+
+			hover: (
+				background: $brand-color-primary-light,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-primary-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-primary,
+				color: $brand-color-primary,
+			)
+		),
+		secondary-outline: (
+
+			hover: (
+				background: $brand-color-secondary-light,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-secondary-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-secondary,
+				color: $brand-color-secondary,
+			)
+		),
+
+		accent-outline: (
+
+			hover: (
+				background: $brand-color-accent-light,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-accent-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-accent,
+				color: $brand-color-accent,
+			)
+		),
+		neutral-outline: (
+
+			hover: (
+				background: $brand-color-neutral-light,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-neutral-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-neutral,
+				color: $brand-color-neutral,
+			)
+		),
+		success-outline: (
+
+			hover: (
+				background: $brand-color-success-light,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-success-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-success,
+				color: $brand-color-success,
+			)
+		),
+		caution-outline: (
+
+			hover: (
+				background: $brand-color-caution-light,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-caution-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-caution,
+				color: $brand-color-caution,
+			)
+		),
+		error-outline:(
+
+			hover: (
+				background: $brand-color-error,
+				border: transparent,
+				color: $brand-color-background,
+			),
+
+			active: (
+				background: $brand-color-error-dark,
+				border: transparent,
+				color: $brand-color-background,
+			),
+			init: (
+				background: transparent,
+				border: $brand-color-error,
+				color: $brand-color-error,
+			)
+		),
 
 
-	theme-polar: (
-		hover: map-get($calculated-btn-theme-relation,theme-polar-contrast),
-		active: map-get($calculated-btn-theme-relation,theme-polar-contrast),
-		init: map-get($calculated-btn-theme-relation,theme-polar)
-	),
+		theme: (
+			hover: map-get($calculated-btn-theme-relation,theme-contrast),
+			active: map-get($calculated-btn-theme-relation,theme-contrast),
+			init: map-get($calculated-btn-theme-relation,theme)
+		),
 
-	theme-outline: (
-		hover: map-get($calculated-btn-theme-relation,theme),
-		active: map-get($calculated-btn-theme-relation,theme),
-		init: map-get($calculated-btn-theme-relation,theme-outline)
-	),
 
-	theme-polar-outline: (
-		hover: map-get($calculated-btn-theme-relation,theme-polar),
-		active: map-get($calculated-btn-theme-relation,theme-polar),
-		init: map-get($calculated-btn-theme-relation,theme-polar-outline)
-	)
+		theme-polar: (
+			hover: map-get($calculated-btn-theme-relation,theme-polar-contrast),
+			active: map-get($calculated-btn-theme-relation,theme-polar-contrast),
+			init: map-get($calculated-btn-theme-relation,theme-polar)
+		),
+
+		theme-outline: (
+			hover: map-get($calculated-btn-theme-relation,theme),
+			active: map-get($calculated-btn-theme-relation,theme),
+			init: map-get($calculated-btn-theme-relation,theme-outline)
+		),
+
+		theme-polar-outline: (
+			hover: map-get($calculated-btn-theme-relation,theme-polar),
+			active: map-get($calculated-btn-theme-relation,theme-polar),
+			init: map-get($calculated-btn-theme-relation,theme-polar-outline)
+		)
 );
 
 $calculated-tag-schemes-color: (

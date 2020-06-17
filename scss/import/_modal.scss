@@ -25,42 +25,39 @@ $prefix: '.modal';
 			right: 0!important;
 			bottom: 0!important;
 			margin: 0;
-			padding: $gutter-base;
 			overflow-y: scroll;
 			background: $modal-overlay-bg;
 			z-index: 99999;
+			display:none!important;
+
 
 			&::-webkit-scrollbar {
 				display:none;
 			}
 
-			@include br(#{$mobile-br-max}-max) {
-				padding: $gutter-small;
-			}
+			&.active {
+				display:block!important;
+			} 
 
 		}
 	}
 
 		&-wrapper {
 			@extend %for-modal-wrapper;
-			display:none!important;
 
-			&.active {
-				display:block!important;
+			padding: $modal-gutter;
+
+			@include br(#{$mobile-br-max}-max) {
+				padding: $modal-gutter-mobile;
 			}
 		}
 		&-title {
 			margin-top:0;
 		}
 
-	&-close {
-		& {
-			font-size: $modal-close-button-font-size;
-			position:absolute;
-			right: $modal-close-offset;
-			top: $modal-close-offset;
-			z-index:9;
-		}
+
+	@at-root %for-modal {
+
 		&-overlay {
 			position:fixed;
 			top:0;
@@ -74,23 +71,31 @@ $prefix: '.modal';
 		}
 	}
 
+		&-close {
+			& {
+				font-size: $modal-close-button-font-size;
+				position:absolute;
+				right: $modal-close-offset;
+				top: $modal-close-offset;
+				z-index:9;
+			}
+			&-overlay {
+				@extend %for-modal-overlay;
+			}
+		}
+
 
 
 	@at-root %for-modal {
 
 		&-popup {
-	
-	
-			padding: $modal-gutter-y $modal-gutter-x;
-			border-radius: $modal-border-radius;
-			background: $modal-background;
 			backface-visibility: hidden;
 			position:relative;
-			margin: auto;
 			z-index:2;
 			box-shadow: rgba(0, 0, 0, .2) 0 2px 3px;
 			width: 100%;
-		
+			background: $modal-background;
+			
 			.theme-inverse & {
 				background: $modal-background-inverse;
 			}
@@ -99,5 +104,8 @@ $prefix: '.modal';
 
 	&-popup {
 		@extend %for-modal-popup;
+		padding: $modal-gutter-y $modal-gutter-x;
+		border-radius: $modal-border-radius;
+		margin: auto;
 	}
 }

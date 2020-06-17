@@ -263,3 +263,18 @@ Kills ya boi
 
 
 [Back to TOC](../../../readme.md)
+
+
+
+# Board (jQuery version only)
+
+Same functions as modal except this looks different because the design says so fUCK YOU
+
+
+```html
+<a
+	data-toggle="board" href="#board-demo">board Toggle</a>
+<div class="board" id="board-demo">
+	<!-- Put ya content here -->
+</div>
+```

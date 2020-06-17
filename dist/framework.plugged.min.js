@@ -17,6 +17,7 @@ window.jQuery && jQuery.noConflict();
 	frameWork.settings = frameWork.settings || {};
 	frameWork.settings.lazyLoad = frameWork.settings.lazyLoad || true;
 	frameWork.settings.initializeModal = frameWork.settings.initializeModal || true;
+	frameWork.settings.initializeBoard = frameWork.settings.initializeBoard || true;
 	frameWork.settings.initializeAccordion = frameWork.settings.initializeAccordion || true;
 	frameWork.settings.dynamicHash = frameWork.settings.dynamicHash || true;
 	frameWork.settings.uiClass = 'fw-ui';
@@ -569,6 +570,7 @@ window.jQuery && jQuery.noConflict();
 			switch(toggleMode){
 				case 'dropdown':
 				case 'modal':
+				case 'board':
 				case 'alert-close':
 					if(triggerer && toggleMode && triggerer.parent().closest(toggledClass).length) {
 						toReturn = triggerer.parent().closest(toggledClass);
@@ -1845,33 +1847,37 @@ window.jQuery && jQuery.noConflict();
 	}
 
 
-	frameWork.createModal = function(triggerer){
+	frameWork.createModal = function(triggerer,mode){
+		mode = mode || 'modal'
 		
-		var contentWrap =  _.getTheToggled(triggerer,'modal');
+		var contentWrap =  _.getTheToggled(triggerer,mode);
 
-		frameWork.destroyModal();
+		frameWork.destroyModal(null,mode);
 
 		if(triggerer || contentWrap) {
 
 			var arr =  {
 				header:
-					contentWrap.attr('data-modal-title')
-					|| (triggerer && (triggerer.attr('data-modal-title'))),
+					contentWrap.attr('data-'+mode+'-title')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-title'))),
 				close:
-					contentWrap.attr('data-modal-close')
-					|| (triggerer && (triggerer.attr('data-modal-close'))),
+					contentWrap.attr('data-'+mode+'-close')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-close'))),
 				disableOverlay:
-					contentWrap.attr('data-modal-disable-overlay')
-					|| triggerer && ((triggerer.attr('data-modal-disable-overlay'))),
+					contentWrap.attr('data-'+mode+'-disable-overlay')
+					|| triggerer && ((triggerer.attr('data-'+mode+'-disable-overlay'))),
 				maxWidth:
-					contentWrap.attr('data-modal-max-width')
-					|| (triggerer && (triggerer.attr('data-modal-max-width'))),
+					contentWrap.attr('data-'+mode+'-max-width')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-max-width'))),
 				callback:
-					contentWrap.attr('data-modal-callback')
-					|| (triggerer && (triggerer.attr('data-modal-callback'))),
+					contentWrap.attr('data-'+mode+'-callback')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-callback'))),
 				classes:
-					contentWrap.attr('data-modal-classes')
-					|| (triggerer && (triggerer.attr('data-modal-classes'))),
+					contentWrap.attr('data-'+mode+'-classes')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-classes'))),
+				classes:
+					contentWrap.attr('data-'+mode+'-align')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-classes'))),
 			};
 
 			var defaults = {
@@ -1880,51 +1886,72 @@ window.jQuery && jQuery.noConflict();
 				disableOverlay: true,
 				maxWidth: null,
 				callback: null,
-				classes: ''
+				classes: '',
+				align: 'left'
 			};
 
-			var actualModalId = 'fw-modal';
+			var actualId = 'fw-'+mode;
 
 			var args = _.parseArgs(arr,defaults);
 
-			var id = contentWrap.attr('id') || actualModalId;
+			switch(mode){
+				case 'modal':
+					args.align = false;
+					break;
+			}
 
-			(id !== '#'+actualModalId) && _.changeHash(id);
+			var id = contentWrap.attr('id') || actualId;
+
+			(id !== '#'+actualId) && _.changeHash(id);
 
 			$('body').append(function(){
-				var html = '<div id="'+actualModalId+'" class="modal-wrapper '+ args.classes +'">';
-						//overlay 
-						html += '<a href="#" class="modal-close-overlay" '+( args.disableOverlay == false ? 'data-toggle="modal-close"' : '' )+'></a>';
+				var html;
+				switch(mode){
+					case 'board':
+					case 'modal':
+						var html = '<div id="'+actualId+'" class="'+mode+'-wrapper '+ args.classes;
 
-						html += '<div class="modal-popup">';
-
-							if(args.header) {
-								html += '<div class="modal-header"><h1 class="modal-title">'+ args.header +'</h1></div>';
+							if(args.align){
+								html+= ' '+mode+'-'+args.align;
 							}
 
-							if(args.close !== false) {
-								html += '<a href="#" class="modal-close" data-toggle="modal-close"><i class="symbol symbol-close"></i></a>';
-							}
 
-							html += '<div class="modal-popup-content">' + contentWrap.html() + '</div>';
-						
-						
-						
-						html += '</div>';
-				
-				html +='</div>';
+							html +='">';
+							//overlay 
+							html += '<a href="#" class="'+mode+'-close-overlay" '+( args.disableOverlay == false ? 'data-toggle="'+mode+'-close"' : '' )+'></a>';
+
+							html += '<div class="'+mode+'-popup">';
+
+								if(args.header) {
+									html += '<div class="'+mode+'-header"><h1 class="'+mode+'-title">'+ args.header +'</h1></div>';
+								}
+
+								if(args.close !== false) {
+									html += '<a href="#" class="'+mode+'-close" data-toggle="'+mode+'-close"><i class="symbol symbol-close"></i></a>';
+								}
+
+								html += '<div class="'+mode+'-popup-content">' + contentWrap.html() + '</div>';
+							
+							
+							
+							html += '</div>';
+					
+					html +='</div>';
+					break;
+				}
 
 				return html;
+				
 			});
 
-			var modal = $('body').children('.modal-wrapper').first();
+			var modal = $('body').children('.'+mode+'-wrapper').first();
 
 				_.initTrumbo(modal);
 
-				$('body').addClass('body-modal-active');
+				$('body').addClass('body-'+mode+'-active');
 
 				if(args.maxWidth) {
-					modal.find('.modal-popup').css('max-width',args.maxWidth)
+					modal.find('.'+mode+'-popup').css('max-width',args.maxWidth)
 				}
 
 				if(args.callback) {
@@ -1945,15 +1972,25 @@ window.jQuery && jQuery.noConflict();
 		}
 	}
 
-	frameWork.destroyModal = function(removeHash){
+	frameWork.destroyModal = function(removeHash,mode){
+		mode = mode || 'modal';
 		
-		$('body').children('.modal-wrapper').fadeOut().removeClass('active').remove();
-		$('body').removeClass('body-modal-active');
+		$('body').children('.'+mode+'-wrapper').fadeOut().removeClass('active').remove();
+		$('body').removeClass('body-'+mode+'-active');
 
 		if(removeHash) {
 			_.changeHash('');
 		}
 	}
+
+	frameWork.createBoard = function(triggerer){
+		frameWork.createModal(triggerer,'board');
+	}
+
+	frameWork.destroyBoard = function(removeHash){
+		frameWork.destroyModal(removeHash,'board');
+	}
+
 
 	frameWork.closeDropdowns = function(currentDropdown) {
 		currentDropdown = currentDropdown || false;
@@ -2156,6 +2193,7 @@ window.jQuery && jQuery.noConflict();
 
 	$(window).on('hashchange',function(){
 		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeBoard && frameWork.createBoard(null,'board');
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 	});
 
@@ -2684,6 +2722,25 @@ window.jQuery && jQuery.noConflict();
 		});
 
 
+		$('body').on('click','*[data-toggle="board-open"], *[data-toggle="board"]',function(e){
+			const triggerer = $(e.target);
+
+			e.preventDefault();
+			if( !frameWork.isDisabled(triggerer) ){	
+				frameWork.createBoard(triggerer);
+			}
+		});
+
+		$('body').on('click','*[data-toggle="board-close"]',function(e){
+			const triggerer = $(e.target);
+
+			e.preventDefault();
+			if( !frameWork.isDisabled(triggerer) ){	
+				frameWork.destroyBoard(true);
+			}
+		});
+
+
 
 
 
@@ -2745,6 +2802,7 @@ window.jQuery && jQuery.noConflict();
 		})
 
 		frameWork.settings.initializeModal && frameWork.createModal();
+		frameWork.settings.initializeBoard && frameWork.createBoard();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 
 		// if(window.location.hash !== ''){
