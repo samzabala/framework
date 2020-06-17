@@ -3971,11 +3971,12 @@ table {
     .board-close-overlay:not([data-toggle="modal-close"]), .modal-close-overlay:not([data-toggle="modal-close"]) {
       pointer-events: none; }
   .modal-close {
-    font-size: 2rem;
     position: absolute;
     right: 20px;
     top: 20px;
     z-index: 9; }
+    .modal-close-default {
+      font-size: 1rem; }
   .board-popup, .modal-popup {
     backface-visibility: hidden;
     position: relative;
@@ -5561,11 +5562,11 @@ table {
     color: inherit !important; }
   .input-calendar-ui-navigation, .input-calendar-ui-title {
     grid-row: 1; }
-  .input-calendar-ui-prev-year {
+  .input-calendar-ui-prev-year, .input-calendar-ui-prev-month:first-child {
     grid-column: 1; }
   .input-calendar-ui-prev-month {
     grid-column: 2; }
-  .input-calendar-ui-next-year {
+  .input-calendar-ui-next-year, .input-calendar-ui-next-month:nth-last-child(3) {
     grid-column: 7; }
   .input-calendar-ui-next-month {
     grid-column: 6; }

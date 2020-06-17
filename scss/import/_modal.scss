@@ -73,11 +73,14 @@ $prefix: '.modal';
 
 		&-close {
 			& {
-				font-size: $modal-close-button-font-size;
 				position:absolute;
 				right: $modal-close-offset;
 				top: $modal-close-offset;
 				z-index:9;
+
+				&-default {
+					font-size: $modal-close-button-font-size;
+				}
 			}
 			&-overlay {
 				@extend %for-modal-overlay;

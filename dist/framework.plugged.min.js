@@ -954,7 +954,7 @@ window.jQuery && jQuery.noConflict();
 							+_.monthFormatNamesShort[ currMonth ]
 						+'</span>'
 						+ ' <span class="'+uiPrefix()+'year-text">'+currYear+'</span>'
-						+ ' <i class="'+uiPrefix()+'symbol symbol symbol-arrow-down no-margin-x"></i>'
+						+ ' <i class="'+uiPrefix()+'symbol symbol symbol-caret-down no-margin-x"></i>'
 					
 					});
 				
@@ -1197,7 +1197,7 @@ window.jQuery && jQuery.noConflict();
 			disabledDates: '',
 			textInput:false,
 			monthSkip:true,
-			yearSkip:true,
+			yearSkip:false,
 		};
 		
 		var args = _.parseArgs(arr,defaults);
@@ -1875,9 +1875,12 @@ window.jQuery && jQuery.noConflict();
 				classes:
 					contentWrap.attr('data-'+mode+'-classes')
 					|| (triggerer && (triggerer.attr('data-'+mode+'-classes'))),
-				classes:
+				closeClasses:
+					contentWrap.attr('data-'+mode+'-close-classes')
+					|| (triggerer && (triggerer.attr('data-'+mode+'-close-classes'))),
+				align:
 					contentWrap.attr('data-'+mode+'-align')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-classes'))),
+					|| (triggerer && (triggerer.attr('data-'+mode+'-align'))),
 			};
 
 			var defaults = {
@@ -1887,6 +1890,8 @@ window.jQuery && jQuery.noConflict();
 				maxWidth: null,
 				callback: null,
 				classes: '',
+
+				closeClasses: mode+'-close-default',
 				align: 'left'
 			};
 
@@ -1927,7 +1932,7 @@ window.jQuery && jQuery.noConflict();
 								}
 
 								if(args.close !== false) {
-									html += '<a href="#" class="'+mode+'-close" data-toggle="'+mode+'-close"><i class="symbol symbol-close"></i></a>';
+									html += '<a href="#" class="'+mode+'-close '+args.closeClasses +'" data-toggle="'+mode+'-close"><i class="symbol symbol-close "></i></a>';
 								}
 
 								html += '<div class="'+mode+'-popup-content">' + contentWrap.html() + '</div>';

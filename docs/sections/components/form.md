@@ -662,7 +662,7 @@ Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and
 | `list` | yes |
 
 
-#Custom framework fields
+# Custom framework fields
 
 ## Calendar
 
@@ -788,6 +788,21 @@ There also available keywords too
 Defaults to `false`
 
 Enables a text input field to input dates along with the calendar as well
+
+
+
+**`data-calendar-month-skip`**
+
+Defaults to `true`
+
+Enable skipping through months
+
+
+**`data-calendar-year-skip`**
+
+Defaults to `false`
+
+Enable skipping through years
 
 
 ## Tags (Plugged bversion only for now)

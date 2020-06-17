@@ -1120,14 +1120,16 @@ $calculated-calendar-exception: '';
 				grid-row: 1;
 			}
 
-			&-prev-year {
+			&-prev-year,
+			&-prev-month:first-child {
 				grid-column: 1;
 			}
 			&-prev-month {
 				grid-column: 2;
 			}
 
-			&-next-year {
+			&-next-year,
+			&-next-month:nth-last-child(3) {
 				grid-column: 7;
 			}
 			&-next-month {
