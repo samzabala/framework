@@ -1,34 +1,56 @@
 # Zone
 
-The box that looks like you can drag something into it or it looks empty as shit idk. you can use it on any element `input[type="file"]`
+The box that looks like you can drag something into it or it looks empty as shit idk
 
 ```html
-<div class="alert alert-default">
-	Sup motherfucker I'm an alert and I'm here to fuck up your life
+<div class="zone zone-default">
+	Sup motherfucker I'm an zone and I'm here to fuck up your life
 </div>
 ```
 
-![Alert](../../images/alert.png)
+Kick it up a notch byu adding an `input[type="file"]` in it
+
+```html
+<div class="zone zone-default">
+	<input type="file" />
+	<span class="zone-text">
+		Drag and drop attachments here
+	</span>	
+</div>
+```
+
+## Classes
+
+### `.zone` 
+
+duh
+
+### `.zone-text`
+
+duh. useful when you are implementing an input field. when there are files in the input field, this will be hidden in place of a file count for user feedback. don't wrap your text with this if you dont want it hiding
+
+
+![zone](../../images/zone.png)
 
 
 ## Color classes
 
-Other styles are available in the framework aside from `.alert-default`
+Other styles are available in the framework aside from `.zone-default`
 
 These are valid color classes for your boi
 
-*	`.alert-primary`
-*	`.alert-secondary`
-*	`.alert-accent`
-*	`.alert-neutral`
-*	`.alert-error`
-*	`.alert-caution`
-*	`.alert-success`
+*	`.zone-primary`
+*	`.zone-secondary`
+*	`.zone-accent`
+*	`.zone-neutral`
+*	`.zone-error`
+*	`.zone-caution`
+*	`.zone-success`
 
-![Alert](../../images/alert-colors.png)
+![zone](../../images/zone-colors.png)
 
 [More info on colors](../../sections/scaffolding/colors.md)
 
 ## Size classes
 
-`.alert` supports sizes by adding `alert-large` or `alert-small` to its classes
+`.zone` supports sizes by adding `zone-large` or `zone-small` to its classes

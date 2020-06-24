@@ -1,0 +1,197 @@
+
+$calculated-board-close-width: $board-close-width;
+@if internal-is-convertable($board-close-width){
+	$calculated-board-close-width: rem($board-close-width/$body-font-size);
+}
+
+
+$calculated-board-close-height: $board-close-height;
+@if internal-is-convertable($board-close-height){
+	$calculated-board-close-height: rem($board-close-height/$body-font-size);
+}
+
+$calculated-board-close-size: $board-close-size;
+@if internal-is-convertable($board-close-size){
+	$calculated-board-close-size: rem($board-close-size/$body-font-size);
+}
+
+/*** MODAL BOARD***/
+
+
+$prefix: '.board';
+
+
+//also used by module
+
+.body-board-active {
+	@extend %for-modal-body !optional;
+}
+
+#{$prefix} {
+	display:none!important;
+
+
+		&-wrapper {
+			@extend %for-modal-wrapper;
+			z-index: 99998;
+
+			&#{$prefix}-left {
+				padding-left: $board-padding-spacer;
+			}
+			&#{$prefix}-right {
+				padding-right: $board-padding-spacer;
+			}
+			&#{$prefix}-top {
+				padding-top: $board-padding-spacer;
+			}
+			&#{$prefix}-bottom {
+				padding-bottom: $board-padding-spacer;
+			}
+		}
+		&-title {
+			margin-top:0;
+		}
+
+	&-close {
+		& {
+			position:absolute;
+			z-index:9;
+		}
+
+		&-wrapper {
+			position:fixed;
+			z-index:3;
+
+			#{$prefix}-left &,
+			#{$prefix}-right & {
+				top: 0;
+				width: calc(100% -  #{$board-padding-spacer});
+			}
+			#{$prefix}-top &,
+			#{$prefix}-bottom &, 
+			#{$prefix}-left & {
+				right: 0;
+			}
+
+
+			#{$prefix}-top &,
+			#{$prefix}-bottom &,
+			#{$prefix}-right & {
+				left: 0;
+			}
+
+			#{$prefix}-top &,
+			#{$prefix}-bottom & {
+				left: 0;
+				height: calc(100% -  #{$board-padding-spacer});
+			}
+
+			#{$prefix}-top & {
+				bottom: 0;
+			}
+
+
+			#{$prefix}-bottom & {
+				top: 0;
+			}
+		}
+
+		&-default {
+
+			font-size: $board-close-button-font-size;
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			background: $modal-background;
+			box-shadow: $board-close-box-shadow;
+			// width: $calculated-board-close-width;
+			// height: $calculated-board-close-height;
+			width: $calculated-board-close-size;
+			height: $calculated-board-close-size;
+		}
+
+
+		.theme-inverse & {
+			background: $modal-background-inverse;
+		}
+
+		#{$prefix}-left &,
+		#{$prefix}-right & {
+			top: $board-close-offset-y;
+		}
+
+		#{$prefix}-left & {
+			left: 0;
+			transform: translateX(-50%);
+		}
+
+
+		#{$prefix}-right & {
+			right: 0;
+			transform: translateX(50%);
+		}
+
+		#{$prefix}-top &,
+		#{$prefix}-bottom & {
+			right: $board-close-offset-x;
+		}
+
+		#{$prefix}-top & {
+			top: 0;
+			transform: translateY(-50%);
+		}
+
+
+		#{$prefix}-bottom & {
+			bottom: 0;
+			transform: translateY(50%);
+		}
+		
+		&-overlay {
+			@extend %for-modal-overlay;
+
+
+			&:not([data-toggle="board-close"]) {
+				@extend %for-modal-overlay-not-closeable;
+			}
+		}
+	}
+
+
+	&-popup {
+		@extend %for-modal-popup;
+		@extend %for-modal-scroller;
+		height: 100%;
+		display:flex;
+		flex-wrap:wrap;
+		flex-direction:column;
+
+		&-content {
+			flex: 1 1;
+		}
+	}
+
+	&-popup,
+	&-close-wrapper {
+
+
+
+		
+		#{$prefix}-top &,
+		#{$prefix}-bottom &,
+		#{$prefix}-left & {
+			margin-left: auto;
+		}
+		#{$prefix}-top &,
+		#{$prefix}-bottom &,
+		#{$prefix}-right & {
+			margin-right: auto;
+		}
+		#{$prefix}-top & {
+			margin-top: auto;
+		}
+		#{$prefix}-bottom & {
+			margin-bottom: auto;
+		}
+	}
+}

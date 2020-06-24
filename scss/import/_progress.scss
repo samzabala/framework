@@ -7,6 +7,17 @@ $calculated-progress-height: $progress-height;
     $calculated-progress-height: rem($progress-height / $body-font-size)
 }
 
+
+$calculated-progress-height-small: $progress-height-small;
+@if internal-is-convertable($progress-height-small) {
+    $calculated-progress-height-small: rem($progress-height-small / $body-font-size)
+}
+
+$calculated-progress-height-large: $progress-height-large;
+@if internal-is-convertable($progress-height-large) {
+    $calculated-progress-height-large: rem($progress-height-large / $body-font-size)
+}
+
 $calculated-progress-title-font-size: $progress-title-font-size;
 @if internal-is-convertable($progress-title-font-size) {
 	$calculated-progress-title-font-size: em($progress-title-font-size / $body-font-size)
@@ -114,11 +125,33 @@ $prefix: '.progress';
 	@at-root %for-progress-and-bar {
 		height: $calculated-progress-height;
 		transition: $progress-transition-duration width $transition-timing;
+
+		&-small {
+			height: $calculated-progress-height-small;
+		}
+		&-large {
+			height: $calculated-progress-height-large;
+		}
 	}
 
 	&,
 	&-bar {
 		@extend %for-progress-and-bar;
+	}
+
+	&#{&}-small {
+		&,
+		#{$prefix}-bar {
+			@extend %for-progress-and-bar-small;
+		}
+	}
+
+
+	&#{&}-large {
+		&,
+		#{$prefix}-bar {
+			@extend %for-progress-and-bar-large;
+		}
 	}
 
 

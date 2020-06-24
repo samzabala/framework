@@ -7,6 +7,12 @@ $calculated-list-group-height: $list-group-height;
 }
 
 
+$calculated-list-group-gutter-x: $list-group-gutter-x;
+@if internal-is-convertable($list-group-gutter-x) {
+	$calculated-list-group-gutter-x: rem( $list-group-gutter-x / $body-font-size);
+}
+
+
 $prefix: '.list-group';
 #{$prefix},
 #{$prefix} ul {
@@ -22,8 +28,10 @@ $prefix: '.list-group';
 		}
 	}
 
-	li,
-	.list-group-item  {
+	@at-root & li,
+	&-item  {
+		@extend %for-cf !optional;
+		font: inherit;
 		margin-bottom:0;
 		display: block;
 		margin-top: $list-group-border-width * -1;
@@ -32,10 +40,33 @@ $prefix: '.list-group';
 
 
         padding-top: calc(  (  (#{$calculated-list-group-height} - #{$list-group-border-width}) - (#{$calculated-body-single-line}) ) * .5 );
-        padding-bottom: calc(  (  (#{$calculated-list-group-height} - #{$list-group-border-width}) - (#{$calculated-body-single-line}) ) * .5 );
+		padding-bottom: calc(  (  (#{$calculated-list-group-height} - #{$list-group-border-width}) - (#{$calculated-body-single-line}) ) * .5 );
+		padding-left: $calculated-list-group-gutter-x;
+		padding-right: $calculated-list-group-gutter-x;
 
 		&:before {
 			content: none;
+		}
+	}
+
+	&-interactive,
+	&-toggle {
+		li, 
+		#{$prefix}-item {
+			> * {
+				pointer-events: none;
+			}
+			a {
+				color: inherit;
+			}
+
+			&:hover,
+			&:focus,
+			&.focus,
+			&:active,
+			&.active {
+				background: $list-group-interactive-background-hover;
+			}
 		}
 	}
 }

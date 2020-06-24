@@ -301,6 +301,7 @@
                     clear: both;
                     display: table;
                     width: 100%;
+                    flex: 1 1 100%;
                 }
             }
         }
@@ -347,7 +348,8 @@
             $auto-position: true,
             $clip: true,
             $position:true,
-            $declare-display: true
+            $declare-display: true,
+            $style-children: true
         ) {
             @if $add-important {
                 $add-important: #{'!important'};
@@ -371,19 +373,23 @@
                 padding-top: percentage($height / $width);
             }
 
-            > * {
-                position: absolute #{$add-important};
-                @content;
 
-                @if $auto-position == true {
-                    margin: auto;
-                    @include internal__offsets-generator((
-                        top:0 #{$add-important},
-                        bottom:0 #{$add-important},
-                        right:0 #{$add-important},
-                        left:0 #{$add-important}
-                    ));
+            > * {
+                @if $style-children == true {
+                    position: absolute #{$add-important};
+
+                    @if $auto-position == true {
+                        margin: auto;
+                        @include internal__offsets-generator((
+                            top:0 #{$add-important},
+                            bottom:0 #{$add-important},
+                            right:0 #{$add-important},
+                            left:0 #{$add-important}
+                        ));
+                    }
                 }
+                
+                @content;
             }
         }
 

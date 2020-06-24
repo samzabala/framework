@@ -231,47 +231,6 @@ Makes the edges of your stylized `.input` or `.input group` half circle round.
 </button>
 ```
 
-### Custom UI
-
-#### **`.input-calendar`**
-
-For date input except it fancy
-
-
-
-##### Support
-
-###### Non input tags
-
-| Element | do it support? |
-| -- | -- |
-| `button` | yes |
-| `select` | no |
-| `textarea` | i guess??? but pls don't |
-| `datalist` | no |
-
-######  Input tags
-
-| `input[type*]` 	| do it support? |
-| -- | -- |
-|`submit`, `reset`,`button` |  NOPE |
-| `checkbox` | no |
-| `color` | no |
-| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure |
-| `email` | if you want it ugly-ish, sure |
-| `file` | if you want it ugly-ish, sure |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | yis |
-| `number` | if you want it ugly-ish, sure |
-| `password` | if you want it ugly-ish, sure |
-| `radio` | yes |
-| `range` | yes |
-| `search` | if you want it ugly-ish, sure |
-| `tel` | if you want it ugly-ish, sure |
-| `text` | if you want it ugly-ish, sure |
-| `url` | if you want it ugly-ish, sure |
-| `list` | no |
-
 
 ### Input templates
 
@@ -664,7 +623,62 @@ Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and
 
 # Custom framework fields
 
+
+## Toggle
+
+true false input except... pure css and fancy
+
+This works on either a `checkbox` or `radio`
+
+```html
+<div class="input-toggle ">
+	<input type="checkbox" class="input "> 
+	<span class="input-label input-toggle-label">
+		Test this fucker this one should have toggle on the other side of the text
+	</span>
+</div>
+```
+
+you can put the toggle on the other side by adding `input-toggle-reverse` to `input-toggle`
+![Toggle](../../images/input-toggle.png)
+
+
+
+#### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | no |
+| `select` | no |
+| `textarea` | no|
+| `datalist` | no |
+
+
+### Support 
+| `input[type*]` | Support it? |
+| -- | -- |
+|`submit`, `reset`,`button` | nope |
+| `checkbox` | yesssss |
+| `color` | no |
+| `date`, `datetime-local`, `month`, `time`, `week` | no |
+| `email` | no |
+| `file` | no |
+| `hidden` | no |
+| `image` | no |
+| `number` | no |
+| `password` | no |
+| `radio` | yea |
+| `range` | no |
+| `search` | no |
+| `tel` | no |
+| `text` | yes |
+| `url` | no |
+| `list` | no |
+
+
 ## Calendar
+
+For date input except it fancy
 
 
 It's an input where you have a date input type except it's fancier :')
@@ -682,6 +696,17 @@ Once a value is set, the it will return an ISO8601 or `yyyy-mm-dd` formattted va
 It will also render the date active in the calendar ui
 
 This is also how to set a default value to the calendar as well
+
+
+
+#### Non input tags
+
+| Element | do it support? |
+| -- | -- |
+| `button` | yes |
+| `select` | no |
+| `textarea` | i guess??? but pls don't |
+| `datalist` | no |
 
 
 ### Support 
@@ -925,6 +950,15 @@ callback function after keyup on the input field. NOTE. the field is actually a 
 ```
 
 
-#### 
+
+**`data-tags-multiple-lines`**
+
+defaults to false
+
+if enabled, allows floe of tags intoo multiple lines like a textarea
+
+```html
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-multiple-lines="true" />
+```
 
 [Back to TOC](../../../readme.md)

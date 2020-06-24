@@ -10,7 +10,8 @@ $prefix: '.zone';
 	-webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    outline: none;
+	outline: none;
+	position:relative;
 	font: inherit;
 	@include type-set((
 		
@@ -18,7 +19,8 @@ $prefix: '.zone';
 		// leading: strip-unit($zone-line-height/$zone-font-size),
 		case: $zone-text-transform,
 		weight: $zone-font-weight,
-		style: $zone-font-style
+		style: $zone-font-style,
+		align: center
 	));
 	padding-top: $zone-gutter-y;
 	padding-bottom: $zone-gutter-y;
@@ -31,6 +33,7 @@ $prefix: '.zone';
 	text-align: center;
 	position:relative;
 	display:block;
+	width:100%;
 	transition: $transition-duration-short opacity $transition-timing;
 	@extend %for-cf;
 	a {
@@ -41,6 +44,47 @@ $prefix: '.zone';
 			text-decoration:underline;
 		}
 	}
+
+	> input {
+		opacity: 0!important;
+		position:absolute;
+		display:block;
+		top:0;
+		left:0;
+		height:100% !important;
+		width:100% !important;
+
+	}
+
+	&-text,
+	&-has-content-text {
+		display: block;
+	}
+
+	&#{&}-has-content &-text {
+		display: none!important;
+	}
+
+
+	// &::-webkit-file-upload-button {
+	// 	appearance: none;
+	// 	border: none;
+	// 	font:inherit;
+	// 	color:inherit;
+	// 	opacity: $input-placeholder-opacity;
+	// 	background: none;
+	// 	margin: 0;
+	// 	padding: 0;
+	// 	vertical-align:middle;
+	// 	display:flex;
+	// 	display:none;
+	// }
+
+	// &:before {
+	// 	font:inherit;
+	// 	display: block;
+	// 	content:"Drag Your Attachments Here";
+	// }
 
 	&#{$prefix}-disabled {
 		@extend %for-disabled !optional;

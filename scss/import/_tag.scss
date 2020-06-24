@@ -46,28 +46,22 @@ $prefix: '.tag';
 	&:active,
 	&.focus,
 	&.active {
-
 		color: $tag-color;
 	}
 
 
-	&#{&}-default {
-		background-color: $tag-default-background;
-		color: $tag-default-color;
-	}
 
 
-	@each $tag,$color in $calculated-brand-color-declarations {
+	@each $tag,$properties in $calculated-tag-schemes-color {
 		&-#{$tag} {
-			@extend %for-background-#{$tag};
-			color: map-get($calculated-tag-schemes-color,$tag);
-		}
-	}
-
-	&-intensity {
-		@for $i from 1 through length($calculated-color-brand-intensity) {
-			&-#{$i} {
-				@extend %for-background-intensity-#{$i};
+			background: map-get($properties,background);
+			&,
+			&:hover,
+			&:focus,
+			&:active,
+			&.focus,
+			&.active {
+				color: map-get($properties,color);
 			}
 		}
 	}

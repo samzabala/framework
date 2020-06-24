@@ -204,11 +204,11 @@ this toggles `.active` styles on butt butts
 
 Allows multiple active butt butts.
 
-If you want one of the butts reset the active class, add **`.btn-toggle-reset`**
+If you want one of the butts reset the active class, add **`.btn-group-toggle-reset`**
 
 ```html
 <div class="btn-group btn-group-horizontal btn-group-toggle btn-group-toggle-multiple btn-group-responsive">
-	<button type="button" class="active btn btn-default btn-toggle-reset"> All</button>
+	<button type="button" class="active btn btn-default btn-group-toggle-reset"> All</button>
 	<button type="button" class=" btn btn-default"> butt</button>
 	<button type="button" class="btn btn-default">  Butt </button>
 	<button type="button" class="btn btn-default">Butt</button>

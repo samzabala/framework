@@ -1,5 +1,6 @@
 /*** SYMBOLS ***/
 
+$calculated-symbol-basis: 16px; //so it doesnt look icky whatever custom size is set
 
 
 
@@ -19,6 +20,7 @@ $prefix: '.symbol';
 	transform-origin: center center;
 	pointer-events:none;
 	margin: 0 .5em;
+	// font-size: 32px; //debug only
 	// top:-.25em;
 
 	&:last-child {
@@ -28,74 +30,373 @@ $prefix: '.symbol';
 		margin-left:0;
 	}
 
-	&:before,&:after {
-		content: "";
-		color: inherit;
-		position:absolute;
-		top:0;
-		bottom:0;
-		left:0;
-		right:0;
-		margin: auto;
-		background: currentColor;
-		// transition:
-		// $transition-duration-short color $transition-timing,
-		// $transition-duration-short background-color $transition-timing;
-	}
 
-	&:not([class*="symbol-"]) {
-		&:before,&:after {
-			background: none; /*s o nothing happends*/
+	@at-root %for-valid-symbol{
+
+		& {
+			transform:none;
+			transition:none;
+		}
+		
+		&-pseudo {
+			content: "";
+			color: inherit;
+			position:absolute;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
+			margin: auto;
+			transform:none;
+			box-shadow:none;
+			background: none;
+			border: none;
+			transition:
+				none
+				// $transition-duration-short color $transition-timing,
+				// $transition-duration-short background-color $transition-timing
+				;
+
+			&-filled {
+				background: currentColor;
+			}
+
+			&-border-radius {
+				border-radius:  em(3px / $calculated-symbol-basis) * .5;
+			}
+
+			&-circle-ready {
+				border-radius: 50%;
+			}
+	
+			&-vertical {
+				width: em(3px / $calculated-symbol-basis);
+			}
+	
+			&-horizontal {
+				height: em(3px / $calculated-symbol-basis);
+			}
+	
+			&-full-width {
+				width: 1em;
+			}
+	
+			&-full-height {
+				height: 1em;
+			}
+		}
+		
+		&-no-before {
+			&:before {
+				content:none;
+			}
 		}
 	}
 
-	&-text-left,
-	&-text-right,
-	&-text-center,
-	&-text-justify,
+	&-edit {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+		
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+			}
 
-	&-arrow-up,
-	&-arrow-down,
-	&-arrow-left,
-	&-arrow-right,
+			&:before {
+				@extend %for-valid-symbol-pseudo-filled;
+				clip-path: polygon(
+					0 0,
+					50% 0,
+					50% em(2px/$calculated-symbol-basis),
+					em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
+					em(2px/$calculated-symbol-basis) calc(100% - #{em(2px/$calculated-symbol-basis)}),
+					calc(100% - #{em(2px/$calculated-symbol-basis)}) calc(100% - #{em(2px/$calculated-symbol-basis)}), 
+					calc(100% - #{em(2px/$calculated-symbol-basis)}) 50%,
+					100% 50%,
+					100% 100%,
+					0 100%
+				);
+			}
 
-	&-arrow-double-up,
-	&-arrow-double-down,
-	&-arrow-double-left,
-	&-arrow-double-right,
+			&:after {
+				@extend %for-valid-symbol-pseudo-full-height;
+				border: em(2px/$calculated-symbol-basis) solid;
+				width: em(7px/$calculated-symbol-basis );
+				border-radius: 0 0 50% 50%;
+				transform: rotate(45deg);
+				bottom: auto;
+				left: auto;
+				top: -.25em;
+				background-image: 
+					repeating-linear-gradient(
+						180deg,
+						currentColor 0,
+						currentColor em(2px/$calculated-symbol-basis),
+						transparent em(2px/$calculated-symbol-basis),
+						transparent 100%
+					)
+				;
+				background-repeat: no-repeat;
+				background-position: bottom center;
+				background-size: 100% .625em;
 
-	&-plus,
-	&-minus,
-	&-check,
+			}
+		}
+	}
+
+	&-delete {
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+		
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+			}
+			
+
+			&:before {
+				@extend %for-valid-symbol-pseudo-filled;
+				height: em(2px/$calculated-symbol-basis);
+				width: .5em;
+				bottom:1em;
+				top: auto;
+				border-top-right-radius: .125em;
+				border-top-left-radius: .125em;
+
+			}
+
+			&:after {
+				border: em(2px/$calculated-symbol-basis) solid;
+				border-bottom-right-radius: .2em;
+				border-bottom-left-radius: .2em;
+				width: 1em;
+				height:1.125em;
+				bottom: -.125em;
+				top: auto;
+				background-image: 
+					repeating-linear-gradient(
+						90deg,
+						currentColor 0,
+						currentColor em(2px/$calculated-symbol-basis),
+						transparent em(2px/$calculated-symbol-basis),
+						transparent em(4px/$calculated-symbol-basis),
+						currentColor em(4px/$calculated-symbol-basis),
+						currentColor em(6px/$calculated-symbol-basis)
+					)
+					;
+				background-size: em(6px/$calculated-symbol-basis) .5em;
+				background-position: center center;
+				background-repeat: no-repeat;
 
 
-	&-close,
+
+			}
+		}
+	}
+
+
+
+	&-stop,
+	&-square {
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol-no-before;
+			@extend %for-valid-symbol;
+		
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-filled;
+				width: .875em;
+				height: .875em;
+			}
+		}
+	}
+
+	&-play {
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+			@extend %for-valid-symbol-no-before;
+
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				border-top: .5em solid transparent;
+				border-bottom: .5em solid transparent;
+				border-left: .875em solid;
+				left: .1875em;
+			}
+		}
+	}
+
+	&-pause {
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+			
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-filled;
+				width: .3125em;
+				height: .875em
+			}
+
+			&:before {
+				right: .5em;
+			}
+
+			&:after {
+				left: .5em;
+			}
+		}
+	}
 
 	&-search {
-		&:before,&:after {
-			border-radius:  em(3px / $body-font-size) * .5;
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+			transform: rotate(-45deg);
+
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+			}
+			
+			
+			&:before {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-full-height;
+				@extend %for-valid-symbol-pseudo-full-width;
+				@extend %for-valid-symbol-pseudo-circle-ready;
+				border: em(3px / $calculated-symbol-basis) solid;
+				bottom: auto;
+				top: -.25em
+
+			}
+
+			&:after {
+				@extend %for-valid-symbol-pseudo-vertical;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-filled;
+				height: .625em;
+				top: calc(.75em - (#{em(3px / $calculated-symbol-basis)} * .5));
+				bottom: auto;
+			}
 		}
 	}
+
+	&-time,
+	&-timer {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+			
+			
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-circle-ready;
+				// @extend %for-valid-symbol-pseudo-full-height;
+				// @extend %for-valid-symbol-pseudo-full-width;
+				border: em(2px / $calculated-symbol-basis) solid;
+				width: 1.125em;
+				height: 1.125em;
+				left: -.5em;
+				right: -.5em;
+				bottom: -.125em;
+				top: auto;
+				background-image: 
+					//long
+					repeating-linear-gradient(
+						90deg,
+						currentColor 0,
+						currentColor em(2px / $calculated-symbol-basis),
+						transparent em(2px / $calculated-symbol-basis),
+						transparent 100%,
+					),
+					// short
+					linear-gradient(
+						0deg,
+						currentColor 0,
+						currentColor em(2px / $calculated-symbol-basis),
+						transparent em(2px / $calculated-symbol-basis),
+						transparent 100%,
+					),
+					;
+
+				background-position:
+					(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
+					;
+				background-size:
+					.3em .4em
+					// // .25em .5em
+					;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+
+	&-time {
+		@extend %for-valid-symbol-no-before;
+	}
+
+	&-timer {
+		&:before {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-filled;
+			width: .5em;
+			height:em(2px / $calculated-symbol-basis);
+			right: -.1875em;
+			left: auto;
+			bottom: auto;
+			transform: rotate(45deg);
+		}
+	}
+
 
 
 	&-plus,
 	&-minus{
 
+		
 		&,
 		.active > &-toggle,
 		.open > &-toggle {
-		
+			
 			&:after{
-				content:"";
-				height: em(3px / $body-font-size);
-				width:1em;
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-horizontal;
+				@extend %for-valid-symbol-pseudo-full-width;
+				@extend %for-valid-symbol-pseudo-filled;
 				// top: 50%;
 				// bottom: auto;
 				// transform: translateY(-50%);
 			}
+		}
+	}
+
+	&-plus {
+		&,
+		.active > &-toggle,
+		.open > &-toggle {
+			@extend %for-valid-symbol;
 
 			&:before {
-				content:"";
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-vertical;
+				@extend %for-valid-symbol-pseudo-full-height;
+				@extend %for-valid-symbol-pseudo-filled;
 				height:1em;
 				// left: 50%;
 				// right: auto;
@@ -103,129 +404,254 @@ $prefix: '.symbol';
 			}
 		}
 	}
-
-	
-	&-burger {
-		&:before {
-			content: none;
-		}
-
-		&:after {
-			box-shadow:
-				0 #{em(2px / $body-font-size) * 3} 0 0,
-				0 #{em(2px / $body-font-size) * -3} 0 0
-				;
-			height:  em(2px / $body-font-size);
-			left: -.1em;
-			right: -.1em;
-			border-radius:  em(2px / $body-font-size) * .5;
-		}
-	}
-
-	&-plus:before,
-	&-minus:before,
-
-	&-check:before,
-	&-check:after,
-
-	&-close:before,
-	&-close:after,
-
-	&-arrow-up:after,
-	&-arrow-down:after,
-	&-arrow-left:after,
-	&-arrow-right:after,
-
-	&-arrow-up:before,
-	&-arrow-down:before,
-	&-arrow-left:before,
-	&-arrow-right:before,
-
-	&-arrow-double-up:after,
-	&-arrow-double-down:after,
-	&-arrow-double-left:after,
-	&-arrow-double-right:after,
-
-	&-arrow-double-up:before,
-	&-arrow-double-down:before,
-	&-arrow-double-left:before,
-	&-arrow-double-right:before,
-
-	&-search:after{
-		width: em(3px / $body-font-size);
-	}
 	
 	&-minus {
 
 		&,
 		.active > &-toggle,
 		.open > &-toggle  {
-			&:before{
-				content:none;
-			}
+			@extend %for-valid-symbol;
+			@extend %for-valid-symbol-no-before;
 		}
 	}
 
+	
+	&-check {
 
-	&-text {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
 
-		&-left,
-		&-right,
-		&-center,
-		&-justify {
 			&:before,&:after {
-				height: em(2px / $body-font-size);
-				width: .5em;
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-vertical;
+				@extend %for-valid-symbol-pseudo-filled;
+				right: auto;
+				top: auto;
+				left: .1875em;
+				bottom: .0625em;
+				transform-origin: center bottom;
 			}
-		}
 
-		&-left {
-			&:after {
-				box-shadow:
-				-.25em #{em(2px / $body-font-size) * -2} 0 0,
-				.25em #{em(2px / $body-font-size) * -2} 0 0,
-				0 #{em(2px / $body-font-size) * -2} 0 0,
-				-.25em 0 0 0,
-				.25em 0 0 0,
-				-.25em #{em(2px / $body-font-size) * 2} 0 0,
-				0em #{em(2px / $body-font-size) * 2} 0 0,
-				;
+			&:before {
+				height: .5em;
+				transform: rotate(-45deg);
+				margin-left: em((3px * .5)/$calculated-symbol-basis);
 			}
-		}
 
-		&-right {
 			&:after {
-				box-shadow:
-				-.25em #{em(2px / $body-font-size) * -2} 0 0,
-				.25em #{em(2px / $body-font-size) * -2} 0 0,
-				0 #{em(2px / $body-font-size) * -2} 0 0,
-				-.25em 0 0 0,
-				.25em 0 0 0,
-				.25em #{em(2px / $body-font-size) * 2} 0 0,
-				0 #{em(2px / $body-font-size) * 2} 0 0,
-				;
-			}
-		}
-
-		&-center {
-			&:after {
-				box-shadow:
-				-.25em #{em(2px / $body-font-size) * -2} 0 0,
-				.25em #{em(2px / $body-font-size) * -2} 0 0,
-				0 #{em(2px / $body-font-size) * -2} 0 0,
-				-.25em 0 0 0,
-				.25em 0 0 0,
-				-.125em #{em(2px / $body-font-size) * 2} 0 0,
-				.125em #{em(2px / $body-font-size) * 2} 0 0,
-				;
+				height: 1em;
+				transform: rotate(45deg);
 			}
 		}
 	}
+
+	&-close {
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-vertical;
+				@extend %for-valid-symbol-pseudo-filled;
+				height: 1.25em;
+			}
+			&:before {
+				transform: rotate(45deg)
+			}
+			&:after {
+				transform: rotate(-45deg)
+			}
+		}
+	}
+
+
+	&-map {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+				transform:translateY(#{em(5/$calculated-symbol-basis) * -1});
+				transform-origin: top center;
+				bottom:auto;
+			}
+
+			&:before {
+				border-radius: 50%;
+				height:1em;
+				width:1em;
+				border: #{em(4px / $calculated-symbol-basis)} solid;
+				
+			}
+
+			&:after {
+				border: #{em(6px / $calculated-symbol-basis)} solid transparent;
+				border-top: #{em(12px / $calculated-symbol-basis)} solid;
+				border-bottom:0;
+				width: 0;
+				height: 0;
+				margin: 0 auto;
+				top:calc(1em - #{em(3px / $calculated-symbol-basis)});
+			}
+		}
+	}
+
+	&-download {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+
+			&:before,&:after {
+				@extend %for-valid-symbol-pseudo;
+			}
+
+			&:before {
+				@extend %for-valid-symbol-pseudo-full-width;
+				height: .375em;
+				border-bottom: em(2px/$calculated-symbol-basis) solid;
+				border-right: em(2px/$calculated-symbol-basis) solid;
+				border-left: em(2px/$calculated-symbol-basis) solid;
+				top: auto;
+			}
+
+			&:after {
+				@extend %for-valid-symbol-pseudo-filled;
+				clip-path: polygon(
+					calc(50% - #{em(2px/$calculated-symbol-basis)} * .5) 0,
+					calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 0,
+					calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 60%,
+					100% 60%,
+					50% 100%,
+					0 60%,
+					calc(50% - #{em(2px/$calculated-symbol-basis)} * .5)  60%
+				);
+				height: .625em;
+				width: .5em;
+				bottom: auto;
+				// background-image:
+				// 	repeating-linear-gradient(
+				// 		90deg,
+				// 		transparent 0,
+				// 		transparent calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
+				// 		currentColor calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
+				// 		currentColor calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
+				// 		transparent calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
+				// 		transparent 100%
+				// 	),
+				// 	linear-gradient(
+				// 		45deg,
+				// 		transparent 0,
+				// 		transparent 50%,
+				// 		currentColor 50%,
+				// 		currentColor 100%
+				// 	),
+
+				// 	linear-gradient(
+				// 		-45deg,
+				// 		transparent 0,
+				// 		transparent 50%,
+				// 		currentColor 50%,
+				// 		currentColor 100%
+				// 	)
+				// 	;
+
+				// background-size:
+				// 	100% 90%,
+				// 	.25em .25em,
+				// 	.25em .25em
+				// 	;
+				// background-position:
+				// 	0 0,
+				// 	.125em 100%,
+				// 	bottom 0 right .125em,
+				// 	;
+				// background-repeat: no-repeat;
+			}
+		}
+	}
+
+	
+	&-burger {
+		&,
+		.active > &-toggle,
+		.open > &-toggle {
+			@extend %for-valid-symbol;
+
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-filled;
+				
+
+				box-shadow:
+					0 #{em(3px / $calculated-symbol-basis) * 2} 0 0,
+					0 #{em(3px / $calculated-symbol-basis) * -2} 0 0
+					;
+				height:  em(3px / $calculated-symbol-basis);
+				left: -.1em;
+				right: -.1em;
+			}
+		}
+	}
+
+
+
+	&-kebab {
+
+		&-vertical,
+		&-horizontal {
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				@extend %for-valid-symbol-no-before;
+				@extend %for-valid-symbol;
+
+				&:after {
+					@extend %for-valid-symbol-pseudo;
+					@extend %for-valid-symbol-pseudo-filled;
+					@extend %for-valid-symbol-pseudo-circle-ready;
+					width: em(4px/$calculated-symbol-basis);
+					height: em(4px/$calculated-symbol-basis);
+				}
+			}
+		}
+
+		&-vertical {
+			width: em(4px/$calculated-symbol-basis);
+			&:after {
+				box-shadow: 
+					0 em((4px * -2) /$calculated-symbol-basis) 0 0,
+					0 em((4px * 2) /$calculated-symbol-basis) 0 0
+					;
+			}
+		}
+
+		&-horizontal {
+			width: em((4px * 5)/$calculated-symbol-basis);
+			&:after {
+				box-shadow: 
+				em((4px * -2) /$calculated-symbol-basis)0  0 0,
+				em((4px * 2) /$calculated-symbol-basis) 0 0 0
+					;
+			}
+		}
+	}
+
 	&-arrow {
 		// &-left,
 		// &-right {
 		// 	&,&-toggle {
-		// 		top: em(-1px / $body-font-size);
+		// 		top: em(-1px / $calculated-symbol-basis);
 		// 	}
 		// }
 
@@ -236,20 +662,32 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				height:em(10px/$body-font-size);
+
+				&,
+				.active > &-toggle,
+				.open > &-toggle  {
+					@extend %for-valid-symbol;
+
 	
-				&:before,&:after {
-					transform-origin: center em((3px * .5) / $body-font-size);
-					height: em(11px/$body-font-size);
-					top: em(2px / $body-font-size);
-				}
-	
-				&:before{
-					transform: rotate(-45deg);
-				}
-	
-				&:after{
-					transform: rotate(45deg);
+					height: .625em;
+		
+					&:before,&:after {
+						@extend %for-valid-symbol-pseudo;
+						@extend %for-valid-symbol-pseudo-border-radius;
+						@extend %for-valid-symbol-pseudo-vertical;
+						@extend %for-valid-symbol-pseudo-filled;
+						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
+						height: .6875em;
+						top: em(2px / $calculated-symbol-basis);
+					}
+		
+					&:before{
+						transform: rotate(-45deg);
+					}
+		
+					&:after{
+						transform: rotate(45deg);
+					}
 				}
 			}
 		}
@@ -259,9 +697,12 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-	
-				&:before,&:after {
-					top: em(2px / $body-font-size);
+				&,
+				.active > &-toggle,
+				.open > &-toggle  {
+					&:before,&:after {
+						top: em(2px / $calculated-symbol-basis);
+					}
 				}
 			}
 		}
@@ -271,117 +712,55 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				&:before,&:after {
-					top: em((2px * 4) / $body-font-size);
+				&,
+				.active > &-toggle,
+				.open > &-toggle  {
+					&:before,&:after {
+						top: em((2px * 4) / $calculated-symbol-basis);
+					}
+
+					&:before{
+						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * .5)  * -3.5)/$calculated-symbol-basis) 0 0;
+					}
+
+					&:after{
+						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * -3.5)/$calculated-symbol-basis) 0 0;
+					}
 				}
-
-				&:before{
-					box-shadow: em(((3px * .5)  * 3.5)/$body-font-size) em(((3px * .5)  * -3.5)/$body-font-size) 0 0;
-				}
-
-				&:after{
-					box-shadow: em(((3px * .5)  * -3.5)/$body-font-size) em(((3px * .5)  * -3.5)/$body-font-size) 0 0;
-				}
 			}
 		}
 
-	}
-
-	&-close {
-		&:before,&:after {
-			height: 1.25em;
-		}
-		&:before {
-			transform: rotate(45deg)
-		}
-		&:after {
-			transform: rotate(-45deg)
-		}
-	}
-	
-	&-check {
-		&:before,&:after {
-			right: auto;
-			top: auto;
-			left: .2125em;
-			bottom: .1875em;
-			transform-origin: center bottom;
-		}
-
-		&:before {
-			height: .5em;
-			transform: rotate(-45deg);
-			margin-left: em((3px * .5)/$body-font-size);
-		}
-
-		&:after {
-			height: 1em;
-			transform: rotate(45deg);
-		}
-	}
-
-
-	&-kebab {
-
-		&-vertical,
-		&-horizontal {
-			
-			&:before {
-				content: none;
-			}
-			&:after {
-				width: em(5px/$body-font-size);
-				height: em(5px/$body-font-size);
-				border-radius: em(5px/$body-font-size);
-			}
-		}
-
-		&-vertical {
-			width: em(5px/$body-font-size);
-			&:after {
-				box-shadow: 
-					0 em((5px * -2) /$body-font-size) 0 0,
-					0 em((5px * 2) /$body-font-size) 0 0
-					;
-			}
-		}
-
-		&-horizontal {
-			width: em((5px * 5)/$body-font-size);
-			&:after {
-				box-shadow: 
-					em(-10px/$body-font-size) 0 0 0,
-					em(10px/$body-font-size) 0 0 0
-					;
-			}
-		}
 	}
 
 	&-caret {
-		// width: em(($calculated-symbol-caret-width * .5) / $body-font-size);
+		// width: em(($calculated-symbol-caret-width * .5) / $calculated-symbol-basis);
 		// width:0;
 
 		&-left,
 		&-right,
 		&-up,
 		&-down {
+			@extend %for-valid-symbol;
+			@extend %for-valid-symbol-no-before;
 			height:.625em;
 
-			&:before {
-				content:none;
-			}
+			&:after {
 
-			@include arrow-triangle((
-				pseudo: after, 
-				direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
-				display: null,
-				size-base: inherit,
-				main-size: $calculated-symbol-caret-height,//orientation of direction
-				cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
-			)){
-				display:inline-block;
-				vertical-align:middle;
-			};
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-border-radius;
+				@extend %for-valid-symbol-pseudo-vertical;
+				@include arrow-triangle((
+					pseudo: override, 
+					direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
+					display: null,
+					size-base: inherit,
+					main-size: $calculated-symbol-caret-height,//orientation of direction
+					cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
+				)){
+					display:inline-block;
+					vertical-align:middle;
+				};
+			}
 		}
 
 	}
@@ -416,95 +795,111 @@ $prefix: '.symbol';
 		}
 	}
 
-	&-stop,
-	&-square {
-		&:before {
-			content: none;
+
+	&-text {
+
+		&-left,
+		&-right,
+		&-center,
+		&-justify {
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				@extend %for-valid-symbol;
+				@extend %for-valid-symbol-no-before;
+
+
+				&:after {
+					@extend %for-valid-symbol-pseudo;
+					@extend %for-valid-symbol-pseudo-border-radius;
+					@extend %for-valid-symbol-pseudo-filled;
+					height: em(2px / $calculated-symbol-basis);
+					width: .5em;
+				}
+			}
 		}
-		&:after {
-			width: .875em;
-			height: .875em;
+
+		&-left {
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				&:after {
+					box-shadow:
+					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+
+					-.25em 0 0 0,
+					.25em 0 0 0,
+
+					-.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					0em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					;
+				}
+			}
+		}
+
+		&-right {
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				&:after {
+					box-shadow:
+					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+
+					-.25em 0 0 0,
+					.25em 0 0 0,
+					
+					.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					;
+				}
+			}
+		}
+
+		&-center {
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				&:after {
+					box-shadow:
+					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+
+					-.25em 0 0 0,
+					.25em 0 0 0,
+
+					-.125em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					.125em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					;
+				}
+			}
+		}
+
+
+		&-justify {
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				&:after {
+					box-shadow:
+					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+
+					-.25em 0 0 0,
+					.25em 0 0 0,
+
+					-.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					;
+				}
+			}
 		}
 	}
-
-	&-play {
-		&:before {
-			content:none;
-		}
-
-		&:after {
-			background:none;
-			border-top: .5em solid transparent;
-			border-bottom: .5em solid transparent;
-			border-left: .875em solid;
-			left: .1875em;
-		}
-	}
-
-	&-pause {
-		&:before,&:after {
-			width: .3125em;
-			height: .875em
-		}
-
-		&:before {
-			right: .5em;
-		}
-
-		&:after {
-			left: .5em;
-		}
-	}
-
-	&-search {
-		transform: rotate(-45deg);
-		
-		
-		&:before {
-			width: 1em;
-			height: 1em;
-			background:none!important;
-			border-radius: 50%;
-			border: em(3px / $body-font-size) solid;
-			bottom: auto;
-			top: -.25em
-
-		}
-
-		&:after {
-			height: .625em;
-			top: calc(.75em - (#{em(3px / $body-font-size)} * .5));
-			bottom: auto;
-		}
-	}
-
-	&-map {
-
-		&:before,&:after {
-			background:none!important;
-			transform:translateY(#{em(5/$body-font-size) * -1});
-			transform-origin: top center;
-			bottom:auto;
-		}
-
-		&:before {
-			border-radius: 50%;
-			height:1em;
-			width:1em;
-			border: #{em(4px / $body-font-size)} solid;
-			
-		}
-
-		&:after {
-			border: #{em(6px / $body-font-size)} solid transparent;
-			border-top: #{em(12px / $body-font-size)} solid;
-			border-bottom:0;
-			width: 0;
-			height: 0;
-			margin: 0 auto;
-			top:calc(1em - #{em(3px / $body-font-size)});
-		}
-	}
-
 	
 }

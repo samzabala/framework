@@ -268,7 +268,7 @@ Kills ya boi
 
 # Board (jQuery version only)
 
-Same functions as modal except this looks different because the design says so fUCK YOU
+Same functions as modal except this looks different because the design says so biechhhh
 
 
 ```html
@@ -278,3 +278,5 @@ Same functions as modal except this looks different because the design says so f
 	<!-- Put ya content here -->
 </div>
 ```
+
+halat ta igwa pa akong ilalaag igdi

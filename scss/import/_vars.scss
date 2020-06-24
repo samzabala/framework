@@ -22,45 +22,59 @@
 
 		$brand-color-neutral: #8d8d8d !default;
 			$brand-color-neutral-light: lighten($brand-color-neutral,10) !default;
-			$brand-color-neutral-lighter: lighten($brand-color-neutral-light,6) !default;
+			$brand-color-neutral-lighter: lighten($brand-color-neutral-light,10) !default;
+			$brand-color-neutral-lightest: lighten($brand-color-neutral-light,25) !default;
 			$brand-color-neutral-dark: darken($brand-color-neutral,10) !default;
 			$brand-color-neutral-darker: darken($brand-color-neutral,25) !default;
+			$brand-color-neutral-darkest: darken($brand-color-neutral,35) !default;
 		
 		$brand-color-primary: #007ece !default;
 			$brand-color-primary-light: lighten($brand-color-primary,10) !default;
-			$brand-color-primary-lighter: lighten($brand-color-primary-light,6) !default;
+			$brand-color-primary-lighter: lighten($brand-color-primary-light,10) !default;
+			$brand-color-primary-lightest: lighten($brand-color-primary-light,25) !default;
 			$brand-color-primary-dark: darken($brand-color-primary,10) !default;
 			$brand-color-primary-darker: darken($brand-color-primary,25) !default;
+			$brand-color-primary-darkest: darken($brand-color-primary,35) !default;
 		
 		$brand-color-secondary: #ff009c !default;
 			$brand-color-secondary-light: lighten($brand-color-secondary,10) !default;
-			$brand-color-secondary-lighter: lighten($brand-color-secondary-light,6) !default;
+			$brand-color-secondary-lighter: lighten($brand-color-secondary-light,10) !default;
+			$brand-color-secondary-lightest: lighten($brand-color-secondary-light,25) !default;
 			$brand-color-secondary-dark: darken($brand-color-secondary,10) !default;
 			$brand-color-secondary-darker: darken($brand-color-secondary,25) !default;
+			$brand-color-secondary-darkest: darken($brand-color-secondary,35) !default;
 
 		$brand-color-accent: #f5b83d!default;
 			$brand-color-accent-light: lighten($brand-color-accent,10) !default;
-			$brand-color-accent-lighter: lighten($brand-color-accent-light,6) !default;
+			$brand-color-accent-lighter: lighten($brand-color-accent-light,10) !default;
+			$brand-color-accent-lightest: lighten($brand-color-accent-light,25) !default;
 			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
 			$brand-color-accent-darker: darken($brand-color-accent,25) !default;
+			$brand-color-accent-darkest: darken($brand-color-accent,35) !default;
 
 		$brand-color-success: #15b800 !default;
 			$brand-color-success-light: lighten($brand-color-success,10) !default;
-			$brand-color-success-lighter: lighten($brand-color-success-light,6) !default;
+			$brand-color-success-lighter: lighten($brand-color-success-light,10) !default;
+			$brand-color-success-lightest: lighten($brand-color-success-light,25) !default;
 			$brand-color-success-dark: darken($brand-color-success,10) !default;
 			$brand-color-success-darker: darken($brand-color-success,25) !default;
+			$brand-color-success-darkest: darken($brand-color-success,35) !default;
 
 		$brand-color-caution: #fd7f03 !default;
 			$brand-color-caution-light: lighten($brand-color-caution,10) !default;
-			$brand-color-caution-lighter: lighten($brand-color-caution-light,6) !default;
+			$brand-color-caution-lighter: lighten($brand-color-caution-light,10) !default;
+			$brand-color-caution-lightest: lighten($brand-color-caution-light,25) !default;
 			$brand-color-caution-dark: darken($brand-color-caution,10) !default;
 			$brand-color-caution-darker: darken($brand-color-caution,25) !default;
+			$brand-color-caution-darkest: darken($brand-color-caution,35) !default;
 
 		$brand-color-error: #fd0303 !default;
 			$brand-color-error-light: lighten($brand-color-error,10) !default;
-			$brand-color-error-lighter: lighten($brand-color-error-light,6) !default;
+			$brand-color-error-lighter: lighten($brand-color-error-light,10) !default;
+			$brand-color-error-lightest: lighten($brand-color-error-light,25) !default;
 			$brand-color-error-dark: darken($brand-color-error,10) !default;
 			$brand-color-error-darker: darken($brand-color-error,25) !default;
+			$brand-color-error-darkest: darken($brand-color-error,35) !default;
 
 
 		$brand-color-intensity-1: $brand-color-accent !default;
@@ -69,6 +83,51 @@
 			$brand-color-intensity-2: mix($brand-color-intensity-1,$brand-color-intensity-5,75%) !default;
 			$brand-color-intensity-3: mix($brand-color-intensity-1,$brand-color-intensity-5,50%) !default;
 			$brand-color-intensity-4: mix($brand-color-intensity-1,$brand-color-intensity-5,25%) !default;
+
+
+
+			$brand-color-intensity-1-light: lighten($brand-color-intensity-1,10) !default;
+			$brand-color-intensity-1-lighter: lighten($brand-color-intensity-1-light,10) !default;
+			$brand-color-intensity-1-lightest: lighten($brand-color-intensity-1-light,25) !default;
+			$brand-color-intensity-1-dark: darken($brand-color-intensity-1,10) !default;
+			$brand-color-intensity-1-darker: darken($brand-color-intensity-1,25) !default;
+			$brand-color-intensity-1-darkest: darken($brand-color-intensity-1,35) !default;
+
+
+
+			$brand-color-intensity-2-light: lighten($brand-color-intensity-2,10) !default;
+			$brand-color-intensity-2-lighter: lighten($brand-color-intensity-2-light,10) !default;
+			$brand-color-intensity-2-lightest: lighten($brand-color-intensity-2-light,25) !default;
+			$brand-color-intensity-2-dark: darken($brand-color-intensity-2,10) !default;
+			$brand-color-intensity-2-darker: darken($brand-color-intensity-2,25) !default;
+			$brand-color-intensity-2-darkest: darken($brand-color-intensity-2,35) !default;
+
+
+
+			$brand-color-intensity-3-light: lighten($brand-color-intensity-3,10) !default;
+			$brand-color-intensity-3-lighter: lighten($brand-color-intensity-3-light,10) !default;
+			$brand-color-intensity-3-lightest: lighten($brand-color-intensity-3-light,25) !default;
+			$brand-color-intensity-3-dark: darken($brand-color-intensity-3,10) !default;
+			$brand-color-intensity-3-darker: darken($brand-color-intensity-3,25) !default;
+			$brand-color-intensity-3-darkest: darken($brand-color-intensity-3,35) !default;
+
+
+
+			$brand-color-intensity-4-light: lighten($brand-color-intensity-4,10) !default;
+			$brand-color-intensity-4-lighter: lighten($brand-color-intensity-4-light,10) !default;
+			$brand-color-intensity-4-lightest: lighten($brand-color-intensity-4-light,25) !default;
+			$brand-color-intensity-4-dark: darken($brand-color-intensity-4,10) !default;
+			$brand-color-intensity-4-darker: darken($brand-color-intensity-4,25) !default;
+			$brand-color-intensity-4-darkest: darken($brand-color-intensity-4,35) !default;
+
+			$brand-color-intensity-5-light: lighten($brand-color-intensity-5,10) !default;
+			$brand-color-intensity-5-lighter: lighten($brand-color-intensity-5-light,10) !default;
+			$brand-color-intensity-5-lightest: lighten($brand-color-intensity-5-light,25) !default;
+			$brand-color-intensity-5-dark: darken($brand-color-intensity-5,10) !default;
+			$brand-color-intensity-5-darker: darken($brand-color-intensity-5,25) !default;
+			$brand-color-intensity-5-darkest: darken($brand-color-intensity-5,35) !default;
+
+			
 
 		$brand-gradient-start: $brand-color-primary !default;
 		$brand-gradient-end: $brand-color-secondary !default;
@@ -95,7 +154,7 @@
 	// PADDING globals
 		$gutter-base: 40px !default;
 			$gutter-large: 70px !default;
-			$gutter-small: 20px !default;
+			$gutter-small: 25px !default;
 			$gutter-micro: 10px !default;
 
 	// Border radius globals
@@ -204,7 +263,7 @@
 		$table-cell-border-color: $theme-background-contrast !default;
 			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;
 		$table-cell-border-width: 1px !default;
-		$table-cell-gutter: 10px !default;
+		$table-cell-gutter: $gutter-small !default;
 
 		$table-heading-font-size: 14px !default;
 		$table-heading-height: 45px !default;
@@ -474,8 +533,6 @@
 		$alert-box-shadow: $box-shadow-base $brand-color-base !default;
 		$alert-border-radius: $border-radius-small !default;
 
-
-			// $alert-title-font-size: 1em !default;
 			$alert-title-font-weight: $body-font-weight-bold !default;
 			$alert-title-font-style: normal !default;
 			$alert-title-color: inherit !default;
@@ -529,6 +586,7 @@
 			$module-gutter-x-mobile: $gutter-small !default;
 		$module-gutter-y: $gutter-small !default;
 			$module-gutter-y-mobile: $gutter-small !default;
+
 		
 		$module-gutter-between: 20px !default;
 
@@ -569,7 +627,7 @@
 			$modal-gutter-mobile: $gutter-small !default;
 
 		//modal board
-			$board-padding-spacer: $gutter-large !default;
+			$board-padding-spacer: $gutter-base !default;
 			$board-close-button-font-size: 1rem !default;
 			$board-close-offset-x: 1.25em !default;
 			$board-close-offset-y: 1.25em !default;
@@ -594,6 +652,8 @@
 
 	// progress
 		$progress-height: 20px !default;
+			$progress-height-large: 30px !default;
+			$progress-height-small: 10px !default;
 		$progress-background-color: transparent !default;
 			$progress-background-color-inverse: transparent !default;
 		$progress-border-radius: 20px !default;
@@ -646,6 +706,8 @@
 			$list-group-border-color-inverse: $theme-background-contrast-inverse !default;
 		$list-group-border-width: 1px !default;
 		$list-group-height: 50px !default;
+		$list-group-gutter-x: $gutter-small !default;
+		$list-group-interactive-background-hover: rgba($brand-color-primary,.2);
 		
 	// badge
 		$badge-size: 25px !default;
@@ -663,9 +725,50 @@
 		$badge-border-color: $brand-color-background !default;
 		$badge-border-width: 7px !default;
 		$badge-box-shadow: $box-shadow-mild $brand-color-base !default;
+
+	// highlight
+
+		$highlight-height: $body-font-size * 1.75 !default;
+		$highlight-padding-x: 10px !default;
+		$highlight-margin-x: 0 !default;
+		$highlight-font-size: 13px !default;
+		$highlight-font-weight: inherit !default;
+		$highlight-font-style: normal !default;
+		$highlight-color: $brand-color-background !default;
+		$highlight-text-transform: none !default;
+		$highlight-gutter-x: 20px !default;
+		$highlight-border-radius: $border-radius-base !default;
+
+
+		$highlight-default-color: inherit !default;
+		$highlight-default-background: rgba($brand-color-base,.2) !default;
+
+
+			$highlight-primary-color: $brand-color-primary !default;
+			$highlight-primary-background: $brand-color-primary-lightest !default;
+
+			$highlight-secondary-color: $brand-color-secondary !default;
+			$highlight-secondary-background: $brand-color-secondary-lightest !default;
+
+			$highlight-accent-color: $brand-color-accent !default;
+			$highlight-accent-background: $brand-color-accent-lightest !default;
+
+			$highlight-neutral-color: $brand-color-neutral !default;
+			$highlight-neutral-background: $brand-color-neutral-lightest !default;
+
+			$highlight-success-color: $brand-color-success !default;
+			$highlight-success-background: $brand-color-success-lightest !default;
+
+			$highlight-caution-color: $brand-color-caution !default;
+			$highlight-caution-background: $brand-color-caution-lightest !default;
+
+			$highlight-error-color: $brand-color-error !default;
+			$highlight-error-background: $brand-color-error-lightest !default;
+
+
 	
 	// tag
-		$tag-height: 25px !default;
+		$tag-height: 28px !default;
 		$tag-gutter-x: 8px !default;
 		$tag-font-size: 13px !default;
 		$tag-font-weight: $body-font-weight-bold !default;
@@ -674,19 +777,95 @@
 		$tag-color: $brand-color-background !default;
 		$tag-text-transform: uppercase !default;
 		$tag-gutter-x: 20px !default;
-		$tag-border-radius: $border-radius-small !default;
+		$tag-border-radius: $tag-height * .5 !default;
 
-		$tag-default-color: $tag-color !default;
-		$tag-default-background: $brand-color-base !default;
+		$tag-default-color: inherit !default;
+		$tag-default-background: rgba($brand-color-base,.2) !default;
 
 
-		$tag-primary-color: $tag-color !default;
-		$tag-secondary-color: $tag-color !default;
-		$tag-accent-color: $tag-color !default;
-		$tag-neutral-color: $tag-color !default;
-		$tag-success-color: $tag-color !default;
-		$tag-caution-color: $tag-color !default;
-		$tag-error-color: $tag-color !default;
+			$tag-primary-color: $brand-color-primary !default;
+			$tag-primary-background: $brand-color-primary-lightest !default;
+
+			$tag-secondary-color: $brand-color-secondary !default;
+			$tag-secondary-background: $brand-color-secondary-lightest !default;
+
+			$tag-accent-color: $brand-color-accent !default;
+			$tag-accent-background: $brand-color-accent-lightest !default;
+
+			$tag-neutral-color: $brand-color-neutral !default;
+			$tag-neutral-background: $brand-color-neutral-lightest !default;
+
+			$tag-success-color: $brand-color-success !default;
+			$tag-success-background: $brand-color-success-lightest !default;
+
+			$tag-caution-color: $brand-color-caution !default;
+			$tag-caution-background: $brand-color-caution-lightest !default;
+
+			$tag-error-color: $brand-color-error !default;
+			$tag-error-background: $brand-color-error-lightest !default;
+
+
+
+			$tag-intensity-1-color: $brand-color-intensity-1 !default;
+			$tag-intensity-1-background: $brand-color-intensity-1-lightest !default;
+
+			$tag-intensity-2-color: $brand-color-intensity-2 !default;
+			$tag-intensity-2-background: $brand-color-intensity-2-lightest !default;
+
+			$tag-intensity-3-color: $brand-color-intensity-3 !default;
+			$tag-intensity-3-background: $brand-color-intensity-3-lightest !default;
+
+			$tag-intensity-4-color: $brand-color-intensity-4 !default;
+			$tag-intensity-4-background: $brand-color-intensity-4-lightest !default;
+
+			$tag-intensity-5-color: $brand-color-intensity-5 !default;
+			$tag-intensity-5-background: $brand-color-intensity-5-lightest !default;
+
+	//asset
+		$asset-thumbnail-width: 190px !default;
+		$asset-thumbnail-height: 100px !default;
+		$asset-thumbnail-border-width: 3px !default;
+		$asset-thumbnail-border-color: transparent !default;
+			$asset-thumbnail-border-color-hover: $brand-color-primary !default;
+		$asset-width: $asset-thumbnail-width !default;
+		$asset-thumbnail-margin-bottom: $gutter-micro !default;
+		$asset-transition-duration: $transition-duration-base!default;
+
+		$asset-image-glyph-size: 25px !default;
+		$asset-image-glyph-color: $brand-color-background !default;
+		$asset-image-glyph-text-transform: capitalize !default;
+		$asset-image-glyph-font-weight: 900 !default;
+
+		$asset-thumbnail-image-gutter: $gutter-micro !default;
+
+		$asset-border-radius: $border-radius-small !default;
+		$asset-box-shadow: $box-shadow-base $brand-color-base !default;
+
+
+		$asset-title-font-weight: $body-font-weight-bold !default;
+		$asset-title-font-style: normal !default;
+		$asset-title-color: $brand-color-neutral !default;
+		$asset-title-text-transform: none !default;
+		$asset-title-margin-bottom: $gutter-micro !default;
+
+		$asset-caption-font-weight: 300 !default;
+		$asset-caption-font-style: normal !default;
+		$asset-caption-color: $brand-color-neutral !default;
+		$asset-caption-text-transform: none !default;
+		$asset-title-margin-bottom: $gutter-micro !default;
+
+		//this has no meaning at all shut up
+		$asset-image-default-palette: $brand-color-neutral !default;
+			$asset-image-audio-palette: $brand-color-secondary !default;
+			$asset-image-code-palette: $brand-color-primary !default;
+			$asset-image-doc-palette: $brand-color-primary !default;
+			$asset-image-font-palette: $brand-color-accent !default;
+			$asset-image-img-palette: $brand-color-secondary !default;
+			$asset-image-pdf-palette: $brand-color-error !default;
+			$asset-image-table-palette: $brand-color-success !default;
+			$asset-image-text-palette: $brand-color-neutral !default;
+			$asset-image-video-palette: $brand-color-accent !default;
+			$asset-image-zip-palette: $brand-color-neutral !default;
 
 
 	// input
@@ -721,20 +900,19 @@
 		
 		$input-gutter-x: 20px !default;
 		$input-border-width: 1px !default;
-		$input-border-color: transparent !default;
-		$input-border-color-focus: rgba($brand-color-neutral,.2) !default;
+		$input-border-color: rgba($brand-color-neutral,.3) !default;
+		$input-border-color-focus: rgba($brand-color-neutral,.3) !default;
 		$input-border-radius: $border-radius-base !default;
 			$input-border-radius-large: $border-radius-base !default;
 			$input-border-radius-small: $border-radius-base !default;
-		$input-box-shadow: $box-shadow-base $brand-color-base !default;
+		$input-box-shadow: $box-shadow-base $brand-color-base !default; // 
 		$input-box-shadow-brand-basis: $box-shadow-base !default;
 			$input-box-shadow-focus: 0px 0 5px 0px $brand-color-primary !default;
-		$input-group-separator-color: rgba($brand-color-base,.1) !default;
+		// $input-group-separator-color: rgba($brand-color-base,.1) !default;
 		$input-color-feedback-opacity: .05 !default;
 
 		$input-label-gutter: 20px !default;
 
-		$input-label-line-height: 1.25 !default;
 		$input-label-font-size: 14px !default;
 			$input-label-font-size-large: 20px !default;
 			$input-label-font-size-small: 14px !default;
@@ -745,7 +923,7 @@
 			$input-label-font-family: $brand-font-primary !default;
 			$input-label-font-weight: $body-font-weight-bold !default;
 			$input-label-font-style: normal !default;
-			$input-label-text-transform: uppercase !default;
+			$input-label-text-transform: none !default;
 		
 			$input-label-horizontal-width: 25% !default;
 
@@ -775,21 +953,58 @@
 				$input-calendar-date-active-color: $brand-color-background !default;
 				$input-calendar-date-active-background: $brand-color-primary !default;
 
-				$input-calendar-days-border-width: 1px !default;
+				$input-calendar-days-border-width: 1px !default; 
 				$input-calendar-days-font-size: .75em !default;
 
-			//tags
+			//input tag tags
 				$input-tags-padding-x: 1em !default;
 				$input-tags-padding-y: .25em !default;
 					$input-tags-padding-y-large: $input-tags-padding-y !default;
 					$input-tags-padding-y-small: .0625em !default;
 				$input-tags-gutter-x: .25em !default;
+				$input-tags-gutter-y: $input-tags-gutter-x!default;
 
 				$input-tags-border-radius: $border-radius-large !default;
 
 
 				$input-tags-background: $brand-color-primary !default;
 				$input-tags-background-opacity: .2 !default;
+
+			//input toggle
+				$input-toggle-margin-x: 10px !default;
+
+				$input-toggle-width: 30px !default;
+					$input-toggle-width-small: $input-toggle-width !default;
+					$input-toggle-width-large: 40px !default;
+
+
+				$input-toggle-node-height: $input-toggle-width * .5 !default;
+				$input-toggle-node-width: $input-toggle-node-height !default;
+
+					$input-toggle-node-height-large: $input-toggle-width-large * .5 !default;
+					$input-toggle-node-width-large: $input-toggle-node-height-large !default;
+
+					$input-toggle-node-height-small: $input-toggle-width-small * .5 !default;
+					$input-toggle-node-width-small: $input-toggle-node-height-small !default;
+
+				$input-toggle-plate-height: 10px !default;
+					$input-toggle-plate-height-small: $input-toggle-plate-height !default;
+					$input-toggle-plate-height-large: 14px !default;
+
+				$input-toggle-node-border-radius: $input-toggle-node-height * .5 !default;
+				$input-toggle-plate-border-radius: $input-toggle-plate-height *  .5 !default;
+					$input-toggle-node-border-radius-small: $input-toggle-node-height-small * .5 !default;
+					$input-toggle-plate-border-radius-small: $input-toggle-plate-height-small *  .5 !default;
+					$input-toggle-node-border-radius-large: $input-toggle-node-height-large * .5 !default;
+					$input-toggle-plate-border-radius-large: $input-toggle-plate-height-large *  .5 !default;
+
+				$input-toggle-color-default: inherit !default;
+					$input-toggle-color-default-active: $brand-color-primary !default;
+
+				$input-toggle-label-color-default: $input-label-color !default;
+					$input-toggle-label-color-default-active: inherit !default;
+
+				$input-toggle-transition-duration: $transition-duration-short !default;
 				
 
 		//special-form
@@ -820,7 +1035,7 @@
 
 		$btn-font-size: $body-font-size !default;
 			$btn-font-size-large: 22px !default;
-			$btn-font-size-small: $body-font-size !default;
+			$btn-font-size-small: 12px !default;
 		$btn-line-height: 30px !default;
 		$btn-font-family: $brand-font-primary !default;
 		$btn-font-weight: $body-font-weight-bold !default;
@@ -833,19 +1048,19 @@
 			$btn-border-radius-small: $border-radius-base !default;
 		$btn-box-shadow: $box-shadow-base $brand-color-base !default;
 			$btn-box-shadow-hover: $box-shadow-base $brand-color-base !default;
-		$btn-group-separator-color: rgba($brand-color-base,.1) !default;
+		// $btn-group-separator-color: rgba($brand-color-base,.1) !default;
 		$btn-transition-duration: $transition-duration-base!default;
 
 		// SCHEMES
-			$btn-border-default: transparent !default;
-			$btn-background-default: transparent !default;
+			$btn-border-default: rgba($brand-color-neutral,.3) !default;
+			$btn-background-default: var(--theme-background) !default;
 			$btn-color-default: inherit !default;
 
-				$btn-border-default-hover: transparent !default;
+				$btn-border-default-hover: $btn-border-default !default;
 				$btn-background-default-hover: transparent !default;
 				$btn-color-default-hover: $brand-color-primary !default;
 			
-				$btn-border-default-active: transparent !default;
+				$btn-border-default-active: $btn-border-default !default;
 				$btn-background-default-active: $brand-color-primary !default;
 				$btn-color-default-active: $brand-color-background !default;
 

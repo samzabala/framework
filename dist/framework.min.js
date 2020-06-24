@@ -2301,7 +2301,7 @@ window.jQuery && jQuery.noConflict();
 			var selectorSiblings = frameWork.getSiblings(clicked);
 
 			var resetter = frameWork.getSiblings(clicked).filter(function(butt){
-				return butt.classList.contains('btn-toggle-reset');
+				return butt.classList.contains('btn-group-toggle-reset');
 			});
 
 			resetter.forEach(function(butt){
@@ -2310,7 +2310,7 @@ window.jQuery && jQuery.noConflict();
 
 			if(
 				(!clicked.closest('.btn-group-toggle-multiple'))
-				|| (clicked.classList.contains('btn-toggle-reset'))
+				|| (clicked.classList.contains('btn-group-toggle-reset'))
 			){
 				selectorSiblings.forEach(function(sibling){
 					sibling.classList.remove('active')

@@ -5,9 +5,14 @@ $prefix: '.modal';
 
 
 //also used by module
+@at-root %for-modal {
+	&-body {
+		overflow:hidden;
+	}
+}
 
 .body-modal-active {
-	overflow-y:hidden;
+	@extend %for-modal-body;
 }
 
 #{$prefix} {
@@ -16,7 +21,14 @@ $prefix: '.modal';
 
 	@at-root %for-modal {
 
+		&-scroller {
+			overflow-y: scroll;
 
+
+			&::-webkit-scrollbar {
+				display:none;
+			}
+		}
 
 		&-wrapper { 
 			position: fixed;
@@ -25,15 +37,8 @@ $prefix: '.modal';
 			right: 0!important;
 			bottom: 0!important;
 			margin: 0;
-			overflow-y: scroll;
 			background: $modal-overlay-bg;
-			z-index: 99999;
 			display:none!important;
-
-
-			&::-webkit-scrollbar {
-				display:none;
-			}
 
 			&.active {
 				display:block!important;
@@ -44,6 +49,8 @@ $prefix: '.modal';
 
 		&-wrapper {
 			@extend %for-modal-wrapper;
+			@extend %for-modal-scroller;
+			z-index: 99999;
 
 			padding: $modal-gutter;
 
@@ -65,7 +72,7 @@ $prefix: '.modal';
 			left:0;
 			right:0;
 
-			&:not([data-toggle="modal-close"]) {
+			&-not-closeable {
 				pointer-events:none;
 			}
 		}
@@ -84,6 +91,11 @@ $prefix: '.modal';
 			}
 			&-overlay {
 				@extend %for-modal-overlay;
+
+
+				&:not([data-toggle="modal-close"]) {
+					@extend %for-modal-overlay-not-closeable;
+				}
 			}
 		}
 

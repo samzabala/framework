@@ -1,4 +1,7 @@
 
+/*** input ***/
+
+
 //internal vars
 $calculated-input-font-size: $input-font-size;
 @if internal-is-convertable($input-font-size) {
@@ -34,17 +37,12 @@ $calculated-input-font-size: $input-font-size;
 
 $calculated-input-line-height: type-lead( $input-font-size,$input-line-height );
 
-	$calculated-input-label-line-height: type-lead( $input-label-font-size,$input-label-line-height );
-
 $calculated-input-single-line: $calculated-input-line-height;
 @if unitless($calculated-input-single-line) and unit($input-font-size) == px {
 	$calculated-input-single-line: 1em * #{ type-lead( $input-font-size,$input-line-height ) }
 }
 
-	$calculated-input-label-single-line: $calculated-input-label-line-height;
-	@if unitless($calculated-input-label-single-line) and unit($input-label-font-size) == px {
-		$calculated-input-label-single-line: 1em * #{ type-lead( $input-label-font-size,$input-label-line-height ) }
-	}
+$calculated-input-label-single-line: 1em * #{ $calculated-body-line-height };
 
 $calculated-input-height: $input-height;
 @if internal-is-convertable($input-height){
@@ -61,16 +59,7 @@ $calculated-input-height: $input-height;
 	$calculated-input-height-small: $input-height-small;
 	@if internal-is-convertable($input-height-small){
 		$calculated-input-height-small: rem($input-height-small/$body-font-size);
-	}
-
-
-$calculated-input-calendar-days-font-size: $input-calendar-days-font-size;
-@if internal-is-convertable($input-calendar-days-font-size,$input-font-size) {
-	$calculated-input-calendar-days-font-size: em($input-calendar-days-font-size / $input-font-size)
-}@else if internal-is-convertable($input-calendar-days-font-size){
-	$calculated-input-calendar-days-font-size: rem($input-calendar-days-font-size/$body-font-size);
-}
-	
+	}	
 
 $calculated-input-gutter-x: $input-gutter-x;
 @if internal-is-convertable($input-gutter-x,$input-font-size) {
@@ -93,113 +82,32 @@ $calculated-input-info-gutter-y: $input-info-gutter-y;
 	$calculated-input-info-gutter-y: em($input-info-gutter-y / $input-info-font-size)
 }
 
-//calendar
-	$calculated-input-calendar-block-gutter-x: $input-calendar-block-gutter-x;
-	@if internal-is-convertable($input-calendar-block-gutter-x,$input-font-size){
-		$calculated-input-calendar-block-gutter-x: em($input-calendar-block-gutter-x/$input-font-size);
-	}@else if internal-is-convertable($input-calendar-block-gutter-x){
-		$calculated-input-calendar-block-gutter-x: rem($input-calendar-block-gutter-x/$body-font-size);
-	}
 
-	$calculated-input-calendar-block-gutter-y: $input-calendar-block-gutter-y;
-	@if internal-is-convertable($input-calendar-block-gutter-y,$input-font-size){
-		$calculated-input-calendar-block-gutter-y: em($input-calendar-block-gutter-y/$input-font-size);
-	}@else if internal-is-convertable($input-calendar-block-gutter-y){
-		$calculated-input-calendar-block-gutter-y: rem($input-calendar-block-gutter-y/$body-font-size);
-	}
-
-
-	$calculated-input-calendar-block-gutter-x-mobile: $input-calendar-block-gutter-x-mobile;
-	@if internal-is-convertable($input-calendar-block-gutter-x-mobile,$input-font-size){
-		$calculated-input-calendar-block-gutter-x-mobile: em($input-calendar-block-gutter-x-mobile/$input-font-size);
-	}@else if internal-is-convertable($input-calendar-block-gutter-x-mobile){
-		$calculated-input-calendar-block-gutter-x-mobile: rem($input-calendar-block-gutter-x-mobile/$body-font-size);
-	}
-
-	$calculated-input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y-mobile;
-	@if internal-is-convertable($input-calendar-block-gutter-y-mobile,$input-font-size){
-		$calculated-input-calendar-block-gutter-y-mobile: em($input-calendar-block-gutter-y-mobile/$input-font-size);
-	}@else if internal-is-convertable($input-calendar-block-gutter-y-mobile){
-		$calculated-input-calendar-block-gutter-y-mobile: rem($input-calendar-block-gutter-y-mobile/$body-font-size);
-	}
-
-
-//tags
-	$calculated-input-tags-padding-x: $input-tags-padding-x;
-	@if internal-is-convertable($input-tags-padding-x,$input-font-size){
-		$calculated-input-tags-padding-x: em($input-tags-padding-x/$input-font-size);
-	}@else if internal-is-convertable($input-tags-padding-x){
-		$calculated-input-tags-padding-x: rem($input-tags-padding-x/$body-font-size);
-	}
-		
-	$calculated-input-tags-padding-y: $input-tags-padding-y;
-	@if internal-is-convertable($input-tags-padding-y,$input-font-size){
-		$calculated-input-tags-padding-y: em($input-tags-padding-y/$input-font-size);
-	}@else if internal-is-convertable($input-tags-padding-y){
-		$calculated-input-tags-padding-y: rem($input-tags-padding-y/$body-font-size);
-	}
-
-
-		
-		$calculated-input-tags-padding-y-small: $input-tags-padding-y-small;
-		@if internal-is-convertable($input-tags-padding-y-small,$input-font-size){
-			$calculated-input-tags-padding-y-small: em($input-tags-padding-y-small/$input-font-size);
-		}@else if internal-is-convertable($input-tags-padding-y-small){
-			$calculated-input-tags-padding-y-small: rem($input-tags-padding-y-small/$body-font-size);
-		}
-
-		$calculated-input-tags-padding-y-large: $input-tags-padding-y-large;
-		@if internal-is-convertable($input-tags-padding-y-large,$input-font-size){
-			$calculated-input-tags-padding-y-large: em($input-tags-padding-y-large/$input-font-size);
-		}@else if internal-is-convertable($input-tags-padding-y-large){
-			$calculated-input-tags-padding-y-large: rem($input-tags-padding-y-large/$body-font-size);
-		}
-
-
-
-	$calculated-input-tags-gutter-x: $input-tags-gutter-x;
-	@if internal-is-convertable($input-tags-gutter-x,$input-font-size){
-		$calculated-input-tags-gutter-x: em($input-tags-gutter-x/$input-font-size);
-	}@else if internal-is-convertable($input-tags-gutter-x){
-		$calculated-input-tags-gutter-x: rem($input-tags-gutter-x/$body-font-size);
-	}
-
-
-
-
-	$value-input-paddiny-y:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+	$calculated-value-input-paddiny-y:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
 	
-	$value-input-paddiny-y-large:	calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+	$calculated-value-input-paddiny-y-large:	calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
 	
-	$value-input-paddiny-y-small:	calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
+	$calculated-value-input-paddiny-y-small:	calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
 	
-	$value-input-paddiny-y-nav: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+	$calculated-value-input-paddiny-y-nav: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * .5 );
 
 
 
-	$value-input-paddiny-y-negative:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
+	$calculated-value-input-paddiny-y-negative:	calc( ( (#{$calculated-input-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
 	
-	$value-input-paddiny-y-large-negative:	calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
+	$calculated-value-input-paddiny-y-large-negative:	calc( ( (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
 	
-	$value-input-paddiny-y-small-negative:	calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
+	$calculated-value-input-paddiny-y-small-negative:	calc( ( (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
 	
-	$value-input-paddiny-y-nav-negative: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * -.5 );
+	$calculated-value-input-paddiny-y-nav-negative: calc( ( (#{$calculated-nav-height} - (#{$input-border-width} * 2)) - (#{$calculated-input-single-line}) ) * -.5 );
 
 
 
 
-	/*** input ***/
 
 
 /* input clasees */
 $prefix: '.input';
-
-
-$calculated-calendar-exception: '';
-
-@each $tag,$color in $calculated-tag-schemes-color {
-	$calculated-calendar-exception: #{$calculated-calendar-exception+':not(' + $prefix +'-'+$tag+')'};
-}
 
 #{$prefix} {
 
@@ -209,19 +117,6 @@ $calculated-calendar-exception: '';
 
 		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
 		max-width:100%;
-
-		&#{$prefix}-disabled,
-		&[disabled] {
-
-			// opacity: $global-disabled-opacity!important;
-			// cursor: not-allowed!important;
-			// // background-color: $input-background-disabled;
-
-			// // .theme-inverse & {
-			// // 	background-color: $input-background-disabled-inverse;
-			// // }
-			@extend %for-disabled !optional;
-		}
 	}
 
 		&,
@@ -259,6 +154,13 @@ $calculated-calendar-exception: '';
 
 		& { //scaffold
 			@extend %for-form-input-class !optional;
+
+
+
+			&-disabled,
+			&[disabled] {
+				@extend %for-disabled !optional;
+			}
 		}
 
 
@@ -268,7 +170,6 @@ $calculated-calendar-exception: '';
 		@include type-set((
 			size: #{$calculated-input-label-font-size},
 			color:$input-label-color,
-			leading: $calculated-input-label-line-height ,
 			weight: $input-label-font-weight,
 			style: $input-label-font-style,
 			font: $input-label-font-family,
@@ -284,14 +185,14 @@ $calculated-calendar-exception: '';
 
 		&#{$prefix}-large,
 		#{$prefix}-large & {
-			font-size: $calculated-input-font-size-large;
+			font-size: $calculated-input-label-font-size-large;
 			padding-top: calc(  (#{ $calculated-input-height-large } - (#{$calculated-input-label-single-line}) ) * .5 );
 			padding-bottom: calc( (#{ $calculated-input-height-large } - (#{$calculated-input-label-single-line}) ) * .5 );
 		}
 
 		&#{$prefix}-small,
 		#{$prefix}-small & {
-			font-size: $calculated-input-font-size-small;
+			font-size: $calculated-input-label-font-size-small;
 			padding-top: calc( (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line}) ) * .5 );
 			padding-bottom: calc( (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line}) ) * .5 );
 		}
@@ -302,7 +203,7 @@ $calculated-calendar-exception: '';
 	}
 
 		&-label {
-			@extend %for-form-label !optional;	
+			@extend %for-form-label !optional;
 		}
 
 	&-info {
@@ -353,12 +254,12 @@ $calculated-calendar-exception: '';
 			case: $input-text-transform,
 		));
 		display:inline-block;
-		background-color: $input-background;
 		border: $input-border-width solid $input-border-color;
+		background-color: $input-background;
 		padding-right: $calculated-input-gutter-x;
 		padding-left: $calculated-input-gutter-x;
-		padding-top: $value-input-paddiny-y;
-		padding-bottom: $value-input-paddiny-y;
+		padding-top: $calculated-value-input-paddiny-y;
+		padding-bottom: $calculated-value-input-paddiny-y;
 
 		.theme-inverse & {
 			color:$input-color-inverse;
@@ -450,8 +351,8 @@ $calculated-calendar-exception: '';
 		.nav & {
 			border-radius: 0 !important;
 
-			padding-top: $value-input-paddiny-y-nav;
-			padding-bottom: $value-input-paddiny-y-nav;
+			padding-top: $calculated-value-input-paddiny-y-nav;
+			padding-bottom: $calculated-value-input-paddiny-y-nav;
 			height: #{ $calculated-nav-height };
 
 			&:not(.focus):not(:focus) {
@@ -468,22 +369,21 @@ $calculated-calendar-exception: '';
 
 		&#{$prefix}-large,
 		#{$prefix}-group#{$prefix}-large & {
-			padding-top: $value-input-paddiny-y-large;
-			padding-bottom: $value-input-paddiny-y-large;
+			padding-top: $calculated-value-input-paddiny-y-large;
+			padding-bottom: $calculated-value-input-paddiny-y-large;
 		}
 
 		&#{$prefix}-small,
 		#{$prefix}-group#{$prefix}-small & {
-			padding-top: $value-input-paddiny-y-small;
-			padding-bottom: $value-input-paddiny-y-small;
+			padding-top: $calculated-value-input-paddiny-y-small;
+			padding-bottom: $calculated-value-input-paddiny-y-small;
 		}
+		
 	}
 
 		&-select,
 		&-single-line,
 		&-multiple-line,
-		&-calendar-ui,
-		&-tags-ui,
 		&-editor {
 			@extend %for-form-input-boxy !optional;
 		}
@@ -536,8 +436,6 @@ $calculated-calendar-exception: '';
 	&-single-line,
 	&-multiple-line,
 	&-editor,
-	&-calendar-ui,
-	&-tags-ui,
 	&-group {
 		@extend %for-form-input-boxy-and-group !optional;
 	}
@@ -699,7 +597,7 @@ $calculated-calendar-exception: '';
 			@include br(#{$mobile-br-max}-max) {
 				flex-direction: column;
 
-				%for-form-input-boxy {
+				> %for-form-input-boxy {
 					width:100%;
 				}
 			}
@@ -732,10 +630,14 @@ $calculated-calendar-exception: '';
 
 	&-group {
 		display:inline-flex;
+		align-content: stretch;
+		align-items: stretch;
 		position:relative;
 		max-width:100%;
 		padding:0;
 		border:0;
+		background:none;
+		font:inherit;
 		overflow-x:auto;
 		overflow-y:visible;
 
@@ -748,9 +650,9 @@ $calculated-calendar-exception: '';
 			resize:none;
 			max-width:100%;
 
-			&:not(:focus):not(.focus) {
-				border-color:transparent;
-			}
+			// &:not(:focus):not(.focus) {
+			// 	border-color:transparent;
+			// }
 
 			&:hover,
 			&:active,
@@ -776,6 +678,8 @@ $calculated-calendar-exception: '';
 					display:flex;
 					width:100%;
 
+					> #{$prefix},
+					> .trumbowyg,
 					.btn:not(.btn-symbol) {
 						flex: 1 1;
 					}
@@ -808,10 +712,11 @@ $calculated-calendar-exception: '';
 					&:nth-child(n+2) {
 						border-top-left-radius: 0!important;
 						border-bottom-left-radius: 0!important;
+						margin-left: $input-border-width * -1;
 
-						&:not(:focus):not(.focus) {
-							border-left-color: $input-group-separator-color;
-						}
+						// &:not(:focus):not(.focus) {
+						// 	border-left-color: transparent;
+						// }
 					}
 				}
 			}
@@ -835,10 +740,11 @@ $calculated-calendar-exception: '';
 				&:nth-child(n+2) {
 					border-top-right-radius: 0!important;
 					border-top-left-radius: 0!important;
+					margin-top: $input-border-width * -1;
 
-					&:not(:focus):not(.focus) {
-						border-top-color: $input-group-separator-color;
-					}
+					// &:not(:focus):not(.focus) {
+					// 	border-top-color: transparent;
+					// }
 				}
 			}
 		}
@@ -863,10 +769,11 @@ $calculated-calendar-exception: '';
 						&:nth-child(n+2) {
 							border-top-left-radius: 0!important;
 							border-bottom-left-radius: 0!important;
+							margin-left: $input-border-width * -1;
 
-							&:not(:focus):not(.focus) {
-								border-left-color: $input-group-separator-color;
-							}
+							// &:not(:focus):not(.focus) {
+							// 	border-left-color:transparent;
+							// }
 						}
 					}
 				}
@@ -875,7 +782,6 @@ $calculated-calendar-exception: '';
 
 			@include br(#{$mobile-br-max}-max) {
 				width:100%;
-				
 				flex-wrap:wrap;
 				display:flex;
 				flex-direction:column;
@@ -891,17 +797,18 @@ $calculated-calendar-exception: '';
 					&:nth-child(n+2) {
 						border-top-right-radius: 0!important;
 						border-top-left-radius: 0!important;
+						margin-top: $input-border-width * -1;
 		
-						&:not(:focus):not(.focus) {
-							border-top-color: $input-group-separator-color;
-						}
+						// &:not(:focus):not(.focus) {
+						// 	border-top-color: transparent;
+						// }
 					}
 				}
 			}
 		}
 	}
 
-	%for-form-input-ui-control {
+	@at-root %for-form-input-ui-control {
 
 
 		@extend %for-display-none !optional;
@@ -914,414 +821,6 @@ $calculated-calendar-exception: '';
 
 
 	//components of component
-	&-calendar {
-		@extend %for-form-input-ui-control !optional;
-
-		&-ui {
-			vertical-align: top;
-			text-align:center;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-				user-select: none;
-			
-			&-block {
-				padding:$calculated-input-calendar-block-gutter-y $calculated-input-calendar-block-gutter-x;
-				display:block;
-				white-space:nowrap;
-				position:relative;
-				color: inherit;
-
-				&,&:after {
-					border-radius: $input-calendar-block-border-radius;
-				}
-
-				&-adjacent {
-					opacity: .125!important;
-					pointer-events:none!important;
-
-					// &:hover,&:focus,&.focus {
-					// 	opacity:1!important;
-					// }
-				}
-
-				// 	content:"";
-				// 	padding-bottom:100%;
-				// }
-
-				// &-content {
-				// 	position: absolute;
-				// 	top:0;
-				// 	bottom:0;
-				// 	left:0;
-				// 	right:0;
-				// }
-			}
-
-			&-date {
-				position:relative;
-				z-index:1;
-				overflow:hidden;
-
-				&:after,span{
-					pointer-events:none;
-				}
-
-				&:after{
-					content:"";
-					z-index:-1;
-					background: currentColor;
-					display:block;
-					position:absolute;
-					top:0;
-					left:0;
-					right:0;
-					margin:auto;
-					width:100%;
-					max-width: 4em;
-					height:100%;
-					opacity:0;
-
-				}
-
-				&.disabled {
-					&:after {
-						opacity:0;
-					}
-				}
-
-				&:hover,
-				&:focus,
-				&.focus {
-					color:inherit;
-					// background: $input-calendar-date-hover-background;
-
-					&:after {
-						opacity: .2;
-					}
-
-					span {
-						color: $input-calendar-date-hover-color;
-					}
-				}
-				&.active{
-					&,&:hover {
-						// background: $input-calendar-date-active-background;
-						&:after {
-							opacity: 1;
-							@at-root #{$prefix +'-calendar-ui' + $calculated-calendar-exception} & {
-								background: $input-calendar-date-active-background;
-							}
-						}
-
-						span {
-							color: $input-calendar-date-active-color;
-						}
-					}
-				}
-			}
-
-			&-grid {
-				padding-bottom:$calculated-input-calendar-block-gutter-y;
-			}
-			&-days,
-			&-dates,
-			&-heading {
-				justify-content: space-evenly;
-				display:grid;
-				grid-template-columns: repeat(7, minmax(min-content,1fr));
-				grid-gap: $input-calendar-gap;
-			}
-
-			&-input {
-				margin-bottom: $calculated-input-calendar-block-gutter-y;
-				padding-bottom: $calculated-input-calendar-block-gutter-y;
-				margin-left:$calculated-input-gutter-x * -1;
-				margin-right:$calculated-input-gutter-x * -1;
-				margin-top: calc( ( (#{ $calculated-input-height } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-				position:relative;
-
-				&:last-child {
-				margin-bottom: calc( ( (#{ $calculated-input-height } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-
-					&:after {
-						content:none;
-					}
-				}
-
-				#{$prefix}-small & {
-					margin-top: calc( ( (#{ $calculated-input-height-small } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-					position:relative;
-
-					&:last-child {
-						margin-bottom: calc( ( (#{ $calculated-input-height-small } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-					}
-				}
-
-				#{$prefix}-large & {
-					margin-top: calc( ( (#{ $calculated-input-height-large } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-					position:relative;
-
-					&:last-child {
-						margin-bottom: calc( ( (#{ $calculated-input-height-large } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-					}
-				}
-
-				&:after {
-					content:"";
-					display:block;
-					height:$input-border-width;
-					width:100%;
-					background: currentColor;
-					opacity: .25;
-				}
-				
-				input {
-					box-shadow:none!important;
-					border-bottom-left-radius:0!important;
-					border-bottom-right-radius:0!important;
-					border-width:0;
-					width:100%;
-				}
-			}
-
-			&-heading {
-				padding-top:$calculated-input-calendar-block-gutter-y;
-				padding-bottom:$calculated-input-calendar-block-gutter-y;
-				position:relative;
-			}
-
-			&-button{
-				color:inherit;
-
-
-				&:hover {
-					color: $input-calendar-date-heading-button-color-hover;
-				}
-			}
-			&-block,
-			&-button{
-
-
-				&.disabled,
-				.input-disabled & {
-					&,
-					&:hover,
-					&:focus,
-					&.focus {
-						background: none!important;
-						color:inherit!important;
-					}
-				}
-				
-			}
-
-			&-navigation,&-title{
-				grid-row: 1;
-			}
-
-			&-prev-year,
-			&-prev-month:first-child {
-				grid-column: 1;
-			}
-			&-prev-month {
-				grid-column: 2;
-			}
-
-			&-next-year,
-			&-next-month:nth-last-child(3) {
-				grid-column: 7;
-			}
-			&-next-month {
-				grid-column: 6;
-			}
-
-			&-title {
-				grid-column: 3 / span 3;
-			}
-
-			// &-prev-month {
-
-			// 	margin-right: .25em;
-			// }
-			// &-prev-year {
-			// 	margin-right: .75em;
-			// }
-
-			// &-next-month {
-
-			// 	margin-left: .25em;
-			// }
-			// &-next-year {
-			// 	margin-left: .75em;
-			// }
-
-			&-dropdown {
-				max-height: 300px;
-				overflow-x:auto;
-				overflow-y: scroll;
-
-				&::-webkit-scrollbar {
-					display:none;
-				}
-			}
-
-			&-days,
-			&-dates {
-				grid-auto-rows: 1fr;
-				
-				&:nth-child(n+2) {
-					margin-top: $input-calendar-gap;
-				}
-			}
-
-			&-days {
-				margin-bottom:$calculated-input-calendar-block-gutter-y;
-				border-bottom: $input-calendar-days-border-width solid;
-				opacity: .375;
-				font-size: $calculated-input-calendar-days-font-size;
-			}
-
-			&-dates {
-				// grid-template-rows: repeat(6, 1fr);
-				margin-bottom:$calculated-input-calendar-block-gutter-y * .5;
-			}
-		}
-
-		@include br(#{$mobile-br-max}-max) {
-			&-ui {
-				&-block {
-					padding:$calculated-input-calendar-block-gutter-y-mobile $calculated-input-calendar-block-gutter-x-mobile;
-				}
-			}
-		}
-	}
-
-	&-tags {
-		@extend %for-form-input-ui-control !optional;
-
-		&-ui {
-			display:inline-flex;
-			overflow-x: auto;
-			overflow-y:hidden;
-			max-width:100%!important;
-			direction: ltr;
-			position: relative;
-
-			&::-webkit-scrollbar {
-				display:none;
-			}
-
-			&-wrapper {
-				flex: 1 1;
-				display:flex;
-				max-width:100%;
-				min-height:100%;
-			}
-
-			&-tag,
-			&-input {
-				// @todo//ellipsis
-				display:flex;
-				align-items:center;
-				margin-bottom: $calculated-input-tags-padding-y * -1;
-				margin-top: $calculated-input-tags-padding-y * -1;
-				padding-top: $calculated-input-tags-padding-y;
-				padding-bottom: $calculated-input-tags-padding-y;
-				padding-left: $calculated-input-tags-padding-x;
-				padding-right: $calculated-input-tags-padding-x;
-
-				#{$prefix}-small & {
-					margin-bottom: $calculated-input-tags-padding-y-small * -1;
-					margin-top: $calculated-input-tags-padding-y-small * -1;
-					padding-top: $calculated-input-tags-padding-y-small;
-					padding-bottom: $calculated-input-tags-padding-y-small;
-				}
-				
-				#{$prefix}-large & {
-
-					margin-bottom: $calculated-input-tags-padding-y-large * -1;
-					margin-top: $calculated-input-tags-padding-y-large * -1;
-					padding-top: $calculated-input-tags-padding-y-large;
-					padding-bottom: $calculated-input-tags-padding-y-large;
-				}
-
-
-			}
-
-
-			&-tag {
-				max-width:100%;
-				margin-right: $calculated-input-tags-gutter-x;
-				background: rgba($input-tags-background,$input-tags-background-opacity);
-				border-radius: $input-tags-border-radius;
-
-				&-text,
-				&-close {
-					vertical-align: middle;
-				}
-
-				&-text {
-					max-width: 10em;
-					cursor:pointer;
-					white-space: nowrap!important;
-					overflow: hidden!important;
-					text-overflow: ellipsis!important;
-				}
-
-				&-close {
-					margin-left: .25em;
-					line-height:1;
-					font-size: .75em;
-
-					@each $tag,$color in $calculated-brand-color-declarations {
-						#{$prefix}-#{$tag} & {
-							color: $color;
-						}
-					}
-				}
-
-				@each $tag,$color in $calculated-brand-color-declarations {
-					#{$prefix}-#{$tag} & {
-						background: rgba($color,$input-tags-background-opacity);
-					}
-				}
-			}
-
-			&-input {
-				border:0;
-				-webkit-appearance: none;
-				background:none!important;
-				appearance: none;
-				outline:none;
-				white-space: nowrap;
-				padding-left:  $calculated-input-tags-padding-x;
-
-				&:last-child {
-					flex: 1 1 auto;
-					padding-right:0;
-					min-width: 4em;
-
-					&:first-child {
-						width: 12em;
-					}
-				}
-
-				&,
-				&:hover,
-				&:focus,
-				&.focus {
-					box-shadow:none!important;
-					background:transparent;
-					font:inherit;
-					color:inherit;
-				}
-			}
-		}
-	}
-
-
-
 
 	
 

@@ -9,6 +9,8 @@ A bitch that shows progress using **.progress** and  **.progress-bar**
 </div>
 ```
 
+To modify its vertical size add `.progress-small` or  `.progress-large` to the `.progress`
+
 ## Colors
 
 To color the progress, add `.progress-bar-[color-tag]` to `.progress-bar`

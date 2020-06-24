@@ -627,14 +627,113 @@ $calculated-btn-schemes: (
 );
 
 $calculated-tag-schemes-color: (
-	default:$tag-default-color,
-	primary:$tag-primary-color,
-	secondary:$tag-secondary-color,
-	accent:$tag-accent-color,
-	neutral:$tag-neutral-color,
-	success:$tag-success-color,
-	caution:$tag-caution-color,
-	error:$tag-error-color
+	default: (
+		background: $tag-default-background,
+		color: $tag-default-color,
+	),
+	primary: (
+		background: $tag-primary-background,
+		color: $tag-primary-color,
+	),
+	secondary: (
+		background: $tag-secondary-background,
+		color: $tag-secondary-color,
+	),
+	accent: (
+		background: $tag-accent-background,
+		color: $tag-accent-color,
+	),
+	neutral: (
+		background: $tag-neutral-background,
+		color: $tag-neutral-color,
+	),
+	success: (
+		background: $tag-success-background,
+		color: $tag-success-color,
+	),
+	caution: (
+		background: $tag-caution-background,
+		color: $tag-caution-color,
+	),
+	error: (
+		background: $tag-error-background,
+		color: $tag-error-color,
+	),
+	intensity-1: (
+		background: $tag-intensity-1-background,
+		color: $tag-intensity-1-color,
+	),
+	intensity-2: (
+		background: $tag-intensity-2-background,
+		color: $tag-intensity-2-color,
+	),
+	intensity-3: (
+		background: $tag-intensity-3-background,
+		color: $tag-intensity-3-color,
+	),
+	intensity-4: (
+		background: $tag-intensity-4-background,
+		color: $tag-intensity-4-color,
+	),
+	intensity-5: (
+		background: $tag-intensity-5-background,
+		color: $tag-intensity-5-color,
+	),
 );
+
+
+
+
+
+$calculated-highlight-schemes-color: (
+	default: (
+		background: $highlight-default-background,
+		color: $highlight-default-color,
+	),
+	primary: (
+		background: $highlight-primary-background,
+		color: $highlight-primary-color,
+	),
+	secondary: (
+		background: $highlight-secondary-background,
+		color: $highlight-secondary-color,
+	),
+	accent: (
+		background: $highlight-accent-background,
+		color: $highlight-accent-color,
+	),
+	neutral: (
+		background: $highlight-neutral-background,
+		color: $highlight-neutral-color,
+	),
+	success: (
+		background: $highlight-success-background,
+		color: $highlight-success-color,
+	),
+	caution: (
+		background: $highlight-caution-background,
+		color: $highlight-caution-color,
+	),
+	error: (
+		background: $highlight-error-background,
+		color: $highlight-error-color,
+	),
+);
+
+
+$calculated-asset-palettes: (
+	default: $asset-image-default-palette,
+	audio: $asset-image-audio-palette,
+	code: $asset-image-code-palette,
+	doc: $asset-image-doc-palette,
+	font: $asset-image-font-palette,
+	img: $asset-image-img-palette,
+	pdf: $asset-image-pdf-palette,
+	table: $asset-image-table-palette,
+	text: $asset-image-text-palette,
+	video: $asset-image-video-palette,
+	zip: $asset-image-zip-palette,
+);
+
 
 $calculated-gradient-angles:(45,90,135,180,225,270,315);

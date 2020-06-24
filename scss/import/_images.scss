@@ -182,7 +182,8 @@ $prefix: '.svg';
 
 	/* emulate background cover on image tags */
 	%for-fit-image {
-		img {
+		&-img {
+
 			position:absolute;
 			width: 100%;
 			height: 100%;
@@ -193,6 +194,9 @@ $prefix: '.svg';
 			bottom:-50%;
 			margin:auto;
 			object-fit: cover;
+		}
+		img {
+			@extend %for-fit-image-img;
 		}
 	}
 	.fit-image {

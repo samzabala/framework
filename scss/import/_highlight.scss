@@ -1,0 +1,63 @@
+/*** highlights ***/
+//internal
+
+$calculated-highlight-height: $highlight-height;
+@if internal-is-convertable($highlight-height,$body-font-size) {
+    $calculated-highlight-height: em($highlight-height/$highlight-font-size)
+}
+$calculated-highlight-padding-x: $highlight-padding-x;
+@if internal-is-convertable($highlight-padding-x,$body-font-size) {
+    $calculated-highlight-padding-x: $calculated-highlight-padding-x
+}
+$calculated-highlight-margin-x: $highlight-margin-x;
+@if internal-is-convertable($highlight-margin-x,$body-font-size) {
+    $calculated-highlight-margin-x: $calculated-highlight-margin-x;
+}
+
+
+$prefix: '.highlight';
+#{$prefix} {
+	@include type-set((
+		size: inherit,
+		leading: inherit,
+		weight: $highlight-font-weight,
+		style: $highlight-font-style,
+		case: $highlight-text-transform,
+	));
+	padding-top: calc(  (  (#{$calculated-highlight-height} - (#{ $calculated-body-single-line }) ) * .5 ));
+	padding-bottom: calc(  (  (#{$calculated-highlight-height} - (#{ $calculated-body-single-line }) ) * .5 ));
+	padding-left: $calculated-highlight-padding-x;
+	padding-right: $calculated-highlight-padding-x;
+	margin-left: $calculated-highlight-margin-x;
+	margin-right: $calculated-highlight-margin-x;
+	border-radius: $highlight-border-radius;
+	white-space: pre-wrap;
+	display:inline;
+
+
+	&,
+	&:hover,
+	&:focus,
+	&:active,
+	&.focus,
+	&.active {
+		color: $highlight-color;
+	}
+
+
+
+
+	@each $tag,$properties in $calculated-highlight-schemes-color {
+		&-#{$tag} {
+			background: map-get($properties,background);
+			&,
+			&:hover,
+			&:focus,
+			&:active,
+			&.focus,
+			&.active {
+				color: map-get($properties,color);
+			}
+		}
+	}
+}
