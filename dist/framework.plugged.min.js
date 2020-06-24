@@ -1392,7 +1392,7 @@ window.jQuery && jQuery.noConflict();
 			inputTags.each(function(){
 				$.each(this.attributes,function(){
 					if(this.specified) {
-						if(this.name.includes('data') && !this.name.includes('data-toggle') && !this.name.includes('data-value-ui')){
+						if(this.name.includes('data') && !this.name.includes('data-tags')  && !this.name.includes('data-toggle') && !this.name.includes('data-value-ui')){
 							theUi.container.attr(this.name,this.value);
 						}
 
