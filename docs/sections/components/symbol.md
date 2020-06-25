@@ -62,6 +62,14 @@ map <i class="color-primary symbol symbol-map"></i>
 </p>
 
 <p>
+star <i class="color-primary symbol symbol-star"></i>
+</p>
+
+<p>
+download <i class="color-primary symbol symbol-download"></i>
+</p>
+
+<p>
 burger <i class="color-primary symbol symbol-burger"></i>
 </p>
 

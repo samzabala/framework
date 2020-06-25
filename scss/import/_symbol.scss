@@ -506,6 +506,40 @@ $prefix: '.symbol';
 		}
 	}
 
+
+	&-star {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+			@extend %for-valid-symbol-no-before;
+
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-filled;
+				width: 1.25em;
+				height: 1.25em;
+				top: -.5em;
+				bottom: -.5em;
+				left: -.5em;
+				right: -.5em;
+				clip-path: polygon(
+					50% 5%,
+					64% 38%,
+					100% 41%,
+					73% 65%,
+					81% 100%,
+					50% 82%,
+					20% 100%,
+					27% 65%,
+					0% 41%,
+					36% 38%
+				);
+
+			}
+		}
+	}
+
 	&-download {
 		&,
 		.active > &-toggle,

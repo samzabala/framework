@@ -218,6 +218,12 @@ $prefix: '.btn';
 			&:first-child {
 				margin-right: .25em;
 			}
+
+
+			&:first-child:last-child {
+				margin-left:auto;
+				margin-right:auto;
+			}
 		}
 	}
 		& {
@@ -359,12 +365,6 @@ $prefix: '.btn';
 				width: $calculated-btn-height;
 				padding-left:0;
 				padding-right:0;
-
-
-				> .symbol {
-					margin-left:auto;
-					margin-right:auto;
-				}
 			}
 
 			&-large {
@@ -375,10 +375,7 @@ $prefix: '.btn';
 				width: $calculated-btn-height-small;
 			}
 		}
-
-		&-symbol-round {
-			border-radius: 50%!important;
-		}
+		
 	}
 
 		&-symbol {
