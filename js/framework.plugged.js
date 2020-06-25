@@ -571,6 +571,7 @@ window.jQuery && jQuery.noConflict();
 				case 'dropdown':
 				case 'modal':
 				case 'board':
+				case 'asset':
 				case 'alert-close':
 					if(triggerer && toggleMode && triggerer.parent().closest(toggledClass).length) {
 						toReturn = triggerer.parent().closest(toggledClass);
@@ -2856,6 +2857,22 @@ window.jQuery && jQuery.noConflict();
 			}else{
 				zone.removeClass('zone-has-content');
 
+			}
+		});
+
+
+
+
+		$('body').on('click','*[data-toggle="asset-close"]',function(e){
+			e.preventDefault();
+			const triggerer = $(e.target);
+			if( !frameWork.isDisabled(triggerer) ){
+				var asset = _.getTheToggled(triggerer,'asset');
+
+				console.log(asset);
+
+				triggerer.remove();
+				asset.remove();
 			}
 		});
 

@@ -3825,7 +3825,7 @@ table {
   max-width: 100%;
   width: 190px;
   color: inherit;
-  display: block;
+  display: inline-block;
   position: relative; }
   .asset-delete {
     z-index: 2;

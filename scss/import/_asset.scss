@@ -48,7 +48,7 @@ $prefix: '.asset';
 	max-width: 100%;
 	width: $asset-width;
 	color:inherit;
-	display:block;
+	display:inline-block;
 	position:relative;
 
 	&-delete {
