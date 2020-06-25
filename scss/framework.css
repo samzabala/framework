@@ -1206,7 +1206,6 @@ table {
     height: 1.125em;
     left: -.5em;
     right: -.5em;
-    bottom: -.125em;
     top: auto;
     background-image: repeating-linear-gradient(90deg, currentColor 0, currentColor 0.125em, transparent 0.125em, transparent 100%), linear-gradient(0deg, currentColor 0, currentColor 0.125em, transparent 0.125em, transparent 100%);
     background-position: 0.35em 0.125em;
@@ -1218,6 +1217,7 @@ table {
     right: -.1875em;
     left: auto;
     bottom: auto;
+    top: -.125em;
     transform: rotate(45deg); }
   .symbol-plus:before, .active > .symbol-plus-toggle:before, .open > .symbol-plus-toggle:before {
     height: 1em; }

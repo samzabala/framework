@@ -1097,6 +1097,25 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"/docs/sections/components/toolbar.md": {
+		"cB": 0,
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/docs/sections/components/toolbar.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
 	"/docs/sections/components/tooltip.md": {
 		"cB": 0,
 		"cS": 0,
@@ -1887,6 +1906,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/scss/import/_toggle.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/import/_toolbar.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/import/_toolbar.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
