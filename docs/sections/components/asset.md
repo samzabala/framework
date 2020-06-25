@@ -52,9 +52,27 @@ helper that can display a css coded thumbnail for file types. append one of of t
 | `.asset-image-zip` | zip.. probably a rar file tooo idk |
 
 
-## `.asset-delete`
+## `.asset-delete` and `[data-toggle="asset-close"]`
 
-add to your `.btn` that deletes your boo so it appears fancy and shit
+add to  `.asset-delete` to a `.btn` inside the 	`.asset` that closes or deletes your boo so it appears fancy and shit.
+
+add `[data-toggle="asset-close"]` to the button to actually remove it from the dom.
+
+Note: you will still need some extra programming to have this actuallly delete ya boi
+
+
+```html
+<div class="asset">
+	<div class="asset-thumbnail">
+		<span class="asset-image asset-image-default"></span>
+	</div>
+	<a href="#" class="asset-delete btn btn-symbol btn-round btn-small btn-secondary">
+		<i class="symbol symbol-close"></i>
+	</a>
+	<p class="asset-title">bitch-ass.probablyavirus</p>
+	<p class="asset-caption">69kb</p>
+</div>
+```
 
 ## `.asset-title` and `.asset-caption`
 

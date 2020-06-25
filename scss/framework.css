@@ -4751,6 +4751,33 @@ table {
     .tag-intensity-5, .tag-intensity-5:hover, .tag-intensity-5:focus, .tag-intensity-5:active, .tag-intensity-5.focus, .tag-intensity-5.active {
       color: #ff009c; }
 
+/*** Toolbar ***/
+.toolbar {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 0px 3px 10px -6px #000000;
+  background-color: #FFFFFF;
+  border: 1px solid #e6e6e6; }
+  .theme-inverse .toolbar {
+    background-color: #1a1a1a;
+    border: 1px solid #000000; }
+  .toolbar.toolbar-horizontal {
+    flex-direction: row;
+    min-height: 50px;
+    padding: 10px 10px; }
+  .toolbar.toolbar-vertical {
+    flex-direction: column;
+    min-width: 50px;
+    padding: 10px 10px; }
+  .toolbar-horizontal .toolbar-tile:nth-child(n+2) {
+    margin-left: 10px; }
+  .toolbar-vertical .toolbar-tile {
+    writing-mode: vertical-rl;
+    text-orientation: mixed; }
+    .toolbar-vertical .toolbar-tile:nth-child(n+2) {
+      margin-top: 10px; }
+
 /*** highlights ***/
 .highlight {
   font-size: inherit;

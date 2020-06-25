@@ -868,6 +868,20 @@
 			$asset-image-zip-palette: $brand-color-neutral !default;
 
 
+	//toolbar
+		$toolbar-cross-min-height: 50px !default;
+		$toolbar-cross-gutter: $gutter-micro !default;
+		$toolbar-main-gutter: $gutter-micro !default;
+		$toolbar-border-radius: $toolbar-cross-min-height * .5 !default;
+		$toolbar-background-color: $theme-background !default;
+			$toolbar-background-color-inverse: $theme-background-inverse !default;
+		$toolbar-border-color: $theme-background-contrast !default;
+			$toolbar-border-color-inverse: $theme-background-contrast-inverse !default;
+		$toolbar-border-width: 1px !default;
+		$toolbar-box-shadow: $box-shadow-base $brand-color-base !default; // 
+		$toolbar-tile-gutter: $gutter-micro !default; // 
+		
+
 	// input
 
 		$input-height: 45px !default;
