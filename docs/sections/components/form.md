@@ -220,7 +220,7 @@ For inline shit or fields that dont necessarily accept text looking input like r
 | `text` | if you want it ugly-ish, sure |
 | `url` | if you want it ugly-ish, sure |
 | `list` | no |
-
+<!-- 
 #### **`.input-round`**
 
 Makes the edges of your stylized `.input` or `.input group` half circle round.
@@ -229,7 +229,7 @@ Makes the edges of your stylized `.input` or `.input group` half circle round.
 <button type="button" class="btn btn-round btn-default">
 	my edges are round like the fuCKING EARTH
 </button>
-```
+``` -->
 
 
 ### Input templates

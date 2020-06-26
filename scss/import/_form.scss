@@ -378,6 +378,19 @@ $prefix: '.input';
 			padding-top: $calculated-value-input-paddiny-y-small;
 			padding-bottom: $calculated-value-input-paddiny-y-small;
 		}
+
+		// @at-root #{$prefix}-group#{$prefix}-round > &  {
+			
+		// 	@extend %for-btn-boxy-and-group-round !optional;
+
+		// 	@at-root #{$prefix}-large#{&} {
+		// 		@extend %for-btn-boxy-and-group-round-large !optional;
+		// 	}
+
+		// 	@at-root #{$prefix}-small#{&} {
+		// 		@extend %for-btn-boxy-and-group-round-small !optional;
+		// 	}
+		// }
 		
 	}
 
@@ -386,6 +399,21 @@ $prefix: '.input';
 		&-multiple-line,
 		&-editor {
 			@extend %for-form-input-boxy !optional;
+
+
+
+			// #{$prefix}-round & {
+				
+			// 	@extend %for-form-input-boxy-and-group-round !optional;
+
+			// 	#{$prefix}-large & {
+			// 		@extend %for-form-input-boxy-and-group-round-large !optional;
+			// 	}
+
+			// 	#{$prefix}-small & {
+			// 		@extend %for-form-input-boxy-and-group-round-small !optional;
+			// 	}
+			// }
 		}
 
 		@at-root %for-input {
@@ -399,6 +427,19 @@ $prefix: '.input';
 
 		border-radius: $input-border-radius;
 		box-shadow: $input-box-shadow;
+
+
+		// &-round {
+		// 	border-radius: $calculated-input-height * .5;
+
+		// 	&-large {
+		// 		border-radius: $calculated-input-height-large * .5;
+		// 	}
+
+		// 	&-small {
+		// 		border-radius: $calculated-input-height-small * .5;
+		// 	}
+		// }
 
 		.nav & {
 			border-radius: 0 !important;
@@ -419,17 +460,17 @@ $prefix: '.input';
 
 
 
-		&#{$prefix}-round {
-			border-radius: $calculated-input-height * .5;
+		// &#{$prefix}-round {
+		// 	@extend %for-form-input-boxy-and-group-round !optional;
 
-			&#{$prefix}-large {
-				border-radius: $calculated-input-height-large * .5;
-			}
+		// 		&#{$prefix}-large {
+		// 			@extend %for-form-input-boxy-and-group-round-large !optional;
+		// 		}
 
-			&#{$prefix}-small {
-				border-radius: $calculated-input-height-small * .5;
-			}
-		}
+		// 		&#{$prefix}-small {
+		// 			@extend %for-form-input-boxy-and-group-round-small !optional;
+		// 		}
+		// }
 	}
 
 	&-select,

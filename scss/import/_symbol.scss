@@ -20,7 +20,7 @@ $prefix: '.symbol';
 	transform-origin: center center;
 	pointer-events:none;
 	margin: 0 .5em;
-	// font-size: 32px; //debug only
+	// font-size: 160px; //debug only
 	// top:-.25em;
 
 	&:last-child {
@@ -506,36 +506,83 @@ $prefix: '.symbol';
 		}
 	}
 
+	&-star {
+		&,&-stroke {
+
+			&,
+			.active > &-toggle,
+			.open > &-toggle  {
+				@extend %for-valid-symbol;
+				@extend %for-valid-symbol-no-before;
+
+				&:after {
+					@extend %for-valid-symbol-pseudo;
+					@extend %for-valid-symbol-pseudo-filled;
+					width: 1.25em;
+					height: 1.25em;
+					top: -.5em;
+					bottom: -.5em;
+					left: -.5em;
+					right: -.5em;
+
+				}
+			}
+		}
+	}
+
 
 	&-star {
 		&,
 		.active > &-toggle,
 		.open > &-toggle  {
-			@extend %for-valid-symbol;
-			@extend %for-valid-symbol-no-before;
 
 			&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-filled;
-				width: 1.25em;
-				height: 1.25em;
-				top: -.5em;
-				bottom: -.5em;
-				left: -.5em;
-				right: -.5em;
 				clip-path: polygon(
 					50% 5%,
 					64% 38%,
 					100% 41%,
 					73% 65%,
-					81% 100%,
+					80% 100%,
 					50% 82%,
 					20% 100%,
 					27% 65%,
 					0% 41%,
-					36% 38%
+					36% 38%,
 				);
 
+			}
+
+			&-stroke {
+				&:after {
+
+					clip-path: polygon(
+						50% 5%,
+						64% 38%,
+						100% 41%,
+						73% 65%,
+						80% 100%,
+						50% 82%,
+						20% 100%,
+						27% 65%,
+						0% 41%,
+						36% 38%,
+
+						50% 5%,
+
+						50% 26%,
+						41% 46%,
+						20% 48%,
+						36% 62%,
+						32% 83%,
+						50% 72%,
+						68% 83%,
+						64% 62%,
+						80% 48%,
+						59% 46%,
+						50% 26%,
+						
+					);
+				}
 			}
 		}
 	}

@@ -6,6 +6,27 @@ All influenced by [color declarations](../scaffolding/colors.md)
 
 ###  Basic
 
+
+
+#### Border
+
+*   **`.border-color-base` (Not to be confused with theme-color)**
+*   **`.border-color-background` (Not to be confused with theme-background)**
+*   **`.border-color-primary`**
+*   **`.border-color-secondary`**
+*   **`.border-color-accent`**
+*   **`.border-color-neutral`**
+*   **`.border-color-success`**
+*   **`.border-color-caution`**
+*   **`.border-color-error`**
+*   **`.border-color-intensity-1`**
+*   **`.border-color-intensity-2`**
+*   **`.border-color-intensity-3`**
+*   **`.border-color-intensity-4`**
+*   **`.border-color-intensity-5`**
+*   **`.border-color-inherit`**
+*   **`.border-color-transparent`**
+
 #### Background
 
 *   **`.background-base` (Not to be confused with theme-color)**
@@ -328,6 +349,40 @@ Set to whatever font weight ya need boi
 	No margin on the right
 
 [More info on the css property](https://www.w3schools.com/css/css_margin.asp)
+
+
+
+# Reset Margins
+
+*   **`.no-border`**
+
+	No border on all sides
+
+*   **`.no-border-x`**
+
+	No border on left and right sides
+
+*   **`.no-border-y`**
+
+	No border on top and bottom sides
+
+*   **`.no-border-top`**
+
+	No border on the top
+
+*   **`.no-border-bottom`**
+
+	No border on the bottom
+
+*   **`.no-border-left`**
+
+	No border on the left
+
+*   **`.no-border-right`**
+
+	No border on the right
+
+[More info on the css property](https://www.w3schools.com/css/css_border.asp)
 
 
 # Reset Padding

@@ -94,7 +94,7 @@ Makes a square boi. very nice for [symbols](../components/symbol.md)
 NOTE: this btn will always stay a equilateral boi even in `.btn-group`
 
 ![](../../images/btn-symbol.png)
-
+<!-- 
 #### **`.btn-round`**
 
 Makes the edges of your `.btn` half circle round. If used on a `.btn-symbol`, wi make the button a circle :O
@@ -103,7 +103,7 @@ Makes the edges of your `.btn` half circle round. If used on a `.btn-symbol`, wi
 <button type="button" class="btn btn-round btn-default">
 	my edges are round like the fuCKING EARTH
 </button>
-```
+``` -->
 
 
 # Button Groups

@@ -526,7 +526,7 @@ window.jQuery && jQuery.noConflict();
 		triggerer = triggerer || null;
 
 		toggleMode = toggleMode || null;
-		var selector = '.'+toggleMode || null;
+		var selector = '.'+toggleMode || false;
 		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
 		var toReturn = false;
 
@@ -2648,6 +2648,7 @@ window.jQuery && jQuery.noConflict();
 				var selector =  _.getTheToggled(triggerer,'dropdown');
 
 				if( selector ){
+					console.log(selector);
 					frameWork.setDropdown(selector,triggerer,'open');
 				}
 

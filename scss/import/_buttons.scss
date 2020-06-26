@@ -218,12 +218,6 @@ $prefix: '.btn';
 			&:first-child {
 				margin-right: .25em;
 			}
-
-
-			&:first-child:last-child {
-				margin-left:auto;
-				margin-right:auto;
-			}
 		}
 	}
 		& {
@@ -245,13 +239,33 @@ $prefix: '.btn';
 
 	@at-root %for-btn {
 		&-no-shadow {
-			box-shadow:none!important;
+			box-shadow:none;
+
+			&-important {
+				box-shadow:none!important;
+			}
+			
 		}
+		
 	}
 
 	@at-root %for-btn {
 	
 		&-itself-and-group {
+			// &-round {
+
+			// 	border-radius: $calculated-btn-height * .5;
+
+			// 	&-large {
+			// 		border-radius: $calculated-btn-height-large * .5;
+			// 	}
+
+			// 	&-small {
+			// 		border-radius: $calculated-btn-height-small * .5;
+			// 	}
+			// }
+
+
 			border-radius: $btn-border-radius;
 			box-shadow: $btn-box-shadow;
 			background-color:transparent;
@@ -276,20 +290,21 @@ $prefix: '.btn';
 			}
 			
 			&#{$prefix}-no-shadow {
-				@extend %for-btn-no-shadow !optional;
+				@extend %for-btn-no-shadow-important !optional;
 			}
 
-			&#{$prefix}-round {
-				border-radius: $calculated-btn-height * .5;
-
-				&#{$prefix}-large {
-					border-radius: $calculated-btn-height-large * .5;
-				}
-
-				&#{$prefix}-small {
-					border-radius: $calculated-btn-height-small * .5;
-				}
-			}
+			// &#{$prefix}-round  {
+				
+			// 	@extend %for-btn-itself-and-group-round !optional;
+	
+			// 	&#{$prefix}-large {
+			// 		@extend %for-btn-itself-and-group-round-large !optional;
+			// 	}
+	
+			// 	&#{$prefix}-small {
+			// 		@extend %for-btn-itself-and-group-round-small !optional;
+			// 	}
+			// }
 		}
 	}
 
@@ -355,6 +370,19 @@ $prefix: '.btn';
 			@extend %for-btn-small !optional;
 		}
 
+		// @at-root #{$prefix}-group#{$prefix}-round > &  {
+			
+		// 	@extend %for-btn-itself-and-group-round !optional;
+
+		// 	@at-root #{$prefix}-large#{&} {
+		// 		@extend %for-btn-itself-and-group-round-large !optional;
+		// 	}
+
+		// 	@at-root #{$prefix}-small#{&} {
+		// 		@extend %for-btn-itself-and-group-round-small !optional;
+		// 	}
+		// }
+
 	
 
 	@at-root %for-btn {
@@ -389,10 +417,6 @@ $prefix: '.btn';
 			#{$prefix}-large &,
 			&#{$prefix}-large {
 				@extend %for-btn-symbol-large !optional;
-			}
-
-			&#{&}-round {
-				@extend %for-btn-symbol-round !optional;
 			}
 		}
 	

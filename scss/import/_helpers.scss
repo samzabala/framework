@@ -7,6 +7,30 @@
 // extend for elements that needs backgrounds so we can extend with responsibility
 	%for{
 
+		&-border-color {
+			@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
+				&-#{$tag} {
+					border-color: $color ;
+				}
+	
+				&-#{$tag}-important {
+					border-color: $color !important;
+				}
+			}
+
+			&-intensity {
+				@for $i from 1 through length($calculated-color-brand-intensity) {
+					&-#{$i} {
+						border-color: nth($calculated-color-brand-intensity,$i);
+	
+						&-important {
+							border-color: nth($calculated-color-brand-intensity,$i) !important;
+						}
+					}
+				}
+			}
+		}
+
 		&-background {
 			@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
 				&-#{$tag} {
@@ -80,6 +104,86 @@
 			}
 		}
 	}
+
+
+
+	$prefix: '.border';
+	#{$prefix} {
+		&-color {
+	
+			// Theme
+			@include create-palette-helper(
+				#{&}-theme,
+				border-color,
+				$theme-background,
+				$theme-background-inverse
+			);
+	
+	
+			// Theme Contrast
+			@include create-palette-helper(
+				#{&}-theme-contrast,
+				border-color,
+				$theme-background-contrast,
+				$theme-background-contrast-inverse
+			);
+	
+	
+			// Theme Polar 
+			@include create-palette-helper(
+				#{&}-theme-polar,
+				border-color,
+				$theme-color,
+				$theme-color-inverse
+			);
+	
+	
+			// Theme Contrast Polar 
+			@include create-palette-helper(
+				#{&}-theme-polar-contrast,
+				border-color,
+				$theme-color-contrast,
+				$theme-color-contrast-inverse
+			);
+	
+			//intensity
+			&-intensity {
+				@for $i from 1 through length($calculated-color-brand-intensity) {
+					@include create-palette-helper(
+						#{&}-#{$i}
+					){
+						@extend %for-border-color-intensity-#{$i}-important !optional;
+					};
+				}
+			}
+
+			//inherit
+			@include create-palette-helper(
+				#{&}-inherit,
+				border-color,
+				inherit
+			);
+	
+			//transparent
+			@include create-palette-helper(
+				#{&}-transparent,
+				border-color,
+				transparent
+			);
+	
+			//color tag
+			@each $tag,$color in $calculated-brand-color-declarations-for-helpers {
+				
+				@include create-palette-helper(
+					#{&}-#{$tag}
+				){
+					@extend %for-border-color-#{$tag}-important;
+				};
+			}
+	
+		}
+	}
+
 
 	$prefix: '.background';
 	#{$prefix} {
@@ -955,23 +1059,23 @@
 		flex-wrap:inherit!important;
 	}
 
-	&-1-1,
-	&-1-0 {
+	@at-root #{&+'-1-1'},
+	#{&+'-1-0'} {
 		flex-grow: 1!important;
 	}
 
-	&-1-1,
-	&-0-1 {
+	@at-root #{&+'-1-1'},
+	#{&+'-0-1'} {
 		flex-shrink: 1!important;
 	}
 
-	&-0-1,
-	&-0-0 {
+	@at-root #{&+'-0-1'},
+	#{&+'-0-0'} {
 		flex-grow: 0!important;
 	}
 
-	&-1-0,
-	&-1-0 {
+	@at-root #{&+'-1-0'},
+	#{&+'-1-0'} {
 		flex-shrink: 0!important;
 	}
 

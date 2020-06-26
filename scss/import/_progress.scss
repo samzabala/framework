@@ -59,28 +59,6 @@ $prefix: '.progress';
 			border-radius: $progress-border-radius;
 			overflow:hidden;
 			@extend %for-cf;
-			// margin-bottom:$calculated-body-text-gutter-y;
-			@include gradient((
-				type: repeating-linear,
-				colors: (
-					(
-						color: $progress-background-stripe-color,
-						offset:0%
-					),
-					(
-						color: $progress-background-stripe-color,
-						offset:1px
-					),
-					(
-						color: $progress-background-color,
-						offset:1px
-					),
-					(
-						color: $progress-background-color,
-						offset:4px
-					)
-				)
-			));
 	
 	
 	
@@ -93,28 +71,6 @@ $prefix: '.progress';
 	
 			.theme-inverse & {
 				background-color: $progress-background-color-inverse;
-				
-				@include gradient((
-					type: repeating-linear,
-					colors: (
-						(
-							color: $progress-background-stripe-color-inverse,
-							offset:0%
-						),
-						(
-							color: $progress-background-stripe-color-inverse,
-							offset:1px
-						),
-						(
-							color: $progress-background-color-inverse,
-							offset:1px
-						),
-						(
-							color: $progress-background-color-inverse,
-							offset:4px
-						)
-					)
-				));
 			}
 		}
 	}
