@@ -463,7 +463,8 @@ window.jQuery && jQuery.noConflict();
 
 
 		for (var prop in arr) {
-			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined) {
+			console.log(prop,arr[prop]);
+			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined ) {
 				// Push each value from `obj` into `extended`
 				
 				// catch boolean
@@ -1854,13 +1855,13 @@ window.jQuery && jQuery.noConflict();
 
 
 	frameWork.createModal = function(triggerer,mode){
-		mode = mode || 'modal'
+		mode = mode || 'modal';
 		
 		var contentWrap =  _.getTheToggled(triggerer,mode);
 
 		frameWork.destroyModal(null,mode);
 
-		if(contentWrap) {
+		if(contentWrap && mode) {
 
 			var arr =  {
 				header:
@@ -1905,6 +1906,8 @@ window.jQuery && jQuery.noConflict();
 			var actualId = 'fw-'+mode;
 
 			var args = _.parseArgs(arr,defaults);
+
+			// console.log(contentWrap,arr,defaults,args);
 
 			switch(mode){
 				case 'modal':
@@ -2100,7 +2103,7 @@ window.jQuery && jQuery.noConflict();
 	}
 
 	frameWork.toggleAccordion = function(triggerer,changeHash) {
-		changeHash = !(changeHash) ? false : true;
+		changeHash = (changeHash != false);
 
 		var selector =  _.getTheToggled(triggerer,'accordion');
 
@@ -2279,7 +2282,7 @@ window.jQuery && jQuery.noConflict();
 
 	$(window).on('hashchange',function(){
 		frameWork.settings.initializeModal && frameWork.createModal();
-		frameWork.settings.initializeBoard && frameWork.createBoard(null,'board');
+		frameWork.settings.initializeBoard && frameWork.createBoard(false,'board');
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
 	});
 
@@ -2813,6 +2816,8 @@ window.jQuery && jQuery.noConflict();
 
 		$('body').on('click','*[data-toggle="board-open"], *[data-toggle="board"]',function(e){
 			const triggerer = $(e.target);
+
+			console.log('bitcj',triggerer);
 
 			e.preventDefault();
 			if( !frameWork.isDisabled(triggerer) ){	
