@@ -464,7 +464,12 @@ window.jQuery && jQuery.noConflict();
 
 		for (var prop in arr) {
 			
-			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined ) {
+			if(
+				arr.hasOwnProperty(prop)
+				&& (
+					arr[prop] !== undefined
+				)
+			) {
 				// Push each value from `obj` into `extended`
 				
 				// catch boolean
@@ -581,7 +586,6 @@ window.jQuery && jQuery.noConflict();
 					break;
 			}
 		}
-		console.log(triggerer,toggleMode,toReturn);
 
 		return toReturn;
 	};
@@ -1868,29 +1872,29 @@ window.jQuery && jQuery.noConflict();
 
 			var arr =  {
 				header:
-					contentWrap.attr('data-'+mode+'-title')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-title'))),
+					(triggerer && triggerer.attr('data-'+mode+'-title'))
+					|| contentWrap.attr('data-'+mode+'-title'),
 				close:
-					contentWrap.attr('data-'+mode+'-close')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-close'))),
+					(triggerer && triggerer.attr('data-'+mode+'-close'))
+					|| contentWrap.attr('data-'+mode+'-close'),
 				disableOverlay:
-					contentWrap.attr('data-'+mode+'-disable-overlay')
-					|| triggerer && ((triggerer.attr('data-'+mode+'-disable-overlay'))),
+					(triggerer && triggerer.attr('data-'+mode+'-disable-overlay'))
+					|| contentWrap.attr('data-'+mode+'-disable-overlay'),
 				maxWidth:
-					contentWrap.attr('data-'+mode+'-max-width')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-max-width'))),
+					(triggerer && triggerer.attr('data-'+mode+'-max-width'))
+					|| contentWrap.attr('data-'+mode+'-max-width'),
 				callback:
-					contentWrap.attr('data-'+mode+'-callback')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-callback'))),
+					(triggerer && triggerer.attr('data-'+mode+'-callback'))
+					|| contentWrap.attr('data-'+mode+'-callback'),
 				classes:
-					contentWrap.attr('data-'+mode+'-classes')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-classes'))),
+					(triggerer && triggerer.attr('data-'+mode+'-classes'))
+					|| contentWrap.attr('data-'+mode+'-classes'),
 				closeClasses:
-					contentWrap.attr('data-'+mode+'-close-classes')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-close-classes'))),
+					(triggerer && triggerer.attr('data-'+mode+'-close-classes'))
+					|| contentWrap.attr('data-'+mode+'-close-classes'),
 				align:
-					contentWrap.attr('data-'+mode+'-align')
-					|| (triggerer && (triggerer.attr('data-'+mode+'-align'))),
+					(triggerer && triggerer.attr('data-'+mode+'-align'))
+					|| contentWrap.attr('data-'+mode+'-align'),
 			};
 
 			_[mode+'ActiveElm'] = contentWrap;
@@ -1910,7 +1914,7 @@ window.jQuery && jQuery.noConflict();
 
 			var args = _.parseArgs(arr,defaults);
 
-			// console.log(contentWrap,arr,defaults,args);
+			console.log(contentWrap,arr,defaults,args);
 
 			switch(mode){
 				case 'modal':
@@ -2126,8 +2130,8 @@ window.jQuery && jQuery.noConflict();
 
 					var arr =  {
 						changeHash:
-						selector.attr('data-accordion-change-hash')
-							|| (triggerer && (triggerer.attr('data-accordion-change-hash')))
+						(triggerer && triggerer.attr('data-accordion-change-hash'))
+						|| selector.attr('data-accordion-change-hash')
 					};
 		
 					var defaults = {
