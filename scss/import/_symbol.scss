@@ -423,28 +423,38 @@ $prefix: '.symbol';
 		.active > &-toggle,
 		.open > &-toggle  {
 			@extend %for-valid-symbol;
+			width: .5em;
+			transform: rotate(45deg);
+
+			// @extend %for-valid-symbol-no-before;
+			// &:after {
+			// 	@extend %for-valid-symbol-pseudo;
+			// 	@extend %for-valid-symbol-pseudo-vertical;
+			// 	width: .5em;
+			// 	border-right: em((3px)/$calculated-symbol-basis) solid;
+			// 	border-bottom: em((3px)/$calculated-symbol-basis) solid;
+			// }
 
 			&:before,&:after {
 				@extend %for-valid-symbol-pseudo;
 				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-vertical;
 				@extend %for-valid-symbol-pseudo-filled;
-				right: auto;
+				left: auto;
 				top: auto;
-				left: .1875em;
-				bottom: .0625em;
-				transform-origin: center bottom;
+				bottom: 0em;
+				transform-origin: 50% 96%;
 			}
 
 			&:before {
-				height: .5em;
-				transform: rotate(-45deg);
-				margin-left: em((3px * .5)/$calculated-symbol-basis);
+				@extend %for-valid-symbol-pseudo-horizontal;
+				width: .5em;
+				// transform: rotate(-45deg);
 			}
 
 			&:after {
+				@extend %for-valid-symbol-pseudo-vertical;
 				height: 1em;
-				transform: rotate(45deg);
+				// transform: rotate(45deg);
 			}
 		}
 	}
@@ -487,15 +497,15 @@ $prefix: '.symbol';
 			}
 
 			&:before {
+				@extend %for-valid-symbol-pseudo-full-height;
+				@extend %for-valid-symbol-pseudo-full-width;
 				border-radius: 50%;
-				height:1em;
-				width:1em;
 				border: #{em(4px / $calculated-symbol-basis)} solid;
 				
 			}
 
 			&:after {
-				border: #{em(6px / $calculated-symbol-basis)} solid transparent;
+				border: #{em(6.25px / $calculated-symbol-basis)} solid transparent;
 				border-top: #{em(12px / $calculated-symbol-basis)} solid;
 				border-bottom:0;
 				width: 0;

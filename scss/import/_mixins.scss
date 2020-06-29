@@ -9,6 +9,44 @@
 	}
 }
 
+@mixin create-box-helper($selector-prefix,$property:'',$tag:'',$value:''){
+	$parsed-tag:'';
+
+	@if($tag != ''){
+		$parsed-tag: #{'-'+$tag};
+	}
+	@at-root #{$selector-prefix}{
+		#{$property}#{$parsed-tag}: $value!important;
+
+			&-x {
+				#{$property}-left#{$parsed-tag}: $value!important;
+				#{$property}-right#{$parsed-tag}: $value!important;
+			}
+
+
+			&-y {
+				#{$property}-top#{$parsed-tag}: $value!important;
+				#{$property}-bottom#{$parsed-tag}: $value!important;
+			}
+
+			&-top {
+				#{$property}-top#{$parsed-tag}: $value!important;
+			}
+
+			&-bottom {
+				#{$property}-bottom#{$parsed-tag}: $value!important;
+			}
+
+			&-left {
+				#{$property}-left#{$parsed-tag}: $value!important;
+			}
+
+			&-right {
+				#{$property}-right-#{$tag}:$value!important;
+			}
+		}
+}
+
 // for colors with hover and shit
 @mixin create-palette-helper($tag,$property:'', $value:'',$value-inverse: '') {
 

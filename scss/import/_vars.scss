@@ -263,7 +263,7 @@
 		$table-cell-border-color: $theme-background-contrast !default;
 			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;
 		$table-cell-border-width: 1px !default;
-		$table-cell-gutter: $gutter-micro !default;
+		$table-cell-gutter: 30px !default;
 
 		$table-heading-font-size: 14px !default;
 		$table-heading-height: 45px !default;
@@ -689,7 +689,7 @@
 			$thumbnail-font-size-small: 18px !default;
 		$thumbnail-text-transform: uppercase !default;
 
-		$thumbnail-size: 200px !default;
+		$thumbnail-size: 145px !default;
 			$thumbnail-size-medium: 70px !default;
 			$thumbnail-size-small: 45px !default;
 
@@ -918,7 +918,7 @@
 		$input-border-radius: $input-height * .5 !default;
 			$input-border-radius-large: $input-height-large * .5 !default;
 			$input-border-radius-small: $input-height-small * .5 !default;
-		$input-box-shadow: $box-shadow-base $brand-color-base !default; // 
+		$input-box-shadow: none !default; //$box-shadow-base $brand-color-base 
 		$input-box-shadow-brand-basis: $box-shadow-base !default;
 			$input-box-shadow-focus: 0px 0 5px 0px $brand-color-primary !default;
 		// $input-group-separator-color: rgba($brand-color-base,.1) !default;
@@ -1059,7 +1059,7 @@
 		$btn-border-radius: $btn-height * .5 !default;
 			$btn-border-radius-large: $btn-height-large * .5 !default;
 			$btn-border-radius-small:  $btn-height-small * .5 !default;
-		$btn-box-shadow: $box-shadow-base $brand-color-base !default;
+		$btn-box-shadow: none !default; //$box-shadow-base $brand-color-base
 			$btn-box-shadow-hover: $box-shadow-base $brand-color-base !default;
 		// $btn-group-separator-color: rgba($brand-color-base,.1) !default;
 		$btn-transition-duration: $transition-duration-base!default;

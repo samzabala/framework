@@ -115,35 +115,35 @@
 			@include create-palette-helper(
 				#{&}-theme,
 				border-color,
-				$theme-background,
-				$theme-background-inverse
+				$theme-color,
+				$theme-color-inverse
 			);
-	
-	
+
+
 			// Theme Contrast
 			@include create-palette-helper(
 				#{&}-theme-contrast,
 				border-color,
-				$theme-background-contrast,
-				$theme-background-contrast-inverse
+				$theme-color-contrast,
+				$theme-color-contrast-inverse
 			);
-	
-	
+
+
 			// Theme Polar 
 			@include create-palette-helper(
 				#{&}-theme-polar,
 				border-color,
-				$theme-color,
-				$theme-color-inverse
+				$theme-background,
+				$theme-background-inverse
 			);
-	
-	
+
+
 			// Theme Contrast Polar 
 			@include create-palette-helper(
 				#{&}-theme-polar-contrast,
 				border-color,
-				$theme-color-contrast,
-				$theme-color-contrast-inverse
+				$theme-background-contrast,
+				$theme-background-contrast-inverse
 			);
 	
 			//intensity
@@ -181,6 +181,34 @@
 				};
 			}
 	
+		}
+
+
+
+		&-style {
+			@include create-box-helper(#{&+'-none'},border,'style',none);
+			@include create-box-helper(#{&+'-hidden'},border,'style',hidden);
+			@include create-box-helper(#{&+'-dotted'},border,'style',dotted);
+			@include create-box-helper(#{&+'-dashed'},border,'style',dashed);
+			@include create-box-helper(#{&+'-solid'},border,'style',solid);
+			@include create-box-helper(#{&+'-double'},border,'style',double);
+			@include create-box-helper(#{&+'-groove'},border,'style',groove);
+			@include create-box-helper(#{&+'-ridge'},border,'style',ridge);
+			@include create-box-helper(#{&+'-inset'},border,'style',inset);
+			@include create-box-helper(#{&+'-outset'},border,'style',outset);
+			@include create-box-helper(#{&+'-initial'},border,'style',initial);
+			@include create-box-helper(#{&+'-inherit'},border,'style',inherit);
+			@include create-box-helper(#{&+'-unset'},border,'style',unset);
+		}
+
+		&-width {
+
+			@include create-box-helper(#{&+'-thin'},border,'width',thin);
+			@include create-box-helper(#{&+'-medium'},border,'width',medium);
+			@include create-box-helper(#{&+'-thick'},border,'width',thick);
+			@include create-box-helper(#{&+'-initial'},border,'width',initial);
+			@include create-box-helper(#{&+'-inherit'},border,'width',inherit);
+			@include create-box-helper(#{&+'-unset'},border,'width',unset);
 		}
 	}
 
@@ -650,69 +678,47 @@
 
 
 
-//gutters and paddings
 
-	.no-margin {
-		margin:0!important;
+
+//box model resets
+	.no-border {
+		border:0!important;
 
 		&-x {
-			margin-left:0!important;
-			margin-right:0!important;
+			border-left:0!important;
+			border-right:0!important;
 		}
 
 
 		&-y {
-			margin-top:0!important;
-			margin-bottom:0!important;
+			border-top:0!important;
+			border-bottom:0!important;
 		}
 
 		&-top {
-			margin-top:0!important;
+			border-top:0!important;
 		}
 
 		&-bottom {
-			margin-bottom:0!important;
+			border-bottom:0!important;
 		}
 
 		&-left {
-			margin-left:0!important;
+			border-left:0!important;
 		}
 
 		&-right {
-			margin-right:0!important;
+			border-right:0!important;
 		}
+	}
+
+	.no-margin {
+		@include create-box-helper(#{&},margin,'',0);
 	}
 
 
 	.no-padding {
-		padding:0!important;
-
-		&-x {
-			padding-left:0!important;
-			padding-right:0!important;
-		}
-
-
-		&-y {
-			padding-top:0!important;
-			padding-bottom:0!important;
-		}
-
-		&-top {
-			padding-top:0!important;
-		}
-
-		&-bottom {
-			padding-bottom:0!important;
-		}
-
-		&-left {
-			padding-left:0!important;
-		}
-
-		&-right {
-			padding-right:0!important;
-		}
+		@include create-box-helper(#{&},padding,'',0);
 	}
 
 .overflow {

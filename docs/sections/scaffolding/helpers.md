@@ -8,7 +8,7 @@ All influenced by [color declarations](../scaffolding/colors.md)
 
 
 
-#### Border
+#### Border Color
 
 *   **`.border-color-base` (Not to be confused with theme-color)**
 *   **`.border-color-background` (Not to be confused with theme-background)**
@@ -26,6 +26,48 @@ All influenced by [color declarations](../scaffolding/colors.md)
 *   **`.border-color-intensity-5`**
 *   **`.border-color-inherit`**
 *   **`.border-color-transparent`**
+
+
+#### Border Style
+
+*   **`.border-style-none`**
+*   **`.border-style-hidden`**
+*   **`.border-style-dotted`**
+*   **`.border-style-dashed`**
+*   **`.border-style-solid`**
+*   **`.border-style-double`**
+*   **`.border-style-groove`**
+*   **`.border-style-ridge`**
+*   **`.border-style-inset`**
+*   **`.border-style-outset`**
+
+Can also be specific to a side. for example for `.border-style-solid`
+
+*   **`.border-style-solid-left`**
+*   **`.border-style-solid-bottom`**
+*   **`.border-style-solid-right`**
+*   **`.border-style-solid-top`**
+*   **`.border-style-solid-x`**
+*   **`.border-style-solid-y`**
+
+
+#### Border Width
+
+*   **`.border-width-thin`**
+*   **`.border-width-medium`**
+*   **`.border-width-thick`**
+
+
+Can also be specific to a side. for example for `.border-width-thick`
+
+*   **`.border-width-thick-left`**
+*   **`.border-width-thick-bottom`**
+*   **`.border-width-thick-right`**
+*   **`.border-width-thick-top`**
+*   **`.border-width-thick-x`**
+*   **`.border-width-thick-y`**
+
+To reset brder- widths view [Reset Borders](#reset-borders)
 
 #### Background
 
@@ -352,7 +394,7 @@ Set to whatever font weight ya need boi
 
 
 
-# Reset Margins
+# Reset borders
 
 *   **`.no-border`**
 
