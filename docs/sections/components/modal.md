@@ -249,9 +249,11 @@ NOTE: this is useless if `frameWork.settings.dynamicHash` is set to `false`
 
 ### Functions
 
-#### **`fw.createModal(triggerer)`**
+#### **`fw.createModal(mode,triggerer)`**
 
 Creates a modal
+
+`mode` is the type of subcomponent of modal. defaults to `false` to render default modal,
 
 `triggerer` is the element that toggles the modal or [data-toggle="modal*"],
 
@@ -264,9 +266,9 @@ Kills ya boi
 
 [Back to TOC](../../../readme.md)
 
+# Sub-components
 
-
-# Board (jQuery version only)
+## Board (jQuery version only)
 
 Same functions as modal except this looks different because the design says so biechhhh
 

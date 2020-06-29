@@ -463,7 +463,7 @@ window.jQuery && jQuery.noConflict();
 
 
 		for (var prop in arr) {
-			console.log(prop,arr[prop]);
+			
 			if(arr.hasOwnProperty(prop) && arr[prop] !== undefined ) {
 				// Push each value from `obj` into `extended`
 				
@@ -524,12 +524,13 @@ window.jQuery && jQuery.noConflict();
 
 
 	_.getTheToggled = function(triggerer,toggleMode){
-		triggerer = triggerer || null;
+
+
 
 		toggleMode = toggleMode || null;
 		var selector = '.'+toggleMode || false;
 		var toggledClass = '.'+toggleMode.replace('-open','').replace('-close','') || null;
-		var toReturn = false;
+		var toReturn;
 
 
 		if(triggerer){
@@ -580,6 +581,7 @@ window.jQuery && jQuery.noConflict();
 					break;
 			}
 		}
+		console.log(triggerer,toggleMode,toReturn);
 
 		return toReturn;
 	};
@@ -1855,6 +1857,7 @@ window.jQuery && jQuery.noConflict();
 
 
 	frameWork.createModal = function(triggerer,mode){
+		
 		mode = mode || 'modal';
 		
 		var contentWrap =  _.getTheToggled(triggerer,mode);
@@ -2229,7 +2232,6 @@ window.jQuery && jQuery.noConflict();
 
 			triggerer.siblings('.'+resetterClass).removeClass('active');
 
-				console.log(triggerer.siblings('active'));
 
 			if(
 				(!triggerer.closest('.'+prefix+'-group-toggle-multiple').length)
@@ -2651,7 +2653,7 @@ window.jQuery && jQuery.noConflict();
 				var selector =  _.getTheToggled(triggerer,'dropdown');
 
 				if( selector ){
-					console.log(selector);
+					
 					frameWork.setDropdown(selector,triggerer,'open');
 				}
 
@@ -2817,7 +2819,6 @@ window.jQuery && jQuery.noConflict();
 		$('body').on('click','*[data-toggle="board-open"], *[data-toggle="board"]',function(e){
 			const triggerer = $(e.target);
 
-			console.log('bitcj',triggerer);
 
 			e.preventDefault();
 			if( !frameWork.isDisabled(triggerer) ){	
@@ -2848,7 +2849,7 @@ window.jQuery && jQuery.noConflict();
 			if(triggerer.val() && files.length){
 				zone.addClass('zone-has-content');
 
-				console.log(files);
+				
 				zone.append(function(){
 
 					var html  =
@@ -2874,7 +2875,6 @@ window.jQuery && jQuery.noConflict();
 			if( !frameWork.isDisabled(triggerer) ){
 				var asset = _.getTheToggled(triggerer,'asset');
 
-				console.log(asset);
 
 				triggerer.remove();
 				asset.remove();

@@ -4498,7 +4498,8 @@ table {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column; }
+    flex-direction: column;
+    padding: 60px 60px; }
     .board-popup-content {
       flex: 1 1; }
   .board-top .board-popup, .board-bottom .board-popup, .board-left .board-popup, .board-top .board-close-wrapper, .board-bottom .board-close-wrapper, .board-left .board-close-wrapper {

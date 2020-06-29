@@ -628,6 +628,8 @@
 
 		//modal board
 			$board-padding-spacer: $gutter-base !default;
+			$board-padding-x: $gutter-large !default;
+			$board-padding-y: $gutter-large !default;
 			$board-close-button-font-size: 1rem !default;
 			$board-close-offset-x: 1.25em !default;
 			$board-close-offset-y: 1.25em !default;
