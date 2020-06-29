@@ -162,9 +162,6 @@ $prefix: '.board';
 		@extend %for-modal-popup;
 		@extend %for-modal-scroller;
 		height: 100%;
-		display:flex;
-		flex-wrap:wrap;
-		flex-direction:column;
 		padding: $board-padding-x $board-padding-y;
 
 		&-content {

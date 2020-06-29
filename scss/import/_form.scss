@@ -226,6 +226,14 @@ $prefix: '.input';
 			align-self: flex-end;
 			margin-left: auto;
 		}
+
+
+
+		#{$prefix}-wrapper-vertical & {
+			width: 100%;
+			align-self: flex-start;
+			margin-left: 0;
+		}
 	}
 
 	&-inline {
@@ -561,8 +569,8 @@ $prefix: '.input';
 			#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height
 			;
 		background-position:
-			calc(100% - (1em + #{$calculated-symbol-caret-width * .425} )) 50%,
-			calc(100% - 1em) 50%
+			calc(100% - (1.5em + #{$calculated-symbol-caret-width * .425} )) 50%,
+			calc(100% - 1.5em) 50%
 			;
 		background-repeat: no-repeat,no-repeat;
 

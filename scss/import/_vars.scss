@@ -913,7 +913,7 @@
 		$input-font-style: normal !default;
 		$input-text-transform: none !default;
 		
-		$input-gutter-x: 20px !default;
+		$input-gutter-x: $gutter-small !default;
 		$input-border-width: 1px !default;
 		$input-border-color: rgba($brand-color-neutral,.3) !default;
 		$input-border-color-focus: rgba($brand-color-neutral,.3) !default;
@@ -932,7 +932,7 @@
 			$input-label-font-size-large: 20px !default;
 			$input-label-font-size-small: 14px !default;
 		
-		$input-label-color: $brand-color-neutral !default;
+		$input-label-color: inherit !default;
 			$input-label-color-inverse: inherit !default;
 		
 			$input-label-font-family: $brand-font-primary !default;

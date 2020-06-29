@@ -1914,7 +1914,7 @@ window.jQuery && jQuery.noConflict();
 
 			var args = _.parseArgs(arr,defaults);
 
-			console.log(contentWrap,arr,defaults,args);
+			// console.log(contentWrap,arr,defaults,args);
 
 			switch(mode){
 				case 'modal':
