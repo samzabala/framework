@@ -2646,7 +2646,7 @@ window.jQuery && jQuery.noConflict();
 		});
 
 
-		$('body').on('focus','input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"]',function(e){
+		$('body').on('focus','input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"], .fw-ui [contenteditable]',function(e){
 			const uiTrigger = $(e.target);
 			
 			if( frameWork.isDisabled(uiTrigger) ){
@@ -2668,7 +2668,7 @@ window.jQuery && jQuery.noConflict();
 
 
 
-		$('body').on('blur','input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"]',function(e){
+		$('body').on('blur','input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"], .fw-ui [contenteditable]',function(e){
 			const uiTrigger = $(e.target);
 			
 			if( !frameWork.isDisabled(uiTrigger) ){

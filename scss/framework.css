@@ -4418,6 +4418,10 @@ table {
     z-index: 9; }
     .modal-close-default {
       font-size: 1rem; }
+    @media (max-width: 1200px) {
+      .modal-close {
+        right: 20px;
+        top: 20px; } }
   .board-popup, .modal-popup {
     backface-visibility: hidden;
     position: relative;
@@ -4428,10 +4432,12 @@ table {
     .theme-inverse .board-popup, .theme-inverse .modal-popup {
       background: #1a1a1a; }
   .modal-popup {
-    padding: 30px 20px;
     border-radius: 5px;
-    margin: auto; }
-
+    margin: auto;
+    padding: 40px 40px; }
+    @media (max-width: 1200px) {
+      .modal-popup {
+        padding: 20px 20px; } }
 /*** MODAL BOARD***/
 .board {
   display: none !important; }
@@ -4445,6 +4451,15 @@ table {
       padding-top: 40px; }
     .board-wrapper.board-bottom {
       padding-bottom: 40px; }
+    @media (max-width: 1200px) {
+      .board-wrapper.board-left {
+        padding-left: 20px; }
+      .board-wrapper.board-right {
+        padding-right: 20px; }
+      .board-wrapper.board-top {
+        padding-top: 20px; }
+      .board-wrapper.board-bottom {
+        padding-bottom: 20px; } }
   .board-title {
     margin-top: 0; }
   .board-close {
@@ -4456,6 +4471,9 @@ table {
     .board-left .board-close-wrapper, .board-right .board-close-wrapper {
       top: 0;
       width: calc(100% -  40px); }
+      @media (max-width: 1200px) {
+        .board-left .board-close-wrapper, .board-right .board-close-wrapper {
+          width: calc(100% -  20px); } }
     .board-top .board-close-wrapper, .board-bottom .board-close-wrapper, .board-left .board-close-wrapper {
       right: 0; }
     .board-top .board-close-wrapper, .board-bottom .board-close-wrapper, .board-right .board-close-wrapper {
@@ -4463,6 +4481,9 @@ table {
     .board-top .board-close-wrapper, .board-bottom .board-close-wrapper {
       left: 0;
       height: calc(100% -  40px); }
+      @media (max-width: 1200px) {
+        .board-top .board-close-wrapper, .board-bottom .board-close-wrapper {
+          height: calc(100% -  20px); } }
     .board-top .board-close-wrapper {
       bottom: 0; }
     .board-bottom .board-close-wrapper {
@@ -4479,7 +4500,10 @@ table {
   .theme-inverse .board-close {
     background: #1a1a1a; }
   .board-left .board-close, .board-right .board-close {
-    top: 1.25em; }
+    top: 60px; }
+    @media (max-width: 1200px) {
+      .board-left .board-close, .board-right .board-close {
+        top: 20px; } }
   .board-left .board-close {
     left: 0;
     transform: translateX(-50%); }
@@ -4487,7 +4511,10 @@ table {
     right: 0;
     transform: translateX(50%); }
   .board-top .board-close, .board-bottom .board-close {
-    right: 1.25em; }
+    right: 40px; }
+    @media (max-width: 1200px) {
+      .board-top .board-close, .board-bottom .board-close {
+        right: 30px; } }
   .board-top .board-close {
     top: 0;
     transform: translateY(-50%); }
@@ -4496,7 +4523,10 @@ table {
     transform: translateY(50%); }
   .board-popup {
     height: 100%;
-    padding: 60px 60px; }
+    padding: 60px 40px; }
+    @media (max-width: 1200px) {
+      .board-popup {
+        padding: 20px 30px; } }
     .board-popup-content {
       flex: 1 1; }
   .board-top .board-popup, .board-bottom .board-popup, .board-left .board-popup, .board-top .board-close-wrapper, .board-bottom .board-close-wrapper, .board-left .board-close-wrapper {
@@ -5702,15 +5732,18 @@ table {
   background-color: #FFFFFF;
   transition: 0.125s color ease-in-out, 0.125s border ease-in-out, 0.125s box-shadow ease-in-out;
   max-width: 100%; }
-  .input:focus {
+  .input:focus, .focus.input, .input:hover {
     outline: none;
-    box-shadow: 0px 0 5px 0px #007ece !important; }
+    box-shadow: 0px 0 5px 0px #007ece; }
   .theme-inverse .input {
     background-color: rgba(141, 141, 141, 0.1); }
   .input-large.input, .input-group.input-large .input {
     font-size: 1.25rem; }
   .input-small.input, .input-group.input-small .input {
     font-size: 0.875rem; }
+
+.input-disabled, .input[disabled] {
+  box-shadow: none !important; }
 
 .input-label {
   font-size: 0.875rem;
@@ -5789,7 +5822,7 @@ table {
   .input-tags-ui option, .input-calendar-ui option, .input-select option, .input-single-line option, .input-multiple-line option, .input-editor option {
     font: inherit;
     outline: none; }
-  .input-group .input-tags-ui, .input-group .input-calendar-ui, .input-group .input-select, .input-group .input-single-line, .input-group .input-multiple-line, .input-group .input-editor {
+  .input-group .input-tags-ui:not(.focus):not(:focus):not(:hover), .input-group .input-calendar-ui:not(.focus):not(:focus):not(:hover), .input-group .input-select:not(.focus):not(:focus):not(:hover), .input-group .input-single-line:not(.focus):not(:focus):not(:hover), .input-group .input-multiple-line:not(.focus):not(:focus):not(:hover), .input-group .input-editor:not(.focus):not(:focus):not(:hover) {
     box-shadow: none; }
   .input-wrapper .input-tags-ui, .input-wrapper .input-calendar-ui, .input-wrapper .input-select, .input-wrapper .input-single-line, .input-wrapper .input-multiple-line, .input-wrapper .input-editor {
     display: block;
@@ -5838,10 +5871,9 @@ table {
     padding-top: calc( ( (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
     padding-bottom: calc( ( (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
     height: 4.6875rem; }
-    .nav .input-tags-ui:not(.focus):not(:focus), .nav .input-calendar-ui:not(.focus):not(:focus), .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus) {
+    .nav .input-tags-ui:not(.focus):not(:focus):not(:hover), .nav .input-calendar-ui:not(.focus):not(:focus):not(:hover), .nav .input-select:not(.focus):not(:focus):not(:hover), .nav .input-single-line:not(.focus):not(:focus):not(:hover), .nav .input-multiple-line:not(.focus):not(:focus):not(:hover), .nav .input-editor:not(.focus):not(:focus):not(:hover) {
       box-shadow: none; }
-  .input-tags-ui:focus, .input-calendar-ui:focus, .input-select:focus, .input-single-line:focus, .input-multiple-line:focus, .input-editor:focus, .focus.input-tags-ui, .focus.input-calendar-ui, .focus.input-select, .focus.input-single-line, .focus.input-multiple-line, .focus.input-editor {
-    box-shadow: 0px 0 5px 0px #007ece;
+  .input-tags-ui:focus, .input-calendar-ui:focus, .input-select:focus, .input-single-line:focus, .input-multiple-line:focus, .input-editor:focus, .focus.input-tags-ui, .focus.input-calendar-ui, .focus.input-select, .focus.input-single-line, .focus.input-multiple-line, .focus.input-editor, .input-tags-ui:hover, .input-calendar-ui:hover, .input-select:hover, .input-single-line:hover, .input-multiple-line:hover, .input-editor:hover {
     border-color: rgba(141, 141, 141, 0.3); }
   .input-large.input-tags-ui, .input-large.input-calendar-ui, .input-large.input-select, .input-large.input-single-line, .input-large.input-multiple-line, .input-large.input-editor, .input-group.input-large .input-tags-ui, .input-group.input-large .input-calendar-ui, .input-group.input-large .input-select, .input-group.input-large .input-single-line, .input-group.input-large .input-multiple-line, .input-group.input-large .input-editor {
     padding-top: calc( ( (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5);
@@ -5858,7 +5890,7 @@ table {
   box-shadow: none; }
   .nav .input-tags-ui, .nav .input-calendar-ui, .nav .input-select, .nav .input-single-line, .nav .input-multiple-line, .nav .input-editor, .nav .input-group {
     border-radius: 0 !important; }
-    .nav .input-tags-ui:not(.focus):not(:focus), .nav .input-calendar-ui:not(.focus):not(:focus), .nav .input-select:not(.focus):not(:focus), .nav .input-single-line:not(.focus):not(:focus), .nav .input-multiple-line:not(.focus):not(:focus), .nav .input-editor:not(.focus):not(:focus), .nav .input-group:not(.focus):not(:focus) {
+    .nav .input-tags-ui:not(.focus):not(:focus):not(:hover), .nav .input-calendar-ui:not(.focus):not(:focus):not(:hover), .nav .input-select:not(.focus):not(:focus):not(:hover), .nav .input-single-line:not(.focus):not(:focus):not(:hover), .nav .input-multiple-line:not(.focus):not(:focus):not(:hover), .nav .input-editor:not(.focus):not(:focus):not(:hover), .nav .input-group:not(.focus):not(:focus):not(:hover) {
       box-shadow: none; }
   .input-no-radius.input-tags-ui, .input-no-radius.input-calendar-ui, .input-no-radius.input-select, .input-no-radius.input-single-line, .input-no-radius.input-multiple-line, .input-no-radius.input-editor, .input-no-radius.input-group {
     border-radius: 0 !important; }
@@ -6028,9 +6060,10 @@ table {
 
 .input.input-primary, .input-primary .input {
   color: #007ece;
-  box-shadow: 0px 3px 10px -6px #007ece;
   border-color: #007ece;
   background-color: rgba(0, 126, 206, 0.05); }
+  .input.input-primary:not(.focus):not(:focus):not(:hover), .input-primary .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #007ece; }
 
 .input-label.input-secondary,
 .input-secondary .input-label {
@@ -6038,9 +6071,10 @@ table {
 
 .input.input-secondary, .input-secondary .input {
   color: #ff009c;
-  box-shadow: 0px 3px 10px -6px #ff009c;
   border-color: #ff009c;
   background-color: rgba(255, 0, 156, 0.05); }
+  .input.input-secondary:not(.focus):not(:focus):not(:hover), .input-secondary .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #ff009c; }
 
 .input-label.input-accent,
 .input-accent .input-label {
@@ -6048,9 +6082,10 @@ table {
 
 .input.input-accent, .input-accent .input {
   color: #f5b83d;
-  box-shadow: 0px 3px 10px -6px #f5b83d;
   border-color: #f5b83d;
   background-color: rgba(245, 184, 61, 0.05); }
+  .input.input-accent:not(.focus):not(:focus):not(:hover), .input-accent .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #f5b83d; }
 
 .input-label.input-neutral,
 .input-neutral .input-label {
@@ -6058,9 +6093,10 @@ table {
 
 .input.input-neutral, .input-neutral .input {
   color: #8d8d8d;
-  box-shadow: 0px 3px 10px -6px #8d8d8d;
   border-color: #8d8d8d;
   background-color: rgba(141, 141, 141, 0.05); }
+  .input.input-neutral:not(.focus):not(:focus):not(:hover), .input-neutral .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #8d8d8d; }
 
 .input-label.input-success,
 .input-success .input-label {
@@ -6068,9 +6104,10 @@ table {
 
 .input.input-success, .input-success .input {
   color: #15b800;
-  box-shadow: 0px 3px 10px -6px #15b800;
   border-color: #15b800;
   background-color: rgba(21, 184, 0, 0.05); }
+  .input.input-success:not(.focus):not(:focus):not(:hover), .input-success .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #15b800; }
 
 .input-label.input-caution,
 .input-caution .input-label {
@@ -6078,9 +6115,10 @@ table {
 
 .input.input-caution, .input-caution .input {
   color: #fd7f03;
-  box-shadow: 0px 3px 10px -6px #fd7f03;
   border-color: #fd7f03;
   background-color: rgba(253, 127, 3, 0.05); }
+  .input.input-caution:not(.focus):not(:focus):not(:hover), .input-caution .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #fd7f03; }
 
 .input-label.input-error,
 .input-error .input-label {
@@ -6088,9 +6126,10 @@ table {
 
 .input.input-error, .input-error .input {
   color: #fd0303;
-  box-shadow: 0px 3px 10px -6px #fd0303;
   border-color: #fd0303;
   background-color: rgba(253, 3, 3, 0.05); }
+  .input.input-error:not(.focus):not(:focus):not(:hover), .input-error .input:not(.focus):not(:focus):not(:hover) {
+    box-shadow: 0px 3px 10px -6px #fd0303; }
 
 .special-form,
 fieldset {
@@ -6258,19 +6297,19 @@ fieldset {
     padding-bottom: 0.625em;
     margin-left: -1.25em;
     margin-right: -1.25em;
-    margin-top: calc( ( (2.8125rem - (1em * 1.5) ) * .5) * -1);
+    margin-top: calc( ( (2.8125rem - (1px * 2)) - (1em * 1.5) ) * -.5);
     position: relative; }
     .input-calendar-ui-input:last-child {
       margin-bottom: calc( ( (2.8125rem - (1em * 1.5) ) * .5) * -1); }
       .input-calendar-ui-input:last-child:after {
         content: none; }
     .input-small .input-calendar-ui-input {
-      margin-top: calc( ( (1.875rem - (1em * 1.5) ) * .5) * -1);
+      margin-top: calc( ( (1.875rem - (1px * 2)) - (1em * 1.5) ) * -.5);
       position: relative; }
       .input-small .input-calendar-ui-input:last-child {
         margin-bottom: calc( ( (1.875rem - (1em * 1.5) ) * .5) * -1); }
     .input-large .input-calendar-ui-input {
-      margin-top: calc( ( (4.6875rem - (1em * 1.5) ) * .5) * -1);
+      margin-top: calc( ( (4.6875rem - (1px * 2)) - (1em * 1.5) ) * -.5);
       position: relative; }
       .input-large .input-calendar-ui-input:last-child {
         margin-bottom: calc( ( (4.6875rem - (1em * 1.5) ) * .5) * -1); }

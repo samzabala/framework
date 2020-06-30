@@ -47,6 +47,24 @@ $prefix: '.board';
 			&#{$prefix}-bottom {
 				padding-bottom: $board-padding-spacer;
 			}
+
+
+
+
+			@include br(#{$mobile-br-max}-max) {
+				&#{$prefix}-left {
+					padding-left: $board-padding-spacer-mobile;
+				}
+				&#{$prefix}-right {
+					padding-right: $board-padding-spacer-mobile;
+				}
+				&#{$prefix}-top {
+					padding-top: $board-padding-spacer-mobile;
+				}
+				&#{$prefix}-bottom {
+					padding-bottom: $board-padding-spacer-mobile;
+				}
+			}
 		}
 		&-title {
 			margin-top:0;
@@ -66,6 +84,10 @@ $prefix: '.board';
 			#{$prefix}-right & {
 				top: 0;
 				width: calc(100% -  #{$board-padding-spacer});
+
+				@include br(#{$mobile-br-max}-max) {					
+					width: calc(100% -  #{$board-padding-spacer-mobile});
+				}
 			}
 			#{$prefix}-top &,
 			#{$prefix}-bottom &, 
@@ -84,6 +106,10 @@ $prefix: '.board';
 			#{$prefix}-bottom & {
 				left: 0;
 				height: calc(100% -  #{$board-padding-spacer});
+
+				@include br(#{$mobile-br-max}-max) {					
+					height: calc(100% -  #{$board-padding-spacer-mobile});
+				}
 			}
 
 			#{$prefix}-top & {
@@ -118,6 +144,11 @@ $prefix: '.board';
 		#{$prefix}-left &,
 		#{$prefix}-right & {
 			top: $board-close-offset-y;
+
+
+			@include br(#{$mobile-br-max}-max) {
+				top: $board-close-offset-y-mobile;
+			}
 		}
 
 		#{$prefix}-left & {
@@ -134,6 +165,11 @@ $prefix: '.board';
 		#{$prefix}-top &,
 		#{$prefix}-bottom & {
 			right: $board-close-offset-x;
+
+
+			@include br(#{$mobile-br-max}-max) {
+				right: $board-close-offset-x-mobile;
+			}
 		}
 
 		#{$prefix}-top & {
@@ -162,7 +198,12 @@ $prefix: '.board';
 		@extend %for-modal-popup;
 		@extend %for-modal-scroller;
 		height: 100%;
-		padding: $board-padding-x $board-padding-y;
+
+		padding: $board-padding-y $board-padding-x;
+
+		@include br(#{$mobile-br-max}-max) {
+			padding: $board-padding-y-mobile $board-padding-x-mobile;
+		}
 
 		&-content {
 			flex: 1 1;

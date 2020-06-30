@@ -88,6 +88,12 @@ $prefix: '.modal';
 				&-default {
 					font-size: $modal-close-button-font-size;
 				}
+
+				
+			@include br(#{$mobile-br-max}-max) {
+				right: $modal-close-offset-mobile;
+				top: $modal-close-offset-mobile;
+			}
 			}
 			&-overlay {
 				@extend %for-modal-overlay;
@@ -119,8 +125,13 @@ $prefix: '.modal';
 
 	&-popup {
 		@extend %for-modal-popup;
-		padding: $modal-gutter-y $modal-gutter-x;
 		border-radius: $modal-border-radius;
 		margin: auto;
+
+		padding: $modal-padding-y $modal-padding-x;
+
+		@include br(#{$mobile-br-max}-max) {
+			padding: $modal-padding-y-mobile $modal-padding-x-mobile;
+		}
 	}
 }

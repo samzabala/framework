@@ -132,9 +132,12 @@ $prefix: '.input';
 		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
 		max-width:100%;
 
-		&:focus {
+		&:focus,
+		&.focus,
+		&:hover {
 			outline: none;
-			box-shadow: $input-box-shadow-focus!important;
+			// box-shadow: $input-box-shadow-focus!important;
+			box-shadow: $input-box-shadow-focus;
 		}
 
 		.theme-inverse & {
@@ -160,6 +163,7 @@ $prefix: '.input';
 			&-disabled,
 			&[disabled] {
 				@extend %for-disabled !optional;
+				box-shadow:none!important;
 			}
 		}
 
@@ -281,7 +285,9 @@ $prefix: '.input';
 
 
 		#{$prefix}-group & {
-			box-shadow: none;
+			&:not(.focus):not(:focus):not(:hover) {
+				box-shadow:none;
+			}
 		}
 
 		#{$prefix}-wrapper & {
@@ -363,15 +369,15 @@ $prefix: '.input';
 			padding-bottom: $calculated-value-input-paddiny-y-nav;
 			height: #{ $calculated-nav-height };
 
-			&:not(.focus):not(:focus) {
+			&:not(.focus):not(:focus):not(:hover) {
 				box-shadow:none;
 			}
 
 		}
 
 		&:focus,
-		&.focus {
-			box-shadow: $input-box-shadow-focus;
+		&.focus,
+		&:hover {
 			border-color: $input-border-color-focus;
 		}
 
@@ -452,7 +458,7 @@ $prefix: '.input';
 		.nav & {
 			border-radius: 0 !important;
 
-			&:not(.focus):not(:focus) {
+			&:not(.focus):not(:focus):not(:hover) {
 				box-shadow:none;
 			}
 
@@ -699,7 +705,7 @@ $prefix: '.input';
 			resize:none;
 			max-width:100%;
 
-			// &:not(:focus):not(.focus) {
+			// &:not(:focus):not(.focus):not(:hover) {
 			// 	border-color:transparent;
 			// }
 
@@ -763,7 +769,7 @@ $prefix: '.input';
 						border-bottom-left-radius: 0!important;
 						margin-left: $input-border-width * -1;
 
-						// &:not(:focus):not(.focus) {
+						// &:not(:focus):not(.focus):not(:hover) {
 						// 	border-left-color: transparent;
 						// }
 					}
@@ -791,7 +797,7 @@ $prefix: '.input';
 					border-top-left-radius: 0!important;
 					margin-top: $input-border-width * -1;
 
-					// &:not(:focus):not(.focus) {
+					// &:not(:focus):not(.focus):not(:hover) {
 					// 	border-top-color: transparent;
 					// }
 				}
@@ -820,7 +826,7 @@ $prefix: '.input';
 							border-bottom-left-radius: 0!important;
 							margin-left: $input-border-width * -1;
 
-							// &:not(:focus):not(.focus) {
+							// &:not(:focus):not(.focus):not(:hover) {
 							// 	border-left-color:transparent;
 							// }
 						}
@@ -848,7 +854,7 @@ $prefix: '.input';
 						border-top-left-radius: 0!important;
 						margin-top: $input-border-width * -1;
 		
-						// &:not(:focus):not(.focus) {
+						// &:not(:focus):not(.focus):not(:hover) {
 						// 	border-top-color: transparent;
 						// }
 					}
@@ -889,11 +895,14 @@ $prefix: '.input';
 			& {
 		
 				color: $color;
-				box-shadow: $input-box-shadow-brand-basis $color;
 				border-color: $color;
 				
 				@if type-of($color) == color && $color != transparent {
 					background-color: rgba($color,$input-color-feedback-opacity);
+				}
+
+				&:not(.focus):not(:focus):not(:hover) {
+					box-shadow: $input-box-shadow-brand-basis $color;
 				}
 			}
 		}

@@ -195,7 +195,7 @@ $calculated-calendar-exception: '';
 						padding-bottom: $calculated-input-calendar-block-gutter-y;
 						margin-left:$calculated-input-gutter-x * -1;
 						margin-right:$calculated-input-gutter-x * -1;
-						margin-top: calc( ( (#{ $calculated-input-height } - (#{$calculated-input-single-line}) ) * .5) * -1 );
+						margin-top: $calculated-value-input-paddiny-y-negative;
 						position:relative;
 
 						&:last-child {
@@ -207,7 +207,7 @@ $calculated-calendar-exception: '';
 						}
 
 						#{$prefix}-small & {
-							margin-top: calc( ( (#{ $calculated-input-height-small } - (#{$calculated-input-single-line}) ) * .5) * -1 );
+							margin-top: $calculated-value-input-paddiny-y-small-negative;
 							position:relative;
 
 							&:last-child {
@@ -216,7 +216,7 @@ $calculated-calendar-exception: '';
 						}
 
 						#{$prefix}-large & {
-							margin-top: calc( ( (#{ $calculated-input-height-large } - (#{$calculated-input-single-line}) ) * .5) * -1 );
+							margin-top: $calculated-value-input-paddiny-y-large-negative;
 							position:relative;
 
 							&:last-child {

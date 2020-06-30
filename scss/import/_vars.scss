@@ -614,10 +614,13 @@
 		$module-grid-title-margin-top:100px !default;
 	
 	// modal
-		$modal-gutter-x: $gutter-small !default;
-		$modal-gutter-y: $gutter-base * .75 !default;
+		$modal-padding-x: $gutter-base !default;
+		$modal-padding-y: $gutter-base !default;
+			$modal-padding-x-mobile: $gutter-small !default;
+			$modal-padding-y-mobile: $gutter-small !default;
 		$modal-background: $theme-background !default;
 		$modal-close-offset: $gutter-small !default;
+			$modal-close-offset-mobile: $modal-close-offset !default;
 		$modal-background-inverse: $theme-background-inverse !default;
 		$modal-border-radius: $border-radius-small !default;
 		$modal-box-shadow: $box-shadow-spicy $brand-color-base !default !default;
@@ -628,11 +631,16 @@
 
 		//modal board
 			$board-padding-spacer: $gutter-base !default;
-			$board-padding-x: $gutter-large !default;
+				$board-padding-spacer-mobile: $gutter-small !default;
+			$board-padding-x: $gutter-base !default;
 			$board-padding-y: $gutter-large !default;
+				$board-padding-x-mobile: $gutter-small * 1.5 !default;
+				$board-padding-y-mobile: $gutter-small !default;
 			$board-close-button-font-size: 1rem !default;
-			$board-close-offset-x: 1.25em !default;
-			$board-close-offset-y: 1.25em !default;
+			$board-close-offset-x: $board-padding-x !default;
+			$board-close-offset-y: $board-padding-y !default;
+				$board-close-offset-x-mobile: $board-padding-x-mobile !default;
+				$board-close-offset-y-mobile: $board-padding-y-mobile !default;
 			$board-close-width: 20px !default; //not yet
 			$board-close-height: 55px !default; //not yet
 			$board-close-size: 2.5em !default;
