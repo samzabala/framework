@@ -465,7 +465,7 @@ $prefix: '.input';
 		}
 
 		&#{$prefix}-no-radius {
-			border-radius: 0!important;
+			@extend %for-no-radius !optional;
 		}
 
 		&#{$prefix}-no-shadow {

@@ -297,8 +297,8 @@
 			$grid-gap-expanded: $gutter-large !default;
 	
 	// speshal bois
-		$special-primary-font-size: 55px !default;
-			$special-primary-font-size-mobile: 54px !default;
+		$special-primary-font-size: 56px !default;
+			$special-primary-font-size-mobile: 48px !default;
 		$special-primary-font-weight: 300 !default;
 		$special-primary-line-height: 1 !default;
 		$special-primary-font-style: normal !default;
@@ -924,7 +924,7 @@
 		$input-gutter-x: $gutter-small !default;
 		$input-border-width: 1px !default;
 		$input-border-color: rgba($brand-color-neutral,.3) !default;
-		$input-border-color-focus: rgba($brand-color-neutral,.3) !default;
+		$input-border-color-focus: rgba($brand-color-neutral,.6) !default;
 		$input-border-radius: $input-height * .5 !default;
 			$input-border-radius-large: $input-height-large * .5 !default;
 			$input-border-radius-small: $input-height-small * .5 !default;

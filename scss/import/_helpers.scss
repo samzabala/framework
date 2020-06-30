@@ -186,29 +186,29 @@
 
 
 		&-style {
-			@include create-box-helper(#{&+'-none'},border,'style',none);
-			@include create-box-helper(#{&+'-hidden'},border,'style',hidden);
-			@include create-box-helper(#{&+'-dotted'},border,'style',dotted);
-			@include create-box-helper(#{&+'-dashed'},border,'style',dashed);
-			@include create-box-helper(#{&+'-solid'},border,'style',solid);
-			@include create-box-helper(#{&+'-double'},border,'style',double);
-			@include create-box-helper(#{&+'-groove'},border,'style',groove);
-			@include create-box-helper(#{&+'-ridge'},border,'style',ridge);
-			@include create-box-helper(#{&+'-inset'},border,'style',inset);
-			@include create-box-helper(#{&+'-outset'},border,'style',outset);
-			@include create-box-helper(#{&+'-initial'},border,'style',initial);
-			@include create-box-helper(#{&+'-inherit'},border,'style',inherit);
-			@include create-box-helper(#{&+'-unset'},border,'style',unset);
+			@include create-box-helper(#{&+'-none'},'',border,'style',none);
+			@include create-box-helper(#{&+'-hidden'},'',border,'style',hidden);
+			@include create-box-helper(#{&+'-dotted'},'',border,'style',dotted);
+			@include create-box-helper(#{&+'-dashed'},'',border,'style',dashed);
+			@include create-box-helper(#{&+'-solid'},'',border,'style',solid);
+			@include create-box-helper(#{&+'-double'},'',border,'style',double);
+			@include create-box-helper(#{&+'-groove'},'',border,'style',groove);
+			@include create-box-helper(#{&+'-ridge'},'',border,'style',ridge);
+			@include create-box-helper(#{&+'-inset'},'',border,'style',inset);
+			@include create-box-helper(#{&+'-outset'},'',border,'style',outset);
+			@include create-box-helper(#{&+'-initial'},'',border,'style',initial);
+			@include create-box-helper(#{&+'-inherit'},'',border,'style',inherit);
+			@include create-box-helper(#{&+'-unset'},'',border,'style',unset);
 		}
 
 		&-width {
 
-			@include create-box-helper(#{&+'-thin'},border,'width',thin);
-			@include create-box-helper(#{&+'-medium'},border,'width',medium);
-			@include create-box-helper(#{&+'-thick'},border,'width',thick);
-			@include create-box-helper(#{&+'-initial'},border,'width',initial);
-			@include create-box-helper(#{&+'-inherit'},border,'width',inherit);
-			@include create-box-helper(#{&+'-unset'},border,'width',unset);
+			@include create-box-helper(#{&+'-thin'},'',border,'width',thin);
+			@include create-box-helper(#{&+'-medium'},'',border,'width',medium);
+			@include create-box-helper(#{&+'-thick'},'',border,'width',thick);
+			@include create-box-helper(#{&+'-initial'},'',border,'width',initial);
+			@include create-box-helper(#{&+'-inherit'},'',border,'width',inherit);
+			@include create-box-helper(#{&+'-unset'},'',border,'width',unset);
 		}
 	}
 
@@ -713,12 +713,16 @@
 	}
 
 	.no-margin {
-		@include create-box-helper(#{&},margin,'',0);
+		@include create-box-helper(#{&},'',margin,'',0,'for-no-margin');
+	}
+
+	.margin-auto {
+		@include create-box-helper(#{&},'',margin,'',auto,'for-margin-auto');
 	}
 
 
 	.no-padding {
-		@include create-box-helper(#{&},padding,'',0);
+		@include create-box-helper(#{&},'',padding,'',0,'for-no-padding');
 	}
 
 .overflow {
@@ -1206,4 +1210,69 @@
 
 .disabled {
 	@extend %for-disabled;
+}
+
+
+.radius {
+	& {
+		
+		@include create-corner-helper(#{&},'','border','radius',$border-radius-base,'for-radius','');
+		@include create-corner-helper(#{&},'small','border','radius',$border-radius-small,'for-radius','small');
+		@include create-corner-helper(#{&},'large','border','radius',$border-radius-large,'for-radius','large');
+	}
+
+	&-ellipse {
+		border-radius: 50%!important;
+	}
+}
+
+
+.no-radius {
+	@include create-corner-helper(#{&},'','border','radius',0,'for-no-radius','');
+}
+
+
+.ratio {
+
+	@at-root #{&+'-1-by-1'} {
+		@include aspect-ratio(100,100,false,true,true,true,true,false);
+	}
+
+	@at-root #{&+'-16-by-9'} {
+		@include aspect-ratio(16,9,false,true,true,true,true,false);
+	}
+
+	@at-root #{&+'-4-by-3'} {
+		@include aspect-ratio(4,3,false,true,true,true,true,false);
+	}
+
+	&-child  {
+		@at-root .ratio > *,
+		&-fit,
+		&-fill,
+		&-contain {
+			position:absolute;
+			transform-origin: center center;
+			transform-style: preserve-3d;
+			max-width:100%!important;
+			max-height: 100%!important;
+		}
+		&-fit {
+			@extend %for-fit-image-img !optional;
+		}
+
+		&-fill {
+			top:0!important;
+			left:0!important;
+			width:100%!important;
+			height: 100%!important;
+		}
+
+		&-contain {
+
+			top:50%!important;
+			left:50%!important;
+			transform: translate(-50%,-50%)!important;
+		}
+	}
 }

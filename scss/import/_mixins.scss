@@ -9,42 +9,223 @@
 	}
 }
 
-@mixin create-box-helper($selector-prefix,$property:'',$tag:'',$value:''){
+@mixin create-box-helper($selector-prefix,$selector-suffix:'',$property:'',$tag:'',$value:'',$extend-prefix:'',$extend-suffix:''){
 	$parsed-tag:'';
 
 	@if($tag != ''){
 		$parsed-tag: #{'-'+$tag};
 	}
-	@at-root #{$selector-prefix}{
-		#{$property}#{$parsed-tag}: $value!important;
 
-			&-x {
-				#{$property}-left#{$parsed-tag}: $value!important;
+	$parsed-selector-suffix:'';
+
+	@if($selector-suffix != ''){
+		$parsed-selector-suffix: #{'-'+$selector-suffix};
+	}
+
+
+
+	$parsed-extend-suffix:'';
+
+	@if($extend-suffix != ''){
+		$parsed-extend-suffix: #{'-'+$extend-suffix};
+	}
+
+
+
+	@if($extend-prefix != '') {
+		@at-root %#{$extend-prefix} {
+			&-top#{$parsed-extend-suffix} {
+				#{$property}-top#{$parsed-tag}: $value!important;
+			}
+			&-bottom#{$parsed-extend-suffix} {
+				#{$property}-bottom#{$parsed-tag}: $value!important;
+			}
+			&-right#{$parsed-extend-suffix} {
 				#{$property}-right#{$parsed-tag}: $value!important;
 			}
-
-
-			&-y {
-				#{$property}-top#{$parsed-tag}: $value!important;
-				#{$property}-bottom#{$parsed-tag}: $value!important;
-			}
-
-			&-top {
-				#{$property}-top#{$parsed-tag}: $value!important;
-			}
-
-			&-bottom {
-				#{$property}-bottom#{$parsed-tag}: $value!important;
-			}
-
-			&-left {
+			&-left#{$parsed-extend-suffix} {
 				#{$property}-left#{$parsed-tag}: $value!important;
 			}
 
-			&-right {
-				#{$property}-right-#{$tag}:$value!important;
+			&-x#{$parsed-extend-suffix}  {
+
+				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
+			}
+
+			
+			&-y#{$parsed-extend-suffix}  {
+
+				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
+			}
+
+			& {
+				@extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
+			}
+
+
+		}
+	}
+
+	@at-root #{$selector-prefix}{
+		#{$property}#{$parsed-tag}: $value!important;
+		
+			&,
+			&-y,
+			&-top#{$parsed-selector-suffix} {
+				@if($extend-prefix != '') {
+					@extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
+				}@else{
+					#{$property}-top#{$parsed-tag}: $value!important;
+				}
+			}
+			&,
+			&-y,
+			&-bottom#{$parsed-selector-suffix} {
+				@if($extend-prefix != '') {
+					@extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
+				}@else{
+					#{$property}-bottom#{$parsed-tag}: $value!important;
+				}
+			}
+			&,
+			&-x,
+			&-left#{$parsed-selector-suffix} {
+				@if($extend-prefix != '') {
+					@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
+				}@else{
+					#{$property}-left#{$parsed-tag}: $value!important;
+				}
+			}
+			&,
+			&-x,
+			&-right#{$parsed-selector-suffix} {
+				@if($extend-prefix != '') {
+					@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
+				}@else{
+					#{$property}-right#{$parsed-tag}: $value!important;
+				}
 			}
 		}
+}
+
+@mixin create-corner-helper($selector-prefix,$selector-suffix:'',$property:'',$tag:'',$value:'',$extend-prefix:'',$extend-suffix:''){
+	$parsed-tag:'';
+
+	@if($tag != ''){
+		$parsed-tag: #{'-'+$tag};
+	}
+
+	$parsed-selector-suffix:'';
+
+	@if($selector-suffix != ''){
+		$parsed-selector-suffix: #{'-'+$selector-suffix};
+	}
+
+
+
+	$parsed-extend-suffix:'';
+
+	@if($extend-suffix != ''){
+		$parsed-extend-suffix: #{'-'+$extend-suffix};
+	}
+
+	@if($extend-prefix != '') {
+		@at-root %#{$extend-prefix} {
+			&-top-left#{$parsed-extend-suffix} {
+				#{$property}-top-left#{$parsed-tag}: $value!important;
+			}
+			&-top-right#{$parsed-extend-suffix} {
+				#{$property}-top-right#{$parsed-tag}: $value!important;
+			}
+			&-bottom-left#{$parsed-extend-suffix} {
+				#{$property}-bottom-left#{$parsed-tag}: $value!important;
+			}
+			&-bottom-right#{$parsed-extend-suffix} {
+				#{$property}-bottom-right#{$parsed-tag}: $value!important;
+			}
+
+			&-top#{$parsed-extend-suffix}  {
+				@extend %#{$extend-prefix}-top-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-top-right#{$parsed-extend-suffix} !optional;
+			}
+
+			
+			&-bottom#{$parsed-extend-suffix}  {
+				@extend %#{$extend-prefix}-bottom-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-bottom-right#{$parsed-extend-suffix} !optional;
+			}
+
+
+			&-right#{$parsed-extend-suffix}  {
+				@extend %#{$extend-prefix}-top-right#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-bottom-right#{$parsed-extend-suffix} !optional;
+			}
+
+			&-left#{$parsed-extend-suffix}  {
+				@extend %#{$extend-prefix}-top-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-bottom-left#{$parsed-extend-suffix} !optional;
+			}
+
+			& {
+				@extend %#{$extend-prefix}-top-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-top-right#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-bottom-left#{$parsed-extend-suffix} !optional;
+				@extend %#{$extend-prefix}-bottom-right#{$parsed-extend-suffix} !optional;
+			}
+		}
+	}
+
+
+
+	@at-root #{$selector-prefix}{
+		&#{$parsed-selector-suffix},
+		&-top#{$parsed-selector-suffix},
+		&-left#{$parsed-selector-suffix},
+		&-top-left#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-top-left#{$parsed-extend-suffix}!optional;
+			}@else{
+				#{$property}-top-left#{$parsed-tag}: $value!important;
+			}
+		}
+		&#{$parsed-selector-suffix},
+		&-top#{$parsed-selector-suffix},
+		&-right#{$parsed-selector-suffix},
+		&-top-right#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-top-right#{$parsed-extend-suffix}!optional;
+			}@else{
+				#{$property}-top-right#{$parsed-tag}: $value!important;
+			}
+		}
+
+		&#{$parsed-selector-suffix},
+		&-bottom#{$parsed-selector-suffix},
+		&-right#{$parsed-selector-suffix},
+		&-bottom-right#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-bottom-right#{$parsed-extend-suffix}!optional;
+			}@else{
+				#{$property}-bottom-right#{$parsed-tag}: $value!important;
+			}
+		}
+
+		&#{$parsed-selector-suffix},
+		&-bottom#{$parsed-selector-suffix},
+		&-left#{$parsed-selector-suffix},
+		&-bottom-left#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-bottom-left#{$parsed-extend-suffix}!optional;
+			}@else{
+				#{$property}-bottom-left#{$parsed-tag}: $value!important;
+			}
+		}
+	}
 }
 
 // for colors with hover and shit
