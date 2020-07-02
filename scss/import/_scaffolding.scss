@@ -13,6 +13,10 @@
 		min-height: 100vh;
 	}
 
+	#{$prefix}-no-scroll {
+		overflow:hidden !important;
+	}
+
 	html {
 
 		word-wrap: break-word;

@@ -1807,7 +1807,7 @@ window.jQuery && jQuery.noConflict();
 
 			modal.innerHTML = modHttml;
 
-			document.body.classList.add('body-modal-active');
+			document.body.classList.add('body-no-scroll');
 
 			if(args.maxWidth) {
 				modal.querySelector('.modal-popup').style.maxWidth = args.maxWidth;
@@ -1830,7 +1830,7 @@ window.jQuery && jQuery.noConflict();
 			modal.classList.remove('active');
 			modal.parentNode.removeChild(modal);
 		}
-		document.body.classList.remove('body-modal-active');
+		document.body.classList.remove('body-no-scroll');
 
 		if(removeHash) {
 			_.changeHash('');

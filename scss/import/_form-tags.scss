@@ -126,7 +126,7 @@ $prefix: '.input';
 					#{$prefix}-tags-ui-multiple & {
 						flex-wrap: wrap;
 						align-self: flex-start;
-						margin-top: $calculated-input-tags-gutter-y * -1;
+						margin-top: ($calculated-input-tags-padding-y + $calculated-input-tags-gutter-y) * -1;
 					}
 				}
 

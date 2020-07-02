@@ -6,7 +6,7 @@ More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 
 ## Form elements
 
-Although styles are reset, To normalize or basically allow the framework to style them items add **`.input`** to your input bitch boy
+Although styles are reset, To normalize or basically allow the framework to style them items as basic as a hoe add **`.input`** to your input bitch boy
 
 
 

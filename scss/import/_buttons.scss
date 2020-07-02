@@ -54,224 +54,190 @@ $calculated-btn-gutter-x: $btn-gutter-x;
 }
 
 $prefix: '.btn';
-@mixin button-generate-schemes($args:(),$scheme:''){
-	$defaults: (
-		init: (
-			border: '',
-			background: '',
-			color: '',
-		),
-		hover: (
-			border: '',
-			background: '',
-			color: '',
-		),
-		active: (
-			border: '',
-			background: '',
-			color: '',
-		)
-	);
-	$opts: map-merge($defaults,$args);
-
-
-	@each $state,$properties in $opts {
-
-		@if $state == 'hover' {
-			
-		
-			@at-root &:hover,
-			#{$prefix}-group#{$prefix}-group-unite:hover &,
-			
-			&:focus,
-			#{$prefix}-group#{$prefix}-group-unite:focus &,
-
-			&.focus,
-			#{$prefix}-group#{$prefix}-group-unite.focus & {
-				@include internal-btn-set-scheme($properties)
-			}
-			// @at-root &:hover,
-			// &:focus,
-			// &:.focus {
-			//     @include internal-btn-set-scheme($properties)
-			// }
-
-		}@else if $state == 'active' {
-			@at-root &:active,
-			#{$prefix}-group#{$prefix}-group-unite:active &,
-
-			&.active,
-			#{$prefix}-group#{$prefix}-group-unite.active & {
-				@include internal-btn-set-scheme($properties);
-			}
-			
-		}@else if $state == 'init' {
-			@at-root %extend-internal-btn-init-#{$scheme} {
-				@include internal-btn-set-scheme($properties);
-			}
-
-
-			@at-root &,
-			&#{$prefix}-no-interaction,
-			&#{$prefix}-disabled,
-			#{$prefix}-disabled & {
-				@extend %extend-internal-btn-init-#{$scheme};
-			}
-		
-		@at-root 
-			&#{$prefix}-no-interaction:hover,
-			&#{$prefix}-no-interaction:focus,
-			&#{$prefix}-no-interaction.focus,
-			&#{$prefix}-no-interaction:active,
-			&#{$prefix}-no-interaction.active,
-
-			&#{$prefix}-disabled:hover,
-			&#{$prefix}-disabled:focus,
-			&#{$prefix}-disabled.focus,
-			&#{$prefix}-disabled:active,
-			&#{$prefix}-disabled.active,
-			
-			#{$prefix}-disabled:hover &,
-			#{$prefix}-disabled:focus &,
-			#{$prefix}-disabled.focus &,
-			#{$prefix}-disabled:active &,
-			#{$prefix}-disabled.active &
-			{
-				@extend %extend-internal-btn-init-#{$scheme};
-			}
-		}
-	}
-
-}
-
-@mixin internal-btn-set-scheme($properties,$add-important: false) {
-
-
-	$important: '';
-
-	@if $add-important {
-
-		$important: '!important';
-	}
-
-	@if map-get($properties,border) {
-		border-color: map-get($properties,border) #{$important};
-	}
-
-	@if map-get($properties,background) {
-		background-color: map-get($properties,background) #{$important};
-	}
-
-	@if map-get($properties,color) {
-		color: map-get($properties,color) #{$important};
-	}
-
-}
-
-@function internal-btn-calculate-disabled($color){
-	@if type-of($color) == 'color' and $color != transparent {
-		@return rgba( $color,$global-disabled-opacity );
-	}@else {
-		@return $color;
-	}
-}
 
 #{$prefix} {
+
+	@at-root %for-btn-global {
+
+		&-radius {
+			border-radius: $btn-border-radius;
+
+			&-small {
+				border-radius: $btn-border-radius-small;
+			}
+
+			&-large {
+				border-radius: $btn-border-radius-large;
+			}
+		}
+	}
+	
 	
 	@at-root %for-btn {
-		@include type-set((
-			size: #{$calculated-btn-font-size},
-			leading: #{$calculated-btn-line-height},
-			weight: $btn-font-weight,
-			style: $btn-font-style,
-			font: $btn-font-family,
-			align:center,
-			decoration:none,
-			case: $btn-text-transform,
-		));
-		// overflow:hidden;
-		padding-top: calc(  (  (#{ $calculated-btn-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		padding-bottom: calc(  (  (#{ $calculated-btn-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-		min-height:$calculated-btn-height;
-		padding-right: $calculated-btn-gutter-x;
-		padding-left: $calculated-btn-gutter-x;
-		border: $btn-border-width solid transparent;
-		transition: $btn-transition-duration all $transition-timing;
-		max-width:100%;
-		width:auto;
-		display:inline-flex;
-		align-content: center;
-		justify-content: center;
-		align-items: center;
-		vertical-align: middle;
-		background:none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
 
-		.badge,
-		.symbol {
-			&:last-child {
-				margin-left: .25em;
-			}
-			&:first-child {
-				margin-right: .25em;
-			}
-		}
-	}
 		& {
-			@extend %for-btn !optional;
-		}
+			@include type-set((
+				size: #{$calculated-btn-font-size},
+				leading: #{$calculated-btn-line-height},
+				weight: $btn-font-weight,
+				style: $btn-font-style,
+				font: $btn-font-family,
+				align:center,
+				decoration:none,
+				case: $btn-text-transform,
+			));
+			// overflow:hidden;
+			padding-top: calc(  (  (#{ $calculated-btn-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-btn-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			min-height:$calculated-btn-height;
+			padding-right: $calculated-btn-gutter-x;
+			padding-left: $calculated-btn-gutter-x;
+			border: $btn-border-width solid transparent;
+			transition: $btn-transition-duration all $transition-timing;
+			width:auto;
+			display:inline-flex;
+			align-content: center;
+			justify-content: center;
+			align-items: center;
+			background:none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 
-	.nav & {
-		&,
-		&#{$prefix}-large,
-		&#{$prefix}-small,
-		#{$prefix}-large &,
-		#{$prefix}-small & {
-
-			padding-top: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			padding-bottom: calc(  (  (#{ $calculated-nav-height } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			height: #{ $calculated-nav-height };
-		}
-	}
-
-	@at-root %for-btn {
-		&-no-shadow {
-			box-shadow:none;
-
-			&-important {
-				box-shadow:none!important;
+			.badge,
+			.symbol {
+				&:last-child {
+					margin-left: .25em;
+				}
+				&:first-child {
+					margin-right: .25em;
+				}
 			}
 			
 		}
+
+		&-large {
+			@extend %for-btn-global-radius-large;
+			padding-top: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			min-height:$calculated-btn-height-large;
+			@include br(xs){
+				font-size: $calculated-btn-font-size-large;
+			}
+
+		}
+	
+		&-small {
+			@extend %for-btn-global-radius-small;
+			font-size: $calculated-btn-font-size-small;
+			padding-top: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			padding-bottom: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
+			min-height:$calculated-btn-height-small;
+		}
+		
+		&-in-nav {
+			padding-top: 0;
+			padding-bottom:0;
+		}
+
+		&-in-group {
+			position:relative;
+			max-width:100%;
+
+			&:hover,
+			&:active,
+			&.active,
+			&:focus,
+			&.focus,
+			&.open {
+				z-index:1;
+			}
+
+			& {
+				@extend %for-no-shadow-important !optional;
+			}
+		}
 		
 	}
-
-	@at-root %for-btn {
+		& {
+			@extend %for-btn;
+		
+			#{$prefix}-large &,
+			&#{$prefix}-large {
+				@extend %for-btn-large;
+			}
 	
-		&-itself-and-group {
-			// &-round {
+			#{$prefix}-small &,
+			&#{$prefix}-small {
+				@extend %for-btn-small;
+			}
 
-			// 	border-radius: $calculated-btn-height * .5;
+			.nav & {
+				@extend %for-btn-in-nav;
+			}
 
-			// 	&-large {
-			// 		border-radius: $calculated-btn-height-large * .5;
-			// 	}
+			#{$prefix}-group & {
+				@extend %for-btn-in-group;
+			}
 
-			// 	&-small {
-			// 		border-radius: $calculated-btn-height-small * .5;
-			// 	}
-			// }
+			&-disabled {
+				@extend %for-disabled;
+			}
+			
+			&-disabled,
+			&-disabled & {
+				@extend %for-no-shadow-important !optional;
+			}
+			
+
+		}
+
+	@at-root %for-btn-symbol {
+
+		& {
+			width: $calculated-btn-height;
+			padding-left:0;
+			padding-right:0;
+		}
+
+		&-large {
+			width: $calculated-btn-height-large ;
+		}
+
+		&-small {
+			width: $calculated-btn-height-small;
+		}
+	}
+
+		&-symbol {
+			@extend %for-btn-symbol;
+
+			#{$prefix}-small &,
+			&#{$prefix}-small {
+				@extend %for-btn-symbol-small;
+			}
+
+			#{$prefix}-large &,
+			&#{$prefix}-large {
+				@extend %for-btn-symbol-large;
+			}
+		}
 
 
-			border-radius: $btn-border-radius;
+
+	@at-root %for-btn-and-group {
+		
+
+		& {
+			@extend %for-btn-global-radius;
 			box-shadow: $btn-box-shadow;
+			max-width:100%;
 			background-color:transparent;
 			color:inherit;
 			-webkit-appearance:none;
 			appearance:none;
+			vertical-align: middle;
 	
 			&:hover,
 			&:focus,
@@ -283,142 +249,63 @@ $prefix: '.btn';
 				text-decoration:none;
 			}
 
+			&-small {
+				@extend %for-btn-global-radius-small;
+			}
 
+			&-large {
+				@extend %for-btn-global-radius-large;
+			}
+
+			&-in-nav {
+				@extend %for-no-radius !optional;
+				@extend %for-no-shadow-important !optional;
+				height: #{ $calculated-nav-height }!important;
+			}
+		}
+
+	}
+
+		&,&-group {
+			@extend %for-btn-and-group;
+			@extend %for-btn-global-radius;
+			
+			&#{$prefix}-large {
+				@extend %for-btn-and-group-large;
+			}
+
+			&#{$prefix}-small {
+				@extend %for-btn-and-group-small;
+			}
+
+			.nav & {
+				@extend %for-btn-and-group-in-nav;
+				
+			}
 
 			&#{$prefix}-no-radius {
 				@extend %for-no-radius !optional;
 			}
 			
 			&#{$prefix}-no-shadow {
-				@extend %for-btn-no-shadow-important !optional;
+				@extend %for-no-shadow-important !optional;
 			}
 
-			// &#{$prefix}-round  {
-				
-			// 	@extend %for-btn-itself-and-group-round !optional;
-	
-			// 	&#{$prefix}-large {
-			// 		@extend %for-btn-itself-and-group-round-large !optional;
-			// 	}
-	
-			// 	&#{$prefix}-small {
-			// 		@extend %for-btn-itself-and-group-round-small !optional;
-			// 	}
-			// }
-		}
-	}
-
-		&,&-group {
-			@extend %for-btn-itself-and-group !optional;
-		}
-
-
-	#{$prefix}-group & {
-		&,&:hover {
-			box-shadow: none;
-		}
-	}
-
-	&-block {
-		display:flex;
-		width:100%;
-
-		&-mobile {
-			@include br(#{$mobile-br-max}-max) {
+			&#{$prefix}-block {
 				display:flex;
 				width:100%;
-			}
-		}
-	}
 
-		&#{$prefix}-disabled,
-		#{$prefix}-disabled & {
-			@extend %for-disabled !optional;
-		}
-
-	@at-root %for-btn {
-
-		&-large {
-			padding-top: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			padding-bottom: calc(  (  (#{ $calculated-btn-height-large } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			border-radius: $btn-border-radius-large;
-			min-height:$calculated-btn-height-large;
-			@include br(xs){
-				font-size: $calculated-btn-font-size-large;
+				&-mobile {
+					@include br(#{$mobile-br-max}-max) {
+						display:flex;
+						width:100%;
+					}
+				}
 			}
 
-		}
-	
-		&-small {
-	
-			font-size: $calculated-btn-font-size-small;
-			padding-top: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			padding-bottom: calc(  (  (#{ $calculated-btn-height-small } - (#{$btn-border-width} * 2)) - (#{$calculated-btn-single-line}) ) * .5 );
-			border-radius: $btn-border-radius-small;
-			min-height:$calculated-btn-height-small;
 
-		}
-	}
-
-		&#{$prefix}-large,
-		#{$prefix}-group#{$prefix}-large & {
-			@extend %for-btn-large !optional;
-		}
-
-		&#{$prefix}-small,
-		#{$prefix}-group#{$prefix}-small & {
-			@extend %for-btn-small !optional;
-		}
-
-		// @at-root #{$prefix}-group#{$prefix}-round > &  {
-			
-		// 	@extend %for-btn-itself-and-group-round !optional;
-
-		// 	@at-root #{$prefix}-large#{&} {
-		// 		@extend %for-btn-itself-and-group-round-large !optional;
-		// 	}
-
-		// 	@at-root #{$prefix}-small#{&} {
-		// 		@extend %for-btn-itself-and-group-round-small !optional;
-		// 	}
-		// }
-
-	
-
-	@at-root %for-btn {
-
-		&-symbol {
-
-			& {
-				width: $calculated-btn-height;
-				padding-left:0;
-				padding-right:0;
-			}
-
-			&-large {
-				width: $calculated-btn-height-large ;
-			}
-
-			&-small {
-				width: $calculated-btn-height-small;
-			}
 		}
 		
-	}
-
-		&-symbol {
-			@extend %for-btn-symbol !optional;
-
-			#{$prefix}-small &,
-			&#{$prefix}-small {
-				@extend %for-btn-symbol-small !optional;
-			}
-
-			#{$prefix}-large &,
-			&#{$prefix}-large {
-				@extend %for-btn-symbol-large !optional;
-			}
-		}
 	
 	///updates here should match input-group 
 	&-group {
@@ -433,38 +320,18 @@ $prefix: '.btn';
 		font:inherit;
 		overflow-x:auto;
 		overflow-y:visible;
-
-		#{$prefix} {
-			position:relative;
-			max-width:100%;
-
-			&:hover,
-			&:active,
-			&.active,
-			&:focus,
-			&.focus,
-			&.open {
-				z-index:1;
-			}
-
-
-		}
 		
-		&-block {
+		&#{$prefix}-block {
 			display:flex;
 			width:100%;
 
-			& > .btn:not(.btn-symbol) {
-				flex: 1 1;
+			&,
+			&-mobile {
+
+				& > .btn:not(.btn-symbol) {
+					flex: 1 1;
+				}
 			}
-		}
-
-		&#{$prefix}-large {
-			border-radius: $btn-border-radius-large;
-		}
-
-		&#{$prefix}-small {
-			border-radius: $btn-border-radius-small;
 		}
 
 		&#{&}-horizontal {
@@ -572,11 +439,11 @@ $prefix: '.btn';
 			@include button-generate-schemes($properties,$scheme);
 
 			@if $scheme == 'link' or str-index($scheme, '-outline'){
-				@extend %for-btn-no-shadow !optional;
+				@extend %for-no-shadow;
 			}
 		}
 		&#{&}-#{$scheme} {
-			@extend %for-btn-#{$scheme} !optional;
+			@extend %for-btn-#{$scheme};
 		}
 	}
 }

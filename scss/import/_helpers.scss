@@ -1231,3 +1231,13 @@
 	@include create-corner-helper(#{&},'','border','radius',0,'for-no-radius','');
 }
 
+
+%for {
+	&-no-shadow {
+		box-shadow:none;
+
+		&-important {
+			box-shadow:none!important;
+		}
+	}
+}

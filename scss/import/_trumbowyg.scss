@@ -335,7 +335,7 @@ CUSTOM STYLES FOR TRUMBOWYG
 	
 	&-modal-button {
 		@extend %for-btn;
-		@extend %for-btn-itself-and-group;
+		@extend %for-btn-and-group;
 		@extend %for-btn-flex-on-mobile;
 		margin: 0 .125em;
 	}

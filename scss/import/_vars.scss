@@ -867,12 +867,16 @@
 		$asset-image-default-palette: $brand-color-neutral !default;
 			$asset-image-audio-palette: $brand-color-secondary !default;
 			$asset-image-code-palette: $brand-color-primary !default;
+				$asset-image-text-palette: $brand-color-neutral !default;
 			$asset-image-doc-palette: $brand-color-primary !default;
 			$asset-image-font-palette: $brand-color-accent !default;
-			$asset-image-img-palette: $brand-color-secondary !default;
+			$asset-image-img-palette: $brand-color-accent !default;
+				$asset-image-ps-palette: $brand-color-primary !default;
+				$asset-image-ai-palette: $brand-color-caution !default;
+				$asset-image-xd-palette: $brand-color-secondary !default;
 			$asset-image-pdf-palette: $brand-color-error !default;
+				$asset-image-id-palette: $brand-color-secondary !default;
 			$asset-image-table-palette: $brand-color-success !default;
-			$asset-image-text-palette: $brand-color-neutral !default;
 			$asset-image-video-palette: $brand-color-accent !default;
 			$asset-image-zip-palette: $brand-color-neutral !default;
 
@@ -894,7 +898,7 @@
 	// input
 
 		$input-height: 45px !default;
-			$input-height-large: 75px !default;
+			$input-height-large: 60px !default;
 			$input-height-small: 30px !default;
 		$input-height-multiple-factor: 3 !default;
 		$input-placeholder-opacity: .5 !default;
@@ -947,6 +951,8 @@
 			$input-label-font-weight: $body-font-weight-bold !default;
 			$input-label-font-style: normal !default;
 			$input-label-text-transform: none !default;
+			$input-label-in-group-background: rgba($brand-color-neutral,.3) !default;
+				$input-label-in-group-background-inverse: $input-label-in-group-background !default;
 		
 			$input-label-horizontal-width: 25% !default;
 
@@ -1021,7 +1027,7 @@
 					$input-toggle-node-border-radius-large: $input-toggle-node-height-large * .5 !default;
 					$input-toggle-plate-border-radius-large: $input-toggle-plate-height-large *  .5 !default;
 
-				$input-toggle-color-default: inherit !default;
+				$input-toggle-color-default: $brand-color-neutral !default;
 					$input-toggle-color-default-active: $brand-color-primary !default;
 
 				$input-toggle-label-color-default: $input-label-color !default;
@@ -1059,11 +1065,11 @@
 		$btn-font-size: $body-font-size !default;
 			$btn-font-size-large: 22px !default;
 			$btn-font-size-small: 12px !default;
-		$btn-line-height: 30px !default;
+		$btn-line-height: $body-font-size * 1.25 !default;
 		$btn-font-family: $brand-font-primary !default;
 		$btn-font-weight: $body-font-weight-bold !default;
 		$btn-font-style: normal !default;
-		$btn-text-transform: capitalize !default;
+		$btn-text-transform: none !default;
 		$btn-gutter-x: 20px !default;
 		$btn-border-width: 1px !default;
 		$btn-border-radius: $btn-height * .5 !default;
@@ -1079,11 +1085,11 @@
 			$btn-background-default: var(--theme-background) !default;
 			$btn-color-default: inherit !default;
 
-				$btn-border-default-hover: $btn-border-default !default;
+				$btn-border-default-hover: rgba($brand-color-neutral,.6)!default;
 				$btn-background-default-hover: transparent !default;
 				$btn-color-default-hover: $brand-color-primary !default;
 			
-				$btn-border-default-active: $btn-border-default !default;
+				$btn-border-default-active: $brand-color-primary  !default;
 				$btn-background-default-active: $brand-color-primary !default;
 				$btn-color-default-active: $brand-color-background !default;
 

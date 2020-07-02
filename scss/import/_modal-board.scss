@@ -23,9 +23,6 @@ $prefix: '.board';
 
 //also used by module
 
-.body-board-active {
-	@extend %for-modal-body !optional;
-}
 
 #{$prefix} {
 	display:none!important;

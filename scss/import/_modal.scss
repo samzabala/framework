@@ -4,16 +4,6 @@
 $prefix: '.modal';
 
 
-//also used by module
-@at-root %for-modal {
-	&-body {
-		overflow:hidden;
-	}
-}
-
-.body-modal-active {
-	@extend %for-modal-body;
-}
 
 #{$prefix} {
 	display:none!important;

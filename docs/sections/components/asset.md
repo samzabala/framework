@@ -42,12 +42,16 @@ helper that can display a css coded thumbnail for file types. append one of of t
 | `.asset-image-default` | anything duh |
 | `.asset-image-audio` | wav,mp3,wma if that still exists, m4a etc. |
 | `.asset-image-code` | json,css,html,xml etc |
+| `.asset-image-text` | txt or rich text idk |
 | `.asset-image-doc` | doc,docx etc |
 | `.asset-image-font` | otf,ttf eot etc |
 | `.asset-image-img` | jpg,png,gif,tiff,bmp etc |
+| `.asset-image-ps` | psd,psb,raw,pxr |
+| `.asset-image-ai` | ai |
+| `.asset-image-xd` | xd |
 | `.asset-image-pdf` | duh |
+| `.asset-image-id` | indd,indb,idml,indl,indt,xqx,pmd,inx |
 | `.asset-image-table` | excel files, csv,tsv.. |
-| `.asset-image-text` | txt or rich text idk |
 | `.asset-image-video` | mp4, quicktime etc |
 | `.asset-image-zip` | zip.. probably a rar file tooo idk |
 

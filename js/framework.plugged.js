@@ -1184,6 +1184,7 @@ window.jQuery && jQuery.noConflict();
 		valueForUi = valueForUi || theValue || _.dateToVal(new Date());
 		// ignoreInput = ignoreInput || false;
 
+
 		var arr =  {
 			class: inputCalendar.attr('class'),
 			startDay: inputCalendar.attr('data-calendar-start-day'), // 0,1,2,3,4,5,6
@@ -2004,7 +2005,7 @@ window.jQuery && jQuery.noConflict();
 
 				_[mode+'ActiveElm'].contents().appendTo($('body').children('.'+mode+'-wrapper').find('.'+mode+'-popup-content').first());
 
-				$('body').addClass('body-'+mode+'-active');
+				$('body').addClass('body-no-scroll');
 
 				if(args.maxWidth) {
 					//all
@@ -2040,7 +2041,7 @@ window.jQuery && jQuery.noConflict();
 		_[mode+'ActiveElm'] = false;
 		
 		$('body').children('.'+mode+'-wrapper').fadeOut().removeClass('active').remove();
-		$('body').removeClass('body-'+mode+'-active');
+		$('body').removeClass('body-no-scroll');
 
 		if(removeHash) {
 			_.changeHash('');
