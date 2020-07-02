@@ -311,7 +311,7 @@ $prefix: '.symbol';
 				height: 1.125em;
 				left: -.5em;
 				right: -.5em;
-				// bottom: -.125em;
+				bottom: -.125em;
 				top: auto;
 				background-image: 
 					//long
@@ -358,7 +358,8 @@ $prefix: '.symbol';
 			right: -.1875em;
 			left: auto;
 			bottom: auto;
-			top: -.125em;
+			// top: -.125em;
+			top:0;
 			transform: rotate(45deg);
 		}
 	}

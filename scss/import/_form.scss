@@ -616,28 +616,17 @@ $prefix: '.input';
 
 
 		&-large{
-			@extend %for-form-global-radius-large;
-			padding-top: $calculated-value-input-paddiny-y-large;
-			padding-bottom: $calculated-value-input-paddiny-y-large;
 		}
 
 		&-small{
-			@extend %for-form-global-radius-small;
-			padding-top: $calculated-value-input-paddiny-y-small;
-			padding-bottom: $calculated-value-input-paddiny-y-small;
 		}
 
 		&-in-nav {
-			@extend %for-form-global-in-nav-custom;
-			padding-top: $calculated-value-input-paddiny-y-nav !important;
-			padding-bottom: $calculated-value-input-paddiny-y-nav !important;
 		}
 
 		&-in-group {
-			
-			&,&:hover {
-				@extend %for-no-shadow-important !optional;
-				@extend %for-no-radius !optional;
+
+			& {
 			}
 			
 			&-horizonal {
@@ -655,8 +644,6 @@ $prefix: '.input';
 		}
 
 		&-in-wrapper {
-			display: block;
-			flex: 1 1;
 
 			&-horizonal {
 
@@ -672,55 +659,67 @@ $prefix: '.input';
 
 		}
 
-
-
-
-		@at-root & {
+		& {
 			
 
 			&#{$prefix}-large,
 			#{$prefix}-large & {
-				@extend %for-form-input-boxy-large;
+				// @extend %for-form-input-boxy-large;
+				@extend %for-form-global-radius-large;
+				padding-top: $calculated-value-input-paddiny-y-large;
+				padding-bottom: $calculated-value-input-paddiny-y-large;
 			}
-
+	
 			&#{$prefix}-small,
 			#{$prefix}-small & {
-				@extend %for-form-input-boxy-small;
+				// @extend %for-form-input-boxy-small;
+				@extend %for-form-global-radius-small;
+				padding-top: $calculated-value-input-paddiny-y-small;
+				padding-bottom: $calculated-value-input-paddiny-y-small;
 			}
-
+	
 			.nav & {
-				@extend %for-form-input-boxy-in-nav !optional;
+				// @extend %for-form-input-boxy-in-nav !optional;
+				@extend %for-form-global-in-nav-custom;
+				padding-top: $calculated-value-input-paddiny-y-nav !important;
+				padding-bottom: $calculated-value-input-paddiny-y-nav !important;
 			}
-
+	
 			#{$prefix}-group & {
-				@extend %for-form-input-boxy-in-group !optional;
+				// @extend %for-form-input-boxy-in-group !optional;
+	
+				&:not(.focus):not(:focus):not(.active):not(:active) {
+					@extend %for-no-shadow;
+				}
 			}
-
+	
 			#{$prefix}-wrapper & {
-				@extend %for-form-input-boxy-in-wrapper !optional;
+				// @extend %for-form-input-boxy-in-wrapper !optional;
+				display: block;
+				flex: 1 1;
 			}
-
+	
 			#{$prefix}-wrapper-horizontal & {
-				@extend %for-form-input-boxy-in-wrapper-horizontal !optional;
-
+				// @extend %for-form-input-boxy-in-wrapper-horizontal !optional;
+	
 				#{$prefix}-wrapper-block#{&} {
-					@extend %for-form-input-boxy-in-wrapper-horizontal-block !optional;
+					// @extend %for-form-input-boxy-in-wrapper-horizontal-block !optional;
 				}
 			}
-
+	
 			#{$prefix}-wrapper-vertical & {
-				@extend %for-form-input-boxy-in-wrapper-vertical !optional;
-
+				// @extend %for-form-input-boxy-in-wrapper-vertical !optional;
+	
 				#{$prefix}-wrapper-block#{&} {
-					@extend %for-form-input-boxy-in-wrapper-vertical-block !optional;
+					// @extend %for-form-input-boxy-in-wrapper-vertical-block !optional;
 				}
 			}
-
+	
 			#{$prefix}-wrapper-block & {
-				@extend %for-form-input-boxy-in-wrapper-block !optional;
+				// @extend %for-form-input-boxy-in-wrapper-block !optional;
 			}
-
-
+	
+	
 			#{$prefix}-disabled & {
 				@extend %for-no-shadow-important !optional;
 			}
@@ -736,9 +735,14 @@ $prefix: '.input';
 				}
 			}
 		}
-
-		
 	}
+
+
+
+
+
+
+	
 
 
 	&-single-line {
@@ -768,6 +772,10 @@ $prefix: '.input';
 		&#{$prefix}-small,
 		#{$prefix}-small & {
 			@extend %for-form-input-boxy-multiple-height-small;
+		}
+		
+		#{$prefix}-group & {
+			resize: none;
 		}
 	}
 
@@ -914,20 +922,20 @@ $prefix: '.input';
 
 			&:not(#{$prefix}-group-responsive) {
 
-				> #{$prefix},.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn, .trumbowyg {
 					&:nth-last-child(n+2) {
 						border-top-right-radius: 0!important;
 						border-bottom-right-radius: 0!important;
 					}
 				}
 
-				> #{$prefix},.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn, .trumbowyg {
 					&:nth-child(n+2) {
 						border-top-left-radius: 0!important;
 						border-bottom-left-radius: 0!important;
 						margin-left: $input-border-width * -1;
 
-						// &:not(:focus):not(.focus) {
+						// &:not(.focus):not(:focus):not(.active):not(:active) {
 						// 	border-left-color: transparent;
 						// }
 					}
@@ -942,20 +950,20 @@ $prefix: '.input';
 				width:auto;
 			}
 
-			> #{$prefix},.btn, .trumbowyg {
+			> %for-form-input-boxy,.btn, .trumbowyg {
 				&:nth-last-child(n+2) {
 					border-bottom-right-radius: 0!important;
 					border-bottom-left-radius: 0!important;
 				}
 			}
 
-			> #{$prefix},.btn, .trumbowyg {
+			> %for-form-input-boxy,.btn, .trumbowyg {
 				&:nth-child(n+2) {
 					border-top-right-radius: 0!important;
 					border-top-left-radius: 0!important;
 					margin-top: $input-border-width * -1;
 
-					// &:not(:focus):not(.focus) {
+					// &:not(.focus):not(:focus):not(.active):not(:active) {
 					// 	border-top-color: transparent;
 					// }
 				}
@@ -971,20 +979,20 @@ $prefix: '.input';
 						width:auto;
 					}
 
-					> #{$prefix},.btn, .trumbowyg {
+					> %for-form-input-boxy,.btn, .trumbowyg {
 						&:nth-last-child(n+2) {
 							border-top-right-radius: 0!important;
 							border-bottom-right-radius: 0!important;
 						}
 					}
 
-					> #{$prefix},.btn, .trumbowyg {
+					> %for-form-input-boxy,.btn, .trumbowyg {
 						&:nth-child(n+2) {
 							border-top-left-radius: 0!important;
 							border-bottom-left-radius: 0!important;
 							margin-left: $input-border-width * -1;
 
-							// &:not(:focus):not(.focus) {
+							// &:not(.focus):not(:focus):not(.active):not(:active) {
 							// 	border-left-color:transparent;
 							// }
 						}
@@ -999,20 +1007,20 @@ $prefix: '.input';
 				display:flex;
 				flex-direction:column;
 
-				> #{$prefix},.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn, .trumbowyg {
 					&:nth-last-child(n+2) {
 						border-bottom-right-radius: 0!important;
 						border-bottom-left-radius: 0!important;
 					}
 				}
 	
-				> #{$prefix},.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn, .trumbowyg {
 					&:nth-child(n+2) {
 						border-top-right-radius: 0!important;
 						border-top-left-radius: 0!important;
 						margin-top: $input-border-width * -1;
 		
-						// &:not(:focus):not(.focus) {
+						// &:not(.focus):not(:focus):not(.active):not(:active) {
 						// 	border-top-color: transparent;
 						// }
 					}
@@ -1121,8 +1129,9 @@ $prefix: '.input';
 					background-color: rgba($color,$input-color-feedback-opacity);
 				}
 
-				&:not(.focus):not(:focus) {
+				&:not(.focus):not(:focus):not(.active):not(:active) {
 					box-shadow: $input-box-shadow-brand-basis $color;
+					z-index:1;
 				}
 			}
 		}
