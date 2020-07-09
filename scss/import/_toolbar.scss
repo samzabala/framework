@@ -9,31 +9,85 @@ $prefix: '.toolbar';
 #{$prefix} {
 	display: inline-flex;
 	align-items: center;
+	max-width:100%;
+	overflow-x:auto;
+	overflow-y:visible;
 	border-radius: $toolbar-border-radius;
 	box-shadow: $toolbar-box-shadow;
 	background-color: $toolbar-background-color;
 	border: $toolbar-border-width solid $toolbar-border-color;
+	
+	&#{$prefix}-small {
+		border-radius: $toolbar-border-radius-small;
+	}
+
+	&#{$prefix}-large {
+		border-radius: $toolbar-border-radius-large;
+	}
 
 	.theme-inverse & {
 		background-color: $toolbar-background-color-inverse;
 		border: $toolbar-border-width solid $toolbar-border-color-inverse;
 	}
 
-	&#{&}-horizontal {
+	&#{$prefix}-horizontal {
 		flex-direction: row;
-		min-height: $toolbar-cross-min-height;
-		padding: $toolbar-cross-gutter $toolbar-main-gutter;
+		min-height: $toolbar-cross-min-size;
+		padding-top: $toolbar-cross-gutter;
+		padding-bottom: $toolbar-cross-gutter;
+		padding-right: $toolbar-main-gutter;
+		padding-left: $toolbar-main-gutter;
+	
+		&#{$prefix}-small {
+			min-height:$toolbar-cross-min-size-small;
+			padding-right: $toolbar-main-gutter-small;
+			padding-left: $toolbar-main-gutter-small;
+		}
+	
+		&#{$prefix}-large {
+			min-height:$toolbar-cross-min-size-large;
+			padding-right: $toolbar-main-gutter-large;
+			padding-left: $toolbar-main-gutter-large;
+		}
 
 	}
 	
-	&#{&}-vertical {
+	&#{$prefix}-vertical {
 		flex-direction: column;
-		min-width: $toolbar-cross-min-height;
-		padding: $toolbar-main-gutter $toolbar-cross-gutter;
+		min-width: $toolbar-cross-min-size;
+		padding-top: $toolbar-main-gutter;
+		padding-bottom: $toolbar-main-gutter;
+		padding-right: $toolbar-cross-gutter;
+		padding-left: $toolbar-cross-gutter;
+	
+		&#{$prefix}-small {
+			min-width:$toolbar-cross-min-size-small;
+			padding-top: $toolbar-main-gutter-small;
+			padding-bottom: $toolbar-main-gutter-small;
+		}
+	
+		&#{$prefix}-large {
+			min-width:$toolbar-cross-min-size-large;
+			padding-top: $toolbar-main-gutter-large;
+			padding-bottom: $toolbar-main-gutter-large;
+		}
 
 	}
 
+	&-block {
+		display: flex;
+		width:100%;
+
+		&-mobile {
+			@include br(#{$mobile-br-max}-max) {
+				display: flex;
+				width:100%;
+			}
+		}
+	}
+
 	&-tile {
+		flex: 0 0 auto;
 
 		#{$prefix}-horizontal & {
 			&:nth-child(n+2) {

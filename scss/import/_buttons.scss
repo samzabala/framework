@@ -230,6 +230,7 @@ $prefix: '.btn';
 		
 
 		& {
+			@extend %for-anchor-reset-hover !optional;
 			@extend %for-btn-global-radius;
 			box-shadow: $btn-box-shadow;
 			max-width:100%;
@@ -246,7 +247,6 @@ $prefix: '.btn';
 			&.active {
 				box-shadow: $btn-box-shadow-hover;
 				color:inherit;
-				text-decoration:none;
 			}
 
 			&-small {

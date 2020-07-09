@@ -168,11 +168,14 @@ $prefix: '.nav';
 
 		> a,
 		> [data-toggle=dropdown] {
+			@extend %for-anchor-reset-hover !optional;
 			@include type-set((
+				color:inherit,
+				decoration:none,
 				size: $calculated-nav-top-font-size,
 				style: $nav-top-font-style,
 				weight: $nav-top-font-weight,
-				case: $nav-top-text-transform
+				case: $nav-top-text-transform,
 			));
 			position:relative;
 

@@ -17,6 +17,7 @@ $calculated-highlight-margin-x: $highlight-margin-x;
 
 $prefix: '.highlight';
 #{$prefix} {
+	@extend %for-anchor-reset-hover !optional;
 	@include type-set((
 		size: inherit,
 		leading: inherit,

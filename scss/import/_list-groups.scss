@@ -57,6 +57,7 @@ $prefix: '.list-group';
 				pointer-events: none;
 			}
 			a {
+				@extend %for-anchor-reset-hover !optional;
 				color: inherit;
 			}
 

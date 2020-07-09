@@ -631,7 +631,77 @@ true false input except... pure css and fancy
 This works on either a `checkbox` or `radio`
 
 ```html
-<div class="input-toggle ">
+<div class="input-toggle p">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label">
+		Test this fucker. do not use horizontal and vertical input classes with this shit or you dIE
+	</span>
+</div>
+
+<div class="input-toggle p input-small">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label">
+		Test this fucker. do not use horizontal and vertical input classes with this shit or you dIE
+	</span>
+</div>
+
+<div class="input-toggle p input-large">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label">
+		Test this fucker. do not use horizontal and vertical input classes with this shit or you dIE
+	</span>
+</div>
+
+<div class="input-toggle p">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label input-primary">
+		Test this fucker primary
+	</span>
+</div>
+
+<div class="input-toggle p">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label input-secondary">
+		Test this fucker secondary
+	</span>
+</div>
+
+<div class="input-toggle p">
+	<input type="checkbox" class="input"> 
+	<span class="input-label input-toggle-label input-accent">
+		Test this fucker accent
+	</span>
+</div>
+
+<div class="input-toggle p">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label input-success"> 
+		Test this fucker success
+	</span>
+</div>
+
+<div class="input-toggle p">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label input-caution">
+		Test this fucker caution
+	</span>
+</div>
+
+<div class="input-toggle p">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label input-error">
+		Test this fucker error
+	</span>
+</div>
+
+<div class="input-toggle p input-disabled">
+	<input type="checkbox" class="input">
+	<span class="input-label input-toggle-label">
+		Test this fucker 
+	</span>
+</div>
+
+<div class="input-toggle p input-toggle-reverse">
 	<input type="checkbox" class="input "> 
 	<span class="input-label input-toggle-label">
 		Test this fucker this one should have toggle on the other side of the text
@@ -640,6 +710,9 @@ This works on either a `checkbox` or `radio`
 ```
 
 you can put the toggle on the other side by adding `input-toggle-reverse` to `input-toggle`
+
+Also it supports dem color tag bois
+
 ![Toggle](../../images/input-toggle.png)
 
 
@@ -830,7 +903,7 @@ Defaults to `false`
 Enable skipping through years
 
 
-## Tags (Plugged bversion only for now)
+## Tags
 
 Imagine inputting in a text field some tags separated by commas... but gucci :')
 

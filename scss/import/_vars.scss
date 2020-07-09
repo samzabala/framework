@@ -210,6 +210,7 @@
 
 		$body-anchor-color: $brand-color-primary !default;
 		$body-anchor-color-hover: $brand-color-secondary !default;
+		$body-anchor-text-decoration-hover: underline !default;
 
 		$body-list-bullet-size: 6px !default;
 		$body-list-bullet-color: $brand-color-primary !default;
@@ -634,7 +635,7 @@
 				$board-padding-spacer-mobile: $gutter-small !default;
 			$board-padding-x: $gutter-base !default;
 			$board-padding-y: $gutter-large !default;
-				$board-padding-x-mobile: $gutter-small * 1.5 !default;
+				$board-padding-x-mobile: $gutter-small !default;
 				$board-padding-y-mobile: $gutter-small !default;
 			$board-close-button-font-size: 1rem !default;
 			$board-close-offset-x: $board-padding-x !default;
@@ -689,8 +690,8 @@
 			$well-spread-expanded: 14px !default;
 			$well-spread-compact: 3px !default;
 
-		$well-color: rgba($brand-color-base,.1) !default;
-			$well-color-inverse: rgba($brand-color-base,.1) !default;
+		$well-color: rgba($brand-color-base,.2) !default;
+			$well-color-inverse: rgba($brand-color-base,.2) !default;
 	
 
 	// THUMBNAIL
@@ -882,10 +883,16 @@
 
 
 	//toolbar
-		$toolbar-cross-min-height: 50px !default;
-		$toolbar-cross-gutter: $gutter-micro !default;
-		$toolbar-main-gutter: $gutter-micro !default;
-		$toolbar-border-radius: $toolbar-cross-min-height * .5 !default;
+		$toolbar-cross-min-size: 75px !default;
+			$toolbar-cross-min-size-small: 50px !default;
+			$toolbar-cross-min-size-large: 100px !default;
+		$toolbar-cross-gutter: 2px !default;
+		$toolbar-main-gutter: $gutter-small !default;
+			$toolbar-main-gutter-small: $gutter-micro !default;
+			$toolbar-main-gutter-large: $gutter-base !default;
+		$toolbar-border-radius: $toolbar-cross-min-size * .5 !default;
+			$toolbar-border-radius-small: $toolbar-cross-min-size-small * .5 !default;
+			$toolbar-border-radius-large: $toolbar-cross-min-size-large * .5 !default;
 		$toolbar-background-color: $theme-background !default;
 			$toolbar-background-color-inverse: $theme-background-inverse !default;
 		$toolbar-border-color: $theme-background-contrast !default;

@@ -166,9 +166,13 @@ $prefix: '.tab';
 
 		> a,
 		#{$prefix}-text {
+			@extend %for-anchor-reset-hover !optional;
 			@extend %for-tab-elements;
 			@extend %for-tab-padding;
-			color:inherit;
+			@include type-set((
+				color:inherit,
+				decoration:none,
+			));
 			margin-top: calc(  (  (#{ $calculated-tabs-item-height } - (#{$tabs-item-border-width} * 2)) - (#{$calculated-tabs-font-size * $calculated-body-line-height}) ) * -.5 );
 			margin-bottom: calc(  (  (#{ $calculated-tabs-item-height } - (#{$tabs-item-border-width} * 2)) - (#{$calculated-tabs-font-size * $calculated-body-line-height}) ) * -.5 );
 			margin-right:$tabs-item-gutter-x * -1;

@@ -319,14 +319,33 @@ em,i{
 
 a {
 	color: $body-anchor-color;
-	text-decoration: none;
 	transition: $transition-duration-base color $transition-timing;
 
-	&:hover {
+	&:hover,&:focus,&.focus {
 		color: $body-anchor-color-hover;
+		text-decoration: $body-anchor-text-decoration-hover;
+
+		&,* {
+			cursor: pointer;
+		}
+
+		* {
+			text-decoration: inherit;
+			text-decoration-color: currentColor;
+		}
+
 
 	}
 }
+%for-anchor {
+	&-reset-hover {
+		&:hover,&:focus,&.focus {
+			text-decoration: none;
+		}
+	}
+	
+}
+
 // margined shit
 
 

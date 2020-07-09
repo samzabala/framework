@@ -82,6 +82,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/docs/images/assets.png": {
+		"ft": 32768,
+		"iS": 568085,
+		"oA": 0,
+		"oAP": "/docs/images/assets.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/badge.png": {
 		"ft": 32768,
 		"iS": 134287,
@@ -483,6 +494,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/docs/images/input-toggle.png": {
+		"ft": 32768,
+		"iS": 143704,
+		"oA": 0,
+		"oAP": "/docs/images/input-toggle.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/docs/images/input-trumbowyg.png": {
 		"ft": 32768,
 		"iS": 68586,
@@ -716,6 +738,17 @@
 		"iS": 438328,
 		"oA": 0,
 		"oAP": "/docs/images/thumbnail.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/docs/images/toolbar.png": {
+		"ft": 32768,
+		"iS": 109088,
+		"oA": 0,
+		"oAP": "/docs/images/toolbar.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,

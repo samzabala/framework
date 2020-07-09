@@ -52,6 +52,7 @@ $calculated-thumbnail-line-height: $thumbnail-line-height;
 
 $prefix: '.thumbnail';
 #{$prefix} {
+	@extend %for-anchor-reset-hover !optional;
 	@extend %for-background-gradient-135;
 	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false,true,false);
 	width: 1em;

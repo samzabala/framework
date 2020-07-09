@@ -8,9 +8,9 @@ css/sass
 
 js files (in order)
 *	Dependencies
-	*	[jQuery](https://jquery.com/) (for trumbowyg support. sad. This will be expendable soon)
+	*	[jQuery](https://jquery.com/) (for plugged version)
 *	Optional
-	*	[Trumbowyg](https://alex-d.github.io/Trumbowyg/)
+	*	~[Trumbowyg](https://alex-d.github.io/Trumbowyg/)~ Bye felicia
 *	[framework.js](../../../dist/framework.min.js) 
 	*	Note: This script uses jQuery only for trumbowyg, the reset are vanilla. will be updated once vanilla trumbowyg version is released.
 	*	If full on jQuery dependency is preferred, [framework.plugged.js](../../../dist/framework.plugged.js)

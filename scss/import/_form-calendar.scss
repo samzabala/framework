@@ -238,6 +238,10 @@ $calculated-calendar-exception: '';
 							border-bottom-right-radius:0!important;
 							border-width:0;
 							width:100%;
+
+							&:not(.focus):not(:focus):not(.active):not(:active) {
+								@extend %for-no-shadow-important !optional;
+							}
 						}
 					}
 

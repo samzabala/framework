@@ -172,6 +172,15 @@ $prefix: '.input';
 				[type=radio]:checked + & {
 					color: $input-toggle-color-default-active;
 				}
+
+
+
+				@each $tag,$color in $calculated-brand-color-declarations {
+					@at-root &#{$prefix}-#{$tag},
+					#{$prefix}-#{$tag} & {
+						color: $color;
+					}
+				}
 			}
 
 			&:before {

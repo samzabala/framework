@@ -24,7 +24,9 @@ $calculated-tag-gutter-x: $tag-gutter-x;
 
 $prefix: '.tag';
 #{$prefix} {
+	@extend %for-anchor-reset-hover !optional;
 	@include type-set((
+		decoration:none,
 		size: $calculated-tag-font-size,
 		leading: $calculated-tag-line-height,
 		weight: $tag-font-weight,

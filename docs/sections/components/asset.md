@@ -18,6 +18,9 @@ A typical setup could look like this
 </div>
 ```
 
+
+![Ass...ets](../../images/assets.png)
+
 # Classes
 
 ## `.asset`
@@ -34,7 +37,7 @@ Container of thumbnail. can contain either an `<img>` for a thumbnail or the hel
 
 helper that can display a css coded thumbnail for file types. append one of of the classes below to this to work:
 
-### supported file tye classes:
+### supported file type classes:
 
 
 | asset-image-class | file types suggested for.. |
