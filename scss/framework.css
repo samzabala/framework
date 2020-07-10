@@ -5513,8 +5513,14 @@ table {
   .btn-group.btn-block {
     display: flex;
     width: 100%; }
-    .btn-group.btn-block > .btn:not(.btn-symbol), .btn-group.btn-block-mobile > .btn:not(.btn-symbol) {
+    .btn-group.btn-block > .btn:not(.btn-symbol) {
       flex: 1 1; }
+    @media (max-width: 1200px) {
+      .btn-group.btn-block-mobile {
+        display: flex;
+        width: 100%; }
+        .btn-group.btn-block-mobile > .btn:not(.btn-symbol) {
+          flex: 1 1; } }
   .btn-group.btn-group-horizontal .btn-symbol {
     flex: 0 0 auto; }
   .btn-group.btn-group-horizontal:not(.btn-group-responsive) > .btn:nth-last-child(n+2) {
@@ -6145,8 +6151,6 @@ table {
       border-top-left-radius: 0 !important;
       margin-top: -1px; }
   @media (min-width: 1201px) {
-    .input-group.input-group-responsive.input-group-horizontal > .btn-symbol {
-      width: auto; }
     .input-group.input-group-responsive.input-group-horizontal > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-select:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .trumbowyg:nth-last-child(n+2) {
       border-top-right-radius: 0 !important;
       border-bottom-right-radius: 0 !important; }
@@ -6160,6 +6164,8 @@ table {
       flex-wrap: wrap;
       display: flex;
       flex-direction: column; }
+      .input-group.input-group-responsive > .btn-symbol {
+        width: auto; }
       .input-group.input-group-responsive > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive > .input-select:nth-last-child(n+2), .input-group.input-group-responsive > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive .btn:nth-last-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-last-child(n+2) {
         border-bottom-right-radius: 0 !important;
         border-bottom-left-radius: 0 !important; }

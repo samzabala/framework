@@ -325,11 +325,18 @@ $prefix: '.btn';
 			display:flex;
 			width:100%;
 
-			&,
-			&-mobile {
+			& > .btn:not(.btn-symbol) {
+				flex: 1 1;
+			}
 
-				& > .btn:not(.btn-symbol) {
-					flex: 1 1;
+			@include br(#{$mobile-br-max}-max) {
+				&-mobile {
+					display:flex;
+					width:100%;
+
+					& > .btn:not(.btn-symbol) {
+						flex: 1 1;
+					}
 				}
 			}
 		}

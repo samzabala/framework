@@ -896,7 +896,8 @@ $prefix: '.input';
 			width:100%;
 
 			> #{$prefix},
-			> .trumbowyg {
+			> .trumbowyg,
+			> .btn:not(.btn-symbol {
 				flex: 1 1;
 			}
 
@@ -907,7 +908,7 @@ $prefix: '.input';
 
 					> #{$prefix},
 					> .trumbowyg,
-					.btn:not(.btn-symbol) {
+					> .btn:not(.btn-symbol) {
 						flex: 1 1;
 					}
 				}
@@ -981,9 +982,6 @@ $prefix: '.input';
 			@include br($mobile-br-max-polar){
 				
 				&#{$prefix}-group-horizontal {
-					> .btn-symbol {
-						width:auto;
-					}
 
 					> %for-form-input-boxy,.btn, .trumbowyg {
 						&:nth-last-child(n+2) {
@@ -1012,6 +1010,10 @@ $prefix: '.input';
 				flex-wrap:wrap;
 				display:flex;
 				flex-direction:column;
+
+				> .btn-symbol {
+					width:auto;
+				}
 
 				> %for-form-input-boxy,.btn, .trumbowyg {
 					&:nth-last-child(n+2) {

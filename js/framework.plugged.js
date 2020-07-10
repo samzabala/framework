@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 window.jQuery && jQuery.noConflict();
 (function ($, window) {
-	console.info("Framework plugged script is initiated");
+	console.info('Framework plugged script is initiated');
 
 	if (window.fw) {
-		throw new Error("fw already exists oh boi");
+		throw new Error('fw already exists oh boi');
 	}
 
 	//frameWork shit
@@ -14,17 +14,31 @@ window.jQuery && jQuery.noConflict();
 	const _ = {};
 
 	//settings
-	frameWork.settings = frameWork.settings || {};
-	frameWork.settings.prefix = "fw";
-	frameWork.settings.lazyLoad = frameWork.settings.lazyLoad || true;
-	frameWork.settings.initializeModal = frameWork.settings.initializeModal || true;
-	frameWork.settings.initializeBoard = frameWork.settings.initializeBoard || true;
-	frameWork.settings.initializeAccordion = frameWork.settings.initializeAccordion || true;
-	frameWork.settings.dynamicHash = frameWork.settings.dynamicHash || true;
-	frameWork.settings.uiClass = `${frameWork.settings.prefix}-ui`;
+	frameWork.settings =
+		frameWork.settings
+		|| {};
+	frameWork.settings.prefix =
+		'fw';
+	frameWork.settings.lazyLoad =
+		frameWork.settings.lazyLoad
+		|| true;
+	frameWork.settings.initializeModal =
+		frameWork.settings.initializeModal
+		|| true;
+	frameWork.settings.initializeBoard =
+		frameWork.settings.initializeBoard
+		|| true;
+	frameWork.settings.initializeAccordion =
+		frameWork.settings.initializeAccordion
+		|| true;
+	frameWork.settings.dynamicHash =
+		frameWork.settings.dynamicHash
+		|| true;
+	frameWork.settings.uiClass =
+		`${frameWork.settings.prefix}-ui`;
 
 	if (!$) {
-		throw new Error("jQuery not found bro, what did you do?");
+		throw new Error('jQuery not found bro, what did you do?');
 	}
 
 	_.modifierKeys = {
@@ -39,59 +53,83 @@ window.jQuery && jQuery.noConflict();
 
 		if (mode && _.modifierKeys.hasOwnProperty(mode)) {
 			return _.modifierKeys[mode];
+			
 		} else {
-			return _.modifierKeys.ctrl || _.modifierKeys.shift || _.modifierKeys.alt || _.modifierKeys.meta;
+			return (
+				_.modifierKeys.ctrl
+				|| _.modifierKeys.shift
+				|| _.modifierKeys.alt
+				|| _.modifierKeys.meta
+			);
 		}
 	};
 
 	$.fn.scrollTo = function (elem, direction) {
-		direction = direction || "y";
-		const methods = direction == "x" ? ["scrollLeft", "left"] : ["scrollTop", "top"];
-		const scrollResult = $(this)[methods[0]]() - $(this).offset()[methods[1]] + $(elem).offset()[methods[1]];
+		direction = direction || 'y';
+
+		const methods =
+			direction == 'x'
+				? ['scrollLeft', 'left']
+				: ['scrollTop', 'top'];
+
+		const scrollResult =
+			$(this)[methods[0]]() -
+			$(this).offset()[methods[1]] +
+			$(elem).offset()[methods[1]];
 
 		$(this)[methods[0]](scrollResult);
 
 		// console.log( scrollResult,'\nscroll parent', $(this)[ methods[0] ](),'\nchild offset', $(elem).offset()[ methods[1] ]   )
 
 		return this;
+
 	};
 
 	_.strGetFileExtension = (str) => {
-		str = str || "";
-		return str.split(".").pop();
+		str = str || '';
+		return str.split('.').pop();
 	};
+
 	_.strToCamelCase = (str) => {
-		str = str || "";
+		str = str || '';
 
 		return str
 			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
-				return index == 0 ? word.toLowerCase() : word.toUpperCase();
+				return index == 0
+					? word.toLowerCase()
+					: word.toUpperCase();
 			})
-			.replace(/-|\s/g, "");
+			.replace(/-|\s/g, '');
 	};
 
 	_.arrMoveItem = (arr, oi, ni) => {
+
 		while (oi < 0) {
 			oi += arr.length;
 		}
+
 		while (ni < 0) {
 			ni += arr.length;
 		}
+
 		if (ni >= arr.length) {
 			let k = ni - arr.length;
 			while (k-- + 1) {
 				arr.push(undefined);
 			}
 		}
+		
 		arr.splice(ni, 0, arr.splice(oi, 1)[0]);
+
 		return arr;
+
 	};
 
 	_.datetimeFormatPresets = {
 		HumanDate: {
-			placeholder: "mm/dd/yyyy",
+			placeholder: 'mm/dd/yyyy',
 			pattern: /^\d{2}\/\d{2}\/\d{4}$/,
-			template: "mm/dd/yy",
+			template: 'mm/dd/yy',
 		},
 		// HumanTime24: {
 		// 	placeholder:"hh:mm",
@@ -104,9 +142,9 @@ window.jQuery && jQuery.noConflict();
 		// 	template:"HH:MM"
 		// },
 		Value: {
-			placeholder: "yyyy-mm-dd",
+			placeholder: 'yyyy-mm-dd',
 			pattern: /^\d{4}[-]\d{2}[-]\d{2}$/,
-			template: "yy-mm-dd",
+			template: 'yy-mm-dd',
 		},
 		// ValueDateTime:{
 		// 	placeholder:"yy-mm-ddThh:gg",
@@ -115,27 +153,69 @@ window.jQuery && jQuery.noConflict();
 		// },
 	};
 
-	_.dayFormatNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; // For formatting
-	_.dayFormatNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; // For formatting
-	_.dayFormatNamesShorter = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]; // For formatting
-	_.monthFormatNames = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
+	_.dayFormatNames = [
+		'Sunday',
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
 	];
-	_.monthFormatNamesShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+	_.dayFormatNamesShort = [
+		'Sun',
+		'Mon',
+		'Tue',
+		'Wed',
+		'Thu',
+		'Fri',
+		'Sat',
+	];
+
+	_.dayFormatNamesShorter = [
+		'Su',
+		'Mo',
+		'Tu',
+		'We',
+		'Th',
+		'Fr',
+		'Sa'
+	];
+
+	_.monthFormatNames = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	];
+
+	_.monthFormatNamesShort = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec',
+	];
 
 	//make it objoct
 	_.dateToParse = (date) => {
+
 		let yr,
 			mo,
 			dy,
@@ -143,30 +223,35 @@ window.jQuery && jQuery.noConflict();
 			mn,
 			dateArr = [],
 			timeArr = [];
+
 		if (date) {
-			if (Object.prototype.toString.call(date) === "[object Date]") {
+			
+			if (Object.prototype.toString.call(date) === '[object Date]') {
 				//make a new date out of its methods because js will think u are referring to the same date everythere and ur math becomes a hellhole... dont.. hOE
 				yr = date.getFullYear() || null;
 				mo = date.getMonth() || null;
 				dy = date.getDate() || null;
 				hr = date.getHours() || null;
 				mn = date.getMinutes() || null;
+				
 			} else {
-				const pattern = new RegExp(_.datetimeFormatPresets.Value.pattern);
 
+				const pattern = new RegExp(
+					_.datetimeFormatPresets.Value.pattern
+				);
 				const isValid = pattern.test(date);
 
 				if (isValid) {
-					let dateTimeArr = date.split("T") || [];
+					let dateTimeArr = date.split('T') || [];
 
 					//date
 					if (dateTimeArr[0]) {
-						dateArr = dateTimeArr[0].split("-");
+						dateArr = dateTimeArr[0].split('-');
 					}
 
 					//time
 					if (dateTimeArr[1]) {
-						timeArr = dateTimeArr[1].split(":");
+						timeArr = dateTimeArr[1].split(':');
 					}
 
 					yr = parseInt(dateArr[0]) || null;
@@ -178,7 +263,12 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			let toReturn = false;
-			if (Object.prototype.toString.call(new Date(yr, mo, dy, hr, mn)) == "[object Date]") {
+
+			if (
+				Object.prototype.toString.call(
+					new Date(yr, mo, dy, hr, mn)
+				) == '[object Date]'
+			) {
 				toReturn = new Date(yr, mo, dy, hr, mn);
 			}
 
@@ -190,92 +280,155 @@ window.jQuery && jQuery.noConflict();
 	_.dateToHuman = (date, format) => {
 		date = _.dateToParse(date);
 		format = format || _.datetimeFormatPresets.HumanDate.template;
+
 		if (date) {
+
 			let iFormat,
-				output = "",
+				output = '',
 				literal = false;
 
 			// Check whether a format character is doubled
 			const lookAhead = (match) => {
-					let matches = iFormat + 1 < format.length && format.charAt(iFormat + 1) === match;
+					let matches =
+						iFormat + 1 < format.length
+						&& format.charAt(iFormat + 1) === match;
 					if (matches) {
 						iFormat++;
 					}
 					return matches;
 				},
+
 				// Format a number, with leading zero if necessary
 				formatNumber = (match, value, len) => {
-					let num = "" + value;
+					let num = '' + value;
 					if (lookAhead(match)) {
 						while (num.length < len) {
-							num = "0" + num;
+							num = '0' + num;
 						}
 					}
 					return num;
 				},
+
 				// Format a name, short or long as requested
 				formatName = (match, value, shortNames, longNames) => {
-					return lookAhead(match) ? longNames[value] : shortNames[value];
+					return lookAhead(match)
+						? longNames[value]
+						: shortNames[value];
 				};
+				
 			if (date) {
+
 				for (iFormat = 0; iFormat < format.length; iFormat++) {
+
 					if (literal) {
-						if (format.charAt(iFormat) === "'" && !lookAhead("'")) {
+						if (
+							format.charAt(iFormat) === "'" && !lookAhead("'")
+						) {
 							literal = false;
+
 						} else {
 							output += format.charAt(iFormat);
 						}
+
 					} else {
 						switch (format.charAt(iFormat)) {
-							case "d": //date number
-								output += formatNumber("d", date.getDate(), 2);
-								break;
-							case "D": //day of the week
-								output += formatName("D", date.getDay(), _.dayFormatNamesShort, _.dayFormatNames);
+							case 'd': //date number
+								output += formatNumber(
+									'd',
+									date.getDate(),
+									2
+								);
 								break;
 
-							case "o": //day of year hmm
+							case 'D': //day of the week
+								output += formatName(
+									'D',
+									date.getDay(),
+									_.dayFormatNamesShort,
+									_.dayFormatNames
+								);
+								break;
+
+							case 'o': //day of year hmm
 								output += formatNumber(
-									"o",
+									'o',
 									Math.round(
-										(new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime() -
-											new Date(date.getFullYear(), 0, 0).getTime()) /
-											86400000
+										(
+											new Date(
+												date.getFullYear(),
+												date.getMonth(),
+												date.getDate()
+											).getTime()
+											- new Date(
+													date.getFullYear(),
+													0,
+													0
+											).getTime()
+										)
+										/ 86400000
 									),
 									3
 								);
 								break;
 
-							case "m": //month
-								output += formatNumber("m", date.getMonth() + 1, 2);
-								break;
-							case "M": //month but name
-								output += formatName("M", date.getMonth(), _.monthFormatNamesShort, _.monthFormatNames);
+							case 'm': //month
+								output += formatNumber(
+									'm',
+									date.getMonth() + 1,
+									2
+								);
 								break;
 
-							case "y": //year
-								output += lookAhead("y")
+							case 'M': //month but name
+								output += formatName(
+									'M',
+									date.getMonth(),
+									_.monthFormatNamesShort,
+									_.monthFormatNames
+								);
+								break;
+
+							case 'y': //year
+								output += lookAhead('y')
 									? date.getFullYear()
-									: (date.getFullYear() % 100 < 10 ? "0" : "") + (date.getFullYear() % 100);
+									: (date.getFullYear() % 100 < 10
+											? '0'
+											: '') +
+									  (date.getFullYear() % 100);
 								break;
 
-							case "H": //12 hour
-								output += formatNumber("H", date.getHours() % 12 || 12, 2);
-								break;
-							case "h": //24 hour
-								output += formatNumber("h", date.getHours(), 2);
-								break;
-
-							case "i": //minute
-								output += formatNumber("i", date.getMinutes(), 2);
+							case 'H': //12 hour
+								output += formatNumber(
+									'H',
+									date.getHours() % 12 || 12,
+									2
+								);
 								break;
 
-							case "a": //am /pm
-								output += date.getHours() >= 12 ? "pm" : "am";
+							case 'h': //24 hour
+								output += formatNumber(
+									'h',
+									date.getHours(),
+									2
+								);
 								break;
 
-							case "A": //AM/PM
-								output += date.getHours() >= 12 ? "PM" : "AM";
+							case 'i': //minute
+								output += formatNumber(
+									'i',
+									date.getMinutes(),
+									2
+								);
+								break;
+
+							case 'a': //am /pm
+								output +=
+									date.getHours() >= 12 ? 'pm' : 'am';
+								break;
+
+							case 'A': //AM/PM
+								output +=
+									date.getHours() >= 12 ? 'PM' : 'AM';
 								break;
 
 							case "'":
@@ -288,11 +441,14 @@ window.jQuery && jQuery.noConflict();
 
 							default:
 								output += format.charAt(iFormat);
+
 						}
 					}
 				}
 			}
+
 			return output;
+
 		} else {
 			return false;
 		}
@@ -303,7 +459,10 @@ window.jQuery && jQuery.noConflict();
 		const d = _.dateToParse(date);
 
 		if (d) {
-			return _.dateToHuman(d, _.datetimeFormatPresets.Value.template);
+			return _.dateToHuman(
+				d,
+				_.datetimeFormatPresets.Value.template
+			);
 		}
 	};
 
@@ -317,28 +476,44 @@ window.jQuery && jQuery.noConflict();
 				currYear = d.getFullYear(),
 				newMonth = (() => {
 					let toReturn;
-					if ((currMonth + offsetByMonth) % 12 > 12) {
+					if (
+						(currMonth + offsetByMonth) % 12 > 12
+					) {
 						toReturn = ((currMonth + offsetByMonth) % 12) - 12;
-					} else if ((currMonth + offsetByMonth) % 12 < 0) {
+
+					} else if (
+						(currMonth + offsetByMonth) % 12 < 0
+					) {
 						toReturn = ((currMonth + offsetByMonth) % 12) + 12;
+
 					} else {
 						toReturn = (currMonth + offsetByMonth) % 12;
 					}
 
 					return toReturn;
 				})(),
+
 				newYear = (() => {
 					const defOffset = parseInt(offsetByMonth / 12);
 					let toReturn = currYear + defOffset;
 
 					//offset to adjacent year
-					if (offsetByMonth < 0 && currMonth + (offsetByMonth % 12) < 0) {
+					if (
+						offsetByMonth < 0
+						&& currMonth + (offsetByMonth % 12) < 0
+					) {
 						toReturn -= 1;
-					} else if (offsetByMonth > 0 && currMonth + (offsetByMonth % 12) > 11) {
+
+					} else if (
+						offsetByMonth > 0
+						&& currMonth + (offsetByMonth % 12) > 11
+					) {
 						toReturn += 1;
 					}
+
 					return toReturn;
-				})();
+				})()
+				;
 
 			d.setMonth(newMonth);
 			d.setFullYear(newYear);
@@ -348,6 +523,7 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			return d;
+
 		} else {
 			return false;
 		}
@@ -369,18 +545,17 @@ window.jQuery && jQuery.noConflict();
 	_.runFn = (callback) => {
 		if (callback) {
 			let fn;
-
 			try {
 				fn = eval(/^[^(]+/.exec(callback)[0]);
 			} catch (err) {}
-
-			if (typeof fn === "function") {
+			if (typeof fn === 'function') {
 				eval(callback);
 			}
 		}
 	};
 
 	_.parseArgs = (arr, defaults) => {
+
 		const args = {};
 
 		for (let def in defaults) {
@@ -388,14 +563,17 @@ window.jQuery && jQuery.noConflict();
 		}
 
 		for (let prop in arr) {
-			if (arr.hasOwnProperty(prop) && arr[prop] !== undefined && arr[prop] !== null && arr[prop] !== "") {
+			if (
+				arr.hasOwnProperty(prop)
+				&& arr[prop] !== undefined
+				&& arr[prop] !== null
+				&& arr[prop] !== ''
+			) {
 				// Push each value from `obj` into `extended`
-
 				// catch boolean
-				if (arr[prop] == "false" || arr[prop] == "true") {
-					arr[prop] = arr[prop] == "true" ? true : false;
+				if (arr[prop] == 'false' || arr[prop] == 'true') {
+					arr[prop] = arr[prop] == 'true' ? true : false;
 				}
-
 				args[prop] = arr[prop];
 			}
 		}
@@ -404,10 +582,10 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	_.changeHash = (id) => {
-		id = id || "";
+		id = id || '';
 
 		if (frameWork.settings.dynamicHash) {
-			const idToGoTo = id !== "" ? `#${id}` : null;
+			const idToGoTo = id !== '' ? `#${id}` : null;
 
 			if (idToGoTo) {
 				if (history.pushState) {
@@ -415,31 +593,47 @@ window.jQuery && jQuery.noConflict();
 				} else {
 					location.hash = idToGoTo;
 				}
+
 			} else {
-				const noHashURL = window.location.href.replace(/#.*$/, "");
-				window.history.pushState("", document.title, noHashURL);
+				const noHashURL = window.location.href.replace(/#.*$/, '');
+				window.history.pushState('', document.title, noHashURL);
 			}
 		}
 	};
 
 	_.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
-		prefix = prefix || "btn";
+		prefix = prefix || 'btn';
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
-		if (triggerer) {
-			triggerer.siblings(`.${resetterClass}`).removeClass("active");
 
-			if (!triggerer.closest(`.${$prefix}-group-toggle-multiple`).length || triggerer.hasClass(resetterClass)) {
-				triggerer.siblings(siblingSelector).removeClass("active");
+		if (triggerer) {
+			
+			triggerer
+				.siblings(`.${resetterClass}`)
+				.removeClass('active');
+
+			if (
+				!triggerer
+					.closest(`.${prefix}-group-toggle-multiple`).length
+					|| triggerer.hasClass(resetterClass)
+			) {
+				triggerer
+					.siblings(siblingSelector)
+					.removeClass('active');
 			}
 
 			if (
-				triggerer.closest(`.${$prefix}-group-toggle-multiple`).length &&
-				triggerer.siblings(".active").length > 0
+				triggerer
+					.closest(`.${prefix}-group-toggle-multiple`)
+						.length
+				&& triggerer
+					.siblings('.active')
+						.length > 0
 			) {
-				triggerer.toggleClass("active");
+				triggerer.toggleClass('active');
+
 			} else {
-				triggerer.addClass("active");
+				triggerer.addClass('active');
 			}
 		}
 	};
@@ -451,12 +645,22 @@ window.jQuery && jQuery.noConflict();
 		let toReturn;
 
 		if (triggerer) {
-			if (triggerer.closest(`.input-group${frameWork.settings.uiClass}`).length) {
-			} else if (
-				triggerer.closest(`.${frameWork.settings.uiClass}`).length &&
-				!_.getTheToggled(triggerer, "dropdown")
+
+			if (
+				triggerer
+					.closest(`.input-group${frameWork.settings.uiClass}`)
+						.length
 			) {
-				toReturn = triggerer.closest(`.${frameWork.settings.uiClass}`);
+
+			} else if (
+				triggerer
+					.closest(`.${frameWork.settings.uiClass}`)
+						.length
+				&& !_.getTheToggled(triggerer, 'dropdown')
+			) {
+				toReturn = triggerer
+					.closest(`.${frameWork.settings.uiClass}`);
+
 			} else {
 				toReturn = triggerer;
 			}
@@ -470,30 +674,66 @@ window.jQuery && jQuery.noConflict();
 
 		if (toggleMode) {
 			const selector = `.${toggleMode}`,
-				toggledClass = `.${toggleMode}`.replace("-open", "").replace("-close", "") || null;
+				toggledClass = `.${toggleMode}`
+						.replace('-open', '')
+						.replace('-close', '')
+						|| null;
+
 			let toReturn = null;
 
 			if (triggerer) {
-				if (triggerer.attr("href") && triggerer.attr("href") !== "" && triggerer.attr("href") !== "#") {
-					toReturn = $(triggerer.attr("href"));
-				} else if (triggerer.attr("data-href")) {
-					toReturn = $(triggerer.attr("data-href"));
-				} else if (toggleMode && triggerer.parent().closest(`[data-toggle="${toggleMode}"]`).length) {
-					toReturn = _.getTheToggled(triggerer.closest(`[data-toggle="${toggleMode}"]`), toggleMode);
-				} else if (toggleMode && triggerer.parent(".input-group").length) {
-					toReturn = _.getTheToggled(triggerer.parent(".input-group"), toggleMode);
-				} else if (toggleMode && triggerer.parent(".btn-group").length) {
-					toReturn = _.getTheToggled(triggerer.parent(".btn-group"), toggleMode);
+				if (
+					triggerer.attr('href')
+					&& triggerer.attr('href') !== ''
+					&& triggerer.attr('href') !== '#'
+				) {
+					toReturn = $(triggerer.attr('href'));
+
+				} else if (triggerer.attr('data-href')) {
+					toReturn = $(triggerer.attr('data-href'));
+
+				} else if (
+					toggleMode
+					&& triggerer
+						.parent()
+						.closest(`[data-toggle="${toggleMode}"]`).length
+				) {
+					toReturn = _.getTheToggled(
+						triggerer.closest(`[data-toggle="${toggleMode}"]`),
+						toggleMode
+					);
+
+				} else if (
+					toggleMode
+					&& triggerer.parent('.input-group').length
+				) {
+					toReturn = _.getTheToggled(
+						triggerer.parent('.input-group'),
+						toggleMode
+					);
+					
+				} else if (
+					toggleMode
+					&& triggerer.parent('.btn-group').length
+				) {
+					toReturn = _.getTheToggled(
+						triggerer.parent('.btn-group'),
+						toggleMode
+					);
+
 				} else if (triggerer.next(selector).first().length) {
 					toReturn = triggerer.next(selector).first();
+
 				} else if (triggerer.siblings(selector).first().length) {
 					toReturn = triggerer.siblings(selector).first();
 				}
 			} else {
 				if (
-					window.location.hash !== "" &&
-					$(window.location.hash).length > -1 &&
-					$(window.location.hash).hasClass(toggledClass.replace(".", ""))
+					window.location.hash !== ''
+					&& $(window.location.hash).length > -1
+					&& $(window.location.hash).hasClass(
+						toggledClass.replace('.', '')
+					)
 				) {
 					toReturn = $(window.location.hash);
 				}
@@ -502,13 +742,19 @@ window.jQuery && jQuery.noConflict();
 			if (!toReturn) {
 				//look if theres an ancestor it can toggle. last prioroty
 				switch (toggleMode) {
-					case "dropdown":
-					case "modal":
-					case "board":
-					case "asset":
-					case "alert-close":
-						if (triggerer && toggleMode && triggerer.parent().closest(toggledClass).length) {
-							toReturn = triggerer.parent().closest(toggledClass);
+					case 'dropdown':
+					case 'modal':
+					case 'board':
+					case 'asset':
+					case 'alert-close':
+						if (
+							triggerer
+							&& toggleMode
+							&& triggerer.parent().closest(toggledClass).length
+						) {
+							toReturn = triggerer
+								.parent()
+								.closest(toggledClass);
 						}
 						break;
 				}
@@ -520,16 +766,40 @@ window.jQuery && jQuery.noConflict();
 
 	_.br_vals = {
 		xxs: 0,
-		xs: parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--br-xs")) || 600,
-		sm: parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--br-sm")) || 1200,
-		md: parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--br-md")) || 1600,
+		xs:
+			parseFloat(
+				getComputedStyle(
+					document.documentElement
+				).getPropertyValue('--br-xs')
+			)
+			|| 600,
+		sm:
+			parseFloat(
+				getComputedStyle(
+					document.documentElement
+				).getPropertyValue('--br-sm')
+			)
+			|| 1200,
+		md:
+			parseFloat(
+				getComputedStyle(
+					document.documentElement
+				).getPropertyValue('--br-md')
+			)
+			|| 1600,
 		lg: 9999999,
 	};
+
 	_.br_arr = Object.keys(_.br_vals);
 	// _.br_to_loop =  ['xs','sm','md','lg'];
 
 	_.br_mobile_max =
-		parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--mobile-br-max")) || "sm";
+		parseFloat(
+			getComputedStyle(
+				document.documentElement
+			).getPropertyValue('--mobile-br-max')
+		)
+		|| 'sm';
 
 	_.fns_on_load = [];
 	_.fns_on_ready = [];
@@ -537,75 +807,80 @@ window.jQuery && jQuery.noConflict();
 	_.fns_on_rightAway = [];
 
 	frameWork.validateBr = (breakpoint, mode) => {
-		mode = mode || "below"; //below,within,above
+		mode = mode || 'below'; //below,within,above
 		const currIndex = _.br_arr.indexOf(breakpoint);
-
 		switch (mode) {
-			case "below": //max-width
-				return document.documentElement.clientWidth <= _.br_vals[breakpoint];
-			case "within":
+			case 'below': //max-width
 				return (
-					document.documentElement.clientWidth <= _.br_vals[breakpoint] && //max
-					document.documentElement.clientWidth > _.br_vals[_.br_arr[currIndex - 1]] //min
+					document.documentElement.clientWidth
+						<= _.br_vals[breakpoint]
 				);
-			case "above":
+
+			case 'within':
+				return (
+					document.documentElement.clientWidth
+						<=_.br_vals[breakpoint]
+					&& document.documentElement.clientWidth
+						> _.br_vals[_.br_arr[currIndex - 1]]
+				);
+
+			case 'above':
 				return currIndex > 0
-					? document.documentElement.clientWidth > _.br_vals[_.br_arr[currIndex - 1]]
-					: document.documentElement.clientWidth > _.br_vals[_.br_arr[currIndex]];
+					? document.documentElement.clientWidth
+						> _.br_vals[_.br_arr[currIndex - 1]]
+					: document.documentElement.clientWidth
+						> _.br_vals[_.br_arr[currIndex]];
 		}
 	};
 
 	_.palette = [
-		"base",
-		"primary",
-		"secondary",
-		"accent",
-		"neutral",
-		"error",
-		"caution",
-		"success",
-		"intensity-1",
-		"intensity-2",
-		"intensity-3",
-		"intensity-4",
-		"intensity-5",
+		'base',
+		'primary',
+		'secondary',
+		'accent',
+		'neutral',
+		'error',
+		'caution',
+		'success',
+		'intensity-1',
+		'intensity-2',
+		'intensity-3',
+		'intensity-4',
+		'intensity-5',
 	];
 
 	frameWork.initGrid = (moduleGrid) => {
 		const availablePropertiesParent = [
-			"grid-template-columns",
-			"grid-template-rows",
-			"grid-template-areas",
-
-			"grid-column-start",
-			"grid-template-end",
-			"grid-template",
-			"grid-column-gap",
-			"grid-row-gap",
-			"justify-items",
-			"align-items",
-			"justify-content",
-			"align-content",
-			"place-content",
-			"grid-auto-columns",
-			"grid-auto-rows",
-			"grid-auto-flow",
-			"grid",
+			'grid-template-columns',
+			'grid-template-rows',
+			'grid-template-areas',
+			'grid-column-start',
+			'grid-template-end',
+			'grid-template',
+			'grid-column-gap',
+			'grid-row-gap',
+			'justify-items',
+			'align-items',
+			'justify-content',
+			'align-content',
+			'place-content',
+			'grid-auto-columns',
+			'grid-auto-rows',
+			'grid-auto-flow',
+			'grid',
 		];
 
 		const availablePropertiesChildren = [
-			"grid-area",
-
-			"grid-column",
-			"grid-row",
-
-			"grid-column-start",
-			"grid-column-end",
-			"grid-row-start",
-			"grid-row-end",
-			"justify-self",
-			"align-self",
-			"place-self",
+			'grid-area',
+			'grid-column',
+			'grid-row',
+			'grid-column-start',
+			'grid-column-end',
+			'grid-row-start',
+			'grid-row-end',
+			'justify-self',
+			'align-self',
+			'place-self',
 		];
 
 		const renderProps = (modElement, props) => {
@@ -616,37 +891,52 @@ window.jQuery && jQuery.noConflict();
 
 				//check for breakpointz first
 				_.reverseArray(_.br_arr).forEach((br) => {
-					if (modElement.attr(`data-${prop}-${br}`) && !propsSet) {
+					if (
+						modElement.attr(`data-${prop}-${br}`)
+						&& !propsSet
+					) {
 						smallestStyledBr = br;
-						if (frameWork.validateBr(br, "above")) {
-							modElement.css(prop, modElement.attr(`data-${prop}-${br}`));
+						if (frameWork.validateBr(br, 'above')) {
+							modElement.css(
+								prop,
+								modElement.attr(`data-${prop}-${br}`)
+							);
 							propsSet = true;
 							propSetBr = true;
 						}
 					}
 				});
 
-				if (modElement.attr(`data-${prop}`) && !propsSet) {
+				if (
+					modElement.attr(`data-${prop}`)
+					&& !propsSet
+				) {
 					//check for all breakpoint
-					if (!propsSet && !propSetBr) {
-						modElement.css(prop, modElement.attr(`data-${prop}`));
+					if (
+						!propsSet
+						&& !propSetBr
+					) {
+						modElement.css(
+							prop,
+							modElement.attr(`data-${prop}`)
+						);
 						propsSet = true;
 					}
+
 				} else {
 					if (
-						modElement.prop("style")[_.strToCamelCase(prop)] !== null &&
-						smallestStyledBr &&
-						!frameWork.validateBr(smallestStyledBr, "above")
+						modElement.prop('style')[_.strToCamelCase(prop)] !== null
+						&& smallestStyledBr
+						&& !frameWork.validateBr(smallestStyledBr, 'above')
 					) {
-						modElement.css(prop, "");
+						modElement.css(prop, '');
 					}
 				}
 			});
 		};
 
 		renderProps(moduleGrid, availablePropertiesParent);
-
-		moduleGrid.children(".module").each((i, elm) => {
+		moduleGrid.children('.module').each((i, elm) => {
 			const child = $(elm);
 			renderProps(child, availablePropertiesChildren);
 		});
@@ -654,21 +944,25 @@ window.jQuery && jQuery.noConflict();
 
 	//range only is pag kwan di sya isa isang date pangmaramihan
 	_.dateIsValid = (date, args, rangeOnly) => {
-		const d = _.dateToParse(date),
-			checkAgainst = args.disabledDates.split(",");
-		let toReturn = true;
-
 		rangeOnly = rangeOnly || false; //range,spot
+
+		const d = _.dateToParse(date),
+			checkAgainst = args.disabledDates.split(',');
+
+		let toReturn = true;
 
 		if (!rangeOnly) {
 			//if in disabled dates
 			if (checkAgainst.indexOf(_.dateToVal(d)) > -1) {
-				// console.warn('value is declared disabled specifically || ',_.dateToVal(d));;
+				// console.warn('value is declared disabled specifically || ',_.dateToVal(d));
 				toReturn = false;
 			}
 
 			//weekend
-			if (checkAgainst.indexOf("weekends") > -1 && (d.getDay() == 0 || d.getDay() == 6)) {
+			if (
+				checkAgainst.indexOf('weekends') > -1
+				&& (d.getDay() == 0 || d.getDay() == 6)
+			) {
 				// console.warn('value was a weekend || ',_.dateToVal(d),_.dateToVal(date));
 				toReturn = false;
 			}
@@ -676,24 +970,35 @@ window.jQuery && jQuery.noConflict();
 
 		//in the past
 		let dateNow = new Date();
-
 		dateNow.setHours(0, 0, 0, 0);
-		if (checkAgainst.indexOf("past") > -1 && d < dateNow) {
+		if (
+			checkAgainst.indexOf('past') > -1
+			&& d < dateNow
+		) {
 			// console.warn('value was in the past || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
 			toReturn = false;
 		}
 
-		if (checkAgainst.indexOf("future") > -1 && d > dateNow) {
+		if (
+			checkAgainst.indexOf('future') > -1
+			&& d > dateNow
+		) {
 			// console.warn('value was in the future || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
 			toReturn = false;
 		}
 
 		//if  in range of min or max
 		if (
-			(_.dateToParse(args.max) && _.dateToParse(args.max) < d) ||
-			(_.dateToParse(args.min) && d < _.dateToParse(args.min))
+			(
+				_.dateToParse(args.max)
+				&& _.dateToParse(args.max) < d
+			)
+			|| (
+				_.dateToParse(args.min)
+				&& d < _.dateToParse(args.min)
+			)
 		) {
-			// console.warn('value not in max and width || ',_.dateToVal(d));
+			// console.warn('value not in max and width || ',_.dateToVal(d));;
 			toReturn = false;
 		}
 
@@ -701,42 +1006,48 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	_.createCalendarUi = (inputCalendar, valueForUi, args) => {
+		
 		if (inputCalendar) {
-			valueForUi = valueForUi || _.dateToVal(inputCalendar.val()) || _.dateToVal(new Date());
-
+			valueForUi =
+				valueForUi
+				|| _.dateToVal(inputCalendar.val())
+				|| _.dateToVal(new Date());
 			const theUi = {};
 
-			theUi.container = inputCalendar.closest(`.${_.uiPrefix("calendar", true)}`);
-
+			theUi.container = inputCalendar
+				.closest(`.${_.uiPrefix('calendar', true)}`);
 			if (!theUi.container.length) {
-				inputCalendar.wrap(
-					$(
-						`<div class="${frameWork.settings.uiClass} ${inputCalendar
-							.attr("class")
-							.replace("input-calendar", _.uiPrefix("calendar", true))}"></div>`
-					)
-				);
-				theUi.container = inputCalendar.closest(`.${_.uiPrefix("calendar", true)}`);
+				inputCalendar.wrap($(`<div
+					class="
+						${frameWork.settings.uiClass}
+						${inputCalendar.attr('class')
+							.replace('input-calendar', _.uiPrefix('calendar', true))
+						}"
+					>
+					</div>`));
+				theUi.container = inputCalendar
+					.closest(`.${_.uiPrefix('calendar', true)}`);
 			}
 
 			//idk it never exists on initial so we dont have to do weird div wraping catches here
-			theUi.input = theUi.container.children(`.${_.uiPrefix("calendar")}input`);
+			theUi.input = theUi.container
+				.children(`.${_.uiPrefix('calendar')}input`);
+
 			inputCalendar.siblings().not(theUi.input).remove();
 
 			//input
 			if (args.textInput) {
 				if (!theUi.input.length) {
-					theUi.input = $(
-						`<div class="${_.uiPrefix(
-							"calendar"
-						)}input"><input class="input input-single-line" type="text" maxlength="10"  placeholder="MM/DD/YYYY" /></div>`
-					);
+					theUi.input = $(`<div class="${_.uiPrefix(
+								'calendar'
+							)}input"><input class="input input-single-line" type="text" maxlength="10"  placeholder="MM/DD/YYYY" />
+						</div>`);
 					theUi.container.append(theUi.input);
 				}
 			}
 
 			if (frameWork.isDisabled(inputCalendar)) {
-				theUi.input.addClass("disabled");
+				theUi.input.addClass('disabled');
 			}
 
 			const currYear = _.dateToParse(valueForUi).getFullYear(),
@@ -744,105 +1055,149 @@ window.jQuery && jQuery.noConflict();
 				currentCalendarDate = new Date(currYear, currMonth, 1); //IT ALSO FIRST DAY MOTHERFUCKER
 
 			//heading
-			theUi.heading = $(`<div class="${_.uiPrefix("calendar")}heading"></div>`);
+			theUi.heading = $(`<div class="${_.uiPrefix('calendar')}heading"></div>`);
 			theUi.container.append(theUi.heading);
 
 			//arrowz
 			const generateArrow = (buttonClass) => {
 				let symbolClass, arrowDate, validness;
 				//set a new date with no date because fuck that boi
-
 				// console.warn(buttonClass,'hello i fucked up','\n',_.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
-
 				switch (buttonClass) {
-					case "prev-month":
-						symbolClass = "symbol-arrow-left";
-						arrowDate = _.dateToVal(_.dateGetAdjacent(currentCalendarDate, -1));
-						validness = _.dateIsValid(new Date(currYear, currMonth, 0), args, true);
+					case 'prev-month':
+						symbolClass = 'symbol-arrow-left';
+						arrowDate = _.dateToVal(
+							_.dateGetAdjacent(currentCalendarDate, -1)
+						);
+						validness = _.dateIsValid(
+							new Date(currYear, currMonth, 0),
+							args,
+							true
+						);
 						break;
 
-					case "prev-year":
-						symbolClass = "symbol-arrow-double-left";
-						arrowDate = _.dateToVal(_.dateGetAdjacent(currentCalendarDate, -12));
-						validness = _.dateIsValid(new Date(currYear - 1, currMonth, 0), args, true);
+					case 'prev-year':
+						symbolClass = 'symbol-arrow-double-left';
+						arrowDate = _.dateToVal(
+							_.dateGetAdjacent(currentCalendarDate, -12)
+						);
+						validness = _.dateIsValid(
+							new Date(currYear - 1, currMonth, 0),
+							args,
+							true
+						);
 						break;
 
-					case "next-month":
-						symbolClass = "symbol-arrow-right";
-						arrowDate = _.dateToVal(_.dateGetAdjacent(currentCalendarDate, 1));
-						validness = _.dateIsValid(new Date(currYear, currMonth + 1, 1), args, true);
+					case 'next-month':
+						symbolClass = 'symbol-arrow-right';
+						arrowDate = _.dateToVal(
+							_.dateGetAdjacent(currentCalendarDate, 1)
+						);
+						validness = _.dateIsValid(
+							new Date(currYear, currMonth + 1, 1),
+							args,
+							true
+						);
+						break;
+						
+					case 'next-year':
+						symbolClass = 'symbol-arrow-double-right';
+						arrowDate = _.dateToVal(
+							_.dateGetAdjacent(currentCalendarDate, 12)
+						);
+						validness = _.dateIsValid(
+							new Date(currYear + 1, currMonth, 1),
+							args,
+							true
+						);
 						break;
 
-					case "next-year":
-						symbolClass = "symbol-arrow-double-right";
-						arrowDate = _.dateToVal(_.dateGetAdjacent(currentCalendarDate, 12));
-						validness = _.dateIsValid(new Date(currYear + 1, currMonth, 1), args, true);
-						break;
 				}
-
 				//kung yung at least yung last day nang prev or first day ng next man lang ay valid pwidi sya i doot doot
-
 				let htmlString = `<a href=""
-						class="
-							${!validness ? `disabled ` : ""}
-							${_.uiPrefix("calendar")}navigation
-							${_.uiPrefix("calendar")}button
-							${_.uiPrefix("calendar")}${buttonClass}" data-value="${arrowDate}"
-						>
-							<i class="${_.uiPrefix("calendar")}symbol symbol ${symbolClass}"></i>
-						</a>`;
+					class="
+						${!validness ? `disabled ` : ''}
+						${_.uiPrefix('calendar')}navigation
+						${_.uiPrefix('calendar')}button
+						${_.uiPrefix('calendar')}${buttonClass}" data-value="${arrowDate}"
+					>
+						<i class="${_.uiPrefix('calendar')}symbol symbol ${symbolClass}"></i>
+					</a>`;
 
 				return htmlString;
 			};
 
-			const butts = ["prev-year", "prev-month", "next-month", "next-year"];
+			const butts = [
+				'prev-year',
+				'prev-month',
+				'next-month',
+				'next-year',
+			];
 
 			butts.forEach((butt) => {
 				if (
-					(args.yearSkip && (butt == "prev-year" || butt == "next-year")) ||
-					(args.monthSkip && (butt == "prev-month" || butt == "next-month"))
+					(
+						args.yearSkip
+						&& (
+							butt == 'prev-year'
+							|| butt == 'next-year'
+						)
+					)
+					|| (
+						args.monthSkip
+						&& (
+							butt == 'prev-month'
+							|| butt == 'next-month'
+						)
+					)
 				) {
 					theUi.heading.append(generateArrow(butt));
 				}
 			});
 
 			//title
-			theUi.title = $(
-				`<div data-toggle="dropdown" class="${_.uiPrefix("calendar")}title ${_.uiPrefix(
-					"calendar"
-				)}dropdown-toggle"></div>`
-			);
+			theUi.title = $(`<div
+				data-toggle="dropdown"
+				class="
+					${_.uiPrefix('calendar')}title
+					${_.uiPrefix('calendar')}dropdown-toggle"
+			></div>`);
 			theUi.heading.append(theUi.title);
-
 			theUi.title.append(() => {
-				return `<span class="${_.uiPrefix("calendar")}month-text">
-							${_.monthFormatNamesShort[currMonth]}
-						</span>
-						<span class="${_.uiPrefix("calendar")}year-text">
-							${currYear}
-						</span>
-						<i class="${_.uiPrefix("calendar")}symbol symbol symbol-caret-down no-margin-x"></i>`;
+				return `<span
+						class="${_.uiPrefix('calendar')}month-text">
+						${_.monthFormatNamesShort[currMonth]}
+					</span>
+					<span class="${_.uiPrefix('calendar')}year-text">
+						${currYear}
+					</span>
+					<i class="${_.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
 			});
 
 			//dropdown
-
-			theUi.dropdown = $(
-				`<ul data-dropdown-width="100%" class="${_.uiPrefix(
-					"calendar"
-				)}dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center"></ul>`
-			);
+			theUi.dropdown = $(`<ul
+				data-dropdown-width="100%"
+				class="${_.uiPrefix('calendar')}dropdown
+				dropdown
+				dropdown-center-x
+				dropdown-top-flush
+				text-align-center"
+			></ul>`);
 			// theUi.dropdown.
-
 			theUi.heading.append(theUi.dropdown);
-
 			theUi.dropdown.append(() => {
-				return `<li class="${_.uiPrefix("calendar")}current-month-year active">
-						<a href="#" class="${_.uiPrefix("calendar")}month" data-value="${_.dateToVal(currentCalendarDate)}">
-							${_.monthFormatNamesShort[currMonth]} ${currYear}
-						</a>
+				return `<li
+						class="${_.uiPrefix('calendar')}current-month-year active"
+					>
+							<a href="#"
+								class="${_.uiPrefix('calendar')}month"
+								data-value="${_.dateToVal(currentCalendarDate)}"
+							>
+								${_.monthFormatNamesShort[currMonth]} ${currYear}
+							</a>
 					</li>
 					<li><hr class="dropdown-separator"></li>`;
-			});
+				});
 
 			let dropdownInit, dropdownLimit;
 
@@ -850,14 +1205,21 @@ window.jQuery && jQuery.noConflict();
 				dropdownInit = currentCalendarDate.getMonth() * -1;
 				dropdownLimit = 11 - currentCalendarDate.getMonth();
 			} else {
-				dropdownInit = parseInt(-12 * parseInt(args.dropdownYearSpan));
-				dropdownLimit = parseInt(12 * parseInt(args.dropdownYearSpan));
+				dropdownInit = parseInt(
+					-12 * parseInt(args.dropdownYearSpan)
+				);
+				dropdownLimit = parseInt(
+					12 * parseInt(args.dropdownYearSpan)
+				);
 			}
 
 			//update dropdown
 			theUi.dropList = [];
 			for (let i = dropdownInit; i <= dropdownLimit; i++) {
-				const listItemDate = _.dateGetAdjacent(currentCalendarDate, i);
+				const listItemDate = _.dateGetAdjacent(
+					currentCalendarDate,
+					i
+				);
 
 				const dateForValidation = (() => {
 					let toReturn;
@@ -865,12 +1227,20 @@ window.jQuery && jQuery.noConflict();
 					if (i >= 0) {
 						//first day of month
 						// console.log('kinabukasan sya');
-						toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth(), 1);
+						toReturn = new Date(
+							listItemDate.getFullYear(),
+							listItemDate.getMonth(),
+							1
+						);
+
 					} else {
 						//last day of month
-
 						// console.log('nakaraan sya');
-						toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth() + 1, 0);
+						toReturn = new Date(
+							listItemDate.getFullYear(),
+							listItemDate.getMonth() + 1,
+							0
+						);
 					}
 
 					return toReturn;
@@ -878,42 +1248,55 @@ window.jQuery && jQuery.noConflict();
 				// console.warn(i,'\nkwan ano ni\n',listItemDate,dateForValidation);
 
 				if (_.dateIsValid(dateForValidation, args, true)) {
-					let currClass = i == 0 ? "active" : "";
+					let currClass = i == 0 ? 'active' : '';
 
 					theUi.dropdown.append(() => {
 						return `<li class="${currClass}">
-								<a href="#" class="${_.uiPrefix("calendar")}month" data-value="${_.dateToVal(listItemDate)}">
-									${_.monthFormatNamesShort[listItemDate.getMonth()]} ${listItemDate.getFullYear()}
-								</a>
-								${listItemDate.getMonth() == 11 && i !== dropdownLimit ? `</li><li><hr class="dropdown-separator">` : ""}
-							</li>`;
-					});
+							<a href="#"
+								class="${_.uiPrefix('calendar')}month"
+								data-value="${_.dateToVal(listItemDate)}">
+									${
+										_.monthFormatNamesShort[
+											listItemDate.getMonth()
+										]
+									} ${listItemDate.getFullYear()}
+							</a>
+						${listItemDate.getMonth() == 11
+							&& i !== dropdownLimit
+								? `</li><li><hr class="dropdown-separator">`
+								: ''
+						}
+						</li>`;
+				});
 				}
 			}
 
 			//generate grid
-
-			theUi.grid = $(`<div class="${_.uiPrefix("calendar")}grid"></div>`);
+			theUi.grid = $(
+				`<div class="${_.uiPrefix('calendar')}grid"></div>`
+			);
 			theUi.container.append(theUi.grid);
 
 			const generateBlock = (date, customClass) => {
-				customClass = customClass || "";
+				customClass = customClass || '';
 				return `<a href="#" data-value="${_.dateToVal(date)}"
 						class="
-						${_.uiPrefix("calendar")}block 
-						${_.uiPrefix("calendar")}date
+						${_.uiPrefix('calendar')}block 
+						${_.uiPrefix('calendar')}date
 						${customClass}
-					"><span>
-						${date.getDate()}
-					</span></a>`;
+					">
+						<span>${date.getDate()}</span>
+					</a>`;
 			};
 
 			//days heading
-			theUi.days = $(`<div class="${_.uiPrefix("calendar")}days"></div>`);
+			theUi.days = $(
+				`<div class="${_.uiPrefix('calendar')}days"></div>`
+			);
 
 			theUi.grid.append(theUi.days);
 
-			let daysHTML = "",
+			let daysHTML = '',
 				dayToRetrieve = parseInt(args.startDay);
 
 			for (let i = 0; i < 7; i++) {
@@ -921,9 +1304,12 @@ window.jQuery && jQuery.noConflict();
 					dayToRetrieve -= 7;
 				}
 
-				daysHTML += `<div class="${_.uiPrefix("calendar")}block ${_.uiPrefix("calendar")}day">
-							${_.dayFormatNamesShorter[dayToRetrieve]}
-						</div>`;
+				daysHTML += `<div
+						class="${_.uiPrefix('calendar')}block
+						${_.uiPrefix('calendar')}day"
+					>
+						${_.dayFormatNamesShorter[dayToRetrieve]}
+					</div>`;
 
 				dayToRetrieve++;
 			}
@@ -931,8 +1317,9 @@ window.jQuery && jQuery.noConflict();
 			theUi.days.html(daysHTML);
 
 			//days
-
-			theUi.dates = $(`<div class="${_.uiPrefix("calendar")}dates"></div>`);
+			theUi.dates = $(
+				`<div class="${_.uiPrefix('calendar')}dates"></div>`
+			);
 			theUi.grid.append(theUi.dates);
 
 			//previous month
@@ -940,8 +1327,17 @@ window.jQuery && jQuery.noConflict();
 					return new Date(currYear, currMonth, 0);
 				})(),
 				currPrevLastDateDay = currPrevLastDate.getDay(),
-				freeGridSpacePrev = (currentCalendarDate.getDay() - parseInt(args.startDay) + 7) % 7,
-				currPrevLastDayOnStart = currPrevLastDateDay == 6 ? 0 : currPrevLastDateDay + 1;
+				freeGridSpacePrev = 
+					(
+						currentCalendarDate.getDay()
+						- parseInt(args.startDay)
+						+ 7
+					) % 7,
+				currPrevLastDayOnStart =
+					currPrevLastDateDay == 6
+					? 0
+					: currPrevLastDateDay + 1;
+
 			if (currPrevLastDayOnStart !== parseInt(args.startDay)) {
 				//if it doenst take its own row of shit
 
@@ -952,13 +1348,19 @@ window.jQuery && jQuery.noConflict();
 				for (let i = 0; i < freeGridSpacePrev; i++) {
 					let offset = currPrevLastDate.getDate() - i;
 
-					let loopDatePrev = new Date(currPrevLastDate.getFullYear(), currPrevLastDate.getMonth(), offset);
+					let loopDatePrev = new Date(
+						currPrevLastDate.getFullYear(),
+						currPrevLastDate.getMonth(),
+						offset
+					);
 
 					let dateBlockPrev = generateBlock(
 						loopDatePrev,
-						_.uiPrefix("calendar") +
-							"block-adjacent " +
-							(!_.dateIsValid(loopDatePrev, args) ? "disabled" : "")
+						`${_.uiPrefix('calendar')}block-adjacent
+						${(!_.dateIsValid(loopDatePrev, args)
+							? 'disabled'
+							: '')
+						}`
 					);
 
 					//prepend because we loopped this bitch in reverse
@@ -972,25 +1374,38 @@ window.jQuery && jQuery.noConflict();
 			for (let i = 1; i <= currLastDate.getDate(); i++) {
 				let dateBlockCurr = generateBlock(
 					new Date(currYear, currMonth, i),
-					!_.dateIsValid(new Date(currYear, currMonth, i), args) ? "disabled" : ""
+					!_.dateIsValid(new Date(currYear, currMonth, i), args)
+						? 'disabled'
+						: ''
 				);
 
 				theUi.dates.append(dateBlockCurr);
 			}
 
 			//next month just fill the shit
-			const currNextFirstDay = new Date(currYear, currMonth + 1, 1).getDay(),
-				freeGridSpaceNext = (7 - currNextFirstDay + parseInt(args.startDay)) % 7;
+			const currNextFirstDay = new Date(
+					currYear,
+					currMonth + 1,
+					1
+				).getDay(),
+				freeGridSpaceNext =
+					(7 - currNextFirstDay + parseInt(args.startDay)) % 7;
 
 			if (currNextFirstDay !== parseInt(args.startDay)) {
 				for (let i = 1; i <= freeGridSpaceNext; i++) {
-					let loopDateNext = new Date(currYear, currMonth + 1, i);
+					let loopDateNext = new Date(
+						currYear,
+						currMonth + 1,
+						i
+					);
 
 					let dateBlockNext = generateBlock(
 						loopDateNext,
-						_.uiPrefix("calendar") +
-							"block-adjacent " +
-							(!_.dateIsValid(loopDateNext, args) ? "disabled" : "")
+						_.uiPrefix('calendar') +
+							'block-adjacent ' +
+							(!_.dateIsValid(loopDateNext, args)
+								? 'disabled'
+								: '')
 					);
 
 					theUi.dates.append(dateBlockNext);
@@ -1001,30 +1416,42 @@ window.jQuery && jQuery.noConflict();
 
 	//updates both input field and UI
 	frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
+
 		const theValue = newValue || _.dateToVal(inputCalendar.val());
 
 		valueForUi = valueForUi || theValue || _.dateToVal(new Date());
 		// ignoreInput = ignoreInput || false;
 
 		const arr = {
-			class: inputCalendar.attr("class"),
-			startDay: inputCalendar.attr("data-calendar-start-day"), // 0,1,2,3,4,5,6
-			min: inputCalendar.attr("data-calendar-min") || inputCalendar.attr("min"),
-			max: inputCalendar.attr("data-calendar-max") || inputCalendar.attr("max"),
-			dropdownYearSpan: inputCalendar.attr("data-calendar-dropdown-year-span"),
-			disabledDates: inputCalendar.attr("data-calendar-disabled-dates"),
-			textInput: inputCalendar.attr("data-calendar-text-input"),
-			monthSkip: inputCalendar.attr("data-calendar-month-skip"),
-			yearSkip: inputCalendar.attr("data-calendar-year-skip"),
+			class:
+				inputCalendar.attr('class'),
+			startDay:
+				inputCalendar.attr('data-calendar-start-day'), // 0,1,2,3,4,5,6
+			min:
+				inputCalendar.attr('data-calendar-min')
+		|| inputCalendar.attr('min'),
+			max:
+				inputCalendar.attr('data-calendar-max')
+		|| inputCalendar.attr('max'),
+			dropdownYearSpan:
+				inputCalendar.attr('data-calendar-dropdown-year-span'),
+			disabledDates:
+				inputCalendar.attr('data-calendar-disabled-dates'),
+			textInput:
+				inputCalendar.attr('data-calendar-text-input'),
+			monthSkip:
+				inputCalendar.attr('data-calendar-month-skip'),
+			yearSkip:
+				inputCalendar.attr('data-calendar-year-skip'),
 		};
 
 		const defaults = {
-			class: "",
+			class: '',
 			startDay: 0, // su,mo,tu,we,th,fr,sa,
 			min: null,
 			max: null,
 			dropdownYearSpan: 0,
-			disabledDates: "",
+			disabledDates: '',
 			textInput: false,
 			monthSkip: true,
 			yearSkip: false,
@@ -1038,55 +1465,68 @@ window.jQuery && jQuery.noConflict();
 
 		args.startDay = parseInt(args.startDay) % 7;
 
+		//set up calendar
 		if (_.dateIsValid(theValue, args) || !theValue) {
-			//set up calendar
-			_.createCalendarUi(inputCalendar, valueForUi, args);
+			_.createCalendarUi(
+				inputCalendar,
+				valueForUi,
+				args
+			);
 		}
 
 		if (_.dateIsValid(theValue, args)) {
-			inputCalendar.closest(`.${frameWork.settings.uiClass}`).removeClass("input-error");
+			inputCalendar
+				.closest(`.${frameWork.settings.uiClass}`)
+				.removeClass('input-error');
 		} else {
-			inputCalendar.closest(`.${frameWork.settings.uiClass}`).addClass("input-error");
+			inputCalendar
+				.closest(`.${frameWork.settings.uiClass}`)
+				.addClass('input-error');
 		}
 
 		if (theValue) {
 			//update the actual butt
-			inputCalendar.attr("value", theValue);
+			inputCalendar.attr('value', theValue);
 			inputCalendar.val(theValue);
 
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix("calendar")}date`)
-				.removeClass("active");
+				.find(`.${_.uiPrefix('calendar')}date`)
+				.removeClass('active');
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix("calendar")}date[data-value=${_.dateToVal(theValue)}]`)
-				.addClass("active");
+				.find(
+					`.${_.uiPrefix('calendar')}date[data-value=${_.dateToVal(theValue)}]`
+				)
+				.addClass('active');
 
 			// if(!ignoreInput){
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix("calendar")}input input`)
-				.attr("value", _.dateToHuman(theValue));
+				.find(`.${_.uiPrefix('calendar')}input input`)
+				.attr('value', _.dateToHuman(theValue));
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix("calendar")}input input`)
+				.find(`.${_.uiPrefix('calendar')}input input`)
 				.val(_.dateToHuman(theValue));
 			// }
 		}
 	};
 
-	_.tagsInputString = "__fw_input__";
+	_.tagsInputString = '__fw_input__';
 
 	//because input field is gonna go in between for backspacing capabilities
 	_.tagsToParse = (value, returnWithInput) => {
-		returnWithInput = returnWithInput !== false || returnWithInput == true;
+		returnWithInput =
+			returnWithInput !== false || returnWithInput == true;
 
-		let toReturn = Array.isArray(value) ? value : value.split(",") || [];
+		let toReturn = Array.isArray(value)
+			? value
+			: value.split(',') || [];
 
 		//check for ya boi
 		toReturn.forEach((tag, i) => {
-			if (!tag || tag == "") {
+			if (!tag || tag == '') {
 				toReturn.splice(i, 1);
 			} else if (tag === _.tagsInputString && !returnWithInput) {
 				toReturn.splice(i, 1);
@@ -1111,77 +1551,85 @@ window.jQuery && jQuery.noConflict();
 
 	//because input field is gonna go in between for backspacing capabilities
 	_.tagsToVal = (value, returnWithInput) => {
-		value = value || "";
-		return _.tagsToParse(value, returnWithInput).join(",");
+		value = value || '';
+		return _.tagsToParse(value, returnWithInput).join(',');
 	};
 
 	_.createTagsUi = (inputTags, valueForUi, inputText, args) => {
+
 		if (inputTags) {
-			valueForUi = valueForUi || _.tagsToVal(inputTags.val()) || "";
+			valueForUi = valueForUi || _.tagsToVal(inputTags.val()) || '';
 			inputText = inputText || false;
 
 			const theUi = {};
 
-			theUi.container = inputTags.closest(`.${_.uiPrefix("tags", true)}`);
+			theUi.container = inputTags.closest(`.${_.uiPrefix('tags', true)}`);
 
 			if (!theUi.container.length) {
-				inputTags.wrap(
-					$(
-						`<div class="${frameWork.settings.uiClass} ${inputTags
-							.attr("class")
-							.replace("input-tags", _.uiPrefix("tags", true))}"></div>`
-					)
-				);
-				theUi.container = inputTags.closest(`.${_.uiPrefix("tags", true)}`);
-			}
-
-			if (!theUi.container.hasClass("input")) {
-				theUi.container.addClass("input");
+				inputTags.wrap($(`<div
+					class="${frameWork.settings.uiClass}
+					${inputTags
+						.attr('class').replace('input-tags', _.uiPrefix('tags', true))
+					}">
+					</div>`));
+				theUi.container = inputTags.closest(`.${_.uiPrefix('tags', true)}`);
+				theUi.container.addClass('input');
 			}
 
 			theUi.container.addClass(
-				args.multipleLines ? `${_.uiPrefix("tags")}multiple` : `${_.uiPrefix("tags")}single`
+				args.multipleLines
+					? `${_.uiPrefix('tags')}multiple`
+					: `${_.uiPrefix('tags')}single`
 			);
 
 			if (args.width) {
-				theUi.container.css("width", args.width);
+				theUi.container.css('width', args.width);
 			}
 			//idk it never exists on initial so we dont have to do weird div wraping catches here
 
-			theUi.wrapper = theUi.container.children(`.${_.uiPrefix("tags")}wrapper`);
+			theUi.wrapper = theUi.container.children(`.${_.uiPrefix('tags')}wrapper`);
 
 			if (!theUi.wrapper.length) {
-				theUi.container.append(`<div class="${_.uiPrefix("tags")}wrapper"></div>`);
-				theUi.wrapper = theUi.container.children(`.${_.uiPrefix("tags")}wrapper`);
+				theUi.container.append(
+					`<div class="${_.uiPrefix('tags')}wrapper"></div>`
+				);
+				theUi.wrapper = theUi.container.children(`.${_.uiPrefix('tags')}wrapper`);
 			}
 
-			theUi.input = theUi.wrapper.children(`.${_.uiPrefix("tags")}input`);
+			theUi.input = theUi.wrapper.children(`.${_.uiPrefix('tags')}input`);
 
 			if (!theUi.input.length) {
-				theUi.wrapper.append(`<span contenteditable="true" class="input ${_.uiPrefix("tags")}input"></span>`);
-				theUi.input = theUi.wrapper.children(`.${_.uiPrefix("tags")}input`);
+				theUi.wrapper.append(
+					`<span contenteditable="true" class="input ${_.uiPrefix(
+						'tags'
+					)}input"></span>`
+				);
+				theUi.input = theUi.wrapper.children(`.${_.uiPrefix('tags')}input`);
 			}
 
 			//nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
-			if (inputTags.attr("data-toggle")) {
-				theUi.input.attr("data-toggle", inputTags.attr("data-toggle"));
+			if (inputTags.attr('data-toggle')) {
+				theUi.input.attr(
+					'data-toggle',
+					inputTags.attr('data-toggle')
+				);
 			}
 
 			if (frameWork.isDisabled(inputTags)) {
-				theUi.input.addClass("disabled");
+				theUi.input.addClass('disabled');
 			}
 
 			if (args.callbackOnKeyup) {
 				const fOnKeyUp = new Function(args.callbackOnKeyup);
-				theUi.input.on("keyup", fOnKeyUp);
+				theUi.input.on('keyup', fOnKeyUp);
 			}
 
-			theUi.wrapper.children(`.${_.uiPrefix("tags")}tag`).remove();
+			theUi.wrapper.children(`.${_.uiPrefix('tags')}tag`).remove();
 
 			let valArr = _.tagsToParse(valueForUi, true);
 			const inputIn = valArr.indexOf(_.tagsInputString);
 
-			theUi.input.attr("data-value", inputIn);
+			theUi.input.attr('data-value', inputIn);
 
 			//validate tags
 			valArr = valArr.reduce((acc, tag) => {
@@ -1195,11 +1643,16 @@ window.jQuery && jQuery.noConflict();
 				//get index of input
 				if (tag !== _.tagsInputString) {
 					const tagHtmlFn = () => {
-						return `<span data-value="${i}"  class="${_.uiPrefix(
-							"tags"
-						)}tag-text">${tag}</span><a data-value="${i}" class="${_.uiPrefix(
-							"tags"
-						)}tag-close" href="#"><i class="symbol symbol-close"></i></a>`;
+						return `<span class="${_.uiPrefix('tags')}tag">
+							<span
+								data-value="${i}"
+								class="${_.uiPrefix('tags')}tag-text"
+							>
+								${tag}
+							</span>
+							<a data-value="${i}" class="${_.uiPrefix('tags')}tag-close" href="#">
+							<i class="symbol symbol-close"></i></a>
+						</span>`;
 					};
 
 					if (i < inputIn) {
@@ -1216,20 +1669,20 @@ window.jQuery && jQuery.noConflict();
 
 				if (attr.specified) {
 					if (
-						attr.name.includes("data") &&
-						!attr.name.includes("data-tags") &&
-						!attr.name.includes("data-toggle") &&
-						!attr.name.includes("data-value-ui")
+						attr.name.includes('data')
+						&& !attr.name.includes('data-tags')
+						&& !attr.name.includes('data-toggle')
+						&& !attr.name.includes('data-value-ui')
 					) {
 						theUi.container.attr(attr.name, attr.value);
 					}
 				}
 			}
 
-			inputTags.attr("data-value-ui", valueForUi);
+			inputTags.attr('data-value-ui', valueForUi);
 
 			//keep that shoit to the right
-			theUi.container.scrollTo(theUi.input, "x");
+			theUi.container.scrollTo(theUi.input, 'x');
 
 			//jquery u duuumb
 			if (inputText) {
@@ -1239,23 +1692,28 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	frameWork.updateTags = function (inputTags, allowFilter, newValue, valueForUi, inputText) {
-		let theValue = newValue || inputTags.val() || "";
+	frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
+		let theValue = newValue || inputTags.val() || '';
 
 		inputText = inputText || false;
-		valueForUi = valueForUi || theValue || "";
+		valueForUi = valueForUi || theValue || '';
 		allowFilter = allowFilter != false;
 
 		const arr = {
-			width: inputTags.attr("data-tags-width"),
-			callback: inputTags.attr("data-tags-callback"),
-			callbackOnKeyup: inputTags.attr("data-tags-callback-on-keyup"),
-			callbackNameFilter: inputTags.attr("data-tags-callback-name-filter"),
-			multipleLines: inputTags.attr("data-tags-multiple-lines"),
+			width:
+				inputTags.attr('data-tags-width'),
+			callback:
+				inputTags.attr('data-tags-callback'),
+			callbackOnKeyup:
+				inputTags.attr('data-tags-callback-on-keyup'),
+			callbackNameFilter:
+				inputTags.attr('data-tags-callback-name-filter'),
+			multipleLines:
+				inputTags.attr('data-tags-multiple-lines'),
 		};
 
 		const defaults = {
-			width: "auto",
+			width: 'auto',
 			callback: null,
 			callbackNameFilter: null,
 			callbackOnKeyup: null,
@@ -1272,15 +1730,19 @@ window.jQuery && jQuery.noConflict();
 					fnToFilter = eval(args.callbackNameFilter);
 				} catch (err) {}
 
-				if (typeof fnToFilter === "function") {
+				if (typeof fnToFilter === 'function') {
 					const applyFilter = (valueToFilter, filterFnName) => {
-						const inputIndex = _.tagsToParse(valueToFilter).indexOf(_.tagsInputString);
-						const noInputValueToFilter = (() => {
-							return _.tagsToVal(valueToFilter, false);
-						})();
+						const inputIndex = _.tagsToParse(valueToFilter)
+								.indexOf(_.tagsInputString),
+							noInputValueToFilter = (() => {
+									return _.tagsToVal(valueToFilter, false);
+								})();
 
 						// turn to array ya bopi without the input tag string
-						let toReturn = _.tagsToParse(eval(`${filterFnName}("${noInputValueToFilter}")`), false);
+						let toReturn = _.tagsToParse(
+							eval(`${filterFnName}("${noInputValueToFilter}")`),
+							false
+						);
 
 						// console.log(
 						// 	'index of input\n',inputIndex,
@@ -1296,7 +1758,10 @@ window.jQuery && jQuery.noConflict();
 
 						if (inputIndex > -1) {
 							toReturn.splice(
-								inputIndex < _.tagsToParse(valueToFilter).length - 1 ? inputIndex : toReturn.length,
+								inputIndex <
+									_.tagsToParse(valueToFilter).length - 1
+									? inputIndex
+									: toReturn.length,
 								0,
 								_.tagsInputString
 							);
@@ -1305,15 +1770,26 @@ window.jQuery && jQuery.noConflict();
 						return _.tagsToVal(toReturn);
 					};
 
-					theValue = applyFilter(theValue, args.callbackNameFilter);
-					valueForUi = applyFilter(valueForUi, args.callbackNameFilter);
+					theValue = applyFilter(
+						theValue,
+						args.callbackNameFilter
+					);
+					valueForUi = applyFilter(
+						valueForUi,
+						args.callbackNameFilter
+					);
 				}
 			}
 
-			_.createTagsUi(inputTags, _.tagsToVal(valueForUi), inputText, args);
+			_.createTagsUi(
+				inputTags,
+				_.tagsToVal(valueForUi),
+				inputText,
+				args
+			);
 
 			//update the actual butt
-			inputTags.attr("value", _.tagsToVal(theValue, false));
+			inputTags.attr('value', _.tagsToVal(theValue, false));
 			inputTags.val(_.tagsToVal(theValue, false));
 
 			//ATODO UPDATE SETUP HERE
@@ -1325,10 +1801,16 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	frameWork.isDisabled = (elem) => {
-		const disableClasses = ["table-row-disabled", "tab-disabled", "btn-disabled", "input-disabled", "disabled"];
+		const disableClasses = [
+			'table-row-disabled',
+			'tab-disabled',
+			'btn-disabled',
+			'input-disabled',
+			'disabled',
+		];
 		let toReturn = false;
 
-		if (elem.closest("[disabled]").length || elem.is(":disabled")) {
+		if (elem.closest('[disabled]').length || elem.is(':disabled')) {
 			toReturn = true;
 		}
 
@@ -1340,54 +1822,63 @@ window.jQuery && jQuery.noConflict();
 
 		return toReturn;
 	};
-
-	//will run. right away. boi
+	
 	//lazyload
 	frameWork.loadImages = () => {
 		//css images
 		// images
-		$("*[data-src]").each((i, elm) => {
+		$('*[data-src]').each((i, elm) => {
 			// $('img, picture > source')
 
 			const img = $(elm),
-				imgSrc = $(elm).attr("data-src"),
-				imgSrcset = $(elm).attr("data-srcset");
+				imgSrc = $(elm).attr('data-src'),
+				imgSrcset = $(elm).attr('data-srcset');
 
-			if (img.is("img") || (img.is("source") && img.closest("picture").length)) {
-				if (_.strGetFileExtension(img.attr("data-src")) == "svg") {
-					const imgID = img.attr("id");
-					const imgClass = img.attr("class");
+			if (
+				img.is('img')
+				|| (
+					img.is('source')
+					&& img.closest('picture').length
+				)
+			) {
+				if (_.strGetFileExtension(img.attr('data-src')) == 'svg') {
+					const imgID = img.attr('id');
+					const imgClass = img.attr('class');
 					$.get(
 						imgSrc,
 						(data) => {
-							const svg = $(data).find("svg");
-							if (typeof imgID !== "undefined") {
-								svg.attr("id", imgID);
+							const svg = $(data).find('svg');
+							if (typeof imgID !== 'undefined') {
+								svg.attr('id', imgID);
 							}
-							if (typeof imgClass !== "undefined") {
-								svg.attr("class", `${imgClass} replaced-svg`);
+							if (typeof imgClass !== 'undefined') {
+								svg.attr(
+									'class',
+									`${imgClass} replaced-svg`
+								);
 							}
-							svg.removeAttr("xmlns:a");
+							svg.removeAttr('xmlns:a');
 							img.replaceWith(svg);
 						},
-						"xml"
+						'xml'
 					);
 				} else {
-					imgSrc !== "undefined" && img.attr("src", imgSrc);
-					imgSrcset !== "undefined" && img.attr("srcset", imgSrcset);
+					imgSrc !== 'undefined' && img.attr('src', imgSrc);
+					imgSrcset !== 'undefined' && img.attr('srcset', imgSrcset);
 				}
 			} else {
-				img.css("background-image", `url(${imgSrc})`);
+				img.css('background-image', `url(${imgSrc})`);
 			}
 
-			img.addClass("lazy-loaded");
+			img.addClass('lazy-loaded');
 		});
 
 		//css images
-		$("html").addClass("lazy-initialized");
+		$('html').addClass('lazy-initialized');
 	};
 
-	frameWork.settings.lazyLoad && _.fns_on_rightAway.push(frameWork.loadImages);
+	frameWork.settings.lazyLoad &&
+		_.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.createToolTip = (triggerer) => {
 		frameWork.toolTip = frameWork.toolTip || {};
@@ -1396,26 +1887,38 @@ window.jQuery && jQuery.noConflict();
 			frameWork.destroyToolTip();
 
 			const arr = {
-				placement: triggerer.attr("data-tooltip-placement"),
-				badge: triggerer.attr("data-tooltip-badge"),
-				badgeBg: triggerer.attr("data-tooltip-badge-background"),
-				badgeSize: triggerer.attr("data-tooltip-badge-size"),
-				content: triggerer.attr("data-tooltip-content"),
-				classes: triggerer.attr("data-tooltip-classes"),
-				centerX: triggerer.attr("data-tooltip-center-x"),
-				centerY: triggerer.attr("data-tooltip-center-y"),
-				x: triggerer.attr("data-tooltip-x"),
-				y: triggerer.attr("data-tooltip-y"),
-				width: triggerer.attr("data-tooltip-width"),
-				allowInteraction: triggerer.attr("data-tooltip-allow-interaction"),
+				placement:
+					triggerer.attr('data-tooltip-placement'),
+				badge:
+					triggerer.attr('data-tooltip-badge'),
+				badgeBg:
+					triggerer.attr('data-tooltip-badge-background'),
+				badgeSize:
+					triggerer.attr('data-tooltip-badge-size'),
+				content:
+					triggerer.attr('data-tooltip-content'),
+				classes:
+					triggerer.attr('data-tooltip-classes'),
+				centerX:
+					triggerer.attr('data-tooltip-center-x'),
+				centerY:
+					triggerer.attr('data-tooltip-center-y'),
+				x:
+					triggerer.attr('data-tooltip-x'),
+				y:
+					triggerer.attr('data-tooltip-y'),
+				width:
+					triggerer.attr('data-tooltip-width'),
+				allowInteraction:
+					triggerer.attr('data-tooltip-allow-interaction'),
 			};
 
 			const defaults = {
-				placement: "left",
+				placement: 'left',
 				badge: false,
-				badgeBg: "primary",
-				badgeSize: "",
-				classes: "",
+				badgeBg: 'primary',
+				badgeSize: '',
+				classes: '',
 				content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
 				centerX: false,
 				centerY: false,
@@ -1425,17 +1928,20 @@ window.jQuery && jQuery.noConflict();
 
 			const args = _.parseArgs(arr, defaults);
 
-			$("body").append(() => {
+			$('body').append(() => {
 				let html = `<div
 					class="tooltip
 						tooltip-${args.placement}
-						${args.allowInteraction ? `tooltip-allow-interaction` : ""}"
-					${args.width ? ` style="width:${args.width};"` : ""}
+						${args.allowInteraction ? `tooltip-allow-interaction` : ''}"
+					${args.width ? ` style="width:${args.width};"` : ''}
 					>`;
 
 				if (args.badge) {
 					html += `<span class="badge tooltip-badge`;
-					if (args.badgeSize == "small" || args.badgeSize == "large") {
+					if (
+						args.badgeSize == 'small'
+						|| args.badgeSize == 'large'
+					) {
 						html += ` badge-${args.badgeSize}`;
 					}
 
@@ -1453,53 +1959,68 @@ window.jQuery && jQuery.noConflict();
 				return html;
 			});
 
-			const toolTip = $("body").children(".tooltip:last-child").first();
+			const toolTip = $('body')
+				.children('.tooltip:last-child')
+				.first();
 
 			frameWork.toolTip.current = toolTip;
 			frameWork.toolTip.activeTriggerer = triggerer;
 			frameWork.toolTip.args = args;
 
 			let triggererProps = {
-				top: triggerer.offset().top,
-				left: triggerer.offset().left,
-				height: triggerer.outerHeight(),
-				width: triggerer.outerWidth(),
+				top:
+					triggerer.offset().top,
+				left:
+					triggerer.offset().left,
+				height:
+					triggerer.outerHeight(),
+				width:
+					triggerer.outerWidth(),
 			};
 
 			let origin = {
 				x: () => {
-					let toReturn = triggererProps.left + triggererProps.width * 0.5; //top and bottom
+					let toReturn =
+						triggererProps.left + triggererProps.width * 0.5; //top and bottom
 
 					if (!args.x) {
 						if (!args.centerX) {
 							switch (args.placement) {
-								case "right":
-									toReturn = triggererProps.left + triggererProps.width;
+								case 'right':
+									toReturn =
+										triggererProps.left +
+										triggererProps.width;
 									break;
-								case "left":
+								case 'left':
 									toReturn = triggererProps.left;
 									break;
 							}
 						}
+
 					} else {
 						toReturn = parseFloat(args.x);
 					}
 
 					return toReturn;
 				},
+
 				y: () => {
-					let toReturn = triggererProps.top + triggererProps.height * 0.5; // left and right
+					let toReturn =
+						triggererProps.top + triggererProps.height * 0.5; // left and right
 					if (!args.y) {
 						if (!args.centerY) {
 							switch (args.placement) {
-								case "bottom":
-									toReturn = triggererProps.top + triggererProps.height;
+								case 'bottom':
+									toReturn =
+										triggererProps.top +
+										triggererProps.height;
 									break;
-								case "top":
+								case 'top':
 									toReturn = triggererProps.top;
 									break;
 							}
 						}
+
 					} else {
 						toReturn = parseFloat(args.y);
 					}
@@ -1509,7 +2030,7 @@ window.jQuery && jQuery.noConflict();
 			};
 
 			toolTip.show();
-			toolTip.addClass("active");
+			toolTip.addClass('active');
 
 			frameWork.positionToolTip(origin.x(), origin.y());
 		}
@@ -1534,7 +2055,13 @@ window.jQuery && jQuery.noConflict();
 			const toolTip = frameWork.toolTip.current;
 			const args = frameWork.toolTip.args;
 
-			let toolPoint = parseFloat(window.getComputedStyle(toolTip[0], ":before").getPropertyValue("width"));
+			let toolPoint = parseFloat(
+				window
+					.getComputedStyle(toolTip[0], ':before')
+					.getPropertyValue('width')
+			);
+
+			//check if we can sqrt it
 			toolPoint = Math.sqrt(toolPoint * toolPoint * 2) * 0.5;
 			isNaN(toolPoint) && (toolPoint = 15);
 
@@ -1543,7 +2070,7 @@ window.jQuery && jQuery.noConflict();
 				width: toolTip.outerWidth(),
 			};
 
-			const toolTipBadge = toolTip.find(".tooltip-badge").first();
+			const toolTipBadge = toolTip.find('.tooltip-badge').first();
 
 			let off = {
 				x: () => {
@@ -1551,17 +2078,23 @@ window.jQuery && jQuery.noConflict();
 					let badgeOffset = 0;
 
 					switch (args.placement) {
-						case "right":
+						case 'right':
 							toReturn = toolPoint;
 							break;
-						case "left":
+						case 'left':
 							toReturn = -(toolTipProps.width + toolPoint);
 							break;
 					}
 
-					if (toolTipBadge.length > 0 && (args.placement == "left" || args.placement == "right")) {
+					if (
+						toolTipBadge.length > 0
+						&& (
+							args.placement == 'left'
+							|| args.placement == 'right'
+						)
+					) {
 						badgeOffset =
-							args.placement == "left"
+							args.placement == 'left'
 								? toolTipBadge.outerWidth() * -0.5
 								: toolTipBadge.outerWidth() * 0.5;
 					}
@@ -1570,22 +2103,29 @@ window.jQuery && jQuery.noConflict();
 
 					return toReturn;
 				},
+
 				y: () => {
 					let toReturn = toolTipProps.height * -0.5; // left and right
 					let badgeOffset = 0;
 
 					switch (args.placement) {
-						case "bottom":
+						case 'bottom':
 							toReturn = toolPoint;
 							break;
-						case "top":
+						case 'top':
 							toReturn = -(toolTipProps.height + toolPoint);
 							break;
 					}
 
-					if (toolTipBadge.length > 0 && (args.placement == "top" || args.placement == "bottom")) {
+					if (
+						toolTipBadge.length > 0
+						&& (
+							args.placement == 'top'
+							|| args.placement == 'bottom'
+						)
+					) {
 						badgeOffset =
-							args.placement == "top"
+							args.placement == 'top'
 								? toolTipBadge.outerHeight() * -0.5
 								: toolTipBadge.outerHeight() * 0.5;
 					}
@@ -1597,16 +2137,16 @@ window.jQuery && jQuery.noConflict();
 			};
 
 			toolTip.css({
-				// 'left': posX,
-				// 'top': posY
 				left: posX + off.x(),
 				top: posY + off.y(),
+				// 'left': posX,
+				// 'top': posY
 			});
 		}
 	};
 
 	frameWork.createModal = (triggerer, subcom) => {
-		subcom = subcom || "modal";
+		subcom = subcom || 'modal';
 		frameWork[subcom] = frameWork[subcom] || {};
 
 		const contentWrap = _.getTheToggled(triggerer, subcom);
@@ -1616,124 +2156,161 @@ window.jQuery && jQuery.noConflict();
 		if (contentWrap && subcom) {
 			const arr = {
 				header:
-					(triggerer && triggerer.attr(`data-${subcom}-title`)) || contentWrap.attr(`data-${subcom}-title`),
+					(triggerer && triggerer.attr(`data-${subcom}-title`))
+					|| contentWrap.attr(`data-${subcom}-title`),
 				close:
-					(triggerer && triggerer.attr(`data-${subcom}-close`)) || contentWrap.attr(`data-${subcom}-close`),
+					(triggerer && triggerer.attr(`data-${subcom}-close`))
+					|| contentWrap.attr(`data-${subcom}-close`),
 				disableOverlay:
-					(triggerer && triggerer.attr(`data-${subcom}-disable-overlay`)) ||
-					contentWrap.attr(`data-${subcom}-disable-overlay`),
+					(triggerer && triggerer.attr(`data-${subcom}-disable-overlay`))
+					|| 	contentWrap.attr(`data-${subcom}-disable-overlay`),
 				maxWidth:
-					(triggerer && triggerer.attr(`data-${subcom}-max-width`)) ||
-					contentWrap.attr(`data-${subcom}-max-width`),
+					(triggerer && triggerer.attr(`data-${subcom}-max-width`))
+					|| contentWrap.attr(`data-${subcom}-max-width`),
 				callback:
-					(triggerer && triggerer.attr(`data-${subcom}-callback`)) ||
-					contentWrap.attr(`data-${subcom}-callback`),
+					(triggerer && triggerer.attr(`data-${subcom}-callback`))
+					|| contentWrap.attr(`data-${subcom}-callback`),
 				classes:
-					(triggerer && triggerer.attr(`data-${subcom}-classes`)) ||
-					contentWrap.attr(`data-${subcom}-classes`),
+					(triggerer && triggerer.attr(`data-${subcom}-classes`))
+					|| contentWrap.attr(`data-${subcom}-classes`),
 				closeClasses:
-					(triggerer && triggerer.attr(`data-${subcom}-close-classes`)) ||
-					contentWrap.attr(`data-${subcom}-close-classes`),
+					(triggerer && triggerer.attr(`data-${subcom}-close-classes`))
+					|| contentWrap.attr(`data-${subcom}-close-classes`),
 				align:
-					(triggerer && triggerer.attr(`data-${subcom}-align`)) || contentWrap.attr(`data-${subcom}-align`),
+					(triggerer && triggerer.attr(`data-${subcom}-align`))
+					|| contentWrap.attr(`data-${subcom}-align`),
 			};
 
 			const defaults = {
-				header: "",
+				header: '',
 				close: true,
 				disableOverlay: true,
 				maxWidth: null,
 				callback: null,
-				classes: "",
-				closeClasses: "",
-				align: "left",
+				classes: '',
+				closeClasses: '',
+				align: 'left',
 			};
 
-			const actualId = `${fraamework.settings.prefix}-${subcom}`;
+			const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
 			const args = _.parseArgs(arr, defaults);
 
 			// console.log(contentWrap,arr,defaults,args);
 
 			switch (subcom) {
-				case "modal":
+				case 'modal':
 					args.align = false;
 					break;
 			}
 
-			const id = contentWrap.attr("id") || actualId;
+			const id = contentWrap.attr('id') || actualId;
 
 			id !== `#${actualId}` && _.changeHash(id);
 
-			$("body").append(() => {
-				let html;
+			$('body').append(() => {
+				let html = '';
 
-				html += `<div id="${actualId}'"class="${subcom}'-wrapper ${args.classes} ${
-					args.align ? `${subcom}-${args.align}` : ""
-				}">`;
+				html += `<div id="${actualId}"
+						class="${subcom}-wrapper
+						${args.classes}
+						${args.align ? `${subcom}-${args.align}` : ''}
+					">`;
 
-				//overlay
-				html += `<a href="#" class="${subcom}-close-overlay" ${
-					args.disableOverlay == false ? `data-toggle="${subcom}-close"` : ""
-				}></a>`;
+					//overlay
+					html += `<a href="#"
+							class="
+								${subcom}-close-overlay"
+								${
+									args.disableOverlay == false
+									? `data-toggle="${subcom}-close"`
+									: ''
+								}
+						></a>`;
 
-				switch (subcom) {
-					case "board":
-						if (args.close !== false) {
-							html += `<div class="${subcom}-close-wrapper"><a href="#" class="${subcom}-close ${
-								args.closeClasses ? args.closeClasses : `${subcom}-close-default`
-							}" data-toggle="${subcom}-close"><i class="symbol symbol-close "></i></a></div>`;
-						}
+					switch (subcom) {
+						case 'board':
+							if (args.close !== false) {
+								html += `<div class="${subcom}-close-wrapper">
+									<a href="#"
+										class="
+											${subcom}-close
+											${
+												args.closeClasses
+												? args.closeClasses
+												: `${subcom}-close-default`}"
+										data-toggle="${subcom}-close"
+									>
+									<i class="symbol symbol-close "></i></a></div>`;
+							}
 
-						html += `<div class="${subcom}-popup">`;
+							html += `<div class="${subcom}-popup">`;
 
-						if (args.header) {
-							html += `<div class="${subcom}-header"><h1 class="${subcom}-title">${args.header}</h1></div>`;
-						}
+								if (args.header) {
+									html += `<div class="${subcom}-header">
+											<h1 class="${subcom}-title">${args.header}</h1>
+										</div>`;
+								}
 
-						html += `<div class="${subcom}-popup-content"></div>`;
+								html += `<div class="${subcom}-popup-content"></div>`;
 
-						html += `</div>`;
+							html += `</div>`;
 
-						html += `</div>`;
-						break;
+							break;
 
-					case "modal":
-						html += `<div class="${subcom}-popup">`;
+						case 'modal':
+							html += `<div class="${subcom}-popup">`;
 
-						if (args.header) {
-							html += `<div class="${subcom}-header"><h1 class="${subcom}-title">${$args.header}</h1></div>`;
-						}
+							if (args.header) {
+								html += `<div class="${subcom}-header">
+										<h1 class="${subcom}-title">${args.header}</h1>
+									</div>`;
+							}
 
-						if (args.close !== false) {
-							html += `<a href="#" class="${subcom}-close ${args.closeClasses}" data-toggle="${subcom}-close"><i class="symbol symbol-close "></i></a>`;
-						}
+							if (args.close !== false) {
+								html += `<a href="#"
+										class="${subcom}-close ${args.closeClasses}"
+										data-toggle="${subcom}-close"
+									>
+										<i class="symbol symbol-close "></i>
+									</a>`;
+							}
 
-						html += `<div class="${subcom}-popup-content"></div>`;
+							html += `<div class="${subcom}-popup-content"></div>`;
 
-						html += `</div>`;
+							html += `</div>`;
 
-						html += `</div>`;
-						break;
-				}
+							break;
+					}
+
+				html += `</div>`;
 
 				return html;
 			});
 
-			const modal = $("body").children(`.${subcom}-wrapper`).first();
+			const modal = $('body').children(`.${subcom}-wrapper`).first();
 
 			contentWrap
 				.contents()
-				.appendTo($("body").children(`.${subcom}-wrapper`).find(`.${subcom}-popup-content`).first());
+				.appendTo(
+					$('body')
+						.children(`.${subcom}-wrapper`)
+						.find(`.${subcom}-popup-content`)
+						.first()
+				);
 
-			$("body").addClass("body-no-scroll");
+			$('body').addClass('body-no-scroll');
 
 			if (args.maxWidth) {
 				//all
-				modal.find(`.${subcom}-popup`).css("max-width", args.maxWidth);
+				modal
+					.find(`.${subcom}-popup`)
+					.css('max-width', args.maxWidth);
 
 				//bboard
-				modal.find(`.${subcom}-close-wrapper`).css("max-width", args.maxWidth);
+				modal
+					.find(`.${subcom}-close-wrapper`)
+					.css('max-width', args.maxWidth);
 			}
 
 			if (args.callback) {
@@ -1741,7 +2318,7 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			modal.fadeIn();
-			modal.addClass("active");
+			modal.addClass('active');
 
 			frameWork[subcom].current = contentWrap;
 			frameWork[subcom].args = args;
@@ -1749,73 +2326,93 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	frameWork.destroyModal = (removeHash, subcom) => {
-		subcom = subcom || "modal";
+		subcom = subcom || 'modal';
 
-		$("body")
+		$('body')
 			.children(`.${subcom}-wrapper`)
 			.find(`.${subcom}-popup-content`)
 			.first()
 			.contents()
 			.appendTo(frameWork[subcom].current);
 
-		$("body").children(`.${subcom}-wrapper`).fadeOut().removeClass("active").remove();
+		$('body')
+			.children(`.${subcom}-wrapper`)
+			.fadeOut()
+			.removeClass('active')
+			.remove();
 
 		frameWork[subcom].current = false;
 		frameWork[subcom].args = false;
 
-		$("body").removeClass("body-no-scroll");
+		$('body').removeClass('body-no-scroll');
 
 		if (removeHash) {
-			_.changeHash("");
+			_.changeHash('');
 		}
 	};
 
 	frameWork.createBoard = (triggerer) => {
-		frameWork.createModal(triggerer, "board");
+		frameWork.createModal(triggerer, 'board');
 	};
 
 	frameWork.destroyBoard = (removeHash) => {
-		frameWork.destroyModal(removeHash, "board");
+		frameWork.destroyModal(removeHash, 'board');
 	};
 
 	frameWork.closeDropdowns = (currentDropdown) => {
 		currentDropdown = currentDropdown || false;
 
 		if (currentDropdown) {
-			$(".dropdown")
+			$('.dropdown')
 				.not(currentDropdown)
 				.each((i, dropdown) => {
 					if (!currentDropdown.closest($(dropdown)).length) {
-						$(dropdown).removeClass("open");
+						$(dropdown).removeClass('open');
 					}
 				});
 		} else {
 			//@TODO. wtf jquery
-			$(".dropdown").removeClass("open");
+			$('.dropdown').removeClass('open');
 		}
 	};
 
 	frameWork.setDropdown = (selector, triggerer, mode) => {
 		selector = selector || false;
-		mode = mode || "toggle";
+		mode = mode || 'toggle';
 
 		if (selector) {
-			const width = selector.attr("data-dropdown-width") || triggerer.attr("data-dropdown-width") || null;
+			const width =
+				selector.attr('data-dropdown-width')
+				|| triggerer.attr('data-dropdown-width')
+				|| null;
 
 			if (width) {
-				selector.css("width", width);
+				selector.css('width', width);
 			}
 
-			if (mode == "toggle" || mode == "open") {
-				$('*[data-toggle="dropdown"]').removeClass("open");
+			if (mode == 'toggle' || mode == 'open') {
+				$('*[data-toggle="dropdown"]').removeClass('open');
 
 				frameWork.closeDropdowns(selector);
 			}
 
-			if ((selector.hasClass("open") && mode == "toggle") || mode == "close") {
-				selector.removeClass("open");
-			} else if ((!selector.hasClass("open") && mode == "toggle") || mode == "open") {
-				selector.addClass("open");
+			if (
+				(
+					selector.hasClass('open')
+					&& mode == 'toggle'
+				)
+				|| mode == 'close'
+			) {
+				selector.removeClass('open');
+
+			} else if (
+				(
+					!selector.hasClass('open')
+					&& mode == 'toggle'
+				)
+				|| mode == 'open'
+			) {
+				selector.addClass('open');
 			}
 		}
 	};
@@ -1823,17 +2420,22 @@ window.jQuery && jQuery.noConflict();
 	frameWork.toggleAccordion = (triggerer, changeHash) => {
 		changeHash = changeHash != false;
 
-		const selector = _.getTheToggled(triggerer, "accordion");
+		const selector = _.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
-			const ancGroup = selector.closest(".accordion-group");
+			const ancGroup = selector.closest('.accordion-group');
 
-			if (!(selector.hasClass("accordion-mobile") && !frameWork.validateBr(_.br_mobile_max, "below"))) {
+			if (
+				!(
+					selector.hasClass('accordion-mobile')
+					&& !frameWork.validateBr(_.br_mobile_max, 'below')
+				)
+			) {
 				if (triggerer) {
 					const arr = {
 						changeHash:
-							(triggerer && triggerer.attr("data-accordion-change-hash")) ||
-							selector.attr("data-accordion-change-hash"),
+							(triggerer && triggerer.attr('data-accordion-change-hash'))
+							|| selector.attr('data-accordion-change-hash'),
 					};
 
 					const defaults = {
@@ -1842,62 +2444,78 @@ window.jQuery && jQuery.noConflict();
 
 					const args = _.parseArgs(arr, defaults);
 
-					if (selector.hasClass("open") && triggerer.hasClass("open")) {
-						if (!ancGroup.length || (ancGroup.length && !ancGroup.hasClass("accordion-group-no-close"))) {
+					if (
+						selector.hasClass('open')
+						&& triggerer.hasClass('open')
+					) {
+						if (
+							!ancGroup.length
+							|| (
+								ancGroup.length
+								&& !ancGroup.hasClass('accordion-group-no-close')
+							)
+						) {
 							// selector.slideUp();
-							triggerer.removeClass("open");
-							selector.removeClass("open");
+							triggerer.removeClass('open');
+							selector.removeClass('open');
 
 							if (args.changeHash) {
-								_.changeHash("");
+								_.changeHash('');
 							}
 						}
 					} else {
-						if (ancGroup.length && !ancGroup.is(".accordion-group-multiple")) {
+						if (
+							ancGroup.length
+							&& !ancGroup.is('.accordion-group-multiple')
+						) {
 							// selector.closest('.accordion-group').find('.accordion').slideUp();
-							ancGroup.find('[data-toggle="accordion"]').removeClass("open");
-							ancGroup.find(".accordion").removeClass("open");
+							ancGroup
+								.find('[data-toggle="accordion"]')
+								.removeClass('open');
+							ancGroup
+								.find('.accordion')
+								.removeClass('open');
 						}
 
 						// selector.slideDown();
-						triggerer.addClass("open");
-						selector.addClass("open");
+						triggerer.addClass('open');
+						selector.addClass('open');
 
 						if (args.changeHash) {
-							_.changeHash(selector.attr("id"));
+							_.changeHash(selector.attr('id'));
 						}
 					}
 				} else {
-					selector.siblings(".accordion").removeClass("open");
-					ancGroup.children(".accordion").removeClass("open");
+					selector.siblings('.accordion').removeClass('open');
+					ancGroup.children('.accordion').removeClass('open');
 
 					const probablyToggle = $(
-						`[data-toggle="accordion"][href="#${selector.attr(
-							"id"
-						)}"], [data-toggle="accordion"][data-href="#${selector.attr("id")}"]`
+						`[data-toggle="accordion"][href="#${selector.getAttribute('id')}"],
+						[data-toggle="accordion"][data-href="#${selector.getAttribute('id')}"]`
 					);
-					probablyToggle.siblings('[data-toggle="accordion"]').removeClass("open");
 					probablyToggle
-						.closest(".accordion-group")
+						.siblings('[data-toggle="accordion"]')
+						.removeClass('open');
+					probablyToggle
+						.closest('.accordion-group')
 						.children('[data-toggle="accordion"]')
-						.removeClass("open");
+						.removeClass('open');
 
-					selector.addClass("open");
-					probablyToggle.addClass("open");
+					selector.addClass('open');
+					probablyToggle.addClass('open');
 
-					$([document.documentElement, document.body]).animate(
-						{
-							scrollTop: selector.offset().top,
-						},
-						500
-					);
+					$([document.documentElement, document.body])
+						.animate(
+							{scrollTop: selector.offset().top},
+							500
+						);
 				}
 			}
 		}
 	};
 
 	frameWork.readyGrid = () => {
-		$(".module-grid:not(.module-grid-custom)").each((i, grid) => {
+		$('.module-grid:not(.module-grid-custom)').each((i, grid) => {
 			frameWork.initGrid($(grid));
 		});
 	};
@@ -1905,25 +2523,26 @@ window.jQuery && jQuery.noConflict();
 	_.fns_on_resize.push(frameWork.readyGrid);
 
 	frameWork.readyCalendar = () => {
-		$(".input-calendar").each((i, calendar) => {
+		$('.input-calendar').each((i, calendar) => {
 			frameWork.updateCalendar($(calendar));
 		});
 	};
 	_.fns_on_rightAway.push(frameWork.readyCalendar);
 
 	frameWork.readyTags = () => {
-		$(".input-tags").each((i, input) => {
+		$('.input-tags').each((i, input) => {
 			frameWork.updateTags($(input));
 		});
 	};
 	_.fns_on_load.push(frameWork.readyTags);
 	_.fns_on_resize.push(frameWork.readyTags);
 
+	// //will run. right away. boi
 	_.fns_on_rightAway.forEach((fn) => {
 		fn();
 	});
 
-	$(window).on("hashchange", () => {
+	$(window).on('hashchange', () => {
 		frameWork.settings.initializeModal && frameWork.createModal();
 		frameWork.settings.initializeBoard && frameWork.createBoard();
 		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
@@ -1935,558 +2554,804 @@ window.jQuery && jQuery.noConflict();
 		});
 
 		//key evenmts
-		$("body").on("keydown", (e) => {
-			switch (e.keyCode) {
-				//shift
-				case 16:
-					_.modifierKeys.shift = true;
-					break;
-				// control
-				case 17:
-					_.modifierKeys.ctrl = true;
-					break;
-				//op/alt
-				case 18:
-					_.modifierKeys.alt = true;
-					break;
-				//meta
-				case 91:
-					_.modifierKeys.meta = true;
-					break;
-			}
-		});
-
-		$("body").on("keyup", (e) => {
-			setTimeout(() => {
+		$('body').on(
+			'keydown',
+			(e) => {
 				switch (e.keyCode) {
 					//shift
 					case 16:
-						_.modifierKeys.shift = false;
+						_.modifierKeys.shift = true;
 						break;
 					// control
 					case 17:
-						_.modifierKeys.ctrl = false;
+						_.modifierKeys.ctrl = true;
 						break;
 					//op/alt
 					case 18:
-						_.modifierKeys.alt = false;
+						_.modifierKeys.alt = true;
 						break;
 					//meta
 					case 91:
-						_.modifierKeys.meta = false;
+						_.modifierKeys.meta = true;
 						break;
 				}
-			}, 100);
-		});
-
-		$("body").on("change", ".input-calendar", (e) => {
-			const triggerer = $(e.target);
-			frameWork.updateCalendar(triggerer);
-		});
-
-		$("body").on("click", "a.input-calendar-ui-date", (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				const inputCalendar = triggerer.closest(".input-calendar-ui").find(".input-calendar").first();
-				if (inputCalendar.length > -1) {
-					frameWork.updateCalendar(inputCalendar, triggerer.attr("data-value"), null);
-				}
 			}
-		});
+		);
 
-		$("body").on("click", "a.input-calendar-ui-navigation,.input-calendar-ui-month", (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				const inputCalendar = triggerer.closest(".input-calendar-ui").find(".input-calendar").first();
-				if (inputCalendar.length > -1) {
-					frameWork.updateCalendar(inputCalendar, null, triggerer.attr("data-value"));
-				}
+		$('body').on(
+			'keyup',
+			(e) => {
+				setTimeout(() => {
+					switch (e.keyCode) {
+						//shift
+						case 16:
+							_.modifierKeys.shift = false;
+							break;
+						// control
+						case 17:
+							_.modifierKeys.ctrl = false;
+							break;
+						//op/alt
+						case 18:
+							_.modifierKeys.alt = false;
+							break;
+						//meta
+						case 91:
+							_.modifierKeys.meta = false;
+							break;
+					}
+				}, 100);
 			}
-		});
+		);
 
-		$("body").on("keyup", ".input-calendar-ui-input input", (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'change',
+			'.input-calendar',
+			(e) => {
+				const triggerer = $(e.target);
+				frameWork.updateCalendar(triggerer);
+			}
+		);
 
-			if (frameWork.isDisabled(triggerer)) {
+		$('body').on(
+			'click',
+			'a.input-calendar-ui-date',
+			(e) => {
+
+				const triggerer = $(e.target);
+
 				e.preventDefault();
-			} else {
-				const inputCalendar = triggerer.closest(".input-calendar-ui").find(".input.input-calendar");
 
-				const v = triggerer.val();
-				if (v.match(/^\d{2}$/) !== null) {
-					triggerer.val(`${v}/`);
-				} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-					triggerer.val(`${v}/`);
-				}
+				if (!frameWork.isDisabled(triggerer)) {
+					const inputCalendar = triggerer
+						.closest('.input-calendar-ui')
+						.find('.input-calendar')
+						.first();
 
-				const pattern = new RegExp(_.datetimeFormatPresets.HumanDate.pattern);
-
-				const isValid = pattern.test(v);
-
-				if (isValid) {
-					const theValue = v.split("/");
-
-					const y = theValue[2] || "";
-					const m = theValue[0] || "";
-					const d = theValue[1] || "";
-
-					const preParsedVal = `${y}-${m}-${d}`;
-
-					frameWork.updateCalendar(inputCalendar, preParsedVal);
+					if (inputCalendar.length > -1) {
+						frameWork.updateCalendar(
+							inputCalendar,
+							triggerer.attr('data-value'),
+							null
+						);
+					}
 				}
 			}
-		});
+		);
 
-		$("body").on("change", ".input-tags", (e) => {
-			const triggerer = $(e.target);
-			frameWork.updateTags(triggerer);
-		});
+		$('body').on(
+			'click',
+			'a.input-calendar-ui-navigation, .input-calendar-ui-month',
+			(e) => {
+				const triggerer = $(e.target);
 
-		$("body").on("paste", ".input-tags-ui .input-tags-ui-input", (e) => {
-			const triggerer = $(e.target);
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				const pasted = event.clipboardData || window.clipboardData || event.originalEvent.clipboardData;
-				triggerer.html(triggerer.html() + pasted.getData("text"));
-				triggerer.blur();
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					const inputCalendar = triggerer
+						.closest('.input-calendar-ui')
+						.find('.input-calendar')
+						.first();
+
+					if (inputCalendar.length > -1) {
+						frameWork.updateCalendar(
+							inputCalendar,
+							null,
+							triggerer.attr('data-value')
+						);
+					}
+				}
 			}
-		});
+		);
+
+		$('body').on(
+			'keyup',
+			'.input-calendar-ui-input input',
+			(e) => {
+				const triggerer = $(e.target);
+
+				if (frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
+
+				} else {
+					const inputCalendar = triggerer
+						.closest('.input-calendar-ui')
+						.find('.input.input-calendar');
+
+					const v = triggerer.val();
+					if (v.match(/^\d{2}$/) !== null) {
+						triggerer.val(`${v}/`);
+					} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+						triggerer.val(`${v}/`);
+					}
+
+					const pattern = new RegExp(
+						_.datetimeFormatPresets.HumanDate.pattern
+					);
+
+					const isValid = pattern.test(v);
+
+					if (isValid) {
+						const theValue = v.split('/');
+
+						const y = theValue[2] || '';
+						const m = theValue[0] || '';
+						const d = theValue[1] || '';
+
+						const preParsedVal = `${y}-${m}-${d}`;
+
+						frameWork.updateCalendar(
+							inputCalendar,
+							preParsedVal
+						);
+					}
+				}
+			}
+		);
+
+		$('body').on(
+			'change',
+			'.input-tags',
+			(e) => {
+				const triggerer = $(e.target);
+				frameWork.updateTags(triggerer);
+			}
+		);
+
+		$('body').on(
+			'paste',
+			'.input-tags-ui .input-tags-ui-input',
+			(e) => {
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					const pasted =
+						e.clipboardData
+						|| window.clipboardData
+						|| e.originalEvent.clipboardData;
+
+					triggerer.html(
+						triggerer.html() + pasted.getData('text')
+					);
+
+					triggerer.blur();
+				}
+			}
+		);
 
 		//blur bitch blurr
-		$("body").on("blur", ".input-tags-ui .input-tags-ui-input", (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'blur',
+			'.input-tags-ui .input-tags-ui-input',
+			(e) => {
 
-			if (!frameWork.isDisabled(triggerer)) {
-				const inputTags = triggerer.closest(".input-tags-ui").children(".input-tags"),
-					inputUiIndex = triggerer.attr("data-value"),
-					currValue = _.tagsToParse(inputTags.val());
+				const triggerer = $(e.target);
 
-				currValue.splice(parseInt(inputUiIndex), 0, triggerer.text().replace(",", ""));
+				if (!frameWork.isDisabled(triggerer)) {
 
-				triggerer.text("");
+					const inputTags = triggerer
+							.closest('.input-tags-ui')
+							.children('.input-tags'),
+						inputUiIndex = triggerer.attr('data-value'),
+						currValue = _.tagsToParse(inputTags.val());
 
-				// const newValue = _.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
+					currValue.splice(
+						parseInt(inputUiIndex),
+						0,
+						triggerer.text().replace(',', '')
+					);
 
-				frameWork.updateTags(inputTags, true, currValue, currValue);
+					triggerer.text('');
+
+					// const newValue = _.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
+
+					frameWork.updateTags(
+						inputTags,
+						true,
+						currValue,
+						currValue
+					);
+				}
 			}
-		});
+		);
 
 		//key events on focus bitch
-		$("body").on("keydown", ".input-tags-ui .input-tags-ui-input", (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'keydown',
+			'.input-tags-ui .input-tags-ui-input',
+			(e) => {
+				const triggerer = $(e.target);
 
-			if (frameWork.isDisabled(triggerer)) {
-				e.preventDefault();
-			} else {
-				const inputTags = triggerer.closest(".input-tags-ui").children(".input-tags"),
-					inputUiIndex = triggerer.attr("data-value"),
-					currValue = _.tagsToParse(inputTags.attr("data-value-ui"));
-				let newValue,
-					allowFilter = false;
-				inputTags.text(inputTags.text().replace(/\n|\r/g, "\\n"));
+				if (frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
 
-				switch (e.keyCode) {
-					//enter
-					case 13:
-						e.preventDefault();
-						break;
-					//comma
-					case 188:
-						if (!_.modifierIsActive()) {
-							allowFilter = true;
+				} else {
+					const inputTags = triggerer
+							.closest('.input-tags-ui')
+							.children('.input-tags'),
+						inputUiIndex = triggerer.attr('data-value'),
+						currValue = _.tagsToParse(
+							inputTags.attr('data-value-ui')
+						);
+
+					let newValue,
+						allowFilter = false;
+
+					inputTags.text(
+						inputTags.text().replace(/\n|\r/g, '\\n')
+					);
+
+					switch (e.keyCode) {
+						//enter
+						case 13:
 							e.preventDefault();
-							currValue.splice(parseInt(inputUiIndex), 0, triggerer.text().replace(",", ""));
+							break;
 
-							triggerer.text("");
-						}
-						// currValue.splice()
-						break;
+						//comma
+						case 188:
+							if (!_.modifierIsActive()) {
+								allowFilter = true;
+								e.preventDefault();
+								currValue.splice(
+									parseInt(inputUiIndex),
+									0,
+									triggerer.text().replace(',', '')
+								);
 
-					//left
-					case 37:
-						if (!triggerer.text()) {
-							e.preventDefault();
-							_.arrMoveItem(
-								currValue,
-								parseInt(inputUiIndex),
-								parseInt(inputUiIndex) - 1 >= 0 ? parseInt(inputUiIndex) - 1 : 0
-							);
-						}
+								triggerer.text('');
+							}
+							// currValue.splice()
+							break;
 
-						break;
+						//left
+						case 37:
+							if (!triggerer.text()) {
+								e.preventDefault();
+								_.arrMoveItem(
+									currValue,
+									parseInt(inputUiIndex),
+									parseInt(inputUiIndex) - 1 >= 0
+										? parseInt(inputUiIndex) - 1
+										: 0
+								);
+							}
 
-					//right
-					case 39:
-						if (!triggerer.text()) {
-							e.preventDefault();
-							_.arrMoveItem(
-								currValue,
-								parseInt(inputUiIndex),
-								parseInt(inputUiIndex) + 1 <= currValue.length - 1
-									? parseInt(inputUiIndex) + 1
-									: currValue.length - 1
-							);
-						}
-						break;
+							break;
 
-					//backspace
-					case 8:
-						if (!triggerer.text()) {
-							e.preventDefault();
-							allowFilter = true;
-							currValue.splice(parseInt(inputUiIndex) - 1, 1);
-						}
-						break;
+						//right
+						case 39:
+							if (!triggerer.text()) {
+								e.preventDefault();
+								_.arrMoveItem(
+									currValue,
+									parseInt(inputUiIndex),
+									parseInt(inputUiIndex) + 1 <= currValue.length - 1
+										? parseInt(inputUiIndex) + 1
+										: currValue.length - 1
+								);
+							}
+							break;
 
-					//delete
-					case 46:
-						if (!triggerer.text()) {
-							e.preventDefault();
-							allowFilter = true;
-							currValue.splice(parseInt(inputUiIndex) + 1, 1);
-						}
-						break;
+						//backspace
+						case 8:
+							if (!triggerer.text()) {
+								e.preventDefault();
+								allowFilter = true;
+								currValue.splice(
+									parseInt(inputUiIndex) - 1,
+									1
+								);
+							}
+							break;
+
+						//delete
+						case 46:
+							if (!triggerer.text()) {
+								e.preventDefault();
+								allowFilter = true;
+								currValue.splice(
+									parseInt(inputUiIndex) + 1,
+									1
+								);
+							}
+							break;
+					}
+
+					newValue = _.tagsToVal(currValue);
+
+					frameWork.updateTags(
+						inputTags,
+						allowFilter,
+						newValue
+					);
 				}
-
-				newValue = _.tagsToVal(currValue);
-
-				frameWork.updateTags(inputTags, allowFilter, newValue);
 			}
-		});
+		);
 
 		//on click on the text, edit it via input and input should be focused and in place of the tag
 
-		$("body").on("click", ".input-tags-ui .input-tags-ui-tag-close", (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'click',
+			'.input-tags-ui .input-tags-ui-tag-close',
+			(e) => {
+				const triggerer = $(e.target);
 
-			e.preventDefault();
+				e.preventDefault();
 
-			const inputTags = triggerer.closest(".input-tags-ui").children(".input-tags");
+				const inputTags = triggerer
+					.closest('.input-tags-ui')
+					.children('.input-tags');
 
-			if (!frameWork.isDisabled(inputTags)) {
-				const tagToRemove = triggerer.attr("data-value"),
-					currValue = _.tagsToParse(inputTags.attr("data-value-ui"));
-				currValue.splice(parseInt(tagToRemove), 1);
+				if (!frameWork.isDisabled(inputTags)) {
+					const tagToRemove = triggerer.attr('data-value'),
+						currValue = _.tagsToParse(
+							inputTags.attr('data-value-ui')
+						);
+					currValue.splice(parseInt(tagToRemove), 1);
 
-				const newValue = _.tagsToVal(currValue);
+					const newValue = _.tagsToVal(currValue);
 
-				frameWork.updateTags(inputTags, true, newValue);
-			}
-		});
-
-		$("body").on("click", ".input-tags-ui .input-tags-ui-tag-text", (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
-
-			if (!frameWork.isDisabled(triggerer)) {
-				const tagText = triggerer.text(),
-					inputTags = triggerer.closest(".input-tags-ui").children(".input-tags"),
-					tagToEdit = triggerer.attr("data-value"),
-					currValue = _.tagsToParse(inputTags.attr("data-value-ui"), false);
-				currValue.splice(parseInt(tagToEdit), 1, _.tagsInputString);
-
-				const uiValue = _.tagsToVal(currValue);
-
-				frameWork.updateTags(inputTags, false, null, uiValue, tagText);
-			}
-		});
-
-		$("body").on("click", '*[data-toggle="accordion"]', (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				frameWork.toggleAccordion(triggerer, true);
-			}
-		});
-
-		$("body").on("click", '*[data-toggle="alert-close"]', (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
-
-			if (!frameWork.isDisabled(triggerer)) {
-				const selector = _.getTheToggled(triggerer, "alert-close");
-
-				if (selector) {
-					selector.hide().remove();
+					frameWork.updateTags(
+						inputTags,
+						true,
+						newValue
+					);
 				}
 			}
-		});
+		);
 
-		$("body").on("click", '*[data-toggle="alert-close-all"]', (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'click',
+			'.input-tags-ui .input-tags-ui-tag-text',
+			(e) => {
+				const triggerer = $(e.target);
 
-			e.preventDefault();
+				e.preventDefault();
 
-			if (!frameWork.isDisabled(triggerer)) {
-				$(".alert").each((i, alert) => {
-					if ($(alert).find('[data-toggle="alert-close"]').length) {
-						$(alert).hide().remove();
-					}
-				});
+				if (!frameWork.isDisabled(triggerer)) {
+					const tagText = triggerer.text(),
+						inputTags = triggerer
+							.closest('.input-tags-ui')
+							.children('.input-tags'),
+						tagToEdit = triggerer.attr('data-value'),
+						currValue = _.tagsToParse(
+							inputTags.attr('data-value-ui'),
+							false
+						);
+					currValue.splice(
+						parseInt(tagToEdit),
+						1,
+						_.tagsInputString
+					);
+
+					const uiValue = _.tagsToVal(currValue);
+
+					frameWork.updateTags(
+						inputTags,
+						false,
+						null,
+						uiValue,
+						tagText
+					);
+				}
 			}
-		});
+		);
 
-		$("body").on(
-			"focus",
-			`input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
+		$('body').on(
+			'click',
+			'*[data-toggle="accordion"]',
+			(e) => {
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					frameWork.toggleAccordion(
+						triggerer,
+						true
+					);
+				}
+			}
+		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="alert-close"]',
+			(e) => {
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					const selector = _.getTheToggled(triggerer, 'alert-close');
+
+					if (selector) {
+						selector.hide().remove();
+					}
+				}
+			}
+		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="alert-close-all"]',
+			(e) => {
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					$('.alert').each((i, alert) => {
+						if (
+							$(alert).find('[data-toggle="alert-close"]').length
+						) {
+							$(alert).hide().remove();
+						}
+					});
+				}
+			}
+		);
+
+		$('body').on(
+			'focus',
+			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
 			(e) => {
 				const uiTrigger = $(e.target);
 
 				if (frameWork.isDisabled(uiTrigger)) {
 					uiTrigger.blur();
+
 				} else {
 					const triggerer = _.getTheUiTriggerer(uiTrigger);
-					const selector = _.getTheToggled(triggerer, "dropdown");
+					const selector = _.getTheToggled(
+						triggerer,
+						'dropdown'
+					);
 
 					if (selector) {
-						frameWork.setDropdown(selector, triggerer, "open");
+						frameWork.setDropdown(
+							selector,
+							triggerer,
+							'open'
+						);
 					}
 
-					triggerer.addClass("focus");
+					triggerer.addClass('focus');
 				}
 			}
 		);
 
-		$("body").on(
-			"blur",
-			`input[data-toggle="dropdown"],*[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
+		$('body').on(
+			'blur',
+			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
 			(e) => {
 				const uiTrigger = $(e.target);
 
 				if (!frameWork.isDisabled(uiTrigger)) {
 					const triggerer = _.getTheUiTriggerer(uiTrigger);
 
-					const selector = _.getTheToggled(triggerer, "dropdown");
+					const selector = _.getTheToggled(triggerer,'dropdown');
 
 					setTimeout(() => {
 						if (selector) {
-							frameWork.setDropdown(selector, triggerer, "close");
+							frameWork.setDropdown(
+								selector,
+								triggerer,
+								'close'
+							);
 						}
 					}, 200);
-					triggerer.removeClass("focus");
+					triggerer.removeClass('focus');
 				}
 			}
 		);
 
-		$("body").on(
-			"click",
+		$('body').on(
+			'click',
 			`*[data-toggle="dropdown"]:not(input):not([contenteditable]):not(.${frameWork.settings.uiClass})`,
 			(e) => {
-				e.preventDefault();
 				const uiTrigger = $(e.target);
+
+				e.preventDefault();
 
 				if (!frameWork.isDisabled(uiTrigger)) {
 					const triggerer = _.getTheUiTriggerer(uiTrigger),
-						selector = _.getTheToggled(triggerer, "dropdown");
+						selector = _.getTheToggled(triggerer, 'dropdown');
 
 					if (selector) {
-						frameWork.setDropdown(selector, triggerer);
+						frameWork.setDropdown(
+							selector,
+							triggerer
+						);
 
-						if (selector.hasClass("open")) {
+						if (selector.hasClass('open')) {
 							// selector.slideUp();
-							triggerer.closest("li,.nav-item").removeClass("open");
-							triggerer.removeClass("open");
+							triggerer
+								.closest('li, .nav-item')
+								.removeClass('open');
+							triggerer.removeClass('open');
+
 						} else {
 							//close all the bois
-							$(".dropdown").closest("li,.nav-item").removeClass("open");
-							$(".dropdown").closest("li,.nav-item").find(".dropdown").removeClass("open");
+							$('.dropdown')
+								.closest('li, .nav-item')
+								.removeClass('open');
+
+							$('.dropdown')
+								.closest('li, .nav-item')
+								.find('.dropdown')
+								.removeClass('open');
 							// $('.dropdown').slideUp();
 
-							// if(selector.closest('li , .nav-item').length > -1) {
-							// 	// selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').slideUp();
-							// 	triggerer.closest('li , .nav-item').siblings('li,.nav-item').find('*[data-toggle="dropdown"]').removeClass('open');
-							// 	selector.closest('li , .nav-item').siblings('li,.nav-item').find('.dropdown').removeClass('open');
-							// }
-
 							// selector.slideDown();
-							triggerer.closest("li,.nav-item").addClass("open");
-							triggerer.addClass("open");
+							triggerer
+								.closest('li, .nav-item')
+								.addClass('open');
+
+							triggerer.addClass('open');
 						}
 					}
 				}
 			}
 		);
 
-		$("body").on("click", ".tab, .tab > *", (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'click', 
+			'.tab, .tab > *',
+			(e) => {
+				const triggerer = $(e.target);
 
-			if (frameWork.isDisabled(triggerer)) {
-				e.preventDefault();
-			} else {
-				const theTab = triggerer.closest(".tab");
-				if (theTab.length) {
-					if (!theTab.hasClass("active")) {
-						theTab.siblings(".tab,li").removeClass("active");
-						theTab.addClass("active");
+				if (frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
+
+				} else {
+					const theTab = triggerer.closest('.tab');
+
+					if (theTab.length) {
+						if (!theTab.hasClass('active')) {
+							theTab.siblings('.tab, li').removeClass('active');
+							theTab.addClass('active');
+						}
 					}
 				}
 			}
-		});
+		);
 
-		$("body").on("click", ".btn-group-toggle > .btn", (e) => {
-			e.preventDefault();
-			const triggerer = $(e.target);
+		$('body').on(
+			'click',
+			'.btn-group-toggle > .btn',
+			(e) => {
+				const triggerer = $(e.target);
 
-			if (!frameWork.isDisabled(triggerer)) {
-				_.toggleGroup(triggerer, "btn");
-			}
-		});
-
-		$("body").on("click", ".list-group-toggle .list-group-item,.list-group-toggle li", (e) => {
-			e.preventDefault();
-			const triggerer = $(e.target);
-
-			if (!frameWork.isDisabled(triggerer)) {
-				_.toggleGroup(triggerer, "list", null, "li, .list-group-item");
-			}
-		});
-
-		$("body").on("click", '*[data-toggle="tooltip-click"]', (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				frameWork.createToolTip(triggerer);
-			}
-		});
-
-		$("body").on("mouseenter", '*[data-toggle="tooltip-hover"]', (e) => {
-			const triggerer = $(e.target);
-
-			if (frameWork.isDisabled(triggerer)) {
 				e.preventDefault();
-			} else {
-				frameWork.createToolTip(triggerer);
+
+				if (!frameWork.isDisabled(triggerer)) {
+					_.toggleGroup(triggerer, 'btn');
+				}
 			}
-		});
+		);
 
-		$("body").on("mouseleave", '*[data-toggle="tooltip-hover"]', (e) => {
-			frameWork.destroyToolTip();
-		});
+		$('body').on(
+			'click',
+			'.list-group-toggle .list-group-item, .list-group-toggle li',
+			(e) => {
 
-		$("body").on("click", '*[data-toggle="modal-open"], *[data-toggle="modal"]', (e) => {
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					_.toggleGroup(
+						triggerer,
+						'list',
+						null,
+						'li, .list-group-item'
+					);
+				}
+			}
+		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="tooltip-click"]',
+			(e) => {
+
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					frameWork.createToolTip(triggerer);
+				}
+			}
+		);
+
+		$('body').on(
+			'mouseenter',
+			'*[data-toggle="tooltip-hover"]',
+			(e) => {
+
+				const triggerer = $(e.target);
+
+				if (frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
+
+				} else {
+					frameWork.createToolTip(triggerer);
+				}
+			}
+		);
+
+		$('body').on(
+			'mouseleave',
+			'*[data-toggle="tooltip-hover"]',
+			(e) => {
+				frameWork.destroyToolTip();
+			}
+		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="modal-open"], *[data-toggle="modal"]',
+			(e) => {
+
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					frameWork.createModal(triggerer);
+				}
+			}
+		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="modal-close"]', (e) => {
+
 			const triggerer = $(e.target);
 
 			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				frameWork.createModal(triggerer);
-			}
-		});
 
-		$("body").on("click", '*[data-toggle="modal-close"]', (e) => {
-			const triggerer = $(e.target);
-
-			e.preventDefault();
 			if (!frameWork.isDisabled(triggerer)) {
 				frameWork.destroyModal(true);
 			}
 		});
 
-		$("body").on("click", '*[data-toggle="board-open"], *[data-toggle="board"]', (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'click',
+			'*[data-toggle="board-open"], *[data-toggle="board"]',
+			(e) => {
 
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				frameWork.createBoard(triggerer);
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					frameWork.createBoard(triggerer);
+				}
 			}
-		});
+		);
 
-		$("body").on("click", '*[data-toggle="board-close"]', (e) => {
-			const triggerer = $(e.target);
+		$('body').on(
+			'click',
+			'*[data-toggle="board-close"]',
+			(e) => {
+				const triggerer = $(e.target);
 
-			e.preventDefault();
-			if (!frameWork.isDisabled(triggerer)) {
-				frameWork.destroyBoard(true);
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					frameWork.destroyBoard(true);
+				}
 			}
-		});
+		);
 
-		$("body").on("change", '.zone input[type="file"]', (e) => {
+		$('body').on('change', '.zone input[type="file"]', (e) => {
 			const triggerer = $(e.target);
-			const zone = triggerer.closest(".zone");
+			const zone = triggerer.closest('.zone');
 			const files = triggerer[0].files;
 
-			zone.find(".zone-has-content-text").remove();
+			zone.find('.zone-has-content-text').remove();
 
 			if (triggerer.val() && files.length) {
-				zone.addClass("zone-has-content");
+				zone.addClass('zone-has-content');
 
 				zone.append(() => {
 					const html = `<div class="zone-has-content-text">
-						<span>${files.length} files selected.<br> Click or drag and drop to reselect</span>
-					</div>`;
+							<span>${files.length} files selected.<br> Click or drag and drop to reselect</span>
+						</div>`;
 
-					return html;
+						return html;
+
 				});
 			} else {
-				zone.removeClass("zone-has-content");
+				zone.removeClass('zone-has-content');
 			}
 		});
 
-		$("body").on("click", '*[data-toggle="asset-close"]', (e) => {
-			e.preventDefault();
-			const triggerer = $(e.target);
-			if (!frameWork.isDisabled(triggerer)) {
-				const asset = _.getTheToggled(triggerer, "asset");
+		$('body').on(
+			'click',
+			'*[data-toggle="asset-close"]',
+			(e) => {
 
-				asset.remove();
-			}
-		});
+				const triggerer = $(e.target);
 
-		$("html,body").on("click", "*", (e) => {
-			const triggerer = $(e.target);
-
-			if (frameWork.isDisabled(triggerer)) {
 				e.preventDefault();
-			} else {
-				//tooltip
-				if (
-					!triggerer.closest('[data-toggle="tooltip-click"]').length &&
-					!triggerer.closest('[data-toggle="tooltip-hover"]').length &&
-					!triggerer.closest("[data-value]").length //temp fix for ui elements not getting ancestry
-				) {
-					frameWork.destroyToolTip();
-				}
 
-				//dropdown
-				if (
-					!triggerer.closest('[data-toggle="dropdown"]').length &&
-					!triggerer.closest(".dropdown").length &&
-					!triggerer.closest("[data-value]").length //temp fix for ui elements not getting ancestry
-				) {
-					frameWork.closeDropdowns(false);
+				if (!frameWork.isDisabled(triggerer)) {
+					const asset = _.getTheToggled(triggerer, 'asset');
+					asset.remove();
 				}
 			}
-		});
+		);
+
+		$('html, body').on(
+			'click',
+			'*',
+			(e) => {
+				const triggerer = $(e.target);
+
+				if (frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
+				} else {
+					//tooltip
+					if (
+						!triggerer.closest('[data-toggle="tooltip-click"]').length
+						&& !triggerer.closest('[data-toggle="tooltip-hover"]').length
+						&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
+					) {
+						frameWork.destroyToolTip();
+					}
+
+					//dropdown
+					if (
+						!triggerer.closest('[data-toggle="dropdown"]').length
+						&& !triggerer.closest('.dropdown').length
+						&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
+					) {
+						frameWork.closeDropdowns(false);
+					}
+				}
+			}
+		);
+
 	});
 
-	$(window).on("load", () => {
+	$(window).on('load', () => {
 		_.fns_on_load.forEach((fn) => {
 			fn();
 		});
 
 		frameWork.settings.initializeModal && frameWork.createModal();
 		frameWork.settings.initializeBoard && frameWork.createBoard();
-		frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
-
-		// if(window.location.hash !== ''){
-
-		// 	var possiblyAccordion = _.getTheToggled(null,'accordion');
-
-		// 	if(possiblyAccordion) {
-		// 		$('.accordion').removeClass('open');
-		// 		$(window.hash.location).addClass('open');
-		// 	}
-		// }
+		frameWork.settings.initializeAccordion &&
+			frameWork.toggleAccordion();
 
 		let resizeTimerInternal;
-		$(window).on("resize", () => {
+		$(window).on('resize', () => {
 			clearTimeout(resizeTimerInternal);
 
 			resizeTimerInternal = setTimeout(() => {
@@ -2496,7 +3361,9 @@ window.jQuery && jQuery.noConflict();
 			}, 100);
 		});
 
-		$("body").removeClass("body-loading").addClass("body-loaded");
+		$('body')
+			.removeClass('body-loading')
+			.addClass('body-loaded');
 	});
 
 	//put boi on global
