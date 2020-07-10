@@ -6122,20 +6122,19 @@ table {
     display: flex;
     width: 100%; }
     .input-group-block > .input,
-    .input-group-block > .trumbowyg {
+    .input-group-block > .btn:not(.btn-symbol) {
       flex: 1 1; }
     @media (max-width: 1200px) {
       .input-group-block-mobile {
         display: flex;
         width: 100%; }
         .input-group-block-mobile > .input,
-        .input-group-block-mobile > .trumbowyg,
-        .input-group-block-mobile .btn:not(.btn-symbol) {
+        .input-group-block-mobile > .btn:not(.btn-symbol) {
           flex: 1 1; } }
-  .input-group.input-group-horizontal:not(.input-group-responsive) > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-single-line:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-select:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-last-child(n+2) {
+  .input-group.input-group-horizontal:not(.input-group-responsive) > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-single-line:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-select:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-last-child(n+2) {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important; }
-  .input-group.input-group-horizontal:not(.input-group-responsive) > .input-tags-ui:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-calendar-ui:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-single-line:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-select:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-multiple-line:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .trumbowyg:nth-child(n+2) {
+  .input-group.input-group-horizontal:not(.input-group-responsive) > .input-tags-ui:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-calendar-ui:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-single-line:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-select:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-multiple-line:nth-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-child(n+2) {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
     margin-left: -1px; }
@@ -6143,18 +6142,18 @@ table {
     flex-direction: column; }
     .input-group.input-group-vertical > .btn-symbol {
       width: auto; }
-    .input-group.input-group-vertical > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-vertical > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-vertical > .input-single-line:nth-last-child(n+2), .input-group.input-group-vertical > .input-select:nth-last-child(n+2), .input-group.input-group-vertical > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-vertical .btn:nth-last-child(n+2), .input-group.input-group-vertical .trumbowyg:nth-last-child(n+2) {
+    .input-group.input-group-vertical > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-vertical > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-vertical > .input-single-line:nth-last-child(n+2), .input-group.input-group-vertical > .input-select:nth-last-child(n+2), .input-group.input-group-vertical > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-vertical .btn:nth-last-child(n+2) {
       border-bottom-right-radius: 0 !important;
       border-bottom-left-radius: 0 !important; }
-    .input-group.input-group-vertical > .input-tags-ui:nth-child(n+2), .input-group.input-group-vertical > .input-calendar-ui:nth-child(n+2), .input-group.input-group-vertical > .input-single-line:nth-child(n+2), .input-group.input-group-vertical > .input-select:nth-child(n+2), .input-group.input-group-vertical > .input-multiple-line:nth-child(n+2), .input-group.input-group-vertical .btn:nth-child(n+2), .input-group.input-group-vertical .trumbowyg:nth-child(n+2) {
+    .input-group.input-group-vertical > .input-tags-ui:nth-child(n+2), .input-group.input-group-vertical > .input-calendar-ui:nth-child(n+2), .input-group.input-group-vertical > .input-single-line:nth-child(n+2), .input-group.input-group-vertical > .input-select:nth-child(n+2), .input-group.input-group-vertical > .input-multiple-line:nth-child(n+2), .input-group.input-group-vertical .btn:nth-child(n+2) {
       border-top-right-radius: 0 !important;
       border-top-left-radius: 0 !important;
       margin-top: -1px; }
   @media (min-width: 1201px) {
-    .input-group.input-group-responsive.input-group-horizontal > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-select:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .trumbowyg:nth-last-child(n+2) {
+    .input-group.input-group-responsive.input-group-horizontal > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-select:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-last-child(n+2) {
       border-top-right-radius: 0 !important;
       border-bottom-right-radius: 0 !important; }
-    .input-group.input-group-responsive.input-group-horizontal > .input-tags-ui:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-calendar-ui:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-single-line:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-select:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-multiple-line:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal .trumbowyg:nth-child(n+2) {
+    .input-group.input-group-responsive.input-group-horizontal > .input-tags-ui:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-calendar-ui:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-single-line:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-select:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-multiple-line:nth-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-child(n+2) {
       border-top-left-radius: 0 !important;
       border-bottom-left-radius: 0 !important;
       margin-left: -1px; } }
@@ -6166,10 +6165,10 @@ table {
       flex-direction: column; }
       .input-group.input-group-responsive > .btn-symbol {
         width: auto; }
-      .input-group.input-group-responsive > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive > .input-select:nth-last-child(n+2), .input-group.input-group-responsive > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive .btn:nth-last-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-last-child(n+2) {
+      .input-group.input-group-responsive > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive > .input-select:nth-last-child(n+2), .input-group.input-group-responsive > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive .btn:nth-last-child(n+2) {
         border-bottom-right-radius: 0 !important;
         border-bottom-left-radius: 0 !important; }
-      .input-group.input-group-responsive > .input-tags-ui:nth-child(n+2), .input-group.input-group-responsive > .input-calendar-ui:nth-child(n+2), .input-group.input-group-responsive > .input-single-line:nth-child(n+2), .input-group.input-group-responsive > .input-select:nth-child(n+2), .input-group.input-group-responsive > .input-multiple-line:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2), .input-group.input-group-responsive .trumbowyg:nth-child(n+2) {
+      .input-group.input-group-responsive > .input-tags-ui:nth-child(n+2), .input-group.input-group-responsive > .input-calendar-ui:nth-child(n+2), .input-group.input-group-responsive > .input-single-line:nth-child(n+2), .input-group.input-group-responsive > .input-select:nth-child(n+2), .input-group.input-group-responsive > .input-multiple-line:nth-child(n+2), .input-group.input-group-responsive .btn:nth-child(n+2) {
         border-top-right-radius: 0 !important;
         border-top-left-radius: 0 !important;
         margin-top: -1px; } }
@@ -6324,27 +6323,21 @@ fieldset {
     fieldset .input-wrapper:nth-last-child(n+2) {
       border-bottom: 1px solid gray; }
   .special-form .input,
-  .special-form .fw-trumbowyg-editor,
-  .special-form .fw-trumbowyg-textarea,
-  fieldset .input,
-  fieldset .fw-trumbowyg-editor,
-  fieldset .fw-trumbowyg-textarea {
+  fieldset .input {
     background-color: transparent !important;
+    border-color: transparent !important; }
+  .special-form .input,
+  fieldset .input {
     outline: none !important;
-    border-color: transparent !important;
     box-shadow: none !important; }
   .special-form .input-tags-ui, .special-form .input-calendar-ui, .special-form .input-single-line, .special-form .input-select, .special-form .input-multiple-line,
   .special-form .input-inline,
-  .special-form .fw-trumbowyg-editor,
-  .special-form .fw-trumbowyg-textarea,
   fieldset .input-tags-ui,
   fieldset .input-calendar-ui,
   fieldset .input-single-line,
   fieldset .input-select,
   fieldset .input-multiple-line,
-  fieldset .input-inline,
-  fieldset .fw-trumbowyg-editor,
-  fieldset .fw-trumbowyg-textarea {
+  fieldset .input-inline {
     background-color: transparent;
     max-width: none;
     padding-left: 0;

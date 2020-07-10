@@ -12,7 +12,6 @@ js files (in order)
 *	Optional
 	*	~[Trumbowyg](https://alex-d.github.io/Trumbowyg/)~ Bye felicia
 *	[framework.js](../../../dist/framework.min.js) 
-	*	Note: This script uses jQuery only for trumbowyg, the reset are vanilla. will be updated once vanilla trumbowyg version is released.
 	*	If full on jQuery dependency is preferred, [framework.plugged.js](../../../dist/framework.plugged.js)
 
 ## File structure
@@ -41,14 +40,15 @@ js files (in order)
 
 		<!-- blahblahblah -->
 
+		<!-- jquery setup -->
+			<!-- jquery if you need it-->
+				<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<!-- framework w/ jquery -->
+				<script src="framework/dist/framework.plugged.js"></script>
 
-		<!-- jquery -->
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<!-- trumboboi -->
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.19.1/trumbowyg.min.js"></script>
-
-		<!-- framework -->
-			<script src="framework/dist/framework.js"></script>
+		<!-- no dependencies setup -->
+			<!-- framework no jquery -->
+				<script src="framework/dist/framework.js"></script>
 
 		<!-- ya custom js -->
 			<script src="/site.js"></script>

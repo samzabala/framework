@@ -1,6 +1,6 @@
 # Modal
 
-NOTE: only one instance of a modal (not counting trumbowyg modals) can be rendered a time because it makes managing the modal easier 
+NOTE: only one instance of a modal can be rendered a time because it makes managing the modal easier 
 
 This is how to setup a basic modal
 

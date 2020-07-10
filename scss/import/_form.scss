@@ -896,8 +896,7 @@ $prefix: '.input';
 			width:100%;
 
 			> #{$prefix},
-			> .trumbowyg,
-			> .btn:not(.btn-symbol {
+			> .btn:not(.btn-symbol) {
 				flex: 1 1;
 			}
 
@@ -907,7 +906,6 @@ $prefix: '.input';
 					width:100%;
 
 					> #{$prefix},
-					> .trumbowyg,
 					> .btn:not(.btn-symbol) {
 						flex: 1 1;
 					}
@@ -929,14 +927,14 @@ $prefix: '.input';
 
 			&:not(#{$prefix}-group-responsive) {
 
-				> %for-form-input-boxy,.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn {
 					&:nth-last-child(n+2) {
 						border-top-right-radius: 0!important;
 						border-bottom-right-radius: 0!important;
 					}
 				}
 
-				> %for-form-input-boxy,.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn {
 					&:nth-child(n+2) {
 						border-top-left-radius: 0!important;
 						border-bottom-left-radius: 0!important;
@@ -957,14 +955,14 @@ $prefix: '.input';
 				width:auto;
 			}
 
-			> %for-form-input-boxy,.btn, .trumbowyg {
+			> %for-form-input-boxy,.btn {
 				&:nth-last-child(n+2) {
 					border-bottom-right-radius: 0!important;
 					border-bottom-left-radius: 0!important;
 				}
 			}
 
-			> %for-form-input-boxy,.btn, .trumbowyg {
+			> %for-form-input-boxy,.btn {
 				&:nth-child(n+2) {
 					border-top-right-radius: 0!important;
 					border-top-left-radius: 0!important;
@@ -983,14 +981,14 @@ $prefix: '.input';
 				
 				&#{$prefix}-group-horizontal {
 
-					> %for-form-input-boxy,.btn, .trumbowyg {
+					> %for-form-input-boxy,.btn {
 						&:nth-last-child(n+2) {
 							border-top-right-radius: 0!important;
 							border-bottom-right-radius: 0!important;
 						}
 					}
 
-					> %for-form-input-boxy,.btn, .trumbowyg {
+					> %for-form-input-boxy,.btn {
 						&:nth-child(n+2) {
 							border-top-left-radius: 0!important;
 							border-bottom-left-radius: 0!important;
@@ -1015,14 +1013,14 @@ $prefix: '.input';
 					width:auto;
 				}
 
-				> %for-form-input-boxy,.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn {
 					&:nth-last-child(n+2) {
 						border-bottom-right-radius: 0!important;
 						border-bottom-left-radius: 0!important;
 					}
 				}
 	
-				> %for-form-input-boxy,.btn, .trumbowyg {
+				> %for-form-input-boxy,.btn {
 					&:nth-child(n+2) {
 						border-top-right-radius: 0!important;
 						border-top-left-radius: 0!important;
@@ -1209,19 +1207,18 @@ fieldset {
 		}
 	}
 
-	#{$prefix},
-	.fw-trumbowyg-editor,
-	.fw-trumbowyg-textarea {
+	#{$prefix} {
 		background-color:transparent!important;
-		outline: none!important;
 		border-color: transparent!important;
+	}
+
+	#{$prefix} {
+		outline: none!important;
 		box-shadow: none !important;
 	}
 
 	%for-form-input-boxy,
-	#{$prefix}-inline,
-	.fw-trumbowyg-editor,
-	.fw-trumbowyg-textarea {
+	#{$prefix}-inline {
 		background-color:transparent;
 		// width:calc(100% + (#{$special-form-gutter-x} * 2));
 		max-width:none;

@@ -1187,25 +1187,6 @@
 		"rFN": 0,
 		"uCM": 0
 		},
-	"/docs/sections/components/trumbowyg.md": {
-		"cB": 0,
-		"cS": 0,
-		"eF": 1,
-		"eL": 1,
-		"ema": 1,
-		"eSQ": 1,
-		"ft": 4096,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/docs/sections/components/trumbowyg.html",
-		"oF": 0,
-		"oFM": 0,
-		"oS": 0,
-		"pHT": 0,
-		"pME": 1,
-		"rFN": 0,
-		"uCM": 0
-		},
 	"/docs/sections/components/well.md": {
 		"cB": 0,
 		"cS": 0,
@@ -1471,16 +1452,6 @@
 		"pME": 1,
 		"rFN": 0,
 		"uCM": 0
-		},
-	"/icons/icons.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/icons/icons.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 52780316221407,
-		"prP": 0
 		},
 	"/js/framework.js": {
 		"bF": 0,
@@ -1984,19 +1955,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/scss/import/_toolbar.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/scss/import/_trumbowyg.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/scss/import/_trumbowyg.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1

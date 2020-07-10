@@ -476,13 +476,6 @@ Keep input-group full width all the fucking time
 Keep input-group full width only on mobile
 
 
-
-## Trumbowyg
-
-See [Trumbowyg](../components/trumbowyg.md)
-
-
-
 # **`.input-wrapper`**
 
 Use to layout an input label and input without doing so much css. These are inline-flex elementos. 

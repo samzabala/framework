@@ -41,7 +41,6 @@ A framework for your appy dashboardy needs :')
 *	[Tooltip](docs/sections/components/tooltip.md)
 *	[Toolbar](docs/sections/components/toolbar.md)
 *	[Thumbnails](docs/sections/components/thumbnail.md)
-*	[Trumbowyg](docs/sections/components/trumbowyg.md)
 *	[Well](docs/sections/components/trumbowyg.md)
 *	[Zone](docs/sections/components/zone.md)
 
