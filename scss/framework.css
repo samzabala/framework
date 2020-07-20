@@ -308,7 +308,7 @@ h6, .h6 {
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
-  margin-bottom: 0.3125rem;
+  margin-bottom: 0.625rem;
   margin-top: 1.5em; }
   .theme-inverse h1, .theme-inverse .h1, .theme-inverse h2, .theme-inverse .h2, .theme-inverse h3, .theme-inverse .h3, .theme-inverse h4, .theme-inverse .h4, .theme-inverse h5, .theme-inverse .h5, .theme-inverse h6, .theme-inverse .h6 {
     color: #e6e6e6; }
@@ -1768,16 +1768,16 @@ table {
     .flex-grid-no-gutter-y > .flex-child {
       margin-top: 0; }
 
-[class*=flex-col-],
+*[class*=flex-col-],
 .flex-child {
   margin-top: 40px;
   margin-left: 40px;
   max-width: calc(100% - 40px); }
-  .flex-grid-fixed > [class*=flex-col-], .flex-grid-fixed > .flex-child {
+  .flex-grid-fixed > *[class*=flex-col-], .flex-grid-fixed > .flex-child {
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: auto; }
-  .flex-grid-no-gutter > [class*=flex-col-], .flex-grid-no-gutter-x > [class*=flex-col-], .flex-grid-no-gutter > .flex-child, .flex-grid-no-gutter-x > .flex-child {
+    flex-basis: auto !important; }
+  .flex-grid-no-gutter > *[class*=flex-col-], .flex-grid-no-gutter-x > *[class*=flex-col-], .flex-grid-no-gutter > .flex-child, .flex-grid-no-gutter-x > .flex-child {
     max-width: 100%; }
 
 [class*=flex-col-] {
@@ -5217,7 +5217,7 @@ table {
 /* it */
 .alert {
   border: 1px solid transparent;
-  box-shadow: 0px 3px 10px -6px #000000;
+  box-shadow: none;
   position: relative; }
   .alert-small {
     font-size: 14px; }

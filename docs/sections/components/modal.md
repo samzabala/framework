@@ -133,6 +133,25 @@ Whether or not to add a max-width to the modal. The modal is styled to be respon
 
 
 
+
+### **`data-modal-change-hash`**
+
+Dafaults to `true`
+
+Whether or not to have the modal change the location.hash when enabled and then disabled
+
+
+
+```html
+<a
+	data-modal-max-width="800px"
+	href="#modal-demo">Modal boi with max width <i class="symbol symbol-search"></i></a>
+
+<div class="modal" id="modal-demo">
+	<!-- content heeeere -->
+</div>
+```
+
 ### **`data-modal-callback`**
 
 Dafaults to `null`

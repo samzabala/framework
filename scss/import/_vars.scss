@@ -192,7 +192,7 @@
 //////////////////////////////// THIS SOME ADVANCED SHIT
 
 		$body-heading-gutter-top: 1.5em !default;
-		$body-heading-gutter-bottom: $body-text-gutter-y * .25 !default;
+		$body-heading-gutter-bottom: $body-text-gutter-y * .5 !default;
 		$body-heading-line-height: calc(1em + 10px) !default;
 		$body-heading-font-weight: $body-font-weight-bold !default;
 		$body-heading-font-style: inherit !default;
@@ -531,7 +531,7 @@
 			$alert-gutter-y-large: $gutter-base !default;
 			$alert-gutter-y-ends-large: $alert-gutter-y-large * .5 !default;
 
-		$alert-box-shadow: $box-shadow-base $brand-color-base !default;
+		$alert-box-shadow: none !default; //$box-shadow-base $brand-color-base
 		$alert-border-radius: $border-radius-small !default;
 
 			$alert-title-font-weight: $body-font-weight-bold !default;

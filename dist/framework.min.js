@@ -964,6 +964,7 @@
 	_.fns_on_load = [];
 	_.fns_on_ready = [];
 	_.fns_on_resize = [];
+	_.fns_on_scroll = [];
 	_.fns_on_rightAway = [];
 
 	frameWork.validateBr = (breakpoint, mode) => {
@@ -2245,6 +2246,7 @@
 		}
 	};
 	_.fns_on_resize.push(frameWork.destroyToolTip);
+	_.fns_on_scroll.push(frameWork.destroyToolTip);
 
 	//only use when the tooltip is finally active
 	frameWork.positionToolTip = (posX, posY) => {
@@ -2357,6 +2359,9 @@
 		if (contentWrap && subcom) {
 
 			const arr = {
+				changeHash:
+					(triggerer && triggerer.attr(`data-${subcom}-change-hash`))
+					|| contentWrap.attr(`data-${subcom}-change-hash`),
 				header:
 					(triggerer && triggerer.getAttribute(`data-${subcom}-title`))
 					|| contentWrap.getAttribute(`data-${subcom}-title`),
@@ -2384,6 +2389,7 @@
 			};
 
 			const defaults = {
+				changeHash: true,
 				header: '',
 				close: true,
 				disableOverlay: true,
@@ -2393,10 +2399,10 @@
 				closeClasses: '',
 				align: 'left',
 			};
+			const args = _.parseArgs(arr, defaults);
 
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
-			const args = _.parseArgs(arr, defaults);
 
 			// console.log(contentWrap,arr,defaults,args);
 
@@ -2408,7 +2414,7 @@
 
 			const id = contentWrap.getAttribute('id') || actualId;
 
-			id !== `${actualId}` && _.changeHash(id);
+			id !== `${actualId}` && args.changeHash && _.changeHash(id);
 
 			const modal = document.createElement('div');
 			document.querySelector('body').appendChild(modal);
@@ -2523,7 +2529,11 @@
 
 		let canRemoveHash = false;
 
-		if (removeHash && frameWork[subcom].current.hasAttribute('id')) {
+		if (
+			removeHash
+			&& frameWork[subcom].current.hasAttribute('id')
+			&& frameWork[subcom].current.attr('id') == window.location.hash.replace('#','')
+		) {
 			canRemoveHash = true;
 		}
 
@@ -2545,7 +2555,10 @@
 		const validSubcoms = ['modal','board']; 
 		let removeBodClass = true;
 		validSubcoms.forEach((sc)=> {
-			if( document.getElementById(`${frameWork.settings.prefix}-${sc}`) && removeBodClass == true ){
+			if(
+				document.getElementById(`${frameWork.settings.prefix}-${sc}`)
+				&& removeBodClass == true
+			){
 				removeBodClass = false;
 			}
 		})
@@ -3683,6 +3696,18 @@
 
 			resizeTimerInternal = setTimeout(() => {
 				_.fns_on_resize.forEach((fn) => {
+					fn();
+				});
+			}, 100);
+		});
+
+
+		let scrollTimerInternal;
+		window.addEventListener('scroll', () => {
+			clearTimeout(scrollTimerInternal);
+
+			scrollTimerInternal = setTimeout(() => {
+				_.fns_on_scroll.forEach((fn) => {
 					fn();
 				});
 			}, 100);

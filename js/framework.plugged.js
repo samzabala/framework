@@ -840,6 +840,7 @@ window.jQuery && jQuery.noConflict();
 	_.fns_on_load = [];
 	_.fns_on_ready = [];
 	_.fns_on_resize = [];
+	_.fns_on_scroll = [];
 	_.fns_on_rightAway = [];
 
 	frameWork.validateBr = (breakpoint, mode) => {
@@ -2091,6 +2092,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 	_.fns_on_resize.push(frameWork.destroyToolTip);
+	_.fns_on_scroll.push(frameWork.destroyToolTip);
 
 	//only use when the tooltip is finally active
 	frameWork.positionToolTip = (posX, posY) => {
@@ -2201,6 +2203,9 @@ window.jQuery && jQuery.noConflict();
 		if (contentWrap && subcom) {
 
 			const arr = {
+				changeHash:
+					(triggerer && triggerer.attr(`data-${subcom}-change-hash`))
+					|| contentWrap.attr(`data-${subcom}-change-hash`),
 				header:
 					(triggerer && triggerer.attr(`data-${subcom}-title`))
 					|| contentWrap.attr(`data-${subcom}-title`),
@@ -2228,6 +2233,7 @@ window.jQuery && jQuery.noConflict();
 			};
 
 			const defaults = {
+				changeHash: true,
 				header: '',
 				close: true,
 				disableOverlay: true,
@@ -2238,9 +2244,10 @@ window.jQuery && jQuery.noConflict();
 				align: 'left',
 			};
 
+			const args = _.parseArgs(arr, defaults);
+			
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
-			const args = _.parseArgs(arr, defaults);
 
 			switch (subcom) {
 				case 'modal':
@@ -2250,7 +2257,7 @@ window.jQuery && jQuery.noConflict();
 
 			const id = contentWrap.attr('id') || actualId;
 
-			id !== `${actualId}` && _.changeHash(id);
+			id !== `${actualId}` && args.changeHash && _.changeHash(id);
 
 			$('body').append(() => {
 				let html = '';
@@ -2372,9 +2379,14 @@ window.jQuery && jQuery.noConflict();
 		removeHash = removeHash || false;
 		subcom = subcom || 'modal';
 
+		
+
 		let canRemoveHash = false;
 
-		if (removeHash && frameWork[subcom].current.attr('id')) {
+		if (removeHash
+			&& frameWork[subcom].current.attr('id')
+			&& frameWork[subcom].current.attr('id') == window.location.hash.replace('#','')
+		) {
 			canRemoveHash = true;
 		}
 
@@ -3440,6 +3452,17 @@ window.jQuery && jQuery.noConflict();
 
 			resizeTimerInternal = setTimeout(() => {
 				_.fns_on_resize.forEach((fn) => {
+					fn();
+				});
+			}, 100);
+		});
+
+		let scrollTimerInternal;
+		$(window).on('resize', () => {
+			clearTimeout(scrollTimerInternal);
+
+			scrollTimerInternal = setTimeout(() => {
+				_.fns_on_scroll.forEach((fn) => {
 					fn();
 				});
 			}, 100);
