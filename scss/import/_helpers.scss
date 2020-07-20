@@ -569,6 +569,38 @@
 				text-align: inherit!important;
 			}
 		}
+		
+
+		&-decoration {
+			&-none {
+				text-decoration: none!important;
+			}
+			&-line {
+				&-underline {
+					text-decoration-line: underline!important;
+				}
+				&-line-through {
+					text-decoration-line: line-through!important;
+				}
+				&-overline {
+					text-decoration-line: overline!important;
+				}
+			}
+			&-style {
+				&-solid {
+					text-decoration-style: solid!important;
+				}
+				&-wavy {
+					text-decoration-style: wavy!important;
+				}
+				&-double {
+					text-decoration-style: double!important;
+				}
+				&-wavy {
+					text-decoration-style: wavy!important;
+				}
+			}
+		}
 
 		&-transform {
 			&-uppercase {
@@ -633,22 +665,25 @@
 				overflow-wrap: break-word!important;
 			}
 
-			&-ellipsis {
+			@at-root %for-text-ellipsis  {
+
 				/* cut overflowing single line to ellipsis */
 				white-space: nowrap!important;
 				overflow: hidden!important;
 				text-overflow: ellipsis!important;
 				/* gotta be block otherwise shit wont happen */
+			}
+
+			&-ellipsis {
+				@extend %for-text-ellipsis;
 				display:block;
 				max-width:100%!important;
 
 				&-multiple {
-					white-space: normal!important;
-					text-overflow: ellipsis!important;
+					@extend %for-text-ellipsis;
 					display: -webkit-box!important;
 					-webkit-line-clamp: $body-ellipsis-multiple-factor!important;
 					-webkit-box-orient: vertical!important;
-					overflow: hidden!important;
 					height: calc((#{$calculated-body-single-line}) * #{$body-ellipsis-multiple-factor});
 
 					#{$prefix}-leading-compact &,
@@ -1163,6 +1198,65 @@
 .only-nonmobile {
 	display: none !important;
 }
+
+*:hover > .only-not-hover,
+*:hover > .hide-hover,
+*:not(:hover) > .only-hover,
+*:not(:hover) > .hide-not-hover,
+
+
+.pointer-reference:hover .only-not-hover,
+.pointer-reference:hover .hide-hover,
+.pointer-reference:not(:hover) .only-hover,
+.pointer-reference:not(:hover) .hide-not-hover,
+
+*:focus > .only-not-focus,
+*:focus > .hide-focus,
+*:not(:focus):not(.focus) > .only-focus,
+*:not(:focus):not(.focus) > .hide-not-focus,
+
+*.active > .only-not-active,
+	*:active > .only-not-active,
+*.active > .hide-active,
+	*:active > .hide-active,
+*:not(:active):not(.active) > .only-active,
+*:not(:active):not(.active) > .hide-not-active,
+
+
+*.active > .only-not-toggle,
+	*.open > .only-not-toggle,
+*.active > .hide-toggle,
+	*.open > .hide-toggle,
+*:not(.active):not(.open) > .only-toggle,
+*:not(.active):not(.open) > .hide-not-toggle
+
+{
+	display: none !important;
+}
+
+// .only-not-hover,
+// .hide-hover,
+// .only-hover,
+// .hide-not-hover,
+
+
+// .only-not-focus,
+// .hide-focus,
+// .only-focus,
+// .hide-not-focus,
+
+// .only-not-active,
+// .hide-active,
+// .only-active,
+// .hide-not-active,
+
+// .only-not-toggle,
+// .hide-toggle,
+// .only-toggle,
+// .hide-not-toggle {
+
+// 	pointer-events:none!important;
+// }
 
 
 @include breakpoint(#{$mobile-br-max}-max) {

@@ -588,15 +588,16 @@ window.jQuery && jQuery.noConflict();
 			const idToGoTo = id !== '' ? `#${id}` : null;
 
 			if (idToGoTo) {
-				if (history.pushState) {
-					history.pushState(null, null, idToGoTo);
-				} else {
+				// if (history.pushState) {
+				// 	history.pushState(null, null, idToGoTo);
+				// } else {
 					location.hash = idToGoTo;
-				}
+				// }
 
 			} else {
 				const noHashURL = window.location.href.replace(/#.*$/, '');
-				window.history.pushState('', document.title, noHashURL);
+				// window.history.pushState('', document.title, noHashURL);
+				location.hash = '';
 			}
 		}
 	};
@@ -606,7 +607,15 @@ window.jQuery && jQuery.noConflict();
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
 
+		if(
+			triggerer.closest(siblingSelector).length
+			&& !triggerer.hasClass(prefix)
+		){
+			triggerer = triggerer.closest(siblingSelector);
+		}
+
 		if (triggerer) {
+			// fix the children bullshit shit
 			
 			triggerer
 				.siblings(`.${resetterClass}`)
@@ -623,12 +632,18 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			if (
-				triggerer
-					.closest(`.${prefix}-group-toggle-multiple`)
-						.length
-				&& triggerer
-					.siblings('.active')
-						.length > 0
+				(
+					triggerer
+						.closest(`.${prefix}-group-toggle-multiple`)
+							.length
+					&& triggerer
+						.siblings('.active')
+							.length > 0
+				)
+				|| triggerer
+				.closest(`.${prefix}-group-toggle-allow-no-active`)
+					.length
+					
 			) {
 				triggerer.toggleClass('active');
 
@@ -676,8 +691,8 @@ window.jQuery && jQuery.noConflict();
 			const selector = `.${toggleMode}`,
 				toggledClass = `.${toggleMode}`
 						.replace('-open', '')
-						.replace('-close', '')
-						|| null;
+						.replace('-close', ''),
+			classToSearch = toggledClass ? toggledClass.replace('.', '') : null;
 
 			let toReturn = null;
 
@@ -686,10 +701,18 @@ window.jQuery && jQuery.noConflict();
 					triggerer.attr('href')
 					&& triggerer.attr('href') !== ''
 					&& triggerer.attr('href') !== '#'
+					&& $(triggerer.attr('href'))
+						.hasClass(classToSearch)
 				) {
+					// console.warn('toggle found by href');
 					toReturn = $(triggerer.attr('href'));
 
-				} else if (triggerer.attr('data-href')) {
+				} else if (
+					triggerer.attr('data-href')
+					&& $(triggerer.attr('data-href'))
+						.hasClass(classToSearch)
+				) {
+					// console.warn('toggle found by data-href');
 					toReturn = $(triggerer.attr('data-href'));
 
 				} else if (
@@ -698,6 +721,7 @@ window.jQuery && jQuery.noConflict();
 						.parent()
 						.closest(`[data-toggle="${toggleMode}"]`).length
 				) {
+					// console.warn('toggle searching closest data-toggle');
 					toReturn = _.getTheToggled(
 						triggerer.closest(`[data-toggle="${toggleMode}"]`),
 						toggleMode
@@ -707,6 +731,7 @@ window.jQuery && jQuery.noConflict();
 					toggleMode
 					&& triggerer.parent('.input-group').length
 				) {
+					// console.warn('toggle trigger was in input group');
 					toReturn = _.getTheToggled(
 						triggerer.parent('.input-group'),
 						toggleMode
@@ -716,31 +741,36 @@ window.jQuery && jQuery.noConflict();
 					toggleMode
 					&& triggerer.parent('.btn-group').length
 				) {
+					// console.warn('toggle trigger was in btn group');
 					toReturn = _.getTheToggled(
 						triggerer.parent('.btn-group'),
 						toggleMode
 					);
 
 				} else if (triggerer.next(selector).first().length) {
+					// console.warn('toggle trigger is prev sibling');
 					toReturn = triggerer.next(selector).first();
 
 				} else if (triggerer.siblings(selector).first().length) {
+					// console.warn('toggle trigger anybody whos a sibling');
 					toReturn = triggerer.siblings(selector).first();
 				}
 			} else {
 				if (
 					window.location.hash !== ''
-					&& $(window.location.hash).length > -1
+					&& $(window.location.hash).length
 					&& $(window.location.hash).hasClass(
-						toggledClass.replace('.', '')
+						classToSearch
 					)
 				) {
+					// console.warn('no trigger but found the hash is a matching toggle');
 					toReturn = $(window.location.hash);
 				}
 			}
 
-			if (!toReturn) {
+			if (!toReturn || !toReturn.length) {
 				//look if theres an ancestor it can toggle. last prioroty
+				// console.warn('no trigger so looking for an ancestor');
 				switch (toggleMode) {
 					case 'dropdown':
 					case 'modal':
@@ -752,6 +782,8 @@ window.jQuery && jQuery.noConflict();
 							&& toggleMode
 							&& triggerer.parent().closest(toggledClass).length
 						) {
+							
+							// console.warn('found ancestor');
 							toReturn = triggerer
 								.parent()
 								.closest(toggledClass);
@@ -760,7 +792,11 @@ window.jQuery && jQuery.noConflict();
 				}
 			}
 
-			return toReturn;
+
+			if(toReturn && toReturn.length) {
+				return toReturn;
+			}
+
 		}
 	};
 
@@ -1607,6 +1643,13 @@ window.jQuery && jQuery.noConflict();
 				theUi.input = theUi.wrapper.children(`.${_.uiPrefix('tags')}input`);
 			}
 
+			if(inputTags.attr('placeholder')){
+				theUi.input.attr(
+					'data-placeholder',
+					inputTags.attr('placeholder')
+				);
+			}
+
 			//nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
 			if (inputTags.attr('data-toggle')) {
 				theUi.input.attr(
@@ -1713,7 +1756,7 @@ window.jQuery && jQuery.noConflict();
 		};
 
 		const defaults = {
-			width: 'auto',
+			width: null,
 			callback: null,
 			callbackNameFilter: null,
 			callbackOnKeyup: null,
@@ -2151,9 +2194,12 @@ window.jQuery && jQuery.noConflict();
 
 		const contentWrap = _.getTheToggled(triggerer, subcom);
 
-		frameWork.destroyModal(null, subcom);
+		if(contentWrap || !window.location.hash){
+			frameWork.destroyModal(null, subcom);
+		}
 
 		if (contentWrap && subcom) {
+
 			const arr = {
 				header:
 					(triggerer && triggerer.attr(`data-${subcom}-title`))
@@ -2196,8 +2242,6 @@ window.jQuery && jQuery.noConflict();
 
 			const args = _.parseArgs(arr, defaults);
 
-			// console.log(contentWrap,arr,defaults,args);
-
 			switch (subcom) {
 				case 'modal':
 					args.align = false;
@@ -2206,7 +2250,7 @@ window.jQuery && jQuery.noConflict();
 
 			const id = contentWrap.attr('id') || actualId;
 
-			id !== `#${actualId}` && _.changeHash(id);
+			id !== `${actualId}` && _.changeHash(id);
 
 			$('body').append(() => {
 				let html = '';
@@ -2326,7 +2370,14 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	frameWork.destroyModal = (removeHash, subcom) => {
+		removeHash = removeHash || false;
 		subcom = subcom || 'modal';
+
+		let canRemoveHash = false;
+
+		if (removeHash && frameWork[subcom].current.attr('id')) {
+			canRemoveHash = true;
+		}
 
 		$('body')
 			.children(`.${subcom}-wrapper`)
@@ -2345,10 +2396,8 @@ window.jQuery && jQuery.noConflict();
 		frameWork[subcom].args = false;
 
 		$('body').removeClass('body-no-scroll');
-
-		if (removeHash) {
-			_.changeHash('');
-		}
+	
+		canRemoveHash && _.changeHash('');
 	};
 
 	frameWork.createBoard = (triggerer) => {
@@ -2386,8 +2435,18 @@ window.jQuery && jQuery.noConflict();
 				|| triggerer.attr('data-dropdown-width')
 				|| null;
 
+			
+			const maxHeight =
+				selector.attr('data-dropdown-max-height')
+				|| triggerer.attr('data-dropdown-max-height')
+				|| null;
+
 			if (width) {
 				selector.css('width', width);
+			}
+
+			if (maxHeight) {
+				selector.css('max-height', maxHeight);
 			}
 
 			if (mode == 'toggle' || mode == 'open') {
@@ -2459,7 +2518,7 @@ window.jQuery && jQuery.noConflict();
 							triggerer.removeClass('open');
 							selector.removeClass('open');
 
-							if (args.changeHash) {
+							if (args.changeHash && selector.attr('id')) {
 								_.changeHash('');
 							}
 						}
@@ -2481,7 +2540,7 @@ window.jQuery && jQuery.noConflict();
 						triggerer.addClass('open');
 						selector.addClass('open');
 
-						if (args.changeHash) {
+						if (args.changeHash && selector.attr('id')) {
 							_.changeHash(selector.attr('id'));
 						}
 					}
@@ -2490,8 +2549,8 @@ window.jQuery && jQuery.noConflict();
 					ancGroup.children('.accordion').removeClass('open');
 
 					const probablyToggle = $(
-						`[data-toggle="accordion"][href="#${selector.getAttribute('id')}"],
-						[data-toggle="accordion"][data-href="#${selector.getAttribute('id')}"]`
+						`[data-toggle="accordion"][href="#${selector.attr('id')}"],
+						[data-toggle="accordion"][data-href="#${selector.attr('id')}"]`
 					);
 					probablyToggle
 						.siblings('[data-toggle="accordion"]')
@@ -2737,6 +2796,22 @@ window.jQuery && jQuery.noConflict();
 					);
 
 					triggerer.blur();
+				}
+			}
+		);
+
+		$('body').on(
+			'click',
+			'.input-tags-ui .input-tags-ui-input',
+			(e) => {
+				const triggerer = $(e.target);
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					setTimeout(function() {
+						triggerer.focus();
+					}, 0);
 				}
 			}
 		);
@@ -3018,6 +3093,7 @@ window.jQuery && jQuery.noConflict();
 			'focus',
 			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
 			(e) => {
+				console.log('pocus');
 				const uiTrigger = $(e.target);
 
 				if (frameWork.isDisabled(uiTrigger)) {
@@ -3047,6 +3123,7 @@ window.jQuery && jQuery.noConflict();
 			'blur',
 			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
 			(e) => {
+				console.log('blor');
 				const uiTrigger = $(e.target);
 
 				if (!frameWork.isDisabled(uiTrigger)) {

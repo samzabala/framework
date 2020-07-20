@@ -25,6 +25,42 @@
 	}
 
 
+
+	body {
+		scrollbar-width: thin;
+		scrollbar-color: $brand-color-neutral transparent;
+	}
+
+
+
+	/* width */
+	::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+	
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: transparent; 
+	}
+	
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: $brand-color-neutral;
+		border: 2px solid transparent;
+		background-clip: padding-box;
+		border-radius: 8px;
+	}
+	
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: $brand-color-neutral; 
+		border: 2px solid transparent;
+		background-clip: padding-box;
+		border-radius: 8px;
+	}
+
+
 	*.theme-inverse,
 	.module.theme-inverse,
 	html.theme-inverse, 
@@ -152,4 +188,3 @@
 	a {
 		text-decoration: none;
 	}
-

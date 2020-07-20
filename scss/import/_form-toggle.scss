@@ -87,6 +87,11 @@ $prefix: '.input';
 			display: inline-flex;
 			justify-content: flex-start;
 
+			&%for-form-label {
+
+				flex-basis: auto;
+			}
+
 			&-reverse {
 				flex-direction: row-reverse;
 			}

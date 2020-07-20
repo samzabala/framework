@@ -33,8 +33,16 @@ The color can be customized by adding a background-color property to the tag
 ```html
 <span class="tag" style="background-color:pink;">Custom</span> 
 ```
+## Other sub classes
 
+### `.tag-text`
 
+tag to wrap text within the tag. Adds more wrapping capabilities maxing out characters to some extend and shit
 
+```html
+<span class="tag tag-default">
+	<span class="tag-text">I'm gonna be so long but at least I won't break whatever layout you have that needs my bitch ass to be short and concise</span>
+</span>
+```
 
 [Back to TOC](../../../readme.md)

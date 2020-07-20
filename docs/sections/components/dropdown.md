@@ -171,6 +171,14 @@ Can be applied to either `.dropdown` or `[data-toggle="dropdown"]`
 
 This sets a custom width for the dropdown
 
+### **`[data-dropdown-max-height="['css max-height property']"]`**
+
+Defaults to nothing, or closest positioned element's max-height
+
+Can be applied to either `.dropdown` or `[data-toggle="dropdown"]`
+
+This sets a custom max-height for the dropdown
+
 ## Styling dropdown setup
 
 Note that all descendants of `[data-toggle="dropdown"]` has pointer-events none to allow the toggle to do its thing without being bugged out by its content

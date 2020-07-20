@@ -696,15 +696,16 @@
 			const idToGoTo = id !== '' ? `#${id}` : null;
 
 			if (idToGoTo) {
-				if (history.pushState) {
-					history.pushState(null, null, idToGoTo);
-				} else {
+				// if (history.pushState) {
+				// 	history.pushState(null, null, idToGoTo);
+				// } else {
 					location.hash = idToGoTo;
-				}
+				// }
 
 			} else {
 				const noHashURL = window.location.href.replace(/#.*$/, '');
-				window.history.pushState('', document.title, noHashURL);
+				// window.history.pushState('', document.title, noHashURL);
+				location.hash = '';
 			}
 		}
 	};
@@ -713,6 +714,13 @@
 		prefix = prefix || 'btn';
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
+
+		if(
+			triggerer.closest(siblingSelector)
+			&& !triggerer.classList.contains(prefix)
+		){
+			triggerer = triggerer.closest(siblingSelector);
+		}
 
 		if (triggerer) {
 
@@ -741,13 +749,17 @@
 			}
 
 			if (
-				triggerer
-					.closest(`.${prefix}-group-toggle-multiple`)
-				&& selectorSiblings
-					.filter((butt) => {
-						return butt.classList.contains('active');
-					})
-						.length > 0
+				(
+					triggerer
+						.closest(`.${prefix}-group-toggle-multiple`)
+					&& selectorSiblings
+						.filter((butt) => {
+							return butt.classList.contains('active');
+						})
+							.length > 0
+				)
+				|| triggerer
+					.closest(`.${prefix}-group-toggle-allow-no-active`)
 			) {
 				triggerer.classList.toggle('active');
 
@@ -791,8 +803,8 @@
 			const selector = `.${toggleMode}`,
 				toggledClass = `.${toggleMode}`
 					.replace('-open', '')
-					.replace('-close', '')
-					|| null;
+					.replace('-close', ''),
+				classToSearch = toggledClass ? toggledClass.replace('.', '') : null;
 
 			let toReturn = null;
 
@@ -801,13 +813,31 @@
 					triggerer.hasAttribute('href')
 					&& triggerer.getAttribute('href') !== ''
 					&& triggerer.getAttribute('href') !== '#'
+					&& (
+						document.querySelector(
+							triggerer.getAttribute('href')
+						)
+						&& document.querySelector(
+							triggerer.getAttribute('href')
+						).classList.contains(classToSearch)
+					)
 				) {
+					// console.warn('toggle found by href');
 					toReturn = document.querySelector(triggerer.getAttribute('href'));
 
 				} else if (
 					triggerer.hasAttribute('data-href')
 					&& triggerer.getAttribute('data-href') !== ''
+					&& (
+						document.querySelector(
+							triggerer.getAttribute('data-href')
+						)
+						&& document.querySelector(
+							triggerer.getAttribute('data-href')
+						).classList.contains(classToSearch)
+					)
 				) {
+					// console.warn('toggle found by data-href');
 					toReturn = document.querySelector(triggerer.getAttribute('data-href'));
 
 				} else if (
@@ -816,6 +846,7 @@
 						.parentNode
 						.closest(`[data-toggle="${toggleMode}"]`)
 				) {
+					// console.warn('toggle searching closest data-toggle');
 					toReturn = _.getTheToggled(
 						triggerer.parentNode.closest(`[data-toggle="${toggleMode}"]`),
 						toggleMode
@@ -825,6 +856,7 @@
 					toggleMode
 					&& triggerer.parentNode.classList.contains('input-group')
 				) {
+					// console.warn('toggle trigger was in input group');
 					toReturn = _.getTheToggled(
 						triggerer.parentNode,
 						toggleMode
@@ -834,6 +866,7 @@
 					toggleMode
 					&& triggerer.parentNode.classList.contains('btn-group')
 				) {
+					// console.warn('toggle trigger was in btn group');
 					toReturn = _.getTheToggled(
 						triggerer.parentNode,
 						toggleMode
@@ -843,6 +876,7 @@
 					let possibleSiblings = triggerer.nextElementSibling;
 					while (possibleSiblings) {
 						if (possibleSiblings.matches(selector)) {
+							// console.warn('toggle trigger anybody whos a sibling');
 							return possibleSiblings;
 						}
 						possibleSiblings =
@@ -856,14 +890,16 @@
 					&& document.querySelector(window.location.hash)
 					&& document
 						.querySelector(window.location.hash)
-						.classList.contains(toggledClass.replace('.', ''))
+						.classList.contains(classToSearch)
 				) {
+					// console.warn('no trigger but found the hash is a matching toggle');
 					toReturn = document.querySelector(window.location.hash);
 				}
 			}
 
 			if (!toReturn) {
 				//look if theres an ancestor it can toggle. last prioroty
+				// console.warn('no trigger so looking for an ancestor');
 				switch (toggleMode) {
 					case 'dropdown':
 					case 'modal':
@@ -875,6 +911,7 @@
 							&& toggleMode
 							&& triggerer.parentNode.closest(toggledClass)
 						) {
+							// console.log('found ancestor');
 							toReturn = triggerer.parentNode.closest(
 								toggledClass
 							);
@@ -1753,6 +1790,14 @@
 				theUi.input = theUi.container.querySelector(`.${_.uiPrefix('tags')}input`);
 			}
 
+
+			if(inputTags.hasAttribute('placeholder')){
+				theUi.input.setAttribute(
+					'data-placeholder',
+					inputTags.getAttribute('placeholder')
+				);
+			}
+
 			//nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
 			if (inputTags.hasAttribute('data-toggle')) {
 				theUi.input.setAttribute(
@@ -1868,7 +1913,7 @@
 		};
 
 		const defaults = {
-			width: 'auto',
+			width: null,
 			callback: null,
 			callbackNameFilter: null,
 			callbackOnKeyup: null,
@@ -2305,9 +2350,12 @@
 
 		const contentWrap = _.getTheToggled(triggerer, subcom);
 
-		frameWork.destroyModal(null, subcom);
+		if(contentWrap || !window.location.hash){
+			frameWork.destroyModal(null, subcom);
+		}
 
 		if (contentWrap && subcom) {
+
 			const arr = {
 				header:
 					(triggerer && triggerer.getAttribute(`data-${subcom}-title`))
@@ -2360,7 +2408,7 @@
 
 			const id = contentWrap.getAttribute('id') || actualId;
 
-			id !== `#${actualId}` && _.changeHash(id);
+			id !== `${actualId}` && _.changeHash(id);
 
 			const modal = document.createElement('div');
 			document.querySelector('body').appendChild(modal);
@@ -2470,7 +2518,14 @@
 	};
 
 	frameWork.destroyModal = (removeHash, subcom) => {
+		removeHash = removeHash || false;
 		subcom = subcom || 'modal';
+
+		let canRemoveHash = false;
+
+		if (removeHash && frameWork[subcom].current.hasAttribute('id')) {
+			canRemoveHash = true;
+		}
 
 		const modal = document.querySelector(`.${subcom}-wrapper`);
 		if (modal) {
@@ -2487,10 +2542,8 @@
 		frameWork[subcom].args = false;
 
 		document.body.classList.remove('body-no-scroll');
-
-		if (removeHash) {
-			_.changeHash('');
-		}
+	
+		canRemoveHash && _.changeHash('');
 	};
 
 	frameWork.createBoard = (triggerer) => {
@@ -2531,9 +2584,18 @@
 				selector.getAttribute('data-dropdown-width')
 				|| triggerer.getAttribute('data-dropdown-width')
 				|| null;
+			
+			const maxHeight =
+				selector.getAttribute('data-dropdown-max-height')
+				|| triggerer.getAttribute('data-dropdown-max-height')
+				|| null;
 
 			if (width) {
 				selector.style.width = width;
+			}
+
+			if (maxHeight) {
+				selector.style.maxHeight = maxHeight;
 			}
 
 			if (mode == 'toggle' || mode == 'open') {
@@ -2609,7 +2671,7 @@
 							triggerer.classList.remove('open');
 							selector.classList.remove('open');
 
-							if (args.changeHash) {
+							if (args.changeHash && selector.hasAttribute('id')) {
 								_.changeHash('');
 							}
 						}
@@ -2635,7 +2697,7 @@
 						triggerer.classList.add('open');
 						selector.classList.add('open');
 
-						if (args.changeHash) {
+						if (args.changeHash && selector.hasAttribute('id')) {
 							_.changeHash(selector.getAttribute('id'));
 						}
 					}
@@ -2933,6 +2995,24 @@
 					triggerer.innerHTML += pasted.getData('text');
 
 					triggerer.blur();
+				}
+			}
+		);
+
+
+		frameWork.addEvent(
+			document.body,
+			'click',
+			'.input-tags-ui .input-tags-ui-input',
+			(e) => {
+				const triggerer = e.target;
+
+				e.preventDefault();
+
+				if (!frameWork.isDisabled(triggerer)) {
+					setTimeout(function() {
+						triggerer.focus();
+					}, 0);
 				}
 			}
 		);

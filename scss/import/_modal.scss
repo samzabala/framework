@@ -14,10 +14,14 @@ $prefix: '.modal';
 		&-scroller {
 			overflow-y: scroll;
 
+			&-no-scrollbar {
+				scrollbar-width: none;
 
-			&::-webkit-scrollbar {
-				display:none;
+				&::-webkit-scrollbar {
+					display:none;
+				}
 			}
+
 		}
 
 		&-wrapper { 
@@ -40,6 +44,7 @@ $prefix: '.modal';
 		&-wrapper {
 			@extend %for-modal-wrapper;
 			@extend %for-modal-scroller;
+			@extend %for-modal-scroller-no-scrollbar;
 			z-index: 99999;
 
 			padding: $modal-gutter;
@@ -80,10 +85,10 @@ $prefix: '.modal';
 				}
 
 				
-			@include br(#{$mobile-br-max}-max) {
-				right: $modal-close-offset-mobile;
-				top: $modal-close-offset-mobile;
-			}
+				@include br(#{$mobile-br-max}-max) {
+					right: $modal-close-offset-mobile;
+					top: $modal-close-offset-mobile;
+				}
 			}
 			&-overlay {
 				@extend %for-modal-overlay;

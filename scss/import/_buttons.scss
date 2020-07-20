@@ -177,6 +177,10 @@ $prefix: '.btn';
 				@extend %for-btn-in-nav;
 			}
 
+			#{$prefix}-no-radius & {
+				@extend %for-no-radius !optional;
+			}
+
 			#{$prefix}-group & {
 				@extend %for-btn-in-group;
 			}
@@ -230,7 +234,6 @@ $prefix: '.btn';
 		
 
 		& {
-			@extend %for-anchor-reset-hover !optional;
 			@extend %for-btn-global-radius;
 			box-shadow: $btn-box-shadow;
 			max-width:100%;
@@ -239,6 +242,7 @@ $prefix: '.btn';
 			-webkit-appearance:none;
 			appearance:none;
 			vertical-align: middle;
+			@extend %for-anchor-reset-hover !optional;
 	
 			&:hover,
 			&:focus,

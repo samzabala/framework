@@ -22,6 +22,12 @@ $calculated-tag-gutter-x: $tag-gutter-x;
 }
 
 
+$calculated-tag-margin-y: $tag-margin-y;
+@if internal-is-convertable($tag-margin-y,$tag-font-size) {
+    $calculated-tag-margin-y: $calculated-tag-margin-y
+}
+
+
 $prefix: '.tag';
 #{$prefix} {
 	@extend %for-anchor-reset-hover !optional;
@@ -38,9 +44,20 @@ $prefix: '.tag';
 	padding-left: $calculated-tag-gutter-x;
 	padding-right: $calculated-tag-gutter-x;
 	border-radius: $tag-border-radius;
-	display:inline-block;
+	margin-top:$calculated-tag-margin-y;
+	margin-bottom:$calculated-tag-margin-y;
+	display:inline-flex;
+	align-items: center;
 	vertical-align:middle;
+	a {
+		@extend %for-anchor-reset-hover;
+		color:inherit;
+	}
+	&-text  {
+		max-width: 10em;
+		@extend %for-text-ellipsis;
 
+	}
 
 	&,
 	&:hover,

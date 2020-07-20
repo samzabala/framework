@@ -110,7 +110,7 @@ $prefix: '.nav';
 		#{$prefix}-list li {
 
 			> a,
-			> [data-toggle=dropdown] {
+			> [data-toggle] {
 				display:block;
 			}
 		}
@@ -133,7 +133,7 @@ $prefix: '.nav';
 		
 
 		> a,
-		> [data-toggle=dropdown] {
+		> [data-toggle] {
 			
 			padding-top: calc( ( #{$calculated-nav-item-height} - ( #{ $calculated-nav-single-line })) * .5 );
 			padding-bottom: calc( ( #{$calculated-nav-item-height} - ( #{ $calculated-nav-single-line })) * .5 );
@@ -142,7 +142,7 @@ $prefix: '.nav';
 
 		&:hover{
 			> a,
-			> [data-toggle=dropdown] {
+			> [data-toggle] {
 				color: $nav-color-hover;
 			}
 		}
@@ -167,7 +167,7 @@ $prefix: '.nav';
 	&-list > li {
 
 		> a,
-		> [data-toggle=dropdown] {
+		> [data-toggle] {
 			@extend %for-anchor-reset-hover !optional;
 			@include type-set((
 				color:inherit,
@@ -220,7 +220,7 @@ $prefix: '.nav';
 		&.open {
 			
 			> a,
-			> [data-toggle=dropdown] {
+			> [data-toggle] {
 				
 				&:after {
 					height: $nav-current-size;
@@ -259,7 +259,7 @@ $prefix: '.nav';
 		&-list > #{$prefix}-item,
 		&-list > li {
 			> a,
-			> [data-toggle=dropdown] {
+			> [data-toggle] {
 				display:block;
 			}
 		}

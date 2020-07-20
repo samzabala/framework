@@ -682,6 +682,19 @@ Hide on breakpoint or device
 *   **`.hide-mobile`**
 *   **`.hide-nonmobile`**
 
+
+
+Hide on certain ineractions of parent
+
+*   **`.hide-hover`** (hide when on hover)
+*   **`.hide-not-hover`** (hide when not on hover)
+*   **`.hide-focus`** (hide when on focus)
+*   **`.hide-not-focus`** (hide when not on focus)
+*   **`.hide-active`** (hide when on active)
+*   **`.hide-not-active`** (hide when not on active)
+*   **`.hide-toggle`** (hide when classed as `open` or `active`)
+*   **`.hide-not-toggle`** (hide when not classed as `open` or `active`)
+
 ## Only
 
 Show only on breakpoint or device
@@ -692,6 +705,17 @@ Show only on breakpoint or device
 *   **`.only-lg`**
 *   **`.only-mobile`**
 *   **`.only-nonmobile`**
+
+Show on certain ineractions of parent
+
+*   **`.only-hover`** (only when on hover)
+*   **`.only-not-hover`** (only when not on hover)
+*   **`.only-focus`** (only when on focus)
+*   **`.only-not-focus`** (only when not on focus)
+*   **`.only-active`** (only when on active)
+*   **`.only-not-active`** (only when not on active)
+*   **`.only-toggle`** (only when classed as `open` or `active`)
+*   **`.only-not-toggle`** (only when not classed as `open` or `active`)
 
 # Screen reader only
 

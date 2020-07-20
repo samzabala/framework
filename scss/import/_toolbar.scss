@@ -16,6 +16,11 @@ $prefix: '.toolbar';
 	box-shadow: $toolbar-box-shadow;
 	background-color: $toolbar-background-color;
 	border: $toolbar-border-width solid $toolbar-border-color;
+			
+	&,
+	& a {
+		@extend %for-anchor-reset-hover !optional;
+	}
 	
 	&#{$prefix}-small {
 		border-radius: $toolbar-border-radius-small;
@@ -33,8 +38,8 @@ $prefix: '.toolbar';
 	&#{$prefix}-horizontal {
 		flex-direction: row;
 		min-height: $toolbar-cross-min-size;
-		padding-top: $toolbar-cross-gutter;
-		padding-bottom: $toolbar-cross-gutter;
+		padding-top: 0;
+		padding-bottom: 0;
 		padding-right: $toolbar-main-gutter;
 		padding-left: $toolbar-main-gutter;
 	
@@ -57,8 +62,8 @@ $prefix: '.toolbar';
 		min-width: $toolbar-cross-min-size;
 		padding-top: $toolbar-main-gutter;
 		padding-bottom: $toolbar-main-gutter;
-		padding-right: $toolbar-cross-gutter;
-		padding-left: $toolbar-cross-gutter;
+		padding-right: 0;
+		padding-left: 0;
 	
 		&#{$prefix}-small {
 			min-width:$toolbar-cross-min-size-small;
@@ -88,8 +93,21 @@ $prefix: '.toolbar';
 
 	&-tile {
 		flex: 0 0 auto;
+		display:flex;
+		align-self:center;
+		justify-content:center;
 
 		#{$prefix}-horizontal & {
+			// min-width: $toolbar-cross-min-size;
+
+			// @at-root #{$prefix}-small#{&} {
+			// 	min-width: $toolbar-cross-min-size-small;
+			// }
+
+			// @at-root #{$prefix}-large#{&} {
+			// 	min-width: $toolbar-cross-min-size-large;
+			// }
+
 			&:nth-child(n+2) {
 				margin-left: $toolbar-tile-gutter;
 			}
@@ -99,6 +117,16 @@ $prefix: '.toolbar';
 		#{$prefix}-vertical & {
 			writing-mode: vertical-rl;
 			text-orientation: mixed;
+			// min-height: $toolbar-cross-min-size;
+
+			// @at-root #{$prefix}-small#{&} {
+			// 	min-height: $toolbar-cross-min-size-small;
+			// }
+
+			// @at-root #{$prefix}-large#{&} {
+			// 	min-height: $toolbar-cross-min-size-large;
+			// }
+
 			&:nth-child(n+2) {
 				margin-top: $toolbar-tile-gutter;
 			}

@@ -204,10 +204,12 @@ this toggles `.active` styles on butt butts
 
 Allows multiple active butt butts.
 
-If you want one of the butts reset the active class, add **`.btn-group-toggle-reset`**
+If you want one of the butts reset the active class, add the class **`.btn-group-toggle-reset`** to it
+
+If you want to allow the group to have no active bitches add  **`.btn-group-toggle-allow-no-active`** to the group
 
 ```html
-<div class="btn-group btn-group-horizontal btn-group-toggle btn-group-toggle-multiple btn-group-responsive">
+<div class="btn-group btn-group-horizontal btn-group-toggle btn-group-toggle-multiple  btn-group-toggle-allow-no-active btn-group-responsive">
 	<button type="button" class="active btn btn-default btn-group-toggle-reset"> All</button>
 	<button type="button" class=" btn btn-default"> butt</button>
 	<button type="button" class="btn btn-default">  Butt </button>
@@ -215,6 +217,7 @@ If you want one of the butts reset the active class, add **`.btn-group-toggle-re
 	<button type="button" class="btn btn-default"> Butt</button>
 </div>
 ```
+
 ![](../../images/btn-group-toggle-multiple-and-resetter.gif)
 
 # Button and Button Group Helpers

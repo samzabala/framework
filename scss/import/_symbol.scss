@@ -180,14 +180,29 @@ $prefix: '.symbol';
 					repeating-linear-gradient(
 						90deg,
 						currentColor 0,
-						currentColor em(2px/$calculated-symbol-basis),
-						transparent em(2px/$calculated-symbol-basis),
-						transparent em(4px/$calculated-symbol-basis),
+						currentColor em(1px/$calculated-symbol-basis),
+						transparent em(1px/$calculated-symbol-basis),
+						transparent em(3px/$calculated-symbol-basis),
+						currentColor em(3px/$calculated-symbol-basis),
 						currentColor em(4px/$calculated-symbol-basis),
-						currentColor em(6px/$calculated-symbol-basis)
-					)
+						transparent em(4px/$calculated-symbol-basis),
+						transparent em(6px/$calculated-symbol-basis),
+						currentColor em(6px/$calculated-symbol-basis),
+						currentColor em(7px/$calculated-symbol-basis),
+					),
+
+					// currentColor 0,
+					// currentColor em(1px/$calculated-symbol-basis),
+					// transparent em(1px/$calculated-symbol-basis),
+					// transparent em(2.5px/$calculated-symbol-basis),
+					// currentColor em(2.5px/$calculated-symbol-basis),
+					// currentColor em(3.5px/$calculated-symbol-basis),
+					// transparent em(3.5px/$calculated-symbol-basis),
+					// transparent em(5px/$calculated-symbol-basis),
+					// currentColor em(5px/$calculated-symbol-basis),
+					// currentColor em(6px/$calculated-symbol-basis),
 					;
-				background-size: em(6px/$calculated-symbol-basis) .5em;
+				background-size: em(7px/$calculated-symbol-basis) .5em;
 				background-position: center center;
 				background-repeat: no-repeat;
 
@@ -211,8 +226,8 @@ $prefix: '.symbol';
 			&:after {
 				@extend %for-valid-symbol-pseudo;
 				@extend %for-valid-symbol-pseudo-filled;
-				width: .875em;
-				height: .875em;
+				@extend %for-valid-symbol-pseudo-full-width;
+				@extend %for-valid-symbol-pseudo-full-height;
 			}
 		}
 	}
@@ -245,8 +260,8 @@ $prefix: '.symbol';
 			&:before,&:after {
 				@extend %for-valid-symbol-pseudo;
 				@extend %for-valid-symbol-pseudo-filled;
+				@extend %for-valid-symbol-pseudo-full-height;
 				width: .3125em;
-				height: .875em
 			}
 
 			&:before {
@@ -424,8 +439,7 @@ $prefix: '.symbol';
 		.active > &-toggle,
 		.open > &-toggle  {
 			@extend %for-valid-symbol;
-			width: .5em;
-			transform: rotate(45deg);
+			// transform: rotate(45deg);
 
 			// @extend %for-valid-symbol-no-before;
 			// &:after {
@@ -440,22 +454,23 @@ $prefix: '.symbol';
 				@extend %for-valid-symbol-pseudo;
 				@extend %for-valid-symbol-pseudo-border-radius;
 				@extend %for-valid-symbol-pseudo-filled;
-				left: auto;
 				top: auto;
-				bottom: 0em;
-				transform-origin: 50% 96%;
+				left: .25em;
+				right: auto;
+				bottom: .125em;
+				transform-origin: 42% 88%;
 			}
 
 			&:before {
-				@extend %for-valid-symbol-pseudo-horizontal;
-				width: .5em;
-				// transform: rotate(-45deg);
+				@extend %for-valid-symbol-pseudo-vertical;
+				height: .5em;
+				transform: rotate(-45deg);
 			}
 
 			&:after {
 				@extend %for-valid-symbol-pseudo-vertical;
 				height: 1em;
-				// transform: rotate(45deg);
+				transform: rotate(45deg);
 			}
 		}
 	}
@@ -835,7 +850,6 @@ $prefix: '.symbol';
 		&-down {
 			@extend %for-valid-symbol;
 			@extend %for-valid-symbol-no-before;
-			height:.625em;
 
 			&:after {
 
@@ -852,6 +866,7 @@ $prefix: '.symbol';
 				)){
 					display:inline-block;
 					vertical-align:middle;
+					height:.625em;
 				};
 			}
 		}

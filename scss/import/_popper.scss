@@ -25,6 +25,7 @@ $prefix: '.tooltip';
 	pointer-events:none;
 	max-width: $tooltip-max-width;
 	display: none;
+	z-index:99999;
 
 	&#{&}-allow-interaction {
 		pointer-events: auto;
@@ -149,6 +150,7 @@ $prefix: '.dropdown';
 	color: $nav-color;
 	transform-origin: center center;
 	transform-style: preserve-3d;
+	overflow-y:auto;
 
 	.theme-inverse & {
 		color: $nav-color-inverse;
@@ -156,11 +158,6 @@ $prefix: '.dropdown';
 	
 	&.open {
 		display: block;
-	}
-
-	.list-group {
-		border-radius: $popper-border-radius;
-		overflow:hidden;
 	}
 
 	&,ul,li {
@@ -221,6 +218,12 @@ $prefix: '.dropdown';
 			top: 50%;
 			transform: translateY(-50%);
 		}
+	}
+
+	&#{$prefix}-static {
+		position:static;
+		box-shadow:none;
+		transform: none;
 	}
 
 	li {

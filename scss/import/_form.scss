@@ -155,9 +155,13 @@ $prefix: '.input';
 				case: $input-label-text-transform,
 			));
 			padding-right: 1rem;
-			display:inline-block;
+			margin-top:0;
+			margin-bottom:0;
 			padding-top: calc( (#{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
 			padding-bottom: calc( ( #{ $calculated-input-height } - (#{$calculated-input-label-single-line}) ) * .5 );
+			// display: inline-flex;
+			// align-items:center;
+			display:inline-block;
 	
 			.theme-inverse & {
 				color:$input-label-color-inverse;
@@ -321,6 +325,7 @@ $prefix: '.input';
 	@at-root %for-form-input {
 
 		& {
+			@extend %for-anchor-reset-hover;
 			font: inherit;
 			color:inherit;
 			// vertical-align: middle;
@@ -435,7 +440,6 @@ $prefix: '.input';
 			max-width:100%;
 			@include type-set((
 				size: #{$calculated-input-font-size},
-				color:$input-color,
 				leading: #{ $calculated-input-line-height } ,
 				weight: $input-font-weight,
 				style: $input-font-style,
@@ -453,9 +457,26 @@ $prefix: '.input';
 			padding-bottom: $calculated-value-input-paddiny-y;
 			box-shadow: $input-box-shadow;
 
+			&,
+			&:hover,
+			&:focus,
+			&.focus,
+			&:active,
+			&.active {
+				color:$input-color;
+			}
+
 			.theme-inverse & {
-				color:$input-color-inverse;
 				background-color: $input-background-inverse;
+
+				&,
+				&:hover,
+				&:focus,
+				&.focus,
+				&:active,
+				&.active {
+						color:$input-color-inverse;
+				}
 			}
 
 
@@ -583,6 +604,7 @@ $prefix: '.input';
 			}
 			&-height {
 				height: auto;
+				resize: both;
 				min-height: $calculated-input-height * $input-height-multiple-factor;
 	
 				&-large {
@@ -689,6 +711,10 @@ $prefix: '.input';
 				@extend %for-form-global-in-nav-custom;
 				padding-top: $calculated-value-input-paddiny-y-nav !important;
 				padding-bottom: $calculated-value-input-paddiny-y-nav !important;
+			}
+
+			#{$prefix}-no-radius & {
+				@extend %for-no-radius !optional;
 			}
 	
 			#{$prefix}-group & {
@@ -895,8 +921,10 @@ $prefix: '.input';
 			display:flex;
 			width:100%;
 
-			> #{$prefix},
-			> .btn:not(.btn-symbol) {
+			> #{$prefix}
+			// ,
+			// > .btn:not(.btn-symbol)
+			{
 				flex: 1 1;
 			}
 
@@ -1128,7 +1156,14 @@ $prefix: '.input';
 		@at-root %for-form-input-color-#{$tag} {
 			& {
 		
-				color: $color;
+				&,
+				&:hover,
+				&:focus,
+				&.focus,
+				&:active,
+				&.active {
+					color:$color;
+				}
 				border-color: $color;
 				
 				@if type-of($color) == color && $color != transparent {
@@ -1152,11 +1187,11 @@ $prefix: '.input';
 //ui generated shit
 
 .fw-ui {
-	a {
+	&,
+	& a {
 		@extend %for-anchor-reset-hover !optional;
 	}
 }
-
 
 .special-form,
 fieldset {

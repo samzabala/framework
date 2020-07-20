@@ -34,7 +34,7 @@ $prefix: '.alert';
 		float:right;
 		color:inherit;
 		opacity:.8;
-		margin-left:.5em;
+		margin-left:1em;
 		transition: $transition-duration-short opacity $transition-timing;
 
 		&:hover {
@@ -75,6 +75,14 @@ $prefix: '.alert';
 	&-content {
 		padding-top: $alert-gutter-y;
 		padding-bottom: $alert-gutter-y;
+
+
+		resize: none;
+		max-width: calc(100% + 20px);
+		width: auto;
+		-webkit-appearance: none;
+		display: block;
+		outline: none;
 
 		@at-root #{$prefix}, & {
 			padding-top: $alert-gutter-y;
@@ -194,6 +202,7 @@ $prefix: '.alert';
 		));
 		margin: 0;
 		float:left;
+		max-width: 80%;
 	}
 
 

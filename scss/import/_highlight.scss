@@ -17,13 +17,14 @@ $calculated-highlight-margin-x: $highlight-margin-x;
 
 $prefix: '.highlight';
 #{$prefix} {
-	@extend %for-anchor-reset-hover !optional;
+	// @extend %for-anchor-reset-hover !optional;
 	@include type-set((
 		size: inherit,
 		leading: inherit,
 		weight: $highlight-font-weight,
 		style: $highlight-font-style,
 		case: $highlight-text-transform,
+		color:inherit
 	));
 	padding-top: calc(  (  (#{$calculated-highlight-height} - (#{ $calculated-body-single-line }) ) * .5 ));
 	padding-bottom: calc(  (  (#{$calculated-highlight-height} - (#{ $calculated-body-single-line }) ) * .5 ));
