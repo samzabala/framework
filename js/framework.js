@@ -2492,8 +2492,6 @@
 				modal.querySelector(`.${subcom}-popup-content`)
 			);
 
-			document.body.classList.add('body-no-scroll');
-
 			if (args.maxWidth) {
 				//all
 				modal.querySelector(`.${subcom}-popup`).style.maxWidth =
@@ -2511,6 +2509,7 @@
 			}
 
 			modal.classList.add('active');
+			document.body.classList.add('body-no-scroll');
 
 			frameWork[subcom].current = contentWrap;
 			frameWork[subcom].args = args;
@@ -2520,6 +2519,7 @@
 	frameWork.destroyModal = (removeHash, subcom) => {
 		removeHash = removeHash || false;
 		subcom = subcom || 'modal';
+
 
 		let canRemoveHash = false;
 
@@ -2541,7 +2541,16 @@
 		frameWork[subcom].current = false;
 		frameWork[subcom].args = false;
 
-		document.body.classList.remove('body-no-scroll');
+
+		const validSubcoms = ['modal','board']; 
+		let removeBodClass = true;
+		validSubcoms.forEach((sc)=> {
+			if( document.getElementById(`${frameWork.settings.prefix}-${sc}`) && removeBodClass == true ){
+				removeBodClass = false;
+			}
+		})
+
+		removeBodClass && document.body.classList.remove('body-no-scroll');
 	
 		canRemoveHash && _.changeHash('');
 	};

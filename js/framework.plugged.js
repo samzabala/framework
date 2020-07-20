@@ -2343,8 +2343,6 @@ window.jQuery && jQuery.noConflict();
 						.first()
 				);
 
-			$('body').addClass('body-no-scroll');
-
 			if (args.maxWidth) {
 				//all
 				modal
@@ -2363,6 +2361,7 @@ window.jQuery && jQuery.noConflict();
 
 			modal.fadeIn();
 			modal.addClass('active');
+			$('body').addClass('body-no-scroll');
 
 			frameWork[subcom].current = contentWrap;
 			frameWork[subcom].args = args;
@@ -2395,7 +2394,15 @@ window.jQuery && jQuery.noConflict();
 		frameWork[subcom].current = false;
 		frameWork[subcom].args = false;
 
-		$('body').removeClass('body-no-scroll');
+		const validSubcoms = ['modal','board']; 
+		let removeBodClass = true;
+
+		validSubcoms.forEach((sc)=> {
+			if( $(`#${frameWork.settings.prefix}-${sc}`).length && removeBodClass == true ){
+				removeBodClass = false;
+			}
+		})
+		removeBodClass && $('body').removeClass('body-no-scroll');
 	
 		canRemoveHash && _.changeHash('');
 	};
