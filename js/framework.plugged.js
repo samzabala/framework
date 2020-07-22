@@ -588,15 +588,17 @@ window.jQuery && jQuery.noConflict();
 			const idToGoTo = id !== '' ? `#${id}` : null;
 
 			if (idToGoTo) {
-				// if (history.pushState) {
-				// 	history.pushState(null, null, idToGoTo);
-				// } else {
+				if (history.pushState) {
+					history.pushState(null, null, idToGoTo);
+				} else {
 					location.hash = idToGoTo;
-				// }
+				}
 
 			} else {
 				const noHashURL = window.location.href.replace(/#.*$/, '');
-				// window.history.pushState('', document.title, noHashURL);
+				if (history.pushState) {
+					window.history.pushState('', document.title, noHashURL);
+				}
 				location.hash = '';
 			}
 		}
@@ -1839,7 +1841,7 @@ window.jQuery && jQuery.noConflict();
 			//ATODO UPDATE SETUP HERE
 			//update fake hoes
 			if (args.callback) {
-				_.runFn = args.callback;
+				_.runFn(args.callback);
 			}
 		}
 	};
@@ -2202,6 +2204,8 @@ window.jQuery && jQuery.noConflict();
 
 		if (contentWrap && subcom) {
 
+			console.log(triggerer,triggerer && triggerer.attr(`data-${subcom}-resize`),`data-${subcom}-width`)
+
 			const arr = {
 				resize:
 					(triggerer && triggerer.attr(`data-${subcom}-resize`))
@@ -2245,13 +2249,15 @@ window.jQuery && jQuery.noConflict();
 				width: null,
 				callback: null,
 				classes: '',
-				closeClasses: null,
+				closeClasses: '',
 				align: 'left',
 			};
 
 			const args = _.parseArgs(arr, defaults);
 			
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
+
+			console.log(args,arr,defaults);
 
 
 			switch (subcom) {
@@ -2380,7 +2386,7 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			if (args.callback) {
-				_.runFn = args.callback;
+				_.runFn(args.callback);
 			}
 
 			frameWork[subcom].current = contentWrap;
@@ -3386,6 +3392,8 @@ window.jQuery && jQuery.noConflict();
 
 				const triggerer = $(e.target);
 
+				console.log(e.target)
+
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
@@ -3622,7 +3630,7 @@ window.jQuery && jQuery.noConflict();
 		});
 
 		let scrollTimerInternal;
-		$(window).on('resize', () => {
+		$(window).on('scroll', () => {
 			clearTimeout(scrollTimerInternal);
 
 			scrollTimerInternal = setTimeout(() => {

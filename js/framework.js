@@ -698,15 +698,17 @@
 			const idToGoTo = id !== '' ? `#${id}` : null;
 
 			if (idToGoTo) {
-				// if (history.pushState) {
-				// 	history.pushState(null, null, idToGoTo);
-				// } else {
+				if (history.pushState) {
+					history.pushState(null, null, idToGoTo);
+				} else {
 					location.hash = idToGoTo;
-				// }
+				}
 
 			} else {
 				const noHashURL = window.location.href.replace(/#.*$/, '');
-				// window.history.pushState('', document.title, noHashURL);
+				if (history.pushState) {
+					window.history.pushState('', document.title, noHashURL);
+				}
 				location.hash = '';
 			}
 		}
@@ -1998,7 +2000,7 @@
 			//ATODO UPDATE SETUP HERE
 			//update fake hoes
 			if (args.callback) {
-				_.runFn = args.callback;
+				_.runFn(args.callback);
 			}
 		}
 	};
@@ -2403,7 +2405,7 @@
 				width: null,
 				callback: null,
 				classes: '',
-				closeClasses: null,
+				closeClasses: '',
 				align: 'left',
 			};
 
@@ -2528,9 +2530,9 @@
 			if (args.width) {
 				frameWork.resizeModal(subcom,args.width,modal,args);
 			}
-
+			
 			if (args.callback) {
-				_.runFn = args.callback;
+				_.runFn(args.callback);
 			}
 
 			frameWork[subcom].current = contentWrap;
