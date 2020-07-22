@@ -2203,6 +2203,9 @@ window.jQuery && jQuery.noConflict();
 		if (contentWrap && subcom) {
 
 			const arr = {
+				resize:
+					(triggerer && triggerer.attr(`data-${subcom}-resize`))
+					|| contentWrap.attr(`data-${subcom}-resize`),
 				changeHash:
 					(triggerer && triggerer.attr(`data-${subcom}-change-hash`))
 					|| contentWrap.attr(`data-${subcom}-change-hash`),
@@ -2215,9 +2218,9 @@ window.jQuery && jQuery.noConflict();
 				disableOverlay:
 					(triggerer && triggerer.attr(`data-${subcom}-disable-overlay`))
 					|| 	contentWrap.attr(`data-${subcom}-disable-overlay`),
-				maxWidth:
-					(triggerer && triggerer.attr(`data-${subcom}-max-width`))
-					|| contentWrap.attr(`data-${subcom}-max-width`),
+				width:
+					(triggerer && triggerer.attr(`data-${subcom}-width`))
+					|| contentWrap.attr(`data-${subcom}-width`),
 				callback:
 					(triggerer && triggerer.attr(`data-${subcom}-callback`))
 					|| contentWrap.attr(`data-${subcom}-callback`),
@@ -2233,14 +2236,16 @@ window.jQuery && jQuery.noConflict();
 			};
 
 			const defaults = {
+				resize: false,
+				resizeClasses: null,
 				changeHash: true,
 				header: '',
 				close: true,
 				disableOverlay: true,
-				maxWidth: null,
+				width: null,
 				callback: null,
 				classes: '',
-				closeClasses: '',
+				closeClasses: null,
 				align: 'left',
 			};
 
@@ -2252,6 +2257,8 @@ window.jQuery && jQuery.noConflict();
 			switch (subcom) {
 				case 'modal':
 					args.align = false;
+					args.resize = false;
+					args.resizeClasses = null;
 					break;
 			}
 
@@ -2281,19 +2288,37 @@ window.jQuery && jQuery.noConflict();
 
 					switch (subcom) {
 						case 'board':
-							if (args.close !== false) {
-								html += `<div class="${subcom}-close-wrapper">
-									<a href="#"
+							html += `<div class="${subcom}-button-wrapper">`;
+								if (args.close !== false) {
+									html += `<a href="#"
 										class="
-											${subcom}-close
+											${subcom}-close ${subcom}-button
 											${
 												args.closeClasses
 												? args.closeClasses
-												: `${subcom}-close-default`}"
+												: `${subcom}-button-default`}"
 										data-toggle="${subcom}-close"
 									>
-									<i class="symbol symbol-close "></i></a></div>`;
-							}
+										<i class="symbol symbol-close "></i>
+									</a>`;
+								}
+
+								if (args.resize !== false && args.width) {
+									html += `<a
+										class="
+											${subcom}-resize ${subcom}-button
+											${
+												args.resizeClasses
+												? args.resizeClasses
+												: `${subcom}-button-default`}"
+										data-toggle="${subcom}-resize"
+									>
+										<i class="symbol symbol-arrow-tail-left "></i>
+										<i class="symbol symbol-arrow-tail-right "></i>
+									</a>`;
+								}
+							html += `</div>`;
+								
 
 							html += `<div class="${subcom}-popup">`;
 
@@ -2350,36 +2375,75 @@ window.jQuery && jQuery.noConflict();
 						.first()
 				);
 
-			if (args.maxWidth) {
-				//all
-				modal
-					.find(`.${subcom}-popup`)
-					.css('max-width', args.maxWidth);
-
-				//bboard
-				modal
-					.find(`.${subcom}-close-wrapper`)
-					.css('max-width', args.maxWidth);
+			if (args.width) {
+				frameWork.resizeModal(subcom,args.width,modal,args);
 			}
 
 			if (args.callback) {
 				_.runFn = args.callback;
 			}
 
+			frameWork[subcom].current = contentWrap;
+			frameWork[subcom].args = args;
+
 			modal.fadeIn();
 			modal.addClass('active');
 			$('body').addClass('body-no-scroll');
 
-			frameWork[subcom].current = contentWrap;
-			frameWork[subcom].args = args;
+			frameWork.checkOnModal(subcom);
 		}
 	};
+
+
+	frameWork.checkOnModal = (subcom)=>{
+
+		subcom = subcom || 'modal';
+
+
+		const args = frameWork[subcom].args || {};
+		const modal = $(`#${frameWork.settings.prefix}-${subcom}`);
+
+		if(modal.length) {
+
+			// buttons
+				// resize
+					const currentWidth = modal
+						.find(`.${subcom}-popup`)[0].clientWidth;
+
+					const resizeBtn = modal
+						.find(`*[data-toggle="${subcom}-resize"]`);
+
+					if(resizeBtn.length && currentWidth < parseInt(args.width)){
+						resizeBtn.addClass('disabled');
+					}else{
+						resizeBtn.removeClass('disabled');
+					}
+		}
+	}
+	_.fns_on_resize.push(frameWork.checkOnModal);
+
+	frameWork.resizeModal = (subcom,width,modal,args) => {
+		subcom = subcom || 'modal';
+		modal = modal || $(`#${frameWork.settings.prefix}-${subcom}`);
+		args = args || frameWork[subcom].args || {};
+		width = width || args.width || null;
+
+		if(modal.length && parseInt(width) >= parseInt(args.width)){
+			//all
+			modal
+				.find(`.${subcom}-popup`)
+				.css('width', width);
+
+			//bboard
+			modal
+				.find(`.${subcom}-button-wrapper`)
+				.css('width', width);
+		}
+	}
 
 	frameWork.destroyModal = (removeHash, subcom) => {
 		removeHash = removeHash || false;
 		subcom = subcom || 'modal';
-
-		
 
 		let canRemoveHash = false;
 
@@ -2422,6 +2486,15 @@ window.jQuery && jQuery.noConflict();
 	frameWork.createBoard = (triggerer) => {
 		frameWork.createModal(triggerer, 'board');
 	};
+	
+	frameWork.resizeBoard = (width,modal,args) => {
+		frameWork.resizeModal('board',width,modal,args);
+	};
+	
+	frameWork.checkOnBoard = () => {
+		frameWork.checkOnModal('board');
+	};
+	_.fns_on_resize.push(frameWork.checkOnBoard);
 
 	frameWork.destroyBoard = (removeHash) => {
 		frameWork.destroyModal(removeHash, 'board');
@@ -3112,7 +3185,6 @@ window.jQuery && jQuery.noConflict();
 			'focus',
 			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
 			(e) => {
-				console.log('pocus');
 				const uiTrigger = $(e.target);
 
 				if (frameWork.isDisabled(uiTrigger)) {
@@ -3142,7 +3214,6 @@ window.jQuery && jQuery.noConflict();
 			'blur',
 			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
 			(e) => {
-				console.log('blor');
 				const uiTrigger = $(e.target);
 
 				if (!frameWork.isDisabled(uiTrigger)) {
@@ -3325,7 +3396,8 @@ window.jQuery && jQuery.noConflict();
 
 		$('body').on(
 			'click',
-			'*[data-toggle="modal-close"]', (e) => {
+			'*[data-toggle="modal-close"]',
+			(e) => {
 
 			const triggerer = $(e.target);
 
@@ -3364,6 +3436,95 @@ window.jQuery && jQuery.noConflict();
 				}
 			}
 		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="board-resize"]',
+			(e) => {
+				e.preventDefault();
+			}
+		);
+
+					
+			const startBoardResize = (e)=>{
+
+				$('body').addClass('body-on-drag');
+
+				const widthBasis = 
+					e.clientX
+					|| (e.touches && e.touches[0].clientX )
+					|| (
+						e.originalEvent.touches
+						&& e.originalEvent.touches[0].clientX
+					);
+				let newWidth;
+
+				if(frameWork.board.args.align == 'right'){
+					newWidth = widthBasis
+				}else if(frameWork.board.args.align == 'left'){
+					newWidth = window.innerWidth - widthBasis;
+				}
+
+				frameWork.resizeModal('board',`${newWidth}px`);
+			}
+
+			const removeBoardResize = (e)=>{
+
+				$('body').removeClass('body-on-drag');
+				$(window).off(
+					'mousemove',
+					startBoardResize
+				)
+					$(window).off(
+						'touchmove',
+						startBoardResize
+					)
+			}
+
+			const initBoardResize = (e) => {
+					
+				const triggerer = $(e.target);
+
+				if (
+					!frameWork.isDisabled(triggerer)
+					&& frameWork.board.current.length
+				) {
+
+					$(window).on(
+						'mousemove',
+						startBoardResize
+					);
+
+						$(window).on(
+							'touchmove',
+							startBoardResize
+						);
+
+					$(window).on(
+						'mouseup',
+						removeBoardResize
+					);
+
+						$(window).on(
+							'touchend',
+							removeBoardResize
+						);
+
+				}
+					
+			};
+
+			$('body').on(
+				'mousedown',
+				'*[data-toggle="board-resize"]',
+				initBoardResize
+			);
+
+				$('body').on(
+					'touchstart',
+					'*[data-toggle="board-resize"]',
+					initBoardResize
+				);
 
 		$('body').on('change', '.zone input[type="file"]', (e) => {
 			const triggerer = $(e.target);
@@ -3477,5 +3638,5 @@ window.jQuery && jQuery.noConflict();
 
 	window.fw = frameWork;
 	window.frameWork = frameWork;
-	// window.frameWork.DEBUG = _;
+	window.frameWork.DEBUG = _;
 })(jQuery, window);

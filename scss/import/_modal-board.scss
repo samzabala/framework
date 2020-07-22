@@ -28,157 +28,154 @@ $prefix: '.board';
 	display:none!important;
 
 
-		&-wrapper {
-			@extend %for-modal-wrapper;
-			z-index: 99998;
+	&-wrapper {
+		@extend %for-modal-wrapper;
+		z-index: 99998;
 
+		&#{$prefix}-left {
+			padding-left: $board-padding-spacer;
+		}
+		&#{$prefix}-right {
+			padding-right: $board-padding-spacer;
+		}
+
+
+
+
+		@include br(#{$mobile-br-max}-max) {
 			&#{$prefix}-left {
-				padding-left: $board-padding-spacer;
+				padding-left: $board-padding-spacer-mobile;
 			}
 			&#{$prefix}-right {
-				padding-right: $board-padding-spacer;
-			}
-			&#{$prefix}-top {
-				padding-top: $board-padding-spacer;
-			}
-			&#{$prefix}-bottom {
-				padding-bottom: $board-padding-spacer;
-			}
-
-
-
-
-			@include br(#{$mobile-br-max}-max) {
-				&#{$prefix}-left {
-					padding-left: $board-padding-spacer-mobile;
-				}
-				&#{$prefix}-right {
-					padding-right: $board-padding-spacer-mobile;
-				}
-				&#{$prefix}-top {
-					padding-top: $board-padding-spacer-mobile;
-				}
-				&#{$prefix}-bottom {
-					padding-bottom: $board-padding-spacer-mobile;
-				}
+				padding-right: $board-padding-spacer-mobile;
 			}
 		}
-		&-title {
-			margin-top:0;
-		}
+	}
 
-	&-close {
-		& {
-			position:absolute;
-			z-index:9;
-		}
+	&-title {
+		margin-top:0;
+	}
+
+
+
+	&-button {
 
 		&-wrapper {
 			position:fixed;
 			z-index:3;
+			justify-content:flex-start;
+			display: flex;
+			height: 0;
+			flex-wrap: nowrap;
+			overflow: visible;
+			top: 0;
+			max-width: calc(100% -  #{$board-padding-spacer});
+			flex-direction: column;
 
-			#{$prefix}-left &,
-			#{$prefix}-right & {
-				top: 0;
-				width: calc(100% -  #{$board-padding-spacer});
+			&:before {
+				content:"";
+				display:inline-block;
+				pointer-events:none;
+				flex: 0 0 auto;
+				height: $board-close-offset-y;
+				width:0;
+			}
+	
+			@include br(#{$mobile-br-max}-max) {					
+				max-width: calc(100% -  #{$board-padding-spacer-mobile});
 
-				@include br(#{$mobile-br-max}-max) {					
-					width: calc(100% -  #{$board-padding-spacer-mobile});
+				&:before {
+					height: $board-close-offset-y-mobile;
 				}
 			}
-			#{$prefix}-top &,
-			#{$prefix}-bottom &, 
+			
 			#{$prefix}-left & {
 				right: 0;
+				align-items: flex-start;
 			}
-
-
-			#{$prefix}-top &,
-			#{$prefix}-bottom &,
+	
+	
 			#{$prefix}-right & {
 				left: 0;
+				align-items: flex-end;
 			}
+		}
 
-			#{$prefix}-top &,
-			#{$prefix}-bottom & {
-				left: 0;
-				height: calc(100% -  #{$board-padding-spacer});
+		& {
 
-				@include br(#{$mobile-br-max}-max) {					
-					height: calc(100% -  #{$board-padding-spacer-mobile});
+			position:relative;
+			z-index:9;
+
+			&-default {
+				border:none;
+				outline:none;
+				font-size: $board-close-button-font-size;
+				display:flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				flex-direction:column;
+				background: $modal-background;
+				box-shadow: $board-close-box-shadow;
+				// width: $calculated-board-close-width;
+				// height: $calculated-board-close-height;
+				padding: calc((#{$calculated-board-close-size} - 1em) * .5);
+				flex: 0 0 auto;
+				margin-bottom: .5em;
+				
+				.symbol {
+					margin: auto;
+				}
+	
+	
+				.theme-inverse & {
+					background: $modal-background-inverse;
+				}
+	
+				#{$prefix}-left & {
+					left: 0;
+					transform: translateX(-50%);
+				}
+		
+		
+				#{$prefix}-right & {
+					right: 0;
+					transform: translateX(50%);
 				}
 			}
-
-			#{$prefix}-top & {
-				bottom: 0;
-			}
-
-
-			#{$prefix}-bottom & {
-				top: 0;
-			}
 		}
 
-		&-default {
+		// &:first-child {
+	
+		// 	#{$prefix}-left &,
+		// 	#{$prefix}-right & {
+		// 		top: $board-close-offset-y;
+	
+	
+		// 		@include br(#{$mobile-br-max}-max) {
+		// 			top: $board-close-offset-y-mobile;
+		// 		}
+		// 	}
+	
+		// 	#{$prefix}-top &,
+		// 	#{$prefix}-bottom & {
+		// 		right: $board-close-offset-x;
+	
+	
+		// 		@include br(#{$mobile-br-max}-max) {
+		// 			right: $board-close-offset-x-mobile;
+		// 		}
+		// 	}
+		// }
+	}
 
-			font-size: $board-close-button-font-size;
-			display:flex;
-			align-items: center;
-			justify-content: center;
-			background: $modal-background;
-			box-shadow: $board-close-box-shadow;
-			// width: $calculated-board-close-width;
-			// height: $calculated-board-close-height;
-			width: $calculated-board-close-size;
-			height: $calculated-board-close-size;
+	&-resize {
+		&:hover {
+			cursor: grab;
 		}
+	}
 
-
-		.theme-inverse & {
-			background: $modal-background-inverse;
-		}
-
-		#{$prefix}-left &,
-		#{$prefix}-right & {
-			top: $board-close-offset-y;
-
-
-			@include br(#{$mobile-br-max}-max) {
-				top: $board-close-offset-y-mobile;
-			}
-		}
-
-		#{$prefix}-left & {
-			left: 0;
-			transform: translateX(-50%);
-		}
-
-
-		#{$prefix}-right & {
-			right: 0;
-			transform: translateX(50%);
-		}
-
-		#{$prefix}-top &,
-		#{$prefix}-bottom & {
-			right: $board-close-offset-x;
-
-
-			@include br(#{$mobile-br-max}-max) {
-				right: $board-close-offset-x-mobile;
-			}
-		}
-
-		#{$prefix}-top & {
-			top: 0;
-			transform: translateY(-50%);
-		}
-
-
-		#{$prefix}-bottom & {
-			bottom: 0;
-			transform: translateY(50%);
-		}
+	&-close {
 		
 		&-overlay {
 			@extend %for-modal-overlay;
@@ -209,26 +206,13 @@ $prefix: '.board';
 	}
 
 	&-popup,
-	&-close-wrapper {
-
-
-
-		
-		#{$prefix}-top &,
-		#{$prefix}-bottom &,
+	&-button-wrapper {
 		#{$prefix}-left & {
 			margin-left: auto;
 		}
-		#{$prefix}-top &,
-		#{$prefix}-bottom &,
+		
 		#{$prefix}-right & {
 			margin-right: auto;
-		}
-		#{$prefix}-top & {
-			margin-top: auto;
-		}
-		#{$prefix}-bottom & {
-			margin-bottom: auto;
 		}
 	}
 }

@@ -20,8 +20,9 @@ $prefix: '.symbol';
 	transform-origin: center center;
 	pointer-events:none;
 	margin: 0 .5em;
-	// font-size: 160px; //debug only
-	// top:-.25em;
+	cursor:inherit;
+	// font-size: 64px; //debug only
+	// outline: 1px solid red;
 
 	&:last-child {
 		margin-right:0;
@@ -439,16 +440,6 @@ $prefix: '.symbol';
 		.active > &-toggle,
 		.open > &-toggle  {
 			@extend %for-valid-symbol;
-			// transform: rotate(45deg);
-
-			// @extend %for-valid-symbol-no-before;
-			// &:after {
-			// 	@extend %for-valid-symbol-pseudo;
-			// 	@extend %for-valid-symbol-pseudo-vertical;
-			// 	width: .5em;
-			// 	border-right: em((3px)/$calculated-symbol-basis) solid;
-			// 	border-bottom: em((3px)/$calculated-symbol-basis) solid;
-			// }
 
 			&:before,&:after {
 				@extend %for-valid-symbol-pseudo;
@@ -756,37 +747,42 @@ $prefix: '.symbol';
 	}
 
 	&-arrow {
-		// &-left,
-		// &-right {
-		// 	&,&-toggle {
-		// 		top: em(-1px / $calculated-symbol-basis);
-		// 	}
-		// }
-
-		&,&-double {
-
-
+		&,
+		&-double,
+		&-tail {
 			&-left,
 			&-right,
 			&-up,
 			&-down {
-
 				&,
 				.active > &-toggle,
 				.open > &-toggle  {
 					@extend %for-valid-symbol;
-
-	
-					height: .625em;
 		
 					&:before,&:after {
 						@extend %for-valid-symbol-pseudo;
+					}
+				}
+			}
+		}
+
+		&,
+		&-double {
+			&-left,
+			&-right,
+			&-up,
+			&-down {
+				&,
+				.active > &-toggle,
+				.open > &-toggle  {
+					@extend %for-valid-symbol;
+		
+					&:before,&:after {
 						@extend %for-valid-symbol-pseudo-border-radius;
-						@extend %for-valid-symbol-pseudo-vertical;
 						@extend %for-valid-symbol-pseudo-filled;
-						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
-						height: .6875em;
-						top: em(2px / $calculated-symbol-basis);
+						@extend %for-valid-symbol-pseudo-horizontal;
+						width: .6875em;
+						transform-origin: em((3px * .5) / $calculated-symbol-basis) center;
 					}
 		
 					&:before{
@@ -800,6 +796,24 @@ $prefix: '.symbol';
 			}
 		}
 
+
+		&-double,
+		&-tail {
+			&-left,
+			&-right,
+			&-up,
+			&-down {
+				&,
+				.active > &-toggle,
+				.open > &-toggle {
+					&:before,&:after {
+						left:0;
+						right: auto;
+					}
+				}
+			}
+		}
+
 		& {
 			&-left,
 			&-right,
@@ -807,10 +821,8 @@ $prefix: '.symbol';
 			&-down {
 				&,
 				.active > &-toggle,
-				.open > &-toggle  {
-					&:before,&:after {
-						top: em(2px / $calculated-symbol-basis);
-					}
+				.open > &-toggle {
+					width: .75em;
 				}
 			}
 		}
@@ -823,17 +835,64 @@ $prefix: '.symbol';
 				&,
 				.active > &-toggle,
 				.open > &-toggle  {
-					&:before,&:after {
-						top: em((2px * 4) / $calculated-symbol-basis);
-					}
 
 					&:before{
-						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * .5)  * -3.5)/$calculated-symbol-basis) 0 0;
+						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
 					}
 
 					&:after{
-						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * -3.5)/$calculated-symbol-basis) 0 0;
+						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * 3.5)/$calculated-symbol-basis) 0 0;
 					}
+				}
+			}
+		}
+		&-tail {
+			&-left,
+			&-right,
+			&-up,
+			&-down {
+				&,
+				.active > &-toggle,
+				.open > &-toggle  {
+
+					&:before {
+						height: .625em;
+						width: .625em;
+						border-top: em(2px/$calculated-symbol-basis) solid;
+						border-left: em(2px/$calculated-symbol-basis) solid;
+						transform: rotate(-45deg);
+					}
+
+					&:after {
+						@extend %for-valid-symbol-pseudo-full-width;
+						@extend %for-valid-symbol-pseudo-filled;
+						height: em(2px/$calculated-symbol-basis);
+					}
+					// @extend %for-valid-symbol-pseudo-border-radius;
+					// @extend %for-valid-symbol-pseudo-horizontal;
+					// @extend %for-valid-symbol-pseudo-filled;
+					// transform-origin: 10% 0;
+					
+					// background-image:
+					// 	linear-gradient(currentColor 0, currentColor 100%),
+					// 	radial-gradient(
+					// 		circle at em(($calculated-symbol-basis - (3px * .5))/$calculated-symbol-basis) 50%,
+					// 		currentColor 0,
+					// 		currentColor em((3px * .5)/$calculated-symbol-basis),
+					// 		transparent em((3px * .5)/$calculated-symbol-basis),
+					// 		transparent 100%
+					// 		)
+					// 	;
+
+					// background-size:
+					// 	em(($calculated-symbol-basis - 3px)/$calculated-symbol-basis) em(3px/$calculated-symbol-basis),
+					// 	1em 1em
+					// 	;
+					// background-position:
+					// 	center center,
+					// 	right center
+					// 	;
+					// background-repeat: no-repeat;
 				}
 			}
 		}
@@ -850,6 +909,7 @@ $prefix: '.symbol';
 		&-down {
 			@extend %for-valid-symbol;
 			@extend %for-valid-symbol-no-before;
+			width: .625em;
 
 			&:after {
 
@@ -858,7 +918,7 @@ $prefix: '.symbol';
 				@extend %for-valid-symbol-pseudo-vertical;
 				@include arrow-triangle((
 					pseudo: override, 
-					direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
+					direction: 'left', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
 					display: null,
 					size-base: inherit,
 					main-size: $calculated-symbol-caret-height,//orientation of direction
@@ -875,31 +935,32 @@ $prefix: '.symbol';
 
 	&-caret,
 	&-arrow,
+	&-arrow-tail,
 	&-arrow-double {
 
 
 		&-up,
 		.active > &-up-toggle,
 		.open > &-up-toggle {
-			transform: rotate(0deg);
+			transform: rotate(90deg);
 		}
 
 		&-down,
 		.active > &-down-toggle,
 		.open > &-down-toggle {
-			transform: rotate(180deg);
+			transform: rotate(-90deg);
 		}
 
 		&-left,
 		.active > &-left-toggle,
 		.open > &-left-toggle {
-			transform: rotate(-90deg);
+			transform: rotate(0deg);
 		}
 
 		&-right,
 		.active > &-right-toggle,
 		.open > &-right-toggle {
-			transform: rotate(90deg);
+			transform: rotate(180deg);
 		}
 	}
 
@@ -933,15 +994,15 @@ $prefix: '.symbol';
 			.open > &-toggle  {
 				&:after {
 					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
 					-.25em 0 0 0,
 					.25em 0 0 0,
 
-					-.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
-					0em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+					0em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
 					;
 				}
 			}
@@ -953,15 +1014,15 @@ $prefix: '.symbol';
 			.open > &-toggle  {
 				&:after {
 					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
 					-.25em 0 0 0,
 					.25em 0 0 0,
 					
-					.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
 					;
 				}
 			}
@@ -973,15 +1034,15 @@ $prefix: '.symbol';
 			.open > &-toggle  {
 				&:after {
 					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
 					-.25em 0 0 0,
 					.25em 0 0 0,
 
-					-.125em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
-					.125em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					-.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+					.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
 					;
 				}
 			}
@@ -994,16 +1055,16 @@ $prefix: '.symbol';
 			.open > &-toggle  {
 				&:after {
 					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2} 0 0,
+					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
 					-.25em 0 0 0,
 					.25em 0 0 0,
 
-					-.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * 2} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * 2} 0 0,
+					-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+					.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+					0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
 					;
 				}
 			}

@@ -282,7 +282,7 @@ $prefix: '.special';
 		display:block;
 		hyphens: auto;
 		margin-bottom: $calculated-body-heading-gutter-bottom;
-		margin-top: $calculated-body-heading-gutter-top;
+		// margin-top: $calculated-body-heading-gutter-top;
 
 		// &:first-child {
 		// 	margin-top:0;
@@ -317,27 +317,26 @@ em,i{
 	font-style:italic;
 }
 
-a {
-	color: $body-anchor-color;
-	transition: $transition-duration-base color $transition-timing;
 
-	&:hover,&:focus,&.focus {
-		color: $body-anchor-color-hover;
-		text-decoration: $body-anchor-text-decoration-hover;
-
-		&,* {
-			cursor: pointer;
-		}
-
-		* {
-			text-decoration: inherit;
-			text-decoration-color: currentColor;
-		}
-
-
-	}
-}
 %for-anchor {
+	& {
+	
+		&:hover,&:focus,&.focus {
+			text-decoration: $body-anchor-text-decoration-hover;
+	
+			&,* {
+				cursor: pointer;
+			}
+	
+			* {
+				text-decoration: inherit;
+				text-decoration-color: currentColor;
+			}
+	
+	
+		}
+	}
+	
 	&-reset-hover {
 		&:hover,&:focus,&.focus {
 			text-decoration: none;
@@ -346,6 +345,19 @@ a {
 	
 }
 
+
+a {
+	@extend %for-anchor;
+	transition: $transition-duration-base color $transition-timing;
+
+	&:hover,&:focus,&.focus {
+		color: $body-anchor-color-hover;
+	}
+
+	&,&.disabled {
+		color: $body-anchor-color;
+	}
+}
 // margined shit
 
 
@@ -627,6 +639,7 @@ hr {
 small {
 	font-size: $calculated-body-size-small;
 }
+
 big {
 	font-size: $calculated-body-size-large;
 }

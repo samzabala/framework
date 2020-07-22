@@ -17,6 +17,13 @@
 		overflow:hidden !important;
 	}
 
+	#{$prefix}-on-drag {
+
+		&, * {
+			cursor:grabbing!important;
+		}
+	}
+
 	html {
 
 		word-wrap: break-word;

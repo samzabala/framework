@@ -109,7 +109,7 @@ $prefix: '.modal';
 			position:relative;
 			z-index:2;
 			box-shadow: rgba(0, 0, 0, .2) 0 2px 3px;
-			width: 100%;
+			max-width: 100%;
 			background: $modal-background;
 			
 			.theme-inverse & {

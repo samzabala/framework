@@ -128,7 +128,9 @@
 			evt,
 			(event) => {
 				if (event.target.matches(selector + ', ' + selector + ' *')) {
-					handler(event);
+					// try {
+						handler(event);
+					// } catch(e) {}
 				}
 			},
 			true
@@ -2359,9 +2361,12 @@
 		if (contentWrap && subcom) {
 
 			const arr = {
+				resize:
+					(triggerer && triggerer.getAttribute(`data-${subcom}-resize`))
+					|| contentWrap.getAttribute(`data-${subcom}-resize`),
 				changeHash:
-					(triggerer && triggerer.attr(`data-${subcom}-change-hash`))
-					|| contentWrap.attr(`data-${subcom}-change-hash`),
+					(triggerer && triggerer.getAttribute(`data-${subcom}-change-hash`))
+					|| contentWrap.getAttribute(`data-${subcom}-change-hash`),
 				header:
 					(triggerer && triggerer.getAttribute(`data-${subcom}-title`))
 					|| contentWrap.getAttribute(`data-${subcom}-title`),
@@ -2371,9 +2376,9 @@
 				disableOverlay:
 					(triggerer && triggerer.getAttribute(`data-${subcom}-disable-overlay`))
 					|| contentWrap.getAttribute(`data-${subcom}-disable-overlay`),
-				maxWidth:
-					contentWrap.getAttribute(`data-${subcom}-max-width`)
-					|| (triggerer && triggerer.getAttribute(`data-${subcom}-max-width`)),
+				width:
+					contentWrap.getAttribute(`data-${subcom}-width`)
+					|| (triggerer && triggerer.getAttribute(`data-${subcom}-width`)),
 				callback:
 					(triggerer && triggerer.getAttribute(`data-${subcom}-callback`))
 					|| contentWrap.getAttribute(`data-${subcom}-callback`),
@@ -2389,16 +2394,19 @@
 			};
 
 			const defaults = {
+				resize: false,
+				resizeClasses: null,
 				changeHash: true,
 				header: '',
 				close: true,
 				disableOverlay: true,
-				maxWidth: null,
+				width: null,
 				callback: null,
 				classes: '',
-				closeClasses: '',
+				closeClasses: null,
 				align: 'left',
 			};
+
 			const args = _.parseArgs(arr, defaults);
 
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
@@ -2409,6 +2417,8 @@
 			switch (subcom) {
 				case 'modal':
 					args.align = false;
+					args.resize = false;
+					args.resizeClasses = null;
 					break;
 			}
 
@@ -2438,19 +2448,36 @@
 
 					switch (subcom) {
 						case 'board':
-							if (args.close !== false) {
-								html += `<div class="${subcom}-close-wrapper">
-									<a href="#"
+							html += `<div class="${subcom}-button-wrapper">`;
+								if (args.close !== false) {
+									html += `<a href="#"
 										class="
-											${subcom}-close
+											${subcom}-close ${subcom}-button
 											${
 												args.closeClasses
 												? args.closeClasses
-												: `${subcom}-close-default`}"
+												: `${subcom}-button-default`}"
 										data-toggle="${subcom}-close"
 									>
-									<i class="symbol symbol-close "></i></a></div>`;
-							}
+										<i class="symbol symbol-close "></i>
+									</a>`;
+								}
+
+								if (args.resize !== false && args.width) {
+									html += `<a
+										class="
+											${subcom}-resize ${subcom}-button
+											${
+												args.resizeClasses
+												? args.resizeClasses
+												: `${subcom}-button-default`}"
+										data-toggle="${subcom}-resize"
+									>
+										<i class="symbol symbol-arrow-tail-left "></i>
+										<i class="symbol symbol-arrow-tail-right "></i>
+									</a>`;
+								}
+							html += `</div>`;
 
 							html += `<div class="${subcom}-popup">`;
 
@@ -2498,29 +2525,77 @@
 				modal.querySelector(`.${subcom}-popup-content`)
 			);
 
-			if (args.maxWidth) {
-				//all
-				modal.querySelector(`.${subcom}-popup`).style.maxWidth =
-					args.maxWidth;
-
-				//bboard
-				if (modal.querySelector(`.${subcom}-close-wrapper`)) {
-					modal.querySelector(`.${subcom}-close-wrapper`)
-						.style.maxWidth = args.maxWidth;
-				}
+			if (args.width) {
+				frameWork.resizeModal(subcom,args.width,modal,args);
 			}
 
 			if (args.callback) {
 				_.runFn = args.callback;
 			}
 
+			frameWork[subcom].current = contentWrap;
+			frameWork[subcom].args = args;
+
 			modal.classList.add('active');
 			document.body.classList.add('body-no-scroll');
 
-			frameWork[subcom].current = contentWrap;
-			frameWork[subcom].args = args;
+			frameWork.checkOnModal(subcom);
 		}
 	};
+
+
+	frameWork.checkOnModal = (subcom)=>{
+
+		subcom = subcom || 'modal';
+
+		const args = frameWork[subcom].args || {};
+		const modal = document.getElementById(`${frameWork.settings.prefix}-${subcom}`);
+
+		if(modal) {
+
+			// buttons
+				// resize
+					const currentWidth = modal
+						.querySelector(`.${subcom}-popup`).clientWidth;
+						
+					const resizeBtn = modal
+						.querySelectorAll(`*[data-toggle="${subcom}-resize"]`);
+
+					if(resizeBtn && currentWidth < parseInt(args.width)){
+						resizeBtn.forEach((butt) => {
+							butt.classList.add('disabled');
+						});
+					}else{
+						resizeBtn.forEach((butt) => {
+							butt.classList.remove('disabled');
+						});
+					}
+		}
+	}
+	_.fns_on_resize.push(frameWork.checkOnModal);
+
+	frameWork.resizeModal = (subcom,width,modal,args) => {
+		subcom = subcom || 'modal';
+		modal = modal ||  document.getElementById(`${frameWork.settings.prefix}-${subcom}`);
+		args = args || frameWork[subcom].args || {};
+		width = width || args.width || null;
+
+		if(modal && parseInt(width) >= parseInt(args.width)){
+			//all
+			if(modal.querySelector(`.${subcom}-popup`)){
+				modal.
+					querySelector(`.${subcom}-popup`)
+						.style.width = width;
+			}
+
+			//bboard
+			if(modal.querySelector(`.${subcom}-button-wrapper`)){
+				modal.
+					querySelector(`.${subcom}-button-wrapper`)
+						.style.width = width;
+			}
+		}
+	}
 
 	frameWork.destroyModal = (removeHash, subcom) => {
 		removeHash = removeHash || false;
@@ -2532,7 +2607,7 @@
 		if (
 			removeHash
 			&& frameWork[subcom].current.hasAttribute('id')
-			&& frameWork[subcom].current.attr('id') == window.location.hash.replace('#','')
+			&& frameWork[subcom].current.getAttribute('id') == window.location.hash.replace('#','')
 		) {
 			canRemoveHash = true;
 		}
@@ -2571,6 +2646,15 @@
 	frameWork.createBoard = (triggerer) => {
 		frameWork.createModal(triggerer, 'board');
 	};
+	
+	frameWork.resizeBoard = (width,modal,args) => {
+		frameWork.resizeModal('board',width,modal,args);
+	};
+	
+	frameWork.checkOnBoard = () => {
+		frameWork.checkOnModal('board');
+	};
+	_.fns_on_resize.push(frameWork.checkOnBoard);
 
 	frameWork.destroyBoard = (removeHash) => {
 		frameWork.destroyModal(removeHash, 'board');
@@ -3607,6 +3691,99 @@
 				}
 			}
 		);
+
+		frameWork.addEvent(
+			document.body,
+			'click',
+			'*[data-toggle="board-resize"]',
+			(e) => {
+				e.preventDefault();
+			}
+		);
+
+					
+			const startBoardResize = (e)=>{
+
+
+				document.body.classList.add('body-on-drag');
+
+				const widthBasis = 
+					e.clientX
+					|| (e.touches && e.touches[0].clientX )
+					|| (
+						e.originalEvent.touches
+						&& e.originalEvent.touches[0].clientX
+					);
+				let newWidth;
+
+				if(frameWork.board.args.align == 'right'){
+					newWidth = widthBasis
+				}else if(frameWork.board.args.align == 'left'){
+					newWidth = window.innerWidth - widthBasis;
+				}
+				
+				frameWork.resizeModal('board',`${newWidth}px`);
+			}
+
+			const removeBoardResize = (e)=>{
+
+				document.body.classList.remove('body-on-drag');
+				window.removeEventListener(
+					'mousemove',
+					startBoardResize
+				)
+					window.removeEventListener(
+						'touchmove',
+						startBoardResize
+					)
+			}
+
+			const initBoardResize = (e) => {
+					
+				const triggerer = e.target;
+
+				if (
+					!frameWork.isDisabled(triggerer)
+					&& frameWork.board.current
+				) {
+
+					window.addEventListener(
+						'mousemove',
+						startBoardResize
+					);
+
+						window.addEventListener(
+							'touchmove',
+							startBoardResize
+						);
+
+					window.addEventListener(
+						'mouseup',
+						removeBoardResize
+					);
+
+						window.addEventListener(
+							'touchend',
+							removeBoardResize
+						);
+
+				}
+					
+			};
+
+			frameWork.addEvent(
+				document.body,
+				'mousedown',
+				'*[data-toggle="board-resize"]',
+				initBoardResize
+			);
+
+				frameWork.addEvent(
+					document.body,
+					'touchstart',
+					'*[data-toggle="board-resize"]',
+					initBoardResize
+				);
 
 		frameWork.addEvent(
 			document.body,

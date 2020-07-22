@@ -113,7 +113,7 @@ Whether or not to allow clicking on the overlay to close the modal
 ```
 
 
-### **`data-modal-max-width`**
+### **`data-modal-width`**
 
 Dafaults to `null`
 
@@ -123,7 +123,7 @@ Whether or not to add a max-width to the modal. The modal is styled to be respon
 
 ```html
 <a
-	data-modal-max-width="800px"
+	data-modal-width="800px"
 	href="#modal-demo">Modal boi with max width <i class="symbol symbol-search"></i></a>
 
 <div class="modal" id="modal-demo">
@@ -144,7 +144,7 @@ Whether or not to have the modal change the location.hash when enabled and then 
 
 ```html
 <a
-	data-modal-max-width="800px"
+	data-modal-width="800px"
 	href="#modal-demo">Modal boi with max width <i class="symbol symbol-search"></i></a>
 
 <div class="modal" id="modal-demo">
@@ -199,7 +199,7 @@ classes to add to the generated modal or `#fw-modal`
 data-toggle="modal"
 data-modal-close="false"
 data-modal-disable-overlay="false"
-data-modal-max-width="800px"
+data-modal-width="800px"
 data-modal-title="Bitch"
 href="#modal-demo">Modal boi with max width and no close butt <i class="symbol symbol-search"></i></a>
 
@@ -287,7 +287,7 @@ Kills ya boi
 
 # Sub-components
 
-## Board (jQuery version only)
+## Board
 
 Same functions as modal except this looks different because the design says so biechhhh
 
