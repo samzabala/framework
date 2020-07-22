@@ -3517,7 +3517,10 @@ window.jQuery && jQuery.noConflict();
 			$('body').on(
 				'mousedown',
 				'*[data-toggle="board-resize"]',
-				initBoardResize
+				(e) => {
+					e.preventDefault();
+					initBoardResize(e);
+				}
 			);
 
 				$('body').on(

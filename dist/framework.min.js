@@ -3775,7 +3775,10 @@
 				document.body,
 				'mousedown',
 				'*[data-toggle="board-resize"]',
-				initBoardResize
+				(e) => {
+					e.preventDefault();
+					initBoardResize(e);
+				}
 			);
 
 				frameWork.addEvent(
