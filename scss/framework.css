@@ -320,7 +320,8 @@ h6, .h6 {
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
-  margin-bottom: 0.625rem; }
+  margin-bottom: 0.625rem;
+  margin-top: 1.5em; }
   .theme-inverse h1, .theme-inverse .h1, .theme-inverse h2, .theme-inverse .h2, .theme-inverse h3, .theme-inverse .h3, .theme-inverse h4, .theme-inverse .h4, .theme-inverse h5, .theme-inverse .h5, .theme-inverse h6, .theme-inverse .h6 {
     color: #e6e6e6; }
   .alert h1, .theme-inverse .alert h1, .alert .h1, .theme-inverse .alert .h1, .alert h2, .theme-inverse .alert h2, .alert .h2, .theme-inverse .alert .h2, .alert h3, .theme-inverse .alert h3, .alert .h3, .theme-inverse .alert .h3, .alert h4, .theme-inverse .alert h4, .alert .h4, .theme-inverse .alert .h4, .alert h5, .theme-inverse .alert h5, .alert .h5, .theme-inverse .alert .h5, .alert h6, .theme-inverse .alert h6, .alert .h6, .theme-inverse .alert .h6 {
