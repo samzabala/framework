@@ -2013,72 +2013,10 @@ window.jQuery && jQuery.noConflict();
 			frameWork.toolTip.activeTriggerer = triggerer;
 			frameWork.toolTip.args = args;
 
-			let triggererProps = {
-				top:
-					triggerer.offset().top,
-				left:
-					triggerer.offset().left,
-				height:
-					triggerer.outerHeight(),
-				width:
-					triggerer.outerWidth(),
-			};
-
-			let origin = {
-				x: () => {
-					let toReturn =
-						triggererProps.left + triggererProps.width * 0.5; //top and bottom
-
-					if (!args.x) {
-						if (!args.centerX) {
-							switch (args.placement) {
-								case 'right':
-									toReturn =
-										triggererProps.left +
-										triggererProps.width;
-									break;
-								case 'left':
-									toReturn = triggererProps.left;
-									break;
-							}
-						}
-
-					} else {
-						toReturn = parseFloat(args.x);
-					}
-
-					return toReturn;
-				},
-
-				y: () => {
-					let toReturn =
-						triggererProps.top + triggererProps.height * 0.5; // left and right
-					if (!args.y) {
-						if (!args.centerY) {
-							switch (args.placement) {
-								case 'bottom':
-									toReturn =
-										triggererProps.top +
-										triggererProps.height;
-									break;
-								case 'top':
-									toReturn = triggererProps.top;
-									break;
-							}
-						}
-
-					} else {
-						toReturn = parseFloat(args.y);
-					}
-
-					return toReturn;
-				},
-			};
-
 			toolTip.show();
 			toolTip.addClass('active');
 
-			frameWork.positionToolTip(origin.x(), origin.y());
+			frameWork.positionToolTip();
 		}
 	};
 
@@ -2093,14 +2031,104 @@ window.jQuery && jQuery.noConflict();
 			frameWork.toolTip.args = null;
 		}
 	};
-	_.fns_on_resize.push(frameWork.destroyToolTip);
-	_.fns_on_scroll.push(frameWork.destroyToolTip);
+
+	//return origitit
+	frameWork.getDefCoordsToolTip = (triggerer) => {
+
+		if(frameWork.toolTip){
+
+			triggerer  = triggerer || frameWork.toolTip.activeTriggerer;
+			const args = frameWork.toolTip.args;
+
+			let triggererOrigin;
+
+			if(triggerer){
+
+				let triggererProps = {
+					top:
+						triggerer.offset().top,
+					left:
+						triggerer.offset().left,
+					height:
+						triggerer.outerHeight(),
+					width:
+						triggerer.outerWidth(),
+				};
+
+				triggererOrigin = {
+					x: () => {
+						let toReturn =
+							triggererProps.left + triggererProps.width * 0.5; //top and bottom
+
+						if (!args.x) {
+							if (!args.centerX) {
+								switch (args.placement) {
+									case 'right':
+										toReturn =
+											triggererProps.left +
+											triggererProps.width;
+										break;
+									case 'left':
+										toReturn = triggererProps.left;
+										break;
+								}
+							}
+
+						} else {
+							toReturn = parseFloat(args.x);
+						}
+
+						return toReturn;
+					},
+
+					y: () => {
+						let toReturn =
+							triggererProps.top + triggererProps.height * 0.5; // left and right
+						if (!args.y) {
+							if (!args.centerY) {
+								switch (args.placement) {
+									case 'bottom':
+										toReturn =
+											triggererProps.top +
+											triggererProps.height;
+										break;
+									case 'top':
+										toReturn = triggererProps.top;
+										break;
+								}
+							}
+
+						} else {
+							toReturn = parseFloat(args.y);
+						}
+
+						return toReturn;
+					},
+				};
+			}
+
+			return triggererOrigin;
+		}
+	}
 
 	//only use when the tooltip is finally active
 	frameWork.positionToolTip = (posX, posY) => {
-		if (frameWork.toolTip.current && frameWork.toolTip.args) {
+
+		if (frameWork.toolTip) {
+
 			const toolTip = frameWork.toolTip.current;
 			const args = frameWork.toolTip.args;
+			const triggerer = frameWork.toolTip.activeTriggerer;
+
+			let triggererOrigin;
+
+			if(!posX || !posY) {
+				triggererOrigin = frameWork.getDefCoordsToolTip(triggerer);
+			}
+
+			posX = posX || triggererOrigin && triggererOrigin.x();
+			posY = posY || triggererOrigin && triggererOrigin.y();
+
 
 			let toolPoint = parseFloat(
 				window
@@ -2191,6 +2219,8 @@ window.jQuery && jQuery.noConflict();
 			});
 		}
 	};
+	_.fns_on_scroll.push(frameWork.positionToolTip);
+	_.fns_on_resize.push(frameWork.positionToolTip);
 
 	frameWork.createModal = (triggerer, subcom) => {
 		subcom = subcom || 'modal';
@@ -2203,8 +2233,6 @@ window.jQuery && jQuery.noConflict();
 		}
 
 		if (contentWrap && subcom) {
-
-			console.log(triggerer,triggerer && triggerer.attr(`data-${subcom}-resize`),`data-${subcom}-width`)
 
 			const arr = {
 				resize:
@@ -2257,8 +2285,6 @@ window.jQuery && jQuery.noConflict();
 			
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
-			console.log(args,arr,defaults);
-
 
 			switch (subcom) {
 				case 'modal':
@@ -2276,7 +2302,8 @@ window.jQuery && jQuery.noConflict();
 				let html = '';
 
 				html += `<div id="${actualId}"
-						class="${subcom}-wrapper
+						class="${frameWork.settings.prefix}-modal-component
+						${subcom}-wrapper
 						${args.classes}
 						${args.align ? `${subcom}-${args.align}` : ''}
 					">`;
@@ -3392,8 +3419,6 @@ window.jQuery && jQuery.noConflict();
 
 				const triggerer = $(e.target);
 
-				console.log(e.target)
-
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
@@ -3619,7 +3644,7 @@ window.jQuery && jQuery.noConflict();
 			frameWork.toggleAccordion();
 
 		let resizeTimerInternal;
-		$(window).on('resize', () => {
+		$(window).on('resize', (e) => {
 			clearTimeout(resizeTimerInternal);
 
 			resizeTimerInternal = setTimeout(() => {
@@ -3630,7 +3655,8 @@ window.jQuery && jQuery.noConflict();
 		});
 
 		let scrollTimerInternal;
-		$(window).on('scroll', () => {
+		$(window).on('scroll','*',(e) => {
+			console.log(e.target);
 			clearTimeout(scrollTimerInternal);
 
 			scrollTimerInternal = setTimeout(() => {
