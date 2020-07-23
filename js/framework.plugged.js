@@ -2607,7 +2607,18 @@ window.jQuery && jQuery.noConflict();
 		const selector = _.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
-			const ancGroup = selector.closest('.accordion-group');
+			let ancGroup = selector.parent().closest('.accordion-group,.accordion');
+
+			//has to actually be accordion-group closest before accordion
+			if(
+				!ancGroup.length
+				|| (
+					ancGroup.length
+					&& !ancGroup.hasClass('accordion-group')
+				)
+			) {
+				ancGroup = false;
+			}
 
 			if (
 				!(
@@ -2633,7 +2644,7 @@ window.jQuery && jQuery.noConflict();
 						&& triggerer.hasClass('open')
 					) {
 						if (
-							!ancGroup.length
+							!ancGroup
 							|| (
 								ancGroup.length
 								&& !ancGroup.hasClass('accordion-group-no-close')
@@ -2649,7 +2660,7 @@ window.jQuery && jQuery.noConflict();
 						}
 					} else {
 						if (
-							ancGroup.length
+							ancGroup
 							&& !ancGroup.is('.accordion-group-multiple')
 						) {
 							// selector.closest('.accordion-group').find('.accordion').slideUp();
@@ -2671,7 +2682,7 @@ window.jQuery && jQuery.noConflict();
 					}
 				} else {
 					selector.siblings('.accordion').removeClass('open');
-					ancGroup.children('.accordion').removeClass('open');
+					ancGroup.length && ancGroup.children('.accordion').removeClass('open');
 
 					const probablyToggle = $(
 						`[data-toggle="accordion"][href="#${selector.attr('id')}"],

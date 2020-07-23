@@ -144,6 +144,7 @@ $prefix: '.btn';
 		&-in-group {
 			position:relative;
 			max-width:100%;
+			flex: 0 0 auto; // ??
 
 			&:hover,
 			&:active,
@@ -364,9 +365,9 @@ $prefix: '.btn';
 					border-bottom-left-radius: 0!important;
 					margin-left: $btn-border-width * -1;
 
-					// &:not(:focus):not(.focus):not(:hover) {
-					// 	border-left-color: transparent;
-					// }
+					&:not(:focus):not(.focus):not(:hover) {
+						border-left-color: $btn-group-separator-color;
+					}
 				}
 			}
 		}
@@ -388,9 +389,9 @@ $prefix: '.btn';
 				border-top-left-radius: 0!important;
 				margin-top: $btn-border-width * -1;
 
-				// &:not(:focus):not(.focus):not(:hover) {
-				// 	border-top-color: transparent;
-				// }
+				&:not(:focus):not(.focus):not(:hover) {
+					border-top-color: $btn-group-separator-color;
+				}
 			}
 		}
 
@@ -414,9 +415,9 @@ $prefix: '.btn';
 						border-bottom-left-radius: 0!important;
 						margin-left: $btn-border-width * -1;
 		
-						// &:not(:focus):not(.focus):not(:hover) {
-						// 	border-left-color: transparent;
-						// }
+						&:not(:focus):not(.focus):not(:hover) {
+							border-left-color: $btn-group-separator-color;
+						}
 					}
 				}
 			}
@@ -436,9 +437,9 @@ $prefix: '.btn';
 					border-top-left-radius: 0!important;
 					margin-top: $btn-border-width * -1;
 	
-					// &:not(:focus):not(.focus):not(:hover) {
-					// 	border-top-color: transparent;
-					// }
+					&:not(:focus):not(.focus):not(:hover) {
+						border-top-color: $btn-group-separator-color;
+					}
 				}
 			}
 		} 

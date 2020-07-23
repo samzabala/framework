@@ -968,9 +968,9 @@ $prefix: '.input';
 						border-bottom-left-radius: 0!important;
 						margin-left: $input-border-width * -1;
 
-						// &:not(.focus):not(:focus):not(.active):not(:active) {
-						// 	border-left-color: transparent;
-						// }
+						&:not(.focus):not(:focus):not(.active):not(:active) {
+							border-left-color: $input-group-separator-color;
+						}
 					}
 				}
 			}
@@ -996,9 +996,9 @@ $prefix: '.input';
 					border-top-left-radius: 0!important;
 					margin-top: $input-border-width * -1;
 
-					// &:not(.focus):not(:focus):not(.active):not(:active) {
-					// 	border-top-color: transparent;
-					// }
+					&:not(.focus):not(:focus):not(.active):not(:active) {
+						border-top-color: $input-group-separator-color;
+					}
 				}
 			}
 		}
@@ -1022,9 +1022,9 @@ $prefix: '.input';
 							border-bottom-left-radius: 0!important;
 							margin-left: $input-border-width * -1;
 
-							// &:not(.focus):not(:focus):not(.active):not(:active) {
-							// 	border-left-color:transparent;
-							// }
+							&:not(.focus):not(:focus):not(.active):not(:active) {
+								border-left-color:$input-group-separator-color;
+							}
 						}
 					}
 				}
@@ -1054,9 +1054,9 @@ $prefix: '.input';
 						border-top-left-radius: 0!important;
 						margin-top: $input-border-width * -1;
 		
-						// &:not(.focus):not(:focus):not(.active):not(:active) {
-						// 	border-top-color: transparent;
-						// }
+						&:not(.focus):not(:focus):not(.active):not(:active) {
+							border-top-color: $input-group-separator-color;
+						}
 					}
 				}
 			}

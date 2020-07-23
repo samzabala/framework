@@ -679,7 +679,7 @@ $prefix: '.symbol';
 		}
 	}
 
-	
+	&-fries,
 	&-burger {
 		&,
 		.active > &-toggle,
@@ -697,8 +697,19 @@ $prefix: '.symbol';
 					0 #{em(3px / $calculated-symbol-basis) * -2} 0 0
 					;
 				height:  em(3px / $calculated-symbol-basis);
-				left: -.1em;
-				right: -.1em;
+			}
+		}
+	}
+
+	&-fries {
+
+		&,
+		.active > &-toggle,
+		.open > &-toggle {
+			@extend %for-valid-symbol;
+
+			&:after {
+				transform: rotate(90deg);
 			}
 		}
 	}

@@ -2773,7 +2773,19 @@
 		const selector = _.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
-			const ancGroup = selector.closest('.accordion-group');
+			let ancGroup = selector.parentNode.closest('.accordion,.accordion-group');
+
+
+			//has to actually be accordion-group closest before accordion
+			if(
+				!ancGroup
+				|| (
+					ancGroup
+					&& !ancGroup.classList.contains('accordion-group')
+				)
+			) {
+				ancGroup = false;
+			}
 
 			if (
 				!(

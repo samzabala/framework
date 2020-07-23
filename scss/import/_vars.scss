@@ -907,7 +907,7 @@
 
 	// input
 
-		$input-height: 45px !default;
+		$input-height: 48px !default;
 			$input-height-large: 60px !default;
 			$input-height-small: 30px !default;
 		$input-height-multiple-factor: 3 !default;
@@ -945,7 +945,7 @@
 		$input-box-shadow: none !default; //$box-shadow-base $brand-color-base 
 		$input-box-shadow-brand-basis: $box-shadow-base !default;
 			$input-box-shadow-focus: 0px 0 5px 0px $brand-color-primary !default;
-		// $input-group-separator-color: rgba($brand-color-base,.1) !default;
+		$input-group-separator-color: $input-border-color !default;
 		$input-color-feedback-opacity: .05 !default;
 
 		$input-label-gutter: 20px !default;
@@ -1074,15 +1074,15 @@
 			$btn-border-radius-small:  $btn-height-small * .5 !default;
 		$btn-box-shadow: none !default; //$box-shadow-base $brand-color-base
 			$btn-box-shadow-hover: $box-shadow-base $brand-color-base !default;
-		// $btn-group-separator-color: rgba($brand-color-base,.1) !default;
+		$btn-group-separator-color: $input-border-color !default;
 		$btn-transition-duration: $transition-duration-base!default;
 
 		// SCHEMES
-			$btn-border-default: rgba($brand-color-neutral,.3) !default;
+			$btn-border-default: $input-border-color !default;
 			$btn-background-default: transparent !default;
 			$btn-color-default: inherit !default;
 
-				$btn-border-default-hover: rgba($brand-color-neutral,.6)!default;
+				$btn-border-default-hover: $input-border-color-focus !default;
 				$btn-background-default-hover: transparent !default;
 				$btn-color-default-hover: $brand-color-primary !default;
 			
