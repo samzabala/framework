@@ -191,7 +191,7 @@ $prefix: '.btn';
 			
 			&-disabled,
 			&-disabled & {
-				@extend %for-no-shadow-important !optional;
+				@extend %for-no-shadow !optional;
 			}
 			
 
