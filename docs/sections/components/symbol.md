@@ -74,6 +74,10 @@ burger <i class="color-primary symbol symbol-burger"></i>
 </p>
 
 <p>
+fries <i class="color-primary symbol symbol-fries"></i>
+</p>
+
+<p>
 kebab vertical <i class="color-primary symbol symbol-kebab-vertical"></i>
 </p>
 
