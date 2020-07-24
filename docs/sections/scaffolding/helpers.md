@@ -551,64 +551,105 @@ Set to whatever font weight ya need boi
 
 # Justify Content
 
+*   **`.justify-content-start`**
+*   **`.justify-content-end`**
 *   **`.justify-content-flex-start`**
 *   **`.justify-content-flex-end`**
+*   **`.justify-content-left`**
+*   **`.justify-content-right`**
 *   **`.justify-content-center`**
+*   **`.justify-content-stretch`**
+*   **`.justify-content-normal`**
 *   **`.justify-content-space-between`**
 *   **`.justify-content-space-around`**
 *   **`.justify-content-space-evenly`**
-*   **`.justify-content-start`**
-*   **`.justify-content-end`**
-*   **`.justify-content-left`**
-*   **`.justify-content-right`**
-*   **`.justify-content-normal`**
-*   **`.justify-content-stretch`**
 *   **`.justify-content-inherit`**
+
+[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content)
+
+# Justify Items
+
+*   **`.justify-items-start`**
+*   **`.justify-items-end`**
+*   **`.justify-items-flex-start`**
+*   **`.justify-items-flex-end`**
+*   **`.justify-items-self-start`**
+*   **`.justify-items-self-end`**
+*   **`.justify-items-left`**
+*   **`.justify-items-right`**
+*   **`.justify-items-center`**
+*   **`.justify-items-baseline`**
+*   **`.justify-items-stretch`**
+*   **`.justify-items-normal`**
+*   **`.justify-items-inherit`**
 *   
-[More info on the css property](https://www.w3schools.com/cssref/css3_pr_justify-content.asp)
+[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items)
 
-# Align Self
+# Justify Self
 
-*   **`.align-self-flex-start`**
-*   **`.align-self-flex-end`**
-*   **`.align-self-center`**
-*   **`.align-self-baseline`**
-*   **`.align-self-stretch`**
-*   **`.align-self-inherit`**
-
-[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)
-
-# Align Items
-
-*   **`.align-items-flex-start`**
-*   **`.align-items-flex-end`**
-*   **`.align-items-stretch`**
-*   **`.align-items-center`**
-*   **`.align-items-baseline`**
-*   **`.align-items-start`**
-*   **`.align-items-end`**
-*   **`.align-items-inherit`**
-
-[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)
+*   **`.justify-self-start`**
+*   **`.justify-self-end`**
+*   **`.justify-self-flex-start`**
+*   **`.justify-self-flex-end`**
+*   **`.justify-self-self-start`**
+*   **`.justify-self-self-end`**
+*   **`.justify-self-left`**
+*   **`.justify-self-right`**
+*   **`.justify-self-center`**
+*   **`.justify-self-baseline`**
+*   **`.justify-self-stretch`**
+*   **`.justify-self-normal`**
+*   **`.justify-self-inherit`**
+*   
+[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self)
 
 # Align Content
 
+*   **`.align-content-start`**
+*   **`.align-content-end`**
 *   **`.align-content-flex-start`**
 *   **`.align-content-flex-end`**
 *   **`.align-content-center`**
+*   **`.align-content-stretch`**
+*   **`.align-content-normal`**
 *   **`.align-content-space-between`**
 *   **`.align-content-space-around`**
 *   **`.align-content-space-evenly`**
-*   **`.align-content-baseline`**
-*   **`.align-content-stretch`**
-*   **`.align-content-start`**
-*   **`.align-content-end`**
-*   **`.align-content-left`**
-*   **`.align-content-right`**
-*   **`.align-content-normal`**
 *   **`.align-content-inherit`**
 
 [More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content)
+
+# Align Items
+
+*   **`.align-items-start`**
+*   **`.align-items-end`**
+*   **`.align-items-flex-start`**
+*   **`.align-items-flex-end`**
+*   **`.align-items-self-start`**
+*   **`.align-items-self-end`**
+*   **`.align-items-center`**
+*   **`.align-items-baseline`**
+*   **`.align-items-stretch`**
+*   **`.align-items-normal`**
+*   **`.align-items-inherit`**
+*   
+[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)
+
+# Align Self
+
+*   **`.align-self-start`**
+*   **`.align-self-end`**
+*   **`.align-self-flex-start`**
+*   **`.align-self-flex-end`**
+*   **`.align-self-self-start`**
+*   **`.align-self-self-end`**
+*   **`.align-self-center`**
+*   **`.align-self-baseline`**
+*   **`.align-self-stretch`**
+*   **`.align-self-normal`**
+*   **`.align-self-inherit`**
+*   
+[More info on the css property](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)
 
 # Inline Flex
 

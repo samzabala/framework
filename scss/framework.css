@@ -8312,14 +8312,32 @@ fieldset {
 .clear-inherit {
   clear: inherit !important; }
 
+.justify-content-start {
+  justify-content: start !important; }
+
+.justify-content-end {
+  justify-content: end !important; }
+
 .justify-content-flex-start {
   justify-content: flex-start !important; }
 
 .justify-content-flex-end {
   justify-content: flex-end !important; }
 
+.justify-content-left {
+  justify-content: left !important; }
+
+.justify-content-right {
+  justify-content: right !important; }
+
 .justify-content-center {
   justify-content: center !important; }
+
+.justify-content-stretch {
+  justify-content: stretch !important; }
+
+.justify-content-normal {
+  justify-content: normal !important; }
 
 .justify-content-space-between {
   justify-content: space-between !important; }
@@ -8330,68 +8348,92 @@ fieldset {
 .justify-content-space-evenly {
   justify-content: space-evenly !important; }
 
-.justify-content-start {
-  justify-content: start !important; }
-
-.justify-content-end {
-  justify-content: end !important; }
-
-.justify-content-left {
-  justify-content: left !important; }
-
-.justify-content-right {
-  justify-content: right !important; }
-
-.justify-content-normal {
-  justify-content: normal !important; }
-
-.justify-content-stretch {
-  justify-content: stretch !important; }
-
 .justify-content-inherit {
-  justify-content: stretch !important; }
+  justify-content: inherit !important; }
 
-.align-self-flex-start {
-  align-self: flex-start !important; }
+.justify-items-start {
+  justify-items: start !important; }
 
-.align-self-flex-end {
-  align-self: flex-end !important; }
+.justify-items-end {
+  justify-items: end !important; }
 
-.align-self-center {
-  align-self: center !important; }
+.justify-items-flex-start {
+  justify-items: flex-start !important; }
 
-.align-self-baseline {
-  align-self: baseline !important; }
+.justify-items-flex-end {
+  justify-items: flex-end !important; }
 
-.align-self-stretch {
-  align-self: stretch !important; }
+.justify-items-self-start {
+  justify-items: self-start !important; }
 
-.align-self-inherit {
-  align-self: inherit !important; }
+.justify-items-self-end {
+  justify-items: self-end !important; }
 
-.align-items-flex-start {
-  align-items: flex-start !important; }
+.justify-items-left {
+  justify-items: left !important; }
 
-.align-items-flex-end {
-  align-items: flex-end !important; }
+.justify-items-right {
+  justify-items: right !important; }
 
-.align-items-stretch {
-  align-items: stretch !important; }
+.justify-items-center {
+  justify-items: center !important; }
 
-.align-items-center {
-  align-items: center !important; }
+.justify-items-baseline {
+  justify-items: baseline !important; }
 
-.align-items-baseline {
-  align-items: baseline !important; }
+.justify-items-stretch {
+  justify-items: stretch !important; }
 
-.align-items-start {
-  align-items: start !important; }
+.justify-items-normal {
+  justify-items: normal !important; }
 
-.align-items-end {
-  align-items: end !important; }
+.justify-items-inherit {
+  justify-items: inherit !important; }
 
-.align-items-inherit {
-  align-items: inherit !important; }
+.justify-self-start {
+  justify-self: start !important; }
+
+.justify-self-end {
+  justify-self: end !important; }
+
+.justify-self-flex-start {
+  justify-self: flex-start !important; }
+
+.justify-self-flex-end {
+  justify-self: flex-end !important; }
+
+.justify-self-self-start {
+  justify-self: self-start !important; }
+
+.justify-self-self-end {
+  justify-self: self-end !important; }
+
+.justify-self-left {
+  justify-self: left !important; }
+
+.justify-self-right {
+  justify-self: right !important; }
+
+.justify-self-center {
+  justify-self: center !important; }
+
+.justify-self-baseline {
+  justify-self: baseline !important; }
+
+.justify-self-stretch {
+  justify-self: stretch !important; }
+
+.justify-self-normal {
+  justify-self: normal !important; }
+
+.justify-self-inherit {
+  justify-self: inherit !important; }
+
+.align-content-start {
+  align-content: start !important; }
+
+.align-content-end {
+  align-content: end !important; }
 
 .align-content-flex-start {
   align-content: flex-start !important; }
@@ -8402,6 +8444,12 @@ fieldset {
 .align-content-center {
   align-content: center !important; }
 
+.align-content-stretch {
+  align-content: stretch !important; }
+
+.align-content-normal {
+  align-content: normal !important; }
+
 .align-content-space-between {
   align-content: space-between !important; }
 
@@ -8411,29 +8459,74 @@ fieldset {
 .align-content-space-evenly {
   align-content: space-evenly !important; }
 
-.align-content-baseline {
-  align-content: baseline !important; }
-
-.align-content-stretch {
-  align-content: stretch !important; }
-
-.align-content-start {
-  align-content: start !important; }
-
-.align-content-end {
-  align-content: end !important; }
-
-.align-content-left {
-  align-content: left !important; }
-
-.align-content-right {
-  align-content: right !important; }
-
-.align-content-normal {
-  align-content: normal !important; }
-
 .align-content-inherit {
   align-content: inherit !important; }
+
+.align-items-start {
+  align-items: start !important; }
+
+.align-items-end {
+  align-items: end !important; }
+
+.align-items-flex-start {
+  align-items: flex-start !important; }
+
+.align-items-flex-end {
+  align-items: flex-end !important; }
+
+.align-items-center {
+  align-items: center !important; }
+
+.align-items-baseline {
+  align-items: baseline !important; }
+
+.align-items-stretch {
+  align-items: stretch !important; }
+
+.align-items-normal {
+  align-items: normal !important; }
+
+.align-items-inherit {
+  align-items: inherit !important; }
+
+.align-self-start {
+  align-self: start !important; }
+
+.align-self-end {
+  align-self: end !important; }
+
+.align-self-flex-start {
+  align-self: flex-start !important; }
+
+.align-self-flex-end {
+  align-self: flex-end !important; }
+
+.align-self-self-start {
+  align-self: self-start !important; }
+
+.align-self-self-end {
+  align-self: self-end !important; }
+
+.align-self-self-start {
+  align-self: self-start !important; }
+
+.align-self-self-end {
+  align-self: self-end !important; }
+
+.align-self-center {
+  align-self: center !important; }
+
+.align-self-baseline {
+  align-self: baseline !important; }
+
+.align-self-stretch {
+  align-self: stretch !important; }
+
+.align-self-normal {
+  align-self: normal !important; }
+
+.align-self-inherit {
+  align-self: inherit !important; }
 
 /* FLEX */
 .inline-flex {
