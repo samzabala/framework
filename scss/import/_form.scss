@@ -198,7 +198,7 @@ $prefix: '.input';
 				
 			}
 
-			&-horizonal {
+			&-horizontal {
 
 			}
 
@@ -220,18 +220,21 @@ $prefix: '.input';
 	
 				&:first-child:last-child {
 				/* labels that typically wrapp radio and checboxes*/
-					flex: 1 1 auto;
+					flex-grow: 1;
+					flex-shrink:1;
+					flex-basis:auto;
 				}
 
 			}
 
 			&-block {
-				flex-basis:$input-label-horizontal-width;
 			}
 
-			&-horizonal {
+			&-horizontal {
 				&-block {
-
+					// &:nth-last-child(n+2) {
+						flex-basis:$input-label-horizontal-width;
+					// }
 				}
 
 			}
@@ -280,7 +283,7 @@ $prefix: '.input';
 			#{$prefix}-wrapper-horizontal > & {
 				@extend %for-form-label-in-wrapper-horizontal !optional;
 
-				#{$prefix}-wrapper-block#{&} {
+				@at-root #{$prefix}-wrapper-block#{&} {
 					@extend %for-form-label-in-wrapper-horizontal-block !optional;
 				}
 			}
@@ -288,7 +291,7 @@ $prefix: '.input';
 			#{$prefix}-wrapper-vertical > & {
 				@extend %for-form-label-in-wrapper-vertical;
 
-				#{$prefix}-wrapper-block#{&} {
+				@at-root #{$prefix}-wrapper-block#{&} {
 					@extend %for-form-label-in-wrapper-vertical-block;
 				}
 			}
@@ -657,7 +660,7 @@ $prefix: '.input';
 			& {
 			}
 			
-			&-horizonal {
+			&-horizontal {
 
 			}
 
@@ -673,7 +676,7 @@ $prefix: '.input';
 
 		&-in-wrapper {
 
-			&-horizonal {
+			&-horizontal {
 
 			}
 
@@ -734,7 +737,7 @@ $prefix: '.input';
 			#{$prefix}-wrapper-horizontal & {
 				// @extend %for-form-input-boxy-in-wrapper-horizontal !optional;
 	
-				#{$prefix}-wrapper-block#{&} {
+				@at-root #{$prefix}-wrapper-block#{&} {
 					// @extend %for-form-input-boxy-in-wrapper-horizontal-block !optional;
 				}
 			}
@@ -742,7 +745,7 @@ $prefix: '.input';
 			#{$prefix}-wrapper-vertical & {
 				// @extend %for-form-input-boxy-in-wrapper-vertical !optional;
 	
-				#{$prefix}-wrapper-block#{&} {
+				@at-root #{$prefix}-wrapper-block#{&} {
 					// @extend %for-form-input-boxy-in-wrapper-vertical-block !optional;
 				}
 			}

@@ -31,15 +31,24 @@ Lazyloading also supports replacement of img tag into the src's svg markup. As l
 <img class="svg" data-src="icoo.svg" alt="bitch boi" />
 ```
 
-This way you can utilize [SVG Classes](#svg) tto :')
+This way you can utilize [SVG Classes](#svg) to :')
 
 ### Disable Lazyloading
 To disable lazyload, do this to ya script
 ```js
 (function(fw){
-	frameWork.settings.lazyLoad = false;
+	fw.settings.lazyLoad = false;
 }(frameWork));
 ```
+
+
+
+### Functions for Lazyloading or loading images
+
+As longas yuh image tags vae either `data-src` or `data-srcset` this should be able to work. hopefullly.
+
+`fw.loadImage(imgELEMENT)` - load just one boi
+`fw.loadImages(multipleImages)` - load nultiple bois
 
 ## Classes
 **`.fit-image`**

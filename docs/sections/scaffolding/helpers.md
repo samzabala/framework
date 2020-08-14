@@ -758,6 +758,8 @@ Show on certain ineractions of parent
 *   **`.only-toggle`** (only when classed as `open` or `active`)
 *   **`.only-not-toggle`** (only when not classed as `open` or `active`)
 
+By default, the this works based on the pointer interactions on parent element. If styles based on a different ancestor is desired, Add `.pointer-reference` to that ancestor
+
 # Screen reader only
 
 **`.sr-only`**

@@ -428,6 +428,10 @@
 			font-family: $brand-font-primary !important;
 		}
 
+		&-secondary {
+			font-family: $brand-font-secondary !important;
+		}
+
 		&-accent {
 			font-family: $brand-font-accent !important;
 		}
@@ -1304,16 +1308,20 @@
 *:not(:hover) > .only-hover,
 *:not(:hover) > .hide-not-hover,
 
-
-.pointer-reference:hover .only-not-hover,
-.pointer-reference:hover .hide-hover,
-.pointer-reference:not(:hover) .only-hover,
-.pointer-reference:not(:hover) .hide-not-hover,
+	.pointer-reference:hover .only-not-hover,
+	.pointer-reference:hover .hide-hover,
+	.pointer-reference:not(:hover) .only-hover,
+	.pointer-reference:not(:hover) .hide-not-hover,
 
 *:focus > .only-not-focus,
 *:focus > .hide-focus,
 *:not(:focus):not(.focus) > .only-focus,
 *:not(:focus):not(.focus) > .hide-not-focus,
+
+	.pointer-reference:focus .only-not-focus,
+	.pointer-reference:focus .hide-focus,
+	.pointer-reference:not(:focus):not(.focus) .only-focus,
+	.pointer-reference:not(:focus):not(.focus) .hide-not-focus,
 
 *.active > .only-not-active,
 	*:active > .only-not-active,
@@ -1322,41 +1330,31 @@
 *:not(:active):not(.active) > .only-active,
 *:not(:active):not(.active) > .hide-not-active,
 
+	.pointer-reference.active .only-not-active,
+		.pointer-reference:active .only-not-active,
+	.pointer-reference.active .hide-active,
+		.pointer-reference:active .hide-active,
+	.pointer-reference:not(:active):not(.active) .only-active,
+	.pointer-reference:not(:active):not(.active) .hide-not-active,
 
 *.active > .only-not-toggle,
 	*.open > .only-not-toggle,
 *.active > .hide-toggle,
 	*.open > .hide-toggle,
 *:not(.active):not(.open) > .only-toggle,
-*:not(.active):not(.open) > .hide-not-toggle
+*:not(.active):not(.open) > .hide-not-toggle,
+
+	.pointer-reference.active .only-not-toggle,
+		.pointer-reference.open .only-not-toggle,
+	.pointer-reference.active .hide-toggle,
+		.pointer-reference.open .hide-toggle,
+	.pointer-reference:not(.active):not(.open) .only-toggle,
+	.pointer-reference:not(.active):not(.open) .hide-not-toggle
 
 {
 	display: none !important;
 }
 
-// .only-not-hover,
-// .hide-hover,
-// .only-hover,
-// .hide-not-hover,
-
-
-// .only-not-focus,
-// .hide-focus,
-// .only-focus,
-// .hide-not-focus,
-
-// .only-not-active,
-// .hide-active,
-// .only-active,
-// .hide-not-active,
-
-// .only-not-toggle,
-// .hide-toggle,
-// .only-toggle,
-// .hide-not-toggle {
-
-// 	pointer-events:none!important;
-// }
 
 
 @include breakpoint(#{$mobile-br-max}-max) {

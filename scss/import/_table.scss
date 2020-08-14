@@ -85,24 +85,17 @@ $prefix: '.table';
 			display:table-row;
 			vertical-align: inherit;
 			text-align: inherit;
+			border-color: $table-cell-border-color;
+			border-style: solid;
+			border-top-width: $table-cell-border-width;
 
-			&:first-child {
-				border-top: $table-cell-border-width solid $table-cell-border-color;
-
-				.theme-inverse & {
-					border-top: $table-cell-border-width solid $table-cell-border-color-inverse;
-				}
+			.theme-inverse & {
+				border-color: $table-cell-border-color-inverse;
 			}
 
-			// &:nth-last-child(n+2),
-			// thead ~ tbody &:last-child {
-				border-bottom: $table-cell-border-width solid $table-cell-border-color;
-
-				.theme-inverse & {
-					border-bottom: $table-cell-border-width solid $table-cell-border-color-inverse;
-				}
-
-			// }
+			&:last-child {
+				border-bottom-width: $table-cell-border-width;
+			}
 			
 
 			.alert &,
@@ -121,6 +114,24 @@ $prefix: '.table';
 			height:100%;
 			display: table-cell;
 			position:relative;
+
+
+
+			&#{$prefix}-bordered,
+			#{$prefix}-bordered & {
+				border-color: $table-cell-border-color;
+				border-style: solid;
+				border-left-width: $table-cell-border-width;
+
+				.theme-inverse & {
+					border-color: $table-cell-border-color-inverse;
+				}
+
+				&:last-child {
+					border-right-width: $table-cell-border-width;
+				}
+			}
+
 		}
 
 
@@ -228,27 +239,43 @@ $prefix: '.table';
 
 		@at-root #{$prefix}-row,
 		#{$prefix}-cell {
-			@each $tag,$color in $calculated-brand-color-declarations {
-				&-#{$tag} {
-					background-color: rgba($color,$table-row-background-opacity);
-				}
-			}
-
-			&-intensity {
-				@for $i from 1 through length($calculated-color-brand-intensity) {
-
-					&-#{$i} {
-						background-color: rgba(nth($calculated-color-brand-intensity,$i),$table-row-background-opacity);
-					}
-				}
-			}
-
 			&-disabled {
 				td,
 				#{$prefix}-cell {
 					@extend %for-disabled;
 				}
 			}
+		}
+
+		@at-root #{$prefix}-row {
+			
+			@each $tag,$colors in $calculated-table-row-background {
+				&-#{$tag} {
+					background-color: map-get($colors,normal);
+
+					.theme-inverse & {
+						background-color: map-get($colors,inverse);
+					}
+				}
+			}
+
+		}
+
+
+
+		@at-root #{$prefix}-cell {
+			
+			@each $tag,$colors in $calculated-table-cell-background {
+				@at-root td#{&}-#{$tag},
+				&#{&}-#{$tag} {
+					background-color: map-get($colors,normal);
+
+					.theme-inverse & {
+						background-color: map-get($colors,inverse);
+					}
+				}
+			}
+
 		}
 
 

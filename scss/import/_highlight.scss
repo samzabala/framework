@@ -33,8 +33,8 @@ $prefix: '.highlight';
 	margin-left: $calculated-highlight-margin-x;
 	margin-right: $calculated-highlight-margin-x;
 	border-radius: $highlight-border-radius;
-	white-space: pre-wrap;
-	display:inline;
+	display:inline-flex;
+	margin-bottom: .2em;
 
 
 	&,

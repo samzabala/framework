@@ -1870,15 +1870,10 @@ window.jQuery && jQuery.noConflict();
 	};
 	
 	//lazyload
-	frameWork.loadImages = () => {
-		//css images
-		// images
-		$('*[data-src]').each((i, elm) => {
-			// $('img, picture > source')
-
-			const img = $(elm),
-				imgSrc = $(elm).attr('data-src'),
-				imgSrcset = $(elm).attr('data-srcset');
+	frameWork.loadImage = (img) => {
+			const
+				imgSrc = img.attr('data-src'),
+				imgSrcset = img.attr('data-srcset');
 
 			if (
 				img.is('img')
@@ -1917,6 +1912,15 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			img.addClass('lazy-loaded');
+	}
+
+	frameWork.loadImages = (images) => {
+		//css images
+		// images
+		images = images || $('*[data-src]');
+
+		images.each((i, elm) => {
+			frameWork.loadImage($(elm));
 		});
 
 		//css images

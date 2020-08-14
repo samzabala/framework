@@ -19,6 +19,7 @@ $prefix: '.symbol';
 	vertical-align:inherit;
 	transform-origin: center center;
 	pointer-events:none;
+    align-self: center;
 	margin: 0 .5em;
 	cursor:inherit;
 	// font-size: 64px; //debug only
@@ -523,26 +524,39 @@ $prefix: '.symbol';
 		}
 	}
 
-	&-star {
-		&,&-stroke {
+	&-file {
 
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				@extend %for-valid-symbol;
-				@extend %for-valid-symbol-no-before;
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@extend %for-valid-symbol;
+			@extend %for-valid-symbol-no-before;
 
-				&:after {
-					@extend %for-valid-symbol-pseudo;
-					@extend %for-valid-symbol-pseudo-filled;
-					width: 1.25em;
-					height: 1.25em;
-					top: -.5em;
-					bottom: -.5em;
-					left: -.5em;
-					right: -.5em;
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-filled;
+				width: .875em;
+				clip-path: polygon(
+					0% 0%,
+					0% 100%,
+					100% 100%,
+					100% 30%,
+					calc(50% + #{em(2px / $calculated-symbol-basis)}) 0,
+					50% 0,
+					50% calc(30% + #{em(2px / $calculated-symbol-basis)}),
+					calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(30% + #{em(2px / $calculated-symbol-basis)}),
+					calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
+					calc(50% + #{em(2px / $calculated-symbol-basis)}) 30%,
+					calc(50% + #{em(2px / $calculated-symbol-basis)}) em(2px / $calculated-symbol-basis),
+					calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
+					calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(100% - #{em(2px / $calculated-symbol-basis)}),
+					em(2px / $calculated-symbol-basis) calc(100% - #{em(2px / $calculated-symbol-basis)}),
+					em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
+					50% em(2px / $calculated-symbol-basis),
+					50% 0,
 
-				}
+				);
+
 			}
 		}
 	}
@@ -791,9 +805,9 @@ $prefix: '.symbol';
 					&:before,&:after {
 						@extend %for-valid-symbol-pseudo-border-radius;
 						@extend %for-valid-symbol-pseudo-filled;
-						@extend %for-valid-symbol-pseudo-horizontal;
-						width: .6875em;
-						transform-origin: em((3px * .5) / $calculated-symbol-basis) center;
+						@extend %for-valid-symbol-pseudo-vertical;
+						height: .6875em;
+						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
 					}
 		
 					&:before{
@@ -818,8 +832,8 @@ $prefix: '.symbol';
 				.active > &-toggle,
 				.open > &-toggle {
 					&:before,&:after {
-						left:0;
-						right: auto;
+						top:0;
+						bottom: auto;
 					}
 				}
 			}
@@ -833,7 +847,7 @@ $prefix: '.symbol';
 				&,
 				.active > &-toggle,
 				.open > &-toggle {
-					width: .75em;
+					height: .75em;
 				}
 			}
 		}
@@ -848,11 +862,11 @@ $prefix: '.symbol';
 				.open > &-toggle  {
 
 					&:before{
-						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
+						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
 					}
 
 					&:after{
-						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * 3.5)/$calculated-symbol-basis) 0 0;
+						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * -3.5)/$calculated-symbol-basis) 0 0;
 					}
 				}
 			}
@@ -870,14 +884,14 @@ $prefix: '.symbol';
 						height: .625em;
 						width: .625em;
 						border-top: em(2px/$calculated-symbol-basis) solid;
-						border-left: em(2px/$calculated-symbol-basis) solid;
+						border-right: em(2px/$calculated-symbol-basis) solid;
 						transform: rotate(-45deg);
 					}
 
 					&:after {
-						@extend %for-valid-symbol-pseudo-full-width;
+						@extend %for-valid-symbol-pseudo-full-height;
 						@extend %for-valid-symbol-pseudo-filled;
-						height: em(2px/$calculated-symbol-basis);
+						width: em(2px/$calculated-symbol-basis);
 					}
 					// @extend %for-valid-symbol-pseudo-border-radius;
 					// @extend %for-valid-symbol-pseudo-horizontal;
@@ -929,7 +943,7 @@ $prefix: '.symbol';
 				@extend %for-valid-symbol-pseudo-vertical;
 				@include arrow-triangle((
 					pseudo: override, 
-					direction: 'left', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
+					direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
 					display: null,
 					size-base: inherit,
 					main-size: $calculated-symbol-caret-height,//orientation of direction
@@ -953,25 +967,25 @@ $prefix: '.symbol';
 		&-up,
 		.active > &-up-toggle,
 		.open > &-up-toggle {
-			transform: rotate(90deg);
+			transform: rotate(0deg);
 		}
 
 		&-down,
 		.active > &-down-toggle,
 		.open > &-down-toggle {
-			transform: rotate(-90deg);
+			transform: rotate(180deg);
 		}
 
 		&-left,
 		.active > &-left-toggle,
 		.open > &-left-toggle {
-			transform: rotate(0deg);
+			transform: rotate(-90deg);
 		}
 
 		&-right,
 		.active > &-right-toggle,
 		.open > &-right-toggle {
-			transform: rotate(180deg);
+			transform: rotate(90deg);
 		}
 	}
 

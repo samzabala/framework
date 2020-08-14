@@ -52,7 +52,7 @@
 			$brand-color-accent-darker: darken($brand-color-accent,25) !default;
 			$brand-color-accent-darkest: darken($brand-color-accent,35) !default;
 
-		$brand-color-success: #15b800 !default;
+		$brand-color-success: #00b754 !default;
 			$brand-color-success-light: lighten($brand-color-success,10) !default;
 			$brand-color-success-lighter: lighten($brand-color-success-light,10) !default;
 			$brand-color-success-lightest: lighten($brand-color-success-light,25) !default;
@@ -134,8 +134,9 @@
 
 	// FONT
 		$brand-font-primary: "Roboto",Helvetica,Arial,sans-serif !default;
-		$brand-font-accent: "Georgia",Times,serif !default;
-		$brand-font-monospace: 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace !default;
+		$brand-font-secondary: "Georgia",Times,serif !default;
+		$brand-font-accent: $brand-font-secondary !default;
+		$brand-font-monospace: "Courier New", Courier, monospace !default;
 		
 	// GLOBAL html + body coloring..
 
@@ -197,7 +198,7 @@
 		$body-heading-font-weight: $body-font-weight-bold !default;
 		$body-heading-font-style: inherit !default;
 		$body-heading-text-transform: none !default;
-		$body-heading-font-family: $brand-font-accent !default;
+		$body-heading-font-family: $brand-font-secondary !default;
 		$body-heading-color: $theme-color-contrast !default;
 			$body-heading-color-inverse: $theme-color-contrast-inverse !default;
 
@@ -278,7 +279,81 @@
 		$table-label-width: 12px !default;
 		$table-label-offset: 2px !default;
 		$table-label-border-radius: 2px !default;
-		$table-row-background-opacity: .1 !default;
+
+		$table-row-primary-background: mix($brand-color-primary,$theme-background,10%) !default;
+			$table-row-primary-background-inverse: mix($brand-color-primary,$theme-background-inverse,10%) !default;
+
+		$table-row-secondary-background: mix($brand-color-secondary,$theme-background,10%) !default;
+			$table-row-secondary-background-inverse: mix($brand-color-secondary,$theme-background-inverse,10%) !default;
+
+		$table-row-accent-background: mix($brand-color-accent,$theme-background,10%) !default;
+			$table-row-accent-background-inverse: mix($brand-color-accent,$theme-background-inverse,10%) !default;
+
+		$table-row-neutral-background: mix($brand-color-neutral,$theme-background,10%) !default;
+			$table-row-neutral-background-inverse: mix($brand-color-neutral,$theme-background-inverse,10%) !default;
+
+		$table-row-success-background: mix($brand-color-success,$theme-background,10%) !default;
+			$table-row-success-background-inverse: mix($brand-color-success,$theme-background-inverse,10%) !default;
+
+		$table-row-caution-background: mix($brand-color-caution,$theme-background,10%) !default;
+			$table-row-caution-background-inverse: mix($brand-color-caution,$theme-background-inverse,10%) !default;
+
+		$table-row-error-background: mix($brand-color-error,$theme-background,10%) !default;
+			$table-row-error-background-inverse: mix($brand-color-error,$theme-background-inverse,10%) !default;
+
+		$table-row-intensity-1-background: mix($brand-color-intensity-1,$theme-background,10%) !default;
+			$table-row-intensity-1-background-inverse: mix($brand-color-intensity-1,$theme-background-inverse,10%) !default;
+
+		$table-row-intensity-2-background: mix($brand-color-intensity-2,$theme-background,10%) !default;
+			$table-row-intensity-2-background-inverse: mix($brand-color-intensity-2,$theme-background-inverse,10%) !default;
+
+		$table-row-intensity-3-background: mix($brand-color-intensity-3,$theme-background,10%) !default;
+			$table-row-intensity-3-background-inverse: mix($brand-color-intensity-3,$theme-background-inverse,10%) !default;
+
+		$table-row-intensity-4-background: mix($brand-color-intensity-4,$theme-background,10%) !default;
+			$table-row-intensity-4-background-inverse: mix($brand-color-intensity-4,$theme-background-inverse,10%) !default;
+
+		$table-row-intensity-5-background: mix($brand-color-intensity-5,$theme-background,10%) !default;
+			$table-row-intensity-5-background-inverse: mix($brand-color-intensity-5,$theme-background-inverse,10%) !default;
+
+
+		
+
+		$table-cell-primary-background: rgba($brand-color-primary,.1) !default;
+			$table-cell-primary-background-inverse: $table-cell-primary-background !default;
+
+		$table-cell-secondary-background: rgba($brand-color-secondary,.1) !default;
+			$table-cell-secondary-background-inverse: $table-cell-secondary-background !default;
+
+		$table-cell-accent-background: rgba($brand-color-accent,.1) !default;
+			$table-cell-accent-background-inverse: $table-cell-accent-background !default;
+
+		$table-cell-neutral-background: rgba($brand-color-neutral,.1) !default;
+			$table-cell-neutral-background-inverse: $table-cell-neutral-background !default;
+
+		$table-cell-success-background: rgba($brand-color-success,.1) !default;
+			$table-cell-success-background-inverse: $table-cell-success-background !default;
+
+		$table-cell-caution-background: rgba($brand-color-caution,.1) !default;
+			$table-cell-caution-background-inverse: $table-cell-caution-background !default;
+
+		$table-cell-error-background: rgba($brand-color-error,.1) !default;
+			$table-cell-error-background-inverse: $table-cell-error-background !default;
+
+		$table-cell-intensity-1-background: rgba($brand-color-intensity-1,.1) !default;
+			$table-cell-intensity-1-background-inverse: $table-cell-intensity-1-background !default;
+
+		$table-cell-intensity-2-background: rgba($brand-color-intensity-2,.1) !default;
+			$table-cell-intensity-2-background-inverse: $table-cell-intensity-2-background !default;
+
+		$table-cell-intensity-3-background: rgba($brand-color-intensity-3,.1) !default;
+			$table-cell-intensity-3-background-inverse: $table-cell-intensity-3-background !default;
+
+		$table-cell-intensity-4-background: rgba($brand-color-intensity-4,.1) !default;
+			$table-cell-intensity-4-background-inverse: $table-cell-intensity-4-background !default;
+
+		$table-cell-intensity-5-background: rgba($brand-color-intensity-5,.1) !default;
+			$table-cell-intensity-5-background-inverse: $table-cell-intensity-5-background !default;
 
 
 // LAYOUT
@@ -363,9 +438,9 @@
 		$nav-text-transform: none !default;
 		
 
-		$nav-top-font-size: $body-font-size !default;
+		$nav-top-font-size: 18px !default;
 		$nav-top-font-style: normal !default;
-		$nav-top-font-weight: $body-font-weight-bold !default;
+		$nav-top-font-weight: normal !default;
 		$nav-top-font-color: inherit !default;
 		$nav-top-text-transform: none !default;
 
@@ -374,7 +449,7 @@
 	//tab
 		$tabs-font-size: $nav-top-font-size !default;
 			$tabs-font-size-mobile: $tabs-font-size !default;
-		$tabs-font-weight: $body-font-weight-bold !default;
+		$tabs-font-weight: $nav-top-font-weight !default;
 		$tabs-font-style: normal !default;
 		$tabs-text-transform: none !default;
 		$tabs-transition-duration: $transition-duration-base !default;
@@ -532,7 +607,7 @@
 			$alert-gutter-y-ends-large: $alert-gutter-y-large * .5 !default;
 
 		$alert-box-shadow: none !default; //$box-shadow-base $brand-color-base
-		$alert-border-radius: $border-radius-small !default;
+		$alert-border-radius: 0 !default;
 
 			$alert-title-font-weight: $body-font-weight-bold !default;
 			$alert-title-font-style: normal !default;
@@ -544,33 +619,33 @@
 			$alert-background-default: transparent !default;
 			$alert-color-default: inherit !default;
 
-			$alert-border-primary: rgba($brand-color-primary-dark,.1) !default;
-			$alert-background-primary: $brand-color-primary-lighter !default;
-			$alert-color-primary: $brand-color-primary-darker !default;
+			$alert-border-primary: rgba($brand-color-primary-dark,.5) !default;
+			$alert-background-primary: $brand-color-primary !default;
+			$alert-color-primary: $brand-color-background !default;
 
-			$alert-border-secondary: rgba($brand-color-secondary-dark,.1) !default;
-			$alert-background-secondary: $brand-color-secondary-lighter !default;
-			$alert-color-secondary: $brand-color-secondary-darker !default;
+			$alert-border-secondary: rgba($brand-color-secondary-dark,.5) !default;
+			$alert-background-secondary: $brand-color-secondary !default;
+			$alert-color-secondary: $brand-color-background !default;
 
-			$alert-border-accent: rgba($brand-color-accent-dark,.1) !default;
-			$alert-background-accent: $brand-color-accent-lighter !default;
-			$alert-color-accent: $brand-color-accent-darker !default;
+			$alert-border-accent: rgba($brand-color-accent-dark,.5) !default;
+			$alert-background-accent: $brand-color-accent !default;
+			$alert-color-accent: $brand-color-background !default;
 
-			$alert-border-neutral: rgba($brand-color-neutral-dark,.1) !default;
-			$alert-background-neutral: $brand-color-neutral-lighter !default;
-			$alert-color-neutral: $brand-color-neutral-darker !default;
+			$alert-border-neutral: rgba($brand-color-neutral-dark,.5) !default;
+			$alert-background-neutral: $brand-color-neutral !default;
+			$alert-color-neutral: $brand-color-background !default;
 
-			$alert-border-success: rgba($brand-color-success-dark,.1) !default;
-			$alert-background-success: $brand-color-success-lighter !default;
-			$alert-color-success: $brand-color-success-darker !default;
+			$alert-border-success: rgba($brand-color-success-dark,.5) !default;
+			$alert-background-success: $brand-color-success !default;
+			$alert-color-success: $brand-color-background !default;
 
-			$alert-border-caution: rgba($brand-color-caution-dark,.1) !default;
-			$alert-background-caution: $brand-color-caution-lighter !default;
-			$alert-color-caution: $brand-color-caution-darker !default;
+			$alert-border-caution: rgba($brand-color-caution-dark,.5) !default;
+			$alert-background-caution: $brand-color-caution !default;
+			$alert-color-caution: $brand-color-background !default;
 
-			$alert-border-error: rgba($brand-color-error-dark,.1) !default;
-			$alert-background-error: $brand-color-error-lighter !default;
-			$alert-color-error: $brand-color-error-darker !default;
+			$alert-border-error: rgba($brand-color-error-dark,.5) !default;
+			$alert-background-error: $brand-color-error !default;
+			$alert-color-error: $brand-color-background !default;
 
 	
 	
@@ -1214,6 +1289,8 @@
 		$error: $brand-color-error;
 
 		$font-base: $brand-font-primary;
+		$font-secondary: $brand-font-secondary;
+		$font-accent: $brand-font-secondary;
 		$font-monospace: $brand-font-monospace;
 
 
@@ -1243,31 +1320,59 @@
 
 		--brand-color-neutral: #{$brand-color-neutral};
 			// --brand-color-neutral-light: #{$brand-color-neutral-light};
+			// --brand-color-neutral-lighter: #{$brand-color-neutral-lighter};
+			// --brand-color-neutral-lightest: #{$brand-color-neutral-lightest};
 			// --brand-color-neutral-dark: #{$brand-color-neutral-dark};
+			// --brand-color-neutral-darker: #{$brand-color-neutral-darker};
+			// --brand-color-neutral-darkest: #{$brand-color-neutral-darkest};
 		
 		--brand-color-primary: #{$brand-color-primary};
 			// --brand-color-primary-light: #{$brand-color-primary-light};
+			// --brand-color-primary-lighter: #{$brand-color-primary-lighter};
+			// --brand-color-primary-lightest: #{$brand-color-primary-lightest};
 			// --brand-color-primary-dark: #{$brand-color-primary-dark};
+			// --brand-color-primary-darker: #{$brand-color-primary-darker};
+			// --brand-color-primary-darkest: #{$brand-color-primary-darkest};
 		
 		--brand-color-secondary: #{$brand-color-secondary};
 			// --brand-color-secondary-light: #{$brand-color-secondary-light};
+			// --brand-color-secondary-lighter: #{$brand-color-secondary-lighter};
+			// --brand-color-secondary-lightest: #{$brand-color-secondary-lightest};
 			// --brand-color-secondary-dark: #{$brand-color-secondary-dark};
+			// --brand-color-secondary-darker: #{$brand-color-secondary-darker};
+			// --brand-color-secondary-darkest: #{$brand-color-secondary-darkest};
 		
 		--brand-color-accent: #{$brand-color-accent};
-		// --brand-color-accent-light: #{$brand-color-accent-light};
-		// --brand-color-accent-dark: #{$brand-color-accent-dark};
+			// --brand-color-accent-light: #{$brand-color-accent-light};
+			// --brand-color-accent-lighter: #{$brand-color-accent-lighter};
+			// --brand-color-accent-lightest: #{$brand-color-accent-lightest};
+			// --brand-color-accent-dark: #{$brand-color-accent-dark};
+			// --brand-color-accent-darker: #{$brand-color-accent-darker};
+			// --brand-color-accent-darkest: #{$brand-color-accent-darkest};
 
 		--brand-color-success: #{$brand-color-success};
 			// --brand-color-success-light: #{$brand-color-success-light};
+			// --brand-color-success-lighter: #{$brand-color-success-lighter};
+			// --brand-color-success-lightest: #{$brand-color-success-lightest};
 			// --brand-color-success-dark: #{$brand-color-success-dark};
+			// --brand-color-success-darker: #{$brand-color-success-darker};
+			// --brand-color-success-darkest: #{$brand-color-success-darkest};
 
 		--brand-color-caution: #{$brand-color-caution};
 			// --brand-color-caution-light: #{$brand-color-caution-light};
+			// --brand-color-caution-lighter: #{$brand-color-caution-lighter};
+			// --brand-color-caution-lightest: #{$brand-color-caution-lightest};
 			// --brand-color-caution-dark: #{$brand-color-caution-dark};
+			// --brand-color-caution-darker: #{$brand-color-caution-darker};
+			// --brand-color-caution-darkest: #{$brand-color-caution-darkest};
 
 		--brand-color-error: #{$brand-color-error};
 			// --brand-color-error-light: #{$brand-color-error-light};
+			// --brand-color-error-lighter: #{$brand-color-error-lighter};
+			// --brand-color-error-lightest: #{$brand-color-error-lightest};
 			// --brand-color-error-dark: #{$brand-color-error-dark};
+			// --brand-color-error-darker: #{$brand-color-error-darker};
+			// --brand-color-error-darkest: #{$brand-color-error-darkest};
 
 
 		--brand-color-intensity-1: #{$brand-color-intensity-1};
@@ -1281,7 +1386,7 @@
 
 	// FONT
 		--brand-font-primary: #{$brand-font-primary};
-		--brand-font-accent: #{$brand-font-accent};
+		--brand-font-accent: #{$brand-font-secondary};
 		--brand-font-monospace: #{$brand-font-monospace};
 		
 	// GLOBAL html + body coloring
@@ -1290,6 +1395,10 @@
 		--theme-color-contrast: #{$theme-color-contrast};
 		--theme-background: #{$theme-background};
 		--theme-background-contrast: #{$theme-background-contrast};
+
+
+
+		
 }
 
 .theme-inverse {

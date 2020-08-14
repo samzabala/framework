@@ -683,6 +683,108 @@ $calculated-tag-schemes-color: (
 
 
 
+$calculated-table-row-background: (
+	primary: (
+		normal: $table-row-primary-background,
+		inverse: $table-row-primary-background-inverse,
+	),
+	secondary: (
+		normal: $table-row-secondary-background,
+		inverse: $table-row-secondary-background-inverse,
+	),
+	accent: (
+		normal: $table-row-accent-background,
+		inverse: $table-row-accent-background-inverse,
+	),
+	neutral: (
+		normal: $table-row-neutral-background,
+		inverse: $table-row-neutral-background-inverse,
+	),
+	success: (
+		normal: $table-row-success-background,
+		inverse: $table-row-success-background-inverse,
+	),
+	caution: (
+		normal: $table-row-caution-background,
+		inverse: $table-row-caution-background-inverse,
+	),
+	error: (
+		normal: $table-row-error-background,
+		inverse: $table-row-error-background-inverse,
+	),
+	intensity-1: (
+		normal: $table-row-intensity-1-background,
+		inverse: $table-row-intensity-1-background-inverse,
+	),
+	intensity-2: (
+		normal: $table-row-intensity-2-background,
+		inverse: $table-row-intensity-2-background-inverse,
+	),
+	intensity-3: (
+		normal: $table-row-intensity-3-background,
+		inverse: $table-row-intensity-3-background-inverse,
+	),
+	intensity-4: (
+		normal: $table-row-intensity-4-background,
+		inverse: $table-row-intensity-4-background-inverse,
+	),
+	intensity-5: (
+		normal: $table-row-intensity-5-background,
+		inverse: $table-row-intensity-5-background-inverse,
+	),
+);
+
+
+$calculated-table-cell-background: (
+	primary: (
+		normal: $table-cell-primary-background,
+		inverse: $table-cell-primary-background-inverse,
+	),
+	secondary: (
+		normal: $table-cell-secondary-background,
+		inverse: $table-cell-secondary-background-inverse,
+	),
+	accent: (
+		normal: $table-cell-accent-background,
+		inverse: $table-cell-accent-background-inverse,
+	),
+	neutral: (
+		normal: $table-cell-neutral-background,
+		inverse: $table-cell-neutral-background-inverse,
+	),
+	success: (
+		normal: $table-cell-success-background,
+		inverse: $table-cell-success-background-inverse,
+	),
+	caution: (
+		normal: $table-cell-caution-background,
+		inverse: $table-cell-caution-background-inverse,
+	),
+	error: (
+		normal: $table-cell-error-background,
+		inverse: $table-cell-error-background-inverse,
+	),
+	intensity-1: (
+		normal: $table-cell-intensity-1-background,
+		inverse: $table-cell-intensity-1-background-inverse,
+	),
+	intensity-2: (
+		normal: $table-cell-intensity-2-background,
+		inverse: $table-cell-intensity-2-background-inverse,
+	),
+	intensity-3: (
+		normal: $table-cell-intensity-3-background,
+		inverse: $table-cell-intensity-3-background-inverse,
+	),
+	intensity-4: (
+		normal: $table-cell-intensity-4-background,
+		inverse: $table-cell-intensity-4-background-inverse,
+	),
+	intensity-5: (
+		normal: $table-cell-intensity-5-background,
+		inverse: $table-cell-intensity-5-background-inverse,
+	),
+);
 
 
 $calculated-highlight-schemes-color: (

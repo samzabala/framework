@@ -211,29 +211,29 @@ $prefix: '.special';
     #{$prefix} {
 		&-primary {
             @include type-set((
-                size: $calculated-special-primary-font-size!important,
-                leading: $calculated-special-primary-line-height!important,
-                color: $special-primary-color!important,
-                weight:$special-primary-font-weight!important,
-                style: $special-primary-font-style!important,
-                case: $special-primary-text-transform!important,
+                size: $calculated-special-primary-font-size,
+                leading: $calculated-special-primary-line-height,
+                color: $special-primary-color,
+                weight:$special-primary-font-weight,
+                style: $special-primary-font-style,
+                case: $special-primary-text-transform,
             ));
 			margin-bottom: $calculated-special-primary-gutter-y;
 			margin-top: $calculated-special-primary-gutter-y;
 			display:block;
 
 			@include br(#{$mobile-br-max}-max) {
-				font-size: $calculated-special-primary-font-size-mobile!important
+				font-size: $calculated-special-primary-font-size-mobile
 			}
 		}
 		&-secondary {
             @include type-set((
-                size: $calculated-special-secondary-font-size!important,
-                leading: $calculated-special-secondary-line-height!important,
-                color: $special-secondary-color!important,
-                weight:$special-secondary-font-weight!important,
-                style: $special-secondary-font-style!important,
-                case: $special-secondary-text-transform!important,
+                size: $calculated-special-secondary-font-size,
+                leading: $calculated-special-secondary-line-height,
+                color: $special-secondary-color,
+                weight:$special-secondary-font-weight,
+                style: $special-secondary-font-style,
+                case: $special-secondary-text-transform,
             ));
 			margin-bottom: $calculated-special-secondary-gutter-y;
 			margin-top: $calculated-special-secondary-gutter-y;
@@ -248,19 +248,19 @@ $prefix: '.special';
 
 	.lead {
 		@include type-set((
-			size: $calculated-lead-font-size!important,
-			leading: $calculated-lead-line-height!important,
-			color: $lead-color!important,
-			weight:$lead-font-weight!important,
-			style: $lead-font-style!important,
-			case: $lead-text-transform!important,
+			size: $calculated-lead-font-size,
+			leading: $calculated-lead-line-height,
+			color: $lead-color,
+			weight:$lead-font-weight,
+			style: $lead-font-style,
+			case: $lead-text-transform,
 		));
 		margin-bottom: $calculated-lead-gutter-y;
 		margin-top: $calculated-lead-gutter-y;
 		display:block;
 
 		@include br(#{$mobile-br-max}-max) {
-			font-size: $calculated-lead-font-size-mobile!important;
+			font-size: $calculated-lead-font-size-mobile;
 		}
 	}
 
@@ -320,6 +320,11 @@ em,i{
 
 %for-anchor {
 	& {
+		@extend %for-anchor-interaction;
+		@extend %for-anchor-color;
+	}
+
+	&-interaction {
 	
 		&:hover,&:focus,&.focus {
 			text-decoration: $body-anchor-text-decoration-hover;
@@ -342,21 +347,26 @@ em,i{
 			text-decoration: none;
 		}
 	}
+
+	&-color {
+
+		transition: $transition-duration-base color $transition-timing;
+
+		&:hover,&:focus,&.focus {
+			color: $body-anchor-color-hover;
+		}
+	
+		&,&.disabled {
+			color: $body-anchor-color;
+		}
+	}
 	
 }
 
 
-a {
+a,.a {
 	@extend %for-anchor;
-	transition: $transition-duration-base color $transition-timing;
-
-	&:hover,&:focus,&.focus {
-		color: $body-anchor-color-hover;
-	}
-
-	&,&.disabled {
-		color: $body-anchor-color;
-	}
+	@extend %for-anchor-color;
 }
 // margined shit
 
