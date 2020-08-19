@@ -438,9 +438,9 @@
 		$nav-text-transform: none !default;
 		
 
-		$nav-top-font-size: 18px !default;
+		$nav-top-font-size: $body-font-size !default;
 		$nav-top-font-style: normal !default;
-		$nav-top-font-weight: normal !default;
+		$nav-top-font-weight: 700 !default;
 		$nav-top-font-color: inherit !default;
 		$nav-top-text-transform: none !default;
 

@@ -250,8 +250,10 @@ $prefix: '.btn';
 			&.focus,
 			&:active,
 			&.active {
-				box-shadow: $btn-box-shadow-hover;
 				color:inherit;
+				&:not(.btn-no-interaction) {
+					box-shadow: $btn-box-shadow-hover;
+				}
 			}
 
 			&-small {

@@ -698,10 +698,13 @@ window.jQuery && jQuery.noConflict();
 
 			let toReturn = null;
 
+
 			if (triggerer) {
+				
 				if (
 					triggerer.attr('href')
 					&& triggerer.attr('href') !== ''
+					&& triggerer.attr('href').startsWith('#')
 					&& triggerer.attr('href') !== '#'
 					&& $(triggerer.attr('href'))
 						.hasClass(classToSearch)

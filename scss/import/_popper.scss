@@ -231,4 +231,8 @@ $prefix: '.dropdown';
 			content: none;
 		}
 	}
+
+	@include br(#{$mobile-br-max}-max) {
+		max-width:100%;
+	}
 }

@@ -814,8 +814,8 @@
 
 			if (triggerer) {
 				if (
-					triggerer.hasAttribute('href')
 					&& triggerer.getAttribute('href') !== ''
+					&& triggerer.getAttribute('href').startsWith('#')
 					&& triggerer.getAttribute('href') !== '#'
 					&& (
 						document.querySelector(

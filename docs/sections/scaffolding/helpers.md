@@ -150,6 +150,19 @@ These classes will set the proper color based off of html tag having the `.theme
 | **`.color-theme-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
 
 
+#### Border color
+
+These classes will set the proper color based off of html tag having the `.theme-inverse` class
+
+| Class							 | Set color | Set color when `.theme-inverse is active`				|
+| --							| --		| --														|
+| **`.border-color-theme`**			| `$theme-color` 				| `$theme-color-inverse`				|
+| **`.border-color-theme-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
+| **`.border-color-theme-polar`** 			| `$theme-background`			| `$theme-background-inverse`			|
+| **`.border-color-theme-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
+
+
+
 ### Pseudo/Toggle Based
 
 #### Background
@@ -176,6 +189,17 @@ eg: `.background-primary-hover` applies $brand-color-primary on :hover
 | **.color-[color-tag]-active** | &:active |
 | **.color-[color-tag]-toggle** | &.open,&.active |
 | **.color-[color-tag]-inverse** | .theme-inverse & |
+
+#### Border Color
+
+| Appendage | Condition when the color is applied |
+| -- | -- |
+| **.border-color-[color-tag]-hover** | &:hover |
+| **.border-color-[color-tag]-focus** | &:focus,&.focus |
+| **.border-color-[color-tag]-active** | &:active |
+| **.border-color-[color-tag]-toggle** | &.open,&.active |
+| **.border-color-[color-tag]-inverse** | .theme-inverse & |
+
 
 
 ## Fill and Stroke

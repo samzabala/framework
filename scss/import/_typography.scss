@@ -639,7 +639,7 @@ hr {
 	background: $hr-color;
 	opacity: .2;
 	width:100%;
-	flex: 0 0;
+	flex: 1 1 auto;
 	margin-top: $calculated-hr-gutter-y;
 	margin-bottom: $calculated-hr-gutter-y;
 	margin-left: auto;
