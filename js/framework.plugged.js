@@ -36,6 +36,8 @@ window.jQuery && jQuery.noConflict();
 		|| true;
 	frameWork.settings.uiClass =
 		`${frameWork.settings.prefix}-ui`;
+	frameWork.settings.uiJsClass =
+		frameWork.settings.uiClass.replace('-','_')
 
 	if (!$) {
 		throw new Error('jQuery not found bro, what did you do?');
@@ -663,17 +665,19 @@ window.jQuery && jQuery.noConflict();
 
 		if (triggerer) {
 
-			if (
+			if ( //idk what the fuck this was for but it stays for now
 				triggerer
 					.closest(`.input-group${frameWork.settings.uiClass}`)
 						.length
 			) {
 
-			} else if (
+			} else if ( //calendar fix
 				triggerer
 					.closest(`.${frameWork.settings.uiClass}`)
 						.length
-				&& !_.getTheToggled(triggerer, 'dropdown')
+				&& !triggerer
+					.closest(`.${frameWork.settings.uiJsClass}_internal_toggle`)
+					.length
 			) {
 				toReturn = triggerer
 					.closest(`.${frameWork.settings.uiClass}`);
@@ -698,13 +702,10 @@ window.jQuery && jQuery.noConflict();
 
 			let toReturn = null;
 
-
 			if (triggerer) {
-				
 				if (
 					triggerer.attr('href')
 					&& triggerer.attr('href') !== ''
-					&& triggerer.attr('href').startsWith('#')
 					&& triggerer.attr('href') !== '#'
 					&& $(triggerer.attr('href'))
 						.hasClass(classToSearch)
@@ -1202,7 +1203,8 @@ window.jQuery && jQuery.noConflict();
 				data-toggle="dropdown"
 				class="
 					${_.uiPrefix('calendar')}title
-					${_.uiPrefix('calendar')}dropdown-toggle"
+					${_.uiPrefix('calendar')}dropdown-toggle
+					${frameWork.settings.uiJsClass}_internal_toggle"
 			></div>`);
 			theUi.heading.append(theUi.title);
 			theUi.title.append(() => {

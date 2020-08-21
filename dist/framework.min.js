@@ -36,6 +36,8 @@
 		|| true;
 	frameWork.settings.uiClass =
 		`${frameWork.settings.prefix}-ui`;
+	frameWork.settings.uiJsClass =
+		frameWork.settings.uiClass.replace('-','_')
 
 	_.modifierKeys = {
 		ctrl: false,
@@ -780,14 +782,15 @@
 		let toReturn;
 
 		if (triggerer) {
-			if (
+			if ( //idk what the fuck this was for but it stays for now
 				triggerer
 					.closest(`.input-group${frameWork.settings.uiClass}`)
-			) {
-			} else if (
+			){
+			} else if ( //calendar fix
 				triggerer
 					.closest(`.${frameWork.settings.uiClass}`)
-				&& !_.getTheToggled(triggerer, 'dropdown')
+				&& !triggerer
+					.closest(`.${frameWork.settings.uiJsClass}_internal_toggle`)
 			) {
 				toReturn = triggerer
 					.closest(`.${frameWork.settings.uiClass}`);
@@ -814,7 +817,7 @@
 
 			if (triggerer) {
 				if (
-					&& triggerer.getAttribute('href') !== ''
+					triggerer.getAttribute('href') !== ''
 					&& triggerer.getAttribute('href').startsWith('#')
 					&& triggerer.getAttribute('href') !== '#'
 					&& (
@@ -1341,7 +1344,8 @@
 			theUi.heading.appendChild(theUi.title);
 			theUi.title.setAttribute(
 				'class',
-				`${_.uiPrefix('calendar')}title ${_.uiPrefix('calendar')}dropdown-toggle`
+				`${_.uiPrefix('calendar')}title ${_.uiPrefix('calendar')}dropdown-toggle
+				${frameWork.settings.uiJsClass}_internal_toggle`
 			);
 			theUi.title.setAttribute('data-toggle', 'dropdown');
 			theUi.title.innerHTML = `<span
