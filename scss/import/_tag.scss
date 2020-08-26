@@ -55,7 +55,7 @@ $prefix: '.tag';
 	}
 	&-text  {
 		max-width: 10em;
-		@extend %for-text-ellipsis;
+		@extend %for-text-ellipsis-single;
 
 	}
 

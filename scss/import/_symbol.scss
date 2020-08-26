@@ -95,277 +95,237 @@ $prefix: '.symbol';
 		}
 	}
 
-	&-edit {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-		
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-			}
+	@include create-symbol-styles(#{&}-edit) {
+		@extend %for-valid-symbol;
+	
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+		}
 
-			&:before {
-				@extend %for-valid-symbol-pseudo-filled;
-				clip-path: polygon(
-					0 0,
-					50% 0,
-					50% em(2px/$calculated-symbol-basis),
-					em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
-					em(2px/$calculated-symbol-basis) calc(100% - #{em(2px/$calculated-symbol-basis)}),
-					calc(100% - #{em(2px/$calculated-symbol-basis)}) calc(100% - #{em(2px/$calculated-symbol-basis)}), 
-					calc(100% - #{em(2px/$calculated-symbol-basis)}) 50%,
-					100% 50%,
-					100% 100%,
-					0 100%
-				);
-			}
+		&:before {
+			@extend %for-valid-symbol-pseudo-filled;
+			clip-path: polygon(
+				0 0,
+				50% 0,
+				50% em(2px/$calculated-symbol-basis),
+				em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
+				em(2px/$calculated-symbol-basis) calc(100% - #{em(2px/$calculated-symbol-basis)}),
+				calc(100% - #{em(2px/$calculated-symbol-basis)}) calc(100% - #{em(2px/$calculated-symbol-basis)}), 
+				calc(100% - #{em(2px/$calculated-symbol-basis)}) 50%,
+				100% 50%,
+				100% 100%,
+				0 100%
+			);
+		}
 
-			&:after {
-				@extend %for-valid-symbol-pseudo-full-height;
-				border: em(2px/$calculated-symbol-basis) solid;
-				width: em(7px/$calculated-symbol-basis );
-				border-radius: 0 0 50% 50%;
-				transform: rotate(45deg);
-				bottom: auto;
-				left: auto;
-				top: -.25em;
-				background-image: 
-					repeating-linear-gradient(
-						180deg,
-						currentColor 0,
-						currentColor em(2px/$calculated-symbol-basis),
-						transparent em(2px/$calculated-symbol-basis),
-						transparent 100%
-					)
+		&:after {
+			@extend %for-valid-symbol-pseudo-full-height;
+			border: em(2px/$calculated-symbol-basis) solid;
+			width: em(7px/$calculated-symbol-basis );
+			border-radius: 0 0 50% 50%;
+			transform: rotate(45deg);
+			bottom: auto;
+			left: auto;
+			top: -.25em;
+			background-image: 
+				repeating-linear-gradient(
+					180deg,
+					currentColor 0,
+					currentColor em(2px/$calculated-symbol-basis),
+					transparent em(2px/$calculated-symbol-basis),
+					transparent 100%
+				)
+			;
+			background-repeat: no-repeat;
+			background-position: bottom center;
+			background-size: 100% .625em;
+		}
+	}
+
+	@include create-symbol-styles(#{&}-delete) {
+		@extend %for-valid-symbol;
+	
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+		}
+
+		&:before {
+			@extend %for-valid-symbol-pseudo-filled;
+			height: em(2px/$calculated-symbol-basis);
+			width: .5em;
+			bottom:1em;
+			top: auto;
+			border-top-right-radius: .125em;
+			border-top-left-radius: .125em;
+
+		}
+
+		&:after {
+			border: em(2px/$calculated-symbol-basis) solid;
+			border-bottom-right-radius: .2em;
+			border-bottom-left-radius: .2em;
+			width: 1em;
+			height:1.125em;
+			bottom: -.125em;
+			top: auto;
+			background-image: 
+				repeating-linear-gradient(
+					90deg,
+					currentColor 0,
+					currentColor em(1px/$calculated-symbol-basis),
+					transparent em(1px/$calculated-symbol-basis),
+					transparent em(3px/$calculated-symbol-basis),
+					currentColor em(3px/$calculated-symbol-basis),
+					currentColor em(4px/$calculated-symbol-basis),
+					transparent em(4px/$calculated-symbol-basis),
+					transparent em(6px/$calculated-symbol-basis),
+					currentColor em(6px/$calculated-symbol-basis),
+					currentColor em(7px/$calculated-symbol-basis),
+				),
+
+				// currentColor 0,
+				// currentColor em(1px/$calculated-symbol-basis),
+				// transparent em(1px/$calculated-symbol-basis),
+				// transparent em(2.5px/$calculated-symbol-basis),
+				// currentColor em(2.5px/$calculated-symbol-basis),
+				// currentColor em(3.5px/$calculated-symbol-basis),
+				// transparent em(3.5px/$calculated-symbol-basis),
+				// transparent em(5px/$calculated-symbol-basis),
+				// currentColor em(5px/$calculated-symbol-basis),
+				// currentColor em(6px/$calculated-symbol-basis),
 				;
-				background-repeat: no-repeat;
-				background-position: bottom center;
-				background-size: 100% .625em;
-
-			}
+			background-size: em(7px/$calculated-symbol-basis) .5em;
+			background-position: center center;
+			background-repeat: no-repeat;
 		}
 	}
 
-	&-delete {
 
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
+
+	@include create-symbol-styles((#{&}-stop,#{&}-square)) {
+		@extend %for-valid-symbol-no-before;
+		@extend %for-valid-symbol;
+	
+		&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-filled;
+			@extend %for-valid-symbol-pseudo-full-width;
+			@extend %for-valid-symbol-pseudo-full-height;
+		}
+	}
+
+	@include create-symbol-styles(#{&}-play) {
+		@extend %for-valid-symbol;
+		@extend %for-valid-symbol-no-before;
+
+		&:after {
+			@extend %for-valid-symbol-pseudo;
+			border-top: .5em solid transparent;
+			border-bottom: .5em solid transparent;
+			border-left: .875em solid;
+			left: .1875em;
+		}
+	}
+
+	@include create-symbol-styles(#{&}-pause) {
+		@extend %for-valid-symbol;
 		
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-			}
-			
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-filled;
+			@extend %for-valid-symbol-pseudo-full-height;
+			width: .3125em;
+		}
 
-			&:before {
-				@extend %for-valid-symbol-pseudo-filled;
-				height: em(2px/$calculated-symbol-basis);
-				width: .5em;
-				bottom:1em;
-				top: auto;
-				border-top-right-radius: .125em;
-				border-top-left-radius: .125em;
+		&:before {
+			right: .5em;
+		}
 
-			}
-
-			&:after {
-				border: em(2px/$calculated-symbol-basis) solid;
-				border-bottom-right-radius: .2em;
-				border-bottom-left-radius: .2em;
-				width: 1em;
-				height:1.125em;
-				bottom: -.125em;
-				top: auto;
-				background-image: 
-					repeating-linear-gradient(
-						90deg,
-						currentColor 0,
-						currentColor em(1px/$calculated-symbol-basis),
-						transparent em(1px/$calculated-symbol-basis),
-						transparent em(3px/$calculated-symbol-basis),
-						currentColor em(3px/$calculated-symbol-basis),
-						currentColor em(4px/$calculated-symbol-basis),
-						transparent em(4px/$calculated-symbol-basis),
-						transparent em(6px/$calculated-symbol-basis),
-						currentColor em(6px/$calculated-symbol-basis),
-						currentColor em(7px/$calculated-symbol-basis),
-					),
-
-					// currentColor 0,
-					// currentColor em(1px/$calculated-symbol-basis),
-					// transparent em(1px/$calculated-symbol-basis),
-					// transparent em(2.5px/$calculated-symbol-basis),
-					// currentColor em(2.5px/$calculated-symbol-basis),
-					// currentColor em(3.5px/$calculated-symbol-basis),
-					// transparent em(3.5px/$calculated-symbol-basis),
-					// transparent em(5px/$calculated-symbol-basis),
-					// currentColor em(5px/$calculated-symbol-basis),
-					// currentColor em(6px/$calculated-symbol-basis),
-					;
-				background-size: em(7px/$calculated-symbol-basis) .5em;
-				background-position: center center;
-				background-repeat: no-repeat;
-
-
-
-			}
+		&:after {
+			left: .5em;
 		}
 	}
 
+	@include create-symbol-styles(#{&}-search) {
+		@extend %for-valid-symbol;
+		transform: rotate(-45deg);
 
-
-	&-stop,
-	&-square {
-
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol-no-before;
-			@extend %for-valid-symbol;
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+		}
 		
-			&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-filled;
-				@extend %for-valid-symbol-pseudo-full-width;
-				@extend %for-valid-symbol-pseudo-full-height;
-			}
+		
+		&:before {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-full-height;
+			@extend %for-valid-symbol-pseudo-full-width;
+			@extend %for-valid-symbol-pseudo-circle-ready;
+			border: em(3px / $calculated-symbol-basis) solid;
+			bottom: auto;
+			top: -.25em
+
+		}
+
+		&:after {
+			@extend %for-valid-symbol-pseudo-vertical;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-filled;
+			height: .625em;
+			top: calc(.75em - (#{em(3px / $calculated-symbol-basis)} * .5));
+			bottom: auto;
 		}
 	}
 
-	&-play {
+	@include create-symbol-styles((#{&}-time,#{&}-timer)) {
+		@extend %for-valid-symbol;
+		
+		&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-circle-ready;
+			// @extend %for-valid-symbol-pseudo-full-height;
+			// @extend %for-valid-symbol-pseudo-full-width;
+			border: em(2px / $calculated-symbol-basis) solid;
+			width: 1.125em;
+			height: 1.125em;
+			left: -.5em;
+			right: -.5em;
+			bottom: -.125em;
+			top: auto;
+			background-image: 
+				//long
+				repeating-linear-gradient(
+					90deg,
+					currentColor 0,
+					currentColor em(2px / $calculated-symbol-basis),
+					transparent em(2px / $calculated-symbol-basis),
+					transparent 100%,
+				),
+				// short
+				linear-gradient(
+					0deg,
+					currentColor 0,
+					currentColor em(2px / $calculated-symbol-basis),
+					transparent em(2px / $calculated-symbol-basis),
+					transparent 100%,
+				),
+				;
 
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-			@extend %for-valid-symbol-no-before;
-
-			&:after {
-				@extend %for-valid-symbol-pseudo;
-				border-top: .5em solid transparent;
-				border-bottom: .5em solid transparent;
-				border-left: .875em solid;
-				left: .1875em;
-			}
+			background-position:
+				(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
+				;
+			background-size:
+				.3em .4em
+				// // .25em .5em
+				;
+			background-repeat: no-repeat;
 		}
 	}
 
-	&-pause {
-
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-			
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-filled;
-				@extend %for-valid-symbol-pseudo-full-height;
-				width: .3125em;
-			}
-
-			&:before {
-				right: .5em;
-			}
-
-			&:after {
-				left: .5em;
-			}
-		}
-	}
-
-	&-search {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-			transform: rotate(-45deg);
-
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-			}
-			
-			
-			&:before {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-full-height;
-				@extend %for-valid-symbol-pseudo-full-width;
-				@extend %for-valid-symbol-pseudo-circle-ready;
-				border: em(3px / $calculated-symbol-basis) solid;
-				bottom: auto;
-				top: -.25em
-
-			}
-
-			&:after {
-				@extend %for-valid-symbol-pseudo-vertical;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-filled;
-				height: .625em;
-				top: calc(.75em - (#{em(3px / $calculated-symbol-basis)} * .5));
-				bottom: auto;
-			}
-		}
-	}
-
-	&-time,
-	&-timer {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-			
-			
-			&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-circle-ready;
-				// @extend %for-valid-symbol-pseudo-full-height;
-				// @extend %for-valid-symbol-pseudo-full-width;
-				border: em(2px / $calculated-symbol-basis) solid;
-				width: 1.125em;
-				height: 1.125em;
-				left: -.5em;
-				right: -.5em;
-				bottom: -.125em;
-				top: auto;
-				background-image: 
-					//long
-					repeating-linear-gradient(
-						90deg,
-						currentColor 0,
-						currentColor em(2px / $calculated-symbol-basis),
-						transparent em(2px / $calculated-symbol-basis),
-						transparent 100%,
-					),
-					// short
-					linear-gradient(
-						0deg,
-						currentColor 0,
-						currentColor em(2px / $calculated-symbol-basis),
-						transparent em(2px / $calculated-symbol-basis),
-						transparent 100%,
-					),
-					;
-
-				background-position:
-					(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
-					;
-				background-size:
-					.3em .4em
-					// // .25em .5em
-					;
-				background-repeat: no-repeat;
-			}
-		}
-	}
-
-	&-time {
+	@include create-symbol-styles(#{&}-time) {
 		@extend %for-valid-symbol-no-before;
 	}
 
-	&-timer {
+	@include create-symbol-styles(#{&}-timer) {
 		&:before {
 			@extend %for-valid-symbol-pseudo;
 			@extend %for-valid-symbol-pseudo-border-radius;
@@ -383,216 +343,170 @@ $prefix: '.symbol';
 
 
 
-	&-plus,
-	&-minus{
-
-		
-		&,
-		.active > &-toggle,
-		.open > &-toggle {
+	@include create-symbol-styles((#{&}-plus,#{&}-minus)) {
 			
-			&:after{
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-horizontal;
-				@extend %for-valid-symbol-pseudo-full-width;
-				@extend %for-valid-symbol-pseudo-filled;
-				// top: 50%;
-				// bottom: auto;
-				// transform: translateY(-50%);
-			}
+		&:after{
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-horizontal;
+			@extend %for-valid-symbol-pseudo-full-width;
+			@extend %for-valid-symbol-pseudo-filled;
+			// top: 50%;
+			// bottom: auto;
+			// transform: translateY(-50%);
 		}
 	}
 
-	&-plus {
-		&,
-		.active > &-toggle,
-		.open > &-toggle {
-			@extend %for-valid-symbol;
+	@include create-symbol-styles(#{&}-plus) {
+		@extend %for-valid-symbol;
 
-			&:before {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-vertical;
-				@extend %for-valid-symbol-pseudo-full-height;
-				@extend %for-valid-symbol-pseudo-filled;
-				height:1em;
-				// left: 50%;
-				// right: auto;
-				// transform: translateX(-50%);
-			}
+		&:before {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-vertical;
+			@extend %for-valid-symbol-pseudo-full-height;
+			@extend %for-valid-symbol-pseudo-filled;
+			height:1em;
+			// left: 50%;
+			// right: auto;
+			// transform: translateX(-50%);
 		}
 	}
 	
-	&-minus {
+	@include create-symbol-styles(#{&}-minus) {
+		@extend %for-valid-symbol;
+		@extend %for-valid-symbol-no-before;
+	}
 
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
+	
+	@include create-symbol-styles(#{&}-check) {
+		@extend %for-valid-symbol;
+
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-filled;
+			top: auto;
+			left: .25em;
+			right: auto;
+			bottom: .125em;
+			transform-origin: 42% 88%;
+		}
+
+		&:before {
+			@extend %for-valid-symbol-pseudo-vertical;
+			height: .5em;
+			transform: rotate(-45deg);
+		}
+
+		&:after {
+			@extend %for-valid-symbol-pseudo-vertical;
+			height: 1em;
+			transform: rotate(45deg);
+		}
+	}
+
+	@include create-symbol-styles(#{&}-close) {
+		@extend %for-valid-symbol;
+
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-vertical;
+			@extend %for-valid-symbol-pseudo-filled;
+			height: 1.25em;
+		}
+		&:before {
+			transform: rotate(45deg)
+		}
+		&:after {
+			transform: rotate(-45deg)
+		}
+	}
+
+
+	@include create-symbol-styles(#{&}-map) {
+		@extend %for-valid-symbol;
+
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+			transform:translateY(#{em(5/$calculated-symbol-basis) * -1});
+			transform-origin: top center;
+			bottom:auto;
+		}
+
+		&:before {
+			@extend %for-valid-symbol-pseudo-full-height;
+			@extend %for-valid-symbol-pseudo-full-width;
+			border-radius: 50%;
+			border: #{em(4px / $calculated-symbol-basis)} solid;
+			
+		}
+
+		&:after {
+			border: #{em(6.25px / $calculated-symbol-basis)} solid transparent;
+			border-top: #{em(12px / $calculated-symbol-basis)} solid;
+			border-bottom:0;
+			width: 0;
+			height: 0;
+			margin: 0 auto;
+			top:calc(1em - #{em(3px / $calculated-symbol-basis)});
+		}
+	}
+
+	@include create-symbol-styles(#{&}-file) {
+		@extend %for-valid-symbol;
+		@extend %for-valid-symbol-no-before;
+
+		&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-filled;
+			width: .875em;
+			clip-path: polygon(
+				0% 0%,
+				0% 100%,
+				100% 100%,
+				100% 30%,
+				calc(50% + #{em(2px / $calculated-symbol-basis)}) 0,
+				50% 0,
+				50% calc(30% + #{em(2px / $calculated-symbol-basis)}),
+				calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(30% + #{em(2px / $calculated-symbol-basis)}),
+				calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
+				calc(50% + #{em(2px / $calculated-symbol-basis)}) 30%,
+				calc(50% + #{em(2px / $calculated-symbol-basis)}) em(2px / $calculated-symbol-basis),
+				calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
+				calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(100% - #{em(2px / $calculated-symbol-basis)}),
+				em(2px / $calculated-symbol-basis) calc(100% - #{em(2px / $calculated-symbol-basis)}),
+				em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
+				50% em(2px / $calculated-symbol-basis),
+				50% 0,
+
+			);
+
+		}
+	}
+
+
+
+	&-star {
+		@include create-symbol-styles((#{&},#{&}-stroke)) {
 			@extend %for-valid-symbol;
 			@extend %for-valid-symbol-no-before;
-		}
-	}
-
-	
-	&-check {
-
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-filled;
-				top: auto;
-				left: .25em;
-				right: auto;
-				bottom: .125em;
-				transform-origin: 42% 88%;
-			}
-
-			&:before {
-				@extend %for-valid-symbol-pseudo-vertical;
-				height: .5em;
-				transform: rotate(-45deg);
-			}
 
 			&:after {
-				@extend %for-valid-symbol-pseudo-vertical;
-				height: 1em;
-				transform: rotate(45deg);
-			}
-		}
-	}
-
-	&-close {
-
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-
-			&:before,&:after {
 				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-vertical;
 				@extend %for-valid-symbol-pseudo-filled;
+				width: 1.25em;
 				height: 1.25em;
-			}
-			&:before {
-				transform: rotate(45deg)
-			}
-			&:after {
-				transform: rotate(-45deg)
-			}
-		}
-	}
-
-
-	&-map {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-				transform:translateY(#{em(5/$calculated-symbol-basis) * -1});
-				transform-origin: top center;
-				bottom:auto;
-			}
-
-			&:before {
-				@extend %for-valid-symbol-pseudo-full-height;
-				@extend %for-valid-symbol-pseudo-full-width;
-				border-radius: 50%;
-				border: #{em(4px / $calculated-symbol-basis)} solid;
-				
-			}
-
-			&:after {
-				border: #{em(6.25px / $calculated-symbol-basis)} solid transparent;
-				border-top: #{em(12px / $calculated-symbol-basis)} solid;
-				border-bottom:0;
-				width: 0;
-				height: 0;
-				margin: 0 auto;
-				top:calc(1em - #{em(3px / $calculated-symbol-basis)});
-			}
-		}
-	}
-
-	&-file {
-
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-			@extend %for-valid-symbol-no-before;
-
-			&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-filled;
-				width: .875em;
-				clip-path: polygon(
-					0% 0%,
-					0% 100%,
-					100% 100%,
-					100% 30%,
-					calc(50% + #{em(2px / $calculated-symbol-basis)}) 0,
-					50% 0,
-					50% calc(30% + #{em(2px / $calculated-symbol-basis)}),
-					calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(30% + #{em(2px / $calculated-symbol-basis)}),
-					calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
-					calc(50% + #{em(2px / $calculated-symbol-basis)}) 30%,
-					calc(50% + #{em(2px / $calculated-symbol-basis)}) em(2px / $calculated-symbol-basis),
-					calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
-					calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(100% - #{em(2px / $calculated-symbol-basis)}),
-					em(2px / $calculated-symbol-basis) calc(100% - #{em(2px / $calculated-symbol-basis)}),
-					em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
-					50% em(2px / $calculated-symbol-basis),
-					50% 0,
-
-				);
+				top: -.5em;
+				bottom: -.5em;
+				left: -.5em;
+				right: -.5em;
 
 			}
 		}
-	}
 
-
-
-	&-star {
-		&,&-stroke {
-
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				@extend %for-valid-symbol;
-				@extend %for-valid-symbol-no-before;
-
-				&:after {
-					@extend %for-valid-symbol-pseudo;
-					@extend %for-valid-symbol-pseudo-filled;
-					width: 1.25em;
-					height: 1.25em;
-					top: -.5em;
-					bottom: -.5em;
-					left: -.5em;
-					right: -.5em;
-
-				}
-			}
-		}
-	}
-
-
-	&-star {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-
+		@include create-symbol-styles(#{&}) {
 			&:after {
 				clip-path: polygon(
 					50% 5%,
@@ -606,151 +520,135 @@ $prefix: '.symbol';
 					0% 41%,
 					36% 38%,
 				);
-
-			}
-
-			&-stroke {
-				&:after {
-
-					clip-path: polygon(
-						50% 5%,
-						64% 38%,
-						100% 41%,
-						73% 65%,
-						80% 100%,
-						50% 82%,
-						20% 100%,
-						27% 65%,
-						0% 41%,
-						36% 38%,
-
-						50% 5%,
-
-						50% 26%,
-						41% 46%,
-						20% 48%,
-						36% 62%,
-						32% 83%,
-						50% 72%,
-						68% 83%,
-						64% 62%,
-						80% 48%,
-						59% 46%,
-						50% 26%,
-						
-					);
-				}
 			}
 		}
-	}
 
-	&-download {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@extend %for-valid-symbol;
-
-			&:before,&:after {
-				@extend %for-valid-symbol-pseudo;
-			}
-
-			&:before {
-				@extend %for-valid-symbol-pseudo-full-width;
-				height: .375em;
-				border-bottom: em(2px/$calculated-symbol-basis) solid;
-				border-right: em(2px/$calculated-symbol-basis) solid;
-				border-left: em(2px/$calculated-symbol-basis) solid;
-				top: auto;
-			}
-
+		@include create-symbol-styles(#{&}-stroke) {
 			&:after {
-				@extend %for-valid-symbol-pseudo-filled;
 				clip-path: polygon(
-					calc(50% - #{em(2px/$calculated-symbol-basis)} * .5) 0,
-					calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 0,
-					calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 60%,
-					100% 60%,
-					50% 100%,
-					0 60%,
-					calc(50% - #{em(2px/$calculated-symbol-basis)} * .5)  60%
+					50% 5%,
+					64% 38%,
+					100% 41%,
+					73% 65%,
+					80% 100%,
+					50% 82%,
+					20% 100%,
+					27% 65%,
+					0% 41%,
+					36% 38%,
+
+					50% 5%,
+
+					50% 26%,
+					41% 46%,
+					20% 48%,
+					36% 62%,
+					32% 83%,
+					50% 72%,
+					68% 83%,
+					64% 62%,
+					80% 48%,
+					59% 46%,
+					50% 26%,
+					
 				);
-				height: .625em;
-				width: .5em;
-				bottom: auto;
-				// background-image:
-				// 	repeating-linear-gradient(
-				// 		90deg,
-				// 		transparent 0,
-				// 		transparent calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
-				// 		currentColor calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
-				// 		currentColor calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
-				// 		transparent calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
-				// 		transparent 100%
-				// 	),
-				// 	linear-gradient(
-				// 		45deg,
-				// 		transparent 0,
-				// 		transparent 50%,
-				// 		currentColor 50%,
-				// 		currentColor 100%
-				// 	),
-
-				// 	linear-gradient(
-				// 		-45deg,
-				// 		transparent 0,
-				// 		transparent 50%,
-				// 		currentColor 50%,
-				// 		currentColor 100%
-				// 	)
-				// 	;
-
-				// background-size:
-				// 	100% 90%,
-				// 	.25em .25em,
-				// 	.25em .25em
-				// 	;
-				// background-position:
-				// 	0 0,
-				// 	.125em 100%,
-				// 	bottom 0 right .125em,
-				// 	;
-				// background-repeat: no-repeat;
 			}
 		}
 	}
 
-	&-fries,
-	&-burger {
-		&,
-		.active > &-toggle,
-		.open > &-toggle {
-			@extend %for-valid-symbol;
+	@include create-symbol-styles(#{&}-download) {
+		@extend %for-valid-symbol;
 
-			&:after {
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-filled;
-				
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+		}
 
-				box-shadow:
-					0 #{em(3px / $calculated-symbol-basis) * 2} 0 0,
-					0 #{em(3px / $calculated-symbol-basis) * -2} 0 0
-					;
-				height:  em(3px / $calculated-symbol-basis);
-			}
+		&:before {
+			@extend %for-valid-symbol-pseudo-full-width;
+			height: .375em;
+			border-bottom: em(2px/$calculated-symbol-basis) solid;
+			border-right: em(2px/$calculated-symbol-basis) solid;
+			border-left: em(2px/$calculated-symbol-basis) solid;
+			top: auto;
+		}
+
+		&:after {
+			@extend %for-valid-symbol-pseudo-filled;
+			clip-path: polygon(
+				calc(50% - #{em(2px/$calculated-symbol-basis)} * .5) 0,
+				calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 0,
+				calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 60%,
+				100% 60%,
+				50% 100%,
+				0 60%,
+				calc(50% - #{em(2px/$calculated-symbol-basis)} * .5)  60%
+			);
+			height: .625em;
+			width: .5em;
+			bottom: auto;
+			// background-image:
+			// 	repeating-linear-gradient(
+			// 		90deg,
+			// 		transparent 0,
+			// 		transparent calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
+			// 		currentColor calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
+			// 		currentColor calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
+			// 		transparent calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
+			// 		transparent 100%
+			// 	),
+			// 	linear-gradient(
+			// 		45deg,
+			// 		transparent 0,
+			// 		transparent 50%,
+			// 		currentColor 50%,
+			// 		currentColor 100%
+			// 	),
+
+			// 	linear-gradient(
+			// 		-45deg,
+			// 		transparent 0,
+			// 		transparent 50%,
+			// 		currentColor 50%,
+			// 		currentColor 100%
+			// 	)
+			// 	;
+
+			// background-size:
+			// 	100% 90%,
+			// 	.25em .25em,
+			// 	.25em .25em
+			// 	;
+			// background-position:
+			// 	0 0,
+			// 	.125em 100%,
+			// 	bottom 0 right .125em,
+			// 	;
+			// background-repeat: no-repeat;
 		}
 	}
 
-	&-fries {
+	@include create-symbol-styles((#{&}-fries,#{&}-burger)) {
+		@extend %for-valid-symbol;
 
-		&,
-		.active > &-toggle,
-		.open > &-toggle {
-			@extend %for-valid-symbol;
+		&:after {
+			@extend %for-valid-symbol-pseudo;
+			@extend %for-valid-symbol-pseudo-border-radius;
+			@extend %for-valid-symbol-pseudo-filled;
+			
 
-			&:after {
-				transform: rotate(90deg);
-			}
+			box-shadow:
+				0 #{em(3px / $calculated-symbol-basis) * 2} 0 0,
+				0 #{em(3px / $calculated-symbol-basis) * -2} 0 0
+				;
+			height:  em(3px / $calculated-symbol-basis);
+		}
+	}
+
+	@include create-symbol-styles(#{&}-fries) {
+		@extend %for-valid-symbol;
+
+		&:after {
+			transform: rotate(90deg);
 		}
 	}
 
@@ -758,25 +656,20 @@ $prefix: '.symbol';
 
 	&-kebab {
 
-		&-vertical,
-		&-horizontal {
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				@extend %for-valid-symbol-no-before;
-				@extend %for-valid-symbol;
+		@include create-symbol-styles((#{&}-horizontal,#{&}-vertical)) {
+			@extend %for-valid-symbol-no-before;
+			@extend %for-valid-symbol;
 
-				&:after {
-					@extend %for-valid-symbol-pseudo;
-					@extend %for-valid-symbol-pseudo-filled;
-					@extend %for-valid-symbol-pseudo-circle-ready;
-					width: em(4px/$calculated-symbol-basis);
-					height: em(4px/$calculated-symbol-basis);
-				}
+			&:after {
+				@extend %for-valid-symbol-pseudo;
+				@extend %for-valid-symbol-pseudo-filled;
+				@extend %for-valid-symbol-pseudo-circle-ready;
+				width: em(4px/$calculated-symbol-basis);
+				height: em(4px/$calculated-symbol-basis);
 			}
 		}
 
-		&-vertical {
+		@include create-symbol-styles(#{&}-vertical) {
 			width: em(4px/$calculated-symbol-basis);
 			&:after {
 				box-shadow: 
@@ -786,7 +679,7 @@ $prefix: '.symbol';
 			}
 		}
 
-		&-horizontal {
+		@include create-symbol-styles(#{&}-horizontal) {
 			width: em((4px * 5)/$calculated-symbol-basis);
 			&:after {
 				box-shadow: 
@@ -805,9 +698,7 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				&,
-				.active > &-toggle,
-				.open > &-toggle  {
+				@include create-symbol-styles(#{&}){
 					@extend %for-valid-symbol;
 		
 					&:before,&:after {
@@ -823,9 +714,7 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				&,
-				.active > &-toggle,
-				.open > &-toggle  {
+				@include create-symbol-styles(#{&}){
 					@extend %for-valid-symbol;
 		
 					&:before,&:after {
@@ -854,9 +743,7 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				&,
-				.active > &-toggle,
-				.open > &-toggle {
+				@include create-symbol-styles(#{&}){
 					&:before,&:after {
 						top:0;
 						bottom: auto;
@@ -870,9 +757,7 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				&,
-				.active > &-toggle,
-				.open > &-toggle {
+				@include create-symbol-styles(#{&}){
 					height: .75em;
 				}
 			}
@@ -883,10 +768,7 @@ $prefix: '.symbol';
 			&-right,
 			&-up,
 			&-down {
-				&,
-				.active > &-toggle,
-				.open > &-toggle  {
-
+				@include create-symbol-styles(#{&}){
 					&:before{
 						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
 					}
@@ -897,15 +779,13 @@ $prefix: '.symbol';
 				}
 			}
 		}
+
 		&-tail {
 			&-left,
 			&-right,
 			&-up,
 			&-down {
-				&,
-				.active > &-toggle,
-				.open > &-toggle  {
-
+				@include create-symbol-styles(#{&}){
 					&:before {
 						height: .625em;
 						width: .625em;
@@ -947,7 +827,6 @@ $prefix: '.symbol';
 				}
 			}
 		}
-
 	}
 
 	&-caret {
@@ -958,27 +837,28 @@ $prefix: '.symbol';
 		&-right,
 		&-up,
 		&-down {
-			@extend %for-valid-symbol;
-			@extend %for-valid-symbol-no-before;
-			width: .625em;
+			@include create-symbol-styles(#{&}){
+				@extend %for-valid-symbol;
+				@extend %for-valid-symbol-no-before;
+				width: .625em;
 
-			&:after {
+				&:after {
 
-				@extend %for-valid-symbol-pseudo;
-				@extend %for-valid-symbol-pseudo-border-radius;
-				@extend %for-valid-symbol-pseudo-vertical;
-				@include arrow-triangle((
-					pseudo: override, 
-					direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
-					display: null,
-					size-base: inherit,
-					main-size: $calculated-symbol-caret-height,//orientation of direction
-					cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
-				)){
-					display:inline-block;
-					vertical-align:middle;
-					height:.625em;
-				};
+					@extend %for-valid-symbol-pseudo;
+					@extend %for-valid-symbol-pseudo-border-radius;
+					@extend %for-valid-symbol-pseudo-vertical;
+					@include arrow-triangle((
+						pseudo: override, 
+						direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
+						display: null,
+						size-base: inherit,
+						main-size: $calculated-symbol-caret-height,//orientation of direction
+						cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
+					)){
+						display:inline-block;
+						vertical-align:middle;
+					};
+				}
 			}
 		}
 
@@ -988,43 +868,39 @@ $prefix: '.symbol';
 	&-arrow,
 	&-arrow-tail,
 	&-arrow-double {
-
-
-		&-up,
-		.active > &-up-toggle,
-		.open > &-up-toggle {
-			transform: rotate(0deg);
+		&-up {
+			@include create-symbol-styles(#{&}) {
+				transform: rotate(0deg);
+			}
 		}
 
-		&-down,
-		.active > &-down-toggle,
-		.open > &-down-toggle {
-			transform: rotate(180deg);
+		&-down {
+			@include create-symbol-styles(#{&}) {
+				transform: rotate(180deg);
+			}
 		}
 
-		&-left,
-		.active > &-left-toggle,
-		.open > &-left-toggle {
-			transform: rotate(-90deg);
+
+		&-left {
+			@include create-symbol-styles(#{&}) {
+				transform: rotate(-90deg);
+			}
 		}
 
-		&-right,
-		.active > &-right-toggle,
-		.open > &-right-toggle {
-			transform: rotate(90deg);
+		&-right {
+			@include create-symbol-styles(#{&}) {
+				transform: rotate(90deg);
+			}
 		}
 	}
 
 
 	&-text {
-
 		&-left,
 		&-right,
 		&-center,
 		&-justify {
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
+			@include create-symbol-styles(#{&}){
 				@extend %for-valid-symbol;
 				@extend %for-valid-symbol-no-before;
 
@@ -1039,85 +915,69 @@ $prefix: '.symbol';
 			}
 		}
 
-		&-left {
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				&:after {
-					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+		@include create-symbol-styles(#{&}-left) {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
-					-.25em 0 0 0,
-					.25em 0 0 0,
+				-.25em 0 0 0,
+				.25em 0 0 0,
 
-					-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					0em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					;
-				}
+				-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				0em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				;
 			}
 		}
 
-		&-right {
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				&:after {
-					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+		@include create-symbol-styles(#{&}-right) {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
-					-.25em 0 0 0,
-					.25em 0 0 0,
-					
-					.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					;
-				}
+				-.25em 0 0 0,
+				.25em 0 0 0,
+				
+				.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				;
 			}
 		}
 
-		&-center {
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				&:after {
-					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+		@include create-symbol-styles(#{&}-center) {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
-					-.25em 0 0 0,
-					.25em 0 0 0,
+				-.25em 0 0 0,
+				.25em 0 0 0,
 
-					-.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					;
-				}
+				-.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				;
 			}
 		}
 
 
-		&-justify {
-			&,
-			.active > &-toggle,
-			.open > &-toggle  {
-				&:after {
-					box-shadow:
-					-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+		@include create-symbol-styles(#{&}-justify) {
+			&:after {
+				box-shadow:
+				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
 
-					-.25em 0 0 0,
-					.25em 0 0 0,
+				-.25em 0 0 0,
+				.25em 0 0 0,
 
-					-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-					;
-				}
+				-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+				;
 			}
 		}
 	}

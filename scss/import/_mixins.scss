@@ -234,7 +234,6 @@
 	
 	@at-root
 	#{$tag},
-	.theme-inverse #{$tag}-inverse,
 	#{$tag}-hover:hover,
 	#{$tag}-focus:focus,
 	#{$tag}-active:active,
@@ -390,5 +389,15 @@
 		@return rgba( $color,$global-disabled-opacity );
 	}@else {
 		@return $color;
+	}
+}
+
+@mixin create-symbol-styles($selector) {
+	@at-root #{$selector} {
+		&,
+		.active > &-toggle,
+		.open > &-toggle  {
+			@content;
+		}
 	}
 }

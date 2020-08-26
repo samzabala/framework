@@ -465,13 +465,13 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 In case absolutely horizontal and vertical button groups look too ugly, use this to make vertical and horizontal groups vertically stack like blocks on [max mobile breakpoint](../scaffolding/breakpoint.md#mobile-split)
 
 
-### **`.input-group-block`**
+### **`.input-block`**
 
 Keep input-group full width all the fucking time
 
 
 
-### **`.input-group-block-mobile`**
+### **`.input-block-mobile`**
 
 Keep input-group full width only on mobile
 

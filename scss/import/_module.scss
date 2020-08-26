@@ -241,6 +241,11 @@ $prefix: '.module';
 		@at-root #{$prefix}-function {
 			position:relative;
 			display:inline-flex;
+
+			@include br(#{$mobile-br-max}-max) {
+				display: flex;
+				max-width: 100%;
+			}
 		}
 
 		&-function,

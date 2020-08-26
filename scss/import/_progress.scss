@@ -53,16 +53,40 @@ $prefix: '.progress';
 	@at-root %for-progress {
 
 		& {
+			@extend %for-cf;
+			text-align: center;
 			width:100%;
 			display:block;
+			overflow:hidden;
 			background-color: $progress-background-color;
 			border-radius: $progress-border-radius;
-			overflow:hidden;
-			@extend %for-cf;
 	
 	
 	
 			&.active {
+				@include gradient((
+					type: repeating-linear,
+					use-shorthand: false,
+					use-fallback: false,
+					colors: (
+						(
+							color: $progress-background-stripe-color,
+							offset:0%
+						),
+						(
+							color: $progress-background-stripe-color,
+							offset:$progress-background-stripe-width
+						),
+						(
+							color: transparent,
+							offset:$progress-background-stripe-width
+						),
+						(
+							color: transparent,
+							offset:$progress-background-stripe-width + $progress-background-stripe-gap
+						)
+					)
+				));
 				animation-name: progress-bar-stripes;
 				animation-duration: $progress-transition-duration;
 				animation-timing-function: linear;
@@ -71,6 +95,33 @@ $prefix: '.progress';
 	
 			.theme-inverse & {
 				background-color: $progress-background-color-inverse;
+				
+				&.active {
+
+					@include gradient((
+						type: repeating-linear,
+						use-shorthand: false,
+						use-fallback: false,
+						colors: (
+							(
+								color: $progress-background-stripe-color-inverse,
+								offset:0%
+							),
+							(
+								color: $progress-background-stripe-color-inverse,
+								offset:$progress-background-stripe-width
+							),
+							(
+								color: transparent,
+								offset:$progress-background-stripe-width
+							),
+							(
+								color: transparent,
+								offset:$progress-background-stripe-width + $progress-background-stripe-gap
+							)
+						)
+					));
+				}
 			}
 		}
 	}

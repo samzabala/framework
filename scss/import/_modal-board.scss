@@ -69,6 +69,7 @@ $prefix: '.board';
 			flex-wrap: nowrap;
 			overflow: visible;
 			top: 0;
+			width:100%;
 			max-width: calc(100% -  #{$board-padding-spacer});
 			flex-direction: column;
 

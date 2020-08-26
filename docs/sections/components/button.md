@@ -168,7 +168,7 @@ NOTE if there are too much btns, there will be a scrollbar on the button group c
 In case absolutely horizontal and vertical button groups look too ugly, use this to make vertical and horizontal groups vertically stack like blocks on [max mobile breakpoint](../scaffolding/breakpoint.md#mobile-split)
 
 
-### **`.btn-group-block`**
+### **`.btn-block`**
 
 Keep btn-group full width all the fucking time
 

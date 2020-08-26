@@ -1,6 +1,8 @@
 # Framework Documentation
 A framework for your appy dashboardy needs :')
 
+Works with Libsass and Compass
+
 
 ##	Setup
 *	[Quick Start](docs/sections/setup/quickstart.md)

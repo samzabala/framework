@@ -670,21 +670,23 @@
 			}
 
 			@at-root %for-text-ellipsis  {
-
-				/* cut overflowing single line to ellipsis */
-				white-space: nowrap!important;
-				overflow: hidden!important;
-				text-overflow: ellipsis!important;
-				/* gotta be block otherwise shit wont happen */
+				&-single {
+					/* cut overflowing single line to ellipsis */
+					white-space: nowrap!important;
+					overflow: hidden!important;
+					text-overflow: ellipsis!important;
+				}
 			}
 
 			&-ellipsis {
-				@extend %for-text-ellipsis;
+				@extend %for-text-ellipsis-single;
+				/* gotta be block otherwise shit wont happen */
 				display:block;
 				max-width:100%!important;
 
 				&-multiple {
-					@extend %for-text-ellipsis;
+					overflow: hidden!important;
+					text-overflow: ellipsis!important;
 					display: -webkit-box!important;
 					-webkit-line-clamp: $body-ellipsis-multiple-factor!important;
 					-webkit-box-orient: vertical!important;

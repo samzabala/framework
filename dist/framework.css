@@ -4602,11 +4602,11 @@ table {
     position: relative; }
     .btn-group .btn:hover, .btn-group .btn:active, .btn-group .btn.active, .btn-group .btn:focus, .btn-group .btn.focus, .btn-group .btn.open {
       z-index: 1; }
-  .btn-group-block {
+  .btn-block {
     display: -webkit-box;
     display: flex;
     width: 100%; }
-    .btn-group-block > .btn:not(.btn-symbol) {
+    .btn-block > .btn:not(.btn-symbol) {
       -webkit-box-flex: 1;
               flex: 1 1; }
   .btn-group.btn-large {
@@ -5263,21 +5263,21 @@ table {
       border-color: transparent; }
     .input-group .input:hover, .input-group .input:active, .input-group .input.active, .input-group .input:focus, .input-group .input.focus, .input-group .input.open {
       z-index: 1; }
-  .input-group-block {
+  .input-block {
     display: -webkit-box;
     display: flex;
     width: 100%; }
-    .input-group-block > .input,
-    .input-group-block > .trumbowyg,
-    .input-group-block > .btn:not(.btn-symbol) {
+    .input-block > .input,
+    .input-block > .trumbowyg,
+    .input-block > .btn:not(.btn-symbol) {
       -webkit-box-flex: 1;
               flex: 1 1; }
     @media (max-width: 1200px) {
-      .input-group-block-mobile {
+      .input-block-mobile {
         display: -webkit-box;
         display: flex;
         width: 100%; }
-        .input-group-block-mobile .btn:not(.btn-symbol) {
+        .input-block-mobile .btn:not(.btn-symbol) {
           -webkit-box-flex: 1;
                   flex: 1 1; } }
   .input-group.input-group-large {

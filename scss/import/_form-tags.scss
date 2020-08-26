@@ -82,10 +82,11 @@ $prefix: '.input';
 				max-width:100%!important;
 				direction: ltr;
 				position: relative;
+				scrollbar-width:none;
 
 				&#{&}-single {
 
-					overflow-x: auto;
+					overflow-x: hidden;
 					overflow-y:hidden;
 				}
 
@@ -167,7 +168,7 @@ $prefix: '.input';
 					}
 
 					&-text {
-						@extend %for-text-ellipsis;
+						@extend %for-text-ellipsis-single;
 						max-width: 10em;
 						cursor:pointer;
 					}
@@ -199,6 +200,7 @@ $prefix: '.input';
 					outline:none;
 					white-space: nowrap;
 					padding-left:  $calculated-input-tags-padding-x;
+					display: block;
 
 					&:empty:not(:focus):not(.focus):before {
 						opacity:  $input-placeholder-opacity;
@@ -232,7 +234,7 @@ $prefix: '.input';
 					#{$prefix}-tags-ui-multiple & {
 
 						&:not(:focus):not(.focus) {
-							&:before {
+							&:after {
 								top:100%;
 								left:0;
 								width:100%;

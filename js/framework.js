@@ -35,9 +35,11 @@
 		frameWork.settings.dynamicHash
 		|| true;
 	frameWork.settings.uiClass =
-		`${frameWork.settings.prefix}-ui`;
+		frameWork.settings.uiClass
+		|| `${frameWork.settings.prefix}-ui`; //for styles
 	frameWork.settings.uiJsClass =
-		frameWork.settings.uiClass.replace('-','_')
+		frameWork.settings.uiJsClass
+		|| frameWork.settings.uiClass.replace('-','_'); // for scripting events and shit
 
 	_.modifierKeys = {
 		ctrl: false,
@@ -784,16 +786,16 @@
 		if (triggerer) {
 			if ( //idk what the fuck this was for but it stays for now
 				triggerer
-					.closest(`.input-group${frameWork.settings.uiClass}`)
+					.closest(`.input-group${frameWork.settings.uiJsClass}`)
 			){
 			} else if ( //calendar fix
 				triggerer
-					.closest(`.${frameWork.settings.uiClass}`)
+					.closest(`.${frameWork.settings.uiJsClass}`)
 				&& !triggerer
 					.closest(`.${frameWork.settings.uiJsClass}_internal_toggle`)
 			) {
 				toReturn = triggerer
-					.closest(`.${frameWork.settings.uiClass}`);
+					.closest(`.${frameWork.settings.uiJsClass}`);
 
 			} else {
 				toReturn = triggerer;
@@ -1200,6 +1202,7 @@
 				theUi.container.setAttribute(
 					'class',
 					`${frameWork.settings.uiClass}
+					${frameWork.settings.uiJsClass}
 					${inputCalendar.getAttribute('class')
 						.toString().replace('input-calendar', _.uiPrefix('calendar', true))
 					}`
@@ -1756,6 +1759,7 @@
 				theUi.container.setAttribute(
 					'class',
 					`${frameWork.settings.uiClass}
+					${frameWork.settings.uiJsClass}
 					${
 						inputTags
 						.getAttribute('class').replace('input-tags', _.uiPrefix('tags', true))
@@ -3463,7 +3467,7 @@
 		frameWork.addEvent(
 			document.body,
 			'focus',
-			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
+			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiJsClass} [contenteditable]`,
 			(e) => {
 				const uiTrigger = e.target;
 
@@ -3493,7 +3497,7 @@
 		frameWork.addEvent(
 			document.body,
 			'blur',
-			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiClass} [contenteditable]`,
+			`input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiJsClass} [contenteditable]`,
 			(e) => {
 				const uiTrigger = e.target;
 
@@ -3519,7 +3523,7 @@
 		frameWork.addEvent(
 			document.body,
 			'click',
-			`*[data-toggle="dropdown"]:not(input):not([contenteditable]):not(.${frameWork.settings.uiClass})`,
+			`*[data-toggle="dropdown"]:not(input):not([contenteditable]):not(.${frameWork.settings.uiJsClass})`,
 			(e) => {
 				const uiTrigger = e.target;
 

@@ -908,20 +908,6 @@ $prefix: '.input';
 
 		&#{$prefix}-block {
 			display:flex;
-
-			&-mobile {
-				@include br(#{$mobile-br-max}-max) {
-					display:flex;
-				}
-			}
-		}
-		
-		#{$prefix} {
-			@extend %for-form-input-in-group;
-		}
-		
-		&-block {
-			display:flex;
 			width:100%;
 
 			> #{$prefix}
@@ -944,6 +930,10 @@ $prefix: '.input';
 			}
 		}
 		
+		#{$prefix} {
+			@extend %for-form-input-in-group;
+		}
+				
 
 		&#{&}-large {
 			@extend %for-form-input-boxy-and-group-large;
@@ -1072,33 +1062,25 @@ $prefix: '.input';
 		& {
 			max-width:100%;
 			position:relative;
-
-			@include br($mobile-br-max-polar){
-				display:inline-flex;
-				padding-right: 2rem;
-			}
+			display:inline-flex;
+			padding-right: 2rem;
 		}
 			
 
 		&-horizontal {
-			@include br($mobile-br-max-polar){
-				flex-direction: row;
-				align-items: flex-start;
-			
-				&#{$prefix}-wrapper-block & {
-					%for-form-input-boxy {
-						width: calc(100% - #{$input-label-horizontal-width});
-					}
+			flex-direction: row;
+			align-items: flex-start;
+		
+			&#{$prefix}-wrapper-block & {
+				%for-form-input-boxy {
+					width: calc(100% - #{$input-label-horizontal-width});
 				}
-				// flex-wrap: wrap;
 			}
 			
 		}
 
 		&-vertical {
-			@include br($mobile-br-max-polar){
-				flex-direction: column;
-			}
+			flex-direction: column;
 		}
 
 		&-block {
@@ -1106,36 +1088,38 @@ $prefix: '.input';
 			display:flex;
 			padding-right: 0;
 
-			@include br(#{$mobile-br-max}-max) {
-				flex-direction: column;
-
-				> %for-form-input-boxy {
-					width:100%;
-				}
-			}
-
 		}
 	}
 
 		&-wrapper {
 			& {
-				@extend %for-form-wrapper;
 			}
 				
 
 			&#{&}-horizontal {
+				@extend %for-form-wrapper;
 				@extend %for-form-wrapper-horizontal;
 				
 			}
 
 			&#{&}-vertical {
+				@extend %for-form-wrapper;
 				@extend %for-form-wrapper-vertical;
 			}
 
 			&#{&}-block {
-
-				
 				@extend %for-form-wrapper-block;
+			}
+
+			&#{&}-responsive {
+
+				@include br(#{$mobile-br-max}-max) {
+					flex-direction: column;
+
+					> %for-form-input-boxy {
+						width:100%;
+					}
+				}
 			}
 		}
 

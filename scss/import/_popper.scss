@@ -150,7 +150,10 @@ $prefix: '.dropdown';
 	color: $nav-color;
 	transform-origin: center center;
 	transform-style: preserve-3d;
-	overflow-y:auto;
+
+	&[data-dropdown-max-height]{
+		overflow-y:auto;
+	}
 
 	.theme-inverse & {
 		color: $nav-color-inverse;
@@ -232,7 +235,7 @@ $prefix: '.dropdown';
 		}
 	}
 
-	@include br(#{$mobile-br-max}-max) {
-		max-width:100%;
-	}
+	// @include br(#{$mobile-br-max}-max) {
+	// 	max-width:100%;
+	// }
 }

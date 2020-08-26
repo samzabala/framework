@@ -740,8 +740,15 @@
 		$progress-height: 20px !default;
 			$progress-height-large: 30px !default;
 			$progress-height-small: 10px !default;
+
 		$progress-background-color: $theme-background-contrast !default;
 			$progress-background-color-inverse: $theme-background-contrast-inverse !default;
+		$progress-background-stripe-color: rgba($brand-color-neutral,.2) !default;
+			$progress-background-stripe-color-inverse: $progress-background-stripe-color !default;
+
+		$progress-background-stripe-width: 1px !default;
+		$progress-background-stripe-gap: 5px !default;
+
 		$progress-border-radius: 20px !default;
 		$progress-transition-duration: $transition-duration-long * 4 !default;
 
