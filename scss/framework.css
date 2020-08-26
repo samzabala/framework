@@ -1464,7 +1464,8 @@ table {
   .symbol-arrow-tail-left:after, .active > .symbol-arrow-tail-left-toggle:after, .open > .symbol-arrow-tail-left-toggle:after, .symbol-arrow-tail-right:after, .active > .symbol-arrow-tail-right-toggle:after, .open > .symbol-arrow-tail-right-toggle:after, .symbol-arrow-tail-up:after, .active > .symbol-arrow-tail-up-toggle:after, .open > .symbol-arrow-tail-up-toggle:after, .symbol-arrow-tail-down:after, .active > .symbol-arrow-tail-down-toggle:after, .open > .symbol-arrow-tail-down-toggle:after {
     width: 0.125em; }
   .symbol-caret-left, .active > .symbol-caret-left-toggle, .open > .symbol-caret-left-toggle, .symbol-caret-right, .active > .symbol-caret-right-toggle, .open > .symbol-caret-right-toggle, .symbol-caret-up, .active > .symbol-caret-up-toggle, .open > .symbol-caret-up-toggle, .symbol-caret-down, .active > .symbol-caret-down-toggle, .open > .symbol-caret-down-toggle {
-    width: .625em; }
+    width: .625em;
+    height: .75em; }
     .symbol-caret-left:after, .active > .symbol-caret-left-toggle:after, .open > .symbol-caret-left-toggle:after, .symbol-caret-right:after, .active > .symbol-caret-right-toggle:after, .open > .symbol-caret-right-toggle:after, .symbol-caret-up:after, .active > .symbol-caret-up-toggle:after, .open > .symbol-caret-up-toggle:after, .symbol-caret-down:after, .active > .symbol-caret-down-toggle:after, .open > .symbol-caret-down-toggle:after {
       background: transparent;
       width: 0;

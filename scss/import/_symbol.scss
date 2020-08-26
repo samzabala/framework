@@ -841,6 +841,7 @@ $prefix: '.symbol';
 				@extend %for-valid-symbol;
 				@extend %for-valid-symbol-no-before;
 				width: .625em;
+				height: .75em;
 
 				&:after {
 
