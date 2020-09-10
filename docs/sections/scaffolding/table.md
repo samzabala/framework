@@ -6,7 +6,7 @@ Yes we have that too.
 ## Helper Classes
 
 ### **.table-wrapper**
-. tables may not be absolutely responsive depending on content. to allow horizontal scrolling without looking ugly, wrap yuh table in a div with this class
+tables may not be absolutely responsive depending on content. to allow horizontal scrolling without looking ugly, wrap yuh table in a div with this class
 
 ```html
 <div class="table-wrapper">
@@ -15,7 +15,6 @@ Yes we have that too.
 	</table>
 </div>
 ```
- 
 
 ### **.table**
 
@@ -25,6 +24,10 @@ Replicate a `<table>` element
 <div class="table">
 </div>
 ```
+ 
+### **.table-fixed**
+
+add to `<table>` or `.table` element if you want it to be abso-fucking-lutely mushy
 
 ### **.table-row**
 
