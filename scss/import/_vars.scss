@@ -792,6 +792,9 @@
 		$thumbnail-color: $brand-color-background !default;
 		$thumbnail-font-weight: $body-font-weight-bold !default;
 		$thumbnail-font-style: normal !default;
+
+		$thumbnail-addon-offset-x: 15% !default;
+		$thumbnail-addon-offset-y: 15% !default;
 		
 	//list groups
 		$list-group-border-color: $theme-background-contrast !default;
@@ -864,7 +867,9 @@
 	
 	// tag
 		$tag-height: 28px !default;
-		$tag-gutter-x: 8px !default;
+			$tag-height-large: 35px !default;
+			$tag-height-small: 21px !default;
+		$tag-gutter-x: 6px !default;
 		$tag-font-size: 13px !default;
 		$tag-font-weight: $body-font-weight-bold !default;
 		$tag-line-height: 1 !default;
@@ -873,6 +878,8 @@
 		$tag-text-transform: uppercase !default;
 		$tag-gutter-x: 20px !default;
 		$tag-border-radius: $tag-height * .5 !default;
+			$tag-border-radius-large: $tag-height-large * .5 !default;
+			$tag-border-radius-small: $tag-height-small * .25 !default;
 		$tag-margin-y: .125em !default;
 
 		$tag-default-color: inherit !default;

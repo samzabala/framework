@@ -15,11 +15,7 @@ $prefix: '.modal';
 			overflow-y: scroll;
 
 			&-no-scrollbar {
-				scrollbar-width: none;
-
-				&::-webkit-scrollbar {
-					display:none;
-				}
+				@extend %for-no-scrollbar;
 			}
 
 		}

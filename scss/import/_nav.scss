@@ -148,6 +148,28 @@ $prefix: '.nav';
 		}
 	}
 
+	&-block {
+		display:flex;
+		align-self: stretch;
+		align-items: center;
+		align-content: center;
+		position:relative;
+
+		// > * {
+		// 	max-width:100%;
+		// }
+
+		&:nth-child(n+2) {
+			margin-left: .5em;
+		}
+
+		&#{&}-stretch {
+
+			align-items: stretch;
+			align-content: stretch;
+		}
+	}
+
 	&-icon {
 		width: $calculated-nav-icon-width;
 		height: $calculated-nav-icon-height;

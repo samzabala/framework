@@ -766,6 +766,18 @@
 		@include create-box-helper(#{&},'',padding,'',0,'for-no-padding');
 	}
 
+%for-no-scrollbar {
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display:none;
+	}
+}
+
+.no-scrollbar {
+	@extend %for-no-scrollbar;
+}
+
 .overflow {
 
 	&{

@@ -82,7 +82,8 @@ $prefix: '.input';
 				max-width:100%!important;
 				direction: ltr;
 				position: relative;
-				scrollbar-width:none;
+
+				@extend %for-no-scrollbar !optional;
 
 				&#{&}-single {
 
@@ -95,10 +96,6 @@ $prefix: '.input';
 					// @extend %for-form-input-boxy-multiple-height !optional;
 					overflow:hidden;
 
-				}
-
-				&::-webkit-scrollbar {
-					display:none;
 				}
 
 				&-wrapper {

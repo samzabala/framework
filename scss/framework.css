@@ -1020,27 +1020,31 @@ img.asset-thumbnail-image, .thumbnail img, .thumbnail-image img, .fit-image img 
   .table-wrapper .table, .table-wrapper table {
     width: auto;
     min-width: 100%;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    table-layout: auto !important; }
     .table-wrapper .table .tag, .table-wrapper .table .btn, .table-wrapper table .tag, .table-wrapper table .btn {
       white-space: nowrap; }
 
 .table,
 table {
-  white-space: normal;
-  display: table;
   width: 100%;
   max-width: 100%;
+  display: table;
   border-collapse: collapse;
-  border-spacing: 0;
   text-align: inherit;
-  background: transparent;
-  text-align: inherit; }
+  background: transparent; }
+  .table.table-fixed,
+  table.table-fixed {
+    table-layout: fixed !important; }
+  .table .text-wrap-ellipsis,
+  table .text-wrap-ellipsis {
+    width: 32em; }
   thead,
   tbody,
   tfoot,
   tr,
   .table-row {
-    min-width: 100%; }
+    width: 100%; }
   thead,
   tbody,
   tfoot {
@@ -1232,6 +1236,7 @@ table {
 /*** SYMBOLS ***/
 .symbol {
   font: inherit;
+  font-size: 100%;
   position: relative;
   display: inline-block;
   line-height: 1;
@@ -1251,11 +1256,12 @@ table {
     margin-right: 0; }
   .symbol:first-child {
     margin-left: 0; }
-  .symbol-text-left, .active > .symbol-text-left-toggle, .open > .symbol-text-left-toggle, .symbol-text-right, .active > .symbol-text-right-toggle, .open > .symbol-text-right-toggle, .symbol-text-center, .active > .symbol-text-center-toggle, .open > .symbol-text-center-toggle, .symbol-text-justify, .active > .symbol-text-justify-toggle, .open > .symbol-text-justify-toggle, .symbol-caret-left, .active > .symbol-caret-left-toggle, .open > .symbol-caret-left-toggle, .symbol-caret-right, .active > .symbol-caret-right-toggle, .open > .symbol-caret-right-toggle, .symbol-caret-up, .active > .symbol-caret-up-toggle, .open > .symbol-caret-up-toggle, .symbol-caret-down, .active > .symbol-caret-down-toggle, .open > .symbol-caret-down-toggle, .symbol-arrow-left, .active > .symbol-arrow-left-toggle, .open > .symbol-arrow-left-toggle, .symbol-arrow-right, .active > .symbol-arrow-right-toggle, .open > .symbol-arrow-right-toggle, .symbol-arrow-up, .active > .symbol-arrow-up-toggle, .open > .symbol-arrow-up-toggle, .symbol-arrow-down, .active > .symbol-arrow-down-toggle, .open > .symbol-arrow-down-toggle, .symbol-arrow-double-left, .active > .symbol-arrow-double-left-toggle, .open > .symbol-arrow-double-left-toggle, .symbol-arrow-double-right, .active > .symbol-arrow-double-right-toggle, .open > .symbol-arrow-double-right-toggle, .symbol-arrow-double-up, .active > .symbol-arrow-double-up-toggle, .open > .symbol-arrow-double-up-toggle, .symbol-arrow-double-down, .active > .symbol-arrow-double-down-toggle, .open > .symbol-arrow-double-down-toggle, .symbol-arrow-tail-left, .active > .symbol-arrow-tail-left-toggle, .open > .symbol-arrow-tail-left-toggle, .symbol-arrow-tail-right, .active > .symbol-arrow-tail-right-toggle, .open > .symbol-arrow-tail-right-toggle, .symbol-arrow-tail-up, .active > .symbol-arrow-tail-up-toggle, .open > .symbol-arrow-tail-up-toggle, .symbol-arrow-tail-down, .active > .symbol-arrow-tail-down-toggle, .open > .symbol-arrow-tail-down-toggle, .symbol-kebab-horizontal, .active > .symbol-kebab-horizontal-toggle, .open > .symbol-kebab-horizontal-toggle, .symbol-kebab-vertical, .active > .symbol-kebab-vertical-toggle, .open > .symbol-kebab-vertical-toggle, .symbol-fries, .active > .symbol-fries-toggle, .open > .symbol-fries-toggle, .symbol-burger, .active > .symbol-burger-toggle, .open > .symbol-burger-toggle, .symbol-download, .active > .symbol-download-toggle, .open > .symbol-download-toggle, .symbol-star, .active > .symbol-star-toggle, .open > .symbol-star-toggle, .symbol-star-stroke, .active > .symbol-star-stroke-toggle, .open > .symbol-star-stroke-toggle, .symbol-file, .active > .symbol-file-toggle, .open > .symbol-file-toggle, .symbol-map, .active > .symbol-map-toggle, .open > .symbol-map-toggle, .symbol-close, .active > .symbol-close-toggle, .open > .symbol-close-toggle, .symbol-check, .active > .symbol-check-toggle, .open > .symbol-check-toggle, .symbol-minus, .active > .symbol-minus-toggle, .open > .symbol-minus-toggle, .symbol-plus, .active > .symbol-plus-toggle, .open > .symbol-plus-toggle, .symbol-time, .active > .symbol-time-toggle, .open > .symbol-time-toggle, .symbol-timer, .active > .symbol-timer-toggle, .open > .symbol-timer-toggle, .symbol-search, .active > .symbol-search-toggle, .open > .symbol-search-toggle, .symbol-pause, .active > .symbol-pause-toggle, .open > .symbol-pause-toggle, .symbol-play, .active > .symbol-play-toggle, .open > .symbol-play-toggle, .symbol-stop, .active > .symbol-stop-toggle, .open > .symbol-stop-toggle, .symbol-square, .active > .symbol-square-toggle, .open > .symbol-square-toggle, .symbol-delete, .active > .symbol-delete-toggle, .open > .symbol-delete-toggle, .symbol-edit, .active > .symbol-edit-toggle, .open > .symbol-edit-toggle {
+  .symbol-text-left, .active > .symbol-text-left-toggle, .open > .symbol-text-left-toggle, .symbol-text-right, .active > .symbol-text-right-toggle, .open > .symbol-text-right-toggle, .symbol-text-center, .active > .symbol-text-center-toggle, .open > .symbol-text-center-toggle, .symbol-text-justify, .active > .symbol-text-justify-toggle, .open > .symbol-text-justify-toggle, .symbol-caret-left, .active > .symbol-caret-left-toggle, .open > .symbol-caret-left-toggle, .symbol-caret-right, .active > .symbol-caret-right-toggle, .open > .symbol-caret-right-toggle, .symbol-caret-up, .active > .symbol-caret-up-toggle, .open > .symbol-caret-up-toggle, .symbol-caret-down, .active > .symbol-caret-down-toggle, .open > .symbol-caret-down-toggle, .symbol-arrow-left, .active > .symbol-arrow-left-toggle, .open > .symbol-arrow-left-toggle, .symbol-arrow-right, .active > .symbol-arrow-right-toggle, .open > .symbol-arrow-right-toggle, .symbol-arrow-up, .active > .symbol-arrow-up-toggle, .open > .symbol-arrow-up-toggle, .symbol-arrow-down, .active > .symbol-arrow-down-toggle, .open > .symbol-arrow-down-toggle, .symbol-arrow-double-left, .active > .symbol-arrow-double-left-toggle, .open > .symbol-arrow-double-left-toggle, .symbol-arrow-double-right, .active > .symbol-arrow-double-right-toggle, .open > .symbol-arrow-double-right-toggle, .symbol-arrow-double-up, .active > .symbol-arrow-double-up-toggle, .open > .symbol-arrow-double-up-toggle, .symbol-arrow-double-down, .active > .symbol-arrow-double-down-toggle, .open > .symbol-arrow-double-down-toggle, .symbol-arrow-tail-left, .active > .symbol-arrow-tail-left-toggle, .open > .symbol-arrow-tail-left-toggle, .symbol-arrow-tail-right, .active > .symbol-arrow-tail-right-toggle, .open > .symbol-arrow-tail-right-toggle, .symbol-arrow-tail-up, .active > .symbol-arrow-tail-up-toggle, .open > .symbol-arrow-tail-up-toggle, .symbol-arrow-tail-down, .active > .symbol-arrow-tail-down-toggle, .open > .symbol-arrow-tail-down-toggle, .symbol-kebab-horizontal, .active > .symbol-kebab-horizontal-toggle, .open > .symbol-kebab-horizontal-toggle, .symbol-kebab-vertical, .active > .symbol-kebab-vertical-toggle, .open > .symbol-kebab-vertical-toggle, .symbol-fries, .active > .symbol-fries-toggle, .open > .symbol-fries-toggle, .symbol-burger, .active > .symbol-burger-toggle, .open > .symbol-burger-toggle, .symbol-hyperlink, .active > .symbol-hyperlink-toggle, .open > .symbol-hyperlink-toggle, .symbol-download, .active > .symbol-download-toggle, .open > .symbol-download-toggle, .symbol-star, .active > .symbol-star-toggle, .open > .symbol-star-toggle, .symbol-star-stroke, .active > .symbol-star-stroke-toggle, .open > .symbol-star-stroke-toggle, .symbol-file, .active > .symbol-file-toggle, .open > .symbol-file-toggle, .symbol-map, .active > .symbol-map-toggle, .open > .symbol-map-toggle, .symbol-close, .active > .symbol-close-toggle, .open > .symbol-close-toggle, .symbol-check, .active > .symbol-check-toggle, .open > .symbol-check-toggle, .symbol-minus, .active > .symbol-minus-toggle, .open > .symbol-minus-toggle, .symbol-plus, .active > .symbol-plus-toggle, .open > .symbol-plus-toggle, .symbol-time, .active > .symbol-time-toggle, .open > .symbol-time-toggle, .symbol-timer, .active > .symbol-timer-toggle, .open > .symbol-timer-toggle, .symbol-search, .active > .symbol-search-toggle, .open > .symbol-search-toggle, .symbol-pause, .active > .symbol-pause-toggle, .open > .symbol-pause-toggle, .symbol-play, .active > .symbol-play-toggle, .open > .symbol-play-toggle, .symbol-stop, .active > .symbol-stop-toggle, .open > .symbol-stop-toggle, .symbol-square, .active > .symbol-square-toggle, .open > .symbol-square-toggle, .symbol-delete, .active > .symbol-delete-toggle, .open > .symbol-delete-toggle, .symbol-edit, .active > .symbol-edit-toggle, .open > .symbol-edit-toggle {
     transform: none;
     transition: none; }
-  .symbol-text-left:after, .active > .symbol-text-left-toggle:after, .open > .symbol-text-left-toggle:after, .symbol-text-right:after, .active > .symbol-text-right-toggle:after, .open > .symbol-text-right-toggle:after, .symbol-text-center:after, .active > .symbol-text-center-toggle:after, .open > .symbol-text-center-toggle:after, .symbol-text-justify:after, .active > .symbol-text-justify-toggle:after, .open > .symbol-text-justify-toggle:after, .symbol-caret-left:after, .active > .symbol-caret-left-toggle:after, .open > .symbol-caret-left-toggle:after, .symbol-caret-right:after, .active > .symbol-caret-right-toggle:after, .open > .symbol-caret-right-toggle:after, .symbol-caret-up:after, .active > .symbol-caret-up-toggle:after, .open > .symbol-caret-up-toggle:after, .symbol-caret-down:after, .active > .symbol-caret-down-toggle:after, .open > .symbol-caret-down-toggle:after, .symbol-arrow-left:before, .symbol-arrow-left:after, .active > .symbol-arrow-left-toggle:before, .active > .symbol-arrow-left-toggle:after, .open > .symbol-arrow-left-toggle:before, .open > .symbol-arrow-left-toggle:after, .symbol-arrow-right:before, .symbol-arrow-right:after, .active > .symbol-arrow-right-toggle:before, .active > .symbol-arrow-right-toggle:after, .open > .symbol-arrow-right-toggle:before, .open > .symbol-arrow-right-toggle:after, .symbol-arrow-up:before, .symbol-arrow-up:after, .active > .symbol-arrow-up-toggle:before, .active > .symbol-arrow-up-toggle:after, .open > .symbol-arrow-up-toggle:before, .open > .symbol-arrow-up-toggle:after, .symbol-arrow-down:before, .symbol-arrow-down:after, .active > .symbol-arrow-down-toggle:before, .active > .symbol-arrow-down-toggle:after, .open > .symbol-arrow-down-toggle:before, .open > .symbol-arrow-down-toggle:after, .symbol-arrow-double-left:before, .symbol-arrow-double-left:after, .active > .symbol-arrow-double-left-toggle:before, .active > .symbol-arrow-double-left-toggle:after, .open > .symbol-arrow-double-left-toggle:before, .open > .symbol-arrow-double-left-toggle:after, .symbol-arrow-double-right:before, .symbol-arrow-double-right:after, .active > .symbol-arrow-double-right-toggle:before, .active > .symbol-arrow-double-right-toggle:after, .open > .symbol-arrow-double-right-toggle:before, .open > .symbol-arrow-double-right-toggle:after, .symbol-arrow-double-up:before, .symbol-arrow-double-up:after, .active > .symbol-arrow-double-up-toggle:before, .active > .symbol-arrow-double-up-toggle:after, .open > .symbol-arrow-double-up-toggle:before, .open > .symbol-arrow-double-up-toggle:after, .symbol-arrow-double-down:before, .symbol-arrow-double-down:after, .active > .symbol-arrow-double-down-toggle:before, .active > .symbol-arrow-double-down-toggle:after, .open > .symbol-arrow-double-down-toggle:before, .open > .symbol-arrow-double-down-toggle:after, .symbol-arrow-tail-left:before, .symbol-arrow-tail-left:after, .active > .symbol-arrow-tail-left-toggle:before, .active > .symbol-arrow-tail-left-toggle:after, .open > .symbol-arrow-tail-left-toggle:before, .open > .symbol-arrow-tail-left-toggle:after, .symbol-arrow-tail-right:before, .symbol-arrow-tail-right:after, .active > .symbol-arrow-tail-right-toggle:before, .active > .symbol-arrow-tail-right-toggle:after, .open > .symbol-arrow-tail-right-toggle:before, .open > .symbol-arrow-tail-right-toggle:after, .symbol-arrow-tail-up:before, .symbol-arrow-tail-up:after, .active > .symbol-arrow-tail-up-toggle:before, .active > .symbol-arrow-tail-up-toggle:after, .open > .symbol-arrow-tail-up-toggle:before, .open > .symbol-arrow-tail-up-toggle:after, .symbol-arrow-tail-down:before, .symbol-arrow-tail-down:after, .active > .symbol-arrow-tail-down-toggle:before, .active > .symbol-arrow-tail-down-toggle:after, .open > .symbol-arrow-tail-down-toggle:before, .open > .symbol-arrow-tail-down-toggle:after, .symbol-kebab-horizontal:after, .active > .symbol-kebab-horizontal-toggle:after, .open > .symbol-kebab-horizontal-toggle:after, .symbol-kebab-vertical:after, .active > .symbol-kebab-vertical-toggle:after, .open > .symbol-kebab-vertical-toggle:after, .symbol-fries:after, .active > .symbol-fries-toggle:after, .open > .symbol-fries-toggle:after, .symbol-burger:after, .active > .symbol-burger-toggle:after, .open > .symbol-burger-toggle:after, .symbol-download:before, .symbol-download:after, .active > .symbol-download-toggle:before, .active > .symbol-download-toggle:after, .open > .symbol-download-toggle:before, .open > .symbol-download-toggle:after, .symbol-star:after, .active > .symbol-star-toggle:after, .open > .symbol-star-toggle:after, .symbol-star-stroke:after, .active > .symbol-star-stroke-toggle:after, .open > .symbol-star-stroke-toggle:after, .symbol-file:after, .active > .symbol-file-toggle:after, .open > .symbol-file-toggle:after, .symbol-map:before, .symbol-map:after, .active > .symbol-map-toggle:before, .active > .symbol-map-toggle:after, .open > .symbol-map-toggle:before, .open > .symbol-map-toggle:after, .symbol-close:before, .symbol-close:after, .active > .symbol-close-toggle:before, .active > .symbol-close-toggle:after, .open > .symbol-close-toggle:before, .open > .symbol-close-toggle:after, .symbol-check:before, .symbol-check:after, .active > .symbol-check-toggle:before, .active > .symbol-check-toggle:after, .open > .symbol-check-toggle:before, .open > .symbol-check-toggle:after, .symbol-plus:before, .active > .symbol-plus-toggle:before, .open > .symbol-plus-toggle:before, .symbol-plus:after, .active > .symbol-plus-toggle:after, .open > .symbol-plus-toggle:after, .symbol-minus:after, .active > .symbol-minus-toggle:after, .open > .symbol-minus-toggle:after, .symbol-timer:before, .active > .symbol-timer-toggle:before, .open > .symbol-timer-toggle:before, .symbol-time:after, .active > .symbol-time-toggle:after, .open > .symbol-time-toggle:after, .symbol-timer:after, .active > .symbol-timer-toggle:after, .open > .symbol-timer-toggle:after, .symbol-search:before, .symbol-search:after, .active > .symbol-search-toggle:before, .active > .symbol-search-toggle:after, .open > .symbol-search-toggle:before, .open > .symbol-search-toggle:after, .symbol-pause:before, .symbol-pause:after, .active > .symbol-pause-toggle:before, .active > .symbol-pause-toggle:after, .open > .symbol-pause-toggle:before, .open > .symbol-pause-toggle:after, .symbol-play:after, .active > .symbol-play-toggle:after, .open > .symbol-play-toggle:after, .symbol-stop:after, .active > .symbol-stop-toggle:after, .open > .symbol-stop-toggle:after, .symbol-square:after, .active > .symbol-square-toggle:after, .open > .symbol-square-toggle:after, .symbol-delete:before, .symbol-delete:after, .active > .symbol-delete-toggle:before, .active > .symbol-delete-toggle:after, .open > .symbol-delete-toggle:before, .open > .symbol-delete-toggle:after, .symbol-edit:before, .symbol-edit:after, .active > .symbol-edit-toggle:before, .active > .symbol-edit-toggle:after, .open > .symbol-edit-toggle:before, .open > .symbol-edit-toggle:after {
+  .symbol-text-left:after, .active > .symbol-text-left-toggle:after, .open > .symbol-text-left-toggle:after, .symbol-text-right:after, .active > .symbol-text-right-toggle:after, .open > .symbol-text-right-toggle:after, .symbol-text-center:after, .active > .symbol-text-center-toggle:after, .open > .symbol-text-center-toggle:after, .symbol-text-justify:after, .active > .symbol-text-justify-toggle:after, .open > .symbol-text-justify-toggle:after, .symbol-caret-left:after, .active > .symbol-caret-left-toggle:after, .open > .symbol-caret-left-toggle:after, .symbol-caret-right:after, .active > .symbol-caret-right-toggle:after, .open > .symbol-caret-right-toggle:after, .symbol-caret-up:after, .active > .symbol-caret-up-toggle:after, .open > .symbol-caret-up-toggle:after, .symbol-caret-down:after, .active > .symbol-caret-down-toggle:after, .open > .symbol-caret-down-toggle:after, .symbol-arrow-left:before, .symbol-arrow-left:after, .active > .symbol-arrow-left-toggle:before, .active > .symbol-arrow-left-toggle:after, .open > .symbol-arrow-left-toggle:before, .open > .symbol-arrow-left-toggle:after, .symbol-arrow-right:before, .symbol-arrow-right:after, .active > .symbol-arrow-right-toggle:before, .active > .symbol-arrow-right-toggle:after, .open > .symbol-arrow-right-toggle:before, .open > .symbol-arrow-right-toggle:after, .symbol-arrow-up:before, .symbol-arrow-up:after, .active > .symbol-arrow-up-toggle:before, .active > .symbol-arrow-up-toggle:after, .open > .symbol-arrow-up-toggle:before, .open > .symbol-arrow-up-toggle:after, .symbol-arrow-down:before, .symbol-arrow-down:after, .active > .symbol-arrow-down-toggle:before, .active > .symbol-arrow-down-toggle:after, .open > .symbol-arrow-down-toggle:before, .open > .symbol-arrow-down-toggle:after, .symbol-arrow-double-left:before, .symbol-arrow-double-left:after, .active > .symbol-arrow-double-left-toggle:before, .active > .symbol-arrow-double-left-toggle:after, .open > .symbol-arrow-double-left-toggle:before, .open > .symbol-arrow-double-left-toggle:after, .symbol-arrow-double-right:before, .symbol-arrow-double-right:after, .active > .symbol-arrow-double-right-toggle:before, .active > .symbol-arrow-double-right-toggle:after, .open > .symbol-arrow-double-right-toggle:before, .open > .symbol-arrow-double-right-toggle:after, .symbol-arrow-double-up:before, .symbol-arrow-double-up:after, .active > .symbol-arrow-double-up-toggle:before, .active > .symbol-arrow-double-up-toggle:after, .open > .symbol-arrow-double-up-toggle:before, .open > .symbol-arrow-double-up-toggle:after, .symbol-arrow-double-down:before, .symbol-arrow-double-down:after, .active > .symbol-arrow-double-down-toggle:before, .active > .symbol-arrow-double-down-toggle:after, .open > .symbol-arrow-double-down-toggle:before, .open > .symbol-arrow-double-down-toggle:after, .symbol-arrow-tail-left:before, .symbol-arrow-tail-left:after, .active > .symbol-arrow-tail-left-toggle:before, .active > .symbol-arrow-tail-left-toggle:after, .open > .symbol-arrow-tail-left-toggle:before, .open > .symbol-arrow-tail-left-toggle:after, .symbol-arrow-tail-right:before, .symbol-arrow-tail-right:after, .active > .symbol-arrow-tail-right-toggle:before, .active > .symbol-arrow-tail-right-toggle:after, .open > .symbol-arrow-tail-right-toggle:before, .open > .symbol-arrow-tail-right-toggle:after, .symbol-arrow-tail-up:before, .symbol-arrow-tail-up:after, .active > .symbol-arrow-tail-up-toggle:before, .active > .symbol-arrow-tail-up-toggle:after, .open > .symbol-arrow-tail-up-toggle:before, .open > .symbol-arrow-tail-up-toggle:after, .symbol-arrow-tail-down:before, .symbol-arrow-tail-down:after, .active > .symbol-arrow-tail-down-toggle:before, .active > .symbol-arrow-tail-down-toggle:after, .open > .symbol-arrow-tail-down-toggle:before, .open > .symbol-arrow-tail-down-toggle:after, .symbol-kebab-horizontal:after, .active > .symbol-kebab-horizontal-toggle:after, .open > .symbol-kebab-horizontal-toggle:after, .symbol-kebab-vertical:after, .active > .symbol-kebab-vertical-toggle:after, .open > .symbol-kebab-vertical-toggle:after, .symbol-fries:after, .active > .symbol-fries-toggle:after, .open > .symbol-fries-toggle:after, .symbol-burger:after, .active > .symbol-burger-toggle:after, .open > .symbol-burger-toggle:after, .symbol-hyperlink:before, .symbol-hyperlink:after, .active > .symbol-hyperlink-toggle:before, .active > .symbol-hyperlink-toggle:after, .open > .symbol-hyperlink-toggle:before, .open > .symbol-hyperlink-toggle:after, .symbol-download:before, .symbol-download:after, .active > .symbol-download-toggle:before, .active > .symbol-download-toggle:after, .open > .symbol-download-toggle:before, .open > .symbol-download-toggle:after, .symbol-star:after, .active > .symbol-star-toggle:after, .open > .symbol-star-toggle:after, .symbol-star-stroke:after, .active > .symbol-star-stroke-toggle:after, .open > .symbol-star-stroke-toggle:after, .symbol-file:after, .active > .symbol-file-toggle:after, .open > .symbol-file-toggle:after, .symbol-map:before, .symbol-map:after, .active > .symbol-map-toggle:before, .active > .symbol-map-toggle:after, .open > .symbol-map-toggle:before, .open > .symbol-map-toggle:after, .symbol-close:before, .symbol-close:after, .active > .symbol-close-toggle:before, .active > .symbol-close-toggle:after, .open > .symbol-close-toggle:before, .open > .symbol-close-toggle:after, .symbol-check:before, .symbol-check:after, .active > .symbol-check-toggle:before, .active > .symbol-check-toggle:after, .open > .symbol-check-toggle:before, .open > .symbol-check-toggle:after, .symbol-plus:before, .active > .symbol-plus-toggle:before, .open > .symbol-plus-toggle:before, .symbol-plus:after, .active > .symbol-plus-toggle:after, .open > .symbol-plus-toggle:after, .symbol-minus:after, .active > .symbol-minus-toggle:after, .open > .symbol-minus-toggle:after, .symbol-timer:before, .active > .symbol-timer-toggle:before, .open > .symbol-timer-toggle:before, .symbol-time:after, .active > .symbol-time-toggle:after, .open > .symbol-time-toggle:after, .symbol-timer:after, .active > .symbol-timer-toggle:after, .open > .symbol-timer-toggle:after, .symbol-search:before, .symbol-search:after, .active > .symbol-search-toggle:before, .active > .symbol-search-toggle:after, .open > .symbol-search-toggle:before, .open > .symbol-search-toggle:after, .symbol-pause:before, .symbol-pause:after, .active > .symbol-pause-toggle:before, .active > .symbol-pause-toggle:after, .open > .symbol-pause-toggle:before, .open > .symbol-pause-toggle:after, .symbol-play:after, .active > .symbol-play-toggle:after, .open > .symbol-play-toggle:after, .symbol-stop:after, .active > .symbol-stop-toggle:after, .open > .symbol-stop-toggle:after, .symbol-square:after, .active > .symbol-square-toggle:after, .open > .symbol-square-toggle:after, .symbol-delete:before, .symbol-delete:after, .active > .symbol-delete-toggle:before, .active > .symbol-delete-toggle:after, .open > .symbol-delete-toggle:before, .open > .symbol-delete-toggle:after, .symbol-edit:before, .symbol-edit:after, .active > .symbol-edit-toggle:before, .active > .symbol-edit-toggle:after, .open > .symbol-edit-toggle:before, .open > .symbol-edit-toggle:after {
     content: "";
+    display: block;
     color: inherit;
     position: absolute;
     top: 0;
@@ -1300,12 +1306,10 @@ table {
     background-position: bottom center;
     background-size: 100% .625em; }
   .symbol-delete:before, .active > .symbol-delete-toggle:before, .open > .symbol-delete-toggle:before {
-    height: 0.125em;
-    width: .5em;
+    height: 0.1875em;
+    width: .5625em;
     bottom: 1em;
-    top: auto;
-    border-top-right-radius: .125em;
-    border-top-left-radius: .125em; }
+    top: auto; }
   .symbol-delete:after, .active > .symbol-delete-toggle:after, .open > .symbol-delete-toggle:after {
     border: 0.125em solid;
     border-bottom-right-radius: .2em;
@@ -1423,6 +1427,24 @@ table {
     height: .625em;
     width: .5em;
     bottom: auto; }
+  .symbol-hyperlink:before, .symbol-hyperlink:after, .active > .symbol-hyperlink-toggle:before, .active > .symbol-hyperlink-toggle:after, .open > .symbol-hyperlink-toggle:before, .open > .symbol-hyperlink-toggle:after {
+    width: .6875em;
+    height: .5em;
+    border-radius: .25em;
+    border: 0.125em solid;
+    transform: rotate(-45deg); }
+  .symbol-hyperlink:before, .active > .symbol-hyperlink-toggle:before, .open > .symbol-hyperlink-toggle:before {
+    top: auto;
+    right: auto;
+    bottom: -.125em;
+    left: .25em;
+    transform-origin: bottom left; }
+  .symbol-hyperlink:after, .active > .symbol-hyperlink-toggle:after, .open > .symbol-hyperlink-toggle:after {
+    bottom: auto;
+    left: auto;
+    top: -.125em;
+    right: .25em;
+    transform-origin: top right; }
   .symbol-fries:after, .active > .symbol-fries-toggle:after, .open > .symbol-fries-toggle:after, .symbol-burger:after, .active > .symbol-burger-toggle:after, .open > .symbol-burger-toggle:after {
     box-shadow: 0 0.375em 0 0, 0 -0.375em 0 0;
     height: 0.1875em; }
@@ -1474,9 +1496,7 @@ table {
       border-right: 0.25em solid transparent;
       border-left: 0.25em solid transparent;
       border-bottom: 0.375em solid;
-      border-top: 0 solid;
-      display: inline-block;
-      vertical-align: middle; }
+      border-top: 0 solid; }
   .symbol-caret-up, .active > .symbol-caret-up-toggle, .open > .symbol-caret-up-toggle, .symbol-arrow-up, .active > .symbol-arrow-up-toggle, .open > .symbol-arrow-up-toggle, .symbol-arrow-tail-up, .active > .symbol-arrow-tail-up-toggle, .open > .symbol-arrow-tail-up-toggle, .symbol-arrow-double-up, .active > .symbol-arrow-double-up-toggle, .open > .symbol-arrow-double-up-toggle {
     transform: rotate(0deg); }
   .symbol-caret-down, .active > .symbol-caret-down-toggle, .open > .symbol-caret-down-toggle, .symbol-arrow-down, .active > .symbol-arrow-down-toggle, .open > .symbol-arrow-down-toggle, .symbol-arrow-tail-down, .active > .symbol-arrow-tail-down-toggle, .open > .symbol-arrow-tail-down-toggle, .symbol-arrow-double-down, .active > .symbol-arrow-double-down-toggle, .open > .symbol-arrow-double-down-toggle {
@@ -1576,6 +1596,18 @@ table {
 .nav-item:hover > [data-toggle], .nav-list li:hover > a,
 .nav-list li:hover > [data-toggle] {
   color: #007ece; }
+
+.nav-block {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  align-content: center;
+  position: relative; }
+  .nav-block:nth-child(n+2) {
+    margin-left: .5em; }
+  .nav-block.nav-block-stretch {
+    align-items: stretch;
+    align-content: stretch; }
 
 .nav-icon {
   width: 1.875em;
@@ -4583,10 +4615,6 @@ table {
   display: none !important; }
   .board-popup, .modal-wrapper {
     overflow-y: scroll; }
-    .modal-wrapper {
-      scrollbar-width: none; }
-      .modal-wrapper::-webkit-scrollbar {
-        display: none; }
   .board-wrapper, .modal-wrapper {
     position: fixed;
     top: 0 !important;
@@ -4781,11 +4809,14 @@ table {
     max-width: none;
     border-radius: inherit;
     overflow: hidden; }
-  .thumbnail .badge {
+  .thumbnail .badge,
+  .thumbnail .tag {
     bottom: auto;
     right: auto;
-    top: 8%;
-    left: 8%; }
+    z-index: 2;
+    top: 15%;
+    left: 15%;
+    transform: translate(-50%, -50%); }
   .thumbnail.thumbnail-medium {
     font-size: 4.375rem; }
     .thumbnail.thumbnail-medium .thumbnail-text {
@@ -4948,7 +4979,7 @@ table {
 
 /*** Tags ***/
 .tag {
-  font-size: 0.8125em;
+  font-size: 0.8125rem;
   line-height: 1;
   font-weight: 700;
   text-transform: uppercase;
@@ -4956,14 +4987,22 @@ table {
   font-style: normal;
   padding-top: calc(  (  (2.1538461538em - (1em * 1) ) * .5 ));
   padding-bottom: calc(  (  (2.1538461538em - (1em * 1) ) * .5 ));
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 0.4615384615em;
+  padding-right: 0.4615384615em;
   border-radius: 14px;
   margin-top: 0.125em;
   margin-bottom: 0.125em;
   display: inline-flex;
   align-items: center;
   vertical-align: middle; }
+  .tag.tag-large {
+    padding-top: calc(  (  (2.6923076923em - (1em * 1) ) * .5 ));
+    padding-bottom: calc(  (  (2.6923076923em - (1em * 1) ) * .5 ));
+    border-radius: 17.5px; }
+  .tag.tag-small {
+    padding-top: calc(  (  (1.6153846154em - (1em * 1) ) * .5 ));
+    padding-bottom: calc(  (  (1.6153846154em - (1em * 1) ) * .5 ));
+    border-radius: 5.25px; }
   .tag a {
     color: inherit; }
   .tag-text {
@@ -5622,9 +5661,10 @@ table {
   padding-bottom: calc(  (  (2.5em - (1px * 2)) - (1em * 1.25) ) * .5);
   min-height: 2.5em; }
 
-.nav .btn {
+.nav-block.nav-block-stretch > .btn, .nav > .btn {
   padding-top: 0;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  align-self: stretch; }
 
 .btn-group .btn {
   position: relative;
@@ -5657,7 +5697,7 @@ table {
     color: inherit; }
     .btn:hover:not(.btn-no-interaction), .btn-group:hover:not(.btn-no-interaction), .btn:focus:not(.btn-no-interaction), .btn-group:focus:not(.btn-no-interaction), .focus.btn:not(.btn-no-interaction), .focus.btn-group:not(.btn-no-interaction), .btn:active:not(.btn-no-interaction), .btn-group:active:not(.btn-no-interaction), .active.btn:not(.btn-no-interaction), .active.btn-group:not(.btn-no-interaction) {
       box-shadow: 0px 3px 10px -6px #000000; }
-  .nav .btn, .nav .btn-group {
+  .nav > .btn, .nav > .btn-group {
     height: 4.6875rem !important; }
 
 .btn.btn-block, .btn-group.btn-block {
@@ -6049,8 +6089,9 @@ table {
     border-radius: 15px; }
   .input-group.input-group-large, .input-large.input-tags-ui, .input-large.input-calendar-ui, .input-large.input-single-line, .input-large.input-select, .input-large.input-multiple-line, .input-group.input-large, .input-large .input-tags-ui, .input-large .input-calendar-ui, .input-large .input-multiple-line, .input-large .input-select, .input-large .input-single-line {
     border-radius: 30px; }
-  .nav .input-tags-ui, .nav .input-calendar-ui, .nav .input-multiple-line, .nav .input-select, .nav .input-single-line, .nav .input, .nav .input-label {
-    height: 4.6875rem !important; }
+  .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line, .nav-block.nav-block-stretch > .input, .nav > .input, .nav-block.nav-block-stretch > .input-label, .nav > .input-label {
+    height: 4.6875rem !important;
+    align-self: stretch; }
 
 .input-tags-ui, .input-calendar-ui, .input-multiple-line, .input-select, .input-single-line, .input-label {
   transition: 0.125s color ease-in-out, 0.125s border ease-in-out, 0.125s box-shadow ease-in-out;
@@ -6253,6 +6294,9 @@ table {
   select.input-select[multiple] {
     background-image: none; }
 
+.input-wrapper-block .input-tags-ui, .input-wrapper-block .input-calendar-ui, .input-wrapper-block .input-multiple-line, .input-wrapper-block .input-select, .input-wrapper-block .input-single-line {
+  width: 100%; }
+
 .input-large.input-tags-ui, .input-large.input-calendar-ui, .input-large.input-multiple-line, .input-large.input-select, .input-large.input-single-line, .input-large .input-tags-ui, .input-large .input-calendar-ui, .input-large .input-multiple-line, .input-large .input-select, .input-large .input-single-line {
   padding-top: calc( ( (3.75rem - (1px * 2)) - (1em * 1.5) ) * .5);
   padding-bottom: calc( ( (3.75rem - (1px * 2)) - (1em * 1.5) ) * .5); }
@@ -6261,7 +6305,7 @@ table {
   padding-top: calc( ( (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5);
   padding-bottom: calc( ( (1.875rem - (1px * 2)) - (1em * 1.5) ) * .5); }
 
-.nav .input-tags-ui, .nav .input-calendar-ui, .nav .input-multiple-line, .nav .input-select, .nav .input-single-line {
+.nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line {
   padding-top: calc( ( (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5) !important;
   padding-bottom: calc( ( (4.6875rem - (1px * 2)) - (1em * 1.5) ) * .5) !important; }
 
@@ -6669,8 +6713,6 @@ fieldset {
     max-height: 300px;
     overflow-x: auto;
     overflow-y: scroll; }
-    .input-calendar-ui-dropdown::-webkit-scrollbar {
-      display: none; }
   .input-calendar-ui-days, .input-calendar-ui-dates {
     grid-auto-rows: 1fr; }
     .input-calendar-ui-days:nth-child(n+2), .input-calendar-ui-dates:nth-child(n+2) {
@@ -6694,15 +6736,12 @@ fieldset {
   display: inline-flex;
   max-width: 100% !important;
   direction: ltr;
-  position: relative;
-  scrollbar-width: none; }
+  position: relative; }
   .input-tags-ui.input-tags-ui-single {
     overflow-x: hidden;
     overflow-y: hidden; }
   .input-tags-ui.input-tags-ui-multiple {
     overflow: hidden; }
-  .input-tags-ui::-webkit-scrollbar {
-    display: none; }
   .input-tags-ui-wrapper {
     flex: 1 1;
     display: flex;
@@ -8217,6 +8256,11 @@ fieldset {
 .no-padding {
   padding: 0 !important; }
 
+.no-scrollbar, .modal-wrapper, .input-calendar-ui-dropdown, .input-tags-ui {
+  scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar, .modal-wrapper::-webkit-scrollbar, .input-calendar-ui-dropdown::-webkit-scrollbar, .input-tags-ui::-webkit-scrollbar {
+    display: none; }
+
 .overflow-visible {
   overflow: visible !important; }
 
@@ -8720,19 +8764,19 @@ fieldset {
 .radius-ellipse {
   border-radius: 50% !important; }
 
-.no-radius, .no-radius-top, .no-radius-left, .no-radius-top-left, .btn-no-radius .btn, .nav .btn, .nav .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav .input-single-line, .nav .input-select, .nav .input-multiple-line, .nav .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
+.no-radius, .no-radius-top, .no-radius-left, .no-radius-top-left, .btn-no-radius .btn, .nav > .btn, .nav > .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
   border-top-left-radius: 0 !important; }
 
-.no-radius, .no-radius-top, .no-radius-right, .no-radius-top-right, .btn-no-radius .btn, .nav .btn, .nav .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav .input-single-line, .nav .input-select, .nav .input-multiple-line, .nav .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
+.no-radius, .no-radius-top, .no-radius-right, .no-radius-top-right, .btn-no-radius .btn, .nav > .btn, .nav > .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
   border-top-right-radius: 0 !important; }
 
-.no-radius, .no-radius-bottom, .no-radius-left, .no-radius-bottom-left, .btn-no-radius .btn, .nav .btn, .nav .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav .input-single-line, .nav .input-select, .nav .input-multiple-line, .nav .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
+.no-radius, .no-radius-bottom, .no-radius-left, .no-radius-bottom-left, .btn-no-radius .btn, .nav > .btn, .nav > .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
   border-bottom-left-radius: 0 !important; }
 
-.no-radius, .no-radius-bottom, .no-radius-right, .no-radius-bottom-right, .btn-no-radius .btn, .nav .btn, .nav .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav .input-single-line, .nav .input-select, .nav .input-multiple-line, .nav .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
+.no-radius, .no-radius-bottom, .no-radius-right, .no-radius-bottom-right, .btn-no-radius .btn, .nav > .btn, .nav > .btn-group, .btn.btn-no-radius, .btn-group.btn-no-radius, .input-no-radius .input-single-line, .input-no-radius .input-select, .input-no-radius .input-multiple-line, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-radius.input-single-line, .input-no-radius.input-select, .input-no-radius.input-multiple-line, .input-group.input-no-radius, .input-no-radius .input-calendar-ui, .input-no-radius.input-calendar-ui, .input-no-radius .input-tags-ui, .input-no-radius.input-tags-ui {
   border-bottom-right-radius: 0 !important; }
 
 .btn-disabled, .btn-disabled .btn, .btn.btn-link, .btn.btn-primary-outline, .btn.btn-secondary-outline, .btn.btn-accent-outline, .btn.btn-neutral-outline, .btn.btn-success-outline, .btn.btn-caution-outline, .btn.btn-error-outline, .btn.btn-theme-outline, .btn.btn-theme-polar-outline, .input-group .input-single-line:not(.focus):not(:focus):not(.active):not(:active), .input-group .input-select:not(.focus):not(:focus):not(.active):not(:active), .input-group .input-multiple-line:not(.focus):not(:focus):not(.active):not(:active), .input-group .input-calendar-ui:not(.focus):not(:focus):not(.active):not(:active), .input-group .input-tags-ui:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: none; }
-  .btn-group .btn, .nav .btn, .nav .btn-group, .btn.btn-no-shadow, .btn-group.btn-no-shadow, .input-disabled, .input[disabled], .input-disabled .input, .input-disabled .input-single-line, .input-disabled .input-select, .input-disabled .input-multiple-line, .nav .input-single-line, .nav .input-select, .nav .input-multiple-line, .nav .input-group, .input-no-shadow.input-single-line, .input-no-shadow.input-select, .input-no-shadow.input-multiple-line, .input-group.input-no-shadow, .input-disabled .input-calendar-ui, .input-no-shadow.input-calendar-ui, .input-calendar-ui-input input:not(.focus):not(:focus):not(.active):not(:active), .input-disabled .input-tags-ui, .input-no-shadow.input-tags-ui {
+  .btn-group .btn, .nav > .btn, .nav > .btn-group, .btn.btn-no-shadow, .btn-group.btn-no-shadow, .input-disabled, .input[disabled], .input-disabled .input, .input-disabled .input-single-line, .input-disabled .input-select, .input-disabled .input-multiple-line, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-shadow.input-single-line, .input-no-shadow.input-select, .input-no-shadow.input-multiple-line, .input-group.input-no-shadow, .input-disabled .input-calendar-ui, .input-no-shadow.input-calendar-ui, .input-calendar-ui-input input:not(.focus):not(:focus):not(.active):not(:active), .input-disabled .input-tags-ui, .input-no-shadow.input-tags-ui {
     box-shadow: none !important; }

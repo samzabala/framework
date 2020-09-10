@@ -3639,6 +3639,7 @@ window.jQuery && jQuery.noConflict();
 					if (
 						!triggerer.closest('[data-toggle="tooltip-click"]').length
 						&& !triggerer.closest('[data-toggle="tooltip-hover"]').length
+						&& !triggerer.closest('.tooltip.tooltip-allow-interaction').length
 						&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
 					) {
 						frameWork.destroyToolTip();

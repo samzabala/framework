@@ -1,30 +1,42 @@
 /*** Tags ***/
 //internal
 $calculated-tag-font-size: $tag-font-size;
-@if internal-is-convertable($tag-font-size) {
-    $calculated-tag-font-size: em($tag-font-size / $body-font-size)
+@if internal-is-convertable($tag-font-size,$body-font-size) {
+    $calculated-tag-font-size: rem($tag-font-size / $body-font-size)
 }
 
 $calculated-tag-line-height: type-lead( $tag-font-size,$tag-line-height );
 
 $calculated-tag-single-line: $calculated-tag-line-height;
 @if unitless($calculated-tag-single-line) and unit($tag-font-size) == px {
-    $calculated-tag-single-line: 1em * #{ type-lead( $tag-font-size,$tag-line-height ) }
+	$calculated-tag-single-line: 1em * #{ type-lead( $tag-font-size,$tag-line-height ) }
 }
 
 $calculated-tag-height: $tag-height;
 @if internal-is-convertable($tag-height,$tag-font-size) {
-    $calculated-tag-height: em($tag-height/$tag-font-size)
+	$calculated-tag-height: em($tag-height/$tag-font-size)
 }
+
+
+$calculated-tag-height-large: $tag-height-large;
+@if internal-is-convertable($tag-height-large,$tag-font-size) {
+	$calculated-tag-height-large: em($tag-height-large/$tag-font-size)
+}
+$calculated-tag-height-small: $tag-height-small;
+@if internal-is-convertable($tag-height-small,$tag-font-size) {
+	$calculated-tag-height-small: em($tag-height-small/$tag-font-size)
+}
+
+
 $calculated-tag-gutter-x: $tag-gutter-x;
 @if internal-is-convertable($tag-gutter-x,$tag-font-size) {
-    $calculated-tag-gutter-x: $calculated-tag-gutter-x
+	$calculated-tag-gutter-x: em($tag-gutter-x/$tag-font-size);
 }
 
 
 $calculated-tag-margin-y: $tag-margin-y;
 @if internal-is-convertable($tag-margin-y,$tag-font-size) {
-    $calculated-tag-margin-y: $calculated-tag-margin-y
+	$calculated-tag-gutter-x: em($tag-gutter-y/$tag-font-size);
 }
 
 
@@ -49,6 +61,19 @@ $prefix: '.tag';
 	display:inline-flex;
 	align-items: center;
 	vertical-align:middle;
+
+	&#{&}-large {
+		padding-top: calc(  (  (#{$calculated-tag-height-large} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		padding-bottom: calc(  (  (#{$calculated-tag-height-large} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		border-radius: $tag-border-radius-large;
+	}
+
+	&#{&}-small {
+		padding-top: calc(  (  (#{$calculated-tag-height-small} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		padding-bottom: calc(  (  (#{$calculated-tag-height-small} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		border-radius: $tag-border-radius-small;
+	}
+
 	a {
 		@extend %for-anchor-reset-hover;
 		color:inherit;

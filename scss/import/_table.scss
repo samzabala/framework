@@ -37,6 +37,7 @@ $prefix: '.table';
 			width: auto;
 			min-width:100%;
 			margin-bottom:0;
+			table-layout: auto!important;
 
 			.tag,.btn {
 				white-space:nowrap;
@@ -46,20 +47,20 @@ $prefix: '.table';
 	}
 	@at-root &,
 	table {
-		white-space: normal;
-		display:table;
 		width: 100%;
-		max-width: 100%;
+		max-width:100%;
+		display:table;
 		border-collapse: collapse;
-		border-spacing: 0;
 		text-align: inherit;
 		background:transparent;
-		text-align: inherit;
-		// table-layout: fixed;
 
-		// &#{$prefix}-wrap {
-		// 	white-space: normal;
-		// }
+		&#{$prefix}-fixed {
+			table-layout: fixed!important;
+		}
+
+		.text-wrap-ellipsis {
+			width: 32em;
+		}
 
 
 		@at-root thead,
@@ -67,7 +68,7 @@ $prefix: '.table';
 		tfoot,
 		tr,
 		#{$prefix}-row {
-			min-width:100%;
+			width:100%;
 		}
 
 		@at-root thead,

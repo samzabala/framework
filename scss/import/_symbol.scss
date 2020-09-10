@@ -1,12 +1,13 @@
 /*** SYMBOLS ***/
 
-$calculated-symbol-basis: 16px; //so it doesnt look icky whatever custom size is set
+$calculated-symbol-basis: $body-font-size; //so it doesnt look icky whatever custom size is set
 
 
 
 $prefix: '.symbol';
 #{$prefix} {
 	font:inherit;
+	font-size: 100%;
 	position:relative;
 	display:inline-block;
 	line-height:1;
@@ -42,6 +43,7 @@ $prefix: '.symbol';
 		
 		&-pseudo {
 			content: "";
+			display:block;
 			color: inherit;
 			position:absolute;
 			top:0;
@@ -151,12 +153,10 @@ $prefix: '.symbol';
 
 		&:before {
 			@extend %for-valid-symbol-pseudo-filled;
-			height: em(2px/$calculated-symbol-basis);
-			width: .5em;
+			height: em(3px/$calculated-symbol-basis);
+			width: .5625em;
 			bottom:1em;
 			top: auto;
-			border-top-right-radius: .125em;
-			border-top-left-radius: .125em;
 
 		}
 
@@ -627,6 +627,36 @@ $prefix: '.symbol';
 		}
 	}
 
+	@include create-symbol-styles(#{&}-hyperlink) {
+		@extend %for-valid-symbol;
+
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+			width: .6875em;
+			height: .5em;
+			border-radius: .25em;
+			border: em(2px / $calculated-symbol-basis) solid;
+			// transform-origin: center center;
+			transform: rotate(-45deg)
+		}
+
+		&:before {
+			top: auto;
+			right: auto;
+			bottom: -.125em;
+			left: .25em;
+			transform-origin: bottom left;
+		}
+
+		&:after {
+			bottom: auto;
+			left: auto;
+			top: -.125em;
+			right: .25em;
+			transform-origin: top right;
+		}
+	}
+
 	@include create-symbol-styles((#{&}-fries,#{&}-burger)) {
 		@extend %for-valid-symbol;
 
@@ -855,10 +885,7 @@ $prefix: '.symbol';
 						size-base: inherit,
 						main-size: $calculated-symbol-caret-height,//orientation of direction
 						cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
-					)){
-						display:inline-block;
-						vertical-align:middle;
-					};
+					));
 				}
 			}
 		}

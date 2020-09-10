@@ -70,6 +70,10 @@ download <i class="color-primary symbol symbol-download"></i>
 </p>
 
 <p>
+hyperlink <i class="color-primary symbol symbol-hyperlink"></i>
+</p>
+
+<p>
 burger <i class="color-primary symbol symbol-burger"></i>
 </p>
 

@@ -115,11 +115,14 @@ $prefix: '.thumbnail';
 		overflow:hidden;
 	}
 
-	.badge {
+	.badge,
+	.tag {
 		bottom: auto;
 		right: auto;
-		top: 8%;
-		left: 8%;
+		z-index: 2;
+		top: $thumbnail-addon-offset-x;
+		left: $thumbnail-addon-offset-y;
+		transform: translate(-50%, -50%);
 	}
 
 	&-small,

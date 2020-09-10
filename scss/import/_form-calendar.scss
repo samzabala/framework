@@ -321,10 +321,7 @@ $calculated-calendar-exception: '';
 						max-height: 300px;
 						overflow-x:auto;
 						overflow-y: scroll;
-
-						&::-webkit-scrollbar {
-							display:none;
-						}
+						@extend %for-no-scrollbar !optional;
 					}
 
 					&-days,

@@ -139,6 +139,7 @@ $prefix: '.btn';
 		&-in-nav {
 			padding-top: 0;
 			padding-bottom:0;
+			align-self:stretch;
 		}
 
 		&-in-group {
@@ -174,7 +175,8 @@ $prefix: '.btn';
 				@extend %for-btn-small;
 			}
 
-			.nav & {
+			.nav-block.nav-block-stretch > &,
+			.nav > & {
 				@extend %for-btn-in-nav;
 			}
 
@@ -285,7 +287,7 @@ $prefix: '.btn';
 				@extend %for-btn-and-group-small;
 			}
 
-			.nav & {
+			.nav > & {
 				@extend %for-btn-and-group-in-nav;
 				
 			}
