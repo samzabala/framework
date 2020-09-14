@@ -595,7 +595,7 @@ hr {
   margin-right: auto; }
 
 small {
-  font-size: 0.875em; }
+  font-size: 0.75em; }
 
 big {
   font-size: 1.5em; }
@@ -5329,7 +5329,7 @@ table {
   box-shadow: none;
   position: relative; }
   .alert-small {
-    font-size: 14px; }
+    font-size: 12px; }
   .alert-large {
     font-size: 24px; }
   .alert a {
@@ -6601,13 +6601,17 @@ fieldset {
   -ms-user-select: none;
   user-select: none; }
   .input-calendar-ui-block {
-    padding: 0.625em 0.625em;
+    padding: 0.5em 0em;
+    text-align: center;
     display: block;
     white-space: nowrap;
     position: relative;
     color: inherit; }
     .input-calendar-ui-block, .input-calendar-ui-block:after {
       border-radius: 10px; }
+    .input-calendar-ui-block > span {
+      display: block;
+      margin: 0 0em; }
     .input-calendar-ui-block-adjacent {
       opacity: 0.125 !important;
       pointer-events: none !important; }
@@ -6646,16 +6650,15 @@ fieldset {
     .input-calendar-ui-date.active span, .input-calendar-ui-date.active:hover span {
       color: #FFFFFF; }
   .input-calendar-ui-grid {
-    padding-bottom: 0.625em; }
+    padding-bottom: 0.5em; }
   .input-calendar-ui-days, .input-calendar-ui-dates, .input-calendar-ui-heading {
     justify-content: space-evenly;
     display: grid;
-    grid-template-columns: repeat(7, minmax(-webkit-min-content, 1fr));
-    grid-template-columns: repeat(7, minmax(min-content, 1fr));
+    grid-template-columns: repeat(7, 1fr);
     grid-gap: 2px; }
   .input-calendar-ui-input {
-    margin-bottom: 0.625em;
-    padding-bottom: 0.625em;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
     margin-left: -1.25em;
     margin-right: -1.25em;
     margin-top: calc( ( (3rem - (1px * 2)) - (1em * 1.5) ) * -.5);
@@ -6687,8 +6690,8 @@ fieldset {
       border-width: 0;
       width: 100%; }
   .input-calendar-ui-heading {
-    padding-top: 0.625em;
-    padding-bottom: 0.625em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     position: relative; }
   .input-calendar-ui-button {
     color: inherit; }
@@ -6718,16 +6721,16 @@ fieldset {
     .input-calendar-ui-days:nth-child(n+2), .input-calendar-ui-dates:nth-child(n+2) {
       margin-top: 2px; }
   .input-calendar-ui-days {
-    margin-bottom: 0.625em;
+    margin-bottom: 0.5em;
     border-bottom: 1px solid;
     opacity: .375;
     font-size: 0.75em; }
   .input-calendar-ui-dates {
-    margin-bottom: 0.3125em; }
+    margin-bottom: 0.25em; }
 
 @media (max-width: 1200px) {
   .input-calendar-ui-block {
-    padding: 0.3125em 0.3125em; } }
+    padding: 0.5em 0em; } }
 
 /*** input tags ***/
 /*** input ***/
@@ -7989,7 +7992,7 @@ fieldset {
   font-size: 1.5em !important; }
 
 .font-size-small {
-  font-size: 0.875em !important; }
+  font-size: 0.75em !important; }
 
 .font-size-normalize {
   font-size: 1rem !important; }

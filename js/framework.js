@@ -2095,10 +2095,10 @@
 	frameWork.settings.lazyLoad && _.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.createToolTip = (triggerer) => {
-		frameWork.toolTip = frameWork.toolTip || {};
 
 		if (triggerer) {
 			frameWork.destroyToolTip();
+			frameWork.toolTip = frameWork.toolTip || {};
 
 			const arr = {
 				placement:
@@ -2274,9 +2274,7 @@
 					current.parentNode.removeChild(frameWork.toolTip.current);
 			}
 
-			frameWork.toolTip.current = null;
-			frameWork.toolTip.activeTriggerer = null;
-			frameWork.toolTip.args = null;
+			delete frameWork.toolTip;
 		}
 	};
 
@@ -2780,26 +2778,49 @@
 		}
 	};
 
+	_.funFnForTrueChildren = (AncestorOfAllElm,selector,parentSelector,fn) => {
+
+		if(
+			AncestorOfAllElm
+			&& selector
+			&& parentSelector
+			&& fn	
+		){
+			let children = AncestorOfAllElm.querySelectorAll(selector);
+
+			children.forEach((child) => {
+
+				if(
+					child.closest(parentSelector)
+					&& (AncestorOfAllElm.isSameNode(child.closest(parentSelector)))
+				){
+					fn(child);
+				}
+			})
+		}
+	}
+
 	frameWork.toggleAccordion = (triggerer, changeHash) => {
 		changeHash = changeHash != false;
 
 		const selector = _.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
-			let ancGroup = selector.parentNode.closest('.accordion,.accordion-group');
+			let accClassAns = selector.parentNode.closest('.accordion,.accordion-group');
 
 
 			//has to actually be accordion-group closest before accordion
 			if(
-				!ancGroup
+				!accClassAns
 				|| (
-					ancGroup
-					&& !ancGroup.classList.contains('accordion-group')
+					accClassAns
+					&& !accClassAns.classList.contains('accordion-group')
 				)
 			) {
-				ancGroup = false;
+				accClassAns = false;
 			}
 
+			//only work on accordion-mobile on mobile breakpoints or accordion bois on everiything watwat?? english is confusing
 			if (
 				!(
 					selector.classList.contains('accordion-mobile')
@@ -2824,10 +2845,10 @@
 						&& triggerer.classList.contains('open')
 					) {
 						if (
-							!ancGroup
+							!accClassAns
 							|| (
-								ancGroup
-								&& !ancGroup.classList.contains('accordion-group-no-close')
+								accClassAns
+								&& !accClassAns.classList.contains('accordion-group-no-close')
 							)
 						) {
 							// frameWork.slideUp(selector);
@@ -2840,20 +2861,31 @@
 						}
 					} else {
 						if (
-							ancGroup
-							&& !ancGroup.matches('.accordion-group-multiple')
+							accClassAns
+							&& !accClassAns.matches('.accordion-group-multiple')
 						) {
-							const accordions = ancGroup.querySelectorAll('.accordion');
-							const toggles = ancGroup.querySelectorAll('[data-toggle="accordion"]');
 
-							accordions.forEach((accordion) => {
-								// frameWork.slideUp(accordion)
-								accordion.classList.remove('open');
-							});
 
-							toggles.forEach((toggle) => {
-								toggle.classList.remove('open');
-							});
+							_.funFnForTrueChildren(
+								accClassAns,'[data-toggle="accordion"],.accordion',
+								'.accordion-group',
+								(accBbies)=>{
+									accBbies.classList.remove('open')
+								}
+							);
+
+
+							// const accordions = accClassAns.querySelectorAll('.accordion');
+							// const toggles = accClassAns.querySelectorAll('[data-toggle="accordion"]');
+
+							// accordions.forEach((accordion) => {
+							// 	// frameWork.slideUp(accordion)
+							// 	accordion.classList.remove('open');
+							// });
+
+							// toggles.forEach((toggle) => {
+							// 	toggle.classList.remove('open');
+							// });
 						}
 
 						// frameWork.slideDown(selector);
@@ -2884,9 +2916,9 @@
 					let allLineage = [];
 
 					//Lineage
-					if (ancGroup) {
+					if (accClassAns) {
 						allLineage = Array.prototype.slice.call(
-							ancGroup.querySelectorAll('.accordion')
+							accClassAns.querySelectorAll('.accordion')
 						);
 						closeRelativeAccordions(allLineage);
 					}
@@ -2905,9 +2937,9 @@
 						closeRelativeAccordions(allSiblingsToggle);
 
 						//Lineage
-						if (ancGroup) {
+						if (accClassAns) {
 							const allLineageToggle = Array.prototype.slice.call(
-								ancGroup.querySelectorAll('[data-toggle="accordion"]')
+								accClassAns.querySelectorAll('[data-toggle="accordion"]')
 							);
 							closeRelativeAccordions(allLineage);
 						}

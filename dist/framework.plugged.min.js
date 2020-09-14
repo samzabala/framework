@@ -1941,10 +1941,10 @@ window.jQuery && jQuery.noConflict();
 		_.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.createToolTip = (triggerer) => {
-		frameWork.toolTip = frameWork.toolTip || {};
 
 		if (triggerer) {
 			frameWork.destroyToolTip();
+			frameWork.toolTip = frameWork.toolTip || {};
 
 			const arr = {
 				placement:
@@ -2040,9 +2040,7 @@ window.jQuery && jQuery.noConflict();
 				frameWork.toolTip.current.remove();
 			}
 
-			frameWork.toolTip.current = null;
-			frameWork.toolTip.activeTriggerer = null;
-			frameWork.toolTip.args = null;
+			delete frameWork.toolTip;
 		}
 	};
 
@@ -2615,25 +2613,50 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
+	//for component helpers that can go deep no matter wat but will always be The Children TM... which sounds incestuous oh god why
+	_.funFnForTrueChildren = (AncestorOfAllElm,selector,parentSelector,fn) => {
+
+		if(
+			AncestorOfAllElm
+			&& selector
+			&& parentSelector
+			&& fn	
+		){
+			let children = AncestorOfAllElm.find(selector);
+
+			children.each((i, elm) => {
+				const child = $(elm);
+
+				if(
+					child.closest(parentSelector).length
+					&& (AncestorOfAllElm.is(child.closest(parentSelector)))
+				){
+					fn(child);
+				}
+			})
+		}
+	}
+
 	frameWork.toggleAccordion = (triggerer, changeHash) => {
 		changeHash = changeHash != false;
 
 		const selector = _.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
-			let ancGroup = selector.parent().closest('.accordion-group,.accordion');
+			let accClassAns = selector.parent().closest('.accordion-group,.accordion');
 
 			//has to actually be accordion-group closest before accordion
 			if(
-				!ancGroup.length
+				!accClassAns.length
 				|| (
-					ancGroup.length
-					&& !ancGroup.hasClass('accordion-group')
+					accClassAns.length
+					&& !accClassAns.hasClass('accordion-group')
 				)
 			) {
-				ancGroup = false;
+				accClassAns = false;
 			}
-
+			
+			//only work on accordion-mobile on mobile breakpoints or accordion bois on everiything watwat?? english is confusing
 			if (
 				!(
 					selector.hasClass('accordion-mobile')
@@ -2658,10 +2681,10 @@ window.jQuery && jQuery.noConflict();
 						&& triggerer.hasClass('open')
 					) {
 						if (
-							!ancGroup
+							!accClassAns
 							|| (
-								ancGroup.length
-								&& !ancGroup.hasClass('accordion-group-no-close')
+								accClassAns.length
+								&& !accClassAns.hasClass('accordion-group-no-close')
 							)
 						) {
 							// selector.slideUp();
@@ -2674,16 +2697,26 @@ window.jQuery && jQuery.noConflict();
 						}
 					} else {
 						if (
-							ancGroup
-							&& !ancGroup.is('.accordion-group-multiple')
+							accClassAns
+							&& !accClassAns.is('.accordion-group-multiple')
 						) {
+
+							_.funFnForTrueChildren(
+								accClassAns,'[data-toggle="accordion"],.accordion',
+								'.accordion-group',
+								(accBbies)=>{
+									accBbies.removeClass('open')
+								}
+							);
+
+
 							// selector.closest('.accordion-group').find('.accordion').slideUp();
-							ancGroup
-								.find('[data-toggle="accordion"]')
-								.removeClass('open');
-							ancGroup
-								.find('.accordion')
-								.removeClass('open');
+							// accClassAns
+							// 	.find('[data-toggle="accordion"]')
+							// 	.removeClass('open');
+							// accClassAns
+							// 	.find('.accordion')
+							// 	.removeClass('open');
 						}
 
 						// selector.slideDown();
@@ -2696,7 +2729,7 @@ window.jQuery && jQuery.noConflict();
 					}
 				} else {
 					selector.siblings('.accordion').removeClass('open');
-					ancGroup.length && ancGroup.children('.accordion').removeClass('open');
+					accClassAns.length && accClassAns.children('.accordion').removeClass('open');
 
 					const probablyToggle = $(
 						`[data-toggle="accordion"][href="#${selector.attr('id')}"],

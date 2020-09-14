@@ -181,7 +181,7 @@
 		$body-font-weight: 400 !default;
 			$body-font-weight-bold: 700 !default;
 		$body-font-size: 16px !default;
-			$body-font-size-small: $body-font-size * .875 !default;
+			$body-font-size-small: $body-font-size * .75 !default;
 			$body-font-size-large: $body-font-size * 1.5 !default;
 		$body-line-height: $body-font-size * 1.5 !default;
 		$body-text-gutter-y: 20px  !default;
@@ -1066,10 +1066,10 @@
 			//calendar
 				$input-calendar-gap: 2px;
 
-				$input-calendar-block-gutter-x: 10px !default;
-					$input-calendar-block-gutter-x-mobile: 5px !default;
-					$input-calendar-block-gutter-y: 10px !default;
-						$input-calendar-block-gutter-y-mobile: 5px !default;
+				$input-calendar-block-gutter-x: 0px !default;
+					$input-calendar-block-gutter-x-mobile: 0px !default;
+					$input-calendar-block-gutter-y: 8px !default;
+						$input-calendar-block-gutter-y-mobile: 8px !default;
 				$input-calendar-block-border-radius: $border-radius-base !default;
 
 				$input-calendar-date-hover-color: inherit !default;

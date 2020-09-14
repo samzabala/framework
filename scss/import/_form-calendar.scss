@@ -85,6 +85,7 @@ $calculated-calendar-exception: '';
 					
 					&-block {
 						padding:$calculated-input-calendar-block-gutter-y $calculated-input-calendar-block-gutter-x;
+						text-align: center;
 						display:block;
 						white-space:nowrap;
 						position:relative;
@@ -92,6 +93,11 @@ $calculated-calendar-exception: '';
 
 						&,&:after {
 							border-radius: $input-calendar-block-border-radius;
+						}
+
+						> span {
+							display:block;
+							margin:0 ($calculated-input-calendar-block-gutter-x * -1);
 						}
 
 						&-adjacent {
@@ -187,7 +193,8 @@ $calculated-calendar-exception: '';
 					&-heading {
 						justify-content: space-evenly;
 						display:grid;
-						grid-template-columns: repeat(7, minmax(min-content,1fr));
+						// grid-template-columns: repeat(7, minmax(min-content,1fr));
+						grid-template-columns: repeat(7, 1fr);
 						grid-gap: $input-calendar-gap;
 					}
 
