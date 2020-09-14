@@ -2820,6 +2820,22 @@
 				accClassAns = false;
 			}
 
+
+			if (
+				accClassAns
+				&& !accClassAns.matches('.accordion-group-multiple')
+			) {
+
+
+				_.funFnForTrueChildren(
+					accClassAns,'[data-toggle="accordion"],.accordion',
+					'.accordion-group',
+					(accBbies)=>{
+						accBbies.classList.remove('open')
+					}
+				);
+			}
+
 			//only work on accordion-mobile on mobile breakpoints or accordion bois on everiything watwat?? english is confusing
 			if (
 				!(
@@ -2860,33 +2876,6 @@
 							}
 						}
 					} else {
-						if (
-							accClassAns
-							&& !accClassAns.matches('.accordion-group-multiple')
-						) {
-
-
-							_.funFnForTrueChildren(
-								accClassAns,'[data-toggle="accordion"],.accordion',
-								'.accordion-group',
-								(accBbies)=>{
-									accBbies.classList.remove('open')
-								}
-							);
-
-
-							// const accordions = accClassAns.querySelectorAll('.accordion');
-							// const toggles = accClassAns.querySelectorAll('[data-toggle="accordion"]');
-
-							// accordions.forEach((accordion) => {
-							// 	// frameWork.slideUp(accordion)
-							// 	accordion.classList.remove('open');
-							// });
-
-							// toggles.forEach((toggle) => {
-							// 	toggle.classList.remove('open');
-							// });
-						}
 
 						// frameWork.slideDown(selector);
 						triggerer.classList.add('open');
@@ -2897,56 +2886,14 @@
 						}
 					}
 				} else {
-					const closeRelativeAccordions = (arr, selector) => {
-						selector = selector || '';
-						if (arr.length) {
-							arr.forEach((selected) => {
-								selected.classList.remove('open');
-							});
-						}
-					};
 
-					//siblings
-					const allSiblings = frameWork.getSiblings(
-							selector,
-							'.accordion'
-						);
-					closeRelativeAccordions(allSiblings);
-
-					let allLineage = [];
-
-					//Lineage
-					if (accClassAns) {
-						allLineage = Array.prototype.slice.call(
-							accClassAns.querySelectorAll('.accordion')
-						);
-						closeRelativeAccordions(allLineage);
-					}
-
-					const allToggle = document.querySelectorAll(
+					const probablyToggle = document.querySelectorAll(
 						`[data-toggle="accordion"][href="#${selector.getAttribute('id')}"],
 						[data-toggle="accordion"][data-href="#${selector.getAttribute('id')}"]`
 					);
 
-					//siblings
-					allToggle.forEach((togg) => {
-						const allSiblingsToggle = frameWork.getSiblings(
-								togg,
-								'[data-toggle="accordion"]'
-							);
-						closeRelativeAccordions(allSiblingsToggle);
-
-						//Lineage
-						if (accClassAns) {
-							const allLineageToggle = Array.prototype.slice.call(
-								accClassAns.querySelectorAll('[data-toggle="accordion"]')
-							);
-							closeRelativeAccordions(allLineage);
-						}
-					});
-
 					selector.classList.add('open');
-					allToggle.forEach((toggle) => {
+					probablyToggle.forEach((toggle) => {
 						toggle.classList.add('open');
 					});
 

@@ -2655,6 +2655,22 @@ window.jQuery && jQuery.noConflict();
 			) {
 				accClassAns = false;
 			}
+
+
+
+			if (
+				accClassAns
+				&& !accClassAns.is('.accordion-group-multiple')
+			) {
+
+				_.funFnForTrueChildren(
+					accClassAns,'[data-toggle="accordion"],.accordion',
+					'.accordion-group',
+					(accBbies)=>{
+						accBbies.removeClass('open')
+					}
+				);
+			}
 			
 			//only work on accordion-mobile on mobile breakpoints or accordion bois on everiything watwat?? english is confusing
 			if (
@@ -2696,28 +2712,6 @@ window.jQuery && jQuery.noConflict();
 							}
 						}
 					} else {
-						if (
-							accClassAns
-							&& !accClassAns.is('.accordion-group-multiple')
-						) {
-
-							_.funFnForTrueChildren(
-								accClassAns,'[data-toggle="accordion"],.accordion',
-								'.accordion-group',
-								(accBbies)=>{
-									accBbies.removeClass('open')
-								}
-							);
-
-
-							// selector.closest('.accordion-group').find('.accordion').slideUp();
-							// accClassAns
-							// 	.find('[data-toggle="accordion"]')
-							// 	.removeClass('open');
-							// accClassAns
-							// 	.find('.accordion')
-							// 	.removeClass('open');
-						}
 
 						// selector.slideDown();
 						triggerer.addClass('open');
@@ -2728,20 +2722,20 @@ window.jQuery && jQuery.noConflict();
 						}
 					}
 				} else {
-					selector.siblings('.accordion').removeClass('open');
-					accClassAns.length && accClassAns.children('.accordion').removeClass('open');
 
 					const probablyToggle = $(
 						`[data-toggle="accordion"][href="#${selector.attr('id')}"],
 						[data-toggle="accordion"][data-href="#${selector.attr('id')}"]`
 					);
-					probablyToggle
-						.siblings('[data-toggle="accordion"]')
-						.removeClass('open');
-					probablyToggle
-						.closest('.accordion-group')
-						.children('[data-toggle="accordion"]')
-						.removeClass('open');
+
+					// //fallback in case true child shit doesnt find shit
+					// probablyToggle
+					// 	.siblings('[data-toggle="accordion"]')
+					// 	.removeClass('open');
+					// probablyToggle
+					// 	.closest('.accordion-group')
+					// 	.children('[data-toggle="accordion"]')
+					// 	.removeClass('open');
 
 					selector.addClass('open');
 					probablyToggle.addClass('open');
