@@ -231,39 +231,51 @@
 // for colors with hover and shit
 @mixin create-palette-helper($tag,$property:'', $value:'',$value-inverse: '') {
 
-	
-	@at-root
-	#{$tag},
-	#{$tag}-hover:hover,
-	#{$tag}-focus:focus,
-	#{$tag}-active:active,
+	$parsed-tag: str-replace($tag,'.','');
 
-	// #{$tag}-hover:hover:not(.open):not(.active),
-	// #{$tag}-focus:focus:not(.open):not(.active),
-	// #{$tag}-active:active:not(.open):not(.active),
+	@at-root %__internal-extend-for-#{$parsed-tag} {
 
-	#{$tag}-focus.focus,
-	#{$tag}-active.active,
-	#{$tag}-toggle.active,
-	#{$tag}-toggle.open {
-		
-		@if $property != '' {
-			
-			@if $value != '' {
-				#{$property}: #{$value}!important;
-			}
-
-			@if $value-inverse != '' {
-				
-				.theme-inverse & {
-					#{$property}: #{$value-inverse}!important;
+		& {
+			@if $property != '' {
+				@if $value != '' {
+					#{$property}: #{$value}!important;
 				}
-				
 			}
+			@content;
 		}
 
-		@content;
+		&-inverse {
+			@if $value-inverse != '' and $property != '' {
+				#{$property}: #{$value-inverse}!important;
+			}
+		}
+	}
 
+
+	@at-root
+		#{$tag},
+
+		#{$tag}-hover:hover,
+		#{$tag}-focus:focus,
+		#{$tag}-active:active,
+
+		#{$tag}-focus.focus,
+		#{$tag}-active.active,
+
+		#{$tag}-toggle.active,
+		#{$tag}-toggle.open
+		{
+			@extend %__internal-extend-for-#{$parsed-tag} !optional;
+
+			.theme-inverse & {
+				@extend %__internal-extend-for-#{$parsed-tag}-inverse !optional;
+			}
+		}
+		
+	@if $value-inverse == '' {
+		@at-root .theme-inverse #{$tag}-inverse {
+			@extend %__internal-extend-for-#{$parsed-tag} !optional;
+		}
 	}
 }
 

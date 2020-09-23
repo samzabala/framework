@@ -2148,10 +2148,11 @@
 			document.querySelector('body').appendChild(toolTip);
 
 			toolTip.className = `tooltip tooltip-${args.placement}
+				${args.width ? 'tooltip-has-custom-width' : ''}
 				${args.allowInteraction ? 'tooltip-allow-interaction' : ''}`;
 
 			if (args.width) {
-				toolTip.style.width = args.width;
+				toolTip.style.maxidth = args.width;
 			}
 
 			let ttHtml = '';

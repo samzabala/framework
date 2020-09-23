@@ -421,7 +421,9 @@ ol,ul{
 	&.inline {
 		li {
 			display: inline-block;
-			margin: 0 $calculated-body-list-offset-inline;
+			&:nth-child(n+2){
+				margin-left: $calculated-body-list-offset-inline;
+			}
 		}
 	}
 

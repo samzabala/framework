@@ -23,9 +23,12 @@ $prefix: '.tooltip';
 #{$prefix} {
 	@extend %for-pop;
 	pointer-events:none;
-	max-width: $tooltip-max-width;
 	display: none;
 	z-index:99999;
+
+	&:not(#{$prefix}-has-custom-width){
+		max-width: $tooltip-max-width;
+	}
 
 	&#{&}-allow-interaction {
 		pointer-events: auto;

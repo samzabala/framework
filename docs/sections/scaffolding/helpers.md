@@ -214,9 +214,17 @@ eg: `.background-primary-hover` applies $brand-color-primary on :hover
 	
 	Set font-family to set `$brand-font-primary`;
 
+*   **`.font-family-secondary`**
+	
+	Set font-family to set `$brand-font-secondary`;
+
 *   **`.font-family-accent`**
 
 	Set font-family to set `$brand-font-accent`;
+
+*   **`.font-family-monospace`**
+	
+	Set font-family to set `$brand-font-monospace`;
 
 *   **`.font-family-inherit`**
 

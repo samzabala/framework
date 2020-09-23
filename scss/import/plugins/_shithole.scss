@@ -927,7 +927,7 @@
 			
 			@if map-get($opts,size) {
 
-				@if map-get($opts,root-size) and (type-of( map-get($opts,root-size) ) == number ) and (type-of( map-get($opts,size) ) == number ) and unit(map-get($opts,size)) == px  and unit(map-get($opts,root-size)) == px {
+				@if map-get($opts,root-size) and (type-of( map-get($opts,root-size) ) == number ) and (type-of( map-get($opts,size) ) == number ) {
 					font-size: rem(map-get($opts,size)/map-get($opts,root-size));
 				}@else{
 					font-size: map-get($opts,size);
@@ -1831,9 +1831,8 @@
 			@if map-get($opts,pseudo) != 'override' {
 				content: "";
 			}
-			font-size: map-get($opts,size);
-			width: 1em;
-			height: 1em;
+			width: map-get($opts,size);
+			height: map-get($opts,size);
 			display: map-get($opts,display);
 			background: map-get($opts,color);
 			border-radius: 50%;

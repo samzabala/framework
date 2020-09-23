@@ -1944,7 +1944,7 @@ window.jQuery && jQuery.noConflict();
 
 		if (triggerer) {
 			frameWork.destroyToolTip();
-			frameWork.toolTip = frameWork.toolTip || {};
+			frameWork.toolTip = {};
 
 			const arr = {
 				placement:
@@ -1992,6 +1992,7 @@ window.jQuery && jQuery.noConflict();
 				let html = `<div
 					class="tooltip
 						tooltip-${args.placement}
+						${args.width ? 'tooltip-has-custom-width' : ''}
 						${args.allowInteraction ? `tooltip-allow-interaction` : ''}"
 					${args.width ? ` style="width:${args.width};"` : ''}
 					>`;
@@ -2039,9 +2040,9 @@ window.jQuery && jQuery.noConflict();
 			if (frameWork.toolTip.current) {
 				frameWork.toolTip.current.remove();
 			}
-
-			delete frameWork.toolTip;
 		}
+
+		delete frameWork.toolTip;
 	};
 
 	//return origitit
@@ -2140,7 +2141,6 @@ window.jQuery && jQuery.noConflict();
 
 			posX = posX || triggererOrigin && triggererOrigin.x();
 			posY = posY || triggererOrigin && triggererOrigin.y();
-
 
 			let toolPoint = parseFloat(
 				window
@@ -3709,7 +3709,6 @@ window.jQuery && jQuery.noConflict();
 
 		let scrollTimerInternal;
 		$(window).on('scroll','*',(e) => {
-			console.log(e.target);
 			clearTimeout(scrollTimerInternal);
 
 			scrollTimerInternal = setTimeout(() => {

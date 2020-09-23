@@ -64,6 +64,12 @@ map <i class="color-primary symbol symbol-map"></i>
 <p>
 star <i class="color-primary symbol symbol-star"></i>
 </p>
+<p>
+star <i class="color-primary symbol symbol-star-half"></i>
+</p>
+<p>
+star <i class="color-primary symbol symbol-star-stroke"></i>
+</p>
 
 <p>
 download <i class="color-primary symbol symbol-download"></i>
