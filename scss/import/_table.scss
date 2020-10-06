@@ -58,8 +58,9 @@ $prefix: '.table';
 			table-layout: fixed!important;
 		}
 
-		.text-wrap-ellipsis {
-			width: 32em;
+		.text-wrap-ellipsis,.text-wrap-ellipsis-multiple {
+			width: 10em;
+			width: clamp(10em, 25vw, 24em);
 		}
 
 

@@ -1034,9 +1034,11 @@ table {
   .table.table-fixed,
   table.table-fixed {
     table-layout: fixed !important; }
-  .table .text-wrap-ellipsis,
-  table .text-wrap-ellipsis {
-    width: 32em; }
+  .table .text-wrap-ellipsis, .table .text-wrap-ellipsis-multiple,
+  table .text-wrap-ellipsis,
+  table .text-wrap-ellipsis-multiple {
+    width: 10em;
+    width: clamp(10em, 25vw, 24em); }
   thead,
   tbody,
   tfoot,
