@@ -935,8 +935,25 @@
 
 
 			}
-			@if (map-get($opts,leading) and $force-responsive-units == false) or ($force-responsive-units == true and map-get($opts,size) and map-get($opts,leading) ) {
-				
+			@if (
+				(
+					map-get($opts,leading)
+					and $force-responsive-units == false
+				)
+				or (
+					$force-responsive-units == true
+					and (
+						(
+							map-get($opts,size)
+							and map-get($opts,leading)
+						)
+						or (
+							map-get($opts,leading)
+							and unit(map-get($opts,leading)) != 'px'
+						)
+					)
+				)
+			) {
 				line-height: type-lead(map-get($opts,size),map-get($opts,leading));
 			}
 			
@@ -1834,7 +1851,8 @@
 			width: map-get($opts,size);
 			height: map-get($opts,size);
 			display: map-get($opts,display);
-			background: map-get($opts,color);
+			color: map-get($opts,color);
+			background: currentColor;
 			border-radius: 50%;
 			vertical-align:map-get($opts,align);
 			@content;

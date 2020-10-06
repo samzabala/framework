@@ -125,6 +125,9 @@ html, body {
   font-weight: 400;
   min-height: 100vh; }
 
+html {
+  scroll-behavior: smooth; }
+
 .body-no-scroll {
   overflow: hidden !important; }
 
@@ -1065,8 +1068,8 @@ table {
   .table-cell.table-cell-heading {
     vertical-align: inherit;
     text-align: inherit;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
     height: 100%;
     display: table-cell;
     position: relative; }

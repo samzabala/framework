@@ -1573,9 +1573,10 @@ window.jQuery && jQuery.noConflict();
 
 		//check for ya boi
 		toReturn.forEach((tag, i) => {
-			if (!tag || tag == '') {
-				toReturn.splice(i, 1);
-			} else if (tag === _.tagsInputString && !returnWithInput) {
+			if (
+				(!tag || tag == '')
+				|| (tag === _.tagsInputString && !returnWithInput)
+			) {
 				toReturn.splice(i, 1);
 			}
 		});
@@ -1676,8 +1677,12 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			if (args.callbackOnKeyup) {
-				const fOnKeyUp = new Function(args.callbackOnKeyup);
-				theUi.input.on('keyup', fOnKeyUp);
+				theUi.input.on('keyup', (event)=>{
+					const keyUpScript = eval(args.callbackOnKeyup);
+					if(keyUpScript) keyUpScript();
+				});
+
+
 			}
 
 			theUi.wrapper.children(`.${_.uiPrefix('tags')}tag`).remove();
@@ -3009,11 +3014,13 @@ window.jQuery && jQuery.noConflict();
 						inputUiIndex = triggerer.attr('data-value'),
 						currValue = _.tagsToParse(inputTags.val());
 
-					currValue.splice(
-						parseInt(inputUiIndex),
-						0,
-						triggerer.text().replace(',', '')
-					);
+					if(triggerer.text() && triggerer.text() != ''){
+						currValue.splice(
+							parseInt(inputUiIndex),
+							0,
+							triggerer.text().replace(',', '')
+						);
+					}
 
 					triggerer.text('');
 
@@ -3022,8 +3029,7 @@ window.jQuery && jQuery.noConflict();
 					frameWork.updateTags(
 						inputTags,
 						true,
-						currValue,
-						currValue
+						_.tagsToVal(currValue)
 					);
 				}
 			}
@@ -3727,5 +3733,5 @@ window.jQuery && jQuery.noConflict();
 
 	window.fw = frameWork;
 	window.frameWork = frameWork;
-	window.frameWork.DEBUG = _;
-})(jQuery, window);
+	// window.frameWork.DEBUG = _;
+}(jQuery, window));

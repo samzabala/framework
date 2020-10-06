@@ -265,7 +265,7 @@
 		$table-cell-border-color: $theme-background-contrast !default;
 			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;
 		$table-cell-border-width: 1px !default;
-		$table-cell-gutter: 30px !default;
+		$table-cell-gutter: $gutter-micro !default;
 
 		$table-heading-font-size: 14px !default;
 		$table-heading-height: 45px !default;
