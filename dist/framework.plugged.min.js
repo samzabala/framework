@@ -1754,7 +1754,10 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
-		let theValue = newValue || inputTags.val() || '';
+		let theValue = 
+			newValue
+			|| ((inputTags.val() !== '') && inputTags.val())
+			|| '';
 
 		inputText = inputText || false;
 		valueForUi = valueForUi || theValue || '';

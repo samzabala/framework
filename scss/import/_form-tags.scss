@@ -103,7 +103,7 @@ $prefix: '.input';
 					display:flex;
 					max-width:100%;
 
-					#{$prefix}-tags-ui-single & {
+					#{$prefix}-tags-ui & {
 						min-height:100%;
 						margin-bottom: $calculated-input-tags-padding-y * -1;
 						margin-top: ($calculated-input-tags-padding-y + $calculated-input-tags-gutter-y) * -1;
@@ -201,7 +201,7 @@ $prefix: '.input';
 
 					&:empty:not(:focus):not(.focus):before {
 						opacity:  $input-placeholder-opacity;
-						content: attr(data-placeholder);
+						content: attr(data-placeholder)"\00A0";
 						display: block;
 					}
 

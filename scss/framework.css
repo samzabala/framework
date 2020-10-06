@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*** RESET BOIS ***/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -6753,14 +6754,14 @@ fieldset {
     flex: 1 1;
     display: flex;
     max-width: 100%; }
-    .input-tags-ui-single .input-tags-ui-wrapper {
+    .input-tags-ui .input-tags-ui-wrapper {
       min-height: 100%;
       margin-bottom: -0.25em;
       margin-top: -0.5em; }
-      .input-small.input-tags-ui-single .input-tags-ui-wrapper {
+      .input-small.input-tags-ui .input-tags-ui-wrapper {
         margin-bottom: -0.0625em;
         margin-top: -0.3125em; }
-      .input-large.input-tags-ui-single .input-tags-ui-wrapper {
+      .input-large.input-tags-ui .input-tags-ui-wrapper {
         margin-bottom: -0.25em;
         margin-top: -0.5em; }
     .input-tags-ui-multiple .input-tags-ui-wrapper {
@@ -6834,7 +6835,7 @@ fieldset {
     display: block; }
     .input-tags-ui-input:empty:not(:focus):not(.focus):before {
       opacity: 0.5;
-      content: attr(data-placeholder);
+      content: attr(data-placeholder) " ";
       display: block; }
     .input-tags-ui-input:first-child {
       padding-left: 0; }
