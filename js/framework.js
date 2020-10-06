@@ -1910,7 +1910,9 @@
 	};
 
 	frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
-		let theValue = newValue || inputTags.value || '';
+		let theValue = newValue
+		|| ((inputTags.value !== '') && inputTags.value)
+		|| '';
 
 		inputText = inputText || false;
 		valueForUi = valueForUi || theValue || '';
