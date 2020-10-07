@@ -11,7 +11,7 @@
 	const frameWork = window.frameWork || {};
 
 	//internal shit
-	const _ = {};
+	const __f = {};
 
 	//settings
 	frameWork.settings =
@@ -41,38 +41,38 @@
 		frameWork.settings.uiJsClass
 		|| frameWork.settings.uiClass.replace('-','_'); // for scripting events and shit
 
-	_.modifierKeys = {
+	__f.modifierKeys = {
 		ctrl: false,
 		shift: false,
 		alt: false,
 		meta: false,
 	};
 
-	_.modifierIsActive = (mode) => {
+	__f.modifierIsActive = (mode) => {
 
 		mode = mode || false;
 
-		if (mode && _.modifierKeys.hasOwnProperty(mode)) {
-			return _.modifierKeys[mode];
+		if (mode && __f.modifierKeys.hasOwnProperty(mode)) {
+			return __f.modifierKeys[mode];
 			
 		} else {
 			return (
-				_.modifierKeys.ctrl
-				|| _.modifierKeys.shift
-				|| _.modifierKeys.alt
-				|| _.modifierKeys.meta
+				__f.modifierKeys.ctrl
+				|| __f.modifierKeys.shift
+				|| __f.modifierKeys.alt
+				|| __f.modifierKeys.meta
 			);
 		}
 	};
 
 	//vanilla already has scrollto btwn... just so u know
 
-	_.strGetFileExtension = (str) => {
+	__f.strGetFileExtension = (str) => {
 		str = str || '';
 		return str.split('.').pop();
 	};
 
-	_.strToCamelCase = (str) => {
+	__f.strToCamelCase = (str) => {
 		str = str || '';
 
 		return str
@@ -84,7 +84,7 @@
 			.replace(/-|\s/g, '');
 	};
 
-	_.arrMoveItem = (arr, oi, ni) => {
+	__f.arrMoveItem = (arr, oi, ni) => {
 
 		while (oi < 0) {
 			oi += arr.length;
@@ -239,7 +239,7 @@
 		}
 	};
 
-	_.datetimeFormatPresets = {
+	__f.datetimeFormatPresets = {
 		HumanDate: {
 			placeholder: 'mm/dd/yyyy',
 			pattern: /^\d{2}\/\d{2}\/\d{4}$/,
@@ -267,7 +267,7 @@
 		// },
 	};
 
-	_.dayFormatNames = [
+	__f.dayFormatNames = [
 		'Sunday',
 		'Monday',
 		'Tuesday',
@@ -277,7 +277,7 @@
 		'Saturday',
 	];
 
-	_.dayFormatNamesShort = [
+	__f.dayFormatNamesShort = [
 		'Sun',
 		'Mon',
 		'Tue',
@@ -287,7 +287,7 @@
 		'Sat',
 	];
 
-	_.dayFormatNamesShorter = [
+	__f.dayFormatNamesShorter = [
 		'Su',
 		'Mo',
 		'Tu',
@@ -297,7 +297,7 @@
 		'Sa'
 	];
 
-	_.monthFormatNames = [
+	__f.monthFormatNames = [
 		'January',
 		'February',
 		'March',
@@ -312,7 +312,7 @@
 		'December',
 	];
 
-	_.monthFormatNamesShort = [
+	__f.monthFormatNamesShort = [
 		'Jan',
 		'Feb',
 		'Mar',
@@ -328,7 +328,7 @@
 	];
 
 	//make it objoct
-	_.dateToParse = (date) => {
+	__f.dateToParse = (date) => {
 
 		let yr,
 			mo,
@@ -351,7 +351,7 @@
 			} else {
 
 				const pattern = new RegExp(
-					_.datetimeFormatPresets.Value.pattern
+					__f.datetimeFormatPresets.Value.pattern
 				);
 				const isValid = pattern.test(date);
 
@@ -391,9 +391,9 @@
 	};
 
 	//make it human readable
-	_.dateToHuman = (date, format) => {
-		date = _.dateToParse(date);
-		format = format || _.datetimeFormatPresets.HumanDate.template;
+	__f.dateToHuman = (date, format) => {
+		date = __f.dateToParse(date);
+		format = format || __f.datetimeFormatPresets.HumanDate.template;
 
 		if (date) {
 
@@ -458,8 +458,8 @@
 								output += formatName(
 									'D',
 									date.getDay(),
-									_.dayFormatNamesShort,
-									_.dayFormatNames
+									__f.dayFormatNamesShort,
+									__f.dayFormatNames
 								);
 								break;
 
@@ -497,8 +497,8 @@
 								output += formatName(
 									'M',
 									date.getMonth(),
-									_.monthFormatNamesShort,
-									_.monthFormatNames
+									__f.monthFormatNamesShort,
+									__f.monthFormatNames
 								);
 								break;
 
@@ -569,19 +569,19 @@
 	};
 
 	//make it ready for input value of datata
-	_.dateToVal = (date) => {
-		const d = _.dateToParse(date);
+	__f.dateToVal = (date) => {
+		const d = __f.dateToParse(date);
 
 		if (d) {
-			return _.dateToHuman(
+			return __f.dateToHuman(
 				d,
-				_.datetimeFormatPresets.Value.template
+				__f.datetimeFormatPresets.Value.template
 			);
 		}
 	};
 
-	_.dateGetAdjacent = (date, offsetByMonth, dateOverride) => {
-		let d = _.dateToParse(date);
+	__f.dateGetAdjacent = (date, offsetByMonth, dateOverride) => {
+		let d = __f.dateToParse(date);
 
 		if (d) {
 			dateOverride = dateOverride || null;
@@ -643,7 +643,7 @@
 		}
 	};
 
-	_.reverseArray = (arr) => {
+	__f.reverseArray = (arr) => {
 		let newArray = [];
 		for (let i = arr.length - 1; i >= 0; i--) {
 			newArray.push(arr[i]);
@@ -651,12 +651,12 @@
 		return newArray;
 	};
 
-	_.uiPrefix = (pref, noDash) => {
+	__f.uiPrefix = (pref, noDash) => {
 		noDash = noDash || false;
 		return noDash ? `input-${pref}-ui` : `input-${pref}-ui-`;
 	};
 
-	_.runFn = (callback) => {
+	__f.runFn = (callback) => {
 		if (callback) {
 			let fn;
 			try {
@@ -668,7 +668,7 @@
 		}
 	};
 
-	_.parseArgs = (arr, defaults) => {
+	__f.parseArgs = (arr, defaults) => {
 
 		const args = {};
 
@@ -695,7 +695,7 @@
 		return args;
 	};
 
-	_.changeHash = (id) => {
+	__f.changeHash = (id) => {
 		id = id || '';
 
 		if (frameWork.settings.dynamicHash) {
@@ -718,7 +718,7 @@
 		}
 	};
 
-	_.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
+	__f.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
 		prefix = prefix || 'btn';
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
@@ -778,7 +778,7 @@
 	};
 
 	//good for descendants of ui shitsc as long as ui component gets data attribues of element that start is
-	_.getTheUiTriggerer = (triggerer) => {
+	__f.getTheUiTriggerer = (triggerer) => {
 		triggerer = triggerer || false;
 
 		let toReturn;
@@ -805,7 +805,7 @@
 		}
 	};
 
-	_.getTheToggled = (triggerer, toggleMode) => {
+	__f.getTheToggled = (triggerer, toggleMode) => {
 		toggleMode = toggleMode || null;
 
 		if (toggleMode) {
@@ -857,7 +857,7 @@
 						.closest(`[data-toggle="${toggleMode}"]`)
 				) {
 					// console.warn('toggle searching closest data-toggle');
-					toReturn = _.getTheToggled(
+					toReturn = __f.getTheToggled(
 						triggerer.parentNode.closest(`[data-toggle="${toggleMode}"]`),
 						toggleMode
 					);
@@ -867,7 +867,7 @@
 					&& triggerer.parentNode.classList.contains('input-group')
 				) {
 					// console.warn('toggle trigger was in input group');
-					toReturn = _.getTheToggled(
+					toReturn = __f.getTheToggled(
 						triggerer.parentNode,
 						toggleMode
 					);
@@ -877,7 +877,7 @@
 					&& triggerer.parentNode.classList.contains('btn-group')
 				) {
 					// console.warn('toggle trigger was in btn group');
-					toReturn = _.getTheToggled(
+					toReturn = __f.getTheToggled(
 						triggerer.parentNode,
 						toggleMode
 					);
@@ -934,7 +934,7 @@
 		}
 	};
 
-	_.br_vals = {
+	__f.br_vals = {
 		xxs: 0,
 		xs:
 			parseFloat(
@@ -960,10 +960,10 @@
 		lg: 9999999,
 	};
 
-	_.br_arr = Object.keys(_.br_vals);
-	// _.br_to_loop =  ['xs','sm','md','lg'];
+	__f.br_arr = Object.keys(__f.br_vals);
+	// __f.br_to_loop =  ['xs','sm','md','lg'];
 
-	_.br_mobile_max =
+	__f.br_mobile_max =
 		parseFloat(
 			getComputedStyle(
 				document.documentElement
@@ -971,40 +971,40 @@
 		)
 		|| 'sm';
 
-	_.fns_on_load = [];
-	_.fns_on_ready = [];
-	_.fns_on_resize = [];
-	_.fns_on_scroll = [];
-	_.fns_on_rightAway = [];
+	__f.fns_on_load = [];
+	__f.fns_on_ready = [];
+	__f.fns_on_resize = [];
+	__f.fns_on_scroll = [];
+	__f.fns_on_rightAway = [];
 
 	frameWork.validateBr = (breakpoint, mode) => {
 		mode = mode || 'below'; //below,within,above
-		const currIndex = _.br_arr.indexOf(breakpoint);
+		const currIndex = __f.br_arr.indexOf(breakpoint);
 		switch (mode) {
 			case 'below': //max-width
 				return (
 					document.documentElement.clientWidth
-						<= _.br_vals[breakpoint]
+						<= __f.br_vals[breakpoint]
 				);
 
 			case 'within':
 				return (
 					document.documentElement.clientWidth
-						<=_.br_vals[breakpoint]
+						<=__f.br_vals[breakpoint]
 					&& document.documentElement.clientWidth
-						> _.br_vals[_.br_arr[currIndex - 1]]
+						> __f.br_vals[__f.br_arr[currIndex - 1]]
 				);
 
 			case 'above':
 				return currIndex > 0
 					? document.documentElement.clientWidth
-						> _.br_vals[_.br_arr[currIndex - 1]]
+						> __f.br_vals[__f.br_arr[currIndex - 1]]
 					: document.documentElement.clientWidth
-						> _.br_vals[_.br_arr[currIndex]];
+						> __f.br_vals[__f.br_arr[currIndex]];
 		}
 	};
 
-	_.palette = [
+	__f.palette = [
 		'base',
 		'primary',
 		'secondary',
@@ -1056,13 +1056,13 @@
 
 		const renderProps = (modElement, props) => {
 			props.forEach((prop) => {
-				// modElement.style[_.strToCamelCase(prop)] = '';
+				// modElement.style[__f.strToCamelCase(prop)] = '';
 				let propsSet = false,
 					propSetBr = false,
 					smallestStyledBr = false;
 
 				//check for breakpointz first
-				_.reverseArray(_.br_arr).forEach((br) => {
+				__f.reverseArray(__f.br_arr).forEach((br) => {
 					if (
 						modElement.hasAttribute(`data-${prop}-${br}`)
 						&& !propsSet
@@ -1070,7 +1070,7 @@
 						smallestStyledBr = br;
 						if (frameWork.validateBr(br, 'above')) {
 							modElement
-								.style[_.strToCamelCase(prop)] = modElement.getAttribute(
+								.style[__f.strToCamelCase(prop)] = modElement.getAttribute(
 									`data-${prop}-${br}`
 								);
 							propsSet = true;
@@ -1089,7 +1089,7 @@
 						&& !propSetBr
 					) {
 						modElement
-							.style[_.strToCamelCase(prop)] = modElement.getAttribute(
+							.style[__f.strToCamelCase(prop)] = modElement.getAttribute(
 								`data-${prop}`
 							);
 						propsSet = true;
@@ -1097,11 +1097,11 @@
 
 				} else {
 					if (
-						modElement.style[_.strToCamelCase(prop)] !== null
+						modElement.style[__f.strToCamelCase(prop)] !== null
 						&& smallestStyledBr
 						&& !frameWork.validateBr(smallestStyledBr, 'above')
 					) {
-						modElement.style[_.strToCamelCase(prop)] = null;
+						modElement.style[__f.strToCamelCase(prop)] = null;
 					}
 				}
 			});
@@ -1120,18 +1120,18 @@
 	};
 
 	//range only is pag kwan di sya isa isang date pangmaramihan
-	_.dateIsValid = (date, args, rangeOnly) => {
+	__f.dateIsValid = (date, args, rangeOnly) => {
 		rangeOnly = rangeOnly || false; //range,spot
 
-		const d = _.dateToParse(date),
+		const d = __f.dateToParse(date),
 			checkAgainst = args.disabledDates.split(',');
 
 		let toReturn = true;
 
 		if (!rangeOnly) {
 			//if in disabled dates
-			if (checkAgainst.indexOf(_.dateToVal(d)) > -1) {
-				// console.warn('value is declared disabled specifically || ',_.dateToVal(d));
+			if (checkAgainst.indexOf(__f.dateToVal(d)) > -1) {
+				// console.warn('value is declared disabled specifically || ',__f.dateToVal(d));
 				toReturn = false;
 			}
 
@@ -1140,7 +1140,7 @@
 				checkAgainst.indexOf('weekends') > -1
 				&& (d.getDay() == 0 || d.getDay() == 6)
 			) {
-				// console.warn('value was a weekend || ',_.dateToVal(d),_.dateToVal(date));
+				// console.warn('value was a weekend || ',__f.dateToVal(d),__f.dateToVal(date));
 				toReturn = false;
 			}
 		}
@@ -1152,7 +1152,7 @@
 			checkAgainst.indexOf('past') > -1
 			&& d < dateNow
 		) {
-			// console.warn('value was in the past || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			// console.warn('value was in the past || ',__f.dateToVal(date),'\nversus ',__f.dateToVal(dateNow));
 			toReturn = false;
 		}
 
@@ -1160,39 +1160,39 @@
 			checkAgainst.indexOf('future') > -1
 			&& d > dateNow
 		) {
-			// console.warn('value was in the future || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			// console.warn('value was in the future || ',__f.dateToVal(date),'\nversus ',__f.dateToVal(dateNow));
 			toReturn = false;
 		}
 
 		//if  in range of min or max
 		if (
 			(
-				_.dateToParse(args.max)
-				&& _.dateToParse(args.max) < d
+				__f.dateToParse(args.max)
+				&& __f.dateToParse(args.max) < d
 			)
 			|| (
-				_.dateToParse(args.min)
-				&& d < _.dateToParse(args.min)
+				__f.dateToParse(args.min)
+				&& d < __f.dateToParse(args.min)
 			)
 		) {
-			// console.warn('value not in max and width || ',_.dateToVal(d));;
+			// console.warn('value not in max and width || ',__f.dateToVal(d));;
 			toReturn = false;
 		}
 
 		return toReturn;
 	};
 
-	_.createCalendarUi = (inputCalendar, valueForUi, args) => {
+	__f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 		
 		if (inputCalendar) {
 			valueForUi =
 				valueForUi
-				|| _.dateToVal(inputCalendar.value)
-				|| _.dateToVal(new Date());
+				|| __f.dateToVal(inputCalendar.value)
+				|| __f.dateToVal(new Date());
 			const theUi = {};
 
 			theUi.container = inputCalendar
-				.closest(`.${_.uiPrefix('calendar', true)}`);
+				.closest(`.${__f.uiPrefix('calendar', true)}`);
 			if (!theUi.container) {
 				theUi.container = document.createElement('div');
 				inputCalendar.parentNode.insertBefore(
@@ -1205,13 +1205,13 @@
 					`${frameWork.settings.uiClass}
 					${frameWork.settings.uiJsClass}
 					${inputCalendar.getAttribute('class')
-						.toString().replace('input-calendar', _.uiPrefix('calendar', true))
+						.toString().replace('input-calendar', __f.uiPrefix('calendar', true))
 					}`
 				);
 			}
 
 			theUi.input = theUi.container
-				.querySelector(`.${_.uiPrefix('calendar')}input`);
+				.querySelector(`.${__f.uiPrefix('calendar')}input`);
 
 			const components = frameWork.getSiblings(inputCalendar);
 			components.forEach((component) => {
@@ -1227,15 +1227,15 @@
 					theUi.container.appendChild(theUi.input);
 					theUi.input.setAttribute(
 						'class',
-						`${_.uiPrefix('calendar')}input`
+						`${__f.uiPrefix('calendar')}input`
 					);
 					theUi.input.innerHTML =
 						'<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
 				}
 			}
 
-			const currYear = _.dateToParse(valueForUi).getFullYear(),
-				currMonth = _.dateToParse(valueForUi).getMonth(),
+			const currYear = __f.dateToParse(valueForUi).getFullYear(),
+				currMonth = __f.dateToParse(valueForUi).getMonth(),
 				currentCalendarDate = new Date(currYear, currMonth, 1); //IT ALSO FIRST DAY MOTHERFUCKER
 
 			//heading
@@ -1243,21 +1243,21 @@
 			theUi.container.appendChild(theUi.heading);
 			theUi.heading.setAttribute(
 				'class',
-				`${_.uiPrefix('calendar')}heading`
+				`${__f.uiPrefix('calendar')}heading`
 			);
 
 			//arrowz
 			const generateArrow = (buttonClass) => {
 				let symbolClass, arrowDate, validness;
 				//set a new date with no date because fuck that boi
-				// console.warn(buttonClass,'hello i fucked up','\n',_.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
+				// console.warn(buttonClass,'hello i fucked up','\n',__f.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
 				switch (buttonClass) {
 					case 'prev-month':
 						symbolClass = 'symbol-arrow-left';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, -1)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, -1)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear, currMonth, 0),
 							args,
 							true
@@ -1266,10 +1266,10 @@
 
 					case 'prev-year':
 						symbolClass = 'symbol-arrow-double-left';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, -12)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, -12)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear - 1, currMonth, 0),
 							args,
 							true
@@ -1278,10 +1278,10 @@
 
 					case 'next-month':
 						symbolClass = 'symbol-arrow-right';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, 1)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, 1)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear, currMonth + 1, 1),
 							args,
 							true
@@ -1290,10 +1290,10 @@
 
 					case 'next-year':
 						symbolClass = 'symbol-arrow-double-right';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, 12)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, 12)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear + 1, currMonth, 1),
 							args,
 							true
@@ -1305,11 +1305,11 @@
 				let htmlString = `<a href=""
 					class="
 						${!validness ? `disabled ` : ''}
-						${_.uiPrefix('calendar')}navigation
-						${_.uiPrefix('calendar')}button
-						${_.uiPrefix('calendar')}${buttonClass}" data-value="${arrowDate}"
+						${__f.uiPrefix('calendar')}navigation
+						${__f.uiPrefix('calendar')}button
+						${__f.uiPrefix('calendar')}${buttonClass}" data-value="${arrowDate}"
 					>
-						<i class="${_.uiPrefix('calendar')}symbol symbol ${symbolClass}"></i>
+						<i class="${__f.uiPrefix('calendar')}symbol symbol ${symbolClass}"></i>
 					</a>`;
 
 				return htmlString;
@@ -1348,18 +1348,18 @@
 			theUi.heading.appendChild(theUi.title);
 			theUi.title.setAttribute(
 				'class',
-				`${_.uiPrefix('calendar')}title ${_.uiPrefix('calendar')}dropdown-toggle
+				`${__f.uiPrefix('calendar')}title ${__f.uiPrefix('calendar')}dropdown-toggle
 				${frameWork.settings.uiJsClass}_internal_toggle`
 			);
 			theUi.title.setAttribute('data-toggle', 'dropdown');
 			theUi.title.innerHTML = `<span
-				class="${_.uiPrefix('calendar')}month-text">
-					${_.monthFormatNamesShort[currMonth]}
+				class="${__f.uiPrefix('calendar')}month-text">
+					${__f.monthFormatNamesShort[currMonth]}
 				</span>
-				<span class="${_.uiPrefix('calendar')}year-text">
+				<span class="${__f.uiPrefix('calendar')}year-text">
 					${currYear}
 				</span>
-				<i class="${_.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
+				<i class="${__f.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
 
 			//dropdown
 			theUi.dropdown = document.createElement('ul');
@@ -1367,18 +1367,18 @@
 			theUi.dropdown.setAttribute('data-dropdown-width', '100%');
 			theUi.dropdown.setAttribute(
 				'class',
-				`${_.uiPrefix(
+				`${__f.uiPrefix(
 					'calendar'
 				)}dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
 			);
 			theUi.dropdown.innerHTML += `<li 
-					class="${_.uiPrefix('calendar')}current-month-year active"
+					class="${__f.uiPrefix('calendar')}current-month-year active"
 				>
 					<a href="#"
-						class="${_.uiPrefix('calendar')}month"
-						data-value="${_.dateToVal(currentCalendarDate)}"
+						class="${__f.uiPrefix('calendar')}month"
+						data-value="${__f.dateToVal(currentCalendarDate)}"
 					>
-						${_.monthFormatNamesShort[currMonth]} ${currYear}
+						${__f.monthFormatNamesShort[currMonth]} ${currYear}
 					</a>
 				</li>
 				<li><hr class="dropdown-separator"></li>`;
@@ -1399,7 +1399,7 @@
 
 			//update dropdown
 			for (let i = dropdownInit; i <= dropdownLimit; i++) {
-				const listItemDate = _.dateGetAdjacent(
+				const listItemDate = __f.dateGetAdjacent(
 					currentCalendarDate,
 					i
 				);
@@ -1430,14 +1430,14 @@
 				})();
 				// console.warn(i,'\nkwan ano ni\n',listItemDate,dateForValidation);
 
-				if (_.dateIsValid(dateForValidation, args, true)) {
+				if (__f.dateIsValid(dateForValidation, args, true)) {
 					let currClass = i == 0 ? 'active' : '',
 						listItem = `<li class="${currClass}">
 							<a href="#"
-								class="${_.uiPrefix('calendar')}month"
-								data-value="${_.dateToVal(listItemDate)}">
+								class="${__f.uiPrefix('calendar')}month"
+								data-value="${__f.dateToVal(listItemDate)}">
 									${
-										_.monthFormatNamesShort[
+										__f.monthFormatNamesShort[
 											listItemDate.getMonth()
 										]
 									} ${listItemDate.getFullYear()}
@@ -1458,15 +1458,15 @@
 			theUi.container.append(theUi.grid);
 			theUi.grid.setAttribute(
 				'class',
-				`${_.uiPrefix('calendar')}grid`
+				`${__f.uiPrefix('calendar')}grid`
 			);
 
 			const generateBlock = (date, customClass) => {
 				customClass = customClass || '';
-				return `<a href="#" data-value="${_.dateToVal(date)}"
+				return `<a href="#" data-value="${__f.dateToVal(date)}"
 						class="
-						${_.uiPrefix('calendar')}block 
-						${_.uiPrefix('calendar')}date
+						${__f.uiPrefix('calendar')}block 
+						${__f.uiPrefix('calendar')}date
 						${customClass}
 					">
 						<span>${date.getDate()}</span>
@@ -1478,7 +1478,7 @@
 			theUi.grid.append(theUi.days);
 			theUi.days.setAttribute(
 				'class',
-				`${_.uiPrefix('calendar')}days`
+				`${__f.uiPrefix('calendar')}days`
 			);
 
 			let daysHTML = '',
@@ -1490,10 +1490,10 @@
 				}
 
 				daysHTML += `<div
-						class="${_.uiPrefix('calendar')}block
-						${_.uiPrefix('calendar')}day"
+						class="${__f.uiPrefix('calendar')}block
+						${__f.uiPrefix('calendar')}day"
 					>
-						${_.dayFormatNamesShorter[dayToRetrieve]}
+						${__f.dayFormatNamesShorter[dayToRetrieve]}
 					</div>`;
 
 				dayToRetrieve++;
@@ -1506,7 +1506,7 @@
 			theUi.grid.append(theUi.dates);
 			theUi.dates.setAttribute(
 				'class',
-				`${_.uiPrefix('calendar')}dates`
+				`${__f.uiPrefix('calendar')}dates`
 			);
 
 			//previous month
@@ -1543,8 +1543,8 @@
 
 					let dateBlockPrev = generateBlock(
 						loopDatePrev,
-						`${_.uiPrefix('calendar')}block-adjacent
-						${(!_.dateIsValid(loopDatePrev, args)
+						`${__f.uiPrefix('calendar')}block-adjacent
+						${(!__f.dateIsValid(loopDatePrev, args)
 							? 'disabled'
 							: '')
 						}`
@@ -1561,7 +1561,7 @@
 			for (let i = 1; i <= currLastDate.getDate(); i++) {
 				let dateBlockCurr = generateBlock(
 					new Date(currYear, currMonth, i),
-					!_.dateIsValid(new Date(currYear, currMonth, i), args)
+					!__f.dateIsValid(new Date(currYear, currMonth, i), args)
 						? 'disabled'
 						: ''
 				);
@@ -1588,9 +1588,9 @@
 
 					let dateBlockNext = generateBlock(
 						loopDateNext,
-						_.uiPrefix('calendar') +
+						__f.uiPrefix('calendar') +
 							'block-adjacent ' +
-							(!_.dateIsValid(loopDateNext, args)
+							(!__f.dateIsValid(loopDateNext, args)
 								? 'disabled'
 								: '')
 					);
@@ -1604,9 +1604,9 @@
 	//updates both input field and UI
 	frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
 
-		const theValue = newValue || _.dateToVal(inputCalendar.value);
+		const theValue = newValue || __f.dateToVal(inputCalendar.value);
 
-		valueForUi = valueForUi || theValue || _.dateToVal(new Date());
+		valueForUi = valueForUi || theValue || __f.dateToVal(new Date());
 
 		const arr = {
 			class:
@@ -1643,7 +1643,7 @@
 			yearSkip: false,
 		};
 
-		const args = _.parseArgs(arr, defaults);
+		const args = __f.parseArgs(arr, defaults);
 
 		if (parseInt(arr.dropdownYearSpan) <= 0) {
 			args.dropdownYearSpan = defaults.dropdownYearSpan;
@@ -1652,15 +1652,15 @@
 		args.startDay = parseInt(args.startDay) % 7;
 
 		//set up calendar
-		if (_.dateIsValid(theValue, args) || !theValue) {
-			_.createCalendarUi(
+		if (__f.dateIsValid(theValue, args) || !theValue) {
+			__f.createCalendarUi(
 				inputCalendar,
 				valueForUi,
 				args
 			);
 		}
 
-		if (_.dateIsValid(theValue, args)) {
+		if (__f.dateIsValid(theValue, args)) {
 			inputCalendar
 				.closest(`.${frameWork.settings.uiClass}`)
 				.classList.remove('input-error');
@@ -1675,12 +1675,12 @@
 			inputCalendar.setAttribute('value', theValue);
 			inputCalendar.value = theValue;
 
-			const dates = inputCalendar.parentNode.querySelectorAll(`.${_.uiPrefix('calendar')}date`);
+			const dates = inputCalendar.parentNode.querySelectorAll(`.${__f.uiPrefix('calendar')}date`);
 
 			dates.forEach((date) => {
 				if (
 					date.getAttribute('data-value') ==
-					_.dateToVal(theValue)
+					__f.dateToVal(theValue)
 				) {
 					date.classList.add('active');
 				} else {
@@ -1688,19 +1688,19 @@
 				}
 			});
 
-			const inputField = inputCalendar.parentNode.querySelector(`.${_.uiPrefix('calendar')}input input`);
+			const inputField = inputCalendar.parentNode.querySelector(`.${__f.uiPrefix('calendar')}input input`);
 
 			if (inputField) {
-				inputField.setAttribute('value', _.dateToHuman(theValue));
-				inputField.value = _.dateToHuman(theValue);
+				inputField.setAttribute('value', __f.dateToHuman(theValue));
+				inputField.value = __f.dateToHuman(theValue);
 			}
 		}
 	};
 
-	_.tagsInputString = '__fw_input__';
+	__f.tagsInputString = '__fw_input__';
 
 	//because input field is gonna go in between for backspacing capabilities
-	_.tagsToParse = (value, returnWithInput) => {
+	__f.tagsToParse = (value, returnWithInput) => {
 		returnWithInput =
 			returnWithInput !== false || returnWithInput == true;
 
@@ -1712,14 +1712,14 @@
 		toReturn.forEach((tag, i) => {
 			if (
 				(!tag || tag == '')
-				|| (tag === _.tagsInputString && !returnWithInput)
+				|| (tag === __f.tagsInputString && !returnWithInput)
 			) {
 				toReturn.splice(i, 1);
 			}
 		});
 
-		if (returnWithInput && toReturn.indexOf(_.tagsInputString) < 0) {
-			toReturn.push(_.tagsInputString);
+		if (returnWithInput && toReturn.indexOf(__f.tagsInputString) < 0) {
+			toReturn.push(__f.tagsInputString);
 		}
 
 		//remove duplicates
@@ -1735,20 +1735,20 @@
 	};
 
 	//because input field is gonna go in between for backspacing capabilities
-	_.tagsToVal = (value, returnWithInput) => {
+	__f.tagsToVal = (value, returnWithInput) => {
 		value = value || '';
-		return _.tagsToParse(value, returnWithInput).join(',');
+		return __f.tagsToParse(value, returnWithInput).join(',');
 	};
 
-	_.createTagsUi = (inputTags, valueForUi, inputText, args) => {
+	__f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
 
 		if (inputTags) {
-			valueForUi = valueForUi || _.tagsToVal(inputTags.value) || '';
+			valueForUi = valueForUi || __f.tagsToVal(inputTags.value) || '';
 			inputText = inputText || false;
 
 			const theUi = {};
 
-			theUi.container = inputTags.closest(`.${_.uiPrefix('tags', true)}`);
+			theUi.container = inputTags.closest(`.${__f.uiPrefix('tags', true)}`);
 
 			if (!theUi.container) {
 				theUi.container = document.createElement('div');
@@ -1764,15 +1764,15 @@
 					${frameWork.settings.uiJsClass}
 					${
 						inputTags
-						.getAttribute('class').replace('input-tags', _.uiPrefix('tags', true))
+						.getAttribute('class').replace('input-tags', __f.uiPrefix('tags', true))
 					}`
 				);
 			}
 
 			theUi.container.classList.add(
 				args.multipleLines
-					? `${_.uiPrefix('tags')}multiple`
-					: `${_.uiPrefix('tags')}single`
+					? `${__f.uiPrefix('tags')}multiple`
+					: `${__f.uiPrefix('tags')}single`
 			);
 
 			if (args.width) {
@@ -1780,19 +1780,19 @@
 			}
 			//idk it never exists on initial so we dont have to do weird div wraping catches here
 
-			theUi.wrapper = theUi.container.querySelector(`.${_.uiPrefix('tags')}wrapper`);
+			theUi.wrapper = theUi.container.querySelector(`.${__f.uiPrefix('tags')}wrapper`);
 
 			if (!theUi.wrapper) {
 				theUi.wrapper = document.createElement('div');
 				theUi.container.appendChild(theUi.wrapper);
 				theUi.wrapper.setAttribute(
 					'class',
-					`${_.uiPrefix('tags')}wrapper`
+					`${__f.uiPrefix('tags')}wrapper`
 				);
-				theUi.wrapper = theUi.container.querySelector(`.${_.uiPrefix('tags')}wrapper`);
+				theUi.wrapper = theUi.container.querySelector(`.${__f.uiPrefix('tags')}wrapper`);
 			}
 
-			theUi.input = theUi.wrapper.querySelector(`.${_.uiPrefix('tags')}input`);
+			theUi.input = theUi.wrapper.querySelector(`.${__f.uiPrefix('tags')}input`);
 
 			if (!theUi.input) {
 				theUi.input = document.createElement('span');
@@ -1800,9 +1800,9 @@
 				theUi.input.contentEditable = true;
 				theUi.input.setAttribute(
 					'class',
-					`input ${_.uiPrefix('tags')}input`
+					`input ${__f.uiPrefix('tags')}input`
 				);
-				theUi.input = theUi.container.querySelector(`.${_.uiPrefix('tags')}input`);
+				theUi.input = theUi.container.querySelector(`.${__f.uiPrefix('tags')}input`);
 			}
 
 
@@ -1832,14 +1832,14 @@
 				});
 			}
 
-			const oldTags = theUi.wrapper.querySelectorAll(`.${_.uiPrefix('tags')}tag`);
+			const oldTags = theUi.wrapper.querySelectorAll(`.${__f.uiPrefix('tags')}tag`);
 
 			oldTags.forEach((tag) => {
 				tag.parentNode.removeChild(tag);
 			});
 
-			let valArr = _.tagsToParse(valueForUi, true);
-			const inputIn = valArr.indexOf(_.tagsInputString);
+			let valArr = __f.tagsToParse(valueForUi, true);
+			const inputIn = valArr.indexOf(__f.tagsInputString);
 
 			theUi.input.setAttribute('data-value', inputIn);
 
@@ -1853,7 +1853,7 @@
 
 			valArr.forEach((tag, i) => {
 				//get index of input
-				if (tag !== _.tagsInputString) {
+				if (tag !== __f.tagsInputString) {
 					const tagHtml = document.createElement('span');
 
 					if (i < inputIn) {
@@ -1866,16 +1866,16 @@
 					}
 					tagHtml.setAttribute(
 						'class',
-						`${_.uiPrefix('tags')}tag`
+						`${__f.uiPrefix('tags')}tag`
 					);
 
 					tagHtml.innerHTML = `<span
 							data-value="${i}"
-							class="${_.uiPrefix('tags')}tag-text"
+							class="${__f.uiPrefix('tags')}tag-text"
 						>
 							${tag}
 						</span>
-						<a data-value="${i}" class="${_.uiPrefix('tags')}tag-close" href="#">
+						<a data-value="${i}" class="${__f.uiPrefix('tags')}tag-close" href="#">
 						<i class="symbol symbol-close"></i></a>`;
 				}
 			});
@@ -1939,7 +1939,7 @@
 			multipleLines: false,
 		};
 
-		const args = _.parseArgs(arr, defaults);
+		const args = __f.parseArgs(arr, defaults);
 
 		if (inputTags) {
 			if (args.callbackNameFilter && allowFilter) {
@@ -1951,14 +1951,14 @@
 
 				if (typeof fnToFilter === 'function') {
 					const applyFilter = (valueToFilter, filterFnName) => {
-						const inputIndex = _.tagsToParse(valueToFilter)
-								.indexOf(_.tagsInputString),
+						const inputIndex = __f.tagsToParse(valueToFilter)
+								.indexOf(__f.tagsInputString),
 							noInputValueToFilter = (() => {
-									return _.tagsToVal(valueToFilter, false);
+									return __f.tagsToVal(valueToFilter, false);
 								})();
 
 						// turn to array ya bopi without the input tag string
-						let toReturn = _.tagsToParse(
+						let toReturn = __f.tagsToParse(
 							eval(`${filterFnName}("${noInputValueToFilter}")`),
 							false
 						);
@@ -1966,10 +1966,10 @@
 						// console.log(
 						// 	'index of input\n',inputIndex,
 						// 	'\n\n\nfiltered and ready for splice\n',toReturn,
-						// 	'\n\n\npassed to the fil;ter\n',_.tagsToVal(valueToFilter,false),
-						// 	'\n\n\nrar array\n',_.tagsToParse(valueToFilter),
-						// 	'\n\n\n no input field\n',noInputValueToFilter,_.tagsToVal(valueToFilter,false),
-						// 	'\n\n\n no input fieldas array\n',_.tagsToParse(valueToFilter,false),
+						// 	'\n\n\npassed to the fil;ter\n',__f.tagsToVal(valueToFilter,false),
+						// 	'\n\n\nrar array\n',__f.tagsToParse(valueToFilter),
+						// 	'\n\n\n no input field\n',noInputValueToFilter,__f.tagsToVal(valueToFilter,false),
+						// 	'\n\n\n no input fieldas array\n',__f.tagsToParse(valueToFilter,false),
 						// 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
 						// 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
 						// 	'whAT ETHE FUCK'
@@ -1978,15 +1978,15 @@
 						if (inputIndex > -1) {
 							toReturn.splice(
 								inputIndex <
-									_.tagsToParse(valueToFilter).length - 1
+									__f.tagsToParse(valueToFilter).length - 1
 									? inputIndex
 									: toReturn.length,
 								0,
-								_.tagsInputString
+								__f.tagsInputString
 							);
 						}
 
-						return _.tagsToVal(toReturn);
+						return __f.tagsToVal(toReturn);
 					};
 
 					theValue = applyFilter(
@@ -2000,21 +2000,21 @@
 				}
 			}
 
-			_.createTagsUi(
+			__f.createTagsUi(
 				inputTags,
-				_.tagsToVal(valueForUi),
+				__f.tagsToVal(valueForUi),
 				inputText,
 				args
 			);
 
 			//update the actual butt
-			inputTags.setAttribute('value', _.tagsToVal(theValue, false));
-			inputTags.value = _.tagsToVal(theValue, false);
+			inputTags.setAttribute('value', __f.tagsToVal(theValue, false));
+			inputTags.value = __f.tagsToVal(theValue, false);
 
 			//ATODO UPDATE SETUP HERE
 			//update fake hoes
 			if (args.callback) {
-				_.runFn(args.callback);
+				__f.runFn(args.callback);
 			}
 		}
 	};
@@ -2048,7 +2048,7 @@
 			imgSrcset = img.getAttribute('data-srcset');
 
 		if (img.matches('img') || img.closest('picture')) {
-			if (_.strGetFileExtension(imgSrc) == 'svg') {
+			if (__f.strGetFileExtension(imgSrc) == 'svg') {
 				const imgID = img.getAttribute('id') || null;
 				const imgClass = img.getAttribute('class') || null;
 
@@ -2097,7 +2097,7 @@
 		document.documentElement.classList.add('lazy-initialized');
 	};
 
-	frameWork.settings.lazyLoad && _.fns_on_rightAway.push(frameWork.loadImages);
+	frameWork.settings.lazyLoad && __f.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.createToolTip = (triggerer) => {
 
@@ -2147,7 +2147,7 @@
 				allowInteraction: false,
 			};
 
-			const args = _.parseArgs(arr, defaults);
+			const args = __f.parseArgs(arr, defaults);
 
 			const toolTip = document.createElement('div');
 			document.querySelector('body').appendChild(toolTip);
@@ -2171,7 +2171,7 @@
 					ttHtml += ` badge-${args.badgeSize}`;
 				}
 
-				if (_.palette.includes(args.badgeBg)) {
+				if (__f.palette.includes(args.badgeBg)) {
 					ttHtml += ` badge-${args.badgeBg}`;
 				} else {
 					ttHtml += `" style="background-color:${args.badgeBg};`;
@@ -2393,14 +2393,14 @@
 			// toolTip.style.top = (posY) +'px';
 		}
 	};
-	_.fns_on_scroll.push(frameWork.positionToolTip);
-	_.fns_on_resize.push(frameWork.positionToolTip);
+	__f.fns_on_scroll.push(frameWork.positionToolTip);
+	__f.fns_on_resize.push(frameWork.positionToolTip);
 
 	frameWork.createModal = (triggerer, subcom) => {
 		subcom = subcom || 'modal';
 		frameWork[subcom] = frameWork[subcom] || {};
 
-		const contentWrap = _.getTheToggled(triggerer, subcom);
+		const contentWrap = __f.getTheToggled(triggerer, subcom);
 
 		if(contentWrap || !window.location.hash){
 			frameWork.destroyModal(null, subcom);
@@ -2455,7 +2455,7 @@
 				align: 'left',
 			};
 
-			const args = _.parseArgs(arr, defaults);
+			const args = __f.parseArgs(arr, defaults);
 
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
@@ -2472,7 +2472,7 @@
 
 			const id = contentWrap.getAttribute('id') || actualId;
 
-			id !== `${actualId}` && args.changeHash && _.changeHash(id);
+			id !== `${actualId}` && args.changeHash && __f.changeHash(id);
 
 			const modal = document.createElement('div');
 			document.querySelector('body').appendChild(modal);
@@ -2579,7 +2579,7 @@
 			}
 			
 			if (args.callback) {
-				_.runFn(args.callback);
+				__f.runFn(args.callback);
 			}
 
 			frameWork[subcom].current = contentWrap;
@@ -2621,7 +2621,7 @@
 					}
 		}
 	}
-	_.fns_on_resize.push(frameWork.checkOnModal);
+	__f.fns_on_resize.push(frameWork.checkOnModal);
 
 	frameWork.resizeModal = (subcom,width,modal,args) => {
 		subcom = subcom || 'modal';
@@ -2689,7 +2689,7 @@
 
 		removeBodClass && document.body.classList.remove('body-no-scroll');
 	
-		canRemoveHash && _.changeHash('');
+		canRemoveHash && __f.changeHash('');
 	};
 
 	frameWork.createBoard = (triggerer) => {
@@ -2703,7 +2703,7 @@
 	frameWork.checkOnBoard = () => {
 		frameWork.checkOnModal('board');
 	};
-	_.fns_on_resize.push(frameWork.checkOnBoard);
+	__f.fns_on_resize.push(frameWork.checkOnBoard);
 
 	frameWork.destroyBoard = (removeHash) => {
 		frameWork.destroyModal(removeHash, 'board');
@@ -2784,7 +2784,7 @@
 		}
 	};
 
-	_.funFnForTrueChildren = (AncestorOfAllElm,selector,parentSelector,fn) => {
+	__f.funFnForTrueChildren = (AncestorOfAllElm,selector,parentSelector,fn) => {
 
 		if(
 			AncestorOfAllElm
@@ -2809,7 +2809,7 @@
 	frameWork.toggleAccordion = (triggerer, changeHash) => {
 		changeHash = changeHash != false;
 
-		const selector = _.getTheToggled(triggerer, 'accordion');
+		const selector = __f.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
 			let accClassAns = selector.parentNode.closest('.accordion,.accordion-group');
@@ -2833,7 +2833,7 @@
 			) {
 
 
-				_.funFnForTrueChildren(
+				__f.funFnForTrueChildren(
 					accClassAns,'[data-toggle="accordion"],.accordion',
 					'.accordion-group',
 					(accBbies)=>{
@@ -2846,7 +2846,7 @@
 			if (
 				!(
 					selector.classList.contains('accordion-mobile')
-					&& !frameWork.validateBr(_.br_mobile_max, 'below')
+					&& !frameWork.validateBr(__f.br_mobile_max, 'below')
 				)
 			) {
 				if (triggerer) {
@@ -2860,7 +2860,7 @@
 						changeHash: changeHash,
 					};
 
-					const args = _.parseArgs(arr, defaults);
+					const args = __f.parseArgs(arr, defaults);
 
 					if (
 						selector.classList.contains('open')
@@ -2878,7 +2878,7 @@
 							selector.classList.remove('open');
 
 							if (args.changeHash && selector.hasAttribute('id')) {
-								_.changeHash('');
+								__f.changeHash('');
 							}
 						}
 					} else {
@@ -2888,7 +2888,7 @@
 						selector.classList.add('open');
 
 						if (args.changeHash && selector.hasAttribute('id')) {
-							_.changeHash(selector.getAttribute('id'));
+							__f.changeHash(selector.getAttribute('id'));
 						}
 					}
 				} else {
@@ -2923,8 +2923,8 @@
 			frameWork.initGrid(grid);
 		});
 	};
-	_.fns_on_rightAway.push(frameWork.readyGrid);
-	_.fns_on_resize.push(frameWork.readyGrid);
+	__f.fns_on_rightAway.push(frameWork.readyGrid);
+	__f.fns_on_resize.push(frameWork.readyGrid);
 
 	frameWork.readyCalendar = () => {
 		const calendars = document.querySelectorAll('.input-calendar');
@@ -2933,7 +2933,7 @@
 			frameWork.updateCalendar(calendar);
 		});
 	};
-	_.fns_on_rightAway.push(frameWork.readyCalendar);
+	__f.fns_on_rightAway.push(frameWork.readyCalendar);
 
 	frameWork.readyTags = () => {
 		const inputTags = document.querySelectorAll('.input-tags');
@@ -2942,11 +2942,11 @@
 			frameWork.updateTags(input);
 		});
 	};
-	_.fns_on_load.push(frameWork.readyTags);
-	_.fns_on_resize.push(frameWork.readyTags);
+	__f.fns_on_load.push(frameWork.readyTags);
+	__f.fns_on_resize.push(frameWork.readyTags);
 
 	// //will run. right away. boi
-	_.fns_on_rightAway.forEach((fn) => {
+	__f.fns_on_rightAway.forEach((fn) => {
 		fn();
 	});
 
@@ -2957,7 +2957,7 @@
 	});
 
 	frameWork.docReady(() => {
-		_.fns_on_ready.forEach((fn) => {
+		__f.fns_on_ready.forEach((fn) => {
 			fn();
 		});
 
@@ -2967,19 +2967,19 @@
 				switch (e.keyCode) {
 					//shift
 					case 16:
-						_.modifierKeys.shift = true;
+						__f.modifierKeys.shift = true;
 						break;
 					// control
 					case 17:
-						_.modifierKeys.ctrl = true;
+						__f.modifierKeys.ctrl = true;
 						break;
 					//op/alt
 					case 18:
-						_.modifierKeys.alt = true;
+						__f.modifierKeys.alt = true;
 						break;
 					//meta
 					case 91:
-						_.modifierKeys.meta = true;
+						__f.modifierKeys.meta = true;
 						break;
 				}
 			}
@@ -2992,19 +2992,19 @@
 					switch (e.keyCode) {
 						//shift
 						case 16:
-							_.modifierKeys.shift = false;
+							__f.modifierKeys.shift = false;
 							break;
 						// control
 						case 17:
-							_.modifierKeys.ctrl = false;
+							__f.modifierKeys.ctrl = false;
 							break;
 						//op/alt
 						case 18:
-							_.modifierKeys.alt = false;
+							__f.modifierKeys.alt = false;
 							break;
 						//meta
 						case 91:
-							_.modifierKeys.meta = false;
+							__f.modifierKeys.meta = false;
 							break;
 					}
 				}, 100);
@@ -3094,7 +3094,7 @@
 					}
 
 					const pattern = new RegExp(
-						_.datetimeFormatPresets.HumanDate.pattern
+						__f.datetimeFormatPresets.HumanDate.pattern
 					);
 
 					const isValid = pattern.test(v);
@@ -3181,7 +3181,7 @@
 							.closest('.input-tags-ui')
 							.querySelector('.input-tags'),
 						inputUiIndex = triggerer.getAttribute('data-value'),
-						currValue = _.tagsToParse(inputTags.value);
+						currValue = __f.tagsToParse(inputTags.value);
 
 					if(triggerer.text() && triggerer.text() != ''){
 						currValue.splice(
@@ -3193,12 +3193,12 @@
 
 					triggerer.innerText = '';
 
-					// const newValue = _.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
+					// const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
 					frameWork.updateTags(
 						inputTags,
 						true,
-						_.tagsToVal(currValue)
+						__f.tagsToVal(currValue)
 					);
 				}
 			}
@@ -3220,7 +3220,7 @@
 							.closest('.input-tags-ui')
 							.querySelector('.input-tags'),
 						inputUiIndex = triggerer.getAttribute('data-value'),
-						currValue = _.tagsToParse(
+						currValue = __f.tagsToParse(
 							inputTags.getAttribute('data-value-ui')
 						);
 
@@ -3240,7 +3240,7 @@
 
 						//comma
 						case 188:
-							if (!_.modifierIsActive()) {
+							if (!__f.modifierIsActive()) {
 								allowFilter = true;
 								e.preventDefault();
 								currValue.splice(
@@ -3258,7 +3258,7 @@
 						case 37:
 							if (!triggerer.textContent) {
 								e.preventDefault();
-								_.arrMoveItem(
+								__f.arrMoveItem(
 									currValue,
 									parseInt(inputUiIndex),
 									parseInt(inputUiIndex) - 1 >= 0
@@ -3273,7 +3273,7 @@
 						case 39:
 							if (!triggerer.textContent) {
 								e.preventDefault();
-								_.arrMoveItem(
+								__f.arrMoveItem(
 									currValue,
 									parseInt(inputUiIndex),
 									parseInt(inputUiIndex) + 1 <= currValue.length - 1
@@ -3308,7 +3308,7 @@
 							break;
 					}
 
-					newValue = _.tagsToVal(currValue);
+					newValue = __f.tagsToVal(currValue);
 
 					frameWork.updateTags(
 						inputTags,
@@ -3338,12 +3338,12 @@
 					const tagToRemove = triggerer.getAttribute(
 							'data-value'
 						),
-						currValue = _.tagsToParse(
+						currValue = __f.tagsToParse(
 							inputTags.getAttribute('data-value-ui')
 						);
 					currValue.splice(parseInt(tagToRemove), 1);
 
-					const newValue = _.tagsToVal(currValue);
+					const newValue = __f.tagsToVal(currValue);
 
 					frameWork.updateTags(
 						inputTags,
@@ -3369,17 +3369,17 @@
 							.closest('.input-tags-ui')
 							.querySelector('.input-tags'),
 						tagToEdit = triggerer.getAttribute('data-value'),
-						currValue = _.tagsToParse(
+						currValue = __f.tagsToParse(
 							inputTags.getAttribute('data-value-ui'),
 							false
 						);
 					currValue.splice(
 						parseInt(tagToEdit),
 						1,
-						_.tagsInputString
+						__f.tagsInputString
 					);
 
-					const uiValue = _.tagsToVal(currValue);
+					const uiValue = __f.tagsToVal(currValue);
 
 					frameWork.updateTags(
 						inputTags,
@@ -3419,7 +3419,7 @@
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					const selector = _.getTheToggled(triggerer,'alert-close');
+					const selector = __f.getTheToggled(triggerer,'alert-close');
 
 					if (selector) {
 						selector.parentNode.removeChild(selector);
@@ -3464,8 +3464,8 @@
 					uiTrigger.blur();
 
 				} else {
-					const triggerer = _.getTheUiTriggerer(uiTrigger);
-					const selector = _.getTheToggled(
+					const triggerer = __f.getTheUiTriggerer(uiTrigger);
+					const selector = __f.getTheToggled(
 						triggerer,
 						'dropdown'
 					);
@@ -3491,9 +3491,9 @@
 				const uiTrigger = e.target;
 
 				if (!frameWork.isDisabled(uiTrigger)) {
-					const triggerer = _.getTheUiTriggerer(uiTrigger);
+					const triggerer = __f.getTheUiTriggerer(uiTrigger);
 
-					const selector = _.getTheToggled(triggerer,'dropdown');
+					const selector = __f.getTheToggled(triggerer,'dropdown');
 
 					setTimeout(() => {
 						if (selector) {
@@ -3519,8 +3519,8 @@
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(uiTrigger)) {
-					const triggerer = _.getTheUiTriggerer(uiTrigger),
-						selector = _.getTheToggled(triggerer, 'dropdown');
+					const triggerer = __f.getTheUiTriggerer(uiTrigger),
+						selector = __f.getTheToggled(triggerer, 'dropdown');
 
 					if (selector) {
 						const selectorAncestor = selector.closest('li, .nav-item');
@@ -3606,7 +3606,7 @@
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					_.toggleGroup(triggerer, 'btn');
+					__f.toggleGroup(triggerer, 'btn');
 				}
 			}
 		);
@@ -3622,7 +3622,7 @@
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					_.toggleGroup(
+					__f.toggleGroup(
 						triggerer,
 						'list',
 						null,
@@ -3868,7 +3868,7 @@
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					const asset = _.getTheToggled(triggerer, 'asset');
+					const asset = __f.getTheToggled(triggerer, 'asset');
 					asset.parentNode.removeChild(asset);
 				}
 			}
@@ -3908,7 +3908,7 @@
 	});
 
 	window.addEventListener('load', () => {
-		_.fns_on_load.forEach((fn) => {
+		__f.fns_on_load.forEach((fn) => {
 			fn();
 		});
 
@@ -3921,7 +3921,7 @@
 			clearTimeout(resizeTimerInternal);
 
 			resizeTimerInternal = setTimeout(() => {
-				_.fns_on_resize.forEach((fn) => {
+				__f.fns_on_resize.forEach((fn) => {
 					fn();
 				});
 			}, 100);
@@ -3933,7 +3933,7 @@
 			clearTimeout(scrollTimerInternal);
 
 			scrollTimerInternal = setTimeout(() => {
-				_.fns_on_scroll.forEach((fn) => {
+				__f.fns_on_scroll.forEach((fn) => {
 					fn();
 				});
 			}, 100);
@@ -3947,5 +3947,5 @@
 
 	window.fw = frameWork;
 	window.frameWork = frameWork;
-	// window.frameWork.DEBUG = _;
+	// window.frameWork.DEBUG = __f;
 }(window));

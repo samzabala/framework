@@ -11,7 +11,7 @@ window.jQuery && jQuery.noConflict();
 	const frameWork = window.frameWork || {};
 
 	//internal shit
-	const _ = {};
+	const __f = {};
 
 	//settings
 	frameWork.settings =
@@ -45,25 +45,25 @@ window.jQuery && jQuery.noConflict();
 		throw new Error('jQuery not found bro, what did you do?');
 	}
 
-	_.modifierKeys = {
+	__f.modifierKeys = {
 		ctrl: false,
 		shift: false,
 		alt: false,
 		meta: false,
 	};
 
-	_.modifierIsActive = (mode) => {
+	__f.modifierIsActive = (mode) => {
 		mode = mode || false;
 
-		if (mode && _.modifierKeys.hasOwnProperty(mode)) {
-			return _.modifierKeys[mode];
+		if (mode && __f.modifierKeys.hasOwnProperty(mode)) {
+			return __f.modifierKeys[mode];
 			
 		} else {
 			return (
-				_.modifierKeys.ctrl
-				|| _.modifierKeys.shift
-				|| _.modifierKeys.alt
-				|| _.modifierKeys.meta
+				__f.modifierKeys.ctrl
+				|| __f.modifierKeys.shift
+				|| __f.modifierKeys.alt
+				|| __f.modifierKeys.meta
 			);
 		}
 	};
@@ -89,12 +89,12 @@ window.jQuery && jQuery.noConflict();
 
 	};
 
-	_.strGetFileExtension = (str) => {
+	__f.strGetFileExtension = (str) => {
 		str = str || '';
 		return str.split('.').pop();
 	};
 
-	_.strToCamelCase = (str) => {
+	__f.strToCamelCase = (str) => {
 		str = str || '';
 
 		return str
@@ -106,7 +106,7 @@ window.jQuery && jQuery.noConflict();
 			.replace(/-|\s/g, '');
 	};
 
-	_.arrMoveItem = (arr, oi, ni) => {
+	__f.arrMoveItem = (arr, oi, ni) => {
 
 		while (oi < 0) {
 			oi += arr.length;
@@ -129,7 +129,7 @@ window.jQuery && jQuery.noConflict();
 
 	};
 
-	_.datetimeFormatPresets = {
+	__f.datetimeFormatPresets = {
 		HumanDate: {
 			placeholder: 'mm/dd/yyyy',
 			pattern: /^\d{2}\/\d{2}\/\d{4}$/,
@@ -157,7 +157,7 @@ window.jQuery && jQuery.noConflict();
 		// },
 	};
 
-	_.dayFormatNames = [
+	__f.dayFormatNames = [
 		'Sunday',
 		'Monday',
 		'Tuesday',
@@ -167,7 +167,7 @@ window.jQuery && jQuery.noConflict();
 		'Saturday',
 	];
 
-	_.dayFormatNamesShort = [
+	__f.dayFormatNamesShort = [
 		'Sun',
 		'Mon',
 		'Tue',
@@ -177,7 +177,7 @@ window.jQuery && jQuery.noConflict();
 		'Sat',
 	];
 
-	_.dayFormatNamesShorter = [
+	__f.dayFormatNamesShorter = [
 		'Su',
 		'Mo',
 		'Tu',
@@ -187,7 +187,7 @@ window.jQuery && jQuery.noConflict();
 		'Sa'
 	];
 
-	_.monthFormatNames = [
+	__f.monthFormatNames = [
 		'January',
 		'February',
 		'March',
@@ -202,7 +202,7 @@ window.jQuery && jQuery.noConflict();
 		'December',
 	];
 
-	_.monthFormatNamesShort = [
+	__f.monthFormatNamesShort = [
 		'Jan',
 		'Feb',
 		'Mar',
@@ -218,7 +218,7 @@ window.jQuery && jQuery.noConflict();
 	];
 
 	//make it objoct
-	_.dateToParse = (date) => {
+	__f.dateToParse = (date) => {
 
 		let yr,
 			mo,
@@ -241,7 +241,7 @@ window.jQuery && jQuery.noConflict();
 			} else {
 
 				const pattern = new RegExp(
-					_.datetimeFormatPresets.Value.pattern
+					__f.datetimeFormatPresets.Value.pattern
 				);
 				const isValid = pattern.test(date);
 
@@ -281,9 +281,9 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	//make it human readable
-	_.dateToHuman = (date, format) => {
-		date = _.dateToParse(date);
-		format = format || _.datetimeFormatPresets.HumanDate.template;
+	__f.dateToHuman = (date, format) => {
+		date = __f.dateToParse(date);
+		format = format || __f.datetimeFormatPresets.HumanDate.template;
 
 		if (date) {
 
@@ -348,8 +348,8 @@ window.jQuery && jQuery.noConflict();
 								output += formatName(
 									'D',
 									date.getDay(),
-									_.dayFormatNamesShort,
-									_.dayFormatNames
+									__f.dayFormatNamesShort,
+									__f.dayFormatNames
 								);
 								break;
 
@@ -387,8 +387,8 @@ window.jQuery && jQuery.noConflict();
 								output += formatName(
 									'M',
 									date.getMonth(),
-									_.monthFormatNamesShort,
-									_.monthFormatNames
+									__f.monthFormatNamesShort,
+									__f.monthFormatNames
 								);
 								break;
 
@@ -459,19 +459,19 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	//make it ready for input value of datata
-	_.dateToVal = (date) => {
-		const d = _.dateToParse(date);
+	__f.dateToVal = (date) => {
+		const d = __f.dateToParse(date);
 
 		if (d) {
-			return _.dateToHuman(
+			return __f.dateToHuman(
 				d,
-				_.datetimeFormatPresets.Value.template
+				__f.datetimeFormatPresets.Value.template
 			);
 		}
 	};
 
-	_.dateGetAdjacent = (date, offsetByMonth, dateOverride) => {
-		let d = _.dateToParse(date);
+	__f.dateGetAdjacent = (date, offsetByMonth, dateOverride) => {
+		let d = __f.dateToParse(date);
 
 		if (d) {
 			dateOverride = dateOverride || null;
@@ -533,7 +533,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	_.reverseArray = (arr) => {
+	__f.reverseArray = (arr) => {
 		let newArray = [];
 		for (let i = arr.length - 1; i >= 0; i--) {
 			newArray.push(arr[i]);
@@ -541,12 +541,12 @@ window.jQuery && jQuery.noConflict();
 		return newArray;
 	};
 
-	_.uiPrefix = (pref, noDash) => {
+	__f.uiPrefix = (pref, noDash) => {
 		noDash = noDash || false;
 		return noDash ? `input-${pref}-ui` : `input-${pref}-ui-`;
 	};
 
-	_.runFn = (callback) => {
+	__f.runFn = (callback) => {
 		if (callback) {
 			let fn;
 			try {
@@ -558,7 +558,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	_.parseArgs = (arr, defaults) => {
+	__f.parseArgs = (arr, defaults) => {
 
 		const args = {};
 
@@ -585,7 +585,7 @@ window.jQuery && jQuery.noConflict();
 		return args;
 	};
 
-	_.changeHash = (id) => {
+	__f.changeHash = (id) => {
 		id = id || '';
 
 		if (frameWork.settings.dynamicHash) {
@@ -608,7 +608,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	_.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
+	__f.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
 		prefix = prefix || 'btn';
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
@@ -660,7 +660,7 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	//good for descendants of ui shitsc as long as ui component gets data attribues of element that start is
-	_.getTheUiTriggerer = (triggerer) => {
+	__f.getTheUiTriggerer = (triggerer) => {
 		triggerer = triggerer || false;
 
 		let toReturn;
@@ -692,7 +692,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	_.getTheToggled = (triggerer, toggleMode) => {
+	__f.getTheToggled = (triggerer, toggleMode) => {
 		toggleMode = toggleMode || null;
 
 		if (toggleMode) {
@@ -730,7 +730,7 @@ window.jQuery && jQuery.noConflict();
 						.closest(`[data-toggle="${toggleMode}"]`).length
 				) {
 					// console.warn('toggle searching closest data-toggle');
-					toReturn = _.getTheToggled(
+					toReturn = __f.getTheToggled(
 						triggerer.closest(`[data-toggle="${toggleMode}"]`),
 						toggleMode
 					);
@@ -740,7 +740,7 @@ window.jQuery && jQuery.noConflict();
 					&& triggerer.parent('.input-group').length
 				) {
 					// console.warn('toggle trigger was in input group');
-					toReturn = _.getTheToggled(
+					toReturn = __f.getTheToggled(
 						triggerer.parent('.input-group'),
 						toggleMode
 					);
@@ -750,7 +750,7 @@ window.jQuery && jQuery.noConflict();
 					&& triggerer.parent('.btn-group').length
 				) {
 					// console.warn('toggle trigger was in btn group');
-					toReturn = _.getTheToggled(
+					toReturn = __f.getTheToggled(
 						triggerer.parent('.btn-group'),
 						toggleMode
 					);
@@ -808,7 +808,7 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	_.br_vals = {
+	__f.br_vals = {
 		xxs: 0,
 		xs:
 			parseFloat(
@@ -834,10 +834,10 @@ window.jQuery && jQuery.noConflict();
 		lg: 9999999,
 	};
 
-	_.br_arr = Object.keys(_.br_vals);
-	// _.br_to_loop =  ['xs','sm','md','lg'];
+	__f.br_arr = Object.keys(__f.br_vals);
+	// __f.br_to_loop =  ['xs','sm','md','lg'];
 
-	_.br_mobile_max =
+	__f.br_mobile_max =
 		parseFloat(
 			getComputedStyle(
 				document.documentElement
@@ -845,40 +845,40 @@ window.jQuery && jQuery.noConflict();
 		)
 		|| 'sm';
 
-	_.fns_on_load = [];
-	_.fns_on_ready = [];
-	_.fns_on_resize = [];
-	_.fns_on_scroll = [];
-	_.fns_on_rightAway = [];
+	__f.fns_on_load = [];
+	__f.fns_on_ready = [];
+	__f.fns_on_resize = [];
+	__f.fns_on_scroll = [];
+	__f.fns_on_rightAway = [];
 
 	frameWork.validateBr = (breakpoint, mode) => {
 		mode = mode || 'below'; //below,within,above
-		const currIndex = _.br_arr.indexOf(breakpoint);
+		const currIndex = __f.br_arr.indexOf(breakpoint);
 		switch (mode) {
 			case 'below': //max-width
 				return (
 					document.documentElement.clientWidth
-						<= _.br_vals[breakpoint]
+						<= __f.br_vals[breakpoint]
 				);
 
 			case 'within':
 				return (
 					document.documentElement.clientWidth
-						<=_.br_vals[breakpoint]
+						<=__f.br_vals[breakpoint]
 					&& document.documentElement.clientWidth
-						> _.br_vals[_.br_arr[currIndex - 1]]
+						> __f.br_vals[__f.br_arr[currIndex - 1]]
 				);
 
 			case 'above':
 				return currIndex > 0
 					? document.documentElement.clientWidth
-						> _.br_vals[_.br_arr[currIndex - 1]]
+						> __f.br_vals[__f.br_arr[currIndex - 1]]
 					: document.documentElement.clientWidth
-						> _.br_vals[_.br_arr[currIndex]];
+						> __f.br_vals[__f.br_arr[currIndex]];
 		}
 	};
 
-	_.palette = [
+	__f.palette = [
 		'base',
 		'primary',
 		'secondary',
@@ -935,7 +935,7 @@ window.jQuery && jQuery.noConflict();
 					smallestStyledBr = false;
 
 				//check for breakpointz first
-				_.reverseArray(_.br_arr).forEach((br) => {
+				__f.reverseArray(__f.br_arr).forEach((br) => {
 					if (
 						modElement.attr(`data-${prop}-${br}`)
 						&& !propsSet
@@ -970,7 +970,7 @@ window.jQuery && jQuery.noConflict();
 
 				} else {
 					if (
-						modElement.prop('style')[_.strToCamelCase(prop)] !== null
+						modElement.prop('style')[__f.strToCamelCase(prop)] !== null
 						&& smallestStyledBr
 						&& !frameWork.validateBr(smallestStyledBr, 'above')
 					) {
@@ -988,18 +988,18 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	//range only is pag kwan di sya isa isang date pangmaramihan
-	_.dateIsValid = (date, args, rangeOnly) => {
+	__f.dateIsValid = (date, args, rangeOnly) => {
 		rangeOnly = rangeOnly || false; //range,spot
 
-		const d = _.dateToParse(date),
+		const d = __f.dateToParse(date),
 			checkAgainst = args.disabledDates.split(',');
 
 		let toReturn = true;
 
 		if (!rangeOnly) {
 			//if in disabled dates
-			if (checkAgainst.indexOf(_.dateToVal(d)) > -1) {
-				// console.warn('value is declared disabled specifically || ',_.dateToVal(d));
+			if (checkAgainst.indexOf(__f.dateToVal(d)) > -1) {
+				// console.warn('value is declared disabled specifically || ',__f.dateToVal(d));
 				toReturn = false;
 			}
 
@@ -1008,7 +1008,7 @@ window.jQuery && jQuery.noConflict();
 				checkAgainst.indexOf('weekends') > -1
 				&& (d.getDay() == 0 || d.getDay() == 6)
 			) {
-				// console.warn('value was a weekend || ',_.dateToVal(d),_.dateToVal(date));
+				// console.warn('value was a weekend || ',__f.dateToVal(d),__f.dateToVal(date));
 				toReturn = false;
 			}
 		}
@@ -1020,7 +1020,7 @@ window.jQuery && jQuery.noConflict();
 			checkAgainst.indexOf('past') > -1
 			&& d < dateNow
 		) {
-			// console.warn('value was in the past || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			// console.warn('value was in the past || ',__f.dateToVal(date),'\nversus ',__f.dateToVal(dateNow));
 			toReturn = false;
 		}
 
@@ -1028,63 +1028,63 @@ window.jQuery && jQuery.noConflict();
 			checkAgainst.indexOf('future') > -1
 			&& d > dateNow
 		) {
-			// console.warn('value was in the future || ',_.dateToVal(date),'\nversus ',_.dateToVal(dateNow));
+			// console.warn('value was in the future || ',__f.dateToVal(date),'\nversus ',__f.dateToVal(dateNow));
 			toReturn = false;
 		}
 
 		//if  in range of min or max
 		if (
 			(
-				_.dateToParse(args.max)
-				&& _.dateToParse(args.max) < d
+				__f.dateToParse(args.max)
+				&& __f.dateToParse(args.max) < d
 			)
 			|| (
-				_.dateToParse(args.min)
-				&& d < _.dateToParse(args.min)
+				__f.dateToParse(args.min)
+				&& d < __f.dateToParse(args.min)
 			)
 		) {
-			// console.warn('value not in max and width || ',_.dateToVal(d));;
+			// console.warn('value not in max and width || ',__f.dateToVal(d));;
 			toReturn = false;
 		}
 
 		return toReturn;
 	};
 
-	_.createCalendarUi = (inputCalendar, valueForUi, args) => {
+	__f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 		
 		if (inputCalendar) {
 			valueForUi =
 				valueForUi
-				|| _.dateToVal(inputCalendar.val())
-				|| _.dateToVal(new Date());
+				|| __f.dateToVal(inputCalendar.val())
+				|| __f.dateToVal(new Date());
 			const theUi = {};
 
 			theUi.container = inputCalendar
-				.closest(`.${_.uiPrefix('calendar', true)}`);
+				.closest(`.${__f.uiPrefix('calendar', true)}`);
 			if (!theUi.container.length) {
 				inputCalendar.wrap($(`<div
 					class="
 						${frameWork.settings.uiClass}
 						${frameWork.settings.uiJsClass}
 						${inputCalendar.attr('class')
-							.replace('input-calendar', _.uiPrefix('calendar', true))
+							.replace('input-calendar', __f.uiPrefix('calendar', true))
 						}"
 					>
 					</div>`));
 				theUi.container = inputCalendar
-					.closest(`.${_.uiPrefix('calendar', true)}`);
+					.closest(`.${__f.uiPrefix('calendar', true)}`);
 			}
 
 			//idk it never exists on initial so we dont have to do weird div wraping catches here
 			theUi.input = theUi.container
-				.children(`.${_.uiPrefix('calendar')}input`);
+				.children(`.${__f.uiPrefix('calendar')}input`);
 
 			inputCalendar.siblings().not(theUi.input).remove();
 
 			//input
 			if (args.textInput) {
 				if (!theUi.input.length) {
-					theUi.input = $(`<div class="${_.uiPrefix(
+					theUi.input = $(`<div class="${__f.uiPrefix(
 								'calendar'
 							)}input"><input class="input input-single-line" type="text" maxlength="10"  placeholder="MM/DD/YYYY" />
 						</div>`);
@@ -1096,26 +1096,26 @@ window.jQuery && jQuery.noConflict();
 				theUi.input.addClass('disabled');
 			}
 
-			const currYear = _.dateToParse(valueForUi).getFullYear(),
-				currMonth = _.dateToParse(valueForUi).getMonth(),
+			const currYear = __f.dateToParse(valueForUi).getFullYear(),
+				currMonth = __f.dateToParse(valueForUi).getMonth(),
 				currentCalendarDate = new Date(currYear, currMonth, 1); //IT ALSO FIRST DAY MOTHERFUCKER
 
 			//heading
-			theUi.heading = $(`<div class="${_.uiPrefix('calendar')}heading"></div>`);
+			theUi.heading = $(`<div class="${__f.uiPrefix('calendar')}heading"></div>`);
 			theUi.container.append(theUi.heading);
 
 			//arrowz
 			const generateArrow = (buttonClass) => {
 				let symbolClass, arrowDate, validness;
 				//set a new date with no date because fuck that boi
-				// console.warn(buttonClass,'hello i fucked up','\n',_.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
+				// console.warn(buttonClass,'hello i fucked up','\n',__f.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
 				switch (buttonClass) {
 					case 'prev-month':
 						symbolClass = 'symbol-arrow-left';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, -1)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, -1)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear, currMonth, 0),
 							args,
 							true
@@ -1124,10 +1124,10 @@ window.jQuery && jQuery.noConflict();
 
 					case 'prev-year':
 						symbolClass = 'symbol-arrow-double-left';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, -12)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, -12)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear - 1, currMonth, 0),
 							args,
 							true
@@ -1136,10 +1136,10 @@ window.jQuery && jQuery.noConflict();
 
 					case 'next-month':
 						symbolClass = 'symbol-arrow-right';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, 1)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, 1)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear, currMonth + 1, 1),
 							args,
 							true
@@ -1148,10 +1148,10 @@ window.jQuery && jQuery.noConflict();
 						
 					case 'next-year':
 						symbolClass = 'symbol-arrow-double-right';
-						arrowDate = _.dateToVal(
-							_.dateGetAdjacent(currentCalendarDate, 12)
+						arrowDate = __f.dateToVal(
+							__f.dateGetAdjacent(currentCalendarDate, 12)
 						);
-						validness = _.dateIsValid(
+						validness = __f.dateIsValid(
 							new Date(currYear + 1, currMonth, 1),
 							args,
 							true
@@ -1163,11 +1163,11 @@ window.jQuery && jQuery.noConflict();
 				let htmlString = `<a href=""
 					class="
 						${!validness ? `disabled ` : ''}
-						${_.uiPrefix('calendar')}navigation
-						${_.uiPrefix('calendar')}button
-						${_.uiPrefix('calendar')}${buttonClass}" data-value="${arrowDate}"
+						${__f.uiPrefix('calendar')}navigation
+						${__f.uiPrefix('calendar')}button
+						${__f.uiPrefix('calendar')}${buttonClass}" data-value="${arrowDate}"
 					>
-						<i class="${_.uiPrefix('calendar')}symbol symbol ${symbolClass}"></i>
+						<i class="${__f.uiPrefix('calendar')}symbol symbol ${symbolClass}"></i>
 					</a>`;
 
 				return htmlString;
@@ -1205,26 +1205,26 @@ window.jQuery && jQuery.noConflict();
 			theUi.title = $(`<div
 				data-toggle="dropdown"
 				class="
-					${_.uiPrefix('calendar')}title
-					${_.uiPrefix('calendar')}dropdown-toggle
+					${__f.uiPrefix('calendar')}title
+					${__f.uiPrefix('calendar')}dropdown-toggle
 					${frameWork.settings.uiJsClass}_internal_toggle"
 			></div>`);
 			theUi.heading.append(theUi.title);
 			theUi.title.append(() => {
 				return `<span
-						class="${_.uiPrefix('calendar')}month-text">
-						${_.monthFormatNamesShort[currMonth]}
+						class="${__f.uiPrefix('calendar')}month-text">
+						${__f.monthFormatNamesShort[currMonth]}
 					</span>
-					<span class="${_.uiPrefix('calendar')}year-text">
+					<span class="${__f.uiPrefix('calendar')}year-text">
 						${currYear}
 					</span>
-					<i class="${_.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
+					<i class="${__f.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
 			});
 
 			//dropdown
 			theUi.dropdown = $(`<ul
 				data-dropdown-width="100%"
-				class="${_.uiPrefix('calendar')}dropdown
+				class="${__f.uiPrefix('calendar')}dropdown
 				dropdown
 				dropdown-center-x
 				dropdown-top-flush
@@ -1234,13 +1234,13 @@ window.jQuery && jQuery.noConflict();
 			theUi.heading.append(theUi.dropdown);
 			theUi.dropdown.append(() => {
 				return `<li
-						class="${_.uiPrefix('calendar')}current-month-year active"
+						class="${__f.uiPrefix('calendar')}current-month-year active"
 					>
 							<a href="#"
-								class="${_.uiPrefix('calendar')}month"
-								data-value="${_.dateToVal(currentCalendarDate)}"
+								class="${__f.uiPrefix('calendar')}month"
+								data-value="${__f.dateToVal(currentCalendarDate)}"
 							>
-								${_.monthFormatNamesShort[currMonth]} ${currYear}
+								${__f.monthFormatNamesShort[currMonth]} ${currYear}
 							</a>
 					</li>
 					<li><hr class="dropdown-separator"></li>`;
@@ -1263,7 +1263,7 @@ window.jQuery && jQuery.noConflict();
 			//update dropdown
 			theUi.dropList = [];
 			for (let i = dropdownInit; i <= dropdownLimit; i++) {
-				const listItemDate = _.dateGetAdjacent(
+				const listItemDate = __f.dateGetAdjacent(
 					currentCalendarDate,
 					i
 				);
@@ -1294,16 +1294,16 @@ window.jQuery && jQuery.noConflict();
 				})();
 				// console.warn(i,'\nkwan ano ni\n',listItemDate,dateForValidation);
 
-				if (_.dateIsValid(dateForValidation, args, true)) {
+				if (__f.dateIsValid(dateForValidation, args, true)) {
 					let currClass = i == 0 ? 'active' : '';
 
 					theUi.dropdown.append(() => {
 						return `<li class="${currClass}">
 							<a href="#"
-								class="${_.uiPrefix('calendar')}month"
-								data-value="${_.dateToVal(listItemDate)}">
+								class="${__f.uiPrefix('calendar')}month"
+								data-value="${__f.dateToVal(listItemDate)}">
 									${
-										_.monthFormatNamesShort[
+										__f.monthFormatNamesShort[
 											listItemDate.getMonth()
 										]
 									} ${listItemDate.getFullYear()}
@@ -1320,16 +1320,16 @@ window.jQuery && jQuery.noConflict();
 
 			//generate grid
 			theUi.grid = $(
-				`<div class="${_.uiPrefix('calendar')}grid"></div>`
+				`<div class="${__f.uiPrefix('calendar')}grid"></div>`
 			);
 			theUi.container.append(theUi.grid);
 
 			const generateBlock = (date, customClass) => {
 				customClass = customClass || '';
-				return `<a href="#" data-value="${_.dateToVal(date)}"
+				return `<a href="#" data-value="${__f.dateToVal(date)}"
 						class="
-						${_.uiPrefix('calendar')}block 
-						${_.uiPrefix('calendar')}date
+						${__f.uiPrefix('calendar')}block 
+						${__f.uiPrefix('calendar')}date
 						${customClass}
 					">
 						<span>${date.getDate()}</span>
@@ -1338,7 +1338,7 @@ window.jQuery && jQuery.noConflict();
 
 			//days heading
 			theUi.days = $(
-				`<div class="${_.uiPrefix('calendar')}days"></div>`
+				`<div class="${__f.uiPrefix('calendar')}days"></div>`
 			);
 
 			theUi.grid.append(theUi.days);
@@ -1352,10 +1352,10 @@ window.jQuery && jQuery.noConflict();
 				}
 
 				daysHTML += `<div
-						class="${_.uiPrefix('calendar')}block
-						${_.uiPrefix('calendar')}day"
+						class="${__f.uiPrefix('calendar')}block
+						${__f.uiPrefix('calendar')}day"
 					>
-						${_.dayFormatNamesShorter[dayToRetrieve]}
+						${__f.dayFormatNamesShorter[dayToRetrieve]}
 					</div>`;
 
 				dayToRetrieve++;
@@ -1365,7 +1365,7 @@ window.jQuery && jQuery.noConflict();
 
 			//days
 			theUi.dates = $(
-				`<div class="${_.uiPrefix('calendar')}dates"></div>`
+				`<div class="${__f.uiPrefix('calendar')}dates"></div>`
 			);
 			theUi.grid.append(theUi.dates);
 
@@ -1403,8 +1403,8 @@ window.jQuery && jQuery.noConflict();
 
 					let dateBlockPrev = generateBlock(
 						loopDatePrev,
-						`${_.uiPrefix('calendar')}block-adjacent
-						${(!_.dateIsValid(loopDatePrev, args)
+						`${__f.uiPrefix('calendar')}block-adjacent
+						${(!__f.dateIsValid(loopDatePrev, args)
 							? 'disabled'
 							: '')
 						}`
@@ -1421,7 +1421,7 @@ window.jQuery && jQuery.noConflict();
 			for (let i = 1; i <= currLastDate.getDate(); i++) {
 				let dateBlockCurr = generateBlock(
 					new Date(currYear, currMonth, i),
-					!_.dateIsValid(new Date(currYear, currMonth, i), args)
+					!__f.dateIsValid(new Date(currYear, currMonth, i), args)
 						? 'disabled'
 						: ''
 				);
@@ -1448,9 +1448,9 @@ window.jQuery && jQuery.noConflict();
 
 					let dateBlockNext = generateBlock(
 						loopDateNext,
-						_.uiPrefix('calendar') +
+						__f.uiPrefix('calendar') +
 							'block-adjacent ' +
-							(!_.dateIsValid(loopDateNext, args)
+							(!__f.dateIsValid(loopDateNext, args)
 								? 'disabled'
 								: '')
 					);
@@ -1464,9 +1464,9 @@ window.jQuery && jQuery.noConflict();
 	//updates both input field and UI
 	frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
 
-		const theValue = newValue || _.dateToVal(inputCalendar.val());
+		const theValue = newValue || __f.dateToVal(inputCalendar.val());
 
-		valueForUi = valueForUi || theValue || _.dateToVal(new Date());
+		valueForUi = valueForUi || theValue || __f.dateToVal(new Date());
 		// ignoreInput = ignoreInput || false;
 
 		const arr = {
@@ -1504,7 +1504,7 @@ window.jQuery && jQuery.noConflict();
 			yearSkip: false,
 		};
 
-		const args = _.parseArgs(arr, defaults);
+		const args = __f.parseArgs(arr, defaults);
 
 		if (parseInt(arr.dropdownYearSpan) <= 0) {
 			args.dropdownYearSpan = defaults.dropdownYearSpan;
@@ -1513,15 +1513,15 @@ window.jQuery && jQuery.noConflict();
 		args.startDay = parseInt(args.startDay) % 7;
 
 		//set up calendar
-		if (_.dateIsValid(theValue, args) || !theValue) {
-			_.createCalendarUi(
+		if (__f.dateIsValid(theValue, args) || !theValue) {
+			__f.createCalendarUi(
 				inputCalendar,
 				valueForUi,
 				args
 			);
 		}
 
-		if (_.dateIsValid(theValue, args)) {
+		if (__f.dateIsValid(theValue, args)) {
 			inputCalendar
 				.closest(`.${frameWork.settings.uiClass}`)
 				.removeClass('input-error');
@@ -1538,32 +1538,32 @@ window.jQuery && jQuery.noConflict();
 
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix('calendar')}date`)
+				.find(`.${__f.uiPrefix('calendar')}date`)
 				.removeClass('active');
 			inputCalendar
 				.parent()
 				.find(
-					`.${_.uiPrefix('calendar')}date[data-value=${_.dateToVal(theValue)}]`
+					`.${__f.uiPrefix('calendar')}date[data-value=${__f.dateToVal(theValue)}]`
 				)
 				.addClass('active');
 
 			// if(!ignoreInput){
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix('calendar')}input input`)
-				.attr('value', _.dateToHuman(theValue));
+				.find(`.${__f.uiPrefix('calendar')}input input`)
+				.attr('value', __f.dateToHuman(theValue));
 			inputCalendar
 				.parent()
-				.find(`.${_.uiPrefix('calendar')}input input`)
-				.val(_.dateToHuman(theValue));
+				.find(`.${__f.uiPrefix('calendar')}input input`)
+				.val(__f.dateToHuman(theValue));
 			// }
 		}
 	};
 
-	_.tagsInputString = '__fw_input__';
+	__f.tagsInputString = '__fw_input__';
 
 	//because input field is gonna go in between for backspacing capabilities
-	_.tagsToParse = (value, returnWithInput) => {
+	__f.tagsToParse = (value, returnWithInput) => {
 		returnWithInput =
 			returnWithInput !== false || returnWithInput == true;
 
@@ -1575,14 +1575,14 @@ window.jQuery && jQuery.noConflict();
 		toReturn.forEach((tag, i) => {
 			if (
 				(!tag || tag == '')
-				|| (tag === _.tagsInputString && !returnWithInput)
+				|| (tag === __f.tagsInputString && !returnWithInput)
 			) {
 				toReturn.splice(i, 1);
 			}
 		});
 
-		if (returnWithInput && toReturn.indexOf(_.tagsInputString) < 0) {
-			toReturn.push(_.tagsInputString);
+		if (returnWithInput && toReturn.indexOf(__f.tagsInputString) < 0) {
+			toReturn.push(__f.tagsInputString);
 		}
 
 		//remove duplicates
@@ -1598,20 +1598,20 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	//because input field is gonna go in between for backspacing capabilities
-	_.tagsToVal = (value, returnWithInput) => {
+	__f.tagsToVal = (value, returnWithInput) => {
 		value = value || '';
-		return _.tagsToParse(value, returnWithInput).join(',');
+		return __f.tagsToParse(value, returnWithInput).join(',');
 	};
 
-	_.createTagsUi = (inputTags, valueForUi, inputText, args) => {
+	__f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
 
 		if (inputTags) {
-			valueForUi = valueForUi || _.tagsToVal(inputTags.val()) || '';
+			valueForUi = valueForUi || __f.tagsToVal(inputTags.val()) || '';
 			inputText = inputText || false;
 
 			const theUi = {};
 
-			theUi.container = inputTags.closest(`.${_.uiPrefix('tags', true)}`);
+			theUi.container = inputTags.closest(`.${__f.uiPrefix('tags', true)}`);
 
 			if (!theUi.container.length) {
 				inputTags.wrap($(`<div
@@ -1619,17 +1619,17 @@ window.jQuery && jQuery.noConflict();
 					${frameWork.settings.uiClass}
 					${frameWork.settings.uiJsClass}
 					${inputTags
-						.attr('class').replace('input-tags', _.uiPrefix('tags', true))
+						.attr('class').replace('input-tags', __f.uiPrefix('tags', true))
 					}">
 					</div>`));
-				theUi.container = inputTags.closest(`.${_.uiPrefix('tags', true)}`);
+				theUi.container = inputTags.closest(`.${__f.uiPrefix('tags', true)}`);
 				theUi.container.addClass('input');
 			}
 
 			theUi.container.addClass(
 				args.multipleLines
-					? `${_.uiPrefix('tags')}multiple`
-					: `${_.uiPrefix('tags')}single`
+					? `${__f.uiPrefix('tags')}multiple`
+					: `${__f.uiPrefix('tags')}single`
 			);
 
 			if (args.width) {
@@ -1637,24 +1637,24 @@ window.jQuery && jQuery.noConflict();
 			}
 			//idk it never exists on initial so we dont have to do weird div wraping catches here
 
-			theUi.wrapper = theUi.container.children(`.${_.uiPrefix('tags')}wrapper`);
+			theUi.wrapper = theUi.container.children(`.${__f.uiPrefix('tags')}wrapper`);
 
 			if (!theUi.wrapper.length) {
 				theUi.container.append(
-					`<div class="${_.uiPrefix('tags')}wrapper"></div>`
+					`<div class="${__f.uiPrefix('tags')}wrapper"></div>`
 				);
-				theUi.wrapper = theUi.container.children(`.${_.uiPrefix('tags')}wrapper`);
+				theUi.wrapper = theUi.container.children(`.${__f.uiPrefix('tags')}wrapper`);
 			}
 
-			theUi.input = theUi.wrapper.children(`.${_.uiPrefix('tags')}input`);
+			theUi.input = theUi.wrapper.children(`.${__f.uiPrefix('tags')}input`);
 
 			if (!theUi.input.length) {
 				theUi.wrapper.append(
-					`<span contenteditable="true" class="input ${_.uiPrefix(
+					`<span contenteditable="true" class="input ${__f.uiPrefix(
 						'tags'
 					)}input"></span>`
 				);
-				theUi.input = theUi.wrapper.children(`.${_.uiPrefix('tags')}input`);
+				theUi.input = theUi.wrapper.children(`.${__f.uiPrefix('tags')}input`);
 			}
 
 			if(inputTags.attr('placeholder')){
@@ -1685,10 +1685,10 @@ window.jQuery && jQuery.noConflict();
 
 			}
 
-			theUi.wrapper.children(`.${_.uiPrefix('tags')}tag`).remove();
+			theUi.wrapper.children(`.${__f.uiPrefix('tags')}tag`).remove();
 
-			let valArr = _.tagsToParse(valueForUi, true);
-			const inputIn = valArr.indexOf(_.tagsInputString);
+			let valArr = __f.tagsToParse(valueForUi, true);
+			const inputIn = valArr.indexOf(__f.tagsInputString);
 
 			theUi.input.attr('data-value', inputIn);
 
@@ -1702,16 +1702,16 @@ window.jQuery && jQuery.noConflict();
 
 			valArr.forEach((tag, i) => {
 				//get index of input
-				if (tag !== _.tagsInputString) {
+				if (tag !== __f.tagsInputString) {
 					const tagHtmlFn = () => {
-						return `<span class="${_.uiPrefix('tags')}tag">
+						return `<span class="${__f.uiPrefix('tags')}tag">
 							<span
 								data-value="${i}"
-								class="${_.uiPrefix('tags')}tag-text"
+								class="${__f.uiPrefix('tags')}tag-text"
 							>
 								${tag}
 							</span>
-							<a data-value="${i}" class="${_.uiPrefix('tags')}tag-close" href="#">
+							<a data-value="${i}" class="${__f.uiPrefix('tags')}tag-close" href="#">
 							<i class="symbol symbol-close"></i></a>
 						</span>`;
 					};
@@ -1784,7 +1784,7 @@ window.jQuery && jQuery.noConflict();
 			multipleLines: false,
 		};
 
-		const args = _.parseArgs(arr, defaults);
+		const args = __f.parseArgs(arr, defaults);
 
 		if (inputTags) {
 			if (args.callbackNameFilter && allowFilter) {
@@ -1796,14 +1796,14 @@ window.jQuery && jQuery.noConflict();
 
 				if (typeof fnToFilter === 'function') {
 					const applyFilter = (valueToFilter, filterFnName) => {
-						const inputIndex = _.tagsToParse(valueToFilter)
-								.indexOf(_.tagsInputString),
+						const inputIndex = __f.tagsToParse(valueToFilter)
+								.indexOf(__f.tagsInputString),
 							noInputValueToFilter = (() => {
-									return _.tagsToVal(valueToFilter, false);
+									return __f.tagsToVal(valueToFilter, false);
 								})();
 
 						// turn to array ya bopi without the input tag string
-						let toReturn = _.tagsToParse(
+						let toReturn = __f.tagsToParse(
 							eval(`${filterFnName}("${noInputValueToFilter}")`),
 							false
 						);
@@ -1811,10 +1811,10 @@ window.jQuery && jQuery.noConflict();
 						// console.log(
 						// 	'index of input\n',inputIndex,
 						// 	'\n\n\nfiltered and ready for splice\n',toReturn,
-						// 	'\n\n\npassed to the fil;ter\n',_.tagsToVal(valueToFilter,false),
-						// 	'\n\n\nrar array\n',_.tagsToParse(valueToFilter),
-						// 	'\n\n\n no input field\n',noInputValueToFilter,_.tagsToVal(valueToFilter,false),
-						// 	'\n\n\n no input fieldas array\n',_.tagsToParse(valueToFilter,false),
+						// 	'\n\n\npassed to the fil;ter\n',__f.tagsToVal(valueToFilter,false),
+						// 	'\n\n\nrar array\n',__f.tagsToParse(valueToFilter),
+						// 	'\n\n\n no input field\n',noInputValueToFilter,__f.tagsToVal(valueToFilter,false),
+						// 	'\n\n\n no input fieldas array\n',__f.tagsToParse(valueToFilter,false),
 						// 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
 						// 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
 						// 	'whAT ETHE FUCK'
@@ -1823,15 +1823,15 @@ window.jQuery && jQuery.noConflict();
 						if (inputIndex > -1) {
 							toReturn.splice(
 								inputIndex <
-									_.tagsToParse(valueToFilter).length - 1
+									__f.tagsToParse(valueToFilter).length - 1
 									? inputIndex
 									: toReturn.length,
 								0,
-								_.tagsInputString
+								__f.tagsInputString
 							);
 						}
 
-						return _.tagsToVal(toReturn);
+						return __f.tagsToVal(toReturn);
 					};
 
 					theValue = applyFilter(
@@ -1845,21 +1845,21 @@ window.jQuery && jQuery.noConflict();
 				}
 			}
 
-			_.createTagsUi(
+			__f.createTagsUi(
 				inputTags,
-				_.tagsToVal(valueForUi),
+				__f.tagsToVal(valueForUi),
 				inputText,
 				args
 			);
 
 			//update the actual butt
-			inputTags.attr('value', _.tagsToVal(theValue, false));
-			inputTags.val(_.tagsToVal(theValue, false));
+			inputTags.attr('value', __f.tagsToVal(theValue, false));
+			inputTags.val(__f.tagsToVal(theValue, false));
 
 			//ATODO UPDATE SETUP HERE
 			//update fake hoes
 			if (args.callback) {
-				_.runFn(args.callback);
+				__f.runFn(args.callback);
 			}
 		}
 	};
@@ -1900,7 +1900,7 @@ window.jQuery && jQuery.noConflict();
 					&& img.closest('picture').length
 				)
 			) {
-				if (_.strGetFileExtension(img.attr('data-src')) == 'svg') {
+				if (__f.strGetFileExtension(img.attr('data-src')) == 'svg') {
 					const imgID = img.attr('id');
 					const imgClass = img.attr('class');
 					$.get(
@@ -1946,7 +1946,7 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	frameWork.settings.lazyLoad &&
-		_.fns_on_rightAway.push(frameWork.loadImages);
+		__f.fns_on_rightAway.push(frameWork.loadImages);
 
 	frameWork.createToolTip = (triggerer) => {
 
@@ -1994,7 +1994,7 @@ window.jQuery && jQuery.noConflict();
 				allowInteraction: false,
 			};
 
-			const args = _.parseArgs(arr, defaults);
+			const args = __f.parseArgs(arr, defaults);
 
 			$('body').append(() => {
 				let html = `<div
@@ -2014,7 +2014,7 @@ window.jQuery && jQuery.noConflict();
 						html += ` badge-${args.badgeSize}`;
 					}
 
-					if (_.palette.includes(args.badgeBg)) {
+					if (__f.palette.includes(args.badgeBg)) {
 						html += ` badge-${args.badgeBg}`;
 					} else {
 						html += `" style="background-color:${args.badgeBg};`;
@@ -2239,14 +2239,14 @@ window.jQuery && jQuery.noConflict();
 			});
 		}
 	};
-	_.fns_on_scroll.push(frameWork.positionToolTip);
-	_.fns_on_resize.push(frameWork.positionToolTip);
+	__f.fns_on_scroll.push(frameWork.positionToolTip);
+	__f.fns_on_resize.push(frameWork.positionToolTip);
 
 	frameWork.createModal = (triggerer, subcom) => {
 		subcom = subcom || 'modal';
 		frameWork[subcom] = frameWork[subcom] || {};
 
-		const contentWrap = _.getTheToggled(triggerer, subcom);
+		const contentWrap = __f.getTheToggled(triggerer, subcom);
 
 		if(contentWrap || !window.location.hash){
 			frameWork.destroyModal(null, subcom);
@@ -2301,7 +2301,7 @@ window.jQuery && jQuery.noConflict();
 				align: 'left',
 			};
 
-			const args = _.parseArgs(arr, defaults);
+			const args = __f.parseArgs(arr, defaults);
 			
 			const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
@@ -2316,7 +2316,7 @@ window.jQuery && jQuery.noConflict();
 
 			const id = contentWrap.attr('id') || actualId;
 
-			id !== `${actualId}` && args.changeHash && _.changeHash(id);
+			id !== `${actualId}` && args.changeHash && __f.changeHash(id);
 
 			$('body').append(() => {
 				let html = '';
@@ -2433,7 +2433,7 @@ window.jQuery && jQuery.noConflict();
 			}
 
 			if (args.callback) {
-				_.runFn(args.callback);
+				__f.runFn(args.callback);
 			}
 
 			frameWork[subcom].current = contentWrap;
@@ -2473,7 +2473,7 @@ window.jQuery && jQuery.noConflict();
 					}
 		}
 	}
-	_.fns_on_resize.push(frameWork.checkOnModal);
+	__f.fns_on_resize.push(frameWork.checkOnModal);
 
 	frameWork.resizeModal = (subcom,width,modal,args) => {
 		subcom = subcom || 'modal';
@@ -2533,7 +2533,7 @@ window.jQuery && jQuery.noConflict();
 		})
 		removeBodClass && $('body').removeClass('body-no-scroll');
 	
-		canRemoveHash && _.changeHash('');
+		canRemoveHash && __f.changeHash('');
 	};
 
 	frameWork.createBoard = (triggerer) => {
@@ -2547,7 +2547,7 @@ window.jQuery && jQuery.noConflict();
 	frameWork.checkOnBoard = () => {
 		frameWork.checkOnModal('board');
 	};
-	_.fns_on_resize.push(frameWork.checkOnBoard);
+	__f.fns_on_resize.push(frameWork.checkOnBoard);
 
 	frameWork.destroyBoard = (removeHash) => {
 		frameWork.destroyModal(removeHash, 'board');
@@ -2622,7 +2622,7 @@ window.jQuery && jQuery.noConflict();
 	};
 
 	//for component helpers that can go deep no matter wat but will always be The Children TM... which sounds incestuous oh god why
-	_.funFnForTrueChildren = (AncestorOfAllElm,selector,parentSelector,fn) => {
+	__f.funFnForTrueChildren = (AncestorOfAllElm,selector,parentSelector,fn) => {
 
 		if(
 			AncestorOfAllElm
@@ -2648,7 +2648,7 @@ window.jQuery && jQuery.noConflict();
 	frameWork.toggleAccordion = (triggerer, changeHash) => {
 		changeHash = changeHash != false;
 
-		const selector = _.getTheToggled(triggerer, 'accordion');
+		const selector = __f.getTheToggled(triggerer, 'accordion');
 
 		if (selector) {
 			let accClassAns = selector.parent().closest('.accordion-group,.accordion');
@@ -2671,7 +2671,7 @@ window.jQuery && jQuery.noConflict();
 				&& !accClassAns.is('.accordion-group-multiple')
 			) {
 
-				_.funFnForTrueChildren(
+				__f.funFnForTrueChildren(
 					accClassAns,'[data-toggle="accordion"],.accordion',
 					'.accordion-group',
 					(accBbies)=>{
@@ -2684,7 +2684,7 @@ window.jQuery && jQuery.noConflict();
 			if (
 				!(
 					selector.hasClass('accordion-mobile')
-					&& !frameWork.validateBr(_.br_mobile_max, 'below')
+					&& !frameWork.validateBr(__f.br_mobile_max, 'below')
 				)
 			) {
 				if (triggerer) {
@@ -2698,7 +2698,7 @@ window.jQuery && jQuery.noConflict();
 						changeHash: changeHash,
 					};
 
-					const args = _.parseArgs(arr, defaults);
+					const args = __f.parseArgs(arr, defaults);
 
 					if (
 						selector.hasClass('open')
@@ -2716,7 +2716,7 @@ window.jQuery && jQuery.noConflict();
 							selector.removeClass('open');
 
 							if (args.changeHash && selector.attr('id')) {
-								_.changeHash('');
+								__f.changeHash('');
 							}
 						}
 					} else {
@@ -2726,7 +2726,7 @@ window.jQuery && jQuery.noConflict();
 						selector.addClass('open');
 
 						if (args.changeHash && selector.attr('id')) {
-							_.changeHash(selector.attr('id'));
+							__f.changeHash(selector.attr('id'));
 						}
 					}
 				} else {
@@ -2763,26 +2763,26 @@ window.jQuery && jQuery.noConflict();
 			frameWork.initGrid($(grid));
 		});
 	};
-	_.fns_on_rightAway.push(frameWork.readyGrid);
-	_.fns_on_resize.push(frameWork.readyGrid);
+	__f.fns_on_rightAway.push(frameWork.readyGrid);
+	__f.fns_on_resize.push(frameWork.readyGrid);
 
 	frameWork.readyCalendar = () => {
 		$('.input-calendar').each((i, calendar) => {
 			frameWork.updateCalendar($(calendar));
 		});
 	};
-	_.fns_on_rightAway.push(frameWork.readyCalendar);
+	__f.fns_on_rightAway.push(frameWork.readyCalendar);
 
 	frameWork.readyTags = () => {
 		$('.input-tags').each((i, input) => {
 			frameWork.updateTags($(input));
 		});
 	};
-	_.fns_on_load.push(frameWork.readyTags);
-	_.fns_on_resize.push(frameWork.readyTags);
+	__f.fns_on_load.push(frameWork.readyTags);
+	__f.fns_on_resize.push(frameWork.readyTags);
 
 	// //will run. right away. boi
-	_.fns_on_rightAway.forEach((fn) => {
+	__f.fns_on_rightAway.forEach((fn) => {
 		fn();
 	});
 
@@ -2793,7 +2793,7 @@ window.jQuery && jQuery.noConflict();
 	});
 
 	$(document).ready(() => {
-		_.fns_on_ready.forEach((fn) => {
+		__f.fns_on_ready.forEach((fn) => {
 			fn();
 		});
 
@@ -2804,19 +2804,19 @@ window.jQuery && jQuery.noConflict();
 				switch (e.keyCode) {
 					//shift
 					case 16:
-						_.modifierKeys.shift = true;
+						__f.modifierKeys.shift = true;
 						break;
 					// control
 					case 17:
-						_.modifierKeys.ctrl = true;
+						__f.modifierKeys.ctrl = true;
 						break;
 					//op/alt
 					case 18:
-						_.modifierKeys.alt = true;
+						__f.modifierKeys.alt = true;
 						break;
 					//meta
 					case 91:
-						_.modifierKeys.meta = true;
+						__f.modifierKeys.meta = true;
 						break;
 				}
 			}
@@ -2829,19 +2829,19 @@ window.jQuery && jQuery.noConflict();
 					switch (e.keyCode) {
 						//shift
 						case 16:
-							_.modifierKeys.shift = false;
+							__f.modifierKeys.shift = false;
 							break;
 						// control
 						case 17:
-							_.modifierKeys.ctrl = false;
+							__f.modifierKeys.ctrl = false;
 							break;
 						//op/alt
 						case 18:
-							_.modifierKeys.alt = false;
+							__f.modifierKeys.alt = false;
 							break;
 						//meta
 						case 91:
-							_.modifierKeys.meta = false;
+							__f.modifierKeys.meta = false;
 							break;
 					}
 				}, 100);
@@ -2930,7 +2930,7 @@ window.jQuery && jQuery.noConflict();
 					}
 
 					const pattern = new RegExp(
-						_.datetimeFormatPresets.HumanDate.pattern
+						__f.datetimeFormatPresets.HumanDate.pattern
 					);
 
 					const isValid = pattern.test(v);
@@ -3015,7 +3015,7 @@ window.jQuery && jQuery.noConflict();
 							.closest('.input-tags-ui')
 							.children('.input-tags'),
 						inputUiIndex = triggerer.attr('data-value'),
-						currValue = _.tagsToParse(inputTags.val());
+						currValue = __f.tagsToParse(inputTags.val());
 
 					if(triggerer.text() && triggerer.text() != ''){
 						currValue.splice(
@@ -3027,12 +3027,12 @@ window.jQuery && jQuery.noConflict();
 
 					triggerer.text('');
 
-					// const newValue = _.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
+					// const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
 					frameWork.updateTags(
 						inputTags,
 						true,
-						_.tagsToVal(currValue)
+						__f.tagsToVal(currValue)
 					);
 				}
 			}
@@ -3053,7 +3053,7 @@ window.jQuery && jQuery.noConflict();
 							.closest('.input-tags-ui')
 							.children('.input-tags'),
 						inputUiIndex = triggerer.attr('data-value'),
-						currValue = _.tagsToParse(
+						currValue = __f.tagsToParse(
 							inputTags.attr('data-value-ui')
 						);
 
@@ -3072,7 +3072,7 @@ window.jQuery && jQuery.noConflict();
 
 						//comma
 						case 188:
-							if (!_.modifierIsActive()) {
+							if (!__f.modifierIsActive()) {
 								allowFilter = true;
 								e.preventDefault();
 								currValue.splice(
@@ -3090,7 +3090,7 @@ window.jQuery && jQuery.noConflict();
 						case 37:
 							if (!triggerer.text()) {
 								e.preventDefault();
-								_.arrMoveItem(
+								__f.arrMoveItem(
 									currValue,
 									parseInt(inputUiIndex),
 									parseInt(inputUiIndex) - 1 >= 0
@@ -3105,7 +3105,7 @@ window.jQuery && jQuery.noConflict();
 						case 39:
 							if (!triggerer.text()) {
 								e.preventDefault();
-								_.arrMoveItem(
+								__f.arrMoveItem(
 									currValue,
 									parseInt(inputUiIndex),
 									parseInt(inputUiIndex) + 1 <= currValue.length - 1
@@ -3140,7 +3140,7 @@ window.jQuery && jQuery.noConflict();
 							break;
 					}
 
-					newValue = _.tagsToVal(currValue);
+					newValue = __f.tagsToVal(currValue);
 
 					frameWork.updateTags(
 						inputTags,
@@ -3167,12 +3167,12 @@ window.jQuery && jQuery.noConflict();
 
 				if (!frameWork.isDisabled(inputTags)) {
 					const tagToRemove = triggerer.attr('data-value'),
-						currValue = _.tagsToParse(
+						currValue = __f.tagsToParse(
 							inputTags.attr('data-value-ui')
 						);
 					currValue.splice(parseInt(tagToRemove), 1);
 
-					const newValue = _.tagsToVal(currValue);
+					const newValue = __f.tagsToVal(currValue);
 
 					frameWork.updateTags(
 						inputTags,
@@ -3197,17 +3197,17 @@ window.jQuery && jQuery.noConflict();
 							.closest('.input-tags-ui')
 							.children('.input-tags'),
 						tagToEdit = triggerer.attr('data-value'),
-						currValue = _.tagsToParse(
+						currValue = __f.tagsToParse(
 							inputTags.attr('data-value-ui'),
 							false
 						);
 					currValue.splice(
 						parseInt(tagToEdit),
 						1,
-						_.tagsInputString
+						__f.tagsInputString
 					);
 
-					const uiValue = _.tagsToVal(currValue);
+					const uiValue = __f.tagsToVal(currValue);
 
 					frameWork.updateTags(
 						inputTags,
@@ -3246,7 +3246,7 @@ window.jQuery && jQuery.noConflict();
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					const selector = _.getTheToggled(triggerer, 'alert-close');
+					const selector = __f.getTheToggled(triggerer, 'alert-close');
 
 					if (selector) {
 						selector.hide().remove();
@@ -3285,8 +3285,8 @@ window.jQuery && jQuery.noConflict();
 					uiTrigger.blur();
 
 				} else {
-					const triggerer = _.getTheUiTriggerer(uiTrigger);
-					const selector = _.getTheToggled(
+					const triggerer = __f.getTheUiTriggerer(uiTrigger);
+					const selector = __f.getTheToggled(
 						triggerer,
 						'dropdown'
 					);
@@ -3311,9 +3311,9 @@ window.jQuery && jQuery.noConflict();
 				const uiTrigger = $(e.target);
 
 				if (!frameWork.isDisabled(uiTrigger)) {
-					const triggerer = _.getTheUiTriggerer(uiTrigger);
+					const triggerer = __f.getTheUiTriggerer(uiTrigger);
 
-					const selector = _.getTheToggled(triggerer,'dropdown');
+					const selector = __f.getTheToggled(triggerer,'dropdown');
 
 					setTimeout(() => {
 						if (selector) {
@@ -3338,8 +3338,8 @@ window.jQuery && jQuery.noConflict();
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(uiTrigger)) {
-					const triggerer = _.getTheUiTriggerer(uiTrigger),
-						selector = _.getTheToggled(triggerer, 'dropdown');
+					const triggerer = __f.getTheUiTriggerer(uiTrigger),
+						selector = __f.getTheToggled(triggerer, 'dropdown');
 
 					if (selector) {
 						frameWork.setDropdown(
@@ -3409,7 +3409,7 @@ window.jQuery && jQuery.noConflict();
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					_.toggleGroup(triggerer, 'btn');
+					__f.toggleGroup(triggerer, 'btn');
 				}
 			}
 		);
@@ -3424,7 +3424,7 @@ window.jQuery && jQuery.noConflict();
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					_.toggleGroup(
+					__f.toggleGroup(
 						triggerer,
 						'list',
 						null,
@@ -3656,7 +3656,7 @@ window.jQuery && jQuery.noConflict();
 				e.preventDefault();
 
 				if (!frameWork.isDisabled(triggerer)) {
-					const asset = _.getTheToggled(triggerer, 'asset');
+					const asset = __f.getTheToggled(triggerer, 'asset');
 					asset.remove();
 				}
 			}
@@ -3696,7 +3696,7 @@ window.jQuery && jQuery.noConflict();
 	});
 
 	$(window).on('load', () => {
-		_.fns_on_load.forEach((fn) => {
+		__f.fns_on_load.forEach((fn) => {
 			fn();
 		});
 
@@ -3710,7 +3710,7 @@ window.jQuery && jQuery.noConflict();
 			clearTimeout(resizeTimerInternal);
 
 			resizeTimerInternal = setTimeout(() => {
-				_.fns_on_resize.forEach((fn) => {
+				__f.fns_on_resize.forEach((fn) => {
 					fn();
 				});
 			}, 100);
@@ -3721,7 +3721,7 @@ window.jQuery && jQuery.noConflict();
 			clearTimeout(scrollTimerInternal);
 
 			scrollTimerInternal = setTimeout(() => {
-				_.fns_on_scroll.forEach((fn) => {
+				__f.fns_on_scroll.forEach((fn) => {
 					fn();
 				});
 			}, 100);
@@ -3736,5 +3736,5 @@ window.jQuery && jQuery.noConflict();
 
 	window.fw = frameWork;
 	window.frameWork = frameWork;
-	// window.frameWork.DEBUG = _;
+	// window.frameWork.DEBUG = __f;
 }(jQuery, window));
