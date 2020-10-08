@@ -1798,11 +1798,16 @@
 				theUi.input = document.createElement('span');
 				theUi.wrapper.appendChild(theUi.input);
 				theUi.input.contentEditable = true;
-				theUi.input.setAttribute(
-					'class',
-					`input ${__f.uiPrefix('tags')}input`
-				);
 				theUi.input = theUi.container.querySelector(`.${__f.uiPrefix('tags')}input`);
+
+				if (args.callbackOnKeyup) {
+					theUi.input.addEventListener('keyup', (event)=>{
+						const keyUpScript = eval(args.callbackOnKeyup);
+						if(keyUpScript){
+							keyUpScript();
+						};
+					});
+				}
 			}
 
 
@@ -1823,13 +1828,6 @@
 
 			if (frameWork.isDisabled(inputTags)) {
 				theUi.input.classList.add('disabled');
-			}
-
-			if (args.callbackOnKeyup) {
-				theUi.input.addEventListener('keyup', (event)=>{
-					const keyUpScript = eval(args.callbackOnKeyup);
-					if(keyUpScript) keyUpScript();
-				});
 			}
 
 			const oldTags = theUi.wrapper.querySelectorAll(`.${__f.uiPrefix('tags')}tag`);
@@ -3183,7 +3181,7 @@
 						inputUiIndex = triggerer.getAttribute('data-value'),
 						currValue = __f.tagsToParse(inputTags.value);
 
-					if(triggerer.text() && triggerer.text() != ''){
+					if(triggerer.innerText && triggerer.innerText != ''){
 						currValue.splice(
 							parseInt(inputUiIndex),
 							0,
