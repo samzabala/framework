@@ -2395,6 +2395,8 @@
 	__f.fns_on_resize.push(frameWork.positionToolTip);
 
 	frameWork.createModal = (triggerer, subcom) => {
+		frameWork.destroyToolTip();
+		
 		subcom = subcom || 'modal';
 		frameWork[subcom] = frameWork[subcom] || {};
 
