@@ -718,10 +718,11 @@
 		}
 	};
 
-	__f.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
+	__f.toggleGroup = (triggerer, prefix, siblingSelector, resetterClass, noActiveClass) => {
 		prefix = prefix || 'btn';
-		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
+		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
+		noActiveClass = noActiveClass || `${prefix}-group-allow-no-active`;
 
 		if(
 			triggerer.closest(siblingSelector)
@@ -764,10 +765,10 @@
 						.filter((butt) => {
 							return butt.classList.contains('active');
 						})
-							.length > 0
+						.length > 0
 				)
 				|| triggerer
-					.closest(`.${prefix}-group-toggle-allow-no-active`)
+					.closest(`.${noActiveClass}`)
 			) {
 				triggerer.classList.toggle('active');
 
@@ -940,24 +941,31 @@
 			parseFloat(
 				getComputedStyle(
 					document.documentElement
-				).getPropertyValue('--br-xs')
+				).getPropertyValue('--fw-br-xs')
 			)
 			|| 600,
 		sm:
 			parseFloat(
 				getComputedStyle(
 					document.documentElement
-				).getPropertyValue('--br-sm')
+				).getPropertyValue('--fw-br-sm')
 			)
 			|| 1200,
 		md:
 			parseFloat(
 				getComputedStyle(
 					document.documentElement
-				).getPropertyValue('--br-md')
+				).getPropertyValue('--fw-br-md')
 			)
 			|| 1600,
-		lg: 9999999,
+		lg:
+			parseFloat(
+				getComputedStyle(
+					document.documentElement
+				).getPropertyValue('--fw-br-lg')
+			)
+			|| 1800,
+		xl: 9999999,
 	};
 
 	__f.br_arr = Object.keys(__f.br_vals);
@@ -967,7 +975,7 @@
 		parseFloat(
 			getComputedStyle(
 				document.documentElement
-			).getPropertyValue('--mobile-br-max')
+			).getPropertyValue('--fw-br-mobile-max')
 		)
 		|| 'sm';
 
@@ -1797,8 +1805,12 @@
 			if (!theUi.input) {
 				theUi.input = document.createElement('span');
 				theUi.wrapper.appendChild(theUi.input);
+				theUi.input.setAttribute(
+					'class',
+					`${__f.uiPrefix('tags')}input`
+				);
 				theUi.input.contentEditable = true;
-				theUi.input = theUi.container.querySelector(`.${__f.uiPrefix('tags')}input`);
+				theUi.input = theUi.wrapper.querySelector(`.${__f.uiPrefix('tags')}input`);
 
 				if (args.callbackOnKeyup) {
 					theUi.input.addEventListener('keyup', (event)=>{
@@ -2837,7 +2849,19 @@
 					accClassAns,'[data-toggle="accordion"],.accordion',
 					'.accordion-group',
 					(accBbies)=>{
-						accBbies.classList.remove('open')
+						if(
+							(
+								triggerer
+								&& (accBbies !== triggerer)
+								&& (accBbies !== selector)
+							)
+							|| (
+								!triggerer
+								&& (accBbies !== selector)
+							)
+						){
+							accBbies.classList.remove('open')
+						}
 					}
 				);
 			}
@@ -3625,8 +3649,9 @@
 					__f.toggleGroup(
 						triggerer,
 						'list',
+						'li, .list-group-item',
 						null,
-						'li, .list-group-item'
+						'list-group-toggle-allow-no-active'
 					);
 				}
 			}

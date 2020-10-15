@@ -1,5 +1,5 @@
 'use strict';
-window.jQuery && jQuery.noConflict();
+this.jQuery && this.jQuery.noConflict();
 (function ($, window) {
 	console.info('Framework plugged script is initiated');
 
@@ -608,10 +608,11 @@ window.jQuery && jQuery.noConflict();
 		}
 	};
 
-	__f.toggleGroup = (triggerer, prefix, resetterClass, siblingSelector) => {
+	__f.toggleGroup = (triggerer, prefix, siblingSelector, resetterClass, noActiveClass) => {
 		prefix = prefix || 'btn';
-		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 		siblingSelector = siblingSelector || `.${prefix}`;
+		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
+		noActiveClass = noActiveClass || `${prefix}-group-allow-no-active`;
 
 		if(
 			triggerer.closest(siblingSelector).length
@@ -633,7 +634,7 @@ window.jQuery && jQuery.noConflict();
 					|| triggerer.hasClass(resetterClass)
 			) {
 				triggerer
-					.siblings(siblingSelector)
+					.siblings(`.${siblingSelector}`)
 					.removeClass('active');
 			}
 
@@ -644,11 +645,13 @@ window.jQuery && jQuery.noConflict();
 							.length
 					&& triggerer
 						.siblings('.active')
-							.length > 0
+						.length > 0
 				)
-				|| triggerer
-				.closest(`.${prefix}-group-toggle-allow-no-active`)
-					.length
+				|| (
+					triggerer
+						.closest(`.${noActiveClass}`)
+						.length
+					)
 					
 			) {
 				triggerer.toggleClass('active');
@@ -814,24 +817,31 @@ window.jQuery && jQuery.noConflict();
 			parseFloat(
 				getComputedStyle(
 					document.documentElement
-				).getPropertyValue('--br-xs')
+				).getPropertyValue('--fw-br-xs')
 			)
 			|| 600,
 		sm:
 			parseFloat(
 				getComputedStyle(
 					document.documentElement
-				).getPropertyValue('--br-sm')
+				).getPropertyValue('--fw-br-sm')
 			)
 			|| 1200,
 		md:
 			parseFloat(
 				getComputedStyle(
 					document.documentElement
-				).getPropertyValue('--br-md')
+				).getPropertyValue('--fw-br-md')
 			)
 			|| 1600,
-		lg: 9999999,
+		lg:
+			parseFloat(
+				getComputedStyle(
+					document.documentElement
+				).getPropertyValue('--fw-br-lg')
+			)
+			|| 1800,
+		xl: 9999999,
 	};
 
 	__f.br_arr = Object.keys(__f.br_vals);
@@ -841,7 +851,7 @@ window.jQuery && jQuery.noConflict();
 		parseFloat(
 			getComputedStyle(
 				document.documentElement
-			).getPropertyValue('--mobile-br-max')
+			).getPropertyValue('--fw-br-mobile-max')
 		)
 		|| 'sm';
 
@@ -2679,7 +2689,19 @@ window.jQuery && jQuery.noConflict();
 					accClassAns,'[data-toggle="accordion"],.accordion',
 					'.accordion-group',
 					(accBbies)=>{
-						accBbies.removeClass('open')
+						if(
+							(
+								triggerer
+								&& !accBbies.is(triggerer)
+								&& !accBbies.is(selector)
+							)
+							|| (
+								!triggerer
+								&& !accBbies.is(selector)
+							)
+						){
+							accBbies.removeClass('open');
+						}
 					}
 				);
 			}
@@ -2706,7 +2728,7 @@ window.jQuery && jQuery.noConflict();
 
 					if (
 						selector.hasClass('open')
-						&& triggerer.hasClass('open')
+						|| triggerer.hasClass('open')
 					) {
 						if (
 							!accClassAns
@@ -3431,8 +3453,9 @@ window.jQuery && jQuery.noConflict();
 					__f.toggleGroup(
 						triggerer,
 						'list',
+						'li, .list-group-item',
 						null,
-						'li, .list-group-item'
+						'list-group-toggle-allow-no-active'
 					);
 				}
 			}
@@ -3741,4 +3764,4 @@ window.jQuery && jQuery.noConflict();
 	window.fw = frameWork;
 	window.frameWork = frameWork;
 	// window.frameWork.DEBUG = __f;
-}(jQuery, window));
+}(jQuery, this));
