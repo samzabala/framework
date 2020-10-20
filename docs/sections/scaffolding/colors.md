@@ -69,32 +69,31 @@ These colors are dependent of custom palette [declared before them by default](.
 
 ### Scaffolding / Inverse Theme
 
-*	**Theme Color `$theme-color`**
+*	**Theme Color `$brand-theme-color`**
 
 	body color. defaults to `$brand-color-base`.
 
 	Defaults to `$brand-color-background` on inverse theme
 
-*	**Theme Color Contrast `$theme-color-contrast`**
+*	**Theme Color Contrast `$brand-theme-color-contrast`**
 
 	slight variation of body color. defaults to `$brand-color-base-alt`.
 
 	Defaults to `$brand-color-background-alt` on inverse theme
 
-*	**Theme Background `$theme-background`**
+*	**Theme Background `$brand-theme-background`**
 
 	body background. defaults to `$brand-background-base`.
 
 	Defaults to `$brand-color-base-alt` on inverse theme
 
-*	**Theme Color Contrast `$theme-background-contrast`**
+*	**Theme Color Contrast `$brand-theme-background-contrast`**
 
 	slight variation of body background. defaults to `$brand-background-base-alt`.
 
 	Defaults to `$brand-color-base` on inverse theme
 
 Color and contrast palettes interchange on inverse theme by default. to see this effect, add `.theme-inverse` to the `<html>` tag
-
 
 
 ## Color tags
@@ -107,12 +106,13 @@ These are valid color tags for all javascript arguments or data attributes
 *	`caution`
 *	`success`
 
-These color tags are valid except for [btn](../components/button.md), [forms](../components/forms.md) and [alerts](../components/alert.md)
+These color tags are valid except for [btn](../components/button.md), [btn](../components/badges.md), [forms](../components/forms.md) and [alerts](../components/alert.md). basically anything that javascript has fucked, or the component has multiple color based setup, this bitch is never gonna happen
 *	`intensity-1`
 *	`intensity-2`
 *	`intensity-3`
 *	`intensity-4`
 *	`intensity-5`
+
 
 ## Background helper classes
 

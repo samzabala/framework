@@ -48,21 +48,9 @@ $calculated-symbol-caret-width:$symbol-caret-width;
 	$calculated-symbol-caret-width: em($calculated-symbol-caret-width / $body-font-size);
 }
 
-//for helpers
-$calculated-brand-color-declarations : (
-	// base: $brand-color-base,
-	// background: $brand-color-background,
-	primary: $brand-color-primary,
-	secondary: $brand-color-secondary,
-	accent: $brand-color-accent,
-	neutral: $brand-color-neutral,
-	success: $brand-color-success,
-	caution: $brand-color-caution,
-	error: $brand-color-error,
-);
 
 
-$calculated-brand-color-declarations-for-helpers : (
+$calculated-color-tags: (
 	base: $brand-color-base,
 	background: $brand-color-background,
 	primary: $brand-color-primary,
@@ -72,14 +60,294 @@ $calculated-brand-color-declarations-for-helpers : (
 	success: $brand-color-success,
 	caution: $brand-color-caution,
 	error: $brand-color-error,
+	intensity-1: $brand-color-intensity-1,
+	intensity-2: $brand-color-intensity-2,
+	intensity-3: $brand-color-intensity-3,
+	intensity-4: $brand-color-intensity-4,
+	intensity-5: $brand-color-intensity-5
+);
+
+
+$calculated-color-vars: (
+	base: $var-color-base,
+	background: $var-color-background,
+	primary: $var-color-primary,
+	secondary: $var-color-secondary,
+	accent: $var-color-accent,
+	neutral: $var-color-neutral,
+	success: $var-color-success,
+	caution: $var-color-caution,
+	error: $var-color-error,
+	intensity-1: $var-color-intensity-1,
+	intensity-2: $var-color-intensity-2,
+	intensity-3: $var-color-intensity-3,
+	intensity-4: $var-color-intensity-4,
+	intensity-5: $var-color-intensity-5
+);
+
+$calculated-color-variations:(
+	
+	base:(
+		alt: $brand-color-base-alt,
+		alpha-1: rgba($brand-color-base,.1),
+		alpha-2: rgba($brand-color-base,.2),
+		alpha-3: rgba($brand-color-base,.3),
+		alpha-4: rgba($brand-color-base,.4),
+		alpha-5: rgba($brand-color-base,.5),
+		alpha-6: rgba($brand-color-base,.6),
+		alpha-7: rgba($brand-color-base,.7),
+		alpha-8: rgba($brand-color-base,.8),
+		alpha-9: rgba($brand-color-base,.9),
+	),
+	background: (
+		alt: $brand-color-background-alt,
+		alpha-1: rgba($brand-color-background,.1),
+		alpha-2: rgba($brand-color-background,.2),
+		alpha-3: rgba($brand-color-background,.3),
+		alpha-4: rgba($brand-color-background,.4),
+		alpha-5: rgba($brand-color-background,.5),
+		alpha-6: rgba($brand-color-background,.6),
+		alpha-7: rgba($brand-color-background,.7),
+		alpha-8: rgba($brand-color-background,.8),
+		alpha-9: rgba($brand-color-background,.9),
+	),
+	primary: (
+		light: $brand-color-primary-light,
+		lighter: $brand-color-primary-lighter,
+		lightest: $brand-color-primary-lightest,
+		dark: $brand-color-primary-dark,
+		darker: $brand-color-primary-darker,
+		darkest: $brand-color-primary-darkest,
+		alpha-1: rgba($brand-color-primary,.1),
+		alpha-2: rgba($brand-color-primary,.2),
+		alpha-3: rgba($brand-color-primary,.3),
+		alpha-4: rgba($brand-color-primary,.4),
+		alpha-5: rgba($brand-color-primary,.5),
+		alpha-6: rgba($brand-color-primary,.6),
+		alpha-7: rgba($brand-color-primary,.7),
+		alpha-8: rgba($brand-color-primary,.8),
+		alpha-9: rgba($brand-color-primary,.9),
+	),
+	secondary: (
+		light: $brand-color-secondary-light,
+		lighter: $brand-color-secondary-lighter,
+		lightest: $brand-color-secondary-lightest,
+		dark: $brand-color-secondary-dark,
+		darker: $brand-color-secondary-darker,
+		darkest: $brand-color-secondary-darkest,
+		alpha-1: rgba($brand-color-secondary,.1),
+		alpha-2: rgba($brand-color-secondary,.2),
+		alpha-3: rgba($brand-color-secondary,.3),
+		alpha-4: rgba($brand-color-secondary,.4),
+		alpha-5: rgba($brand-color-secondary,.5),
+		alpha-6: rgba($brand-color-secondary,.6),
+		alpha-7: rgba($brand-color-secondary,.7),
+		alpha-8: rgba($brand-color-secondary,.8),
+		alpha-9: rgba($brand-color-secondary,.9),
+	),
+	accent: (
+		light: $brand-color-accent-light,
+		lighter: $brand-color-accent-lighter,
+		lightest: $brand-color-accent-lightest,
+		dark: $brand-color-accent-dark,
+		darker: $brand-color-accent-darker,
+		darkest: $brand-color-accent-darkest,
+		alpha-1: rgba($brand-color-accent,.1),
+		alpha-2: rgba($brand-color-accent,.2),
+		alpha-3: rgba($brand-color-accent,.3),
+		alpha-4: rgba($brand-color-accent,.4),
+		alpha-5: rgba($brand-color-accent,.5),
+		alpha-6: rgba($brand-color-accent,.6),
+		alpha-7: rgba($brand-color-accent,.7),
+		alpha-8: rgba($brand-color-accent,.8),
+		alpha-9: rgba($brand-color-accent,.9),
+	),
+	neutral: (
+		light: $brand-color-neutral-light,
+		lighter: $brand-color-neutral-lighter,
+		lightest: $brand-color-neutral-lightest,
+		dark: $brand-color-neutral-dark,
+		darker: $brand-color-neutral-darker,
+		darkest: $brand-color-neutral-darkest,
+		alpha-1: rgba($brand-color-neutral,.1),
+		alpha-2: rgba($brand-color-neutral,.2),
+		alpha-3: rgba($brand-color-neutral,.3),
+		alpha-4: rgba($brand-color-neutral,.4),
+		alpha-5: rgba($brand-color-neutral,.5),
+		alpha-6: rgba($brand-color-neutral,.6),
+		alpha-7: rgba($brand-color-neutral,.7),
+		alpha-8: rgba($brand-color-neutral,.8),
+		alpha-9: rgba($brand-color-neutral,.9),
+	),
+	success: (
+		light: $brand-color-success-light,
+		lighter: $brand-color-success-lighter,
+		lightest: $brand-color-success-lightest,
+		dark: $brand-color-success-dark,
+		darker: $brand-color-success-darker,
+		darkest: $brand-color-success-darkest,
+		alpha-1: rgba($brand-color-success,.1),
+		alpha-2: rgba($brand-color-success,.2),
+		alpha-3: rgba($brand-color-success,.3),
+		alpha-4: rgba($brand-color-success,.4),
+		alpha-5: rgba($brand-color-success,.5),
+		alpha-6: rgba($brand-color-success,.6),
+		alpha-7: rgba($brand-color-success,.7),
+		alpha-8: rgba($brand-color-success,.8),
+		alpha-9: rgba($brand-color-success,.9),
+	),
+	caution: (
+		light: $brand-color-caution-light,
+		lighter: $brand-color-caution-lighter,
+		lightest: $brand-color-caution-lightest,
+		dark: $brand-color-caution-dark,
+		darker: $brand-color-caution-darker,
+		darkest: $brand-color-caution-darkest,
+		alpha-1: rgba($brand-color-caution,.1),
+		alpha-2: rgba($brand-color-caution,.2),
+		alpha-3: rgba($brand-color-caution,.3),
+		alpha-4: rgba($brand-color-caution,.4),
+		alpha-5: rgba($brand-color-caution,.5),
+		alpha-6: rgba($brand-color-caution,.6),
+		alpha-7: rgba($brand-color-caution,.7),
+		alpha-8: rgba($brand-color-caution,.8),
+		alpha-9: rgba($brand-color-caution,.9),
+	),
+	error: (
+		light: $brand-color-error-light,
+		lighter: $brand-color-error-lighter,
+		lightest: $brand-color-error-lightest,
+		dark: $brand-color-error-dark,
+		darker: $brand-color-error-darker,
+		darkest: $brand-color-error-darkest,
+		alpha-1: rgba($brand-color-error,.1),
+		alpha-2: rgba($brand-color-error,.2),
+		alpha-3: rgba($brand-color-error,.3),
+		alpha-4: rgba($brand-color-error,.4),
+		alpha-5: rgba($brand-color-error,.5),
+		alpha-6: rgba($brand-color-error,.6),
+		alpha-7: rgba($brand-color-error,.7),
+		alpha-8: rgba($brand-color-error,.8),
+		alpha-9: rgba($brand-color-error,.9),
+	),
+	intensity-1: (
+		light: $brand-color-intensity-1-light,
+		lighter: $brand-color-intensity-1-lighter,
+		lightest: $brand-color-intensity-1-lightest,
+		dark: $brand-color-intensity-1-dark,
+		darker: $brand-color-intensity-1-darker,
+		darkest: $brand-color-intensity-1-darkest,
+		alpha-1: rgba($brand-color-intensity-1,.1),
+		alpha-2: rgba($brand-color-intensity-1,.2),
+		alpha-3: rgba($brand-color-intensity-1,.3),
+		alpha-4: rgba($brand-color-intensity-1,.4),
+		alpha-5: rgba($brand-color-intensity-1,.5),
+		alpha-6: rgba($brand-color-intensity-1,.6),
+		alpha-7: rgba($brand-color-intensity-1,.7),
+		alpha-8: rgba($brand-color-intensity-1,.8),
+		alpha-9: rgba($brand-color-intensity-1,.9),
+	),
+	intensity-2: (
+		light: $brand-color-intensity-2-light,
+		lighter: $brand-color-intensity-2-lighter,
+		lightest: $brand-color-intensity-2-lightest,
+		dark: $brand-color-intensity-2-dark,
+		darker: $brand-color-intensity-2-darker,
+		darkest: $brand-color-intensity-2-darkest,
+		alpha-1: rgba($brand-color-intensity-2,.1),
+		alpha-2: rgba($brand-color-intensity-2,.2),
+		alpha-3: rgba($brand-color-intensity-2,.3),
+		alpha-4: rgba($brand-color-intensity-2,.4),
+		alpha-5: rgba($brand-color-intensity-2,.5),
+		alpha-6: rgba($brand-color-intensity-2,.6),
+		alpha-7: rgba($brand-color-intensity-2,.7),
+		alpha-8: rgba($brand-color-intensity-2,.8),
+		alpha-9: rgba($brand-color-intensity-2,.9),
+	),
+	intensity-3: (
+		light: $brand-color-intensity-3-light,
+		lighter: $brand-color-intensity-3-lighter,
+		lightest: $brand-color-intensity-3-lightest,
+		dark: $brand-color-intensity-3-dark,
+		darker: $brand-color-intensity-3-darker,
+		darkest: $brand-color-intensity-3-darkest,
+		alpha-1: rgba($brand-color-intensity-3,.1),
+		alpha-2: rgba($brand-color-intensity-3,.2),
+		alpha-3: rgba($brand-color-intensity-3,.3),
+		alpha-4: rgba($brand-color-intensity-3,.4),
+		alpha-5: rgba($brand-color-intensity-3,.5),
+		alpha-6: rgba($brand-color-intensity-3,.6),
+		alpha-7: rgba($brand-color-intensity-3,.7),
+		alpha-8: rgba($brand-color-intensity-3,.8),
+		alpha-9: rgba($brand-color-intensity-3,.9),
+	),
+	intensity-4: (
+		light: $brand-color-intensity-4-light,
+		lighter: $brand-color-intensity-4-lighter,
+		lightest: $brand-color-intensity-4-lightest,
+		dark: $brand-color-intensity-4-dark,
+		darker: $brand-color-intensity-4-darker,
+		darkest: $brand-color-intensity-4-darkest,
+		alpha-1: rgba($brand-color-intensity-4,.1),
+		alpha-2: rgba($brand-color-intensity-4,.2),
+		alpha-3: rgba($brand-color-intensity-4,.3),
+		alpha-4: rgba($brand-color-intensity-4,.4),
+		alpha-5: rgba($brand-color-intensity-4,.5),
+		alpha-6: rgba($brand-color-intensity-4,.6),
+		alpha-7: rgba($brand-color-intensity-4,.7),
+		alpha-8: rgba($brand-color-intensity-4,.8),
+		alpha-9: rgba($brand-color-intensity-4,.9),
+	),
+	intensity-5: (
+		light: $brand-color-intensity-5-light,
+		lighter: $brand-color-intensity-5-lighter,
+		lightest: $brand-color-intensity-5-lightest,
+		dark: $brand-color-intensity-5-dark,
+		darker: $brand-color-intensity-5-darker,
+		darkest: $brand-color-intensity-5-darkest,
+		alpha-1: rgba($brand-color-intensity-5,.1),
+		alpha-2: rgba($brand-color-intensity-5,.2),
+		alpha-3: rgba($brand-color-intensity-5,.3),
+		alpha-4: rgba($brand-color-intensity-5,.4),
+		alpha-5: rgba($brand-color-intensity-5,.5),
+		alpha-6: rgba($brand-color-intensity-5,.6),
+		alpha-7: rgba($brand-color-intensity-5,.7),
+		alpha-8: rgba($brand-color-intensity-5,.8),
+		alpha-9: rgba($brand-color-intensity-5,.9),
+	),
+);
+
+
+//for helpers
+$calculated-brand-color-declarations-for-components: (
+	primary: $var-color-primary,
+	secondary: $var-color-secondary,
+	accent: $var-color-accent,
+	neutral: $var-color-neutral,
+	success: $var-color-success,
+	caution: $var-color-caution,
+	error: $var-color-error,
+);
+
+
+$calculated-brand-color-declarations-for-helpers : (
+	base: $var-color-base,
+	background: $var-color-background,
+	primary: $var-color-primary,
+	secondary: $var-color-secondary,
+	accent: $var-color-accent,
+	neutral: $var-color-neutral,
+	success: $var-color-success,
+	caution: $var-color-caution,
+	error: $var-color-error,
 );
 
 $calculated-color-brand-intensity: (
-	$brand-color-intensity-1,
-	$brand-color-intensity-2,
-	$brand-color-intensity-3,
-	$brand-color-intensity-4,
-	$brand-color-intensity-5
+	$var-color-intensity-1,
+	$var-color-intensity-2,
+	$var-color-intensity-3,
+	$var-color-intensity-4,
+	$var-color-intensity-5
 );
 
 $calculated-zone-schemes: (
@@ -245,40 +513,40 @@ $calculated-alert-schemes: (
 // not the palettes good lord the design is a god
 $calculated-btn-theme-relation: (
 	theme : (
-		color: var(--theme-background),
-		background: var(--theme-color),
+		color: $var-theme-background,
+		background: $var-theme-color,
 		border: transparent
 	),
 
 	theme-polar : (
-		color: var(--theme-color),
-		background: var(--theme-background),
+		color: $var-theme-color,
+		background: $var-theme-background,
 		border: transparent
 	),
 
 
 	theme-outline : (
-		color: var(--theme-color),
+		color: $var-theme-color,
 		background: transparent,
-		border: var(--theme-color)
+		border: $var-theme-color
 	),
 
 	theme-polar-outline : (
-		color: var(--theme-background),
+		color: $var-theme-background,
 		background: transparent,
-		border: var(--theme-background)
+		border: $var-theme-background
 	),
 
 
 	theme-contrast : (
-		color: var(--theme-background-contrast),
-		background: var(--theme-color-contrast),
+		color: $var-theme-background-contrast,
+		background: $var-theme-color-contrast,
 		border: transparent
 	),
 
 	theme-polar-contrast : (
-		color: var(--theme-color-contrast),
-		background: var(--theme-background-contrast),
+		color: $var-theme-color-contrast,
+		background: $var-theme-background-contrast,
 		border: transparent
 	),
 
@@ -465,141 +733,132 @@ $calculated-btn-schemes: (
 	//schemes tthat vars or hooman shouldnt have control over
 	
 		primary-outline: (
-
 			hover: (
-				background: $brand-color-primary-light,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-primary-hover,
+				border: $btn-border-primary-hover,
+				color: $btn-color-primary-hover,
 			),
 
 			active: (
-				background: $brand-color-primary,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-primary-active,
+				border: $btn-border-primary-active,
+				color: $btn-color-primary-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-primary,
-				color: $brand-color-primary,
+				border: $var-color-primary,
+				color: $var-color-primary,
 			)
 		),
 		secondary-outline: (
-
 			hover: (
-				background: $brand-color-secondary-light,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-secondary-hover,
+				border: $btn-border-secondary-hover,
+				color: $btn-color-secondary-hover,
 			),
 
 			active: (
-				background: $brand-color-secondary,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-secondary-active,
+				border: $btn-border-secondary-active,
+				color: $btn-color-secondary-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-secondary,
-				color: $brand-color-secondary,
+				border: $var-color-secondary,
+				color: $var-color-secondary,
 			)
 		),
 
 		accent-outline: (
-
 			hover: (
-				background: $brand-color-accent-light,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-accent-hover,
+				border: $btn-border-accent-hover,
+				color: $btn-color-accent-hover,
 			),
 
 			active: (
-				background: $brand-color-accent,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-accent-active,
+				border: $btn-border-accent-active,
+				color: $btn-color-accent-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-accent,
-				color: $brand-color-accent,
+				border: $var-color-accent,
+				color: $var-color-accent,
 			)
 		),
 		neutral-outline: (
-
 			hover: (
-				background: $brand-color-neutral-light,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-neutral-hover,
+				border: $btn-border-neutral-hover,
+				color: $btn-color-neutral-hover,
 			),
 
 			active: (
-				background: $brand-color-neutral,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-neutral-active,
+				border: $btn-border-neutral-active,
+				color: $btn-color-neutral-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-neutral,
-				color: $brand-color-neutral,
+				border: $var-color-neutral,
+				color: $var-color-neutral,
 			)
 		),
 		success-outline: (
-
 			hover: (
-				background: $brand-color-success-light,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-success-hover,
+				border: $btn-border-success-hover,
+				color: $btn-color-success-hover,
 			),
 
 			active: (
-				background: $brand-color-success,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-success-active,
+				border: $btn-border-success-active,
+				color: $btn-color-success-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-success,
-				color: $brand-color-success,
+				border: $var-color-success,
+				color: $var-color-success,
 			)
 		),
 		caution-outline: (
-
 			hover: (
-				background: $brand-color-caution-light,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-caution-hover,
+				border: $btn-border-caution-hover,
+				color: $btn-color-caution-hover,
 			),
 
 			active: (
-				background: $brand-color-caution,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-caution-active,
+				border: $btn-border-caution-active,
+				color: $btn-color-caution-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-caution,
-				color: $brand-color-caution,
+				border: $var-color-caution,
+				color: $var-color-caution,
 			)
 		),
 		error-outline:(
-
 			hover: (
-				background: $brand-color-error,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-error-hover,
+				border: $btn-border-error-hover,
+				color: $btn-color-error-hover,
 			),
 
 			active: (
-				background: $brand-color-error,
-				border: transparent,
-				color: $brand-color-background,
+				background: $btn-background-error-active,
+				border: $btn-border-error-active,
+				color: $btn-color-error-active,
 			),
 			init: (
 				background: transparent,
-				border: $brand-color-error,
-				color: $brand-color-error,
+				border: $var-color-error,
+				color: $var-color-error,
 			)
 		),
-
-
 		theme: (
 			hover: map-get($calculated-btn-theme-relation,theme-contrast),
 			active: map-get($calculated-btn-theme-relation,theme-contrast),
@@ -824,21 +1083,21 @@ $calculated-highlight-schemes-color: (
 
 
 $calculated-asset-palettes: (
-	default: $asset-image-default-palette,
-	audio: $asset-image-audio-palette,
-	code: $asset-image-code-palette,
-	text: $asset-image-text-palette,
-	doc: $asset-image-doc-palette,
-	font: $asset-image-font-palette,
-	img: $asset-image-img-palette,
-	ps: $asset-image-ps-palette,
-	ai: $asset-image-ai-palette,
-	xd: $asset-image-xd-palette,
-	pdf: $asset-image-pdf-palette,
-	id: $asset-image-id-palette,
-	table: $asset-image-table-palette,
-	video: $asset-image-video-palette,
-	zip: $asset-image-zip-palette,
+	default: $asset-image-default-palette-tag,
+	audio: $asset-image-audio-palette-tag,
+	code: $asset-image-code-palette-tag,
+	text: $asset-image-text-palette-tag,
+	doc: $asset-image-doc-palette-tag,
+	font: $asset-image-font-palette-tag,
+	img: $asset-image-img-palette-tag,
+	ps: $asset-image-ps-palette-tag,
+	ai: $asset-image-ai-palette-tag,
+	xd: $asset-image-xd-palette-tag,
+	pdf: $asset-image-pdf-palette-tag,
+	id: $asset-image-id-palette-tag,
+	table: $asset-image-table-palette-tag,
+	video: $asset-image-video-palette-tag,
+	zip: $asset-image-zip-palette-tag,
 );
 
 

@@ -130,10 +130,10 @@ These classes will set the proper color based off of html tag having the `.theme
 
 | Class 							| Set color | Set color when `.theme-inverse is active` 				|
 | --								| --		| --														|
-| **`.background-theme`** 			| `$theme-background`			| `$theme-background-inverse` 			|
-| **`.background-theme-contrast`** 	| `$theme-background-contrast`	| `$theme-background-contrast-inverse`	|
-| **`.background-theme-polar`** 			| `$theme-color`				| `$theme-color-inverse`				|
-| **`.background-theme-polar-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
+| **`.background-theme`** 			| `$brand-theme-background`			| `$brand-theme-background-inverse` 			|
+| **`.background-theme-contrast`** 	| `$brand-theme-background-contrast`	| `$brand-theme-background-contrast-inverse`	|
+| **`.background-theme-polar`** 			| `$brand-theme-color`				| `$brand-theme-color-inverse`				|
+| **`.background-theme-polar-contrast`** 	| `$brand-theme-color-contrast`		| `$brand-theme-color-contrast-inverse`		|
 
 To set any background classes only on pseudo classes or interactive conditions, append whichever is needed
 
@@ -144,10 +144,10 @@ These classes will set the proper color based off of html tag having the `.theme
 
 | Class							 | Set color | Set color when `.theme-inverse is active`				|
 | --							| --		| --														|
-| **`.color-theme`**			| `$theme-color` 				| `$theme-color-inverse`				|
-| **`.color-theme-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
-| **`.color-theme-polar`** 			| `$theme-background`			| `$theme-background-inverse`			|
-| **`.color-theme-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
+| **`.color-theme`**			| `$brand-theme-color` 				| `$brand-theme-color-inverse`				|
+| **`.color-theme-contrast`** 	| `$brand-theme-color-contrast`		| `$brand-theme-color-contrast-inverse`		|
+| **`.color-theme-polar`** 			| `$brand-theme-background`			| `$brand-theme-background-inverse`			|
+| **`.color-theme-polar-contrast`** 	| `$brand-theme-background-contrast` 	| `$brand-theme-background-contrast-inverse` 	|
 
 
 #### Border color
@@ -156,10 +156,10 @@ These classes will set the proper color based off of html tag having the `.theme
 
 | Class							 | Set color | Set color when `.theme-inverse is active`				|
 | --							| --		| --														|
-| **`.border-color-theme`**			| `$theme-color` 				| `$theme-color-inverse`				|
-| **`.border-color-theme-contrast`** 	| `$theme-color-contrast`		| `$theme-color-contrast-inverse`		|
-| **`.border-color-theme-polar`** 			| `$theme-background`			| `$theme-background-inverse`			|
-| **`.border-color-theme-polar-contrast`** 	| `$theme-background-contrast` 	| `$theme-background-contrast-inverse` 	|
+| **`.border-color-theme`**			| `$brand-theme-color` 				| `$brand-theme-color-inverse`				|
+| **`.border-color-theme-contrast`** 	| `$brand-theme-color-contrast`		| `$brand-theme-color-contrast-inverse`		|
+| **`.border-color-theme-polar`** 			| `$brand-theme-background`			| `$brand-theme-background-inverse`			|
+| **`.border-color-theme-polar-contrast`** 	| `$brand-theme-background-contrast` 	| `$brand-theme-background-contrast-inverse` 	|
 
 
 

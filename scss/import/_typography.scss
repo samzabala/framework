@@ -548,7 +548,7 @@ blockquote {
 	margin-top: $calculated-body-blockquote-margin-y;
 	padding-bottom: $calculated-body-blockquote-padding-y;
 	padding-top: $calculated-body-blockquote-padding-y;
-	border-left: $body-blockquote-border-width solid $brand-color-primary;
+	border-left: $body-blockquote-border-width solid $body-blockquote-border-color;
 
 	& > * {
 		font-size: inherit;

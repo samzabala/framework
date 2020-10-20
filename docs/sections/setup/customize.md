@@ -61,4 +61,14 @@ window.jQuery && jQuery.noConflict();
 
 ```
 
+
+
+# Native CSS variables
+
+### `**$variable-prefix**`
+
+Prefix for them native bois
+
+By default the framework uses native css `var()` for `$brand-` and `$brand-theme-` variables because fuck yo old ass kompyuter. these are done so by declaring via sass `$var-#{CSS VAR NAME WITHOUT $variable-prefix }`. To declare static values declared through the `$brand-` variables instead, use that shit idk
+
 [Back to TOC](../../../readme.md)

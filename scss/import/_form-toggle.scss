@@ -180,7 +180,7 @@ $prefix: '.input';
 
 
 
-				@each $tag,$color in $calculated-brand-color-declarations {
+				@each $tag,$color in $calculated-brand-color-declarations-for-components {
 					@at-root &#{$prefix}-#{$tag},
 					#{$prefix}-#{$tag} & {
 						color: $color;

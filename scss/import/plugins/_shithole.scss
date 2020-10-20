@@ -1096,12 +1096,12 @@
 			}
 			
 			@if $autoprefix == true {
-				@-webkit-keyframes #{$keyframe-name} {
+				#{'@-webkit-keyframes'} #{$keyframe-name} {
 					@include internal__keyframes_setup(map-get($opts,frames));
 				}
 			}
 
-			@keyframes #{$keyframe-name} {
+			#{'@keyframes'} #{$keyframe-name} {
 				@include internal__keyframes_setup(map-get($opts,frames));
 			}
 
@@ -1124,12 +1124,12 @@
 
 			
 				@if $autoprefix == true {
-					@-webkit-keyframes #{$keyframe-name + '-reverse'} {
+					#{'@-webkit-keyframes'} #{$keyframe-name + '-reverse'} {
 						@include internal__keyframes_setup($reverse-frames);
 					}
 				}
 
-				@keyframes #{$keyframe-name + '-reverse'} {
+				#{'@keyframes'} #{$keyframe-name + '-reverse'} {
 					@include internal__keyframes_setup($reverse-frames);
 				}
 			}

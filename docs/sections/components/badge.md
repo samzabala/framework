@@ -18,11 +18,6 @@ To color the badges, add `.badge-[color-tag]`
 *	**`.badge-error`**
 *	**`.badge-caution`**
 *	**`.badge-success`**
-*	**`.badge-intensity-1`**
-*	**`.badge-intensity-2`**
-*	**`.badge-intensity-3`**
-*	**`.badge-intensity-4`**
-*	**`.badge-intensity-5`**
 
 More info on [color tags](../scaffolding/colors.md#color-tags)
 

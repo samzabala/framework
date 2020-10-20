@@ -1,16 +1,15 @@
-@import 'import/_reset';
+
 
 	//vars
 		@import 'import/_vars';
 		
 	//plugins
 		@import 'import/plugins/_shithole';
-
-	//mixins 
 		@import 'import/_internal-vars';
 		@import 'import/_mixins';
 	
 	//to cascade
+		@import 'import/_reset';
 		@import 'import/_scaffolding';
 		@import 'import/_typography';
 		@import 'import/_images';

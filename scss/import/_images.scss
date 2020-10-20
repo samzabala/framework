@@ -39,8 +39,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme,
 		fill,
-		$theme-color,
-		$theme-color-inverse
+		$var-theme-color
 	);
 
 
@@ -48,8 +47,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme-contrast,
 		fill,
-		$theme-color-contrast,
-		$theme-color-contrast-inverse
+		$var-theme-color-contrast
 	);
 
 
@@ -57,8 +55,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme-polar,
 		fill,
-		$theme-background,
-		$theme-background-inverse
+		$var-theme-background
 	);
 
 
@@ -66,8 +63,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme-polar-contrast,
 		fill,
-		$theme-background-contrast,
-		$theme-background-contrast-inverse
+		$var-theme-background-contrast
 	);
 
 	//intensity
@@ -95,7 +91,7 @@ $prefix: '.svg';
 		none
 	);
 	
-	@each $tag,$color in $calculated-brand-color-declarations {
+	@each $tag,$color in $calculated-brand-color-declarations-for-components {
 		@include create-palette-helper(
 			#{&}-#{$tag},
 			fill,
@@ -112,8 +108,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme,
 		stroke,
-		$theme-color,
-		$theme-color-inverse
+		$var-theme-color
 	);
 
 
@@ -121,8 +116,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme-contrast,
 		stroke,
-		$theme-color-contrast,
-		$theme-color-contrast-inverse
+		$var-theme-color-contrast
 	);
 
 
@@ -130,8 +124,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme-polar,
 		stroke,
-		$theme-background,
-		$theme-background-inverse
+		$var-theme-background
 	);
 
 
@@ -139,8 +132,7 @@ $prefix: '.svg';
 	@include create-palette-helper(
 		#{&}-theme-polar-contrast,
 		stroke,
-		$theme-background-contrast,
-		$theme-background-contrast-inverse
+		$var-theme-background-contrast
 	);
 
 	//intensity
@@ -168,7 +160,7 @@ $prefix: '.svg';
 		none
 	);
 	
-	@each $tag,$color in $calculated-brand-color-declarations {
+	@each $tag,$color in $calculated-brand-color-declarations-for-components {
 		@include create-palette-helper(
 			#{&}-#{$tag},
 			stroke,

@@ -100,6 +100,45 @@ $prefix: '.symbol';
 		}
 	}
 
+	@include create-symbol-styles(#{&}-pencil) {
+		@extend %for-valid-symbol;
+	
+		&:before,&:after {
+			@extend %for-valid-symbol-pseudo;
+		}
+
+		&:before {
+			width: .3875em;
+			height: .3875em;
+			border-left: em(2px/$calculated-symbol-basis) solid;
+			border-bottom: em(2px/$calculated-symbol-basis) solid;
+			top:auto;
+			right:auto;
+		}
+
+		&:after {
+			@extend %for-valid-symbol-pseudo-full-height;
+			border-right: em(2px/$calculated-symbol-basis) solid;
+			background-image: 
+				repeating-linear-gradient(
+				180deg,
+				currentColor 0,
+				currentColor .2875em,
+				transparent .2875em,
+				transparent .2875em + em(1px/$calculated-symbol-basis),
+				currentColor .2875em + em(1px/$calculated-symbol-basis),
+				currentColor 100%
+			);
+			transform: rotate(45deg);
+			width: 0.5625em;
+			top: -.125em;
+			right: -.125em;
+			border-radius: .1875em .1875em 0 0;
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
+	}
+
 	@include create-symbol-styles(#{&}-edit) {
 		@extend %for-valid-symbol;
 	

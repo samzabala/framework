@@ -1,3 +1,52 @@
+
+:root {
+
+	//prefix must not change here because these variables are affected by js
+		--fw-br-xxs: #{$br-xxs-max};
+		--fw-br-xs: #{$br-xs-max};
+		--fw-br-sm: #{$br-sm-max};
+		--fw-br-md: #{$br-md-max};
+		--fw-br-lg: #{$br-lg-max};
+
+		--fw-br-mobile-max: #{$mobile-br-max};
+
+	// FONT
+		--#{$variable-prefix}-font-primary: #{$brand-font-primary};
+		--#{$variable-prefix}-font-accent: #{$brand-font-secondary};
+		--#{$variable-prefix}-font-monospace: #{$brand-font-monospace};
+
+	//colour
+
+		@each $tag,$value in $calculated-color-tags {
+			--#{$variable-prefix}-color-#{$tag}: #{$value};
+
+			@each $slug,$slug-value in map-get($calculated-color-variations,$tag) {
+				--#{$variable-prefix}-color-#{$tag}-#{$slug}: #{$slug-value};
+			}
+		}
+		
+		--#{$variable-prefix}-gradient-start: #{$brand-gradient-start};
+		--#{$variable-prefix}-gradient-end: #{$brand-gradient-end};
+		
+	// GLOBAL html + body coloring
+		--#{$variable-prefix}-theme-color: #{$brand-theme-color};
+		--#{$variable-prefix}-theme-color-contrast: #{$brand-theme-color-contrast};
+		--#{$variable-prefix}-theme-background: #{$brand-theme-background};
+		--#{$variable-prefix}-theme-background-contrast: #{$brand-theme-background-contrast};
+
+
+
+		
+}
+
+%for-inverse-var-setup {
+	--#{$variable-prefix}-theme-color: #{$brand-theme-color-inverse};
+	--#{$variable-prefix}-theme-color-contrast: #{$brand-theme-color-contrast-inverse};
+	--#{$variable-prefix}-theme-background: #{$brand-theme-background-inverse};
+	--#{$variable-prefix}-theme-background-contrast: #{$brand-theme-background-contrast-inverse};
+}
+
+
 /*** SCAFFOLDING ***/
 	$prefix:'.body';
 
@@ -16,6 +65,18 @@
 	html {
 		scroll-behavior: smooth;
 	}
+	*.theme-inverse,
+	html,body {
+		color: $var-theme-color;
+		background-color: $var-theme-background;
+	}
+
+
+	*.theme-inverse,
+	html.theme-inverse, 
+	.theme-inverse body {
+		@extend %for-inverse-var-setup;
+	}
 
 	#{$prefix}-no-scroll {
 		overflow:hidden !important;
@@ -32,18 +93,12 @@
 		}
 	}
 
-	html {
-
-		word-wrap: break-word;
-		color: var(--theme-color);
-		background-color: var(--theme-background);
-	}
-
 
 
 	body {
+		word-wrap: break-word;
 		scrollbar-width: thin;
-		scrollbar-color: $brand-color-neutral transparent;
+		scrollbar-color: $var-color-neutral transparent;
 	}
 
 
@@ -61,7 +116,7 @@
 	
 	/* Handle */
 	::-webkit-scrollbar-thumb {
-		background: $brand-color-neutral;
+		background: $var-color-neutral;
 		border: 2px solid transparent;
 		background-clip: padding-box;
 		border-radius: 8px;
@@ -69,23 +124,10 @@
 	
 	/* Handle on hover */
 	::-webkit-scrollbar-thumb:hover {
-		background: $brand-color-neutral; 
+		background: $var-color-neutral; 
 		border: 2px solid transparent;
 		background-clip: padding-box;
 		border-radius: 8px;
-	}
-
-
-	*.theme-inverse,
-	.module.theme-inverse,
-	html.theme-inverse, 
-	.theme-inverse body {
-		--theme-color: #{$theme-color-inverse};
-		--theme-color-contrast: #{$theme-color-contrast-inverse};
-		--theme-background: #{$theme-background-inverse};
-		--theme-background-contrast: #{$theme-background-contrast-inverse};
-		color: var(--theme-color);
-		background-color: var(--theme-background);
 	}
 
 	::-moz-selection{

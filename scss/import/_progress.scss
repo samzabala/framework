@@ -176,7 +176,7 @@ $prefix: '.progress';
 		@extend %for-progress-bar-default;
 
 
-		@each $tag,$color in $calculated-brand-color-declarations {
+		@each $tag,$color in $calculated-brand-color-declarations-for-components {
 			&-#{$tag} {
 				@extend %for-background-#{$tag};
 			}

@@ -97,6 +97,7 @@ $prefix: '.module';
 		min-height: 0;
 		transition: $transition-duration-long box-shadow $transition-timing;
 		padding: calc(#{$module-gutter-y} - #{$module-border-width}) calc(#{$module-gutter-x} - #{$module-border-width});
+		box-shadow: $module-box-shadow;
 
 		.theme-inverse & {
 

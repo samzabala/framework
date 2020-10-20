@@ -58,9 +58,12 @@ $prefix: '.tag';
 	border-radius: $tag-border-radius;
 	margin-top:$calculated-tag-margin-y;
 	margin-bottom:$calculated-tag-margin-y;
-	display:inline-flex;
+	// display:inline-flex;
 	align-items: center;
+	display: inline-block;
 	vertical-align:middle;
+	max-width:100%;
+	@extend %for-text-ellipsis-single;
 
 	&#{&}-large {
 		padding-top: calc(  (  (#{$calculated-tag-height-large} - (#{ $calculated-tag-single-line }) ) * .5 ));

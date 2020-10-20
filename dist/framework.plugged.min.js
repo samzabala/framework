@@ -634,7 +634,7 @@ this.jQuery && this.jQuery.noConflict();
 					|| triggerer.hasClass(resetterClass)
 			) {
 				triggerer
-					.siblings(`.${siblingSelector}`)
+					.siblings(siblingSelector)
 					.removeClass('active');
 			}
 
@@ -897,11 +897,6 @@ this.jQuery && this.jQuery.noConflict();
 		'error',
 		'caution',
 		'success',
-		'intensity-1',
-		'intensity-2',
-		'intensity-3',
-		'intensity-4',
-		'intensity-5',
 	];
 
 	frameWork.initGrid = (moduleGrid) => {
@@ -2391,7 +2386,7 @@ this.jQuery && this.jQuery.noConflict();
 
 								if (args.header) {
 									html += `<div class="${subcom}-header">
-											<h1 class="${subcom}-title">${args.header}</h1>
+											<h1 class="${subcom}-title">${decodeURIComponent(args.header)}</h1>
 										</div>`;
 								}
 
@@ -2406,7 +2401,7 @@ this.jQuery && this.jQuery.noConflict();
 
 							if (args.header) {
 								html += `<div class="${subcom}-header">
-										<h1 class="${subcom}-title">${args.header}</h1>
+										<h1 class="${subcom}-title">${decodeURIComponent(args.header)}</h1>
 									</div>`;
 							}
 

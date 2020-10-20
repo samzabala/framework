@@ -64,16 +64,16 @@
 	
 				& {
 					@include gradient((
-						color1: $brand-gradient-start,
-						color2: $brand-gradient-end,
+						color1: $var-gradient-start,
+						color2: $var-gradient-end,
 						angle: 0deg,
 						use-shorthand:false,
 					));
 	
 					&-important {
 						@include gradient((
-							color1: $brand-gradient-start,
-							color2: $brand-gradient-end,
+							color1: $var-gradient-start,
+							color2: $var-gradient-end,
 							angle: 0deg,
 							use-shorthand:false,
 							add-important: true
@@ -84,8 +84,8 @@
 				@each $angle in $calculated-gradient-angles {
 					&-#{$angle} {
 						@include gradient((
-							color1: $brand-gradient-start,
-							color2: $brand-gradient-end,
+							color1: $var-gradient-start,
+							color2: $var-gradient-end,
 							angle: to-unit($angle,deg),
 							use-shorthand:false,
 						));
@@ -93,8 +93,8 @@
 					
 					&-#{$angle}-important {
 						@include gradient((
-							color1: $brand-gradient-start,
-							color2: $brand-gradient-end,
+							color1: $var-gradient-start,
+							color2: $var-gradient-end,
 							angle: to-unit($angle,deg),
 							use-shorthand:false,
 							add-important: true
@@ -115,8 +115,7 @@
 			@include create-palette-helper(
 				#{&}-theme,
 				border-color,
-				$theme-color,
-				$theme-color-inverse
+				$var-theme-color
 			);
 
 
@@ -124,8 +123,7 @@
 			@include create-palette-helper(
 				#{&}-theme-contrast,
 				border-color,
-				$theme-color-contrast,
-				$theme-color-contrast-inverse
+				$var-theme-color-contrast
 			);
 
 
@@ -133,8 +131,7 @@
 			@include create-palette-helper(
 				#{&}-theme-polar,
 				border-color,
-				$theme-background,
-				$theme-background-inverse
+				$var-theme-background
 			);
 
 
@@ -142,8 +139,7 @@
 			@include create-palette-helper(
 				#{&}-theme-polar-contrast,
 				border-color,
-				$theme-background-contrast,
-				$theme-background-contrast-inverse
+				$var-theme-background-contrast
 			);
 	
 			//intensity
@@ -229,8 +225,7 @@
 		@include create-palette-helper(
 			#{&}-theme,
 			background-color,
-			$theme-background,
-			$theme-background-inverse
+			$var-theme-background
 		);
 
 
@@ -238,8 +233,7 @@
 		@include create-palette-helper(
 			#{&}-theme-contrast,
 			background-color,
-			$theme-background-contrast,
-			$theme-background-contrast-inverse
+			$var-theme-background-contrast
 		);
 
 
@@ -247,8 +241,7 @@
 		@include create-palette-helper(
 			#{&}-theme-polar,
 			background-color,
-			$theme-color,
-			$theme-color-inverse
+			$var-theme-color
 		);
 
 
@@ -256,8 +249,7 @@
 		@include create-palette-helper(
 			#{&}-theme-polar-contrast,
 			background-color,
-			$theme-color-contrast,
-			$theme-color-contrast-inverse
+			$var-theme-color-contrast
 		);
 
 		//intensity
@@ -282,7 +274,7 @@
 			}
 
 			@at-root #{$calculated-gradient-selector} {
-				background-color: $brand-gradient-start!important;
+				background-color: $var-gradient-start!important;
 			}
 
 			@each $angle in $calculated-gradient-angles {
@@ -356,8 +348,7 @@
 		@include create-palette-helper(
 			#{&}-theme,
 			color,
-			$theme-color,
-			$theme-color-inverse
+			$var-theme-color
 		);
 
 
@@ -365,8 +356,7 @@
 		@include create-palette-helper(
 			#{&}-theme-contrast,
 			color,
-			$theme-color-contrast,
-			$theme-color-contrast-inverse
+			$var-theme-color-contrast
 		);
 
 
@@ -374,8 +364,7 @@
 		@include create-palette-helper(
 			#{&}-theme-polar,
 			color,
-			$theme-background,
-			$theme-background-inverse
+			$var-theme-background
 		);
 
 
@@ -383,8 +372,7 @@
 		@include create-palette-helper(
 			#{&}-theme-polar-contrast,
 			color,
-			$theme-background-contrast,
-			$theme-background-contrast-inverse
+			$var-theme-background-contrast
 		);
 
 		//intensity
@@ -425,19 +413,19 @@
 
 	&-family {
 		&-primary {
-			font-family: $brand-font-primary !important;
+			font-family: $var-font-primary !important;
 		}
 
 		&-secondary {
-			font-family: $brand-font-secondary !important;
+			font-family: $var-font-secondary !important;
 		}
 
 		&-accent {
-			font-family: $brand-font-accent !important;
+			font-family: $var-font-accent !important;
 		}
 
 		&-monospace {
-			font-family: $brand-font-monospace !important;
+			font-family: $var-font-monospace !important;
 		}
 
 		&-inherit {
@@ -711,7 +699,7 @@
 		&-clip-background {
 			@supports not (-webkit-background-clip: text) {
 				background: transparent!important;
-				color: color(p)!important;
+				color: $var-color-primary!important;
 			}
 
 			@supports (-webkit-background-clip: text) {
@@ -1441,7 +1429,6 @@
 	@include create-corner-helper(#{&},'','border','radius',0,'for-no-radius','');
 }
 
-
 %for {
 	&-no-shadow {
 		box-shadow:none;
@@ -1450,4 +1437,9 @@
 			box-shadow:none!important;
 		}
 	}
+}
+
+
+.no-shadow {
+	@extend %for-no-shadow-important !optional;
 }

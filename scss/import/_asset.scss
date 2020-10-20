@@ -123,7 +123,7 @@ $prefix: '.asset';
 					height: 65%;
 					left: 33%;
 					right:0;
-					background-color: $brand-color-background;
+					background-color: $var-color-background;
 					background-image:
 						// bottom-left
 						linear-gradient(27deg, currentColor 22%, transparent 22%),
@@ -492,26 +492,26 @@ $prefix: '.asset';
 		zip
 		*/
 
-		@each $type,$palette in $calculated-asset-palettes {
+		@each $type,$tag in $calculated-asset-palettes {
 			&#{&}-#{$type} {
-				color: $palette;
+				color: var(--#{$variable-prefix}-color-#{$tag});
 				@include gradient((
 					angle: 0deg,
 					colors: (
 						(
-							color: $palette,
+							color: var(--#{$variable-prefix}-color-#{$tag}),
 							offset:0 
 						),
 						(
-							color: $palette,
+							color: var(--#{$variable-prefix}-color-#{$tag}),
 							offset: 33%
 						),
 						(
-							color: rgba($palette,.2),
+							color: var(--#{$variable-prefix}-color-#{$tag}-alpha-2),
 							offset: 33%
 						),
 						(
-							color: rgba($palette,.2),
+							color: var(--#{$variable-prefix}-color-#{$tag}-alpha-2),
 							offset: 100%
 						)
 					)
@@ -542,11 +542,11 @@ $prefix: '.asset';
 					angle: 45deg,
 					colors: (
 						(
-							color: $brand-color-background,
+							color: $var-color-background,
 							offset: 0
 						),
 						(
-							color: $brand-color-background,
+							color: $var-color-background,
 							offset: 50%
 						),
 						(

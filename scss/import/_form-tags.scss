@@ -156,7 +156,7 @@ $prefix: '.input';
 				&-tag {
 					max-width:100%;
 					margin-right: $calculated-input-tags-gutter-x;
-					background: rgba($input-tags-background,$input-tags-background-opacity);
+					background: var(--#{$variable-prefix}-color-#{$input-tags-palette-tag}-#{$input-tags-palette-tag-slug});
 					border-radius: $input-tags-border-radius;
 
 					&-text,
@@ -175,16 +175,16 @@ $prefix: '.input';
 						line-height:1;
 						font-size: .75em;
 
-						@each $tag,$color in $calculated-brand-color-declarations {
+						@each $tag,$color in $calculated-brand-color-declarations-for-components {
 							#{$prefix}-#{$tag} & {
 								color: $color;
 							}
 						}
 					}
 
-					@each $tag,$color in $calculated-brand-color-declarations {
+					@each $tag,$color in $calculated-brand-color-declarations-for-components {
 						#{$prefix}-#{$tag} & {
-							background: rgba($color,$input-tags-background-opacity);
+							background: var(--#{$variable-prefix}-color-#{$tag}-#{$input-tags-palette-tag-slug});
 						}
 					}
 				}

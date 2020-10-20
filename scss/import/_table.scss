@@ -90,9 +90,11 @@ $prefix: '.table';
 			border-color: $table-cell-border-color;
 			border-style: solid;
 			border-top-width: $table-cell-border-width;
+			background:$table-row-background;
 
 			.theme-inverse & {
 				border-color: $table-cell-border-color-inverse;
+				background:$table-row-background-inverse;
 			}
 
 			&:last-child {
@@ -224,7 +226,7 @@ $prefix: '.table';
 				height: calc(#{ $calculated-table-cell-height-small } - (#{$table-label-offset} * 2));
 			}
 			
-			@each $tag,$color in $calculated-brand-color-declarations {
+			@each $tag,$color in $calculated-brand-color-declarations-for-components {
 				&-#{$tag} {
 					@extend %for-background-#{$tag};
 				}

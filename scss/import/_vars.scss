@@ -1,158 +1,407 @@
 
-//VARS
-// $debug: true !default;
+//////////////////////////////// CSS VAR Prefix
+	$variable-prefix: fw !default;
 
-	//breakpiont
-	$br-xs-max: 600px !default;
-	$br-sm-max: 1200px !default;
-	$br-md-max: 1600px !default;
-	$br-lg-max: 1800px !default;
 
-	//extra breakpoints
-	$br-xxs-max: 400px !default;
+//////////////////////////////// CSS VAR Verbiage. cannot be modified
 
-	$mobile-br-max: 'sm' !default;
+	$var-color-base: var(--#{$variable-prefix}-color-base);
+		$var-color-base-alt: var(--#{$variable-prefix}-color-base-alt);
+		$var-color-base-alpha-1: var(--#{$variable-prefix}-color-base-alpha-1);
+		$var-color-base-alpha-2: var(--#{$variable-prefix}-color-base-alpha-2);
+		$var-color-base-alpha-3: var(--#{$variable-prefix}-color-base-alpha-3);
+		$var-color-base-alpha-4: var(--#{$variable-prefix}-color-base-alpha-4);
+		$var-color-base-alpha-5: var(--#{$variable-prefix}-color-base-alpha-5);
+		$var-color-base-alpha-6: var(--#{$variable-prefix}-color-base-alpha-6);
+		$var-color-base-alpha-7: var(--#{$variable-prefix}-color-base-alpha-7);
+		$var-color-base-alpha-8: var(--#{$variable-prefix}-color-base-alpha-8);
+		$var-color-base-alpha-9: var(--#{$variable-prefix}-color-base-alpha-9);
 
-	// COLOR SCHEMES
-		$brand-color-base: #000000 !default;
-			$brand-color-base-alt: lighten($brand-color-base,10) !default;
+	$var-color-background: var(--#{$variable-prefix}-color-background);
+		$var-color-background-alt: var(--#{$variable-prefix}-color-background-alt);
+		$var-color-background-alpha-1: var(--#{$variable-prefix}-color-background-alpha-1);
+		$var-color-background-alpha-2: var(--#{$variable-prefix}-color-background-alpha-2);
+		$var-color-background-alpha-3: var(--#{$variable-prefix}-color-background-alpha-3);
+		$var-color-background-alpha-4: var(--#{$variable-prefix}-color-background-alpha-4);
+		$var-color-background-alpha-5: var(--#{$variable-prefix}-color-background-alpha-5);
+		$var-color-background-alpha-6: var(--#{$variable-prefix}-color-background-alpha-6);
+		$var-color-background-alpha-7: var(--#{$variable-prefix}-color-background-alpha-7);
+		$var-color-background-alpha-8: var(--#{$variable-prefix}-color-background-alpha-8);
+		$var-color-background-alpha-9: var(--#{$variable-prefix}-color-background-alpha-9);
 
-		$brand-color-background: #FFFFFF !default;
-			$brand-color-background-alt: darken($brand-color-background,10) !default;
+	$var-color-neutral: var(--#{$variable-prefix}-color-neutral);
+		$var-color-neutral-light: var(--#{$variable-prefix}-color-neutral-light);
+		$var-color-neutral-lighter: var(--#{$variable-prefix}-color-neutral-lighter);
+		$var-color-neutral-lightest: var(--#{$variable-prefix}-color-neutral-lightest);
+		$var-color-neutral-dark: var(--#{$variable-prefix}-color-neutral-dark);
+		$var-color-neutral-darker: var(--#{$variable-prefix}-color-neutral-darker);
+		$var-color-neutral-darkest: var(--#{$variable-prefix}-color-neutral-darkest);
+		$var-color-neutral-alpha-1: var(--#{$variable-prefix}-color-neutral-alpha-1);
+		$var-color-neutral-alpha-2: var(--#{$variable-prefix}-color-neutral-alpha-2);
+		$var-color-neutral-alpha-3: var(--#{$variable-prefix}-color-neutral-alpha-3);
+		$var-color-neutral-alpha-4: var(--#{$variable-prefix}-color-neutral-alpha-4);
+		$var-color-neutral-alpha-5: var(--#{$variable-prefix}-color-neutral-alpha-5);
+		$var-color-neutral-alpha-6: var(--#{$variable-prefix}-color-neutral-alpha-6);
+		$var-color-neutral-alpha-7: var(--#{$variable-prefix}-color-neutral-alpha-7);
+		$var-color-neutral-alpha-8: var(--#{$variable-prefix}-color-neutral-alpha-8);
+		$var-color-neutral-alpha-9: var(--#{$variable-prefix}-color-neutral-alpha-9);
 
-		$brand-color-neutral: #8d8d8d !default;
-			$brand-color-neutral-light: lighten($brand-color-neutral,10) !default;
-			$brand-color-neutral-lighter: lighten($brand-color-neutral-light,10) !default;
-			$brand-color-neutral-lightest: lighten($brand-color-neutral-light,25) !default;
-			$brand-color-neutral-dark: darken($brand-color-neutral,10) !default;
-			$brand-color-neutral-darker: darken($brand-color-neutral,25) !default;
-			$brand-color-neutral-darkest: darken($brand-color-neutral,35) !default;
+	$var-color-primary: var(--#{$variable-prefix}-color-primary);
+		$var-color-primary-light: var(--#{$variable-prefix}-color-primary-light);
+		$var-color-primary-lighter: var(--#{$variable-prefix}-color-primary-lighter);
+		$var-color-primary-lightest: var(--#{$variable-prefix}-color-primary-lightest);
+		$var-color-primary-dark: var(--#{$variable-prefix}-color-primary-dark);
+		$var-color-primary-darker: var(--#{$variable-prefix}-color-primary-darker);
+		$var-color-primary-darkest: var(--#{$variable-prefix}-color-primary-darkest);
+		$var-color-primary-alpha-1: var(--#{$variable-prefix}-color-primary-alpha-1);
+		$var-color-primary-alpha-2: var(--#{$variable-prefix}-color-primary-alpha-2);
+		$var-color-primary-alpha-3: var(--#{$variable-prefix}-color-primary-alpha-3);
+		$var-color-primary-alpha-4: var(--#{$variable-prefix}-color-primary-alpha-4);
+		$var-color-primary-alpha-5: var(--#{$variable-prefix}-color-primary-alpha-5);
+		$var-color-primary-alpha-6: var(--#{$variable-prefix}-color-primary-alpha-6);
+		$var-color-primary-alpha-7: var(--#{$variable-prefix}-color-primary-alpha-7);
+		$var-color-primary-alpha-8: var(--#{$variable-prefix}-color-primary-alpha-8);
+		$var-color-primary-alpha-9: var(--#{$variable-prefix}-color-primary-alpha-9);
+
+	$var-color-secondary: var(--#{$variable-prefix}-color-secondary);
+		$var-color-secondary-light: var(--#{$variable-prefix}-color-secondary-light);
+		$var-color-secondary-lighter: var(--#{$variable-prefix}-color-secondary-lighter);
+		$var-color-secondary-lightest: var(--#{$variable-prefix}-color-secondary-lightest);
+		$var-color-secondary-dark: var(--#{$variable-prefix}-color-secondary-dark);
+		$var-color-secondary-darker: var(--#{$variable-prefix}-color-secondary-darker);
+		$var-color-secondary-darkest: var(--#{$variable-prefix}-color-secondary-darkest);
+		$var-color-secondary-alpha-1: var(--#{$variable-prefix}-color-secondary-alpha-1);
+		$var-color-secondary-alpha-2: var(--#{$variable-prefix}-color-secondary-alpha-2);
+		$var-color-secondary-alpha-3: var(--#{$variable-prefix}-color-secondary-alpha-3);
+		$var-color-secondary-alpha-4: var(--#{$variable-prefix}-color-secondary-alpha-4);
+		$var-color-secondary-alpha-5: var(--#{$variable-prefix}-color-secondary-alpha-5);
+		$var-color-secondary-alpha-6: var(--#{$variable-prefix}-color-secondary-alpha-6);
+		$var-color-secondary-alpha-7: var(--#{$variable-prefix}-color-secondary-alpha-7);
+		$var-color-secondary-alpha-8: var(--#{$variable-prefix}-color-secondary-alpha-8);
+		$var-color-secondary-alpha-9: var(--#{$variable-prefix}-color-secondary-alpha-9);
 		
-		$brand-color-primary: #007ece !default;
-			$brand-color-primary-light: lighten($brand-color-primary,10) !default;
-			$brand-color-primary-lighter: lighten($brand-color-primary-light,10) !default;
-			$brand-color-primary-lightest: lighten($brand-color-primary-light,25) !default;
-			$brand-color-primary-dark: darken($brand-color-primary,10) !default;
-			$brand-color-primary-darker: darken($brand-color-primary,25) !default;
-			$brand-color-primary-darkest: darken($brand-color-primary,35) !default;
-		
-		$brand-color-secondary: #ff009c !default;
-			$brand-color-secondary-light: lighten($brand-color-secondary,10) !default;
-			$brand-color-secondary-lighter: lighten($brand-color-secondary-light,10) !default;
-			$brand-color-secondary-lightest: lighten($brand-color-secondary-light,25) !default;
-			$brand-color-secondary-dark: darken($brand-color-secondary,10) !default;
-			$brand-color-secondary-darker: darken($brand-color-secondary,25) !default;
-			$brand-color-secondary-darkest: darken($brand-color-secondary,35) !default;
+	$var-color-accent: var(--#{$variable-prefix}-color-accent);
+		$var-color-accent-light: var(--#{$variable-prefix}-color-accent-light);
+		$var-color-accent-lighter: var(--#{$variable-prefix}-color-accent-lighter);
+		$var-color-accent-lightest: var(--#{$variable-prefix}-color-accent-lightest);
+		$var-color-accent-dark: var(--#{$variable-prefix}-color-accent-dark);
+		$var-color-accent-darker: var(--#{$variable-prefix}-color-accent-darker);
+		$var-color-accent-darkest: var(--#{$variable-prefix}-color-accent-darkest);
+		$var-color-accent-alpha-1: var(--#{$variable-prefix}-color-accent-alpha-1);
+		$var-color-accent-alpha-2: var(--#{$variable-prefix}-color-accent-alpha-2);
+		$var-color-accent-alpha-3: var(--#{$variable-prefix}-color-accent-alpha-3);
+		$var-color-accent-alpha-4: var(--#{$variable-prefix}-color-accent-alpha-4);
+		$var-color-accent-alpha-5: var(--#{$variable-prefix}-color-accent-alpha-5);
+		$var-color-accent-alpha-6: var(--#{$variable-prefix}-color-accent-alpha-6);
+		$var-color-accent-alpha-7: var(--#{$variable-prefix}-color-accent-alpha-7);
+		$var-color-accent-alpha-8: var(--#{$variable-prefix}-color-accent-alpha-8);
+		$var-color-accent-alpha-9: var(--#{$variable-prefix}-color-accent-alpha-9);
 
-		$brand-color-accent: #f5b83d!default;
-			$brand-color-accent-light: lighten($brand-color-accent,10) !default;
-			$brand-color-accent-lighter: lighten($brand-color-accent-light,10) !default;
-			$brand-color-accent-lightest: lighten($brand-color-accent-light,25) !default;
-			$brand-color-accent-dark: darken($brand-color-accent,10) !default;
-			$brand-color-accent-darker: darken($brand-color-accent,25) !default;
-			$brand-color-accent-darkest: darken($brand-color-accent,35) !default;
+	$var-color-success: var(--#{$variable-prefix}-color-success);
+		$var-color-success-light: var(--#{$variable-prefix}-color-success-light);
+		$var-color-success-lighter: var(--#{$variable-prefix}-color-success-lighter);
+		$var-color-success-lightest: var(--#{$variable-prefix}-color-success-lightest);
+		$var-color-success-dark: var(--#{$variable-prefix}-color-success-dark);
+		$var-color-success-darker: var(--#{$variable-prefix}-color-success-darker);
+		$var-color-success-darkest: var(--#{$variable-prefix}-color-success-darkest);
+		$var-color-success-alpha-1: var(--#{$variable-prefix}-color-success-alpha-1);
+		$var-color-success-alpha-2: var(--#{$variable-prefix}-color-success-alpha-2);
+		$var-color-success-alpha-3: var(--#{$variable-prefix}-color-success-alpha-3);
+		$var-color-success-alpha-4: var(--#{$variable-prefix}-color-success-alpha-4);
+		$var-color-success-alpha-5: var(--#{$variable-prefix}-color-success-alpha-5);
+		$var-color-success-alpha-6: var(--#{$variable-prefix}-color-success-alpha-6);
+		$var-color-success-alpha-7: var(--#{$variable-prefix}-color-success-alpha-7);
+		$var-color-success-alpha-8: var(--#{$variable-prefix}-color-success-alpha-8);
+		$var-color-success-alpha-9: var(--#{$variable-prefix}-color-success-alpha-9);
 
-		$brand-color-success: #00b754 !default;
-			$brand-color-success-light: lighten($brand-color-success,10) !default;
-			$brand-color-success-lighter: lighten($brand-color-success-light,10) !default;
-			$brand-color-success-lightest: lighten($brand-color-success-light,25) !default;
-			$brand-color-success-dark: darken($brand-color-success,10) !default;
-			$brand-color-success-darker: darken($brand-color-success,25) !default;
-			$brand-color-success-darkest: darken($brand-color-success,35) !default;
+	$var-color-caution: var(--#{$variable-prefix}-color-caution);
+		$var-color-caution-light: var(--#{$variable-prefix}-color-caution-light);
+		$var-color-caution-lighter: var(--#{$variable-prefix}-color-caution-lighter);
+		$var-color-caution-lightest: var(--#{$variable-prefix}-color-caution-lightest);
+		$var-color-caution-dark: var(--#{$variable-prefix}-color-caution-dark);
+		$var-color-caution-darker: var(--#{$variable-prefix}-color-caution-darker);
+		$var-color-caution-darkest: var(--#{$variable-prefix}-color-caution-darkest);
+		$var-color-caution-alpha-1: var(--#{$variable-prefix}-color-caution-alpha-1);
+		$var-color-caution-alpha-2: var(--#{$variable-prefix}-color-caution-alpha-2);
+		$var-color-caution-alpha-3: var(--#{$variable-prefix}-color-caution-alpha-3);
+		$var-color-caution-alpha-4: var(--#{$variable-prefix}-color-caution-alpha-4);
+		$var-color-caution-alpha-5: var(--#{$variable-prefix}-color-caution-alpha-5);
+		$var-color-caution-alpha-6: var(--#{$variable-prefix}-color-caution-alpha-6);
+		$var-color-caution-alpha-7: var(--#{$variable-prefix}-color-caution-alpha-7);
+		$var-color-caution-alpha-8: var(--#{$variable-prefix}-color-caution-alpha-8);
+		$var-color-caution-alpha-9: var(--#{$variable-prefix}-color-caution-alpha-9);
 
-		$brand-color-caution: #fd7f03 !default;
-			$brand-color-caution-light: lighten($brand-color-caution,10) !default;
-			$brand-color-caution-lighter: lighten($brand-color-caution-light,10) !default;
-			$brand-color-caution-lightest: lighten($brand-color-caution-light,25) !default;
-			$brand-color-caution-dark: darken($brand-color-caution,10) !default;
-			$brand-color-caution-darker: darken($brand-color-caution,25) !default;
-			$brand-color-caution-darkest: darken($brand-color-caution,35) !default;
+	$var-color-error: var(--#{$variable-prefix}-color-error);
+		$var-color-error-light: var(--#{$variable-prefix}-color-error-light);
+		$var-color-error-lighter: var(--#{$variable-prefix}-color-error-lighter);
+		$var-color-error-lightest: var(--#{$variable-prefix}-color-error-lightest);
+		$var-color-error-dark: var(--#{$variable-prefix}-color-error-dark);
+		$var-color-error-darker: var(--#{$variable-prefix}-color-error-darker);
+		$var-color-error-darkest: var(--#{$variable-prefix}-color-error-darkest);
+		$var-color-error-alpha-1: var(--#{$variable-prefix}-color-error-alpha-1);
+		$var-color-error-alpha-2: var(--#{$variable-prefix}-color-error-alpha-2);
+		$var-color-error-alpha-3: var(--#{$variable-prefix}-color-error-alpha-3);
+		$var-color-error-alpha-4: var(--#{$variable-prefix}-color-error-alpha-4);
+		$var-color-error-alpha-5: var(--#{$variable-prefix}-color-error-alpha-5);
+		$var-color-error-alpha-6: var(--#{$variable-prefix}-color-error-alpha-6);
+		$var-color-error-alpha-7: var(--#{$variable-prefix}-color-error-alpha-7);
+		$var-color-error-alpha-8: var(--#{$variable-prefix}-color-error-alpha-8);
+		$var-color-error-alpha-9: var(--#{$variable-prefix}-color-error-alpha-9);
 
-		$brand-color-error: #fd0303 !default;
-			$brand-color-error-light: lighten($brand-color-error,10) !default;
-			$brand-color-error-lighter: lighten($brand-color-error-light,10) !default;
-			$brand-color-error-lightest: lighten($brand-color-error-light,25) !default;
-			$brand-color-error-dark: darken($brand-color-error,10) !default;
-			$brand-color-error-darker: darken($brand-color-error,25) !default;
-			$brand-color-error-darkest: darken($brand-color-error,35) !default;
+	$var-color-intensity-1: var(--#{$variable-prefix}-color-intensity-1);
+		$var-color-intensity-1-light: var(--#{$variable-prefix}-color-intensity-1-light);
+		$var-color-intensity-1-lighter: var(--#{$variable-prefix}-color-intensity-1-lighter);
+		$var-color-intensity-1-lightest: var(--#{$variable-prefix}-color-intensity-1-lightest);
+		$var-color-intensity-1-dark: var(--#{$variable-prefix}-color-intensity-1-dark);
+		$var-color-intensity-1-darker: var(--#{$variable-prefix}-color-intensity-1-darker);
+		$var-color-intensity-1-darkest: var(--#{$variable-prefix}-color-intensity-1-darkest);
+		$var-color-intensity-1-alpha-1: var(--#{$variable-prefix}-color-intensity-1-alpha-1);
+		$var-color-intensity-1-alpha-2: var(--#{$variable-prefix}-color-intensity-1-alpha-2);
+		$var-color-intensity-1-alpha-3: var(--#{$variable-prefix}-color-intensity-1-alpha-3);
+		$var-color-intensity-1-alpha-4: var(--#{$variable-prefix}-color-intensity-1-alpha-4);
+		$var-color-intensity-1-alpha-5: var(--#{$variable-prefix}-color-intensity-1-alpha-5);
+		$var-color-intensity-1-alpha-6: var(--#{$variable-prefix}-color-intensity-1-alpha-6);
+		$var-color-intensity-1-alpha-7: var(--#{$variable-prefix}-color-intensity-1-alpha-7);
+		$var-color-intensity-1-alpha-8: var(--#{$variable-prefix}-color-intensity-1-alpha-8);
+		$var-color-intensity-1-alpha-9: var(--#{$variable-prefix}-color-intensity-1-alpha-9);
+
+	$var-color-intensity-2: var(--#{$variable-prefix}-color-intensity-2);
+		$var-color-intensity-2-light: var(--#{$variable-prefix}-color-intensity-2-light);
+		$var-color-intensity-2-lighter: var(--#{$variable-prefix}-color-intensity-2-lighter);
+		$var-color-intensity-2-lightest: var(--#{$variable-prefix}-color-intensity-2-lightest);
+		$var-color-intensity-2-dark: var(--#{$variable-prefix}-color-intensity-2-dark);
+		$var-color-intensity-2-darker: var(--#{$variable-prefix}-color-intensity-2-darker);
+		$var-color-intensity-2-darkest: var(--#{$variable-prefix}-color-intensity-2-darkest);
+		$var-color-intensity-2-alpha-1: var(--#{$variable-prefix}-color-intensity-2-alpha-1);
+		$var-color-intensity-2-alpha-2: var(--#{$variable-prefix}-color-intensity-2-alpha-2);
+		$var-color-intensity-2-alpha-3: var(--#{$variable-prefix}-color-intensity-2-alpha-3);
+		$var-color-intensity-2-alpha-4: var(--#{$variable-prefix}-color-intensity-2-alpha-4);
+		$var-color-intensity-2-alpha-5: var(--#{$variable-prefix}-color-intensity-2-alpha-5);
+		$var-color-intensity-2-alpha-6: var(--#{$variable-prefix}-color-intensity-2-alpha-6);
+		$var-color-intensity-2-alpha-7: var(--#{$variable-prefix}-color-intensity-2-alpha-7);
+		$var-color-intensity-2-alpha-8: var(--#{$variable-prefix}-color-intensity-2-alpha-8);
+		$var-color-intensity-2-alpha-9: var(--#{$variable-prefix}-color-intensity-2-alpha-9);
+
+	$var-color-intensity-3: var(--#{$variable-prefix}-color-intensity-3);
+		$var-color-intensity-3-light: var(--#{$variable-prefix}-color-intensity-3-light);
+		$var-color-intensity-3-lighter: var(--#{$variable-prefix}-color-intensity-3-lighter);
+		$var-color-intensity-3-lightest: var(--#{$variable-prefix}-color-intensity-3-lightest);
+		$var-color-intensity-3-dark: var(--#{$variable-prefix}-color-intensity-3-dark);
+		$var-color-intensity-3-darker: var(--#{$variable-prefix}-color-intensity-3-darker);
+		$var-color-intensity-3-darkest: var(--#{$variable-prefix}-color-intensity-3-darkest);
+		$var-color-intensity-3-alpha-1: var(--#{$variable-prefix}-color-intensity-3-alpha-1);
+		$var-color-intensity-3-alpha-2: var(--#{$variable-prefix}-color-intensity-3-alpha-2);
+		$var-color-intensity-3-alpha-3: var(--#{$variable-prefix}-color-intensity-3-alpha-3);
+		$var-color-intensity-3-alpha-4: var(--#{$variable-prefix}-color-intensity-3-alpha-4);
+		$var-color-intensity-3-alpha-5: var(--#{$variable-prefix}-color-intensity-3-alpha-5);
+		$var-color-intensity-3-alpha-6: var(--#{$variable-prefix}-color-intensity-3-alpha-6);
+		$var-color-intensity-3-alpha-7: var(--#{$variable-prefix}-color-intensity-3-alpha-7);
+		$var-color-intensity-3-alpha-8: var(--#{$variable-prefix}-color-intensity-3-alpha-8);
+		$var-color-intensity-3-alpha-9: var(--#{$variable-prefix}-color-intensity-3-alpha-9);
 
 
-		$brand-color-intensity-1: $brand-color-accent !default;
-		$brand-color-intensity-5: $brand-color-secondary !default;
 
-			$brand-color-intensity-2: mix($brand-color-intensity-1,$brand-color-intensity-5,75%) !default;
-			$brand-color-intensity-3: mix($brand-color-intensity-1,$brand-color-intensity-5,50%) !default;
-			$brand-color-intensity-4: mix($brand-color-intensity-1,$brand-color-intensity-5,25%) !default;
+	$var-color-intensity-4: var(--#{$variable-prefix}-color-intensity-4);
+		$var-color-intensity-4-light: var(--#{$variable-prefix}-color-intensity-4-light);
+		$var-color-intensity-4-lighter: var(--#{$variable-prefix}-color-intensity-4-lighter);
+		$var-color-intensity-4-lightest: var(--#{$variable-prefix}-color-intensity-4-lightest);
+		$var-color-intensity-4-dark: var(--#{$variable-prefix}-color-intensity-4-dark);
+		$var-color-intensity-4-darker: var(--#{$variable-prefix}-color-intensity-4-darker);
+		$var-color-intensity-4-darkest: var(--#{$variable-prefix}-color-intensity-4-darkest);
+		$var-color-intensity-4-alpha-1: var(--#{$variable-prefix}-color-intensity-4-alpha-1);
+		$var-color-intensity-4-alpha-2: var(--#{$variable-prefix}-color-intensity-4-alpha-2);
+		$var-color-intensity-4-alpha-3: var(--#{$variable-prefix}-color-intensity-4-alpha-3);
+		$var-color-intensity-4-alpha-4: var(--#{$variable-prefix}-color-intensity-4-alpha-4);
+		$var-color-intensity-4-alpha-5: var(--#{$variable-prefix}-color-intensity-4-alpha-5);
+		$var-color-intensity-4-alpha-6: var(--#{$variable-prefix}-color-intensity-4-alpha-6);
+		$var-color-intensity-4-alpha-7: var(--#{$variable-prefix}-color-intensity-4-alpha-7);
+		$var-color-intensity-4-alpha-8: var(--#{$variable-prefix}-color-intensity-4-alpha-8);
+		$var-color-intensity-4-alpha-9: var(--#{$variable-prefix}-color-intensity-4-alpha-9);
+
+	
+
+	$var-color-intensity-5: var(--#{$variable-prefix}-color-intensity-5);
+		$var-color-intensity-5-light: var(--#{$variable-prefix}-color-intensity-5-light);
+		$var-color-intensity-5-lighter: var(--#{$variable-prefix}-color-intensity-5-lighter);
+		$var-color-intensity-5-lightest: var(--#{$variable-prefix}-color-intensity-5-lightest);
+		$var-color-intensity-5-dark: var(--#{$variable-prefix}-color-intensity-5-dark);
+		$var-color-intensity-5-darker: var(--#{$variable-prefix}-color-intensity-5-darker);
+		$var-color-intensity-5-darkest: var(--#{$variable-prefix}-color-intensity-5-darkest);
+		$var-color-intensity-5-alpha-1: var(--#{$variable-prefix}-color-intensity-5-alpha-1);
+		$var-color-intensity-5-alpha-2: var(--#{$variable-prefix}-color-intensity-5-alpha-2);
+		$var-color-intensity-5-alpha-3: var(--#{$variable-prefix}-color-intensity-5-alpha-3);
+		$var-color-intensity-5-alpha-4: var(--#{$variable-prefix}-color-intensity-5-alpha-4);
+		$var-color-intensity-5-alpha-5: var(--#{$variable-prefix}-color-intensity-5-alpha-5);
+		$var-color-intensity-5-alpha-6: var(--#{$variable-prefix}-color-intensity-5-alpha-6);
+		$var-color-intensity-5-alpha-7: var(--#{$variable-prefix}-color-intensity-5-alpha-7);
+		$var-color-intensity-5-alpha-8: var(--#{$variable-prefix}-color-intensity-5-alpha-8);
+		$var-color-intensity-5-alpha-9: var(--#{$variable-prefix}-color-intensity-5-alpha-9);
 
 
 
-			$brand-color-intensity-1-light: lighten($brand-color-intensity-1,10) !default;
-			$brand-color-intensity-1-lighter: lighten($brand-color-intensity-1-light,10) !default;
-			$brand-color-intensity-1-lightest: lighten($brand-color-intensity-1-light,25) !default;
-			$brand-color-intensity-1-dark: darken($brand-color-intensity-1,10) !default;
-			$brand-color-intensity-1-darker: darken($brand-color-intensity-1,25) !default;
-			$brand-color-intensity-1-darkest: darken($brand-color-intensity-1,35) !default;
+	$var-gradient-start:  var(--#{$variable-prefix}-gradient-start);
+	$var-gradient-end:  var(--#{$variable-prefix}-gradient-end);
 
+	// FONT
+	$var-font-primary: var(--#{$variable-prefix}-font-primary);
+	$var-font-secondary: var(--#{$variable-prefix}-font-secondary);
+	$var-font-accent: var(--#{$variable-prefix}-font-accent);
+	$var-font-monospace: var(--#{$variable-prefix}-font-monospace);
 
+	// GLOBAL html + body coloring..
+	$var-theme-color: var(--#{$variable-prefix}-theme-color);
+	$var-theme-color-contrast: var(--#{$variable-prefix}-theme-color-contrast);
+	$var-theme-background: var(--#{$variable-prefix}-theme-background);
+	$var-theme-background-contrast: var(--#{$variable-prefix}-theme-background-contrast);
 
-			$brand-color-intensity-2-light: lighten($brand-color-intensity-2,10) !default;
-			$brand-color-intensity-2-lighter: lighten($brand-color-intensity-2-light,10) !default;
-			$brand-color-intensity-2-lightest: lighten($brand-color-intensity-2-light,25) !default;
-			$brand-color-intensity-2-dark: darken($brand-color-intensity-2,10) !default;
-			$brand-color-intensity-2-darker: darken($brand-color-intensity-2,25) !default;
-			$brand-color-intensity-2-darkest: darken($brand-color-intensity-2,35) !default;
+	
+//////////////////////////////// THEME/BRANDING
 
+	$brand-color-base: #111111 !default;
+	$brand-color-base-alt: lighten($brand-color-base,5%) !default;
+	$brand-color-background: #ffffff !default;
+	$brand-color-background-alt: darken($brand-color-background,5%) !default;
 
+	$brand-color-primary: #007ece !default;
+		$brand-color-primary-light: mix($brand-color-primary,$brand-color-background,60%) !default;
+		$brand-color-primary-lighter: mix($brand-color-primary,$brand-color-background,30%) !default;
+		$brand-color-primary-lightest: mix($brand-color-primary,$brand-color-background,15%) !default;
+		$brand-color-primary-dark: mix($brand-color-primary,$brand-color-base,60%) !default;
+		$brand-color-primary-darker: mix($brand-color-primary,$brand-color-base,30%) !default;
+		$brand-color-primary-darkest: mix($brand-color-primary,$brand-color-base,15%) !default;
 
-			$brand-color-intensity-3-light: lighten($brand-color-intensity-3,10) !default;
-			$brand-color-intensity-3-lighter: lighten($brand-color-intensity-3-light,10) !default;
-			$brand-color-intensity-3-lightest: lighten($brand-color-intensity-3-light,25) !default;
-			$brand-color-intensity-3-dark: darken($brand-color-intensity-3,10) !default;
-			$brand-color-intensity-3-darker: darken($brand-color-intensity-3,25) !default;
-			$brand-color-intensity-3-darkest: darken($brand-color-intensity-3,35) !default;
+	$brand-color-secondary: #ff009c !default;
+		$brand-color-secondary-light: mix($brand-color-secondary,$brand-color-background,60%) !default;
+		$brand-color-secondary-lighter: mix($brand-color-secondary,$brand-color-background,30%) !default;
+		$brand-color-secondary-lightest: mix($brand-color-secondary,$brand-color-background,15%) !default;
+		$brand-color-secondary-dark: mix($brand-color-secondary,$brand-color-base,60%) !default;
+		$brand-color-secondary-darker: mix($brand-color-secondary,$brand-color-base,30%) !default;
+		$brand-color-secondary-darkest: mix($brand-color-secondary,$brand-color-base,15%) !default;
 
+	$brand-color-accent: #7316ca!default;
+		$brand-color-accent-light: mix($brand-color-accent,$brand-color-background,60%) !default;
+		$brand-color-accent-lighter: mix($brand-color-accent,$brand-color-background,30%) !default;
+		$brand-color-accent-lightest: mix($brand-color-accent,$brand-color-background,15%) !default;
+		$brand-color-accent-dark: mix($brand-color-accent,$brand-color-base,60%) !default;
+		$brand-color-accent-darker: mix($brand-color-accent,$brand-color-base,30%) !default;
+		$brand-color-accent-darkest: mix($brand-color-accent,$brand-color-base,15%) !default;
 
+	$brand-color-neutral: #878787 !default;
+		$brand-color-neutral-light: mix($brand-color-neutral,$brand-color-background,60%) !default;
+		$brand-color-neutral-lighter: mix($brand-color-neutral,$brand-color-background,30%) !default;
+		$brand-color-neutral-lightest: mix($brand-color-neutral,$brand-color-background,15%) !default;
+		$brand-color-neutral-dark: mix($brand-color-neutral,$brand-color-base,60%) !default;
+		$brand-color-neutral-darker: mix($brand-color-neutral,$brand-color-base,30%) !default;
+		$brand-color-neutral-darkest: mix($brand-color-neutral,$brand-color-base,15%) !default;
 
-			$brand-color-intensity-4-light: lighten($brand-color-intensity-4,10) !default;
-			$brand-color-intensity-4-lighter: lighten($brand-color-intensity-4-light,10) !default;
-			$brand-color-intensity-4-lightest: lighten($brand-color-intensity-4-light,25) !default;
-			$brand-color-intensity-4-dark: darken($brand-color-intensity-4,10) !default;
-			$brand-color-intensity-4-darker: darken($brand-color-intensity-4,25) !default;
-			$brand-color-intensity-4-darkest: darken($brand-color-intensity-4,35) !default;
+	$brand-color-success: #00b754 !default;
+		$brand-color-success-light: mix($brand-color-success,$brand-color-background,60%) !default;
+		$brand-color-success-lighter: mix($brand-color-success,$brand-color-background,30%) !default;
+		$brand-color-success-lightest: mix($brand-color-success,$brand-color-background,15%) !default;
+		$brand-color-success-dark: mix($brand-color-success,$brand-color-base,60%) !default;
+		$brand-color-success-darker: mix($brand-color-success,$brand-color-base,30%) !default;
+		$brand-color-success-darkest: mix($brand-color-success,$brand-color-base,15%) !default;
 
-			$brand-color-intensity-5-light: lighten($brand-color-intensity-5,10) !default;
-			$brand-color-intensity-5-lighter: lighten($brand-color-intensity-5-light,10) !default;
-			$brand-color-intensity-5-lightest: lighten($brand-color-intensity-5-light,25) !default;
-			$brand-color-intensity-5-dark: darken($brand-color-intensity-5,10) !default;
-			$brand-color-intensity-5-darker: darken($brand-color-intensity-5,25) !default;
-			$brand-color-intensity-5-darkest: darken($brand-color-intensity-5,35) !default;
+	$brand-color-caution: #fd7f03 !default;
+		$brand-color-caution-light: mix($brand-color-caution,$brand-color-background,60%) !default;
+		$brand-color-caution-lighter: mix($brand-color-caution,$brand-color-background,30%) !default;
+		$brand-color-caution-lightest: mix($brand-color-caution,$brand-color-background,15%) !default;
+		$brand-color-caution-dark: mix($brand-color-caution,$brand-color-base,60%) !default;
+		$brand-color-caution-darker: mix($brand-color-caution,$brand-color-base,30%) !default;
+		$brand-color-caution-darkest: mix($brand-color-caution,$brand-color-base,15%) !default;
 
-			
+	$brand-color-error: #fd0303 !default;
+		$brand-color-error-light: mix($brand-color-error,$brand-color-background,60%) !default;
+		$brand-color-error-lighter: mix($brand-color-error,$brand-color-background,30%) !default;
+		$brand-color-error-lightest: mix($brand-color-error,$brand-color-background,15%) !default;
+		$brand-color-error-dark: mix($brand-color-error,$brand-color-base,60%) !default;
+		$brand-color-error-darker: mix($brand-color-error,$brand-color-base,30%) !default;
+		$brand-color-error-darkest: mix($brand-color-error,$brand-color-base,15%) !default;
 
-		$brand-gradient-start: $brand-color-primary !default;
-		$brand-gradient-end: $brand-color-secondary !default;
+	$brand-color-intensity-1: $brand-color-primary !default;
+	$brand-color-intensity-5: $brand-color-secondary !default;
+
+		$brand-color-intensity-2: mix($brand-color-intensity-1,$brand-color-intensity-5,75%) !default;
+		$brand-color-intensity-3: mix($brand-color-intensity-1,$brand-color-intensity-5,50%) !default;
+		$brand-color-intensity-4: mix($brand-color-intensity-1,$brand-color-intensity-5,25%) !default;
+
+		$brand-color-intensity-1-light: mix($brand-color-intensity-1,$brand-color-background,60%) !default;
+		$brand-color-intensity-1-lighter: mix($brand-color-intensity-1,$brand-color-background,30%) !default;
+		$brand-color-intensity-1-lightest: mix($brand-color-intensity-1,$brand-color-background,15%) !default;
+		$brand-color-intensity-1-dark: mix($brand-color-intensity-1,$brand-color-base,60%) !default;
+		$brand-color-intensity-1-darker: mix($brand-color-intensity-1,$brand-color-base,30%) !default;
+		$brand-color-intensity-1-darkest: mix($brand-color-intensity-1,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-2-light: mix($brand-color-intensity-2,$brand-color-background,60%) !default;
+		$brand-color-intensity-2-lighter: mix($brand-color-intensity-2,$brand-color-background,30%) !default;
+		$brand-color-intensity-2-lightest: mix($brand-color-intensity-2,$brand-color-background,15%) !default;
+		$brand-color-intensity-2-dark: mix($brand-color-intensity-2,$brand-color-base,60%) !default;
+		$brand-color-intensity-2-darker: mix($brand-color-intensity-2,$brand-color-base,30%) !default;
+		$brand-color-intensity-2-darkest: mix($brand-color-intensity-2,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-3-light: mix($brand-color-intensity-3,$brand-color-background,60%) !default;
+		$brand-color-intensity-3-lighter: mix($brand-color-intensity-3,$brand-color-background,30%) !default;
+		$brand-color-intensity-3-lightest: mix($brand-color-intensity-3,$brand-color-background,15%) !default;
+		$brand-color-intensity-3-dark: mix($brand-color-intensity-3,$brand-color-base,60%) !default;
+		$brand-color-intensity-3-darker: mix($brand-color-intensity-3,$brand-color-base,30%) !default;
+		$brand-color-intensity-3-darkest: mix($brand-color-intensity-3,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-4-light: mix($brand-color-intensity-4,$brand-color-background,60%) !default;
+		$brand-color-intensity-4-lighter: mix($brand-color-intensity-4,$brand-color-background,30%) !default;
+		$brand-color-intensity-4-lightest: mix($brand-color-intensity-4,$brand-color-background,15%) !default;
+		$brand-color-intensity-4-dark: mix($brand-color-intensity-4,$brand-color-base,60%) !default;
+		$brand-color-intensity-4-darker: mix($brand-color-intensity-4,$brand-color-base,30%) !default;
+		$brand-color-intensity-4-darkest: mix($brand-color-intensity-4,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-5-light: mix($brand-color-intensity-5,$brand-color-background,60%) !default;
+		$brand-color-intensity-5-lighter: mix($brand-color-intensity-5,$brand-color-background,30%) !default;
+		$brand-color-intensity-5-lightest: mix($brand-color-intensity-5,$brand-color-background,15%) !default;
+		$brand-color-intensity-5-dark: mix($brand-color-intensity-5,$brand-color-base,60%) !default;
+		$brand-color-intensity-5-darker: mix($brand-color-intensity-5,$brand-color-base,30%) !default;
+		$brand-color-intensity-5-darkest: mix($brand-color-intensity-5,$brand-color-base,15%) !default;
 
 	// FONT
 		$brand-font-primary: "Roboto",Helvetica,Arial,sans-serif !default;
 		$brand-font-secondary: "Georgia",Times,serif !default;
 		$brand-font-accent: $brand-font-secondary !default;
 		$brand-font-monospace: "Courier New", Courier, monospace !default;
+
+		//////////////////////////////// BRAND VAR RELATED.. VARS
+			$brand-gradient-start: $var-color-primary !default;
+			$brand-gradient-end: $var-color-secondary !default;
+			
+			$brand-theme-color: $var-color-base !default;
+			$brand-theme-color-inverse: $var-color-background !default; //.dark mode version of boi
 		
-	// GLOBAL html + body coloring..
+			$brand-theme-color-contrast: $var-color-base-alt !default;
+				$brand-theme-color-contrast-inverse: $var-color-background-alt !default; //.dark mode version of boi
+		
+			$brand-theme-background: $var-color-background !default;
+				$brand-theme-background-inverse: $var-color-base-alt !default; //.dark mode version of boi
+		
+			$brand-theme-background-contrast: $var-color-background-alt !default;
+				$brand-theme-background-contrast-inverse: $var-color-base !default; //.dark mode version of boi
 
-		$theme-color: $brand-color-base !default;
-			$theme-color-inverse: $brand-color-background !default; //.dark mode version of boi
 
-			$theme-color-contrast: $brand-color-base-alt !default;
-				$theme-color-contrast-inverse: $brand-color-background-alt !default; //.dark mode version of boi
+//////////////////////////////// DEBUG FRONT END
+	// $debug: true !default;
 
-		$theme-background: $brand-color-background !default;
-			$theme-background-inverse: $brand-color-base-alt !default; //.dark mode version of boi
 
-			$theme-background-contrast: $brand-color-background-alt !default;
-				$theme-background-contrast-inverse: $brand-color-base !default; //.dark mode version of boi
+//////////////////////////////// BREAKPOINTS
 
-	// PADDING globals
+		$br-xs-max: 600px !default;
+		$br-sm-max: 1200px !default;
+		$br-md-max: 1600px !default;
+		$br-lg-max: 1800px !default;
+
+		//extra breakpoints
+			$br-xxs-max: 400px !default;
+		//when to separate mobile like styles
+			$mobile-br-max: 'sm' !default;
+
+
+//////////////////////////////// GLOBAL UNITS
+
 		$gutter-base: 40px !default;
 			$gutter-large: 60px !default;
 			$gutter-small: 20px !default;
@@ -173,8 +422,10 @@
 	//BOX SHADOW globals
 		$box-shadow-base: 0px 3px 10px -6px!default;
 			$box-shadow-mild: 0px 2px 20px -5px!default;
-			$box-shadow-spicy: 0px 8px 20px -10px!default;
-// CONTENT
+			$box-shadow-spicy: 0px 5px 20px -10px!default;
+
+			
+//////////////////////////////// CONTENT
 
 	// SCAFFOLD typography
 		$body-font-family: $brand-font-primary !default;
@@ -190,7 +441,8 @@
 		$body-line-height-compact-factor: .875 !default;
 		$body-line-height-expanded-factor: 1.5 !default;
 
-//////////////////////////////// THIS SOME ADVANCED SHIT
+
+//////////////////////////////// BUILD
 
 		$body-heading-gutter-top: 1.5em !default;
 		$body-heading-gutter-bottom: $body-text-gutter-y * .5 !default;
@@ -198,9 +450,9 @@
 		$body-heading-font-weight: $body-font-weight-bold !default;
 		$body-heading-font-style: inherit !default;
 		$body-heading-text-transform: none !default;
-		$body-heading-font-family: $brand-font-secondary !default;
-		$body-heading-color: $theme-color-contrast !default;
-			$body-heading-color-inverse: $theme-color-contrast-inverse !default;
+		$body-heading-font-family: $var-font-secondary !default;
+		$body-heading-color: $brand-theme-color-contrast !default;
+			$body-heading-color-inverse: $brand-theme-color-contrast-inverse !default;
 
 		$body-size-h1: $body-font-size * 2 !default;
 		$body-size-h2: $body-font-size * 1.75 !default;
@@ -209,12 +461,12 @@
 		$body-size-h5: $body-font-size !default;
 		$body-size-h6: $body-font-size * .875 !default;
 
-		$body-anchor-color: $brand-color-primary !default;
-		$body-anchor-color-hover: $brand-color-secondary !default;
+		$body-anchor-color: $var-color-primary !default;
+		$body-anchor-color-hover: $var-color-secondary !default;
 		$body-anchor-text-decoration-hover: underline !default;
 
 		$body-list-bullet-size: 6px !default;
-		$body-list-bullet-color: $brand-color-primary !default;
+		$body-list-bullet-color: $var-color-primary !default;
 		$body-list-bullet-border-radius:50% !default;
 		$body-list-offset: 25px !default;
 		$body-list-offset-inline: 1em !default;
@@ -225,10 +477,10 @@
 		$body-blockquote-line-height: inherit !default;
 		$body-blockquote-text-transform: none !default;
 		$body-blockquote-font-style: normal !default;
-		$body-blockquote-color: $brand-color-neutral !default;
+		$body-blockquote-color: $var-color-neutral !default;
 		$body-blockquote-gutter-x: $gutter-small !default;
 		$body-blockquote-border-width: 4px !default;
-		$body-blockquote-border-color: rgba($brand-color-neutral,.5) !default;
+		$body-blockquote-border-color: $var-theme-background-contrast !default;
 		$body-blockquote-margin-y: $body-text-gutter-y !default;
 		$body-blockquote-padding-y: $body-text-gutter-y * .5 !default;
 
@@ -237,33 +489,33 @@
 		$body-cite-font-style: italic !default;
 		$body-cite-gutter-y: 30px !default;
 
-		$body-mono-background: rgba($brand-color-base,.1)!default;
+		$body-mono-background: $var-theme-background-contrast!default;
 			$body-pre-padding: $gutter-micro!default;
 
-		$body-selection-background: $brand-color-primary !default;
-		$body-selection-color: $brand-color-background !default;
+		$body-selection-background: $var-color-primary !default;
+		$body-selection-color: $var-color-background !default;
 
 		$global-disabled-opacity: .5 !default;
 
 		$body-ellipsis-multiple-factor: 2 !default;
 
 	//hr
-		$hr-color: $brand-color-neutral !default;
+		$hr-color: $var-color-neutral !default;
 		$hr-height: 1px !default;
 		$hr-gutter-y: $body-text-gutter-y !default;
 			
 
 	// SVG
-		$svg-gradient-color-start: $brand-gradient-start !default;
-		$svg-gradient-color-end: $brand-gradient-end !default;
+		$svg-gradient-color-start: $var-gradient-start !default;
+		$svg-gradient-color-end: $var-gradient-end !default;
 
 
 	// TABLE
 		$table-cell-height: 40px !default;
 			$table-cell-height-large: 75px !default;
 			$table-cell-height-small: 25px !default;
-		$table-cell-border-color: $theme-background-contrast !default;
-			$table-cell-border-color-inverse: $theme-background-contrast-inverse !default;
+		$table-cell-border-color: $var-theme-background-contrast !default;
+			$table-cell-border-color-inverse: $table-cell-border-color !default;
 		$table-cell-border-width: 1px !default;
 		$table-cell-gutter: $gutter-micro !default;
 
@@ -271,88 +523,91 @@
 		$table-heading-height: 45px !default;
 		$table-heading-font-weight: $body-font-weight-bold !default;
 		$table-heading-font-style: normal !default;
-		$table-heading-color: $theme-color-contrast !default;
-			$table-heading-color-inverse: $theme-color-contrast-inverse !default;
+		$table-heading-color: $var-theme-color-contrast !default;
+			$table-heading-color-inverse: $table-heading-color !default;
 		$table-heading-text-transform: uppercase !default;
-		$table-heading-background: $theme-background-contrast !default;
-			$table-heading-background-inverse: $theme-background-contrast-inverse !default;
+		$table-heading-background: $var-theme-background-contrast !default;
+			$table-heading-background-inverse: $table-heading-background !default;
 		$table-label-width: 12px !default;
 		$table-label-offset: 2px !default;
 		$table-label-border-radius: 2px !default;
 
-		$table-row-primary-background: mix($brand-color-primary,$theme-background,10%) !default;
-			$table-row-primary-background-inverse: mix($brand-color-primary,$theme-background-inverse,10%) !default;
+		$table-row-background: $var-theme-background !default;
+		$table-row-background-inverse: $table-row-background !default;
 
-		$table-row-secondary-background: mix($brand-color-secondary,$theme-background,10%) !default;
-			$table-row-secondary-background-inverse: mix($brand-color-secondary,$theme-background-inverse,10%) !default;
+		$table-row-primary-background: $var-color-primary-lightest !default;
+			$table-row-primary-background-inverse: $var-color-primary-darkest !default;
 
-		$table-row-accent-background: mix($brand-color-accent,$theme-background,10%) !default;
-			$table-row-accent-background-inverse: mix($brand-color-accent,$theme-background-inverse,10%) !default;
+		$table-row-secondary-background: $var-color-secondary-lightest !default;
+			$table-row-secondary-background-inverse: $var-color-secondary-darkest !default;
 
-		$table-row-neutral-background: mix($brand-color-neutral,$theme-background,10%) !default;
-			$table-row-neutral-background-inverse: mix($brand-color-neutral,$theme-background-inverse,10%) !default;
+		$table-row-accent-background: $var-color-accent-lightest !default;
+			$table-row-accent-background-inverse: $var-color-accent-darkest !default;
 
-		$table-row-success-background: mix($brand-color-success,$theme-background,10%) !default;
-			$table-row-success-background-inverse: mix($brand-color-success,$theme-background-inverse,10%) !default;
+		$table-row-neutral-background: $var-color-neutral-lightest !default;
+			$table-row-neutral-background-inverse: $var-color-neutral-darkest !default;
 
-		$table-row-caution-background: mix($brand-color-caution,$theme-background,10%) !default;
-			$table-row-caution-background-inverse: mix($brand-color-caution,$theme-background-inverse,10%) !default;
+		$table-row-success-background: $var-color-success-lightest !default;
+			$table-row-success-background-inverse: $var-color-success-darkest !default;
 
-		$table-row-error-background: mix($brand-color-error,$theme-background,10%) !default;
-			$table-row-error-background-inverse: mix($brand-color-error,$theme-background-inverse,10%) !default;
+		$table-row-caution-background: $var-color-caution-lightest !default;
+			$table-row-caution-background-inverse: $var-color-caution-darkest !default;
 
-		$table-row-intensity-1-background: mix($brand-color-intensity-1,$theme-background,10%) !default;
-			$table-row-intensity-1-background-inverse: mix($brand-color-intensity-1,$theme-background-inverse,10%) !default;
+		$table-row-error-background: $var-color-error-lightest !default;
+			$table-row-error-background-inverse: $var-color-error-darkest !default;
 
-		$table-row-intensity-2-background: mix($brand-color-intensity-2,$theme-background,10%) !default;
-			$table-row-intensity-2-background-inverse: mix($brand-color-intensity-2,$theme-background-inverse,10%) !default;
+		$table-row-intensity-1-background: $var-color-intensity-1-lightest !default;
+			$table-row-intensity-1-background-inverse: $var-color-intensity-1-darkest !default;
 
-		$table-row-intensity-3-background: mix($brand-color-intensity-3,$theme-background,10%) !default;
-			$table-row-intensity-3-background-inverse: mix($brand-color-intensity-3,$theme-background-inverse,10%) !default;
+		$table-row-intensity-2-background: $var-color-intensity-2-lightest !default;
+			$table-row-intensity-2-background-inverse: $var-color-intensity-2-darkest !default;
 
-		$table-row-intensity-4-background: mix($brand-color-intensity-4,$theme-background,10%) !default;
-			$table-row-intensity-4-background-inverse: mix($brand-color-intensity-4,$theme-background-inverse,10%) !default;
+		$table-row-intensity-3-background: $var-color-intensity-3-lightest !default;
+			$table-row-intensity-3-background-inverse: $var-color-intensity-3-darkest !default;
 
-		$table-row-intensity-5-background: mix($brand-color-intensity-5,$theme-background,10%) !default;
-			$table-row-intensity-5-background-inverse: mix($brand-color-intensity-5,$theme-background-inverse,10%) !default;
+		$table-row-intensity-4-background: $var-color-intensity-4-lightest !default;
+			$table-row-intensity-4-background-inverse: $var-color-intensity-4-darkest !default;
+
+		$table-row-intensity-5-background: $var-color-intensity-5-lightest !default;
+			$table-row-intensity-5-background-inverse: $var-color-intensity-5-darkest !default;
 
 
 		
 
-		$table-cell-primary-background: rgba($brand-color-primary,.1) !default;
+		$table-cell-primary-background: $var-color-primary-alpha-1 !default;
 			$table-cell-primary-background-inverse: $table-cell-primary-background !default;
 
-		$table-cell-secondary-background: rgba($brand-color-secondary,.1) !default;
+		$table-cell-secondary-background: $var-color-secondary-alpha-1 !default;
 			$table-cell-secondary-background-inverse: $table-cell-secondary-background !default;
 
-		$table-cell-accent-background: rgba($brand-color-accent,.1) !default;
+		$table-cell-accent-background: $var-color-accent-alpha-1 !default;
 			$table-cell-accent-background-inverse: $table-cell-accent-background !default;
 
-		$table-cell-neutral-background: rgba($brand-color-neutral,.1) !default;
+		$table-cell-neutral-background: $var-color-neutral-alpha-1 !default;
 			$table-cell-neutral-background-inverse: $table-cell-neutral-background !default;
 
-		$table-cell-success-background: rgba($brand-color-success,.1) !default;
+		$table-cell-success-background: $var-color-success-alpha-1 !default;
 			$table-cell-success-background-inverse: $table-cell-success-background !default;
 
-		$table-cell-caution-background: rgba($brand-color-caution,.1) !default;
+		$table-cell-caution-background: $var-color-caution-alpha-1 !default;
 			$table-cell-caution-background-inverse: $table-cell-caution-background !default;
 
-		$table-cell-error-background: rgba($brand-color-error,.1) !default;
+		$table-cell-error-background: $var-color-error-alpha-1 !default;
 			$table-cell-error-background-inverse: $table-cell-error-background !default;
 
-		$table-cell-intensity-1-background: rgba($brand-color-intensity-1,.1) !default;
+		$table-cell-intensity-1-background: $var-color-intensity-1-alpha-1 !default;
 			$table-cell-intensity-1-background-inverse: $table-cell-intensity-1-background !default;
 
-		$table-cell-intensity-2-background: rgba($brand-color-intensity-2,.1) !default;
+		$table-cell-intensity-2-background: $var-color-intensity-2-alpha-1 !default;
 			$table-cell-intensity-2-background-inverse: $table-cell-intensity-2-background !default;
 
-		$table-cell-intensity-3-background: rgba($brand-color-intensity-3,.1) !default;
+		$table-cell-intensity-3-background: $var-color-intensity-3-alpha-1 !default;
 			$table-cell-intensity-3-background-inverse: $table-cell-intensity-3-background !default;
 
-		$table-cell-intensity-4-background: rgba($brand-color-intensity-4,.1) !default;
+		$table-cell-intensity-4-background: $var-color-intensity-4-alpha-1 !default;
 			$table-cell-intensity-4-background-inverse: $table-cell-intensity-4-background !default;
 
-		$table-cell-intensity-5-background: rgba($brand-color-intensity-5,.1) !default;
+		$table-cell-intensity-5-background: $var-color-intensity-5-alpha-1 !default;
 			$table-cell-intensity-5-background-inverse: $table-cell-intensity-5-background !default;
 
 
@@ -417,22 +672,22 @@
 	// NAV
 		$nav-height: 75px !default;
 		$nav-gutter-x: $gutter-small !default;
-		$nav-drop-shadow: $box-shadow-spicy $theme-background-contrast !default;
-			$nav-drop-shadow-inverse: $box-shadow-spicy $theme-background-contrast-inverse !default;
-		$nav-background: $theme-background !default;
+		$nav-drop-shadow: $box-shadow-spicy $var-theme-background-contrast !default;
+			$nav-drop-shadow-inverse: $nav-drop-shadow !default;
+		$nav-background: $var-theme-background !default;
 			$nav-dropdown-background: $nav-background !default;
-			$nav-background-inverse: $theme-background-inverse !default;
+			$nav-background-inverse: $nav-dropdown-background !default;
 		$nav-icon-width: $icon-size !default;
 		$nav-icon-height: $icon-size !default;
 		$nav-current-size: 5px !default;
 			$nav-item-height: 35px !default;
-		$nav-current-gradient-start: $brand-gradient-start !default;
-		$nav-current-gradient-end: $brand-gradient-end !default;
+		$nav-current-gradient-start: $var-gradient-start !default;
+		$nav-current-gradient-end: $var-gradient-end !default;
 		$nav-font-size: $body-font-size !default;
 		$nav-line-height: $body-line-height !default;
-		$nav-color: $theme-color !default;
-			$nav-color-inverse: $theme-color-inverse !default;
-			$nav-color-hover: $brand-color-primary !default;
+		$nav-color: $var-theme-color !default;
+			$nav-color-inverse: $nav-color !default;
+			$nav-color-hover: $var-color-primary !default;
 		$nav-font-weight: 400 !default;
 		$nav-font-style: normal !default;
 		$nav-text-transform: none !default;
@@ -454,7 +709,7 @@
 		$tabs-text-transform: none !default;
 		$tabs-transition-duration: $transition-duration-base !default;
 		
-		$tabs-color: $brand-color-neutral !default;
+		$tabs-color: $var-color-neutral !default;
 			$tabs-color-inverse: $tabs-color !default;
 
 		$tabs-border-width: 1px !default;
@@ -479,14 +734,14 @@
 			$tabs-item-border-color-active: $tabs-item-border-color !default;
 				$tabs-item-border-color-active-inverse: $tabs-item-border-color-active !default;
 
-		$tabs-item-color-active: $theme-color !default;
-			$tabs-item-color-active-inverse: $theme-color-inverse !default;
+		$tabs-item-color-active: $var-theme-color !default;
+			$tabs-item-color-active-inverse: $tabs-item-color-active !default;
 		
 		$tabs-item-box-shadow: none !default;
 
 		$tabs-current-height: 5px !default;
-		$tabs-current-color: $brand-color-primary !default;
-			$tabs-current-color-inverse: $brand-color-primary !default;
+		$tabs-current-color: $var-color-primary !default;
+			$tabs-current-color-inverse: $var-color-primary !default;
 
 	//pagination
 		$pagination-font-size: 65px !default;
@@ -520,75 +775,75 @@
 
 			//schemes
 			$zone-border-default: currentColor !default;
-			$zone-background-default: rgba($brand-color-neutral,.25) !default;
+			$zone-background-default: $var-color-neutral-alpha-3 !default;
 			$zone-color-default: inherit !default;
 
-				$zone-border-default-hover: $brand-color-neutral-dark !default;
-				$zone-background-default-hover: rgba($brand-color-neutral,.2) !default;
-				$zone-color-default-hover: $brand-color-neutral-dark !default;
+				$zone-border-default-hover: $var-color-neutral-dark !default;
+				$zone-background-default-hover: $var-color-neutral-alpha-2 !default;
+				$zone-color-default-hover: $var-color-neutral-dark !default;
 
 
-			$zone-border-primary: $brand-color-primary !default;
-			$zone-background-primary: rgba($brand-color-primary,.1) !default;
-			$zone-color-primary: $brand-color-primary !default;
+			$zone-border-primary: $var-color-primary !default;
+			$zone-background-primary: $var-color-primary-alpha-1 !default;
+			$zone-color-primary: $var-color-primary !default;
 
-				$zone-border-primary-hover: $brand-color-primary-dark !default;
-				$zone-background-primary-hover: rgba($brand-color-primary,.2) !default;
-				$zone-color-primary-hover: $brand-color-primary-dark !default;
-
-
-			$zone-border-secondary: $brand-color-secondary !default;
-			$zone-background-secondary: rgba($brand-color-secondary,.1) !default;
-			$zone-color-secondary: $brand-color-secondary !default;
-
-				$zone-border-secondary-hover: $brand-color-secondary-dark !default;
-				$zone-background-secondary-hover: rgba($brand-color-secondary,.2) !default;
-				$zone-color-secondary-hover: $brand-color-secondary-dark !default;
+				$zone-border-primary-hover: $var-color-primary-dark !default;
+				$zone-background-primary-hover: $var-color-primary-alpha-2 !default;
+				$zone-color-primary-hover: $var-color-primary-dark !default;
 
 
-			$zone-border-accent: $brand-color-accent !default;
-			$zone-background-accent: rgba($brand-color-accent,.1) !default;
-			$zone-color-accent: $brand-color-accent !default;
+			$zone-border-secondary: $var-color-secondary !default;
+			$zone-background-secondary: $var-color-secondary-alpha-1 !default;
+			$zone-color-secondary: $var-color-secondary !default;
 
-				$zone-border-accent-hover: $brand-color-accent-dark !default;
-				$zone-background-accent-hover: rgba($brand-color-accent,.2) !default;
-				$zone-color-accent-hover: $brand-color-primary-dark !default;
+				$zone-border-secondary-hover: $var-color-secondary-dark !default;
+				$zone-background-secondary-hover: $var-color-secondary-alpha-2 !default;
+				$zone-color-secondary-hover: $var-color-secondary-dark !default;
+
+
+			$zone-border-accent: $var-color-accent !default;
+			$zone-background-accent: $var-color-accent-alpha-1 !default;
+			$zone-color-accent: $var-color-accent !default;
+
+				$zone-border-accent-hover: $var-color-accent-dark !default;
+				$zone-background-accent-hover: $var-color-accent-alpha-2 !default;
+				$zone-color-accent-hover: $var-color-primary-dark !default;
 				
 
-			$zone-border-neutral: $brand-color-neutral !default;
-			$zone-background-neutral: rgba($brand-color-neutral,.1) !default;
-			$zone-color-neutral: $brand-color-neutral !default;
+			$zone-border-neutral: $var-color-neutral !default;
+			$zone-background-neutral: $var-color-neutral-alpha-1 !default;
+			$zone-color-neutral: $var-color-neutral !default;
 
-				$zone-border-neutral-hover: $brand-color-neutral-dark !default;
-				$zone-background-neutral-hover: rgba($brand-color-neutral,.2) !default;
-				$zone-color-neutral-hover: $brand-color-neutral-dark !default;
+				$zone-border-neutral-hover: $var-color-neutral-dark !default;
+				$zone-background-neutral-hover: $var-color-neutral-alpha-2 !default;
+				$zone-color-neutral-hover: $var-color-neutral-dark !default;
 				
 
-			$zone-border-success: $brand-color-success !default;
-			$zone-background-success: rgba($brand-color-success,.1) !default;
-			$zone-color-success: $brand-color-success !default;
+			$zone-border-success: $var-color-success !default;
+			$zone-background-success: $var-color-success-alpha-1 !default;
+			$zone-color-success: $var-color-success !default;
 
-				$zone-border-success-hover: $brand-color-success-dark !default;
-				$zone-background-success-hover: rgba($brand-color-success,.2) !default;
-				$zone-color-success-hover: $brand-color-success-dark !default;
+				$zone-border-success-hover: $var-color-success-dark !default;
+				$zone-background-success-hover: $var-color-success-alpha-2 !default;
+				$zone-color-success-hover: $var-color-success-dark !default;
 				
 
-			$zone-border-caution: $brand-color-caution !default;
-			$zone-background-caution: rgba($brand-color-caution,.1) !default;
-			$zone-color-caution: $brand-color-caution !default;
+			$zone-border-caution: $var-color-caution !default;
+			$zone-background-caution: $var-color-caution-alpha-1 !default;
+			$zone-color-caution: $var-color-caution !default;
 
-				$zone-border-caution-hover: $brand-color-caution-dark !default;
-				$zone-background-caution-hover: rgba($brand-color-caution,.2) !default;
-				$zone-color-caution-hover: $brand-color-caution-dark !default;
+				$zone-border-caution-hover: $var-color-caution-dark !default;
+				$zone-background-caution-hover: $var-color-caution-alpha-2 !default;
+				$zone-color-caution-hover: $var-color-caution-dark !default;
 				
 
-			$zone-border-error: $brand-color-error !default;
-			$zone-background-error: rgba($brand-color-error,.1) !default;
-			$zone-color-error: $brand-color-error !default;
+			$zone-border-error: $var-color-error !default;
+			$zone-background-error: $var-color-error-alpha-1 !default;
+			$zone-color-error: $var-color-error !default;
 
-				$zone-border-error-hover: $brand-color-error-dark !default;
-				$zone-background-error-hover: rgba($brand-color-error,.2) !default;
-				$zone-color-error-hover: $brand-color-error-dark !default;
+				$zone-border-error-hover: $var-color-error-dark !default;
+				$zone-background-error-hover: $var-color-error-alpha-2 !default;
+				$zone-color-error-hover: $var-color-error-dark !default;
 				
 
 	//alert
@@ -606,7 +861,7 @@
 			$alert-gutter-y-large: $gutter-base !default;
 			$alert-gutter-y-ends-large: $alert-gutter-y-large * .5 !default;
 
-		$alert-box-shadow: none !default; //$box-shadow-base $brand-color-base
+		$alert-box-shadow: none !default; //$box-shadow-base $var-color-base
 		$alert-border-radius: 0 !default;
 
 			$alert-title-font-weight: $body-font-weight-bold !default;
@@ -615,48 +870,49 @@
 			$alert-title-text-transform: uppercase !default;
 
 			//schemes
-			$alert-border-default: $brand-color-neutral !default;
+			$alert-border-default: $var-color-neutral !default;
 			$alert-background-default: transparent !default;
 			$alert-color-default: inherit !default;
 
-			$alert-border-primary: rgba($brand-color-primary-dark,.5) !default;
-			$alert-background-primary: $brand-color-primary !default;
-			$alert-color-primary: $brand-color-background !default;
+			$alert-border-primary: $var-color-primary-dark !default;
+			$alert-background-primary: $var-color-primary !default;
+			$alert-color-primary: $var-color-background !default;
 
-			$alert-border-secondary: rgba($brand-color-secondary-dark,.5) !default;
-			$alert-background-secondary: $brand-color-secondary !default;
-			$alert-color-secondary: $brand-color-background !default;
+			$alert-border-secondary: $var-color-secondary-dark !default;
+			$alert-background-secondary: $var-color-secondary !default;
+			$alert-color-secondary: $var-color-background !default;
 
-			$alert-border-accent: rgba($brand-color-accent-dark,.5) !default;
-			$alert-background-accent: $brand-color-accent !default;
-			$alert-color-accent: $brand-color-background !default;
+			$alert-border-accent: $var-color-accent-dark !default;
+			$alert-background-accent: $var-color-accent !default;
+			$alert-color-accent: $var-color-background !default;
 
-			$alert-border-neutral: rgba($brand-color-neutral-dark,.5) !default;
-			$alert-background-neutral: $brand-color-neutral !default;
-			$alert-color-neutral: $brand-color-background !default;
+			$alert-border-neutral: $var-color-neutral-dark !default;
+			$alert-background-neutral: $var-color-neutral !default;
+			$alert-color-neutral: $var-color-background !default;
 
-			$alert-border-success: rgba($brand-color-success-dark,.5) !default;
-			$alert-background-success: $brand-color-success !default;
-			$alert-color-success: $brand-color-background !default;
+			$alert-border-success: $var-color-success-dark !default;
+			$alert-background-success: $var-color-success !default;
+			$alert-color-success: $var-color-background !default;
 
-			$alert-border-caution: rgba($brand-color-caution-dark,.5) !default;
-			$alert-background-caution: $brand-color-caution !default;
-			$alert-color-caution: $brand-color-background !default;
+			$alert-border-caution: $var-color-caution-dark !default;
+			$alert-background-caution: $var-color-caution !default;
+			$alert-color-caution: $var-color-background !default;
 
-			$alert-border-error: rgba($brand-color-error-dark,.5) !default;
-			$alert-background-error: $brand-color-error !default;
-			$alert-color-error: $brand-color-background !default;
+			$alert-border-error: $var-color-error-dark !default;
+			$alert-background-error: $var-color-error !default;
+			$alert-color-error: $var-color-background !default;
 
 	
 	
 			
 	// MODULE
-		$module-background-color: $theme-background !default;
-			$module-background-color-inverse: $theme-background-inverse !default;
-		$module-border-color: $theme-background-contrast !default;
-			$module-border-color-inverse: $theme-background-contrast-inverse !default;
+		$module-background-color: $var-theme-background !default;
+			$module-background-color-inverse: $module-background-color !default;
+		$module-border-color: $var-theme-background-contrast !default;
+			$module-border-color-inverse: $module-border-color !default;
 		$module-border-width: 1px !default;
-		$module-box-shadow-hover: $box-shadow-spicy $brand-color-base !default; 
+		$module-box-shadow: $box-shadow-spicy $var-color-base-alpha-5 !default;
+		$module-box-shadow-hover: $box-shadow-spicy $var-color-primary !default; 
 		
 		$module-gutter-x: $gutter-base !default;
 			$module-gutter-x-mobile: $gutter-small !default;
@@ -674,17 +930,17 @@
 		$module-title-font-size: $body-font-size !default;
 		$module-title-font-weight: $body-font-weight-bold !default;
 		$module-title-font-style: normal !default;
-		$module-title-color: $brand-color-primary !default;
+		$module-title-color: $var-color-primary !default;
 		$module-title-text-transform: none !default;
 
 		$module-grid-title-font-size: 19px !default;
 		$module-grid-title-font-weight: $body-font-weight-bold !default;
 		$module-grid-title-font-style: normal !default;
-		$module-grid-title-color: $brand-color-primary !default;
+		$module-grid-title-color: $var-color-primary !default;
 		$module-grid-title-text-transform: none !default;
 		$module-grid-title-rule-height: 1px !default;
-		$module-grid-title-rule-color: $brand-color-neutral !default;
-			$module-grid-title-rule-inverse: $brand-color-neutral !default;
+		$module-grid-title-rule-color: $var-color-neutral !default;
+			$module-grid-title-rule-inverse: $var-color-neutral !default;
 
 		$module-grid-title-margin-bottom:1em !default;
 		$module-grid-title-margin-top:100px !default;
@@ -694,13 +950,13 @@
 		$modal-padding-y: $gutter-base !default;
 			$modal-padding-x-mobile: $gutter-small !default;
 			$modal-padding-y-mobile: $gutter-small !default;
-		$modal-background: $theme-background !default;
+		$modal-background: $var-theme-background !default;
+			$modal-background-inverse: $modal-background !default;
 		$modal-close-offset: $gutter-small !default;
 			$modal-close-offset-mobile: $modal-close-offset !default;
-		$modal-background-inverse: $theme-background-inverse !default;
 		$modal-border-radius: $border-radius-small !default;
-		$modal-box-shadow: $box-shadow-spicy $brand-color-base !default !default;
-		$modal-overlay-bg: rgba($brand-color-base,.5) !default;
+		$modal-box-shadow: $box-shadow-spicy $var-color-base !default !default;
+		$modal-overlay-bg: $var-color-base-alpha-5 !default;
 		$modal-close-button-font-size: 1rem !default;
 		$modal-gutter: $gutter-base !default;
 			$modal-gutter-mobile: $gutter-small !default;
@@ -720,19 +976,19 @@
 			$board-resize-width: 20px !default; //not yet
 			$board-resize-height: 55px !default; //not yet
 			$board-close-size: 38px !default;
-			$board-close-box-shadow: $box-shadow-base $brand-color-base !default;
+			$board-close-box-shadow: $box-shadow-base $var-color-base !default;
 
 	// POPPER = DROPDOWN || TOOLTIP
 		$popper-gutter-x: $gutter-small !default;
 		$popper-gutter-y: $gutter-small !default;
 		$popper-border-radius: $border-radius-base !default;
-		$popper-box-shadow: $box-shadow-base $brand-color-base !default;
-		$popper-arrow-box-shadow: $box-shadow-mild $brand-color-base !default;
-		$popper-background: $theme-background !default;
-		$popper-background-inverse: $theme-background-inverse !default;
+		$popper-box-shadow: $box-shadow-base $var-color-base !default;
+		$popper-arrow-box-shadow: $box-shadow-mild $var-color-base !default;
+		$popper-background: $var-theme-background !default;
+		$popper-background-inverse: $popper-background !default;
 
 		$dropdown-width: 300px !default;
-		$dropdown-active-color: $brand-color-primary !default;
+		$dropdown-active-color: $var-color-primary !default;
 
 		$tooltip-max-width: 300px !default;
 
@@ -741,9 +997,9 @@
 			$progress-height-large: 30px !default;
 			$progress-height-small: 10px !default;
 
-		$progress-background-color: $theme-background-contrast !default;
-			$progress-background-color-inverse: $theme-background-contrast-inverse !default;
-		$progress-background-stripe-color: rgba($brand-color-neutral,.2) !default;
+		$progress-background-color: $var-theme-background-contrast !default;
+			$progress-background-color-inverse: $progress-background-color !default;
+		$progress-background-stripe-color: $var-color-neutral-alpha-2 !default;
 			$progress-background-stripe-color-inverse: $progress-background-stripe-color !default;
 
 		$progress-background-stripe-width: 1px !default;
@@ -753,15 +1009,15 @@
 		$progress-transition-duration: $transition-duration-long * 4 !default;
 
 
-		$progress-bar-background-color: rgba($brand-color-neutral,.75) !default;
+		$progress-bar-background-color: $var-color-neutral-alpha-7 !default;
 
 
 		$progress-title-font-size: 14px !default;
 		$progress-title-font-weight: $body-font-weight-bold !default;
 		$progress-title-line-height: 20px !default;
 		$progress-title-font-style: normal !default;
-		$progress-title-color: $brand-color-base-alt !default;
-			$progress-title-color-inverse: $brand-color-background-alt !default;
+		$progress-title-color: $var-color-base-alt !default;
+			$progress-title-color-inverse: $var-color-background-alt !default;
 		$progress-title-text-transform: uppercase !default;
 		$progress-title-margin-bottom: 10px !default;
 		$progress-title-margin-top: 30px !default;
@@ -772,8 +1028,8 @@
 			$well-spread-expanded: 14px !default;
 			$well-spread-compact: 3px !default;
 
-		$well-color: rgba($brand-color-base,.2) !default;
-			$well-color-inverse: rgba($brand-color-base,.2) !default;
+		$well-color: $var-color-base-alpha-2 !default;
+			$well-color-inverse: $var-color-base-alpha-2 !default;
 	
 
 	// THUMBNAIL
@@ -789,7 +1045,7 @@
 
 		$thumbnail-border-radius: 50% !default;
 		$thumbnail-line-height: 1.25 !default;
-		$thumbnail-color: $brand-color-background !default;
+		$thumbnail-color: $var-color-background !default;
 		$thumbnail-font-weight: $body-font-weight-bold !default;
 		$thumbnail-font-style: normal !default;
 
@@ -797,32 +1053,32 @@
 		$thumbnail-addon-offset-y: 15% !default;
 		
 	//list groups
-		$list-group-border-color: $theme-background-contrast !default;
-			$list-group-border-color-inverse: $theme-background-contrast-inverse !default;
+		$list-group-border-color: $var-theme-background-contrast !default;
+			$list-group-border-color-inverse: $list-group-border-color !default;
 		$list-group-border-width: 1px !default;
 		$list-group-height: 50px !default;
 			$list-group-height-compact: 30px !default;
 			$list-group-height-expanded: 75px !default;
 		$list-group-gutter-x: $gutter-small !default;
-		$list-group-interactive-background-hover: rgba($brand-color-primary,.1);
-		$list-group-interactive-background-active: rgba($brand-color-primary,.2);
+		$list-group-interactive-background-hover: $var-color-primary-alpha-1;
+		$list-group-interactive-background-active: $var-color-primary-alpha-2;
 		
 	// badge
 		$badge-size: 25px !default;
 		$badge-size-large: 30px !default;
 		$badge-size-small: 20px !default;
-		$badge-border-color: $theme-background !default;
-			$badge-border-color-inverse: $theme-background !default;
+		$badge-border-color: $var-theme-background !default;
+			$badge-border-color-inverse: $badge-border-color !default;
 		$badge-border-width: 7px !default;
-		$badge-box-shadow: 0px 3px 10px -5px $brand-color-base !default;
+		$badge-box-shadow: 0px 3px 10px -5px $var-color-base !default;
 
 	// legend
 		$badge-size: 25px !default;
 		$badge-size-large: 30px !default;
 		$badge-size-small: 20px !default;
-		$badge-border-color: $brand-color-background !default;
+		$badge-border-color: $var-color-background !default;
 		$badge-border-width: 7px !default;
-		$badge-box-shadow: $box-shadow-mild $brand-color-base !default;
+		$badge-box-shadow: $box-shadow-mild $var-color-base !default;
 
 	// highlight
 
@@ -832,36 +1088,36 @@
 		$highlight-font-size: 13px !default;
 		$highlight-font-weight: inherit !default;
 		$highlight-font-style: normal !default;
-		$highlight-color: $brand-color-background !default;
+		$highlight-color: $var-color-background !default;
 		$highlight-text-transform: none !default;
 		$highlight-gutter-x: 20px !default;
 		$highlight-border-radius: $border-radius-base !default;
 
 
 		$highlight-default-color: inherit !default;
-		$highlight-default-background: rgba($brand-color-base,.2) !default;
+		$highlight-default-background: $var-color-base-alpha-2 !default;
 
 
-			$highlight-primary-color: $brand-color-primary !default;
-			$highlight-primary-background: $brand-color-primary-lightest !default;
+			$highlight-primary-color: $var-color-primary !default;
+			$highlight-primary-background: $var-color-primary-lightest !default;
 
-			$highlight-secondary-color: $brand-color-secondary !default;
-			$highlight-secondary-background: $brand-color-secondary-lightest !default;
+			$highlight-secondary-color: $var-color-secondary !default;
+			$highlight-secondary-background: $var-color-secondary-lightest !default;
 
-			$highlight-accent-color: $brand-color-accent !default;
-			$highlight-accent-background: $brand-color-accent-lightest !default;
+			$highlight-accent-color: $var-color-accent !default;
+			$highlight-accent-background: $var-color-accent-lightest !default;
 
-			$highlight-neutral-color: $brand-color-neutral !default;
-			$highlight-neutral-background: $brand-color-neutral-lightest !default;
+			$highlight-neutral-color: $var-color-neutral !default;
+			$highlight-neutral-background: $var-color-neutral-lightest !default;
 
-			$highlight-success-color: $brand-color-success !default;
-			$highlight-success-background: $brand-color-success-lightest !default;
+			$highlight-success-color: $var-color-success !default;
+			$highlight-success-background: $var-color-success-lightest !default;
 
-			$highlight-caution-color: $brand-color-caution !default;
-			$highlight-caution-background: $brand-color-caution-lightest !default;
+			$highlight-caution-color: $var-color-caution !default;
+			$highlight-caution-background: $var-color-caution-lightest !default;
 
-			$highlight-error-color: $brand-color-error !default;
-			$highlight-error-background: $brand-color-error-lightest !default;
+			$highlight-error-color: $var-color-error !default;
+			$highlight-error-background: $var-color-error-lightest !default;
 
 
 	
@@ -874,7 +1130,7 @@
 		$tag-font-weight: $body-font-weight-bold !default;
 		$tag-line-height: 1 !default;
 		$tag-font-style: normal !default;
-		$tag-color: $brand-color-background !default;
+		$tag-color: $var-color-background !default;
 		$tag-text-transform: uppercase !default;
 		$tag-gutter-x: 20px !default;
 		$tag-border-radius: $tag-height * .5 !default;
@@ -882,97 +1138,97 @@
 			$tag-border-radius-small: $tag-height-small * .25 !default;
 		$tag-margin-y: .125em !default;
 
-		$tag-default-color: inherit !default;
-		$tag-default-background: rgba($brand-color-base,.2) !default;
+		$tag-default-color: $var-theme-color !default;
+		$tag-default-background: $var-color-neutral-alpha-5 !default;
 
 
-			$tag-primary-color: $brand-color-primary !default;
-			$tag-primary-background: $brand-color-primary-lightest !default;
+			$tag-primary-color: $var-color-primary !default;
+			$tag-primary-background: $var-color-primary-lightest !default;
 
-			$tag-secondary-color: $brand-color-secondary !default;
-			$tag-secondary-background: $brand-color-secondary-lightest !default;
+			$tag-secondary-color: $var-color-secondary !default;
+			$tag-secondary-background: $var-color-secondary-lightest !default;
 
-			$tag-accent-color: $brand-color-accent !default;
-			$tag-accent-background: $brand-color-accent-lightest !default;
+			$tag-accent-color: $var-color-accent !default;
+			$tag-accent-background: $var-color-accent-lightest !default;
 
-			$tag-neutral-color: $brand-color-neutral !default;
-			$tag-neutral-background: $brand-color-neutral-lightest !default;
+			$tag-neutral-color: $var-color-neutral !default;
+			$tag-neutral-background: $var-color-neutral-lightest !default;
 
-			$tag-success-color: $brand-color-success !default;
-			$tag-success-background: $brand-color-success-lightest !default;
+			$tag-success-color: $var-color-success !default;
+			$tag-success-background: $var-color-success-lightest !default;
 
-			$tag-caution-color: $brand-color-caution !default;
-			$tag-caution-background: $brand-color-caution-lightest !default;
+			$tag-caution-color: $var-color-caution !default;
+			$tag-caution-background: $var-color-caution-lightest !default;
 
-			$tag-error-color: $brand-color-error !default;
-			$tag-error-background: $brand-color-error-lightest !default;
+			$tag-error-color: $var-color-error !default;
+			$tag-error-background: $var-color-error-lightest !default;
 
 
 
-			$tag-intensity-1-color: $brand-color-intensity-1 !default;
-			$tag-intensity-1-background: $brand-color-intensity-1-lightest !default;
+			$tag-intensity-1-color: $var-color-intensity-1 !default;
+			$tag-intensity-1-background: $var-color-intensity-1-lightest !default;
 
-			$tag-intensity-2-color: $brand-color-intensity-2 !default;
-			$tag-intensity-2-background: $brand-color-intensity-2-lightest !default;
+			$tag-intensity-2-color: $var-color-intensity-2 !default;
+			$tag-intensity-2-background: $var-color-intensity-2-lightest !default;
 
-			$tag-intensity-3-color: $brand-color-intensity-3 !default;
-			$tag-intensity-3-background: $brand-color-intensity-3-lightest !default;
+			$tag-intensity-3-color: $var-color-intensity-3 !default;
+			$tag-intensity-3-background: $var-color-intensity-3-lightest !default;
 
-			$tag-intensity-4-color: $brand-color-intensity-4 !default;
-			$tag-intensity-4-background: $brand-color-intensity-4-lightest !default;
+			$tag-intensity-4-color: $var-color-intensity-4 !default;
+			$tag-intensity-4-background: $var-color-intensity-4-lightest !default;
 
-			$tag-intensity-5-color: $brand-color-intensity-5 !default;
-			$tag-intensity-5-background: $brand-color-intensity-5-lightest !default;
+			$tag-intensity-5-color: $var-color-intensity-5 !default;
+			$tag-intensity-5-background: $var-color-intensity-5-lightest !default;
 
 	//asset
 		$asset-thumbnail-width: 190px !default;
 		$asset-thumbnail-height: 100px !default;
 		$asset-thumbnail-border-width: 3px !default;
 		$asset-thumbnail-border-color: transparent !default;
-			$asset-thumbnail-border-color-hover: $brand-color-primary !default;
+			$asset-thumbnail-border-color-hover: $var-color-primary !default;
 		$asset-width: 220px !default;
 		$asset-thumbnail-margin-bottom: $gutter-micro !default;
 		$asset-transition-duration: $transition-duration-base!default;
 
 		$asset-image-glyph-size: 25px !default;
-		$asset-image-glyph-color: $brand-color-background !default;
+		$asset-image-glyph-color: $var-color-background !default;
 		$asset-image-glyph-text-transform: capitalize !default;
 		$asset-image-glyph-font-weight: 900 !default;
 
 		$asset-thumbnail-image-gutter: $gutter-micro !default;
 
 		$asset-border-radius: $border-radius-small !default;
-		$asset-box-shadow: $box-shadow-base $brand-color-base !default;
+		$asset-box-shadow: $box-shadow-base $var-color-base !default;
 
 
 		$asset-title-font-weight: $body-font-weight-bold !default;
 		$asset-title-font-style: normal !default;
-		$asset-title-color: $brand-color-neutral !default;
+		$asset-title-color: $var-color-neutral !default;
 		$asset-title-text-transform: none !default;
 		$asset-title-margin-bottom: $gutter-micro !default;
 
 		$asset-caption-font-weight: 300 !default;
 		$asset-caption-font-style: normal !default;
-		$asset-caption-color: $brand-color-neutral !default;
+		$asset-caption-color: $var-color-neutral !default;
 		$asset-caption-text-transform: none !default;
 		$asset-title-margin-bottom: $gutter-micro !default;
 
 		//this has no meaning at all shut up
-		$asset-image-default-palette: $brand-color-neutral !default;
-			$asset-image-audio-palette: $brand-color-secondary !default;
-			$asset-image-code-palette: $brand-color-primary !default;
-				$asset-image-text-palette: $brand-color-neutral !default;
-			$asset-image-doc-palette: $brand-color-primary !default;
-			$asset-image-font-palette: $brand-color-accent !default;
-			$asset-image-img-palette: $brand-color-accent !default;
-				$asset-image-ps-palette: $brand-color-primary !default;
-				$asset-image-ai-palette: $brand-color-caution !default;
-				$asset-image-xd-palette: $brand-color-secondary !default;
-			$asset-image-pdf-palette: $brand-color-error !default;
-				$asset-image-id-palette: $brand-color-secondary !default;
-			$asset-image-table-palette: $brand-color-success !default;
-			$asset-image-video-palette: $brand-color-accent !default;
-			$asset-image-zip-palette: $brand-color-neutral !default;
+		$asset-image-default-palette-tag: neutral !default;
+			$asset-image-audio-palette-tag: secondary !default;
+			$asset-image-code-palette-tag: primary !default;
+				$asset-image-text-palette-tag: neutral !default;
+			$asset-image-doc-palette-tag: primary !default;
+			$asset-image-font-palette-tag: accent !default;
+			$asset-image-img-palette-tag: accent !default;
+				$asset-image-ps-palette-tag: primary !default;
+				$asset-image-ai-palette-tag: caution !default;
+				$asset-image-xd-palette-tag: secondary !default;
+			$asset-image-pdf-palette-tag: error !default;
+				$asset-image-id-palette-tag: secondary !default;
+			$asset-image-table-palette-tag: success !default;
+			$asset-image-video-palette-tag: accent !default;
+			$asset-image-zip-palette-tag: neutral !default;
 
 
 	//toolbar
@@ -985,10 +1241,10 @@
 		$toolbar-border-radius: $toolbar-cross-min-size * .5 !default;
 			$toolbar-border-radius-small: $toolbar-cross-min-size-small * .5 !default;
 			$toolbar-border-radius-large: $toolbar-cross-min-size-large * .5 !default;
-		$toolbar-background-color: $theme-background !default;
-			$toolbar-background-color-inverse: $theme-background-inverse !default;
-		$toolbar-border-color: $theme-background-contrast !default;
-			$toolbar-border-color-inverse: $theme-background-contrast-inverse !default;
+		$toolbar-background-color: $var-theme-background !default;
+			$toolbar-background-color-inverse: $toolbar-background-color !default;
+		$toolbar-border-color: $var-theme-background-contrast !default;
+			$toolbar-border-color-inverse: $toolbar-border-color !default;
 		$toolbar-border-width: 1px !default;
 		$toolbar-box-shadow: none !default; // 
 		$toolbar-tile-gutter: $gutter-micro !default; // 
@@ -1001,41 +1257,39 @@
 			$input-height-small: 30px !default;
 		$input-height-multiple-factor: 3 !default;
 		$input-placeholder-opacity: .5 !default;
-		$input-background: $theme-background !default;
-			$input-background-inverse: $theme-background-inverse !default;
-			// $input-background-disabled: rgba($brand-color-neutral,.2) !default;
-			// 	$input-background-disabled-inverse: transparent !default;
+		$input-background: $var-theme-background !default;
+			$input-background-inverse: $input-background !default;
 
 		$input-font-size: $body-font-size !default;
 			$input-font-size-large: $body-font-size * 1.25 !default;
 			$input-font-size-small: $body-font-size * .875 !default;
 
-		$input-select-dropdown-color: $brand-color-primary !default;
+		$input-select-dropdown-color: $var-color-primary !default;
 		
 		$input-color: inherit !default;
 			$input-color-inverse: inherit !default;
-		$input-placeholder-color: rgba($brand-color-base,.5) !default;
-			$input-placeholder-color-inverse: rgba($brand-color-background,.5) !default;
+		$input-placeholder-color: $var-color-neutral-alpha-5 !default;
+			$input-placeholder-color-inverse: $input-placeholder-color !default;
 		$input-background: none !default;
 			$input-background-inverse: none !default;
 		$input-line-height: $body-line-height !default;
-		$input-font-family: $brand-font-primary !default;
+		$input-font-family: $var-font-primary !default;
 		$input-font-weight: $body-font-weight !default;
 		$input-font-style: normal !default;
 		$input-text-transform: none !default;
 		
 		$input-gutter-x: $gutter-small !default;
 		$input-border-width: 1px !default;
-		$input-border-color: rgba($brand-color-neutral,.3) !default;
-		$input-border-color-focus: rgba($brand-color-neutral,.6) !default;
+		$input-border-color: $var-color-neutral-alpha-3 !default;
+		$input-border-color-focus: $var-color-neutral-alpha-6 !default;
 		$input-border-radius: $input-height * .5 !default;
 			$input-border-radius-large: $input-height-large * .5 !default;
 			$input-border-radius-small: $input-height-small * .5 !default;
-		$input-box-shadow: none !default; //$box-shadow-base $brand-color-base 
-		$input-box-shadow-brand-basis: $box-shadow-base !default;
-			$input-box-shadow-focus: 0px 0 5px 0px $brand-color-primary !default;
+		$input-box-shadow: none !default; //$box-shadow-base $var-color-base 
+		$input-box-shadow-palette-basis: $box-shadow-base !default;
+			$input-box-shadow-focus: 0px 0 5px 0px $var-color-primary !default;
 		$input-group-separator-color: $input-border-color !default;
-		$input-color-feedback-opacity: .05 !default;
+		$input-color-feedback-var-slug: alpha-1 !default;
 
 		$input-label-gutter: 20px !default;
 
@@ -1046,11 +1300,11 @@
 		$input-label-color: inherit !default;
 			$input-label-color-inverse: inherit !default;
 		
-			$input-label-font-family: $brand-font-primary !default;
+			$input-label-font-family: $var-font-primary !default;
 			$input-label-font-weight: $body-font-weight-bold !default;
 			$input-label-font-style: normal !default;
 			$input-label-text-transform: none !default;
-			$input-label-in-group-background: rgba($brand-color-neutral,.3) !default;
+			$input-label-in-group-background: $var-color-neutral-alpha-3 !default;
 				$input-label-in-group-background-inverse: $input-label-in-group-background !default;
 		
 			$input-label-horizontal-width: 25% !default;
@@ -1059,7 +1313,7 @@
 			$input-info-font-weight: 300 !default;
 			$input-info-line-height: 1.25 !default;
 			$input-info-font-style: italic !default;
-			$input-info-color: $brand-color-neutral !default;
+			$input-info-color: $var-color-neutral !default;
 			$input-info-text-transform: none !default;
 			$input-info-gutter-y: 1em !default;
 
@@ -1073,13 +1327,12 @@
 				$input-calendar-block-border-radius: $border-radius-base !default;
 
 				$input-calendar-date-hover-color: inherit !default;
-				// $input-calendar-date-hover-background: rgba($brand-color-neutral,.5) !default;
 
 
-				$input-calendar-date-heading-button-color-hover: $brand-color-primary !default;
+				$input-calendar-date-heading-button-color-hover: $var-color-primary !default;
 
-				$input-calendar-date-active-color: $brand-color-background !default;
-				$input-calendar-date-active-background: $brand-color-primary !default;
+				$input-calendar-date-active-color: $var-color-background !default;
+				$input-calendar-date-active-background: $var-color-primary !default;
 
 				$input-calendar-days-border-width: 1px !default; 
 				$input-calendar-days-font-size: .75em !default;
@@ -1094,9 +1347,8 @@
 
 				$input-tags-border-radius: $border-radius-large !default;
 
-
-				$input-tags-background: $brand-color-primary !default;
-				$input-tags-background-opacity: .2 !default;
+				$input-tags-palette-tag: primary !default;
+				$input-tags-palette-tag-slug: alpha-2 !default;
 
 			//input toggle
 				$input-toggle-margin-x: 10px !default;
@@ -1126,8 +1378,8 @@
 					$input-toggle-node-border-radius-large: $input-toggle-node-height-large * .5 !default;
 					$input-toggle-plate-border-radius-large: $input-toggle-plate-height-large *  .5 !default;
 
-				$input-toggle-color-default: $brand-color-neutral !default;
-					$input-toggle-color-default-active: $brand-color-primary !default;
+				$input-toggle-color-default: $var-color-neutral !default;
+					$input-toggle-color-default-active: $var-color-primary !default;
 
 				$input-toggle-label-color-default: $input-label-color !default;
 					$input-toggle-label-color-default-active: inherit !default;
@@ -1138,8 +1390,8 @@
 		//special-form
 			$special-form-gutter-x: 35px !default;
 			$special-form-gutter-y: 30px !default;
-			$special-form-background: $theme-background-contrast !default;
-			$special-form-background-inverse: $theme-background-contrast-inverse !default;
+			$special-form-background: $var-theme-background-contrast !default;
+			$special-form-background-inverse: $special-form-background !default;
 			
 			$special-form-border-radius: $border-radius-base !default;
 
@@ -1152,7 +1404,7 @@
 			$btn-font-size-large: 22px !default;
 			$btn-font-size-small: 12px !default;
 		$btn-line-height: $body-font-size * 1.25 !default;
-		$btn-font-family: $brand-font-primary !default;
+		$btn-font-family: $var-font-primary !default;
 		$btn-font-weight: $body-font-weight-bold !default;
 		$btn-font-style: normal !default;
 		$btn-text-transform: none !default;
@@ -1161,8 +1413,8 @@
 		$btn-border-radius: $btn-height * .5 !default;
 			$btn-border-radius-large: $btn-height-large * .5 !default;
 			$btn-border-radius-small:  $btn-height-small * .5 !default;
-		$btn-box-shadow: none !default; //$box-shadow-base $brand-color-base
-			$btn-box-shadow-hover: $box-shadow-base $brand-color-base !default;
+		$btn-box-shadow: none !default; //$box-shadow-base $var-color-base
+			$btn-box-shadow-hover: $box-shadow-base $var-color-base !default;
 		$btn-group-separator-color: $input-border-color !default;
 		$btn-transition-duration: $transition-duration-base!default;
 
@@ -1173,95 +1425,95 @@
 
 				$btn-border-default-hover: $input-border-color-focus !default;
 				$btn-background-default-hover: transparent !default;
-				$btn-color-default-hover: $brand-color-primary !default;
+				$btn-color-default-hover: $var-color-primary !default;
 			
-				$btn-border-default-active: $brand-color-primary  !default;
-				$btn-background-default-active: $brand-color-primary !default;
-				$btn-color-default-active: $brand-color-background !default;
+				$btn-border-default-active: $var-color-primary  !default;
+				$btn-background-default-active: $var-color-primary !default;
+				$btn-color-default-active: $var-color-background !default;
 
 			$btn-border-primary: transparent !default;
-			$btn-background-primary: $brand-color-primary !default;
-			$btn-color-primary: $brand-color-background !default;
+			$btn-background-primary: $var-color-primary !default;
+			$btn-color-primary: $var-color-background !default;
 
 				$btn-border-primary-hover: transparent !default;
-				$btn-background-primary-hover: $brand-color-primary-light !default;
-				$btn-color-primary-hover: $brand-color-background !default;
+				$btn-background-primary-hover: $var-color-primary-light !default;
+				$btn-color-primary-hover: $var-color-background !default;
 				
 				$btn-border-primary-active: transparent !default;
-				$btn-background-primary-active: $brand-color-primary !default;
-				$btn-color-primary-active: $brand-color-background !default;
+				$btn-background-primary-active: $var-color-primary !default;
+				$btn-color-primary-active: $var-color-background !default;
 
 			$btn-border-secondary: transparent !default;
-			$btn-background-secondary: $brand-color-secondary !default;
-			$btn-color-secondary: $brand-color-background !default;
+			$btn-background-secondary: $var-color-secondary !default;
+			$btn-color-secondary: $var-color-background !default;
 
 				$btn-border-secondary-hover: transparent !default;
-				$btn-background-secondary-hover: $brand-color-secondary-light !default;
-				$btn-color-secondary-hover: $brand-color-background !default;
+				$btn-background-secondary-hover: $var-color-secondary-light !default;
+				$btn-color-secondary-hover: $var-color-background !default;
 				
 				$btn-border-secondary-active: transparent !default;
-				$btn-background-secondary-active: $brand-color-secondary !default;
-				$btn-color-secondary-active: $brand-color-background !default;
+				$btn-background-secondary-active: $var-color-secondary !default;
+				$btn-color-secondary-active: $var-color-background !default;
 
 			$btn-border-accent: transparent !default;
-			$btn-background-accent: $brand-color-accent !default;
-			$btn-color-accent: $brand-color-background !default;
+			$btn-background-accent: $var-color-accent !default;
+			$btn-color-accent: $var-color-background !default;
 
 				$btn-border-accent-hover: transparent !default;
-				$btn-background-accent-hover: $brand-color-accent-light !default;
-				$btn-color-accent-hover: $brand-color-background !default;
+				$btn-background-accent-hover: $var-color-accent-light !default;
+				$btn-color-accent-hover: $var-color-background !default;
 				
 				$btn-border-accent-active: transparent !default;
-				$btn-background-accent-active: $brand-color-accent !default;
-				$btn-color-accent-active: $brand-color-background !default;
+				$btn-background-accent-active: $var-color-accent !default;
+				$btn-color-accent-active: $var-color-background !default;
 
 			$btn-border-neutral: transparent !default;
-			$btn-background-neutral: $brand-color-neutral !default;
-			$btn-color-neutral: $brand-color-background !default;
+			$btn-background-neutral: $var-color-neutral !default;
+			$btn-color-neutral: $var-color-background !default;
 
 				$btn-border-neutral-hover: transparent !default;
-				$btn-background-neutral-hover: $brand-color-neutral-light !default;
-				$btn-color-neutral-hover: $brand-color-background !default;
+				$btn-background-neutral-hover: $var-color-neutral-light !default;
+				$btn-color-neutral-hover: $var-color-background !default;
 				
 				$btn-border-neutral-active: transparent !default;
-				$btn-background-neutral-active: $brand-color-neutral !default;
-				$btn-color-neutral-active: $brand-color-background !default;
+				$btn-background-neutral-active: $var-color-neutral !default;
+				$btn-color-neutral-active: $var-color-background !default;
 
 			$btn-border-success: transparent !default;
-			$btn-background-success: $brand-color-success !default;
-			$btn-color-success: $brand-color-background !default;
+			$btn-background-success: $var-color-success !default;
+			$btn-color-success: $var-color-background !default;
 
 				$btn-border-success-hover: transparent !default;
-				$btn-background-success-hover: $brand-color-success-light !default;
-				$btn-color-success-hover: $brand-color-background !default;
+				$btn-background-success-hover: $var-color-success-light !default;
+				$btn-color-success-hover: $var-color-background !default;
 			
 				$btn-border-success-active: transparent !default;
-				$btn-background-success-active: $brand-color-success !default;
-				$btn-color-success-active: $brand-color-background !default;
+				$btn-background-success-active: $var-color-success !default;
+				$btn-color-success-active: $var-color-background !default;
 				
 			$btn-border-caution: transparent !default;
-			$btn-background-caution: $brand-color-caution !default;
-			$btn-color-caution: $brand-color-background !default;
+			$btn-background-caution: $var-color-caution !default;
+			$btn-color-caution: $var-color-background !default;
 			
 				$btn-border-caution-hover: transparent !default;
-				$btn-background-caution-hover: $brand-color-caution-light !default;
-				$btn-color-caution-hover: $brand-color-background !default;
+				$btn-background-caution-hover: $var-color-caution-light !default;
+				$btn-color-caution-hover: $var-color-background !default;
 				
 				$btn-border-caution-active: transparent !default;
-				$btn-background-caution-active: $brand-color-caution !default;
-				$btn-color-caution-active: $brand-color-background !default;
+				$btn-background-caution-active: $var-color-caution !default;
+				$btn-color-caution-active: $var-color-background !default;
 
 			$btn-border-error: transparent !default;
-			$btn-background-error: $brand-color-error !default;
-			$btn-color-error: $brand-color-background !default;
+			$btn-background-error: $var-color-error !default;
+			$btn-color-error: $var-color-background !default;
 				
 				$btn-border-error-hover: transparent !default;
-				$btn-background-error-hover: $brand-color-error-light !default;
-				$btn-color-error-hover: $brand-color-background !default;
+				$btn-background-error-hover: $var-color-error-light !default;
+				$btn-color-error-hover: $var-color-background !default;
 				
 				$btn-border-error-active: transparent !default;
-				$btn-background-error-active: $brand-color-error !default;
-				$btn-color-error-active: $brand-color-background !default;
+				$btn-background-error-active: $var-color-error !default;
+				$btn-color-error-active: $var-color-background !default;
 
 			$btn-border-link: transparent !default;
 			$btn-background-link: transparent !default;
@@ -1276,16 +1528,20 @@
 				$btn-color-link-active: $body-anchor-color !default;
 
 
+
 	
 
-//PLUGIN DEPENDENCIES
+
+
+
 	
 
+//////////////////////////////// CONTENT PLUGIN DEPENDENCIES
+		
 	$brxs: $br-xs-max;
 	$brsm: $br-sm-max;
 	$brmd: $br-md-max;
-		
-
+			
 	//mixins shithole
 		$color-base: $brand-color-base;
 			$color-base-alt: $brand-color-base-alt;
@@ -1309,116 +1565,3 @@
 
 
 
-	
-
-//ROOT VAR FOR JS
-
-:root {
-
-	//br
-		--br-xxs: #{$br-xxs-max};
-		--br-xs: #{$br-xs-max};
-		--br-sm: #{$br-sm-max};
-		--br-md: #{$br-md-max};
-		--br-lg: #{$br-lg-max};
-
-		--mobile-br-max: #{$mobile-br-max};
-
-	//colour
-
-		--brand-color-base: #{$brand-color-base};
-			--brand-color-base-alt: #{$brand-color-base-alt};
-
-		--brand-color-background: #{$brand-color-background};
-			--brand-color-background-alt: #{$brand-color-background-alt};
-
-		--brand-color-neutral: #{$brand-color-neutral};
-			// --brand-color-neutral-light: #{$brand-color-neutral-light};
-			// --brand-color-neutral-lighter: #{$brand-color-neutral-lighter};
-			// --brand-color-neutral-lightest: #{$brand-color-neutral-lightest};
-			// --brand-color-neutral-dark: #{$brand-color-neutral-dark};
-			// --brand-color-neutral-darker: #{$brand-color-neutral-darker};
-			// --brand-color-neutral-darkest: #{$brand-color-neutral-darkest};
-		
-		--brand-color-primary: #{$brand-color-primary};
-			// --brand-color-primary-light: #{$brand-color-primary-light};
-			// --brand-color-primary-lighter: #{$brand-color-primary-lighter};
-			// --brand-color-primary-lightest: #{$brand-color-primary-lightest};
-			// --brand-color-primary-dark: #{$brand-color-primary-dark};
-			// --brand-color-primary-darker: #{$brand-color-primary-darker};
-			// --brand-color-primary-darkest: #{$brand-color-primary-darkest};
-		
-		--brand-color-secondary: #{$brand-color-secondary};
-			// --brand-color-secondary-light: #{$brand-color-secondary-light};
-			// --brand-color-secondary-lighter: #{$brand-color-secondary-lighter};
-			// --brand-color-secondary-lightest: #{$brand-color-secondary-lightest};
-			// --brand-color-secondary-dark: #{$brand-color-secondary-dark};
-			// --brand-color-secondary-darker: #{$brand-color-secondary-darker};
-			// --brand-color-secondary-darkest: #{$brand-color-secondary-darkest};
-		
-		--brand-color-accent: #{$brand-color-accent};
-			// --brand-color-accent-light: #{$brand-color-accent-light};
-			// --brand-color-accent-lighter: #{$brand-color-accent-lighter};
-			// --brand-color-accent-lightest: #{$brand-color-accent-lightest};
-			// --brand-color-accent-dark: #{$brand-color-accent-dark};
-			// --brand-color-accent-darker: #{$brand-color-accent-darker};
-			// --brand-color-accent-darkest: #{$brand-color-accent-darkest};
-
-		--brand-color-success: #{$brand-color-success};
-			// --brand-color-success-light: #{$brand-color-success-light};
-			// --brand-color-success-lighter: #{$brand-color-success-lighter};
-			// --brand-color-success-lightest: #{$brand-color-success-lightest};
-			// --brand-color-success-dark: #{$brand-color-success-dark};
-			// --brand-color-success-darker: #{$brand-color-success-darker};
-			// --brand-color-success-darkest: #{$brand-color-success-darkest};
-
-		--brand-color-caution: #{$brand-color-caution};
-			// --brand-color-caution-light: #{$brand-color-caution-light};
-			// --brand-color-caution-lighter: #{$brand-color-caution-lighter};
-			// --brand-color-caution-lightest: #{$brand-color-caution-lightest};
-			// --brand-color-caution-dark: #{$brand-color-caution-dark};
-			// --brand-color-caution-darker: #{$brand-color-caution-darker};
-			// --brand-color-caution-darkest: #{$brand-color-caution-darkest};
-
-		--brand-color-error: #{$brand-color-error};
-			// --brand-color-error-light: #{$brand-color-error-light};
-			// --brand-color-error-lighter: #{$brand-color-error-lighter};
-			// --brand-color-error-lightest: #{$brand-color-error-lightest};
-			// --brand-color-error-dark: #{$brand-color-error-dark};
-			// --brand-color-error-darker: #{$brand-color-error-darker};
-			// --brand-color-error-darkest: #{$brand-color-error-darkest};
-
-
-		--brand-color-intensity-1: #{$brand-color-intensity-1};
-		--brand-color-intensity-2: #{$brand-color-intensity-2};
-		--brand-color-intensity-3: #{$brand-color-intensity-3};
-		--brand-color-intensity-4: #{$brand-color-intensity-4};
-		--brand-color-intensity-5: #{$brand-color-intensity-5};
-
-		--gradient-start: #{$brand-gradient-start};
-		--gradient-end: #{$brand-gradient-end};
-
-	// FONT
-		--brand-font-primary: #{$brand-font-primary};
-		--brand-font-accent: #{$brand-font-secondary};
-		--brand-font-monospace: #{$brand-font-monospace};
-		
-	// GLOBAL html + body coloring
-
-		--theme-color: #{$theme-color};
-		--theme-color-contrast: #{$theme-color-contrast};
-		--theme-background: #{$theme-background};
-		--theme-background-contrast: #{$theme-background-contrast};
-
-
-
-		
-}
-
-.theme-inverse {
-	--theme-color: #{$theme-color-inverse};
-	--theme-color-contrast: #{$theme-color-contrast-inverse};
-	--theme-background: #{$theme-background-inverse};
-	--theme-background-contrast: #{$theme-background-contrast-inverse};
-
-}

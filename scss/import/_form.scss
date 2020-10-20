@@ -1134,7 +1134,7 @@ $prefix: '.input';
 	
 
 	//color
-	@each $tag,$color in $calculated-brand-color-declarations {
+	@each $tag,$color in $calculated-brand-color-declarations-for-components {
 
 		@at-root %for-form-label-color-#{$tag} {
 			color: $color;
@@ -1159,11 +1159,11 @@ $prefix: '.input';
 				border-color: $color;
 				
 				@if type-of($color) == color && $color != transparent {
-					background-color: rgba($color,$input-color-feedback-opacity);
+					background-color: var(--#{$variable-prefix}-color-#{$tag}-#{$input-color-feedback-var-slug});
 				}
 
 				&:not(.focus):not(:focus):not(.active):not(:active) {
-					box-shadow: $input-box-shadow-brand-basis $color;
+					box-shadow: $input-box-shadow-palette-basis $color;
 					z-index:1;
 				}
 			}

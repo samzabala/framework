@@ -66,7 +66,7 @@ $calculated-calendar-exception: '';
 			&-ui {
 				@extend %for-form-input-boxy !optional;
 				@extend %for-form-input-boxy-and-group !optional;
-				min-width: 250px;
+				min-width: 20em;
 			}
 
 
