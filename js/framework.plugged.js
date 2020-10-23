@@ -612,7 +612,7 @@ this.jQuery && this.jQuery.noConflict();
 		prefix = prefix || 'btn';
 		siblingSelector = siblingSelector || `.${prefix}`;
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
-		noActiveClass = noActiveClass || `${prefix}-group-allow-no-active`;
+		noActiveClass = noActiveClass || `${prefix}-group-toggle-allow-no-active`;
 
 		if(
 			triggerer.closest(siblingSelector).length
@@ -620,7 +620,7 @@ this.jQuery && this.jQuery.noConflict();
 		){
 			triggerer = triggerer.closest(siblingSelector);
 		}
-
+		console.log(triggerer);
 		if (triggerer) {
 			// fix the children bullshit shit
 			
@@ -786,6 +786,7 @@ this.jQuery && this.jQuery.noConflict();
 					case 'dropdown':
 					case 'modal':
 					case 'board':
+					case 'switch':
 					case 'asset':
 					case 'alert-close':
 						if (
@@ -2562,6 +2563,36 @@ this.jQuery && this.jQuery.noConflict();
 		frameWork.destroyModal(removeHash, 'board');
 	};
 
+	frameWork.initSwitch = (triggerer,mode) => {
+		triggerer = triggerer || false;
+		mode = mode || ''; //on,off,toggle or init probably
+		
+		if(triggerer){
+			const switchWrapper = __f.getTheToggled(triggerer, 'switch');
+			if(switchWrapper.length){
+				switch(mode){
+					case 'on':
+						switchWrapper.removeClass('switch-to-off').addClass('switch-to-on');
+						break;
+					case 'off':
+						switchWrapper.removeClass('switch-to-on').addClass('switch-to-off');
+						break;
+					default:
+						switchWrapper.toggleClass('switch-to-off switch-to-on');
+						break;
+				}
+			}
+		}else{
+			if(mode == 'off'){
+
+				$('.switch:not(.switch-idle)').removeClass('switch-to-on').addClass('switch-to-off')
+			}else{
+				$('.switch:not(.switch-to-on)').addClass('switch-to-off')
+			}
+		}
+	}
+	__f.fns_on_rightAway.push(frameWork.initSwitch);
+
 	frameWork.closeDropdowns = (currentDropdown) => {
 		currentDropdown = currentDropdown || false;
 
@@ -3645,6 +3676,35 @@ this.jQuery && this.jQuery.noConflict();
 					initBoardResize
 				);
 
+
+		$('body').on(
+			'click',
+			'*[data-toggle="switch-off"]',
+			(e) => {
+				const triggerer = $(e.target);
+
+				if (!frameWork.isDisabled(triggerer)) {
+
+					e.preventDefault();
+					frameWork.initSwitch(triggerer,'off')
+				}
+			}
+		);
+
+		$('body').on(
+			'click',
+			'*[data-toggle="switch-on"]',
+			(e) => {
+				const triggerer = $(e.target);
+
+				if (!frameWork.isDisabled(triggerer)) {
+
+					e.preventDefault();
+					frameWork.initSwitch(triggerer,'on')
+				}
+			}
+		);
+		
 		$('body').on('change', '.zone input[type="file"]', (e) => {
 			const triggerer = $(e.target);
 			const zone = triggerer.closest('.zone');
@@ -3693,23 +3753,34 @@ this.jQuery && this.jQuery.noConflict();
 				if (frameWork.isDisabled(triggerer)) {
 					e.preventDefault();
 				} else {
-					//tooltip
-					if (
-						!triggerer.closest('[data-toggle="tooltip-click"]').length
-						&& !triggerer.closest('[data-toggle="tooltip-hover"]').length
-						&& !triggerer.closest('.tooltip.tooltip-allow-interaction').length
-						&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
-					) {
-						frameWork.destroyToolTip();
-					}
+					if(
+						!triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
+					){
+						//tooltip
+						if (
+							!triggerer.closest('[data-toggle="tooltip-click"]').length
+							&& !triggerer.closest('[data-toggle="tooltip-hover"]').length
+							&& !triggerer.closest('.tooltip.tooltip-allow-interaction').length
+						) {
+							frameWork.destroyToolTip();
+						}
 
-					//dropdown
-					if (
-						!triggerer.closest('[data-toggle="dropdown"]').length
-						&& !triggerer.closest('.dropdown').length
-						&& !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
-					) {
-						frameWork.closeDropdowns(false);
+						//dropdown
+						if (
+							!triggerer.closest('[data-toggle="dropdown"]').length
+							&& !triggerer.closest('.dropdown').length
+						) {
+							frameWork.closeDropdowns(false);
+						}
+
+						//switch
+						if (
+							!triggerer.closest('[data-toggle="switch-off"]').length
+							&& !triggerer.closest('[data-toggle="switch-on"]').length
+							&& !triggerer.closest('.switch').length
+						){
+							frameWork.initSwitch(false,'off')
+						}
 					}
 				}
 			}

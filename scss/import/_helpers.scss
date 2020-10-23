@@ -435,10 +435,10 @@
 
 	&-size {
 		&-large {
-			font-size: $calculated-body-size-large!important;
+			font-size: rem($calculated-body-size-large)!important;
 		}
 		&-small {
-			font-size: $calculated-body-size-small!important;
+			font-size: rem($calculated-body-size-small)!important;
 		}
 		&-normalize {
 			font-size: 1rem!important;
@@ -848,6 +848,54 @@
 	}
 	&-sticky {
 		position:sticky!important;
+	}
+}
+
+.offset {
+
+	&,
+	&-y,
+	&-top{
+		&-0 {
+			top: 0;
+		}
+		&-auto {
+			top: auto;
+		}
+	}
+
+	&,
+	&-y,
+	&-bottom{
+		&-0 {
+			bottom: 0;
+		}
+		&-auto {
+			bottom: auto;
+		}
+	}
+
+
+	&,
+	&-x,
+	&-left{
+		&-0 {
+			left: 0;
+		}
+		&-auto {
+			left: auto;
+		}
+	}
+
+	&,
+	&-x,
+	&-right{
+		&-0 {
+			right: 0;
+		}
+		&-auto {
+			right: auto;
+		}
 	}
 }
 
@@ -1308,33 +1356,26 @@
 .only-nonmobile {
 	display: none !important;
 }
+	.pointer-reference:not(:hover):not(:focus):not(.focus):not(:active):not(.active):not(.open) .hide-idle,
+	.pointer-reference:hover .only-idle,
+	.pointer-reference:focus .only-idle,
+	.pointer-reference.focus .only-idle,
+	.pointer-reference:active .only-idle,
+	.pointer-reference.active .only-idle,
+	.pointer-reference.open .only-idle,
 
-*:hover > .only-not-hover,
-*:hover > .hide-hover,
-*:not(:hover) > .only-hover,
-*:not(:hover) > .hide-not-hover,
 
 	.pointer-reference:hover .only-not-hover,
 	.pointer-reference:hover .hide-hover,
 	.pointer-reference:not(:hover) .only-hover,
 	.pointer-reference:not(:hover) .hide-not-hover,
 
-*:focus > .only-not-focus,
-*:focus > .hide-focus,
-*:not(:focus):not(.focus) > .only-focus,
-*:not(:focus):not(.focus) > .hide-not-focus,
 
 	.pointer-reference:focus .only-not-focus,
 	.pointer-reference:focus .hide-focus,
 	.pointer-reference:not(:focus):not(.focus) .only-focus,
 	.pointer-reference:not(:focus):not(.focus) .hide-not-focus,
 
-*.active > .only-not-active,
-	*:active > .only-not-active,
-*.active > .hide-active,
-	*:active > .hide-active,
-*:not(:active):not(.active) > .only-active,
-*:not(:active):not(.active) > .hide-not-active,
 
 	.pointer-reference.active .only-not-active,
 		.pointer-reference:active .only-not-active,
@@ -1343,12 +1384,6 @@
 	.pointer-reference:not(:active):not(.active) .only-active,
 	.pointer-reference:not(:active):not(.active) .hide-not-active,
 
-*.active > .only-not-toggle,
-	*.open > .only-not-toggle,
-*.active > .hide-toggle,
-	*.open > .hide-toggle,
-*:not(.active):not(.open) > .only-toggle,
-*:not(.active):not(.open) > .hide-not-toggle,
 
 	.pointer-reference.active .only-not-toggle,
 		.pointer-reference.open .only-not-toggle,

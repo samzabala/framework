@@ -722,7 +722,7 @@
 		prefix = prefix || 'btn';
 		siblingSelector = siblingSelector || `.${prefix}`;
 		resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
-		noActiveClass = noActiveClass || `${prefix}-group-allow-no-active`;
+		noActiveClass = noActiveClass || `${prefix}-group-toggle-allow-no-active`;
 
 		if(
 			triggerer.closest(siblingSelector)
@@ -915,6 +915,7 @@
 					case 'dropdown':
 					case 'modal':
 					case 'board':
+						case 'switch':
 					case 'asset':
 					case 'alert-close':
 						if (
@@ -2716,6 +2717,53 @@
 		frameWork.destroyModal(removeHash, 'board');
 	};
 
+	frameWork.initSwitch = (triggerer,mode) => {
+		triggerer = triggerer || false;
+		mode = mode || 'off';
+
+		const toggleSwitchBlock = (switchWrapper) => {
+			if(switchWrapper.classList.contains('switch-to-off')){
+				switchWrapper.classList.remove('switch-to-off');
+				switchWrapper.classList.add('switch-to-on');
+			}else{
+				switchWrapper.classList.remove('switch-to-on');
+				switchWrapper.classList.add('switch-to-off');
+			}
+		}
+		
+		if(triggerer){
+			const switchWrapper = __f.getTheToggled(triggerer, 'switch');
+			if(switchWrapper){
+				switch(mode){
+					case 'on':
+						switchWrapper.classList.remove('switch-to-off')
+						switchWrapper.classList.add('switch-to-on');
+						break;
+					case 'off':
+						switchWrapper.classList.remove('switch-to-on')
+						switchWrapper.classList.add('switch-to-off');
+						break;
+					default:
+						toggleSwitchBlock(switchWrapper);
+						break;
+				}
+			}
+		}else{
+			if(mode == 'off'){
+				document.querySelectorAll('.switch:not(.switch-idle)').forEach((switchWrapper) =>{
+					switchWrapper.classList.remove('switch-to-on')
+					switchWrapper.classList.add('switch-to-off');
+				});
+			}else{
+
+				document.querySelectorAll('.switch:not(.switch-to-on)').forEach((switchWrapper) =>{
+					switchWrapper.classList.add('switch-to-off');
+				});
+			}
+		} 
+	}
+	__f.fns_on_rightAway.push(frameWork.initSwitch);
+
 	frameWork.closeDropdowns = (currentDropdown) => {
 		currentDropdown = currentDropdown || false;
 
@@ -3853,6 +3901,36 @@
 					initBoardResize
 				);
 
+		
+
+		frameWork.addEvent(
+			document.body,
+			'click',
+			'*[data-toggle="switch-off"]',
+			(e) => {
+				const triggerer = e.target;
+
+				if (!frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
+					frameWork.initSwitch(triggerer,'off')
+				}
+			}
+		);
+
+		frameWork.addEvent(
+			document.body,
+			'click',
+			'*[data-toggle="switch-on"]',
+			(e) => {
+				const triggerer = e.target;
+
+				if (!frameWork.isDisabled(triggerer)) {
+					e.preventDefault();
+					frameWork.initSwitch(triggerer,'on')
+				}
+			}
+		);
+
 		frameWork.addEvent(
 			document.body,
 			'change',
@@ -3904,22 +3982,35 @@
 				if (frameWork.isDisabled(triggerer)) {
 					e.preventDefault();
 				} else {
-					//tooltip
-					if (
-						!triggerer.closest('[data-toggle="tooltip-click"]')
-						&& !triggerer.closest('[data-toggle="tooltip-hover"]')
-						&& !triggerer.closest('.tooltip.tooltip-allow-interaction')
-						&& !triggerer.hasAttribute('data-value') //temp fix for ui elements not getting ancestry
-					) {
-						frameWork.destroyToolTip();
-					}
-		
-					if (
-						!triggerer.closest('[data-toggle="dropdown"]')
-						&& !triggerer.closest('.dropdown')
-						&& !triggerer.hasAttribute('data-value') //temp fix for ui elements not getting ancestry
-					) {
-						frameWork.closeDropdowns(false);
+					if(
+						!triggerer.hasAttribute('data-value') //temp fix for ui elements not getting ancestry
+					){
+						
+						//tooltip
+						if (
+							!triggerer.closest('[data-toggle="tooltip-click"]')
+							&& !triggerer.closest('[data-toggle="tooltip-hover"]')
+							&& !triggerer.closest('.tooltip.tooltip-allow-interaction')
+						) {
+							frameWork.destroyToolTip();
+						}
+			
+						//dropdown
+						if (
+							!triggerer.closest('[data-toggle="dropdown"]')
+							&& !triggerer.closest('.dropdown')
+						) {
+							frameWork.closeDropdowns(false);
+						}
+
+						//switch
+						if (
+							!triggerer.closest('[data-toggle="switch-off"]')
+							&& !triggerer.closest('[data-toggle="switch-on"]')
+							&& !triggerer.closest('.switch')
+						){
+							frameWork.initSwitch(false,'off')
+						}
 					}
 				}
 			}

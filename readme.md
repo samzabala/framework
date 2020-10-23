@@ -38,6 +38,7 @@ Works with Libsass and Compass
 *	[Progress](docs/sections/components/progress.md)
 *	[Ratio](docs/sections/components/ratio.md)
 *	[Symbols](docs/sections/components/symbol.md)
+*	[Switches](docs/sections/components/switch.md)
 *	[Tabs](docs/sections/components/tabs.md)
 *	[Tags](docs/sections/components/tag.md)
 *	[Tooltip](docs/sections/components/tooltip.md)

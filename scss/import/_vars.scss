@@ -874,31 +874,31 @@
 			$alert-background-default: transparent !default;
 			$alert-color-default: inherit !default;
 
-			$alert-border-primary: $var-color-primary-dark !default;
+			$alert-border-primary: $var-color-base-alpha-2 !default;
 			$alert-background-primary: $var-color-primary !default;
 			$alert-color-primary: $var-color-background !default;
 
-			$alert-border-secondary: $var-color-secondary-dark !default;
+			$alert-border-secondary: $var-color-base-alpha-2 !default;
 			$alert-background-secondary: $var-color-secondary !default;
 			$alert-color-secondary: $var-color-background !default;
 
-			$alert-border-accent: $var-color-accent-dark !default;
+			$alert-border-accent: $var-color-base-alpha-2 !default;
 			$alert-background-accent: $var-color-accent !default;
 			$alert-color-accent: $var-color-background !default;
 
-			$alert-border-neutral: $var-color-neutral-dark !default;
+			$alert-border-neutral: $var-color-base-alpha-2 !default;
 			$alert-background-neutral: $var-color-neutral !default;
 			$alert-color-neutral: $var-color-background !default;
 
-			$alert-border-success: $var-color-success-dark !default;
+			$alert-border-success: $var-color-base-alpha-2 !default;
 			$alert-background-success: $var-color-success !default;
 			$alert-color-success: $var-color-background !default;
 
-			$alert-border-caution: $var-color-caution-dark !default;
+			$alert-border-caution: $var-color-base-alpha-2 !default;
 			$alert-background-caution: $var-color-caution !default;
 			$alert-color-caution: $var-color-background !default;
 
-			$alert-border-error: $var-color-error-dark !default;
+			$alert-border-error: $var-color-base-alpha-2 !default;
 			$alert-background-error: $var-color-error !default;
 			$alert-color-error: $var-color-background !default;
 
@@ -1420,11 +1420,11 @@
 
 		// SCHEMES
 			$btn-border-default: $input-border-color !default;
-			$btn-background-default: transparent !default;
+			$btn-background-default: $var-theme-background !default;
 			$btn-color-default: inherit !default;
 
 				$btn-border-default-hover: $input-border-color-focus !default;
-				$btn-background-default-hover: transparent !default;
+				$btn-background-default-hover: $var-theme-background !default;
 				$btn-color-default-hover: $var-color-primary !default;
 			
 				$btn-border-default-active: $var-color-primary  !default;

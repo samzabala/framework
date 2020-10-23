@@ -102,38 +102,59 @@ $prefix: '.symbol';
 
 	@include create-symbol-styles(#{&}-pencil) {
 		@extend %for-valid-symbol;
+		// font-size: 128px;
 	
 		&:before,&:after {
 			@extend %for-valid-symbol-pseudo;
 		}
 
 		&:before {
-			width: .3875em;
-			height: .3875em;
-			border-left: em(2px/$calculated-symbol-basis) solid;
-			border-bottom: em(2px/$calculated-symbol-basis) solid;
+			@extend %for-valid-symbol-pseudo-filled;
+			width: .3125em;
+			height: .3125em;
 			top:auto;
 			right:auto;
+			clip-path: polygon(
+				0 0,
+				0 100%,
+				100% 100%,
+				calc(100% - #{em(1px/$calculated-symbol-basis)}) calc(100% - #{em(1px/$calculated-symbol-basis)}),
+				45% calc(100% - #{em(1px/$calculated-symbol-basis)}),
+				#{em(1px/$calculated-symbol-basis)} 56%,
+				#{em(1px/$calculated-symbol-basis)} #{em(1px/$calculated-symbol-basis)},
+			);
 		}
 
 		&:after {
-			@extend %for-valid-symbol-pseudo-full-height;
-			border-right: em(2px/$calculated-symbol-basis) solid;
-			background-image: 
-				repeating-linear-gradient(
-				180deg,
-				currentColor 0,
-				currentColor .2875em,
-				transparent .2875em,
-				transparent .2875em + em(1px/$calculated-symbol-basis),
-				currentColor .2875em + em(1px/$calculated-symbol-basis),
-				currentColor 100%
+			@extend %for-valid-symbol-pseudo-filled;
+			clip-path: polygon(
+				0 0,
+				0 25%,
+				100% 25%,
+				100% calc(25% + #{em(1px/$calculated-symbol-basis)}),
+				0 calc(25% + #{em(1px/$calculated-symbol-basis)}),
+				0 calc(25% + #{em(2px/$calculated-symbol-basis)}),
+				100% calc(25% + #{em(2px/$calculated-symbol-basis)}),
+				100% calc(25% + #{em(3px/$calculated-symbol-basis)}),
+				0 calc(25% + #{em(3px/$calculated-symbol-basis)}),
+				0 100%,
+				#{em(1.25px/$calculated-symbol-basis)} 100%,
+				#{em(1.25px/$calculated-symbol-basis)} 92%,
+				40% 97%,
+				50% 92%,
+				60% 97%,
+
+				calc(100% - #{em(1.25px/$calculated-symbol-basis)}) 92%,
+				calc(100% - #{em(1.25px/$calculated-symbol-basis)}) 100%,
+				100% 100%,
+				100% 0
 			);
 			transform: rotate(45deg);
-			width: 0.5625em;
-			top: -.125em;
-			right: -.125em;
-			border-radius: .1875em .1875em 0 0;
+			width: 0.4375em;
+			// top: .125em;
+			// right: .125em;
+			height: .9875em;
+			border-radius: .125em .125em 0 0;
 			background-repeat: no-repeat;
 			background-position: top center;
 		}
