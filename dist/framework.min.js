@@ -3911,8 +3911,9 @@
 				const triggerer = e.target;
 
 				if (!frameWork.isDisabled(triggerer)) {
-					e.preventDefault();
 					frameWork.initSwitch(triggerer,'off')
+				}else{
+					e.preventDefault();
 				}
 			}
 		);
@@ -3925,8 +3926,9 @@
 				const triggerer = e.target;
 
 				if (!frameWork.isDisabled(triggerer)) {
-					e.preventDefault();
 					frameWork.initSwitch(triggerer,'on')
+				}else{
+					e.preventDefault();
 				}
 			}
 		);
