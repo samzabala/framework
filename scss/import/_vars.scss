@@ -402,8 +402,8 @@
 
 //////////////////////////////// GLOBAL UNITS
 
-		$gutter-base: 40px !default;
-			$gutter-large: 60px !default;
+		$gutter-base: 30px !default;
+			$gutter-large: 40px !default;
 			$gutter-small: 20px !default;
 			$gutter-micro: 10px !default;
 
@@ -428,7 +428,7 @@
 //////////////////////////////// CONTENT
 
 	// SCAFFOLD typography
-		$body-font-family: $brand-font-primary !default;
+		$body-font-family: $var-font-primary !default;
 		$body-font-weight: 400 !default;
 			$body-font-weight-bold: 700 !default;
 		$body-font-size: 16px !default;
@@ -487,7 +487,7 @@
 		$body-cite-font-size: $body-font-size !default;
 		$body-cite-font-weight: 300 !default;
 		$body-cite-font-style: italic !default;
-		$body-cite-gutter-y: 30px !default;
+		$body-cite-gutter-y: $gutter-small !default;
 
 		$body-mono-background: $var-theme-background-contrast!default;
 			$body-pre-padding: $gutter-micro!default;
@@ -908,24 +908,24 @@
 	// MODULE
 		$module-background-color: $var-theme-background !default;
 			$module-background-color-inverse: $module-background-color !default;
-		$module-border-color: $var-theme-background-contrast !default;
+		$module-border-color: $var-color-neutral-alpha-2 !default;
 			$module-border-color-inverse: $module-border-color !default;
 		$module-border-width: 1px !default;
-		$module-box-shadow: $box-shadow-spicy $var-color-base-alpha-5 !default;
+		$module-box-shadow: $box-shadow-base $var-color-base-alpha-1 !default;
 		$module-box-shadow-hover: $box-shadow-spicy $var-color-primary !default; 
 		
-		$module-gutter-x: $gutter-base !default;
+		$module-gutter-x: $gutter-small !default;
 			$module-gutter-x-mobile: $gutter-small !default;
-		$module-gutter-y: $gutter-small !default;
-			$module-gutter-y-mobile: $gutter-small !default;
+		$module-gutter-y: $gutter-micro !default;
+			$module-gutter-y-mobile: $gutter-micro !default;
 
 		
-		$module-gutter-between: 20px !default;
+		$module-gutter-between: $gutter-micro !default;
 
 		$module-gutter-grid-gap: $gutter-small !default;
-		$module-grid-gutter: $gutter-small * 2 !default;
+		$module-grid-gutter: $gutter-base !default;
 		
-		$module-border-radius: $border-radius-base !default;
+		$module-border-radius: $border-radius-small !default;
 
 		$module-title-font-size: $body-font-size !default;
 		$module-title-font-weight: $body-font-weight-bold !default;
@@ -1020,7 +1020,7 @@
 			$progress-title-color-inverse: $var-color-background-alt !default;
 		$progress-title-text-transform: uppercase !default;
 		$progress-title-margin-bottom: 10px !default;
-		$progress-title-margin-top: 30px !default;
+		$progress-title-margin-top: $gutter-base !default;
 
 	
 	// WELL
@@ -1388,8 +1388,8 @@
 				
 
 		//special-form
-			$special-form-gutter-x: 35px !default;
-			$special-form-gutter-y: 30px !default;
+			$special-form-gutter-x: $gutter-base !default;
+			$special-form-gutter-y: $gutter-base !default;
 			$special-form-background: $var-theme-background-contrast !default;
 			$special-form-background-inverse: $special-form-background !default;
 			

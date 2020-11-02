@@ -620,7 +620,7 @@ this.jQuery && this.jQuery.noConflict();
 		){
 			triggerer = triggerer.closest(siblingSelector);
 		}
-		console.log(triggerer);
+		
 		if (triggerer) {
 			// fix the children bullshit shit
 			
@@ -3684,9 +3684,9 @@ this.jQuery && this.jQuery.noConflict();
 				const triggerer = $(e.target);
 
 				if (!frameWork.isDisabled(triggerer)) {
-
-					e.preventDefault();
 					frameWork.initSwitch(triggerer,'off')
+				}else{
+					e.preventDefault();
 				}
 			}
 		);
@@ -3698,9 +3698,9 @@ this.jQuery && this.jQuery.noConflict();
 				const triggerer = $(e.target);
 
 				if (!frameWork.isDisabled(triggerer)) {
-
-					e.preventDefault();
 					frameWork.initSwitch(triggerer,'on')
+				}else{
+					e.preventDefault();
 				}
 			}
 		);

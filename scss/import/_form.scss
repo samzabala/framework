@@ -532,10 +532,10 @@ $prefix: '.input';
 					color:inherit;
 					opacity: $input-placeholder-opacity;
 					background: none;
-					margin: 0;
+					margin: 0 .25em 0 0;
 					padding: 0;
-					vertical-align:middle;
-					display:flex;
+					// vertical-align:middle;
+					// display:flex;
 				}
 				// &::-webkit-file-upload-text {
 				// 	-webkit-appearance: none;

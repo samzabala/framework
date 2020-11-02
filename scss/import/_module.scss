@@ -96,7 +96,7 @@ $prefix: '.module';
 		min-width: 0;
 		min-height: 0;
 		transition: $transition-duration-long box-shadow $transition-timing;
-		padding: calc(#{$module-gutter-y} - #{$module-border-width}) calc(#{$module-gutter-x} - #{$module-border-width});
+		padding: $module-gutter-y $module-gutter-x;
 		box-shadow: $module-box-shadow;
 
 		.theme-inverse & {
@@ -324,7 +324,7 @@ $prefix: '.module';
 	@include br(#{$mobile-br-max}-max) {
 
 		& {
-			padding: calc(#{$module-gutter-y-mobile} - #{$module-border-width}) calc(#{$module-gutter-x-mobile} - #{$module-border-width});
+			padding: $module-gutter-y-mobile $module-gutter-x-mobile;
 		}
 
 		&-header,

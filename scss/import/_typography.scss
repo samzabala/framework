@@ -567,7 +567,7 @@ blockquote {
 %code-styles {
 
 	@include type-set((
-		font: $font-monospace
+		font: $var-font-monospace
 	));
 	word-wrap: break-word;
 	white-space: pre-wrap;
