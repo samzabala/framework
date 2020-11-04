@@ -1183,9 +1183,8 @@
 	//asset
 		$asset-thumbnail-width: 190px !default;
 		$asset-thumbnail-height: 100px !default;
-		$asset-thumbnail-border-width: 3px !default;
-		$asset-thumbnail-border-color: transparent !default;
-			$asset-thumbnail-border-color-hover: $var-color-primary !default;
+		$asset-thumbnail-background: $var-theme-background-contrast !default;
+		$asset-thumbnail-border-color: $var-theme-background !default;
 		$asset-width: 220px !default;
 		$asset-thumbnail-margin-bottom: $gutter-micro !default;
 		$asset-transition-duration: $transition-duration-base!default;
@@ -1195,10 +1194,11 @@
 		$asset-image-glyph-text-transform: capitalize !default;
 		$asset-image-glyph-font-weight: 900 !default;
 
-		$asset-thumbnail-image-gutter: $gutter-micro !default;
+		$asset-thumbnail-image-border: $gutter-micro !default;
 
 		$asset-border-radius: $border-radius-small !default;
 		$asset-box-shadow: $box-shadow-base $var-color-base !default;
+			$asset-box-shadow-hover: 0 0 0 3px $var-color-primary !default;
 
 
 		$asset-title-font-weight: $body-font-weight-bold !default;

@@ -75,10 +75,10 @@ $prefix: '.asset';
 
 	&-image {
 		position:absolute;
-		top: $asset-thumbnail-image-gutter;
-		bottom: $asset-thumbnail-image-gutter;
-		left: $asset-thumbnail-image-gutter;
-		right: $asset-thumbnail-image-gutter;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		overflow:hidden;
 		@include type-set((
 			size: $asset-image-glyph-size,
@@ -87,6 +87,7 @@ $prefix: '.asset';
 
 		@at-root %for-valid-asset-image {
 			& {
+				border: $asset-thumbnail-image-border solid $asset-thumbnail-border-color;
 
 				&:before, &:after {
 					content:"";
@@ -110,7 +111,7 @@ $prefix: '.asset';
 				}
 	
 				&:after {
-					opacity: .3;
+					opacity: .5;
 					margin: auto;
 				}
 			}
@@ -801,17 +802,12 @@ $prefix: '.asset';
 		position:relative;
 		box-shadow: $asset-box-shadow;
 		margin-bottom: $asset-thumbnail-margin-bottom;
+		background: $asset-thumbnail-background;
 		@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,true,false,true,false);
+		border-radius: $asset-border-radius;
 
 		> * {
 			pointer-events: none;
-		}
-
-		&,
-		&:after,
-		#{$prefix}-image,
-		img {
-			border-radius: $asset-border-radius;
 		}
 
 		&:after {
@@ -821,21 +817,16 @@ $prefix: '.asset';
 			bottom: 0;
 			left: 0;
 			right: 0;
-			border: $asset-thumbnail-border-width solid transparent;
-			transition: $asset-transition-duration all $transition-timing;
 			z-index:1;
 		}
 		&:hover {
-			&:after {
-				border-color: $asset-thumbnail-border-color-hover;
-			}
+			box-shadow: $asset-box-shadow-hover;
 		}
 
 		@at-root & > img,
 		img#{&}-image {
-			padding:0;
 			z-index:1;
-			@extend %for-fit-image-img;
+			@extend %for-fit-image-cover-img;
 		}
 	}
 

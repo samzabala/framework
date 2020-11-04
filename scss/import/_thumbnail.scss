@@ -86,7 +86,7 @@ $prefix: '.thumbnail';
 	}
 
 	&,&-image {
-		@extend %for-fit-image;
+		@extend %for-fit-image-cover;
 		border-radius: $thumbnail-border-radius;
 	}
 
