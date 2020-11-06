@@ -26,7 +26,7 @@ The script relies on set css var properties by the framework properties so that 
 | .dropdown+ |  | x |x  |  |
 | .input-tags*+ | x |  |  | x |
 | .input-date*+ | x |  | x | x |
-| .modal/ .board*+ | x | x | x |
+| .modal/ .board*+ | x | x | x | x |
 | .tabs/ .nav | x | x | x |  |
 | [data-toggle*=tooltip]* | x |  |  | x |
 | .zone | x |  |  | x |
