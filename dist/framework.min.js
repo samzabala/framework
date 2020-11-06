@@ -915,8 +915,7 @@
 					case 'dropdown':
 					case 'modal':
 					case 'board':
-						case 'switch':
-					case 'asset':
+					case 'switch':
 					case 'alert-close':
 						if (
 							triggerer
@@ -3954,22 +3953,6 @@
 
 				} else {
 					zone.classList.remove('zone-has-content');
-				}
-			}
-		);
-
-		frameWork.addEvent(
-			document.body,
-			'click',
-			'*[data-toggle="asset-close"]',
-			(e) => {
-				const triggerer = e.target;
-
-				e.preventDefault();
-
-				if (!frameWork.isDisabled(triggerer)) {
-					const asset = __f.getTheToggled(triggerer, 'asset');
-					asset.parentNode.removeChild(asset);
 				}
 			}
 		);

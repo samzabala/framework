@@ -4249,15 +4249,18 @@ table {
   color: inherit;
   display: inline-block;
   position: relative; }
-  .asset-button {
+  .asset-functions {
     z-index: 2;
     position: absolute;
-    top: 0;
+    top: -15px;
     right: 0;
-    transform: translate(50%, -50%);
-    opacity: 0; }
-    .asset:hover .asset-button, .asset:focus .asset-button, .asset.focus .asset-button {
+    opacity: 0;
+    text-align: center;
+    transform: translateX(50%); }
+    .asset:hover .asset-functions, .asset:focus .asset-functions, .asset.focus .asset-functions {
       opacity: 1; }
+  .asset-function {
+    margin-bottom: .25rem; }
   .asset-thumbnail, .asset-title, .asset-caption {
     display: block;
     margin: 0; }
@@ -4547,7 +4550,6 @@ table {
     margin-bottom: 10px;
     background: var(--fw-theme-background-contrast);
     overflow: hidden;
-    display: block;
     border-radius: 5px; }
     .asset-thumbnail:before {
       content: "";

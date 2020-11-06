@@ -61,11 +61,13 @@ helper that can display a css coded thumbnail for file types. append one of of t
 
 ## `.asset-delete` and `[data-toggle="asset-close"]`
 
-add to  `.asset-delete` to a `.btn` inside the 	`.asset` that closes or deletes your boo so it appears fancy and shit.
+Bitches been deprecated. never use it again
 
-add `[data-toggle="asset-close"]` to the button to actually remove it from the dom.
+## `.asset-functions` and `.asset-function`
 
-Note: you will still need some extra programming to have this actuallly delete ya boi
+`.asset-functions` is used to style and contain functionalities you want an asset to have.
+
+wrap form controllers or buttons innit with `.asset-function`
 
 
 ```html
@@ -73,9 +75,20 @@ Note: you will still need some extra programming to have this actuallly delete y
 	<div class="asset-thumbnail">
 		<span class="asset-image asset-image-default"></span>
 	</div>
-	<a href="#" class="asset-delete btn btn-symbol btn-round btn-small btn-secondary">
-		<i class="symbol symbol-close"></i>
-	</a>
+	<div class="asset-functions">
+		<!-- Delete -->
+			<div class="asset-function">
+				<a href="#" class="btn btn-symbol btn-round btn-small btn-secondary">
+					<i class="symbol symbol-delete"></i>
+				</a>
+			</div>
+		<!-- Edit -->
+			<div class="asset-function">
+				<a href="#" class="btn btn-symbol btn-round btn-small btn-secondary">
+					<i class="symbol symbol-edit"></i>
+				</a>
+			</div>
+	</div>
 	<p class="asset-title">bitch-ass.probablyavirus</p>
 	<p class="asset-caption">69kb</p>
 </div>

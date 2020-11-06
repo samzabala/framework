@@ -51,18 +51,26 @@ $prefix: '.asset';
 	display:inline-block;
 	position:relative;
 
-	&-button {
-		z-index: 2;
-		position: absolute;
-		top: 0;
-		right: 0;
-		transform: translate(50%,-50%);
-		opacity: 0;
+	&-function {
 
-		#{$prefix}:hover &,
-		#{$prefix}:focus &,
-		#{$prefix}.focus & {
-			opacity: 1;
+		&s {
+			z-index: 2;
+			position: absolute;
+			top: $asset-functions-offset-y;
+			right: 0;
+			opacity: 0;
+			text-align: center;
+			transform: translateX(50%);
+	
+			#{$prefix}:hover &,
+			#{$prefix}:focus &,
+			#{$prefix}.focus & {
+				opacity: 1;
+			}
+		}
+
+		& {
+			margin-bottom: .25rem;
 		}
 	}
 
@@ -803,7 +811,7 @@ $prefix: '.asset';
 		box-shadow: $asset-box-shadow;
 		margin-bottom: $asset-thumbnail-margin-bottom;
 		background: $asset-thumbnail-background;
-		@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,true,false,true,false);
+		@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,true,false,false,false);
 		border-radius: $asset-border-radius;
 
 		> * {
