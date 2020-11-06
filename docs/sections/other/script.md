@@ -18,7 +18,7 @@ The script relies on set css var properties by the framework properties so that 
 # Components that have Javascript up on its shits
 
 | component | events listener themselves/within dom/ |  events listener sub/add on helpers  | html markup/attribute manipulation for styling (toggling classes, etc.) | html markup/attribute manipulation for creating complete/part of UI design purely with js | 
-| -- | -- | -- |  -- |
+| -- | -- | -- | -- | -- |
 | .accordion |  | x | x |  |
 | .alert |  | x | x |  |
 | .switch |  | x | x |  |
