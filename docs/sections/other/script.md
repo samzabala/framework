@@ -29,7 +29,7 @@ The script relies on set css var properties by the framework properties so that 
 | `.modal`/ `.board`+ | x | x | x | x |
 | `.tab` | x |  | x |  |
 | `[data-toggle*=tooltip]` | x |  |  | x |
-| `.zone` | x |  |  | x |
+| `.zone` | x |  | x | x |
 
 
 `+` element containing mentioned component attribute is simply hidden
