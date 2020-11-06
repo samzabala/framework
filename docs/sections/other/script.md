@@ -27,12 +27,21 @@ The script relies on set css var properties by the framework properties so that 
 | `.input-tags`+ | x |  |  | x |
 | `.input-date`+ | x |  | x | x |
 | `.modal`/ `.board`+ | x | x | x | x |
-| `.tabs`/ `.nav` | x | x | x |  |
+| `.tab` | x | x | x |  |
 | `[data-toggle*=tooltip]` | x |  |  | x |
 | `.zone` | x |  |  | x |
 
 
 `+` element containing mentioned component attribute is simply hidden
+
+### All Toggl bois
+* `[data-toggle=tooltip-hover]`, `[data-toggle=tooltip-click]`
+* `[data-toggle=dropdown]`
+* `[data-toggle=accordion]`
+* `[data-toggle=alert-close]`, `[data-toggle=alert-close-all]`
+* `[data-toggle=modal]`, `[data-toggle=modal-open]`, `[data-toggle=modal-close]`
+    * `[data-toggle=board]`, `[data-toggle=board-open]`, `[data-toggle=board-close]`
+* `[data-toggle=board]`, `[data-toggle=board-open]`, `[data-toggle=board-close]`, `[data-toggle=board-resize]`
 
 That's all I can think of sharing for now because my brain is as fried as a chickenjoy right now
 
