@@ -61,6 +61,7 @@ $prefix: '.thumbnail';
 	vertical-align:middle;
 	line-height: inherit;
 	position:relative;
+	text-decoration:none;
 	font-size: $calculated-thumbnail-size;
 
 	&-text {
@@ -74,7 +75,7 @@ $prefix: '.thumbnail';
 			size: $calculated-thumbnail-font-size,
 			leading: $calculated-thumbnail-line-height,
 			color: $thumbnail-color !important,
-			weight:$thumbnail-font-weight,
+			weight: $thumbnail-font-weight,
 			style: $thumbnail-font-style,
 			case: $thumbnail-text-transform,
 		));
