@@ -540,7 +540,10 @@ a:hover, .a:hover, a:focus, .a:focus, a.focus, .focus.a {
     -webkit-text-decoration-color: currentColor;
             text-decoration-color: currentColor; }
 
-.fw-ui:hover, .fw-ui a:hover, .input:hover, .btn:hover, .btn-group:hover, .toolbar:hover, .toolbar a:hover, .tag a:hover, .tag:hover, .thumbnail:hover, .list-group-interactive li:hover, .list-group-interactive li a:hover,
+.thumbnail {
+  text-decoration: none; }
+
+.fw-ui:hover, .fw-ui a:hover, .input:hover, .btn:hover, .btn-group:hover, .toolbar:hover, .toolbar a:hover, .tag a:hover, .tag:hover, .list-group-interactive li:hover, .list-group-interactive li a:hover,
 .list-group-interactive .list-group-item:hover,
 .list-group-interactive .list-group-item a:hover, .list-group-toggle li:hover, .list-group-toggle li a:hover,
 .list-group-toggle .list-group-item:hover,
@@ -556,7 +559,7 @@ a:hover, .a:hover, a:focus, .a:focus, a.focus, .focus.a {
 .tab .tab-text:hover, .tabs > li > a:hover,
 .tabs > li .tab-text:hover, .nav-list > .nav-item > a:hover,
 .nav-list > .nav-item > [data-toggle]:hover, .nav-list > li > a:hover,
-.nav-list > li > [data-toggle]:hover, .fw-ui:focus, .fw-ui a:focus, .input:focus, .btn:focus, .btn-group:focus, .toolbar:focus, .toolbar a:focus, .tag a:focus, .tag:focus, .thumbnail:focus, .list-group-interactive li:focus, .list-group-interactive li a:focus,
+.nav-list > li > [data-toggle]:hover, .fw-ui:focus, .fw-ui a:focus, .input:focus, .btn:focus, .btn-group:focus, .toolbar:focus, .toolbar a:focus, .tag a:focus, .tag:focus, .list-group-interactive li:focus, .list-group-interactive li a:focus,
 .list-group-interactive .list-group-item:focus,
 .list-group-interactive .list-group-item a:focus, .list-group-toggle li:focus, .list-group-toggle li a:focus,
 .list-group-toggle .list-group-item:focus,
@@ -572,7 +575,7 @@ a:hover, .a:hover, a:focus, .a:focus, a.focus, .focus.a {
 .tab .tab-text:focus, .tabs > li > a:focus,
 .tabs > li .tab-text:focus, .nav-list > .nav-item > a:focus,
 .nav-list > .nav-item > [data-toggle]:focus, .nav-list > li > a:focus,
-.nav-list > li > [data-toggle]:focus, .focus.fw-ui, .fw-ui a.focus, .focus.input, .focus.btn, .focus.btn-group, .focus.toolbar, .toolbar a.focus, .tag a.focus, .focus.tag, .focus.thumbnail, .list-group-interactive li.focus, .list-group-interactive li a.focus,
+.nav-list > li > [data-toggle]:focus, .focus.fw-ui, .fw-ui a.focus, .focus.input, .focus.btn, .focus.btn-group, .focus.toolbar, .toolbar a.focus, .tag a.focus, .focus.tag, .list-group-interactive li.focus, .list-group-interactive li a.focus,
 .list-group-interactive .focus.list-group-item,
 .list-group-interactive .list-group-item a.focus, .list-group-toggle li.focus, .list-group-toggle li a.focus,
 .list-group-toggle .focus.list-group-item,
@@ -4968,6 +4971,7 @@ table {
   vertical-align: middle;
   line-height: inherit;
   position: relative;
+  text-decoration: none;
   font-size: 9.0625rem; }
   .thumbnail:before {
     content: "";

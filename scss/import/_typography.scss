@@ -342,9 +342,14 @@ em,i{
 		}
 	}
 	
-	&-reset-hover {
-		&:hover,&:focus,&.focus {
+	&-reset {
+		& {
 			text-decoration: none;
+		}
+		&-hover {
+			&:hover,&:focus,&.focus {
+				text-decoration: none;
+			}
 		}
 	}
 
