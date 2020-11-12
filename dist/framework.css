@@ -1242,6 +1242,8 @@ table {
     .theme-inverse tr, .theme-inverse .table-row {
       border-color: var(--fw-theme-background-contrast);
       background: var(--fw-theme-background); }
+    .alert tr, .theme-inverse .alert tr, .alert .table-row, .theme-inverse .alert .table-row {
+      background: transparent; }
     tr:last-child,
     .table-row:last-child {
       border-bottom-width: 1px; }
@@ -1321,50 +1323,74 @@ table {
     background-color: var(--fw-color-primary-lightest); }
     .theme-inverse .table-row-primary {
       background-color: var(--fw-color-primary-darkest); }
+    .theme-inverse .table-row-primary, .theme-inverse .alert .table-row-primary {
+      background: rgba(0, 126, 206, 0.5); }
   .table-row-secondary {
     background-color: var(--fw-color-secondary-lightest); }
     .theme-inverse .table-row-secondary {
       background-color: var(--fw-color-secondary-darkest); }
+    .theme-inverse .table-row-secondary, .theme-inverse .alert .table-row-secondary {
+      background: rgba(255, 0, 156, 0.5); }
   .table-row-accent {
     background-color: var(--fw-color-accent-lightest); }
     .theme-inverse .table-row-accent {
       background-color: var(--fw-color-accent-darkest); }
+    .theme-inverse .table-row-accent, .theme-inverse .alert .table-row-accent {
+      background: rgba(115, 22, 202, 0.5); }
   .table-row-neutral {
     background-color: var(--fw-color-neutral-lightest); }
     .theme-inverse .table-row-neutral {
       background-color: var(--fw-color-neutral-darkest); }
+    .theme-inverse .table-row-neutral, .theme-inverse .alert .table-row-neutral {
+      background: rgba(135, 135, 135, 0.5); }
   .table-row-success {
     background-color: var(--fw-color-success-lightest); }
     .theme-inverse .table-row-success {
       background-color: var(--fw-color-success-darkest); }
+    .theme-inverse .table-row-success, .theme-inverse .alert .table-row-success {
+      background: rgba(0, 183, 84, 0.5); }
   .table-row-caution {
     background-color: var(--fw-color-caution-lightest); }
     .theme-inverse .table-row-caution {
       background-color: var(--fw-color-caution-darkest); }
+    .theme-inverse .table-row-caution, .theme-inverse .alert .table-row-caution {
+      background: rgba(253, 127, 3, 0.5); }
   .table-row-error {
     background-color: var(--fw-color-error-lightest); }
     .theme-inverse .table-row-error {
       background-color: var(--fw-color-error-darkest); }
+    .theme-inverse .table-row-error, .theme-inverse .alert .table-row-error {
+      background: rgba(253, 3, 3, 0.5); }
   .table-row-intensity-1 {
     background-color: var(--fw-color-intensity-1-lightest); }
     .theme-inverse .table-row-intensity-1 {
       background-color: var(--fw-color-intensity-1-darkest); }
+    .theme-inverse .table-row-intensity-1, .theme-inverse .alert .table-row-intensity-1 {
+      background: rgba(0, 126, 206, 0.5); }
   .table-row-intensity-2 {
     background-color: var(--fw-color-intensity-2-lightest); }
     .theme-inverse .table-row-intensity-2 {
       background-color: var(--fw-color-intensity-2-darkest); }
+    .theme-inverse .table-row-intensity-2, .theme-inverse .alert .table-row-intensity-2 {
+      background: rgba(64, 95, 194, 0.5); }
   .table-row-intensity-3 {
     background-color: var(--fw-color-intensity-3-lightest); }
     .theme-inverse .table-row-intensity-3 {
       background-color: var(--fw-color-intensity-3-darkest); }
+    .theme-inverse .table-row-intensity-3, .theme-inverse .alert .table-row-intensity-3 {
+      background: rgba(128, 63, 181, 0.5); }
   .table-row-intensity-4 {
     background-color: var(--fw-color-intensity-4-lightest); }
     .theme-inverse .table-row-intensity-4 {
       background-color: var(--fw-color-intensity-4-darkest); }
+    .theme-inverse .table-row-intensity-4, .theme-inverse .alert .table-row-intensity-4 {
+      background: rgba(191, 32, 169, 0.5); }
   .table-row-intensity-5 {
     background-color: var(--fw-color-intensity-5-lightest); }
     .theme-inverse .table-row-intensity-5 {
       background-color: var(--fw-color-intensity-5-darkest); }
+    .theme-inverse .table-row-intensity-5, .theme-inverse .alert .table-row-intensity-5 {
+      background: rgba(255, 0, 156, 0.5); }
   td.table-cell-primary, .table-cell.table-cell-primary {
     background-color: var(--fw-color-primary-alpha-1); }
     .theme-inverse td.table-cell-primary, .theme-inverse .table-cell.table-cell-primary {

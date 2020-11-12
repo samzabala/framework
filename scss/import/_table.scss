@@ -97,6 +97,11 @@ $prefix: '.table';
 				background:$table-row-background-inverse;
 			}
 
+			.alert &,
+			.theme-inverse .alert & {
+				background:transparent;
+			}
+
 			&:last-child {
 				border-bottom-width: $table-cell-border-width;
 			}
@@ -259,6 +264,11 @@ $prefix: '.table';
 
 					.theme-inverse & {
 						background-color: map-get($colors,inverse);
+					}
+
+					.theme-inverse &,
+					.theme-inverse .alert & {
+						background: map-get(map-get($calculated-color-variations,#{$tag}),alpha-5)
 					}
 				}
 			}
