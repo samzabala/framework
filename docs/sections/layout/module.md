@@ -280,7 +280,7 @@ This sets a weird column setup starting in the sm breakpoint
 
 ### Functions
 
-#### **`fw.readyGrid(triggerer)`**
+#### **`fw.readyGrids(triggerer)`**
 
 Keeps track of module grids and sets up css for them. this is also triggered on load and resize
 

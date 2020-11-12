@@ -1649,16 +1649,6 @@
 		"rFN": 0,
 		"uCM": 0
 		},
-	"/scss/framework.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/scss/framework-min.css",
-		"oF": 0,
-		"oS": 3
-		},
 	"/scss/framework.scss": {
 		"aP": 1,
 		"bl": 0,
@@ -1667,8 +1657,8 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "/scss/framework.css",
-		"oF": 1,
+		"oAP": "/dist/framework.css",
+		"oF": 3,
 		"oS": 0,
 		"sct": 1
 		},

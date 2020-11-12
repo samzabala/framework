@@ -11,7 +11,7 @@ $prefix: '.lazy';
 *[data-srcset] {
 	opacity: 1;
 	transition: $transition-duration-base opacity $transition-timing;
-	html:not(.lazy-initialized) & {
+	html:not(.lazy-completed) & {
 		opacity: 0;
 	}
 }
