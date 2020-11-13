@@ -3839,9 +3839,7 @@ this.jQuery && this.jQuery.noConflict();
 			frameWork.settings.initializeAccordion
 				&& frameWork.toggleAccordion();
 
-			$('body')
-				.removeClass('body-loading')
-				.addClass('body-loaded');
+			frameWork.setCompleteState();
 		};
 
 		let resizeTimerInternal;
@@ -3866,11 +3864,37 @@ this.jQuery && this.jQuery.noConflict();
 			}, 100);
 		};
 
+		frameWork.setState = (mode) => {
+			mode = mode || 'complete';
+
+			switch(mode){
+				case 'loading':
+					$('body')
+						.removeClass('body-loaded')
+						.addClass('body-loading')
+						;
+					break;
+				case 'complete':
+				default:
+					$('body')
+						.removeClass('body-loading')
+						.addClass('body-loaded');
+					break;
+			}
+
+		}
+
+		frameWork.setLoadingState = () => {
+			frameWork.setState('loading');
+		}
+
+		frameWork.setCompleteState = () => {
+			frameWork.setState('complete');
+
+		}
+
 		frameWork.reInit = () => {
-			$('body')
-				.removeClass('body-loaded')
-				.addClass('body-loading')
-				;
+			frameWork.setLoadingState();
 			frameWork.runInit();
 			frameWork.runReady();
 			frameWork.runLoad();

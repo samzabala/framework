@@ -570,9 +570,10 @@ blockquote {
 }
 
 %code-styles {
-
+	font:inherit;
 	@include type-set((
-		font: $var-font-monospace
+		font: $var-font-monospace,
+		color: $body-mono-color
 	));
 	word-wrap: break-word;
 	white-space: pre-wrap;

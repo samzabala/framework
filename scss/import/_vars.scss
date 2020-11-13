@@ -489,7 +489,8 @@
 		$body-cite-font-style: italic !default;
 		$body-cite-gutter-y: $gutter-small !default;
 
-		$body-mono-background: $var-theme-background-contrast!default;
+		$body-mono-color: inherit!default;
+		$body-mono-background: $var-color-base-alpha-2!default;
 			$body-pre-padding: $gutter-micro!default;
 
 		$body-selection-background: $var-color-primary !default;
