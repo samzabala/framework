@@ -1,22 +1,22 @@
 (function (global,fn) {
 	'use strict';
 
-	if (
-		typeof module === "object"
-		&& typeof module.exports === "object"
-	) {
+	// if (
+	// 	typeof module === "object"
+	// 	&& typeof module.exports === "object"
+	// ) {
 		
-		module.exports = global.document ?
-			fn(global) :
-			function(w) {
-				if (!w.document) {
-					throw new Error( "Where's yo window document boi I need it?" );
-				}
-				return fn(w,true);
-			};
-	} else {
+	// 	module.exports = global.document ?
+	// 		fn(global) :
+	// 		function(w) {
+	// 			if (!w.document) {
+	// 				throw new Error( "Where's yo window document boi I need it?" );
+	// 			}
+	// 			return fn(w,true);
+	// 		};
+	// } else {
 		fn( global,true);
-	}
+	// }
 }(
 	window !== "undefined" ? window : this,
 	function (window, setUpGlobal){
