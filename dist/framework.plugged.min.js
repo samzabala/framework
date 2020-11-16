@@ -2,12 +2,28 @@
 this.jQuery && this.jQuery.noConflict();
 
 (function (global,$,fn) {
-	'use strict';
-	fn(global,$);
+	"use strict";
+
+	if (
+		typeof module === "object"
+		&& typeof module.exports === "object"
+	) {
+		
+		module.exports = global.document ?
+			fn(global,$) :
+			function(w) {
+				if (!w.document) {
+					throw new Error( "Where's yo window document boi I need it?" );
+				}
+				return fn(w,$,true);
+			};
+	} else {
+		fn( global,$,true);
+	}
 }(
 	window !== "undefined" ? window : this,
 	jQuery,
-	function (window, $){
+	function (window, $, setUpGlobal){
 
 		console.info('Framework plugged script is initiated');
 
@@ -3824,6 +3840,8 @@ this.jQuery && this.jQuery.noConflict();
 			__f.fns_on_ready.forEach((fn) => {
 				fn();
 			});
+
+			frameWork.setCompleteState();
 		};
 
 		frameWork.runLoad = () => {
@@ -3838,8 +3856,6 @@ this.jQuery && this.jQuery.noConflict();
 				&& frameWork.createBoard();
 			frameWork.settings.initializeAccordion
 				&& frameWork.toggleAccordion();
-
-			frameWork.setCompleteState();
 		};
 
 		let resizeTimerInternal;
@@ -3876,9 +3892,11 @@ this.jQuery && this.jQuery.noConflict();
 					break;
 				case 'complete':
 				default:
-					$('body')
-						.removeClass('body-loading')
-						.addClass('body-loaded');
+					setTimeout(()=>{
+						$('body')
+							.removeClass('body-loading')
+							.addClass('body-loaded');
+					},100);
 					break;
 			}
 
@@ -3909,8 +3927,10 @@ this.jQuery && this.jQuery.noConflict();
 		frameWork.initcomponentsEvents();
 
 		//put boi on global
+		if (typeof setUpGlobal !== "undefined") {
 			window.frameWork = window.fw = frameWork;
 			window.frameWork.DEBUG = __f;
+		}
 	}
 ));
 

@@ -1,9 +1,25 @@
 (function (global,fn) {
 	'use strict';
-	fn(global);
+
+	if (
+		typeof module === "object"
+		&& typeof module.exports === "object"
+	) {
+		
+		module.exports = global.document ?
+			fn(global) :
+			function(w) {
+				if (!w.document) {
+					throw new Error( "Where's yo window document boi I need it?" );
+				}
+				return fn(w,true);
+			};
+	} else {
+		fn( global,true);
+	}
 }(
 	window !== "undefined" ? window : this,
-	function (window){
+	function (window, setUpGlobal){
 
 		console.info('Framework vanilla script is initiated');
 
@@ -4029,6 +4045,8 @@
 			__f.fns_on_ready.forEach((fn) => {
 				fn();
 			});
+
+			frameWork.setCompleteState();
 		};
 
 		frameWork.runLoad = () => {
@@ -4043,8 +4061,6 @@
 				&& frameWork.createBoard();
 			frameWork.settings.initializeAccordion
 				&& frameWork.toggleAccordion();
-
-			frameWork.setCompleteState();
 		};
 
 		let resizeTimerInternal;
@@ -4083,12 +4099,14 @@
 					break;
 				case 'complete':
 				default:
-					document.body
-						.classList
-						.remove('body-loading');
-					document.body
-						.classList
-						.add('body-loaded');
+					setTimeout(()=>{ 
+						document.body
+							.classList
+							.remove('body-loading');
+						document.body
+							.classList
+							.add('body-loaded');
+					},100);
 					break;
 			}
 
@@ -4117,9 +4135,11 @@
 		window.addEventListener('load',frameWork.runLoad);
 
 		frameWork.initcomponentsEvents();
-		
+
 		//put boi on global
+		if (typeof setUpGlobal !== "undefined") {
 			window.frameWork = window.fw = frameWork;
 			window.frameWork.DEBUG = __f;
+		}
 	}
 ));
