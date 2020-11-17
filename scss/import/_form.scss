@@ -1158,7 +1158,7 @@ $prefix: '.input';
 				}
 				border-color: $color;
 				
-				@if type-of($color) == color && $color != transparent {
+				@if type-of($color) == color and $color != transparent {
 					background-color: var(--#{$variable-prefix}-color-#{$tag}-#{$input-color-feedback-var-slug});
 				}
 

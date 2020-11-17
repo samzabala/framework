@@ -17,6 +17,16 @@
 		"oAP": "/.gitignore",
 		"oF": 0
 		},
+	"/dist/framework-blessed1.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/dist/framework-blessed1-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/dist/framework.css": {
 		"aP": 1,
 		"bl": 0,
@@ -1651,7 +1661,7 @@
 		},
 	"/scss/framework.scss": {
 		"aP": 1,
-		"bl": 0,
+		"bl": 1,
 		"dP": 10,
 		"ec": 1,
 		"ft": 4,
@@ -1660,7 +1670,7 @@
 		"oAP": "/dist/framework.css",
 		"oF": 3,
 		"oS": 0,
-		"sct": 1
+		"sct": 0
 		},
 	"/scss/import/_alert.scss": {
 		"aP": 0,
