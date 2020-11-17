@@ -39,10 +39,10 @@ $calculated-input-line-height: type-lead( $input-font-size,$input-line-height );
 
 $calculated-input-single-line: $calculated-input-line-height;
 @if unitless($calculated-input-single-line) and unit($input-font-size) == px {
-	$calculated-input-single-line: 1em * #{ type-lead( $input-font-size,$input-line-height ) }
+	$calculated-input-single-line: #{1em * type-lead( $input-font-size,$input-line-height ) }
 }
 
-$calculated-input-label-single-line: 1em * #{ $calculated-body-line-height };
+$calculated-input-label-single-line: #{1em * $calculated-body-line-height };
 
 $calculated-input-height: $input-height;
 @if internal-is-convertable($input-height){

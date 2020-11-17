@@ -21,7 +21,7 @@ $calculated-btn-line-height: type-lead( $btn-font-size,$btn-line-height );
 
 $calculated-btn-single-line: $calculated-btn-line-height;
 @if unitless($calculated-btn-single-line) and unit($btn-font-size) == px {
-	$calculated-btn-single-line: 1em * #{ type-lead( $btn-font-size,$btn-line-height ) }
+	$calculated-btn-single-line: #{1em * type-lead( $btn-font-size,$btn-line-height ) }
 }
 
 $calculated-btn-height: $btn-height;

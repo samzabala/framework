@@ -14,18 +14,18 @@ $calculated-br-tags: (xxs,xs,sm,md,lg);
 
 	$calculated-body-single-line: $calculated-body-line-height;
 	@if unitless($calculated-body-single-line) {
-		$calculated-body-single-line: 1em * #{ type-lead( $body-font-size,$body-line-height ) }
+		$calculated-body-single-line: #{1em * type-lead( $body-font-size,$body-line-height ) }
 	}
 
 
 	$calculated-body-single-line-compact: $calculated-body-line-height * $body-line-height-compact-factor;
 	@if unitless($calculated-body-single-line-compact) {
-		$calculated-body-single-line-compact: 1em * #{ type-lead( $body-font-size,$body-line-height ) * $body-line-height-compact-factor }
+		$calculated-body-single-line-compact: #{1em * type-lead( $body-font-size,$body-line-height ) * $body-line-height-compact-factor }
 	}
 	
 	$calculated-body-single-line-expanded: $calculated-body-line-height * $body-line-height-expanded-factor;
 	@if unitless($calculated-body-single-line-expanded) {
-		$calculated-body-single-line-expanded: 1em * #{ type-lead( $body-font-size,$body-line-height ) * $body-line-height-expanded-factor }
+		$calculated-body-single-line-expanded: #{1em * type-lead( $body-font-size,$body-line-height ) * $body-line-height-expanded-factor }
 	}
 
 

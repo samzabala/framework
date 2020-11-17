@@ -9,7 +9,7 @@ $calculated-tag-line-height: type-lead( $tag-font-size,$tag-line-height );
 
 $calculated-tag-single-line: $calculated-tag-line-height;
 @if unitless($calculated-tag-single-line) and unit($tag-font-size) == px {
-	$calculated-tag-single-line: 1em * #{ type-lead( $tag-font-size,$tag-line-height ) }
+	$calculated-tag-single-line: #{1em * type-lead( $tag-font-size,$tag-line-height ) }
 }
 
 $calculated-tag-height: $tag-height;
