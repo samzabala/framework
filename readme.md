@@ -63,14 +63,23 @@ Works with Libsass and Compass
 
 ###	Available features
 *	Modules
-	Create nice grid layouts for app modules
+	Create nice css grid layouts for app modules
 *	Inverse theme support
 	Ability to toggle to a darker theme through adding a class of `theme-inverse` to the bod so its easy on the eyes
-*	Supports up to 35 colors
+*	Supports up to 35+ colors
 	Yes. performance has left the group chat. calm your titties this framework is for dashboard shits
 *	Flex-based grid builds
 	It could be a sweet dream or a beautiful nightmare
 *	Tooltips, Modals, Accordions, 
 *	Not optimized
-	Gotta make ya shit pretty bro this is not meant to look sexy to google. I mean this has like 11,000+ more characters that bootstrap tho for real
+	Gotta make ya shit pretty bro this is not meant to look sexy to google. I mean this bitch is 6x larger than bootstrap tho for real
 
+# To Do
+
+*	Cleanup both indie and plugged js files because they're just 2  huge walls of scripts coz ya girl dumb
+
+*	change plugged to jquery
+
+*	make a script... no.. scriptssss for vue
+
+*	Cleanup sass errors or warnings
