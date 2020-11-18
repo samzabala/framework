@@ -303,7 +303,7 @@ let html = '';
 						</a>`;
 				}
 
-				html += `<div class="${subcom}-popup-content"></div>`;
+				html += `<div class="${subcom}-popup-content">${MODAL_CONTENT_HERE}</div>`;
 
 				html += `</div>`;
 
