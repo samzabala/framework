@@ -219,7 +219,7 @@ This is the markup our framework generates in case you need to make your own.
 ```js
 let html = '';
 
-	html += `<div id="${actualId}"
+	html += `<div id="fw-modal"
 			class="${frameWork.settings.prefix}-modal-component
 			${subcom}-wrapper
 			${args.classes}
