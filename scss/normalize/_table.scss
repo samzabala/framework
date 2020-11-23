@@ -228,14 +228,14 @@ $prefix: '.table';
 			
 			@each $tag,$color in $calculated-brand-color-declarations-for-components {
 				&-#{$tag} {
-					@extend %for-background-#{$tag};
+					@extend %for-background-#{$tag} !optional;
 				}
 			}
 
 			&-intensity {
 				@for $i from 1 through length($calculated-color-brand-intensity) {
 					&-#{$i} {
-						@extend %for-background-intensity-#{$i};
+						@extend %for-background-intensity-#{$i} !optional;
 					}
 				}
 			}
@@ -246,7 +246,7 @@ $prefix: '.table';
 			&-disabled {
 				td,
 				#{$prefix}-cell {
-					@extend %for-disabled;
+					@extend %for-disabled !optional;
 				}
 			}
 		}

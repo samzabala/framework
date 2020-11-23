@@ -712,7 +712,7 @@ $prefix: '.btn';
 			}
 
 			&-disabled {
-				@extend %for-disabled;
+				@extend %for-disabled !optional;
 			}
 			
 			&-disabled,

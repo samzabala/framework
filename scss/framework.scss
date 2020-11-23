@@ -1,60 +1,54 @@
-
-
-	//vars
-		@import '_vars';
-		
-	//plugins
-		@import 'config/plugins/_shithole';
-		@import 'config/_internal-vars';
-		@import 'config/_mixins';
+/* it's scary terry bitch */
+//vars
+	@import '_vars';
 	
-	//to cascade
-		@import 'normalize/_reset';
-		@import 'normalize/_scaffolding';
-		@import 'normalize/_typography';
-		@import 'normalize/_images';
-		@import 'normalize/_table';
+//plugins
+	@import 'config/plugins/_shithole';
+	@import 'config/_internal-vars';
+	@import 'config/_mixins';
 
-	//ui elements
-		//fonting
-			@import '_symbol';
-		//navigation n shit
-			@import '_nav';
-			@import '_tabs';
-			@import '_pagination';
-			@import '_layout';
-		//layout
-			@import '_grid';
-			@import '_module';
-		//ui components
-			@import '_toggle';
-			@import '_asset';
-			@import '_modal';
-				@import '_modal-board';
-			@import '_thumbnail';
-			@import '_ratio';
-			@import '_progress';
-			@import '_badge';
-			@import '_well';
-			@import '_tag';
-			@import '_toolbar';
-			@import '_highlight';
-			@import '_legend';
-			@import '_popper';
-			@import '_alert';
-			@import '_zone';
-			@import '_switch';
-			@import '_list-groups';
-			@import '_buttons';
-			@import '_form';
-				@import '_form-calendar';
-				@import '_form-tags';
-				@import '_form-toggle';
+//to cascade
+	@import 'normalize/_reset';
+	@import 'normalize/_scaffolding';
+	@import 'normalize/_typography';
+	@import 'normalize/_images';
+	@import 'normalize/_table';
 
+//ui elements
+	//fonting
+		@import '_symbol';
+	//navigation n shit
+		@import '_nav';
+		@import '_tabs';
+		@import '_pagination';
+		@import '_layout';
+	//layout
+		@import '_grid';
+		@import '_module';
+	//ui components
+		@import '_toggle';
+		@import '_asset';
+		@import '_modal';
+			@import '_modal-board';
+		@import '_thumbnail';
+		@import '_ratio';
+		@import '_progress';
+		@import '_badge';
+		@import '_well';
+		@import '_tag';
+		@import '_toolbar';
+		@import '_highlight';
+		@import '_legend';
+		@import '_popper';
+		@import '_alert';
+		@import '_zone';
+		@import '_switch';
+		@import '_list-groups';
+		@import '_buttons';
+		@import '_form';
+			@import '_form-calendar';
+			@import '_form-tags';
+			@import '_form-toggle';
 
-	//helpers
-		@import '_helpers';
-
-@if variable-exists(debug) and $debug == true {
-	*,*:before,*:after{outline:1px solid rgba(red,.5)!important;}
-}
+//helpers
+	@import '_helpers';

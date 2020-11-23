@@ -129,7 +129,7 @@ $prefix: '.symbol';
 		style: normal,
 		leading:1,
 	));
-    font-stretch: normal;
+	font-stretch: normal;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	display: inline-block;
@@ -139,6 +139,9 @@ $prefix: '.symbol';
 	// outline: 1px solid red;
 
 	&:before {
+		// line-height: 2;
+		// margin: -.5em 0;
+		// display: inline-block;
 
 		.body-loading & {
 			color: transparent!important;

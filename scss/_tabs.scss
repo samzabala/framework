@@ -107,7 +107,7 @@ $prefix: '.tab';
 
 
 		&#{$prefix}-disabled {
-			@extend %for-disabled;
+			@extend %for-disabled !optional;
 
 			* {
 				pointer-events: none;

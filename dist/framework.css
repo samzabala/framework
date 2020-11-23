@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* it's scary terry bitch */
 /* heading bars or rules from tiny rectangles to long rules and what not. */
 @import url("~/fonts/fw-icons.css");
 .cf:after, .list-group li:after, .list-group-item:after,
@@ -916,36 +917,6 @@ html:not(.lazy-completed) .lazy,
 html:not(.lazy-completed) *[data-src],
 html:not(.lazy-completed) *[data-srcset] {
   opacity: 0;
-}
-
-/* FIT IMAGE */
-/* emulate background cover on image tags */
-.ratio *.ratio-child-cover, .asset-thumbnail > img,
-img.asset-thumbnail-image, .thumbnail img, .thumbnail-image img, .fit-image-cover img, .fit-image-contain img {
-  position: absolute !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  top: -50% !important;
-  left: -50% !important;
-  right: -50% !important;
-  bottom: -50% !important;
-  margin: auto !important;
-}
-.fit-image-contain img {
-  -o-object-fit: contain !important;
-     object-fit: contain !important;
-}
-.ratio *.ratio-child-cover, .asset-thumbnail > img,
-img.asset-thumbnail-image, .thumbnail img, .thumbnail-image img, .fit-image-cover img {
-  -o-object-fit: cover !important;
-     object-fit: cover !important;
-}
-.fit-image-cover {
-  position: relative;
-}
-.fit-image-contain {
-  position: relative;
 }
 
 /*** Tables ***/
@@ -12727,4 +12698,34 @@ fieldset .input-calendar-ui {
 }
 .no-shadow, .btn-group .btn, .nav > .btn, .nav > .btn-group, .btn.btn-no-shadow, .btn-group.btn-no-shadow, .input-disabled, .input[disabled], .input-disabled .input, .input-disabled .input-single-line, .input-disabled .input-select, .input-disabled .input-multiple-line, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-shadow.input-single-line, .input-no-shadow.input-select, .input-no-shadow.input-multiple-line, .input-group.input-no-shadow, .input-disabled .input-calendar-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav > .input-calendar-ui, .input-no-shadow.input-calendar-ui, .input-calendar-ui-input input:not(.focus):not(:focus):not(.active):not(:active), .input-disabled .input-tags-ui, .nav-block.nav-block-stretch > .input-tags-ui, .nav > .input-tags-ui, .input-no-shadow.input-tags-ui {
   box-shadow: none !important;
+}
+
+/* FIT IMAGE */
+/* emulate background cover on image tags */
+.fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail > img,
+img.asset-thumbnail-image, .ratio *.ratio-child-cover, .fit-image-contain img {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  top: -50% !important;
+  left: -50% !important;
+  right: -50% !important;
+  bottom: -50% !important;
+  margin: auto !important;
+}
+.fit-image-contain img {
+  -o-object-fit: contain !important;
+     object-fit: contain !important;
+}
+.fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail > img,
+img.asset-thumbnail-image, .ratio *.ratio-child-cover {
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
+}
+.fit-image-cover {
+  position: relative;
+}
+.fit-image-contain {
+  position: relative;
 }

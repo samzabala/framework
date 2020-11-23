@@ -411,7 +411,7 @@ $prefix: '.input';
 
 			&-disabled,
 			&[disabled] {
-				@extend %for-disabled;
+				@extend %for-disabled !optional;
 
 			}
 
