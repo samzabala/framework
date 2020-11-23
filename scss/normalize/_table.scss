@@ -48,7 +48,6 @@ $prefix: '.table';
 	@at-root &,
 	table {
 		width: 100%;
-		max-width:100%;
 		display:table;
 		border-collapse: collapse;
 		text-align: inherit;

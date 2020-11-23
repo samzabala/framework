@@ -1,5 +1,38 @@
 /*** highlights ***/
-//internal
+$calculated-highlight-schemes-color: (
+	default: (
+		background: $highlight-default-background,
+		color: $highlight-default-color,
+	),
+	primary: (
+		background: $highlight-primary-background,
+		color: $highlight-primary-color,
+	),
+	secondary: (
+		background: $highlight-secondary-background,
+		color: $highlight-secondary-color,
+	),
+	accent: (
+		background: $highlight-accent-background,
+		color: $highlight-accent-color,
+	),
+	neutral: (
+		background: $highlight-neutral-background,
+		color: $highlight-neutral-color,
+	),
+	success: (
+		background: $highlight-success-background,
+		color: $highlight-success-color,
+	),
+	caution: (
+		background: $highlight-caution-background,
+		color: $highlight-caution-color,
+	),
+	error: (
+		background: $highlight-error-background,
+		color: $highlight-error-color,
+	),
+);
 
 $calculated-highlight-height: $highlight-height;
 @if internal-is-convertable($highlight-height,$body-font-size) {

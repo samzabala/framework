@@ -1,55 +1,59 @@
 
 
 	//vars
-		@import 'import/_vars';
+		@import '_vars';
 		
 	//plugins
-		@import 'import/plugins/_shithole';
-		@import 'import/_internal-vars';
-		@import 'import/_mixins';
+		@import 'config/plugins/_shithole';
+		@import 'config/_internal-vars';
+		@import 'config/_mixins';
 	
 	//to cascade
-		@import 'import/_reset';
-		@import 'import/_scaffolding';
-		@import 'import/_typography';
-		@import 'import/_images';
-		@import 'import/_table';
+		@import 'normalize/_reset';
+		@import 'normalize/_scaffolding';
+		@import 'normalize/_typography';
+		@import 'normalize/_images';
+		@import 'normalize/_table';
 
 	//ui elements
-		@import 'import/_symbol';
-		@import 'import/_nav';
-		@import 'import/_tabs';
-		@import 'import/_pagination';
-		@import 'import/_layout';
-		@import 'import/_grid';
-		@import 'import/_list-groups';
-		@import 'import/_asset';
-		@import 'import/_module';
-		@import 'import/_modal';
-		@import 'import/_modal-board';
-		@import 'import/_thumbnail';
-		@import 'import/_ratio';
-		@import 'import/_progress';
-		@import 'import/_badge';
-		@import 'import/_well';
-		@import 'import/_tag';
-		@import 'import/_toolbar';
-		@import 'import/_highlight';
-		@import 'import/_legend';
-		@import 'import/_popper';
-		@import 'import/_alert';
-		@import 'import/_zone';
-		@import 'import/_switch';
-		@import 'import/_buttons';
-		@import 'import/_form';
-		@import 'import/_form-calendar';
-		@import 'import/_form-tags';
-		@import 'import/_form-toggle';
+		//fonting
+			@import '_symbol';
+		//navigation n shit
+			@import '_nav';
+			@import '_tabs';
+			@import '_pagination';
+			@import '_layout';
+		//layout
+			@import '_grid';
+			@import '_module';
+		//ui components
+			@import '_toggle';
+			@import '_asset';
+			@import '_modal';
+				@import '_modal-board';
+			@import '_thumbnail';
+			@import '_ratio';
+			@import '_progress';
+			@import '_badge';
+			@import '_well';
+			@import '_tag';
+			@import '_toolbar';
+			@import '_highlight';
+			@import '_legend';
+			@import '_popper';
+			@import '_alert';
+			@import '_zone';
+			@import '_switch';
+			@import '_list-groups';
+			@import '_buttons';
+			@import '_form';
+				@import '_form-calendar';
+				@import '_form-tags';
+				@import '_form-toggle';
 
-		@import 'import/_toggle';
 
 	//helpers
-		@import 'import/_helpers';
+		@import '_helpers';
 
 @if variable-exists(debug) and $debug == true {
 	*,*:before,*:after{outline:1px solid rgba(red,.5)!important;}

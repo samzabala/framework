@@ -1530,9 +1530,20 @@
 				$btn-background-link-active: transparent!default;
 				$btn-color-link-active: $body-anchor-color !default;
 
+			
 
+			$btn-background-angle-gradient: 0deg !default;
+			$btn-color-gradient: $var-color-background !default;
 
-	
+				$btn-background-angle-gradient-hover: 180deg !default;
+				$btn-color-gradient-hover: $var-color-background !default;
+				
+				$btn-background-angle-gradient-active: 45deg !default;
+				$btn-color-gradient-active: $var-color-background !default;
+
+	// SYMBOLS
+		$symbol-font-path: "~/fonts" !default;
+
 
 
 
