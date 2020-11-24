@@ -1582,9 +1582,6 @@
 	@extend %for-cf;
 }
 
-
-
-
 @at-root %for-disabled{
 	cursor:not-allowed!important;
 	opacity: $global-disabled-opacity;
@@ -1598,7 +1595,6 @@
 	@extend %for-disabled !optional;
 }
 
-
 .radius {
 	& {
 		
@@ -1611,7 +1607,6 @@
 		border-radius: 50%!important;
 	}
 }
-
 
 .no-radius {
 	@include create-corner-helper(#{&},'','border','radius',0,'for-no-radius','');
@@ -1631,55 +1626,51 @@
 	@extend %for-no-shadow-important !optional;
 }
 
-
-
 /* FIT IMAGE */	
+%for-fit-image {
+	&-img {
+		position:absolute!important;
+		width: 100%!important;
+		height: 100%!important;
+		max-width:none!important;
+		top:-50%!important;
+		left:-50%!important;
+		right:-50%!important;
+		bottom:-50%!important;
+		margin:auto!important;
+		
+	}
 
-	/* emulate background cover on image tags */
-	%for-fit-image {
+	&-contain {
 		&-img {
-			position:absolute!important;
-			width: 100%!important;
-			height: 100%!important;
-			max-width:none!important;
-			top:-50%!important;
-			left:-50%!important;
-			right:-50%!important;
-			bottom:-50%!important;
-			margin:auto!important;
-			
+			@extend %for-fit-image-img;
+			object-fit: contain!important;
 		}
 
-		&-contain {
-			&-img {
-				@extend %for-fit-image-img;
-				object-fit: contain!important;
-			}
-
-			img {
-				@extend %for-fit-image-contain-img;
-			}
-		}
-
-		&-cover {
-			&-img {
-				@extend %for-fit-image-img;
-				object-fit: cover!important;
-			}
-
-			img {
-				@extend %for-fit-image-cover-img;
-			}
+		img {
+			@extend %for-fit-image-contain-img;
 		}
 	}
+
+	&-cover {
+		&-img {
+			@extend %for-fit-image-img;
+			object-fit: cover!important;
+		}
+
+		img {
+			@extend %for-fit-image-cover-img;
+		}
+	}
+}
 	
-	.fit-image {
-		&-cover {
-			position: relative;
-			@extend %for-fit-image-cover;
-		}
-		&-contain {
-			position: relative;
-			@extend %for-fit-image-contain;
-		}
+.fit-image {
+	&-cover {
+		position: relative;
+		@extend %for-fit-image-cover;
+	}
+	&-contain {
+		position: relative;
+		@extend %for-fit-image-contain;
+	}
 }

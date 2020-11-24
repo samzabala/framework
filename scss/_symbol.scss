@@ -101,7 +101,7 @@ $calculated-symbol-glyphs: (
 	clipboard: \e94f,
 );
 
-@import url('#{$symbol-font-path}/fw-icons.css');
+@import url('#{$symbol-font-path}/import.css');
 
 // @font-face {
 //     font-family: 'FW Icons';
@@ -134,7 +134,7 @@ $prefix: '.symbol';
 	-webkit-font-smoothing: antialiased;
 	display: inline-block;
 	text-rendering: auto;
-	cursor:inherit;
+	pointer-events:none;
 	// font-size: 64px; //debug only
 	// outline: 1px solid red;
 

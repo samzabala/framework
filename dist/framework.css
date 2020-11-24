@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* it's scary terry bitch */
 /* heading bars or rules from tiny rectangles to long rules and what not. */
-@import url("~/fonts/fw-icons.css");
+@import url("./../assets/framework/fonts/fw-icons/import.css");
 .cf:after, .list-group li:after, .list-group-item:after,
 .list-group ul-item:after, .zone:after, .alert-header:after, .alert-content:after, .alert-footer:after, .alert:after, .progress:after, .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
   content: "";
@@ -1328,1765 +1328,6 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   background: var(--fw-color-intensity-5-alpha-5);
 }
 
-/*** SYMBOLS ***/
-.symbol {
-  font-size: 1em;
-  line-height: 1;
-  font-family: "FW Icons";
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  text-rendering: auto;
-  cursor: inherit;
-  /*! @DEPRECATE
-
-  	font:inherit;
-  	font-size: 100%;
-  	position:relative;
-  	display:inline-flex;
-  	line-height:1;
-  	font-style: normal;
-  	font-variant: normal;
-  	text-rendering: auto;
-  	flex: 0 0 auto; //retain dimensions
-  	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
-  	width: 1em;
-  	vertical-align:inherit;
-  	transform-origin: center center;
-  	pointer-events:none;
-  	align-self: center;
-  	align-items: center;
-  	align-content: center;
-  	justify-content: center;
-
-
-
-  	&:last-child {
-  		margin-right:0;
-  	}
-  	&:first-child {
-  		margin-left:0;
-  	}
-
-
-  	@at-root %for-valid-symbol{
-
-  		& {
-  			transform:none;
-  			transition:none;
-  		}
-
-  		&-pseudo {
-  			content: "";
-  			display:block;
-  			color: inherit;
-  			position:absolute;
-  			top:0;
-  			bottom:0;
-  			left:0;
-  			right:0;
-  			margin: auto;
-  			transform:none;
-  			box-shadow:none;
-  			background: none;
-  			border: none;
-  			transition:
-  				none
-  				// $transition-duration-short color $transition-timing,
-  				// $transition-duration-short background-color $transition-timing
-  				;
-
-  			&-filled {
-  				background: currentColor;
-  			}
-
-  			&-border-radius {
-  				border-radius:  em(3px / $calculated-symbol-basis) * .5;
-  			}
-
-  			&-circle-ready {
-  				border-radius: 50%;
-  			}
-
-  			&-vertical {
-  				width: em(3px / $calculated-symbol-basis);
-  			}
-
-  			&-horizontal {
-  				height: em(3px / $calculated-symbol-basis);
-  			}
-
-  			&-full-width {
-  				width: 1em;
-  			}
-
-  			&-full-height {
-  				height: 1em;
-  			}
-  		}
-
-  		&-no-before {
-  			&:before {
-  				content:none;
-  			}
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-pencil) {
-  		@extend %for-valid-symbol;
-  		// font-size: 128px;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  		}
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo-filled;
-  			width: .3125em;
-  			height: .3125em;
-  			top:auto;
-  			right:auto;
-  			clip-path: polygon(
-  				0 0,
-  				0 100%,
-  				100% 100%,
-  				calc(100% - 0.0625em) calc(100% - 0.0625em),
-  				45% calc(100% - 0.0625em),
-  				0.0625em 56%,
-  				0.0625em 0.0625em,
-  			);
-  		}
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo-filled;
-  			clip-path: polygon(
-  				0 0,
-  				0 25%,
-  				100% 25%,
-  				100% calc(25% + 0.0625em),
-  				0 calc(25% + 0.0625em),
-  				0 calc(25% + 0.125em),
-  				100% calc(25% + 0.125em),
-  				100% calc(25% + 0.1875em),
-  				0 calc(25% + 0.1875em),
-  				0 100%,
-  				0.078125em 100%,
-  				0.078125em 92%,
-  				40% 97%,
-  				50% 92%,
-  				60% 97%,
-
-  				calc(100% - 0.078125em) 92%,
-  				calc(100% - 0.078125em) 100%,
-  				100% 100%,
-  				100% 0
-  			);
-  			transform: rotate(45deg);
-  			width: 0.4375em;
-  			// top: .125em;
-  			// right: .125em;
-  			height: .9875em;
-  			border-radius: .125em .125em 0 0;
-  			background-repeat: no-repeat;
-  			background-position: top center;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-edit) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  		}
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo-filled;
-  			clip-path: polygon(
-  				0 0,
-  				50% 0,
-  				50% em(2px/$calculated-symbol-basis),
-  				em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
-  				em(2px/$calculated-symbol-basis) calc(100% - 0.125em),
-  				calc(100% - 0.125em) calc(100% - 0.125em), 
-  				calc(100% - 0.125em) 50%,
-  				100% 50%,
-  				100% 100%,
-  				0 100%
-  			);
-  		}
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo-full-height;
-  			border: em(2px/$calculated-symbol-basis) solid;
-  			width: em(7px/$calculated-symbol-basis );
-  			border-radius: 0 0 50% 50%;
-  			transform: rotate(45deg);
-  			bottom: auto;
-  			left: auto;
-  			top: -.25em;
-  			background-image: 
-  				repeating-linear-gradient(
-  					180deg,
-  					currentColor 0,
-  					currentColor em(2px/$calculated-symbol-basis),
-  					transparent em(2px/$calculated-symbol-basis),
-  					transparent 100%
-  				)
-  			;
-  			background-repeat: no-repeat;
-  			background-position: bottom center;
-  			background-size: 100% .625em;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-delete) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  		}
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo-filled;
-  			height: em(3px/$calculated-symbol-basis);
-  			width: .5625em;
-  			bottom:1em;
-  			top: auto;
-
-  		}
-
-  		&:after {
-  			border: em(2px/$calculated-symbol-basis) solid;
-  			border-bottom-right-radius: .2em;
-  			border-bottom-left-radius: .2em;
-  			width: 1em;
-  			height:1.125em;
-  			bottom: -.125em;
-  			top: auto;
-  			background-image: 
-  				repeating-linear-gradient(
-  					90deg,
-  					currentColor 0,
-  					currentColor em(1px/$calculated-symbol-basis),
-  					transparent em(1px/$calculated-symbol-basis),
-  					transparent em(3px/$calculated-symbol-basis),
-  					currentColor em(3px/$calculated-symbol-basis),
-  					currentColor em(4px/$calculated-symbol-basis),
-  					transparent em(4px/$calculated-symbol-basis),
-  					transparent em(6px/$calculated-symbol-basis),
-  					currentColor em(6px/$calculated-symbol-basis),
-  					currentColor em(7px/$calculated-symbol-basis),
-  				),
-
-  				// currentColor 0,
-  				// currentColor em(1px/$calculated-symbol-basis),
-  				// transparent em(1px/$calculated-symbol-basis),
-  				// transparent em(2.5px/$calculated-symbol-basis),
-  				// currentColor em(2.5px/$calculated-symbol-basis),
-  				// currentColor em(3.5px/$calculated-symbol-basis),
-  				// transparent em(3.5px/$calculated-symbol-basis),
-  				// transparent em(5px/$calculated-symbol-basis),
-  				// currentColor em(5px/$calculated-symbol-basis),
-  				// currentColor em(6px/$calculated-symbol-basis),
-  				;
-  			background-size: em(7px/$calculated-symbol-basis) .5em;
-  			background-position: center center;
-  			background-repeat: no-repeat;
-  		}
-  	}
-
-
-
-  	@include generate-symbol-styles((.symbol-stop,.symbol-square)) {
-  		@extend %for-valid-symbol-no-before;
-  		@extend %for-valid-symbol;
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			@extend %for-valid-symbol-pseudo-full-width;
-  			@extend %for-valid-symbol-pseudo-full-height;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-play) {
-  		@extend %for-valid-symbol;
-  		@extend %for-valid-symbol-no-before;
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			border-top: .5em solid transparent;
-  			border-bottom: .5em solid transparent;
-  			border-left: .875em solid;
-  			left: .1875em;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-pause) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			@extend %for-valid-symbol-pseudo-full-height;
-  			width: .3125em;
-  		}
-
-  		&:before {
-  			right: .5em;
-  		}
-
-  		&:after {
-  			left: .5em;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-search) {
-  		@extend %for-valid-symbol;
-  		transform: rotate(-45deg);
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  		}
-
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-full-height;
-  			@extend %for-valid-symbol-pseudo-full-width;
-  			@extend %for-valid-symbol-pseudo-circle-ready;
-  			border: em(3px / $calculated-symbol-basis) solid;
-  			bottom: auto;
-  			top: -.25em
-
-  		}
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo-vertical;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			height: .625em;
-  			top: calc(.75em - (0.1875em * .5));
-  			bottom: auto;
-  		}
-  	}
-
-  	@include generate-symbol-styles((.symbol-time,.symbol-timer)) {
-  		@extend %for-valid-symbol;
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-circle-ready;
-  			// @extend %for-valid-symbol-pseudo-full-height;
-  			// @extend %for-valid-symbol-pseudo-full-width;
-  			border: em(2px / $calculated-symbol-basis) solid;
-  			width: 1.125em;
-  			height: 1.125em;
-  			left: -.5em;
-  			right: -.5em;
-  			bottom: -.125em;
-  			top: auto;
-  			background-image: 
-  				//long
-  				repeating-linear-gradient(
-  					90deg,
-  					currentColor 0,
-  					currentColor em(2px / $calculated-symbol-basis),
-  					transparent em(2px / $calculated-symbol-basis),
-  					transparent 100%,
-  				),
-  				// short
-  				linear-gradient(
-  					0deg,
-  					currentColor 0,
-  					currentColor em(2px / $calculated-symbol-basis),
-  					transparent em(2px / $calculated-symbol-basis),
-  					transparent 100%,
-  				),
-  				;
-
-  			background-position:
-  				(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
-  				;
-  			background-size:
-  				.3em .4em
-  				// // .25em .5em
-  				;
-  			background-repeat: no-repeat;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-time) {
-  		@extend %for-valid-symbol-no-before;
-  	}
-
-  	@include generate-symbol-styles(.symbol-timer) {
-  		&:before {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			width: .5em;
-  			height:em(2px / $calculated-symbol-basis);
-  			right: -.1875em;
-  			left: auto;
-  			bottom: auto;
-  			// top: -.125em;
-  			top:0;
-  			transform: rotate(45deg);
-  		}
-  	}
-
-
-
-  	@include generate-symbol-styles((.symbol-plus,.symbol-minus)) {
-
-  		&:after{
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-horizontal;
-  			@extend %for-valid-symbol-pseudo-full-width;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			// top: 50%;
-  			// bottom: auto;
-  			// transform: translateY(-50%);
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-plus) {
-  		@extend %for-valid-symbol;
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-vertical;
-  			@extend %for-valid-symbol-pseudo-full-height;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			height:1em;
-  			// left: 50%;
-  			// right: auto;
-  			// transform: translateX(-50%);
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-minus) {
-  		@extend %for-valid-symbol;
-  		@extend %for-valid-symbol-no-before;
-  	}
-
-
-  	@include generate-symbol-styles(.symbol-check) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			top: auto;
-  			left: .25em;
-  			right: auto;
-  			bottom: .125em;
-  			transform-origin: 42% 88%;
-  		}
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo-vertical;
-  			height: .5em;
-  			transform: rotate(-45deg);
-  		}
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo-vertical;
-  			height: 1em;
-  			transform: rotate(45deg);
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-close) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-vertical;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			height: 1.25em;
-  		}
-  		&:before {
-  			transform: rotate(45deg)
-  		}
-  		&:after {
-  			transform: rotate(-45deg)
-  		}
-  	}
-
-
-  	@include generate-symbol-styles(.symbol-map) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			transform:translateY(-0.3125em);
-  			transform-origin: top center;
-  			bottom:auto;
-  		}
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo-full-height;
-  			@extend %for-valid-symbol-pseudo-full-width;
-  			border-radius: 50%;
-  			border: 0.25em solid;
-
-  		}
-
-  		&:after {
-  			border: 0.390625em solid transparent;
-  			border-top: 0.75em solid;
-  			border-bottom:0;
-  			width: 0;
-  			height: 0;
-  			margin: 0 auto;
-  			top:calc(1em - 0.1875em);
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-file) {
-  		@extend %for-valid-symbol;
-  		@extend %for-valid-symbol-no-before;
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-filled;
-  			width: .875em;
-  			clip-path: polygon(
-  				0% 0%,
-  				0% 100%,
-  				100% 100%,
-  				100% 30%,
-  				calc(50% + 0.125em) 0,
-  				50% 0,
-  				50% calc(30% + 0.125em),
-  				calc(100% - 0.125em) calc(30% + 0.125em),
-  				calc(100% - 0.125em) 30%,
-  				calc(50% + 0.125em) 30%,
-  				calc(50% + 0.125em) em(2px / $calculated-symbol-basis),
-  				calc(100% - 0.125em) 30%,
-  				calc(100% - 0.125em) calc(100% - 0.125em),
-  				em(2px / $calculated-symbol-basis) calc(100% - 0.125em),
-  				em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
-  				50% em(2px / $calculated-symbol-basis),
-  				50% 0,
-
-  			);
-
-  		}
-  	}
-
-
-
-  	&-star {
-  		@include generate-symbol-styles((.symbol,.symbol-half,.symbol-stroke)) {
-  			@extend %for-valid-symbol;
-  			@extend %for-valid-symbol-no-before;
-
-  			&:after {
-  				@extend %for-valid-symbol-pseudo;
-  				@extend %for-valid-symbol-pseudo-filled;
-  				width: 1.25em;
-  				height: 1.25em;
-  				top: -.5em;
-  				bottom: -.5em;
-  				left: -.5em;
-  				right: -.5em;
-
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol) {
-  			&:after {
-  				clip-path: polygon(
-  					50% 5%,
-  					64% 38%,
-  					100% 41%,
-  					73% 65%,
-  					80% 100%,
-  					50% 82%,
-  					20% 100%,
-  					27% 65%,
-  					0% 41%,
-  					36% 38%,
-  				);
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-half) {
-  			&:after {
-  				clip-path: polygon(
-  					50% 5%,
-  					64% 38%,
-  					100% 41%,
-  					73% 65%,
-  					80% 100%,
-  					50% 82%,
-  					20% 100%,
-  					27% 65%,
-  					0% 41%,
-  					36% 38%,
-
-  					50% 5%,
-
-  					50% 26%,
-
-  					47% 33%,
-  					47% 74%,
-
-  					50% 72%,
-  					68% 83%,
-  					64% 62%,
-  					80% 48%,
-  					59% 46%,
-  					50% 26%,
-  				);
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-stroke) {
-  			&:after {
-  				clip-path: polygon(
-  					50% 5%,
-  					64% 38%,
-  					100% 41%,
-  					73% 65%,
-  					80% 100%,
-  					50% 82%,
-  					20% 100%,
-  					27% 65%,
-  					0% 41%,
-  					36% 38%,
-
-  					50% 5%,
-
-  					50% 26%,
-  					41% 46%,
-  					20% 48%,
-  					36% 62%,
-  					32% 83%,
-  					50% 72%,
-  					68% 83%,
-  					64% 62%,
-  					80% 48%,
-  					59% 46%,
-  					50% 26%,
-
-  				);
-  			}
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-download) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  		}
-
-  		&:before {
-  			@extend %for-valid-symbol-pseudo-full-width;
-  			height: .375em;
-  			border-bottom: em(2px/$calculated-symbol-basis) solid;
-  			border-right: em(2px/$calculated-symbol-basis) solid;
-  			border-left: em(2px/$calculated-symbol-basis) solid;
-  			top: auto;
-  		}
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo-filled;
-  			clip-path: polygon(
-  				calc(50% - 0.125em * .5) 0,
-  				calc(50% + 0.125em * .5) 0,
-  				calc(50% + 0.125em * .5) 60%,
-  				100% 60%,
-  				50% 100%,
-  				0 60%,
-  				calc(50% - 0.125em * .5)  60%
-  			);
-  			height: .625em;
-  			width: .5em;
-  			bottom: auto;
-  			// background-image:
-  			// 	repeating-linear-gradient(
-  			// 		90deg,
-  			// 		transparent 0,
-  			// 		transparent calc(50% - 0.0625em),
-  			// 		currentColor calc(50% - 0.0625em),
-  			// 		currentColor calc(50% + 0.0625em),
-  			// 		transparent calc(50% + 0.0625em),
-  			// 		transparent 100%
-  			// 	),
-  			// 	linear-gradient(
-  			// 		45deg,
-  			// 		transparent 0,
-  			// 		transparent 50%,
-  			// 		currentColor 50%,
-  			// 		currentColor 100%
-  			// 	),
-
-  			// 	linear-gradient(
-  			// 		-45deg,
-  			// 		transparent 0,
-  			// 		transparent 50%,
-  			// 		currentColor 50%,
-  			// 		currentColor 100%
-  			// 	)
-  			// 	;
-
-  			// background-size:
-  			// 	100% 90%,
-  			// 	.25em .25em,
-  			// 	.25em .25em
-  			// 	;
-  			// background-position:
-  			// 	0 0,
-  			// 	.125em 100%,
-  			// 	bottom 0 right .125em,
-  			// 	;
-  			// background-repeat: no-repeat;
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-hyperlink) {
-  		@extend %for-valid-symbol;
-
-  		&:before,&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			width: .6875em;
-  			height: .5em;
-  			border-radius: .25em;
-  			border: em(2px / $calculated-symbol-basis) solid;
-  			// transform-origin: center center;
-  			transform: rotate(-45deg)
-  		}
-
-  		&:before {
-  			top: auto;
-  			right: auto;
-  			bottom: -.125em;
-  			left: .25em;
-  			transform-origin: bottom left;
-  		}
-
-  		&:after {
-  			bottom: auto;
-  			left: auto;
-  			top: -.125em;
-  			right: .25em;
-  			transform-origin: top right;
-  		}
-  	}
-
-  	@include generate-symbol-styles((.symbol-fries,.symbol-burger)) {
-  		@extend %for-valid-symbol;
-
-  		&:after {
-  			@extend %for-valid-symbol-pseudo;
-  			@extend %for-valid-symbol-pseudo-border-radius;
-  			@extend %for-valid-symbol-pseudo-filled;
-
-
-  			box-shadow:
-  				0 0.375em 0 0,
-  				0 -0.375em 0 0
-  				;
-  			height:  em(3px / $calculated-symbol-basis);
-  		}
-  	}
-
-  	@include generate-symbol-styles(.symbol-fries) {
-  		@extend %for-valid-symbol;
-
-  		&:after {
-  			transform: rotate(90deg);
-  		}
-  	}
-
-
-
-  	&-kebab {
-
-  		@include generate-symbol-styles((.symbol-horizontal,.symbol-vertical)) {
-  			@extend %for-valid-symbol-no-before;
-  			@extend %for-valid-symbol;
-
-  			&:after {
-  				@extend %for-valid-symbol-pseudo;
-  				@extend %for-valid-symbol-pseudo-filled;
-  				@extend %for-valid-symbol-pseudo-circle-ready;
-  				width: em(4px/$calculated-symbol-basis);
-  				height: em(4px/$calculated-symbol-basis);
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-vertical) {
-  			width: em(4px/$calculated-symbol-basis);
-  			&:after {
-  				box-shadow: 
-  					0 em((4px * -2) /$calculated-symbol-basis) 0 0,
-  					0 em((4px * 2) /$calculated-symbol-basis) 0 0
-  					;
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-horizontal) {
-  			width: em((4px * 5)/$calculated-symbol-basis);
-  			&:after {
-  				box-shadow: 
-  				em((4px * -2) /$calculated-symbol-basis)0  0 0,
-  				em((4px * 2) /$calculated-symbol-basis) 0 0 0
-  					;
-  			}
-  		}
-  	}
-
-  	&-arrow {
-  		&,
-  		&-double,
-  		&-tail {
-  			&-left,
-  			&-right,
-  			&-up,
-  			&-down {
-  				@include generate-symbol-styles(.symbol){
-  					@extend %for-valid-symbol;
-
-  					&:before,&:after {
-  						@extend %for-valid-symbol-pseudo;
-  					}
-  				}
-  			}
-  		}
-
-  		&,
-  		&-double {
-  			&-left,
-  			&-right,
-  			&-up,
-  			&-down {
-  				@include generate-symbol-styles(.symbol){
-  					@extend %for-valid-symbol;
-
-  					&:before,&:after {
-  						@extend %for-valid-symbol-pseudo-border-radius;
-  						@extend %for-valid-symbol-pseudo-filled;
-  						@extend %for-valid-symbol-pseudo-vertical;
-  						height: .6875em;
-  						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
-  					}
-
-  					&:before{
-  						transform: rotate(-45deg);
-  					}
-
-  					&:after{
-  						transform: rotate(45deg);
-  					}
-  				}
-  			}
-  		}
-
-
-  		&-double,
-  		&-tail {
-  			&-left,
-  			&-right,
-  			&-up,
-  			&-down {
-  				@include generate-symbol-styles(.symbol){
-  					&:before,&:after {
-  						top:0;
-  						bottom: auto;
-  					}
-  				}
-  			}
-  		}
-
-  		& {
-  			&-left,
-  			&-right,
-  			&-up,
-  			&-down {
-  				@include generate-symbol-styles(.symbol){
-  					height: .75em;
-  				}
-  			}
-  		}
-
-  		&-double {
-  			&-left,
-  			&-right,
-  			&-up,
-  			&-down {
-  				@include generate-symbol-styles(.symbol){
-  					&:before{
-  						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
-  					}
-
-  					&:after{
-  						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * -3.5)/$calculated-symbol-basis) 0 0;
-  					}
-  				}
-  			}
-  		}
-
-  		&-tail {
-  			&-left,
-  			&-right,
-  			&-up,
-  			&-down {
-  				@include generate-symbol-styles(.symbol){
-  					&:before {
-  						height: .625em;
-  						width: .625em;
-  						border-top: em(2px/$calculated-symbol-basis) solid;
-  						border-right: em(2px/$calculated-symbol-basis) solid;
-  						transform: rotate(-45deg);
-  					}
-
-  					&:after {
-  						@extend %for-valid-symbol-pseudo-full-height;
-  						@extend %for-valid-symbol-pseudo-filled;
-  						width: em(2px/$calculated-symbol-basis);
-  					}
-  					// @extend %for-valid-symbol-pseudo-border-radius;
-  					// @extend %for-valid-symbol-pseudo-horizontal;
-  					// @extend %for-valid-symbol-pseudo-filled;
-  					// transform-origin: 10% 0;
-
-  					// background-image:
-  					// 	linear-gradient(currentColor 0, currentColor 100%),
-  					// 	radial-gradient(
-  					// 		circle at em(($calculated-symbol-basis - (3px * .5))/$calculated-symbol-basis) 50%,
-  					// 		currentColor 0,
-  					// 		currentColor em((3px * .5)/$calculated-symbol-basis),
-  					// 		transparent em((3px * .5)/$calculated-symbol-basis),
-  					// 		transparent 100%
-  					// 		)
-  					// 	;
-
-  					// background-size:
-  					// 	em(($calculated-symbol-basis - 3px)/$calculated-symbol-basis) em(3px/$calculated-symbol-basis),
-  					// 	1em 1em
-  					// 	;
-  					// background-position:
-  					// 	center center,
-  					// 	right center
-  					// 	;
-  					// background-repeat: no-repeat;
-  				}
-  			}
-  		}
-  	}
-
-  	&-caret {
-  		// width: em(($calculated-symbol-caret-width * .5) / $calculated-symbol-basis);
-  		// width:0;
-
-  		&-left,
-  		&-right,
-  		&-up,
-  		&-down {
-  			@include generate-symbol-styles(.symbol){
-  				@extend %for-valid-symbol;
-  				@extend %for-valid-symbol-no-before;
-  				width: .625em;
-  				height: .75em;
-
-  				&:after {
-
-  					@extend %for-valid-symbol-pseudo;
-  					@extend %for-valid-symbol-pseudo-border-radius;
-  					@extend %for-valid-symbol-pseudo-vertical;
-  					@include arrow-triangle((
-  						pseudo: override, 
-  						direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
-  						display: null,
-  						size-base: inherit,
-  						main-size: $calculated-symbol-caret-height,//orientation of direction
-  						cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
-  					));
-  				}
-  			}
-  		}
-
-  	}
-
-  	&-caret,
-  	&-arrow,
-  	&-arrow-tail,
-  	&-arrow-double {
-  		&-up {
-  			@include generate-symbol-styles(.symbol) {
-  				transform: rotate(0deg);
-  			}
-  		}
-
-  		&-down {
-  			@include generate-symbol-styles(.symbol) {
-  				transform: rotate(180deg);
-  			}
-  		}
-
-
-  		&-left {
-  			@include generate-symbol-styles(.symbol) {
-  				transform: rotate(-90deg);
-  			}
-  		}
-
-  		&-right {
-  			@include generate-symbol-styles(.symbol) {
-  				transform: rotate(90deg);
-  			}
-  		}
-  	}
-
-
-  	&-text {
-  		&-left,
-  		&-right,
-  		&-center,
-  		&-justify {
-  			@include generate-symbol-styles(.symbol){
-  				@extend %for-valid-symbol;
-  				@extend %for-valid-symbol-no-before;
-
-
-  				&:after {
-  					@extend %for-valid-symbol-pseudo;
-  					@extend %for-valid-symbol-pseudo-border-radius;
-  					@extend %for-valid-symbol-pseudo-filled;
-  					height: em(2px / $calculated-symbol-basis);
-  					width: .5em;
-  				}
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-left) {
-  			&:after {
-  				box-shadow:
-  				-.25em -0.3125em 0 0,
-  				.25em -0.3125em 0 0,
-  				0 -0.3125em 0 0,
-
-  				-.25em 0 0 0,
-  				.25em 0 0 0,
-
-  				-.25em 0.3125em 0 0,
-  				0em 0.3125em 0 0,
-  				;
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-right) {
-  			&:after {
-  				box-shadow:
-  				-.25em -0.3125em 0 0,
-  				.25em -0.3125em 0 0,
-  				0 -0.3125em 0 0,
-
-  				-.25em 0 0 0,
-  				.25em 0 0 0,
-
-  				.25em 0.3125em 0 0,
-  				0 0.3125em 0 0,
-  				;
-  			}
-  		}
-
-  		@include generate-symbol-styles(.symbol-center) {
-  			&:after {
-  				box-shadow:
-  				-.25em -0.3125em 0 0,
-  				.25em -0.3125em 0 0,
-  				0 -0.3125em 0 0,
-
-  				-.25em 0 0 0,
-  				.25em 0 0 0,
-
-  				-.125em 0.3125em 0 0,
-  				.125em 0.3125em 0 0,
-  				;
-  			}
-  		}
-
-
-  		@include generate-symbol-styles(.symbol-justify) {
-  			&:after {
-  				box-shadow:
-  				-.25em -0.3125em 0 0,
-  				.25em -0.3125em 0 0,
-  				0 -0.3125em 0 0,
-
-  				-.25em 0 0 0,
-  				.25em 0 0 0,
-
-  				-.25em 0.3125em 0 0,
-  				.25em 0.3125em 0 0,
-  				0 0.3125em 0 0,
-  				;
-  			}
-  		}
-  	}
-
-  	*/
-}
-.body-loading .symbol:before {
-  color: transparent !important;
-}
-.symbol-onep21:before, .active > .symbol-onep21-toggle:before, .open > .symbol-onep21-toggle:before {
-  content: '';
-}
-
-.symbol-play:before, .active > .symbol-play-toggle:before, .open > .symbol-play-toggle:before {
-  content: '';
-}
-
-.symbol-pause:before, .active > .symbol-pause-toggle:before, .open > .symbol-pause-toggle:before {
-  content: '';
-}
-
-.symbol-stop:before, .active > .symbol-stop-toggle:before, .open > .symbol-stop-toggle:before {
-  content: '';
-}
-
-.symbol-square:before, .active > .symbol-square-toggle:before, .open > .symbol-square-toggle:before {
-  content: '';
-}
-
-.symbol-square-outline:before, .active > .symbol-square-outline-toggle:before, .open > .symbol-square-outline-toggle:before {
-  content: '';
-}
-
-.symbol-checkbox:before, .active > .symbol-checkbox-toggle:before, .open > .symbol-checkbox-toggle:before {
-  content: '';
-}
-
-.symbol-checkbox-inverse:before, .active > .symbol-checkbox-inverse-toggle:before, .open > .symbol-checkbox-inverse-toggle:before {
-  content: '';
-}
-
-.symbol-grid:before, .active > .symbol-grid-toggle:before, .open > .symbol-grid-toggle:before {
-  content: '';
-}
-
-.symbol-list:before, .active > .symbol-list-toggle:before, .open > .symbol-list-toggle:before {
-  content: '';
-}
-
-.symbol-timer:before, .active > .symbol-timer-toggle:before, .open > .symbol-timer-toggle:before {
-  content: '';
-}
-
-.symbol-time:before, .active > .symbol-time-toggle:before, .open > .symbol-time-toggle:before {
-  content: '';
-}
-
-.symbol-search:before, .active > .symbol-search-toggle:before, .open > .symbol-search-toggle:before {
-  content: '';
-}
-
-.symbol-plus:before, .active > .symbol-plus-toggle:before, .open > .symbol-plus-toggle:before {
-  content: '';
-}
-
-.symbol-minus:before, .active > .symbol-minus-toggle:before, .open > .symbol-minus-toggle:before {
-  content: '';
-}
-
-.symbol-check:before, .active > .symbol-check-toggle:before, .open > .symbol-check-toggle:before {
-  content: '';
-}
-
-.symbol-close:before, .active > .symbol-close-toggle:before, .open > .symbol-close-toggle:before {
-  content: '';
-}
-
-.symbol-thumbs-up:before, .active > .symbol-thumbs-up-toggle:before, .open > .symbol-thumbs-up-toggle:before {
-  content: '';
-}
-
-.symbol-thumbs-up-inverse:before, .active > .symbol-thumbs-up-inverse-toggle:before, .open > .symbol-thumbs-up-inverse-toggle:before {
-  content: '';
-}
-
-.symbol-thumbs-down:before, .active > .symbol-thumbs-down-toggle:before, .open > .symbol-thumbs-down-toggle:before {
-  content: '';
-}
-
-.symbol-thumbs-down-inverse:before, .active > .symbol-thumbs-down-inverse-toggle:before, .open > .symbol-thumbs-down-inverse-toggle:before {
-  content: '';
-}
-
-.symbol-star:before, .active > .symbol-star-toggle:before, .open > .symbol-star-toggle:before {
-  content: '';
-}
-
-.symbol-star-half:before, .active > .symbol-star-half-toggle:before, .open > .symbol-star-half-toggle:before {
-  content: '';
-}
-
-.symbol-star-stroke:before, .active > .symbol-star-stroke-toggle:before, .open > .symbol-star-stroke-toggle:before {
-  content: '';
-}
-
-.symbol-kebab-vertical:before, .active > .symbol-kebab-vertical-toggle:before, .open > .symbol-kebab-vertical-toggle:before {
-  content: '';
-}
-
-.symbol-kebab-horizontal:before, .active > .symbol-kebab-horizontal-toggle:before, .open > .symbol-kebab-horizontal-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-up:before, .active > .symbol-arrow-up-toggle:before, .open > .symbol-arrow-up-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-down:before, .active > .symbol-arrow-down-toggle:before, .open > .symbol-arrow-down-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-left:before, .active > .symbol-arrow-left-toggle:before, .open > .symbol-arrow-left-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-right:before, .active > .symbol-arrow-right-toggle:before, .open > .symbol-arrow-right-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-double-up:before, .active > .symbol-arrow-double-up-toggle:before, .open > .symbol-arrow-double-up-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-double-down:before, .active > .symbol-arrow-double-down-toggle:before, .open > .symbol-arrow-double-down-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-double-left:before, .active > .symbol-arrow-double-left-toggle:before, .open > .symbol-arrow-double-left-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-double-right:before, .active > .symbol-arrow-double-right-toggle:before, .open > .symbol-arrow-double-right-toggle:before {
-  content: '';
-}
-
-.symbol-upload:before, .active > .symbol-upload-toggle:before, .open > .symbol-upload-toggle:before {
-  content: '';
-}
-
-.symbol-download:before, .active > .symbol-download-toggle:before, .open > .symbol-download-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-tail-up:before, .active > .symbol-arrow-tail-up-toggle:before, .open > .symbol-arrow-tail-up-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-tail-down:before, .active > .symbol-arrow-tail-down-toggle:before, .open > .symbol-arrow-tail-down-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-tail-left:before, .active > .symbol-arrow-tail-left-toggle:before, .open > .symbol-arrow-tail-left-toggle:before {
-  content: '';
-}
-
-.symbol-arrow-tail-right:before, .active > .symbol-arrow-tail-right-toggle:before, .open > .symbol-arrow-tail-right-toggle:before {
-  content: '';
-}
-
-.symbol-caret-up:before, .active > .symbol-caret-up-toggle:before, .open > .symbol-caret-up-toggle:before {
-  content: '';
-}
-
-.symbol-caret-down:before, .active > .symbol-caret-down-toggle:before, .open > .symbol-caret-down-toggle:before {
-  content: '';
-}
-
-.symbol-caret-left:before, .active > .symbol-caret-left-toggle:before, .open > .symbol-caret-left-toggle:before {
-  content: '';
-}
-
-.symbol-caret-right:before, .active > .symbol-caret-right-toggle:before, .open > .symbol-caret-right-toggle:before {
-  content: '';
-}
-
-.symbol-text-center:before, .active > .symbol-text-center-toggle:before, .open > .symbol-text-center-toggle:before {
-  content: '';
-}
-
-.symbol-text-left:before, .active > .symbol-text-left-toggle:before, .open > .symbol-text-left-toggle:before {
-  content: '';
-}
-
-.symbol-text-right:before, .active > .symbol-text-right-toggle:before, .open > .symbol-text-right-toggle:before {
-  content: '';
-}
-
-.symbol-text-justify:before, .active > .symbol-text-justify-toggle:before, .open > .symbol-text-justify-toggle:before {
-  content: '';
-}
-
-.symbol-map:before, .active > .symbol-map-toggle:before, .open > .symbol-map-toggle:before {
-  content: '';
-}
-
-.symbol-calendar:before, .active > .symbol-calendar-toggle:before, .open > .symbol-calendar-toggle:before {
-  content: '';
-}
-
-.symbol-bell:before, .active > .symbol-bell-toggle:before, .open > .symbol-bell-toggle:before {
-  content: '';
-}
-
-.symbol-bell-active:before, .active > .symbol-bell-active-toggle:before, .open > .symbol-bell-active-toggle:before {
-  content: '';
-}
-
-.symbol-hyperlink:before, .active > .symbol-hyperlink-toggle:before, .open > .symbol-hyperlink-toggle:before {
-  content: '';
-}
-
-.symbol-dash:before, .active > .symbol-dash-toggle:before, .open > .symbol-dash-toggle:before {
-  content: '';
-}
-
-.symbol-caution:before, .active > .symbol-caution-toggle:before, .open > .symbol-caution-toggle:before {
-  content: '';
-}
-
-.symbol-error:before, .active > .symbol-error-toggle:before, .open > .symbol-error-toggle:before {
-  content: '';
-}
-
-.symbol-info:before, .active > .symbol-info-toggle:before, .open > .symbol-info-toggle:before {
-  content: '';
-}
-
-.symbol-success:before, .active > .symbol-success-toggle:before, .open > .symbol-success-toggle:before {
-  content: '';
-}
-
-.symbol-stack:before, .active > .symbol-stack-toggle:before, .open > .symbol-stack-toggle:before {
-  content: '';
-}
-
-.symbol-clap:before, .active > .symbol-clap-toggle:before, .open > .symbol-clap-toggle:before {
-  content: '';
-}
-
-.symbol-copy:before, .active > .symbol-copy-toggle:before, .open > .symbol-copy-toggle:before {
-  content: '';
-}
-
-.symbol-share:before, .active > .symbol-share-toggle:before, .open > .symbol-share-toggle:before {
-  content: '';
-}
-
-.symbol-filter:before, .active > .symbol-filter-toggle:before, .open > .symbol-filter-toggle:before {
-  content: '';
-}
-
-.symbol-chart:before, .active > .symbol-chart-toggle:before, .open > .symbol-chart-toggle:before {
-  content: '';
-}
-
-.symbol-segment:before, .active > .symbol-segment-toggle:before, .open > .symbol-segment-toggle:before {
-  content: '';
-}
-
-.symbol-user:before, .active > .symbol-user-toggle:before, .open > .symbol-user-toggle:before {
-  content: '';
-}
-
-.symbol-user-add:before, .active > .symbol-user-add-toggle:before, .open > .symbol-user-add-toggle:before {
-  content: '';
-}
-
-.symbol-user-remove:before, .active > .symbol-user-remove-toggle:before, .open > .symbol-user-remove-toggle:before {
-  content: '';
-}
-
-.symbol-expand:before, .active > .symbol-expand-toggle:before, .open > .symbol-expand-toggle:before {
-  content: '';
-}
-
-.symbol-collapse:before, .active > .symbol-collapse-toggle:before, .open > .symbol-collapse-toggle:before {
-  content: '';
-}
-
-.symbol-expand-alt:before, .active > .symbol-expand-alt-toggle:before, .open > .symbol-expand-alt-toggle:before {
-  content: '';
-}
-
-.symbol-collapse-alt:before, .active > .symbol-collapse-alt-toggle:before, .open > .symbol-collapse-alt-toggle:before {
-  content: '';
-}
-
-.symbol-burger:before, .active > .symbol-burger-toggle:before, .open > .symbol-burger-toggle:before {
-  content: '';
-}
-
-.symbol-fries:before, .active > .symbol-fries-toggle:before, .open > .symbol-fries-toggle:before {
-  content: '';
-}
-
-.symbol-waffle:before, .active > .symbol-waffle-toggle:before, .open > .symbol-waffle-toggle:before {
-  content: '';
-}
-
-.symbol-pencil:before, .active > .symbol-pencil-toggle:before, .open > .symbol-pencil-toggle:before {
-  content: '';
-}
-
-.symbol-edit:before, .active > .symbol-edit-toggle:before, .open > .symbol-edit-toggle:before {
-  content: '';
-}
-
-.symbol-delete:before, .active > .symbol-delete-toggle:before, .open > .symbol-delete-toggle:before {
-  content: '';
-}
-
-.symbol-robot:before, .active > .symbol-robot-toggle:before, .open > .symbol-robot-toggle:before {
-  content: '';
-}
-
-.symbol-file:before, .active > .symbol-file-toggle:before, .open > .symbol-file-toggle:before {
-  content: '';
-}
-
-.symbol-clipboard:before, .active > .symbol-clipboard-toggle:before, .open > .symbol-clipboard-toggle:before {
-  content: '';
-}
-
-/*** NAVIGATION ***/
-.nav {
-  height: 4.6875rem;
-  background: var(--fw-theme-background);
-  font-size: 1rem;
-  line-height: 1.5rem;
-  color: var(--fw-theme-color);
-  font-weight: 400;
-  text-transform: none;
-  font-style: normal;
-}
-.theme-inverse .nav {
-  background: var(--fw-theme-background);
-  color: var(--fw-theme-color);
-}
-.nav * {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-.nav a {
-  color: inherit;
-}
-.nav, .nav-list {
-  display: flex;
-  padding: 0;
-  margin: 0;
-}
-.nav.accordion.open {
-  display: flex !important;
-}
-.nav.accordion.open {
-  display: flex;
-}
-.nav.nav-sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0px 5px 20px -10px var(--fw-theme-background-contrast);
-  z-index: 9999;
-}
-.theme-inverse .nav.nav-sticky {
-  box-shadow: 0px 5px 20px -10px var(--fw-theme-background-contrast);
-}
-.nav.nav-vertical {
-  display: block;
-  min-width: 100%;
-  height: auto;
-}
-.nav.nav-vertical .nav-list {
-  display: block;
-}
-.nav.nav-vertical .dropdown li > a,
-.nav.nav-vertical .dropdown li > [data-toggle],
-.nav.nav-vertical .nav-item > a,
-.nav.nav-vertical .nav-item > [data-toggle],
-.nav.nav-vertical .nav-list li > a,
-.nav.nav-vertical .nav-list li > [data-toggle] {
-  display: block;
-}
-.nav.nav-vertical .dropdown {
-  border-radius: 0;
-  padding: 0;
-  width: auto;
-  position: static;
-  box-shadow: none;
-}
-.dropdown li:before, .nav-item:before, .nav-list li:before {
-  content: none;
-}
-.dropdown li > a,
-.dropdown li > [data-toggle], .nav-item > a,
-.nav-item > [data-toggle], .nav-list li > a,
-.nav-list li > [data-toggle] {
-  padding-top: calc( ( 2.1875rem - ( 1.5rem)) * .5 );
-  padding-bottom: calc( ( 2.1875rem - ( 1.5rem)) * .5 );
-  display: inline-block;
-}
-.dropdown li:hover > a,
-.dropdown li:hover > [data-toggle], .nav-item:hover > a,
-.nav-item:hover > [data-toggle], .nav-list li:hover > a,
-.nav-list li:hover > [data-toggle] {
-  color: var(--fw-color-primary);
-}
-
-.nav-block {
-  display: flex;
-  align-self: stretch;
-  align-items: center;
-  align-content: center;
-  position: relative;
-}
-.nav-block:nth-child(n+2) {
-  margin-left: 0.5em;
-}
-.nav-block.nav-block-stretch {
-  align-items: stretch;
-  align-content: stretch;
-}
-.nav-icon {
-  width: 1.875em;
-  height: 1.875em;
-  max-width: none;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: inherit;
-}
-.nav-icon + .nav-item-text {
-  margin-left: 0.5rem;
-  display: inline-block;
-  vertical-align: middle;
-}
-.nav-list > .nav-item > a,
-.nav-list > .nav-item > [data-toggle], .nav-list > li > a,
-.nav-list > li > [data-toggle] {
-  font-size: 1rem;
-  color: inherit;
-  font-weight: 700;
-  text-transform: none;
-  text-decoration: none;
-  font-style: normal;
-  position: relative;
-  transition: 0.125s all ease-in-out;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: calc( (4.6875rem - ( 1.5rem)) * .5 );
-  padding-bottom: calc( (4.6875rem - ( 1.5rem)) * .5 );
-}
-.nav-list > .nav-item > a:after,
-.nav-list > .nav-item > [data-toggle]:after, .nav-list > li > a:after,
-.nav-list > li > [data-toggle]:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 0;
-  transition: 0.125s all ease-in-out;
-  background-color: var(--fw-gradient-start);
-  /* FF3.6-15 */
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-}
-.nav-vertical .nav-list > .nav-item > a:after,
-.nav-vertical .nav-list > .nav-item > [data-toggle]:after, .nav-vertical .nav-list > li > a:after,
-.nav-vertical .nav-list > li > [data-toggle]:after {
-  height: auto;
-  width: 0;
-  top: 0;
-  left: auto;
-  background-color: var(--fw-gradient-start);
-  /* FF3.6-15 */
-  /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-}
-.nav-list > .nav-item:hover > a:after,
-.nav-list > .nav-item:hover > [data-toggle]:after, .nav-list > .nav-item.open > a:after,
-.nav-list > .nav-item.open > [data-toggle]:after, .nav-list > li:hover > a:after,
-.nav-list > li:hover > [data-toggle]:after, .nav-list > li.open > a:after,
-.nav-list > li.open > [data-toggle]:after {
-  height: 5px;
-}
-.nav-vertical .nav-list > .nav-item:hover > a:after,
-.nav-vertical .nav-list > .nav-item:hover > [data-toggle]:after, .nav-vertical .nav-list > .nav-item.open > a:after,
-.nav-vertical .nav-list > .nav-item.open > [data-toggle]:after, .nav-vertical .nav-list > li:hover > a:after,
-.nav-vertical .nav-list > li:hover > [data-toggle]:after, .nav-vertical .nav-list > li.open > a:after,
-.nav-vertical .nav-list > li.open > [data-toggle]:after {
-  height: auto;
-  width: 5px;
-}
-.nav-list ul,
-.nav .dropdown {
-  background: var(--fw-theme-background);
-  margin: auto;
-}
-@media (max-width: 1200px) {
-  .nav-list {
-    display: block;
-    min-width: 100%;
-  }
-  .nav-list .dropdown {
-    border-radius: 0;
-    width: auto;
-    position: static;
-    box-shadow: none;
-  }
-  .nav-list > .nav-item > a,
-.nav-list > .nav-item > [data-toggle], .nav-list > li > a,
-.nav-list > li > [data-toggle] {
-    display: block;
-  }
-}
-
-.tab > a,
-.tab .tab-text, .tabs > li > a,
-.tabs > li .tab-text, .tab, .tabs,
-.tab > li {
-  display: flex;
-}
-.tab > a,
-.tab .tab-text, .tabs > li > a,
-.tabs > li .tab-text, .tab, .tabs > li {
-  padding-top: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * .5 );
-  padding-bottom: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * .5 );
-  min-height: 2.8125em;
-  padding-right: 0;
-  padding-left: 0;
-  align-items: center;
-}
-
-.tabs {
-  font-size: 1rem;
-  color: var(--fw-color-neutral);
-  font-weight: 700;
-  text-transform: none;
-  font-style: normal;
-  border-bottom: 1px solid currentColor;
-}
-.theme-inverse .tabs {
-  color: var(--fw-color-neutral);
-  border-color: currentColor;
-}
-@media (max-width: 1200px) {
-  .tabs {
-    font-size: 1rem;
-  }
-  .tabs.tabs-responsive {
-    flex-direction: column;
-    border-bottom: 0;
-  }
-  .tabs.tabs-responsive .tab,
-.tabs.tabs-responsive .tabs li {
-    border-bottom: 1px solid currentColor !important;
-  }
-  .tabs.tabs-responsive .tab:nth-child(n+2),
-.tabs.tabs-responsive .tabs li:nth-child(n+2) {
-    margin-left: 0;
-    border-top: 0;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-}
-.tab, .tabs,
-.tab > li {
-  padding: 0;
-  margin: 0;
-}
-.tab, .tabs > li {
-  border: 0;
-  position: relative;
-  background-color: transparent;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  border: 1px solid transparent;
-  border-bottom: 0;
-}
-.theme-inverse .tab, .theme-inverse .tabs > li {
-  background-color: transparent;
-  border-color: transparent;
-}
-.tab.tab-disabled *, .tabs > li.tab-disabled * {
-  pointer-events: none;
-}
-.tab:not(.tab-disabled):active, .tab:not(.tab-disabled).active, .tab:not(.tab-disabled):hover, .tab:not(.tab-disabled):focus, .tab:not(.tab-disabled).focus, .tab:not(.tab-disabled).open, .tabs > li:not(.tab-disabled):active, .tabs > li:not(.tab-disabled).active, .tabs > li:not(.tab-disabled):hover, .tabs > li:not(.tab-disabled):focus, .tabs > li:not(.tab-disabled).focus, .tabs > li:not(.tab-disabled).open {
-  background-color: transparent;
-  border-color: transparent;
-  color: var(--fw-theme-color);
-}
-.tab:not(.tab-disabled):active:after, .tab:not(.tab-disabled).active:after, .tab:not(.tab-disabled):hover:after, .tab:not(.tab-disabled):focus:after, .tab:not(.tab-disabled).focus:after, .tab:not(.tab-disabled).open:after, .tabs > li:not(.tab-disabled):active:after, .tabs > li:not(.tab-disabled).active:after, .tabs > li:not(.tab-disabled):hover:after, .tabs > li:not(.tab-disabled):focus:after, .tabs > li:not(.tab-disabled).focus:after, .tabs > li:not(.tab-disabled).open:after {
-  height: 5px;
-}
-.theme-inverse .tab:not(.tab-disabled):active, .theme-inverse .tab:not(.tab-disabled).active, .theme-inverse .tab:not(.tab-disabled):hover, .theme-inverse .tab:not(.tab-disabled):focus, .theme-inverse .tab:not(.tab-disabled).focus, .theme-inverse .tab:not(.tab-disabled).open, .theme-inverse .tabs > li:not(.tab-disabled):active, .theme-inverse .tabs > li:not(.tab-disabled).active, .theme-inverse .tabs > li:not(.tab-disabled):hover, .theme-inverse .tabs > li:not(.tab-disabled):focus, .theme-inverse .tabs > li:not(.tab-disabled).focus, .theme-inverse .tabs > li:not(.tab-disabled).open {
-  background-color: transparent;
-  border-color: transparent;
-  color: var(--fw-theme-color);
-}
-.tab:nth-child(n+2), .tabs > li:nth-child(n+2) {
-  margin-left: 45px;
-}
-.tab:before, .tabs > li:before {
-  content: none;
-}
-.tab:after, .tabs > li:after {
-  content: "";
-  display: block;
-  position: absolute;
-  pointer-events: none;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 0;
-  background: var(--fw-color-primary);
-  transition: 0.25s height ease-in-out;
-}
-.theme-inverse .tab:after, .theme-inverse .tabs > li:after {
-  background: var(--fw-color-primary);
-}
-.tab > a,
-.tab .tab-text, .tabs > li > a,
-.tabs > li .tab-text {
-  color: inherit;
-  text-decoration: none;
-  margin-top: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * -.5 );
-  margin-bottom: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * -.5 );
-  margin-right: 0;
-  margin-left: 0;
-  flex: 1 1;
-  align-self: stretch;
-}
-
-/*** PAGINATION ***/
-/* it */
-.pagination {
-  display: inline-flex;
-  align-items: center;
-}
 /*** LAYOUTING CONTAINERS AND SHIT ***/
 /* CONTAINER */
 .container {
@@ -6789,6 +5030,1765 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   border-radius: 0 !important;
 }
 
+/*** SYMBOLS ***/
+.symbol {
+  font-size: 1em;
+  line-height: 1;
+  font-family: "FW Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-rendering: auto;
+  pointer-events: none;
+  /*! @DEPRECATE
+
+  	font:inherit;
+  	font-size: 100%;
+  	position:relative;
+  	display:inline-flex;
+  	line-height:1;
+  	font-style: normal;
+  	font-variant: normal;
+  	text-rendering: auto;
+  	flex: 0 0 auto; //retain dimensions
+  	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
+  	width: 1em;
+  	vertical-align:inherit;
+  	transform-origin: center center;
+  	pointer-events:none;
+  	align-self: center;
+  	align-items: center;
+  	align-content: center;
+  	justify-content: center;
+
+
+
+  	&:last-child {
+  		margin-right:0;
+  	}
+  	&:first-child {
+  		margin-left:0;
+  	}
+
+
+  	@at-root %for-valid-symbol{
+
+  		& {
+  			transform:none;
+  			transition:none;
+  		}
+
+  		&-pseudo {
+  			content: "";
+  			display:block;
+  			color: inherit;
+  			position:absolute;
+  			top:0;
+  			bottom:0;
+  			left:0;
+  			right:0;
+  			margin: auto;
+  			transform:none;
+  			box-shadow:none;
+  			background: none;
+  			border: none;
+  			transition:
+  				none
+  				// $transition-duration-short color $transition-timing,
+  				// $transition-duration-short background-color $transition-timing
+  				;
+
+  			&-filled {
+  				background: currentColor;
+  			}
+
+  			&-border-radius {
+  				border-radius:  em(3px / $calculated-symbol-basis) * .5;
+  			}
+
+  			&-circle-ready {
+  				border-radius: 50%;
+  			}
+
+  			&-vertical {
+  				width: em(3px / $calculated-symbol-basis);
+  			}
+
+  			&-horizontal {
+  				height: em(3px / $calculated-symbol-basis);
+  			}
+
+  			&-full-width {
+  				width: 1em;
+  			}
+
+  			&-full-height {
+  				height: 1em;
+  			}
+  		}
+
+  		&-no-before {
+  			&:before {
+  				content:none;
+  			}
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-pencil) {
+  		@extend %for-valid-symbol;
+  		// font-size: 128px;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  		}
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo-filled;
+  			width: .3125em;
+  			height: .3125em;
+  			top:auto;
+  			right:auto;
+  			clip-path: polygon(
+  				0 0,
+  				0 100%,
+  				100% 100%,
+  				calc(100% - 0.0625em) calc(100% - 0.0625em),
+  				45% calc(100% - 0.0625em),
+  				0.0625em 56%,
+  				0.0625em 0.0625em,
+  			);
+  		}
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo-filled;
+  			clip-path: polygon(
+  				0 0,
+  				0 25%,
+  				100% 25%,
+  				100% calc(25% + 0.0625em),
+  				0 calc(25% + 0.0625em),
+  				0 calc(25% + 0.125em),
+  				100% calc(25% + 0.125em),
+  				100% calc(25% + 0.1875em),
+  				0 calc(25% + 0.1875em),
+  				0 100%,
+  				0.078125em 100%,
+  				0.078125em 92%,
+  				40% 97%,
+  				50% 92%,
+  				60% 97%,
+
+  				calc(100% - 0.078125em) 92%,
+  				calc(100% - 0.078125em) 100%,
+  				100% 100%,
+  				100% 0
+  			);
+  			transform: rotate(45deg);
+  			width: 0.4375em;
+  			// top: .125em;
+  			// right: .125em;
+  			height: .9875em;
+  			border-radius: .125em .125em 0 0;
+  			background-repeat: no-repeat;
+  			background-position: top center;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-edit) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  		}
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo-filled;
+  			clip-path: polygon(
+  				0 0,
+  				50% 0,
+  				50% em(2px/$calculated-symbol-basis),
+  				em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
+  				em(2px/$calculated-symbol-basis) calc(100% - 0.125em),
+  				calc(100% - 0.125em) calc(100% - 0.125em), 
+  				calc(100% - 0.125em) 50%,
+  				100% 50%,
+  				100% 100%,
+  				0 100%
+  			);
+  		}
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo-full-height;
+  			border: em(2px/$calculated-symbol-basis) solid;
+  			width: em(7px/$calculated-symbol-basis );
+  			border-radius: 0 0 50% 50%;
+  			transform: rotate(45deg);
+  			bottom: auto;
+  			left: auto;
+  			top: -.25em;
+  			background-image: 
+  				repeating-linear-gradient(
+  					180deg,
+  					currentColor 0,
+  					currentColor em(2px/$calculated-symbol-basis),
+  					transparent em(2px/$calculated-symbol-basis),
+  					transparent 100%
+  				)
+  			;
+  			background-repeat: no-repeat;
+  			background-position: bottom center;
+  			background-size: 100% .625em;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-delete) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  		}
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo-filled;
+  			height: em(3px/$calculated-symbol-basis);
+  			width: .5625em;
+  			bottom:1em;
+  			top: auto;
+
+  		}
+
+  		&:after {
+  			border: em(2px/$calculated-symbol-basis) solid;
+  			border-bottom-right-radius: .2em;
+  			border-bottom-left-radius: .2em;
+  			width: 1em;
+  			height:1.125em;
+  			bottom: -.125em;
+  			top: auto;
+  			background-image: 
+  				repeating-linear-gradient(
+  					90deg,
+  					currentColor 0,
+  					currentColor em(1px/$calculated-symbol-basis),
+  					transparent em(1px/$calculated-symbol-basis),
+  					transparent em(3px/$calculated-symbol-basis),
+  					currentColor em(3px/$calculated-symbol-basis),
+  					currentColor em(4px/$calculated-symbol-basis),
+  					transparent em(4px/$calculated-symbol-basis),
+  					transparent em(6px/$calculated-symbol-basis),
+  					currentColor em(6px/$calculated-symbol-basis),
+  					currentColor em(7px/$calculated-symbol-basis),
+  				),
+
+  				// currentColor 0,
+  				// currentColor em(1px/$calculated-symbol-basis),
+  				// transparent em(1px/$calculated-symbol-basis),
+  				// transparent em(2.5px/$calculated-symbol-basis),
+  				// currentColor em(2.5px/$calculated-symbol-basis),
+  				// currentColor em(3.5px/$calculated-symbol-basis),
+  				// transparent em(3.5px/$calculated-symbol-basis),
+  				// transparent em(5px/$calculated-symbol-basis),
+  				// currentColor em(5px/$calculated-symbol-basis),
+  				// currentColor em(6px/$calculated-symbol-basis),
+  				;
+  			background-size: em(7px/$calculated-symbol-basis) .5em;
+  			background-position: center center;
+  			background-repeat: no-repeat;
+  		}
+  	}
+
+
+
+  	@include generate-symbol-styles((.symbol-stop,.symbol-square)) {
+  		@extend %for-valid-symbol-no-before;
+  		@extend %for-valid-symbol;
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			@extend %for-valid-symbol-pseudo-full-width;
+  			@extend %for-valid-symbol-pseudo-full-height;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-play) {
+  		@extend %for-valid-symbol;
+  		@extend %for-valid-symbol-no-before;
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			border-top: .5em solid transparent;
+  			border-bottom: .5em solid transparent;
+  			border-left: .875em solid;
+  			left: .1875em;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-pause) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			@extend %for-valid-symbol-pseudo-full-height;
+  			width: .3125em;
+  		}
+
+  		&:before {
+  			right: .5em;
+  		}
+
+  		&:after {
+  			left: .5em;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-search) {
+  		@extend %for-valid-symbol;
+  		transform: rotate(-45deg);
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  		}
+
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-full-height;
+  			@extend %for-valid-symbol-pseudo-full-width;
+  			@extend %for-valid-symbol-pseudo-circle-ready;
+  			border: em(3px / $calculated-symbol-basis) solid;
+  			bottom: auto;
+  			top: -.25em
+
+  		}
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo-vertical;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			height: .625em;
+  			top: calc(.75em - (0.1875em * .5));
+  			bottom: auto;
+  		}
+  	}
+
+  	@include generate-symbol-styles((.symbol-time,.symbol-timer)) {
+  		@extend %for-valid-symbol;
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-circle-ready;
+  			// @extend %for-valid-symbol-pseudo-full-height;
+  			// @extend %for-valid-symbol-pseudo-full-width;
+  			border: em(2px / $calculated-symbol-basis) solid;
+  			width: 1.125em;
+  			height: 1.125em;
+  			left: -.5em;
+  			right: -.5em;
+  			bottom: -.125em;
+  			top: auto;
+  			background-image: 
+  				//long
+  				repeating-linear-gradient(
+  					90deg,
+  					currentColor 0,
+  					currentColor em(2px / $calculated-symbol-basis),
+  					transparent em(2px / $calculated-symbol-basis),
+  					transparent 100%,
+  				),
+  				// short
+  				linear-gradient(
+  					0deg,
+  					currentColor 0,
+  					currentColor em(2px / $calculated-symbol-basis),
+  					transparent em(2px / $calculated-symbol-basis),
+  					transparent 100%,
+  				),
+  				;
+
+  			background-position:
+  				(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
+  				;
+  			background-size:
+  				.3em .4em
+  				// // .25em .5em
+  				;
+  			background-repeat: no-repeat;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-time) {
+  		@extend %for-valid-symbol-no-before;
+  	}
+
+  	@include generate-symbol-styles(.symbol-timer) {
+  		&:before {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			width: .5em;
+  			height:em(2px / $calculated-symbol-basis);
+  			right: -.1875em;
+  			left: auto;
+  			bottom: auto;
+  			// top: -.125em;
+  			top:0;
+  			transform: rotate(45deg);
+  		}
+  	}
+
+
+
+  	@include generate-symbol-styles((.symbol-plus,.symbol-minus)) {
+
+  		&:after{
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-horizontal;
+  			@extend %for-valid-symbol-pseudo-full-width;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			// top: 50%;
+  			// bottom: auto;
+  			// transform: translateY(-50%);
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-plus) {
+  		@extend %for-valid-symbol;
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-vertical;
+  			@extend %for-valid-symbol-pseudo-full-height;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			height:1em;
+  			// left: 50%;
+  			// right: auto;
+  			// transform: translateX(-50%);
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-minus) {
+  		@extend %for-valid-symbol;
+  		@extend %for-valid-symbol-no-before;
+  	}
+
+
+  	@include generate-symbol-styles(.symbol-check) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			top: auto;
+  			left: .25em;
+  			right: auto;
+  			bottom: .125em;
+  			transform-origin: 42% 88%;
+  		}
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo-vertical;
+  			height: .5em;
+  			transform: rotate(-45deg);
+  		}
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo-vertical;
+  			height: 1em;
+  			transform: rotate(45deg);
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-close) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-vertical;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			height: 1.25em;
+  		}
+  		&:before {
+  			transform: rotate(45deg)
+  		}
+  		&:after {
+  			transform: rotate(-45deg)
+  		}
+  	}
+
+
+  	@include generate-symbol-styles(.symbol-map) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			transform:translateY(-0.3125em);
+  			transform-origin: top center;
+  			bottom:auto;
+  		}
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo-full-height;
+  			@extend %for-valid-symbol-pseudo-full-width;
+  			border-radius: 50%;
+  			border: 0.25em solid;
+
+  		}
+
+  		&:after {
+  			border: 0.390625em solid transparent;
+  			border-top: 0.75em solid;
+  			border-bottom:0;
+  			width: 0;
+  			height: 0;
+  			margin: 0 auto;
+  			top:calc(1em - 0.1875em);
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-file) {
+  		@extend %for-valid-symbol;
+  		@extend %for-valid-symbol-no-before;
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-filled;
+  			width: .875em;
+  			clip-path: polygon(
+  				0% 0%,
+  				0% 100%,
+  				100% 100%,
+  				100% 30%,
+  				calc(50% + 0.125em) 0,
+  				50% 0,
+  				50% calc(30% + 0.125em),
+  				calc(100% - 0.125em) calc(30% + 0.125em),
+  				calc(100% - 0.125em) 30%,
+  				calc(50% + 0.125em) 30%,
+  				calc(50% + 0.125em) em(2px / $calculated-symbol-basis),
+  				calc(100% - 0.125em) 30%,
+  				calc(100% - 0.125em) calc(100% - 0.125em),
+  				em(2px / $calculated-symbol-basis) calc(100% - 0.125em),
+  				em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
+  				50% em(2px / $calculated-symbol-basis),
+  				50% 0,
+
+  			);
+
+  		}
+  	}
+
+
+
+  	&-star {
+  		@include generate-symbol-styles((.symbol,.symbol-half,.symbol-stroke)) {
+  			@extend %for-valid-symbol;
+  			@extend %for-valid-symbol-no-before;
+
+  			&:after {
+  				@extend %for-valid-symbol-pseudo;
+  				@extend %for-valid-symbol-pseudo-filled;
+  				width: 1.25em;
+  				height: 1.25em;
+  				top: -.5em;
+  				bottom: -.5em;
+  				left: -.5em;
+  				right: -.5em;
+
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol) {
+  			&:after {
+  				clip-path: polygon(
+  					50% 5%,
+  					64% 38%,
+  					100% 41%,
+  					73% 65%,
+  					80% 100%,
+  					50% 82%,
+  					20% 100%,
+  					27% 65%,
+  					0% 41%,
+  					36% 38%,
+  				);
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-half) {
+  			&:after {
+  				clip-path: polygon(
+  					50% 5%,
+  					64% 38%,
+  					100% 41%,
+  					73% 65%,
+  					80% 100%,
+  					50% 82%,
+  					20% 100%,
+  					27% 65%,
+  					0% 41%,
+  					36% 38%,
+
+  					50% 5%,
+
+  					50% 26%,
+
+  					47% 33%,
+  					47% 74%,
+
+  					50% 72%,
+  					68% 83%,
+  					64% 62%,
+  					80% 48%,
+  					59% 46%,
+  					50% 26%,
+  				);
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-stroke) {
+  			&:after {
+  				clip-path: polygon(
+  					50% 5%,
+  					64% 38%,
+  					100% 41%,
+  					73% 65%,
+  					80% 100%,
+  					50% 82%,
+  					20% 100%,
+  					27% 65%,
+  					0% 41%,
+  					36% 38%,
+
+  					50% 5%,
+
+  					50% 26%,
+  					41% 46%,
+  					20% 48%,
+  					36% 62%,
+  					32% 83%,
+  					50% 72%,
+  					68% 83%,
+  					64% 62%,
+  					80% 48%,
+  					59% 46%,
+  					50% 26%,
+
+  				);
+  			}
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-download) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  		}
+
+  		&:before {
+  			@extend %for-valid-symbol-pseudo-full-width;
+  			height: .375em;
+  			border-bottom: em(2px/$calculated-symbol-basis) solid;
+  			border-right: em(2px/$calculated-symbol-basis) solid;
+  			border-left: em(2px/$calculated-symbol-basis) solid;
+  			top: auto;
+  		}
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo-filled;
+  			clip-path: polygon(
+  				calc(50% - 0.125em * .5) 0,
+  				calc(50% + 0.125em * .5) 0,
+  				calc(50% + 0.125em * .5) 60%,
+  				100% 60%,
+  				50% 100%,
+  				0 60%,
+  				calc(50% - 0.125em * .5)  60%
+  			);
+  			height: .625em;
+  			width: .5em;
+  			bottom: auto;
+  			// background-image:
+  			// 	repeating-linear-gradient(
+  			// 		90deg,
+  			// 		transparent 0,
+  			// 		transparent calc(50% - 0.0625em),
+  			// 		currentColor calc(50% - 0.0625em),
+  			// 		currentColor calc(50% + 0.0625em),
+  			// 		transparent calc(50% + 0.0625em),
+  			// 		transparent 100%
+  			// 	),
+  			// 	linear-gradient(
+  			// 		45deg,
+  			// 		transparent 0,
+  			// 		transparent 50%,
+  			// 		currentColor 50%,
+  			// 		currentColor 100%
+  			// 	),
+
+  			// 	linear-gradient(
+  			// 		-45deg,
+  			// 		transparent 0,
+  			// 		transparent 50%,
+  			// 		currentColor 50%,
+  			// 		currentColor 100%
+  			// 	)
+  			// 	;
+
+  			// background-size:
+  			// 	100% 90%,
+  			// 	.25em .25em,
+  			// 	.25em .25em
+  			// 	;
+  			// background-position:
+  			// 	0 0,
+  			// 	.125em 100%,
+  			// 	bottom 0 right .125em,
+  			// 	;
+  			// background-repeat: no-repeat;
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-hyperlink) {
+  		@extend %for-valid-symbol;
+
+  		&:before,&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			width: .6875em;
+  			height: .5em;
+  			border-radius: .25em;
+  			border: em(2px / $calculated-symbol-basis) solid;
+  			// transform-origin: center center;
+  			transform: rotate(-45deg)
+  		}
+
+  		&:before {
+  			top: auto;
+  			right: auto;
+  			bottom: -.125em;
+  			left: .25em;
+  			transform-origin: bottom left;
+  		}
+
+  		&:after {
+  			bottom: auto;
+  			left: auto;
+  			top: -.125em;
+  			right: .25em;
+  			transform-origin: top right;
+  		}
+  	}
+
+  	@include generate-symbol-styles((.symbol-fries,.symbol-burger)) {
+  		@extend %for-valid-symbol;
+
+  		&:after {
+  			@extend %for-valid-symbol-pseudo;
+  			@extend %for-valid-symbol-pseudo-border-radius;
+  			@extend %for-valid-symbol-pseudo-filled;
+
+
+  			box-shadow:
+  				0 0.375em 0 0,
+  				0 -0.375em 0 0
+  				;
+  			height:  em(3px / $calculated-symbol-basis);
+  		}
+  	}
+
+  	@include generate-symbol-styles(.symbol-fries) {
+  		@extend %for-valid-symbol;
+
+  		&:after {
+  			transform: rotate(90deg);
+  		}
+  	}
+
+
+
+  	&-kebab {
+
+  		@include generate-symbol-styles((.symbol-horizontal,.symbol-vertical)) {
+  			@extend %for-valid-symbol-no-before;
+  			@extend %for-valid-symbol;
+
+  			&:after {
+  				@extend %for-valid-symbol-pseudo;
+  				@extend %for-valid-symbol-pseudo-filled;
+  				@extend %for-valid-symbol-pseudo-circle-ready;
+  				width: em(4px/$calculated-symbol-basis);
+  				height: em(4px/$calculated-symbol-basis);
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-vertical) {
+  			width: em(4px/$calculated-symbol-basis);
+  			&:after {
+  				box-shadow: 
+  					0 em((4px * -2) /$calculated-symbol-basis) 0 0,
+  					0 em((4px * 2) /$calculated-symbol-basis) 0 0
+  					;
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-horizontal) {
+  			width: em((4px * 5)/$calculated-symbol-basis);
+  			&:after {
+  				box-shadow: 
+  				em((4px * -2) /$calculated-symbol-basis)0  0 0,
+  				em((4px * 2) /$calculated-symbol-basis) 0 0 0
+  					;
+  			}
+  		}
+  	}
+
+  	&-arrow {
+  		&,
+  		&-double,
+  		&-tail {
+  			&-left,
+  			&-right,
+  			&-up,
+  			&-down {
+  				@include generate-symbol-styles(.symbol){
+  					@extend %for-valid-symbol;
+
+  					&:before,&:after {
+  						@extend %for-valid-symbol-pseudo;
+  					}
+  				}
+  			}
+  		}
+
+  		&,
+  		&-double {
+  			&-left,
+  			&-right,
+  			&-up,
+  			&-down {
+  				@include generate-symbol-styles(.symbol){
+  					@extend %for-valid-symbol;
+
+  					&:before,&:after {
+  						@extend %for-valid-symbol-pseudo-border-radius;
+  						@extend %for-valid-symbol-pseudo-filled;
+  						@extend %for-valid-symbol-pseudo-vertical;
+  						height: .6875em;
+  						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
+  					}
+
+  					&:before{
+  						transform: rotate(-45deg);
+  					}
+
+  					&:after{
+  						transform: rotate(45deg);
+  					}
+  				}
+  			}
+  		}
+
+
+  		&-double,
+  		&-tail {
+  			&-left,
+  			&-right,
+  			&-up,
+  			&-down {
+  				@include generate-symbol-styles(.symbol){
+  					&:before,&:after {
+  						top:0;
+  						bottom: auto;
+  					}
+  				}
+  			}
+  		}
+
+  		& {
+  			&-left,
+  			&-right,
+  			&-up,
+  			&-down {
+  				@include generate-symbol-styles(.symbol){
+  					height: .75em;
+  				}
+  			}
+  		}
+
+  		&-double {
+  			&-left,
+  			&-right,
+  			&-up,
+  			&-down {
+  				@include generate-symbol-styles(.symbol){
+  					&:before{
+  						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
+  					}
+
+  					&:after{
+  						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * -3.5)/$calculated-symbol-basis) 0 0;
+  					}
+  				}
+  			}
+  		}
+
+  		&-tail {
+  			&-left,
+  			&-right,
+  			&-up,
+  			&-down {
+  				@include generate-symbol-styles(.symbol){
+  					&:before {
+  						height: .625em;
+  						width: .625em;
+  						border-top: em(2px/$calculated-symbol-basis) solid;
+  						border-right: em(2px/$calculated-symbol-basis) solid;
+  						transform: rotate(-45deg);
+  					}
+
+  					&:after {
+  						@extend %for-valid-symbol-pseudo-full-height;
+  						@extend %for-valid-symbol-pseudo-filled;
+  						width: em(2px/$calculated-symbol-basis);
+  					}
+  					// @extend %for-valid-symbol-pseudo-border-radius;
+  					// @extend %for-valid-symbol-pseudo-horizontal;
+  					// @extend %for-valid-symbol-pseudo-filled;
+  					// transform-origin: 10% 0;
+
+  					// background-image:
+  					// 	linear-gradient(currentColor 0, currentColor 100%),
+  					// 	radial-gradient(
+  					// 		circle at em(($calculated-symbol-basis - (3px * .5))/$calculated-symbol-basis) 50%,
+  					// 		currentColor 0,
+  					// 		currentColor em((3px * .5)/$calculated-symbol-basis),
+  					// 		transparent em((3px * .5)/$calculated-symbol-basis),
+  					// 		transparent 100%
+  					// 		)
+  					// 	;
+
+  					// background-size:
+  					// 	em(($calculated-symbol-basis - 3px)/$calculated-symbol-basis) em(3px/$calculated-symbol-basis),
+  					// 	1em 1em
+  					// 	;
+  					// background-position:
+  					// 	center center,
+  					// 	right center
+  					// 	;
+  					// background-repeat: no-repeat;
+  				}
+  			}
+  		}
+  	}
+
+  	&-caret {
+  		// width: em(($calculated-symbol-caret-width * .5) / $calculated-symbol-basis);
+  		// width:0;
+
+  		&-left,
+  		&-right,
+  		&-up,
+  		&-down {
+  			@include generate-symbol-styles(.symbol){
+  				@extend %for-valid-symbol;
+  				@extend %for-valid-symbol-no-before;
+  				width: .625em;
+  				height: .75em;
+
+  				&:after {
+
+  					@extend %for-valid-symbol-pseudo;
+  					@extend %for-valid-symbol-pseudo-border-radius;
+  					@extend %for-valid-symbol-pseudo-vertical;
+  					@include arrow-triangle((
+  						pseudo: override, 
+  						direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
+  						display: null,
+  						size-base: inherit,
+  						main-size: $calculated-symbol-caret-height,//orientation of direction
+  						cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
+  					));
+  				}
+  			}
+  		}
+
+  	}
+
+  	&-caret,
+  	&-arrow,
+  	&-arrow-tail,
+  	&-arrow-double {
+  		&-up {
+  			@include generate-symbol-styles(.symbol) {
+  				transform: rotate(0deg);
+  			}
+  		}
+
+  		&-down {
+  			@include generate-symbol-styles(.symbol) {
+  				transform: rotate(180deg);
+  			}
+  		}
+
+
+  		&-left {
+  			@include generate-symbol-styles(.symbol) {
+  				transform: rotate(-90deg);
+  			}
+  		}
+
+  		&-right {
+  			@include generate-symbol-styles(.symbol) {
+  				transform: rotate(90deg);
+  			}
+  		}
+  	}
+
+
+  	&-text {
+  		&-left,
+  		&-right,
+  		&-center,
+  		&-justify {
+  			@include generate-symbol-styles(.symbol){
+  				@extend %for-valid-symbol;
+  				@extend %for-valid-symbol-no-before;
+
+
+  				&:after {
+  					@extend %for-valid-symbol-pseudo;
+  					@extend %for-valid-symbol-pseudo-border-radius;
+  					@extend %for-valid-symbol-pseudo-filled;
+  					height: em(2px / $calculated-symbol-basis);
+  					width: .5em;
+  				}
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-left) {
+  			&:after {
+  				box-shadow:
+  				-.25em -0.3125em 0 0,
+  				.25em -0.3125em 0 0,
+  				0 -0.3125em 0 0,
+
+  				-.25em 0 0 0,
+  				.25em 0 0 0,
+
+  				-.25em 0.3125em 0 0,
+  				0em 0.3125em 0 0,
+  				;
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-right) {
+  			&:after {
+  				box-shadow:
+  				-.25em -0.3125em 0 0,
+  				.25em -0.3125em 0 0,
+  				0 -0.3125em 0 0,
+
+  				-.25em 0 0 0,
+  				.25em 0 0 0,
+
+  				.25em 0.3125em 0 0,
+  				0 0.3125em 0 0,
+  				;
+  			}
+  		}
+
+  		@include generate-symbol-styles(.symbol-center) {
+  			&:after {
+  				box-shadow:
+  				-.25em -0.3125em 0 0,
+  				.25em -0.3125em 0 0,
+  				0 -0.3125em 0 0,
+
+  				-.25em 0 0 0,
+  				.25em 0 0 0,
+
+  				-.125em 0.3125em 0 0,
+  				.125em 0.3125em 0 0,
+  				;
+  			}
+  		}
+
+
+  		@include generate-symbol-styles(.symbol-justify) {
+  			&:after {
+  				box-shadow:
+  				-.25em -0.3125em 0 0,
+  				.25em -0.3125em 0 0,
+  				0 -0.3125em 0 0,
+
+  				-.25em 0 0 0,
+  				.25em 0 0 0,
+
+  				-.25em 0.3125em 0 0,
+  				.25em 0.3125em 0 0,
+  				0 0.3125em 0 0,
+  				;
+  			}
+  		}
+  	}
+
+  	*/
+}
+.body-loading .symbol:before {
+  color: transparent !important;
+}
+.symbol-onep21:before, .active > .symbol-onep21-toggle:before, .open > .symbol-onep21-toggle:before {
+  content: '';
+}
+
+.symbol-play:before, .active > .symbol-play-toggle:before, .open > .symbol-play-toggle:before {
+  content: '';
+}
+
+.symbol-pause:before, .active > .symbol-pause-toggle:before, .open > .symbol-pause-toggle:before {
+  content: '';
+}
+
+.symbol-stop:before, .active > .symbol-stop-toggle:before, .open > .symbol-stop-toggle:before {
+  content: '';
+}
+
+.symbol-square:before, .active > .symbol-square-toggle:before, .open > .symbol-square-toggle:before {
+  content: '';
+}
+
+.symbol-square-outline:before, .active > .symbol-square-outline-toggle:before, .open > .symbol-square-outline-toggle:before {
+  content: '';
+}
+
+.symbol-checkbox:before, .active > .symbol-checkbox-toggle:before, .open > .symbol-checkbox-toggle:before {
+  content: '';
+}
+
+.symbol-checkbox-inverse:before, .active > .symbol-checkbox-inverse-toggle:before, .open > .symbol-checkbox-inverse-toggle:before {
+  content: '';
+}
+
+.symbol-grid:before, .active > .symbol-grid-toggle:before, .open > .symbol-grid-toggle:before {
+  content: '';
+}
+
+.symbol-list:before, .active > .symbol-list-toggle:before, .open > .symbol-list-toggle:before {
+  content: '';
+}
+
+.symbol-timer:before, .active > .symbol-timer-toggle:before, .open > .symbol-timer-toggle:before {
+  content: '';
+}
+
+.symbol-time:before, .active > .symbol-time-toggle:before, .open > .symbol-time-toggle:before {
+  content: '';
+}
+
+.symbol-search:before, .active > .symbol-search-toggle:before, .open > .symbol-search-toggle:before {
+  content: '';
+}
+
+.symbol-plus:before, .active > .symbol-plus-toggle:before, .open > .symbol-plus-toggle:before {
+  content: '';
+}
+
+.symbol-minus:before, .active > .symbol-minus-toggle:before, .open > .symbol-minus-toggle:before {
+  content: '';
+}
+
+.symbol-check:before, .active > .symbol-check-toggle:before, .open > .symbol-check-toggle:before {
+  content: '';
+}
+
+.symbol-close:before, .active > .symbol-close-toggle:before, .open > .symbol-close-toggle:before {
+  content: '';
+}
+
+.symbol-thumbs-up:before, .active > .symbol-thumbs-up-toggle:before, .open > .symbol-thumbs-up-toggle:before {
+  content: '';
+}
+
+.symbol-thumbs-up-inverse:before, .active > .symbol-thumbs-up-inverse-toggle:before, .open > .symbol-thumbs-up-inverse-toggle:before {
+  content: '';
+}
+
+.symbol-thumbs-down:before, .active > .symbol-thumbs-down-toggle:before, .open > .symbol-thumbs-down-toggle:before {
+  content: '';
+}
+
+.symbol-thumbs-down-inverse:before, .active > .symbol-thumbs-down-inverse-toggle:before, .open > .symbol-thumbs-down-inverse-toggle:before {
+  content: '';
+}
+
+.symbol-star:before, .active > .symbol-star-toggle:before, .open > .symbol-star-toggle:before {
+  content: '';
+}
+
+.symbol-star-half:before, .active > .symbol-star-half-toggle:before, .open > .symbol-star-half-toggle:before {
+  content: '';
+}
+
+.symbol-star-stroke:before, .active > .symbol-star-stroke-toggle:before, .open > .symbol-star-stroke-toggle:before {
+  content: '';
+}
+
+.symbol-kebab-vertical:before, .active > .symbol-kebab-vertical-toggle:before, .open > .symbol-kebab-vertical-toggle:before {
+  content: '';
+}
+
+.symbol-kebab-horizontal:before, .active > .symbol-kebab-horizontal-toggle:before, .open > .symbol-kebab-horizontal-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-up:before, .active > .symbol-arrow-up-toggle:before, .open > .symbol-arrow-up-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-down:before, .active > .symbol-arrow-down-toggle:before, .open > .symbol-arrow-down-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-left:before, .active > .symbol-arrow-left-toggle:before, .open > .symbol-arrow-left-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-right:before, .active > .symbol-arrow-right-toggle:before, .open > .symbol-arrow-right-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-double-up:before, .active > .symbol-arrow-double-up-toggle:before, .open > .symbol-arrow-double-up-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-double-down:before, .active > .symbol-arrow-double-down-toggle:before, .open > .symbol-arrow-double-down-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-double-left:before, .active > .symbol-arrow-double-left-toggle:before, .open > .symbol-arrow-double-left-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-double-right:before, .active > .symbol-arrow-double-right-toggle:before, .open > .symbol-arrow-double-right-toggle:before {
+  content: '';
+}
+
+.symbol-upload:before, .active > .symbol-upload-toggle:before, .open > .symbol-upload-toggle:before {
+  content: '';
+}
+
+.symbol-download:before, .active > .symbol-download-toggle:before, .open > .symbol-download-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-tail-up:before, .active > .symbol-arrow-tail-up-toggle:before, .open > .symbol-arrow-tail-up-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-tail-down:before, .active > .symbol-arrow-tail-down-toggle:before, .open > .symbol-arrow-tail-down-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-tail-left:before, .active > .symbol-arrow-tail-left-toggle:before, .open > .symbol-arrow-tail-left-toggle:before {
+  content: '';
+}
+
+.symbol-arrow-tail-right:before, .active > .symbol-arrow-tail-right-toggle:before, .open > .symbol-arrow-tail-right-toggle:before {
+  content: '';
+}
+
+.symbol-caret-up:before, .active > .symbol-caret-up-toggle:before, .open > .symbol-caret-up-toggle:before {
+  content: '';
+}
+
+.symbol-caret-down:before, .active > .symbol-caret-down-toggle:before, .open > .symbol-caret-down-toggle:before {
+  content: '';
+}
+
+.symbol-caret-left:before, .active > .symbol-caret-left-toggle:before, .open > .symbol-caret-left-toggle:before {
+  content: '';
+}
+
+.symbol-caret-right:before, .active > .symbol-caret-right-toggle:before, .open > .symbol-caret-right-toggle:before {
+  content: '';
+}
+
+.symbol-text-center:before, .active > .symbol-text-center-toggle:before, .open > .symbol-text-center-toggle:before {
+  content: '';
+}
+
+.symbol-text-left:before, .active > .symbol-text-left-toggle:before, .open > .symbol-text-left-toggle:before {
+  content: '';
+}
+
+.symbol-text-right:before, .active > .symbol-text-right-toggle:before, .open > .symbol-text-right-toggle:before {
+  content: '';
+}
+
+.symbol-text-justify:before, .active > .symbol-text-justify-toggle:before, .open > .symbol-text-justify-toggle:before {
+  content: '';
+}
+
+.symbol-map:before, .active > .symbol-map-toggle:before, .open > .symbol-map-toggle:before {
+  content: '';
+}
+
+.symbol-calendar:before, .active > .symbol-calendar-toggle:before, .open > .symbol-calendar-toggle:before {
+  content: '';
+}
+
+.symbol-bell:before, .active > .symbol-bell-toggle:before, .open > .symbol-bell-toggle:before {
+  content: '';
+}
+
+.symbol-bell-active:before, .active > .symbol-bell-active-toggle:before, .open > .symbol-bell-active-toggle:before {
+  content: '';
+}
+
+.symbol-hyperlink:before, .active > .symbol-hyperlink-toggle:before, .open > .symbol-hyperlink-toggle:before {
+  content: '';
+}
+
+.symbol-dash:before, .active > .symbol-dash-toggle:before, .open > .symbol-dash-toggle:before {
+  content: '';
+}
+
+.symbol-caution:before, .active > .symbol-caution-toggle:before, .open > .symbol-caution-toggle:before {
+  content: '';
+}
+
+.symbol-error:before, .active > .symbol-error-toggle:before, .open > .symbol-error-toggle:before {
+  content: '';
+}
+
+.symbol-info:before, .active > .symbol-info-toggle:before, .open > .symbol-info-toggle:before {
+  content: '';
+}
+
+.symbol-success:before, .active > .symbol-success-toggle:before, .open > .symbol-success-toggle:before {
+  content: '';
+}
+
+.symbol-stack:before, .active > .symbol-stack-toggle:before, .open > .symbol-stack-toggle:before {
+  content: '';
+}
+
+.symbol-clap:before, .active > .symbol-clap-toggle:before, .open > .symbol-clap-toggle:before {
+  content: '';
+}
+
+.symbol-copy:before, .active > .symbol-copy-toggle:before, .open > .symbol-copy-toggle:before {
+  content: '';
+}
+
+.symbol-share:before, .active > .symbol-share-toggle:before, .open > .symbol-share-toggle:before {
+  content: '';
+}
+
+.symbol-filter:before, .active > .symbol-filter-toggle:before, .open > .symbol-filter-toggle:before {
+  content: '';
+}
+
+.symbol-chart:before, .active > .symbol-chart-toggle:before, .open > .symbol-chart-toggle:before {
+  content: '';
+}
+
+.symbol-segment:before, .active > .symbol-segment-toggle:before, .open > .symbol-segment-toggle:before {
+  content: '';
+}
+
+.symbol-user:before, .active > .symbol-user-toggle:before, .open > .symbol-user-toggle:before {
+  content: '';
+}
+
+.symbol-user-add:before, .active > .symbol-user-add-toggle:before, .open > .symbol-user-add-toggle:before {
+  content: '';
+}
+
+.symbol-user-remove:before, .active > .symbol-user-remove-toggle:before, .open > .symbol-user-remove-toggle:before {
+  content: '';
+}
+
+.symbol-expand:before, .active > .symbol-expand-toggle:before, .open > .symbol-expand-toggle:before {
+  content: '';
+}
+
+.symbol-collapse:before, .active > .symbol-collapse-toggle:before, .open > .symbol-collapse-toggle:before {
+  content: '';
+}
+
+.symbol-expand-alt:before, .active > .symbol-expand-alt-toggle:before, .open > .symbol-expand-alt-toggle:before {
+  content: '';
+}
+
+.symbol-collapse-alt:before, .active > .symbol-collapse-alt-toggle:before, .open > .symbol-collapse-alt-toggle:before {
+  content: '';
+}
+
+.symbol-burger:before, .active > .symbol-burger-toggle:before, .open > .symbol-burger-toggle:before {
+  content: '';
+}
+
+.symbol-fries:before, .active > .symbol-fries-toggle:before, .open > .symbol-fries-toggle:before {
+  content: '';
+}
+
+.symbol-waffle:before, .active > .symbol-waffle-toggle:before, .open > .symbol-waffle-toggle:before {
+  content: '';
+}
+
+.symbol-pencil:before, .active > .symbol-pencil-toggle:before, .open > .symbol-pencil-toggle:before {
+  content: '';
+}
+
+.symbol-edit:before, .active > .symbol-edit-toggle:before, .open > .symbol-edit-toggle:before {
+  content: '';
+}
+
+.symbol-delete:before, .active > .symbol-delete-toggle:before, .open > .symbol-delete-toggle:before {
+  content: '';
+}
+
+.symbol-robot:before, .active > .symbol-robot-toggle:before, .open > .symbol-robot-toggle:before {
+  content: '';
+}
+
+.symbol-file:before, .active > .symbol-file-toggle:before, .open > .symbol-file-toggle:before {
+  content: '';
+}
+
+.symbol-clipboard:before, .active > .symbol-clipboard-toggle:before, .open > .symbol-clipboard-toggle:before {
+  content: '';
+}
+
+/*** NAVIGATION ***/
+.nav {
+  height: 4.6875rem;
+  background: var(--fw-theme-background);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--fw-theme-color);
+  font-weight: 400;
+  text-transform: none;
+  font-style: normal;
+}
+.theme-inverse .nav {
+  background: var(--fw-theme-background);
+  color: var(--fw-theme-color);
+}
+.nav * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.nav a {
+  color: inherit;
+}
+.nav, .nav-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.nav.accordion.open {
+  display: flex !important;
+}
+.nav.accordion.open {
+  display: flex;
+}
+.nav.nav-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 5px 20px -10px var(--fw-theme-background-contrast);
+  z-index: 9999;
+}
+.theme-inverse .nav.nav-sticky {
+  box-shadow: 0px 5px 20px -10px var(--fw-theme-background-contrast);
+}
+.nav.nav-vertical {
+  display: block;
+  min-width: 100%;
+  height: auto;
+}
+.nav.nav-vertical .nav-list {
+  display: block;
+}
+.nav.nav-vertical .dropdown li > a,
+.nav.nav-vertical .dropdown li > [data-toggle],
+.nav.nav-vertical .nav-item > a,
+.nav.nav-vertical .nav-item > [data-toggle],
+.nav.nav-vertical .nav-list li > a,
+.nav.nav-vertical .nav-list li > [data-toggle] {
+  display: block;
+}
+.nav.nav-vertical .dropdown {
+  border-radius: 0;
+  padding: 0;
+  width: auto;
+  position: static;
+  box-shadow: none;
+}
+.dropdown li:before, .nav-item:before, .nav-list li:before {
+  content: none;
+}
+.dropdown li > a,
+.dropdown li > [data-toggle], .nav-item > a,
+.nav-item > [data-toggle], .nav-list li > a,
+.nav-list li > [data-toggle] {
+  padding-top: calc( ( 2.1875rem - ( 1.5rem)) * .5 );
+  padding-bottom: calc( ( 2.1875rem - ( 1.5rem)) * .5 );
+  display: inline-block;
+}
+.dropdown li:hover > a,
+.dropdown li:hover > [data-toggle], .nav-item:hover > a,
+.nav-item:hover > [data-toggle], .nav-list li:hover > a,
+.nav-list li:hover > [data-toggle] {
+  color: var(--fw-color-primary);
+}
+
+.nav-block {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  align-content: center;
+  position: relative;
+}
+.nav-block:nth-child(n+2) {
+  margin-left: 0.5em;
+}
+.nav-block.nav-block-stretch {
+  align-items: stretch;
+  align-content: stretch;
+}
+.nav-icon {
+  width: 1.875em;
+  height: 1.875em;
+  max-width: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: inherit;
+}
+.nav-icon + .nav-item-text {
+  margin-left: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.nav-list > .nav-item > a,
+.nav-list > .nav-item > [data-toggle], .nav-list > li > a,
+.nav-list > li > [data-toggle] {
+  font-size: 1rem;
+  color: inherit;
+  font-weight: 700;
+  text-transform: none;
+  text-decoration: none;
+  font-style: normal;
+  position: relative;
+  transition: 0.125s all ease-in-out;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: calc( (4.6875rem - ( 1.5rem)) * .5 );
+  padding-bottom: calc( (4.6875rem - ( 1.5rem)) * .5 );
+}
+.nav-list > .nav-item > a:after,
+.nav-list > .nav-item > [data-toggle]:after, .nav-list > li > a:after,
+.nav-list > li > [data-toggle]:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 0;
+  transition: 0.125s all ease-in-out;
+  background-color: var(--fw-gradient-start);
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background-image: linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.nav-vertical .nav-list > .nav-item > a:after,
+.nav-vertical .nav-list > .nav-item > [data-toggle]:after, .nav-vertical .nav-list > li > a:after,
+.nav-vertical .nav-list > li > [data-toggle]:after {
+  height: auto;
+  width: 0;
+  top: 0;
+  left: auto;
+  background-color: var(--fw-gradient-start);
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.nav-list > .nav-item:hover > a:after,
+.nav-list > .nav-item:hover > [data-toggle]:after, .nav-list > .nav-item.open > a:after,
+.nav-list > .nav-item.open > [data-toggle]:after, .nav-list > li:hover > a:after,
+.nav-list > li:hover > [data-toggle]:after, .nav-list > li.open > a:after,
+.nav-list > li.open > [data-toggle]:after {
+  height: 5px;
+}
+.nav-vertical .nav-list > .nav-item:hover > a:after,
+.nav-vertical .nav-list > .nav-item:hover > [data-toggle]:after, .nav-vertical .nav-list > .nav-item.open > a:after,
+.nav-vertical .nav-list > .nav-item.open > [data-toggle]:after, .nav-vertical .nav-list > li:hover > a:after,
+.nav-vertical .nav-list > li:hover > [data-toggle]:after, .nav-vertical .nav-list > li.open > a:after,
+.nav-vertical .nav-list > li.open > [data-toggle]:after {
+  height: auto;
+  width: 5px;
+}
+.nav-list ul,
+.nav .dropdown {
+  background: var(--fw-theme-background);
+  margin: auto;
+}
+@media (max-width: 1200px) {
+  .nav-list {
+    display: block;
+    min-width: 100%;
+  }
+  .nav-list .dropdown {
+    border-radius: 0;
+    width: auto;
+    position: static;
+    box-shadow: none;
+  }
+  .nav-list > .nav-item > a,
+.nav-list > .nav-item > [data-toggle], .nav-list > li > a,
+.nav-list > li > [data-toggle] {
+    display: block;
+  }
+}
+
+.tab > a,
+.tab .tab-text, .tabs > li > a,
+.tabs > li .tab-text, .tab, .tabs,
+.tab > li {
+  display: flex;
+}
+.tab > a,
+.tab .tab-text, .tabs > li > a,
+.tabs > li .tab-text, .tab, .tabs > li {
+  padding-top: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * .5 );
+  padding-bottom: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * .5 );
+  min-height: 2.8125em;
+  padding-right: 0;
+  padding-left: 0;
+  align-items: center;
+}
+
+.tabs {
+  font-size: 1rem;
+  color: var(--fw-color-neutral);
+  font-weight: 700;
+  text-transform: none;
+  font-style: normal;
+  border-bottom: 1px solid currentColor;
+}
+.theme-inverse .tabs {
+  color: var(--fw-color-neutral);
+  border-color: currentColor;
+}
+@media (max-width: 1200px) {
+  .tabs {
+    font-size: 1rem;
+  }
+  .tabs.tabs-responsive {
+    flex-direction: column;
+    border-bottom: 0;
+  }
+  .tabs.tabs-responsive .tab,
+.tabs.tabs-responsive .tabs li {
+    border-bottom: 1px solid currentColor !important;
+  }
+  .tabs.tabs-responsive .tab:nth-child(n+2),
+.tabs.tabs-responsive .tabs li:nth-child(n+2) {
+    margin-left: 0;
+    border-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+.tab, .tabs,
+.tab > li {
+  padding: 0;
+  margin: 0;
+}
+.tab, .tabs > li {
+  border: 0;
+  position: relative;
+  background-color: transparent;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+}
+.theme-inverse .tab, .theme-inverse .tabs > li {
+  background-color: transparent;
+  border-color: transparent;
+}
+.tab.tab-disabled *, .tabs > li.tab-disabled * {
+  pointer-events: none;
+}
+.tab:not(.tab-disabled):active, .tab:not(.tab-disabled).active, .tab:not(.tab-disabled):hover, .tab:not(.tab-disabled):focus, .tab:not(.tab-disabled).focus, .tab:not(.tab-disabled).open, .tabs > li:not(.tab-disabled):active, .tabs > li:not(.tab-disabled).active, .tabs > li:not(.tab-disabled):hover, .tabs > li:not(.tab-disabled):focus, .tabs > li:not(.tab-disabled).focus, .tabs > li:not(.tab-disabled).open {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--fw-theme-color);
+}
+.tab:not(.tab-disabled):active:after, .tab:not(.tab-disabled).active:after, .tab:not(.tab-disabled):hover:after, .tab:not(.tab-disabled):focus:after, .tab:not(.tab-disabled).focus:after, .tab:not(.tab-disabled).open:after, .tabs > li:not(.tab-disabled):active:after, .tabs > li:not(.tab-disabled).active:after, .tabs > li:not(.tab-disabled):hover:after, .tabs > li:not(.tab-disabled):focus:after, .tabs > li:not(.tab-disabled).focus:after, .tabs > li:not(.tab-disabled).open:after {
+  height: 5px;
+}
+.theme-inverse .tab:not(.tab-disabled):active, .theme-inverse .tab:not(.tab-disabled).active, .theme-inverse .tab:not(.tab-disabled):hover, .theme-inverse .tab:not(.tab-disabled):focus, .theme-inverse .tab:not(.tab-disabled).focus, .theme-inverse .tab:not(.tab-disabled).open, .theme-inverse .tabs > li:not(.tab-disabled):active, .theme-inverse .tabs > li:not(.tab-disabled).active, .theme-inverse .tabs > li:not(.tab-disabled):hover, .theme-inverse .tabs > li:not(.tab-disabled):focus, .theme-inverse .tabs > li:not(.tab-disabled).focus, .theme-inverse .tabs > li:not(.tab-disabled).open {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--fw-theme-color);
+}
+.tab:nth-child(n+2), .tabs > li:nth-child(n+2) {
+  margin-left: 45px;
+}
+.tab:before, .tabs > li:before {
+  content: none;
+}
+.tab:after, .tabs > li:after {
+  content: "";
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  background: var(--fw-color-primary);
+  transition: 0.25s height ease-in-out;
+}
+.theme-inverse .tab:after, .theme-inverse .tabs > li:after {
+  background: var(--fw-color-primary);
+}
+.tab > a,
+.tab .tab-text, .tabs > li > a,
+.tabs > li .tab-text {
+  color: inherit;
+  text-decoration: none;
+  margin-top: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * -.5 );
+  margin-bottom: calc( ( (2.8125em - (1px * 2)) - (1.5rem) ) * -.5 );
+  margin-right: 0;
+  margin-left: 0;
+  flex: 1 1;
+  align-self: stretch;
+}
+
+/*** PAGINATION ***/
+/* it */
+.pagination {
+  display: inline-flex;
+  align-items: center;
+}
 /*** TOGGLES ***/
 /* to fix children that dont like their parents events. kinda like neutering them idk */
 *[data-toggle] {
@@ -12701,7 +12701,6 @@ fieldset .input-calendar-ui {
 }
 
 /* FIT IMAGE */
-/* emulate background cover on image tags */
 .fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail > img,
 img.asset-thumbnail-image, .ratio *.ratio-child-cover, .fit-image-contain img {
   position: absolute !important;

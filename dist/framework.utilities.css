@@ -3138,7 +3138,6 @@ table {
     box-shadow: none !important; }
 
 /* FIT IMAGE */
-/* emulate background cover on image tags */
 .fit-image-cover img, .fit-image-contain img {
   position: absolute !important;
   width: 100% !important;

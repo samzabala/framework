@@ -15,17 +15,16 @@
 	@import 'normalize/_table';
 
 //ui elements
-	//fonting
-		@import '_symbol';
-	//navigation n shit
-		@import '_nav';
-		@import '_tabs';
-		@import '_pagination';
-		@import '_layout';
 	//layout
+		@import '_container';
 		@import '_grid';
 		@import '_module';
 	//ui components
+	//fonting
+		@import '_symbol';
+		@import '_nav';
+		@import '_tabs';
+		@import '_pagination';
 		@import '_toggle';
 		@import '_asset';
 		@import '_modal';
