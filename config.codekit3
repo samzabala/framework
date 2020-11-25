@@ -37,6 +37,16 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/dist/framework.lite.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/framework.lite-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/dist/framework.min.js": {
 		"bF": 0,
 		"ft": 64,
@@ -2415,19 +2425,6 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/calculations/_popper-tooltip.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/scss/dist/_popper-tooltip.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
 	"/scss/calculations/_progress.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -2502,6 +2499,32 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/scss/dist/_thumbnail.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_tooltip.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_tooltip.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_typography.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_typography.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1

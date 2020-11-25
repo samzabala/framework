@@ -1,5 +1,4 @@
 /* basic styling shits only bitch */
-/* it's scary terry bitch */
 /* heading bars or rules from tiny rectangles to long rules and what not. */
 /*** RESET BOIS ***/
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -411,6 +410,9 @@ fieldset {
 button {
   outline: 0;
   cursor: pointer; }
+
+a {
+  text-decoration: none; }
 
 /* to toggley bitches kids  */
 *[data-toggle] {
