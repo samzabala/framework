@@ -1,0 +1,16 @@
+
+$calculated-board-close-width: $board-resize-width;
+@if internal-is-convertable($board-resize-width){
+	$calculated-board-resize-width: rem($board-resize-width/$body-font-size);
+}
+
+
+$calculated-board-resize-height: $board-resize-height;
+@if internal-is-convertable($board-resize-height){
+	$calculated-board-resize-height: rem($board-resize-height/$body-font-size);
+}
+
+$calculated-board-close-size: $board-close-size;
+@if internal-is-convertable($board-close-size){
+	$calculated-board-close-size: rem($board-close-size/$body-font-size);
+}

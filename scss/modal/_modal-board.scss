@@ -1,35 +1,12 @@
-
-$calculated-board-close-width: $board-resize-width;
-@if internal-is-convertable($board-resize-width){
-	$calculated-board-resize-width: rem($board-resize-width/$body-font-size);
-}
-
-
-$calculated-board-resize-height: $board-resize-height;
-@if internal-is-convertable($board-resize-height){
-	$calculated-board-resize-height: rem($board-resize-height/$body-font-size);
-}
-
-$calculated-board-close-size: $board-close-size;
-@if internal-is-convertable($board-close-size){
-	$calculated-board-close-size: rem($board-close-size/$body-font-size);
-}
-
 /*** MODAL BOARD***/
-
-
 $prefix: '.board';
-
-
-//also used by module
-
 
 #{$prefix} {
 	display:none!important;
 
 
 	&-wrapper {
-		@extend %for-modal-wrapper;
+		@extend %for-modal-wrapper !optional;
 		z-index: 99998;
 
 		&#{$prefix}-left {
@@ -179,19 +156,19 @@ $prefix: '.board';
 	&-close {
 		
 		&-overlay {
-			@extend %for-modal-overlay;
+			@extend %for-modal-overlay !optional;
 
 
 			&:not([data-toggle="board-close"]) {
-				@extend %for-modal-overlay-not-closeable;
+				@extend %for-modal-overlay-not-closeable !optional;
 			}
 		}
 	}
 
 
 	&-popup {
-		@extend %for-modal-popup;
-		@extend %for-modal-scroller;
+		@extend %for-modal-popup !optional;
+		@extend %for-modal-scroller !optional;
 		height: 100%;
 
 		padding: $board-padding-y $board-padding-x;

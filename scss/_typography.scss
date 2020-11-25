@@ -343,14 +343,7 @@ em,i{
 	}
 	
 	&-reset {
-		& {
-			text-decoration: none;
-		}
-		&-hover {
-			&:hover,&:focus,&.focus {
-				text-decoration: none;
-			}
-		}
+		text-decoration: none;
 	}
 
 	&-color {
@@ -373,6 +366,20 @@ a,.a {
 	@extend %for-anchor;
 	@extend %for-anchor-color;
 }
+
+
+// And undo these styles for placeholder links/named anchors (without href).
+// It would be more straightforward to just use a[href] in previous block, but that
+// causes specificity issues in many other styles that are too complex to fix.
+
+a:not([href]):not([class]) {
+	&,
+	&:hover {
+		@extend %for-anchor-reset;
+	}
+  }
+
+
 // margined shit
 
 

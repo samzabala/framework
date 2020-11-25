@@ -1,20 +1,16 @@
-/* it's layout shits bitch */
+/* it's layout shits only bitch */
 //vars
 	@import '_vars';
 	
-//plugins
-	@import 'config/plugins/_shithole';
-	@import 'config/_internal-vars';
-	@import 'config/_mixins';
+//core shits
+	//plugin deps
+		@import 'plugins/_shithole.scss';
+	//api
+		@import '_functions';
+		@import '_mixins';
+		@import '_calculations';
 
-//to cascade
-	@import 'normalize/_reset';
-	@import 'normalize/_scaffolding';
-	@import 'normalize/_typography';
-	@import 'normalize/_images';
-	@import 'normalize/_table';
-
-//ui elements
+//elements
 	//layout
 		@import '_container';
 		@import '_grid';

@@ -1,0 +1,22 @@
+$calculated-list-group-height: $list-group-height;
+@if internal-is-convertable($list-group-height) {
+	$calculated-list-group-height: rem( $list-group-height / $body-font-size);
+}
+
+
+$calculated-list-group-height-compact: $list-group-height-compact;
+@if internal-is-convertable($list-group-height-compact) {
+	$calculated-list-group-height-compact: rem( $list-group-height-compact / $body-font-size);
+}
+
+
+$calculated-list-group-height-expanded: $list-group-height-expanded;
+@if internal-is-convertable($list-group-height-expanded) {
+	$calculated-list-group-height-expanded: rem( $list-group-height-expanded / $body-font-size);
+}
+
+
+$calculated-list-group-gutter-x: $list-group-gutter-x;
+@if internal-is-convertable($list-group-gutter-x) {
+	$calculated-list-group-gutter-x: rem( $list-group-gutter-x / $body-font-size);
+}

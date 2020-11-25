@@ -4,8 +4,6 @@
 
 $prefix: '.toolbar';
 
-
-
 #{$prefix} {
 	display: inline-flex;
 	align-items: center;
@@ -19,7 +17,7 @@ $prefix: '.toolbar';
 			
 	&,
 	& a {
-		@extend %for-anchor-reset-hover !optional;
+		// @extend %for-anchor-reset !optional;
 	}
 	
 	&#{$prefix}-small {

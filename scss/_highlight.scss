@@ -1,56 +1,7 @@
 /*** highlights ***/
-$calculated-highlight-schemes-color: (
-	default: (
-		background: $highlight-default-background,
-		color: $highlight-default-color,
-	),
-	primary: (
-		background: $highlight-primary-background,
-		color: $highlight-primary-color,
-	),
-	secondary: (
-		background: $highlight-secondary-background,
-		color: $highlight-secondary-color,
-	),
-	accent: (
-		background: $highlight-accent-background,
-		color: $highlight-accent-color,
-	),
-	neutral: (
-		background: $highlight-neutral-background,
-		color: $highlight-neutral-color,
-	),
-	success: (
-		background: $highlight-success-background,
-		color: $highlight-success-color,
-	),
-	caution: (
-		background: $highlight-caution-background,
-		color: $highlight-caution-color,
-	),
-	error: (
-		background: $highlight-error-background,
-		color: $highlight-error-color,
-	),
-);
-
-$calculated-highlight-height: $highlight-height;
-@if internal-is-convertable($highlight-height,$body-font-size) {
-    $calculated-highlight-height: em($highlight-height/$highlight-font-size)
-}
-$calculated-highlight-padding-x: $highlight-padding-x;
-@if internal-is-convertable($highlight-padding-x,$body-font-size) {
-    $calculated-highlight-padding-x: $calculated-highlight-padding-x
-}
-$calculated-highlight-margin-x: $highlight-margin-x;
-@if internal-is-convertable($highlight-margin-x,$body-font-size) {
-    $calculated-highlight-margin-x: $calculated-highlight-margin-x;
-}
-
-
 $prefix: '.highlight';
 #{$prefix} {
-	// @extend %for-anchor-reset-hover !optional;
+	// // @extend %for-anchor-reset !optional;
 	@include type-set((
 		size: inherit,
 		leading: inherit,

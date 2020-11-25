@@ -1,14 +1,3 @@
-/*** MIXINS + FUNCTIONS + extends ***/
-
-@function internal-is-convertable($value,$font-value: $body-font-size) {
-	
-	@if type-of($value) == number and unit($value) == px and unit($font-value) == px {
-		@return true;
-	}@else{
-		@return false;
-	}
-}
-
 @mixin create-box-helper($selector-prefix,$selector-suffix:'',$property:'',$tag:'',$value:'',$extend-prefix:'',$extend-suffix:''){
 	$parsed-tag:'';
 
@@ -22,16 +11,12 @@
 		$parsed-selector-suffix: #{'-'+$selector-suffix};
 	}
 
-
-
 	$parsed-extend-suffix:'';
 
 	@if($extend-suffix != ''){
 		$parsed-extend-suffix: #{'-'+$extend-suffix};
 	}
-
-
-
+	
 	@if($extend-prefix != '') {
 		@at-root %#{$extend-prefix} {
 			&-top#{$parsed-extend-suffix} {
@@ -46,71 +31,65 @@
 			&-left#{$parsed-extend-suffix} {
 				#{$property}-left#{$parsed-tag}: $value!important;
 			}
-
 			&-x#{$parsed-extend-suffix}  {
 
 				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
 				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
 			}
-
-			
 			&-y#{$parsed-extend-suffix}  {
 
 				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
 				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
 			}
-
 			& {
 				@extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
 				@extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
 				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
 				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
 			}
-
-
 		}
 	}
 
 	@at-root #{$selector-prefix}{
 		#{$property}#{$parsed-tag}: $value!important;
-		
-			&,
-			&-y,
-			&-top#{$parsed-selector-suffix} {
-				@if($extend-prefix != '') {
-					@extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
-				}@else{
-					#{$property}-top#{$parsed-tag}: $value!important;
-				}
-			}
-			&,
-			&-y,
-			&-bottom#{$parsed-selector-suffix} {
-				@if($extend-prefix != '') {
-					@extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
-				}@else{
-					#{$property}-bottom#{$parsed-tag}: $value!important;
-				}
-			}
-			&,
-			&-x,
-			&-left#{$parsed-selector-suffix} {
-				@if($extend-prefix != '') {
-					@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
-				}@else{
-					#{$property}-left#{$parsed-tag}: $value!important;
-				}
-			}
-			&,
-			&-x,
-			&-right#{$parsed-selector-suffix} {
-				@if($extend-prefix != '') {
-					@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
-				}@else{
-					#{$property}-right#{$parsed-tag}: $value!important;
-				}
+
+		&,
+		&-y,
+		&-top#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
+			}@else{
+				#{$property}-top#{$parsed-tag}: $value!important;
 			}
 		}
+		&,
+		&-y,
+		&-bottom#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
+			}@else{
+				#{$property}-bottom#{$parsed-tag}: $value!important;
+			}
+		}
+		&,
+		&-x,
+		&-left#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
+			}@else{
+				#{$property}-left#{$parsed-tag}: $value!important;
+			}
+		}
+		&,
+		&-x,
+		&-right#{$parsed-selector-suffix} {
+			@if($extend-prefix != '') {
+				@extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
+			}@else{
+				#{$property}-right#{$parsed-tag}: $value!important;
+			}
+		}
+	}
 }
 
 @mixin create-corner-helper($selector-prefix,$selector-suffix:'',$property:'',$tag:'',$value:'',$extend-prefix:'',$extend-suffix:''){
@@ -125,8 +104,6 @@
 	@if($selector-suffix != ''){
 		$parsed-selector-suffix: #{'-'+$selector-suffix};
 	}
-
-
 
 	$parsed-extend-suffix:'';
 
@@ -180,8 +157,6 @@
 		}
 	}
 
-
-
 	@at-root #{$selector-prefix}{
 		&#{$parsed-selector-suffix},
 		&-top#{$parsed-selector-suffix},
@@ -234,7 +209,6 @@
 	$parsed-tag: str-replace($tag,'.','');
 
 	@at-root %__internal-extend-for-#{$parsed-tag} {
-
 		& {
 			@if $property != '' {
 				@if $value != '' {
@@ -250,8 +224,7 @@
 			}
 		}
 	}
-
-
+	
 	@at-root
 		#{$tag},
 
@@ -277,4 +250,30 @@
 			@extend %__internal-extend-for-#{$parsed-tag} !optional;
 		}
 	}
+}
+
+@mixin create-popper-styles(
+	$background,
+	$background-inverse,
+	$color,
+	$color-inverse,
+	$gutter-x,
+	$gutter-y,
+	$border-radius,
+	$box-shadow,
+	$z-index: 2
+
+) {
+		position:absolute;
+		background: $background;
+		color: $color;
+		border-radius: $border-radius;
+		padding: $gutter-x $gutter-y;
+		box-shadow: $box-shadow;
+		z-index: $z-index;
+	
+		.theme-inverse & {
+			background: $background-inverse;
+			color: $color-inverse;
+		}
 }

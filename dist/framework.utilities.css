@@ -18,16 +18,10 @@
   .flex-md {
     display: flex!important; } }
 
-@media (min-width: 1601px) {
+@media (min-width: 1501px) {
   .flex-lg {
     display: flex!important; } }
 
-/* 
-For internal framework sass programming that is used by many shits
-this parses unit input
-DO NOT EDIT IF U DONT KNOW WHAT IS GOING ON OR THE FRAMEWORK WILL DIE
-****************************************************************************/
-/*** MIXINS + FUNCTIONS + extends ***/
 /*** RESET BOIS ***/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -236,70 +230,70 @@ table {
   --fw-color-intensity-1-alpha-7: rgba(0, 126, 206, 0.7);
   --fw-color-intensity-1-alpha-8: rgba(0, 126, 206, 0.8);
   --fw-color-intensity-1-alpha-9: rgba(0, 126, 206, 0.9);
-  --fw-color-intensity-2: #405fc2;
-  --fw-color-intensity-2-light: #8c9fda;
-  --fw-color-intensity-2-lighter: #c6cfed;
-  --fw-color-intensity-2-lightest: #e2e7f6;
-  --fw-color-intensity-2-dark: #2d407b;
-  --fw-color-intensity-2-darker: #1f2846;
-  --fw-color-intensity-2-darkest: #181d2c;
-  --fw-color-intensity-2-alpha-1: rgba(64, 95, 194, 0.1);
-  --fw-color-intensity-2-alpha-2: rgba(64, 95, 194, 0.2);
-  --fw-color-intensity-2-alpha-3: rgba(64, 95, 194, 0.3);
-  --fw-color-intensity-2-alpha-4: rgba(64, 95, 194, 0.4);
-  --fw-color-intensity-2-alpha-5: rgba(64, 95, 194, 0.5);
-  --fw-color-intensity-2-alpha-6: rgba(64, 95, 194, 0.6);
-  --fw-color-intensity-2-alpha-7: rgba(64, 95, 194, 0.7);
-  --fw-color-intensity-2-alpha-8: rgba(64, 95, 194, 0.8);
-  --fw-color-intensity-2-alpha-9: rgba(64, 95, 194, 0.9);
-  --fw-color-intensity-3: #803fb5;
-  --fw-color-intensity-3-light: #b38cd3;
-  --fw-color-intensity-3-lighter: #d9c5e9;
-  --fw-color-intensity-3-lightest: #ece2f4;
-  --fw-color-intensity-3-dark: #542d73;
-  --fw-color-intensity-3-darker: #321f42;
-  --fw-color-intensity-3-darkest: #22182a;
-  --fw-color-intensity-3-alpha-1: rgba(128, 63, 181, 0.1);
-  --fw-color-intensity-3-alpha-2: rgba(128, 63, 181, 0.2);
-  --fw-color-intensity-3-alpha-3: rgba(128, 63, 181, 0.3);
-  --fw-color-intensity-3-alpha-4: rgba(128, 63, 181, 0.4);
-  --fw-color-intensity-3-alpha-5: rgba(128, 63, 181, 0.5);
-  --fw-color-intensity-3-alpha-6: rgba(128, 63, 181, 0.6);
-  --fw-color-intensity-3-alpha-7: rgba(128, 63, 181, 0.7);
-  --fw-color-intensity-3-alpha-8: rgba(128, 63, 181, 0.8);
-  --fw-color-intensity-3-alpha-9: rgba(128, 63, 181, 0.9);
-  --fw-color-intensity-4: #bf20a9;
-  --fw-color-intensity-4-light: #d979cb;
-  --fw-color-intensity-4-lighter: #ecbce5;
-  --fw-color-intensity-4-lightest: #f5def2;
-  --fw-color-intensity-4-dark: #791a6c;
-  --fw-color-intensity-4-darker: #45163f;
-  --fw-color-intensity-4-darkest: #2b1328;
-  --fw-color-intensity-4-alpha-1: rgba(191, 32, 169, 0.1);
-  --fw-color-intensity-4-alpha-2: rgba(191, 32, 169, 0.2);
-  --fw-color-intensity-4-alpha-3: rgba(191, 32, 169, 0.3);
-  --fw-color-intensity-4-alpha-4: rgba(191, 32, 169, 0.4);
-  --fw-color-intensity-4-alpha-5: rgba(191, 32, 169, 0.5);
-  --fw-color-intensity-4-alpha-6: rgba(191, 32, 169, 0.6);
-  --fw-color-intensity-4-alpha-7: rgba(191, 32, 169, 0.7);
-  --fw-color-intensity-4-alpha-8: rgba(191, 32, 169, 0.8);
-  --fw-color-intensity-4-alpha-9: rgba(191, 32, 169, 0.9);
-  --fw-color-intensity-5: #ff009c;
-  --fw-color-intensity-5-light: #ff66c4;
-  --fw-color-intensity-5-lighter: #ffb3e1;
-  --fw-color-intensity-5-lightest: #ffd9f0;
-  --fw-color-intensity-5-dark: #a00764;
-  --fw-color-intensity-5-darker: #580c3b;
-  --fw-color-intensity-5-darkest: #350e26;
-  --fw-color-intensity-5-alpha-1: rgba(255, 0, 156, 0.1);
-  --fw-color-intensity-5-alpha-2: rgba(255, 0, 156, 0.2);
-  --fw-color-intensity-5-alpha-3: rgba(255, 0, 156, 0.3);
-  --fw-color-intensity-5-alpha-4: rgba(255, 0, 156, 0.4);
-  --fw-color-intensity-5-alpha-5: rgba(255, 0, 156, 0.5);
-  --fw-color-intensity-5-alpha-6: rgba(255, 0, 156, 0.6);
-  --fw-color-intensity-5-alpha-7: rgba(255, 0, 156, 0.7);
-  --fw-color-intensity-5-alpha-8: rgba(255, 0, 156, 0.8);
-  --fw-color-intensity-5-alpha-9: rgba(255, 0, 156, 0.9);
+  --fw-color-intensity-2: #1d64cd;
+  --fw-color-intensity-2-light: #77a2e1;
+  --fw-color-intensity-2-lighter: #bbd1f0;
+  --fw-color-intensity-2-lightest: #dde8f8;
+  --fw-color-intensity-2-dark: #184382;
+  --fw-color-intensity-2-darker: #152a49;
+  --fw-color-intensity-2-darkest: #131d2d;
+  --fw-color-intensity-2-alpha-1: rgba(29, 100, 205, 0.1);
+  --fw-color-intensity-2-alpha-2: rgba(29, 100, 205, 0.2);
+  --fw-color-intensity-2-alpha-3: rgba(29, 100, 205, 0.3);
+  --fw-color-intensity-2-alpha-4: rgba(29, 100, 205, 0.4);
+  --fw-color-intensity-2-alpha-5: rgba(29, 100, 205, 0.5);
+  --fw-color-intensity-2-alpha-6: rgba(29, 100, 205, 0.6);
+  --fw-color-intensity-2-alpha-7: rgba(29, 100, 205, 0.7);
+  --fw-color-intensity-2-alpha-8: rgba(29, 100, 205, 0.8);
+  --fw-color-intensity-2-alpha-9: rgba(29, 100, 205, 0.9);
+  --fw-color-intensity-3: #3a4acc;
+  --fw-color-intensity-3-light: #8992e0;
+  --fw-color-intensity-3-lighter: #c4c9f0;
+  --fw-color-intensity-3-lightest: #e1e4f7;
+  --fw-color-intensity-3-dark: #2a3381;
+  --fw-color-intensity-3-darker: #1d2249;
+  --fw-color-intensity-3-darkest: #171a2d;
+  --fw-color-intensity-3-alpha-1: rgba(58, 74, 204, 0.1);
+  --fw-color-intensity-3-alpha-2: rgba(58, 74, 204, 0.2);
+  --fw-color-intensity-3-alpha-3: rgba(58, 74, 204, 0.3);
+  --fw-color-intensity-3-alpha-4: rgba(58, 74, 204, 0.4);
+  --fw-color-intensity-3-alpha-5: rgba(58, 74, 204, 0.5);
+  --fw-color-intensity-3-alpha-6: rgba(58, 74, 204, 0.6);
+  --fw-color-intensity-3-alpha-7: rgba(58, 74, 204, 0.7);
+  --fw-color-intensity-3-alpha-8: rgba(58, 74, 204, 0.8);
+  --fw-color-intensity-3-alpha-9: rgba(58, 74, 204, 0.9);
+  --fw-color-intensity-4: #5630cb;
+  --fw-color-intensity-4-light: #9a83e0;
+  --fw-color-intensity-4-lighter: #ccc1ef;
+  --fw-color-intensity-4-lightest: #e6e0f7;
+  --fw-color-intensity-4-dark: #3a2481;
+  --fw-color-intensity-4-darker: #261a49;
+  --fw-color-intensity-4-darkest: #1b162d;
+  --fw-color-intensity-4-alpha-1: rgba(86, 48, 203, 0.1);
+  --fw-color-intensity-4-alpha-2: rgba(86, 48, 203, 0.2);
+  --fw-color-intensity-4-alpha-3: rgba(86, 48, 203, 0.3);
+  --fw-color-intensity-4-alpha-4: rgba(86, 48, 203, 0.4);
+  --fw-color-intensity-4-alpha-5: rgba(86, 48, 203, 0.5);
+  --fw-color-intensity-4-alpha-6: rgba(86, 48, 203, 0.6);
+  --fw-color-intensity-4-alpha-7: rgba(86, 48, 203, 0.7);
+  --fw-color-intensity-4-alpha-8: rgba(86, 48, 203, 0.8);
+  --fw-color-intensity-4-alpha-9: rgba(86, 48, 203, 0.9);
+  --fw-color-intensity-5: #7316ca;
+  --fw-color-intensity-5-light: #ab73df;
+  --fw-color-intensity-5-lighter: #d5b9ef;
+  --fw-color-intensity-5-lightest: #eadcf7;
+  --fw-color-intensity-5-dark: #4c1480;
+  --fw-color-intensity-5-darker: #2e1349;
+  --fw-color-intensity-5-darkest: #20122d;
+  --fw-color-intensity-5-alpha-1: rgba(115, 22, 202, 0.1);
+  --fw-color-intensity-5-alpha-2: rgba(115, 22, 202, 0.2);
+  --fw-color-intensity-5-alpha-3: rgba(115, 22, 202, 0.3);
+  --fw-color-intensity-5-alpha-4: rgba(115, 22, 202, 0.4);
+  --fw-color-intensity-5-alpha-5: rgba(115, 22, 202, 0.5);
+  --fw-color-intensity-5-alpha-6: rgba(115, 22, 202, 0.6);
+  --fw-color-intensity-5-alpha-7: rgba(115, 22, 202, 0.7);
+  --fw-color-intensity-5-alpha-8: rgba(115, 22, 202, 0.8);
+  --fw-color-intensity-5-alpha-9: rgba(115, 22, 202, 0.9);
   --fw-gradient-start: var(--fw-color-primary);
   --fw-gradient-end: var(--fw-color-secondary);
   --fw-theme-color: var(--fw-color-base);
@@ -329,6 +323,7 @@ html {
   scroll-behavior: smooth; }
 
 *.theme-inverse,
+:root,
 html, body {
   color: var(--fw-theme-color);
   background-color: var(--fw-theme-background); }
@@ -438,8 +433,19 @@ button {
   outline: 0;
   cursor: pointer; }
 
-a {
-  text-decoration: none; }
+/* to toggley bitches kids  */
+*[data-toggle] {
+  cursor: pointer;
+  -webkit-user-select: none !important;
+  /* Safari 3.1+ */
+  -moz-user-select: none !important;
+  /* Firefox 2+ */
+  -ms-user-select: none !important;
+  /* IE 10+ */
+  user-select: none !important;
+  /* Standard syntax */ }
+  *[data-toggle] * {
+    pointer-events: none !important; }
 
 /*** TYPOGRAPHY ***/
 /* special */
@@ -536,6 +542,9 @@ a:hover, .a:hover, a:focus, .a:focus, a.focus, .focus.a {
   a:hover *, .a:hover *, a:focus *, .a:focus *, a.focus *, .focus.a * {
     text-decoration: inherit;
     text-decoration-color: currentColor; }
+
+a:not([href]):not([class]), a:not([href]):not([class]):hover {
+  text-decoration: none; }
 
 a, .a {
   transition: 0.25s color ease-in-out; }
@@ -706,7 +715,7 @@ sub {
 
 var {
   font-style: italic;
-  font-family: "Georgia", Times, serif; }
+  font-family: Times, serif; }
 
 hr {
   display: block;
@@ -726,289 +735,6 @@ small {
 
 big {
   font-size: 1.5em; }
-
-/*** IMAGES ***/
-/* LAZYLOAD */
-.lazy,
-*[data-src],
-*[data-srcset] {
-  opacity: 1;
-  transition: 0.25s opacity ease-in-out; }
-  html:not(.lazy-completed) .lazy, html:not(.lazy-completed) *[data-src], html:not(.lazy-completed) *[data-srcset] {
-    opacity: 0; }
-
-/*** Tables ***/
-.table-wrapper {
-  width: 100%;
-  display: block;
-  overflow-x: auto; }
-  .table-wrapper .table, .table-wrapper table {
-    width: auto;
-    min-width: 100%;
-    margin-bottom: 0;
-    table-layout: auto !important; }
-    .table-wrapper .table .tag, .table-wrapper .table .btn, .table-wrapper table .tag, .table-wrapper table .btn {
-      white-space: nowrap; }
-
-.table,
-table {
-  width: 100%;
-  display: table;
-  border-collapse: collapse;
-  text-align: inherit;
-  background: transparent; }
-  .table.table-fixed,
-  table.table-fixed {
-    table-layout: fixed !important; }
-  .table .text-wrap-ellipsis, .table .text-wrap-ellipsis-multiple,
-  table .text-wrap-ellipsis,
-  table .text-wrap-ellipsis-multiple {
-    width: 10em;
-    width: clamp(10em, 25vw, 24em); }
-  thead,
-  tbody,
-  tfoot,
-  tr,
-  .table-row {
-    width: 100%; }
-  thead,
-  tbody,
-  tfoot {
-    vertical-align: inherit;
-    text-align: inherit; }
-  tr,
-  .table-row {
-    height: 100%;
-    display: table-row;
-    vertical-align: inherit;
-    text-align: inherit;
-    border-color: var(--fw-theme-background-contrast);
-    border-style: solid;
-    border-top-width: 1px;
-    background: var(--fw-theme-background); }
-    .theme-inverse tr, .theme-inverse .table-row {
-      border-color: var(--fw-theme-background-contrast);
-      background: var(--fw-theme-background); }
-    .alert tr, .theme-inverse .alert tr, .alert .table-row, .theme-inverse .alert .table-row {
-      background: transparent;
-      border-color: currentColor; }
-    tr:last-child,
-    .table-row:last-child {
-      border-bottom-width: 1px; }
-  th, td,
-  .table-cell,
-  .table-cell.table-cell-heading {
-    vertical-align: inherit;
-    text-align: inherit;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 100%;
-    display: table-cell;
-    position: relative; }
-    th.table-bordered, .table-bordered th, td.table-bordered, .table-bordered td,
-    .table-cell.table-bordered, .table-bordered .table-cell,
-    .table-cell.table-cell-heading.table-bordered, .table-bordered .table-cell.table-cell-heading {
-      border-color: var(--fw-theme-background-contrast);
-      border-style: solid;
-      border-left-width: 1px; }
-      .theme-inverse th.table-bordered, .theme-inverse .table-bordered th, .theme-inverse td.table-bordered, .theme-inverse .table-bordered td, .theme-inverse .table-cell.table-bordered, .theme-inverse .table-bordered .table-cell, .theme-inverse .table-cell.table-cell-heading.table-bordered, .theme-inverse .table-bordered .table-cell.table-cell-heading {
-        border-color: var(--fw-theme-background-contrast); }
-      th.table-bordered:last-child, .table-bordered th:last-child, td.table-bordered:last-child, .table-bordered td:last-child,
-      .table-cell.table-bordered:last-child, .table-bordered .table-cell:last-child,
-      .table-cell.table-cell-heading.table-bordered:last-child, .table-bordered .table-cell.table-cell-heading:last-child {
-        border-right-width: 1px; }
-  .table .table-cell-no-gutter,
-  table .table-cell-no-gutter {
-    padding: 0 !important; }
-  th,
-  .table-cell.table-cell-heading {
-    padding-top: calc((2.8125rem - (1.5em )) * .5);
-    padding-bottom: calc((2.8125rem - (1.5em )) * .5);
-    background: var(--fw-theme-background-contrast);
-    color: var(--fw-theme-color-contrast);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-style: normal; }
-    .theme-inverse th, .theme-inverse .table-cell.table-cell-heading {
-      background: var(--fw-theme-background-contrast);
-      color: var(--fw-theme-color-contrast); }
-    .alert th, .theme-inverse .alert th, .alert .table-cell.table-cell-heading, .theme-inverse .alert .table-cell.table-cell-heading {
-      background: none;
-      color: inherit; }
-  td,
-  .table-cell {
-    padding-top: calc((2.5rem - ( 1.5em )) * .5);
-    padding-bottom: calc((2.5rem - ( 1.5em )) * .5); }
-  .table-col-separation td:nth-child(n+2),
-  .table-col-separation .table-cell:nth-child(n+2) {
-    border-left: 1px solid var(--fw-theme-background-contrast); }
-    .theme-inverse .table-col-separation td:nth-child(n+2), .theme-inverse .table-col-separation .table-cell:nth-child(n+2) {
-      border-left: 1px solid var(--fw-theme-background-contrast); }
-  .table-small td,
-  .table-small .table-cell {
-    padding-top: calc((1.5625rem - ( 1.3125em )) * .5);
-    padding-bottom: calc((1.5625rem - ( 1.3125em )) * .5);
-    line-height: 1.3125; }
-  .table-large td,
-  .table-large .table-cell {
-    padding-top: calc((4.6875rem - ( 2.25em )) * .5);
-    padding-bottom: calc((4.6875rem - ( 2.25em )) * .5);
-    line-height: 2.25; }
-  .table-label {
-    width: 12px;
-    height: calc(2.5rem - (2px * 2));
-    border-radius: 2px;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 2px 0; }
-    .table-large .table-label {
-      height: calc(4.6875rem - (2px * 2)); }
-    .table-small .table-label {
-      height: calc(1.5625rem - (2px * 2)); }
-  .table-row-primary {
-    background-color: var(--fw-color-primary-lightest); }
-    .theme-inverse .table-row-primary {
-      background-color: var(--fw-color-primary-darkest); }
-    .alert .table-row-primary, .theme-inverse .alert .table-row-primary {
-      background: var(--fw-color-primary-alpha-2); }
-  .table-row-secondary {
-    background-color: var(--fw-color-secondary-lightest); }
-    .theme-inverse .table-row-secondary {
-      background-color: var(--fw-color-secondary-darkest); }
-    .alert .table-row-secondary, .theme-inverse .alert .table-row-secondary {
-      background: var(--fw-color-secondary-alpha-2); }
-  .table-row-accent {
-    background-color: var(--fw-color-accent-lightest); }
-    .theme-inverse .table-row-accent {
-      background-color: var(--fw-color-accent-darkest); }
-    .alert .table-row-accent, .theme-inverse .alert .table-row-accent {
-      background: var(--fw-color-accent-alpha-2); }
-  .table-row-neutral {
-    background-color: var(--fw-color-neutral-lightest); }
-    .theme-inverse .table-row-neutral {
-      background-color: var(--fw-color-neutral-darkest); }
-    .alert .table-row-neutral, .theme-inverse .alert .table-row-neutral {
-      background: var(--fw-color-neutral-alpha-2); }
-  .table-row-success {
-    background-color: var(--fw-color-success-lightest); }
-    .theme-inverse .table-row-success {
-      background-color: var(--fw-color-success-darkest); }
-    .alert .table-row-success, .theme-inverse .alert .table-row-success {
-      background: var(--fw-color-success-alpha-2); }
-  .table-row-caution {
-    background-color: var(--fw-color-caution-lightest); }
-    .theme-inverse .table-row-caution {
-      background-color: var(--fw-color-caution-darkest); }
-    .alert .table-row-caution, .theme-inverse .alert .table-row-caution {
-      background: var(--fw-color-caution-alpha-2); }
-  .table-row-error {
-    background-color: var(--fw-color-error-lightest); }
-    .theme-inverse .table-row-error {
-      background-color: var(--fw-color-error-darkest); }
-    .alert .table-row-error, .theme-inverse .alert .table-row-error {
-      background: var(--fw-color-error-alpha-2); }
-  .table-row-intensity-1 {
-    background-color: var(--fw-color-intensity-1-lightest); }
-    .theme-inverse .table-row-intensity-1 {
-      background-color: var(--fw-color-intensity-1-darkest); }
-    .alert .table-row-intensity-1, .theme-inverse .alert .table-row-intensity-1 {
-      background: var(--fw-color-intensity-1-alpha-2); }
-  .table-row-intensity-2 {
-    background-color: var(--fw-color-intensity-2-lightest); }
-    .theme-inverse .table-row-intensity-2 {
-      background-color: var(--fw-color-intensity-2-darkest); }
-    .alert .table-row-intensity-2, .theme-inverse .alert .table-row-intensity-2 {
-      background: var(--fw-color-intensity-2-alpha-2); }
-  .table-row-intensity-3 {
-    background-color: var(--fw-color-intensity-3-lightest); }
-    .theme-inverse .table-row-intensity-3 {
-      background-color: var(--fw-color-intensity-3-darkest); }
-    .alert .table-row-intensity-3, .theme-inverse .alert .table-row-intensity-3 {
-      background: var(--fw-color-intensity-3-alpha-2); }
-  .table-row-intensity-4 {
-    background-color: var(--fw-color-intensity-4-lightest); }
-    .theme-inverse .table-row-intensity-4 {
-      background-color: var(--fw-color-intensity-4-darkest); }
-    .alert .table-row-intensity-4, .theme-inverse .alert .table-row-intensity-4 {
-      background: var(--fw-color-intensity-4-alpha-2); }
-  .table-row-intensity-5 {
-    background-color: var(--fw-color-intensity-5-lightest); }
-    .theme-inverse .table-row-intensity-5 {
-      background-color: var(--fw-color-intensity-5-darkest); }
-    .alert .table-row-intensity-5, .theme-inverse .alert .table-row-intensity-5 {
-      background: var(--fw-color-intensity-5-alpha-2); }
-  td.table-cell-primary, .table-cell.table-cell-primary {
-    background-color: var(--fw-color-primary-alpha-1); }
-    .theme-inverse td.table-cell-primary, .theme-inverse .table-cell.table-cell-primary {
-      background-color: var(--fw-color-primary-alpha-1); }
-    .alert td.table-cell-primary, .theme-inverse .alert td.table-cell-primary, .alert .table-cell.table-cell-primary, .theme-inverse .alert .table-cell.table-cell-primary {
-      background: var(--fw-color-primary-alpha-5); }
-  td.table-cell-secondary, .table-cell.table-cell-secondary {
-    background-color: var(--fw-color-secondary-alpha-1); }
-    .theme-inverse td.table-cell-secondary, .theme-inverse .table-cell.table-cell-secondary {
-      background-color: var(--fw-color-secondary-alpha-1); }
-    .alert td.table-cell-secondary, .theme-inverse .alert td.table-cell-secondary, .alert .table-cell.table-cell-secondary, .theme-inverse .alert .table-cell.table-cell-secondary {
-      background: var(--fw-color-secondary-alpha-5); }
-  td.table-cell-accent, .table-cell.table-cell-accent {
-    background-color: var(--fw-color-accent-alpha-1); }
-    .theme-inverse td.table-cell-accent, .theme-inverse .table-cell.table-cell-accent {
-      background-color: var(--fw-color-accent-alpha-1); }
-    .alert td.table-cell-accent, .theme-inverse .alert td.table-cell-accent, .alert .table-cell.table-cell-accent, .theme-inverse .alert .table-cell.table-cell-accent {
-      background: var(--fw-color-accent-alpha-5); }
-  td.table-cell-neutral, .table-cell.table-cell-neutral {
-    background-color: var(--fw-color-neutral-alpha-1); }
-    .theme-inverse td.table-cell-neutral, .theme-inverse .table-cell.table-cell-neutral {
-      background-color: var(--fw-color-neutral-alpha-1); }
-    .alert td.table-cell-neutral, .theme-inverse .alert td.table-cell-neutral, .alert .table-cell.table-cell-neutral, .theme-inverse .alert .table-cell.table-cell-neutral {
-      background: var(--fw-color-neutral-alpha-5); }
-  td.table-cell-success, .table-cell.table-cell-success {
-    background-color: var(--fw-color-success-alpha-1); }
-    .theme-inverse td.table-cell-success, .theme-inverse .table-cell.table-cell-success {
-      background-color: var(--fw-color-success-alpha-1); }
-    .alert td.table-cell-success, .theme-inverse .alert td.table-cell-success, .alert .table-cell.table-cell-success, .theme-inverse .alert .table-cell.table-cell-success {
-      background: var(--fw-color-success-alpha-5); }
-  td.table-cell-caution, .table-cell.table-cell-caution {
-    background-color: var(--fw-color-caution-alpha-1); }
-    .theme-inverse td.table-cell-caution, .theme-inverse .table-cell.table-cell-caution {
-      background-color: var(--fw-color-caution-alpha-1); }
-    .alert td.table-cell-caution, .theme-inverse .alert td.table-cell-caution, .alert .table-cell.table-cell-caution, .theme-inverse .alert .table-cell.table-cell-caution {
-      background: var(--fw-color-caution-alpha-5); }
-  td.table-cell-error, .table-cell.table-cell-error {
-    background-color: var(--fw-color-error-alpha-1); }
-    .theme-inverse td.table-cell-error, .theme-inverse .table-cell.table-cell-error {
-      background-color: var(--fw-color-error-alpha-1); }
-    .alert td.table-cell-error, .theme-inverse .alert td.table-cell-error, .alert .table-cell.table-cell-error, .theme-inverse .alert .table-cell.table-cell-error {
-      background: var(--fw-color-error-alpha-5); }
-  td.table-cell-intensity-1, .table-cell.table-cell-intensity-1 {
-    background-color: var(--fw-color-intensity-1-alpha-1); }
-    .theme-inverse td.table-cell-intensity-1, .theme-inverse .table-cell.table-cell-intensity-1 {
-      background-color: var(--fw-color-intensity-1-alpha-1); }
-    .alert td.table-cell-intensity-1, .theme-inverse .alert td.table-cell-intensity-1, .alert .table-cell.table-cell-intensity-1, .theme-inverse .alert .table-cell.table-cell-intensity-1 {
-      background: var(--fw-color-intensity-1-alpha-5); }
-  td.table-cell-intensity-2, .table-cell.table-cell-intensity-2 {
-    background-color: var(--fw-color-intensity-2-alpha-1); }
-    .theme-inverse td.table-cell-intensity-2, .theme-inverse .table-cell.table-cell-intensity-2 {
-      background-color: var(--fw-color-intensity-2-alpha-1); }
-    .alert td.table-cell-intensity-2, .theme-inverse .alert td.table-cell-intensity-2, .alert .table-cell.table-cell-intensity-2, .theme-inverse .alert .table-cell.table-cell-intensity-2 {
-      background: var(--fw-color-intensity-2-alpha-5); }
-  td.table-cell-intensity-3, .table-cell.table-cell-intensity-3 {
-    background-color: var(--fw-color-intensity-3-alpha-1); }
-    .theme-inverse td.table-cell-intensity-3, .theme-inverse .table-cell.table-cell-intensity-3 {
-      background-color: var(--fw-color-intensity-3-alpha-1); }
-    .alert td.table-cell-intensity-3, .theme-inverse .alert td.table-cell-intensity-3, .alert .table-cell.table-cell-intensity-3, .theme-inverse .alert .table-cell.table-cell-intensity-3 {
-      background: var(--fw-color-intensity-3-alpha-5); }
-  td.table-cell-intensity-4, .table-cell.table-cell-intensity-4 {
-    background-color: var(--fw-color-intensity-4-alpha-1); }
-    .theme-inverse td.table-cell-intensity-4, .theme-inverse .table-cell.table-cell-intensity-4 {
-      background-color: var(--fw-color-intensity-4-alpha-1); }
-    .alert td.table-cell-intensity-4, .theme-inverse .alert td.table-cell-intensity-4, .alert .table-cell.table-cell-intensity-4, .theme-inverse .alert .table-cell.table-cell-intensity-4 {
-      background: var(--fw-color-intensity-4-alpha-5); }
-  td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
-    background-color: var(--fw-color-intensity-5-alpha-1); }
-    .theme-inverse td.table-cell-intensity-5, .theme-inverse .table-cell.table-cell-intensity-5 {
-      background-color: var(--fw-color-intensity-5-alpha-1); }
-    .alert td.table-cell-intensity-5, .theme-inverse .alert td.table-cell-intensity-5, .alert .table-cell.table-cell-intensity-5, .theme-inverse .alert .table-cell.table-cell-intensity-5 {
-      background: var(--fw-color-intensity-5-alpha-5); }
 
 /*** HELPERS ***/
 /* SVG CLASSES */
@@ -1535,9 +1261,6 @@ table {
 .background-background-toggle.open {
   background-color: var(--fw-color-background) !important; }
 
-.table-label-primary {
-  background-color: var(--fw-color-primary); }
-
 .theme-inverse .background-primary-inverse, .background-primary,
 .background-primary-hover:hover,
 .background-primary-focus:focus,
@@ -1547,9 +1270,6 @@ table {
 .background-primary-toggle.active,
 .background-primary-toggle.open {
   background-color: var(--fw-color-primary) !important; }
-
-.table-label-secondary {
-  background-color: var(--fw-color-secondary); }
 
 .theme-inverse .background-secondary-inverse, .background-secondary,
 .background-secondary-hover:hover,
@@ -1561,9 +1281,6 @@ table {
 .background-secondary-toggle.open {
   background-color: var(--fw-color-secondary) !important; }
 
-.table-label-accent {
-  background-color: var(--fw-color-accent); }
-
 .theme-inverse .background-accent-inverse, .background-accent,
 .background-accent-hover:hover,
 .background-accent-focus:focus,
@@ -1573,9 +1290,6 @@ table {
 .background-accent-toggle.active,
 .background-accent-toggle.open {
   background-color: var(--fw-color-accent) !important; }
-
-.table-label-neutral {
-  background-color: var(--fw-color-neutral); }
 
 .theme-inverse .background-neutral-inverse, .background-neutral,
 .background-neutral-hover:hover,
@@ -1587,9 +1301,6 @@ table {
 .background-neutral-toggle.open {
   background-color: var(--fw-color-neutral) !important; }
 
-.table-label-success {
-  background-color: var(--fw-color-success); }
-
 .theme-inverse .background-success-inverse, .background-success,
 .background-success-hover:hover,
 .background-success-focus:focus,
@@ -1599,9 +1310,6 @@ table {
 .background-success-toggle.active,
 .background-success-toggle.open {
   background-color: var(--fw-color-success) !important; }
-
-.table-label-caution {
-  background-color: var(--fw-color-caution); }
 
 .theme-inverse .background-caution-inverse, .background-caution,
 .background-caution-hover:hover,
@@ -1613,9 +1321,6 @@ table {
 .background-caution-toggle.open {
   background-color: var(--fw-color-caution) !important; }
 
-.table-label-error {
-  background-color: var(--fw-color-error); }
-
 .theme-inverse .background-error-inverse, .background-error,
 .background-error-hover:hover,
 .background-error-focus:focus,
@@ -1625,9 +1330,6 @@ table {
 .background-error-toggle.active,
 .background-error-toggle.open {
   background-color: var(--fw-color-error) !important; }
-
-.table-label-intensity-1 {
-  background-color: var(--fw-color-intensity-1); }
   .theme-inverse .background-intensity-1-inverse, .background-intensity-1,
   .background-intensity-1-hover:hover,
   .background-intensity-1-focus:focus,
@@ -1637,9 +1339,6 @@ table {
   .background-intensity-1-toggle.active,
   .background-intensity-1-toggle.open {
     background-color: var(--fw-color-intensity-1) !important; }
-
-.table-label-intensity-2 {
-  background-color: var(--fw-color-intensity-2); }
   .theme-inverse .background-intensity-2-inverse, .background-intensity-2,
   .background-intensity-2-hover:hover,
   .background-intensity-2-focus:focus,
@@ -1649,9 +1348,6 @@ table {
   .background-intensity-2-toggle.active,
   .background-intensity-2-toggle.open {
     background-color: var(--fw-color-intensity-2) !important; }
-
-.table-label-intensity-3 {
-  background-color: var(--fw-color-intensity-3); }
   .theme-inverse .background-intensity-3-inverse, .background-intensity-3,
   .background-intensity-3-hover:hover,
   .background-intensity-3-focus:focus,
@@ -1661,9 +1357,6 @@ table {
   .background-intensity-3-toggle.active,
   .background-intensity-3-toggle.open {
     background-color: var(--fw-color-intensity-3) !important; }
-
-.table-label-intensity-4 {
-  background-color: var(--fw-color-intensity-4); }
   .theme-inverse .background-intensity-4-inverse, .background-intensity-4,
   .background-intensity-4-hover:hover,
   .background-intensity-4-focus:focus,
@@ -1673,9 +1366,6 @@ table {
   .background-intensity-4-toggle.active,
   .background-intensity-4-toggle.open {
     background-color: var(--fw-color-intensity-4) !important; }
-
-.table-label-intensity-5 {
-  background-color: var(--fw-color-intensity-5); }
   .theme-inverse .background-intensity-5-inverse, .background-intensity-5,
   .background-intensity-5-hover:hover,
   .background-intensity-5-focus:focus,
@@ -2952,7 +2642,7 @@ table {
   @media (min-width: 1201px) {
     .inline-flex-md {
       display: inline-flex !important; } }
-  @media (min-width: 1601px) {
+  @media (min-width: 1501px) {
     .inline-flex-lg {
       display: inline-flex !important; } }
 .flex {
@@ -3001,13 +2691,13 @@ table {
 .only-xs {
   display: none !important; }
 
-@media (min-width: 1601px) {
+@media (min-width: 1501px) {
   .only-lg {
     display: block !important; }
   .hide-lg {
     display: none !important; } }
 
-@media (min-width: 1201px) and (max-width: 1600px) {
+@media (min-width: 1201px) and (max-width: 1500px) {
   .only-md {
     display: block !important; }
   .hide-md {
@@ -3072,16 +2762,10 @@ table {
   .hide-nonmobile {
     display: none !important; } }
 
-.disabled, .table-row-disabled td,
-.table-row-disabled .table-cell,
-.table-cell-disabled td,
-.table-cell-disabled .table-cell {
+.disabled {
   cursor: not-allowed !important;
   opacity: 0.5; }
-  .disabled *, .table-row-disabled td *,
-  .table-row-disabled .table-cell *,
-  .table-cell-disabled td *,
-  .table-cell-disabled .table-cell * {
+  .disabled * {
     pointer-events: none; }
 
 .radius, .radius-top, .radius-left, .radius-top-left {

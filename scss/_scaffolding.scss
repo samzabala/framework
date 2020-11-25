@@ -32,14 +32,10 @@
 		--#{$variable-prefix}-theme-color: #{$brand-theme-color};
 		--#{$variable-prefix}-theme-color-contrast: #{$brand-theme-color-contrast};
 		--#{$variable-prefix}-theme-background: #{$brand-theme-background};
-		--#{$variable-prefix}-theme-background-contrast: #{$brand-theme-background-contrast};
-
-
-
-		
+		--#{$variable-prefix}-theme-background-contrast: #{$brand-theme-background-contrast};		
 }
 
-%for-inverse-var-setup {
+%for-var-inverse {
 	--#{$variable-prefix}-theme-color: #{$brand-theme-color-inverse};
 	--#{$variable-prefix}-theme-color-contrast: #{$brand-theme-color-contrast-inverse};
 	--#{$variable-prefix}-theme-background: #{$brand-theme-background-inverse};
@@ -66,6 +62,7 @@
 		scroll-behavior: smooth;
 	}
 	*.theme-inverse,
+	:root,
 	html,body {
 		color: $var-theme-color;
 		background-color: $var-theme-background;
@@ -75,7 +72,7 @@
 	*.theme-inverse,
 	html.theme-inverse, 
 	.theme-inverse body {
-		@extend %for-inverse-var-setup;
+		@extend %for-var-inverse;
 	}
 
 	#{$prefix}-no-scroll {
@@ -83,7 +80,6 @@
 	}
 
 	#{$prefix}-on-drag {
-
 		&, * {
 			cursor:grabbing!important;
 			-webkit-user-select: none!important; /* Safari 3.1+ */
@@ -93,16 +89,12 @@
 		}
 	}
 
-
-
 	body {
 		word-wrap: break-word;
 		scrollbar-width: thin;
 		scrollbar-color: $var-color-neutral transparent;
 	}
-
-
-
+	
 	/* width */
 	::-webkit-scrollbar {
 		width: 10px;
@@ -131,12 +123,12 @@
 	}
 
 	::-moz-selection{
-		background-color: $body-selection-background;
-		color: $body-selection-color;
+		background-color: $body-scrollbar-background;
+		color: $body-scrollbar-color;
 	}
 	::selection{
-		background-color: $body-selection-background;
-		color: $body-selection-color;
+		background-color: $body-scrollbar-background;
+		color: $body-scrollbar-color;
 	}
 
 	body {
@@ -223,7 +215,16 @@
 		// border: none;
 		cursor: pointer;
 	}
-	
-	a {
-		text-decoration: none;
+
+
+	/* to toggley bitches kids  */
+	*[data-toggle]{
+		cursor: pointer;
+		-webkit-user-select: none!important; /* Safari 3.1+ */
+		-moz-user-select: none!important; /* Firefox 2+ */
+		-ms-user-select: none!important; /* IE 10+ */
+		user-select: none!important; /* Standard syntax */
+		*{
+			pointer-events: none!important;
+		}
 	}

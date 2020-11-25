@@ -1,0 +1,69 @@
+$calculated-input-toggle-width: $input-toggle-width;
+@if internal-is-convertable($input-toggle-width){
+	$calculated-input-toggle-width: rem($input-toggle-width/$body-font-size);
+}
+
+	$calculated-input-toggle-width-small: $input-toggle-width-small;
+	@if internal-is-convertable($input-toggle-width-small){
+		$calculated-input-toggle-width-small: rem($input-toggle-width-small/$body-font-size);
+	}
+
+	$calculated-input-toggle-width-large: $input-toggle-width-large;
+	@if internal-is-convertable($input-toggle-width-large){
+		$calculated-input-toggle-width-large: rem($input-toggle-width-large/$body-font-size);
+	}
+
+
+
+$calculated-input-toggle-node-height: $input-toggle-node-height;
+@if internal-is-convertable($input-toggle-node-height){
+	$calculated-input-toggle-node-height: rem($input-toggle-node-height/$body-font-size);
+}
+
+	$calculated-input-toggle-node-height-small: $input-toggle-node-height-small;
+	@if internal-is-convertable($input-toggle-node-height-small){
+		$calculated-input-toggle-node-height-small: rem($input-toggle-node-height-small/$body-font-size);
+	}
+
+	$calculated-input-toggle-node-height-large: $input-toggle-node-height-large;
+	@if internal-is-convertable($input-toggle-node-height-large){
+		$calculated-input-toggle-node-height-large: rem($input-toggle-node-height-large/$body-font-size);
+	}
+
+
+$calculated-input-toggle-node-width: $input-toggle-node-width;
+@if internal-is-convertable($input-toggle-node-width){
+	$calculated-input-toggle-node-width: rem($input-toggle-node-width/$body-font-size);
+}
+
+
+	$calculated-input-toggle-node-width-small: $input-toggle-node-width-small;
+	@if internal-is-convertable($input-toggle-node-width-small){
+		$calculated-input-toggle-node-width-small: rem($input-toggle-node-width-small/$body-font-size);
+	}
+
+	$calculated-input-toggle-node-width-large: $input-toggle-node-width-large;
+	@if internal-is-convertable($input-toggle-node-width-large){
+		$calculated-input-toggle-node-width-large: rem($input-toggle-node-width-large/$body-font-size);
+	}
+
+
+
+$calculated-input-toggle-plate-height: $input-toggle-plate-height;
+@if internal-is-convertable($input-toggle-plate-height){
+	$calculated-input-toggle-plate-height: rem($input-toggle-plate-height/$body-font-size);
+}
+
+	$calculated-input-toggle-plate-height-small: $input-toggle-plate-height-small;
+		@if internal-is-convertable($input-toggle-plate-height-small){
+			$calculated-input-toggle-plate-height-small: rem($input-toggle-plate-height-small/$body-font-size);
+		}
+
+		$calculated-input-toggle-plate-height-large: $input-toggle-plate-height-large;
+		@if internal-is-convertable($input-toggle-plate-height-large){
+			$calculated-input-toggle-plate-height-large: rem($input-toggle-plate-height-large/$body-font-size);
+		}
+
+
+
+$calculated-input-toggle-checkbox-height: 1em * $calculated-body-line-height;

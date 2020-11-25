@@ -1,0 +1,134 @@
+/* input (scaffolding) */
+$prefix: '.input';
+
+
+@at-root %for-form-global {
+	
+	&-radius {
+		border-radius: $input-border-radius;
+
+		&-small {
+			border-radius: $input-border-radius-small;
+		}
+
+		&-large {
+			border-radius: $input-border-radius-large;
+		}
+	}
+
+	&-in-nav {
+		align-self: center;
+
+		&-custom {
+			height: $calculated-nav-height!important;
+			align-self:stretch;
+		}
+	}
+	
+	&-transition {
+		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
+		max-width:100%;
+	}
+}
+
+@at-root %for-form-input {
+
+	& {
+		// @extend %for-anchor-reset !optional;
+		font: inherit;
+		color:inherit;
+		// vertical-align: middle;
+		background-color: $input-background;
+		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
+		max-width:100%;
+
+		.theme-inverse & {
+			background-color: $input-background-inverse;
+		}
+	}
+
+	&-large {
+		font-size: $calculated-input-font-size-large;
+
+	}
+
+	&-small {
+		font-size: $calculated-input-font-size-small;
+		
+	}
+
+	&-in-nav {
+		@extend %for-form-global-in-nav-custom;
+	}
+
+	&-in-group {
+		position:relative;
+		max-width:100%;
+
+		&:focus,
+		&.focus,
+		&:active,
+		&.active
+		&.open {
+			z-index:1;
+		}
+
+	}
+
+	&-ui {
+
+
+
+		&-control {
+
+
+			@extend %for-display-none;
+			//fallback
+			height:0!important;
+			width:0!important;
+			overflow:hidden!important;
+	
+		}
+	}
+}
+
+	
+
+#{$prefix} { //scaffold
+	@extend %for-form-input;
+
+
+
+	&#{$prefix}-large,
+	#{$prefix}-group#{$prefix}-large & {
+		@extend %for-form-input-large;
+	}
+
+	&#{$prefix}-small,
+	#{$prefix}-group#{$prefix}-small & {
+		@extend %for-form-input-small;
+	}
+
+
+	.nav-block.nav-block-stretch > &,
+	.nav > & {
+		@extend %for-form-input-in-nav;
+	}
+
+	&-disabled,
+	&[disabled] {
+		@extend %for-disabled !optional;
+
+	}
+
+	&-disabled,
+	&[disabled],
+	&-disabled & {
+		@extend %for-no-shadow-important !optional;
+	}
+
+	&-in-group {
+		@extend %for-form-input-in-group;
+	}
+
+}

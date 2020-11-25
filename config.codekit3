@@ -1739,6 +1739,19 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"/scss/_accordion.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_accordion.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
 	"/scss/_alert.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1791,6 +1804,19 @@
 		"oS": 0,
 		"sct": 1
 		},
+	"/scss/_calculations.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_calculations.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
 	"/scss/_container.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1804,7 +1830,7 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/_form-calendar.scss": {
+	"/scss/_dropdown.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -1812,33 +1838,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_form-calendar.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/scss/_form-tags.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/dist/_form-tags.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
-	"/scss/_form-toggle.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/dist/_form-toggle.css",
+		"oAP": "/dist/_dropdown.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -1852,6 +1852,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/dist/_form.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/_functions.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_functions.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -1895,6 +1908,19 @@
 		"oS": 0,
 		"sct": 1
 		},
+	"/scss/_images.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_images.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
 	"/scss/_legend.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -1908,7 +1934,7 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/_list-groups.scss": {
+	"/scss/_list-group.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -1916,12 +1942,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_list-groups.css",
+		"oAP": "/dist/_list-group.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/_modal-board.scss": {
+	"/scss/_mixins.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -1929,7 +1955,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_modal-board.css",
+		"oAP": "/dist/_mixins.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -1986,19 +2012,6 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/_popper.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/dist/_popper.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
 	"/scss/_progress.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -2021,6 +2034,32 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/dist/_ratio.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/_reset.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_reset.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/_scaffolding.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_scaffolding.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -2051,7 +2090,7 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/_tabs.scss": {
+	"/scss/_tab.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2059,7 +2098,20 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_tabs.css",
+		"oAP": "/dist/_tab.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/_table.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_table.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -2090,19 +2142,6 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/_toggle.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/dist/_toggle.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
 	"/scss/_toolbar.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -2112,6 +2151,32 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/dist/_toolbar.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/_tooltip.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_tooltip.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/_typography.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/_typography.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -2155,7 +2220,7 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/config/_internal-vars.scss": {
+	"/scss/calculations/_alert.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2163,12 +2228,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_internal-vars.css",
+		"oAP": "/scss/dist/_alert.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/config/_mixins.scss": {
+	"/scss/calculations/_asset.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2176,12 +2241,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_mixins.css",
+		"oAP": "/scss/dist/_asset.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/config/plugins/_shithole.scss": {
+	"/scss/calculations/_badge.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2189,7 +2254,397 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/config/dist/_shithole.css",
+		"oAP": "/scss/dist/_badge.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_buttons.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_buttons.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_form-calendar.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-calendar.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_form-tags.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-tags.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_form-toggle.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-toggle.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_form.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_global.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_global.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_highlight.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_highlight.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_legend.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_legend.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_list-group.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_list-group.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_modal-board.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_modal-board.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_module.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_module.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_nav.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_nav.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_popper-tooltip.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_popper-tooltip.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_progress.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_progress.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_symbol.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_symbol.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_tab.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_tab.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_table.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_table.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_tag.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_tag.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_thumbnail.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_thumbnail.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_well.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_well.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/calculations/_zone.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_zone.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-boxy.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-boxy.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-calendar.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-calendar.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-fieldset.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-fieldset.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-global.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-global.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-info.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-info.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-inline.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-inline.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-label.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-label.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-tags.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-tags.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/form/_form-toggle.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_form-toggle.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -2216,6 +2671,19 @@
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/dist/framework.layout.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/framework.lite.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/dist/framework.lite.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -2259,7 +2727,7 @@
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/normalize/_images.scss": {
+	"/scss/functions/_buttons.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2267,12 +2735,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_images.css",
+		"oAP": "/scss/dist/_buttons.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/normalize/_reset.scss": {
+	"/scss/functions/_global.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2280,12 +2748,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_reset.css",
+		"oAP": "/scss/dist/_global.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/normalize/_scaffolding.scss": {
+	"/scss/mixins/_buttons.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2293,12 +2761,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_scaffolding.css",
+		"oAP": "/scss/dist/_buttons.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/normalize/_table.scss": {
+	"/scss/mixins/_global.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2306,12 +2774,12 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_table.css",
+		"oAP": "/scss/dist/_global.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
 		},
-	"/scss/normalize/_typography.scss": {
+	"/scss/mixins/_grid.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -2319,7 +2787,72 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_typography.css",
+		"oAP": "/scss/dist/_grid.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/mixins/_symbol.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_symbol.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/modal/_modal-board.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_modal-board.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/modal/_modal-default.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_modal-default.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/modal/_modal-global.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_modal-global.css",
+		"oF": 0,
+		"oS": 0,
+		"sct": 1
+		},
+	"/scss/plugins/_shithole.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/dist/_shithole.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1

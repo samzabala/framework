@@ -2,52 +2,53 @@
 //vars
 	@import '_vars';
 	
-//plugins
-	@import 'config/plugins/_shithole';
-	@import 'config/_internal-vars';
-	@import 'config/_mixins';
+//core shits
+	//plugin deps
+		@import 'plugins/_shithole.scss';
+	//api
+		@import '_functions';
+		@import '_mixins';
+		@import '_calculations';
 
 //to cascade
-	@import 'normalize/_reset';
-	@import 'normalize/_scaffolding';
-	@import 'normalize/_typography';
-	@import 'normalize/_images';
-	@import 'normalize/_table';
+	@import '_reset';
+	@import '_scaffolding';
+	@import '_typography';
 
-//ui elements
+//elements
 	//layout
 		@import '_container';
 		@import '_grid';
 		@import '_module';
-	//ui components
-	//fonting
-		@import '_symbol';
-		@import '_nav';
-		@import '_tabs';
-		@import '_pagination';
-		@import '_toggle';
-		@import '_asset';
-		@import '_modal';
-			@import '_modal-board';
-		@import '_thumbnail';
-		@import '_ratio';
-		@import '_progress';
-		@import '_badge';
-		@import '_well';
-		@import '_tag';
-		@import '_toolbar';
-		@import '_highlight';
-		@import '_legend';
-		@import '_popper';
-		@import '_alert';
-		@import '_zone';
-		@import '_switch';
-		@import '_list-groups';
-		@import '_buttons';
-		@import '_form';
-			@import '_form-calendar';
-			@import '_form-tags';
-			@import '_form-toggle';
-
+	//components
+		//fonting/iconography
+			@import '_symbol';
+			@import '_asset';
+		//navigation
+			@import '_nav';
+			@import '_tab';
+			@import '_pagination';
+		//other
+			@import '_images';
+			@import '_thumbnail';
+			@import '_ratio';
+			@import '_accordion';
+			@import '_dropdown';
+			@import '_switch';
+			@import '_progress';
+			@import '_badge';
+			@import '_well';
+			@import '_tag';
+			@import '_toolbar';
+			@import '_tooltip';
+			@import '_highlight';
+			@import '_legend';
+			@import '_alert'; 
+			@import '_zone';
+			@import '_list-group';
+			@import '_table';
+			@import '_buttons';
+			@import '_form';
+			@import '_modal';
 //helpers
 	@import '_helpers';
