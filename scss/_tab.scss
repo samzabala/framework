@@ -146,7 +146,7 @@ $prefix: '.tab';
 
 		> a,
 		#{$prefix}-text {
-			// @extend %for-anchor-reset !optional;
+			@extend %for-anchor-reset !optional;
 			@extend %for-tab-all;
 			@extend %for-tab-padding;
 			@include type-set((

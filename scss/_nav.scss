@@ -145,7 +145,7 @@ $prefix: '.nav';
 
 		> a,
 		> [data-toggle] {
-			// @extend %for-anchor-reset !optional;
+			@extend %for-anchor-reset !optional;
 			@include type-set((
 				color:inherit,
 				decoration:none,

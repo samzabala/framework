@@ -17,7 +17,7 @@ $prefix: '.toolbar';
 			
 	&,
 	& a {
-		// @extend %for-anchor-reset !optional;
+		@extend %for-anchor-reset !optional;
 	}
 	
 	&#{$prefix}-small {

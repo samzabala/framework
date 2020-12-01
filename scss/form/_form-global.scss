@@ -34,7 +34,7 @@ $prefix: '.input';
 @at-root %for-form-input {
 
 	& {
-		// @extend %for-anchor-reset !optional;
+		@extend %for-anchor-reset !optional;
 		font: inherit;
 		color:inherit;
 		// vertical-align: middle;

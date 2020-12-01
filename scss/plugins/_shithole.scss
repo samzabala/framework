@@ -1181,10 +1181,10 @@
 		}
 
 		@function color_is_light($color: null, $threshold: 136) {
-			@if (
+			@if
 				type-of($color) == color
 				and ( (red($color) + green($color) + blue($color)) / 3 ) > $threshold
-			) {
+			{
 				@return true; // Lighter backgorund, return dark color
 			  } @else {
 				@return false; // Darker background, return light color
@@ -1197,7 +1197,7 @@
 // DESIGN FUNCTIONS
 //////////////////////////////////////////////////////////////////////////////
 
-	/* heading bars or rules from tiny rectangles to long rules and what not. */
+	//heading bars or rules from tiny rectangles to long rules and what not
 	@mixin decoration-bar($args:()){
 
 		$opts: map-merge(( 

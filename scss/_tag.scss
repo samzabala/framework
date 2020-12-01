@@ -1,7 +1,7 @@
 /*** Tags ***/
 $prefix: '.tag';
 #{$prefix} {
-	// @extend %for-anchor-reset !optional;
+	@extend %for-anchor-reset !optional;
 	@include type-set((
 		decoration:none,
 		size: $calculated-tag-font-size,
@@ -37,7 +37,7 @@ $prefix: '.tag';
 	}
 
 	a {
-		// @extend %for-anchor-reset !optional;
+		@extend %for-anchor-reset !optional;
 		color:inherit;
 	}
 	&-text  {

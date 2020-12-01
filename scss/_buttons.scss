@@ -191,7 +191,10 @@ $prefix: '.btn';
 			-webkit-appearance:none;
 			appearance:none;
 			vertical-align: middle;
-			// @extend %for-anchor-reset !optional;
+			-moz-background-clip: padding;
+			-webkit-background-clip: padding;
+			background-clip: padding-box;
+			@extend %for-anchor-reset !optional;
 	
 			&:hover,
 			&:focus,
