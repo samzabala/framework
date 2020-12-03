@@ -77,6 +77,78 @@
 		"oAP": "/dist/fonts/fw-icons.woff2",
 		"oF": 0
 		},
+	"/dist/framework.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/framework-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/dist/framework.layout.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/framework.layout-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/dist/framework.lite.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/framework.lite-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/dist/framework.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/framework.min.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/dist/framework.normalize.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/framework.normalize-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/dist/framework.plugged.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/framework.plugged.min.min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/dist/framework.utilities.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/framework.utilities-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"/dist/js/framework.webpack.webpack.js": {
 		"bF": 0,
 		"ft": 64,
@@ -3169,7 +3241,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_badge.css",
+		"oAP": "/node_modules/./../dist/_badge.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3234,7 +3306,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_form.css",
+		"oAP": "/node_modules/./../dist/_form.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3312,7 +3384,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_legend.css",
+		"oAP": "/node_modules/./../dist/_legend.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3338,7 +3410,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_mixins.css",
+		"oAP": "/node_modules/./../dist/_mixins.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3351,7 +3423,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_modal.css",
+		"oAP": "/node_modules/./../dist/_modal.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3390,7 +3462,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_pagination.css",
+		"oAP": "/node_modules/./../dist/_pagination.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3416,7 +3488,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_ratio.css",
+		"oAP": "/node_modules/./../dist/_ratio.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3494,7 +3566,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_table.css",
+		"oAP": "/node_modules/./../dist/_table.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3507,7 +3579,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_tag.css",
+		"oAP": "/node_modules/./../dist/_tag.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3520,7 +3592,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_thumbnail.css",
+		"oAP": "/node_modules/./../dist/_thumbnail.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3533,7 +3605,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_toolbar.css",
+		"oAP": "/node_modules/./../dist/_toolbar.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3559,7 +3631,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_typography.css",
+		"oAP": "/node_modules/./../dist/_typography.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3598,7 +3670,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/dist/_zone.css",
+		"oAP": "/node_modules/./../dist/_zone.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3637,7 +3709,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_badge.css",
+		"oAP": "/node_modules/./../scss/dist/_badge.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3702,7 +3774,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_form.css",
+		"oAP": "/node_modules/./../scss/dist/_form.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3715,7 +3787,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_global.css",
+		"oAP": "/node_modules/./../scss/dist/_global.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3793,7 +3865,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_nav.css",
+		"oAP": "/node_modules/./../scss/dist/_nav.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3858,7 +3930,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_tag.css",
+		"oAP": "/node_modules/./../scss/dist/_tag.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3884,7 +3956,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_tooltip.css",
+		"oAP": "/node_modules/./../scss/dist/_tooltip.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3897,7 +3969,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_typography.css",
+		"oAP": "/node_modules/./../scss/dist/_typography.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3923,7 +3995,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_zone.css",
+		"oAP": "/node_modules/./../scss/dist/_zone.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3936,7 +4008,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_form-boxy.css",
+		"oAP": "/node_modules/./../scss/dist/_form-boxy.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -3975,7 +4047,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_form-global.css",
+		"oAP": "/node_modules/./../scss/dist/_form-global.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4001,7 +4073,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_form-inline.css",
+		"oAP": "/node_modules/./../scss/dist/_form-inline.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4027,7 +4099,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_form-tags.css",
+		"oAP": "/node_modules/./../scss/dist/_form-tags.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4131,7 +4203,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_buttons.css",
+		"oAP": "/node_modules/./../scss/dist/_buttons.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4144,7 +4216,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_global.css",
+		"oAP": "/node_modules/./../scss/dist/_global.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4170,7 +4242,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_global.css",
+		"oAP": "/node_modules/./../scss/dist/_global.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4196,7 +4268,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_symbol.css",
+		"oAP": "/node_modules/./../scss/dist/_symbol.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4209,7 +4281,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_modal-board.css",
+		"oAP": "/node_modules/./../scss/dist/_modal-board.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4222,7 +4294,7 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/scss/dist/_modal-default.css",
+		"oAP": "/node_modules/./../scss/dist/_modal-default.css",
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
@@ -4252,69 +4324,6 @@
 		"oF": 0,
 		"oS": 0,
 		"sct": 1
-		},
-	"/static/css/framework.webpack.webpack.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/static/css/framework.webpack.webpack-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/static/fonts/fw-icons.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/static/fonts/fw-icons.eot",
-		"oF": 0
-		},
-	"/static/fonts/fw-icons.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/static/fonts/fw-icons.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 52780316221407,
-		"prP": 0
-		},
-	"/static/fonts/fw-icons.ttf": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/static/fonts/fw-icons.ttf",
-		"oF": 0
-		},
-	"/static/fonts/fw-icons.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/static/fonts/fw-icons.woff",
-		"oF": 0
-		},
-	"/static/fonts/fw-icons.woff2": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/static/fonts/fw-icons.woff2",
-		"oF": 0
-		},
-	"/static/js/framework.webpack.webpack.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/static/js/framework.webpack.webpack.min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
 		},
 	"/webpack.dev.config.js": {
 		"bF": 0,
