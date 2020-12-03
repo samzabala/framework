@@ -9,7 +9,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, './dist'),
-		filename: 'js/[name].webpack.min.js',
+		filename: 'js/[name].webpack.js',
 		publicPath: ''
 	},
 	mode: 'none',
@@ -70,7 +70,7 @@ module.exports = {
 	plugins: [
 		new TerserPlugin(),
 		new MiniCssExtractPlugin({
-			filename: 'css/[name].webpack.min.css'
+			filename: 'css/[name].webpack.css'
 		}),
 		// new CleanWebpackPlugin({
 		// 	cleanOnceBeforeBuildPatterns: 

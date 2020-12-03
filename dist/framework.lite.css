@@ -1,5 +1,4 @@
 /* it's no-components bitch */
-/* heading bars or rules from tiny rectangles to long rules and what not. */
 .cf:after, .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
   content: "";
   clear: both;

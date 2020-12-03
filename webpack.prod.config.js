@@ -4,11 +4,11 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: {
-		'framework-webpack' :'./js/framework.webpack.js'
+		'framework.webpack' :'./js/framework.webpack.js'
 	},
 	output: {
 		path: path.resolve(__dirname, './static'),
-		filename: 'js/[name].webpack.min.js', //[contenthash]
+		filename: 'js/[name].webpack.js', //[contenthash]
 		publicPath: ''
 	},
 	mode: 'production',
@@ -63,7 +63,7 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: 'css/[name].webpack.[contenthash].css'
+			filename: 'css/[name].webpack.css'
 		}),
 		new CleanWebpackPlugin({
 			cleanOnceBeforeBuildPatterns: 

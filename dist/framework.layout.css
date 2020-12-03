@@ -1,5 +1,4 @@
 /* it's layout shits only bitch */
-/* heading bars or rules from tiny rectangles to long rules and what not. */
 .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
   content: "";
   clear: both;

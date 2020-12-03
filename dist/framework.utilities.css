@@ -1,5 +1,4 @@
 /* it's helpers only bitch */
-/* heading bars or rules from tiny rectangles to long rules and what not. */
 .cf:after {
   content: "";
   clear: both;

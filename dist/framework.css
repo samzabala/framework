@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /* it's scary terry bitch */
-/* heading bars or rules from tiny rectangles to long rules and what not. */
-@import url("./../assets/framework/fonts/fw-icons/import.css");
+@import url("./../fonts/fw-icons/import.css");
 .cf:after, .list-group li:after, .list-group-item:after,
 .list-group ul-item:after, .zone:after, .alert-header:after, .alert-content:after, .alert-footer:after, .alert:after, .progress:after, .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
   content: "";
@@ -629,7 +628,23 @@ a:hover *, .a:hover *, a:focus *, .a:focus *, a.focus *, .focus.a * {
   -webkit-text-decoration-color: currentColor;
           text-decoration-color: currentColor;
 }
-.thumbnail, a:not([href]):not([class]), a:not([href]):not([class]):hover {
+.input, .btn, .btn-group, .list-group-interactive li, .list-group-interactive li a,
+.list-group-interactive .list-group-item,
+.list-group-interactive .list-group-item a, .list-group-toggle li, .list-group-toggle li a,
+.list-group-toggle .list-group-item,
+.list-group-toggle .list-group-item a,
+.list-group ul-interactive li,
+.list-group ul-interactive li a,
+.list-group ul-interactive .list-group-item,
+.list-group ul-interactive .list-group-item a,
+.list-group ul-toggle li,
+.list-group ul-toggle li a,
+.list-group ul-toggle .list-group-item,
+.list-group ul-toggle .list-group-item a, .highlight, .toolbar, .toolbar a, .tag a, .tag, .thumbnail, .tab > a,
+.tab .tab-text, .tabs > li > a,
+.tabs > li .tab-text, .nav .nav-item > a,
+.nav .nav-item > [data-toggle], .nav-list > li > a,
+.nav-list > li > [data-toggle], a:not([href]):not([class]), a:not([href]):not([class]):hover {
   text-decoration: none;
 }
 a, .a {
@@ -8482,6 +8497,9 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   -moz-appearance: none;
        appearance: none;
   vertical-align: middle;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
 }
 .btn:hover, .btn-group:hover, .btn:focus, .btn-group:focus, .focus.btn, .focus.btn-group, .btn:active, .btn-group:active, .active.btn, .active.btn-group {
   color: inherit;
