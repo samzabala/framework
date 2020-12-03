@@ -1,38 +1,36 @@
+const frameWork = {};
+
+//see if ya boi is oin that proper br
 frameWork.validateBr = (breakpoint, mode) => {
 	mode = mode || 'below'; //below,within,above
-	const currIndex = __f.br_arr.indexOf(breakpoint);
+	const currIndex = BrTag.indexOf(breakpoint);
 	switch (mode) {
 		case 'below': //max-width
 			return (
 				document.documentElement.clientWidth
-					<= __f.br_vals[breakpoint]
+					<= BrValue[breakpoint]
 			);
 
 		case 'within':
 			return (
 				document.documentElement.clientWidth
-					<=__f.br_vals[breakpoint]
+					<=BrValue[breakpoint]
 				&& document.documentElement.clientWidth
-					> __f.br_vals[__f.br_arr[currIndex - 1]]
+					> BrValue[BrTag[currIndex - 1]]
 			);
 
 		case 'above':
 			return currIndex > 0
 				? document.documentElement.clientWidth
-					> __f.br_vals[__f.br_arr[currIndex - 1]]
+					> BrValue[BrTag[currIndex - 1]]
 				: document.documentElement.clientWidth
-					> __f.br_vals[__f.br_arr[currIndex]];
+					> BrValue[BrTag[currIndex]];
 	}
 };
 
+//see if 
 frameWork.isDisabled = (elem) => {
-	const disableClasses = [
-		'table-row-disabled',
-		'tab-disabled',
-		'btn-disabled',
-		'input-disabled',
-		'disabled',
-	];
+	
 	let toReturn = false;
 
 	if (elem.closest('[disabled]') || elem.matches(':disabled')) {

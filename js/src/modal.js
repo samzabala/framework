@@ -296,19 +296,37 @@ frameWork.destroyModal = (removeHash, subcom) => {
 	canRemoveHash && __f.changeHash('');
 };
 
-frameWork.createBoard = (triggerer) => {
-	frameWork.createModal(triggerer, 'board');
-};
+window.addEventListener('hashchange', () => {
+	frameWork.settings.initializeModal && frameWork.createModal();
+});
 
-frameWork.resizeBoard = (width,modal,args) => {
-	frameWork.resizeModal('board',width,modal,args);
-};
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'*[data-toggle="modal-open"], *[data-toggle="modal"]',
+	(e) => {
+		const triggerer = e.target;
 
-frameWork.checkOnBoard = () => {
-	frameWork.checkOnModal('board');
-};
-__f.fns_on_resize.push(frameWork.checkOnBoard);
+		e.preventDefault();
 
-frameWork.destroyBoard = (removeHash) => {
-	frameWork.destroyModal(removeHash, 'board');
-};
+		if (!frameWork.isDisabled(triggerer)) {
+			frameWork.createModal(triggerer);
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'*[data-toggle="modal-close"]',
+	(e) => {
+
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			frameWork.destroyModal(true);
+		}
+	}
+);

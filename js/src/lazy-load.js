@@ -4,7 +4,7 @@ frameWork.loadImage = (img) => {
 	imgSrcset = img.getAttribute('data-srcset');
 
 if (img.matches('img') || img.closest('picture')) {
-	if (__f.strGetFileExtension(imgSrc) == 'svg') {
+	if (FwString.GetFileExtension(imgSrc) == 'svg') {
 		const imgID = img.getAttribute('id') || null;
 		const imgClass = img.getAttribute('class') || null;
 

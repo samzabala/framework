@@ -2,15 +2,15 @@
 __f.dateIsValid = (date, args, rangeOnly) => {
 	rangeOnly = rangeOnly || false; //range,spot
 
-	const d = __f.dateToParse(date),
+	const d = DateToParse(date),
 		checkAgainst = args.disabledDates.split(',');
 
 	let toReturn = true;
 
 	if (!rangeOnly) {
 		//if in disabled dates
-		if (checkAgainst.indexOf(__f.dateToVal(d)) > -1) {
-			// console.warn('value is declared disabled specifically || ',__f.dateToVal(d));
+		if (checkAgainst.indexOf(DateToVal(d)) > -1) {
+			// console.warn('value is declared disabled specifically || ',DateToVal(d));
 			toReturn = false;
 		}
 
@@ -19,7 +19,7 @@ __f.dateIsValid = (date, args, rangeOnly) => {
 			checkAgainst.indexOf('weekends') > -1
 			&& (d.getDay() == 0 || d.getDay() == 6)
 		) {
-			// console.warn('value was a weekend || ',__f.dateToVal(d),__f.dateToVal(date));
+			// console.warn('value was a weekend || ',DateToVal(d),DateToVal(date));
 			toReturn = false;
 		}
 	}
@@ -31,7 +31,7 @@ __f.dateIsValid = (date, args, rangeOnly) => {
 		checkAgainst.indexOf('past') > -1
 		&& d < dateNow
 	) {
-		// console.warn('value was in the past || ',__f.dateToVal(date),'\nversus ',__f.dateToVal(dateNow));
+		// console.warn('value was in the past || ',DateToVal(date),'\nversus ',DateToVal(dateNow));
 		toReturn = false;
 	}
 
@@ -39,22 +39,22 @@ __f.dateIsValid = (date, args, rangeOnly) => {
 		checkAgainst.indexOf('future') > -1
 		&& d > dateNow
 	) {
-		// console.warn('value was in the future || ',__f.dateToVal(date),'\nversus ',__f.dateToVal(dateNow));
+		// console.warn('value was in the future || ',DateToVal(date),'\nversus ',DateToVal(dateNow));
 		toReturn = false;
 	}
 
 	//if  in range of min or max
 	if (
 		(
-			__f.dateToParse(args.max)
-			&& __f.dateToParse(args.max) < d
+			DateToParse(args.max)
+			&& DateToParse(args.max) < d
 		)
 		|| (
-			__f.dateToParse(args.min)
-			&& d < __f.dateToParse(args.min)
+			DateToParse(args.min)
+			&& d < DateToParse(args.min)
 		)
 	) {
-		// console.warn('value not in max and width || ',__f.dateToVal(d));;
+		// console.warn('value not in max and width || ',DateToVal(d));;
 		toReturn = false;
 	}
 
@@ -66,8 +66,8 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 	if (inputCalendar) {
 		valueForUi =
 			valueForUi
-			|| __f.dateToVal(inputCalendar.value)
-			|| __f.dateToVal(new Date());
+			|| DateToVal(inputCalendar.value)
+			|| DateToVal(new Date());
 		const theUi = {};
 
 		theUi.container = inputCalendar
@@ -113,8 +113,8 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 			}
 		}
 
-		const currYear = __f.dateToParse(valueForUi).getFullYear(),
-			currMonth = __f.dateToParse(valueForUi).getMonth(),
+		const currYear = DateToParse(valueForUi).getFullYear(),
+			currMonth = DateToParse(valueForUi).getMonth(),
 			currentCalendarDate = new Date(currYear, currMonth, 1); //IT ALSO FIRST DAY MOTHERFUCKER
 
 		//heading
@@ -129,11 +129,11 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 		const generateArrow = (buttonClass) => {
 			let symbolClass, arrowDate, validness;
 			//set a new date with no date because fuck that boi
-			// console.warn(buttonClass,'hello i fucked up','\n',__f.dateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
+			// console.warn(buttonClass,'hello i fucked up','\n',DateToParse(valueForUi),'\n',currentCalendarDate,'\n', new Date(currYear,currMonth));
 			switch (buttonClass) {
 				case 'prev-month':
 					symbolClass = 'symbol-arrow-left';
-					arrowDate = __f.dateToVal(
+					arrowDate = DateToVal(
 						__f.dateGetAdjacent(currentCalendarDate, -1)
 					);
 					validness = __f.dateIsValid(
@@ -145,7 +145,7 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 
 				case 'prev-year':
 					symbolClass = 'symbol-arrow-double-left';
-					arrowDate = __f.dateToVal(
+					arrowDate = DateToVal(
 						__f.dateGetAdjacent(currentCalendarDate, -12)
 					);
 					validness = __f.dateIsValid(
@@ -157,7 +157,7 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 
 				case 'next-month':
 					symbolClass = 'symbol-arrow-right';
-					arrowDate = __f.dateToVal(
+					arrowDate = DateToVal(
 						__f.dateGetAdjacent(currentCalendarDate, 1)
 					);
 					validness = __f.dateIsValid(
@@ -169,7 +169,7 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 
 				case 'next-year':
 					symbolClass = 'symbol-arrow-double-right';
-					arrowDate = __f.dateToVal(
+					arrowDate = DateToVal(
 						__f.dateGetAdjacent(currentCalendarDate, 12)
 					);
 					validness = __f.dateIsValid(
@@ -233,7 +233,7 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 		theUi.title.setAttribute('data-toggle', 'dropdown');
 		theUi.title.innerHTML = `<span
 			class="${__f.uiPrefix('calendar')}month-text">
-				${__f.monthFormatNamesShort[currMonth]}
+				${monthNamesShort[currMonth]}
 			</span>
 			<span class="${__f.uiPrefix('calendar')}year-text">
 				${currYear}
@@ -255,9 +255,9 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 			>
 				<a href="#"
 					class="${__f.uiPrefix('calendar')}month"
-					data-value="${__f.dateToVal(currentCalendarDate)}"
+					data-value="${DateToVal(currentCalendarDate)}"
 				>
-					${__f.monthFormatNamesShort[currMonth]} ${currYear}
+					${monthNamesShort[currMonth]} ${currYear}
 				</a>
 			</li>
 			<li><hr class="dropdown-separator"></li>`;
@@ -314,9 +314,9 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 					listItem = `<li class="${currClass}">
 						<a href="#"
 							class="${__f.uiPrefix('calendar')}month"
-							data-value="${__f.dateToVal(listItemDate)}">
+							data-value="${DateToVal(listItemDate)}">
 								${
-									__f.monthFormatNamesShort[
+									monthNamesShort[
 										listItemDate.getMonth()
 									]
 								} ${listItemDate.getFullYear()}
@@ -342,7 +342,7 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 
 		const generateBlock = (date, customClass) => {
 			customClass = customClass || '';
-			return `<a href="#" data-value="${__f.dateToVal(date)}"
+			return `<a href="#" data-value="${DateToVal(date)}"
 					class="
 					${__f.uiPrefix('calendar')}block 
 					${__f.uiPrefix('calendar')}date
@@ -372,7 +372,7 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 					class="${__f.uiPrefix('calendar')}block
 					${__f.uiPrefix('calendar')}day"
 				>
-					${__f.dayFormatNamesShorter[dayToRetrieve]}
+					${dayNamesShorter[dayToRetrieve]}
 				</div>`;
 
 			dayToRetrieve++;
@@ -483,9 +483,9 @@ __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
 //updates both input field and UI
 frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
 
-	const theValue = newValue || __f.dateToVal(inputCalendar.value);
+	const theValue = newValue || DateToVal(inputCalendar.value);
 
-	valueForUi = valueForUi || theValue || __f.dateToVal(new Date());
+	valueForUi = valueForUi || theValue || DateToVal(new Date());
 
 	const arr = {
 		class:
@@ -559,7 +559,7 @@ frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
 		dates.forEach((date) => {
 			if (
 				date.getAttribute('data-value') ==
-				__f.dateToVal(theValue)
+				DateToVal(theValue)
 			) {
 				date.classList.add('active');
 			} else {
@@ -570,8 +570,8 @@ frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
 		const inputField = inputCalendar.parentNode.querySelector(`.${__f.uiPrefix('calendar')}input input`);
 
 		if (inputField) {
-			inputField.setAttribute('value', __f.dateToHuman(theValue));
-			inputField.value = __f.dateToHuman(theValue);
+			inputField.setAttribute('value', DateToHuman(theValue));
+			inputField.value = DateToHuman(theValue);
 		}
 	}
 };
@@ -584,3 +584,111 @@ frameWork.readyCalendar = () => {
 	});
 };
 __f.fns_on_rightAway.push(frameWork.readyCalendar);
+
+
+
+frameWork.addEvent(
+	document.documentElement,
+	'change',
+	'.input-calendar',
+	(e) => {
+		const triggerer = e.target;
+		frameWork.updateCalendar(triggerer);
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'click', 
+	'a.input-calendar-ui-date',
+	(e) => {
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			const inputCalendar = triggerer
+				.closest('.input-calendar-ui')
+				.querySelector('.input-calendar');
+
+			if (inputCalendar) {
+				frameWork.updateCalendar(
+					inputCalendar,
+					e.target.getAttribute('data-value'),
+					null
+				);
+			}
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'a.input-calendar-ui-navigation, .input-calendar-ui-month',
+	(e) => {
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			const inputCalendar = triggerer
+				.closest('.input-calendar-ui')
+				.querySelector('.input-calendar');
+
+			if (inputCalendar) {
+				frameWork.updateCalendar(
+					inputCalendar,
+					null,
+					e.target.getAttribute('data-value')
+				);
+			}
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'keyup',
+	'.input-calendar-ui-input input',
+	(e) => {
+		const triggerer = e.target;
+
+		if (frameWork.isDisabled(triggerer)) {
+			e.preventDefault();
+
+		} else {
+			const inputCalendar = e.target
+				.closest('.input-calendar-ui')
+				.querySelector('.input.input-calendar');
+
+			const v = e.target.value;
+			if (v.match(/^\d{2}$/) !== null) {
+				e.target.value = `${v}/`;
+			} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+				e.target.value = `${v}/`;
+			}
+
+			const pattern = new RegExp(
+				dateTime.Human.pattern
+			);
+
+			const isValid = pattern.test(v);
+
+			if (isValid) {
+				const theValue = v.split('/');
+
+				const y = theValue[2] || '';
+				const m = theValue[0] || '';
+				const d = theValue[1] || '';
+
+				const preParsedVal = `${y}-${m}-${d}`;
+
+				frameWork.updateCalendar(
+					inputCalendar,
+					preParsedVal
+				);
+			}
+		}
+	}
+);

@@ -36,13 +36,13 @@ frameWork.initGrid = (moduleGrid) => {
 
 	const renderProps = (modElement, props) => {
 		props.forEach((prop) => {
-			// modElement.style[__f.strToCamelCase(prop)] = '';
+			// modElement.style[FwString.ToCamelCase(prop)] = '';
 			let propsSet = false,
 				propSetBr = false,
 				smallestStyledBr = false;
 
 			//check for breakpointz first
-			__f.reverseArray(__f.br_arr).forEach((br) => {
+			__f.reverseArray(BrTag).forEach((br) => {
 				if (
 					modElement.hasAttribute(`data-${prop}-${br}`)
 					&& !propsSet
@@ -50,7 +50,7 @@ frameWork.initGrid = (moduleGrid) => {
 					smallestStyledBr = br;
 					if (frameWork.validateBr(br, 'above')) {
 						modElement
-							.style[__f.strToCamelCase(prop)] = modElement.getAttribute(
+							.style[FwString.ToCamelCase(prop)] = modElement.getAttribute(
 								`data-${prop}-${br}`
 							);
 						propsSet = true;
@@ -69,7 +69,7 @@ frameWork.initGrid = (moduleGrid) => {
 					&& !propSetBr
 				) {
 					modElement
-						.style[__f.strToCamelCase(prop)] = modElement.getAttribute(
+						.style[FwString.ToCamelCase(prop)] = modElement.getAttribute(
 							`data-${prop}`
 						);
 					propsSet = true;
@@ -77,11 +77,11 @@ frameWork.initGrid = (moduleGrid) => {
 
 			} else {
 				if (
-					modElement.style[__f.strToCamelCase(prop)] !== null
+					modElement.style[FwString.ToCamelCase(prop)] !== null
 					&& smallestStyledBr
 					&& !frameWork.validateBr(smallestStyledBr, 'above')
 				) {
-					modElement.style[__f.strToCamelCase(prop)] = null;
+					modElement.style[FwString.ToCamelCase(prop)] = null;
 				}
 			}
 		});

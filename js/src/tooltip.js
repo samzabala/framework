@@ -70,7 +70,7 @@ frameWork.createToolTip = (triggerer) => {
 				ttHtml += ` badge-${args.badgeSize}`;
 			}
 
-			if (__f.palette.includes(args.badgeBg)) {
+			if (Palette.includes(args.badgeBg)) {
 				ttHtml += ` badge-${args.badgeBg}`;
 			} else {
 				ttHtml += `" style="background-color:${args.badgeBg};`;
@@ -294,3 +294,47 @@ frameWork.positionToolTip = (posX, posY) => {
 };
 __f.fns_on_scroll.push(frameWork.positionToolTip);
 __f.fns_on_resize.push(frameWork.positionToolTip);
+
+
+//tooltip
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'*[data-toggle="tooltip-click"]',
+	(e) => {
+
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			frameWork.createToolTip(triggerer);
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'mouseenter',
+	'*[data-toggle="tooltip-hover"]',
+	(e) => {
+
+		const triggerer = e.target;
+
+		if (frameWork.isDisabled(triggerer)) {
+			e.preventDefault();
+
+		} else {
+			frameWork.createToolTip(triggerer);
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'mouseleave',
+	'*[data-toggle="tooltip-hover"]',
+	(e) => {
+		frameWork.destroyToolTip();
+	}
+);

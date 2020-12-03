@@ -344,3 +344,279 @@ frameWork.readyTags = () => {
 };
 __f.fns_on_load.push(frameWork.readyTags);
 __f.fns_on_resize.push(frameWork.readyTags);
+
+
+frameWork.addEvent(
+	document.documentElement,
+	'change',
+	'.input-tags',
+	(e) => {
+		const triggerer = e.target;
+		frameWork.updateTags(triggerer);
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'paste',
+	'.input-tags-ui .input-tags-ui-input',
+	(e) => {
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			const pasted =
+				e.clipboardData
+				|| window.clipboardData
+				|| e.originalEvent.clipboardData;
+
+			triggerer.innerHTML += pasted.getData('text');
+
+			triggerer.blur();
+		}
+	}
+);
+
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'.input-tags-ui .input-tags-ui-input',
+	(e) => {
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			setTimeout(function() {
+				triggerer.focus();
+			}, 0);
+		}
+	}
+);
+
+//blur bitch blurr
+frameWork.addEvent(
+	document.documentElement,
+	'blur',
+	'.input-tags-ui .input-tags-ui-input',
+	(e) => {
+
+		const triggerer = e.target;
+
+		if (!frameWork.isDisabled(triggerer)) {
+			const inputTags = triggerer
+					.closest('.input-tags-ui')
+					.querySelector('.input-tags'),
+				inputUiIndex = triggerer.getAttribute('data-value'),
+				currValue = __f.tagsToParse(inputTags.value);
+
+			if(triggerer.innerText && triggerer.innerText != ''){
+				currValue.splice(
+					parseInt(inputUiIndex),
+					0,
+					triggerer.innerText.replace(',', '')
+				);
+			}
+
+			triggerer.innerText = '';
+
+			// const newValue = FwArr.MoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
+
+			frameWork.updateTags(
+				inputTags,
+				true,
+				__f.tagsToVal(currValue)
+			);
+		}
+	}
+);
+
+//key events on focus bitch
+frameWork.addEvent(
+	document.documentElement,
+	'keydown',
+	'.input-tags-ui .input-tags-ui-input',
+	(e) => {
+		const triggerer = e.target;
+
+		if (frameWork.isDisabled(triggerer)) {
+			e.preventDefault();
+
+		} else {
+			const inputTags = triggerer
+					.closest('.input-tags-ui')
+					.querySelector('.input-tags'),
+				inputUiIndex = triggerer.getAttribute('data-value'),
+				currValue = __f.tagsToParse(
+					inputTags.getAttribute('data-value-ui')
+				);
+
+			let newValue,
+				allowFilter = false;
+
+			inputTags.innerText = inputTags.innerText.replace(
+				/\n|\r/g,
+				'\\n'
+			);
+
+			switch (e.keyCode) {
+				//enter
+				case 13:
+					e.preventDefault();
+					break;
+
+				//comma
+				case 188:
+					if (!FwModifiers.hasActive()) {
+						allowFilter = true;
+						e.preventDefault();
+						currValue.splice(
+							parseInt(inputUiIndex),
+							0,
+							triggerer.innerText.replace((',', ''))
+						);
+
+						triggerer.innerText = '';
+					}
+					// currValue.splice()
+					break;
+
+				//left
+				case 37:
+					if (!triggerer.textContent) {
+						e.preventDefault();
+						FwArr.MoveItem(
+							currValue,
+							parseInt(inputUiIndex),
+							parseInt(inputUiIndex) - 1 >= 0
+								? parseInt(inputUiIndex) - 1
+								: 0
+						);
+					}
+
+					break;
+
+				//right
+				case 39:
+					if (!triggerer.textContent) {
+						e.preventDefault();
+						FwArr.MoveItem(
+							currValue,
+							parseInt(inputUiIndex),
+							parseInt(inputUiIndex) + 1 <= currValue.length - 1
+								? parseInt(inputUiIndex) + 1
+								: currValue.length - 1
+						);
+					}
+					break;
+
+				//backspace
+				case 8:
+					if (!triggerer.textContent) {
+						e.preventDefault();
+						allowFilter = true;
+						currValue.splice(
+							parseInt(inputUiIndex) - 1,
+							1
+						);
+					}
+					break;
+
+				//delete
+				case 46:
+					if (!triggerer.textContent) {
+						e.preventDefault();
+						allowFilter = true;
+						currValue.splice(
+							parseInt(inputUiIndex) + 1,
+							1
+						);
+					}
+					break;
+			}
+
+			newValue = __f.tagsToVal(currValue);
+
+			frameWork.updateTags(
+				inputTags,
+				allowFilter,
+				newValue
+			);
+		}
+	}
+);
+
+//on click on the text, edit it via input and input should be focused and in place of the tag
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'.input-tags-ui .input-tags-ui-tag-close',
+	(e) => {
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		const inputTags = triggerer
+			.closest('.input-tags-ui')
+			.querySelector('.input-tags');
+
+		if (!frameWork.isDisabled(triggerer)) {
+			const tagToRemove = triggerer.getAttribute(
+					'data-value'
+				),
+				currValue = __f.tagsToParse(
+					inputTags.getAttribute('data-value-ui')
+				);
+			currValue.splice(parseInt(tagToRemove), 1);
+
+			const newValue = __f.tagsToVal(currValue);
+
+			frameWork.updateTags(
+				inputTags,
+				true,
+				newValue
+			);
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'.input-tags-ui .input-tags-ui-tag-text',
+	(e) => {
+		const triggerer = e.target;
+
+		e.preventDefault();
+
+		if (!frameWork.isDisabled(triggerer)) {
+			const tagText = triggerer.innerText,
+				inputTags = triggerer
+					.closest('.input-tags-ui')
+					.querySelector('.input-tags'),
+				tagToEdit = triggerer.getAttribute('data-value'),
+				currValue = __f.tagsToParse(
+					inputTags.getAttribute('data-value-ui'),
+					false
+				);
+			currValue.splice(
+				parseInt(tagToEdit),
+				1,
+				__f.tagsInputString
+			);
+
+			const uiValue = __f.tagsToVal(currValue);
+
+			frameWork.updateTags(
+				inputTags,
+				false,
+				null,
+				uiValue,
+				tagText
+			);
+		}
+	}
+);

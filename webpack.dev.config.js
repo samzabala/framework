@@ -4,10 +4,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 // const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
-	entry: './index.js',
+	entry: {
+		'framework.webpack' :'./js/framework.webpack.js'
+	},
 	output: {
 		path: path.resolve(__dirname, './dist'),
-		filename: 'framework.webpack.min.js', //[contenthash]
+		filename: 'js/[name].webpack.min.js',
 		publicPath: ''
 	},
 	mode: 'none',
@@ -23,14 +25,27 @@ module.exports = {
 
 				test: /\.scss$/,
 				use: [
-					MiniCssExtractPlugin.loader,'css-loader','sass-loader',
-					
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},{
+						loader: 'css-loader',
+					},{
+						loader: 'sass-loader',
+						options: {
+							// Prefer `dart-sass`
+							implementation: require("sass"),
+						},
+					}
 				]
 			},{
 
 				test: /\.css$/,
 				use: [
-					MiniCssExtractPlugin.loader,'css-loader',
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},{
+						loader: 'css-loader',
+					}
 				]
 			},{
 
@@ -38,7 +53,7 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/env']
+						presets: ['@babel/env'],
 					}
 				}
 			}
@@ -47,10 +62,15 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.css', '.scss']
 	},
+	// optimization: {
+	// 	splitChunks : {
+	// 		chunks:' all'
+	// 	}
+	// },
 	plugins: [
 		new TerserPlugin(),
 		new MiniCssExtractPlugin({
-			filename: 'framework.webpack.css'
+			filename: 'css/[name].webpack.min.css'
 		}),
 		// new CleanWebpackPlugin({
 		// 	cleanOnceBeforeBuildPatterns: 

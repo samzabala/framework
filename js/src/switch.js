@@ -44,3 +44,33 @@ frameWork.initSwitch = (triggerer,mode) => {
 	} 
 }
 __f.fns_on_rightAway.push(frameWork.initSwitch);
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'*[data-toggle="switch-off"]',
+	(e) => {
+		const triggerer = e.target;
+
+		if (!frameWork.isDisabled(triggerer)) {
+			frameWork.initSwitch(triggerer,'off')
+		}else{
+			e.preventDefault();
+		}
+	}
+);
+
+frameWork.addEvent(
+	document.documentElement,
+	'click',
+	'*[data-toggle="switch-on"]',
+	(e) => {
+		const triggerer = e.target;
+
+		if (!frameWork.isDisabled(triggerer)) {
+			frameWork.initSwitch(triggerer,'on')
+		}else{
+			e.preventDefault();
+		}
+	}
+);
