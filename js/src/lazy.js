@@ -11,28 +11,32 @@ import { UiToggled,UiTriggerer } from './util/ui.js';
 const NAME = 'lazy';
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `${NAME}-loaded`;
+const SVG_REPLACED_CLASS = `${COMPONENT_CLASS}-svg-replacement`;
+const COMPONENT_SELECTOR = '*[data-src],*[data-srcset]';
 
-
-const ACTIVATED_CLASS = `${NAME}-loaded`;
+const BODY_LOADING_CLASS = `body-${NAME}-loading`;
+const BODY_LOADED_CLASS = `body-${NAME}-loaded`;
 
 const NAV_ANCESTOR = `li, .nav-item`;
 
 const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
-const EVENT_CLICK = `click${EVENT_KEY}`;
-const EVENT_FOCUS = `focus${EVENT_KEY}`;
-const EVENT_BLUR = `blur${EVENT_KEY}`;
 
-	const EVENT_BEFORE_CLOSE = `before_close${EVENT_KEY}`;
-	const EVENT_CLOSE = `close${EVENT_KEY}`;
-	const EVENT_AFTER_CLOSE = `after_close${EVENT_KEY}`;
-
-	const EVENT_BEFORE_OPEN = `before_open${EVENT_KEY}`;
-	const EVENT_OPEN = `open${EVENT_KEY}`;
-	const EVENT_AFTER_OPEN = `after_open${EVENT_KEY}`;
+	const EVENT_BEFORE_LAZYLOAD = `before_lazyload${EVENT_KEY}`;
+	const EVENT_LAZYLOAD = `lazyload${EVENT_KEY}`;
+	const EVENT_AFTER_LAZYLOAD = `after_lazyload${EVENT_KEY}`;
 
 class Lazy extends FwComponent {
+
+	constructor(element){
+		super(
+			element,
+			{
+				_ogElement:false 
+			}
+		);
+	}
 
 	dispose() {
 		super.dispose();
@@ -42,15 +46,23 @@ class Lazy extends FwComponent {
 		return DATA_KEY;
 	}
 
-	src(){
+	get theSrc(){
 		return super.UiEl().getAttribute('data-src');
 	}
 
-	srcSet(){
+	get theSrcSet(){
 		return super.UiEl().getAttribute('data-srcset');
 	}
 
-	load(element){
+	get UiOriginal() {
+		return this._ogElement || super.UiEl();
+	}
+
+	set UiOriginal(elem){
+		this._ogElement = elem;
+	}
+
+	load(elem){
 		const element = elem ?
 			super.UiEl(elem)
 			: super.UiEl();
@@ -59,21 +71,24 @@ class Lazy extends FwComponent {
 				return
 			}
 
-			if(element.classList.contains(`${COMPONENT_CLASS}`)){
+			FwEvent.trigger(element,EVENT_BEFORE_LAZYLOAD);
 
-		
+			if(element.classList.contains(`${COMPONENT_CLASS}`)){
+				FwEvent.trigger(element,EVENT_LAZYLOAD);
 				if (element.matches('img') || element.closest('picture')) {
-					if (element.classList.contains('lazy-svg') && FwString.getFileExtension(this.src) == 'svg') {
+					if (
+						FwString.GetFileExtension(this.theSrc) == 'svg'
+					) {
 						const imgID = element.getAttribute('id') || null;
 						const imgClass = element.getAttribute('class') || null;
 				
-						fetch(this.src)
+						fetch(this.theSrc)
 							.then((response) => response.text())
 							.then((markup) => {
 								const parser = new DOMParser();
-								const markup = parser.parseFromString(markup, 'text/html');
+								const dom = parser.parseFromString(markup, 'text/html');
 								
-								const svg = markup.querySelector('svg');
+								const svg = dom.querySelector('svg');
 				
 								if (svg) {
 									if (typeof imgID !== null) {
@@ -82,28 +97,70 @@ class Lazy extends FwComponent {
 									if (typeof imgClass !== null) {
 										svg.setAttribute(
 											'class',
-											`${imgClass} replaced-svg`
+											`${imgClass} ${SVG_REPLACED_CLASS} ${ACTIVATED_CLASS}`
 										);
 									}
 				
 									svg.removeAttribute('xmlns:a');
-									element.replaceWith(svg);
+									this.UiOriginal = element;
+									super._resetUiEl(svg);
 								}
 							});
 					} else {
-						element.src && element.setAttribute('src', this.src);
-						element.srcSet && element.setAttribute('srcset', this.srcset);
+						this.theSrc && element.setAttribute('src', this.theSrc);
+						this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
 					}
 				} else {
-					element.style.backgroundImage = `url(${this.src})`;
+					element.style.backgroundImage = `url(${this.theSrc})`;
 				}
-				element.classList.add(`${COMPONENT_CLASS}-loaded`);
+				element.classList.add(`${ACTIVATED_CLASS}`);
 			}
+
+
+			FwEvent.trigger(element,EVENT_AFTER_LAZYLOAD);
 
 	}
 
-	static loadAll(){
+	static setStatus(status) {
+		status = status || 'loaded';
+
+		let addClass,removeClass;
+
+		switch(status){
+			case 'loading':
+				addClass = BODY_LOADING_CLASS;
+				removeClass = BODY_LOADED_CLASS;
+				break;
+			case 'loaded':
+				addClass = BODY_LOADED_CLASS;
+				removeClass = BODY_LOADING_CLASS;
+				break;
+		}
 		
+		document.body.
+			classList.remove(removeClass);
+		document.body.
+			classList.add(addClass);
+	}
+
+	static loadAll(images){
+		
+		FwEvent.trigger(document,EVENT_BEFORE_LAZYLOAD);
+
+		Lazy.setStatus('loading');
+		images = images || document.querySelectorAll(COMPONENT_SELECTOR);
+	
+
+		FwEvent.trigger(document,EVENT_LAZYLOAD);
+		images.forEach((img) => {
+			const lazy = new Lazy(img);
+			lazy.load();
+		});
+	
+		Lazy.setStatus('loaded');
+
+
+		FwEvent.trigger(document,EVENT_AFTER_LAZYLOAD);
 	}
 	
 
@@ -114,7 +171,9 @@ class Lazy extends FwComponent {
 	
 
 	static initListeners(){
-		
+		if(FwCore.settings.lazyLoad ){
+			FwFnsQ.on_ready = Lazy.loadAll;
+		}
 	}
 }
 
@@ -122,27 +181,3 @@ class Lazy extends FwComponent {
 export default Lazy;
 
 Lazy.initListeners();
-
-
-
-frameWork.loadAll = (images) => {
-
-document.documentElement.
-	classList.remove('lazy-completed');
-document.documentElement.
-	classList.add('lazy-in-progress');
-//css images
-// images
-images = images || document.querySelectorAll('*[data-src]');
-
-images.forEach((img) => {
-	frameWork.load(img);
-});
-
-document.documentElement.
-	classList.remove('lazy-in-progress');
-document.documentElement.
-	classList.add('lazy-completed');
-};
-
-frameWork.settings.lazyLoad && __f.fns_on_ready.push(frameWork.loadAll);

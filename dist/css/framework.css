@@ -5650,9 +5650,9 @@ img.asset-thumbnail-image {
   opacity: 1;
   transition: 0.25s opacity ease-in-out;
 }
-html:not(.lazy-completed) .lazy,
-html:not(.lazy-completed) *[data-src],
-html:not(.lazy-completed) *[data-srcset] {
+body:not(.body-lazy-loaded) .lazy,
+body:not(.body-lazy-loaded) *[data-src],
+body:not(.body-lazy-loaded) *[data-srcset] {
   opacity: 0;
 }
 

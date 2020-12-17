@@ -346,7 +346,7 @@ var Alert = /*#__PURE__*/function (_FwComponent) {
   var _proto = Alert.prototype;
 
   _proto.close = function close(elem) {
-    var element = elem ? _FwComponent.prototype.el.call(this, elem) : this._element;
+    var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : this._element;
 
     if (!element) {
       return;
@@ -484,6 +484,174 @@ Button.initListeners();
 var dropdown = __webpack_require__(15);
 // EXTERNAL MODULE: ./js/src/form.js + 2 modules
 var src_form = __webpack_require__(16);
+;// CONCATENATED MODULE: ./js/src/lazy.js
+function lazy_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function lazy_createClass(Constructor, protoProps, staticProps) { if (protoProps) lazy_defineProperties(Constructor.prototype, protoProps); if (staticProps) lazy_defineProperties(Constructor, staticProps); return Constructor; }
+
+function lazy_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+var lazy_NAME = 'lazy';
+var lazy_COMPONENT_CLASS = "" + string.default.ToDashed(lazy_NAME);
+var lazy_ACTIVATED_CLASS = lazy_NAME + "-loaded";
+var SVG_REPLACED_CLASS = lazy_COMPONENT_CLASS + "-svg-replacement";
+var COMPONENT_SELECTOR = '*[data-src],*[data-srcset]';
+var BODY_LOADING_CLASS = "body-" + lazy_NAME + "-loading";
+var BODY_LOADED_CLASS = "body-" + lazy_NAME + "-loaded";
+var NAV_ANCESTOR = "li, .nav-item";
+var lazy_DATA_KEY = core.default.settings.prefix + "." + lazy_NAME;
+var lazy_EVENT_KEY = "." + lazy_DATA_KEY;
+var EVENT_BEFORE_LAZYLOAD = "before_lazyload" + lazy_EVENT_KEY;
+var EVENT_LAZYLOAD = "lazyload" + lazy_EVENT_KEY;
+var EVENT_AFTER_LAZYLOAD = "after_lazyload" + lazy_EVENT_KEY;
+
+var Lazy = /*#__PURE__*/function (_FwComponent) {
+  lazy_inheritsLoose(Lazy, _FwComponent);
+
+  function Lazy(element) {
+    return _FwComponent.call(this, element, {
+      _ogElement: false
+    }) || this;
+  }
+
+  var _proto = Lazy.prototype;
+
+  _proto.dispose = function dispose() {
+    _FwComponent.prototype.dispose.call(this);
+  };
+
+  _proto.load = function load(elem) {
+    var _this = this;
+
+    var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+
+    if (!element) {
+      return;
+    }
+
+    data_helper_event.default.trigger(element, EVENT_BEFORE_LAZYLOAD);
+
+    if (element.classList.contains("" + lazy_COMPONENT_CLASS)) {
+      data_helper_event.default.trigger(element, EVENT_LAZYLOAD);
+
+      if (element.matches('img') || element.closest('picture')) {
+        if (string.default.GetFileExtension(this.theSrc) == 'svg') {
+          var imgID = element.getAttribute('id') || null;
+          var imgClass = element.getAttribute('class') || null;
+          fetch(this.theSrc).then(function (response) {
+            return response.text();
+          }).then(function (markup) {
+            var parser = new DOMParser();
+            var dom = parser.parseFromString(markup, 'text/html');
+            var svg = dom.querySelector('svg');
+
+            if (svg) {
+              if (typeof imgID !== null) {
+                svg.setAttribute('id', imgID);
+              }
+
+              if (typeof imgClass !== null) {
+                svg.setAttribute('class', imgClass + " " + SVG_REPLACED_CLASS + " " + lazy_ACTIVATED_CLASS);
+              }
+
+              svg.removeAttribute('xmlns:a');
+              _this.UiOriginal = element;
+
+              _FwComponent.prototype._resetUiEl.call(_this, svg);
+            }
+          });
+        } else {
+          this.theSrc && element.setAttribute('src', this.theSrc);
+          this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
+        }
+      } else {
+        element.style.backgroundImage = "url(" + this.theSrc + ")";
+      }
+
+      element.classList.add("" + lazy_ACTIVATED_CLASS);
+    }
+
+    data_helper_event.default.trigger(element, EVENT_AFTER_LAZYLOAD);
+  };
+
+  Lazy.setStatus = function setStatus(status) {
+    status = status || 'loaded';
+    var addClass, removeClass;
+
+    switch (status) {
+      case 'loading':
+        addClass = BODY_LOADING_CLASS;
+        removeClass = BODY_LOADED_CLASS;
+        break;
+
+      case 'loaded':
+        addClass = BODY_LOADED_CLASS;
+        removeClass = BODY_LOADING_CLASS;
+        break;
+    }
+
+    document.body.classList.remove(removeClass);
+    document.body.classList.add(addClass);
+  };
+
+  Lazy.loadAll = function loadAll(images) {
+    data_helper_event.default.trigger(document, EVENT_BEFORE_LAZYLOAD);
+    Lazy.setStatus('loading');
+    images = images || document.querySelectorAll(COMPONENT_SELECTOR);
+    data_helper_event.default.trigger(document, EVENT_LAZYLOAD);
+    images.forEach(function (img) {
+      var lazy = new Lazy(img);
+      lazy.load();
+    });
+    Lazy.setStatus('loaded');
+    data_helper_event.default.trigger(document, EVENT_AFTER_LAZYLOAD);
+  };
+
+  Lazy.handleToggle = function handleToggle() {};
+
+  Lazy.initListeners = function initListeners() {
+    if (core.default.settings.lazyLoad) {
+      initiator.FwFnsQ.on_ready = Lazy.loadAll;
+    }
+  };
+
+  lazy_createClass(Lazy, [{
+    key: "theSrc",
+    get: function get() {
+      return _FwComponent.prototype.UiEl.call(this).getAttribute('data-src');
+    }
+  }, {
+    key: "theSrcSet",
+    get: function get() {
+      return _FwComponent.prototype.UiEl.call(this).getAttribute('data-srcset');
+    }
+  }, {
+    key: "UiOriginal",
+    get: function get() {
+      return this._ogElement || _FwComponent.prototype.UiEl.call(this);
+    },
+    set: function set(elem) {
+      this._ogElement = elem;
+    }
+  }], [{
+    key: "DATA_KEY",
+    get: function get() {
+      return lazy_DATA_KEY;
+    }
+  }]);
+
+  return Lazy;
+}(component.default);
+
+/* harmony default export */ const lazy = (Lazy);
+Lazy.initListeners();
 ;// CONCATENATED MODULE: ./js/framework.webpack.js
 // import FwArrayay from './src/data-helper/array.js';
 // import FwString from './src/data-helper/string.js';
@@ -494,12 +662,14 @@ var src_form = __webpack_require__(16);
 
 
 
+
 /* harmony default export */ const framework_webpack = ({
   Accordion: accordion,
   Alert: src_alert,
   Button: src_button,
   Dropdown: dropdown.default,
-  Form: src_form.default
+  Form: src_form.default,
+  Lazy: lazy
 });
 
 /***/ }),
@@ -827,8 +997,9 @@ var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
     return _FwDataHelper.apply(this, arguments) || this;
   }
 
-  FwEvent.addListener = function addListener(parent, evt, selector, delegationFn, customEventOpts) {
+  FwEvent.addListener = function addListener(parent, evt, selector, delegationFn, runNative, customEventOpts) {
     parent = parent || selector;
+    runNative = runNative !== false || runNative == true;
     var evtNoApi = evt.split("." + _util_core_js__WEBPACK_IMPORTED_MODULE_0__.default.settings.prefix)[0];
     var isNative = NativeEvents.includes(evt);
     customEventOpts = customEventOpts || {
@@ -850,10 +1021,10 @@ var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
     // 	true
     // );
 
-    parent.addEventListener(evtNoApi, function (event) {
+    parent.addEventListener(runNative ? evtNoApi : evt, function (event) {
       if (event.target.matches(selector + ', ' + selector + ' *')) {
         // try {
-        !isNative && FwEvent.trigger(event.target, evt, customEventOpts);
+        !runNative && !isNative && FwEvent.trigger(event.target, evt, customEventOpts);
         delegationFn(event); // } catch(e) {}
       }
     }, true);
@@ -1102,16 +1273,19 @@ var FwString = /*#__PURE__*/function (_FwDataHelper) {
   }
 
   FwString.GetFileExtension = function GetFileExtension(str) {
+    str = str.toString();
     return str.split('.').pop();
   };
 
   FwString.ToCamelCase = function ToCamelCase(str) {
+    str = str.toString();
     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index == 0 ? word.toLowerCase() : word.toUpperCase();
     }).replace(/-|\s/g, '');
   };
 
   FwString.ToDashed = function ToDashed(str) {
+    str = str.toString();
     return FwString.ToCamelCase(str).replace(/([a-z]|[0-9])([A-Z])/g, '$1-$2').toLowerCase();
   };
 
@@ -1179,8 +1353,20 @@ var FwComponent = /*#__PURE__*/function () {
     return _util_core_js__WEBPACK_IMPORTED_MODULE_0__.default.Data.get(element, this.DATA_KEY);
   };
 
-  _proto.UiEl = function UiEl() {
+  _proto.UiEl = function UiEl(elem) {
+    if (elem) {
+      this._resetUiEl(elem);
+    }
+
     return this._element;
+  };
+
+  _proto._resetUiEl = function _resetUiEl(element) {
+    if (element) {
+      this._element = element;
+    } else {
+      throw new Error('Needs a valid element to reset component UI root element');
+    }
   };
 
   _proto._runFn = function _runFn(callback) {

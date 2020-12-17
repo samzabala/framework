@@ -30,6 +30,7 @@ Works with Libsass and Compass
 *	[Dropdown](docs/sections/components/dropdown.md)
 *	[Form and input fields](docs/sections/components/form.md)
 *	[Highlights](docs/sections/components/highlight.md)
+*	[Lazy Loading (Images and SVG)](docs/sections/components/lazy.md)
 *	[Legends](docs/sections/components/legend.md)
 *	[List group](docs/sections/components/list-group.md)
 *	[Modal](docs/sections/components/modal.md)

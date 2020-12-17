@@ -10,10 +10,12 @@ import Alert from './src/alert.js';
 import Button from './src/button.js';
 import Dropdown from './src/dropdown.js';
 import Form from './src/form.js';
+import Lazy from './src/lazy.js';
 export default {
 	Accordion,
 	Alert,
 	Button,
 	Dropdown,
-	Form
+	Form,
+	Lazy
 };

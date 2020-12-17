@@ -5,9 +5,11 @@ class FwString extends FwDataHelper {
 		super(data);
 	}
 	static GetFileExtension (str) {
+		str = str.toString();
 		return str.split('.').pop();
 	}
 	static ToCamelCase (str) {
+		str = str.toString();
 	
 		return str
 			.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
@@ -19,6 +21,7 @@ class FwString extends FwDataHelper {
 	}
 
 	static ToDashed(str) {
+		str = str.toString();
 
 		return FwString.ToCamelCase(str).replace( /([a-z]|[0-9])([A-Z])/g, '$1-$2' ).toLowerCase();
 	}

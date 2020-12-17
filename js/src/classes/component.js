@@ -46,8 +46,19 @@ class FwComponent {
 		return FwCore.Data.get(element, this.DATA_KEY);
 	}
 
-	UiEl(){
+	UiEl(elem){
+		if(elem){
+			this._resetUiEl(elem);
+		}
 		return this._element;
+	}
+
+	_resetUiEl(element){
+		if(element){
+			this._element = element
+		}else{
+			throw new Error('Needs a valid element to reset component UI root element');
+		}
 	}
 
 	_runFn (callback) {
