@@ -19,10 +19,6 @@ $prefix: '.alert';
 	a {
 		color:inherit;
 		font-weight: $body-font-weight-bold;
-
-		&:hover {
-			text-decoration:underline;
-		}
 	}
 
 	&-close {

@@ -1,7 +1,6 @@
 /*** THUMBNAIL ***/
 $prefix: '.thumbnail';
 #{$prefix} {
-	@extend %for-anchor-reset !optional;
 	@extend %for-background-gradient-135;
 	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false,true,false);
 	width: 1em;
@@ -10,8 +9,11 @@ $prefix: '.thumbnail';
 	vertical-align:middle;
 	line-height: inherit;
 	position:relative;
-	text-decoration:none;
 	font-size: $calculated-thumbnail-size;
+
+	&,&:hover,&:focus,&.focus {
+		text-decoration:none;
+	}
 
 	&-text {
 		display:flex;
@@ -23,7 +25,7 @@ $prefix: '.thumbnail';
 		@include type-set((
 			size: $calculated-thumbnail-font-size,
 			leading: $calculated-thumbnail-line-height,
-			color: $thumbnail-color !important,
+			color: $thumbnail-color #{'!important'},
 			weight: $thumbnail-font-weight,
 			style: $thumbnail-font-style,
 			case: $thumbnail-text-transform,

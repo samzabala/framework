@@ -1582,15 +1582,6 @@
 	@extend %for-cf;
 }
 
-@at-root %for-disabled{
-	cursor:not-allowed!important;
-	opacity: $global-disabled-opacity;
-
-	* {
-		pointer-events:none;
-	}
-}
-
 .disabled {
 	@extend %for-disabled !optional;
 }

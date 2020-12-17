@@ -1272,17 +1272,18 @@ this.jQuery && this.jQuery.noConflict();
 
 				let dropdownInit, dropdownLimit;
 
-				if (args.dropdownYearSpan == 0) {
+				if (args.yearSpan == 0) {
 					dropdownInit = currentCalendarDate.getMonth() * -1;
 					dropdownLimit = 11 - currentCalendarDate.getMonth();
 				} else {
 					dropdownInit = parseInt(
-						-12 * parseInt(args.dropdownYearSpan)
+						-12 * parseInt(args.yearSpan)
 					);
 					dropdownLimit = parseInt(
-						12 * parseInt(args.dropdownYearSpan)
+						12 * parseInt(args.yearSpan)
 					);
 				}
+				console.log(dropdownInit, dropdownLimit,args.yearSpan);
 
 				//update dropdown
 				theUi.dropList = [];
@@ -1504,8 +1505,8 @@ this.jQuery && this.jQuery.noConflict();
 				max:
 					inputCalendar.attr('data-calendar-max')
 			|| inputCalendar.attr('max'),
-				dropdownYearSpan:
-					inputCalendar.attr('data-calendar-dropdown-year-span'),
+				yearSpan:
+					inputCalendar.attr('data-calendar-year-span'),
 				disabledDates:
 					inputCalendar.attr('data-calendar-disabled-dates'),
 				textInput:
@@ -1521,7 +1522,7 @@ this.jQuery && this.jQuery.noConflict();
 				startDay: 0, // su,mo,tu,we,th,fr,sa,
 				min: null,
 				max: null,
-				dropdownYearSpan: 0,
+				yearSpan: 0,
 				disabledDates: '',
 				textInput: false,
 				monthSkip: true,
@@ -1530,8 +1531,8 @@ this.jQuery && this.jQuery.noConflict();
 
 			const args = __f.parseArgs(arr, defaults);
 
-			if (parseInt(arr.dropdownYearSpan) <= 0) {
-				args.dropdownYearSpan = defaults.dropdownYearSpan;
+			if (parseInt(arr.yearSpan) <= 0) {
+				args.yearSpan = defaults.yearSpan;
 			}
 
 			args.startDay = parseInt(args.startDay) % 7;
@@ -1795,9 +1796,9 @@ this.jQuery && this.jQuery.noConflict();
 				callback:
 					inputTags.attr('data-tags-callback'),
 				callbackOnKeyup:
-					inputTags.attr('data-tags-callback-on-keyup'),
+					inputTags.attr('data-tags-on-keyup'),
 				callbackNameFilter:
-					inputTags.attr('data-tags-callback-name-filter'),
+					inputTags.attr('data-tags-filter'),
 				multipleLines:
 					inputTags.attr('data-tags-multiple-lines'),
 			};

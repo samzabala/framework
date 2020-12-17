@@ -13,7 +13,7 @@ frameWork.initSwitch = (triggerer,mode) => {
 	}
 	
 	if(triggerer){
-		const switchWrapper = __f.getTheToggled(triggerer, 'switch');
+		const switchWrapper = UiToggled( 'switch',triggerer);
 		if(switchWrapper){
 			switch(mode){
 				case 'on':
@@ -45,7 +45,7 @@ frameWork.initSwitch = (triggerer,mode) => {
 }
 __f.fns_on_rightAway.push(frameWork.initSwitch);
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="switch-off"]',
@@ -60,7 +60,7 @@ frameWork.addEvent(
 	}
 );
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="switch-on"]',

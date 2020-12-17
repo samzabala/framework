@@ -4,7 +4,7 @@ frameWork.createModal = (triggerer, subcom) => {
 	subcom = subcom || 'modal';
 	frameWork[subcom] = frameWork[subcom] || {};
 
-	const contentWrap = __f.getTheToggled(triggerer, subcom);
+	const contentWrap = UiToggled( subcom,triggerer);
 
 	if(contentWrap || !window.location.hash){
 		frameWork.destroyModal(null, subcom);
@@ -59,7 +59,7 @@ frameWork.createModal = (triggerer, subcom) => {
 			align: 'left',
 		};
 
-		const args = __f.parseArgs(arr, defaults);
+		const args = ParseArgs(arr, defaults);
 
 		const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
@@ -76,7 +76,7 @@ frameWork.createModal = (triggerer, subcom) => {
 
 		const id = contentWrap.getAttribute('id') || actualId;
 
-		id !== `${actualId}` && args.changeHash && __f.changeHash(id);
+		id !== `${actualId}` && args.changeHash && ChangeHash(id);
 
 		const modal = document.createElement('div');
 		document.querySelector('body').appendChild(modal);
@@ -183,7 +183,7 @@ frameWork.createModal = (triggerer, subcom) => {
 		}
 		
 		if (args.callback) {
-			__f.runFn(args.callback);
+			RunFn(args.callback);
 		}
 
 		frameWork[subcom].current = contentWrap;
@@ -293,14 +293,14 @@ frameWork.destroyModal = (removeHash, subcom) => {
 
 	removeBodClass && document.body.classList.remove('body-no-scroll');
 
-	canRemoveHash && __f.changeHash('');
+	canRemoveHash && ChangeHash('');
 };
 
 window.addEventListener('hashchange', () => {
 	frameWork.settings.initializeModal && frameWork.createModal();
 });
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="modal-open"], *[data-toggle="modal"]',
@@ -315,7 +315,7 @@ frameWork.addEvent(
 	}
 );
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="modal-close"]',

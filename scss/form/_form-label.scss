@@ -154,10 +154,10 @@ $prefix: '.input';
 		}
 
 		#{$prefix}-wrapper-vertical > & {
-			@extend %for-form-label-in-wrapper-vertical;
+			@extend %for-form-label-in-wrapper-vertical !optional;
 
 			@at-root #{$prefix}-wrapper-block#{&} {
-				@extend %for-form-label-in-wrapper-vertical-block;
+				@extend %for-form-label-in-wrapper-vertical-block !optional;
 			}
 		}
 	}

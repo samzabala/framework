@@ -32,13 +32,16 @@ $calculated-calendar-exception: '';
 					-ms-user-select: none;
 						user-select: none;
 					
+					
 					&-block {
+						@extend %for-form-input-ui-button !optional;
 						padding:$calculated-input-calendar-block-gutter-y $calculated-input-calendar-block-gutter-x;
 						text-align: center;
 						display:block;
 						white-space:nowrap;
 						position:relative;
 						color: inherit;
+						@include reset-anchor(true);
 
 						&,&:after {
 							border-radius: $input-calendar-block-border-radius;
@@ -210,6 +213,7 @@ $calculated-calendar-exception: '';
 
 					&-button{
 						color:inherit;
+						@extend %for-form-input-ui-button !optional;
 
 
 						&:hover {

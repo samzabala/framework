@@ -713,7 +713,7 @@ $prefix: '.input';
 				border-color: $color;
 				
 				@if type-of($color) == color and $color != transparent {
-					background-color: var(--#{$variable-prefix}-color-#{$tag}-#{$input-color-feedback-var-slug});
+					background-color: var(--fw-color-#{$tag}-#{$input-color-feedback-var-slug});
 				}
 
 				&:not(.focus):not(:focus):not(.active):not(:active) {

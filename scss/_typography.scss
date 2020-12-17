@@ -112,66 +112,28 @@ em,i{
 }
 
 
-%for-anchor {
-	& {
-		@extend %for-anchor-interaction;
-		@extend %for-anchor-color;
-	}
-
-	&-interaction {
-	
-		&:hover,&:focus,&.focus {
-			text-decoration: $body-anchor-text-decoration-hover;
-	
-			&,* {
-				cursor: pointer;
-			}
-	
-			* {
-				text-decoration: inherit;
-				text-decoration-color: currentColor;
-			}
-	
-	
-		}
-	}
-	
-	&-reset {
-		text-decoration: none;
-	}
-
-	&-color {
-
-		transition: $transition-duration-base color $transition-timing;
-
-		&:hover,&:focus,&.focus {
-			color: $body-anchor-color-hover;
-		}
-	
-		&,&.disabled {
-			color: $body-anchor-color;
-		}
-	}
-	
-}
-
 
 a,.a {
-	@extend %for-anchor;
-	@extend %for-anchor-color;
-}
+	transition: $transition-duration-base color $transition-timing;
 
-
-// And undo these styles for placeholder links/named anchors (without href).
-// It would be more straightforward to just use a[href] in previous block, but that
-// causes specificity issues in many other styles that are too complex to fix.
-
-a:not([href]):not([class]) {
-	&,
-	&:hover {
-		@extend %for-anchor-reset;
+	&,&.disabled {
+		color: $body-anchor-color;
 	}
-  }
+	
+	&:hover,&:focus,&.focus {
+		text-decoration: $body-anchor-text-decoration-hover;
+		color: $body-anchor-color-hover;
+
+		&,* {
+			cursor: pointer;
+		}
+
+		* {
+			text-decoration: inherit;
+			text-decoration-color: currentColor;
+		}
+	}
+}
 
 
 // margined shit

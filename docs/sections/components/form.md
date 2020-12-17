@@ -855,7 +855,7 @@ Defaults to ``
 Minimum date allowed. Must be in ISO8601 format.
 
 
-**`data-calendar-dropdown-year-span`**
+**`data-calendar-year-span`**
 
 Defaults to `1`
 
@@ -973,9 +973,11 @@ Defaults to `auto`
 
 Set a width for the input field. Note that there is a set max-width on ya boi so this will shrink if its containing element becomes too small
 
-**`data-tags-callback`**
+**`data-tags-callback (DEPRECATED)`**
 
 callback function for after rendering the ui and changing the value
+
+DEPRECATED ... just add an event listener on `after_update_.fw.formTags`
 
 ```html
 <script>
@@ -986,7 +988,7 @@ callback function for after rendering the ui and changing the value
 <input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback="doSomehing()" />
 ```
 
-**`data-tags-callback-name-filter`**
+**`data-tags-filter` (previously data-tag-callback-name-filter or something like that)**
 
 name of the function to callback to manipulating and return the value before rendering of the input tags
 
@@ -1002,17 +1004,17 @@ name of the function to callback to manipulating and return the value before ren
 		return value;
 	}
 </script>
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback-name-filter="changeCurseWord" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-filter="changeCurseWord" />
 ```
 
 
-**`data-tags-callback-on-keyup`**
+**`data-tags-on-keyup` (previously data-tag-callback-on-keyup or something like that)**
 
 callback function after keyup on the input field. NOTE. the field is actually a `span[contenteditable]`
 
 
 ```html
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback-on-keyup="logSomeFuckers(e)" />
+<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-on-keyup="logSomeFuckers(e)" />
 ```
 
 

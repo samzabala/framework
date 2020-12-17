@@ -46,7 +46,7 @@ frameWork.createToolTip = (triggerer) => {
 			allowInteraction: false,
 		};
 
-		const args = __f.parseArgs(arr, defaults);
+		const args = ParseArgs(arr, defaults);
 
 		const toolTip = document.createElement('div');
 		document.querySelector('body').appendChild(toolTip);
@@ -297,7 +297,7 @@ __f.fns_on_resize.push(frameWork.positionToolTip);
 
 
 //tooltip
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="tooltip-click"]',
@@ -313,7 +313,7 @@ frameWork.addEvent(
 	}
 );
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'mouseenter',
 	'*[data-toggle="tooltip-hover"]',
@@ -330,7 +330,7 @@ frameWork.addEvent(
 	}
 );
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'mouseleave',
 	'*[data-toggle="tooltip-hover"]',

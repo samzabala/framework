@@ -277,3 +277,51 @@
 			color: $color-inverse;
 		}
 }
+
+@function get-anchor-dec($is-hover:false){
+	@if $is-hover {
+		@return  if($body-anchor-text-decoration-hover == underline, none, null);
+	} @else {
+		@return  if($body-anchor-text-decoration == none, null, none);
+	}
+}
+
+
+@mixin reset-anchor($anchor-is-selected: false){
+	$selector: 'a';
+	@if $anchor-is-selected {
+		$selector: #{&};
+	}
+	
+	#{$selector} {
+		& {
+			text-decoration: get-anchor-dec();
+
+			&:hover,&:focus,&.focus {
+				text-decoration: get-anchor-dec(true);
+			}
+		}
+	}
+}
+
+
+@mixin reset-text(){
+	font-size: 100%;
+	font: inherit;
+}
+
+
+@mixin reset-block(){
+	margin: 0;
+	padding: 0;
+	border: none;
+	background: none;
+	border-radius: none;
+}
+
+@mixin reset-button(){
+	-webkit-appearance:none;
+	appearance:none;
+	@include reset-block();
+	@include reset-text();
+}

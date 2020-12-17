@@ -11,35 +11,35 @@
 		--fw-br-mobile-max: #{$mobile-br-max};
 
 	// FONT
-		--#{$variable-prefix}-font-primary: #{$brand-font-primary};
-		--#{$variable-prefix}-font-accent: #{$brand-font-secondary};
-		--#{$variable-prefix}-font-monospace: #{$brand-font-monospace};
+		--fw-font-primary: #{$brand-font-primary};
+		--fw-font-accent: #{$brand-font-secondary};
+		--fw-font-monospace: #{$brand-font-monospace};
 
 	//colour
 
 		@each $tag,$value in $calculated-color-tags {
-			--#{$variable-prefix}-color-#{$tag}: #{$value};
+			--fw-color-#{$tag}: #{$value};
 
 			@each $slug,$slug-value in map-get($calculated-color-variations,$tag) {
-				--#{$variable-prefix}-color-#{$tag}-#{$slug}: #{$slug-value};
+				--fw-color-#{$tag}-#{$slug}: #{$slug-value};
 			}
 		}
 		
-		--#{$variable-prefix}-gradient-start: #{$brand-gradient-start};
-		--#{$variable-prefix}-gradient-end: #{$brand-gradient-end};
+		--fw-gradient-start: #{$brand-gradient-start};
+		--fw-gradient-end: #{$brand-gradient-end};
 		
 	// GLOBAL html + body coloring
-		--#{$variable-prefix}-theme-color: #{$brand-theme-color};
-		--#{$variable-prefix}-theme-color-contrast: #{$brand-theme-color-contrast};
-		--#{$variable-prefix}-theme-background: #{$brand-theme-background};
-		--#{$variable-prefix}-theme-background-contrast: #{$brand-theme-background-contrast};		
+		--fw-theme-color: #{$brand-theme-color};
+		--fw-theme-color-contrast: #{$brand-theme-color-contrast};
+		--fw-theme-background: #{$brand-theme-background};
+		--fw-theme-background-contrast: #{$brand-theme-background-contrast};		
 }
 
 %for-var-inverse {
-	--#{$variable-prefix}-theme-color: #{$brand-theme-color-inverse};
-	--#{$variable-prefix}-theme-color-contrast: #{$brand-theme-color-contrast-inverse};
-	--#{$variable-prefix}-theme-background: #{$brand-theme-background-inverse};
-	--#{$variable-prefix}-theme-background-contrast: #{$brand-theme-background-contrast-inverse};
+	--fw-theme-color: #{$brand-theme-color-inverse};
+	--fw-theme-color-contrast: #{$brand-theme-color-contrast-inverse};
+	--fw-theme-background: #{$brand-theme-background-inverse};
+	--fw-theme-background-contrast: #{$brand-theme-background-contrast-inverse};
 }
 
 
@@ -215,12 +215,12 @@
 		// border: none;
 		cursor: pointer;
 	}
-	
+
 	a {
 		text-decoration: none;
 	}
-	
-	/* to toggley bitches kids  */
+
+/* to toggley bitches kids  */
 	*[data-toggle]{
 		cursor: pointer;
 		-webkit-user-select: none!important; /* Safari 3.1+ */
@@ -231,3 +231,19 @@
 			pointer-events: none!important;
 		}
 	}
+
+
+
+
+@at-root %for-disabled{
+	cursor:not-allowed!important;
+	opacity: $global-disabled-opacity;
+
+	* {
+		pointer-events:none;
+	}
+}
+
+[disabled] {
+	@extend  %for-disabled !optional;
+}

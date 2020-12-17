@@ -1,9 +1,8 @@
 /*** Tags ***/
 $prefix: '.tag';
 #{$prefix} {
-	@extend %for-anchor-reset !optional;
 	@include type-set((
-		decoration:none,
+		decoration: get-anchor-dec(),
 		size: $calculated-tag-font-size,
 		leading: $calculated-tag-line-height,
 		weight: $tag-font-weight,
@@ -37,8 +36,10 @@ $prefix: '.tag';
 	}
 
 	a {
-		@extend %for-anchor-reset !optional;
-		color:inherit;
+		&,&:hover,&:focus,&.focus {
+			text-decoration:inherit;
+			color:inherit;
+		}
 	}
 	&-text  {
 		max-width: 10em;
@@ -49,10 +50,9 @@ $prefix: '.tag';
 	&,
 	&:hover,
 	&:focus,
-	&:active,
-	&.focus,
-	&.active {
+	&.focus {
 		color: $tag-color;
+		text-decoration: get-anchor-dec(true);
 	}
 
 

@@ -1,0 +1,19 @@
+{
+	"files": [
+		{
+			"path": "./dist/css/framework.css"
+		},
+		{
+			"path": "./dist/css/framework.layout.css"
+		},
+		{
+			"path": "./dist/css/framework.lite.css"
+		},
+		{
+			"path": "./dist/css/framework.normalize.css"
+		},
+		{
+			"path": "./dist/css/framework.utilities.css"
+		}
+	]
+}

@@ -143,12 +143,17 @@ $prefix: '.nav';
 	#{$prefix}-item,
 	&-list > li {
 
+		> a {
+			&:hover,&:focus,&.focus {
+				text-decoration: get-anchor-dec(true);
+			}
+		}
+
 		> a,
 		> [data-toggle] {
-			@extend %for-anchor-reset !optional;
 			@include type-set((
 				color:inherit,
-				decoration:none,
+				decoration:get-anchor-dec(),
 				size: $calculated-nav-top-font-size,
 				style: $nav-top-font-style,
 				weight: $nav-top-font-weight,

@@ -1,13 +1,13 @@
 /*** highlights ***/
 $prefix: '.highlight';
 #{$prefix} {
-	@extend %for-anchor-reset !optional;
 	@include type-set((
 		size: inherit,
 		leading: inherit,
 		weight: $highlight-font-weight,
 		style: $highlight-font-style,
 		case: $highlight-text-transform,
+		decoration: get-anchor-dec(),
 		color:inherit
 	));
 	padding-top: calc(  (  (#{$calculated-highlight-height} - (#{ $calculated-body-single-line }) ) * .5 ));
@@ -27,6 +27,7 @@ $prefix: '.highlight';
 	&:active,
 	&.focus,
 	&.active {
+		text-decoration: get-anchor-dec(true);
 		color: $highlight-color;
 	}
 

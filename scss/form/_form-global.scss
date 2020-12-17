@@ -34,7 +34,7 @@ $prefix: '.input';
 @at-root %for-form-input {
 
 	& {
-		@extend %for-anchor-reset !optional;
+		text-decoration: none;
 		font: inherit;
 		color:inherit;
 		// vertical-align: middle;
@@ -76,6 +76,14 @@ $prefix: '.input';
 	}
 
 	&-ui {
+		&-button {
+			font-size: 100%;
+			font: inherit;
+			border: none;
+			background: none;
+			-webkit-appearance:none;
+			appearance:none;
+		}
 
 
 

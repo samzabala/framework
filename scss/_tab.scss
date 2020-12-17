@@ -146,12 +146,11 @@ $prefix: '.tab';
 
 		> a,
 		#{$prefix}-text {
-			@extend %for-anchor-reset !optional;
 			@extend %for-tab-all;
 			@extend %for-tab-padding;
 			@include type-set((
 				color:inherit,
-				decoration:none,
+				decoration: get-anchor-dec(),
 			));
 			margin-top: calc(  (  (#{ $calculated-tabs-item-height } - (#{$tabs-item-border-width} * 2)) - (#{$calculated-tabs-font-size * $calculated-body-line-height}) ) * -.5 );
 			margin-bottom: calc(  (  (#{ $calculated-tabs-item-height } - (#{$tabs-item-border-width} * 2)) - (#{$calculated-tabs-font-size * $calculated-body-line-height}) ) * -.5 );
@@ -159,6 +158,10 @@ $prefix: '.tab';
 			margin-left:$tabs-item-gutter-x * -1;
 			flex: 1 1;
 			align-self:stretch;
+
+			&:hover,&:focus,&.focus {
+				text-decoration: get-anchor-dec(true);
+			}
 		}
 	}
 }

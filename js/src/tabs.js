@@ -1,4 +1,4 @@
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'.tab, .tab > *',

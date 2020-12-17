@@ -47,6 +47,8 @@ $prefix: '.input';
 						min-height:100%;
 						margin-bottom: $calculated-input-tags-padding-y * -1;
 						margin-top: ($calculated-input-tags-padding-y + $calculated-input-tags-gutter-y) * -1;
+						flex-direction: row-reverse;
+						direction: rtl;
 
 
 
@@ -72,6 +74,7 @@ $prefix: '.input';
 					// @todo//ellipsis
 					display:flex;
 					align-items:center;
+					direction: ltr;
 					padding-top: $calculated-input-tags-padding-y;
 					padding-bottom: $calculated-input-tags-padding-y;
 					padding-left: $calculated-input-tags-padding-x;
@@ -96,35 +99,39 @@ $prefix: '.input';
 				&-tag {
 					max-width:100%;
 					margin-right: $calculated-input-tags-gutter-x;
-					background: var(--#{$variable-prefix}-color-#{$input-tags-palette-tag}-#{$input-tags-palette-tag-slug});
+					background: var(--fw-color-#{$input-tags-palette-tag}-#{$input-tags-palette-tag-slug});
 					border-radius: $input-tags-border-radius;
 
-					&-text,
-					&-close {
+					&-button {
 						vertical-align: middle;
+						color:inherit;
+						@extend %for-form-input-ui-button !optional;
 					}
 
 					&-text {
 						@extend %for-text-ellipsis-single;
 						max-width: 10em;
-						cursor:pointer;
+						cursor:text;
 					}
 
 					&-close {
 						margin-left: .25em;
 						line-height:1;
 						font-size: .75em;
+						color:inherit;
+						opacity: .5;
+						cursor:pointer;
 
-						@each $tag,$color in $calculated-brand-color-declarations-for-components {
-							#{$prefix}-#{$tag} & {
-								color: $color;
-							}
+						&:hover,
+						&:focus,
+						&.focus {
+							opacity:1;
 						}
 					}
 
 					@each $tag,$color in $calculated-brand-color-declarations-for-components {
 						#{$prefix}-#{$tag} & {
-							background: var(--#{$variable-prefix}-color-#{$tag}-#{$input-tags-palette-tag-slug});
+							background: var(--fw-color-#{$tag}-#{$input-tags-palette-tag-slug});
 						}
 					}
 				}

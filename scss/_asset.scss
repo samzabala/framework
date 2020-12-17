@@ -459,24 +459,24 @@ $prefix: '.asset';
 
 		@each $type,$tag in $calculated-asset-palettes {
 			&#{&}-#{$type} {
-				color: var(--#{$variable-prefix}-color-#{$tag});
+				color: var(--fw-color-#{$tag});
 				@include gradient((
 					angle: 0deg,
 					colors: (
 						(
-							color: var(--#{$variable-prefix}-color-#{$tag}),
+							color: var(--fw-color-#{$tag}),
 							offset:0 
 						),
 						(
-							color: var(--#{$variable-prefix}-color-#{$tag}),
+							color: var(--fw-color-#{$tag}),
 							offset: 33%
 						),
 						(
-							color: var(--#{$variable-prefix}-color-#{$tag}-alpha-2),
+							color: var(--fw-color-#{$tag}-alpha-2),
 							offset: 33%
 						),
 						(
-							color: var(--#{$variable-prefix}-color-#{$tag}-alpha-2),
+							color: var(--fw-color-#{$tag}-alpha-2),
 							offset: 100%
 						)
 					)

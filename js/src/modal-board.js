@@ -22,7 +22,7 @@ window.addEventListener('hashchange', () => {
 	frameWork.settings.initializeModal && frameWork.createBoard();
 });
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="board-open"], *[data-toggle="board"]',
@@ -38,7 +38,7 @@ frameWork.addEvent(
 	}
 );
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="board-close"]',
@@ -53,7 +53,7 @@ frameWork.addEvent(
 	}
 );
 
-frameWork.addEvent(
+FwEvent.addListener(
 	document.documentElement,
 	'click',
 	'*[data-toggle="board-resize"]',
@@ -132,7 +132,7 @@ frameWork.addEvent(
 			
 	};
 
-	frameWork.addEvent(
+	FwEvent.addListener(
 		document.documentElement,
 		'mousedown',
 		'*[data-toggle="board-resize"]',
@@ -142,7 +142,7 @@ frameWork.addEvent(
 		}
 	);
 
-		frameWork.addEvent(
+		FwEvent.addListener(
 			document.documentElement,
 			'touchstart',
 			'*[data-toggle="board-resize"]',

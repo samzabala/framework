@@ -1,5 +1,5 @@
 
-		frameWork.addEvent(
+		FwEvent.addListener(
 			document.documentElement,
 			'change',
 			'.zone input[type="file"]',

@@ -70,8 +70,10 @@ $prefix: '.list-group';
 		#{$prefix}-item {
 			&,
 			& a {
-				@extend %for-anchor-reset !optional;
-				color: inherit;
+				@include type-set((
+					color: inherit,
+					decoration: inherit
+				))
 			}
 
 			> * {

@@ -17,7 +17,11 @@ $prefix: '.toolbar';
 			
 	&,
 	& a {
-		@extend %for-anchor-reset !optional;
+		text-decoration:get-anchor-dec();
+
+		&:hover,&:focus,&.focus {
+			text-decoration: get-anchor-dec(true);
+		}
 	}
 	
 	&#{$prefix}-small {

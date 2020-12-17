@@ -1144,6 +1144,7 @@
 
 		//range only is pag kwan di sya isa isang date pangmaramihan
 		__f.dateIsValid = (date, args, rangeOnly) => {
+			console.log(args);
 			rangeOnly = rangeOnly || false; //range,spot
 
 			const d = __f.dateToParse(date),
@@ -1408,15 +1409,15 @@
 
 				let dropdownInit, dropdownLimit;
 
-				if (args.dropdownYearSpan == 0) {
+				if (args.yearSpan == 0) {
 					dropdownInit = currentCalendarDate.getMonth() * -1;
 					dropdownLimit = 11 - currentCalendarDate.getMonth();
 				} else {
 					dropdownInit = parseInt(
-						-12 * parseInt(args.dropdownYearSpan)
+						-12 * parseInt(args.yearSpan)
 					);
 					dropdownLimit = parseInt(
-						12 * parseInt(args.dropdownYearSpan)
+						12 * parseInt(args.yearSpan)
 					);
 				}
 
@@ -1432,7 +1433,6 @@
 
 						if (i >= 0) {
 							//first day of month
-							// console.log('kinabukasan sya');
 							toReturn = new Date(
 								listItemDate.getFullYear(),
 								listItemDate.getMonth(),
@@ -1441,7 +1441,6 @@
 
 						} else {
 							//last day of month
-							// console.log('nakaraan sya');
 							toReturn = new Date(
 								listItemDate.getFullYear(),
 								listItemDate.getMonth() + 1,
@@ -1451,7 +1450,7 @@
 
 						return toReturn;
 					})();
-					// console.warn(i,'\nkwan ano ni\n',listItemDate,dateForValidation);
+					console.warn(i,'\nkwan ano ni\n',listItemDate);
 
 					if (__f.dateIsValid(dateForValidation, args, true)) {
 						let currClass = i == 0 ? 'active' : '',
@@ -1642,8 +1641,8 @@
 				max:
 					inputCalendar.getAttribute('data-calendar-max')
 					|| inputCalendar.getAttribute('max'),
-				dropdownYearSpan:
-					inputCalendar.getAttribute('data-calendar-dropdown-year-span'),
+				yearSpan:
+					inputCalendar.getAttribute('data-calendar-year-span'),
 				disabledDates:
 					inputCalendar.getAttribute('data-calendar-disabled-dates'),
 				textInput:
@@ -1659,7 +1658,7 @@
 				startDay: 0, // su,mo,tu,we,th,fr,sa,
 				min: null,
 				max: null,
-				dropdownYearSpan: 0,
+				yearSpan: 0,
 				disabledDates: '',
 				textInput: false,
 				monthSkip: true,
@@ -1668,8 +1667,8 @@
 
 			const args = __f.parseArgs(arr, defaults);
 
-			if (parseInt(arr.dropdownYearSpan) <= 0) {
-				args.dropdownYearSpan = defaults.dropdownYearSpan;
+			if (parseInt(arr.yearSpan) <= 0) {
+				args.yearSpan = defaults.yearSpan;
 			}
 
 			args.startDay = parseInt(args.startDay) % 7;
@@ -1949,9 +1948,9 @@
 				callback:
 					inputTags.getAttribute('data-tags-callback'),
 				callbackOnKeyup:
-					inputTags.getAttribute('data-tags-callback-on-keyup'),
+					inputTags.getAttribute('data-tags-on-keyup'),
 				callbackNameFilter:
-					inputTags.getAttribute('data-tags-callback-name-filter'),
+					inputTags.getAttribute('data-tags-filter'),
 				multipleLines:
 					inputTags.getAttribute('data-tags-multiple-lines'),
 			};
