@@ -767,6 +767,7 @@ $prefix: '.asset';
 		margin-bottom: $asset-thumbnail-margin-bottom;
 		background: $asset-thumbnail-background;
 		border-radius: $asset-border-radius;
+		overflow:hidden;
 
 		img {
 			display:block;
@@ -774,7 +775,7 @@ $prefix: '.asset';
 		}
 
 		&:not(#{&}-freeform) {
-			@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,true,false,false,false);
+			@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,false,false,false,false);
 
 			& > img,
 			& > #{$prefix}-thumbnail-image {
@@ -800,6 +801,7 @@ $prefix: '.asset';
 			box-shadow: $asset-box-shadow-hover;
 		}
 	}
+
 
 	&-title {
 
