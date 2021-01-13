@@ -811,8 +811,23 @@ $prefix: '.asset';
 		box-shadow: $asset-box-shadow;
 		margin-bottom: $asset-thumbnail-margin-bottom;
 		background: $asset-thumbnail-background;
-		@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,true,false,false,false);
 		border-radius: $asset-border-radius;
+		overflow:hidden;
+
+		img {
+			display:block;
+			width: 100%;
+		}
+
+		&:not(#{&}-freeform) {
+			@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,false,false,false,false);
+
+			& > img,
+			& > #{$prefix}-thumbnail-image {
+				z-index:1;
+				@extend %for-fit-image-cover-img;
+			}
+		}
 
 		> * {
 			pointer-events: none;
@@ -830,13 +845,8 @@ $prefix: '.asset';
 		&:hover {
 			box-shadow: $asset-box-shadow-hover;
 		}
-
-		@at-root & > img,
-		img#{&}-image {
-			z-index:1;
-			@extend %for-fit-image-cover-img;
-		}
 	}
+
 
 	&-title {
 
