@@ -148,7 +148,6 @@ class FormTags extends FwComponent {
 	static get configDefaults(){
 		return {
 			width: null,
-			callback: null,
 			filter: null,
 			onKeyUp: null,
 			multipleLines: false,
@@ -162,8 +161,6 @@ class FormTags extends FwComponent {
 				: {
 					width:
 						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
-					callback:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`),
 					onKeyUp:
 						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`),
 					filter:

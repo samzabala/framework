@@ -421,7 +421,6 @@ function button_inheritsLoose(subClass, superClass) { subClass.prototype = Objec
 
 
 
-
 var button_NAME = 'btn';
 var button_COMPONENT_CLASS = "" + string.default.ToDashed(button_NAME);
 var button_DATA_KEY = core.default.settings.prefix + "." + button_NAME;
@@ -652,11 +651,102 @@ var Lazy = /*#__PURE__*/function (_FwComponent) {
 
 /* harmony default export */ const lazy = (Lazy);
 Lazy.initListeners();
+;// CONCATENATED MODULE: ./js/src/list-group.js
+function list_group_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function list_group_createClass(Constructor, protoProps, staticProps) { if (protoProps) list_group_defineProperties(Constructor.prototype, protoProps); if (staticProps) list_group_defineProperties(Constructor, staticProps); return Constructor; }
+
+function list_group_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+var list_group_NAME = 'listGroup';
+var list_group_COMPONENT_CLASS = string.default.ToDashed(list_group_NAME) + "-toggle"; //coz toggling shit only work when this class is heeerr
+
+var CHILD_CLASS = string.default.ToDashed(list_group_NAME) + "-item";
+var COMPONENT_TOGGLEGROUP_PREFIX = "list";
+var list_group_DATA_KEY = core.default.settings.prefix + "." + list_group_NAME;
+var list_group_EVENT_KEY = "." + list_group_DATA_KEY;
+var list_group_EVENT_CLICK = "click" + list_group_EVENT_KEY;
+var list_group_EVENT_BEFORE_TOGGLE = "before_toggle" + list_group_EVENT_KEY;
+var list_group_EVENT_TOGGLE = "toggle" + list_group_EVENT_KEY;
+var list_group_EVENT_AFTER_TOGGLE = "after_toggle" + list_group_EVENT_KEY;
+
+var ListGroup = /*#__PURE__*/function (_FwComponent) {
+  list_group_inheritsLoose(ListGroup, _FwComponent);
+
+  function ListGroup(element, triggeredChild) {
+    element = element || false;
+    return _FwComponent.call(this, element, {
+      _triggeredChild: triggeredChild ? new dom.default(triggeredChild) : false
+    }) || this;
+  }
+
+  var _proto = ListGroup.prototype;
+
+  _proto.toggle = function toggle(triggd) {
+    var triggeredChild = triggd ? triggd : this.UiTriggeredChild;
+    this.UiTriggeredChild = triggeredChild;
+    console.log(this.UiTriggeredChild);
+
+    if (!triggeredChild || !dom.default.isDescendant(_FwComponent.prototype.UiEl.call(this), triggeredChild)) {
+      return;
+    }
+
+    console.log(this);
+    data_helper_event.default.trigger(this.UiTriggeredChild, list_group_EVENT_BEFORE_TOGGLE);
+    data_helper_event.default.trigger(this.UiTriggeredChild, list_group_EVENT_TOGGLE);
+    (0,ui.UiToggleGroup)(this.UiTriggeredChild, "" + COMPONENT_TOGGLEGROUP_PREFIX, null, "li, ." + CHILD_CLASS);
+    data_helper_event.default.trigger(this.UiTriggeredChild, list_group_EVENT_AFTER_TOGGLE);
+  };
+
+  ListGroup.handleToggle = function handleToggle() {
+    return function (e) {
+      e.preventDefault();
+
+      if (!component.default.isDisabled(e.target)) {
+        var listGroup = new ListGroup(e.target.parentNode.closest("." + list_group_COMPONENT_CLASS));
+        listGroup.toggle(e.target);
+      }
+    };
+  };
+
+  ListGroup.initListeners = function initListeners() {
+    data_helper_event.default.addListener(document.documentElement, list_group_EVENT_CLICK, "." + list_group_COMPONENT_CLASS + " > ." + CHILD_CLASS + ", ." + list_group_COMPONENT_CLASS + " > li", ListGroup.handleToggle());
+  };
+
+  list_group_createClass(ListGroup, [{
+    key: "UiTriggeredChild",
+    get: function get() {
+      return this._triggeredChild;
+    },
+    set: function set(triggd) {
+      if (dom.default.isDescendant(_FwComponent.prototype.UiEl.call(this), triggd)) {
+        this._triggeredChild = triggd;
+      }
+    }
+  }], [{
+    key: "DATA_KEY",
+    get: function get() {
+      return list_group_DATA_KEY;
+    }
+  }]);
+
+  return ListGroup;
+}(component.default);
+
+/* harmony default export */ const list_group = (ListGroup);
+ListGroup.initListeners();
 ;// CONCATENATED MODULE: ./js/framework.webpack.js
 // import FwArrayay from './src/data-helper/array.js';
 // import FwString from './src/data-helper/string.js';
 // import FwDate from './src/data-helper/date.js';
 // import FwDom from './src/data-helper/dom.js';
+
 
 
 
@@ -669,7 +759,8 @@ Lazy.initListeners();
   Button: src_button,
   Dropdown: dropdown.default,
   Form: src_form.default,
-  Lazy: lazy
+  Lazy: lazy,
+  ListGroup: list_group
 });
 
 /***/ }),
@@ -1155,6 +1246,20 @@ var FwDom = /*#__PURE__*/function (_FwDataHelper) {
     });
   };
 
+  FwDom.isDescendant = function isDescendant(parent, child) {
+    var node = child.parentNode;
+
+    while (node != null) {
+      if (node == parent) {
+        return true;
+      }
+
+      node = node.parentNode;
+    }
+
+    return false;
+  };
+
   FwDom.getAncestors = function getAncestors(elem, selector) {
     elem = elem || _FwDataHelper.getData.call(this);
     var parents = [];
@@ -1634,10 +1739,10 @@ var UiChangeHash = function UiChangeHash(id) {
 var UiToggleGroup = function UiToggleGroup(element, prefix, activatedClass, siblingSelector, resetterClass, noActiveClass, multipleClass) {
   prefix = prefix || 'btn';
   siblingSelector = siblingSelector || "." + prefix;
+  activatedClass = activatedClass || 'active';
   resetterClass = resetterClass || prefix + "-group-toggle-reset";
   noActiveClass = noActiveClass || prefix + "-group-toggle-allow-no-active";
   multipleClass = multipleClass || prefix + "-group-toggle-multiple";
-  activatedClass = activatedClass || 'active';
 
   if (!element) {
     return;

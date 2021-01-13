@@ -56,6 +56,17 @@ class FwDom extends FwDataHelper {
 			}
 		);
 	}
+	
+	static isDescendant(parent, child) {
+		var node = child.parentNode;
+		while (node != null) {
+			if (node == parent) {
+				return true;
+			}
+			node = node.parentNode;
+		}
+		return false;
+   }
 
 	static getAncestors(elem,selector){
 		elem = elem || super.getData();

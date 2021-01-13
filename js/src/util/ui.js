@@ -197,10 +197,10 @@ export const UiChangeHash = (id) => {
 export const UiToggleGroup = (element, prefix, activatedClass, siblingSelector, resetterClass, noActiveClass,multipleClass) => {
 	prefix = prefix || 'btn';
 	siblingSelector = siblingSelector || `.${prefix}`;
+	activatedClass = activatedClass || 'active';
 	resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
 	noActiveClass = noActiveClass || `${prefix}-group-toggle-allow-no-active`;
 	multipleClass = multipleClass || `${prefix}-group-toggle-multiple`;
-	activatedClass = activatedClass || 'active';
 
 	if(!element) {
 		return;
