@@ -770,6 +770,7 @@ $prefix: '.asset';
 
 		img {
 			display:block;
+			width: 100%;
 		}
 
 		&:not(#{&}-freeform) {
