@@ -767,11 +767,19 @@ $prefix: '.asset';
 		margin-bottom: $asset-thumbnail-margin-bottom;
 		background: $asset-thumbnail-background;
 		border-radius: $asset-border-radius;
-		
-		
 
-		&:not(#{&}-thumbnail-freeform) {
+		img {
+			display:block;
+		}
+
+		&:not(#{&}-freeform) {
 			@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,true,false,false,false);
+
+			& > img,
+			& > #{$prefix}-thumbnail-image {
+				z-index:1;
+				@extend %for-fit-image-cover-img;
+			}
 		}
 
 		> * {
@@ -789,12 +797,6 @@ $prefix: '.asset';
 		}
 		&:hover {
 			box-shadow: $asset-box-shadow-hover;
-		}
-
-		@at-root & > img,
-		img#{&}-image {
-			z-index:1;
-			@extend %for-fit-image-cover-img;
 		}
 	}
 
