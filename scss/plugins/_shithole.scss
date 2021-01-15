@@ -2039,7 +2039,8 @@
 			}
 		}
 
-		&:hover{
+		&:hover,
+		&:focus{
 			&,&:after{
 				border-color: map-get($opts,border-color-hover);
 			}
@@ -2133,7 +2134,7 @@
 		}
 
 		@if map-get($opts,change-state) == true {
-			@at-root &#{ map-get($opts,change-selector) } {
+			@at-root #{ map-get($opts,change-selector) } {
 
 				#{internal__pseudo-generator(map-get($opts,pseudo))} {
 
@@ -2321,7 +2322,7 @@
 		}
 
 		@if map-get($opts,change-state) == true and map-get($opts,override) != false {
-			@at-root &#{ map-get($opts,change-selector) } {
+			@at-root #{ map-get($opts,change-selector) } {
 
 				#{internal__pseudo-generator(map-get($opts,pseudo))} {
 
