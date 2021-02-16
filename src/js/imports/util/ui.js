@@ -1,7 +1,7 @@
 
 import FwCore from './core.js';
 import {lookupResetToParentClass,lookupResetFromClosestComponent} from './validation.js';
-import FwDom from './../data-helper/dom.js';
+import FwDom from '../data-helper/dom.js';
 
 export const UiPrefix = (componentName,noDash) => {
 	noDash = noDash || false;
@@ -10,7 +10,12 @@ export const UiPrefix = (componentName,noDash) => {
 
 export const UiDynamicClass = `${FwCore.settings.uiJsClass}_internal_toggle`;
 
-
+export const BodyClass = {
+	noScroll: `body-no-scroll`,
+	onDrag: `body-on-drag`,
+	loading: `body-loading`,
+	loaded: `body-loaded`,
+}
 //this was the bitch that got clickied or hovered or wehatever
 export const UiTriggerer = (triggerer,isGroupable) => {
 	triggerer = triggerer || false;

@@ -1,6 +1,6 @@
 
-import FwCore from './../util/core.js';
-import FwDataHelper from './../classes/data-helper.js';
+import FwCore from '../util/core.js';
+import FwDataHelper from '../classes/data-helper.js';
 const customEvents = [];
 const NativeEvents = [
 	'click',

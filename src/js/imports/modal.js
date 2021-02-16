@@ -1,26 +1,17 @@
-import FwCore from './../util/core.js';
-import {FwFnsQ} from './../util/initiator.js';
+import FwCore from './util/core.js';
+import {FwFnsQ} from './util/initiator.js';
 
-import FwEvent from './../data-helper/event.js';
-import FwDom from './../data-helper/dom.js';
+import FwEvent from './data-helper/event.js';
+import FwDom from './data-helper/dom.js';
 
-import FwComponent from './../classes/component.js';
-import { UiPrefix,UiDynamicClass } from '../util/ui.js';
-import { DateTimePreset, dayNamesShorter, monthNamesShort } from '../util/validation.js';
-
-import Dropdown from './../dropdown.js';
+import FwComponent from './classes/component.js';
+import { UiPrefix,UiToggled,BodyClass } from './util/ui.js';
 
 const NAME = 'modal';
-const TOGGLE_MODE = `${NAME}`;
-const COMPONENT_CLASS = `${NAME}`;
 const ACTIVATED_CLASS = `active`;
 
 
 const BOARD_NAME = `board`;
-const BOARD_COMPONENT_CLASS = `${NAME}`;
-const BOARD_TOGGLE_MODE = `${NAME}`;
-
-const BODY_LOADING_CLASS = `body-no-scroll`;
 
 const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
 
@@ -31,13 +22,21 @@ const EVENT_CLICK = `click${EVENT_KEY}`;
 	const EVENT_INIT = `init${EVENT_KEY}`;
 	const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 
-	const EVENT_BEFORE_OPEN = `before_open${EVENT_KEY}`;
-	const EVENT_OPEN = `open${EVENT_KEY}`;
-	const EVENT_AFTER_OPEN = `after_open${EVENT_KEY}`;
+	const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
+	const EVENT_CREATE = `create${EVENT_KEY}`;
+	const EVENT_AFTER_CREATE = `after_create${EVENT_KEY}`;
 
-	const EVENT_BEFORE_CLOSE = `before_close${EVENT_KEY}`;
-	const EVENT_CLOSE = `close${EVENT_KEY}`;
-	const EVENT_AFTER_CLOSE = `after_close${EVENT_KEY}`;
+	const EVENT_BEFORE_DESTROY = `before_destroy${EVENT_KEY}`;
+	const EVENT_DESTROY = `destroy${EVENT_KEY}`;
+	const EVENT_AFTER_DESTROY = `after_destroy${EVENT_KEY}`;
+
+	const EVENT_BEFORE_UPDATE = `before_update${EVENT_KEY}`;
+	const EVENT_UPDATE = `update${EVENT_KEY}`;
+	const EVENT_AFTER_UPDATE = `after_update${EVENT_KEY}`;
+
+	const EVENT_BEFORE_RESIZE = `before_resize${EVENT_KEY}`;
+	const EVENT_RESIZE = `resize${EVENT_KEY}`;
+	const EVENT_AFTER_RESIZE = `after_resize${EVENT_KEY}`;
 
 
 const CURRENT_MODAL_INSTANCE = {
@@ -45,10 +44,23 @@ const CURRENT_MODAL_INSTANCE = {
 	args:null
 }
 
+const VALID_MODAL_MODES = [
+	NAME,
+	BOARD_NAME
+];
+
 class Modal extends FwComponent {
 	
 	constructor(element,triggerer,args){
-		element = element || UiToggled(TOGGLE_MODE) || false;
+		let currMode;
+		VALID_MODAL_MODES.forEach((mode)=>{
+			if(element.classList.contains(mode) && !currMode){
+				currMode = mode;
+			}
+		});
+
+		element = element || UiToggled(currMode) || false;
+
 		super(
 			element,
 			{
@@ -61,6 +73,8 @@ class Modal extends FwComponent {
 					|| false
 			}
 		);
+
+		this.mode = currMode;
 	}
 
 	dispose() {
@@ -69,11 +83,11 @@ class Modal extends FwComponent {
 		this._customArgs = null;
 	}
 
-	static get _current() {
+	static get current() {
 		return CURRENT_MODAL_INSTANCE;
 	}
 
-	static set _current(obj){
+	static set current(obj){
 		CURRENT_MODAL_INSTANCE.element = obj.element;
 		CURRENT_MODAL_INSTANCE.args = obj.args;
 	}
@@ -88,16 +102,6 @@ class Modal extends FwComponent {
 
 	get UiElId (){
 		return super.UiEl().getAttribute('id');
-	}
-
-	get mode(){
-		let toReturn = 'default';
-
-		if(element.classList.contains(BOARD_COMPONENT_CLASS)){
-			toReturn = BOARD_COMPONENT_CLASS;
-		}
-
-		return toReturn;
 	}
 
 	static get configDefaults(){
@@ -232,6 +236,10 @@ class Modal extends FwComponent {
 		if(!element){
 			return;
 		}
+
+		FwEvent.trigger(element,EVENT_BEFORE_CREATE);
+
+		FwEvent.trigger(element,EVENT_CREATE);
 	
 		const id = this.UiElId || this.UiId;
 
@@ -239,7 +247,7 @@ class Modal extends FwComponent {
 
 		const theUi = document.createElement('div');
 		document.querySelector('body').appendChild(theUi);
-		theUi.className = `${frameWork.settings.prefix}-${NAME}-component
+		theUi.className = `${UiPrefix}-${NAME}-component
 			${this.mode}-wrapper
 			${this.args.classes}
 			${this.args.align ? `${this.mode}-${this.args.align}` : ''}`;
@@ -260,25 +268,85 @@ class Modal extends FwComponent {
 			RunFn(this.args.callback);
 		}
 
-		Modal._current = {
+		Modal.current = {
 			element: element,
 			args: this.args,
 		}
 
 		theUi.classList.add(ACTIVATED_CLASS);
-		document.body.classList.add(BODY_LOADING_CLASS);
+		document.body.classList.add(BodyClass.noScroll);
 
-		this.update();
+		Modal.update();
+
+
+		FwEvent.trigger(element,EVENT_AFTER_CREATE);
 	}
 
-	destroy(elem){
+	destroy(removeHash){
 
+		if(!Modal.current.element){
+			return;
+		}
+
+		FwEvent.trigger(element,EVENT_BEFORE_DESTROY);
+		FwEvent.trigger(element,EVENT_DESTROY);
+
+		const element = elem ?
+			super.UiEl(elem)
+			: super.UiEl();
+
+		removeHash = removeHash || false;
+
+		let canRemoveHash = false;
+	
+		if (
+			removeHash
+			&& Modal.current.element.hasAttribute('id')
+			&& Modal.current.element.getAttribute('id') == window.location.hash.replace('#','')
+		) {
+			canRemoveHash = true;
+		}
+	
+		if (this.UiRoot) {
+			FwDom.moveContents(
+				this.UiRoot.querySelector(`.${this.mode}-popup-content`),
+				Modal.current.element
+			);
+	
+			this.UiRoot.classList.remove('active');
+			this.UiRoot.parentNode.removeChild(this.UiRoot);
+		}
+	
+		
+	
+		Modal.current = {
+			element: false,
+			args: false,
+		}
+	
+		let removeBodClass = true;
+		VALID_MODAL_MODES.forEach((mode)=> {
+			if(
+				document.getElementById(`${UiPrefix}-${mode}`)
+				&& removeBodClass == true
+			){
+				removeBodClass = false;
+			}
+		})
+	
+		removeBodClass && document.body.classList.remove(BodyClass.noScroll);
+	
+		canRemoveHash && ChangeHash('');
+
+		FwEvent.trigger(element,EVENT_AFTER_DESTROY);
 	}
 
-	update(){
-		const args = Modal._current.args || {};
+	static update(){
 	
 		if(this.UiRoot) {
+	
+			FwEvent.trigger(element,EVENT_BEFORE_UPDATE);
+			FwEvent.trigger(element,EVENT_UPDATE);
 	
 			// buttons
 				// resize
@@ -288,7 +356,7 @@ class Modal extends FwComponent {
 					const resizeBtn = this.UiRoot
 						.querySelectorAll(`*[data-toggle="${this.mode}-resize"]`);
 	
-					if(resizeBtn && currentWidth < parseInt(this.args.width)){
+					if(resizeBtn && currentWidth < parseInt(this.current.args.width)){
 						resizeBtn.forEach((butt) => {
 							butt.classList.add('disabled');
 						});
@@ -297,6 +365,8 @@ class Modal extends FwComponent {
 							butt.classList.remove('disabled');
 						});
 					}
+
+			FwEvent.trigger(element,EVENT_AFTER_UPDATE);
 		}
 	}
 
@@ -305,7 +375,10 @@ class Modal extends FwComponent {
 			return;
 		}
 
-		const args = args || Modal._current.args || {};
+		FwEvent.trigger(element,EVENT_BEFORE_RESIZE);
+		FwEvent.trigger(element,EVENT_RESIZE);
+
+		const args = args || Modal.current.args || {};
 		width = width || args.width || null;
 
 		if(this.UiRoot && parseInt(width) >= parseInt(this.args.width)){
@@ -323,6 +396,8 @@ class Modal extends FwComponent {
 						.style.width = width;
 			}
 		}
+
+		FwEvent.trigger(element,EVENT_AFTER_RESIZE);
 	}
 	
 	get _markup(){
@@ -400,7 +475,7 @@ class Modal extends FwComponent {
 										class="${this.mode}-close ${this.args.closeClasses}"
 										data-toggle="${this.mode}-close"
 									>
-										<i class="symbol symbol-close "></i>
+										<i class="symbol symbol-close"></i>
 									</a>`;
 							}
 	
@@ -416,14 +491,84 @@ class Modal extends FwComponent {
 	}
 	
 
+	static handleResize(mode) {
+		mode = mode || NAME;
+		
+	}
+	
+
+	static handleUniversal(mode) {
+		mode = mode || NAME;
+		return () => {
+			if(FwCore.settings[`initialize${mode.toUpperCase()}`]){
+
+				FwEvent.trigger(element,EVENT_BEFORE_INIT);
+				FwEvent.trigger(element,EVENT_INIT);
+
+				const modal = new Modal();
+				modal.create();
+
+				FwEvent.trigger(element,EVENT_AFTER_INIT);
+			};
+		}
+		
+	}
+	
+
 	static handleSomethingEvent() {
 		
 	}
 	
 
+	static handleOpen(mode) {
+		mode = mode || NAME;
+		return (e) => {
+			const modal = new Modal(
+				UiToggled(mode,e.target),
+				e.target
+			);
+			modal.create();
+		}
+	}
+	
+
+	static handleClose(mode) {
+		mode = mode || NAME;
+		return (e) => {
+			const modal = new Modal(
+				UiToggled(mode,e.target),
+				e.target
+			);
+			modal.destroy();
+		}
+	}
+	
+
 	static initListeners() {
+		VALID_MODAL_MODES.forEach((mode)=>{
+			FwEvent.addListener(
+				document,
+				EVENT_CLICK,
+				`*[data-toggle="${mode}"] *[data-toggle="${mode}-open"]`,
+				Modal.handleOpen(mode)
+			);
+			
+			FwEvent.addListener(
+				document,
+				EVENT_CLICK,
+				`*[data-toggle="${mode}-close"]`,
+				Modal.handleClose(mode)
+			);
 		
 
+			window.addEventListener(
+				'hashchange',
+				Modal.handleUniversal(mode)
+			);
+	
+			FwFnsQ.on_ready = Modal.handleUniversal(mode);
+			FwFnsQ.on_resize = Modal.handleResize(mode);
+		});
 	}
 }
 
@@ -431,252 +576,156 @@ export default Modal;
 
 Modal.initListeners();
 
-/*
-@TODO
-
-events cleanup
-UiElement methods and props
-*/
-__f.fns_on_resize.push(frameWork.checkOnModal);
-
-frameWork.resizeModal = (width,modal,args) => {
-}
-
-frameWork.destroyModal = (removeHash) => {
-	removeHash = removeHash || false;
-	this.mode = this.mode || 'modal';
-
-
-	let canRemoveHash = false;
-
-	if (
-		removeHash
-		&& Modal._current.element.hasAttribute('id')
-		&& Modal._current.element.getAttribute('id') == window.location.hash.replace('#','')
-	) {
-		canRemoveHash = true;
-	}
-
-	const modal = document.querySelector(`.${this.mode}-wrapper`);
-	if (modal) {
-		frameWork.moveContents(
-			modal.querySelector(`.${this.mode}-popup-content`),
-			Modal._current.element
-		);
-
-		modal.classList.remove('active');
-		modal.parentNode.removeChild(modal);
-	}
-
-	
-
-	Modal._current = {
-		element: false,
-		args: false,
-	}
-
-
-	const validSubcoms = ['modal','board']; 
-	let removeBodClass = true;
-	validSubcoms.forEach((sc)=> {
-		if(
-			document.getElementById(`${frameWork.settings.prefix}-${sc}`)
-			&& removeBodClass == true
-		){
-			removeBodClass = false;
-		}
-	})
-
-	removeBodClass && document.body.classList.remove('body-no-scroll');
-
-	canRemoveHash && ChangeHash('');
-};
-
-window.addEventListener('hashchange', () => {
-	frameWork.settings.initializeModal && frameWork.createModal();
-});
-
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'*[data-toggle="modal-open"], *[data-toggle="modal"]',
-	(e) => {
-		const triggerer = e.target;
-
-		e.preventDefault();
-
-		if (!frameWork.isDisabled(triggerer)) {
-			frameWork.createModal(triggerer);
-		}
-	}
-);
-
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'*[data-toggle="modal-close"]',
-	(e) => {
-
-		const triggerer = e.target;
-
-		e.preventDefault();
-
-		if (!frameWork.isDisabled(triggerer)) {
-			frameWork.destroyModal(true);
-		}
-	}
-);
 
 
 
 
 
 
+// frameWork.createBoard = (triggerer) => {
+// 	frameWork.createModal(triggerer, 'board');
+// };
 
-frameWork.createBoard = (triggerer) => {
-	frameWork.createModal(triggerer, 'board');
-};
+// frameWork.resizeBoard = (width,modal,args) => {
+// 	frameWork.resizeModal('board',width,modal,args);
+// };
 
-frameWork.resizeBoard = (width,modal,args) => {
-	frameWork.resizeModal('board',width,modal,args);
-};
+// frameWork.checkOnBoard = () => {
+// 	frameWork.checkOnModal('board');
+// };
+// __f.fns_on_resize.push(frameWork.checkOnBoard);
 
-frameWork.checkOnBoard = () => {
-	frameWork.checkOnModal('board');
-};
-__f.fns_on_resize.push(frameWork.checkOnBoard);
+// frameWork.destroyBoard = (removeHash) => {
+// 	frameWork.destroyModal(removeHash, 'board');
+// };
 
-frameWork.destroyBoard = (removeHash) => {
-	frameWork.destroyModal(removeHash, 'board');
-};
+// window.addEventListener('hashchange', () => {
+// 	frameWork.settings.initializeModal && frameWork.createBoard();
+// });
 
-window.addEventListener('hashchange', () => {
-	frameWork.settings.initializeModal && frameWork.createBoard();
-});
+// FwEvent.addListener(
+// 	document.documentElement,
+// 	'click',
+// 	'*[data-toggle="board-open"], *[data-toggle="board"]',
+// 	(e) => {
 
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'*[data-toggle="board-open"], *[data-toggle="board"]',
-	(e) => {
+// 		const triggerer = e.target;
 
-		const triggerer = e.target;
+// 		e.preventDefault();
 
-		e.preventDefault();
+// 		if (!frameWork.isDisabled(triggerer)) {
+// 			frameWork.createBoard(triggerer);
+// 		}
+// 	}
+// );
 
-		if (!frameWork.isDisabled(triggerer)) {
-			frameWork.createBoard(triggerer);
-		}
-	}
-);
+// FwEvent.addListener(
+// 	document.documentElement,
+// 	'click',
+// 	'*[data-toggle="board-close"]',
+// 	(e) => {
+// 		const triggerer = e.target;
 
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'*[data-toggle="board-close"]',
-	(e) => {
-		const triggerer = e.target;
+// 		e.preventDefault();
 
-		e.preventDefault();
+// 		if (!frameWork.isDisabled(triggerer)) {
+// 			frameWork.destroyBoard(true);
+// 		}
+// 	}
+// );
 
-		if (!frameWork.isDisabled(triggerer)) {
-			frameWork.destroyBoard(true);
-		}
-	}
-);
-
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'*[data-toggle="board-resize"]',
-	(e) => {
-		e.preventDefault();
-	}
-);
+// FwEvent.addListener(
+// 	document.documentElement,
+// 	'click',
+// 	'*[data-toggle="board-resize"]',
+// 	(e) => {
+// 		e.preventDefault();
+// 	}
+// );
 
 			
-	const startBoardResize = (e)=>{
+// 	const startBoardResize = (e)=>{
 
 
-		document.body.classList.add('body-on-drag');
+// 		document.body.classList.add('body-on-drag');
 
-		const widthBasis = 
-			e.clientX
-			|| (e.touches && e.touches[0].clientX )
-			|| (
-				e.originalEvent.touches
-				&& e.originalEvent.touches[0].clientX
-			);
-		let newWidth;
+// 		const widthBasis = 
+// 			e.clientX
+// 			|| (e.touches && e.touches[0].clientX )
+// 			|| (
+// 				e.originalEvent.touches
+// 				&& e.originalEvent.touches[0].clientX
+// 			);
+// 		let newWidth;
 
-		if(frameWork.board.this.args.align == 'right'){
-			newWidth = widthBasis
-		}else if(frameWork.board.this.args.align == 'left'){
-			newWidth = window.innerWidth - widthBasis;
-		}
+// 		if(frameWork.board.this.args.align == 'right'){
+// 			newWidth = widthBasis
+// 		}else if(frameWork.board.this.args.align == 'left'){
+// 			newWidth = window.innerWidth - widthBasis;
+// 		}
 		
-		frameWork.resizeModal('board',`${newWidth}px`);
-	}
+// 		frameWork.resizeModal('board',`${newWidth}px`);
+// 	}
 
-	const removeBoardResize = (e)=>{
+// 	const removeBoardResize = (e)=>{
 
-		document.body.classList.remove('body-on-drag');
-		window.removeEventListener(
-			'mousemove',
-			startBoardResize
-		)
-			window.removeEventListener(
-				'touchmove',
-				startBoardResize
-			)
-	}
+// 		document.body.classList.remove('body-on-drag');
+// 		window.removeEventListener(
+// 			'mousemove',
+// 			startBoardResize
+// 		)
+// 			window.removeEventListener(
+// 				'touchmove',
+// 				startBoardResize
+// 			)
+// 	}
 
-	const initBoardResize = (e) => {
+// 	const initBoardResize = (e) => {
 			
-		const triggerer = e.target;
+// 		const triggerer = e.target;
 
-		if (
-			!frameWork.isDisabled(triggerer)
-			&& frameWork.board.current
-		) {
+// 		if (
+// 			!frameWork.isDisabled(triggerer)
+// 			&& frameWork.board.current
+// 		) {
 
-			window.addEventListener(
-				'mousemove',
-				startBoardResize
-			);
+// 			window.addEventListener(
+// 				'mousemove',
+// 				startBoardResize
+// 			);
 
-				window.addEventListener(
-					'touchmove',
-					startBoardResize
-				);
+// 				window.addEventListener(
+// 					'touchmove',
+// 					startBoardResize
+// 				);
 
-			window.addEventListener(
-				'mouseup',
-				removeBoardResize
-			);
+// 			window.addEventListener(
+// 				'mouseup',
+// 				removeBoardResize
+// 			);
 
-				window.addEventListener(
-					'touchend',
-					removeBoardResize
-				);
+// 				window.addEventListener(
+// 					'touchend',
+// 					removeBoardResize
+// 				);
 
-		}
+// 		}
 			
-	};
+// 	};
 
-	FwEvent.addListener(
-		document.documentElement,
-		'mousedown',
-		'*[data-toggle="board-resize"]',
-		(e) => {
-			e.preventDefault();
-			initBoardResize(e);
-		}
-	);
+// 	FwEvent.addListener(
+// 		document.documentElement,
+// 		'mousedown',
+// 		'*[data-toggle="board-resize"]',
+// 		(e) => {
+// 			e.preventDefault();
+// 			initBoardResize(e);
+// 		}
+// 	);
 
-		FwEvent.addListener(
-			document.documentElement,
-			'touchstart',
-			'*[data-toggle="board-resize"]',
-			initBoardResize
-		);
+// 		FwEvent.addListener(
+// 			document.documentElement,
+// 			'touchstart',
+// 			'*[data-toggle="board-resize"]',
+// 			initBoardResize
+// 		);

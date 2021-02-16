@@ -1,4 +1,5 @@
 /*! basic styling shits only bitch */
+/* heading bars or rules from tiny rectangles to long rules and what not. */
 /*** RESET BOIS ***/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -322,7 +323,6 @@ html, body {
 }
 
 .body-on-drag, .body-on-drag * {
-  cursor: -webkit-grabbing !important;
   cursor: grabbing !important;
   -webkit-user-select: none !important;
   /* Safari 3.1+ */
@@ -403,6 +403,8 @@ embed {
 *,
 *:before,
 *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -535,9 +537,7 @@ h6, .h6 {
   text-transform: none;
   font-style: inherit;
   display: block;
-  -webkit-hyphens: auto;
-      -ms-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
   margin-bottom: 0.625rem;
   margin-top: 1.5em;
 }
@@ -611,8 +611,7 @@ a:hover, a:hover *, a:focus, a:focus *, a.focus, a.focus *, .a:hover, .a:hover *
 }
 a:hover *, a:focus *, a.focus *, .a:hover *, .a:focus *, .a.focus * {
   text-decoration: inherit;
-  -webkit-text-decoration-color: currentColor;
-          text-decoration-color: currentColor;
+  text-decoration-color: currentColor;
 }
 
 p,
@@ -837,4 +836,4 @@ big {
   font-size: 1.5em;
 }
 
-/*# sourceMappingURL=framework.normalize.css.map*/
+/*# sourceMappingURL=framework.normalize.css.map */

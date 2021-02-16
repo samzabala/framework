@@ -1,4 +1,5 @@
 /*! it's layout shits only bitch */
+/* heading bars or rules from tiny rectangles to long rules and what not. */
 .cf:after, .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
   content: "";
   clear: both;
@@ -348,7 +349,6 @@ html, body {
 }
 
 .body-on-drag, .body-on-drag * {
-  cursor: -webkit-grabbing !important;
   cursor: grabbing !important;
   -webkit-user-select: none !important;
   /* Safari 3.1+ */
@@ -429,6 +429,8 @@ embed {
 *,
 *:before,
 *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -561,9 +563,7 @@ h6, .h6 {
   text-transform: none;
   font-style: inherit;
   display: block;
-  -webkit-hyphens: auto;
-      -ms-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
   margin-bottom: 0.625rem;
   margin-top: 1.5em;
 }
@@ -637,8 +637,7 @@ a:hover, a:hover *, a:focus, a:focus *, a.focus, a.focus *, .a:hover, .a:hover *
 }
 a:hover *, a:focus *, a.focus *, .a:hover *, .a:focus *, .a.focus * {
   text-decoration: inherit;
-  -webkit-text-decoration-color: currentColor;
-          text-decoration-color: currentColor;
+  text-decoration-color: currentColor;
 }
 
 p,
@@ -4350,7 +4349,6 @@ big {
   align-items: center;
   align-content: center;
   grid-template-columns: 100%;
-  grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, -webkit-min-content));
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) repeat(auto-fill, minmax(0, min-content));
   grid-template-areas: "header" "content" "footer";
   min-width: 0;
@@ -5228,8 +5226,11 @@ big {
   background-image: none !important;
 }
 .background-gradient {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5242,8 +5243,11 @@ big {
 .background-gradient-45-active.active,
 .background-gradient-45-toggle.active,
 .background-gradient-45-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5256,8 +5260,11 @@ big {
 .background-gradient-90-active.active,
 .background-gradient-90-toggle.active,
 .background-gradient-90-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5270,8 +5277,11 @@ big {
 .background-gradient-135-active.active,
 .background-gradient-135-toggle.active,
 .background-gradient-135-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5284,8 +5294,11 @@ big {
 .background-gradient-180-active.active,
 .background-gradient-180-toggle.active,
 .background-gradient-180-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5298,8 +5311,11 @@ big {
 .background-gradient-225-active.active,
 .background-gradient-225-toggle.active,
 .background-gradient-225-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5312,8 +5328,11 @@ big {
 .background-gradient-270-active.active,
 .background-gradient-270-toggle.active,
 .background-gradient-270-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -5326,8 +5345,11 @@ big {
 .background-gradient-315-active.active,
 .background-gradient-315-toggle.active,
 .background-gradient-315-toggle.open {
-  background-color: var(--fw-gradient-start)  !important;
+  background-color: 0%  !important;
+  /* Old browsers */
+  background-image: -moz-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
+  background-image: -webkit-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(-225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -6071,32 +6093,25 @@ big {
   text-decoration: none !important;
 }
 .text-decoration-line-underline {
-  -webkit-text-decoration-line: underline !important;
-          text-decoration-line: underline !important;
+  text-decoration-line: underline !important;
 }
 .text-decoration-line-line-through {
-  -webkit-text-decoration-line: line-through !important;
-          text-decoration-line: line-through !important;
+  text-decoration-line: line-through !important;
 }
 .text-decoration-line-overline {
-  -webkit-text-decoration-line: overline !important;
-          text-decoration-line: overline !important;
+  text-decoration-line: overline !important;
 }
 .text-decoration-style-solid {
-  -webkit-text-decoration-style: solid !important;
-          text-decoration-style: solid !important;
+  text-decoration-style: solid !important;
 }
 .text-decoration-style-wavy {
-  -webkit-text-decoration-style: wavy !important;
-          text-decoration-style: wavy !important;
+  text-decoration-style: wavy !important;
 }
 .text-decoration-style-double {
-  -webkit-text-decoration-style: double !important;
-          text-decoration-style: double !important;
+  text-decoration-style: double !important;
 }
 .text-decoration-style-wavy {
-  -webkit-text-decoration-style: wavy !important;
-          text-decoration-style: wavy !important;
+  text-decoration-style: wavy !important;
 }
 .text-transform-uppercase {
   text-transform: uppercase !important;
@@ -6327,7 +6342,6 @@ big {
   position: fixed !important;
 }
 .position-sticky {
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -6856,12 +6870,10 @@ big {
   margin: auto !important;
 }
 .fit-image-contain img {
-  -o-object-fit: contain !important;
-     object-fit: contain !important;
+  object-fit: contain !important;
 }
 .fit-image-cover img {
-  -o-object-fit: cover !important;
-     object-fit: cover !important;
+  object-fit: cover !important;
 }
 .fit-image-cover {
   position: relative;
@@ -6870,4 +6882,4 @@ big {
   position: relative;
 }
 
-/*# sourceMappingURL=framework.layout.css.map*/
+/*# sourceMappingURL=framework.layout.css.map */

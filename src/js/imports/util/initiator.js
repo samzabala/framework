@@ -1,4 +1,5 @@
 
+import { BodyClass } from './ui.js';
 
 
  class FwQueue {
@@ -116,20 +117,20 @@ FwInit.setState = (mode) => {
 		case 'loading':
 			document.body
 				.classList
-				.remove('body-loaded');
+				.remove(BodyClass.loaded);
 			document.body
 				.classList
-				.add('body-loading');
+				.add(BodyClass.loading);
 			break;
 		case 'complete':
 		default:
 			setTimeout(()=>{ 
 				document.body
 					.classList
-					.remove('body-loading');
+					.remove(BodyClass.loading);
 				document.body
 					.classList
-					.add('body-loaded');
+					.add(BodyClass.loaded);
 			},100);
 			break;
 	}

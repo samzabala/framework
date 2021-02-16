@@ -1,4 +1,4 @@
-const BrValue = {
+export const BrValue = {
 	xxs: 0,
 	xs:
 		parseFloat(
@@ -31,18 +31,16 @@ const BrValue = {
 	xl: 9999999
 };
 
-const BrTag = Object.keys(BrValue);
+export const BrTag = Object.keys(BrValue);
 // Br_to_loop =  ['xs','sm','md','lg'];
 
-const BrMobileMax =
+export const BrMobileMax =
 parseFloat(
 	getComputedStyle(
 		document.documentElement
 	).getPropertyValue('--fw-br-mobile-max')
 )
 || 'sm';
-
-export {BrValue, BrTag, BrMobileMax};
 
 export const ValidateBr = (breakpoint, mode) => {
 	mode = mode || 'below'; //below,within,above
