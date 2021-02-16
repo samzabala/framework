@@ -5307,14 +5307,21 @@ big {
   box-shadow: 0px 3px 10px -6px var(--fw-color-base);
   margin-bottom: 10px;
   background: var(--fw-theme-background-contrast);
-  overflow: hidden;
   border-radius: 5px;
+  overflow: hidden;
 }
-.asset-thumbnail:before {
+.asset-thumbnail img {
+  display: block;
+  width: 100%;
+}
+.asset-thumbnail:not(.asset-thumbnail-freeform):before {
   content: "";
   display: block;
   width: 100%;
   padding-top: 52.6315789474%;
+}
+.asset-thumbnail:not(.asset-thumbnail-freeform) > img, .asset-thumbnail:not(.asset-thumbnail-freeform) > .asset-thumbnail-image {
+  z-index: 1;
 }
 .asset-thumbnail > * {
   pointer-events: none;
@@ -5331,11 +5338,6 @@ big {
 .asset-thumbnail:hover {
   box-shadow: 0 0 0 3px var(--fw-color-primary);
 }
-.asset-thumbnail > img,
-img.asset-thumbnail-image {
-  z-index: 1;
-}
-
 .asset-title {
   color: var(--fw-color-neutral);
   font-weight: 700;
@@ -11603,8 +11605,7 @@ select[multiple].input-select {
 }
 
 /* FIT IMAGE */
-.fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail > img,
-img.asset-thumbnail-image, .ratio *.ratio-child-cover, .fit-image-contain img {
+.fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail:not(.asset-thumbnail-freeform) > img, .asset-thumbnail:not(.asset-thumbnail-freeform) > .asset-thumbnail-image, .ratio *.ratio-child-cover, .fit-image-contain img {
   position: absolute !important;
   width: 100% !important;
   height: 100% !important;
@@ -11618,8 +11619,7 @@ img.asset-thumbnail-image, .ratio *.ratio-child-cover, .fit-image-contain img {
 .fit-image-contain img {
   object-fit: contain !important;
 }
-.fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail > img,
-img.asset-thumbnail-image, .ratio *.ratio-child-cover {
+.fit-image-cover img, .thumbnail img, .thumbnail-image img, .asset-thumbnail:not(.asset-thumbnail-freeform) > img, .asset-thumbnail:not(.asset-thumbnail-freeform) > .asset-thumbnail-image, .ratio *.ratio-child-cover {
   object-fit: cover !important;
 }
 .fit-image-cover {
