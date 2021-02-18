@@ -1,6 +1,5 @@
 
 import FwCore from './util/core.js';
-import {FwFnsQ} from './util/initiator.js';
 
 import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';

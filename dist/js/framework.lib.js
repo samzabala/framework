@@ -26,15 +26,6 @@
     subClass.__proto__ = superClass;
   }
 
-  function _taggedTemplateLiteralLoose(strings, raw) {
-    if (!raw) {
-      raw = strings.slice(0);
-    }
-
-    strings.raw = raw;
-    return strings;
-  }
-
   var FwCore = {};
 
   var _dataobj = function () {
@@ -479,6 +470,13 @@
       }
     }
   };
+  var UiPurge = function UiPurge(exempted, selector, callback) {
+    document.querySelectorAll(selector).forEach(function (elem) {
+      if (!exempted || exempted && elem !== exempted && !elem.contains(exempted)) {
+        callback(elem);
+      }
+    });
+  };
 
   var FwQueue = /*#__PURE__*/function () {
     function FwQueue() {
@@ -587,6 +585,7 @@
   FwInit.runResize = function () {
     clearTimeout(resizeTimerInternal);
     resizeTimerInternal = setTimeout(function () {
+      console.log(FwFnsQ.on_resize);
       runFnsQ(FwFnsQ.on_resize);
     }, 100);
   };
@@ -1423,21 +1422,16 @@
       }
     };
 
-    Dropdown._purger = function _purger(exempted, selector) {
-      exempted = exempted || false;
-      document.querySelectorAll(selector).forEach(function (doopdoop) {
-        if (!exempted || exempted && doopdoop !== exempted && !doopdoop.contains(exempted)) {
-          new Dropdown(doopdoop).close();
-        }
+    Dropdown.purge = function purge(exemptedDropdown) {
+      UiPurge(exemptedDropdown, "." + COMPONENT_CLASS$3, function (elem) {
+        new Dropdown(elem).close();
       });
     };
 
-    Dropdown.purge = function purge(exemptedDropdown) {
-      Dropdown._purger(exemptedDropdown, "." + COMPONENT_CLASS$3);
-    };
-
     Dropdown.purgeToggles = function purgeToggles(exemptedToggle) {
-      Dropdown._purger(exemptedToggle, "*[data-toggle=\"" + TOGGLE_MODE$2 + "\"]");
+      UiPurge(exemptedToggle, "*[data-toggle=\"" + TOGGLE_MODE$2 + "\"]", function (elem) {
+        new Dropdown(UiToggled(TOGGLE_MODE$2, elem)).close();
+      });
     };
 
     Dropdown.handleToggle = function handleToggle() {
@@ -3555,131 +3549,8 @@
 
     return Modal;
   }(FwComponent);
-  Modal.initListeners(); // frameWork.createBoard = (triggerer) => {
-  // 	frameWork.createModal(triggerer, 'board');
-  // };
-  // frameWork.resizeBoard = (width,modal,args) => {
-  // 	frameWork.resizeModal('board',width,modal,args);
-  // };
-  // frameWork.checkOnBoard = () => {
-  // 	frameWork.checkOnModal('board');
-  // };
-  // __f.fns_on_resize.push(frameWork.checkOnBoard);
-  // frameWork.destroyBoard = (removeHash) => {
-  // 	frameWork.destroyModal(removeHash, 'board');
-  // };
-  // window.addEventListener('hashchange', () => {
-  // 	frameWork.settings.initializeModal && frameWork.createBoard();
-  // });
-  // FwEvent.addListener(
-  // 	document.documentElement,
-  // 	'click',
-  // 	'*[data-toggle="board-open"], *[data-toggle="board"]',
-  // 	(e) => {
-  // 		const triggerer = e.target;
-  // 		e.preventDefault();
-  // 		if (!frameWork.isDisabled(triggerer)) {
-  // 			frameWork.createBoard(triggerer);
-  // 		}
-  // 	}
-  // );
-  // FwEvent.addListener(
-  // 	document.documentElement,
-  // 	'click',
-  // 	'*[data-toggle="board-close"]',
-  // 	(e) => {
-  // 		const triggerer = e.target;
-  // 		e.preventDefault();
-  // 		if (!frameWork.isDisabled(triggerer)) {
-  // 			frameWork.destroyBoard(true);
-  // 		}
-  // 	}
-  // );
-  // FwEvent.addListener(
-  // 	document.documentElement,
-  // 	'click',
-  // 	'*[data-toggle="board-resize"]',
-  // 	(e) => {
-  // 		e.preventDefault();
-  // 	}
-  // );
-  // 	const startBoardResize = (e)=>{
-  // 		document.body.classList.add('body-on-drag');
-  // 		const widthBasis = 
-  // 			e.clientX
-  // 			|| (e.touches && e.touches[0].clientX )
-  // 			|| (
-  // 				e.originalEvent.touches
-  // 				&& e.originalEvent.touches[0].clientX
-  // 			);
-  // 		let newWidth;
-  // 		if(frameWork.board.this.args.align == 'right'){
-  // 			newWidth = widthBasis
-  // 		}else if(frameWork.board.this.args.align == 'left'){
-  // 			newWidth = window.innerWidth - widthBasis;
-  // 		}
-  // 		frameWork.resizeModal('board',`${newWidth}px`);
-  // 	}
-  // 	const removeBoardResize = (e)=>{
-  // 		document.body.classList.remove('body-on-drag');
-  // 		window.removeEventListener(
-  // 			'mousemove',
-  // 			startBoardResize
-  // 		)
-  // 			window.removeEventListener(
-  // 				'touchmove',
-  // 				startBoardResize
-  // 			)
-  // 	}
-  // 	const initBoardResize = (e) => {
-  // 		const triggerer = e.target;
-  // 		if (
-  // 			!frameWork.isDisabled(triggerer)
-  // 			&& frameWork.board.current
-  // 		) {
-  // 			window.addEventListener(
-  // 				'mousemove',
-  // 				startBoardResize
-  // 			);
-  // 				window.addEventListener(
-  // 					'touchmove',
-  // 					startBoardResize
-  // 				);
-  // 			window.addEventListener(
-  // 				'mouseup',
-  // 				removeBoardResize
-  // 			);
-  // 				window.addEventListener(
-  // 					'touchend',
-  // 					removeBoardResize
-  // 				);
-  // 		}
-  // 	};
-  // 	FwEvent.addListener(
-  // 		document.documentElement,
-  // 		'mousedown',
-  // 		'*[data-toggle="board-resize"]',
-  // 		(e) => {
-  // 			e.preventDefault();
-  // 			initBoardResize(e);
-  // 		}
-  // 	);
-  // 		FwEvent.addListener(
-  // 			document.documentElement,
-  // 			'touchstart',
-  // 			'*[data-toggle="board-resize"]',
-  // 			initBoardResize
-  // 		);
+  Modal.initListeners();
 
-  function _templateObject() {
-    var data = _taggedTemplateLiteralLoose([".", ""]);
-
-    _templateObject = function _templateObject() {
-      return data;
-    };
-
-    return data;
-  }
   var NAME$9 = 'moduleGrid';
   var COMPONENT_CLASS$8 = "module-grid";
   var COMPONENT_CHILDREN_CLASS = "module";
@@ -3688,6 +3559,15 @@
   var EVENT_BEFORE_INIT$3 = "before_init" + EVENT_KEY$9;
   var EVENT_INIT$3 = "init" + EVENT_KEY$9;
   var EVENT_AFTER_INIT$3 = "after_init" + EVENT_KEY$9;
+  var EVENT_BEFORE_RENDER = "before_render" + EVENT_KEY$9;
+  var EVENT_RENDER = "render" + EVENT_KEY$9;
+  var EVENT_AFTER_RENDER = "after_render" + EVENT_KEY$9;
+  var EVENT_BEFORE_RENDER_GRID = "before_render_grid" + EVENT_KEY$9;
+  var EVENT_RENDER_GRID = "render_grid" + EVENT_KEY$9;
+  var EVENT_AFTER_RENDER_GRID = "after_render_grid" + EVENT_KEY$9;
+  var EVENT_BEFORE_RENDER_BLOCK = "before_render_block" + EVENT_KEY$9;
+  var EVENT_RENDER_BLOCK = "render_block" + EVENT_KEY$9;
+  var EVENT_AFTER_RENDER_BLOCK = "after_render_block" + EVENT_KEY$9;
   var PROPERTIES_WRAPPER = ['grid-template-columns', 'grid-template-rows', 'grid-template-areas', 'grid-column-start', 'grid-template-end', 'grid-template', 'grid-column-gap', 'grid-row-gap', 'justify-items', 'align-items', 'justify-content', 'align-content', 'place-content', 'grid-auto-columns', 'grid-auto-rows', 'grid-auto-flow', 'grid'];
   var PROPERTIES_CHILDREN = ['grid-area', 'grid-column', 'grid-row', 'grid-column-start', 'grid-column-end', 'grid-row-start', 'grid-row-end', 'justify-self', 'align-self', 'place-self'];
 
@@ -3715,7 +3595,7 @@
             smallestStyledBr = br;
 
             if (ValidateBr(br, 'above')) {
-              block.style[FwString.toCamelCase(prop)] = block.getAttribute("data-" + prop + "-" + br);
+              block.style[FwString.ToCamelCase(prop)] = block.getAttribute("data-" + prop + "-" + br);
               propsSet = true;
               propSetBr = true;
             }
@@ -3725,46 +3605,59 @@
         if (block.hasAttribute("data-" + prop) && !propsSet) {
           //check for all breakpoint
           if (!propsSet && !propSetBr) {
-            block.style[FwString.toCamelCase(prop)] = block.getAttribute("data-" + prop);
+            block.style[FwString.ToCamelCase(prop)] = block.getAttribute("data-" + prop);
             propsSet = true;
           }
         } else {
-          if (block.style[FwString.toCamelCase(prop)] !== null && smallestStyledBr && !ValidateBr(smallestStyledBr, 'above')) {
-            block.style[FwString.toCamelCase(prop)] = null;
+          if (block.style[FwString.ToCamelCase(prop)] !== null && smallestStyledBr && !ValidateBr(smallestStyledBr, 'above')) {
+            block.style[FwString.ToCamelCase(prop)] = null;
           }
         }
       });
     };
 
-    _proto.setWrapper = function setWrapper(elem) {
+    _proto.renderGrid = function renderGrid(elem) {
       var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      FwEvent.trigger(elem, EVENT_BEFORE_RENDER_GRID);
+      FwEvent.trigger(elem, EVENT_RENDER_GRID);
 
       this._loopProps(element, PROPERTIES_WRAPPER);
+
+      FwEvent.trigger(elem, EVENT_AFTER_RENDER_GRID);
     };
 
-    _proto.setBlocks = function setBlocks() {
+    _proto.renderBlocks = function renderBlocks() {
       var _this = this;
 
       this.UiChildren.forEach(function (child) {
+        FwEvent.trigger(child, EVENT_BEFORE_RENDER_BLOCK);
+        FwEvent.trigger(child, EVENT_RENDER_BLOCK);
+
         _this._loopProps(child, PROPERTIES_CHILDREN);
+
+        FwEvent.trigger(child, EVENT_AFTER_RENDER_BLOCK);
       });
     };
 
-    _proto.set = function set(elem) {
+    _proto.render = function render(elem) {
       elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
-      this.setWrapper(elem);
-      this.setBlocks();
+      FwEvent.trigger(elem, EVENT_BEFORE_RENDER);
+      FwEvent.trigger(elem, EVENT_RENDER);
+      this.renderGrid(elem);
+      this.renderBlocks();
+      FwEvent.trigger(elem, EVENT_AFTER_RENDER);
     };
 
     ModuleGrid.handleUniversal = function handleUniversal() {
       return function () {
-        FwEvent.trigger(element, EVENT_BEFORE_INIT$3);
-        FwEvent.trigger(element, EVENT_INIT$3);
-        var moduleGrids = document.querySelectorAll("." + COMPONENT_CLASS$8);
-        moduleGrids.forEach(function (grid) {
-          grid.set();
+        FwEvent.trigger(document, EVENT_BEFORE_INIT$3);
+        FwEvent.trigger(document, EVENT_INIT$3);
+        var grids = document.querySelectorAll("." + COMPONENT_CLASS$8);
+        grids.forEach(function (grid) {
+          var moduleGrid = new ModuleGrid(grid);
+          moduleGrid.render();
         });
-        FwEvent.trigger(element, EVENT_AFTER_INIT$3);
+        FwEvent.trigger(document, EVENT_AFTER_INIT$3);
       };
     };
 
@@ -3776,7 +3669,12 @@
     _createClass(ModuleGrid, [{
       key: "UiChildren",
       get: function get() {
-        return _FwComponent.prototype.UiEl.call(this).querySelectorAll()(_templateObject(), COMPONENT_CHILDREN_CLASS);
+        return _FwComponent.prototype.UiEl.call(this).querySelectorAll("." + COMPONENT_CHILDREN_CLASS);
+      }
+    }], [{
+      key: "DATA_KEY",
+      get: function get() {
+        return DATA_KEY$9;
       }
     }]);
 
@@ -3784,28 +3682,158 @@
   }(FwComponent);
   ModuleGrid.initListeners();
 
-  frameWork.initGrid = function (moduleGrid) {
-    var renderProps = function renderProps(block, props) {};
+  var NAME$a = 'switch';
+  var TOGGLE_MODE$3 = "" + NAME$a;
+  var TOGGLE_MODE_ON = TOGGLE_MODE$3 + "-on";
+  var TOGGLE_MODE_OFF = TOGGLE_MODE$3 + "-off";
+  var COMPONENT_CLASS$9 = "" + NAME$a;
+  var COMPONENT_CLASS_STATUS_OFF = COMPONENT_CLASS$9 + "-to-off";
+  var COMPONENT_CLASS_STATUS_ON = COMPONENT_CLASS$9 + "-to-on";
+  var COMPONENT_CLASS_IDLE = COMPONENT_CLASS$9 + "-idle";
+  var DATA_KEY$a = FwCore.settings.prefix + "." + NAME$a;
+  var EVENT_KEY$a = "." + DATA_KEY$a;
+  var EVENT_BEFORE_INIT$4 = "before_init" + EVENT_KEY$a;
+  var EVENT_INIT$4 = "init" + EVENT_KEY$a;
+  var EVENT_AFTER_INIT$4 = "after_init" + EVENT_KEY$a;
+  var EVENT_BEFORE_ON = "before_on" + EVENT_KEY$a;
+  var EVENT_ON = "on" + EVENT_KEY$a;
+  var EVENT_AFTER_ON = "after_on" + EVENT_KEY$a;
+  var EVENT_BEFORE_OFF = "before_off" + EVENT_KEY$a;
+  var EVENT_OFF = "off" + EVENT_KEY$a;
+  var EVENT_AFTER_OFF = "after_off" + EVENT_KEY$a;
 
-    renderProps(moduleGrid, availablePropertiesParent);
-    var moduleChildren = Array.from(moduleGrid.children).filter(function (child) {
-      return child.matches('.module');
-    });
-    moduleChildren.forEach(function (child) {
-      renderProps(child, availablePropertiesChildren);
-    });
-  };
+  var Switch = /*#__PURE__*/function (_FwComponent) {
+    _inheritsLoose(Switch, _FwComponent);
 
-  frameWork.readyGrids = function () {
-    var grids = document.querySelectorAll('.module-grid:not(.module-grid-custom)');
-    grids.forEach(function (grid) {
-      frameWork.initGrid(grid);
-    });
-  };
+    function Switch(element, triggerer) {
+      element = element || UiToggled(TOGGLE_MODE$3) || false;
+      return _FwComponent.call(this, element, {
+        _triggerer: triggerer ? new FwDom(triggerer) : false
+      }) || this;
+    }
 
-  __f.fns_on_rightAway.push(frameWork.readyGrids);
+    var _proto = Switch.prototype;
 
-  __f.fns_on_resize.push(frameWork.readyGrids);
+    _proto.dispose = function dispose() {
+      _FwComponent.prototype.dispose.call(this);
+
+      this._triggerer = null;
+    };
+
+    _proto.isOff = function isOff(elem) {
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      return element.classList.contains(COMPONENT_CLASS_STATUS_OFF);
+    };
+
+    _proto.isOn = function isOn(elem) {
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      return element.classList.contains(COMPONENT_CLASS_STATUS_ON) || !this.isOff();
+    };
+
+    _proto.isIdle = function isIdle(elem) {
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      element.classList.contains(COMPONENT_CLASS_IDLE);
+    };
+
+    _proto.turnOff = function turnOff(elem) {
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      FwEvent.trigger(document, EVENT_BEFORE_OFF);
+      FwEvent.trigger(document, EVENT_OFF);
+      element.classList.remove(COMPONENT_CLASS_STATUS_ON);
+      element.classList.add(COMPONENT_CLASS_STATUS_OFF);
+      FwEvent.trigger(document, EVENT_AFTER_OFF);
+    };
+
+    _proto.turnOn = function turnOn(elem) {
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      FwEvent.trigger(document, EVENT_BEFORE_ON);
+      FwEvent.trigger(document, EVENT_ON);
+      element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
+      element.classList.add(COMPONENT_CLASS_STATUS_ON);
+      FwEvent.trigger(document, EVENT_AFTER_ON);
+    };
+
+    _proto.toggle = function toggle(elem) {
+      elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+
+      if (this.isOff()) {
+        this.turnOn();
+      } else {
+        this.turnOff();
+      }
+    };
+
+    Switch.purge = function purge(exempted) {
+      UiPurge(exempted, "." + COMPONENT_CLASS$9 + ":not(." + COMPONENT_CLASS_IDLE + ")", function (elem) {
+        console.log(elem);
+        new Switch(elem).turnOff();
+      });
+    };
+
+    Switch.handleToggleOn = function handleToggleOn() {
+      return function (e) {
+        if (!FwComponent.isDisabled(e.target)) {
+          var switcher = new Switch(UiToggled(TOGGLE_MODE$3, e.target), e.target);
+          Switch.purge(UiToggled(TOGGLE_MODE$3, e.target));
+          switcher.turnOn();
+        } else {
+          e.preventDefault();
+        }
+      };
+    };
+
+    Switch.handleToggleOff = function handleToggleOff() {
+      return function (e) {
+        if (!FwComponent.isDisabled(e.target)) {
+          var switcher = new Switch(UiToggled(TOGGLE_MODE$3, e.target), e.target);
+          switcher.turnOff();
+        } else {
+          e.preventDefault();
+        }
+      };
+    };
+
+    Switch.handleInit = function handleInit() {
+      return function () {
+        FwEvent.trigger(document, EVENT_BEFORE_INIT$4);
+        FwEvent.trigger(document, EVENT_INIT$4);
+        UiPurge(false, "." + COMPONENT_CLASS$9 + ":not(." + COMPONENT_CLASS_STATUS_ON + ")", function (elem) {
+          console.log(elem);
+          new Switch(elem).turnOff();
+        });
+        FwEvent.trigger(document, EVENT_AFTER_INIT$4);
+      };
+    };
+
+    Switch.handleUniversal = function handleUniversal() {
+      return function (e) {
+        if (FwComponent.isDisabled(e.target)) {
+          e.preventDefault();
+        } else if (!FwComponent.isDynamic(e.target)) {
+          if (!e.target.closest("[data-toggle=\"" + TOGGLE_MODE_ON + "\"]") && !e.target.closest("[data-toggle=\"" + TOGGLE_MODE_OFF + "\"]") && !e.target.closest("." + COMPONENT_CLASS$9)) {
+            Switch.purge();
+          }
+        }
+      };
+    };
+
+    Switch.initListeners = function initListeners() {
+      FwEvent.addListener(document.documentElement, 'click', "*[data-toggle=\"" + TOGGLE_MODE_OFF + "\"]", Switch.handleToggleOff());
+      FwEvent.addListener(document.documentElement, 'click', "*[data-toggle=\"" + TOGGLE_MODE_ON + "\"]", Switch.handleToggleOn());
+      FwEvent.addListener(document.documentElement, 'click', "*", Switch.handleUniversal());
+      FwFnsQ.on_ready = Switch.handleInit();
+    };
+
+    _createClass(Switch, null, [{
+      key: "DATA_KEY",
+      get: function get() {
+        return DATA_KEY$a;
+      }
+    }]);
+
+    return Switch;
+  }(FwComponent);
+  Switch.initListeners();
 
   // import FwArrayay from './src/data-helper/array.js';
   var FrameWork = {
@@ -3817,7 +3845,8 @@
     Lazy: Lazy,
     ListGroup: ListGroup,
     Modal: Modal,
-    ModuleGrid: ModuleGrid
+    ModuleGrid: ModuleGrid,
+    Switch: Switch
   };
 
   return FrameWork;

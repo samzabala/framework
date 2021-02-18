@@ -6,7 +6,7 @@ import FwString from './data-helper/string.js';
 import FwDom from './data-helper/dom.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggled,UiTriggerer } from './util/ui.js';
+import { UiToggled,UiTriggerer,UiPurge } from './util/ui.js';
 
 const NAME = 'dropdown';
 const ARG_ATTRIBUTE_NAME = `${NAME}`;
@@ -208,32 +208,26 @@ class Dropdown extends FwComponent {
 		}
 	}
 
-	static _purger(exempted,selector) {
-			exempted = exempted || false;
-	
-			document.querySelectorAll(selector).forEach((doopdoop) => {
-	
-				if (
-					!exempted
-					|| (
-						exempted
-						&& doopdoop !== exempted
-						&& !doopdoop.contains(exempted)
-					 )
-				) {
-					new Dropdown(doopdoop).close();
-				}
-			});
-	}
-
 	static purge(exemptedDropdown) {
-		Dropdown._purger(exemptedDropdown,`.${COMPONENT_CLASS}`);
+		UiPurge(
+			exemptedDropdown,
+			`.${COMPONENT_CLASS}`,
+			(elem) => {
+				new Dropdown(elem).close();
+			}
+		);
 	}
 
 
 
 	static purgeToggles(exemptedToggle) {
-		Dropdown._purger(exemptedToggle,`*[data-toggle="${TOGGLE_MODE}"]`);
+		UiPurge(
+			exemptedToggle,
+			`*[data-toggle="${TOGGLE_MODE}"]`,
+			(elem) => {
+				new Dropdown( UiToggled(TOGGLE_MODE,elem) ).close();
+			}
+		);
 	}
 
 

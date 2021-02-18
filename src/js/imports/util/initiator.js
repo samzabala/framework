@@ -99,6 +99,7 @@ let resizeTimerInternal;
 FwInit.runResize = () => {
 	clearTimeout(resizeTimerInternal);
 	resizeTimerInternal = setTimeout(() => {
+		console.log(FwFnsQ.on_resize);
 		runFnsQ(FwFnsQ.on_resize);
 	}, 100);
 };

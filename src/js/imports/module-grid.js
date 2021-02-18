@@ -18,15 +18,22 @@ const COMPONENT_CHILDREN_CLASS = `module`;
 const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
-const EVENT_RESIZE = `resize${EVENT_KEY}`;
 
 	const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 	const EVENT_INIT = `init${EVENT_KEY}`;
 	const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 
-	const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
-	const EVENT_CREATE = `create${EVENT_KEY}`;
-	const EVENT_AFTER_CREATE = `after_create${EVENT_KEY}`;
+	const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
+	const EVENT_RENDER = `render${EVENT_KEY}`;
+	const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
+
+	const EVENT_BEFORE_RENDER_GRID = `before_render_grid${EVENT_KEY}`;
+	const EVENT_RENDER_GRID = `render_grid${EVENT_KEY}`;
+	const EVENT_AFTER_RENDER_GRID = `after_render_grid${EVENT_KEY}`;
+
+	const EVENT_BEFORE_RENDER_BLOCK = `before_render_block${EVENT_KEY}`;
+	const EVENT_RENDER_BLOCK = `render_block${EVENT_KEY}`;
+	const EVENT_AFTER_RENDER_BLOCK = `after_render_block${EVENT_KEY}`;
 
 
 const PROPERTIES_WRAPPER = [
@@ -68,8 +75,12 @@ class ModuleGrid extends FwComponent {
 		super(element);
 	}
 
+	static get DATA_KEY(){
+		return DATA_KEY;
+	}
+
 	get UiChildren () {
-		return super.UiEl().querySelectorAll()`.${COMPONENT_CHILDREN_CLASS}`;
+		return super.UiEl().querySelectorAll(`.${COMPONENT_CHILDREN_CLASS}`);
 	}
 
 	render(elem){
@@ -94,7 +105,7 @@ class ModuleGrid extends FwComponent {
 					smallestStyledBr = br;
 					if (ValidateBr(br, 'above')) {
 						block
-							.style[FwString.toCamelCase(prop)] = block.getAttribute(
+							.style[FwString.ToCamelCase(prop)] = block.getAttribute(
 								`data-${prop}-${br}`
 							);
 						propsSet = true;
@@ -113,7 +124,7 @@ class ModuleGrid extends FwComponent {
 					&& !propSetBr
 				) {
 					block
-						.style[FwString.toCamelCase(prop)] = block.getAttribute(
+						.style[FwString.ToCamelCase(prop)] = block.getAttribute(
 							`data-${prop}`
 						);
 					propsSet = true;
@@ -121,57 +132,72 @@ class ModuleGrid extends FwComponent {
 
 			} else {
 				if (
-					block.style[FwString.toCamelCase(prop)] !== null
+					block.style[FwString.ToCamelCase(prop)] !== null
 					&& smallestStyledBr
 					&& !ValidateBr(smallestStyledBr, 'above')
 				) {
-					block.style[FwString.toCamelCase(prop)] = null;
+					block.style[FwString.ToCamelCase(prop)] = null;
 				}
 			}
 		});
 	}
 
-	setWrapper(elem){
+	renderGrid(elem){
 		const element = elem ?
 			super.UiEl(elem)
 			: super.UiEl();
 
+			FwEvent.trigger(elem,EVENT_BEFORE_RENDER_GRID);
+			FwEvent.trigger(elem,EVENT_RENDER_GRID);
+
 			this._loopProps(element,PROPERTIES_WRAPPER);
+
+			FwEvent.trigger(elem,EVENT_AFTER_RENDER_GRID);
 	}
 
-	setBlocks(){
+	renderBlocks(){
 
 		this.UiChildren.forEach((child)=>{
+
+			FwEvent.trigger(child,EVENT_BEFORE_RENDER_BLOCK);
+			FwEvent.trigger(child,EVENT_RENDER_BLOCK);
+
 			this._loopProps(child,PROPERTIES_CHILDREN);
+
+			FwEvent.trigger(child,EVENT_AFTER_RENDER_BLOCK);
 		});
 	}
 
-	set(elem){
+	render(elem){
 		const element = elem ?
 			super.UiEl(elem)
 			: super.UiEl();
 
-			this.setWrapper(elem);
-			this.setBlocks();
+
+			FwEvent.trigger(elem,EVENT_BEFORE_RENDER);
+			FwEvent.trigger(elem,EVENT_RENDER);
+
+			this.renderGrid(elem);
+			this.renderBlocks();
 		
+			FwEvent.trigger(elem,EVENT_AFTER_RENDER);
 	}
 	
 
 	static handleUniversal() {
 		return () => {
 
-				FwEvent.trigger(element,EVENT_BEFORE_INIT);
-				FwEvent.trigger(element,EVENT_INIT);
+			FwEvent.trigger(document,EVENT_BEFORE_INIT);
+			FwEvent.trigger(document,EVENT_INIT);
 
+			const grids = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 
+			grids.forEach((grid)=>{
+				const moduleGrid = new ModuleGrid(grid);
+				moduleGrid.render();
+			})
 
-				const moduleGrids = document.querySelectorAll(`.${COMPONENT_CLASS}`);
-
-				moduleGrids.forEach((grid)=>{
-					grid.set();
-				})
-
-				FwEvent.trigger(element,EVENT_AFTER_INIT);
+			FwEvent.trigger(document,EVENT_AFTER_INIT);
 		}
 		
 	}
@@ -184,35 +210,4 @@ class ModuleGrid extends FwComponent {
 
 
 export default ModuleGrid;
-
 ModuleGrid.initListeners();
-
-
-
-frameWork.initGrid = (moduleGrid) => {
-	
-
-	const renderProps = (block, props) => {
-		
-	};
-
-	renderProps(moduleGrid, availablePropertiesParent);
-	const moduleChildren = Array.from(moduleGrid.children).filter(
-		(child) => {
-			return child.matches('.module');
-		}
-	);
-
-	moduleChildren.forEach((child) => {
-		renderProps(child, availablePropertiesChildren);
-	});
-};
-
-frameWork.readyGrids = () => {
-	const grids = document.querySelectorAll('.module-grid:not(.module-grid-custom)');
-	grids.forEach((grid) => {
-		frameWork.initGrid(grid);
-	});
-};
-__f.fns_on_rightAway.push(frameWork.readyGrids);
-__f.fns_on_resize.push(frameWork.readyGrids);

@@ -14,6 +14,7 @@ import Lazy from './imports/lazy.js';
 import ListGroup from './imports/list-group.js';
 import Modal from './imports/modal.js';
 import ModuleGrid from './imports/module-grid.js';
+import Switch from './imports/switch.js';
 
 const FrameWork = {
 	Accordion,
@@ -24,6 +25,7 @@ const FrameWork = {
 	Lazy,
 	ListGroup,
 	Modal,
-	ModuleGrid
+	ModuleGrid,
+	Switch
 };
 export default FrameWork

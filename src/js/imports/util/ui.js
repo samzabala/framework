@@ -265,3 +265,20 @@ export const UiToggleGroup = (element, prefix, activatedClass, siblingSelector, 
 		}
 	}
 }
+
+export const UiPurge = (exempted,selector,callback) => {
+	
+	document.querySelectorAll(selector).forEach((elem) => {
+
+		if (
+			!exempted
+			|| (
+				exempted
+				&& elem !== exempted
+				&& !elem.contains(exempted)
+			 )
+		) {
+			callback(elem);
+		}
+	});
+}
