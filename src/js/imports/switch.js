@@ -4,6 +4,7 @@ import FwCore from './util/core.js';
 import {FwFnsQ} from './util/initiator.js';
 
 import FwEvent from './data-helper/event.js';
+import FwString from './data-helper/string.js';
 import FwDom from './data-helper/dom.js';
 
 import FwComponent from './classes/component.js';
@@ -14,7 +15,7 @@ const NAME = 'switch';
 const TOGGLE_MODE = `${NAME}`;
 const TOGGLE_MODE_ON = `${TOGGLE_MODE}-on`;
 const TOGGLE_MODE_OFF = `${TOGGLE_MODE}-off`;
-const COMPONENT_CLASS = `${NAME}`;
+const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 	const COMPONENT_CLASS_STATUS_OFF = `${COMPONENT_CLASS}-to-off`;
 	const COMPONENT_CLASS_STATUS_ON = `${COMPONENT_CLASS}-to-on`;
 	const COMPONENT_CLASS_IDLE = `${COMPONENT_CLASS}-idle`;
@@ -135,7 +136,6 @@ class Switch extends FwComponent {
 			exempted,
 			`.${COMPONENT_CLASS}:not(.${COMPONENT_CLASS_IDLE})`,
 			(elem)=> {
-				console.log(elem);
 				new Switch(elem).turnOff();
 			}
 		);
@@ -213,21 +213,21 @@ class Switch extends FwComponent {
 
 		FwEvent.addListener(
 			document.documentElement,
-			'click',
+			EVENT_CLICK,
 			`*[data-toggle="${TOGGLE_MODE_OFF}"]`,
 			Switch.handleToggleOff()
 		);
 
 		FwEvent.addListener(
 			document.documentElement,
-			'click',
+			EVENT_CLICK,
 			`*[data-toggle="${TOGGLE_MODE_ON}"]`,
 			Switch.handleToggleOn()
 		);
 
 		FwEvent.addListener(
 			document.documentElement,
-			'click',
+			EVENT_CLICK,
 			`*`,
 			Switch.handleUniversal()
 		);

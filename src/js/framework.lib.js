@@ -15,6 +15,7 @@ import ListGroup from './imports/list-group.js';
 import Modal from './imports/modal.js';
 import ModuleGrid from './imports/module-grid.js';
 import Switch from './imports/switch.js';
+import Tabs from './imports/tabs.js';
 
 const FrameWork = {
 	Accordion,
@@ -26,6 +27,7 @@ const FrameWork = {
 	ListGroup,
 	Modal,
 	ModuleGrid,
-	Switch
+	Switch,
+	Tabs
 };
 export default FrameWork

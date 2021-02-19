@@ -2972,7 +2972,7 @@
   var COMPONENT_CLASS$6 = "" + FwString.ToDashed(NAME$6);
   var ACTIVATED_CLASS$3 = NAME$6 + "-loaded";
   var SVG_REPLACED_CLASS = COMPONENT_CLASS$6 + "-svg-replacement";
-  var COMPONENT_SELECTOR = '*[data-src],*[data-srcset]';
+  var COMPONENT_SELECTOR = "*[data-src],*[data-srcset],." + COMPONENT_CLASS$6;
   var BODY_LOADING_CLASS = "body-" + NAME$6 + "-loading";
   var BODY_LOADED_CLASS = "body-" + NAME$6 + "-loaded";
   var DATA_KEY$6 = FwCore.settings.prefix + "." + NAME$6;
@@ -2996,9 +2996,45 @@
       _FwComponent.prototype.dispose.call(this);
     };
 
-    _proto.load = function load(elem) {
+    _proto.readyLoaded = function readyLoaded(elem) {
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      element.classList.add("" + ACTIVATED_CLASS$3);
+    };
+
+    _proto.loadSVG = function loadSVG(elem) {
       var _this = this;
 
+      var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
+      var imgID = element.getAttribute('id') || null;
+      var imgClass = element.getAttribute('class') || null;
+      fetch(this.theSrc).then(function (response) {
+        return response.text();
+      }).then(function (markup) {
+        var parser = new DOMParser();
+        var dom = parser.parseFromString(markup, 'text/html');
+        var svg = dom.querySelector('svg');
+
+        if (svg) {
+          if (typeof imgID !== null) {
+            svg.setAttribute('id', imgID);
+          }
+
+          if (typeof imgClass !== null) {
+            svg.setAttribute('class', imgClass + " " + SVG_REPLACED_CLASS);
+          }
+
+          svg.removeAttribute('xmlns:a');
+          element.replaceWith(svg);
+          _this.UiOriginal = element;
+
+          _FwComponent.prototype._resetUiEl.call(_this, svg);
+        }
+
+        _this.readyLoaded();
+      });
+    };
+
+    _proto.load = function load(elem) {
       var element = elem ? _FwComponent.prototype.UiEl.call(this, elem) : _FwComponent.prototype.UiEl.call(this);
 
       if (!element) {
@@ -3011,40 +3047,19 @@
         FwEvent.trigger(element, EVENT_LAZYLOAD);
 
         if (element.matches('img') || element.closest('picture')) {
+          this.theSrc && element.setAttribute('src', this.theSrc);
+          this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
+
           if (FwString.GetFileExtension(this.theSrc) == 'svg') {
-            var imgID = element.getAttribute('id') || null;
-            var imgClass = element.getAttribute('class') || null;
-            fetch(this.theSrc).then(function (response) {
-              return response.text();
-            }).then(function (markup) {
-              var parser = new DOMParser();
-              var dom = parser.parseFromString(markup, 'text/html');
-              var svg = dom.querySelector('svg');
-
-              if (svg) {
-                if (typeof imgID !== null) {
-                  svg.setAttribute('id', imgID);
-                }
-
-                if (typeof imgClass !== null) {
-                  svg.setAttribute('class', imgClass + " " + SVG_REPLACED_CLASS + " " + ACTIVATED_CLASS$3);
-                }
-
-                svg.removeAttribute('xmlns:a');
-                _this.UiOriginal = element;
-
-                _FwComponent.prototype._resetUiEl.call(_this, svg);
-              }
-            });
+            this.loadSVG();
           } else {
-            this.theSrc && element.setAttribute('src', this.theSrc);
-            this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
+            this.readyLoaded();
           }
         } else {
+          console.log(element);
           element.style.backgroundImage = "url(" + this.theSrc + ")";
+          this.readyLoaded();
         }
-
-        element.classList.add("" + ACTIVATED_CLASS$3);
       }
 
       FwEvent.trigger(element, EVENT_AFTER_LAZYLOAD);
@@ -3082,8 +3097,6 @@
       Lazy.setStatus('loaded');
       FwEvent.trigger(document, EVENT_AFTER_LAZYLOAD);
     };
-
-    Lazy.handleToggle = function handleToggle() {};
 
     Lazy.initListeners = function initListeners() {
       if (FwCore.settings.lazyLoad) {
@@ -3552,7 +3565,7 @@
   Modal.initListeners();
 
   var NAME$9 = 'moduleGrid';
-  var COMPONENT_CLASS$8 = "module-grid";
+  var COMPONENT_CLASS$8 = "" + FwString.ToDashed(NAME$9);
   var COMPONENT_CHILDREN_CLASS = "module";
   var DATA_KEY$9 = FwCore.settings.prefix + "." + NAME$9;
   var EVENT_KEY$9 = "." + DATA_KEY$9;
@@ -3686,12 +3699,13 @@
   var TOGGLE_MODE$3 = "" + NAME$a;
   var TOGGLE_MODE_ON = TOGGLE_MODE$3 + "-on";
   var TOGGLE_MODE_OFF = TOGGLE_MODE$3 + "-off";
-  var COMPONENT_CLASS$9 = "" + NAME$a;
+  var COMPONENT_CLASS$9 = "" + FwString.ToDashed(NAME$a);
   var COMPONENT_CLASS_STATUS_OFF = COMPONENT_CLASS$9 + "-to-off";
   var COMPONENT_CLASS_STATUS_ON = COMPONENT_CLASS$9 + "-to-on";
   var COMPONENT_CLASS_IDLE = COMPONENT_CLASS$9 + "-idle";
   var DATA_KEY$a = FwCore.settings.prefix + "." + NAME$a;
   var EVENT_KEY$a = "." + DATA_KEY$a;
+  var EVENT_CLICK$8 = "click" + EVENT_KEY$a;
   var EVENT_BEFORE_INIT$4 = "before_init" + EVENT_KEY$a;
   var EVENT_INIT$4 = "init" + EVENT_KEY$a;
   var EVENT_AFTER_INIT$4 = "after_init" + EVENT_KEY$a;
@@ -3765,7 +3779,6 @@
 
     Switch.purge = function purge(exempted) {
       UiPurge(exempted, "." + COMPONENT_CLASS$9 + ":not(." + COMPONENT_CLASS_IDLE + ")", function (elem) {
-        console.log(elem);
         new Switch(elem).turnOff();
       });
     };
@@ -3818,9 +3831,9 @@
     };
 
     Switch.initListeners = function initListeners() {
-      FwEvent.addListener(document.documentElement, 'click', "*[data-toggle=\"" + TOGGLE_MODE_OFF + "\"]", Switch.handleToggleOff());
-      FwEvent.addListener(document.documentElement, 'click', "*[data-toggle=\"" + TOGGLE_MODE_ON + "\"]", Switch.handleToggleOn());
-      FwEvent.addListener(document.documentElement, 'click', "*", Switch.handleUniversal());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$8, "*[data-toggle=\"" + TOGGLE_MODE_OFF + "\"]", Switch.handleToggleOff());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$8, "*[data-toggle=\"" + TOGGLE_MODE_ON + "\"]", Switch.handleToggleOn());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$8, "*", Switch.handleUniversal());
       FwFnsQ.on_ready = Switch.handleInit();
     };
 
@@ -3835,6 +3848,97 @@
   }(FwComponent);
   Switch.initListeners();
 
+  var NAME$b = 'tabs';
+  var COMPONENT_CLASS$a = "" + FwString.ToDashed(NAME$b);
+  var COMPONENT_CHILDREN_CLASS$1 = 'tab';
+  var COMPONENT_CHILDREN_TAG = 'li';
+  var ACTIVATED_CLASS$5 = "active";
+  var DATA_KEY$b = FwCore.settings.prefix + "." + NAME$b;
+  var EVENT_KEY$b = "." + DATA_KEY$b;
+  var EVENT_CLICK$9 = "click" + EVENT_KEY$b;
+
+  var Tabs = /*#__PURE__*/function (_FwComponent) {
+    _inheritsLoose(Tabs, _FwComponent);
+
+    function Tabs() {
+      return _FwComponent.apply(this, arguments) || this;
+    }
+
+    var _proto = Tabs.prototype;
+
+    _proto.UiChildren = function UiChildren() {
+      return _FwComponent.prototype.UiEl.call(this).querySelectorAll("." + COMPONENT_CHILDREN_CLASS$1);
+    };
+
+    _proto.target = function target(element) {
+      if (element) return new FwDom(element).closest("." + COMPONENT_CHILDREN_CLASS$1);
+    };
+
+    _proto.activate = function activate(target) {
+      var theTab = this.target(target);
+
+      if (!theTab) {
+        return false;
+      }
+
+      if (!theTab.classList.contains("" + ACTIVATED_CLASS$5)) {
+        var triggererSiblings = frameWork.getSiblings(theTab);
+        triggererSiblings.filter(function (sibling) {
+          return sibling.matches("." + COMPONENT_CHILDREN_CLASS$1) || sibling.matches("" + COMPONENT_CHILDREN_TAG);
+        }).forEach(function (sibling) {
+          sibling.classList.remove("" + ACTIVATED_CLASS$5);
+        });
+        theTab.classList.add("" + ACTIVATED_CLASS$5);
+      }
+    };
+
+    Tabs.handleClick = function handleClick() {
+      return function (e) {
+        if (frameWork.isDisabled(triggerer)) {
+          e.preventDefault();
+        } else {
+          var tabs = new Tabs(e.target.closest('.tabs'));
+          tabs.activate(e.target);
+        }
+      };
+    };
+
+    Tabs.initListeners = function initListeners() {
+      FwEvent.addListener(document, EVENT_CLICK$9, "." + COMPONENT_CLASS$a + " > " + COMPONENT_CHILDREN_TAG + " > *, ." + COMPONENT_CHILDREN_CLASS$1 + ", ." + COMPONENT_CHILDREN_CLASS$1 + " > *", Tabs.handleClick());
+    };
+
+    _createClass(Tabs, null, [{
+      key: "DATA_KEY",
+      get: function get() {
+        return DATA_KEY$b;
+      }
+    }]);
+
+    return Tabs;
+  }(FwComponent);
+  Tabs.initListeners();
+  FwEvent.addListener(document.documentElement, 'click', '.tab, .tab > *', function (e) {
+    var triggerer = e.target;
+
+    if (frameWork.isDisabled(triggerer)) {
+      e.preventDefault();
+    } else {
+      var theTab = triggerer.closest('.tab');
+
+      if (theTab) {
+        if (!theTab.classList.contains('active')) {
+          var triggererSiblings = frameWork.getSiblings(theTab);
+          triggererSiblings.filter(function (sibling) {
+            return sibling.matches('.tab') || sibling.matches('li');
+          }).forEach(function (sibling) {
+            sibling.classList.remove('active');
+          });
+          theTab.classList.add('active');
+        }
+      }
+    }
+  });
+
   // import FwArrayay from './src/data-helper/array.js';
   var FrameWork = {
     Accordion: Accordion,
@@ -3846,7 +3950,8 @@
     ListGroup: ListGroup,
     Modal: Modal,
     ModuleGrid: ModuleGrid,
-    Switch: Switch
+    Switch: Switch,
+    Tabs: Tabs
   };
 
   return FrameWork;

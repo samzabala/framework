@@ -12,7 +12,7 @@ import { BrTag,ValidateBr } from './util/breakpoint.js';
 
 
 const NAME = 'moduleGrid';
-const COMPONENT_CLASS = `module-grid`;
+const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const COMPONENT_CHILDREN_CLASS = `module`;
 
 const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;

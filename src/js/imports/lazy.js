@@ -3,7 +3,6 @@ import {FwFnsQ} from './util/initiator.js';
 
 import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
-import FwDom from './data-helper/dom.js';
 
 import FwComponent from './classes/component.js';
 import { UiToggled,UiTriggerer } from './util/ui.js';
@@ -12,12 +11,10 @@ const NAME = 'lazy';
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `${NAME}-loaded`;
 const SVG_REPLACED_CLASS = `${COMPONENT_CLASS}-svg-replacement`;
-const COMPONENT_SELECTOR = '*[data-src],*[data-srcset]';
+const COMPONENT_SELECTOR = `*[data-src],*[data-srcset],.${COMPONENT_CLASS}`;
 
 const BODY_LOADING_CLASS = `body-${NAME}-loading`;
 const BODY_LOADED_CLASS = `body-${NAME}-loaded`;
-
-const NAV_ANCESTOR = `li, .nav-item`;
 
 const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
 
@@ -62,6 +59,51 @@ class Lazy extends FwComponent {
 		this._ogElement = elem;
 	}
 
+	readyLoaded(elem){
+		const element = elem ?
+			super.UiEl(elem)
+			: super.UiEl();
+
+		element.classList.add(`${ACTIVATED_CLASS}`);
+	}
+
+	loadSVG(elem){
+		const element = elem ?
+			super.UiEl(elem)
+			: super.UiEl();
+
+
+		const imgID = element.getAttribute('id') || null;
+		const imgClass = element.getAttribute('class') || null;
+
+		fetch(this.theSrc)
+			.then((response) => response.text())
+			.then((markup) => {
+				const parser = new DOMParser();
+				const dom = parser.parseFromString(markup, 'text/html');
+				
+				const svg = dom.querySelector('svg');
+
+				if (svg) {
+					if (typeof imgID !== null) {
+						svg.setAttribute('id', imgID);
+					}
+					if (typeof imgClass !== null) {
+						svg.setAttribute(
+							'class',
+							`${imgClass} ${SVG_REPLACED_CLASS}`
+						);
+					}
+
+					svg.removeAttribute('xmlns:a');
+					element.replaceWith(svg);
+					this.UiOriginal = element;
+					super._resetUiEl(svg);
+				}
+				this.readyLoaded();
+			});
+	}
+
 	load(elem){
 		const element = elem ?
 			super.UiEl(elem)
@@ -73,47 +115,25 @@ class Lazy extends FwComponent {
 
 			FwEvent.trigger(element,EVENT_BEFORE_LAZYLOAD);
 
+
 			if(element.classList.contains(`${COMPONENT_CLASS}`)){
 				FwEvent.trigger(element,EVENT_LAZYLOAD);
 				if (element.matches('img') || element.closest('picture')) {
-					if (
-						FwString.GetFileExtension(this.theSrc) == 'svg'
-					) {
-						const imgID = element.getAttribute('id') || null;
-						const imgClass = element.getAttribute('class') || null;
-				
-						fetch(this.theSrc)
-							.then((response) => response.text())
-							.then((markup) => {
-								const parser = new DOMParser();
-								const dom = parser.parseFromString(markup, 'text/html');
-								
-								const svg = dom.querySelector('svg');
-				
-								if (svg) {
-									if (typeof imgID !== null) {
-										svg.setAttribute('id', imgID);
-									}
-									if (typeof imgClass !== null) {
-										svg.setAttribute(
-											'class',
-											`${imgClass} ${SVG_REPLACED_CLASS} ${ACTIVATED_CLASS}`
-										);
-									}
-				
-									svg.removeAttribute('xmlns:a');
-									this.UiOriginal = element;
-									super._resetUiEl(svg);
-								}
-							});
-					} else {
-						this.theSrc && element.setAttribute('src', this.theSrc);
-						this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
+					
+					this.theSrc && element.setAttribute('src', this.theSrc);
+					this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
+
+					if(FwString.GetFileExtension(this.theSrc) == 'svg'){
+						this.loadSVG();
+					}else{
+						this.readyLoaded();
 					}
+
 				} else {
+					console.log(element);
 					element.style.backgroundImage = `url(${this.theSrc})`;
+					this.readyLoaded();
 				}
-				element.classList.add(`${ACTIVATED_CLASS}`);
 			}
 
 
@@ -150,8 +170,8 @@ class Lazy extends FwComponent {
 		Lazy.setStatus('loading');
 		images = images || document.querySelectorAll(COMPONENT_SELECTOR);
 	
-
 		FwEvent.trigger(document,EVENT_LAZYLOAD);
+
 		images.forEach((img) => {
 			const lazy = new Lazy(img);
 			lazy.load();
@@ -161,12 +181,6 @@ class Lazy extends FwComponent {
 
 
 		FwEvent.trigger(document,EVENT_AFTER_LAZYLOAD);
-	}
-	
-
-
-	static handleToggle() {
-		
 	}
 	
 
