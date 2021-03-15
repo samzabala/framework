@@ -1,0 +1,51 @@
+/*** MODAL ***/
+$prefix: '.modal-ui';
+
+[data-toggle-modal]{
+	@include dump-styles(data-toggle);
+}
+
+#{$prefix}#{$prefix}-mode-default {
+	z-index: 99999;
+
+	#{$prefix}-wrapper {
+		@extend %for-modal-scroller !optional;
+		@extend %for-modal-scroller-no-scrollbar !optional;
+
+		padding: $modal-gutter;
+
+		@include br(#{$mobile-br-max}-max) {
+			padding: $modal-gutter-mobile;
+		}
+	}
+
+	#{$prefix}-close {
+		& {
+			position:absolute;
+			right: $modal-close-offset;
+			top: $modal-close-offset;
+			z-index:9;
+
+			&-default {
+				font-size: $modal-close-button-font-size;
+			}
+
+			
+			@include br(#{$mobile-br-max}-max) {
+				right: $modal-close-offset-mobile;
+				top: $modal-close-offset-mobile;
+			}
+		}
+	}
+
+	#{$prefix}-popup {
+		border-radius: $modal-border-radius;
+		margin: auto;
+
+		padding: $modal-padding-y $modal-padding-x;
+
+		@include br(#{$mobile-br-max}-max) {
+			padding: $modal-padding-y-mobile $modal-padding-x-mobile;
+		}
+	}
+}

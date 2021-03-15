@@ -53,5 +53,30 @@ If you want to allow the group to have no active bitches add  **`.list-group-tog
 </ul>
 ```
 
+## Javascript
+
+it has some but just for the functionality of toggling dem in a `.list-group-toggle`
+
+### Functions
+
+#### **`fw.ListGroup(element)`**
+
+Make a new boi by going `const listGroup = new fw.ListGroup(element)`
+
+useful when you need to close tthis listGroup
+
+#### **`listGroup.toggle(element)`**
+
+toggles the listGroup
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+### Events
+
+* `click.fw.listGroup` - happens on the `element`
+* `before_toggle.fw.listGroup` - happens on `element` before toggle
+* `toggle.fw.listGroup` - happens on `element` when toggle
+* `after_toggle.fw.listGroup` - happens on `element` after toggle
+
 
 [Back to TOC](../../../readme.md)

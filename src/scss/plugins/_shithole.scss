@@ -1,0 +1,2702 @@
+
+// Mixins ****hole
+// follow my soundlcloud for mor surprises
+// github.io/samzabala
+
+
+////////////////////////////////////////////////////////////////////////////// 
+//DEFAULT VARIABLES 
+//////////////////////////////////////////////////////////////////////////////
+
+	//fonts
+	$font-base:  Helvetica, Arial sans-serif !default;
+	$font-secondary: Times,serif !default;
+	$font-monospace: monospace !default;
+
+	// optional font variations in case design has 2+ fonts. NOT RECOMMENDED
+	$font-accent: $font-secondary !default;
+	
+	//colors for the design
+	$color-base: #000 !default;
+	$color-primary: #f00 !default;
+	$color-secondary: #0f0 !default;
+	$color-accent: #0cc !default;
+	$white: #FFF !default;
+	$gray: #888 !default;
+
+	$success: #15b800 !default;
+	$caution: #fd7f03 !default;
+	$error: #fd0303 !default;
+
+	//optional color variations
+	$white-alt: darken($white, 6.67) !default;
+	$color-base-alt: #000 !default;
+	$color-primary-alt: darken($color-primary,20.00) !default;
+	$color-secondary-alt: darken($color-secondary,20.00) !default;
+	$color-accent-alt: darken($color-accent,20.00) !default;
+	$gray-light: lighten($gray, 13.33) !default;
+	$gray-lighter:lighten($gray, 40) !default;
+	$gray-dark: darken($gray, 13.33) !default;
+	$gray-darker:darken($gray, 40) !default;
+
+
+
+	$force-responsive-units: false !default;
+	//map because sass wont interpolate variable names
+	$color: (
+		base: $color-base,
+		primary: $color-primary,
+		secondary: $color-secondary,
+		accent: $color-accent,
+		white: $white,
+		gray: $gray,
+		white-alt: $white-alt,
+		base-alt: $color-base-alt,
+		primary-alt: $color-primary-alt,
+		secondary-alt: $color-secondary-alt,
+		accent-alt: $color-accent-alt,
+		gray-light: $gray-light,
+		gray-lighter: $gray-lighter,
+		gray-dark: $gray-dark,
+		gray-darker: $gray-darker,
+		success: $success,
+		caution: $caution,
+		error: $error,
+		//shorter im too lazy to type na
+		b: $color-base,
+		p: $color-primary,
+		s: $color-secondary,
+		a: $color-accent,
+		w: $white,
+		g: $gray,
+		u: $success,
+		c: $caution,
+		e: $error,
+		w-alt: $white-alt,
+		b-alt: $color-base-alt,
+		p-alt: $color-primary-alt,
+		s-alt: $color-secondary-alt,
+		a-alt: $color-accent-alt,
+		g-light: $gray-light,
+		g-lighter: $gray-lighter,
+		g-dark: $gray-dark,
+		g-darker: $gray-darker,
+	);
+
+
+	$font: (
+		base: $font-base,
+		secondary: $font-secondary,
+		monospace: $font-monospace,
+		accent: $font-accent,
+
+		//shorthand
+		b: $font-base,
+		s: $font-secondary,
+		m: $font-monospace,
+		a: $font-accent
+	);
+
+	// spacing/ padding base value. used for gutter()'s calculation
+	$gutter: 40px !default;
+
+	//breakpoints
+	$brxs: 600px !default;
+	$brsm: 1200px !default;
+	$brmd: 1500px !default;
+	$brlg: 1800px !default;
+
+	//extra breakpoints
+	$brxxs: 400px !default; //for fixing designs that donnt fit average mobile screens
+	$clg: 1920px !default; // max width of desktop design for containers
+
+
+
+	//BR max values. can change but not recommended unless u know what the fuq u are doing
+	$brxxs-mn: 0;
+	$brxs-mn: $brxxs + 1!default;
+	$brsm-mn: $brxs + 1!default;
+	$brmd-mn: $brsm + 1!default;
+	$brlg-mn: $brmd + 1!default;
+	$brxl-mn: $brlg + 1!default;
+
+	//configs
+	$autoprefix: true !default; // turn off if ya compiler is gonna do this  then goooood
+
+
+////////////////////////////////////////////////////////////////////////////// 
+// VARIABLES THAT MUST NEVER BE EDITED BECAUSE THEY ARE BASED FROM THE VALUES 
+// U GIVE FOR VARIABLES ABOVE AND THE REST OF THE CODE WILL DIE IF U FUCK IT 
+////////////////////////////////////////////////////////////////////////////// 
+	
+
+	// Media query condition strings
+		//Max widths
+		$screen-xxs-max:  #{'max-width: ' + $brxxs};
+		$screen-xs-max:  #{'max-width: ' + $brxs};
+		$screen-sm-max:  #{'max-width: ' + $brsm};
+		$screen-md-max:  #{'max-width: ' + $brmd};
+		$screen-lg-max:  #{'max-width: ' + $brlg};
+
+		//Min widths
+		$screen-xs:  #{'min-width: ' + $brxs-mn}; //mobile
+		$screen-sm:  #{'min-width: ' + $brsm-mn}; //tablet
+		$screen-md:  #{'min-width: ' + $brmd-mn}; //laptop
+		$screen-lg:  #{'min-width: ' + $brlg-mn}; //desktop
+		$screen-xl:  #{'min-width: ' + $brxl-mn}; //desktop
+
+		// Breakpoint tags
+		$br-tag: (
+			xxs-max: $screen-xxs-max,
+			xs-max: $screen-xs-max,
+			sm-max: $screen-sm-max,
+			md-max: $screen-md-max,
+			lg-max: $screen-lg-max,
+			xs: $screen-xs,
+			sm: $screen-sm,
+			md: $screen-md,
+			lg: $screen-lg,
+			xl: $screen-xl
+		);
+
+		$br-tag-list: (xxs-max, xs-max, sm-max, md-max, lg-max, xs, sm, md, lg, xl);
+
+
+////////////////////////////////////////////////////////////////////////////// 
+// FRAMEWORK MIXINS + FUNCTIONS
+////////////////////////////////////////////////////////////////////////////// 
+	
+	//Mixins
+		/// For setting up basic media queries. this babaknita just gets bruha the lazier i get coding all them characters
+		/// @param $br: () !default | (list / string) | breakpoint duh.  accepts string of condition or breakpoint tag
+		/// @param $media: '' !default | (list / string) | the mediatype 
+		/// @param $use-only: false !default | (boolean) | add `only` to the query
+		/// @param $operator: and !default | (string) | operator to use between list $br
+		/// @content: styles for the breakpoint
+		/// @return: declared @content wrapped in breakpoint
+
+		//TODO ADD PRINT OR SCREEN OR WHATEVER FUCK OR MAKE 
+		@mixin breakpoint($br:(),$media: '',$use-only: false, $operator: 'and'){
+			$only: '';
+			$media-string: '';
+			@if $use-only == true {
+				$only: 'only';
+			}
+
+
+			@if $media-string != '' {
+			$media-string: #{$media + ' and'};
+			}
+			
+			$query: '';
+			@if type-of($br) == list {
+				@each $string in $br {
+
+
+
+				@if map-has-key($br-tag,$string){
+					$string: map-get($br-tag,$string);
+				}
+					
+					$op: '';
+					@if $query != ''  {
+						$op: #{') '+ $operator +' ('};
+					}
+					$query: #{$query + $op + $string};
+				}
+				$query: #{$only+' '+$media-string+' (' + $query + ')'};
+			}@else {
+
+				@if map-has-key($br-tag,$br){
+					$br: map-get($br-tag,$br);
+				}
+
+				$query: #{$only+' '+$media-string+' (' + $br + ')'};
+			}
+			
+			@media #{$query}  { 
+				@content;
+			}
+		}
+
+			//to lazy to type breakpoint? use dis shakalaka
+			@mixin br($br:(),$media: '',$use-only: false, $operator: 'and'){
+				@include breakpoint($br,$media,$use-only, $operator){
+					@content;
+				}
+			}
+
+	   
+		/// translate string to media query eg. sm and sm-max,md and md-max
+		/// NOTE: $query string must have all characters separated by spaces because regex is nOT A FUCKING THING IN SASS
+		@mixin media($query){
+
+			//spaces are to track only the tags built for this mixin because sass doesnt haVE FUCJKING REGEX
+			$query-ready: #{ ' ' + $query + ' ' };
+
+
+			@each $tag,$breakpoint in $br-tag {
+				$query-ready: str-replace($query-ready,#{' '+ $tag + ' ' }, ' (' + $breakpoint  + ') ');
+			}  
+
+			// @error $query;
+
+			@media #{$query-ready}  { 
+				@content;
+			}
+			
+		}
+
+
+
+		/// some mixins support custom css mga pota
+		/// @param $css: () !default | (list: (property: value, selector: ( property: value,...)...)) | list of properties and values for custom csss on mixins. list it like u would in a css js object declaration idk
+		/// @return: map converted to css
+		@mixin custom-css($css:()){
+			@each $property-or-selector,$value-or-more-css in $css {
+				@if type-of($value-or-more-css) == map {
+					#{$property-or-selector} {
+						@include custom-css($value-or-more-css);
+					}
+				}@else {
+					#{$property-or-selector}: $value-or-more-css;
+				}
+			}	
+		}
+
+		/// basic ass potang container that centers ya shakalaka
+		/// @param $padding: gutter(.75) or $gutter * .75 !default | (number) | padding for left and right
+		/// @return: container styles
+		@mixin container($padding:'') {
+			@if $padding != '' {
+				padding-left: $padding;
+				padding-right: $padding;
+			}
+			margin: 0 auto; 
+			width:100%;
+			position:relative;
+			@include cf(true);
+			//TODO add media query
+		}
+
+
+		//calculate max-width
+			@function container-max($comp-size,$distance: 0,$container-gutter: gutter(.75),$use-calc: true) {
+				@if $use-calc == true {
+					@return calc(#{$comp-size} - ((#{$distance} - #{$container-gutter}) * 2));
+				}@else {
+					@return $comp-size - (($distance - $container-gutter) * 2);
+
+				}
+			}
+
+		//calculate inner width
+			@function container-inner($comp-size, $distance: 0) {
+				@return $comp-size - (($distance ) * 2);
+			}   
+
+		/// cleearfix mofo
+		/// @param $extend: false !default | (boolean) | extend the extend or nah
+		/// @return: clearfix styles
+		@mixin cf($extend: false){
+			@if $extend == true {
+				@extend %for-cf;
+			}@else {
+				&:after {
+					content: "";
+					clear: both;
+					display: table;
+					width: 100%;
+					flex: 1 1 100%;
+				}
+			}
+		}
+
+		/// flex boiii
+		/// @param $extend: false !default | (boolean) | extend the extend or nah
+		/// @param $br: xs | (string) | set breakpoint where flex starts happening. xs wond generate a media query huhuhu
+		/// @param $add-important: false | (boolean) | add important to flex becausE SOME BOOBS FEEL LIKE THERE SHOULD BE AN !IMPORTANT???
+		@mixin flex($extend: false,$br: false,$add-important: false,$add-wrap:false){
+			
+			$important: '';
+
+			@if $add-important == true {
+				$important:'!important';
+			}
+
+			@if  $extend == true {
+				@extend %flex-#{$br};
+			} @else {
+				@if $br != xs and $br != false {
+					@include br($br) {
+						display:flex#{$important};
+						@if $add-wrap {
+							flex-wrap:wrap;
+						}
+					}
+				}@else {
+					display:flex#{$important};
+					@if $add-wrap {
+						flex-wrap:wrap;
+					}
+				}
+			}
+		}
+
+		/// responsive embed wrappers or whatever
+		/// @param $width: !required | (number) | duh
+		/// @param $height: !required | (number) | duh
+		/// @content: styles for wrapped children
+		@mixin aspect-ratio(
+			$width,
+			$height,
+			$add-important:false,
+			$auto-position: true,
+			$clip: true,
+			$position:true,
+			$declare-display: true,
+			$style-children: true
+		) {
+			@if $add-important {
+				$add-important: #{'!important'};
+			}@else{
+
+				$add-important: #{''};
+			}
+			@if $clip == true {
+				overflow:hidden;
+			}
+			@if $position {
+				position: relative;
+			}
+			@if $declare-display {
+				display:block;
+			}
+			&:before {
+				content: "";
+				display: block;
+				width: 100%;
+				padding-top: percentage($height / $width);
+			}
+
+
+			> * {
+				@if $style-children == true {
+					position: absolute #{$add-important};
+
+					@if $auto-position == true {
+						margin: auto;
+						@include internal__offsets-generator((
+							top:0 #{$add-important},
+							bottom:0 #{$add-important},
+							right:0 #{$add-important},
+							left:0 #{$add-important}
+						));
+					}
+				}
+				
+				@content;
+			}
+		}
+
+		/// toilet baja blast blast of a mixin that sets up yuh columns
+		/// accepts @content
+		/// @param $args: (
+			/// col-number : 2 !default | (number) | number of columns ya wanna poop
+			/// gap-x : null !default | (number) | vertical margins and what not.
+			/// gap-y: null !default | (number) | horizontal margins.
+			/// custom-css: null !default | ( list ) | duh. refer to custom-css mixin
+			/// custom-css-child: null !default | (list) |  duh. refer to custom-css mixin
+			/// child-selector: "> *" !default | (string) |  selector that will be the boi
+			/// method: flex !default | (string) | (options: flex,float )idk do u like flexbox maybe u should use flexbox, or float whatever. will develop css grid later
+			/// declare-method: true !default | (boolean) | did u declare flot or flexbox outsiude the mixin? ok. then i wont repeat
+			/// extend: false !default | (boolean) | so it dont shoot u errors in case include breakpoint values. for cf and flex mixins and extend
+			/// negate-gap-y: true !default | (boolean) | nagative margin-bottom to avoid using last row's margins 
+		/// )
+		/// @content styles for columns container
+		/// @return styles with media queries for column setup
+		@mixin columns($args:()) {
+			//paramteres
+			//PRARA lang errors shunga
+			$opts: map-merge((
+				col-number : 2,
+				gap-x : null,
+				gap-y: null,
+				custom-css: (),
+				custom-css-child: (),
+				child-selector: " > *",
+				method: flex,
+				declare-method: true,
+				extend: false,
+				negate-gap-y: true,
+				set-all-br: true,
+			), $args);
+			
+			// set up clear float or flex
+			@if map-get($opts,method) == float {
+				@include cf( map-get($opts,extend) );
+			} 
+
+
+			$sorted-possible-breakpoints: (
+				xs,
+				sm,
+				md,
+				lg,
+				xl,
+			);
+			$breakable-parameters: map-get($opts, col-number), map-get($opts, gap-x),map-get($opts, gap-y),map-get($opts, custom-css),map-get($opts, custom-css-child);
+
+
+			//if there are breakpoints and mobile columns is just 1, set flex on next breakpoint with more than one column, else flex at xs
+			// also sass's truthy falsey is a dumbass
+			// basically paRSE COLUMNS
+			// this variables are what we need to do the thing
+			$br-to-grid: xs; //which breakpoint to start flex or floats or idk
+
+			$br-to-grid-is-set: false; //if the br to flex is setup
+			$disable-full-width-setup-on-br: false; 
+
+			//validate for setup
+			@each $br in $sorted-possible-breakpoints {
+					
+					 
+
+				@if type-of(map-get($opts,col-number)) == map {
+
+					// col-number dictates when to puke. if its a map and a breakpoint is setup and br to flex is not set up, SET IT UP on that breakpoint lang
+					//set autoflex. flex on the smolest breakpoint where it applies 
+					@if  ( map-get(map-get($opts,col-number),$br)  != null and map-get(map-get($opts,col-number),$br) > 1 ) and (map-get($opts,set-all-br) != true) and $br-to-grid-is-set == false {
+						$br-to-grid: $br;
+						$br-to-grid-is-set: true;
+					}
+
+					//set col-number 1 for undefined breakpoint call numbers because it looks better. will be validated on column css setup
+					@if $disable-full-width-setup-on-br == false and ( map-get(map-get($opts,col-number),$br) == null) {
+						$combine-to-col-nums: map-merge(map-get($opts, col-number), ($br:1)); //godammit sass
+						$new-col-nums: (col-number: $combine-to-col-nums);
+						$opts: map-merge($opts, $new-col-nums);
+					}@else{
+						$disable-full-width-setup-on-br: true;
+					}
+				}
+
+			}
+
+			
+			//parse all parameters that have breakpoints set up here
+			$breakpoints: (); //the tupperware for processed food //the ingredients and the recipe steps in order
+			$given-possibly-breakpoints: (); //the ones i actually have in the fridge
+			
+			
+			//no values bro, ur just looking for which breakpoint keys are being used right now so u do a dynamic css thats not over coded idk if im explaining this right english is a very pretentious language. this is the boi that makes this mixin not poop itself basically
+			
+			//if it's the dick u need make a baby out of it
+			@each $probably-map in $breakable-parameters {
+				@if type-of($probably-map) == map {
+					$given-possibly-breakpoints: map-merge($given-possibly-breakpoints, $probably-map); // so no duplicate brs
+				}
+				
+			}
+			
+			// $given-possibly-breakpoints: map-keys($given-possibly-breakpoints); // just the brs is fine
+			$there-are-given-breakpoints: false;
+
+			//CHECK IF THEY REALLY ARE BREAKPOINTTS 
+			@each $br in $sorted-possible-breakpoints {
+				@if map-has-key($given-possibly-breakpoints,$br) {
+					$there-are-given-breakpoints: true;
+				}
+			}
+			
+			// if at least one of them is mapped setup all breakpoints. they will be outputted when needed on column set up.
+			@if length($given-possibly-breakpoints) > 0 and $there-are-given-breakpoints == true {
+				$breakpoints: $sorted-possible-breakpoints;
+			}
+			//debug
+			//kelangan error because di naman nagpaparamdam si codekit na boto
+			// $asshole: $breakpoints;
+			//SAY SOMETHING IM GIVING UP ON YOU
+			// @error $asshole;
+
+			// OUTPUT TIMEZZZ
+			// if one of the holy trinity of breakable parameters is set up to be broken make the mixin a mega noot and poot on itself responsibly
+			
+			//if setup with breakpoints. puke
+			@if length($breakpoints) > 0 {
+
+				//go through br tags and corresponding values
+				@for $i from 1 through length($breakpoints) { // because we will need that index
+					$br: nth($breakpoints, $i); //tag of breakpoint
+			
+					// wow i was trying to dynamically generate the variable names but cant interpolate variable names. this is sad sass u ar duuumb
+					// $br-screen-var: null;
+			
+					//get appropriate value dis breakpoint needs dynamically
+					$the-gap-x: internal__columns_set_br_val(
+						$breakpoints,
+						$i,
+						map-get($opts, gap-x),
+					);
+					
+					$the-gap-y: internal__columns_set_br_val(
+						$breakpoints,
+						$i,
+						map-get($opts, gap-y),
+						false,
+					);
+
+					$the-col-number: internal__columns_set_br_val(
+						$breakpoints,
+						$i,
+						map-get($opts, col-number),
+					);
+			
+					$the-custom-css: internal__columns_set_br_val(
+						$breakpoints,
+						$i,
+						map-get($opts, custom-css),
+						false
+					);
+					
+					$the-custom-css-child: internal__columns_set_br_val(
+						$breakpoints,
+						$i,
+						map-get($opts, custom-css-child),
+						false
+					);
+					
+					
+					//OUTPUT
+					// xs dont need media query because its the mobile screen and im a mobile hoe
+					// @todo make a desktop first setup possible
+					@if $br == xs {
+						@include internal__columns_item_setup(
+							$br,
+							$breakpoints,
+							map-get($opts,child-selector),
+							$the-gap-x,
+							$the-gap-y,
+							$the-custom-css,
+							$the-custom-css-child,
+							$the-col-number,
+							map-get($opts,method),
+							map-get($opts,declare-method),
+							map-get($opts,extend),
+							map-get($opts,negate-gap-y),
+							$br-to-grid,
+							$opts
+						);
+					} @else if $br {
+						// could have been ${'screen-'+$br} if sass was competent
+						@include br($br) {
+							@include internal__columns_item_setup(
+								$br,
+								$breakpoints,
+								map-get($opts,child-selector),
+								$the-gap-x,
+								$the-gap-y,
+								$the-custom-css,
+								$the-custom-css-child,
+								$the-col-number,
+								map-get($opts,method),
+								map-get($opts,declare-method),
+								map-get($opts,extend),
+								map-get($opts,negate-gap-y),
+								$br-to-grid,
+								$opts
+							);
+						}
+					}
+				}
+			} @else { //o thank god
+				//this is ur basic pocha.
+				@include internal__columns_item_setup(
+					xs,
+					null,
+					map-get($opts,child-selector),
+					map-get($opts,gap-x),
+					map-get($opts,gap-y),
+					map-get($opts,custom-css),
+					map-get($opts,custom-css-child),
+					map-get($opts,col-number),
+					map-get($opts,method),
+					map-get($opts,declare-method),
+					map-get($opts,extend),
+					map-get($opts,negate-gap-y),
+					$br-to-grid
+				);
+			}
+			//oh can i add custom css?? why yes 
+			@content;
+		}
+			/// it sets the parameters value for the breakpoint boooiiii
+			/// @param $breakpoints: list of available breakpoints
+			/// @param $current-index: duh
+			/// @param $parameter: duh - breakpoint tag
+			/// @param $fallback: take value of closest previous breakpoint if undefined
+			
+			@function internal__columns_set_br_val(
+					$breakpoints, 
+					$current-index,
+					$parameter,
+					$fallback: true 
+				) {
+				$br: nth($breakpoints, $current-index); //the tag rn 
+						
+				$parsed-parameter: null; //para kung wala talagang value wala talaga
+			
+				//check if map and is mapped as breakpoints
+				$parameter-has-mapped-br: false;
+				$br-count: length($breakpoints); //count existing brs
+				@while $br-count > 0{
+					@if type-of($parameter) == map {
+						@if map-has-key($parameter,nth($breakpoints,$br-count)) {
+							$parameter-has-mapped-br: true;
+						}
+					}
+			
+					$br-count: $br-count - 1;
+				}
+			
+			
+				@if $parameter-has-mapped-br == true { //if this is a map let the dummpit
+					//if this br has a value we are okayy
+					@if map-get($parameter,$br) {
+						$parsed-parameter: map-get($parameter, $br);
+					} 
+					@else if $fallback == true {//go back to previous breakpoint
+						$backward-parameter-br-count: $current-index - 1;
+						$preceeding-br-was-defined: false;
+					
+						//this loop is mood
+						@while $backward-parameter-br-count > 0 {
+							@if $preceeding-br-was-defined == false and map-get($parameter,nth($breakpoints, $backward-parameter-br-count)) {
+								$parsed-parameter: map-get($parameter,nth($breakpoints, $backward-parameter-br-count));
+								$preceeding-br-was-defined: true;
+							}
+							//loop back some more until this loop kills itself
+							$backward-parameter-br-count: $backward-parameter-br-count - 1;
+						}
+						
+					}
+				} @else { //oh its not a map okay just dont boop with it
+					@if $current-index == 1 or $fallback == true or ($br == xs and $fallback == false ) {
+						$parsed-parameter: $parameter;
+					}
+				}
+			
+				@return $parsed-parameter;
+			}
+			
+			@mixin internal__columns_item_setup(
+					$br, //current
+					$breakpoints, //all breakpoints
+					$child-selector,
+					$gap-x,
+					$gap-y,
+					$custom-css,
+					$custom-css-child,
+					$col-number,
+					$method,
+					$declare-method,
+					$extend,
+					$negate-gap-y,
+					$br-to-grid,
+					$opts: () //because margin-left doesn need to repeat if its the same boisright??
+				) {
+				$col-width: null;
+				$set-gap-x: null;
+				$set-gap-y: null;
+				$set-custom-css: null;
+				$set-custom-css-child: null;
+
+				//validation
+				$before-br-to-grid: xs; //the midnight hour oooooooo
+				$use-gap-x: true; //when to declare gap-x calc and or margin-left
+				$declare-gap-x-as-margin: false; //declare a margin left. different from calc subtract
+
+				$gap-x-opts: map-get($opts,gap-x);//because margin-left doesn need to repeat if its the same bois right??
+
+				@if $declare-method == true and $br == $br-to-grid and $method == flex{
+					@include flex($extend,false,false,true);
+				}
+
+
+
+				@if $breakpoints and index($breakpoints,$br-to-grid) > 1 {
+					$before-br-to-grid: nth($breakpoints ,( index($breakpoints,$br-to-grid) ));
+				}
+
+				
+				
+				
+			
+				@if $col-number {
+					$col-width: #{(100% / $col-number)}; //responsiiiieeeeve
+				}
+				
+				@if $gap-x {
+					// @error $br;
+					@if type-of($gap-x) == map {
+						$set-gap-x: map-get($gap-x, $br);
+					} @else {
+						$set-gap-x: $gap-x;
+					}
+
+
+					//say when to declare this value because it gets tricky
+
+					@if $breakpoints and index($breakpoints, $br) < index($breakpoints, $br-to-grid ){
+						$use-gap-x: false;
+					}@else {
+						@if ( // if its a map and previous breakpoint doesnt match
+							$gap-x-opts // gap-x opts are declared
+							and type-of($gap-x-opts) == map // gap-x opts is a map
+							and (index($breakpoints,$br) - 1) > 0 // br's previous sibling index  is not zero or belo
+							and ( 
+								(
+									map-get($gap-x-opts,$br) != map-get($gap-x-opts, nth( $breakpoints, (index($breakpoints,$br) - 1)))
+								) and (
+									$set-gap-x != map-get($gap-x-opts, nth( $breakpoints, (index($breakpoints,$br) - 1)))
+								)
+							) //gap x now by function setup or breakpoint is not equal to gap-x on previous breakpoint 
+						) or (
+							$breakpoints == null // no breakpoint setup at all
+						) or (
+							$br == nth($breakpoints, index($breakpoints, $br-to-grid ) ) //breakpoint is equal br to flex
+						){
+							$declare-gap-x-as-margin: true;
+						}
+
+					}
+				}
+
+				@if $gap-y {
+					@if type-of($gap-y) == map {
+						$set-gap-y: map-get($gap-y, $br);
+					} @else {
+						$set-gap-y: $gap-y;
+					}
+				}
+
+				@if $set-gap-x and $set-gap-x > 0 and ($use-gap-x == true) and $declare-gap-x-as-margin {
+					margin-left: $set-gap-x * -1;
+				}
+				//u can half ass this because u wont need fallbacks
+				@if $custom-css {
+					$set-custom-css: $custom-css;
+				}
+				
+				@if $custom-css-child {
+					$set-custom-css-child: $custom-css-child;
+				}
+
+
+			
+				@if $set-gap-y and $negate-gap-y == true {
+					margin-bottom: $set-gap-y * -1;
+				}
+				
+			
+				@if $set-custom-css {
+					@include custom-css($set-custom-css);
+				}
+			
+				#{$child-selector} {
+					@if $col-width {
+						$declare-width: true;
+
+						@if $breakpoints and index($breakpoints, $br) < index($breakpoints, $br-to-grid ) {
+							$declare-width: false;
+						}
+
+						@if $declare-width == true {
+
+							@if $set-gap-x and $set-gap-x > 0 and ($use-gap-x == true) {
+								width: calc(#{$col-width} - #{$set-gap-x});
+							}@else {
+								width: #{$col-width};
+							}
+						}
+
+					}
+
+					@if $set-gap-x {
+
+						// $use-gap-x: true;
+						// $declare-gap-x-as-margin: false;
+
+						// @if $breakpoints  and index($breakpoints, $br) < index($breakpoints, $br-to-grid ) {
+						//	 $use-gap-x: false;
+						// }
+
+						
+						@if $breakpoints { // if therers a map filter and avoid repetitive margin -left
+							@if $use-gap-x == true and $declare-gap-x-as-margin {
+								margin-left: $set-gap-x;
+							}
+
+						}@else{
+							margin-left: $set-gap-x;
+						}
+					}
+			
+					@if $set-gap-y {
+						margin-bottom: $set-gap-y;
+					}
+					
+					@if  $declare-method == true and $method == float and $br == $br-to-grid {
+						float: left;
+					}
+			
+					@if $set-custom-css-child {
+						@include custom-css($set-custom-css-child);
+					}
+
+
+					@if $col-number and $col-number > 1 and $method == float {
+						@if $breakpoints and ($br != nth($breakpoints,length($breakpoints))) {
+
+							@include br( #{$br + '-max'} ){
+								&:nth-child( #{$col-number + 'n'} + 1 ) {
+									clear: left;
+								}
+							}
+						}@else {
+							&:nth-child( #{$col-number + 'n'} + 1 ) {
+								clear: left;
+							}
+
+						}
+					}
+				}
+			}
+
+			/// simple hoe cousin of columns mixin. doesnt boop with the container like its  cousin
+			/// @param $col-number: 2 !default | (number) | number of columns. will be basis of width if $col-width not declated
+			/// @param $gap-width: $gutter !default | (number) | gap to subtract
+			/// @param $col-width: '' !default | (number) | duh
+			/// @return width value
+			@function col-width($col-number : 2, $gap-width : $gutter, $col-width: null){
+				@if $col-width == null {
+					$col-width: decimal-round(100% / $col-number,3);
+				}
+				@return calc(#{$col-width} - #{decimal-round( (($gap-width * ($col-number - 1)) / $col-number),2 )});
+			}
+			
+
+		/// set up fonts idk read through it
+
+		/// @param $args: (
+			/// size: '', //font-size
+			/// leading: '', //line-height
+			/// font: '', //font-family
+			/// color: '', //dud
+			/// weight: '', //font-weight
+			/// tracking: '', //letter-spacing
+			/// case: '', //text-transform
+			/// decoration: '', //text-decoration
+			/// variant: '', //font-variant
+			/// align:'', //text-align
+			/// indent:'', //text-indent
+			/// word-spacing:'', //duh
+			/// style: '', // font-style
+		/// )
+		/// @content styles for the element
+		@mixin type-set($args:()) {
+
+			$opts: map-merge((
+				size: null,
+				leading: null,
+				font: null,
+				color: null,
+				weight: null,
+				tracking: null,
+				case: null,
+				decoration: null,
+				variant: null,
+				align:null,
+				indent:null,
+				word-spacing:null,
+				root-size: null,
+				force-em: false,
+				style: null,
+				//@TODO other fancy
+			),$args);
+			
+			@if map-get($opts,size) {
+
+				@if map-get($opts,root-size) 
+				and (type-of( map-get($opts,root-size) ) == number ) 
+				and (type-of( map-get($opts,size) ) == number )
+				and unit(map-get($opts,size)) == px
+				{
+					@if(map-get($opts,force-em) ){
+						font-size: em( map-get($opts,size) / map-get($opts,root-size) );
+					}@else{
+						font-size: rem( map-get($opts,size) / map-get($opts,root-size) );
+					}
+				}@else{
+					font-size: map-get($opts,size);
+				}
+
+
+			}
+			@if ( map-get($opts,leading) and $force-responsive-units == false)
+			or (
+				$force-responsive-units == true
+				and map-get($opts,size) and map-get($opts,leading)
+			)
+			or (type-of(map-get($opts,leading)) == number and unitless(map-get($opts,leading))){
+				line-height: type-lead(map-get($opts,size),map-get($opts,leading));
+			}
+			
+			@if map-get($opts,font){
+				font-family: map-get($opts,font);
+			}
+			
+			@if map-get($opts,color){
+				color: map-get($opts,color);
+			}
+			
+			@if map-get($opts,weight){
+				font-weight: map-get($opts,weight);
+			}
+			
+			@if map-get($opts,tracking){
+				letter-spacing: type-track(map-get($opts,tracking));
+			}
+			
+			@if map-get($opts,case){
+				text-transform: map-get($opts,case);
+			}
+			
+			@if map-get($opts,decoration){
+				text-decoration: map-get($opts,decoration);
+			}
+			
+			@if map-get($opts,variant){
+				font-variant: map-get($opts,variant);
+			}
+			
+			@if map-get($opts,align){
+				text-align: map-get($opts,align);
+			}
+			
+			@if map-get($opts,indent){
+				text-indent: map-get($opts,indent);
+			}
+			
+			@if map-get($opts,style){
+				font-style: map-get($opts,style);
+			}
+			
+			@if map-get($opts,word-spacing){
+				word-spacing: map-get($opts,word-spacing);
+			}
+			
+			@content;
+		}
+
+			/// basic pocha version. only accepts font-size and line height
+			/// @param $font-size: !required | (number) | duh
+			/// @param $line-height: !required | (number) | duh
+			/// @return stripped font size relative value without unit
+			@mixin type($font-size,$line-height:'',$root-size:null,$force-em: false){
+				@include type-set((
+					size: $font-size,
+					root-size: $root-size,
+					leading: $line-height,
+					force-em: $force-em
+				));
+			}
+
+			//mixins and functions thatff above relies on but u can use to ur butthole's content
+				/// line height generator. values have to be the same and lodicakes
+				/// @param $font-size: !required | (number) | duh
+				/// @param $line-height: !required | (number) | duh
+				/// @return stripped font size relative value wi thout unit
+				@function type-lead($font-size,$line-height) {
+					@if (type-of($font-size) == number and type-of($line-height) == number)
+					and (unit($font-size) == unit($line-height))
+					and (unit($line-height) == px) {
+						@if unitless($line-height) == false{
+							@return strip-unit($line-height / $font-size);
+						}@else{
+							@return $line-height;
+						}
+					}@else{
+						@return $line-height;
+					}
+				}
+
+
+				/// letter-spacing generator
+				/// @param $should-be-the-value-from-photoshop: !required | (number) | duh
+				/// @return font size relative value equivalent
+				@function type-track($should-be-the-value-from-photoshop) {
+					@if type-of($should-be-the-value-from-photoshop) == number and unitless($should-be-the-value-from-photoshop){
+
+						@return ($should-be-the-value-from-photoshop / 1000) * 1em;
+					}@else{
+						@return $should-be-the-value-from-photoshop;
+					}
+				}
+
+		// setup longhand animation properties in case u cant do shorthand and u still a lazy ass
+		@mixin animation($args:()){
+			$defaults: (
+				delay: null,
+				direction: null,
+				duration: null,
+				fill-mode: null,
+				iteration-count: null,
+				name: null,
+				play-state: null,
+				timing-function: null
+			);
+			$opts: map-merge($defaults,$args);
+	
+			@each $property,$value in $opts {
+				@if $value {
+					@if $autoprefix {
+						-webkit-animation-#{$property}: #{$value};
+					}
+					animation-#{$property}: #{$value};
+				}
+			}
+		}
+
+		//keyframes to butter ur toast
+		$keyframe-instance: 1;
+		@mixin keyframes ($args: ()) {
+			
+			$defaults: (
+					name: null,
+					frames: (
+						// '10%' : (
+						//	 property: value
+						// )
+					),
+					add-reverse: false,
+			);
+			$opts: map-merge($defaults,$args); 
+			
+			
+			$keyframe-name: null;
+			@if map-get($opts,name) {
+				$keyframe-name: map-get($opts,name);
+			}@else{
+				$keyframe-name: 'generated-keyframes-' + $keyframe-instance;
+			}
+			
+			@if $autoprefix == true {
+				@-webkit-keyframes #{$keyframe-name} {
+					@include internal__keyframes_setup(map-get($opts,frames));
+				}
+			}
+
+			@keyframes #{$keyframe-name} {
+				@include internal__keyframes_setup(map-get($opts,frames));
+			}
+
+			@if map-get($opts,add-reverse) == true {
+				$reverse-frames: ();
+				$frames-values: map-values(map-get($opts,frames));
+
+				$index: length( map-get($opts,frames) );
+
+
+				@each $frame, $css in map-get($opts,frames) {
+					$reverse-frames: map-merge($reverse-frames, (
+						$frame: nth($frames-values, $index)
+					));
+
+					$index: $index - 1;
+				}
+
+
+
+			
+				@if $autoprefix == true {
+					@-webkit-keyframes #{$keyframe-name + '-reverse'} {
+						@include internal__keyframes_setup($reverse-frames);
+					}
+				}
+
+				@keyframes #{$keyframe-name + '-reverse'} {
+					@include internal__keyframes_setup($reverse-frames);
+				}
+			}
+			
+			$keyframe-instance: $keyframe-instance + 1;
+		}
+
+		@mixin internal__keyframes_setup($frames: ()) {
+			@each $frame, $css in $frames {
+				#{string($frame)} {
+					@include custom-css($css);
+				}
+			}
+		}
+
+
+	// Functions
+
+		/// calculate a value based on global $gutter
+		/// @param $value: $gutter !default | (number) | duh
+		@function gutter($value: $gutter){
+			@if unitless($value) or (is-number($value) and unit($value) == '%') {
+				@return ceil($gutter * $value);
+			}@else{
+				@return $value;
+			}
+		}
+
+
+		// xxs-max: $screen-xxs-max,
+		// xs-max: $screen-xs-max,
+		// sm-max: $screen-sm-max,
+		// md-max: $screen-md-max,
+		// lg-max: $screen-md-max,
+		// xs: $screen-xs,
+		// sm: $screen-sm,
+		// md: $screen-md,
+		// lg: $screen-lg
+		// xl: $screen-xl
+		// gets the max of ya boi or the min of ya boi
+		@function polar-br($breakpoint) {
+			$current-index: index($br-tag-list,$breakpoint);
+			
+			@if($current-index > 4) {
+				@return  nth($br-tag-list,$current-index - 5);
+			}@else {
+				@return  nth($br-tag-list,$current-index + 5);
+			}
+		}
+
+		@function color_is_light($color: null, $threshold: 136) {
+			@if (
+				type-of($color) == color
+				and ( (red($color) + green($color) + blue($color)) / 3 ) > $threshold
+			) {
+				@return true; // Lighter backgorund, return dark color
+			  } @else {
+				@return false; // Darker background, return light color
+			  }
+		}
+
+
+
+////////////////////////////////////////////////////////////////////////////// 
+// DESIGN FUNCTIONS
+//////////////////////////////////////////////////////////////////////////////
+
+	/* heading bars or rules from tiny rectangles to long rules and what not. */
+	@mixin decoration-bar($args:()){
+
+		$opts: map-merge(( 
+			align: '',
+			color: $color-primary,
+			background-image: null,
+			gradient: null,
+			width: 72px,
+			height: 4px,
+			margin: '',
+			margin-top: '',
+			margin-bottom: '',
+			pseudo:after
+		),$args);
+
+
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			display:block;
+
+			@if map-get($opts,width) {
+				width: map-get($opts,width);
+			}
+			
+
+			@if map-get($opts,height) {
+				height: map-get($opts,height);
+			}
+			
+			@if map-get($opts,margin) != '' {
+				margin-top: map-get($opts,margin);
+				margin-bottom: map-get($opts,margin);
+			}@else{
+				@if map-get($opts,margin-top) != ''{
+					margin-top: map-get($opts,margin-top);
+				}
+				@if map-get($opts,margin-bottom) != ''{
+					margin-bottom: map-get($opts,margin-bottom);
+				}
+			}
+			@include internal__margin-generator(map-get($opts,align));
+
+			@if map-get($opts,gradient) {
+				@include gradient(map-get($opts,gradient));
+			}@else if map-get($opts,background-image) {
+				background-image: map-get($opts,background-image);
+			}@else{
+
+				@if map-get($opts,color) != ''{
+					background-color: map-get($opts,color);
+				}
+			}
+
+			@content;
+		}
+	}
+
+		// @todo a work in progress
+		@mixin zigzag($args: ()){
+			$defaults: (
+				pseudo: after, // duh
+				base-size: 15px,
+				color: color(p),
+				stroke-width: 3px,
+				size: 16px,
+				zag-number: 5,
+				align: '',
+				margin-top: '',
+				margin-bottom: '',
+
+			);
+			$opts: map-merge($defaults,$args);
+
+			$size: map-get($opts,size);
+			$stroke: map-get($opts,stroke-width);
+			$color: map-get($opts,color);
+
+			@include decoration-bar((
+				width: ($size * map-get($opts,zag-number)) + ($stroke * 2.25),
+				height: $size,
+				align: map-get($opts,align),
+				margin-top: map-get($opts,margin-top),
+				margin-bottom: map-get($opts,margin-bottom),
+				pseudo: map-get($opts,pseudo),
+				color: transparent,
+				background-image: (
+					repeating-linear-gradient(
+						135deg,
+						$color 0,
+						$color #{ percentage($stroke / $size)},
+						transparent #{ percentage($stroke / $size)},
+						transparent #{ percentage(.25) },
+						transparent #{ percentage(.25) },
+						transparent 100%
+					),
+					repeating-linear-gradient(
+						-135deg,
+						$color 0,
+						$color #{ percentage($stroke / $size)},
+						transparent #{ percentage($stroke / $size)},
+						transparent #{ percentage(.25) },
+						transparent #{ percentage(.25) },
+						transparent 100%
+					),
+					repeating-linear-gradient(
+						-45deg,
+						transparent 0,
+						transparent #{ percentage((($size * .25) - $stroke ) / $size)},
+						$color #{ percentage((($size * .25) - $stroke ) / $size)},
+						$color #{ percentage(.25) },
+						transparent #{ percentage(.25) },
+						transparent 100%
+					),
+						
+					repeating-linear-gradient(
+						45deg,
+						transparent 0,
+						transparent #{ percentage((($size * .25) - $stroke ) / $size)},
+						$color #{ percentage((($size * .25) - $stroke ) / $size)},
+						$color #{ percentage(.25) },
+						transparent #{ percentage(.25) },
+						transparent 100%
+					))
+			)){
+				background-size: $size $size;
+				background-position: 
+					#{$stroke} #{( $size * .5 ) + ($stroke * .5)},
+					#{$stroke} #{( $size * .5 ) + ($stroke * .5)},
+					#{($size * .5) + ($stroke)} #{($size * -.5)  + ($stroke * .5)} #{','}
+					#{($size * .5) + ($stroke)} #{($size * -.5) + ($stroke * .5)};
+				
+
+				@if $autoprefix == true {
+
+					-webkit-clip-path: polygon(
+						0 calc(100% - #{$stroke}),
+						#{$stroke} 100%,
+						calc(100% - #{$stroke}) 100%,
+						100% calc(100% - #{$stroke}),
+						100% #{$size - $stroke}, 
+						calc(100% - #{$size - $stroke}) 0,
+						#{$size - $stroke} 0,
+						0 #{$size - $stroke},
+					);
+				}
+				
+				clip-path: polygon(
+					0 calc(100% - #{$stroke}),
+					#{$stroke} 100%,
+					calc(100% - #{$stroke}) 100%,
+					100% calc(100% - #{$stroke}),
+					100% #{$size - $stroke}, 
+					calc(100% - #{$size - $stroke}) 0,
+					#{$size - $stroke} 0,
+					0 #{$size - $stroke},
+				);
+
+				@content;
+			};
+		};
+
+	//gradient background
+	//@TODO make it kwan support stacked gradient backgrounds
+	@mixin gradients($args:()) {
+
+		$opts: map-merge((
+			add-important: false,
+			autoprefix: true,
+			use-fallback: true,
+			use-shorthand: true,
+			gradients: ()
+		),$args);
+
+		
+		$shorthand-image: '';
+		$shorthand-color: '';
+
+		$important: '';
+
+		@if(map-get($opts,add-important) == true) {
+			$important: ' !important';
+		}
+
+		@if(map-get($opts,use-shorthand) == false) {
+			$shorthand-image: '-image';
+			$shorthand-color: '-color';
+		}
+
+		$background-stack: ();
+
+		@each $gradient-args in map-get($opts,gradients) {
+
+			@if(type-of($gradient-args) == 'map'){
+				$gradient: map-merge((
+					//legacy
+					color1: $color-accent,
+					color2: $color-primary,
+					color1-offset: 0%,
+					color2-offset:100%,
+		
+					angle: -45deg,
+					type: linear,
+					colors: (
+						// (
+						//	 color:,
+						//	 offset:
+						// )
+					)
+				),$gradient-args);
+	
+	
+				$points: '';
+				$fallback: '';
+	
+				@if length(map-get($gradient,colors)) > 0 {
+					$fallback: map-get(nth(map-get($gradient,colors),1),color);
+		
+					@each $color in map-get($gradient,colors) {
+						$points: #{$points +', ' + ' '+ map-get($color,color) +' '+ map-get($color,offset)};
+					}
+					
+				}@else{
+					$fallback: map-get($gradient,color1-offset);
+					$points: #{', ' + map-get($gradient,color1) +' '+ map-get($gradient,color1-offset) +', '+ map-get($gradient,color2) +' '+ map-get($gradient,color2-offset)};
+				}
+	
+				$background-stack: append(
+					$background-stack,
+					internal__gradient_get_vals(
+						map-get($gradient,type),
+						map-get($gradient,angle),
+						$points,
+						$fallback
+					)
+				)
+			}
+		}
+
+		$stack-moz: '';
+		$stack-webkit: '';
+		$stack-native: '';
+
+		@for $i from 1 through length($background-stack){
+			$focus-stack: nth($background-stack,$i);
+			@if($i == 1){
+				@if(map-get($opts,use-fallback) == true) {
+					background#{ $shorthand-color }: map-get($focus-stack,fallback) #{$important}; /* Old browsers */
+				}
+			}
+
+			$stack-moz: unquote(
+				#{ $stack-moz + map-get($focus-stack,moz)}
+			);
+			$stack-webkit: unquote(
+				#{ $stack-webkit + map-get($focus-stack,webkit)}
+			);
+			$stack-native: unquote(
+				#{ $stack-native + map-get($focus-stack,native)}
+			);
+
+			@if($i < length($background-stack)){
+				$stack-moz:  unquote(#{ $stack-moz + ','});
+				$stack-webkit:  unquote(#{ $stack-webkit + ','});
+				$stack-native:  unquote(#{ $stack-native + ','});
+			}
+		}
+
+		@if map-get($opts,autoprefix) != false {
+			background#{ $shorthand-image }: #{$stack-moz} #{$important}; /* FF3.6-15 */
+			background#{ $shorthand-image }: #{$stack-webkit} #{$important}; /* Chrome10-25,Safari5.1-6 */
+		}
+
+		background#{ $shorthand-image }: #{$stack-native} #{$important}; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	}
+
+		@function internal__gradient_get_vals(
+
+			$type,
+			$angle,
+			$points,
+			$fallback
+		){
+			@return (
+				native:  #{$type}-gradient((#{ 90deg - $angle }) #{$points}),
+				moz: -moz-#{$type}-gradient(#{$angle} #{$points}),
+				webkit: -webkit-#{$type}-gradient(#{$angle} #{$points}),
+				fallback: $fallback
+			)
+
+		}
+
+	@mixin gradient($args:()) {
+		$opts: map-merge((
+			autoprefix: true,
+			use-fallback: true,
+			use-shorthand: true,
+			add-important: false,
+
+			//legacy
+			color1: $color-accent,
+			color2: $color-primary,
+			color1-offset: 0%,
+			color2-offset:100%,
+
+			angle: -45deg,
+			type: linear,
+			colors: (
+				// (
+				//	 color:,
+				//	 offset:
+				// )
+			)
+		),$args);
+
+		$gradient-opts: ($opts);
+
+		$opts :map-set($opts,gradients,$gradient-opts);
+		
+
+		@include gradients((
+
+			autoprefix: map-get($opts,autoprefix),
+			use-fallback: map-get($opts,use-fallback),
+			use-shorthand: map-get($opts,use-shorthand),
+			add-important: map-get($opts,add-important),
+			gradients: (
+				(
+					//legacy
+					color1: map-get($opts,color1),
+					color2: map-get($opts,color2),
+					color1-offset: map-get($opts,color1-offset),
+					color2-offset: map-get($opts,color2-offset),
+
+					angle: map-get($opts,angle),
+					type: map-get($opts,type),
+					colors: map-get($opts,colors)
+				),
+				null
+			)
+		));
+
+		
+	}
+
+	//fancy as borde like in farah and farah. you have to setup in a certain direction. i cant explain. but figure it out. good luck
+	@mixin fancy-border($args:()) {
+		$defaults: (
+			pseudo: after, // duh
+			auto-set-animation: false,
+			gradient: null, //@mixin gradient args
+			color: color(p),
+			animation: (), //@mixin animation args
+			br: md, //which breakpoint that boi gon be
+			keyframes: (), //for keyframes mixin. setting the name adds animation property depending on the breakpoint where the animation is enabled. setting up frames creates a unique keyframe that will be used for this and even other elements that need it
+			weight: 2px,
+			parent-position: relative,
+			position: absolute,
+			width: null,
+			height: null,
+			margin: 0,
+			top: 0,
+			bottom:0,
+			left: 0,
+			right: 0,
+			custom-path: null, // can be a string. needs to be a map if keyframes frames is setup
+		);
+		$opts: map-merge($defaults,$args);
+
+		$clip-path: null; //will also be used for keyframes
+		
+		$border-width: map-get($opts,weight);
+		@if map-get($opts,custom-path) != null {
+			$clip-path: map-get($opts,custom-path);
+		}@else {
+			//what the yudiputa gagong sass????
+			$clip-path: (
+				// 100% 0, //100% 
+				// 100% 100%,
+				// 0 100%,
+				// 0 0,
+				// calc(100% - #{$border-width}) 0,
+				// calc(100% - #{$border-width}) $border-width,
+				// $border-width $border-width,
+				// $border-width calc(100% - #{$border-width}),
+				// calc(100% - #{$border-width}) calc(100% - #{$border-width}),
+				// calc(100% - #{$border-width}) $border-width,
+				// 0 $border-width,
+				// 0 0,
+
+
+
+				0 0,
+				$border-width 0,
+				$border-width calc(100% - #{$border-width}),
+				calc(100% - #{$border-width}) calc(100% - #{$border-width}),
+				calc(100% - #{$border-width}) $border-width,
+				0 $border-width,
+				0 0,
+				100% 0,
+				100% 100%,
+				0 100%
+			);
+		}
+		
+		// setup style
+		$clip-path-string: internal__generate_path_string($clip-path);
+		
+		
+		//set keyframes name from args setting
+		// @if map-get(map-get($opts,keyframes),name) != null and map-get(map-get($opts,animation),name) == null and map-get($opts,auto-set-animation) != false {
+		//	 $animation: (
+		//		 animation: map-merge( 
+		//			 map-get($opts,animation),
+		//			 (name: map-get(map-get($opts,keyframes),name))
+		//		 )
+		//	 );
+			
+		//	 $opts: map-merge($opts,$animation); 
+		// }
+			
+		//set parewnt position
+		@if map-get($opts,pseudo) != override {
+			position: map-get($opts,parent-position);
+		}
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+
+			@if (map-get($opts,gradient) ) {
+				@include gradient(map-get($opts,gradient));
+			}@else{
+
+				@if map-get($opts,color) != ''{
+					background-color: map-get($opts,color);
+				}
+			}
+			display: block;
+			position: map-get($opts,position);
+			pointer-events: none;
+			@include internal__offsets-generator($opts);
+			
+			@if($autoprefix == true){
+				-webkit-clip-path: polygon(#{$clip-path-string});
+			}
+			
+			clip-path: polygon(#{$clip-path-string});
+
+
+			@if map-get($opts,animation) {
+				@if map-get($opts,br) and map-get($opts,br) != xs  {
+					@include br(map-get($opts,br)) {
+						@include animation(map-get($opts,animation));
+					}
+				}@else {
+					@include animation(map-get($opts,animation));
+				}
+			}
+
+
+
+			@content;
+		}
+		// get keyframes args from opts
+		$keyframes-args: map-get($opts,keyframes);
+		
+		@if map-get($keyframes-args,name) {
+			@if map-get($keyframes-args,frames) == null {
+				//lets make keyframes do a thing
+				$frames: ();
+				$frame-milestone: 0%;
+				$frame-counter: 0;
+				// oh bruh this some fibonacci
+				$total-frames-needed: (length($clip-path) / 2) - 1;
+				@while $frame-counter <= $total-frames-needed {
+								
+					$clip-path-for-frame: ();
+					$point-counter: 0;
+
+					@for $point-index from 1 through length($clip-path) {
+
+						@if $frame-counter == 0 {
+							
+							@if ($point-index > 1 ) and ($point-index  < length($clip-path) ) {
+								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$frame-counter + 2));
+							}@else { 
+								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$frame-counter + 1));
+							}
+						}@else if $frame-counter < $total-frames-needed {
+							@if $point-index  == (length($clip-path) - $frame-counter) {
+								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$point-index + 1));
+								@debug nth($clip-path,($point-index + 1));
+							}@else if ($point-index <= ($frame-counter + 2) ) or ($point-index  > (length($clip-path) - $frame-counter)){
+								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$point-index));
+							}@else { //this pops same points
+								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$frame-counter + 2));
+							}
+								
+						}@else {
+							$clip-path-for-frame: $clip-path;
+						}
+					}
+								
+
+					$clip-path-string: internal__generate_path_string($clip-path-for-frame);
+					$frame: ( string($frame-milestone): ( clip-path: polygon(#{$clip-path-string}) ) );
+					$frames: map-merge($frames,$frame);
+
+
+					$frame-counter: $frame-counter + 1;
+					$frame-milestone: (100% / $total-frames-needed) * $frame-counter;
+
+				}
+						
+						
+				$keyframes-args: map-merge( $keyframes-args,(frames: $frames));
+			}
+
+			@include keyframes($keyframes-args);
+		}
+	}
+
+	// circles. muLTIPLE
+	@mixin kebab($args:()){
+		$opts: map-merge((
+			color:$color-primary,
+			gap:2px,
+			size:4px,
+			number:3,
+			pseudo: after,
+			display: block,
+			align : ''
+
+		),$args);
+
+		$pattern-size: map-get($opts,size) + (map-get($opts,gap) * 2);
+
+		$pattern-diameter: map-get($opts,size) / 2;
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			display: map-get($opts,display);
+			height: $pattern-size;
+			width: $pattern-size * map-get($opts,number);
+			background-image: radial-gradient(map-get($opts,color) $pattern-diameter, transparent $pattern-diameter);
+			background-size: $pattern-size $pattern-size;
+			@include internal__margin-generator(map-get($opts,align));
+			@content;
+		}
+
+	}
+
+	// stripe mixin which i think is working if not pls hit me on the head with a calculator
+	@mixin stripes($args:()){
+		$opts: map-merge((
+			color: $color-base,
+			gap: 17px,
+			width: 24px,
+			height: 120px,
+			pseudo:both,
+			parent-position: relative,
+			position: absolute,
+			number: 4,
+			full-custom-offsets: false,
+			separate-pseudo-styles: false,
+			//OFFSETS
+				top: '', //applies before if pseudo set to both
+				bottom:'', //applies after if pseudo set to both
+				left: '',
+				right: ''
+		),$args);
+
+		// //width and height differnce of stripe from gap
+		// $spread-diff:(( map-get($opts,width) - map-get($opts,gap)) * .5);
+		// //height of stripe
+		// $spread-y: map-get($opts,height) - ($spread-diff * 2);$pseudo
+
+		$opts-offsets-horizontal : (
+			left: map-get($opts,left),
+			right: map-get($opts,right)
+		);
+		$pattern-width: map-get($opts,width) + map-get($opts,gap);
+		$pseudo-width: ($pattern-width * map-get($opts,number)) - map-get($opts,gap);
+
+		@if map-get($opts,pseudo) != override and ( map-get($opts,parent-position) == null or map-get($opts,parent-position) == static ) != true {
+			position: map-get($opts,parent-position);
+		}
+
+		//pseudo
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			display:block;
+			@if  map-get($opts,parent-position) != null and ($opts,parent-position) != static {
+				margin: auto;
+			}
+			width: $pseudo-width;
+			height: map-get($opts,height);
+			@if  map-get($opts,position) != null  {
+				position:map-get($opts,position);
+			}
+			@if $autoprefix == true {
+				background: -moz-linear-gradient(
+					90deg,
+					map-get($opts,color) 0px,
+					map-get($opts,color) map-get($opts,width),
+					transparent map-get($opts,width),
+					transparent $pattern-width
+					); /* FF3.6-15 */
+				background: -webkit-linear-gradient(
+					90deg,
+					map-get($opts,color) 0px,
+					map-get($opts,color) map-get($opts,width),
+					transparent map-get($opts,width),
+					transparent $pattern-width
+				); /* Chrome10-25,Safari5.1-6 */
+			}
+			background: linear-gradient(
+				90deg,
+				map-get($opts,color) 0px,
+				map-get($opts,color) map-get($opts,width),
+				transparent map-get($opts,width),
+				transparent $pattern-width
+				); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			background-size: $pattern-width 100%;
+			background-repeat: repeat;
+
+			@if  map-get($opts,parent-position) != null and ($opts,parent-position) != static {
+
+				@if map-get($opts,pseudo) != both {
+					@include internal__offsets-generator($opts);
+				}@else{
+					//if pseudo is both or stripes are present in the top and bottom, set up default value
+					@if map-get($opts,top) == ''{
+						$opts: map-set($opts,top,100%);
+					}
+					@if map-get($opts,bottom) == ''{
+						$opts: map-set($opts,bottom,100%);
+					}
+
+					@include internal__offsets-generator( $opts-offsets-horizontal);
+				}
+			}
+
+			@if map-get($opts,separate-pseudo-styles) == false {
+				@content;
+			}
+		}
+
+		@if  map-get($opts,position) != null and map-get($opts,position) != static {
+
+			@if map-get($opts,pseudo) == both {
+
+				&:before {
+					@include internal__stripes-pseudo-offsets(before,$opts);
+				}
+
+				&:after {
+					@include internal__stripes-pseudo-offsets(after,$opts);
+				}
+			}
+		}
+
+		@if map-get($opts,separate-pseudo-styles) == true {
+			@content;
+		}
+	}
+		@mixin internal__stripes-pseudo-offsets($pseudo,$opts) {
+
+			@if map-get($opts,full-custom-offsets) != true {
+				@if $pseudo == before and map-get($opts,bottom) != '' {
+					bottom: map-get($opts,bottom);
+				}@else if $pseudo == after and map-get($opts,top) != '' { 
+					top: map-get($opts,top);
+				}
+			}
+		}
+
+
+	//like them diagonal bois in kanoski
+	@mixin polygon-back($args: ()) {
+		$opts: map-merge(( 
+			angle: 38.25deg,
+			width: 31.25%,
+			height:100%,
+			transform-origin: top left,
+			max-width: '',
+			parent-position: relative,
+			position: absolute,
+			color: $color-primary,
+			gradient: (
+				angle: -90.25deg
+			),
+
+			//OFFSETS
+				top:0,
+				bottom: 0,
+				left: '',
+				right: '',
+				pseudo:after
+		),$args);
+
+		@if map-get($opts,pseudo) != override {
+			position:map-get($opts,parent-position);
+			z-index:2;
+		}
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))} {
+			@if (map-get($opts,gradient) ) {
+				@include gradient(map-get($opts,gradient));
+			}@else{
+
+				@if map-get($opts,color) != ''{
+					background-color: map-get($opts,color);
+				}
+			}
+
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			display:block;
+			position:map-get($opts,position);
+			z-index:-1;
+			margin: auto;
+			width: map-get($opts,width);
+			height: map-get($opts,height);
+			transform-origin:map-get($opts,transform-origin);
+			transform:skewX(#{map-get($opts,angle)});
+			@if map-get($opts,max-width) != '' {
+				max-width:map-get($opts,max-width);
+			}
+			@include internal__offsets-generator($opts);
+
+			@content;
+		}
+
+	}
+
+
+	//just one. usually inline. like them round bois in required input fields
+	@mixin circle($args:()){
+		$opts: map-merge(( 
+			size: 1em,
+			margin:.5em,
+			color: $color-primary,
+			display:inline-block,
+			pseudo:after,
+			align: middle
+		),$args);
+		
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			width: map-get($opts,size);
+			height: map-get($opts,size);
+			display: map-get($opts,display);
+			color: map-get($opts,color);
+			background: currentColor;
+			border-radius: 50%;
+			vertical-align:map-get($opts,align);
+			@content;
+		}
+	}
+
+	//arrow that takes the whole tag. specifically faulkner law arrows
+	@mixin arrow($args:()){
+		$opts: map-merge((
+			direction: 'up',
+			border-color: $color-base,
+			border-color-hover: $color-primary,
+			size: gutter(55px),
+			background: transparent,
+			parent-position: relative,
+			position: absolute,
+		),$args);
+
+
+		font-size: map-get($opts,size);
+		text-indent: -9999em;
+		background:map-get($opts,background);
+		overflow:hidden;
+		display:block;
+		width: 1em;
+		height: 1em;
+		// border: 2px solid map-get($opts,$border-color);
+		position:map-get($opts,parent-position);
+		transition: .125s ease-in all;
+		@content;
+
+		&:before,&:after {
+			transition: .125s ease-in all;
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			display:block;
+			position:map-get($opts,position);
+			margin:auto;
+			opacity:1;
+			font-size:inherit;
+			@include internal__offsets-generator((
+				top:0,
+				bottom:0,
+				right:0,
+				left:0
+			));
+		}
+
+		&:before{
+			@if map-get($opts,direction) == 'up' or map-get($opts,direction) == 'down' {
+				height:.95em;
+				width: 1px;
+			} @else if map-get($opts,direction) == 'left' or map-get($opts,direction) == 'right' {
+				width:.95em;
+				height: 1px;
+
+			}
+			background: map-get($opts,border-color);
+		}
+
+		&:after{
+			width: 0.291em;
+			height: 0.291em;
+			border: 1px solid map-get($opts,border-color);
+			border-right: 0;
+			border-bottom: 0;
+			transform-origin: center center;
+
+			@if map-get($opts,direction) == 'up' {
+				transform: rotate(45deg);
+				margin-top: .047em;
+			}@else if map-get($opts,direction) == 'down' {
+				transform: rotate(-135deg);
+				margin-bottom: .047em;
+			}@else if map-get($opts,direction) == 'left' {
+				transform: rotate(-45deg);
+				margin-left: .047em;
+			}@else if map-get($opts,direction) == 'right' {
+				transform: rotate(135deg);
+				margin-right: .047em;
+				
+			}
+		}
+
+		&:hover,
+		&:focus{
+			&,&:after{
+				border-color: map-get($opts,border-color-hover);
+			}
+
+			&:before{
+				background: map-get($opts,border-color-hover);
+			}
+		}
+	}
+
+
+	//arrows but strokey
+	@mixin arrow-border($args:()){
+		$defaults: map-merge((
+			pseudo: after, 
+			change-directions: false, //if pseudo is both, make their directions oppposite to one another
+			direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of it
+			color: $color-primary,
+			change-color: null,
+			size: inherit,
+			weight: 2px,
+			transform: null,
+			display: inline-block,
+			transition: null,
+			change-state: false,
+			change-selector: ':hover',
+		),$args);
+		$opts: map-merge($defaults,$args);
+
+		$change-color: null;
+
+		@if(map-get($opts,change-color)) {
+			$change-color: map-get($opts,change-color);
+		}@else {
+			$change-color: map-get($opts,color);
+		}
+
+
+		//internal values
+
+		$main-border-sides: (); //sides where border will be applied
+		$cross-border-sides: (); //sides where border will be applied
+
+		@if map-get($opts,direction) == 'up' {
+			$main-border-sides: (top,left);
+			$cross-border-sides: (bottom,right);
+		}@else if map-get($opts,direction) == 'down'  {
+			$main-border-sides: (bottom,right);
+			$cross-border-sides: (top,left);
+		}@else if map-get($opts,direction) == 'left' {
+			$main-border-sides: (bottom,left);
+			$cross-border-sides: (top,right);
+		}@else if map-get($opts,direction) == 'right'  {
+			$main-border-sides: (top,right);
+			$cross-border-sides: (bottom,left);
+		}
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			background: transparent;
+			display: map-get($opts,display);
+			font-size: map-get($opts,size);
+			width:1em;
+			height:1em;
+			transform-origin: center center;
+			transform: rotate(45deg) #{ map-get($opts,transform) };
+			vertical-align: middle;
+			line-height:1;
+			
+			@if( map-get($opts,transition) ) {
+				transition: map-get($opts,transition);
+			}
+
+			@if map-get($opts,size-base) {
+				font-size:  map-get($opts,size-base);
+			}
+			
+			@if $cross-border-sides != null {
+				border: map-get($opts,weight) solid map-get($opts,color);
+				border-#{nth($cross-border-sides,1)}-width: 0;
+				border-#{nth($cross-border-sides,2)}-width: 0;
+			}@else {
+				@error provide a valid direction;
+			}
+			
+			@if map-get($opts,pseudo) != both {
+				@content;
+			}
+		}
+
+		@if map-get($opts,change-state) == true {
+			@at-root #{ map-get($opts,change-selector) } {
+
+				#{internal__pseudo-generator(map-get($opts,pseudo))} {
+
+					@if map-get($opts,change-directions) == true {
+						border-#{nth($main-border-sides,1)}-width: 0;
+						border-#{nth($main-border-sides,2)}-width: 0;
+						border-#{nth($cross-border-sides,1)}-width: map-get($opts,weight);
+						border-#{nth($cross-border-sides,2)}-width: map-get($opts,weight);
+					}
+					border-color: $change-color;
+				}
+			}
+		}
+		
+		@if map-get($opts,pseudo) == both {
+
+			&:before,&:after {
+				@content;
+			}
+		}
+	}
+
+	//arrow but gradient
+	@mixin arrow-gradient($args:()){
+		$defaults: (
+			pseudo: after, 
+			direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of it
+			gradient : (),
+			size-base: inherit,
+			width: .4em,//orientation of direction
+			height: .4em,// perpendicular orientation of direction
+			display: inline-block
+		);
+		$opts: map-merge($defaults,$args);
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			@include gradient( map-get($opts,gradient) );
+			display: map-get($opts,display);
+			width: map-get($opts,width);
+			height: map-get($opts,height);
+
+
+			$clip-path: '';
+
+			@if map-get($opts,direction) == 'up'{
+				$clip-path: (
+					0 100%,
+					100% 100%,
+					50% 0
+				);
+			}@else if  map-get($opts,direction) == 'down' {
+				$clip-path: (
+					0 0,
+					100% 0,
+					50% 100%
+				);
+			}@else if  map-get($opts,direction) == 'right' {
+				$clip-path: (
+					0 0,
+					100% 50%,
+					0 100%
+				);
+			}@else if  map-get($opts,direction) == 'left' {
+				$clip-path: (
+					0 50%,
+					100% 0,
+					100% 100%
+				);
+			}@else{
+				@error need a valid direction
+			}
+
+			$clip-path-string: internal__generate_path_string($clip-path);
+			
+			
+			@if($autoprefix == true){
+				-webkit-clip-path: polygon(#{$clip-path-string});
+			}
+			clip-path: polygon(#{$clip-path-string});
+			@content;
+		}
+	}
+
+	//arrow but triangols by border
+	@mixin arrow-triangle($args:()){
+		$defaults: (
+			pseudo: after, 
+			change-directions: false, //if pseudo is both, make their directions oppposite to one another
+			direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of it
+			color: null,
+			override: false,
+			change-color: null,
+			size-base: inherit,
+			main-size: .4em,//orientation of direction
+			cross-size: .4em,// perpendicular orientation of direction
+			display: inline-block,
+			transition: null,
+			change-state: false,
+			change-selector: ':hover',
+		);
+		$opts: map-merge($defaults,$args);
+
+		$change-color: null;
+
+		@if(map-get($opts,change-color)) {
+			$change-color: map-get($opts,change-color);
+		}@else {
+			$change-color: map-get($opts,color);
+		}
+
+
+		//internal values
+		$main-border-size: map-get($opts,main-size);
+		$cross-border-size: map-get($opts,cross-size) * .5;
+
+		$main-border-sides: (); //first list item will be initial state border side
+		$cross-border-sides: ();
+
+		@if map-get($opts,direction) == 'up' or map-get($opts,direction) == 'down'  {
+			$cross-border-sides: (right,left);
+			
+			@if map-get($opts,direction) == 'up' {
+				$main-border-sides: (bottom,top);
+			}@else if map-get($opts,direction) == 'down'  {
+				$main-border-sides: (top,bottom);
+			}
+
+		}@else if map-get($opts,direction) == 'left' or map-get($opts,direction) == 'right' {
+			$cross-border-sides: (top,bottom);
+			
+			@if map-get($opts,direction) == 'left' {
+				$main-border-sides: (right,left);
+			}@else if map-get($opts,direction) == 'right'  {
+				$main-border-sides: (left,right);
+			}
+
+		}
+
+		#{internal__pseudo-generator(map-get($opts,pseudo))}{
+			@if map-get($opts,pseudo) != 'override' {
+				content: "";
+			}
+			background: transparent;
+			@if map-get($opts,display) {
+				display: map-get($opts,display);
+			}
+			width:0;
+			height:0;
+			
+			@if( map-get($opts,transition) ) {
+				transition: map-get($opts,transition);
+			}
+
+			@if map-get($opts,size-base) {
+				font-size:  map-get($opts,size-base);
+			}
+			
+			@if $cross-border-sides != null  and $main-border-sides != null{
+				@if map-get($opts,override) != false {
+
+					border-#{nth($cross-border-sides,1)}: $cross-border-size solid transparent;
+					border-#{nth($cross-border-sides,2)}: $cross-border-size solid transparent;
+				
+					border-#{nth($main-border-sides,1)}: $main-border-size solid transparent;
+					border-#{nth($main-border-sides,2)}: $main-border-size solid transparent;
+				}@else {
+				
+					border-#{nth($cross-border-sides,1)}: $cross-border-size solid transparent;
+					border-#{nth($cross-border-sides,2)}: $cross-border-size solid transparent;
+				
+					border-#{nth($main-border-sides,1)}: $main-border-size solid map-get($opts,color);
+					border-#{nth($main-border-sides,2)}: 0 solid map-get($opts,color);
+
+				}
+			}@else {
+				@error provide a valid direction;
+			}
+			
+			@if map-get($opts,pseudo) != both {
+				@content;
+			}
+		}
+
+		@if map-get($opts,change-state) == true and map-get($opts,override) != false {
+			@at-root #{ map-get($opts,change-selector) } {
+
+				#{internal__pseudo-generator(map-get($opts,pseudo))} {
+
+					@if map-get($opts,change-directions) == true {
+						border-#{nth($main-border-sides,1)}-width: 0;
+						border-#{nth($main-border-sides,2)}-width: $main-border-size;
+						border-#{nth($main-border-sides,2)}-color: $change-color;
+					}@else{
+						border-#{nth($main-border-sides,1)}-color: $change-color;
+
+					}
+				}
+			}
+		}
+		
+		@if map-get($opts,pseudo) == both {
+
+			&:before,&:after {
+				@content;
+			}
+		}
+	}
+
+	
+	
+
+////////////////////////////////////////////////////////////////////////////// 
+// INTERNAL FUNCTIONS
+//////////////////////////////////////////////////////////////////////////////
+	@function internal__pseudo-generator($pseudo){
+
+		$selector: '';
+		@if $pseudo == override {
+			$selector: '&';
+		}
+		@else if $pseudo != both {
+			$selector: '&:'+$pseudo;
+		}@else {
+			$selector: '&:before,&:after';
+		}
+
+		@return $selector;
+	}
+
+
+
+	@mixin internal__offsets-generator($offset-values:()){
+
+		$offsets: top,bottom,left,right;
+		@each  $offset in $offsets {
+			@if map-get($offset-values,$offset) != '' {
+				#{$offset}: map-get($offset-values,$offset);
+			}
+		}
+	}
+
+	@mixin internal__margin-generator($align:'') {
+
+		@if $align == center {
+			margin-right:auto;
+			margin-left:auto;
+		} @else if $align == right {
+			margin-right:0;
+			margin-left:auto;
+		}
+	}
+
+	// convert map of points into a string for the polygon() function
+	@function internal__generate_path_string($clip-path) {
+			$clip-path-string: '';
+			$point-counter: 1;
+		@each $path-point in $clip-path {
+			@if $point-counter != 1 {
+				$clip-path-string: #{$clip-path-string + ', '};
+			}
+			
+			$clip-path-string: #{$clip-path-string + $path-point};
+			$point-counter: $point-counter + 1;
+		}
+		
+		@return $clip-path-string;
+	}
+
+////////////////////////////////////////////////////////////////////////////// 
+//HELPFUL MIXIN FUNCTIONS FROM THE INTERWEBS 
+//////////////////////////////////////////////////////////////////////////////
+
+	/// https://gist.github.com/terkel/4373420
+	@function decimal-round($number, $digits: 0, $mode: round) {
+		$n: 1;
+		// $number must be a number
+		@if type-of($number) != number {
+			@warn '#{ $number } is not a number.';
+			@return $number;
+		}
+		// $digits must be a unitless number
+		@if type-of($digits) != number {
+			@warn '#{ $digits } is not a number.';
+			@return $number;
+		} @else if not unitless($digits) {
+			@warn '#{ $digits } has a unit.';
+			@return $number;
+		}
+		@if $digits > 0 {
+			@for $i from 1 through $digits {
+				$n: $n * 10;
+			}
+		}
+		@if $mode == round {
+			@return round($number * $n) / $n;
+		} @else if $mode == ceil {
+			@return ceil($number * $n) / $n;
+		} @else if $mode == floor {
+			@return floor($number * $n) / $n;
+		} @else {
+			@warn '#{ $mode } is undefined keyword.';
+			@return $number;
+		}
+	}
+
+	///https://css-tricks.com/snippets/sass/str-replace-function/
+	/// Replace `$search` with `$replace` in `$string`
+	/// @param {String} $string - Initial string
+	/// @param {String} $search - Substring to replace
+	/// @param {String} $replace ('') - New value
+	/// @return {String} - Updated string
+	@function str-replace($string, $search, $replace: '') {
+		$index: str-index($string, $search);
+		
+		@if $index {
+		  @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+		}
+		
+		@return $string;
+	  }
+
+	/// for maps
+	@function map-set($map, $key, $value) {
+		$new: ($key: $value);
+		@return map-merge($map, $new);
+	}
+
+	@function map-reverse($map) {
+		$result: null;
+
+		@if type-of($map) == "map" {
+			$keys: map-keys($map);
+			$map-reversed: ();
+			
+			@for $i from length($keys) through 1 {
+				$map-reversed: map-merge(
+					$map-reversed,
+					(nth($keys, $i): map-get($map, nth($keys, $i)))
+				);
+			}
+
+			@if type-of($map-reversed) == "map" {
+				$result: $map-reversed;
+			} @else {
+				@warn 'There was an error reversing the order of "#{$map}"';
+			}
+		} @else {
+			@warn '"#{$map}" is not a valid map';
+		}
+
+		@return $result;
+	}
+
+
+	@function strip-unit($number) {
+		@if type-of($number) == 'number' and not unitless($number) {
+			@return $number / ($number * 0 + 1);
+		}
+
+		@return $number;
+	}
+
+
+
+	@function to-unit($number,$unit:null) {
+		$available-units: (
+			em: 1em,
+			px: 1px,
+			deg: 1deg,
+			vw: 100vw,
+			vh: 100vh,
+			cm: 1cm,
+			mm: 1mm,
+			in: 1in,
+			pt: 1pt,
+			pc: 1pc,
+			ex: 1ex,
+			ch: 1ch,
+			rem: 1rem,
+			vmin: 100vmin,
+			vmax: 100vmax
+		);
+		@if $unit {
+			// @if $force-responsive-units == true {
+			//	 @if unit($number) == px or unitless($number) {
+			//		 @return strip-unit($number) * map-get($available-units,$unit);
+			//	 }@else {
+			//		 @return $number;
+			//	 }
+			// } @else {
+
+				@if type-of($number) == number {
+					@return strip-unit($number) * map-get($available-units,$unit);
+				}@else{
+					@return $number;
+				}
+			// }
+		}
+	}
+
+	@function em($number) {
+		@return to-unit($number,em);
+	}
+
+	@function rem($number) {
+		@return to-unit($number,rem);
+	}
+
+	@function px($number) {
+		@return to-unit($number,px);
+	}
+
+
+	@function vw($number) {
+		@return to-unit($number,vw);
+	}
+
+
+	@function vh($number) {
+		@return to-unit($number,vh);
+	}
+
+	@function string($value) {
+		@return inspect($value);
+	}
+
+
+	//colors
+	@function color($slug:base ,$extension:null) {
+		@if $extension{
+			@return map-get($color,#{$slug +'-'+$extension});
+		}@else {
+				
+			@return map-get($color,$slug);
+		}
+	}
+
+	//font
+	@function font($slug: base ,$extension:null) {
+		@if $extension{
+			@return map-get($font,#{$slug +'-'+$extension});
+		}@else {
+			@return map-get($font,$slug);
+		}
+	}
+
+
+	@function contains($list,$var) {
+		$_out: false;
+		@each $item in $list { @if $item == $var { $_out: true; } }
+		@return $_out;
+	}
+
+	@function slice($list, $start: 1, $end: length($list)) {
+		$result: null;
+	
+		@if type-of($start) != number or type-of($end) != number {
+		@warn "Either $start or $end are not a number for `slice`.";
+		}
+	
+		@else if $start > $end {
+		@warn "The start index has to be lesser than or equals to the end index for `slice`.";
+		}
+	
+		@else if $start < 1 or $end < 1 {
+		@warn "List indexes must be non-zero integers for `slice`.";
+		}
+	
+		@else if $start > length($list) {
+		@warn "List index is #{$start} but list is only #{length($list)} item long for `slice`.";
+		}
+	
+		@else if $end > length($list) {
+		@warn "List index is #{$end} but list is only #{length($list)} item long for `slice`.";
+		}
+	
+		@else {
+		$result: ();
+	
+		@for $i from $start through $end {
+			$result: append($result, nth($list, $i));
+		}
+		}
+	
+		@return $result;
+	}
+
+	@function approximateSq($num, $approx) {
+		$root : (( $num / $approx ) + $approx) / 2;
+		@return $root;
+	}
+	  
+	@function sqrt($num) {
+		$root:0;
+		$testRoot : 0;
+		$upperBounds : round($num / 2) + 1; //never need over half the main number. Add one just to be sure!
+		$loops : $upperBounds;
+		@for $test from 2 through $upperBounds {
+		$sq : $test * $test;
+		@if $sq <= $num {
+			$testRoot : $test;
+		}
+		}  
+		
+		$root : (approximateSq($num, $testRoot));
+		
+		@return $root;
+	}
+
+	@function pow($number, $exponent) {
+		$value: 1;
+	  
+		@if $exponent > 0 {
+		  @for $i from 1 through $exponent {
+			$value: $value * $number;
+		  }
+		}
+	  
+		@return $value;
+	}
+
+////////////////////////////////////////////////////////////////////////////// 
+// EXTENDS USED BY MIXINS
+//////////////////////////////////////////////////////////////////////////////
+
+// CF	
+ %for-cf {
+	@include cf;
+}
+
+//FLEX CONTAINERS
+%for-flex {
+
+	&-xs {
+		@include flex(false,xs,true);
+	}
+
+	&-sm {
+		@include flex(false,sm,true);
+	}
+
+	&-md {
+		@include flex(false,md,true);
+	}
+
+	&-lg {
+		@include flex(false,lg,true);
+	}
+
+	&-xl {
+		@include flex(false,xl,true);
+	}
+}

@@ -9,7 +9,7 @@ Shares some styles with [tooltip](../components/tooltip.md)
 
 ```html
 <li class="nav-item">
-	<a href="#a-dropdown" data-toggle="dropdown">
+	<a href="#a-dropdown" data-toggle-dropdown>
 		<img class="nav-icon" data-src="icon-projects.svg">
 		<span class="nav-item-text">Item but with dropdown</span>
 	</a>
@@ -27,18 +27,18 @@ Shares some styles with [tooltip](../components/tooltip.md)
 
 ## Toggler
 
-### **`[data-toggle=dropdown]`**
+### **`[data-toggle-dropdown]`**
 
 Elements with this attribute looks for an dropdown to toggle
 
 NOTE: this works on almost any clickable items. this will also work on input most types of fields or `[contenteditable="true]` elements
 
 
-The most frequent setup [data-toggle="dropdown"] looks for a sibling because there's no `href` or `data-href`
+The most frequent setup [data-toggle-dropdown] looks for a sibling because there's no `href` or `data-href`
 
 ```html
 <div class="container">
-	<span data-toggle="dropdown">Open a bitch</span>
+	<span data-toggle-dropdown>Open a bitch</span>
 	<div class="dropdown">
 		Sup mofos, I'm an dropdown content
 	</div>
@@ -47,16 +47,16 @@ The most frequent setup [data-toggle="dropdown"] looks for a sibling because the
 
 This one looks for the `href` of the boi
 ```html
-<a href="#bitch-ass-dropdown" data-toggle="dropdown">Open a bitch</a>
+<a href="#bitch-ass-dropdown" data-toggle-dropdown>Open a bitch</a>
 <div id="bitch-ass-dropdown" class="dropdown">
 	Sup mofos, I'm an dropdown content
 </div>
 ```
 
-Another way but [data-toggle="dropdown"] looks for a `data-href` to go to because there's no `href`
+Another way but [data-toggle-dropdown] looks for a `data-href` to go to because there's no `href`
 
 ```html
-<span data-href="#bitch-ass-dropdown" data-toggle="dropdown">Open a bitch</span>
+<span data-href="#bitch-ass-dropdown" data-toggle-dropdown>Open a bitch</span>
 <div id="bitch-ass-dropdown" class="dropdown">
 	Sup mofos, I'm an dropdown content
 </div>
@@ -84,7 +84,7 @@ Example:
 
 ```html
 <div class="container">
-	<span data-toggle="dropdown">Open a bitch</span>
+	<span data-toggle-dropdown>Open a bitch</span>
 	<div class="dropdown dropdown-left">
 		Sup mofos, I'm an dropdown content
 	</div>
@@ -96,7 +96,7 @@ This sets the dropdown at `left:0;`
 
 ```html
 <div class="container">
-	<span data-toggle="dropdown">Open a bitch</span>
+	<span data-toggle-dropdown>Open a bitch</span>
 	<div class="dropdown dropdown-right">
 		Sup mofos, I'm an dropdown content
 	</div>
@@ -122,7 +122,7 @@ Example:
 
 ```html
 <div class="container">
-	<span data-toggle="dropdown">Open a bitch</span>
+	<span data-toggle-dropdown>Open a bitch</span>
 	<div class="dropdown dropdown-top dropdown-left-flush">
 		Sup mofos, I'm an dropdown content
 	</div>
@@ -149,7 +149,7 @@ Example:
 
 ```html
 <div class="container">
-	<span data-toggle="dropdown">Open a bitch</span>
+	<span data-toggle-dropdown>Open a bitch</span>
 	<div class="dropdown dropdown-top-flush dropdown-center-x">
 		Sup mofos, I'm an dropdown content
 	</div>
@@ -167,7 +167,7 @@ You get it...
 
 Defaults to nothing, or closest positioned element's width
 
-Can be applied to either `.dropdown` or `[data-toggle="dropdown"]`
+Can be applied to either `.dropdown` or `[data-toggle-dropdown]`
 
 This sets a custom width for the dropdown
 
@@ -175,17 +175,110 @@ This sets a custom width for the dropdown
 
 Defaults to nothing, or closest positioned element's max-height
 
-Can be applied to either `.dropdown` or `[data-toggle="dropdown"]`
+Can be applied to either `.dropdown` or `[data-toggle-dropdown]`
 
 This sets a custom max-height for the dropdown
 
 ## Styling dropdown setup
 
-Note that all descendants of `[data-toggle="dropdown"]` has pointer-events none to allow the toggle to do its thing without being bugged out by its content
+Note that all descendants of `[data-toggle-dropdown]` has pointer-events none to allow the toggle to do its thing without being bugged out by its content
 
 `.dropdown` on the other hand has more extensive styles. If you don't need to style it, you can just not touch it... sometimes the [.nav](../components/nav.md) takes over for styles too
 
 
-[Symbols toggle classes](../components/symbol.md#toggle-classes) change based on the status of the accordion as well as long as they are a direct children of either `[data-toggle="dropdown"]` or `.dropdown`
+[Symbols toggle classes](../components/symbol.md#toggle-classes) change based on the status of the element as well as long as they are a direct children of either `[data-toggle-dropdown]` or `.dropdown`
+
+
+
+## Javascript
+
+### Functions
+
+#### **`fw.Dropdown(element,triggerer,args)`**
+
+Make a new boi by going `const dropdown = new fw.Dropdown(element,triggerer,args)`
+
+
+`element` is the element itself. if blank, does nothing
+
+`triggerer` is the element that triggers the element. if left blank, it doesnt mess with any data-toggle-elements
+
+`args` is the opts available
+```js
+//defaults
+{
+	width: null,
+	maxHeight: null
+}
+```
+
+
+#### **`dropdown.toggle(element,triggerer)`**
+
+duh
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+
+`triggerer` is the element interacted with to manipulate the element. if left blank, it should not destroy anything. if it does pls let sam know
+
+#### **`dropdown.open(element,triggerer)`**
+
+duh
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+
+`triggerer` is the element interacted with to manipulate the element. if left blank, it should not destroy anything. if it does pls let sam know
+
+#### **`dropdown.close(element,triggerer)`**
+
+duh
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+
+`triggerer` is the element interacted with to manipulate the element. if left blank, it should not destroy anything. if it does pls let sam know
+
+#### **`dropdown.setDimensions(element,args)`**
+
+sets the bois dimensions.
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+`args` custom args to set appearance, defaults to the args attached to the instance
+
+#### **`fw.Dropdown.purge(exemptedDropdown)`**
+
+deactivates all dropdowns
+
+`exemptedDropdown` is DOMElement of dropdown to exempt from the purge
+
+
+#### **`fw.Dropdown.configDefaults`**
+
+returns obj with component arg defaults
+
+#### **`fw.Dropdown.initListeners()`**
+
+initializes all event listeners
+
+#### **`dropdown.args`**
+
+returns obj with component set args
+
+### Events
+
+* `click.fw.dropdown` - happens on `triggerer`
+* `focus.fw.dropdown` - happens on `triggerer`
+* `blur.fw.dropdown` - happens on `triggerer`
+* `click.fw.dropdown.purge` - happens on elements that qualify closing dropdown components
+* `before_open.fw.dropdown` - happens on `element` before opening
+* `open.fw.dropdown` - happens on `element` when opening
+* `after_open.fw.dropdown` - happens on `element` after opening
+* `before_close.fw.dropdown` - happens on `element` before closing
+* `close.fw.dropdown` - happens on `element` when closeing
+* `after_close.fw.dropdown` - happens on `element` after closing
+
 
 [Back to TOC](../../../readme.md)

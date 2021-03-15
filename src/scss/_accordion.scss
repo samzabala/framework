@@ -1,0 +1,53 @@
+
+
+[data-toggle-accordion]{
+	@include dump-styles(data-toggle);
+}
+
+$prefix: '.accordion';
+
+#{$prefix} {
+	&:not(#{$prefix}-mobile):not(.open) {
+		// max-height:0;
+		// overflow:hidden;
+		min-width:100%;
+		display:none!important;
+		// transition: $transition-duration-long max-height $transition-timing;
+		// overflow:hidden;
+
+		// so uh.. needed to use this bitch on tables and tables dont like being display block it shits itself
+		// &.open {
+		//     // max-height:none;
+		//     // overflow:visible;
+		//     display:block!important;
+		// }
+	}
+
+	&#{&}-mobile {
+
+		@include br(#{$mobile-br-max}-max) {
+
+			&:not(.open) {
+
+				// max-height:0;
+				// overflow:hidden;
+				min-width:100%;
+				display:none!important;
+				// transition: $transition-duration-long max-height $transition-timing;
+				// overflow:hidden;
+
+			}
+			// &.open {
+			//     // max-height:none;
+			//     // overflow:visible;
+			//     display:block!important;
+			// }
+		}
+
+		// @include br(#{$mobile-br-max-polar}) {
+		//     // max-height:none;
+		//     // overflow:visible;
+		//     display:block!important;
+		// }
+	}
+}

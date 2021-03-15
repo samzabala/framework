@@ -1,0 +1,37 @@
+{
+	"name": "framework",
+	"version": "1.0.0",
+	"description": "yes",
+	"main": "dist/js/framework.lib.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "watch 'npm run build' src",
+		"prettier": "prettier --write .",
+		"js-build-umd": "rollup --config build/rollup.config.js",
+		"sass-build": "sass --style expanded --source-map --embed-sources --no-error-css src/scss/framework.layout.scss:dist/css/framework.layout.css src/scss/framework.lite.scss:dist/css/framework.lite.css src/scss/framework.normalize.scss:dist/css/framework.normalize.css src/scss/framework.scss:dist/css/framework.css src/scss/framework.utilities.scss:dist/css/framework.utilities.css",
+		"build": " npm run sass-build; npm run js-build-umd;"
+	},
+	"author": "1Point21 Interactive",
+	"license": "eh",
+	"devDependencies": {
+		"@babel/cli": "^7.12.8",
+		"@babel/core": "^7.12.8",
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
+		"@babel/preset-env": "^7.12.7",
+		"@rollup/plugin-babel": "^5.2.3",
+		"@rollup/plugin-node-resolve": "^11.1.1",
+		"autoprefixer": "^10.0.4",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^8.2.2",
+		"dart-sass": "^1.25.0",
+		"prettier": "^2.2.1",
+		"rollup": "^2.38.4",
+		"sass": "^1.30.0",
+		"watch": "^1.0.2"
+	},
+	"dependencies": {
+		"postcss": "^8.1.10",
+		"rollup-plugin-copy": "^3.3.0",
+		"style-loader": "^2.0.0"
+	}
+}

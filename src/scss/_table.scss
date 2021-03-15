@@ -1,0 +1,299 @@
+/*** Tables ***/
+//internal vars
+
+//table
+$calculated-table-heading-height: $table-heading-height;
+@if internal-is-convertable($table-heading-height) {
+	$calculated-table-heading-height: rem( $table-heading-height / $body-font-size);
+}
+
+
+$calculated-table-cell-height: $table-cell-height;
+@if internal-is-convertable($table-cell-height) {
+	$calculated-table-cell-height: rem( $table-cell-height / $body-font-size);
+}
+
+$calculated-table-cell-height-large: $table-cell-height-large;
+@if internal-is-convertable($table-cell-height-large) {
+	$calculated-table-cell-height-large: rem( $table-cell-height-large / $body-font-size);
+}
+$calculated-table-cell-height-small: $table-cell-height-small;
+@if internal-is-convertable($table-cell-height-small) {
+	$calculated-table-cell-height-small: rem( $table-cell-height-small / $body-font-size);
+}
+
+
+$prefix: '.table';
+#{$prefix} {
+
+	&-wrapper {
+		width:100%;
+		display:block;
+		overflow-x: auto;
+
+		@at-root & .table,
+		& table {
+			// white-space: nowrap;
+			width: auto;
+			min-width:100%;
+			margin-bottom:0;
+			table-layout: auto!important;
+
+			.tag,.btn {
+				white-space:nowrap;
+			}
+
+		}
+	}
+	@at-root &,
+	table {
+		width: 100%;
+		display:table;
+		border-collapse: collapse;
+		text-align: inherit;
+		background:transparent;
+
+		&#{$prefix}-fixed {
+			table-layout: fixed!important;
+		}
+
+		.text-wrap-ellipsis,.text-wrap-ellipsis-multiple {
+			width: 10em;
+			width: clamp(14em, 25vw, 12em);
+		}
+
+
+		@at-root thead,
+		tbody,
+		tfoot,
+		tr,
+		#{$prefix}-row {
+			width:100%;
+		}
+
+		@at-root thead,
+		tbody,
+		tfoot {
+			vertical-align: inherit;
+			text-align: inherit;
+		}
+		
+		
+
+		@at-root tr,
+		#{$prefix}-row {
+			height:100%;
+			display:table-row;
+			vertical-align: inherit;
+			text-align: inherit;
+			border-color: $table-cell-border-color;
+			border-style: solid;
+			border-top-width: $table-cell-border-width;
+			background:$table-row-background;
+
+			.theme-inverse & {
+				border-color: $table-cell-border-color-inverse;
+				background:$table-row-background-inverse;
+			}
+
+			.alert &,
+			.theme-inverse .alert & {
+				background:transparent;
+				border-color: currentColor;
+			}
+
+			&:last-child {
+				border-bottom-width: $table-cell-border-width;
+			}
+			
+		}
+		@at-root th,td,
+		#{$prefix}-cell,
+		#{$prefix}-cell#{$prefix}-cell-heading {
+			vertical-align: inherit;
+			text-align: inherit;
+			padding-left: $table-cell-gutter;
+			padding-right: $table-cell-gutter;
+			// vertical-align:middle;
+			height:100%;
+			display: table-cell;
+			position:relative;
+
+
+
+			&#{$prefix}-bordered,
+			#{$prefix}-bordered & {
+				border-color: $table-cell-border-color;
+				border-style: solid;
+				border-left-width: $table-cell-border-width;
+
+				.theme-inverse & {
+					border-color: $table-cell-border-color-inverse;
+				}
+
+				&:last-child {
+					border-right-width: $table-cell-border-width;
+				}
+			}
+
+		}
+
+
+
+
+		#{$prefix}-cell-no-gutter {
+			padding:0!important;
+		}
+
+		@at-root th,
+		#{$prefix}-cell#{$prefix}-cell-heading {
+			padding-top: calc((#{$calculated-table-heading-height} - (#{ $calculated-body-single-line } )) * .5);
+			padding-bottom: calc((#{$calculated-table-heading-height} - (#{ $calculated-body-single-line } )) * .5);
+			background:$table-heading-background;
+			// vertical-align:middle;
+
+			@include type-set((
+				color: $table-heading-color,
+				weight:$table-heading-font-weight,
+				style: $table-heading-font-style,
+				case: $table-heading-text-transform,
+			));
+
+			.theme-inverse & {
+				background:$table-heading-background-inverse;
+				color: $table-heading-color-inverse
+			}
+
+			.alert &,
+			.theme-inverse .alert & {
+				background: none;
+				color:inherit;
+			}
+		}
+
+		@at-root td,
+		#{$prefix}-cell {
+			padding-top: calc((#{ $calculated-table-cell-height } - ( #{ $calculated-body-single-line } )) * .5);
+			padding-bottom: calc((#{ $calculated-table-cell-height } - ( #{ $calculated-body-single-line } )) * .5);
+		}
+
+		@at-root #{$prefix}-col-separation {
+			td,
+			#{$prefix}-cell {
+				&:nth-child(n+2) {
+					border-left: $table-cell-border-width solid $table-cell-border-color;
+
+					.theme-inverse & {
+						border-left: $table-cell-border-width solid $table-cell-border-color-inverse;
+					}
+				}
+			}
+		}
+
+
+		@at-root #{$prefix}-small {
+			td,
+			#{$prefix}-cell {
+				padding-top: calc((#{ $calculated-table-cell-height-small } - ( #{ $calculated-body-single-line-compact } )) * .5);
+				padding-bottom: calc((#{ $calculated-table-cell-height-small } - ( #{ $calculated-body-single-line-compact } )) * .5);
+				line-height: $calculated-body-line-height * $body-line-height-compact-factor;
+			}
+		}
+
+		@at-root #{$prefix}-large {
+			td,
+			#{$prefix}-cell {
+				padding-top: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line-expanded } )) * .5);
+				padding-bottom: calc((#{ $calculated-table-cell-height-large } - ( #{ $calculated-body-single-line-expanded } )) * .5);
+				line-height: $calculated-body-line-height * $body-line-height-expanded-factor;
+			}
+		}
+
+
+		@at-root #{$prefix}-label {
+			width: $table-label-width;
+			height: calc(#{ $calculated-table-cell-height } - (#{$table-label-offset} * 2));
+			border-radius: $table-label-border-radius;
+			display:inline-block;
+			vertical-align:middle;
+			margin: #{$table-label-offset} 0;
+
+			#{$prefix}-large & {
+				height: calc(#{ $calculated-table-cell-height-large } - (#{$table-label-offset} * 2));
+			}
+
+			#{$prefix}-small & {
+				height: calc(#{ $calculated-table-cell-height-small } - (#{$table-label-offset} * 2));
+			}
+
+			@each $tag,$color in $calculated-brand-color-declarations-for-components {
+				&-#{$tag} {
+					background-color: $color;
+				}
+			}
+		
+			&-intensity {
+				@for $i from 1 through length($calculated-brand-color-intensity) {
+					&-#{$i} {
+						background-color: nth($calculated-brand-color-intensity,$i);
+					}
+				}
+			}
+		}
+
+		@at-root #{$prefix}-row,
+		#{$prefix}-cell {
+			&-disabled {
+				td,
+				#{$prefix}-cell {
+					@include dump-styles(disabled);
+				}
+			}
+		}
+
+		@at-root #{$prefix}-row {
+			
+			@each $tag,$colors in $calculated-table-row-background {
+				&-#{$tag} {
+					background-color: map-get($colors,normal);
+
+					.theme-inverse & {
+						background-color: map-get($colors,inverse);
+					}
+
+					.alert &,
+					.theme-inverse .alert & {
+						background: map-get(map-get($calculated-color-vars-variations,#{$tag}),alpha-2)
+					}
+				}
+			}
+
+		}
+
+
+
+		@at-root #{$prefix}-cell {
+			
+			@each $tag,$colors in $calculated-table-cell-background {
+				@at-root td#{&}-#{$tag},
+				&#{&}-#{$tag} {
+					background-color: map-get($colors,normal);
+
+					.theme-inverse & {
+						background-color: map-get($colors,inverse);
+					}
+
+					.alert &,
+					.theme-inverse .alert & {
+						background: map-get(map-get($calculated-color-vars-variations,#{$tag}),alpha-5)
+					}
+				}
+			}
+
+		}
+
+
+	}
+
+
+}

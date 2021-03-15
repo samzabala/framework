@@ -1,0 +1,1741 @@
+
+//////////////////////////////// CSS VAR Prefix
+
+
+//////////////////////////////// CSS VAR Verbiage. cannot be modified
+
+	$var-color-base: var(--fw-color-base);
+		$var-color-base-alt: var(--fw-color-base-alt);
+		$var-color-base-alpha-1: var(--fw-color-base-alpha-1);
+		$var-color-base-alpha-2: var(--fw-color-base-alpha-2);
+		$var-color-base-alpha-3: var(--fw-color-base-alpha-3);
+		$var-color-base-alpha-4: var(--fw-color-base-alpha-4);
+		$var-color-base-alpha-5: var(--fw-color-base-alpha-5);
+		$var-color-base-alpha-6: var(--fw-color-base-alpha-6);
+		$var-color-base-alpha-7: var(--fw-color-base-alpha-7);
+		$var-color-base-alpha-8: var(--fw-color-base-alpha-8);
+		$var-color-base-alpha-9: var(--fw-color-base-alpha-9);
+
+	$var-color-background: var(--fw-color-background);
+		$var-color-background-alt: var(--fw-color-background-alt);
+		$var-color-background-alpha-1: var(--fw-color-background-alpha-1);
+		$var-color-background-alpha-2: var(--fw-color-background-alpha-2);
+		$var-color-background-alpha-3: var(--fw-color-background-alpha-3);
+		$var-color-background-alpha-4: var(--fw-color-background-alpha-4);
+		$var-color-background-alpha-5: var(--fw-color-background-alpha-5);
+		$var-color-background-alpha-6: var(--fw-color-background-alpha-6);
+		$var-color-background-alpha-7: var(--fw-color-background-alpha-7);
+		$var-color-background-alpha-8: var(--fw-color-background-alpha-8);
+		$var-color-background-alpha-9: var(--fw-color-background-alpha-9);
+
+	$var-color-neutral: var(--fw-color-neutral);
+		$var-color-neutral-light: var(--fw-color-neutral-light);
+		$var-color-neutral-lighter: var(--fw-color-neutral-lighter);
+		$var-color-neutral-lightest: var(--fw-color-neutral-lightest);
+		$var-color-neutral-dark: var(--fw-color-neutral-dark);
+		$var-color-neutral-darker: var(--fw-color-neutral-darker);
+		$var-color-neutral-darkest: var(--fw-color-neutral-darkest);
+		$var-color-neutral-alpha-1: var(--fw-color-neutral-alpha-1);
+		$var-color-neutral-alpha-2: var(--fw-color-neutral-alpha-2);
+		$var-color-neutral-alpha-3: var(--fw-color-neutral-alpha-3);
+		$var-color-neutral-alpha-4: var(--fw-color-neutral-alpha-4);
+		$var-color-neutral-alpha-5: var(--fw-color-neutral-alpha-5);
+		$var-color-neutral-alpha-6: var(--fw-color-neutral-alpha-6);
+		$var-color-neutral-alpha-7: var(--fw-color-neutral-alpha-7);
+		$var-color-neutral-alpha-8: var(--fw-color-neutral-alpha-8);
+		$var-color-neutral-alpha-9: var(--fw-color-neutral-alpha-9);
+
+	$var-color-primary: var(--fw-color-primary);
+		$var-color-primary-light: var(--fw-color-primary-light);
+		$var-color-primary-lighter: var(--fw-color-primary-lighter);
+		$var-color-primary-lightest: var(--fw-color-primary-lightest);
+		$var-color-primary-dark: var(--fw-color-primary-dark);
+		$var-color-primary-darker: var(--fw-color-primary-darker);
+		$var-color-primary-darkest: var(--fw-color-primary-darkest);
+		$var-color-primary-alpha-1: var(--fw-color-primary-alpha-1);
+		$var-color-primary-alpha-2: var(--fw-color-primary-alpha-2);
+		$var-color-primary-alpha-3: var(--fw-color-primary-alpha-3);
+		$var-color-primary-alpha-4: var(--fw-color-primary-alpha-4);
+		$var-color-primary-alpha-5: var(--fw-color-primary-alpha-5);
+		$var-color-primary-alpha-6: var(--fw-color-primary-alpha-6);
+		$var-color-primary-alpha-7: var(--fw-color-primary-alpha-7);
+		$var-color-primary-alpha-8: var(--fw-color-primary-alpha-8);
+		$var-color-primary-alpha-9: var(--fw-color-primary-alpha-9);
+
+	$var-color-secondary: var(--fw-color-secondary);
+		$var-color-secondary-light: var(--fw-color-secondary-light);
+		$var-color-secondary-lighter: var(--fw-color-secondary-lighter);
+		$var-color-secondary-lightest: var(--fw-color-secondary-lightest);
+		$var-color-secondary-dark: var(--fw-color-secondary-dark);
+		$var-color-secondary-darker: var(--fw-color-secondary-darker);
+		$var-color-secondary-darkest: var(--fw-color-secondary-darkest);
+		$var-color-secondary-alpha-1: var(--fw-color-secondary-alpha-1);
+		$var-color-secondary-alpha-2: var(--fw-color-secondary-alpha-2);
+		$var-color-secondary-alpha-3: var(--fw-color-secondary-alpha-3);
+		$var-color-secondary-alpha-4: var(--fw-color-secondary-alpha-4);
+		$var-color-secondary-alpha-5: var(--fw-color-secondary-alpha-5);
+		$var-color-secondary-alpha-6: var(--fw-color-secondary-alpha-6);
+		$var-color-secondary-alpha-7: var(--fw-color-secondary-alpha-7);
+		$var-color-secondary-alpha-8: var(--fw-color-secondary-alpha-8);
+		$var-color-secondary-alpha-9: var(--fw-color-secondary-alpha-9);
+		
+	$var-color-accent: var(--fw-color-accent);
+		$var-color-accent-light: var(--fw-color-accent-light);
+		$var-color-accent-lighter: var(--fw-color-accent-lighter);
+		$var-color-accent-lightest: var(--fw-color-accent-lightest);
+		$var-color-accent-dark: var(--fw-color-accent-dark);
+		$var-color-accent-darker: var(--fw-color-accent-darker);
+		$var-color-accent-darkest: var(--fw-color-accent-darkest);
+		$var-color-accent-alpha-1: var(--fw-color-accent-alpha-1);
+		$var-color-accent-alpha-2: var(--fw-color-accent-alpha-2);
+		$var-color-accent-alpha-3: var(--fw-color-accent-alpha-3);
+		$var-color-accent-alpha-4: var(--fw-color-accent-alpha-4);
+		$var-color-accent-alpha-5: var(--fw-color-accent-alpha-5);
+		$var-color-accent-alpha-6: var(--fw-color-accent-alpha-6);
+		$var-color-accent-alpha-7: var(--fw-color-accent-alpha-7);
+		$var-color-accent-alpha-8: var(--fw-color-accent-alpha-8);
+		$var-color-accent-alpha-9: var(--fw-color-accent-alpha-9);
+
+	$var-color-success: var(--fw-color-success);
+		$var-color-success-light: var(--fw-color-success-light);
+		$var-color-success-lighter: var(--fw-color-success-lighter);
+		$var-color-success-lightest: var(--fw-color-success-lightest);
+		$var-color-success-dark: var(--fw-color-success-dark);
+		$var-color-success-darker: var(--fw-color-success-darker);
+		$var-color-success-darkest: var(--fw-color-success-darkest);
+		$var-color-success-alpha-1: var(--fw-color-success-alpha-1);
+		$var-color-success-alpha-2: var(--fw-color-success-alpha-2);
+		$var-color-success-alpha-3: var(--fw-color-success-alpha-3);
+		$var-color-success-alpha-4: var(--fw-color-success-alpha-4);
+		$var-color-success-alpha-5: var(--fw-color-success-alpha-5);
+		$var-color-success-alpha-6: var(--fw-color-success-alpha-6);
+		$var-color-success-alpha-7: var(--fw-color-success-alpha-7);
+		$var-color-success-alpha-8: var(--fw-color-success-alpha-8);
+		$var-color-success-alpha-9: var(--fw-color-success-alpha-9);
+
+	$var-color-caution: var(--fw-color-caution);
+		$var-color-caution-light: var(--fw-color-caution-light);
+		$var-color-caution-lighter: var(--fw-color-caution-lighter);
+		$var-color-caution-lightest: var(--fw-color-caution-lightest);
+		$var-color-caution-dark: var(--fw-color-caution-dark);
+		$var-color-caution-darker: var(--fw-color-caution-darker);
+		$var-color-caution-darkest: var(--fw-color-caution-darkest);
+		$var-color-caution-alpha-1: var(--fw-color-caution-alpha-1);
+		$var-color-caution-alpha-2: var(--fw-color-caution-alpha-2);
+		$var-color-caution-alpha-3: var(--fw-color-caution-alpha-3);
+		$var-color-caution-alpha-4: var(--fw-color-caution-alpha-4);
+		$var-color-caution-alpha-5: var(--fw-color-caution-alpha-5);
+		$var-color-caution-alpha-6: var(--fw-color-caution-alpha-6);
+		$var-color-caution-alpha-7: var(--fw-color-caution-alpha-7);
+		$var-color-caution-alpha-8: var(--fw-color-caution-alpha-8);
+		$var-color-caution-alpha-9: var(--fw-color-caution-alpha-9);
+
+	$var-color-error: var(--fw-color-error);
+		$var-color-error-light: var(--fw-color-error-light);
+		$var-color-error-lighter: var(--fw-color-error-lighter);
+		$var-color-error-lightest: var(--fw-color-error-lightest);
+		$var-color-error-dark: var(--fw-color-error-dark);
+		$var-color-error-darker: var(--fw-color-error-darker);
+		$var-color-error-darkest: var(--fw-color-error-darkest);
+		$var-color-error-alpha-1: var(--fw-color-error-alpha-1);
+		$var-color-error-alpha-2: var(--fw-color-error-alpha-2);
+		$var-color-error-alpha-3: var(--fw-color-error-alpha-3);
+		$var-color-error-alpha-4: var(--fw-color-error-alpha-4);
+		$var-color-error-alpha-5: var(--fw-color-error-alpha-5);
+		$var-color-error-alpha-6: var(--fw-color-error-alpha-6);
+		$var-color-error-alpha-7: var(--fw-color-error-alpha-7);
+		$var-color-error-alpha-8: var(--fw-color-error-alpha-8);
+		$var-color-error-alpha-9: var(--fw-color-error-alpha-9);
+
+	$var-color-intensity-1: var(--fw-color-intensity-1);
+		$var-color-intensity-1-light: var(--fw-color-intensity-1-light);
+		$var-color-intensity-1-lighter: var(--fw-color-intensity-1-lighter);
+		$var-color-intensity-1-lightest: var(--fw-color-intensity-1-lightest);
+		$var-color-intensity-1-dark: var(--fw-color-intensity-1-dark);
+		$var-color-intensity-1-darker: var(--fw-color-intensity-1-darker);
+		$var-color-intensity-1-darkest: var(--fw-color-intensity-1-darkest);
+		$var-color-intensity-1-alpha-1: var(--fw-color-intensity-1-alpha-1);
+		$var-color-intensity-1-alpha-2: var(--fw-color-intensity-1-alpha-2);
+		$var-color-intensity-1-alpha-3: var(--fw-color-intensity-1-alpha-3);
+		$var-color-intensity-1-alpha-4: var(--fw-color-intensity-1-alpha-4);
+		$var-color-intensity-1-alpha-5: var(--fw-color-intensity-1-alpha-5);
+		$var-color-intensity-1-alpha-6: var(--fw-color-intensity-1-alpha-6);
+		$var-color-intensity-1-alpha-7: var(--fw-color-intensity-1-alpha-7);
+		$var-color-intensity-1-alpha-8: var(--fw-color-intensity-1-alpha-8);
+		$var-color-intensity-1-alpha-9: var(--fw-color-intensity-1-alpha-9);
+
+	$var-color-intensity-2: var(--fw-color-intensity-2);
+		$var-color-intensity-2-light: var(--fw-color-intensity-2-light);
+		$var-color-intensity-2-lighter: var(--fw-color-intensity-2-lighter);
+		$var-color-intensity-2-lightest: var(--fw-color-intensity-2-lightest);
+		$var-color-intensity-2-dark: var(--fw-color-intensity-2-dark);
+		$var-color-intensity-2-darker: var(--fw-color-intensity-2-darker);
+		$var-color-intensity-2-darkest: var(--fw-color-intensity-2-darkest);
+		$var-color-intensity-2-alpha-1: var(--fw-color-intensity-2-alpha-1);
+		$var-color-intensity-2-alpha-2: var(--fw-color-intensity-2-alpha-2);
+		$var-color-intensity-2-alpha-3: var(--fw-color-intensity-2-alpha-3);
+		$var-color-intensity-2-alpha-4: var(--fw-color-intensity-2-alpha-4);
+		$var-color-intensity-2-alpha-5: var(--fw-color-intensity-2-alpha-5);
+		$var-color-intensity-2-alpha-6: var(--fw-color-intensity-2-alpha-6);
+		$var-color-intensity-2-alpha-7: var(--fw-color-intensity-2-alpha-7);
+		$var-color-intensity-2-alpha-8: var(--fw-color-intensity-2-alpha-8);
+		$var-color-intensity-2-alpha-9: var(--fw-color-intensity-2-alpha-9);
+
+	$var-color-intensity-3: var(--fw-color-intensity-3);
+		$var-color-intensity-3-light: var(--fw-color-intensity-3-light);
+		$var-color-intensity-3-lighter: var(--fw-color-intensity-3-lighter);
+		$var-color-intensity-3-lightest: var(--fw-color-intensity-3-lightest);
+		$var-color-intensity-3-dark: var(--fw-color-intensity-3-dark);
+		$var-color-intensity-3-darker: var(--fw-color-intensity-3-darker);
+		$var-color-intensity-3-darkest: var(--fw-color-intensity-3-darkest);
+		$var-color-intensity-3-alpha-1: var(--fw-color-intensity-3-alpha-1);
+		$var-color-intensity-3-alpha-2: var(--fw-color-intensity-3-alpha-2);
+		$var-color-intensity-3-alpha-3: var(--fw-color-intensity-3-alpha-3);
+		$var-color-intensity-3-alpha-4: var(--fw-color-intensity-3-alpha-4);
+		$var-color-intensity-3-alpha-5: var(--fw-color-intensity-3-alpha-5);
+		$var-color-intensity-3-alpha-6: var(--fw-color-intensity-3-alpha-6);
+		$var-color-intensity-3-alpha-7: var(--fw-color-intensity-3-alpha-7);
+		$var-color-intensity-3-alpha-8: var(--fw-color-intensity-3-alpha-8);
+		$var-color-intensity-3-alpha-9: var(--fw-color-intensity-3-alpha-9);
+
+
+
+	$var-color-intensity-4: var(--fw-color-intensity-4);
+		$var-color-intensity-4-light: var(--fw-color-intensity-4-light);
+		$var-color-intensity-4-lighter: var(--fw-color-intensity-4-lighter);
+		$var-color-intensity-4-lightest: var(--fw-color-intensity-4-lightest);
+		$var-color-intensity-4-dark: var(--fw-color-intensity-4-dark);
+		$var-color-intensity-4-darker: var(--fw-color-intensity-4-darker);
+		$var-color-intensity-4-darkest: var(--fw-color-intensity-4-darkest);
+		$var-color-intensity-4-alpha-1: var(--fw-color-intensity-4-alpha-1);
+		$var-color-intensity-4-alpha-2: var(--fw-color-intensity-4-alpha-2);
+		$var-color-intensity-4-alpha-3: var(--fw-color-intensity-4-alpha-3);
+		$var-color-intensity-4-alpha-4: var(--fw-color-intensity-4-alpha-4);
+		$var-color-intensity-4-alpha-5: var(--fw-color-intensity-4-alpha-5);
+		$var-color-intensity-4-alpha-6: var(--fw-color-intensity-4-alpha-6);
+		$var-color-intensity-4-alpha-7: var(--fw-color-intensity-4-alpha-7);
+		$var-color-intensity-4-alpha-8: var(--fw-color-intensity-4-alpha-8);
+		$var-color-intensity-4-alpha-9: var(--fw-color-intensity-4-alpha-9);
+
+	
+
+	$var-color-intensity-5: var(--fw-color-intensity-5);
+		$var-color-intensity-5-light: var(--fw-color-intensity-5-light);
+		$var-color-intensity-5-lighter: var(--fw-color-intensity-5-lighter);
+		$var-color-intensity-5-lightest: var(--fw-color-intensity-5-lightest);
+		$var-color-intensity-5-dark: var(--fw-color-intensity-5-dark);
+		$var-color-intensity-5-darker: var(--fw-color-intensity-5-darker);
+		$var-color-intensity-5-darkest: var(--fw-color-intensity-5-darkest);
+		$var-color-intensity-5-alpha-1: var(--fw-color-intensity-5-alpha-1);
+		$var-color-intensity-5-alpha-2: var(--fw-color-intensity-5-alpha-2);
+		$var-color-intensity-5-alpha-3: var(--fw-color-intensity-5-alpha-3);
+		$var-color-intensity-5-alpha-4: var(--fw-color-intensity-5-alpha-4);
+		$var-color-intensity-5-alpha-5: var(--fw-color-intensity-5-alpha-5);
+		$var-color-intensity-5-alpha-6: var(--fw-color-intensity-5-alpha-6);
+		$var-color-intensity-5-alpha-7: var(--fw-color-intensity-5-alpha-7);
+		$var-color-intensity-5-alpha-8: var(--fw-color-intensity-5-alpha-8);
+		$var-color-intensity-5-alpha-9: var(--fw-color-intensity-5-alpha-9);
+
+
+
+	$var-gradient-start:  var(--fw-gradient-start);
+	$var-gradient-end:  var(--fw-gradient-end);
+
+	// FONT
+	$var-font-primary: var(--fw-font-primary);
+	$var-font-secondary: var(--fw-font-secondary);
+	$var-font-accent: var(--fw-font-accent);
+	$var-font-monospace: var(--fw-font-monospace);
+
+	// GLOBAL html + body coloring..
+	$var-theme-color: var(--fw-theme-color);
+	$var-theme-color-contrast: var(--fw-theme-color-contrast);
+	$var-theme-background: var(--fw-theme-background);
+	$var-theme-background-contrast: var(--fw-theme-background-contrast);
+
+	
+//////////////////////////////// THEME/BRANDING
+
+	$brand-color-base: #111111 !default;
+	$brand-color-base-alt: lighten($brand-color-base,5%) !default;
+	$brand-color-background: #ffffff !default;
+	$brand-color-background-alt: darken($brand-color-background,5%) !default;
+
+	$brand-color-primary: #007ece !default;
+		$brand-color-primary-light: mix($brand-color-primary,$brand-color-background,60%) !default;
+		$brand-color-primary-lighter: mix($brand-color-primary,$brand-color-background,30%) !default;
+		$brand-color-primary-lightest: mix($brand-color-primary,$brand-color-background,15%) !default;
+		$brand-color-primary-dark: mix($brand-color-primary,$brand-color-base,60%) !default;
+		$brand-color-primary-darker: mix($brand-color-primary,$brand-color-base,30%) !default;
+		$brand-color-primary-darkest: mix($brand-color-primary,$brand-color-base,15%) !default;
+
+	$brand-color-secondary: #ff009c !default;
+		$brand-color-secondary-light: mix($brand-color-secondary,$brand-color-background,60%) !default;
+		$brand-color-secondary-lighter: mix($brand-color-secondary,$brand-color-background,30%) !default;
+		$brand-color-secondary-lightest: mix($brand-color-secondary,$brand-color-background,15%) !default;
+		$brand-color-secondary-dark: mix($brand-color-secondary,$brand-color-base,60%) !default;
+		$brand-color-secondary-darker: mix($brand-color-secondary,$brand-color-base,30%) !default;
+		$brand-color-secondary-darkest: mix($brand-color-secondary,$brand-color-base,15%) !default;
+
+	$brand-color-accent: #7316ca!default;
+		$brand-color-accent-light: mix($brand-color-accent,$brand-color-background,60%) !default;
+		$brand-color-accent-lighter: mix($brand-color-accent,$brand-color-background,30%) !default;
+		$brand-color-accent-lightest: mix($brand-color-accent,$brand-color-background,15%) !default;
+		$brand-color-accent-dark: mix($brand-color-accent,$brand-color-base,60%) !default;
+		$brand-color-accent-darker: mix($brand-color-accent,$brand-color-base,30%) !default;
+		$brand-color-accent-darkest: mix($brand-color-accent,$brand-color-base,15%) !default;
+
+	$brand-color-neutral: #878787 !default;
+		$brand-color-neutral-light: mix($brand-color-neutral,$brand-color-background,60%) !default;
+		$brand-color-neutral-lighter: mix($brand-color-neutral,$brand-color-background,30%) !default;
+		$brand-color-neutral-lightest: mix($brand-color-neutral,$brand-color-background,15%) !default;
+		$brand-color-neutral-dark: mix($brand-color-neutral,$brand-color-base,60%) !default;
+		$brand-color-neutral-darker: mix($brand-color-neutral,$brand-color-base,30%) !default;
+		$brand-color-neutral-darkest: mix($brand-color-neutral,$brand-color-base,15%) !default;
+
+	$brand-color-success: #00b754 !default;
+		$brand-color-success-light: mix($brand-color-success,$brand-color-background,60%) !default;
+		$brand-color-success-lighter: mix($brand-color-success,$brand-color-background,30%) !default;
+		$brand-color-success-lightest: mix($brand-color-success,$brand-color-background,15%) !default;
+		$brand-color-success-dark: mix($brand-color-success,$brand-color-base,60%) !default;
+		$brand-color-success-darker: mix($brand-color-success,$brand-color-base,30%) !default;
+		$brand-color-success-darkest: mix($brand-color-success,$brand-color-base,15%) !default;
+
+	$brand-color-caution: #fd7f03 !default;
+		$brand-color-caution-light: mix($brand-color-caution,$brand-color-background,60%) !default;
+		$brand-color-caution-lighter: mix($brand-color-caution,$brand-color-background,30%) !default;
+		$brand-color-caution-lightest: mix($brand-color-caution,$brand-color-background,15%) !default;
+		$brand-color-caution-dark: mix($brand-color-caution,$brand-color-base,60%) !default;
+		$brand-color-caution-darker: mix($brand-color-caution,$brand-color-base,30%) !default;
+		$brand-color-caution-darkest: mix($brand-color-caution,$brand-color-base,15%) !default;
+
+	$brand-color-error: #fd0303 !default;
+		$brand-color-error-light: mix($brand-color-error,$brand-color-background,60%) !default;
+		$brand-color-error-lighter: mix($brand-color-error,$brand-color-background,30%) !default;
+		$brand-color-error-lightest: mix($brand-color-error,$brand-color-background,15%) !default;
+		$brand-color-error-dark: mix($brand-color-error,$brand-color-base,60%) !default;
+		$brand-color-error-darker: mix($brand-color-error,$brand-color-base,30%) !default;
+		$brand-color-error-darkest: mix($brand-color-error,$brand-color-base,15%) !default;
+
+	$brand-color-intensity-1: $brand-color-primary !default;
+	$brand-color-intensity-5: $brand-color-accent !default;
+
+		$brand-color-intensity-2: mix($brand-color-intensity-1,$brand-color-intensity-5,75%) !default;
+		$brand-color-intensity-3: mix($brand-color-intensity-1,$brand-color-intensity-5,50%) !default;
+		$brand-color-intensity-4: mix($brand-color-intensity-1,$brand-color-intensity-5,25%) !default;
+
+		$brand-color-intensity-1-light: mix($brand-color-intensity-1,$brand-color-background,60%) !default;
+		$brand-color-intensity-1-lighter: mix($brand-color-intensity-1,$brand-color-background,30%) !default;
+		$brand-color-intensity-1-lightest: mix($brand-color-intensity-1,$brand-color-background,15%) !default;
+		$brand-color-intensity-1-dark: mix($brand-color-intensity-1,$brand-color-base,60%) !default;
+		$brand-color-intensity-1-darker: mix($brand-color-intensity-1,$brand-color-base,30%) !default;
+		$brand-color-intensity-1-darkest: mix($brand-color-intensity-1,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-2-light: mix($brand-color-intensity-2,$brand-color-background,60%) !default;
+		$brand-color-intensity-2-lighter: mix($brand-color-intensity-2,$brand-color-background,30%) !default;
+		$brand-color-intensity-2-lightest: mix($brand-color-intensity-2,$brand-color-background,15%) !default;
+		$brand-color-intensity-2-dark: mix($brand-color-intensity-2,$brand-color-base,60%) !default;
+		$brand-color-intensity-2-darker: mix($brand-color-intensity-2,$brand-color-base,30%) !default;
+		$brand-color-intensity-2-darkest: mix($brand-color-intensity-2,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-3-light: mix($brand-color-intensity-3,$brand-color-background,60%) !default;
+		$brand-color-intensity-3-lighter: mix($brand-color-intensity-3,$brand-color-background,30%) !default;
+		$brand-color-intensity-3-lightest: mix($brand-color-intensity-3,$brand-color-background,15%) !default;
+		$brand-color-intensity-3-dark: mix($brand-color-intensity-3,$brand-color-base,60%) !default;
+		$brand-color-intensity-3-darker: mix($brand-color-intensity-3,$brand-color-base,30%) !default;
+		$brand-color-intensity-3-darkest: mix($brand-color-intensity-3,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-4-light: mix($brand-color-intensity-4,$brand-color-background,60%) !default;
+		$brand-color-intensity-4-lighter: mix($brand-color-intensity-4,$brand-color-background,30%) !default;
+		$brand-color-intensity-4-lightest: mix($brand-color-intensity-4,$brand-color-background,15%) !default;
+		$brand-color-intensity-4-dark: mix($brand-color-intensity-4,$brand-color-base,60%) !default;
+		$brand-color-intensity-4-darker: mix($brand-color-intensity-4,$brand-color-base,30%) !default;
+		$brand-color-intensity-4-darkest: mix($brand-color-intensity-4,$brand-color-base,15%) !default;
+
+		$brand-color-intensity-5-light: mix($brand-color-intensity-5,$brand-color-background,60%) !default;
+		$brand-color-intensity-5-lighter: mix($brand-color-intensity-5,$brand-color-background,30%) !default;
+		$brand-color-intensity-5-lightest: mix($brand-color-intensity-5,$brand-color-background,15%) !default;
+		$brand-color-intensity-5-dark: mix($brand-color-intensity-5,$brand-color-base,60%) !default;
+		$brand-color-intensity-5-darker: mix($brand-color-intensity-5,$brand-color-base,30%) !default;
+		$brand-color-intensity-5-darkest: mix($brand-color-intensity-5,$brand-color-base,15%) !default;
+
+	// FONT
+		$brand-font-primary: "Roboto",Helvetica,Arial,sans-serif !default;
+		$brand-font-secondary: "Georgia",Times,serif !default;
+		$brand-font-accent: $brand-font-secondary !default;
+		$brand-font-monospace: "Courier New", Courier, monospace !default;
+
+		//////////////////////////////// BRAND VAR RELATED.. VARS
+			$brand-gradient-start: $var-color-primary !default;
+			$brand-gradient-end: $var-color-secondary !default;
+			
+			$brand-theme-color: $var-color-base !default;
+			$brand-theme-color-inverse: $var-color-background !default; //.dark mode version of boi
+		
+			$brand-theme-color-contrast: $var-color-base-alt !default;
+				$brand-theme-color-contrast-inverse: $var-color-background-alt !default; //.dark mode version of boi
+		
+			$brand-theme-background: $var-color-background !default;
+				$brand-theme-background-inverse: $var-color-base-alt !default; //.dark mode version of boi
+		
+			$brand-theme-background-contrast: $var-color-background-alt !default;
+				$brand-theme-background-contrast-inverse: $var-color-base !default; //.dark mode version of boi
+
+
+//////////////////////////////// DEBUG FRONT END
+	// $debug: true !default;
+
+
+//////////////////////////////// BREAKPOINTS
+
+		$br-xs-max: 767px !default;
+		$br-sm-max: 1199px !default;
+		$br-md-max: 1599px !default;
+		$br-lg-max: 1799px !default;
+
+		//extra breakpoints
+			$br-xxs-max: 400px !default;
+		//when to separate mobile like styles
+			$mobile-br-max: 'sm' !default;
+
+
+//////////////////////////////// GLOBAL UNITS
+
+		$gutter-base: 20px !default;
+			$gutter-large: 30px !default;
+			$gutter-small: 10px !default;
+			$gutter-micro: 5px !default;
+
+	// Border radius globals
+		$border-radius-base: 10px !default;
+			$border-radius-small: $border-radius-base * .5 !default;
+			$border-radius-large: $border-radius-base * 2 !default;
+	
+
+	// ANIMATION glbals
+		$transition-duration-base: .25s !default;
+			$transition-duration-short: .125s !default;
+			$transition-duration-long: .5s !default;
+		$transition-timing: ease-in-out !default;
+
+	//BOX SHADOW globals
+		$box-shadow-base: 0px 3px 10px -6px!default;
+			$box-shadow-mild: 0px 2px 20px -5px!default;
+			$box-shadow-spicy: 0px 5px 20px -10px!default;
+
+			
+//////////////////////////////// CONTENT
+
+	// SCAFFOLD typography
+		$body-font-family: $var-font-primary !default;
+		$body-font-weight: 400 !default;
+			$body-font-weight-bold: 700 !default;
+		$body-font-size: 16px !default;
+			$body-font-size-small: $body-font-size * .75 !default;
+			$body-font-size-large: $body-font-size * 1.5 !default;
+		$body-line-height: $body-font-size * 1.5 !default;
+		$body-text-gutter-y: 20px  !default;
+
+
+		$body-line-height-compact-factor: .875 !default;
+		$body-line-height-expanded-factor: 1.5 !default;
+
+
+//////////////////////////////// BUILD
+
+		$body-heading-gutter-top: 1.5em !default;
+		$body-heading-gutter-bottom: $body-text-gutter-y * .5 !default;
+		$body-heading-line-height: calc(1em + 10px) !default;
+		$body-heading-font-weight: $body-font-weight-bold !default;
+		$body-heading-font-style: inherit !default;
+		$body-heading-text-transform: none !default;
+		$body-heading-font-family: $var-font-secondary !default;
+		$body-heading-color: $brand-theme-color-contrast !default;
+			$body-heading-color-inverse: $brand-theme-color-contrast-inverse !default;
+
+		$body-size-h1: $body-font-size * 2 !default;
+		$body-size-h2: $body-font-size * 1.75 !default;
+		$body-size-h3: $body-font-size * 1.5 !default;
+		$body-size-h4: $body-font-size * 1.25 !default;
+		$body-size-h5: $body-font-size !default;
+		$body-size-h6: $body-font-size * .875 !default;
+
+		$body-anchor-color: $var-color-primary !default;
+		$body-anchor-color-hover: $var-color-secondary !default;
+		$body-anchor-text-decoration: none !default;
+		$body-anchor-text-decoration-hover: underline !default;
+
+		$body-list-bullet-size: 6px !default;
+		$body-list-bullet-color: $var-color-primary !default;
+		$body-list-bullet-border-radius:50% !default;
+		$body-list-offset: 25px !default;
+		$body-list-offset-inline: 1em !default;
+		$body-list-gutter-y: $body-text-gutter-y * .5 !default;
+
+		$body-blockquote-font-size: inherit !default;
+		$body-blockquote-font-weight: 300 !default;
+		$body-blockquote-line-height: inherit !default;
+		$body-blockquote-text-transform: none !default;
+		$body-blockquote-font-style: normal !default;
+		$body-blockquote-color: $var-color-neutral !default;
+		$body-blockquote-gutter-x: $gutter-small !default;
+		$body-blockquote-border-width: 4px !default;
+		$body-blockquote-border-color: $var-theme-background-contrast !default;
+		$body-blockquote-margin-y: $body-text-gutter-y !default;
+		$body-blockquote-padding-y: $body-text-gutter-y * .5 !default;
+
+		$body-cite-font-size: $body-font-size !default;
+		$body-cite-font-weight: 300 !default;
+		$body-cite-font-style: italic !default;
+		$body-cite-gutter-y: $gutter-small !default;
+
+		$body-mono-color: inherit!default;
+		$body-mono-background: $var-color-base-alpha-2!default;
+			$body-pre-padding: $gutter-micro!default;
+
+		$body-scrollbar-background: $var-color-primary !default;
+		$body-scrollbar-color: $var-color-background !default;
+
+		$global-disabled-opacity: .5 !default;
+
+		$body-ellipsis-multiple-factor: 2 !default;
+
+	//hr
+		$hr-color: $var-color-neutral !default;
+		$hr-height: 1px !default;
+		$hr-gutter-y: $body-text-gutter-y !default;
+			
+
+	// SVG
+		$svg-gradient-color-start: $var-gradient-start !default;
+		$svg-gradient-color-end: $var-gradient-end !default;
+
+
+	// TABLE @TODO table high contrast helper class
+		$table-cell-height: 40px !default;
+			$table-cell-height-large: 75px !default;
+			$table-cell-height-small: 25px !default;
+		$table-cell-border-color: $var-theme-background-contrast !default;
+			$table-cell-border-color-inverse: $table-cell-border-color !default;
+		$table-cell-border-width: 1px !default;
+		$table-cell-gutter: $gutter-micro !default;
+
+		$table-heading-font-size: 14px !default;
+		$table-heading-height: 45px !default;
+		$table-heading-font-weight: $body-font-weight-bold !default;
+		$table-heading-font-style: normal !default;
+		$table-heading-color: $var-theme-color-contrast !default;
+			$table-heading-color-inverse: $table-heading-color !default;
+		$table-heading-text-transform: uppercase !default;
+		$table-heading-background: $var-theme-background !default;
+			$table-heading-background-inverse: $table-heading-background !default;
+		$table-label-width: 12px !default;
+		$table-label-offset: 2px !default;
+		$table-label-border-radius: 2px !default;
+
+		$table-row-background: $var-theme-background !default;
+		$table-row-background-inverse: $table-row-background !default;
+
+		$table-row-primary-background: $var-color-primary-lightest !default;
+			$table-row-primary-background-inverse: $var-color-primary-darkest !default;
+
+		$table-row-secondary-background: $var-color-secondary-lightest !default;
+			$table-row-secondary-background-inverse: $var-color-secondary-darkest !default;
+
+		$table-row-accent-background: $var-color-accent-lightest !default;
+			$table-row-accent-background-inverse: $var-color-accent-darkest !default;
+
+		$table-row-neutral-background: $var-color-neutral-lightest !default;
+			$table-row-neutral-background-inverse: $var-color-neutral-darkest !default;
+
+		$table-row-success-background: $var-color-success-lightest !default;
+			$table-row-success-background-inverse: $var-color-success-darkest !default;
+
+		$table-row-caution-background: $var-color-caution-lightest !default;
+			$table-row-caution-background-inverse: $var-color-caution-darkest !default;
+
+		$table-row-error-background: $var-color-error-lightest !default;
+			$table-row-error-background-inverse: $var-color-error-darkest !default;
+
+		$table-row-intensity-1-background: $var-color-intensity-1-lightest !default;
+			$table-row-intensity-1-background-inverse: $var-color-intensity-1-darkest !default;
+
+		$table-row-intensity-2-background: $var-color-intensity-2-lightest !default;
+			$table-row-intensity-2-background-inverse: $var-color-intensity-2-darkest !default;
+
+		$table-row-intensity-3-background: $var-color-intensity-3-lightest !default;
+			$table-row-intensity-3-background-inverse: $var-color-intensity-3-darkest !default;
+
+		$table-row-intensity-4-background: $var-color-intensity-4-lightest !default;
+			$table-row-intensity-4-background-inverse: $var-color-intensity-4-darkest !default;
+
+		$table-row-intensity-5-background: $var-color-intensity-5-lightest !default;
+			$table-row-intensity-5-background-inverse: $var-color-intensity-5-darkest !default;
+
+
+		
+
+		$table-cell-primary-background: $var-color-primary-alpha-1 !default;
+			$table-cell-primary-background-inverse: $table-cell-primary-background !default;
+
+		$table-cell-secondary-background: $var-color-secondary-alpha-1 !default;
+			$table-cell-secondary-background-inverse: $table-cell-secondary-background !default;
+
+		$table-cell-accent-background: $var-color-accent-alpha-1 !default;
+			$table-cell-accent-background-inverse: $table-cell-accent-background !default;
+
+		$table-cell-neutral-background: $var-color-neutral-alpha-1 !default;
+			$table-cell-neutral-background-inverse: $table-cell-neutral-background !default;
+
+		$table-cell-success-background: $var-color-success-alpha-1 !default;
+			$table-cell-success-background-inverse: $table-cell-success-background !default;
+
+		$table-cell-caution-background: $var-color-caution-alpha-1 !default;
+			$table-cell-caution-background-inverse: $table-cell-caution-background !default;
+
+		$table-cell-error-background: $var-color-error-alpha-1 !default;
+			$table-cell-error-background-inverse: $table-cell-error-background !default;
+
+		$table-cell-intensity-1-background: $var-color-intensity-1-alpha-1 !default;
+			$table-cell-intensity-1-background-inverse: $table-cell-intensity-1-background !default;
+
+		$table-cell-intensity-2-background: $var-color-intensity-2-alpha-1 !default;
+			$table-cell-intensity-2-background-inverse: $table-cell-intensity-2-background !default;
+
+		$table-cell-intensity-3-background: $var-color-intensity-3-alpha-1 !default;
+			$table-cell-intensity-3-background-inverse: $table-cell-intensity-3-background !default;
+
+		$table-cell-intensity-4-background: $var-color-intensity-4-alpha-1 !default;
+			$table-cell-intensity-4-background-inverse: $table-cell-intensity-4-background !default;
+
+		$table-cell-intensity-5-background: $var-color-intensity-5-alpha-1 !default;
+			$table-cell-intensity-5-background-inverse: $table-cell-intensity-5-background !default;
+
+
+// LAYOUT
+
+	// CONTAINERS
+		$container-gutter: $gutter-base !default;
+			$container-gutter-wide: $gutter-small !default;
+			$container-gutter-slim: $gutter-large !default;
+			$container-gutter-mobile: $gutter-micro !default;
+		$container-max-width: 1200px !default;
+			$container-max-width-mobile: 750px !default;
+
+	//GRIDING AND SHIT
+		$grid-units: 12 !default;
+		$grid-gap: $gutter-base !default;
+			$grid-gap-compact: $gutter-small !default;
+			$grid-gap-expanded: $gutter-large !default;
+	
+	// speshal bois
+		$special-primary-font-size: 56px !default;
+			$special-primary-font-size-mobile: 48px !default;
+		$special-primary-font-weight: 300 !default;
+		$special-primary-line-height: 1 !default;
+		$special-primary-font-style: normal !default;
+		$special-primary-color: inherit !default;
+		$special-primary-text-transform: none !default;
+		$special-primary-gutter-y: $gutter-small !default;
+
+		$special-secondary-font-size: 40px !default;
+			$special-secondary-font-size-mobile: 32px !default;
+		$special-secondary-font-weight: 300 !default;
+		$special-secondary-line-height: 1.25 !default;
+		$special-secondary-font-style: normal !default;
+		$special-secondary-color: inherit !default;
+		$special-secondary-text-transform: none !default;
+		$special-secondary-gutter-y: .75em !default;
+
+		$lead-font-size: 25px !default;
+			$lead-font-size-mobile: 20px !default;
+		$lead-font-weight: 300 !default;
+		$lead-line-height: 1.25 !default;
+		$lead-font-style: normal !default;
+		$lead-color: inherit !default;
+		$lead-text-transform: none !default;
+		$lead-gutter-y: $gutter-base !default;
+
+// UI ELEMENTS
+
+	// ICONS
+		$icon-size: 25px !default;
+
+	// legend
+		$legend-width: 30px !default;
+		$legend-height: 8px !default;
+		$legend-border-radius: 0 !default;
+
+	//symbol 
+		$symbol-caret-width: 8px !default;
+		$symbol-caret-height: 6px !default;
+
+	// NAV
+		$nav-height: 60px !default;
+		$nav-padding-x: $gutter-small !default;
+		$nav-drop-shadow: $box-shadow-spicy $var-theme-background-contrast !default;
+			$nav-drop-shadow-inverse: $nav-drop-shadow !default;
+		$nav-background: $var-theme-background !default;
+			$nav-dropdown-background: $nav-background !default;
+			$nav-background-inverse: $nav-dropdown-background !default;
+		$nav-icon-width: $icon-size !default;
+		$nav-icon-height: $icon-size !default;
+		$nav-current-size: 5px !default;
+			$nav-item-height: 35px !default;
+		$nav-current-gradient-start: $var-gradient-start !default;
+		$nav-current-gradient-end: $var-gradient-end !default;
+		$nav-font-size: $body-font-size !default;
+		$nav-line-height: $body-line-height !default;
+		$nav-color: $var-theme-color !default;
+			$nav-color-inverse: $nav-color !default;
+			$nav-color-hover: $var-color-primary !default;
+		$nav-font-weight: 400 !default;
+		$nav-font-style: normal !default;
+		$nav-text-transform: none !default;
+		
+
+		$nav-top-font-size: $nav-font-size !default;
+		$nav-top-font-style: normal !default;
+		$nav-top-font-weight: 700 !default;
+		$nav-top-font-color: inherit !default;
+		$nav-top-text-transform: none !default;
+
+	
+
+	//tab
+		$tabs-font-size: $nav-top-font-size !default;
+			$tabs-font-size-mobile: $tabs-font-size !default;
+		$tabs-font-weight: $nav-top-font-weight !default;
+		$tabs-font-style: normal !default;
+		$tabs-text-transform: none !default;
+		$tabs-transition-duration: $transition-duration-base !default;
+		
+		$tabs-color: $var-color-neutral !default;
+			$tabs-color-inverse: $tabs-color !default;
+
+		$tabs-border-width: 1px !default;
+
+		$tabs-border-color: currentColor !default;
+			$tabs-border-color-inverse: $tabs-border-color !default;
+
+		$tabs-item-height: 45px !default;
+		$tabs-item-gutter-x: 0 !default;
+		$tabs-item-margin-x: 45px !default;
+
+		$tab-item-border-radius: $border-radius-small !default;
+
+		$tabs-item-background: transparent !default;
+			$tabs-item-background-inverse: $tabs-item-background !default;
+			$tabs-item-background-active: $tabs-item-background !default;
+				$tabs-item-background-active-inverse: $tabs-item-background-active !default;
+
+		$tabs-item-border-width: 1px !default;
+		$tabs-item-border-color: transparent !default;
+			$tabs-item-border-color-inverse: $tabs-item-border-color !default;
+			$tabs-item-border-color-active: $tabs-item-border-color !default;
+				$tabs-item-border-color-active-inverse: $tabs-item-border-color-active !default;
+
+		$tabs-item-color-active: $var-theme-color !default;
+			$tabs-item-color-active-inverse: $tabs-item-color-active !default;
+		
+		$tabs-item-box-shadow: none !default;
+
+		$tabs-current-height: 5px !default;
+		$tabs-current-color: $var-color-primary !default;
+			$tabs-current-color-inverse: $var-color-primary !default;
+
+	//pagination
+		$pagination-font-size: 65px !default;
+		$pagination-font-weight: 300 !default;
+		$pagination-line-height: 1.25 !default;
+		$pagination-font-style: normal !default;
+		$pagination-color: inherit !default;
+		$pagination-text-transform: none !default;
+		$pagination-gutter-y: 0 !default;
+
+	//zone
+
+		$zone-font-size: $body-font-size !default;
+		$zone-font-weight: $body-font-weight-bold !default;
+		$zone-font-style: normal !default;
+		$zone-text-transform: none !default;
+
+		$zone-border-width: 1px !default;
+		
+		$zone-gutter-x: $gutter-base !default;
+		$zone-gutter-y: $gutter-base !default;
+		$zone-margin-y: $gutter-base !default;
+
+			$zone-gutter-x-small: $gutter-small !default;
+			$zone-gutter-y-small: $gutter-small !default;
+			
+			$zone-gutter-x-large: $gutter-large !default;
+			$zone-gutter-y-large: $gutter-large !default;
+
+		$zone-border-radius: 0 !default;
+
+			//schemes
+			$zone-border-default: currentColor !default;
+			$zone-background-default: $var-color-neutral-alpha-3 !default;
+			$zone-color-default: inherit !default;
+
+				$zone-border-default-hover: $var-color-neutral-dark !default;
+				$zone-background-default-hover: $var-color-neutral-alpha-2 !default;
+				$zone-color-default-hover: $var-color-neutral-dark !default;
+
+
+			$zone-border-primary: $var-color-primary !default;
+			$zone-background-primary: $var-color-primary-alpha-1 !default;
+			$zone-color-primary: $var-color-primary !default;
+
+				$zone-border-primary-hover: $var-color-primary-dark !default;
+				$zone-background-primary-hover: $var-color-primary-alpha-2 !default;
+				$zone-color-primary-hover: $var-color-primary-dark !default;
+
+
+			$zone-border-secondary: $var-color-secondary !default;
+			$zone-background-secondary: $var-color-secondary-alpha-1 !default;
+			$zone-color-secondary: $var-color-secondary !default;
+
+				$zone-border-secondary-hover: $var-color-secondary-dark !default;
+				$zone-background-secondary-hover: $var-color-secondary-alpha-2 !default;
+				$zone-color-secondary-hover: $var-color-secondary-dark !default;
+
+
+			$zone-border-accent: $var-color-accent !default;
+			$zone-background-accent: $var-color-accent-alpha-1 !default;
+			$zone-color-accent: $var-color-accent !default;
+
+				$zone-border-accent-hover: $var-color-accent-dark !default;
+				$zone-background-accent-hover: $var-color-accent-alpha-2 !default;
+				$zone-color-accent-hover: $var-color-primary-dark !default;
+				
+
+			$zone-border-neutral: $var-color-neutral !default;
+			$zone-background-neutral: $var-color-neutral-alpha-1 !default;
+			$zone-color-neutral: $var-color-neutral !default;
+
+				$zone-border-neutral-hover: $var-color-neutral-dark !default;
+				$zone-background-neutral-hover: $var-color-neutral-alpha-2 !default;
+				$zone-color-neutral-hover: $var-color-neutral-dark !default;
+				
+
+			$zone-border-success: $var-color-success !default;
+			$zone-background-success: $var-color-success-alpha-1 !default;
+			$zone-color-success: $var-color-success !default;
+
+				$zone-border-success-hover: $var-color-success-dark !default;
+				$zone-background-success-hover: $var-color-success-alpha-2 !default;
+				$zone-color-success-hover: $var-color-success-dark !default;
+				
+
+			$zone-border-caution: $var-color-caution !default;
+			$zone-background-caution: $var-color-caution-alpha-1 !default;
+			$zone-color-caution: $var-color-caution !default;
+
+				$zone-border-caution-hover: $var-color-caution-dark !default;
+				$zone-background-caution-hover: $var-color-caution-alpha-2 !default;
+				$zone-color-caution-hover: $var-color-caution-dark !default;
+				
+
+			$zone-border-error: $var-color-error !default;
+			$zone-background-error: $var-color-error-alpha-1 !default;
+			$zone-color-error: $var-color-error !default;
+
+				$zone-border-error-hover: $var-color-error-dark !default;
+				$zone-background-error-hover: $var-color-error-alpha-2 !default;
+				$zone-color-error-hover: $var-color-error-dark !default;
+				
+
+	//alert
+		$alert-border-width: 1px !default;
+
+		$alert-gutter-x: $gutter-small !default;
+		$alert-gutter-y: $gutter-small !default;
+		$alert-gutter-y-ends: $alert-gutter-y * .5 !default;
+
+			$alert-gutter-x-small: $gutter-micro !default;
+			$alert-gutter-y-small: $gutter-micro !default;
+			$alert-gutter-y-ends-small: $alert-gutter-y-small * .5 !default;
+
+			$alert-gutter-x-large: $gutter-base !default;
+			$alert-gutter-y-large: $gutter-base !default;
+			$alert-gutter-y-ends-large: $alert-gutter-y-large * .5 !default;
+
+		$alert-box-shadow: none !default; //$box-shadow-base $var-color-base
+		$alert-border-radius: 0 !default;
+
+			$alert-title-font-weight: $body-font-weight-bold !default;
+			$alert-title-font-style: normal !default;
+			$alert-title-color: inherit !default;
+			$alert-title-text-transform: uppercase !default;
+
+			//schemes
+			$alert-border-default: $var-color-neutral !default;
+			$alert-background-default: transparent !default;
+			$alert-color-default: inherit !default;
+
+			$alert-border-primary: $var-color-base-alpha-2 !default;
+			$alert-background-primary: $var-color-primary !default;
+			$alert-color-primary: $var-color-background !default;
+
+			$alert-border-secondary: $var-color-base-alpha-2 !default;
+			$alert-background-secondary: $var-color-secondary !default;
+			$alert-color-secondary: $var-color-background !default;
+
+			$alert-border-accent: $var-color-base-alpha-2 !default;
+			$alert-background-accent: $var-color-accent !default;
+			$alert-color-accent: $var-color-background !default;
+
+			$alert-border-neutral: $var-color-base-alpha-2 !default;
+			$alert-background-neutral: $var-color-neutral !default;
+			$alert-color-neutral: $var-color-background !default;
+
+			$alert-border-success: $var-color-base-alpha-2 !default;
+			$alert-background-success: $var-color-success !default;
+			$alert-color-success: $var-color-background !default;
+
+			$alert-border-caution: $var-color-base-alpha-2 !default;
+			$alert-background-caution: $var-color-caution !default;
+			$alert-color-caution: $var-color-background !default;
+
+			$alert-border-error: $var-color-base-alpha-2 !default;
+			$alert-background-error: $var-color-error !default;
+			$alert-color-error: $var-color-background !default;
+
+	
+	
+			
+	// MODULE @TODO build padding classes for large and small @TODO add module-hhigh-contrast helper ie activity and notes
+		$module-background-color: $var-theme-background !default;
+			$module-background-color-inverse: $module-background-color !default;
+		$module-border-color: $var-color-neutral-alpha-2 !default;
+			$module-border-color-inverse: $module-border-color !default;
+		$module-border-width: 1px !default;
+		$module-box-shadow: $box-shadow-base $var-color-base-alpha-1 !default;
+		$module-box-shadow-hover: $box-shadow-spicy $var-color-primary !default; 
+		
+		$module-gutter-x: $gutter-base !default;
+			$module-gutter-x-mobile: $gutter-small !default;
+		$module-gutter-y: $gutter-small !default;
+			$module-gutter-y-mobile: $gutter-micro !default;
+
+			$module-large-gutter-x: $gutter-large !default;
+				$module-large-gutter-x-mobile: $module-gutter-x-mobile !default;
+			$module-large-gutter-y: $gutter-base !default;
+				$module-large-gutter-y-mobile: $module-gutter-y-mobile !default;
+
+			$module-small-gutter-x: $gutter-small !default;
+				$module-small-gutter-x-mobile: $module-gutter-x-mobile !default;
+			$module-small-gutter-y: $gutter-micro !default;
+				$module-small-gutter-y-mobile: $module-gutter-y-mobile !default;
+
+		
+		$module-gutter-between: $gutter-small !default;
+
+		$module-gutter-grid-gap: $gutter-base !default;
+		$module-grid-gutter: $gutter-base !default;
+		
+		$module-border-radius: $border-radius-small !default;
+
+		$module-title-font-size: $body-font-size !default;
+		$module-title-font-weight: $body-font-weight-bold !default;
+		$module-title-font-style: normal !default;
+		$module-title-color: $var-color-primary !default;
+		$module-title-text-transform: none !default;
+
+		$module-grid-title-font-size: 19px !default;
+		$module-grid-title-font-weight: $body-font-weight-bold !default;
+		$module-grid-title-font-style: normal !default;
+		$module-grid-title-color: $var-color-primary !default;
+		$module-grid-title-text-transform: none !default;
+		$module-grid-title-rule-height: 1px !default;
+		$module-grid-title-rule-color: $var-color-neutral !default;
+			$module-grid-title-rule-inverse: $var-color-neutral !default;
+
+		$module-grid-title-margin-bottom:1em !default;
+		$module-grid-title-margin-top:100px !default;
+	
+	// modal
+		$modal-padding-x: $gutter-base !default;
+		$modal-padding-y: $gutter-base !default;
+			$modal-padding-x-mobile: $gutter-small !default;
+			$modal-padding-y-mobile: $gutter-small !default;
+		$modal-background: $var-theme-background !default;
+			$modal-background-inverse: $modal-background !default;
+		$modal-close-offset: $gutter-small !default;
+			$modal-close-offset-mobile: $modal-close-offset !default;
+		$modal-border-radius: $border-radius-small !default;
+		$modal-box-shadow: $box-shadow-spicy $var-color-base !default !default;
+		$modal-overlay-bg: $var-color-base-alpha-5 !default;
+		$modal-close-button-font-size: 1rem !default;
+		$modal-gutter: $gutter-base !default;
+			$modal-gutter-mobile: $gutter-small !default;
+
+		//modal board
+			$modal-board-padding-spacer: $gutter-base !default;
+				$modal-board-padding-spacer-mobile: $gutter-small !default;
+			$modal-board-padding-x: $gutter-base !default;
+			$modal-board-padding-y: $gutter-base !default;
+				$modal-board-padding-x-mobile: $gutter-small !default;
+				$modal-board-padding-y-mobile: $gutter-small !default;
+			$modal-board-close-button-font-size: 1rem !default;
+			$modal-board-close-offset-x: $modal-board-padding-x !default;
+			$modal-board-close-offset-y: $modal-board-padding-y !default;
+				$modal-board-close-offset-x-mobile: $modal-board-padding-x-mobile !default;
+				$modal-board-close-offset-y-mobile: $modal-board-padding-y-mobile !default;
+			$modal-board-resize-width: 20px !default; //not yet
+			$modal-board-resize-height: 55px !default; //not yet
+			$modal-board-close-size: 38px !default;
+			$modal-board-close-box-shadow: $box-shadow-base $var-color-base !default;
+
+	// DROPDOWN
+		$dropdown-gutter-x: $gutter-small !default;
+		$dropdown-gutter-y: $gutter-small !default;
+			$dropdown-small-gutter-x: $gutter-micro !default;
+			$dropdown-small-gutter-y: $gutter-micro !default;
+			$dropdown-large-gutter-x: $gutter-base !default;
+			$dropdown-large-gutter-y: $gutter-base !default;
+		$dropdown-border-radius: $border-radius-base !default;
+		$dropdown-box-shadow: $box-shadow-base $var-color-base !default;
+		$dropdown-background: $var-theme-background !default;
+			$dropdown-background-inverse: $dropdown-background !default;
+		$dropdown-color: $var-theme-color !default;
+			$dropdown-color-inverse: $dropdown-color !default;
+		$dropdown-width: 300px !default;
+		$dropdown-active-color: $var-color-primary !default;
+
+	//TOOLTIP
+		$tooltip-gutter-x: $dropdown-gutter-x !default;
+		$tooltip-gutter-y: $dropdown-gutter-y !default;
+			$tooltip-small-gutter-x: $dropdown-small-gutter-x !default;
+			$tooltip-small-gutter-y: $dropdown-small-gutter-y !default;
+			$tooltip-large-gutter-x: $dropdown-large-gutter-x !default;
+			$tooltip-large-gutter-y: $dropdown-large-gutter-y !default;
+		$tooltip-border-radius: $dropdown-border-radius !default;
+		$tooltip-box-shadow: $dropdown-box-shadow !default;
+		$tooltip-background: $dropdown-background !default;
+			$tooltip-background-inverse: $dropdown-background-inverse !default;
+		$tooltip-color: $dropdown-color !default;
+			$tooltip-color-inverse: $dropdown-color-inverse !default;
+		$tooltip-max-width: 300px !default;
+		$tooltip-arrow-box-shadow: $box-shadow-mild $var-color-base !default;
+
+	// progress
+		$progress-height: 20px !default;
+			$progress-height-large: 30px !default;
+			$progress-height-small: 10px !default;
+
+		$progress-background-color: $var-theme-background-contrast !default;
+			$progress-background-color-inverse: $progress-background-color !default;
+		$progress-background-stripe-color: $var-color-neutral-alpha-2 !default;
+			$progress-background-stripe-color-inverse: $progress-background-stripe-color !default;
+
+		$progress-background-stripe-width: 1px !default;
+		$progress-background-stripe-gap: 5px !default;
+
+		$progress-border-radius: 20px !default;
+		$progress-transition-duration: $transition-duration-long * 4 !default;
+
+
+		$progress-bar-background-color: $var-color-neutral-alpha-7 !default;
+
+
+		$progress-title-font-size: 14px !default;
+		$progress-title-font-weight: $body-font-weight-bold !default;
+		$progress-title-line-height: 20px !default;
+		$progress-title-font-style: normal !default;
+		$progress-title-color: $var-color-base-alt !default;
+			$progress-title-color-inverse: $var-color-background-alt !default;
+		$progress-title-text-transform: uppercase !default;
+		$progress-title-margin-bottom: 10px !default;
+		$progress-title-margin-top: $gutter-base !default;
+
+	
+	// WELL
+		$well-spread: 7px !default;
+			$well-spread-expanded: 14px !default;
+			$well-spread-compact: 3px !default;
+
+		$well-color: $var-color-base-alpha-2 !default;
+			$well-color-inverse: $var-color-base-alpha-2 !default;
+	
+
+	// THUMBNAIL
+		$thumbnail-font-size: 65px !default;
+			$thumbnail-small-font-size: 32px !default;
+			$thumbnail-micro-font-size: 12px !default;
+		$thumbnail-text-transform: uppercase !default;
+
+		$thumbnail-size: 140px !default;
+			$thumbnail-small-size: 70px !default;
+			$thumbnail-micro-size: 30px !default;
+
+		$thumbnail-fallback-background: $var-color-neutral !default;
+		$thumbnail-border-radius: 50% !default;
+		$thumbnail-line-height: 1.25 !default;
+		$thumbnail-color: $var-color-background !default;
+		$thumbnail-font-weight: $body-font-weight-bold !default;
+		$thumbnail-font-style: normal !default;
+
+		$thumbnail-addon-offset-x: 15% !default;
+		$thumbnail-addon-offset-y: 15% !default;
+		
+	//list groups
+		$list-group-border-color: $var-theme-background-contrast !default;
+			$list-group-border-color-inverse: $list-group-border-color !default;
+		$list-group-border-width: 1px !default;
+		$list-group-height: 40px !default;
+			$list-group-height-compact: 20px !default;
+			$list-group-height-expanded: 60px !default;
+		$list-group-gutter-x: $gutter-small !default;
+		$list-group-interactive-background-hover: $var-color-primary-alpha-1;
+		$list-group-interactive-background-active: $var-color-primary-alpha-2;
+		
+	// badge
+		$badge-size: 25px !default;
+		$badge-size-large: 30px !default;
+		$badge-size-small: 18px !default;
+		$badge-border-color: $var-theme-background !default;
+			$badge-border-color-inverse: $badge-border-color !default;
+		$badge-border-width: 4px !default;
+		$badge-box-shadow: 0px 3px 10px -5px $var-color-base !default;
+
+	// legend
+		$badge-size: 25px !default;
+		$badge-size-large: 30px !default;
+		$badge-size-small: 20px !default;
+		$badge-border-color: $var-color-background !default;
+		$badge-border-width: 7px !default;
+		$badge-box-shadow: $box-shadow-mild $var-color-base !default;
+
+	// highlight
+
+		$highlight-height: $body-font-size * 1.75 !default;
+		$highlight-padding-x: 5px !default;
+		$highlight-margin-x: 0 !default;
+		$highlight-font-size: 13px !default;
+		$highlight-font-weight: inherit !default;
+		$highlight-font-style: normal !default;
+		$highlight-color: $var-color-background !default;
+		$highlight-text-transform: none !default;
+		$highlight-gutter-x: 20px !default;
+		$highlight-border-radius: $border-radius-base !default;
+
+
+		$highlight-default-color: inherit !default;
+		$highlight-default-background: $var-color-base-alpha-2 !default;
+
+
+			$highlight-primary-color: $var-color-primary !default;
+			$highlight-primary-background: $var-color-primary-lightest !default;
+
+			$highlight-secondary-color: $var-color-secondary !default;
+			$highlight-secondary-background: $var-color-secondary-lightest !default;
+
+			$highlight-accent-color: $var-color-accent !default;
+			$highlight-accent-background: $var-color-accent-lightest !default;
+
+			$highlight-neutral-color: $var-color-neutral !default;
+			$highlight-neutral-background: $var-color-neutral-lightest !default;
+
+			$highlight-success-color: $var-color-success !default;
+			$highlight-success-background: $var-color-success-lightest !default;
+
+			$highlight-caution-color: $var-color-caution !default;
+			$highlight-caution-background: $var-color-caution-lightest !default;
+
+			$highlight-error-color: $var-color-error !default;
+			$highlight-error-background: $var-color-error-lightest !default;
+
+
+	
+	// tag
+		$tag-height: 28px !default;
+			$tag-height-large: 35px !default;
+			$tag-height-small: 21px !default;
+		$tag-gutter-x: 6px !default;
+		$tag-font-size: 13px !default;
+		$tag-font-weight: $body-font-weight-bold !default;
+		$tag-line-height: 1 !default;
+		$tag-font-style: normal !default;
+		$tag-color: $var-color-background !default;
+		$tag-text-transform: uppercase !default;
+		$tag-gutter-y: 20px !default;
+		$tag-border-radius: $tag-height * .5 !default;
+			$tag-border-radius-large: $tag-height-large * .5 !default;
+			$tag-border-radius-small: $tag-height-small * .25 !default;
+		$tag-margin-y: .125em !default;
+
+		$tag-default-color: $var-theme-color !default;
+		$tag-default-background: $var-color-neutral-alpha-5 !default;
+
+
+			$tag-primary-color: $var-color-primary !default;
+			$tag-primary-background: $var-color-primary-lightest !default;
+
+			$tag-secondary-color: $var-color-secondary !default;
+			$tag-secondary-background: $var-color-secondary-lightest !default;
+
+			$tag-accent-color: $var-color-accent !default;
+			$tag-accent-background: $var-color-accent-lightest !default;
+
+			$tag-neutral-color: $var-color-neutral !default;
+			$tag-neutral-background: $var-color-neutral-lightest !default;
+
+			$tag-success-color: $var-color-success !default;
+			$tag-success-background: $var-color-success-lightest !default;
+
+			$tag-caution-color: $var-color-caution !default;
+			$tag-caution-background: $var-color-caution-lightest !default;
+
+			$tag-error-color: $var-color-error !default;
+			$tag-error-background: $var-color-error-lightest !default;
+
+
+
+			$tag-intensity-1-color: $var-color-intensity-1 !default;
+			$tag-intensity-1-background: $var-color-intensity-1-lightest !default;
+
+			$tag-intensity-2-color: $var-color-intensity-2 !default;
+			$tag-intensity-2-background: $var-color-intensity-2-lightest !default;
+
+			$tag-intensity-3-color: $var-color-intensity-3 !default;
+			$tag-intensity-3-background: $var-color-intensity-3-lightest !default;
+
+			$tag-intensity-4-color: $var-color-intensity-4 !default;
+			$tag-intensity-4-background: $var-color-intensity-4-lightest !default;
+
+			$tag-intensity-5-color: $var-color-intensity-5 !default;
+			$tag-intensity-5-background: $var-color-intensity-5-lightest !default;
+
+	//asset
+		$asset-thumbnail-width: 190px !default;
+		$asset-thumbnail-height: 100px !default;
+		$asset-thumbnail-background: $var-theme-background-contrast !default;
+		$asset-thumbnail-border-color: $var-theme-background !default;
+		$asset-width: 220px !default;
+		$asset-thumbnail-margin-bottom: $gutter-micro !default;
+		$asset-transition-duration: $transition-duration-base!default;
+
+		$asset-image-glyph-size: 25px !default;
+		$asset-image-glyph-color: $var-color-background !default;
+		$asset-image-glyph-text-transform: capitalize !default;
+		$asset-image-glyph-font-weight: 900 !default;
+
+		$asset-thumbnail-image-border: $gutter-micro !default;
+
+		$asset-border-radius: $border-radius-small !default;
+		$asset-box-shadow: $box-shadow-base $var-color-base !default;
+			$asset-box-shadow-hover: 0 0 0 3px $var-color-primary !default;
+
+
+		$asset-title-font-weight: $body-font-weight-bold !default;
+		$asset-title-font-style: normal !default;
+		$asset-title-color: $var-color-neutral !default;
+		$asset-title-text-transform: none !default;
+		$asset-title-margin-bottom: $gutter-micro !default;
+
+		$asset-functions-offset-y: -15px !default;
+
+		$asset-caption-font-weight: 300 !default;
+		$asset-caption-font-style: normal !default;
+		$asset-caption-color: $var-color-neutral !default;
+		$asset-caption-text-transform: none !default;
+		$asset-title-margin-bottom: $gutter-micro !default;
+
+		//this has no meaning at all shut up
+		$asset-image-default-palette-tag: neutral !default;
+			$asset-image-audio-palette-tag: secondary !default;
+			$asset-image-code-palette-tag: primary !default;
+				$asset-image-text-palette-tag: neutral !default;
+			$asset-image-doc-palette-tag: primary !default;
+			$asset-image-font-palette-tag: accent !default;
+			$asset-image-img-palette-tag: accent !default;
+				$asset-image-ps-palette-tag: primary !default;
+				$asset-image-ai-palette-tag: caution !default;
+				$asset-image-xd-palette-tag: secondary !default;
+			$asset-image-pdf-palette-tag: error !default;
+				$asset-image-id-palette-tag: secondary !default;
+			$asset-image-table-palette-tag: success !default;
+			$asset-image-video-palette-tag: accent !default;
+			$asset-image-zip-palette-tag: neutral !default;
+
+
+	//toolbar
+		$toolbar-cross-min-size: 70px !default;
+			$toolbar-cross-min-size-small: 60px !default;
+			$toolbar-cross-min-size-large: 90px !default;
+		$toolbar-main-gutter: $gutter-base !default;
+			$toolbar-main-gutter-small: $gutter-small !default;
+			$toolbar-main-gutter-large: $gutter-large !default;
+		$toolbar-border-radius: $border-radius-small !default;
+			$toolbar-border-radius-small: $border-radius-small !default;
+			$toolbar-border-radius-large: $border-radius-small !default;
+		$toolbar-background-color: $var-theme-background !default;
+			$toolbar-background-color-inverse: $toolbar-background-color !default;
+		$toolbar-border-color: $var-theme-background-contrast !default;
+			$toolbar-border-color-inverse: $toolbar-border-color !default;
+		$toolbar-border-width: 1px !default;
+		$toolbar-box-shadow: none !default; // 
+		$toolbar-tile-gutter: $gutter-small !default; // 
+		
+
+	// input
+
+		$input-height: 30px !default;
+			$input-height-large: 40px !default;
+			$input-height-small: 20px !default;
+		$input-height-multiple-factor: 3 !default;
+		$input-placeholder-opacity: .5 !default;
+		$input-background: $var-theme-background !default;
+			$input-background-inverse: $input-background !default;
+
+		$input-font-size: $body-font-size !default;
+			$input-font-size-large: $body-font-size * 1.5 !default;
+			$input-font-size-small: $body-font-size * .75 !default;
+
+		$input-select-dropdown-color: $var-color-primary !default;
+		
+		$input-color: inherit !default;
+			$input-color-inverse: inherit !default;
+		$input-placeholder-color: $var-color-neutral-alpha-5 !default;
+			$input-placeholder-color-inverse: $input-placeholder-color !default;
+		$input-background: none !default;
+			$input-background-inverse: none !default;
+		$input-line-height: $body-line-height !default;
+		$input-font-family: $var-font-primary !default;
+		$input-font-weight: $body-font-weight !default;
+		$input-font-style: normal !default;
+		$input-text-transform: none !default;
+		
+		$input-gutter-x: $gutter-small !default;
+		$input-border-width: 1px !default;
+		$input-border-color: $var-color-neutral-alpha-3 !default;
+		$input-border-color-focus: $var-color-neutral-alpha-6 !default;
+		$input-border-radius: $border-radius-small !default;
+			$input-border-radius-large: $input-border-radius !default;
+			$input-border-radius-small:$input-border-radius !default;
+		$input-box-shadow: none !default; //$box-shadow-base $var-color-base 
+		$input-box-shadow-palette-basis: $box-shadow-base !default;
+			$input-box-shadow-focus: 0px 0 5px 0px $var-color-primary !default;
+		$input-group-separator-color: $input-border-color !default;
+		$input-color-feedback-var-slug: alpha-1 !default;
+
+		$input-label-gutter: 20px !default;
+
+		$input-label-font-size: 14px !default;
+			$input-label-font-size-large: 20px !default;
+			$input-label-font-size-small: 14px !default;
+		
+		$input-label-color: inherit !default;
+			$input-label-color-inverse: inherit !default;
+		
+			$input-label-font-family: $var-font-primary !default;
+			$input-label-font-weight: $body-font-weight-bold !default;
+			$input-label-font-style: normal !default;
+			$input-label-text-transform: none !default;
+			$input-label-in-group-background: $var-color-neutral-alpha-3 !default;
+				$input-label-in-group-background-inverse: $input-label-in-group-background !default;
+		
+			$input-label-horizontal-width: 25% !default;
+
+			$input-info-font-size: .875em !default;
+			$input-info-font-weight: 300 !default;
+			$input-info-line-height: 1.25 !default;
+			$input-info-font-style: italic !default;
+			$input-info-color: $var-color-neutral !default;
+			$input-info-text-transform: none !default;
+			$input-info-gutter-y: 1em !default;
+
+			//calendar
+				$input-calendar-gap: 2px;
+
+				$input-calendar-block-gutter-x: 0px !default;
+					$input-calendar-block-gutter-x-mobile: 0px !default;
+					$input-calendar-block-gutter-y: .375em !default;
+						$input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y !default;
+				$input-calendar-block-border-radius: $border-radius-base !default;
+
+				$input-calendar-date-hover-color: inherit !default;
+
+				$input-calendar-date-heading-button-color-hover: $var-color-primary !default;
+
+				$input-calendar-date-active-color: $var-color-background !default;
+				$input-calendar-date-active-background: $var-color-primary !default;
+
+				$input-calendar-days-border-width: 1px !default; 
+				$input-calendar-days-font-size: .75em !default;
+
+			//input tag tags
+				$input-tags-padding-x: 1em !default;
+				$input-tags-padding-y: .125em !default;
+					$input-tags-padding-y-large: $input-tags-padding-y !default;
+					$input-tags-padding-y-small: .0625em !default;
+				$input-tags-gutter-x: .25em !default;
+				$input-tags-gutter-y: $input-tags-gutter-x!default;
+
+				$input-tags-border-radius: $border-radius-small !default;
+
+				$input-tags-palette-tag: primary !default;
+				$input-tags-palette-tag-slug: alpha-2 !default;
+
+			//input toggle
+				$input-toggle-margin-x: 10px !default;
+
+				$input-toggle-width: 30px !default;
+					$input-toggle-width-small: $input-toggle-width !default;
+					$input-toggle-width-large: 40px !default;
+
+
+				$input-toggle-node-height: $input-toggle-width * .5 !default;
+				$input-toggle-node-width: $input-toggle-node-height !default;
+
+					$input-toggle-node-height-large: $input-toggle-width-large * .5 !default;
+					$input-toggle-node-width-large: $input-toggle-node-height-large !default;
+
+					$input-toggle-node-height-small: $input-toggle-width-small * .5 !default;
+					$input-toggle-node-width-small: $input-toggle-node-height-small !default;
+
+				$input-toggle-plate-height: 10px !default;
+					$input-toggle-plate-height-small: $input-toggle-plate-height !default;
+					$input-toggle-plate-height-large: 14px !default;
+
+				$input-toggle-node-border-radius: $input-toggle-node-height * .5 !default;
+				$input-toggle-plate-border-radius: $input-toggle-plate-height *  .5 !default;
+					$input-toggle-node-border-radius-small: $input-toggle-node-height-small * .5 !default;
+					$input-toggle-plate-border-radius-small: $input-toggle-plate-height-small *  .5 !default;
+					$input-toggle-node-border-radius-large: $input-toggle-node-height-large * .5 !default;
+					$input-toggle-plate-border-radius-large: $input-toggle-plate-height-large *  .5 !default;
+
+				$input-toggle-color-default: $var-color-neutral !default;
+					$input-toggle-color-default-active: $var-color-primary !default;
+
+				$input-toggle-label-color-default: $input-label-color !default;
+					$input-toggle-label-color-default-active: inherit !default;
+
+				$input-toggle-transition-duration: $transition-duration-short !default;
+				
+
+		//fieldset
+			$fieldset-gutter-x: $gutter-base !default;
+			$fieldset-gutter-y: $gutter-base !default;
+			$fieldset-background: $var-theme-background-contrast !default;
+			$fieldset-background-inverse: $fieldset-background !default;
+			
+			$fieldset-border-radius: $border-radius-base !default;
+
+	// BTN @TODO create btn-light helpers
+		$btn-height: $input-height !default;
+			$btn-height-large: $input-height-large !default;
+			$btn-height-small: $input-height-small !default;
+
+		$btn-font-size: $input-font-size !default;
+			$btn-font-size-large: $input-font-size-large !default;
+			$btn-font-size-small: $input-font-size-small !default;
+		$btn-line-height: $body-font-size * 1.25 !default;
+		$btn-font-family: $var-font-primary !default;
+		$btn-font-weight: $body-font-weight-bold !default;
+		$btn-font-style: normal !default;
+		$btn-text-transform: none !default;
+		$btn-gutter-x: $gutter-small !default;
+		$btn-border-width: 1px !default;
+		$btn-border-radius:  $input-border-radius !default;
+			$btn-border-radius-large: $input-border-radius-large !default;
+			$btn-border-radius-small: $input-border-radius-small !default;
+		$btn-box-shadow: none !default; //$box-shadow-base $var-color-base
+			$btn-box-shadow-hover: $box-shadow-base $var-color-base !default;
+		$btn-group-separator-color: $input-border-color !default;
+		$btn-transition-duration: $transition-duration-base!default;
+
+		// SCHEMES
+			//basic
+				$btn-border-default: $input-border-color !default;
+				$btn-background-default: $var-theme-background !default;
+				$btn-color-default: inherit !default;
+
+					$btn-border-default-hover: $input-border-color-focus !default;
+					$btn-background-default-hover: $var-theme-background !default;
+					$btn-color-default-hover: $var-color-primary !default;
+				
+					$btn-border-default-active: $var-color-primary  !default;
+					$btn-background-default-active: $var-color-primary !default;
+					$btn-color-default-active: $var-color-background !default;
+
+				$btn-border-primary: transparent !default;
+				$btn-background-primary: $var-color-primary !default;
+				$btn-color-primary: $var-color-background !default;
+
+					$btn-border-primary-hover: transparent !default;
+					$btn-background-primary-hover: $var-color-primary-light !default;
+					$btn-color-primary-hover: $var-color-background !default;
+					
+					$btn-border-primary-active: transparent !default;
+					$btn-background-primary-active: $var-color-primary !default;
+					$btn-color-primary-active: $var-color-background !default;
+
+				$btn-border-secondary: transparent !default;
+				$btn-background-secondary: $var-color-secondary !default;
+				$btn-color-secondary: $var-color-background !default;
+
+					$btn-border-secondary-hover: transparent !default;
+					$btn-background-secondary-hover: $var-color-secondary-light !default;
+					$btn-color-secondary-hover: $var-color-background !default;
+					
+					$btn-border-secondary-active: transparent !default;
+					$btn-background-secondary-active: $var-color-secondary !default;
+					$btn-color-secondary-active: $var-color-background !default;
+
+				$btn-border-accent: transparent !default;
+				$btn-background-accent: $var-color-accent !default;
+				$btn-color-accent: $var-color-background !default;
+
+					$btn-border-accent-hover: transparent !default;
+					$btn-background-accent-hover: $var-color-accent-light !default;
+					$btn-color-accent-hover: $var-color-background !default;
+					
+					$btn-border-accent-active: transparent !default;
+					$btn-background-accent-active: $var-color-accent !default;
+					$btn-color-accent-active: $var-color-background !default;
+
+				$btn-border-neutral: transparent !default;
+				$btn-background-neutral: $var-color-neutral !default;
+				$btn-color-neutral: $var-color-background !default;
+
+					$btn-border-neutral-hover: transparent !default;
+					$btn-background-neutral-hover: $var-color-neutral-light !default;
+					$btn-color-neutral-hover: $var-color-background !default;
+					
+					$btn-border-neutral-active: transparent !default;
+					$btn-background-neutral-active: $var-color-neutral !default;
+					$btn-color-neutral-active: $var-color-background !default;
+
+				$btn-border-success: transparent !default;
+				$btn-background-success: $var-color-success !default;
+				$btn-color-success: $var-color-background !default;
+
+					$btn-border-success-hover: transparent !default;
+					$btn-background-success-hover: $var-color-success-light !default;
+					$btn-color-success-hover: $var-color-background !default;
+				
+					$btn-border-success-active: transparent !default;
+					$btn-background-success-active: $var-color-success !default;
+					$btn-color-success-active: $var-color-background !default;
+					
+				$btn-border-caution: transparent !default;
+				$btn-background-caution: $var-color-caution !default;
+				$btn-color-caution: $var-color-background !default;
+				
+					$btn-border-caution-hover: transparent !default;
+					$btn-background-caution-hover: $var-color-caution-light !default;
+					$btn-color-caution-hover: $var-color-background !default;
+					
+					$btn-border-caution-active: transparent !default;
+					$btn-background-caution-active: $var-color-caution !default;
+					$btn-color-caution-active: $var-color-background !default;
+
+				$btn-border-error: transparent !default;
+				$btn-background-error: $var-color-error !default;
+				$btn-color-error: $var-color-background !default;
+					
+					$btn-border-error-hover: transparent !default;
+					$btn-background-error-hover: $var-color-error-light !default;
+					$btn-color-error-hover: $var-color-background !default;
+					
+					$btn-border-error-active: transparent !default;
+					$btn-background-error-active: $var-color-error !default;
+					$btn-color-error-active: $var-color-background !default;
+
+				$btn-border-link: transparent !default;
+				$btn-background-link: transparent !default;
+				$btn-color-link: $body-anchor-color !default;
+					
+					$btn-border-link-hover: transparent !default;
+					$btn-background-link-hover: transparent !default;
+					$btn-color-link-hover: $body-anchor-color-hover !default;
+					
+					$btn-border-link-active: transparent!default;
+					$btn-background-link-active: transparent!default;
+					$btn-color-link-active: $body-anchor-color !default;
+
+				$btn-background-angle-gradient: 0deg !default;
+				$btn-color-gradient: $var-color-background !default;
+
+					$btn-background-angle-gradient-hover: 180deg !default;
+					$btn-color-gradient-hover: $var-color-background !default;
+					
+					$btn-background-angle-gradient-active: 45deg !default;
+					$btn-color-gradient-active: $var-color-background !default;
+
+
+			// light @TODO
+				$btn-light-border-default: $input-border-color !default;
+				$btn-light-background-default: $var-theme-background !default;
+				$btn-light-color-default: inherit !default;
+
+					$btn-light-border-default-hover: $input-border-color-focus !default;
+					$btn-light-background-default-hover: $var-theme-background !default;
+					$btn-light-color-default-hover: $var-color-primary !default;
+				
+					$btn-light-border-default-active: $var-color-primary  !default;
+					$btn-light-background-default-active: $var-color-primary !default;
+					$btn-light-color-default-active: $var-color-background !default;
+
+				$btn-light-border-primary: transparent !default;
+				$btn-light-background-primary: $var-color-primary !default;
+				$btn-light-color-primary: $var-color-background !default;
+
+					$btn-light-border-primary-hover: transparent !default;
+					$btn-light-background-primary-hover: $var-color-primary-light !default;
+					$btn-light-color-primary-hover: $var-color-background !default;
+					
+					$btn-light-border-primary-active: transparent !default;
+					$btn-light-background-primary-active: $var-color-primary !default;
+					$btn-light-color-primary-active: $var-color-background !default;
+
+				$btn-light-border-secondary: transparent !default;
+				$btn-light-background-secondary: $var-color-secondary !default;
+				$btn-light-color-secondary: $var-color-background !default;
+
+					$btn-light-border-secondary-hover: transparent !default;
+					$btn-light-background-secondary-hover: $var-color-secondary-light !default;
+					$btn-light-color-secondary-hover: $var-color-background !default;
+					
+					$btn-light-border-secondary-active: transparent !default;
+					$btn-light-background-secondary-active: $var-color-secondary !default;
+					$btn-light-color-secondary-active: $var-color-background !default;
+
+				$btn-light-border-accent: transparent !default;
+				$btn-light-background-accent: $var-color-accent !default;
+				$btn-light-color-accent: $var-color-background !default;
+
+					$btn-light-border-accent-hover: transparent !default;
+					$btn-light-background-accent-hover: $var-color-accent-light !default;
+					$btn-light-color-accent-hover: $var-color-background !default;
+					
+					$btn-light-border-accent-active: transparent !default;
+					$btn-light-background-accent-active: $var-color-accent !default;
+					$btn-light-color-accent-active: $var-color-background !default;
+
+				$btn-light-border-neutral: transparent !default;
+				$btn-light-background-neutral: $var-color-neutral !default;
+				$btn-light-color-neutral: $var-color-background !default;
+
+					$btn-light-border-neutral-hover: transparent !default;
+					$btn-light-background-neutral-hover: $var-color-neutral-light !default;
+					$btn-light-color-neutral-hover: $var-color-background !default;
+					
+					$btn-light-border-neutral-active: transparent !default;
+					$btn-light-background-neutral-active: $var-color-neutral !default;
+					$btn-light-color-neutral-active: $var-color-background !default;
+
+				$btn-light-border-success: transparent !default;
+				$btn-light-background-success: $var-color-success !default;
+				$btn-light-color-success: $var-color-background !default;
+
+					$btn-light-border-success-hover: transparent !default;
+					$btn-light-background-success-hover: $var-color-success-light !default;
+					$btn-light-color-success-hover: $var-color-background !default;
+				
+					$btn-light-border-success-active: transparent !default;
+					$btn-light-background-success-active: $var-color-success !default;
+					$btn-light-color-success-active: $var-color-background !default;
+					
+				$btn-light-border-caution: transparent !default;
+				$btn-light-background-caution: $var-color-caution !default;
+				$btn-light-color-caution: $var-color-background !default;
+				
+					$btn-light-border-caution-hover: transparent !default;
+					$btn-light-background-caution-hover: $var-color-caution-light !default;
+					$btn-light-color-caution-hover: $var-color-background !default;
+					
+					$btn-light-border-caution-active: transparent !default;
+					$btn-light-background-caution-active: $var-color-caution !default;
+					$btn-light-color-caution-active: $var-color-background !default;
+
+				$btn-light-border-error: transparent !default;
+				$btn-light-background-error: $var-color-error !default;
+				$btn-light-color-error: $var-color-background !default;
+					
+					$btn-light-border-error-hover: transparent !default;
+					$btn-light-background-error-hover: $var-color-error-light !default;
+					$btn-light-color-error-hover: $var-color-background !default;
+					
+					$btn-light-border-error-active: transparent !default;
+					$btn-light-background-error-active: $var-color-error !default;
+					$btn-light-color-error-active: $var-color-background !default;
+
+				$btn-light-border-link: transparent !default;
+				$btn-light-background-link: transparent !default;
+				$btn-light-color-link: $body-anchor-color !default;
+					
+					$btn-light-border-link-hover: transparent !default;
+					$btn-light-background-link-hover: transparent !default;
+					$btn-light-color-link-hover: $body-anchor-color-hover !default;
+					
+					$btn-light-border-link-active: transparent!default;
+					$btn-light-background-link-active: transparent!default;
+					$btn-light-color-link-active: $body-anchor-color !default;
+
+				$btn-light-background-angle-gradient: 0deg !default;
+				$btn-light-color-gradient: $var-color-background !default;
+
+					$btn-light-background-angle-gradient-hover: 180deg !default;
+					$btn-light-color-gradient-hover: $var-color-background !default;
+					
+					$btn-light-background-angle-gradient-active: 45deg !default;
+					$btn-light-color-gradient-active: $var-color-background !default;
+
+			//gradient @TODO
+
+				$btn-gradient-border-default: $input-border-color !default;
+				$btn-gradient-background-default: $var-theme-background !default;
+				$btn-gradient-color-default: inherit !default;
+
+					$btn-gradient-border-default-hover: $input-border-color-focus !default;
+					$btn-gradient-background-default-hover: $var-theme-background !default;
+					$btn-gradient-color-default-hover: $var-color-primary !default;
+				
+					$btn-gradient-border-default-active: $var-color-primary  !default;
+					$btn-gradient-background-default-active: $var-color-primary !default;
+					$btn-gradient-color-default-active: $var-color-background !default;
+
+	// SYMBOLS
+		$symbol-font-path: "./../fonts/fw-icons" !default;
+
+
+		// @OTHER @TODOS
+		//padding and margin classes
+
+
+
+
+//////////////////////////////// CONTENT PLUGIN DEPENDENCIES
+		
+$brxs: $br-xs-max;
+$brsm: $br-sm-max;
+$brmd: $br-md-max;
+		
+//mixins shithole
+	$color-base: $brand-color-base;
+		$color-base-alt: $brand-color-base-alt;
+	$color-primary: $brand-color-primary;
+		$color-primary-alt:$brand-color-primary-dark;
+	$color-accent: $brand-color-secondary;
+		$color-accent-alt: $brand-color-secondary-dark;
+
+	$white: $brand-color-background;
+		$white-alt: $brand-color-background-alt;
+	$gray: $brand-color-neutral;
+
+	$success: $brand-color-success;
+	$caution: $brand-color-caution;
+	$error: $brand-color-error;
+
+	$font-base: $brand-font-primary;
+	$font-secondary: $brand-font-secondary;
+	$font-accent: $brand-font-secondary;
+	$font-monospace: $brand-font-monospace;
+
+
+

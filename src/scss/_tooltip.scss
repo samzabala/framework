@@ -1,0 +1,154 @@
+[data-toggle-tooltip-click],
+[data-toggle-tooltip-hover]{
+	@include dump-styles(data-toggle);
+}
+$prefix: '.tooltip';
+#{$prefix} {
+	@include create-popper-styles(
+		$tooltip-background,
+		$tooltip-background-inverse,
+		$tooltip-color,
+		$tooltip-color-inverse,
+		$tooltip-gutter-x,
+		$tooltip-gutter-y,
+		$tooltip-border-radius,
+		$tooltip-box-shadow
+	);
+	pointer-events:none;
+	display: none;
+	z-index:99999;
+
+	&#{$prefix}-small {
+		@include create-popper-styles(
+			null,
+			null,
+			null,
+			null,
+			$tooltip-small-gutter-x,
+			$tooltip-small-gutter-y,
+		);
+	}
+
+	&#{$prefix}-large {
+		@include create-popper-styles(
+			null,
+			null,
+			null,
+			null,
+			$tooltip-large-gutter-x,
+			$tooltip-large-gutter-y,
+		);
+	}
+
+	&:not(#{$prefix}-has-custom-width){
+		max-width: $tooltip-max-width;
+	}
+
+	&#{&}-allow-interaction {
+		pointer-events: auto;
+	}
+
+	&.active {
+		display: block;
+	}
+
+	&:before,&:after {
+		content:"";
+		background: inherit;
+		position: absolute;
+		z-index:-1;
+	}
+
+	&:after {
+		// background: red;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		border-radius: inherit;
+	}
+
+	&:before {
+		// background: blue;
+		margin:auto;
+		box-shadow: $tooltip-arrow-box-shadow;
+		width: $tooltip-gutter-x;
+		height: $tooltip-gutter-x;
+		transform-origin: center center;
+		transform: rotate(45deg);
+	}
+
+	&-badge {
+		position:absolute;
+		margin: auto;
+	}
+
+	&#{&}-top {
+
+		&:before,
+		#{$prefix}-badge {
+			left:0;
+			right:0;
+		}
+
+		&:before{
+			bottom: $tooltip-gutter-x * -.5;
+		}
+
+		#{$prefix}-badge {
+			top: calc(100% + #{ $calculated-gutter-hypotenus } * .5);
+		}
+	}
+	&#{&}-bottom {
+
+		&:before,
+		#{$prefix}-badge {
+			left:0;
+			right:0;
+		}
+
+		&:before{
+			top: $tooltip-gutter-x * -.5;
+		}
+
+		#{$prefix}-badge {
+			bottom: calc(100% + #{ $calculated-gutter-hypotenus } * .5);
+		}
+	}
+
+	&#{&}-right {
+		&:before,
+		#{$prefix}-badge {
+			bottom:0;
+			top: 0;
+		}
+
+		&:before{
+			left: $tooltip-gutter-x * -.5;
+		}
+
+		#{$prefix}-badge {
+			right: calc(100% + #{ $calculated-gutter-hypotenus } * .5);
+		}
+	}
+
+
+
+	&#{&}-left {
+		&:before,
+		#{$prefix}-badge {
+			bottom:0;
+			top: 0;
+		}
+
+		&:before{
+			right: $tooltip-gutter-x * -.5;
+		}
+
+		#{$prefix}-badge {
+			left: calc(100% + #{ $calculated-gutter-hypotenus } * .5);
+		}
+	}
+}
+
+

@@ -18,7 +18,6 @@ Works with Libsass and Compass
 
 ##	Layout
 *	[Flex Grid](docs/sections/layout/flexgrid.md)
-*	[Module](docs/sections/layout/module.md)
 *	[Container](docs/sections/layout/container.md)
 
 ##	Components (o lawd)
@@ -30,9 +29,11 @@ Works with Libsass and Compass
 *	[Dropdown](docs/sections/components/dropdown.md)
 *	[Form and input fields](docs/sections/components/form.md)
 *	[Highlights](docs/sections/components/highlight.md)
+*	[Lazy Loading (Images and SVG)](docs/sections/components/lazy.md)
 *	[Legends](docs/sections/components/legend.md)
 *	[List group](docs/sections/components/list-group.md)
 *	[Modal](docs/sections/components/modal.md)
+*	[Module](docs/sections/components/module.md)
 *	[Nav](docs/sections/components/nav.md)
 *	[Pagination](docs/sections/components/pagination.md)
 *	[Progress](docs/sections/components/progress.md)

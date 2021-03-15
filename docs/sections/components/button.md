@@ -339,4 +339,35 @@ removes `box-shadow` in case you really dont want it there on some layouts
 
 removes `border-radius` in case you really dont want it there on some layouts
 
+
+## Javascript
+
+it has some but just for the functionality of toggling dem in a `.btn-group-toggle`
+
+### Functions
+
+#### **`fw.Button(element)`**
+
+Make a new boi by going `const button = new fw.Button(element)`
+
+useful when you need to close tthis button
+
+#### **`button.toggle(element)`**
+
+toggles the button
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`fw.Button.initListeners()`**
+
+initializes all event listeners
+
+### Events
+
+* `click.fw.button` - happens on the `element`
+* `before_toggle.fw.button` - happens on `element` before toggle
+* `toggle.fw.button` - happens on `element` when toggle
+* `after_toggle.fw.button` - happens on `element` after toggle
+
+
 [Back to TOC](../../../readme.md)

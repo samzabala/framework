@@ -1,0 +1,259 @@
+/*** NAVIGATION ***/
+$prefix: '.nav';
+#{$prefix} {
+
+	&{
+		height: $calculated-nav-height;
+		background: $nav-background;
+		@include type-set((
+			size: $calculated-nav-font-size,
+			leading: $calculated-nav-line-height,
+			color: $nav-color,
+			weight: $nav-font-weight,
+			case: $nav-text-transform,
+			style: $nav-font-style,
+		));
+
+		.theme-inverse & {
+			background: $nav-background-inverse;
+			color: $nav-color-inverse;
+		}
+	}
+	
+	a{
+		color: inherit;
+	}
+
+	&,
+	&-list {
+		@include flex();
+		padding: 0;
+		margin: 0;
+	}
+
+	&.accordion.open {
+		display:flex!important;
+	}
+
+	&.accordion.open {
+		display:flex;
+	}
+	
+	&#{$prefix}-sticky {
+		position:fixed;
+		top:0;
+		left:0;
+		right:0;
+		box-shadow: $nav-drop-shadow;
+		z-index: 9999;
+
+		.theme-inverse & {
+			box-shadow: $nav-drop-shadow-inverse;
+		}
+	}
+
+	&#{$prefix}-vertical {
+		display:block;
+		min-width:100%;
+		height: auto;
+
+		#{$prefix}-list {
+			display:block;
+		}
+
+		.dropdown li,
+		#{$prefix}-item,
+		#{$prefix}-list li {
+
+			> a {
+				display:block;
+			}
+		}
+
+		.dropdown {
+			border-radius:0;
+			padding:0;
+			width: auto;
+			position:static;
+			box-shadow: none;
+		}
+	}
+	@at-root .dropdown li,
+	&-item,
+	&-list li {
+		margin:0;
+		padding:0;
+
+		&:before {
+			content:none;
+		}
+		
+
+		> a {
+			padding-top: calc( ( #{$calculated-nav-item-height} - ( #{ $calculated-nav-single-line })) * .5 );
+			padding-bottom: calc( ( #{$calculated-nav-item-height} - ( #{ $calculated-nav-single-line })) * .5 );
+			display: block;
+		}
+
+		&:hover{
+			> a {
+				color: $nav-color-hover;
+			}
+		}
+	}
+
+	&-block {
+		display:flex;
+		align-self: stretch;
+		align-items: center;
+		align-content: center;
+		position:relative;
+
+		// > * {
+		// 	max-width:100%;
+		// }
+
+		padding-right: $nav-padding-x;
+		padding-left: $nav-padding-x;
+
+		&#{&}-stretch {
+
+			align-items: stretch;
+			align-content: stretch;
+		}
+	}
+
+	&-icon {
+		width: $calculated-nav-icon-width;
+		height: $calculated-nav-icon-height;
+		max-width:none;
+		display:inline-block;
+		vertical-align: middle;
+		line-height: inherit;
+		text-align: center;
+
+		// .badge {
+		// 	position:absolute;
+		// 	right:0;
+		// 	transform: translateX(50%);
+		// 	top:0;
+		// }
+
+		.symbol {
+			font-size: 1.25em;
+		}
+
+
+		+ #{$prefix}-item-text {
+			margin-left: .5rem;
+			display:inline-block;
+			vertical-align: middle;
+		}
+	}
+
+	#{$prefix}-item,
+	&-list > li {
+
+		> a {
+			&:hover,&:focus,&.focus {
+				@include dump-styles(no-text-decoration-hover);
+			}
+		}
+
+		> a {
+			@include type-set((
+				color:inherit,
+				decoration:get-anchor-dec(),
+				size: $calculated-nav-top-font-size,
+				style: $nav-top-font-style,
+				weight: $nav-top-font-weight,
+				case: $nav-top-text-transform,
+			));
+			position:relative;
+
+			transition: $transition-duration-short all $transition-timing;
+			padding-left: $nav-padding-x;
+			padding-right: $nav-padding-x;
+			padding-top: calc( (#{$calculated-nav-height} - ( #{ $calculated-nav-single-line })) * .5 );
+			padding-bottom: calc( (#{$calculated-nav-height} - ( #{ $calculated-nav-single-line })) * .5 );
+			
+			&:after {
+				content:"";
+				position:absolute;
+				bottom:0;
+				right:0;
+				left:0;
+				height:0;
+				transition: $transition-duration-short all $transition-timing;
+				@include gradient((
+					color1: $nav-current-gradient-start,
+					color2: $nav-current-gradient-end,
+					angle: 0deg,
+					use-shorthand:false
+				));
+
+
+				#{$prefix}-vertical & {
+					height:auto;
+					width: 0;
+					top:0;
+					left:auto;
+
+					@include gradient((
+						color1: $nav-current-gradient-start,
+						color2: $nav-current-gradient-end,
+						angle: 90deg,
+						use-shorthand:false
+					));
+				}
+			}
+		}
+		&:hover,
+		&.open {
+			
+			> a {
+				
+				&:after {
+					height: $nav-current-size;
+
+					#{$prefix}-vertical & {
+						height:auto;
+						width:$nav-current-size;
+					}
+				}
+			}
+		}
+	}
+
+	&-list ul,
+	.dropdown {
+		background: $nav-dropdown-background;
+		margin:auto;
+	}
+
+	@include br(#{$mobile-br-max}-max) {
+
+		&-list{
+			&#{&}-responsive {
+				display:block;
+				min-width:100%;
+	
+				.dropdown {
+					border-radius:0;
+					// padding-left:0;
+					// padding-right:0;
+					width: auto;
+					position:static;
+					box-shadow: none;
+				}
+			}
+		}
+
+		&-list > #{$prefix}-item,
+		&-list > li {
+			> a {
+				display:block;
+			}
+		}
+	}
+}

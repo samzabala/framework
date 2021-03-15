@@ -1,0 +1,46 @@
+/*** BADGE ***/
+$prefix: '.badge';
+#{$prefix} {
+	display:inline-block;
+	vertical-align: middle;
+    flex: 0 0 auto; //retain dimensions
+	line-height: inherit;
+	width: $calculated-badge-size;
+	height: $calculated-badge-size;
+	border-radius: calc(#{$calculated-badge-size} * .5);
+	border: $calculated-badge-border-width solid $badge-border-color;
+	box-shadow: $badge-box-shadow;
+
+	&-origin {
+		position: relative;
+	}
+
+	&#{&}-latch {
+		top: 0;
+		right:0;
+		transform: translate(50%, -50%);
+		position: absolute;
+	}
+
+	.theme-inverse & {
+		border-color: $badge-border-color-inverse;
+	}
+
+	&#{&}-large {
+		width: $calculated-badge-size-large;
+		height: $calculated-badge-size-large;
+		border-radius: calc(#{$calculated-badge-size-large} * .5);
+	}
+	&#{&}-small {
+		width: $calculated-badge-size-small;
+		height: $calculated-badge-size-small;
+		border-radius: calc(#{$calculated-badge-size-small} * .5);
+	}
+	
+	@each $tag,$color in $calculated-brand-color-declarations-for-components {
+		&-#{$tag} {
+			background-color: $color;
+		}
+	}
+
+}

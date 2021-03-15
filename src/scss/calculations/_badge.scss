@@ -1,0 +1,19 @@
+$calculated-badge-size: $badge-size;
+@if internal-is-convertable($badge-size) {
+	$calculated-badge-size: rem($badge-size / $body-font-size)
+}
+
+$calculated-badge-size-small:  $badge-size-small;
+@if internal-is-convertable($badge-size-small) {
+	$calculated-badge-size-small: rem($badge-size-small / $body-font-size)
+}
+
+$calculated-badge-size-large: $badge-size-large;
+@if internal-is-convertable($badge-size-large) {
+	$calculated-badge-size-large: rem($badge-size-large / $body-font-size)
+}
+
+$calculated-badge-border-width: $badge-border-width;
+@if internal-is-convertable($badge-border-width) {
+	$calculated-badge-border-width: rem($badge-border-width / $body-font-size)
+}

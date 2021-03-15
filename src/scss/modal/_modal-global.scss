@@ -1,0 +1,82 @@
+[data-toggle-modal]{
+	@include dump-styles(data-toggle);
+}
+%for-modal {
+	//ui block where scrolling is allowed
+	&-scroller {
+		overflow-y: scroll;
+
+		//ui block where there should be no scrollibois
+		&-no-scrollbar {
+			@include dump-styles(no-scrollbar);
+		}
+
+	}
+
+	//ui wrapper
+	&-wrapper { 
+		position: fixed;
+		top: 0!important;
+		left: 0!important;
+		right: 0!important;
+		bottom: 0!important;
+		margin: 0;
+		background: $modal-overlay-bg;
+	}
+
+	//duh
+	&-overlay {
+		position:fixed;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+
+		&-not-closeable {
+			pointer-events:none;
+		}
+	}
+
+	//content wrapper
+	&-popup {
+		backface-visibility: hidden;
+		position:relative;
+		z-index:2;
+		box-shadow: rgba(0, 0, 0, .2) 0 2px 3px;
+		max-width: 100%;
+		background: $modal-background;
+		
+		.theme-inverse & {
+			background: $modal-background-inverse;
+		}
+	}
+}
+$prefix: '.modal';
+.modal {
+	display:none!important;
+
+	&-ui {
+		& {
+			position: fixed;
+		}
+		&-wrapper {
+			@extend %for-modal-wrapper !optional;
+		}
+
+		&-title {
+			margin-top:0;
+		}
+
+		&-overlay {
+			@extend %for-modal-overlay !optional;
+			
+			&:not([data-toggle-modal-close]) {
+				@extend %for-modal-overlay-not-closeable !optional;
+			}
+		}
+
+		&-popup {
+			@extend %for-modal-popup !optional;
+		}
+	}
+}

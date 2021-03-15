@@ -1,0 +1,74 @@
+/*** Tags ***/
+$prefix: '.tag';
+#{$prefix} {
+	@include type-set((
+		decoration: get-anchor-dec(),
+		size: $calculated-tag-font-size,
+		leading: $calculated-tag-line-height,
+		weight: $tag-font-weight,
+		style: $tag-font-style,
+		case: $tag-text-transform,
+	));
+	padding-top: calc(  (  (#{$calculated-tag-height} - (#{ $calculated-tag-single-line }) ) * .5 ));
+	padding-bottom: calc(  (  (#{$calculated-tag-height} - (#{ $calculated-tag-single-line }) ) * .5 ));
+	padding-left: $calculated-tag-gutter-x;
+	padding-right: $calculated-tag-gutter-x;
+	border-radius: $tag-border-radius;
+	margin-top:$calculated-tag-margin-y;
+	margin-bottom:$calculated-tag-margin-y;
+	display:inline-flex;
+	align-items: center;
+	// display: inline-block;
+	vertical-align:middle;
+	max-width:100%;
+	@include dump-styles(text-ellipsis-single);
+
+	&#{&}-large {
+		padding-top: calc(  (  (#{$calculated-tag-height-large} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		padding-bottom: calc(  (  (#{$calculated-tag-height-large} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		border-radius: $tag-border-radius-large;
+	}
+
+	&#{&}-small {
+		padding-top: calc(  (  (#{$calculated-tag-height-small} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		padding-bottom: calc(  (  (#{$calculated-tag-height-small} - (#{ $calculated-tag-single-line }) ) * .5 ));
+		border-radius: $tag-border-radius-small;
+	}
+
+	a {
+		&,&:hover,&:focus,&.focus {
+			text-decoration:inherit;
+			color:inherit;
+		}
+	}
+	&-text  {
+		max-width: 10em;
+		@include dump-styles(text-ellipsis-single);
+
+	}
+
+	&,
+	&:hover,
+	&:focus,
+	&.focus {
+		color: $tag-color;
+		@include dump-styles(no-text-decoration-hover);
+	}
+
+
+
+
+	@each $tag,$properties in $calculated-tag-schemes-color {
+		&-#{$tag} {
+			background: map-get($properties,background);
+			&,
+			&:hover,
+			&:focus,
+			&:active,
+			&.focus,
+			&.active {
+				color: map-get($properties,color);
+			}
+		}
+	}
+}

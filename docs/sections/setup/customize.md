@@ -57,7 +57,7 @@ window.jQuery && jQuery.noConflict();
 	//ya code
     console.log('do shiet');
 
-}(frameWork,jQuery));
+}(fw,jQuery));
 
 ```
 
