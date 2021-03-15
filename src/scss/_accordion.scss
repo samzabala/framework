@@ -1,47 +1,53 @@
 
 
-.accordion {
-    &:not(.accordion-mobile):not(.open) {
-        // max-height:0;
-        // overflow:hidden;
-        min-width:100%;
-        display:none!important;
-        // transition: $transition-duration-long max-height $transition-timing;
-        // overflow:hidden;
+[data-toggle-accordion]{
+	@include dump-styles(data-toggle);
+}
 
-        // so uh.. needed to use this bitch on tables and tables dont like being display block it shits itself
-        // &.open {
-        //     // max-height:none;
-        //     // overflow:visible;
-        //     display:block!important;
-        // }
-    }
+$prefix: '.accordion';
 
-    &#{&}-mobile {
+#{$prefix} {
+	&:not(#{$prefix}-mobile):not(.open) {
+		// max-height:0;
+		// overflow:hidden;
+		min-width:100%;
+		display:none!important;
+		// transition: $transition-duration-long max-height $transition-timing;
+		// overflow:hidden;
 
-        @include br(#{$mobile-br-max}-max) {
+		// so uh.. needed to use this bitch on tables and tables dont like being display block it shits itself
+		// &.open {
+		//     // max-height:none;
+		//     // overflow:visible;
+		//     display:block!important;
+		// }
+	}
 
-            &:not(.open) {
+	&#{&}-mobile {
 
-                // max-height:0;
-                // overflow:hidden;
-                min-width:100%;
-                display:none!important;
-                // transition: $transition-duration-long max-height $transition-timing;
-                // overflow:hidden;
+		@include br(#{$mobile-br-max}-max) {
 
-            }
-            // &.open {
-            //     // max-height:none;
-            //     // overflow:visible;
-            //     display:block!important;
-            // }
-        }
+			&:not(.open) {
 
-        // @include br(#{$mobile-br-max-polar}) {
-        //     // max-height:none;
-        //     // overflow:visible;
-        //     display:block!important;
-        // }
-    }
+				// max-height:0;
+				// overflow:hidden;
+				min-width:100%;
+				display:none!important;
+				// transition: $transition-duration-long max-height $transition-timing;
+				// overflow:hidden;
+
+			}
+			// &.open {
+			//     // max-height:none;
+			//     // overflow:visible;
+			//     display:block!important;
+			// }
+		}
+
+		// @include br(#{$mobile-br-max-polar}) {
+		//     // max-height:none;
+		//     // overflow:visible;
+		//     display:block!important;
+		// }
+	}
 }

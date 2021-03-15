@@ -1,4 +1,4 @@
-import FwDataHelper from '../classes/data-helper.js';
+import FwDataHelper from './../classes/data-helper.js';
 
 class FwString extends FwDataHelper {
 	constructor(data){
@@ -19,6 +19,7 @@ class FwString extends FwDataHelper {
 			})
 			.replace(/-|\s/g, '');
 	}
+	
 
 	static ToDashed(str) {
 		str = str.toString();

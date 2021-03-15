@@ -1,4 +1,4 @@
-import FwDataHelper from '../classes/data-helper.js';
+import FwDataHelper from './../classes/data-helper.js';
 
 
 class FwDom extends FwDataHelper {
@@ -127,6 +127,10 @@ class FwDom extends FwDataHelper {
 		elem = elem || super.getData();
 		const oldParent = elem;
 		const newParent = new FwDom(elementToMoveContentsTo);
+
+		if(!elem && !elementToMoveContentsTo){
+			return
+		}
 		
 		if (
 			newParent

@@ -1,7 +1,7 @@
 
-import FwCore from '../util/core.js';
-import FwDataHelper from '../classes/data-helper.js';
-const customEvents = [];
+import Settings from './../core/settings.js';
+import FwDataHelper from './../classes/data-helper.js';
+// const customEvents = [];
 const NativeEvents = [
 	'click',
 	'dblclick',
@@ -62,58 +62,105 @@ class FwEvent extends FwDataHelper {
 			cancelable: true,
 		}
 	}
+
+	static classNester(selector){
+		if(selector === '*' || typeof selector !== 'string'){
+			return selector;
+		}else{
+			const selArr = selector.split(',');
+			let toReturn  = selector;
+			selArr.forEach(sel => {
+
+				
+				toReturn += `, ${sel} *`;
+			});
 	
-	static addListener(parent, evt, selector, delegationFn,runNative,customEventOpts){
-		parent = parent || selector;
-		runNative = runNative !== false || runNative == true;
+			return toReturn;
+		}
+	}
 
-		const evtNoApi = evt.split(`.${FwCore.settings.prefix}`)[0];
+	static addListener(parent, evt, selectorOrParentFallback, handler){
+		parent = parent || false;
+		
+		// runNative = runNative !== false || runNative == true; //no apipipi
+		//dai mo ilaag sa ddocument ta maerror si matches habo nya ki element
+
+		const elemToAddTo = parent || selectorOrParentFallback;
+		const evtNoApi = evt.split(`.${Settings.get('prefix')}`)[0];
 		const isNative = NativeEvents.includes(evt);
-
-		customEventOpts = customEventOpts || {
-			cancelable: true
-		};
-
-		customEventOpts.detail = customEventOpts.detail || {};
-
-		// parent.addEventListener(
-		// 	evtNoApi,
-		// 	(event) => {
-
-		// 		console.log(evt,evtNoApi);
-		// 		if (event.target.matches(selector + ', ' + selector + ' *')) {
-		// 			// try {
-		// 				delegationFn(event);
-		// 				if(!isNative){
-		// 					FwEvent.trigger(event.target,evt,customEventOpts);
-		// 				}
-		// 			// } catch(e) {}
-		// 		}
-		// 	},
-		// 	true
-		// );
-
-		parent.addEventListener(
-			(
-				runNative
-					? evtNoApi
-					: evt ),
-			(event) => {
-				if (event.target.matches(selector + ', ' + selector + ' *')) {
-					// try {
-						(!runNative && !isNative) && FwEvent.trigger(
+		if(!isNative){
+			elemToAddTo.addEventListener(
+				evtNoApi,
+				(event)=>{
+					if(
+						!parent
+						|| (
+							parent
+							&& event.target.matches(FwEvent.classNester(selectorOrParentFallback))
+							// && event.target.closest(selectorOrParentFallback)
+						)
+					){
+						FwEvent.trigger(
 							event.target,
 							evt,
-							customEventOpts
+							{
+								detail: {
+									nativeEvt:event,
+									_selection: FwEvent.classNester(selectorOrParentFallback)
+								}
+							}
 						);
-						delegationFn(event);
-					// } catch(e) {}
+					}
+				},
+				true
+			);
+		}
+
+		elemToAddTo.addEventListener(
+			evt,
+			(event) => {
+				if (
+					!parent
+					|| (
+						parent
+						// && event.target.matches(FwEvent.classNester(selectorOrParentFallback))
+						&& event.target.closest(selectorOrParentFallback)
+					)
+				) {
+					if(!isNative){
+						handler(event.detail.nativeEvt);
+					}else{
+						handler(event);
+					}
 				}
 			},
 			true
 		);
 
 		
+		// //stable no api
+		// elemToAddTo.addEventListener(
+		// 	evtNoApi,
+		// 	(event)=>{
+		// 		if(
+		// 			!parent
+		// 			|| (
+		// 				parent
+		// 				&& event.target.matches(FwEvent.classNester(selectorOrParentFallback))
+		// 				// && event.target.closest(selectorOrParentFallback)
+		// 			)
+		// 		){
+		// 			handler(event);
+		// 		}
+		// 	},
+		// 	true
+		// );	
+	}
+	
+
+
+	static translateToNative(event){
+
 	}
 
 	static trigger(el, evt, customEventOpts) {
@@ -123,7 +170,7 @@ class FwEvent extends FwDataHelper {
 			event = document.createEvent('HTMLEvents');
 			event.initEvent(evt, true, false);
 		} else {
-			customEventOpts = customEventOpts || {};
+			customEventOpts = customEventOpts || false;
 			if(customEventOpts) {
 				event = new CustomEvent(evt, customEventOpts);
 			}else{

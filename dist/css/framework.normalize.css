@@ -1,5 +1,4 @@
 /*! basic styling shits only bitch */
-/* heading bars or rules from tiny rectangles to long rules and what not. */
 /*** RESET BOIS ***/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -55,12 +54,37 @@ table {
   border-spacing: 0;
 }
 
+/* heading bars or rules from tiny rectangles to long rules and what not. */
+a:hover {
+  text-decoration: none;
+}
+[data-toggle] {
+  cursor: pointer;
+  -webkit-user-select: none !important;
+  /* Safari 3.1+ */
+  -moz-user-select: none !important;
+  /* Firefox 2+ */
+  -ms-user-select: none !important;
+  /* IE 10+ */
+  user-select: none !important;
+  /* Standard syntax */
+}
+[data-toggle] * {
+  pointer-events: none !important;
+}
+[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+[disabled] * {
+  pointer-events: none;
+}
 :root {
   --fw-br-xxs: 400px;
-  --fw-br-xs: 600px;
-  --fw-br-sm: 1200px;
-  --fw-br-md: 1600px;
-  --fw-br-lg: 1800px;
+  --fw-br-xs: 767px;
+  --fw-br-sm: 1199px;
+  --fw-br-md: 1599px;
+  --fw-br-lg: 1799px;
   --fw-br-mobile-max: sm;
   --fw-font-primary: Roboto, Helvetica, Arial, sans-serif;
   --fw-font-accent: Georgia, Times, serif;
@@ -296,6 +320,13 @@ html.theme-inverse,
   --fw-theme-background-contrast: var(--fw-color-base);
 }
 
+*.theme-inverse,
+:root,
+html, body {
+  color: var(--fw-theme-color);
+  background-color: var(--fw-theme-background);
+}
+
 /*** SCAFFOLDING ***/
 html, body {
   width: 100%;
@@ -305,17 +336,6 @@ html, body {
   font-family: var(--fw-font-primary);
   font-weight: 400;
   min-height: 100vh;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-*.theme-inverse,
-:root,
-html, body {
-  color: var(--fw-theme-color);
-  background-color: var(--fw-theme-background);
 }
 
 .body-no-scroll {
@@ -381,7 +401,7 @@ body {
   text-align: left;
 }
 body.body-nav-sticky-offset {
-  padding-top: 4.6875rem;
+  padding-top: 3.75rem;
 }
 body:not(.body-loaded) *, body:not(.body-loaded) *:before, body:not(.body-loaded) *:after {
   transition: none !important;
@@ -448,29 +468,6 @@ a {
 }
 
 /* to toggley bitches kids  */
-*[data-toggle] {
-  cursor: pointer;
-  -webkit-user-select: none !important;
-  /* Safari 3.1+ */
-  -moz-user-select: none !important;
-  /* Firefox 2+ */
-  -ms-user-select: none !important;
-  /* IE 10+ */
-  user-select: none !important;
-  /* Standard syntax */
-}
-*[data-toggle] * {
-  pointer-events: none !important;
-}
-
-[disabled] {
-  cursor: not-allowed !important;
-  opacity: 0.5;
-}
-[disabled] * {
-  pointer-events: none;
-}
-
 /*** TYPOGRAPHY ***/
 /* special */
 .special-primary {
@@ -480,11 +477,11 @@ a {
   font-weight: 300;
   text-transform: none;
   font-style: normal;
-  margin-bottom: 0.3571428571em;
-  margin-top: 0.3571428571em;
+  margin-bottom: 0.1785714286em;
+  margin-top: 0.1785714286em;
   display: block;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .special-primary {
     font-size: 3em;
   }
@@ -500,7 +497,7 @@ a {
   margin-top: 0.75em;
   display: block;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .special-secondary {
     font-size: 2em !important;
   }
@@ -513,11 +510,11 @@ a {
   font-weight: 300;
   text-transform: none;
   font-style: normal;
-  margin-bottom: 1.2em;
-  margin-top: 1.2em;
+  margin-bottom: 0.8em;
+  margin-top: 0.8em;
   display: block;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .lead {
     font-size: 1.25em;
   }
@@ -606,13 +603,6 @@ a:hover, a:focus, a.focus, .a:hover, .a:focus, .a.focus {
   text-decoration: underline;
   color: var(--fw-color-secondary);
 }
-a:hover, a:hover *, a:focus, a:focus *, a.focus, a.focus *, .a:hover, .a:hover *, .a:focus, .a:focus *, .a.focus, .a.focus * {
-  cursor: pointer;
-}
-a:hover *, a:focus *, a.focus *, .a:hover *, .a:focus *, .a.focus * {
-  text-decoration: inherit;
-  text-decoration-color: currentColor;
-}
 
 p,
 .p,
@@ -622,15 +612,6 @@ address,
 pre,
 dl {
   margin-bottom: 1.25em;
-}
-
-p,
-.p,
-ul,
-ol,
-address,
-pre,
-dl {
   display: block;
 }
 
@@ -648,6 +629,7 @@ ol, ul, dd {
 
 ol.unstyled, ol.unstyled li, ol.inline, ol.inline li, ul.unstyled, ul.unstyled li, ul.inline, ul.inline li {
   padding-left: 0;
+  margin-top: 0;
 }
 ol.unstyled li:before, ol.inline li:before, ol.style-none li:before, ul.unstyled li:before, ul.inline li:before, ul.style-none li:before {
   content: none !important;
@@ -734,7 +716,7 @@ blockquote {
   font-weight: 300;
   text-transform: none;
   font-style: normal;
-  padding-left: 1.25em;
+  padding-left: 0.625em;
   margin-bottom: 1.25em;
   margin-top: 1.25em;
   padding-bottom: 0.625em;
@@ -762,11 +744,11 @@ pre, code, kbd, tt {
 }
 
 code, kbd, tt {
-  padding: 0.078125em;
+  padding: 0.0390625em;
 }
 
 pre {
-  padding: 0.625em;
+  padding: 0.3125em;
 }
 pre * {
   border: 0;
@@ -811,7 +793,7 @@ sub {
 
 var {
   font-style: italic;
-  font-family: Times, serif;
+  font-family: "Georgia", Times, serif;
 }
 
 hr {

@@ -27,7 +27,7 @@ $prefix: '.highlight';
 	&:active,
 	&.focus,
 	&.active {
-		text-decoration: get-anchor-dec(true);
+		@include dump-styles(no-text-decoration-hover);
 		color: $highlight-color;
 	}
 

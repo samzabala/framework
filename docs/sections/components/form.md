@@ -896,6 +896,109 @@ Defaults to `false`
 Enable skipping through years
 
 
+
+### Javascript
+
+#### Functions
+
+##### **`fw.Form.Calendar(element,valueToRender,args)`**
+
+Make a new boi by going `const formCalendar = new fw.Form.Calendar(element,valueToRender,args)`
+
+
+`element` is the element itself. if blank, it does nothing
+
+`valueToRender` is the value the input ui will use to base the render of the calendar. falls back to the `element.value`
+
+`args` is the opts available
+```js
+//defaults
+{
+	class: '',
+	startDay: {
+		value: 0,
+		parser: (value)=>{
+			return parseInt(value) % 7
+		}
+	}, // su,mo,tu,we,th,fr,sa,
+	min: null,
+	max: null,
+	yearSpan: {
+		value: 0,
+		parser: (value)=>{
+			if (parseInt(value) <= 0) {
+				value = 0;
+			}
+
+			return value;
+		}
+	},
+	disabledDates: '', //yyyy-mm-dd,weekends,past,future
+	textInput: false,
+	monthSkip: true,
+	yearSkip: false,
+}
+```
+
+
+##### **`formCalendar.update(newValue,valueToRender)`**
+
+updates the values and renders the ui
+
+
+`newValue` is the value for the input falls back to the `element.value`
+
+`valueToRender` is the value the input ui will render. falls back to the `element.value`
+
+
+##### **`formCalendar.validates(date,rangeOnly)`**
+
+validates the value based on the instance's settings and overall stup of exiostence
+
+`date` date to check
+
+
+`rangeOnly` whether or not to check against disabled dates and weekends set by args
+
+##### **`formCalendar.init(element)`**
+
+initializes ui
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+##### **`fw.Form.Calendar.initAll()`**
+
+initializes all uis
+
+#### **`fw.Form.Calendar.configDefaults`**
+
+returns obj with component arg defaults
+
+#### **`fw.Form.Calendar.initListeners()`**
+
+initializes all event listeners
+
+#### **`formCalendar.args`**
+
+returns obj with component set args
+
+#### Events
+
+* `click.fw.formCalendar` - happens on `triggerer`
+* `keyup.fw.formCalendar` - happens on `triggerer`
+* `change.fw.formCalendar` - happens on `triggerer`
+* `before_init.fw.formCalendar` - happens on `document` before running functions to set up
+* `init.fw.formCalendar` - happens on `document` when running functions to set up
+* `after_init.fw.formCalendar` - happens on `document` after running functions to set up
+* `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
+* `render.fw.formCalendar` - happens on `element` when running functions to create the ui markup and modify the element
+* `after_render.fw.formCalendar` - happens on `element` after running functions to create the ui markup and modify the element
+
+* `before_update.fw.button` - happens on `element` before running the update method
+* `update.fw.formCalendar` - happens on `element` when running the update method
+* `after_update.fw.formCalendar` - happens on `element` after running the update method
+
+
 ## Tags
 
 Imagine inputting in a text field some tags separated by commas... but gucci :')
@@ -1028,5 +1131,98 @@ if enabled, allows floe of tags intoo multiple lines like a textarea
 ```html
 <input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-multiple-lines="true" />
 ```
+
+
+### Javascript
+
+#### Functions
+
+##### **`fw.Form.Tags(element,valueToRender,args)`**
+
+Make a new boi by going `const formTags = new fw.Form.Tags(element,valueToRender,args)`
+
+
+`element` is the element itself. if blank, it does nothing
+
+`valueToRender` is the value the input ui will render. falls back to the `element.value`
+
+`args` is the opts available
+```js
+//defaults
+{
+	width: null,
+	filter: null,
+	onKeyUp: null,
+	multipleLines: false,
+}
+```
+
+
+##### **`formTags.update(newValue,allowFilter,valueToRender,inputText)`**
+
+updates the values and renders the ui
+
+`newValue` is the value for the input falls back to the `element.value`
+
+`allowFilter` whether or not to allow filter on render
+
+`valueToRender` is the value the input ui will render. falls back to the `element.value`
+
+`inputText` is the contents of the input field
+
+##### **`formTags.focus(disableNative)`**
+
+render ui as focused
+
+`disableNative` is whether or not to enable the native method
+
+##### **`formTags.blur(disableNative)`**
+
+render ui as blurred
+
+`disableNative` is whether or not to enable the native method
+
+##### **`formTags.init(element)`**
+
+initializes ui
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+##### **`fw.Form.Tags.initAll()`**
+
+initializes all uis
+
+#### **`fw.Form.Tags.configDefaults`**
+
+returns obj with component arg defaults
+
+#### **`fw.Form.Tags.initListeners()`**
+
+initializes all event listeners
+
+#### **`formTags.args`**
+
+returns obj with component set args
+
+
+#### Events
+
+* `click.fw.formTags` - happens on `triggerer`
+* `keydown.fw.formTags` - happens on `triggerer`
+* `blur.fw.formTags` - happens on `triggerer`
+* `paste.fw.formTags` - happens on `triggerer`
+* `change.fw.formTags` - happens on `triggerer`
+* `before_init.fw.formTags` - happens on `document` before running functions to set up
+* `init.fw.formTags` - happens on `document` when running functions to set up
+* `after_init.fw.formTags` - happens on `document` after running functions to set up
+* `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
+* `render.fw.formTags` - happens on `element` when running functions to create the ui markup and modify the element
+* `after_render.fw.formTags` - happens on `element` after running functions to create the ui markup and modify the element
+
+* `before_update.fw.button` - happens on `element` before running the update method
+* `update.fw.formTags` - happens on `element` when running the update method
+* `after_update.fw.formTags` - happens on `element` after running the update method
+
+
 
 [Back to TOC](../../../readme.md)

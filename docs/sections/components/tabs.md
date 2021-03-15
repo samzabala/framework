@@ -77,13 +77,13 @@ Best practice for accordions to work seamlessly
 ```html
 <div class="accordion-group accordion-group-no-close">
 	<ul class="tabs	tabs-responsive">
-		<li class="tab open" data-toggle="accordion" data-href="#activity-log-today"> 
+		<li class="tab open" data-toggle-accordion data-href="#activity-log-today"> 
 			<a href="#activity-log-today" >Today's Activity</a>
 		</li>
-		<li class="tab" data-toggle="accordion" data-href="#activity-log-week">
+		<li class="tab" data-toggle-accordion data-href="#activity-log-week">
 			<a href="#activity-log-week" >Weekly Timesheet</a>
 		</li>
-		<li class="tab tab-disabled"  data-toggle="accordion" data-href="#porn">
+		<li class="tab tab-disabled"  data-toggle-accordion data-href="#porn">
 			<a href="#porn">Disabled huhu can't click me boi</a>
 		</li>
 	</ul>
@@ -104,5 +104,38 @@ Best practice for accordions to work seamlessly
 ```
 
 [See accordion documentation](../../../docs/sections/components/accordion.md)
+
+
+
+## Javascript
+
+### Functions
+
+#### **`fw.Tabs(element)`**
+
+Make a new boi by going `const tabs = new fw.Tabs(element)`
+
+
+`element` is the `.tabs` itself. if blank, does nothing
+
+#### **`tabs.activate(target,element)`**
+
+duh
+
+`target` is the  tab item to activate. if blank, does nothing
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`fw.Tabs.initListeners()`**
+
+initializes all event listeners
+
+### Events
+
+* `click.fw.tabs` - happens on `triggerer`
+
+* `before_activate.fw.tabs` - happens on `element` before activate
+* `activate.fw.tabs` - happens on `element` when activate
+* `after_activate.fw.tabs` - happens on `element` after activate
 
 [Back to TOC](../../../readme.md)

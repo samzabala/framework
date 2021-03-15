@@ -16,6 +16,21 @@ $prefix: '.input';
 		}
 	}
 
+	&-round {
+
+		& {
+			border-radius: $calculated-input-height * .5;
+		}
+
+		&-large {
+			border-radius: $calculated-input-height-large  * .5;
+		}
+
+		&-small {
+			border-radius: $calculated-input-height-small * .5;
+		}
+	}
+
 	&-in-nav {
 		align-self: center;
 
@@ -90,7 +105,7 @@ $prefix: '.input';
 		&-control {
 
 
-			@extend %for-display-none;
+			@include dump-styles(display-none-important);
 			//fallback
 			height:0!important;
 			width:0!important;
@@ -98,6 +113,7 @@ $prefix: '.input';
 	
 		}
 	}
+	
 }
 
 	
@@ -125,14 +141,14 @@ $prefix: '.input';
 
 	&-disabled,
 	&[disabled] {
-		@extend %for-disabled !optional;
+		@include dump-styles(disabled);
 
 	}
 
 	&-disabled,
 	&[disabled],
 	&-disabled & {
-		@extend %for-no-shadow-important !optional;
+		@include dump-styles(no-box-shadow-important);
 	}
 
 	&-in-group {

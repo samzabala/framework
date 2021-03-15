@@ -1,7 +1,5 @@
 
 
-const FwCore = {};
-
 const _dataobj = (() => {
 	const storage = {};
 	let id = 1;
@@ -43,7 +41,7 @@ const _dataobj = (() => {
 	}
 })()
 
-FwCore.Data = {
+const DataHandler = {
 	set(elm, key, data) {
 	_dataobj._set(elm, key, data)
 	},
@@ -56,32 +54,4 @@ FwCore.Data = {
 }
 
 
-FwCore.settings =
-	FwCore.settings
-	|| {};
-
-FwCore.settings.prefix = 'fw';
-
-FwCore.settings.lazyLoad =
-	FwCore.settings.lazyLoad
-	|| true;
-FwCore.settings.initializeModal =
-	FwCore.settings.initializeModal
-	|| true;
-FwCore.settings.initializeBoard =
-	FwCore.settings.initializeBoard
-	|| true;
-FwCore.settings.initializeAccordion =
-	FwCore.settings.initializeAccordion
-	|| true;
-FwCore.settings.dynamicHash =
-	FwCore.settings.dynamicHash
-	|| true;
-FwCore.settings.uiClass =
-	FwCore.settings.uiClass
-	|| `${FwCore.settings.prefix}-ui`; //for styles
-FwCore.settings.uiJsClass =
-	FwCore.settings.uiJsClass
-	|| FwCore.settings.uiClass.replace('-','_'); // for scripting events and shit
-
-export default FwCore;
+export default DataHandler;

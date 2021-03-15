@@ -1,13 +1,10 @@
-
-import FwCore from './util/core.js';
-import {FwFnsQ} from './util/initiator.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwDom from './data-helper/dom.js';
 import FwString from './data-helper/string.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggled,UiChangeHash } from './util/ui.js';
 
 
 const NAME = 'tabs';
@@ -16,7 +13,7 @@ const COMPONENT_CHILDREN_CLASS = 'tab';
 const COMPONENT_CHILDREN_TAG = 'li';
 const ACTIVATED_CLASS = `active`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
@@ -32,23 +29,34 @@ class Tabs extends FwComponent {
 
 	}
 
-	UiChildren(){
-		return super.UiEl().querySelectorAll(`.${COMPONENT_CHILDREN_CLASS}`);
+	UIChildren(){
+		return super.UIEl().querySelectorAll(`.${COMPONENT_CHILDREN_CLASS}, ${COMPONENT_CHILDREN_TAG}`);
+	}
+
+	UIActive(){
+		return super.UIEl().querySelector(`.${COMPONENT_CHILDREN_CLASS}.${ACTIVATED_CLASS}, ${COMPONENT_CHILDREN_TAG}.${ACTIVATED_CLASS}`);
 	}
 
 	target(element){
 		if(element) return new FwDom(element).closest(`.${COMPONENT_CHILDREN_CLASS}`);
 	}
 
-	activate(target){
+	activate(target,elem){
+		const element = elem ?
+			super.UIEl(elem)
+			: super.UIEl();
+			
 		const theTab = this.target(target);
 
 		if(!theTab){
 			return false;
 		}
 
+		FwEvent.trigger(element,EVENT_BEFORE_ACTIVATE);
+
 		if (!theTab.classList.contains(`${ACTIVATED_CLASS}`)) {
-			const triggererSiblings = frameWork.getSiblings(
+			FwEvent.trigger(element,EVENT_ACTIVATE);
+			const triggererSiblings = FwDom.getSiblings(
 				theTab
 			);
 			triggererSiblings
@@ -65,13 +73,15 @@ class Tabs extends FwComponent {
 			theTab.classList.add(`${ACTIVATED_CLASS}`);
 		}
 
+		FwEvent.trigger(element,EVENT_AFTER_ACTIVATE);
+
 	}
 
 
 	static handleClick() {
 		return (e) => {
 
-			if (frameWork.isDisabled(triggerer)) {
+			if (FwComponent.isDisabled(e.target)) {
 				e.preventDefault();
 
 			} else {
@@ -83,7 +93,7 @@ class Tabs extends FwComponent {
 
 	static initListeners(){
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
 			`.${COMPONENT_CLASS} > ${COMPONENT_CHILDREN_TAG} > *, .${COMPONENT_CHILDREN_CLASS}, .${COMPONENT_CHILDREN_CLASS} > *`,
 			Tabs.handleClick()
@@ -94,44 +104,4 @@ class Tabs extends FwComponent {
 
 export default Tabs;
 
-Tabs.initListeners();
-
-
-
-
-
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'.tab, .tab > *',
-	(e) => {
-		const triggerer = e.target;
-
-		if (frameWork.isDisabled(triggerer)) {
-			e.preventDefault();
-
-		} else {
-			const theTab = triggerer.closest('.tab');
-
-			if (theTab) {
-				if (!theTab.classList.contains('active')) {
-					const triggererSiblings = frameWork.getSiblings(
-						theTab
-					);
-					triggererSiblings
-						.filter((sibling) => {
-							return (
-								sibling.matches('.tab')
-								|| sibling.matches('li')
-							);
-						})
-						.forEach((sibling) => {
-							sibling.classList.remove('active');
-						});
-
-					theTab.classList.add('active');
-				}
-			}
-		}
-	}
-);
+Tabs.initListeners(); 

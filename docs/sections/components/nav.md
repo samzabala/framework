@@ -15,7 +15,7 @@ Here's a basic markup
 			</a>
 		</li>
 		<li class="nav-item">
-			<span data-toggle="dropdown">
+			<span data-toggle-dropdown>
 				<img class="nav-icon" data-src="icon-projects.svg">
 				<span class="nav-item-text">Item but with dropdown</span>
 				<ul class="dropdown" id="nav-demo-dropdown" >

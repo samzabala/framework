@@ -1,16 +1,16 @@
-import FwCore from './util/core.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggleGroup } from './util/ui.js';
+import { UIToggleGroup } from './util/ui.js';
 
 
 const NAME = 'btn';
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
@@ -29,8 +29,8 @@ class Button extends FwComponent {
 
 	toggle(elem){
 		const element = elem ?
-			super.UiEl(elem)
-			: this._element;
+			super.UIEl(elem)
+			: this.element;
 
 		if(!element){
 			return;
@@ -38,7 +38,7 @@ class Button extends FwComponent {
 
 		FwEvent.trigger(element,EVENT_BEFORE_TOGGLE);
 		FwEvent.trigger(element,EVENT_TOGGLE);
-		UiToggleGroup(element, NAME);
+		UIToggleGroup(element, NAME);
 		FwEvent.trigger(element,EVENT_AFTER_TOGGLE);
 	}
 

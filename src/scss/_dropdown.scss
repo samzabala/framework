@@ -1,4 +1,6 @@
-
+[data-toggle-dropdown]{
+	@include dump-styles(data-toggle);
+}
 
 $prefix: '.dropdown';
 #{$prefix} {
@@ -17,6 +19,28 @@ $prefix: '.dropdown';
 	color: $nav-color;
 	transform-origin: center center;
 	transform-style: preserve-3d;
+
+	&#{$prefix}-small {
+		@include create-popper-styles(
+			null,
+			null,
+			null,
+			null,
+			$dropdown-small-gutter-x,
+			$dropdown-small-gutter-y,
+		);
+	}
+
+	&#{$prefix}-large {
+		@include create-popper-styles(
+			null,
+			null,
+			null,
+			null,
+			$dropdown-large-gutter-x,
+			$dropdown-large-gutter-y,
+		);
+	}
 
 	&[data-dropdown-max-height]{
 		overflow-y:auto;
@@ -44,7 +68,7 @@ $prefix: '.dropdown';
 	}
 
 	a,
-	[data-toggle="dropdown"] {
+	[data-toggle-dropdown] {
 		color:inherit;
 	}
 

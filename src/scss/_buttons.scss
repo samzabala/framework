@@ -16,6 +16,21 @@ $prefix: '.btn';
 				border-radius: $btn-border-radius-large;
 			}
 		}
+
+		&-round {
+
+			& {
+				border-radius: $calculated-btn-height * .5;
+			}
+	
+			&-large {
+				border-radius: $calculated-btn-height-large  * .5;
+			}
+	
+			&-small {
+				border-radius: $calculated-btn-height-small * .5;
+			}
+		}
 	}
 	
 	
@@ -49,13 +64,14 @@ $prefix: '.btn';
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
-
-			.badge,
-			.symbol {
-				&:last-child {
+			
+			// .symbol,
+			.badge
+			{
+				&:last-child:not(:first-child) {
 					margin-left: .25em;
 				}
-				&:first-child {
+				&:first-child:not(:last-child) {
 					margin-right: .25em;
 				}
 			}
@@ -91,6 +107,7 @@ $prefix: '.btn';
 			position:relative;
 			max-width:100%;
 			flex: 0 0 auto; // ??
+			border-radius:inherit;
 
 			&:hover,
 			&:active,
@@ -102,7 +119,7 @@ $prefix: '.btn';
 			}
 
 			& {
-				@extend %for-no-shadow-important !optional;
+				@include dump-styles(no-box-shadow-important);
 			}
 		}
 		
@@ -126,7 +143,7 @@ $prefix: '.btn';
 			}
 
 			#{$prefix}-no-radius & {
-				@extend %for-no-radius !optional;
+				@include dump-styles(no-border-radius);
 			}
 
 			#{$prefix}-group & {
@@ -134,16 +151,20 @@ $prefix: '.btn';
 			}
 
 			&-disabled {
-				@extend %for-disabled !optional;
+				@include dump-styles(disabled);
 			}
 			
 			&-disabled,
 			&-disabled & {
-				@extend %for-no-shadow !optional;
+				@include dump-styles(no-box-shadow);
 			}
 			
 
 		}
+
+	
+
+
 
 	@at-root %for-btn-symbol {
 
@@ -193,7 +214,7 @@ $prefix: '.btn';
 			-moz-background-clip: padding;
 			-webkit-background-clip: padding;
 			background-clip: padding-box;
-			text-decoration: get-anchor-dec();
+			@include dump-styles(no-text-decoration);
 			
 	
 			&:hover,
@@ -202,7 +223,7 @@ $prefix: '.btn';
 			&:active,
 			&.active {
 				color:inherit;
-				text-decoration:  get-anchor-dec(true);
+				@include dump-styles(no-text-decoration-hover);
 				&:not(.btn-no-interaction) {
 					box-shadow: $btn-box-shadow-hover;
 				}
@@ -217,8 +238,8 @@ $prefix: '.btn';
 			}
 
 			&-in-nav {
-				@extend %for-no-radius !optional;
-				@extend %for-no-shadow-important !optional;
+				@include dump-styles(no-border-radius);
+				@include dump-styles(no-box-shadow-important);
 				height: #{ $calculated-nav-height }!important;
 			}
 		}
@@ -239,15 +260,29 @@ $prefix: '.btn';
 
 			.nav > & {
 				@extend %for-btn-and-group-in-nav;
-				
 			}
 
+			&#{$prefix}-round {
+				@extend %for-btn-global-round;
+	
+	
+				&#{$prefix}-large {
+					@extend %for-btn-global-round-large !optional;
+				}
+	
+				&#{$prefix}-small {
+					@extend %for-btn-global-round-small !optional;
+				}
+			}
+
+			
+
 			&#{$prefix}-no-radius {
-				@extend %for-no-radius !optional;
+				@include dump-styles(no-border-radius);
 			}
 			
 			&#{$prefix}-no-shadow {
-				@extend %for-no-shadow-important !optional;
+				@include dump-styles(no-box-shadow-important);
 			}
 
 			&#{$prefix}-block {
@@ -405,7 +440,11 @@ $prefix: '.btn';
 			@include create-btn-schemes($properties,$scheme);
 
 			@if $scheme == 'link' or str-index($scheme, '-outline'){
-				@extend %for-no-shadow;
+				@include dump-styles(no-box-shadow-important);
+			}
+
+			@if str-index($scheme, '-glassy'){
+				backdrop-filter: blur(5px);
 			}
 		}
 		&#{&}-#{$scheme} {

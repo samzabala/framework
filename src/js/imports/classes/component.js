@@ -1,7 +1,6 @@
-import FwCore from '../util/core.js';
+import DataHandler from '../util/datahandler.js';
 import { DisableClasses } from '../util/validation.js';
-import FwDom from '../data-helper/dom.js';
-import { UiDynamicClass } from '../util/ui.js';
+import { UIDynamicClass } from '../util/ui.js';
 
 /*
 NAME
@@ -25,8 +24,8 @@ class FwComponent {
 			return
 		}
 
-		FwCore.Data.set(element, this.constructor.DATA_KEY, this);
-		this._element = element;
+		DataHandler.set(element, this.constructor.DATA_KEY, this);
+		this.element = element;
 
 		if(
 			typeof props === 'object'){
@@ -38,24 +37,24 @@ class FwComponent {
 	}
 
 	dispose() {
-		FwCore.Data.delete(this._element, this.constructor.DATA_KEY, this);
-		this._element = null;
+		DataHandler.delete(this.element, this.constructor.DATA_KEY, this);
+		this.element = null;
 	}
 
 	static getInstance(element) {
-		return FwCore.Data.get(element, this.DATA_KEY);
+		return DataHandler.get(element, this.DATA_KEY);
 	}
 
-	UiEl(elem){
+	UIEl(elem){
 		if(elem){
-			this._resetUiEl(elem);
+			this._resetUIEl(elem);
 		}
-		return this._element;
+		return this.element;
 	}
 
-	_resetUiEl(element){
+	_resetUIEl(element){
 		if(element){
-			this._element = element
+			this.element = element
 		}else{
 			throw new Error('Needs a valid element to reset component UI root element');
 		}
@@ -72,6 +71,20 @@ class FwComponent {
 			if (typeof fn === 'function') {
 				eval(callback);
 			}
+		}
+	}
+
+	_setInitState(beforeEvent,happeningEvent,afterEvent,callback){
+		
+		callback = callback || false;
+
+		if(callback){
+			FwEvent.trigger(element,beforeEvent);
+			FwEvent.trigger(element,happeningEvent);
+			
+			callback(this.element);
+
+			FwEvent.trigger(element,afterEvent);
 		}
 	}
 
@@ -145,7 +158,7 @@ class FwComponent {
 		return toReturn;
 	}
 	static isDynamic(elem){	
-		return elem.classList.contains(UiDynamicClass)
+		return elem.classList.contains(UIDynamicClass)
 	} 
 
 	

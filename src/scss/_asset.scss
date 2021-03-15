@@ -780,7 +780,7 @@ $prefix: '.asset';
 			& > img,
 			& > #{$prefix}-thumbnail-image {
 				z-index:1;
-				@extend %for-fit-image-cover-img;
+				@include dump-styles(fit-image-cover-img);
 			}
 		}
 

@@ -41,7 +41,7 @@ $prefix: '.symbol';
 		// margin: -.5em 0;
 		// display: inline-block;
 
-		.body-loading & {
+		body:not(.body-loaded) & {
 			color: transparent!important;
 		}
 	}

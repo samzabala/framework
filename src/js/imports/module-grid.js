@@ -1,6 +1,5 @@
-
-import FwCore from './util/core.js';
-import {FwFnsQ} from './util/initiator.js';
+import Initiator from './core/initiator.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwDom from './data-helper/dom.js';
@@ -15,7 +14,7 @@ const NAME = 'moduleGrid';
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const COMPONENT_CHILDREN_CLASS = `module`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 
@@ -71,23 +70,13 @@ const PROPERTIES_CHILDREN = [
 
 
 class ModuleGrid extends FwComponent {
-	constructor(element){
-		super(element);
-	}
 
 	static get DATA_KEY(){
 		return DATA_KEY;
 	}
 
-	get UiChildren () {
-		return super.UiEl().querySelectorAll(`.${COMPONENT_CHILDREN_CLASS}`);
-	}
-
-	render(elem){
-		
-		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+	get UIChildren () {
+		return super.UIEl().querySelectorAll(`.${COMPONENT_CHILDREN_CLASS}`);
 	}
 
 	_loopProps(block,props){
@@ -144,8 +133,8 @@ class ModuleGrid extends FwComponent {
 
 	renderGrid(elem){
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 			FwEvent.trigger(elem,EVENT_BEFORE_RENDER_GRID);
 			FwEvent.trigger(elem,EVENT_RENDER_GRID);
@@ -157,7 +146,7 @@ class ModuleGrid extends FwComponent {
 
 	renderBlocks(){
 
-		this.UiChildren.forEach((child)=>{
+		this.UIChildren.forEach((child)=>{
 
 			FwEvent.trigger(child,EVENT_BEFORE_RENDER_BLOCK);
 			FwEvent.trigger(child,EVENT_RENDER_BLOCK);
@@ -170,14 +159,14 @@ class ModuleGrid extends FwComponent {
 
 	render(elem){
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 
 			FwEvent.trigger(elem,EVENT_BEFORE_RENDER);
 			FwEvent.trigger(elem,EVENT_RENDER);
 
-			this.renderGrid(elem);
+			this.renderGrid(element);
 			this.renderBlocks();
 		
 			FwEvent.trigger(elem,EVENT_AFTER_RENDER);
@@ -186,6 +175,7 @@ class ModuleGrid extends FwComponent {
 
 	static handleUniversal() {
 		return () => {
+
 
 			FwEvent.trigger(document,EVENT_BEFORE_INIT);
 			FwEvent.trigger(document,EVENT_INIT);
@@ -203,8 +193,8 @@ class ModuleGrid extends FwComponent {
 	}
 
 	static initListeners(){
-		FwFnsQ.on_ready = ModuleGrid.handleUniversal();
-		FwFnsQ.on_resize = ModuleGrid.handleUniversal();
+		Initiator.Q.on_ready = ModuleGrid.handleUniversal();
+		Initiator.Q.on_resize = ModuleGrid.handleUniversal();
 	}
 }
 

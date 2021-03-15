@@ -1,18 +1,17 @@
-
-import FwCore from './util/core.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggled } from './util/ui.js';
+import { UIToggled } from './util/ui.js';
 
 
 const NAME = 'alert';
 const TOGGLE_MODE = `${NAME}-close`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
@@ -31,8 +30,8 @@ class Alert extends FwComponent {
 
 	close(elem){
 		const element = elem ?
-			super.UiEl(elem)
-			: this._element;
+			super.UIEl(elem)
+			: this.element;
 
 		
 		if(!element){
@@ -53,7 +52,7 @@ class Alert extends FwComponent {
 		if (selector.length) {
 			selector.forEach((instance) => {
 				if (
-					instance.querySelectorAll('[data-toggle="alert-close"]').length
+					instance.querySelectorAll('[data-toggle-alert-close]').length
 					|| instance.classList.contains(`${NAME}-closeable`)
 				) {
 					const alertInstance = new Alert(instance);
@@ -69,7 +68,7 @@ class Alert extends FwComponent {
 			e.preventDefault();
 
 			if(!FwComponent.isDisabled(e.target)){
-				const alert = new Alert( UiToggled(TOGGLE_MODE,e.target) );
+				const alert = new Alert( UIToggled(TOGGLE_MODE,e.target) );
 				alert.close();
 			}
 		}
@@ -89,16 +88,16 @@ class Alert extends FwComponent {
 	static initListeners(){
 		
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`*[data-toggle="${TOGGLE_MODE}"]`,
+			`*[data-toggle-${TOGGLE_MODE}]`,
 			Alert.handleClose()
 		);
 		
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`*[data-toggle="${TOGGLE_MODE}-all"]`,
+			`*[data-toggle-${TOGGLE_MODE}-all]`,
 			Alert.handleCloseAll()
 		);
 	}

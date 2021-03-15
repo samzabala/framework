@@ -11,6 +11,17 @@ $prefix: '.badge';
 	border: $calculated-badge-border-width solid $badge-border-color;
 	box-shadow: $badge-box-shadow;
 
+	&-origin {
+		position: relative;
+	}
+
+	&#{&}-latch {
+		top: 0;
+		right:0;
+		transform: translate(50%, -50%);
+		position: absolute;
+	}
+
 	.theme-inverse & {
 		border-color: $badge-border-color-inverse;
 	}
@@ -25,11 +36,10 @@ $prefix: '.badge';
 		height: $calculated-badge-size-small;
 		border-radius: calc(#{$calculated-badge-size-small} * .5);
 	}
-
-
+	
 	@each $tag,$color in $calculated-brand-color-declarations-for-components {
 		&-#{$tag} {
-			@extend %for-background-#{$tag} !optional;
+			background-color: $color;
 		}
 	}
 

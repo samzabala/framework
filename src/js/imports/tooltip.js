@@ -1,340 +1,546 @@
-frameWork.createToolTip = (triggerer) => {
+import Initiator from './core/initiator.js';
+import Settings from './core/settings.js';
+import {Palette} from './util/validation.js';
 
-	if (triggerer) {
-		frameWork.destroyToolTip();
-		frameWork.toolTip = frameWork.toolTip || {};
+import FwEvent from './data-helper/event.js';
+import FwString from './data-helper/string.js';
 
-		const arr = {
-			placement:
-				triggerer.getAttribute('data-tooltip-placement'),
-			badge:
-				triggerer.getAttribute('data-tooltip-badge'),
-			badgeBg:
-				triggerer.getAttribute('data-tooltip-badge-background'),
-			badgeSize:
-				triggerer.getAttribute('data-tooltip-badge-size'),
-			content:
-				triggerer.getAttribute('data-tooltip-content'),
-			classes:
-				triggerer.getAttribute('data-tooltip-classes'),
-			centerX:
-				triggerer.getAttribute('data-tooltip-center-x'),
-			centerY:
-				triggerer.getAttribute('data-tooltip-center-y'),
-			x:
-				triggerer.getAttribute('data-tooltip-x'),
-			y:
-				triggerer.getAttribute('data-tooltip-y'),
-			width:
-				triggerer.getAttribute('data-tooltip-width'),
-			allowInteraction:
-				triggerer.getAttribute('data-tooltip-allow-interaction'),
-		};
+import FwComponent from './classes/component.js';
 
-		const defaults = {
+const NAME = 'tooltip';
+const TOGGLE_MODE_CLICK = `${NAME}-click`;
+const TOGGLE_MODE_HOVER = `${NAME}-hover`;
+const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
+const COMPONENT_CUSTOM_WIDTH_CLASS = `${COMPONENT_CLASS}-has-custom-width`;
+const COMPONENT_PURGER_CLASS = `${COMPONENT_CLASS}-purger`;
+const COMPONENT_ALLOW_INTERACTION_CLASS = `${COMPONENT_CLASS}-allow-interaction`;
+const ACTIVATED_CLASS = `active`;
+
+
+
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+
+const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_CLICK = `click${EVENT_KEY}`;
+	const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
+const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY}`;
+const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY}`;
+
+	const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
+	const EVENT_CREATE = `create${EVENT_KEY}`;
+	const EVENT_AFTER_CREATE = `after_create${EVENT_KEY}`;
+
+	const EVENT_BEFORE_DESTROY = `before_destroy${EVENT_KEY}`;
+	const EVENT_DESTROY = `destroy${EVENT_KEY}`;
+	const EVENT_AFTER_DESTROY = `after_destroy${EVENT_KEY}`;
+
+	const EVENT_BEFORE_POSITION = `before_position${EVENT_KEY}`;
+	const EVENT_POSITION = `position${EVENT_KEY}`;
+	const EVENT_AFTER_POSITION = `after_position${EVENT_KEY}`;
+
+	const CURRENT_TOOLTIP_INSTANCE = {
+		UI: null,
+		triggerer:null,
+		args: null
+	}
+
+class Tooltip extends FwComponent {
+	
+	constructor(triggerElement,args){
+
+		triggerElement = triggerElement || Tooltip.current.triggerer || false;
+
+		super(
+			triggerElement,
+			{
+				_customArgs: args
+					|| false
+			}
+		);
+	}
+
+	dispose() {
+		super.dispose();
+		this._customArgs = null;
+	}
+
+	static get current() {
+		return CURRENT_TOOLTIP_INSTANCE;
+	}
+
+	static set current(obj){
+		CURRENT_TOOLTIP_INSTANCE.UI = obj.UI;
+		CURRENT_TOOLTIP_INSTANCE.args = obj.args;
+		CURRENT_TOOLTIP_INSTANCE.triggerer = obj.triggerer;
+	}
+
+	get UICurrent(){
+		return Tooltip.current.UI;
+	}
+
+	static get configDefaults(){
+		return {
 			placement: 'left',
 			badge: false,
 			badgeBg: 'primary',
 			badgeSize: '',
 			classes: '',
+			inverse:false,
+			size: '',
 			content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
 			centerX: false,
 			centerY: false,
 			x: false,
 			y: false,
 			width: null,
-			allowInteraction: false,
-		};
-
-		const args = ParseArgs(arr, defaults);
-
-		const toolTip = document.createElement('div');
-		document.querySelector('body').appendChild(toolTip);
-
-		toolTip.className = `tooltip tooltip-${args.placement}
-			${args.width ? 'tooltip-has-custom-width' : ''}
-			${args.allowInteraction ? 'tooltip-allow-interaction' : ''}`;
-
-		if (args.width) {
-			toolTip.style.width = args.width;
+			allowInteraction: false
 		}
-
-		let ttHtml = '';
-
-		if (args.badge) {
-			ttHtml += `<span class="badge tooltip-badge`;
-			if (
-				args.badgeSize == 'small'
-				|| args.badgeSize == 'large'
-			) {
-				ttHtml += ` badge-${args.badgeSize}`;
-			}
-
-			if (Palette.includes(args.badgeBg)) {
-				ttHtml += ` badge-${args.badgeBg}`;
-			} else {
-				ttHtml += `" style="background-color:${args.badgeBg};`;
-			}
-
-			ttHtml += `"></span>`;
-		}
-
-		ttHtml += `<div class="tooltip-content ${args.classes}">${args.content}</div></div>`;
-
-		toolTip.innerHTML += ttHtml;
-
-		frameWork.toolTip.current = toolTip;
-		frameWork.toolTip.activeTriggerer = triggerer;
-		frameWork.toolTip.args = args;
-
-		toolTip.classList.add('active');
-
-		frameWork.positionToolTip();
 	}
-};
 
-//return origitit
-frameWork.getDefCoordsToolTip = (triggerer) => {
+	get args () {
+		
+		return FwComponent._parseArgs(
+			(this._customArgs
+				? this._customArgs
+				: {
+					placement:
+						super.UIEl().
+							getAttribute(`data-${NAME}-placement`),
+					badge:
+						super.UIEl().
+							getAttribute(`data-${NAME}-badge`),
+					badgeBg:
+						super.UIEl().
+							getAttribute(`data-${NAME}-badge-background`),
+					badgeSize:
+						super.UIEl().
+							getAttribute(`data-${NAME}-badge-size`),
+					classes:
+						super.UIEl().
+							getAttribute(`data-${NAME}-classes`),
+					content:
+						super.UIEl().
+							getAttribute(`data-${NAME}-content`),
+					inverse:
+						super.UIEl().
+							getAttribute(`data-${NAME}-inverse`),
+					size:
+						super.UIEl().
+							getAttribute(`data-${NAME}-size`),
+					centerX:
+						super.UIEl().
+							getAttribute(`data-${NAME}-center-x`),
+					centerY:
+						super.UIEl().
+							getAttribute(`data-${NAME}-center-y`),
+					x:
+						super.UIEl().
+							getAttribute(`data-${NAME}-x`),
+					y:
+						super.UIEl().
+							getAttribute(`data-${NAME}-y`),
+					width:
+						super.UIEl().
+							getAttribute(`data-${NAME}-width`),
+					allowInteraction:
+						super.UIEl().
+							getAttribute(`data-${NAME}-allow-interaction`)
+				}
+			),
+			Tooltip.configDefaults
+		);
+	}
 
-	if(frameWork.toolTip){
+	static get DATA_KEY(){
+		return DATA_KEY;
+	}
 
-		triggerer  = triggerer || frameWork.toolTip.activeTriggerer;
-		const args = frameWork.toolTip.args;
+	_markup(){
+		let html = '';
 
-		let triggererOrigin;
+		if (this.args.badge) {
+			html += `<span class="badge ${NAME}-badge`;
+				if (
+					this.args.badgeSize == 'small'
+					|| this.args.badgeSize == 'large'
+				) {
+					html += ` badge-${this.args.badgeSize}`;
+				}
 
-		if(triggerer){
-
-			let triggererProps = {
-				top:
-					triggerer.getBoundingClientRect().top + window.pageYOffset,
-				left:
-					triggerer.getBoundingClientRect().left + window.pageXOffset,
-				height:
-					triggerer.getBoundingClientRect().height,
-				width:
-					triggerer.getBoundingClientRect().width,
-			};
-
-			triggererOrigin = {
-				x: () => {
-					let toReturn =
-						triggererProps.left + triggererProps.width * 0.5; //top and bottom
-
-					if (!args.x) {
-						if (!args.centerX) {
-							switch (args.placement) {
-								case 'right':
-									toReturn =
-										triggererProps.left +
-										triggererProps.width;
-									break;
-								case 'left':
-									toReturn = triggererProps.left;
-									break;
-							}
-						}
-
-					} else {
-						toReturn = parseFloat(args.x);
-					}
-
-					return toReturn;
-				},
-
-				y: () => {
-					let toReturn =
-						triggererProps.top + triggererProps.height * 0.5; // left and right
-					if (!args.y) {
-						if (!args.centerY) {
-							switch (args.placement) {
-								case 'bottom':
-									toReturn =
-										triggererProps.top +
-										triggererProps.height;
-									break;
-								case 'top':
-									toReturn = triggererProps.top;
-									break;
-							}
-						}
-
-					} else {
-						toReturn = parseFloat(args.y);
-					}
-
-					return toReturn;
-				},
-			};
+				if (Palette.includes(this.args.badgeBg)) {
+					html += ` badge-${this.args.badgeBg}`;
+				} else {
+					html += `" style="background-color:${this.args.badgeBg};`;
+				}
+			html += `"></span>`;
 		}
 
-		return triggererOrigin;
+		html += `<div class="${NAME}-content ${this.args.classes}">${this.args.content}</div></div>`;
+
+		return html;
+	}
+
+	get elementOffset(){
+		const element = super.UIEl();
+
+		return {
+			top:
+				element.getBoundingClientRect().top + window.pageYOffset,
+			left:
+				element.getBoundingClientRect().left + window.pageXOffset,
+			height:
+				element.getBoundingClientRect().height,
+			width:
+				element.getBoundingClientRect().width,
+		}
+	}
+
+	get _pointWidth(){
+
+		let toReturn = parseFloat(
+			window
+				.getComputedStyle(Tooltip.current.UI, ':before')
+				.getPropertyValue('width')
+		);
+			
+			toReturn = Math.sqrt(toReturn * toReturn * 2) * 0.5;
+			isNaN(toReturn) && (toReturn = 15);
+
+		return toReturn;
+	}
+
+	get badge(){
+		if(!this.UICurrent){
+			return
+		}
+		return this.UICurrent.querySelector(`.${COMPONENT_CLASS}-badge`);
+	}
+
+	get width(){
+		return this.UICurrent.getBoundingClientRect().width;
+	}
+
+	get height(){
+		return this.UICurrent.getBoundingClientRect().height;
+	}
+
+	set width(val){
+		this.UICurrent.style.width = val;
+	}
+
+	set height(val){
+		this.UICurrent.style.height = val;
+	}
+
+	create(elem){
+		const element = elem ?
+			super.UIEl(elem)
+			: super.UIEl();
+
+		if(!element){
+			return
+		}
+
+		FwEvent.trigger(element,EVENT_BEFORE_CREATE);
+
+		this.destroy();
+
+		FwEvent.trigger(element,EVENT_CREATE);
+		
+		const tip = document.createElement('div');
+			document.body.appendChild(tip);
+
+		tip.className = `${COMPONENT_CLASS} ${COMPONENT_CLASS}-${this.args.placement}
+			${(this.args.width ? COMPONENT_CUSTOM_WIDTH_CLASS : '')}
+			${(this.args.allowInteraction ? COMPONENT_ALLOW_INTERACTION_CLASS : '')}
+			${(this.args.size ? `${COMPONENT_CLASS}-${this.args.size}` : '')}
+			${(this.args.inverse ? 'theme-inverse' : '')}`;
+
+		if (this.args.width) {
+			tip.style.width = this.args.width;
+		}
+
+		tip.innerHTML += this._markup();
+
+		Tooltip.current = {
+			UI: tip,
+			args: this.args,
+			triggerer: element
+		}
+
+		if (this.args.width) {
+			this.width = this.args.width;
+		}
+
+		tip.classList.add(ACTIVATED_CLASS);
+
+		this.position();
+
+		FwEvent.trigger(element,EVENT_AFTER_CREATE);
+		
+	}
+
+	destroy(){
+		const element = Tooltip.current.UI;
+
+		FwEvent.trigger(element,EVENT_BEFORE_DESTROY);
+
+		if(!element){
+			return;
+		}
+
+		FwEvent.trigger(element,EVENT_DESTROY);
+
+		element
+			.parentNode.removeChild(element);
+	
+		Tooltip.current = {
+			UI: false,
+			args: false,
+			triggerer: false
+		}
+
+		FwEvent.trigger(element,EVENT_AFTER_DESTROY);
+	}
+
+	get UIOffset(){
+		
+		let the_x = this.width * -0.5; //top and bottom
+		let badgeOffsetX = 0;
+
+		switch (this.args.placement) {
+			case 'right':
+				the_x = this._pointWidth;
+				break;
+			case 'left':
+				the_x = -(this.width + this._pointWidth);
+				break;
+		}
+
+		if (
+			this.badge
+			&& (
+				this.args.placement == 'left'
+				|| this.args.placement == 'right'
+			)
+		) {
+			badgeOffsetX =
+				this.args.placement == 'left'
+					? this.badge.getBoundingClientRect()
+							.width * -0.5
+					: this.badge.getBoundingClientRect()
+							.width * 0.5;
+		}
+
+		the_x += badgeOffsetX;
+
+
+		let the_y = this.height * -0.5; // left and right
+		let badgeOffsetY = 0;
+
+		switch (this.args.placement) {
+			case 'bottom':
+				the_y = this._pointWidth;
+				break;
+			case 'top':
+				the_y = -(this.height + this._pointWidth);
+				break;
+		}
+
+		if (
+			this.badge
+			&& (
+				this.args.placement == 'top'
+				|| this.args.placement == 'bottom'
+			)
+		) {
+			badgeOffsetY =
+				this.args.placement == 'top'
+					? this.badge.getBoundingClientRect()
+							.height * -0.5
+					: this.badge.getBoundingClientRect()
+							.height * 0.5;
+		}
+
+		the_y += badgeOffsetY;
+
+		return {
+			x: the_x,
+			y: the_y
+			// x: 0,
+			// y: 0
+		};
+	}
+
+	position(posX,posY){
+		const element = super.UIEl();
+
+		FwEvent.trigger(element,EVENT_BEFORE_POSITION);
+		if(!Tooltip.current.UI){
+			return;
+		}
+
+		FwEvent.trigger(element,EVENT_POSITION);
+
+		const toolTip = Tooltip.current.UI;
+
+		posX = posX || this.elementOrigin.x;
+		posY = posY || this.elementOrigin.y;
+
+		toolTip.style.left = posX + this.UIOffset.x + 'px';
+		toolTip.style.top = posY + this.UIOffset.y + 'px';
+
+		FwEvent.trigger(element,EVENT_AFTER_POSITION);
+	}
+
+	get elementOrigin(){
+	
+		if(!Tooltip.current.UI){
+			return;
+		}
+
+		let the_x =
+			this.elementOffset.left + this.elementOffset.width * 0.5; //top and bottom
+
+		if (!this.args.x) {
+			if (!this.args.centerX) {
+				switch (this.args.placement) {
+					case 'right':
+						the_x =
+							this.elementOffset.left +
+							this.elementOffset.width;
+						break;
+					case 'left':
+						the_x = this.elementOffset.left;
+						break;
+				}
+			}
+
+		} else {
+			the_x = parseFloat(this.args.x);
+		}
+
+		let the_y =
+			this.elementOffset.top + this.elementOffset.height * 0.5; // left and right
+		if (!this.args.y) {
+			if (!this.args.centerY) {
+				switch (this.args.placement) {
+					case 'bottom':
+						the_y =
+							this.elementOffset.top +
+							this.elementOffset.height;
+						break;
+					case 'top':
+						the_y = this.elementOffset.top;
+						break;
+				}
+			}
+
+		} else {
+			the_y = parseFloat(this.args.y);
+		}
+		
+		return {
+			x: the_x,
+			y: the_y
+		}
+	}
+
+	static handleToggleClickOn(){
+		return (e)=>{
+			e.preventDefault();
+	
+			if (!FwComponent.isDisabled(e.target)) {
+				const tooltip = new Tooltip(e.target);
+				tooltip.create();
+			}
+		}
+	}
+
+	static handleUniversalPurge(){
+		return (e) => {
+			if (FwComponent.isDisabled(e.target)) {
+				e.preventDefault();
+			} else if(!FwComponent.isDynamic(e.target)) {
+				if (
+					!e.target.closest(`[data-toggle-${TOGGLE_MODE_CLICK}]`)
+					&& !e.target.closest(`[data-toggle-${TOGGLE_MODE_HOVER}]`)
+					// && !e.target.closest(`.${COMPONENT_CLASS}.${COMPONENT_ALLOW_INTERACTION_CLASS}`)
+				){
+					const tooltip =  new Tooltip();
+					tooltip.destroy();
+				}
+			}
+		}
+	}
+
+	static handleToggleHoverOn(){
+		return (e)=>{
+			if (FwComponent.isDisabled(e.target)) {
+				e.preventDefault();
+			} else {
+				const tooltip = new Tooltip(e.target);
+				tooltip.create();
+			}
+		}
+	}
+
+	static handleToggleHoverOff(){
+		return (e)=>{
+			const tooltip =  new Tooltip();
+			tooltip.destroy();
+		}
+	}
+
+	
+
+	static handleResizeScroll() {
+		return () => {
+			if(Tooltip.current.triggerer){
+				tooltip = new Tooltip(Tooltip.current.triggerer);
+
+				tooltip.position();
+			}
+		}
+	}
+	
+
+	static initListeners() {
+
+		FwEvent.addListener(
+			document.documentElement,
+			EVENT_MOUSEENTER,
+			`*[data-toggle-${TOGGLE_MODE_HOVER}]`,
+			Tooltip.handleToggleHoverOn()
+		);
+		
+		FwEvent.addListener(
+			document.documentElement,
+			EVENT_MOUSELEAVE,
+			`*[data-toggle-${TOGGLE_MODE_HOVER}]`,
+			Tooltip.handleToggleHoverOff()
+		);
+
+		FwEvent.addListener(
+			document.documentElement,
+			EVENT_CLICK,
+			`*[data-toggle-${TOGGLE_MODE_CLICK}]`,
+			Tooltip.handleToggleClickOn()
+		);
+		
+		FwEvent.addListener(
+			document.documentElement,
+			EVENT_CLICK_PURGE,
+			`*, .${COMPONENT_PURGER_CLASS}`,
+			Tooltip.handleUniversalPurge()
+		);
+
+		Initiator.Q.on_ready = Tooltip.handleResizeScroll();
+		Initiator.Q.on_resize = Tooltip.handleResizeScroll();
+		
 	}
 }
 
-frameWork.destroyToolTip = () => {
-	if (frameWork.toolTip) {
-		if (frameWork.toolTip.current) {
-			frameWork.toolTip.
-				current.parentNode.removeChild(frameWork.toolTip.current);
-		}
+export default Tooltip;
 
-		delete frameWork.toolTip;
-	}
-};
-
-//only use when the tooltip is finally active
-frameWork.positionToolTip = (posX, posY) => {
-	
-	if (frameWork.toolTip) {
-
-		const toolTip = frameWork.toolTip.current;
-		const args = frameWork.toolTip.args;
-		const triggerer = frameWork.toolTip.activeTriggerer;
-
-		let triggererOrigin;
-
-		if(!posX || !posY) {
-			triggererOrigin = frameWork.getDefCoordsToolTip(triggerer);
-		}
-
-		posX = posX || triggererOrigin && triggererOrigin.x();
-		posY = posY || triggererOrigin && triggererOrigin.y();
-
-		let toolPoint = parseFloat(
-			window
-				.getComputedStyle(toolTip, ':before')
-				.getPropertyValue('width')
-		);
-
-		//check if we can sqrt it
-		toolPoint = Math.sqrt(toolPoint * toolPoint * 2) * 0.5;
-		isNaN(toolPoint) && (toolPoint = 15);
-
-		let toolTipProps = {
-			height: toolTip.getBoundingClientRect().height,
-			width: toolTip.getBoundingClientRect().width,
-		};
-
-		const toolTipBadge = toolTip.querySelector('.tooltip-badge');
-
-		let off = {
-			x: () => {
-				let toReturn = toolTipProps.width * -0.5; //top and bottom
-				let badgeOffset = 0;
-
-				switch (args.placement) {
-					case 'right':
-						toReturn = toolPoint;
-						break;
-					case 'left':
-						toReturn = -(toolTipProps.width + toolPoint);
-						break;
-				}
-
-				if (
-					toolTipBadge
-					&& (
-						args.placement == 'left'
-						|| args.placement == 'right'
-					)
-				) {
-					badgeOffset =
-						args.placement == 'left'
-							? toolTipBadge.getBoundingClientRect()
-									.width * -0.5
-							: toolTipBadge.getBoundingClientRect()
-									.width * 0.5;
-				}
-
-				toReturn += badgeOffset;
-
-				return toReturn;
-			},
-			
-			y: () => {
-				let toReturn = toolTipProps.height * -0.5; // left and right
-				let badgeOffset = 0;
-
-				switch (args.placement) {
-					case 'bottom':
-						toReturn = toolPoint;
-						break;
-					case 'top':
-						toReturn = -(toolTipProps.height + toolPoint);
-						break;
-				}
-
-				if (
-					toolTipBadge
-					&& (
-						args.placement == 'top'
-						|| args.placement == 'bottom'
-					)
-				) {
-					badgeOffset =
-						args.placement == 'top'
-							? toolTipBadge.getBoundingClientRect()
-									.height * -0.5
-							: toolTipBadge.getBoundingClientRect()
-									.height * 0.5;
-				}
-
-				toReturn += badgeOffset;
-
-				return toReturn;
-			},
-		};
-
-		toolTip.style.left = posX + off.x() + 'px';
-		toolTip.style.top = posY + off.y() + 'px';
-		// toolTip.style.left = (posX)+'px';
-		// toolTip.style.top = (posY) +'px';
-	}
-};
-__f.fns_on_scroll.push(frameWork.positionToolTip);
-__f.fns_on_resize.push(frameWork.positionToolTip);
-
-
-//tooltip
-FwEvent.addListener(
-	document.documentElement,
-	'click',
-	'*[data-toggle="tooltip-click"]',
-	(e) => {
-
-		const triggerer = e.target;
-
-		e.preventDefault();
-
-		if (!frameWork.isDisabled(triggerer)) {
-			frameWork.createToolTip(triggerer);
-		}
-	}
-);
-
-FwEvent.addListener(
-	document.documentElement,
-	'mouseenter',
-	'*[data-toggle="tooltip-hover"]',
-	(e) => {
-
-		const triggerer = e.target;
-
-		if (frameWork.isDisabled(triggerer)) {
-			e.preventDefault();
-
-		} else {
-			frameWork.createToolTip(triggerer);
-		}
-	}
-);
-
-FwEvent.addListener(
-	document.documentElement,
-	'mouseleave',
-	'*[data-toggle="tooltip-hover"]',
-	(e) => {
-		frameWork.destroyToolTip();
-	}
-);
+Tooltip.initListeners();

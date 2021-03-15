@@ -40,32 +40,6 @@ $calculated-br-tags: (xxs,xs,sm,md,lg);
 		intensity-5: $brand-color-intensity-5
 	);
 
-
-	$calculated-color-vars: (
-		base: $var-color-base,
-		background: $var-color-background,
-		primary: $var-color-primary,
-		secondary: $var-color-secondary,
-		accent: $var-color-accent,
-		neutral: $var-color-neutral,
-		success: $var-color-success,
-		caution: $var-color-caution,
-		error: $var-color-error,
-		intensity-1: $var-color-intensity-1,
-		intensity-2: $var-color-intensity-2,
-		intensity-3: $var-color-intensity-3,
-		intensity-4: $var-color-intensity-4,
-		intensity-5: $var-color-intensity-5
-	);
-
-	$calculated-color-brand-intensity: (
-		$var-color-intensity-1,
-		$var-color-intensity-2,
-		$var-color-intensity-3,
-		$var-color-intensity-4,
-		$var-color-intensity-5
-	);
-
 	$calculated-color-variations:(
 		base:(
 			alt: $brand-color-base-alt,
@@ -544,6 +518,16 @@ $calculated-br-tags: (xxs,xs,sm,md,lg);
 	);
 
 
+
+	$calculated-brand-color-intensity: (
+		$var-color-intensity-1,
+		$var-color-intensity-2,
+		$var-color-intensity-3,
+		$var-color-intensity-4,
+		$var-color-intensity-5
+	);
+
+
 //for helpers
 	$calculated-brand-color-declarations-for-helpers : (
 		base: $var-color-base,
@@ -555,36 +539,11 @@ $calculated-br-tags: (xxs,xs,sm,md,lg);
 		success: $var-color-success,
 		caution: $var-color-caution,
 		error: $var-color-error,
+		intensity-1: $var-color-intensity-1,
+		intensity-2: $var-color-intensity-2,
+		intensity-3: $var-color-intensity-3,
+		intensity-4: $var-color-intensity-4,
+		intensity-5: $var-color-intensity-5
 	);
-
-
-
-//////////////////////////////// CONTENT PLUGIN DEPENDENCIES
-		
-$brxs: $br-xs-max;
-$brsm: $br-sm-max;
-$brmd: $br-md-max;
-		
-//mixins shithole
-	$color-base: $brand-color-base;
-		$color-base-alt: $brand-color-base-alt;
-	$color-primary: $brand-color-primary;
-		$color-primary-alt:$brand-color-primary-dark;
-	$color-accent: $brand-color-secondary;
-		$color-accent-alt: $brand-color-secondary-dark;
-
-	$white: $brand-color-background;
-		$white-alt: $brand-color-background-alt;
-	$gray: $brand-color-neutral;
-
-	$success: $brand-color-success;
-	$caution: $brand-color-caution;
-	$error: $brand-color-error;
-
-	$font-base: $brand-font-primary;
-	$font-secondary: $brand-font-secondary;
-	$font-accent: $brand-font-secondary;
-	$font-monospace: $brand-font-monospace;
-
 
 

@@ -2,7 +2,7 @@
 $prefix: '.list-group';
 #{$prefix},
 #{$prefix} ul {
-	@extend %for-p !optional;
+	margin-bottom: $calculated-body-text-gutter-y;
 	padding: 0;
 	// border-bottom: $list-group-border-width solid $list-group-border-color;
 
@@ -16,7 +16,7 @@ $prefix: '.list-group';
 
 	@at-root & li,
 	&-item  {
-		@extend %for-cf !optional;
+		@include dump-styles(cf);
 		font: inherit;
 		margin-bottom:0;
 		display: block;

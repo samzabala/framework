@@ -1,4 +1,4 @@
-import FwDataHelper from '../classes/data-helper.js';
+import FwDataHelper from './../classes/data-helper.js';
 
 class FwArrayay extends FwDataHelper {
 	

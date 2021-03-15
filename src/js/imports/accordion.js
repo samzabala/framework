@@ -1,13 +1,12 @@
-
-import FwCore from './util/core.js';
-import {FwFnsQ} from './util/initiator.js';
+import Initiator from './core/initiator.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwDom from './data-helper/dom.js';
 import FwString from './data-helper/string.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggled,UiChangeHash } from './util/ui.js';
+import { UIToggled,UIChangeHash } from './util/ui.js';
 import {BrMobileMax,ValidateBr} from './util/breakpoint.js';
 
 
@@ -17,11 +16,12 @@ const TOGGLE_MODE = `${NAME}`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `open`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
+const EVENT_HASHCHANGE = `hashchange${EVENT_KEY}`;
 
 	const EVENT_BEFORE_CLOSE = `before_close${EVENT_KEY}`;
 	const EVENT_CLOSE = `close${EVENT_KEY}`;
@@ -34,13 +34,13 @@ const EVENT_CLICK = `click${EVENT_KEY}`;
 class Accordion extends FwComponent {
 	
 	constructor(element,triggerer,args){
-		element = element || UiToggled(TOGGLE_MODE) || false;
+		element = element || UIToggled(TOGGLE_MODE) || false;
 		super(
 			element,
 			{
-				_triggerer:(
+				triggerer:(
 					triggerer
-						? new FwDom(triggerer)
+						? triggerer
 					: false
 				),
 				_customArgs: args
@@ -51,7 +51,7 @@ class Accordion extends FwComponent {
 
 	dispose() {
 		super.dispose();
-		this._triggerer = null;
+		this.triggerer = null;
 		this._customArgs = null;
 	}
 
@@ -73,11 +73,11 @@ class Accordion extends FwComponent {
 				: {
 					changeHash:
 						(
-							this._triggerer
-							&& this._triggerer
+							this.triggerer
+							&& this.triggerer
 								.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
 						)
-						|| super.UiEl()
+						|| super.UIEl()
 							.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
 				}
 			),
@@ -87,25 +87,25 @@ class Accordion extends FwComponent {
 
 	get _isValidWithinQuery() {
 		return !(
-			super.UiEl().classList.contains(`${NAME}-mobile`)
-			&& !ValidateBr(BrMobileMax, 'below')
+			super.UIEl().classList.contains(`${NAME}-mobile`)
+			&& !ValidateBr(BrMobileMax, 'above')
 		)
 	}
 
 	get _isWithinGroupMultiple () {
-		return this.UiGroot && this.UiGroot.classList.contains(`${NAME}-group-multiple`)
+		return this.UIGroot && this.UIGroot.classList.contains(`${NAME}-group-multiple`)
 	}
 
 	get _isWithinAllowNoActive() {
-		return this.UiGroot && this.UiGroot.classList.contains(`${NAME}-group-allow-no-active`)
+		return this.UIGroot && this.UIGroot.classList.contains(`${NAME}-group-allow-no-active`)
 	}
 
 	get _probablyToggle() {
 		let toReturn = [];
 
 		const selection = document.querySelectorAll(
-			`[data-toggle="${TOGGLE_MODE}"][href="#${this._id}"],
-			[data-toggle="${TOGGLE_MODE}"][data-href="#${this._id}"]`
+			`[data-toggle-${TOGGLE_MODE}][href="#${this._id}"],
+			[data-toggle-${TOGGLE_MODE}][data-href="#${this._id}"]`
 		);
 
 		if(selection.length) {
@@ -117,8 +117,8 @@ class Accordion extends FwComponent {
 	}
 
 	get _id(){
-		return super.UiEl().hasAttribute('id')
-			? super.UiEl().getAttribute('id')
+		return super.UIEl().hasAttribute('id')
+			? super.UIEl().getAttribute('id')
 		: false;
 	}
 
@@ -126,19 +126,19 @@ class Accordion extends FwComponent {
 
 		if ( !this._isWithinGroupMultiple ) {
 			FwDom.RunFnForChildren(
-				this.UiGroot,
-				`[data-toggle="${TOGGLE_MODE}"],.${COMPONENT_CLASS}`,
+				this.UIGroot,
+				`[data-toggle-${TOGGLE_MODE}],.${COMPONENT_CLASS}`,
 				`.${COMPONENT_CLASS}-group`,
 				(accBbies)=>{
 					if(
 						(
-							this._triggerer
-							&& (accBbies !== this._triggerer)
-							&& (accBbies !== super.UiEl())
+							this.triggerer
+							&& (accBbies !== this.triggerer)
+							&& (accBbies !== super.UIEl())
 						)
 						|| (
-							!this._triggerer
-							&& (accBbies !== super.UiEl())
+							!this.triggerer
+							&& (accBbies !== super.UIEl())
 						)
 					){
 						accBbies.classList.remove(ACTIVATED_CLASS)
@@ -149,8 +149,8 @@ class Accordion extends FwComponent {
 	}
 
 	//which came first the accordion-gruoup or the accordiiinbsbob?? the actual bitch none of that accordion-group shit
-	get UiGroot () {
-			let toReturn = super.UiEl().parentNode.closest(`.${COMPONENT_CLASS},.${COMPONENT_CLASS}-group`);
+	get UIGroot () {
+			let toReturn = super.UIEl().parentNode.closest(`.${COMPONENT_CLASS},.${COMPONENT_CLASS}-group`);
 
 			//has to actually be accordion-group closest before accordion
 			if(
@@ -166,37 +166,35 @@ class Accordion extends FwComponent {
 			return toReturn;
 	}	
 
-	close(elem,hashChangeOverride){
+	close(elem,triggerer){
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 		if(!element){
 			return;
 		}
 
-		hashChangeOverride = hashChangeOverride || this.args.changeHash;
+		triggerer = triggerer || this.triggerer;
 
 		if( this._isValidWithinQuery ) {
 
 			FwEvent.trigger(element,EVENT_BEFORE_CLOSE);
 			//is not within an accordion group that needs one of them open 
-			if ( !this.UiGroot || this._isWithinAllowNoActive ) {
+			if ( !this.UIGroot || this._isWithinAllowNoActive ) {
 
-				if(this._triggerer) {
-					this._triggerer.classList.remove(ACTIVATED_CLASS);
-				}else{
-					this._probablyToggle.forEach((toggle) => {
-						toggle.classList.remove(ACTIVATED_CLASS);
-					});
-				}
+				
+				triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
+				this._probablyToggle.forEach((toggle) => {
+					toggle.classList.remove(ACTIVATED_CLASS);
+				});
 
 				FwEvent.trigger(element,EVENT_CLOSE);
 
 				element.classList.remove(ACTIVATED_CLASS);
 
 				if (this.args.changeHash && this._id) {
-					UiChangeHash('');
+					UIChangeHash('');
 				}
 
 				FwEvent.trigger(element,EVENT_AFTER_CLOSE);
@@ -204,36 +202,35 @@ class Accordion extends FwComponent {
 		}
 	}
 
-	open(elem,hashChangeOverride){
+	open(elem,triggerer){
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 		if(!element){
 			return;
 		}
 
-		hashChangeOverride = hashChangeOverride || this.args.changeHash;
+		triggerer = triggerer || this.triggerer;
 
 		this._siblicide();
 
 		if( this._isValidWithinQuery ) {
 
 			FwEvent.trigger(element,EVENT_BEFORE_OPEN);
-			if(this._triggerer) {
-				this._triggerer.classList.add(ACTIVATED_CLASS);
-			}else{
+			
+				triggerer && triggerer.classList.add(ACTIVATED_CLASS);
 				this._probablyToggle.forEach((toggle) => {
 					toggle.classList.add(ACTIVATED_CLASS);
 				});
-			}
+				
 			
 			FwEvent.trigger(element,EVENT_OPEN);
 
 			element.classList.add(ACTIVATED_CLASS);
 
 			if (this.args.changeHash && this._id) {
-				UiChangeHash(this._id);
+				UIChangeHash(this._id);
 			}
 
 			FwEvent.trigger(element,EVENT_AFTER_OPEN);
@@ -243,19 +240,20 @@ class Accordion extends FwComponent {
 
 
 
-	toggle(elem,hashChangeOverride){
+	toggle(elem,triggerer){
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 		if(!element){
 			return;
 		}
+		triggerer = triggerer || this.triggerer;
 
 		if(element.classList.contains(ACTIVATED_CLASS)){
-			this.close(elem,hashChangeOverride);
+			this.close(elem,triggerer);
 		}else{
-			this.open(elem,hashChangeOverride);
+			this.open(elem,triggerer);
 		}
 	}
 
@@ -265,7 +263,7 @@ class Accordion extends FwComponent {
 
 			if(!FwComponent.isDisabled(e.target)){
 				const accordion = new Accordion(
-					UiToggled(TOGGLE_MODE,e.target),
+					UIToggled(TOGGLE_MODE,e.target),
 					e.target
 				);
 
@@ -274,9 +272,9 @@ class Accordion extends FwComponent {
 		}
 	}
 
-	static handleUniversal() {
+	static handleHash() {
 		return () => {
-			if(FwCore.settings.initializeAccordion){
+			if(Settings.get('initializeAccordion')){
 				const accordion = new Accordion();
 				accordion.open();
 			};
@@ -286,18 +284,20 @@ class Accordion extends FwComponent {
 	static initListeners() {
 		
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`*[data-toggle="${TOGGLE_MODE}"]`,
+			`*[data-toggle-${TOGGLE_MODE}]`,
 			Accordion.handleToggler()
 		);
 
-		window.addEventListener(
-			'hashchange',
-			Accordion.handleUniversal()
+		FwEvent.addListener(
+			null,
+			EVENT_HASHCHANGE,
+			window,
+			Accordion.handleHash()
 		);
 
-		FwFnsQ.on_ready = Accordion.handleUniversal();
+		Initiator.Q.on_ready = Accordion.handleHash();
 	}
 	
 }

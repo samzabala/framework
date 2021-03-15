@@ -65,8 +65,7 @@ $prefix: '.nav';
 		#{$prefix}-item,
 		#{$prefix}-list li {
 
-			> a,
-			> [data-toggle] {
+			> a {
 				display:block;
 			}
 		}
@@ -82,22 +81,22 @@ $prefix: '.nav';
 	@at-root .dropdown li,
 	&-item,
 	&-list li {
+		margin:0;
+		padding:0;
 
 		&:before {
 			content:none;
 		}
 		
 
-		> a,
-		> [data-toggle] {
+		> a {
 			padding-top: calc( ( #{$calculated-nav-item-height} - ( #{ $calculated-nav-single-line })) * .5 );
 			padding-bottom: calc( ( #{$calculated-nav-item-height} - ( #{ $calculated-nav-single-line })) * .5 );
 			display: block;
 		}
 
 		&:hover{
-			> a,
-			> [data-toggle] {
+			> a {
 				color: $nav-color-hover;
 			}
 		}
@@ -114,9 +113,8 @@ $prefix: '.nav';
 		// 	max-width:100%;
 		// }
 
-		&:nth-child(n+2) {
-			margin-left: .5em;
-		}
+		padding-right: $nav-padding-x;
+		padding-left: $nav-padding-x;
 
 		&#{&}-stretch {
 
@@ -132,6 +130,19 @@ $prefix: '.nav';
 		display:inline-block;
 		vertical-align: middle;
 		line-height: inherit;
+		text-align: center;
+
+		// .badge {
+		// 	position:absolute;
+		// 	right:0;
+		// 	transform: translateX(50%);
+		// 	top:0;
+		// }
+
+		.symbol {
+			font-size: 1.25em;
+		}
+
 
 		+ #{$prefix}-item-text {
 			margin-left: .5rem;
@@ -145,12 +156,11 @@ $prefix: '.nav';
 
 		> a {
 			&:hover,&:focus,&.focus {
-				text-decoration: get-anchor-dec(true);
+				@include dump-styles(no-text-decoration-hover);
 			}
 		}
 
-		> a,
-		> [data-toggle] {
+		> a {
 			@include type-set((
 				color:inherit,
 				decoration:get-anchor-dec(),
@@ -162,8 +172,8 @@ $prefix: '.nav';
 			position:relative;
 
 			transition: $transition-duration-short all $transition-timing;
-			padding-left: $nav-gutter-x;
-			padding-right: $nav-gutter-x;
+			padding-left: $nav-padding-x;
+			padding-right: $nav-padding-x;
 			padding-top: calc( (#{$calculated-nav-height} - ( #{ $calculated-nav-single-line })) * .5 );
 			padding-bottom: calc( (#{$calculated-nav-height} - ( #{ $calculated-nav-single-line })) * .5 );
 			
@@ -201,8 +211,7 @@ $prefix: '.nav';
 		&:hover,
 		&.open {
 			
-			> a,
-			> [data-toggle] {
+			> a {
 				
 				&:after {
 					height: $nav-current-size;
@@ -224,24 +233,25 @@ $prefix: '.nav';
 
 	@include br(#{$mobile-br-max}-max) {
 
-		&-list {
-			display:block;
-			min-width:100%;
-
-			.dropdown {
-				border-radius:0;
-				// padding-left:0;
-				// padding-right:0;
-				width: auto;
-				position:static;
-				box-shadow: none;
+		&-list{
+			&#{&}-responsive {
+				display:block;
+				min-width:100%;
+	
+				.dropdown {
+					border-radius:0;
+					// padding-left:0;
+					// padding-right:0;
+					width: auto;
+					position:static;
+					box-shadow: none;
+				}
 			}
 		}
 
 		&-list > #{$prefix}-item,
 		&-list > li {
-			> a,
-			> [data-toggle] {
+			> a {
 				display:block;
 			}
 		}

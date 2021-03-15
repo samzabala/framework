@@ -1,4 +1,6 @@
 /*! basic styling shits only bitch */
+//resets
+	@import '_reset';
 //vars
 	@import '_vars';
 	
@@ -11,6 +13,5 @@
 		@import '_calculations';
 
 //to cascade
-	@import '_reset';
 	@import '_scaffolding';
 	@import '_typography';

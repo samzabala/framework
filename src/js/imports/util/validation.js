@@ -7,17 +7,27 @@ export const DisableClasses = [
 	'disabled'
 ];
 
+// @TODO push instead of hard coding to arrays because
+
 export const lookupResetToParentClass = [
 	'input-group',
-	'btn-grouop',
+	'btn-group',
 ];
 
 export const lookupResetFromClosestComponent = [
 	'dropdown',
-	'modal',
-	'board',
+	'modal-default',
+	'modal-board',
 	'switch',
 	'alert',
+];
+
+export const lookupResetFromClosestComponentUi = [
+	//root component name, subcomponent mods
+	'modal-default',
+	'modal-board',
+	'input-calendar',
+	'input-tags',
 ];
 
 

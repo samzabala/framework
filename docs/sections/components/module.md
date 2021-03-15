@@ -275,15 +275,59 @@ Disclaimer I didn't setup css grid specific helpers because it completely slippe
 
 This sets a weird column setup starting in the sm breakpoint
 
+
 ## Javascript
 
+parent gets javascript treatment bro
 
 ### Functions
 
-#### **`fw.readyGrids(triggerer)`**
+#### **`fw.ModuleGrid(element)`**
 
-Keeps track of module grids and sets up css for them. this is also triggered on load and resize
+Make a new boi by going `const moduleGrid = new fw.ModuleGrid(element)`
 
-Creates a boi
+
+`element` is the accordion itself. if blank, does nothing
+
+
+
+#### **`moduleGrid.renderGrid(element)`**
+
+duh
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`moduleGrid.renderBlocks()`**
+
+renders styles for the children
+
+
+#### **`moduleGrid.render(element)`**
+
+renders styles for `element` and qualifying children
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`fw.ModuleGrid.initListeners()`**
+
+### Events
+
+
+* `before_init.fw.moduleGrid` - happens on `document` before running functions to set up
+* `init.fw.moduleGrid` - happens on `document` when running functions to set up
+* `after_init.fw.moduleGrid` - happens on `document` after running functions to set up
+
+* `before_render.fw.moduleGrid` - happens on `element` before render
+* `render.fw.moduleGrid` - happens on `element` when render
+* `after_render.fw.moduleGrid` - happens on `element` after render
+
+
+* `before_render_block_.fw.moduleGrid` - happens on `element` before rendering element styles
+* `render_grid.fw.moduleGrid` - happens on `element` when rendering element styles
+* `after_render_grid.fw.moduleGrid` - happens on `element` after rendering element styles
+
+* `before_render_block_.fw.moduleGrid` - happens on `element`'s valid children before rendering child styles
+* `render_block_.fw.moduleGrid` - happens on `element`'s valid children when rendering child styles
+* `after_render_block_.fw.moduleGrid` - happens on `element`'s valid children after rendering child styles
 
 [Back to TOC](../../../readme.md)

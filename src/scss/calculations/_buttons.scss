@@ -347,6 +347,117 @@ $calculated-btn-schemes: (
 			)
 		),
 
+
+
+		primary-glassy: (
+			hover: (
+				background: $var-color-primary-alpha-3,
+				border: transparent,
+				color: $var-color-primary,
+			),
+
+			active: (
+				background: $btn-background-primary-active,
+				border: $btn-border-primary-active,
+				color: $btn-color-primary-active,
+			),
+			init: (
+				background: $var-color-primary-alpha-2,
+				border: transparent,
+				color: $var-color-primary,
+			)
+		),
+		secondary-glassy: (
+			hover: (
+				background: $var-color-secondary-alpha-3,
+				border: transparent,
+				color: $var-color-secondary,
+			),
+
+			active: (
+				background: $btn-background-secondary-active,
+				border: $btn-border-secondary-active,
+				color: $btn-color-secondary-active,
+			),
+			init: (
+				background: $var-color-secondary-alpha-2,
+				border: transparent,
+				color: $var-color-secondary,
+			)
+		),
+		accent-glassy: (
+			hover: (
+				background: $var-color-accent-alpha-3,
+				border: transparent,
+				color: $var-color-accent,
+			),
+
+			active: (
+				background: $btn-background-accent-active,
+				border: $btn-border-accent-active,
+				color: $btn-color-accent-active,
+			),
+			init: (
+				background: $var-color-accent-alpha-2,
+				border: transparent,
+				color: $var-color-accent,
+			)
+		),
+		success-glassy: (
+			hover: (
+				background: $var-color-success-alpha-3,
+				border: transparent,
+				color: $var-color-success,
+			),
+
+			active: (
+				background: $btn-background-success-active,
+				border: $btn-border-success-active,
+				color: $btn-color-success-active,
+			),
+			init: (
+				background: $var-color-success-alpha-2,
+				border: transparent,
+				color: $var-color-success,
+			)
+		),
+		caution-glassy: (
+			hover: (
+				background: $var-color-caution-alpha-3,
+				border: transparent,
+				color: $var-color-caution,
+			),
+
+			active: (
+				background: $btn-background-caution-active,
+				border: $btn-border-caution-active,
+				color: $btn-color-caution-active,
+			),
+			init: (
+				background: $var-color-caution-alpha-2,
+				border: transparent,
+				color: $var-color-caution,
+			)
+		),
+		error-glassy: (
+			hover: (
+				background: $var-color-error-alpha-3,
+				border: transparent,
+				color: $var-color-error,
+			),
+
+			active: (
+				background: $btn-background-error-active,
+				border: $btn-border-error-active,
+				color: $btn-color-error-active,
+			),
+			init: (
+				background: $var-color-error-alpha-2,
+				border: transparent,
+				color: $var-color-error,
+			)
+		),
+
 		gradient:(
 			hover: (
 				background: linear-gradient($btn-background-angle-gradient-hover,$var-gradient-start, $var-gradient-end), //@TODO var for this angle

@@ -1,5 +1,9 @@
 /*** SWITCH ***/
 /* it */
+[data-toggle-switch-on],
+[data-toggle-switch-off]{
+	@include dump-styles(data-toggle);
+}
 $prefix: '.switch';
 #{$prefix} {
 	&#{&}-to-off &-on,

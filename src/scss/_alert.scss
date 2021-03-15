@@ -1,10 +1,15 @@
 /*** ALERT ***/
+[data-toggle-alert-close]{
+	@include dump-styles(data-toggle);
+}
+
 $prefix: '.alert';
 #{$prefix} {
 	// padding-right: calc(#{$alert-gutter-x} + 2em);
 	border: $alert-border-width solid transparent;
 	box-shadow: $alert-box-shadow;
 	position:relative;
+	@include dump-styles(cf);
 
 	&-small {
 		font-size: $body-font-size-small;
@@ -15,7 +20,6 @@ $prefix: '.alert';
 		font-size: $body-font-size-large;
 	}
 
-	@extend %for-cf !optional;
 	a {
 		color:inherit;
 		font-weight: $body-font-weight-bold;
@@ -50,7 +54,7 @@ $prefix: '.alert';
 
 			padding-left: $alert-gutter-x;
 			padding-right: $alert-gutter-x;
-			@extend %for-cf;
+			@include dump-styles(cf);
 		}
 		
 		@at-root #{$prefix}#{$prefix}-small,

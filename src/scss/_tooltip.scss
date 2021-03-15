@@ -1,3 +1,7 @@
+[data-toggle-tooltip-click],
+[data-toggle-tooltip-hover]{
+	@include dump-styles(data-toggle);
+}
 $prefix: '.tooltip';
 #{$prefix} {
 	@include create-popper-styles(
@@ -13,6 +17,28 @@ $prefix: '.tooltip';
 	pointer-events:none;
 	display: none;
 	z-index:99999;
+
+	&#{$prefix}-small {
+		@include create-popper-styles(
+			null,
+			null,
+			null,
+			null,
+			$tooltip-small-gutter-x,
+			$tooltip-small-gutter-y,
+		);
+	}
+
+	&#{$prefix}-large {
+		@include create-popper-styles(
+			null,
+			null,
+			null,
+			null,
+			$tooltip-large-gutter-x,
+			$tooltip-large-gutter-y,
+		);
+	}
 
 	&:not(#{$prefix}-has-custom-width){
 		max-width: $tooltip-max-width;

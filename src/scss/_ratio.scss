@@ -53,7 +53,7 @@ $prefix: '.ratio';
 		}
 		
 		@at-root #{$prefix} *#{&}-cover {
-			@extend %for-fit-image-cover-img !optional;
+			@include dump-styles(fit-image-img);
 		}
 
 		@at-root  #{$prefix} #{&}-contain {

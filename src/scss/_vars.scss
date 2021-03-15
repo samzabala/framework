@@ -388,10 +388,10 @@
 
 //////////////////////////////// BREAKPOINTS
 
-		$br-xs-max: 600px !default;
-		$br-sm-max: 1200px !default;
-		$br-md-max: 1600px !default;
-		$br-lg-max: 1800px !default;
+		$br-xs-max: 767px !default;
+		$br-sm-max: 1199px !default;
+		$br-md-max: 1599px !default;
+		$br-lg-max: 1799px !default;
 
 		//extra breakpoints
 			$br-xxs-max: 400px !default;
@@ -401,10 +401,10 @@
 
 //////////////////////////////// GLOBAL UNITS
 
-		$gutter-base: 30px !default;
-			$gutter-large: 40px !default;
-			$gutter-small: 20px !default;
-			$gutter-micro: 10px !default;
+		$gutter-base: 20px !default;
+			$gutter-large: 30px !default;
+			$gutter-small: 10px !default;
+			$gutter-micro: 5px !default;
 
 	// Border radius globals
 		$border-radius-base: 10px !default;
@@ -511,7 +511,7 @@
 		$svg-gradient-color-end: $var-gradient-end !default;
 
 
-	// TABLE
+	// TABLE @TODO table high contrast helper class
 		$table-cell-height: 40px !default;
 			$table-cell-height-large: 75px !default;
 			$table-cell-height-small: 25px !default;
@@ -527,7 +527,7 @@
 		$table-heading-color: $var-theme-color-contrast !default;
 			$table-heading-color-inverse: $table-heading-color !default;
 		$table-heading-text-transform: uppercase !default;
-		$table-heading-background: $var-theme-background-contrast !default;
+		$table-heading-background: $var-theme-background !default;
 			$table-heading-background-inverse: $table-heading-background !default;
 		$table-label-width: 12px !default;
 		$table-label-offset: 2px !default;
@@ -618,8 +618,8 @@
 		$container-gutter: $gutter-base !default;
 			$container-gutter-wide: $gutter-small !default;
 			$container-gutter-slim: $gutter-large !default;
-			$container-gutter-mobile: $gutter-small !default;
-		$container-max-width: 1600px !default;
+			$container-gutter-mobile: $gutter-micro !default;
+		$container-max-width: 1200px !default;
 			$container-max-width-mobile: 750px !default;
 
 	//GRIDING AND SHIT
@@ -659,7 +659,7 @@
 // UI ELEMENTS
 
 	// ICONS
-		$icon-size: 30px !default;
+		$icon-size: 25px !default;
 
 	// legend
 		$legend-width: 30px !default;
@@ -671,8 +671,8 @@
 		$symbol-caret-height: 6px !default;
 
 	// NAV
-		$nav-height: 75px !default;
-		$nav-gutter-x: $gutter-small !default;
+		$nav-height: 60px !default;
+		$nav-padding-x: $gutter-small !default;
 		$nav-drop-shadow: $box-shadow-spicy $var-theme-background-contrast !default;
 			$nav-drop-shadow-inverse: $nav-drop-shadow !default;
 		$nav-background: $var-theme-background !default;
@@ -694,7 +694,7 @@
 		$nav-text-transform: none !default;
 		
 
-		$nav-top-font-size: $body-font-size !default;
+		$nav-top-font-size: $nav-font-size !default;
 		$nav-top-font-style: normal !default;
 		$nav-top-font-weight: 700 !default;
 		$nav-top-font-color: inherit !default;
@@ -906,7 +906,7 @@
 	
 	
 			
-	// MODULE
+	// MODULE @TODO build padding classes for large and small @TODO add module-hhigh-contrast helper ie activity and notes
 		$module-background-color: $var-theme-background !default;
 			$module-background-color-inverse: $module-background-color !default;
 		$module-border-color: $var-color-neutral-alpha-2 !default;
@@ -915,15 +915,25 @@
 		$module-box-shadow: $box-shadow-base $var-color-base-alpha-1 !default;
 		$module-box-shadow-hover: $box-shadow-spicy $var-color-primary !default; 
 		
-		$module-gutter-x: $gutter-small !default;
+		$module-gutter-x: $gutter-base !default;
 			$module-gutter-x-mobile: $gutter-small !default;
-		$module-gutter-y: $gutter-micro !default;
+		$module-gutter-y: $gutter-small !default;
 			$module-gutter-y-mobile: $gutter-micro !default;
 
-		
-		$module-gutter-between: $gutter-micro !default;
+			$module-large-gutter-x: $gutter-large !default;
+				$module-large-gutter-x-mobile: $module-gutter-x-mobile !default;
+			$module-large-gutter-y: $gutter-base !default;
+				$module-large-gutter-y-mobile: $module-gutter-y-mobile !default;
 
-		$module-gutter-grid-gap: $gutter-small !default;
+			$module-small-gutter-x: $gutter-small !default;
+				$module-small-gutter-x-mobile: $module-gutter-x-mobile !default;
+			$module-small-gutter-y: $gutter-micro !default;
+				$module-small-gutter-y-mobile: $module-gutter-y-mobile !default;
+
+		
+		$module-gutter-between: $gutter-small !default;
+
+		$module-gutter-grid-gap: $gutter-base !default;
 		$module-grid-gutter: $gutter-base !default;
 		
 		$module-border-radius: $border-radius-small !default;
@@ -963,25 +973,29 @@
 			$modal-gutter-mobile: $gutter-small !default;
 
 		//modal board
-			$board-padding-spacer: $gutter-base !default;
-				$board-padding-spacer-mobile: $gutter-small !default;
-			$board-padding-x: $gutter-base !default;
-			$board-padding-y: $gutter-base !default;
-				$board-padding-x-mobile: $gutter-small !default;
-				$board-padding-y-mobile: $gutter-small !default;
-			$board-close-button-font-size: 1rem !default;
-			$board-close-offset-x: $board-padding-x !default;
-			$board-close-offset-y: $board-padding-y !default;
-				$board-close-offset-x-mobile: $board-padding-x-mobile !default;
-				$board-close-offset-y-mobile: $board-padding-y-mobile !default;
-			$board-resize-width: 20px !default; //not yet
-			$board-resize-height: 55px !default; //not yet
-			$board-close-size: 38px !default;
-			$board-close-box-shadow: $box-shadow-base $var-color-base !default;
+			$modal-board-padding-spacer: $gutter-base !default;
+				$modal-board-padding-spacer-mobile: $gutter-small !default;
+			$modal-board-padding-x: $gutter-base !default;
+			$modal-board-padding-y: $gutter-base !default;
+				$modal-board-padding-x-mobile: $gutter-small !default;
+				$modal-board-padding-y-mobile: $gutter-small !default;
+			$modal-board-close-button-font-size: 1rem !default;
+			$modal-board-close-offset-x: $modal-board-padding-x !default;
+			$modal-board-close-offset-y: $modal-board-padding-y !default;
+				$modal-board-close-offset-x-mobile: $modal-board-padding-x-mobile !default;
+				$modal-board-close-offset-y-mobile: $modal-board-padding-y-mobile !default;
+			$modal-board-resize-width: 20px !default; //not yet
+			$modal-board-resize-height: 55px !default; //not yet
+			$modal-board-close-size: 38px !default;
+			$modal-board-close-box-shadow: $box-shadow-base $var-color-base !default;
 
 	// DROPDOWN
 		$dropdown-gutter-x: $gutter-small !default;
 		$dropdown-gutter-y: $gutter-small !default;
+			$dropdown-small-gutter-x: $gutter-micro !default;
+			$dropdown-small-gutter-y: $gutter-micro !default;
+			$dropdown-large-gutter-x: $gutter-base !default;
+			$dropdown-large-gutter-y: $gutter-base !default;
 		$dropdown-border-radius: $border-radius-base !default;
 		$dropdown-box-shadow: $box-shadow-base $var-color-base !default;
 		$dropdown-background: $var-theme-background !default;
@@ -994,6 +1008,10 @@
 	//TOOLTIP
 		$tooltip-gutter-x: $dropdown-gutter-x !default;
 		$tooltip-gutter-y: $dropdown-gutter-y !default;
+			$tooltip-small-gutter-x: $dropdown-small-gutter-x !default;
+			$tooltip-small-gutter-y: $dropdown-small-gutter-y !default;
+			$tooltip-large-gutter-x: $dropdown-large-gutter-x !default;
+			$tooltip-large-gutter-y: $dropdown-large-gutter-y !default;
 		$tooltip-border-radius: $dropdown-border-radius !default;
 		$tooltip-box-shadow: $dropdown-box-shadow !default;
 		$tooltip-background: $dropdown-background !default;
@@ -1045,15 +1063,15 @@
 
 	// THUMBNAIL
 		$thumbnail-font-size: 65px !default;
-			$thumbnail-font-size-medium: 32px !default;
-			$thumbnail-font-size-small: 18px !default;
+			$thumbnail-small-font-size: 32px !default;
+			$thumbnail-micro-font-size: 12px !default;
 		$thumbnail-text-transform: uppercase !default;
 
-		$thumbnail-size: 145px !default;
-			$thumbnail-size-medium: 70px !default;
-			$thumbnail-size-small: 45px !default;
+		$thumbnail-size: 140px !default;
+			$thumbnail-small-size: 70px !default;
+			$thumbnail-micro-size: 30px !default;
 
-
+		$thumbnail-fallback-background: $var-color-neutral !default;
 		$thumbnail-border-radius: 50% !default;
 		$thumbnail-line-height: 1.25 !default;
 		$thumbnail-color: $var-color-background !default;
@@ -1067,9 +1085,9 @@
 		$list-group-border-color: $var-theme-background-contrast !default;
 			$list-group-border-color-inverse: $list-group-border-color !default;
 		$list-group-border-width: 1px !default;
-		$list-group-height: 50px !default;
-			$list-group-height-compact: 30px !default;
-			$list-group-height-expanded: 75px !default;
+		$list-group-height: 40px !default;
+			$list-group-height-compact: 20px !default;
+			$list-group-height-expanded: 60px !default;
 		$list-group-gutter-x: $gutter-small !default;
 		$list-group-interactive-background-hover: $var-color-primary-alpha-1;
 		$list-group-interactive-background-active: $var-color-primary-alpha-2;
@@ -1077,10 +1095,10 @@
 	// badge
 		$badge-size: 25px !default;
 		$badge-size-large: 30px !default;
-		$badge-size-small: 20px !default;
+		$badge-size-small: 18px !default;
 		$badge-border-color: $var-theme-background !default;
 			$badge-border-color-inverse: $badge-border-color !default;
-		$badge-border-width: 7px !default;
+		$badge-border-width: 4px !default;
 		$badge-box-shadow: 0px 3px 10px -5px $var-color-base !default;
 
 	// legend
@@ -1245,37 +1263,37 @@
 
 
 	//toolbar
-		$toolbar-cross-min-size: 75px !default;
-			$toolbar-cross-min-size-small: 50px !default;
-			$toolbar-cross-min-size-large: 100px !default;
-		$toolbar-main-gutter: $gutter-small !default;
-			$toolbar-main-gutter-small: $gutter-micro !default;
-			$toolbar-main-gutter-large: $gutter-base !default;
-		$toolbar-border-radius: $toolbar-cross-min-size * .5 !default;
-			$toolbar-border-radius-small: $toolbar-cross-min-size-small * .5 !default;
-			$toolbar-border-radius-large: $toolbar-cross-min-size-large * .5 !default;
+		$toolbar-cross-min-size: 70px !default;
+			$toolbar-cross-min-size-small: 60px !default;
+			$toolbar-cross-min-size-large: 90px !default;
+		$toolbar-main-gutter: $gutter-base !default;
+			$toolbar-main-gutter-small: $gutter-small !default;
+			$toolbar-main-gutter-large: $gutter-large !default;
+		$toolbar-border-radius: $border-radius-small !default;
+			$toolbar-border-radius-small: $border-radius-small !default;
+			$toolbar-border-radius-large: $border-radius-small !default;
 		$toolbar-background-color: $var-theme-background !default;
 			$toolbar-background-color-inverse: $toolbar-background-color !default;
 		$toolbar-border-color: $var-theme-background-contrast !default;
 			$toolbar-border-color-inverse: $toolbar-border-color !default;
 		$toolbar-border-width: 1px !default;
 		$toolbar-box-shadow: none !default; // 
-		$toolbar-tile-gutter: $gutter-micro !default; // 
+		$toolbar-tile-gutter: $gutter-small !default; // 
 		
 
 	// input
 
-		$input-height: 48px !default;
-			$input-height-large: 60px !default;
-			$input-height-small: 30px !default;
+		$input-height: 30px !default;
+			$input-height-large: 40px !default;
+			$input-height-small: 20px !default;
 		$input-height-multiple-factor: 3 !default;
 		$input-placeholder-opacity: .5 !default;
 		$input-background: $var-theme-background !default;
 			$input-background-inverse: $input-background !default;
 
 		$input-font-size: $body-font-size !default;
-			$input-font-size-large: $body-font-size * 1.25 !default;
-			$input-font-size-small: $body-font-size * .875 !default;
+			$input-font-size-large: $body-font-size * 1.5 !default;
+			$input-font-size-small: $body-font-size * .75 !default;
 
 		$input-select-dropdown-color: $var-color-primary !default;
 		
@@ -1295,9 +1313,9 @@
 		$input-border-width: 1px !default;
 		$input-border-color: $var-color-neutral-alpha-3 !default;
 		$input-border-color-focus: $var-color-neutral-alpha-6 !default;
-		$input-border-radius: $input-height * .5 !default;
-			$input-border-radius-large: $input-height-large * .5 !default;
-			$input-border-radius-small: $input-height-small * .5 !default;
+		$input-border-radius: $border-radius-small !default;
+			$input-border-radius-large: $input-border-radius !default;
+			$input-border-radius-small:$input-border-radius !default;
 		$input-box-shadow: none !default; //$box-shadow-base $var-color-base 
 		$input-box-shadow-palette-basis: $box-shadow-base !default;
 			$input-box-shadow-focus: 0px 0 5px 0px $var-color-primary !default;
@@ -1335,12 +1353,11 @@
 
 				$input-calendar-block-gutter-x: 0px !default;
 					$input-calendar-block-gutter-x-mobile: 0px !default;
-					$input-calendar-block-gutter-y: 8px !default;
-						$input-calendar-block-gutter-y-mobile: 8px !default;
+					$input-calendar-block-gutter-y: .375em !default;
+						$input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y !default;
 				$input-calendar-block-border-radius: $border-radius-base !default;
 
 				$input-calendar-date-hover-color: inherit !default;
-
 
 				$input-calendar-date-heading-button-color-hover: $var-color-primary !default;
 
@@ -1352,13 +1369,13 @@
 
 			//input tag tags
 				$input-tags-padding-x: 1em !default;
-				$input-tags-padding-y: .25em !default;
+				$input-tags-padding-y: .125em !default;
 					$input-tags-padding-y-large: $input-tags-padding-y !default;
 					$input-tags-padding-y-small: .0625em !default;
 				$input-tags-gutter-x: .25em !default;
 				$input-tags-gutter-y: $input-tags-gutter-x!default;
 
-				$input-tags-border-radius: $border-radius-large !default;
+				$input-tags-border-radius: $border-radius-small !default;
 
 				$input-tags-palette-tag: primary !default;
 				$input-tags-palette-tag-slug: alpha-2 !default;
@@ -1408,148 +1425,317 @@
 			
 			$fieldset-border-radius: $border-radius-base !default;
 
-	// BTN
+	// BTN @TODO create btn-light helpers
 		$btn-height: $input-height !default;
 			$btn-height-large: $input-height-large !default;
 			$btn-height-small: $input-height-small !default;
 
-		$btn-font-size: $body-font-size !default;
-			$btn-font-size-large: 22px !default;
-			$btn-font-size-small: 12px !default;
+		$btn-font-size: $input-font-size !default;
+			$btn-font-size-large: $input-font-size-large !default;
+			$btn-font-size-small: $input-font-size-small !default;
 		$btn-line-height: $body-font-size * 1.25 !default;
 		$btn-font-family: $var-font-primary !default;
 		$btn-font-weight: $body-font-weight-bold !default;
 		$btn-font-style: normal !default;
 		$btn-text-transform: none !default;
-		$btn-gutter-x: 20px !default;
+		$btn-gutter-x: $gutter-small !default;
 		$btn-border-width: 1px !default;
-		$btn-border-radius: $btn-height * .5 !default;
-			$btn-border-radius-large: $btn-height-large * .5 !default;
-			$btn-border-radius-small:  $btn-height-small * .5 !default;
+		$btn-border-radius:  $input-border-radius !default;
+			$btn-border-radius-large: $input-border-radius-large !default;
+			$btn-border-radius-small: $input-border-radius-small !default;
 		$btn-box-shadow: none !default; //$box-shadow-base $var-color-base
 			$btn-box-shadow-hover: $box-shadow-base $var-color-base !default;
 		$btn-group-separator-color: $input-border-color !default;
 		$btn-transition-duration: $transition-duration-base!default;
 
 		// SCHEMES
-			$btn-border-default: $input-border-color !default;
-			$btn-background-default: $var-theme-background !default;
-			$btn-color-default: inherit !default;
+			//basic
+				$btn-border-default: $input-border-color !default;
+				$btn-background-default: $var-theme-background !default;
+				$btn-color-default: inherit !default;
 
-				$btn-border-default-hover: $input-border-color-focus !default;
-				$btn-background-default-hover: $var-theme-background !default;
-				$btn-color-default-hover: $var-color-primary !default;
-			
-				$btn-border-default-active: $var-color-primary  !default;
-				$btn-background-default-active: $var-color-primary !default;
-				$btn-color-default-active: $var-color-background !default;
-
-			$btn-border-primary: transparent !default;
-			$btn-background-primary: $var-color-primary !default;
-			$btn-color-primary: $var-color-background !default;
-
-				$btn-border-primary-hover: transparent !default;
-				$btn-background-primary-hover: $var-color-primary-light !default;
-				$btn-color-primary-hover: $var-color-background !default;
+					$btn-border-default-hover: $input-border-color-focus !default;
+					$btn-background-default-hover: $var-theme-background !default;
+					$btn-color-default-hover: $var-color-primary !default;
 				
-				$btn-border-primary-active: transparent !default;
-				$btn-background-primary-active: $var-color-primary !default;
-				$btn-color-primary-active: $var-color-background !default;
+					$btn-border-default-active: $var-color-primary  !default;
+					$btn-background-default-active: $var-color-primary !default;
+					$btn-color-default-active: $var-color-background !default;
 
-			$btn-border-secondary: transparent !default;
-			$btn-background-secondary: $var-color-secondary !default;
-			$btn-color-secondary: $var-color-background !default;
+				$btn-border-primary: transparent !default;
+				$btn-background-primary: $var-color-primary !default;
+				$btn-color-primary: $var-color-background !default;
 
-				$btn-border-secondary-hover: transparent !default;
-				$btn-background-secondary-hover: $var-color-secondary-light !default;
-				$btn-color-secondary-hover: $var-color-background !default;
+					$btn-border-primary-hover: transparent !default;
+					$btn-background-primary-hover: $var-color-primary-light !default;
+					$btn-color-primary-hover: $var-color-background !default;
+					
+					$btn-border-primary-active: transparent !default;
+					$btn-background-primary-active: $var-color-primary !default;
+					$btn-color-primary-active: $var-color-background !default;
+
+				$btn-border-secondary: transparent !default;
+				$btn-background-secondary: $var-color-secondary !default;
+				$btn-color-secondary: $var-color-background !default;
+
+					$btn-border-secondary-hover: transparent !default;
+					$btn-background-secondary-hover: $var-color-secondary-light !default;
+					$btn-color-secondary-hover: $var-color-background !default;
+					
+					$btn-border-secondary-active: transparent !default;
+					$btn-background-secondary-active: $var-color-secondary !default;
+					$btn-color-secondary-active: $var-color-background !default;
+
+				$btn-border-accent: transparent !default;
+				$btn-background-accent: $var-color-accent !default;
+				$btn-color-accent: $var-color-background !default;
+
+					$btn-border-accent-hover: transparent !default;
+					$btn-background-accent-hover: $var-color-accent-light !default;
+					$btn-color-accent-hover: $var-color-background !default;
+					
+					$btn-border-accent-active: transparent !default;
+					$btn-background-accent-active: $var-color-accent !default;
+					$btn-color-accent-active: $var-color-background !default;
+
+				$btn-border-neutral: transparent !default;
+				$btn-background-neutral: $var-color-neutral !default;
+				$btn-color-neutral: $var-color-background !default;
+
+					$btn-border-neutral-hover: transparent !default;
+					$btn-background-neutral-hover: $var-color-neutral-light !default;
+					$btn-color-neutral-hover: $var-color-background !default;
+					
+					$btn-border-neutral-active: transparent !default;
+					$btn-background-neutral-active: $var-color-neutral !default;
+					$btn-color-neutral-active: $var-color-background !default;
+
+				$btn-border-success: transparent !default;
+				$btn-background-success: $var-color-success !default;
+				$btn-color-success: $var-color-background !default;
+
+					$btn-border-success-hover: transparent !default;
+					$btn-background-success-hover: $var-color-success-light !default;
+					$btn-color-success-hover: $var-color-background !default;
 				
-				$btn-border-secondary-active: transparent !default;
-				$btn-background-secondary-active: $var-color-secondary !default;
-				$btn-color-secondary-active: $var-color-background !default;
-
-			$btn-border-accent: transparent !default;
-			$btn-background-accent: $var-color-accent !default;
-			$btn-color-accent: $var-color-background !default;
-
-				$btn-border-accent-hover: transparent !default;
-				$btn-background-accent-hover: $var-color-accent-light !default;
-				$btn-color-accent-hover: $var-color-background !default;
+					$btn-border-success-active: transparent !default;
+					$btn-background-success-active: $var-color-success !default;
+					$btn-color-success-active: $var-color-background !default;
+					
+				$btn-border-caution: transparent !default;
+				$btn-background-caution: $var-color-caution !default;
+				$btn-color-caution: $var-color-background !default;
 				
-				$btn-border-accent-active: transparent !default;
-				$btn-background-accent-active: $var-color-accent !default;
-				$btn-color-accent-active: $var-color-background !default;
+					$btn-border-caution-hover: transparent !default;
+					$btn-background-caution-hover: $var-color-caution-light !default;
+					$btn-color-caution-hover: $var-color-background !default;
+					
+					$btn-border-caution-active: transparent !default;
+					$btn-background-caution-active: $var-color-caution !default;
+					$btn-color-caution-active: $var-color-background !default;
 
-			$btn-border-neutral: transparent !default;
-			$btn-background-neutral: $var-color-neutral !default;
-			$btn-color-neutral: $var-color-background !default;
+				$btn-border-error: transparent !default;
+				$btn-background-error: $var-color-error !default;
+				$btn-color-error: $var-color-background !default;
+					
+					$btn-border-error-hover: transparent !default;
+					$btn-background-error-hover: $var-color-error-light !default;
+					$btn-color-error-hover: $var-color-background !default;
+					
+					$btn-border-error-active: transparent !default;
+					$btn-background-error-active: $var-color-error !default;
+					$btn-color-error-active: $var-color-background !default;
 
-				$btn-border-neutral-hover: transparent !default;
-				$btn-background-neutral-hover: $var-color-neutral-light !default;
-				$btn-color-neutral-hover: $var-color-background !default;
+				$btn-border-link: transparent !default;
+				$btn-background-link: transparent !default;
+				$btn-color-link: $body-anchor-color !default;
+					
+					$btn-border-link-hover: transparent !default;
+					$btn-background-link-hover: transparent !default;
+					$btn-color-link-hover: $body-anchor-color-hover !default;
+					
+					$btn-border-link-active: transparent!default;
+					$btn-background-link-active: transparent!default;
+					$btn-color-link-active: $body-anchor-color !default;
+
+				$btn-background-angle-gradient: 0deg !default;
+				$btn-color-gradient: $var-color-background !default;
+
+					$btn-background-angle-gradient-hover: 180deg !default;
+					$btn-color-gradient-hover: $var-color-background !default;
+					
+					$btn-background-angle-gradient-active: 45deg !default;
+					$btn-color-gradient-active: $var-color-background !default;
+
+
+			// light @TODO
+				$btn-light-border-default: $input-border-color !default;
+				$btn-light-background-default: $var-theme-background !default;
+				$btn-light-color-default: inherit !default;
+
+					$btn-light-border-default-hover: $input-border-color-focus !default;
+					$btn-light-background-default-hover: $var-theme-background !default;
+					$btn-light-color-default-hover: $var-color-primary !default;
 				
-				$btn-border-neutral-active: transparent !default;
-				$btn-background-neutral-active: $var-color-neutral !default;
-				$btn-color-neutral-active: $var-color-background !default;
+					$btn-light-border-default-active: $var-color-primary  !default;
+					$btn-light-background-default-active: $var-color-primary !default;
+					$btn-light-color-default-active: $var-color-background !default;
 
-			$btn-border-success: transparent !default;
-			$btn-background-success: $var-color-success !default;
-			$btn-color-success: $var-color-background !default;
+				$btn-light-border-primary: transparent !default;
+				$btn-light-background-primary: $var-color-primary !default;
+				$btn-light-color-primary: $var-color-background !default;
 
-				$btn-border-success-hover: transparent !default;
-				$btn-background-success-hover: $var-color-success-light !default;
-				$btn-color-success-hover: $var-color-background !default;
-			
-				$btn-border-success-active: transparent !default;
-				$btn-background-success-active: $var-color-success !default;
-				$btn-color-success-active: $var-color-background !default;
-				
-			$btn-border-caution: transparent !default;
-			$btn-background-caution: $var-color-caution !default;
-			$btn-color-caution: $var-color-background !default;
-			
-				$btn-border-caution-hover: transparent !default;
-				$btn-background-caution-hover: $var-color-caution-light !default;
-				$btn-color-caution-hover: $var-color-background !default;
-				
-				$btn-border-caution-active: transparent !default;
-				$btn-background-caution-active: $var-color-caution !default;
-				$btn-color-caution-active: $var-color-background !default;
+					$btn-light-border-primary-hover: transparent !default;
+					$btn-light-background-primary-hover: $var-color-primary-light !default;
+					$btn-light-color-primary-hover: $var-color-background !default;
+					
+					$btn-light-border-primary-active: transparent !default;
+					$btn-light-background-primary-active: $var-color-primary !default;
+					$btn-light-color-primary-active: $var-color-background !default;
 
-			$btn-border-error: transparent !default;
-			$btn-background-error: $var-color-error !default;
-			$btn-color-error: $var-color-background !default;
-				
-				$btn-border-error-hover: transparent !default;
-				$btn-background-error-hover: $var-color-error-light !default;
-				$btn-color-error-hover: $var-color-background !default;
-				
-				$btn-border-error-active: transparent !default;
-				$btn-background-error-active: $var-color-error !default;
-				$btn-color-error-active: $var-color-background !default;
+				$btn-light-border-secondary: transparent !default;
+				$btn-light-background-secondary: $var-color-secondary !default;
+				$btn-light-color-secondary: $var-color-background !default;
 
-			$btn-border-link: transparent !default;
-			$btn-background-link: transparent !default;
-			$btn-color-link: $body-anchor-color !default;
-				
-				$btn-border-link-hover: transparent !default;
-				$btn-background-link-hover: transparent !default;
-				$btn-color-link-hover: $body-anchor-color-hover !default;
-				
-				$btn-border-link-active: transparent!default;
-				$btn-background-link-active: transparent!default;
-				$btn-color-link-active: $body-anchor-color !default;
+					$btn-light-border-secondary-hover: transparent !default;
+					$btn-light-background-secondary-hover: $var-color-secondary-light !default;
+					$btn-light-color-secondary-hover: $var-color-background !default;
+					
+					$btn-light-border-secondary-active: transparent !default;
+					$btn-light-background-secondary-active: $var-color-secondary !default;
+					$btn-light-color-secondary-active: $var-color-background !default;
 
-			
+				$btn-light-border-accent: transparent !default;
+				$btn-light-background-accent: $var-color-accent !default;
+				$btn-light-color-accent: $var-color-background !default;
 
-			$btn-background-angle-gradient: 0deg !default;
-			$btn-color-gradient: $var-color-background !default;
+					$btn-light-border-accent-hover: transparent !default;
+					$btn-light-background-accent-hover: $var-color-accent-light !default;
+					$btn-light-color-accent-hover: $var-color-background !default;
+					
+					$btn-light-border-accent-active: transparent !default;
+					$btn-light-background-accent-active: $var-color-accent !default;
+					$btn-light-color-accent-active: $var-color-background !default;
 
-				$btn-background-angle-gradient-hover: 180deg !default;
-				$btn-color-gradient-hover: $var-color-background !default;
+				$btn-light-border-neutral: transparent !default;
+				$btn-light-background-neutral: $var-color-neutral !default;
+				$btn-light-color-neutral: $var-color-background !default;
+
+					$btn-light-border-neutral-hover: transparent !default;
+					$btn-light-background-neutral-hover: $var-color-neutral-light !default;
+					$btn-light-color-neutral-hover: $var-color-background !default;
+					
+					$btn-light-border-neutral-active: transparent !default;
+					$btn-light-background-neutral-active: $var-color-neutral !default;
+					$btn-light-color-neutral-active: $var-color-background !default;
+
+				$btn-light-border-success: transparent !default;
+				$btn-light-background-success: $var-color-success !default;
+				$btn-light-color-success: $var-color-background !default;
+
+					$btn-light-border-success-hover: transparent !default;
+					$btn-light-background-success-hover: $var-color-success-light !default;
+					$btn-light-color-success-hover: $var-color-background !default;
 				
-				$btn-background-angle-gradient-active: 45deg !default;
-				$btn-color-gradient-active: $var-color-background !default;
+					$btn-light-border-success-active: transparent !default;
+					$btn-light-background-success-active: $var-color-success !default;
+					$btn-light-color-success-active: $var-color-background !default;
+					
+				$btn-light-border-caution: transparent !default;
+				$btn-light-background-caution: $var-color-caution !default;
+				$btn-light-color-caution: $var-color-background !default;
+				
+					$btn-light-border-caution-hover: transparent !default;
+					$btn-light-background-caution-hover: $var-color-caution-light !default;
+					$btn-light-color-caution-hover: $var-color-background !default;
+					
+					$btn-light-border-caution-active: transparent !default;
+					$btn-light-background-caution-active: $var-color-caution !default;
+					$btn-light-color-caution-active: $var-color-background !default;
+
+				$btn-light-border-error: transparent !default;
+				$btn-light-background-error: $var-color-error !default;
+				$btn-light-color-error: $var-color-background !default;
+					
+					$btn-light-border-error-hover: transparent !default;
+					$btn-light-background-error-hover: $var-color-error-light !default;
+					$btn-light-color-error-hover: $var-color-background !default;
+					
+					$btn-light-border-error-active: transparent !default;
+					$btn-light-background-error-active: $var-color-error !default;
+					$btn-light-color-error-active: $var-color-background !default;
+
+				$btn-light-border-link: transparent !default;
+				$btn-light-background-link: transparent !default;
+				$btn-light-color-link: $body-anchor-color !default;
+					
+					$btn-light-border-link-hover: transparent !default;
+					$btn-light-background-link-hover: transparent !default;
+					$btn-light-color-link-hover: $body-anchor-color-hover !default;
+					
+					$btn-light-border-link-active: transparent!default;
+					$btn-light-background-link-active: transparent!default;
+					$btn-light-color-link-active: $body-anchor-color !default;
+
+				$btn-light-background-angle-gradient: 0deg !default;
+				$btn-light-color-gradient: $var-color-background !default;
+
+					$btn-light-background-angle-gradient-hover: 180deg !default;
+					$btn-light-color-gradient-hover: $var-color-background !default;
+					
+					$btn-light-background-angle-gradient-active: 45deg !default;
+					$btn-light-color-gradient-active: $var-color-background !default;
+
+			//gradient @TODO
+
+				$btn-gradient-border-default: $input-border-color !default;
+				$btn-gradient-background-default: $var-theme-background !default;
+				$btn-gradient-color-default: inherit !default;
+
+					$btn-gradient-border-default-hover: $input-border-color-focus !default;
+					$btn-gradient-background-default-hover: $var-theme-background !default;
+					$btn-gradient-color-default-hover: $var-color-primary !default;
+				
+					$btn-gradient-border-default-active: $var-color-primary  !default;
+					$btn-gradient-background-default-active: $var-color-primary !default;
+					$btn-gradient-color-default-active: $var-color-background !default;
 
 	// SYMBOLS
 		$symbol-font-path: "./../fonts/fw-icons" !default;
+
+
+		// @OTHER @TODOS
+		//padding and margin classes
+
+
+
+
+//////////////////////////////// CONTENT PLUGIN DEPENDENCIES
+		
+$brxs: $br-xs-max;
+$brsm: $br-sm-max;
+$brmd: $br-md-max;
+		
+//mixins shithole
+	$color-base: $brand-color-base;
+		$color-base-alt: $brand-color-base-alt;
+	$color-primary: $brand-color-primary;
+		$color-primary-alt:$brand-color-primary-dark;
+	$color-accent: $brand-color-secondary;
+		$color-accent-alt: $brand-color-secondary-dark;
+
+	$white: $brand-color-background;
+		$white-alt: $brand-color-background-alt;
+	$gray: $brand-color-neutral;
+
+	$success: $brand-color-success;
+	$caution: $brand-color-caution;
+	$error: $brand-color-error;
+
+	$font-base: $brand-font-primary;
+	$font-secondary: $brand-font-secondary;
+	$font-accent: $brand-font-secondary;
+	$font-monospace: $brand-font-monospace;
+
+
+

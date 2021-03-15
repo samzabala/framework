@@ -1,7 +1,7 @@
 # Tooltip
 
 
-Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle="tooltip-click"]`** or hover with **`[data-toggle="tooltip-hover"]`** 
+Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle-tooltip-click]`** or hover with **`[data-toggle-tooltip-hover]`** 
 
 NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your tooltip to dIE... or position itself like shit
 
@@ -9,7 +9,7 @@ Example tooltip that toggles on click
 
 ```html
 <a href="#" class="btn btn-primary"
-	data-toggle="tooltip-click"
+	data-toggle-tooltip-click
 	data-tooltip-placement="top"
 	data-tooltip-content="<strong>YEET</strong>">
 	Bitch boi on the top
@@ -20,7 +20,7 @@ A bitch boy toggled on hover
 
 ```html
 <a href="#" class="btn btn-primary"
-	data-toggle="tooltip-hover"
+	data-toggle-tooltip-hover
 	data-tooltip-placement="top"
 	data-tooltip-content="<strong>YEET</strong>">
 	Bitch boi on the top
@@ -33,10 +33,10 @@ A bitch boy toggled on hover
 
 # Toggler
 
-**`[data-toggle="tooltip-click"]`** or **`[data-toggle="tooltip-hover"]`** depending on how the fuck you want it to appear. This shit makes it happen. Add this to the element you need to hava a tooltip on
+**`[data-toggle-tooltip-click]`** or **`[data-toggle-tooltip-hover]`** depending on how the fuck you want it to appear. This shit makes it happen. Add this to the element you need to hava a tooltip on
 
 ```html
-<span data-toggle="tooltip-hover"></span>
+<span data-toggle-tooltip-hover></span>
 ```
 
 This makes a tooltip, but there's nothing in it yet because you need...
@@ -136,30 +136,74 @@ This is the markup our framework generates in case you need to make your own.
 
 you can try but be careful
 
-
 ## Javascript
-
 
 ### Functions
 
-#### **`fw.createTooltip(triggerer)`**
+#### **`fw.Tooltip(element)`**
 
-Creates a boi
+Make a new boi by going `const tooltip = new fw.Tooltip(triggerElement,args)`
 
-`triggerer` is the element that toggles the modal or [data-toggle="modal*"],
+`triggerElement` is the tooltip triggerer. if blank, does nothing
 
-the parameter is required
+`args` is the opts available
+```js
+//defaults
+{
+	placement: 'left',
+	badge: false,
+	badgeBg: 'primary',
+	badgeSize: '',
+	classes: '',
+	inverse:false,
+	size: '',
+	content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
+	centerX: false,
+	centerY: false,
+	x: false,
+	y: false,
+	width: null,
+	allowInteraction: false
+}
+```
 
-#### **`fw.destroyTooltip()`**
 
-Kills ya boi. This function is ran first thing in `fw.createTooltip(triggerer)` too
+#### **`tooltip.create(element)`**
+
+duh
+
+`element` is the element that triggers the tooltip
 
 
-#### **`fw.positionToolTip( x:number, y:number )`**
+#### **`tooltip.destroy()`**
 
-Positions ya boi. You can only run this if a tooltip is triggered and active.
+destroys currently active tooltip
 
-NOTE: offset is calculated based on position offset from body
+
+#### **`tooltip.position(x,y)`**
+
+positions ya boi based on whatever you put there. defaults to offsetting from the triggerter if coordinates are empty
+
+#### **`tooltip.elementOrigin`**
+
+gets {x,y} offset for tooltip based on triggerElement's position
+
+### Events
+
+* `click.fw.tooltip` - happens on `data-toggle-tooltip-click`
+* `mouseenter.fw.tooltip` - happens on `data-toggle-tooltip-hover`
+* `mouseleave.fw.tooltip` - happens on `data-toggle-tooltip-hover`
+* `click.fw.tooltip.purge` - happens on elements that qualify closing tooltip-click components
+* `before_create.fw.tooltip` - happens on `element` before create
+* `create.fw.tooltip` - happens on `element` when create
+* `after_create.fw.tooltip` - happens on `element` after create
+* `before_destroy.fw.tooltip` - happens on `element` before destroy
+* `destroy.fw.tooltip` - happens on `element` when destroy
+* `after_destroy.fw.tooltip` - happens on `element` after destroy
+* `before_position.fw.tooltip` - happens on `element` before position
+* `position.fw.tooltip` - happens on `element` when position
+* `after_position.fw.tooltip` - happens on `element` after position
+
 
 
 [Back to TOC](../../../readme.md)

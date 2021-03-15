@@ -30,14 +30,14 @@ const Modifiers =  {
 }
 
 //key events
-	document.documentElement.addEventListener(
+	document.addEventListener(
 		'keydown',
 		(e) => {
 			Modifiers.update(e);
 		}
 	);
 
-	document.documentElement.addEventListener(
+	document.addEventListener(
 		'keyup',
 		(e) => {
 			setTimeout(() => {

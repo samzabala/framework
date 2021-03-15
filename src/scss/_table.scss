@@ -59,7 +59,7 @@ $prefix: '.table';
 
 		.text-wrap-ellipsis,.text-wrap-ellipsis-multiple {
 			width: 10em;
-			width: clamp(10em, 25vw, 24em);
+			width: clamp(14em, 25vw, 12em);
 		}
 
 
@@ -225,17 +225,17 @@ $prefix: '.table';
 			#{$prefix}-small & {
 				height: calc(#{ $calculated-table-cell-height-small } - (#{$table-label-offset} * 2));
 			}
-			
+
 			@each $tag,$color in $calculated-brand-color-declarations-for-components {
 				&-#{$tag} {
-					@extend %for-background-#{$tag} !optional;
+					background-color: $color;
 				}
 			}
-
+		
 			&-intensity {
-				@for $i from 1 through length($calculated-color-brand-intensity) {
+				@for $i from 1 through length($calculated-brand-color-intensity) {
 					&-#{$i} {
-						@extend %for-background-intensity-#{$i} !optional;
+						background-color: nth($calculated-brand-color-intensity,$i);
 					}
 				}
 			}
@@ -246,7 +246,7 @@ $prefix: '.table';
 			&-disabled {
 				td,
 				#{$prefix}-cell {
-					@extend %for-disabled !optional;
+					@include dump-styles(disabled);
 				}
 			}
 		}

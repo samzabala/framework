@@ -17,10 +17,10 @@ $prefix: '.toolbar';
 			
 	&,
 	& a {
-		text-decoration:get-anchor-dec();
+		@include dump-styles(no-text-decoration);
 
 		&:hover,&:focus,&.focus {
-			text-decoration: get-anchor-dec(true);
+			@include dump-styles(no-text-decoration-hover);
 		}
 	}
 	

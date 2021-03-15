@@ -35,7 +35,7 @@ These are valid color classes for your boi
 
 ## Toggler
 
-### **`[data-toggle=alert-close]`**
+### **`[data-toggle-alert-close]`**
 
 Elements with this attribute looks for an alert to close
 
@@ -50,7 +50,7 @@ Combine both so you can do magical things <3
 
 This one looks for the `href` of the boi
 ```html
-<a href="#bitch-alert" class="btn btn-default" data-toggle="alert-close">Close Alert</a>
+<a href="#bitch-alert" class="btn btn-default" data-toggle-alert-close>Close Alert</a>
 <div class="alert alert-error" id="bitch-alert">
 	<!-- Close butt -->
 
@@ -62,7 +62,7 @@ This one looks for the `href` of the boi
 
 This one looks for the `data-href` of the boi
 ```html
-<span data-href="#bitch-alert" class="btn btn-default" data-toggle="alert-close">Close Alert</span>
+<span data-href="#bitch-alert" class="btn btn-default" data-toggle-alert-close>Close Alert</span>
 <div class="alert alert-error" id="bitch-alert">
 	<!-- Close butt -->
 
@@ -75,7 +75,7 @@ This one looks for the `.alert` ancestor and it's a close symbol because it look
 ```html
 <div class="alert alert-error" id="bitch-alert">
 	<!-- Close butt -->
-	<a href="#bitch-alert" class="alert-close" data-toggle="alert-close"><i class="symbol symbol-close"></i></a>
+	<a href="#bitch-alert" class="alert-close" data-toggle-alert-close><i class="symbol symbol-close"></i></a>
 
 	I have a close button suck my dick
 </div>
@@ -129,14 +129,14 @@ Typically placed in the `.alert-header`. It's used to title your alert
 
 
 
-### **`[data-toggle=alert-close-all]`**
+### **`[data-toggle-alert-close-all]`**
 
 Well what if there's too many notifications and the user is too overwhelmed by the amount and you wanna give them the ability to close all them alerty bois?
 
 Set this data attribute to a bitch up no href or data-href required... it just.. destroys eveRYTHING
 
 ```html
-	<a href="#bitch-alert" class="btn btn-default" data-toggle="alert-close-all">Clear Notifications... good lord this is too much</a>
+	<a href="#bitch-alert" class="btn btn-default" data-toggle-alert-close-all>Clear Notifications... good lord this is too much</a>
 	<div class="alert alert-error" id="bitch-alert">
 		ALERT! HAHAHAHAHAHAH
 	</div>
@@ -168,5 +168,43 @@ Set this data attribute to a bitch up no href or data-href required... it just..
 		ALERT! HAHAHAHAHAHAH
 	</div>
 ```
+
+
+## Javascript
+
+it has some but just for the functionality of closing them
+
+### Functions
+
+#### **`fw.Alert(element)`**
+
+Make a new boi by going `const alert = new fw.Alert(element)`
+
+useful when you need to close this alert
+
+#### **`alert.close(element)`**
+
+duh
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`fw.Alert.closeAll()`**
+
+run if you wanna close it all
+
+
+#### **`fw.Alert.initListeners()`**
+
+initializes all event listeners
+
+
+### Events
+
+* `click.fw.alert` - happens on `triggerer`
+* `before_close.fw.alert` - happens on `element` before closing
+* `close.fw.alert` - happens on `element` when closing
+* `after_close.fw.alert` - happens on `element` after closing
+
+
 
 [Back to TOC](../../../readme.md)

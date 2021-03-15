@@ -1,4 +1,6 @@
-
+[data-toggle-modal]{
+	@include dump-styles(data-toggle);
+}
 %for-modal {
 	//ui block where scrolling is allowed
 	&-scroller {
@@ -6,7 +8,7 @@
 
 		//ui block where there should be no scrollibois
 		&-no-scrollbar {
-			@extend %for-no-scrollbar !optional;
+			@include dump-styles(no-scrollbar);
 		}
 
 	}
@@ -20,11 +22,6 @@
 		bottom: 0!important;
 		margin: 0;
 		background: $modal-overlay-bg;
-		display:none!important;
-
-		&.active {
-			display:block!important;
-		}
 	}
 
 	//duh
@@ -51,6 +48,35 @@
 		
 		.theme-inverse & {
 			background: $modal-background-inverse;
+		}
+	}
+}
+$prefix: '.modal';
+.modal {
+	display:none!important;
+
+	&-ui {
+		& {
+			position: fixed;
+		}
+		&-wrapper {
+			@extend %for-modal-wrapper !optional;
+		}
+
+		&-title {
+			margin-top:0;
+		}
+
+		&-overlay {
+			@extend %for-modal-overlay !optional;
+			
+			&:not([data-toggle-modal-close]) {
+				@extend %for-modal-overlay-not-closeable !optional;
+			}
+		}
+
+		&-popup {
+			@extend %for-modal-popup !optional;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 /*** THUMBNAIL ***/
 $prefix: '.thumbnail';
 #{$prefix} {
-	@extend %for-background-gradient-135;
+	background: $thumbnail-fallback-background;
 	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false,true,false);
 	width: 1em;
 	max-width:100%;
@@ -38,7 +38,7 @@ $prefix: '.thumbnail';
 	}
 
 	&,&-image {
-		@extend %for-fit-image-cover;
+		@include dump-styles(fit-image-cover);
 		border-radius: $thumbnail-border-radius;
 	}
 
@@ -82,21 +82,21 @@ $prefix: '.thumbnail';
 
 	}
 
-	&#{$prefix}-medium {
-		font-size: $calculated-thumbnail-size-medium;
+	&#{$prefix}-small {
+		font-size: $calculated-thumbnail-small-size;
 
 		#{$prefix}-text {
-			font-size: $calculated-thumbnail-font-size-medium;
+			font-size: $calculated-thumbnail-small-font-size;
 		}
 	}
 
 	
 
-	&#{$prefix}-small {
-		font-size: $calculated-thumbnail-size-small;
+	&#{$prefix}-micro {
+		font-size: $calculated-thumbnail-micro-size;
 
 		#{$prefix}-text {
-			font-size: $calculated-thumbnail-font-size-small;
+			font-size: $calculated-thumbnail-micro-font-size;
 		}
 	}
 

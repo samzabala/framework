@@ -1,25 +1,26 @@
-import FwCore from './util/core.js';
-import {FwFnsQ} from './util/initiator.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
 import FwDom from './data-helper/dom.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggled,UiTriggerer,UiPurge } from './util/ui.js';
+import { UIToggled,UITriggerer,UIPurge, UIDynamicClass } from './util/ui.js';
 
 const NAME = 'dropdown';
 const ARG_ATTRIBUTE_NAME = `${NAME}`;
 const TOGGLE_MODE = `${NAME}`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
+const COMPONENT_PURGER_CLASS = `${COMPONENT_CLASS}-purger`;
 const ACTIVATED_CLASS = `open`;
 
 const NAV_ANCESTOR = `li, .nav-item`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
+	const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
 const EVENT_FOCUS = `focus${EVENT_KEY}`;
 const EVENT_BLUR = `blur${EVENT_KEY}`;
 
@@ -37,9 +38,9 @@ class Dropdown extends FwComponent {
 		super(
 			element,
 			{
-				_triggerer:(
+				triggerer:(
 					triggerer
-						? new FwDom(triggerer)
+						? triggerer
 					: false
 				),
 				_customArgs: args
@@ -50,7 +51,7 @@ class Dropdown extends FwComponent {
 
 	dispose() {
 		super.dispose();
-		this._triggerer = null;
+		this.triggerer = null;
 		this._customArgs = null;
 	}
 
@@ -68,18 +69,18 @@ class Dropdown extends FwComponent {
 				: {
 					width:(
 						(
-							this._triggerer
-							&& this._triggerer
+							this.triggerer
+							&& this.triggerer
 								.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
-						) || this._element.
+						) || this.element.
 							getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
 					),
 					maxHeight:(
 						(
-							this._triggerer
-							&& this._triggerer
+							this.triggerer
+							&& this.triggerer
 								.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
-						) || this._element.
+						) || this.element.
 							getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
 					),
 				}
@@ -92,13 +93,13 @@ class Dropdown extends FwComponent {
 		return DATA_KEY;
 	}
 
-	get UiElNavcestor() {
-		return this._element.closest(NAV_ANCESTOR);
+	get UIElNavcestor() {
+		return this.element.closest(NAV_ANCESTOR);
 	}
 
-	get UiElUncles() {
-		if(this.UiElNavcestor){
-			return FwDom.getSiblings(this.UiElNavcestor)
+	get UIElUncles() {
+		if(this.UIElNavcestor){
+			return FwDom.getSiblings(this.UIElNavcestor)
 				.filter((sibling) => {
 					return sibling.matches(
 						NAV_ANCESTOR
@@ -110,78 +111,88 @@ class Dropdown extends FwComponent {
 
 	close(elem,triggerer){
 		const element = elem ?
-			super.UiEl(elem)
-			: this._element;
-
-		if(element){
-			triggerer = triggerer || this._triggerer;
-
-			FwEvent.trigger(element,EVENT_BEFORE_CLOSE);
-	
-			this.setDimensions(
-				null,
-				Dropdown.configDefaults
-			);
-		
-			FwEvent.trigger(element,EVENT_CLOSE);
-			element.classList.remove(ACTIVATED_CLASS);
-			triggerer
-				&& triggerer.classList.remove(ACTIVATED_CLASS);
-			this.UiElNavcestor
-				&& this.UiElNavcestor.classList.remove(ACTIVATED_CLASS);
-				
-			FwEvent.trigger(element,EVENT_AFTER_CLOSE);
-		}
-	}
-
-	open(elem,triggerer){
-		const element = elem ?
-			super.UiEl(elem)
-			: this._element;
+			super.UIEl(elem)
+			: this.element;
 
 		if(!element){
 			return;
 		}
+
+		triggerer = triggerer || this.triggerer;
+
+		FwEvent.trigger(element,EVENT_BEFORE_CLOSE);
+
+		this.setDimensions(
+			null,
+			Dropdown.configDefaults
+		);
+	
+		FwEvent.trigger(element,EVENT_CLOSE);
+		element.classList.remove(ACTIVATED_CLASS);
+		triggerer
+			&& triggerer.classList.remove(ACTIVATED_CLASS);
+		this.UIElNavcestor
+			&& this.UIElNavcestor.classList.remove(ACTIVATED_CLASS);
+			
+		FwEvent.trigger(element,EVENT_AFTER_CLOSE);
+	}
+
+	open(elem,triggerer){
+		const element = elem ?
+			super.UIEl(elem)
+			: this.element;
+
+		if(!element){
+			return;
+		}
+
 		
-		triggerer = triggerer || this._triggerer;
+		triggerer = triggerer || this.triggerer;
 
 		FwEvent.trigger(element,EVENT_BEFORE_OPEN);
 		
-		this.setDimensions();
-
-		Dropdown.purgeToggles(triggerer);
 		Dropdown.purge(element);
 	
 		FwEvent.trigger(element,EVENT_OPEN);
+
+		this.setDimensions();
+
 		element.classList.add(ACTIVATED_CLASS);
+
 		triggerer
 			&& triggerer.classList.add(ACTIVATED_CLASS);
 
-		if(this.UiElUncles){
-			this.UiElUncles.forEach((uncle) => {
-				uncle.classList.remove(ACTIVATED_CLASS);
-			});
-		}
+		// if(this.UIElUncles){
+		// 	this.UIElUncles.forEach((uncle) => {
+		// 		uncle.classList.remove(ACTIVATED_CLASS);
+		// 	});
+		// }
+
+
 
 		FwEvent.trigger(element,EVENT_AFTER_OPEN);
 	}
 
 	toggle(elem,triggerer){
 		const element = elem ?
-			super.UiEl(elem)
-			: this._element;
+			super.UIEl(elem)
+			: this.element;
 
 		
 		if(!element){
 			return;
 		}
-		
-		triggerer = triggerer || false;
+		triggerer = triggerer || this.triggerer;
+
+		triggerer
+				.closest(`.${Settings.get('uiJsClass')}`)
+			&& !triggerer
+				.closest(`.${UIDynamicClass}`)
 
 		if(element.classList.contains(ACTIVATED_CLASS)){
-			this.close(elem,triggerer);
+			this.close(element,triggerer);
 		}else{
-			this.open(elem,triggerer);
+			this.open(element,triggerer);
 		}
 	}
 	
@@ -189,8 +200,8 @@ class Dropdown extends FwComponent {
 	setDimensions(elem,args){
 
 		const element = elem ?
-			super.UiEl(elem)
-			: this._element;
+			super.UIEl(elem)
+			: this.element;
 
 		
 		if(!element){
@@ -208,9 +219,9 @@ class Dropdown extends FwComponent {
 		}
 	}
 
-	static purge(exemptedDropdown) {
-		UiPurge(
-			exemptedDropdown,
+	static purge(exempted) {
+		UIPurge(
+			exempted,
 			`.${COMPONENT_CLASS}`,
 			(elem) => {
 				new Dropdown(elem).close();
@@ -220,31 +231,18 @@ class Dropdown extends FwComponent {
 
 
 
-	static purgeToggles(exemptedToggle) {
-		UiPurge(
-			exemptedToggle,
-			`*[data-toggle="${TOGGLE_MODE}"]`,
-			(elem) => {
-				new Dropdown( UiToggled(TOGGLE_MODE,elem) ).close();
-			}
-		);
-	}
-
-
 	static handleToggle() {
 		return (e) => {
 			e.preventDefault();
-
 			if(!FwComponent.isDisabled(e.target)){
-				const triggerer = UiTriggerer(e.target);
-				const dropdown = new Dropdown(
-					UiToggled(
-						TOGGLE_MODE,
-						triggerer
-					),
-					triggerer
-				);
 
+				const dropdown = new Dropdown(
+					UIToggled(
+						TOGGLE_MODE,
+						UITriggerer(e.target)
+					),
+					UITriggerer(e.target)
+				);
 				dropdown.toggle();
 			}
 		}
@@ -254,13 +252,12 @@ class Dropdown extends FwComponent {
 			if (FwComponent.isDisabled(e.target)) {
 				e.target.blur();
 			}else{
-				const triggerer = UiTriggerer(e.target);
 				const dropdown = new Dropdown(
-					UiToggled(
+					UIToggled(
 						TOGGLE_MODE,
-						triggerer
+						UITriggerer(e.target)
 					),
-					triggerer
+					UITriggerer(e.target)
 				);
 
 				dropdown.open();
@@ -273,13 +270,12 @@ class Dropdown extends FwComponent {
 		return (e) => {
 
 			if(!FwComponent.isDisabled(e.target)){
-				const triggerer = UiTriggerer(e.target);
 				const dropdown = new Dropdown(
-					UiToggled(
+					UIToggled(
 						TOGGLE_MODE,
-						triggerer
+						UITriggerer(e.target)
 					),
-					triggerer
+					UITriggerer(e.target)
 				);
 	
 				setTimeout(() => {
@@ -291,20 +287,24 @@ class Dropdown extends FwComponent {
 		}
 	}
 
-	static handlerUniversal() {
+	static handleUniversalPurge(isPurger) {
+		isPurger = isPurger || false;
 		
 
 		return (e) => {
+
 			if (FwComponent.isDisabled(e.target)) {
 				e.preventDefault();
 			} else if(!FwComponent.isDynamic(e.target)) {
 				if (
-					!e.target.closest(`[data-toggle="${TOGGLE_MODE}"]`)
-					&& !e.target.closest(`.${COMPONENT_CLASS}`)
+					isPurger
+					|| (
+						!isPurger
+						&& !e.target.closest(`[data-toggle-${TOGGLE_MODE}]`)
+						&& !e.target.closest(`.${COMPONENT_CLASS}`)
+					)
 				) {
-					
 					Dropdown.purge();
-					Dropdown.purgeToggles();
 				}
 			}
 			
@@ -314,32 +314,32 @@ class Dropdown extends FwComponent {
 	static initListeners(){
 		
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`*[data-toggle="${TOGGLE_MODE}"]:not(input):not([contenteditable]):not(.${FwCore.settings.uiJsClass})`,
+			`*[data-toggle-${TOGGLE_MODE}]:not(input):not([contenteditable]):not(.${Settings.get('uiJsClass')})`,
 			Dropdown.handleToggle()
 		);
 
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_FOCUS,
-			`input[data-toggle="${TOGGLE_MODE}"], *[contenteditable][data-toggle="${TOGGLE_MODE}"], .${FwCore.settings.uiJsClass}[data-toggle="${TOGGLE_MODE}"] [contenteditable]`,
+			`input[data-toggle-${TOGGLE_MODE}], *[contenteditable][data-toggle-${TOGGLE_MODE}], .${Settings.get('uiJsClass')}[data-toggle-${TOGGLE_MODE}] [contenteditable]`,
 			Dropdown.handleFocusOpen()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_BLUR,
-			`input[data-toggle="${TOGGLE_MODE}"], *[contenteditable][data-toggle="${TOGGLE_MODE}"], .${FwCore.settings.uiJsClass}[data-toggle="${TOGGLE_MODE}"] [contenteditable]`,
+			`input[data-toggle-${TOGGLE_MODE}], *[contenteditable][data-toggle-${TOGGLE_MODE}], .${Settings.get('uiJsClass')}[data-toggle-${TOGGLE_MODE}] [contenteditable]`,
 			Dropdown.handleBlurClose()
 		);
 
 		FwEvent.addListener(
-			document,
-			'click',
-			`*`,
-			Dropdown.handlerUniversal()
+			document.documentElement,
+			EVENT_CLICK_PURGE,
+			`*, .${COMPONENT_PURGER_CLASS}`,
+			Dropdown.handleUniversalPurge()
 		);
 	}
 }

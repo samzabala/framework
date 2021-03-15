@@ -23,7 +23,7 @@ $prefix: '.input';
 				direction: ltr;
 				position: relative;
 
-				@extend %for-no-scrollbar !optional;
+				@include dump-styles(no-scrollbar);
 
 				&#{&}-single {
 
@@ -109,7 +109,10 @@ $prefix: '.input';
 					}
 
 					&-text {
-						@extend %for-text-ellipsis-single;
+						@include dump-styles(text-ellipsis-single);
+						padding:0;
+						margin:0;
+						font:inherit;
 						max-width: 10em;
 						cursor:text;
 					}

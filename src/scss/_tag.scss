@@ -21,7 +21,7 @@ $prefix: '.tag';
 	// display: inline-block;
 	vertical-align:middle;
 	max-width:100%;
-	@extend %for-text-ellipsis-single;
+	@include dump-styles(text-ellipsis-single);
 
 	&#{&}-large {
 		padding-top: calc(  (  (#{$calculated-tag-height-large} - (#{ $calculated-tag-single-line }) ) * .5 ));
@@ -43,7 +43,7 @@ $prefix: '.tag';
 	}
 	&-text  {
 		max-width: 10em;
-		@extend %for-text-ellipsis-single;
+		@include dump-styles(text-ellipsis-single);
 
 	}
 
@@ -52,7 +52,7 @@ $prefix: '.tag';
 	&:focus,
 	&.focus {
 		color: $tag-color;
-		text-decoration: get-anchor-dec(true);
+		@include dump-styles(no-text-decoration-hover);
 	}
 
 

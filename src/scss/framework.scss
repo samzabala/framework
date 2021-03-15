@@ -1,4 +1,6 @@
 /*! it's scary terry bitch */
+//resets
+	@import '_reset';
 //vars
 	@import '_vars';
 	
@@ -11,7 +13,6 @@
 		@import '_calculations';
 
 //to cascade
-	@import '_reset';
 	@import '_scaffolding';
 	@import '_typography';
 
@@ -29,7 +30,7 @@
 			@import '_tab';
 			@import '_pagination';
 		//other
-			@import '_images';
+			@import '_lazy';
 			@import '_thumbnail';
 			@import '_ratio';
 			@import '_accordion';

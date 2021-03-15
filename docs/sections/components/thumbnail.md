@@ -20,19 +20,19 @@ Useful for displaying profile images and such. use **`.thumbnail`**
 </a>
 ```
 
-To make them small, add **`.thumbnail-small`**
+To make them small, add **`.thumbnail-micro`**
 
 
 ```html
 <!-- img setup -->
-<a class="thumbnail thumbnail-small" href="#">
+<a class="thumbnail thumbnail-micro" href="#">
 	<div class="thumbnail-image">
 		<img data-src="profile-image.jpg" alt="">
 	</div>
 </a>
 
 <!-- text setup -->
-<a class="thumbnail thumbnail-small" href="#">
+<a class="thumbnail thumbnail-micro" href="#">
 	<span class="thumbnail-text">
 		mf
 	</span>

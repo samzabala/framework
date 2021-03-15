@@ -1,5 +1,6 @@
-import FwCore from './../util/core.js';
-import {FwFnsQ} from './../util/initiator.js';
+import Settings from './../core/settings.js';
+import Initiator from './../core/initiator.js';
+
 import Modifiers from './../util/modifiers.js';
 
 import FwEvent from './../data-helper/event.js';
@@ -7,7 +8,7 @@ import FwArray from './../data-helper/array.js';
 import FwDom from './../data-helper/dom.js';
 
 import FwComponent from './../classes/component.js';
-import { UiPrefix } from '../util/ui.js';
+import { UIPrefix } from '../util/ui.js';
 import Form from '../form.js';
 
 const NAME = 'formTags';
@@ -15,7 +16,7 @@ const ARG_ATTRIBUTE_NAME = 'tags';
 const COMPONENT_CLASS = `input-tags`;
 const FOCUS_CLASS = `focus`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
@@ -28,9 +29,9 @@ const EVENT_CHANGE = `change${EVENT_KEY}`;
 	const EVENT_INIT = `init${EVENT_KEY}`;
 	const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 
-	const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
-	const EVENT_CREATE = `create${EVENT_KEY}`;
-	const EVENT_AFTER_CREATE = `after_create${EVENT_KEY}`;
+	const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
+	const EVENT_RENDER = `render${EVENT_KEY}`;
+	const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
 
 	const EVENT_BEFORE_UPDATE = `before_update${EVENT_KEY}`;
 	const EVENT_UPDATE = `update${EVENT_KEY}`;
@@ -39,13 +40,13 @@ const EVENT_CHANGE = `change${EVENT_KEY}`;
 
 const INPUT_STRING = `__fw_input__`;
 
-class FormTags extends FwComponent {
+class Tags extends FwComponent {
 
 	constructor(element,valueToRender,args){
 		super(
 			element,
 			{
-				UiValue: valueToRender
+				UIValue: valueToRender
 					|| false,
 				_customArgs: args
 					|| false
@@ -55,7 +56,7 @@ class FormTags extends FwComponent {
 
 	dispose() {
 		super.dispose();
-		this.UiValue = null;
+		this.UIValue = null;
 		this._customArgs = null;
 	}
 
@@ -68,80 +69,80 @@ class FormTags extends FwComponent {
 	}
 
 	get theValue() {
-		return super.UiEl().value;;
+		return super.UIEl().value;;
 	}
 
 	set theValue(theValue) {
 		if(theValue){
-			super.UiEl().setAttribute('value', FormTags.toVal(theValue,false));
-			super.UiEl().value = FormTags.toVal(theValue,false);
+			super.UIEl().setAttribute('value', Tags.toVal(theValue,false));
+			super.UIEl().value = Tags.toVal(theValue,false);
 		}
 	}
 
 	get renderValue() {
-		const renderTags = this.UiValue
-			? this.UiValue
-		: (super.UiEl().hasAttribute('data-value-ui'))
-			? super.UiEl().getAttribute('data-value-ui')
+		const renderTags = this.UIValue
+			? this.UIValue
+		: (super.UIEl().hasAttribute('data-value-ui'))
+			? super.UIEl().getAttribute('data-value-ui')
 		: this.theValue;
 		return renderTags;
 	}
 
 	set renderValue(renderTags) {
-		this.UiValue = FormTags.toVal(renderTags);
+		this.UIValue = Tags.toVal(renderTags);
 	}
 
-	get UiRoot () {
-		return super.UiEl().closest(`.${UiPrefix(COMPONENT_CLASS, true)}`);
+	get UIRoot () {
+		return super.UIEl().closest(`.${UIPrefix(COMPONENT_CLASS)}`);
 	}
 
-	get UiInput(){
-		return this.UiRoot && this.UiRoot.querySelector(`.${UiPrefix(COMPONENT_CLASS)}input`);
+	get UIInput(){
+		return this.UIRoot && this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
 	}
 
-	get UiInputValue() {
-		return this.UiInput.innerText;
+	get UIInputValue() {
+		return this.UIInput.innerText;
 	}
 
-	set UiInputValue(inputValue) {
-		this.UiInput.innerText = inputValue.toString().replace(
+	set UIInputValue(inputValue) {
+		this.UIInput.innerText = inputValue.toString().replace(
 			/\n|\r/g,
 			'\\n'
 		);
 	}
 
-	get UiInputIdx() {
-		let toReturn = FormTags.toArr(this.renderValue).indexOf(FormTags.__is);
+	get UIInputIdx() {
+		let toReturn = Tags.toArr(this.renderValue).indexOf(Tags.__is);
 
 
 		if(toReturn < 0){
-			FormTags.toArr(this.renderValue).length > 0
-			? FormTags.toArr(this.renderValue).length - 1
+			Tags.toArr(this.renderValue).length > 0
+			? Tags.toArr(this.renderValue).length - 1
 			: 0;
 		}
 
 		return toReturn;
 		
 		// (
-		// 	this.UiInput
-		// 	&& parseInt(this.UiInput.getAttribute('data-ui-i'))
+		// 	this.UIInput
+		// 	&& parseInt(this.UIInput.getAttribute('data-ui-i'))
 		// )
-		// || FormTags.toArr(this.renderValue).indexOf(FormTags.__is)
-		// || FormTags.toArr(this.theValue).length;
+		// || Tags.toArr(this.renderValue).indexOf(Tags.__is)
+		// || Tags.toArr(this.theValue).length;
 	}
 
 
-	_scrollToUiInput(){
-		if(this.args.multipleLines || !this.UiInput){
+	_scrollToUIInput(){
+		if(this.args.multipleLines || !this.UIInput){
 			return
 		}
 
 		if(
-			(this.UiRoot.scrollLeft > (this.UiInput.offsetLeft + this.UiInput.offsetWidth))
-			|| ((this.UiRoot.scrollLeft + this.UiRoot.clientWidth) < (this.UiInput.offsetLeft + this.UiInput.offsetWidth))
+			(this.UIRoot.scrollLeft > (this.UIInput.offsetLeft + this.UIInput.offsetWidth))
+			|| ((this.UIRoot.scrollLeft + this.UIRoot.clientWidth) < (this.UIInput.offsetLeft + this.UIInput.offsetWidth))
 		){
-			FwDom.scrollToElem(this.UiRoot,this.UiInput,'x');
-			FwDom.scrollToElem(this.UiRoot,this.UiInput,'y');
+			FwDom.scrollToElem(this.UIRoot,this.UIInput,'x');
+			FwDom.scrollToElem(this.UIRoot,this.UIInput,'y');
 		}
 	}
 
@@ -160,16 +161,16 @@ class FormTags extends FwComponent {
 				? this._customArgs
 				: {
 					width:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
 					onKeyUp:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`),
 					filter:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`),
 					multipleLines:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`),
 				}
 			),
-			FormTags.configDefaults
+			Tags.configDefaults
 		);
 	}
 
@@ -198,21 +199,21 @@ class FormTags extends FwComponent {
 		toReturn.forEach((tag, i) => {
 			if (
 				(!tag || tag == '')
-				|| (tag === FormTags.__is && !returnsWithInput)
+				|| (tag === Tags.__is && !returnsWithInput)
 			) {
 				toReturn.splice(i, 1);
 			}
 		});
 	
-		if (returnsWithInput && toReturn.indexOf(FormTags.__is) < 0) {
-			toReturn.push(FormTags.__is);
+		if (returnsWithInput && toReturn.indexOf(Tags.__is) < 0) {
+			toReturn.push(Tags.__is);
 		}
 
 		return toReturn;
 	};
 
 	static toVal (value,returnsWithInput){
-		return FormTags.toArr(value, returnsWithInput).join(',');
+		return Tags.toArr(value, returnsWithInput).join(',');
 	}
 
 	filterValue(custFn){
@@ -225,11 +226,11 @@ class FormTags extends FwComponent {
 		if (typeof fnToFilter === 'function') {
 			applyFilter = (valueToFilter, filterFnName) => {
 				const noInputValueToFilter = (() => {
-							return FormTags.toVal(valueToFilter, false);
+							return Tags.toVal(valueToFilter, false);
 						})();
 
 				// turn to array ya bopi without the input tag string
-				let toReturn = FormTags.toArr(
+				let toReturn = Tags.toArr(
 					eval(`${filterFnName}("${noInputValueToFilter}")`),
 					false
 				);
@@ -237,27 +238,27 @@ class FormTags extends FwComponent {
 				// console.log(
 				// 	'index of input\n',inputIndex,
 				// 	'\n\n\nfiltered and ready for splice\n',toReturn,
-				// 	'\n\n\npassed to the fil;ter\n'FormTags.toVal(valueToFilter,false),
-				// 	'\n\n\nrar array\n'FormTags.toArr(valueToFilter),
-				// 	'\n\n\n no input field\n',noInputValueToFilter,FormTags.toVal(valueToFilter,false),
-				// 	'\n\n\n no input fieldas array\n'FormTags.toArr(valueToFilter,false),
+				// 	'\n\n\npassed to the fil;ter\n'Tags.toVal(valueToFilter,false),
+				// 	'\n\n\nrar array\n'Tags.toArr(valueToFilter),
+				// 	'\n\n\n no input field\n',noInputValueToFilter,Tags.toVal(valueToFilter,false),
+				// 	'\n\n\n no input fieldas array\n'Tags.toArr(valueToFilter,false),
 				// 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
 				// 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
 				// 	'whAT ETHE FUCK'
 				// );
 
-				if (this.UiInputIdx > -1) {
+				if (this.UIInputIdx > -1) {
 					toReturn.splice(
-						this.UiInputIdx <
-							FormTags.toArr(valueToFilter).length - 1
-							? this.UiInputIdx
+						this.UIInputIdx <
+							Tags.toArr(valueToFilter).length - 1
+							? this.UIInputIdx
 							: toReturn.length,
 						0,
-						FormTags.__is
+						Tags.__is
 					);
 				}
 
-				return FormTags.toVal(toReturn);
+				return Tags.toVal(toReturn);
 			};
 
 			this.theValue = applyFilter(
@@ -272,7 +273,7 @@ class FormTags extends FwComponent {
 	}
 
 	update(newValue,allowFilter,valueToRender,inputText) {
-		FwEvent.trigger(super.UiEl(),EVENT_BEFORE_UPDATE);
+		FwEvent.trigger(super.UIEl(),EVENT_BEFORE_UPDATE);
 
 		let theValue = newValue
 			|| this.theValue
@@ -288,7 +289,7 @@ class FormTags extends FwComponent {
 		inputText = inputText || false;
 
 
-		FwEvent.trigger(super.UiEl(),EVENT_UPDATE);
+		FwEvent.trigger(super.UIEl(),EVENT_UPDATE);
 
 		this.theValue = theValue;
 		this.renderValue = uiValue;
@@ -298,96 +299,96 @@ class FormTags extends FwComponent {
 			this.filterValue();
 		}
 
-		this._createUi();
+		this._renderUI();
 
 		if(inputText){
-			this.UiInputValue = inputText;
+			this.UIInputValue = inputText;
 			this.focus();
 		}
 		
-		FwEvent.trigger(super.UiEl(),EVENT_AFTER_UPDATE);
+		FwEvent.trigger(super.UIEl(),EVENT_AFTER_UPDATE);
 	}
 
-	_createUi(elem) {
+	_renderUI(elem) {
 
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 			if(!element){
 				return
 			}
 
-		FwEvent.trigger(element,EVENT_BEFORE_CREATE);
+		FwEvent.trigger(element,EVENT_BEFORE_RENDER);
 
-		const theUi = {};
+		const theUI = {};
 
 
-		FwEvent.trigger(element,EVENT_CREATE);
+		FwEvent.trigger(element,EVENT_RENDER);
 		
-		theUi.container = this.UiRoot;
-		if (!theUi.container) {
-			theUi.container = document.createElement('div');
+		theUI.container = this.UIRoot;
+		if (!theUI.container) {
+			theUI.container = document.createElement('div');
 			element.parentNode.insertBefore(
-				theUi.container,
+				theUI.container,
 				element
 			);
-			theUi.container.appendChild(element);
-			theUi.container.classList.add('input');
-			theUi.container.setAttribute(
+			theUI.container.appendChild(element);
+			theUI.container.classList.add('input');
+			theUI.container.setAttribute(
 				'class',
-				`${FwCore.settings.uiClass}
-				${FwCore.settings.uiJsClass}
+				`${Settings.get('uiClass')}
+				${Settings.get('uiJsClass')}
 				${
 					element
 					.getAttribute('class')
 					.toString()
 					.replace(
 						COMPONENT_CLASS,
-						UiPrefix(COMPONENT_CLASS, true)
+						UIPrefix(COMPONENT_CLASS)
 					)
 				}`
 			);
 
-			theUi.container.classList.add(
+			theUI.container.classList.add(
 				this.args.multipleLines
-					? `${UiPrefix(COMPONENT_CLASS)}multiple`
-					: `${UiPrefix(COMPONENT_CLASS)}single`
+					? `${UIPrefix(COMPONENT_CLASS)}-multiple`
+					: `${UIPrefix(COMPONENT_CLASS)}-single`
 			);
 		}
 
 		if (this.args.width) {
-			theUi.container.style = this.args.width;
+			theUI.container.style = this.args.width;
 		}
 		//idk it never exists on initial so we dont have to do weird div wraping catches here
 
-		theUi.wrapper = theUi.container.querySelector(`.${UiPrefix(COMPONENT_CLASS)}wrapper`);
+		theUI.wrapper = theUI.container.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-wrapper`);
 
-		if (!theUi.wrapper) {
-			theUi.wrapper = document.createElement('div');
-			theUi.container.appendChild(theUi.wrapper);
-			theUi.wrapper.setAttribute(
+		if (!theUI.wrapper) {
+			theUI.wrapper = document.createElement('div');
+			theUI.container.appendChild(theUI.wrapper);
+			theUI.wrapper.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}wrapper`
+				`${UIPrefix(COMPONENT_CLASS)}-wrapper`
 			);
-			theUi.wrapper = theUi.container.querySelector(`.${UiPrefix(COMPONENT_CLASS)}wrapper`);
+			theUI.wrapper = theUI.container.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-wrapper`);
 		}
 
-		theUi.input = this.UiInput;
+		theUI.input = this.UIInput;
 
 
-		if (!theUi.input) {
-			theUi.input = document.createElement('span');
-			theUi.wrapper.appendChild(theUi.input);
-			theUi.input.setAttribute(
+		if (!theUI.input) {
+			theUI.input = document.createElement('span');
+			theUI.wrapper.appendChild(theUI.input);
+			theUI.input.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}input`
+				`${UIPrefix(COMPONENT_CLASS)}-input`
 			);
-			theUi.input.contentEditable = true;
-			theUi.input = theUi.wrapper.querySelector(`.${UiPrefix(COMPONENT_CLASS)}input`);
+			theUI.input.contentEditable = true;
+			theUI.input = theUI.wrapper.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
 
 			if(element.hasAttribute('placeholder')){
-				theUi.input.setAttribute(
+				theUI.input.setAttribute(
 					'data-placeholder',
 					element.getAttribute('placeholder')
 				);
@@ -395,40 +396,40 @@ class FormTags extends FwComponent {
 
 			//nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
 			if (element.hasAttribute('data-toggle')) {
-				theUi.input.setAttribute(
+				theUI.input.setAttribute(
 					'data-toggle',
 					element.getAttribute('data-toggle')
 				);
 			}
 
 			if (FwComponent.isDisabled(element)) {
-				theUi.input.classList.add('disabled');
+				theUI.input.classList.add('disabled');
 			}
 
 			//bitch
 			if (this.args.onKeyUp) {
-				theUi.input.addEventListener('keyup', (event)=>{
+				theUI.input.addEventListener('keyup', (event)=>{
 					const keyUpScript = eval(this.args.onKeyUp);
 					if(keyUpScript){
-						keyUpScript();
+						return keyUpScript;
 					};
 				});
 			}
 		}
 
 		//updoot tags
-		const oldTags = theUi.wrapper.querySelectorAll(`.${UiPrefix(COMPONENT_CLASS)}tag`);
+		const oldTags = theUI.wrapper.querySelectorAll(`.${UIPrefix(COMPONENT_CLASS)}-tag`);
 
 		oldTags.forEach((tag) => {
 			tag.parentNode.removeChild(tag);
 		});
 
 
-		let valArr = FormTags.toArr(this.renderValue, true);
+		let valArr = Tags.toArr(this.renderValue, true);
 
-		theUi.input.setAttribute(
+		theUI.input.setAttribute(
 			'data-ui-i',
-			this.UiInputIdx
+			this.UIInputIdx
 		);
 
 		//validate tags
@@ -441,32 +442,32 @@ class FormTags extends FwComponent {
 
 		valArr.forEach((tag, i) => {
 			//get index of input
-			if (tag !== FormTags.__is) {
+			if (tag !== Tags.__is) {
 				const tagHtml = document.createElement('span');
 
-				if(i < this.UiInputIdx){
-					theUi.input.insertAdjacentElement(
+				if(i < this.UIInputIdx){
+					theUI.input.insertAdjacentElement(
 						'beforebegin',
 						tagHtml
 					);
 				}else{
-					theUi.wrapper.appendChild(tagHtml);
+					theUI.wrapper.appendChild(tagHtml);
 				}
 				
 
 				tagHtml.setAttribute(
 					'class',
-					`${UiPrefix(COMPONENT_CLASS)}tag`
+					`${UIPrefix(COMPONENT_CLASS)}-tag`
 				);
 
 				tagHtml.innerHTML = `<button
 						data-ui-i="${i}"
-						class="${UiPrefix(COMPONENT_CLASS)}tag-text ${UiPrefix(COMPONENT_CLASS)}tag-button"
+						class="${UIPrefix(COMPONENT_CLASS)}-tag-text ${UIPrefix(COMPONENT_CLASS)}-tag-button"
 						type="button"
 					>
 						${tag}
 					</button>
-					<button data-ui-i="${i}" class="${UiPrefix(COMPONENT_CLASS)}tag-close ${UiPrefix(COMPONENT_CLASS)}tag-button" type="button">
+					<button data-ui-i="${i}" class="${UIPrefix(COMPONENT_CLASS)}-tag-close ${UIPrefix(COMPONENT_CLASS)}-tag-button" type="button">
 						<i class="symbol symbol-close"></i>
 					</button>`;
 			}
@@ -483,7 +484,7 @@ class FormTags extends FwComponent {
 					&& !attr.name.includes('data-toggle')
 					&& !attr.name.includes('data-value-ui')
 				) {
-					theUi.container.setAttribute(attr.name, attr.value);
+					theUI.container.setAttribute(attr.name, attr.value);
 				}
 			}
 		}
@@ -491,8 +492,8 @@ class FormTags extends FwComponent {
 		element.setAttribute('data-value-ui', this.renderValue);
 
 		//keep that shoit bisibol
-		this._scrollToUiInput();
-		FwEvent.trigger(element,EVENT_AFTER_CREATE);
+		this._scrollToUIInput();
+		FwEvent.trigger(element,EVENT_AFTER_RENDER);
 	}
 
 	focus(disableNative){
@@ -500,10 +501,10 @@ class FormTags extends FwComponent {
 		const self = this;
 		!disableNative && setTimeout(function() {
 			// console.log('poku','naAAANDATAAAOOOO');
-			self.UiInput.focus();
+			self.UIInput.focus();
 		}, 0);
-		self.UiRoot.classList.add(FOCUS_CLASS);
-		self._scrollToUiInput();
+		self.UIRoot.classList.add(FOCUS_CLASS);
+		self._scrollToUIInput();
 	}
 
 	blur(disableNative){
@@ -511,32 +512,38 @@ class FormTags extends FwComponent {
 		const self = this;
 		!disableNative && setTimeout(function() {
 			// console.log('bru','naAAANDATAAAOOOO');
-			self.UiInput.blur();
+			self.UIInput.blur();
 		}, 0);
-		self.UiRoot.classList.remove(FOCUS_CLASS);
+		self.UIRoot.classList.remove(FOCUS_CLASS);
 	}
 
-	_render(){
+	init(elem){
+		const element = elem ?
+			super.UIEl(elem)
+			: super.UIEl();
+
 		this.update();
 	}
 
-	static renderAll(){
+	static initAll(){
 		FwEvent.trigger(document,EVENT_BEFORE_INIT);
 
-		const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 		FwEvent.trigger(document,EVENT_INIT);
+
+		const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 		
 		tagsInputs.forEach((poot) => {
-			const tagsInput = new FormTags(poot);
+			const tagsInput = new Tags(poot);
 			
-			tagsInput._render();
+			tagsInput.init();
 		});
+
 		FwEvent.trigger(document,EVENT_AFTER_INIT);
 	}
 
 	static handleChange() {
 		return (e) => {
-			const tagsInput = new FormTags(e.target);
+			const tagsInput = new Tags(e.target);
 			tagsInput.update();
 		}
 	}
@@ -546,8 +553,8 @@ class FormTags extends FwComponent {
 			e.preventDefault();
 			
 			if (!FwComponent.isDisabled(e.target)) {
-				const tagsInput = new FormTags(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const tagsInput = new Tags(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 
 				const pasted =
@@ -555,7 +562,7 @@ class FormTags extends FwComponent {
 					|| window.clipboardData
 					|| e.originalEvent.clipboardData;
 				
-				tagsInput.UiInputValue += pasted.getData('text');
+				tagsInput.UIInputValue += pasted.getData('text');
 
 				tagsInput.blur();
 			}
@@ -566,7 +573,7 @@ class FormTags extends FwComponent {
 		return (e) => {
 			e.preventDefault();
 			if (!FwComponent.isDisabled(e.target)) {
-				const tagsInput = new FormTags(e.target);
+				const tagsInput = new Tags(e.target);
 				tagsInput.focus();
 			}
 		}
@@ -576,27 +583,27 @@ class FormTags extends FwComponent {
 		return (e) => {
 	
 			if (!FwComponent.isDisabled(e.target)) {
-				const tagsInput = new FormTags(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const tagsInput = new Tags(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 					//value para mareset ta kung hain si buloy
-					let currValue = FormTags.toArr(tagsInput.theValue);
+					let currValue = Tags.toArr(tagsInput.theValue);
 	
 				if(
-					tagsInput.UiInputValue
+					tagsInput.UIInputValue
 				){
 					currValue.splice(
-						tagsInput.UiInputIdx,
+						tagsInput.UIInputIdx,
 						0,
-						tagsInput.UiInputValue.replace(',', '')
+						tagsInput.UIInputValue.replace(',', '')
 					);
 				}
 	
 	
-				tagsInput.UiInputValue = '';
+				tagsInput.UIInputValue = '';
 	
 				tagsInput.update(
-					FormTags.toVal(currValue,false),
+					Tags.toVal(currValue,false),
 					true,
 				);
 
@@ -611,10 +618,10 @@ class FormTags extends FwComponent {
 				e.preventDefault();
 	
 			} else {
-				const tagsInput = new FormTags(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const tagsInput = new Tags(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
-				let currUiValue = FormTags.toArr(tagsInput.renderValue),
+				let currUIValue = Tags.toArr(tagsInput.renderValue),
 					newValue,
 					allowFilter = false;
 
@@ -630,28 +637,28 @@ class FormTags extends FwComponent {
 						if (!Modifiers.hasActive()) {
 							allowFilter = true;
 							e.preventDefault();
-							currUiValue.splice(
-								tagsInput.UiInputIdx,
+							currUIValue.splice(
+								tagsInput.UIInputIdx,
 								0,
-								tagsInput.UiInputValue.replace(',', '')
+								tagsInput.UIInputValue.replace(',', '')
 							);
 	
-							tagsInput.UiInputValue = '';
+							tagsInput.UIInputValue = '';
 							
 
 						}
-						// currUiValue.splice()
+						// currUIValue.splice()
 						break;
 	
 					//left
 					case 'ArrowLeft':
-						if (!tagsInput.UiInputValue) {
+						if (!tagsInput.UIInputValue) {
 							e.preventDefault();
-							currUiValue = FwArray.moveItem(
-								currUiValue,
-								tagsInput.UiInputIdx,
-								tagsInput.UiInputIdx > 0
-								? tagsInput.UiInputIdx - 1
+							currUIValue = FwArray.moveItem(
+								currUIValue,
+								tagsInput.UIInputIdx,
+								tagsInput.UIInputIdx > 0
+								? tagsInput.UIInputIdx - 1
 								: 0
 							);
 						}
@@ -660,26 +667,26 @@ class FormTags extends FwComponent {
 	
 					//right
 					case 'ArrowRight':
-						if (!tagsInput.UiInputValue) {
+						if (!tagsInput.UIInputValue) {
 							e.preventDefault();
-							currUiValue = FwArray.moveItem(
-								currUiValue,
-								tagsInput.UiInputIdx,
-								tagsInput.UiInputIdx < currUiValue.length
-									? tagsInput.UiInputIdx + 1
-									: currUiValue.length - 1
+							currUIValue = FwArray.moveItem(
+								currUIValue,
+								tagsInput.UIInputIdx,
+								tagsInput.UIInputIdx < currUIValue.length
+									? tagsInput.UIInputIdx + 1
+									: currUIValue.length - 1
 							);
-							// tagsInput._scrollToUiInput();
+							// tagsInput._scrollToUIInput();
 						}
 						break;
 	
 					//up
 					case 'ArrowUp':
-						if (!tagsInput.UiInputValue) {
+						if (!tagsInput.UIInputValue) {
 							e.preventDefault();
-							currUiValue = FwArray.moveItem(
-								currUiValue,
-								tagsInput.UiInputIdx,
+							currUIValue = FwArray.moveItem(
+								currUIValue,
+								tagsInput.UIInputIdx,
 								0
 							);
 						}
@@ -688,24 +695,24 @@ class FormTags extends FwComponent {
 	
 					//down
 					case 'ArrowDown':
-						if (!tagsInput.UiInputValue) {
+						if (!tagsInput.UIInputValue) {
 							e.preventDefault();
-							currUiValue = FwArray.moveItem(
-								currUiValue,
-								tagsInput.UiInputIdx,
-								currUiValue.length - 1
+							currUIValue = FwArray.moveItem(
+								currUIValue,
+								tagsInput.UIInputIdx,
+								currUIValue.length - 1
 							);
-							// tagsInput._scrollToUiInput();
+							// tagsInput._scrollToUIInput();
 						}
 						break;
 	
 					//backspace
 					case 'Backspace':
-						if (!tagsInput.UiInputValue) {
+						if (!tagsInput.UIInputValue) {
 							e.preventDefault();
 							allowFilter = true;
-							currUiValue.splice(
-								tagsInput.UiInputIdx - 1,
+							currUIValue.splice(
+								tagsInput.UIInputIdx - 1,
 								1
 							);
 						}
@@ -713,11 +720,11 @@ class FormTags extends FwComponent {
 	
 					//delete
 					case 'Delete':
-						if (!tagsInput.UiInputValue) {
+						if (!tagsInput.UIInputValue) {
 							e.preventDefault();
 							allowFilter = true;
-							currUiValue.splice(
-								tagsInput.UiInputIdx + 1,
+							currUIValue.splice(
+								tagsInput.UIInputIdx + 1,
 								1
 							);
 						}
@@ -725,8 +732,8 @@ class FormTags extends FwComponent {
 				}
 
 	
-				newValue = FormTags.toVal(currUiValue);
-				// tagsInput._scrollToUiInput();
+				newValue = Tags.toVal(currUIValue);
+				// tagsInput._scrollToUIInput();
 	
 				tagsInput.update(
 					newValue,
@@ -744,22 +751,22 @@ class FormTags extends FwComponent {
 	
 			if (!FwComponent.isDisabled(e.target)) {
 	
-				const tagsInput = new FormTags(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const tagsInput = new Tags(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 
 				const tagToRemove = parseInt(e.target.getAttribute(
 						'data-ui-i'
 					));
 
-				let currValue = FormTags.toArr(tagsInput.theValue);
+				let currValue = Tags.toArr(tagsInput.theValue);
 
 				currValue.splice(
 					parseInt(tagToRemove),
 					1
 				);
 	
-				const newValue = FormTags.toVal(currValue);
+				const newValue = Tags.toVal(currValue);
 	
 				tagsInput.update(
 					newValue,
@@ -778,28 +785,28 @@ class FormTags extends FwComponent {
 	
 			if (!FwComponent.isDisabled(triggerer)) {
 
-				const tagsInput = new FormTags(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const tagsInput = new Tags(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 
 				const tagToEdit = parseInt(e.target.getAttribute(
 					'data-ui-i'
 				));
 
-				let currValue = FormTags.toArr(tagsInput.theValue,false);
+				let currValue = Tags.toArr(tagsInput.theValue,false);
 
 				currValue.splice(
 					tagToEdit,
 					1,
-					FormTags.__is
+					Tags.__is
 				);
 	
-				const newUiValue = FormTags.toVal(currValue);
+				const newUIValue = Tags.toVal(currValue);
 	
 				tagsInput.update(
 					null,
 					false,
-					newUiValue,
+					newUIValue,
 					e.target.innerText
 				);
 			}
@@ -810,60 +817,60 @@ class FormTags extends FwComponent {
 	static initListeners() {
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CHANGE,
 			COMPONENT_CLASS,
-			FormTags.handleChange()
+			Tags.handleChange()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_PASTE,
-			`.${UiPrefix(COMPONENT_CLASS,true)} .${UiPrefix(COMPONENT_CLASS)}input`,
-			FormTags.handleEditablePaste()
+			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+			Tags.handleEditablePaste()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`.${UiPrefix(COMPONENT_CLASS,true)} .${UiPrefix(COMPONENT_CLASS)}input`,
-			FormTags.handleEditableFocus()
+			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+			Tags.handleEditableFocus()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_BLUR,
-			`.${UiPrefix(COMPONENT_CLASS,true)} .${UiPrefix(COMPONENT_CLASS)}input`,
-			FormTags.handleEditableBlur()
+			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+			Tags.handleEditableBlur()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_KEYDOWN,
-			`.${UiPrefix(COMPONENT_CLASS,true)} .${UiPrefix(COMPONENT_CLASS)}input`,
-			FormTags.handleEditableKeydown()
+			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+			Tags.handleEditableKeydown()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`.${UiPrefix(COMPONENT_CLASS,true)} .${UiPrefix(COMPONENT_CLASS)}tag-close`,
-			FormTags.handleDelete()
+			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-tag-close`,
+			Tags.handleDelete()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`.${UiPrefix(COMPONENT_CLASS,true)} .${UiPrefix(COMPONENT_CLASS)}tag-text`,
-			FormTags.handleEdit()
+			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-tag-text`,
+			Tags.handleEdit()
 		);
 
-		FwFnsQ.on_ready = FormTags.renderAll;
-		FwFnsQ.on_resize = FormTags.renderAll;
+		Initiator.Q.on_ready = Tags.initAll;
+		Initiator.Q.on_resize = Tags.initAll;
 
 	}
 }
 
-export default FormTags;
+export default Tags;
 
-FormTags.initListeners();
+Tags.initListeners();

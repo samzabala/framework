@@ -42,6 +42,19 @@
 	--fw-theme-background-contrast: #{$brand-theme-background-contrast-inverse};
 }
 
+*.theme-inverse,
+:root,
+html,body {
+	color: $var-theme-color;
+	background-color: $var-theme-background;
+}
+
+
+*.theme-inverse,
+html.theme-inverse, 
+.theme-inverse body {
+	@extend %for-var-inverse;
+}
 
 /*** SCAFFOLDING ***/
 	$prefix:'.body';
@@ -58,22 +71,9 @@
 		min-height: 100vh;
 	}
 
-	html {
-		scroll-behavior: smooth;
-	}
-	*.theme-inverse,
-	:root,
-	html,body {
-		color: $var-theme-color;
-		background-color: $var-theme-background;
-	}
-
-
-	*.theme-inverse,
-	html.theme-inverse, 
-	.theme-inverse body {
-		@extend %for-var-inverse;
-	}
+	// html {
+	// 	scroll-behavior: smooth;
+	// }
 
 	#{$prefix}-no-scroll {
 		overflow:hidden !important;
@@ -221,16 +221,6 @@
 	}
 
 /* to toggley bitches kids  */
-	*[data-toggle]{
-		cursor: pointer;
-		-webkit-user-select: none!important; /* Safari 3.1+ */
-		-moz-user-select: none!important; /* Firefox 2+ */
-		-ms-user-select: none!important; /* IE 10+ */
-		user-select: none!important; /* Standard syntax */
-		*{
-			pointer-events: none!important;
-		}
-	}
 
 
 
@@ -245,5 +235,10 @@
 }
 
 [disabled] {
-	@extend  %for-disabled !optional;
+	@include dump-styles(disabled)
+}
+
+//legacy
+[data-toggle]{
+	@include dump-styles(data-toggle);
 }

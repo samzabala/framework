@@ -87,7 +87,7 @@ $prefix: '.tab';
 
 
 		&#{$prefix}-disabled {
-			@extend %for-disabled !optional;
+			@include dump-styles(disabled);
 
 			* {
 				pointer-events: none;
@@ -160,7 +160,7 @@ $prefix: '.tab';
 			align-self:stretch;
 
 			&:hover,&:focus,&.focus {
-				text-decoration: get-anchor-dec(true);
+				@include dump-styles(no-text-decoration-hover);
 			}
 		}
 	}

@@ -1,9 +1,8 @@
 
-// Mixins shethole
-// Idk i just wanted to see if I can code clean like a basic hoe
+// Mixins ****hole
+// follow my soundlcloud for mor surprises
 // github.io/samzabala
 
-//@TODO PUT THE FUCKIN DOCUMENTATION
 
 ////////////////////////////////////////////////////////////////////////////// 
 //DEFAULT VARIABLES 
@@ -43,7 +42,7 @@
 
 
 	$force-responsive-units: false !default;
-	//map because sass wont fucking interpolate variable names
+	//map because sass wont interpolate variable names
 	$color: (
 		base: $color-base,
 		primary: $color-primary,
@@ -109,7 +108,7 @@
 
 	//extra breakpoints
 	$brxxs: 400px !default; //for fixing designs that donnt fit average mobile screens
-	$clg: 1920px !default; // max width of desktop design for containers and shet
+	$clg: 1920px !default; // max width of desktop design for containers
 
 
 
@@ -122,7 +121,7 @@
 	$brxl-mn: $brlg + 1!default;
 
 	//configs
-	$autoprefix: true !default; // turn off if ya compiler is gonna do this shet then goooood
+	$autoprefix: true !default; // turn off if ya compiler is gonna do this  then goooood
 
 
 ////////////////////////////////////////////////////////////////////////////// 
@@ -168,7 +167,7 @@
 ////////////////////////////////////////////////////////////////////////////// 
 	
 	//Mixins
-		/// For setting up basic media queries. this shet just gets shettier the lazier i get coding all them characters
+		/// For setting up basic media queries. this babaknita just gets bruha the lazier i get coding all them characters
 		/// @param $br: () !default | (list / string) | breakpoint duh.  accepts string of condition or breakpoint tag
 		/// @param $media: '' !default | (list / string) | the mediatype 
 		/// @param $use-only: false !default | (boolean) | add `only` to the query
@@ -220,7 +219,7 @@
 			}
 		}
 
-			//to lazy to type breakpoint? use dis shiet
+			//to lazy to type breakpoint? use dis shakalaka
 			@mixin br($br:(),$media: '',$use-only: false, $operator: 'and'){
 				@include breakpoint($br,$media,$use-only, $operator){
 					@content;
@@ -250,7 +249,7 @@
 
 
 
-		/// some mixins support custom css bitchesssss
+		/// some mixins support custom css mga pota
 		/// @param $css: () !default | (list: (property: value, selector: ( property: value,...)...)) | list of properties and values for custom csss on mixins. list it like u would in a css js object declaration idk
 		/// @return: map converted to css
 		@mixin custom-css($css:()){
@@ -265,7 +264,7 @@
 			}	
 		}
 
-		/// basic ass bitchin container that centers ya shiet
+		/// basic ass potang container that centers ya shakalaka
 		/// @param $padding: gutter(.75) or $gutter * .75 !default | (number) | padding for left and right
 		/// @return: container styles
 		@mixin container($padding:'') {
@@ -277,7 +276,7 @@
 			width:100%;
 			position:relative;
 			@include cf(true);
-			//TODO add media query shet
+			//TODO add media query
 		}
 
 
@@ -316,7 +315,7 @@
 		/// flex boiii
 		/// @param $extend: false !default | (boolean) | extend the extend or nah
 		/// @param $br: xs | (string) | set breakpoint where flex starts happening. xs wond generate a media query huhuhu
-		/// @param $add-important: false | (boolean) | add important to flex becausE SOME BITCHES FEEL LIKE THERE SHOULD BE AN !IMPORTANT TO shet???
+		/// @param $add-important: false | (boolean) | add important to flex becausE SOME BOOBS FEEL LIKE THERE SHOULD BE AN !IMPORTANT???
 		@mixin flex($extend: false,$br: false,$add-important: false,$add-wrap:false){
 			
 			$important: '';
@@ -400,15 +399,15 @@
 			}
 		}
 
-		/// toilet assblast of a mixin that sets up yuh fuckin columns
+		/// toilet baja blast blast of a mixin that sets up yuh columns
 		/// accepts @content
 		/// @param $args: (
-			/// col-number : 2 !default | (number) | number of columns ya wanna shet
+			/// col-number : 2 !default | (number) | number of columns ya wanna poop
 			/// gap-x : null !default | (number) | vertical margins and what not.
 			/// gap-y: null !default | (number) | horizontal margins.
 			/// custom-css: null !default | ( list ) | duh. refer to custom-css mixin
 			/// custom-css-child: null !default | (list) |  duh. refer to custom-css mixin
-			/// child-selector: "> *" !default | (string) |  selector that will be the fuck
+			/// child-selector: "> *" !default | (string) |  selector that will be the boi
 			/// method: flex !default | (string) | (options: flex,float )idk do u like flexbox maybe u should use flexbox, or float whatever. will develop css grid later
 			/// declare-method: true !default | (boolean) | did u declare flot or flexbox outsiude the mixin? ok. then i wont repeat
 			/// extend: false !default | (boolean) | so it dont shoot u errors in case include breakpoint values. for cf and flex mixins and extend
@@ -451,21 +450,21 @@
 
 			//if there are breakpoints and mobile columns is just 1, set flex on next breakpoint with more than one column, else flex at xs
 			// also sass's truthy falsey is a dumbass
-			// basically paRSE COLUMNS AND SHIET
-			// this shet variables are what we need to do the shet
+			// basically paRSE COLUMNS
+			// this variables are what we need to do the thing
 			$br-to-grid: xs; //which breakpoint to start flex or floats or idk
 
 			$br-to-grid-is-set: false; //if the br to flex is setup
 			$disable-full-width-setup-on-br: false; 
 
-			//validate shet for setup
+			//validate for setup
 			@each $br in $sorted-possible-breakpoints {
 					
 					 
 
 				@if type-of(map-get($opts,col-number)) == map {
 
-					// col-number dictates when to shetstorm. if its a map and a breakpoint is setup and br to flex is not set up, SET IT UP on that breakpoint lang
+					// col-number dictates when to puke. if its a map and a breakpoint is setup and br to flex is not set up, SET IT UP on that breakpoint lang
 					//set autoflex. flex on the smolest breakpoint where it applies 
 					@if  ( map-get(map-get($opts,col-number),$br)  != null and map-get(map-get($opts,col-number),$br) > 1 ) and (map-get($opts,set-all-br) != true) and $br-to-grid-is-set == false {
 						$br-to-grid: $br;
@@ -490,7 +489,7 @@
 			$given-possibly-breakpoints: (); //the ones i actually have in the fridge
 			
 			
-			//fuck the values bro, ur just looking for which breakpoint keys are being used right now so u do a dynamic css thats not over coded idk if im explaining this right english is a very pretentious language. this is the fuck that makes this mixin not shet itself basically
+			//no values bro, ur just looking for which breakpoint keys are being used right now so u do a dynamic css thats not over coded idk if im explaining this right english is a very pretentious language. this is the boi that makes this mixin not poop itself basically
 			
 			//if it's the dick u need make a baby out of it
 			@each $probably-map in $breakable-parameters {
@@ -515,15 +514,15 @@
 				$breakpoints: $sorted-possible-breakpoints;
 			}
 			//debug
-			//kelangan error because fucking code kit wont say shet
+			//kelangan error because di naman nagpaparamdam si codekit na boto
 			// $asshole: $breakpoints;
 			//SAY SOMETHING IM GIVING UP ON YOU
 			// @error $asshole;
 
 			// OUTPUT TIMEZZZ
-			// if one of the holy trinity of breakable parameters is set up to be broken make the mixin a mega shetstorm and shet on itself responsibly
+			// if one of the holy trinity of breakable parameters is set up to be broken make the mixin a mega noot and poot on itself responsibly
 			
-			//if setup with breakpoints. shetstorm
+			//if setup with breakpoints. puke
 			@if length($breakpoints) > 0 {
 
 				//go through br tags and corresponding values
@@ -589,7 +588,7 @@
 							$opts
 						);
 					} @else if $br {
-						// could have been ${'screen-'+$br} or some shet if fucking sass is fuckin shet
+						// could have been ${'screen-'+$br} if sass was competent
 						@include br($br) {
 							@include internal__columns_item_setup(
 								$br,
@@ -611,7 +610,7 @@
 					}
 				}
 			} @else { //o thank god
-				//this is ur basic bitch.
+				//this is ur basic pocha.
 				@include internal__columns_item_setup(
 					xs,
 					null,
@@ -628,7 +627,7 @@
 					$br-to-grid
 				);
 			}
-			//oh can i add custom css for shets and giigles?? why yes 
+			//oh can i add custom css?? why yes 
 			@content;
 		}
 			/// it sets the parameters value for the breakpoint boooiiii
@@ -661,7 +660,7 @@
 				}
 			
 			
-				@if $parameter-has-mapped-br == true { //if this is a map let the shetstorm within the shetstorm begin
+				@if $parameter-has-mapped-br == true { //if this is a map let the dummpit
 					//if this br has a value we are okayy
 					@if map-get($parameter,$br) {
 						$parsed-parameter: map-get($parameter, $br);
@@ -681,7 +680,7 @@
 						}
 						
 					}
-				} @else { //oh its not a map okay just dont fuck with it
+				} @else { //oh its not a map okay just dont boop with it
 					@if $current-index == 1 or $fallback == true or ($br == xs and $fallback == false ) {
 						$parsed-parameter: $parameter;
 					}
@@ -704,7 +703,7 @@
 					$extend,
 					$negate-gap-y,
 					$br-to-grid,
-					$opts: () //because margin-left doesn need to repeat if its the same shet right??
+					$opts: () //because margin-left doesn need to repeat if its the same boisright??
 				) {
 				$col-width: null;
 				$set-gap-x: null;
@@ -717,7 +716,7 @@
 				$use-gap-x: true; //when to declare gap-x calc and or margin-left
 				$declare-gap-x-as-margin: false; //declare a margin left. different from calc subtract
 
-				$gap-x-opts: map-get($opts,gap-x);//because margin-left doesn need to repeat if its the same shet right??
+				$gap-x-opts: map-get($opts,gap-x);//because margin-left doesn need to repeat if its the same bois right??
 
 				@if $declare-method == true and $br == $br-to-grid and $method == flex{
 					@include flex($extend,false,false,true);
@@ -784,7 +783,7 @@
 				@if $set-gap-x and $set-gap-x > 0 and ($use-gap-x == true) and $declare-gap-x-as-margin {
 					margin-left: $set-gap-x * -1;
 				}
-				//u can half ass this because u wont need fallbacks and shet
+				//u can half ass this because u wont need fallbacks
 				@if $custom-css {
 					$set-custom-css: $custom-css;
 				}
@@ -874,7 +873,7 @@
 				}
 			}
 
-			/// simple hoe cousin of columns mixin. doesnt fuck with the container like its shet cousin
+			/// simple hoe cousin of columns mixin. doesnt boop with the container like its  cousin
 			/// @param $col-number: 2 !default | (number) | number of columns. will be basis of width if $col-width not declated
 			/// @param $gap-width: $gutter !default | (number) | gap to subtract
 			/// @param $col-width: '' !default | (number) | duh
@@ -921,8 +920,9 @@
 				indent:null,
 				word-spacing:null,
 				root-size: null,
+				force-em: false,
 				style: null,
-				//@TODO other fancy shet
+				//@TODO other fancy
 			),$args);
 			
 			@if map-get($opts,size) {
@@ -932,15 +932,23 @@
 				and (type-of( map-get($opts,size) ) == number )
 				and unit(map-get($opts,size)) == px
 				{
-					font-size: rem(map-get($opts,size)/map-get($opts,root-size));
+					@if(map-get($opts,force-em) ){
+						font-size: em( map-get($opts,size) / map-get($opts,root-size) );
+					}@else{
+						font-size: rem( map-get($opts,size) / map-get($opts,root-size) );
+					}
 				}@else{
 					font-size: map-get($opts,size);
 				}
 
 
 			}
-			@if (map-get($opts,leading) and $force-responsive-units == false) or ($force-responsive-units == true and map-get($opts,size) and map-get($opts,leading) ) {
-				
+			@if ( map-get($opts,leading) and $force-responsive-units == false)
+			or (
+				$force-responsive-units == true
+				and map-get($opts,size) and map-get($opts,leading)
+			)
+			or (type-of(map-get($opts,leading)) == number and unitless(map-get($opts,leading))){
 				line-height: type-lead(map-get($opts,size),map-get($opts,leading));
 			}
 			
@@ -991,20 +999,21 @@
 			@content;
 		}
 
-			/// basic bitch version. only accepts font-size and line height
+			/// basic pocha version. only accepts font-size and line height
 			/// @param $font-size: !required | (number) | duh
 			/// @param $line-height: !required | (number) | duh
 			/// @return stripped font size relative value without unit
-			@mixin type($font-size,$line-height:'',$root-size:null){
+			@mixin type($font-size,$line-height:'',$root-size:null,$force-em: false){
 				@include type-set((
 					size: $font-size,
 					root-size: $root-size,
-					leading: $line-height
+					leading: $line-height,
+					force-em: $force-em
 				));
 			}
 
-			//mixins and functions that shet above relies on but u can use to ur butthole's content
-				/// line height generator. values have to be the same and shet
+			//mixins and functions thatff above relies on but u can use to ur butthole's content
+				/// line height generator. values have to be the same and lodicakes
 				/// @param $font-size: !required | (number) | duh
 				/// @param $line-height: !required | (number) | duh
 				/// @return stripped font size relative value wi thout unit
@@ -1533,7 +1542,7 @@
 		
 	}
 
-	//fancy as border shet like in farah and farah. you have to setup in a certain direction. i cant explain. but figure it out. good luck
+	//fancy as borde like in farah and farah. you have to setup in a certain direction. i cant explain. but figure it out. good luck
 	@mixin fancy-border($args:()) {
 		$defaults: (
 			pseudo: after, // duh
@@ -1541,8 +1550,8 @@
 			gradient: null, //@mixin gradient args
 			color: color(p),
 			animation: (), //@mixin animation args
-			br: md, //which breakpoint that bitch gon be
-			keyframes: (), //for keyframes mixin. setting the name adds animation property depending on the breakpoint where the animation is enabled. setting up frames creates a unique keyframe that will be used for this shet and even other elements that need it
+			br: md, //which breakpoint that boi gon be
+			keyframes: (), //for keyframes mixin. setting the name adds animation property depending on the breakpoint where the animation is enabled. setting up frames creates a unique keyframe that will be used for this and even other elements that need it
 			weight: 2px,
 			parent-position: relative,
 			position: absolute,
@@ -1563,7 +1572,7 @@
 		@if map-get($opts,custom-path) != null {
 			$clip-path: map-get($opts,custom-path);
 		}@else {
-			//what the fucking fuck sass????
+			//what the yudiputa gagong sass????
 			$clip-path: (
 				// 100% 0, //100% 
 				// 100% 100%,
@@ -1659,11 +1668,11 @@
 		
 		@if map-get($keyframes-args,name) {
 			@if map-get($keyframes-args,frames) == null {
-				//lets make keyframes bitch
+				//lets make keyframes do a thing
 				$frames: ();
 				$frame-milestone: 0%;
 				$frame-counter: 0;
-				// oh fuck this some fibonacci shet
+				// oh bruh this some fibonacci
 				$total-frames-needed: (length($clip-path) / 2) - 1;
 				@while $frame-counter <= $total-frames-needed {
 								
@@ -1685,7 +1694,7 @@
 								@debug nth($clip-path,($point-index + 1));
 							}@else if ($point-index <= ($frame-counter + 2) ) or ($point-index  > (length($clip-path) - $frame-counter)){
 								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$point-index));
-							}@else { //this shet same points
+							}@else { //this pops same points
 								$clip-path-for-frame: append($clip-path-for-frame,nth($clip-path,$frame-counter + 2));
 							}
 								
@@ -2459,7 +2468,7 @@
 		@return $string;
 	  }
 
-	/// for maps and shet
+	/// for maps
 	@function map-set($map, $key, $value) {
 		$new: ($key: $value);
 		@return map-merge($map, $new);
@@ -2669,7 +2678,7 @@
 }
 
 //FLEX CONTAINERS
-%flex {
+%for-flex {
 
 	&-xs {
 		@include flex(false,xs,true);

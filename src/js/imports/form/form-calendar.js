@@ -1,12 +1,12 @@
-import FwCore from './../util/core.js';
-import {FwFnsQ} from './../util/initiator.js';
+import Settings from './../core/settings.js';
+import Initiator from './../core/initiator.js';
 
 import FwEvent from './../data-helper/event.js';
 import FwDom from './../data-helper/dom.js';
 import FwDate from './../data-helper/date.js';
 
 import FwComponent from './../classes/component.js';
-import { UiPrefix,UiDynamicClass } from '../util/ui.js';
+import { UIPrefix,UIDynamicClass } from '../util/ui.js';
 import { DateTimePreset, dayNamesShorter, monthNamesShort } from '../util/validation.js';
 
 import Dropdown from './../dropdown.js';
@@ -16,7 +16,7 @@ const ARG_ATTRIBUTE_NAME = 'calendar';
 const COMPONENT_CLASS = `input-calendar`;
 const ACTIVATED_CLASS = `active`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
@@ -27,22 +27,22 @@ const EVENT_CHANGE = `change${EVENT_KEY}`;
 	const EVENT_INIT = `init${EVENT_KEY}`;
 	const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 
-	const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
-	const EVENT_CREATE = `create${EVENT_KEY}`;
-	const EVENT_AFTER_CREATE = `after_create${EVENT_KEY}`;
+	const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
+	const EVENT_RENDER = `render${EVENT_KEY}`;
+	const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
 
 	const EVENT_BEFORE_UPDATE = `before_update${EVENT_KEY}`;
 	const EVENT_UPDATE = `update${EVENT_KEY}`;
 	const EVENT_AFTER_UPDATE = `after_update${EVENT_KEY}`;
 
 
-class FormCalendar extends FwComponent {
+class Calendar extends FwComponent {
 	
 	constructor(element,valueToRender,args){
 		super(
 			element,
 			{
-				UiValue: valueToRender
+				UIValue: valueToRender
 					|| false,
 				_customArgs: args
 					|| false
@@ -52,58 +52,59 @@ class FormCalendar extends FwComponent {
 
 	dispose() {
 		super.dispose();
-		this.UiValue = null;
+		this.UIValue = null;
 		this._customArgs = null;
 	}
 
 	get theValue() {
-		return super.UiEl().value
-			? FwDate.toVal(super.UiEl().value)
+		return super.UIEl().value
+			? FwDate.toVal(super.UIEl().value)
 			: false;
 	}
 
 	set theValue(theValue) {
 		if(theValue){
 
-			super.UiEl().setAttribute('value', FwDate.toVal(theValue));
-			super.UiEl().value = FwDate.toVal(theValue);
+			super.UIEl().setAttribute('value', FwDate.toVal(theValue));
+			super.UIEl().value = FwDate.toVal(theValue);
 		}
 	}
 
 	get renderValue() {
-		const theRenderDate = this.UiValue
-			? this.UiValue
+		const theRenderDate = this.UIValue
+			? this.UIValue
 		: this.theValue
 			? this.theValue
 		:  new Date()
+
 		return FwDate.toVal(theRenderDate);
 	}
 
 	set renderValue(renderDate) {
-		this.UiValue = renderDate;
+		this.UIValue = renderDate;
 	}
 
-	get UiInputValue() {
-		return this.UiInput && FwDate.toVal(this.UiInput.value)
+	get UIInputValue() {
+		return this.UIInput && FwDate.toVal(this.UIInput.value)
 	}
 
-	set UiInputValue(uiValue) {
+	set UIInputValue(uiValue) {
 		if(uiValue){
-			this.UiInput.setAttribute('value', FwDate.toHuman(uiValue));
-			this.UiInput.value = FwDate.toHuman(uiValue);
+			this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
+			this.UIInput.value = FwDate.toHuman(uiValue);
 		}
 	}
 
-	get UiRoot () {
-		return super.UiEl().closest(`.${UiPrefix(COMPONENT_CLASS, true)}`);
+	get UIRoot () {
+		return super.UIEl().closest(`.${UIPrefix(COMPONENT_CLASS)}`);
 	}
 
-	get UiDates () {
-		return this.UiRoot && this.UiRoot.querySelectorAll(`.${UiPrefix(COMPONENT_CLASS)}date`);
+	get UIDates () {
+		return this.UIRoot && this.UIRoot.querySelectorAll(`.${UIPrefix(COMPONENT_CLASS)}-date`);
 	}
 
-	get UiInput(){
-		return this.UiRoot.querySelector(`.${UiPrefix(COMPONENT_CLASS)}input input`);
+	get UIInput(){
+		return this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input input`);
 	}
 
 	static get configDefaults(){
@@ -141,28 +142,28 @@ class FormCalendar extends FwComponent {
 				? this._customArgs
 				: {
 					class:
-						super.UiEl().getAttribute('class'),
+						super.UIEl().getAttribute('class'),
 					startDay:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-start-day`), // 0,1,2,3,4,5,6
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-start-day`), // 0,1,2,3,4,5,6
 					min:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-min`)
-						|| super.UiEl().getAttribute('min'),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-min`)
+						|| super.UIEl().getAttribute('min'),
 					max:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max`)
-						|| super.UiEl().getAttribute('max'),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max`)
+						|| super.UIEl().getAttribute('max'),
 					yearSpan:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-span`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-span`),
 					disabledDates:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disabled-dates`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disabled-dates`),
 					textInput:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-text-input`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-text-input`),
 					monthSkip:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-month-skip`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-month-skip`),
 					yearSkip:
-						super.UiEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-skip`),
+						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-skip`),
 				}
 			),
-			FormCalendar.configDefaults
+			Calendar.configDefaults
 		);
 	}
 
@@ -171,10 +172,13 @@ class FormCalendar extends FwComponent {
 
 	}
 
-	update(newValue,valueToRender) {		
-		FwEvent.trigger(super.UiEl(),EVENT_BEFORE_UPDATE);
+	update(newValue,valueToRender) {
 
-		const theValue =
+		const element = this.element;
+
+		FwEvent.trigger(element,EVENT_BEFORE_UPDATE);
+
+		const theValue = 
 			FwDate.toVal(newValue)
 			|| this.theValue;
 		
@@ -184,27 +188,27 @@ class FormCalendar extends FwComponent {
 			|| this.renderValue;
 			
 		
-		FwEvent.trigger(super.UiEl(),EVENT_UPDATE);
+		FwEvent.trigger(element,EVENT_UPDATE);
 		//set up calendar
 		if (this.validates(theValue) || !theValue) {
 			this.theValue = FwDate.toVal(theValue, false);
 			this.renderValue = uiValue;
 
-			this._createUi();
+			this._renderUI();
 		}
 	
 		//user visual feedback if it has a valid bitch
 		if (this.validates(theValue)) {
-			this.UiRoot
+			this.UIRoot
 				.classList.remove('input-error');
 		} else {
-			this.UiRoot
+			this.UIRoot
 				.classList.add('input-error');
 		}
 	
 		if (this.theValue) {
 	
-			this.UiDates.forEach((date) => {
+			this.UIDates.forEach((date) => {
 				if (
 					date.getAttribute('data-value') == theValue
 				) {
@@ -215,11 +219,11 @@ class FormCalendar extends FwComponent {
 			});
 	
 	
-			if (this.UiInput) {
-				this.UiInputValue = theValue;
+			if (this.UIInput) {
+				this.UIInputValue = theValue;
 			}
 		}
-		FwEvent.trigger(super.UiEl(),EVENT_AFTER_UPDATE);
+		FwEvent.trigger(element,EVENT_AFTER_UPDATE);
 	}
 
 	
@@ -368,12 +372,12 @@ class FormCalendar extends FwComponent {
 		let htmlString = `<button type="button" 
 			class="
 				${!disValid ? `disabled ` : ''}
-				${UiPrefix(COMPONENT_CLASS)}navigation
-				${UiPrefix(COMPONENT_CLASS)}button
-				${UiPrefix(COMPONENT_CLASS)}${arrowClass}
-				${UiPrefix(COMPONENT_CLASS)}${buttonClass}" data-value="${arrowDate}"
+				${UIPrefix(COMPONENT_CLASS)}-navigation
+				${UIPrefix(COMPONENT_CLASS)}-button
+				${UIPrefix(COMPONENT_CLASS)}-${arrowClass}
+				${UIPrefix(COMPONENT_CLASS)}-${buttonClass}" data-value="${arrowDate}"
 			>
-				<i class="${UiPrefix(COMPONENT_CLASS)}symbol symbol ${symbolClass}"></i>
+				<i class="${UIPrefix(COMPONENT_CLASS)}symbol symbol ${symbolClass}"></i>
 			</button>`;
 
 		return htmlString;
@@ -383,22 +387,22 @@ class FormCalendar extends FwComponent {
 		customClass = customClass || '';
 		return `<button type="button" data-value="${FwDate.toVal(date)}"
 				class="
-				${UiPrefix(COMPONENT_CLASS)}block
-				${UiPrefix(COMPONENT_CLASS)}button
-				${UiPrefix(COMPONENT_CLASS)}date
+				${UIPrefix(COMPONENT_CLASS)}-block
+				${UIPrefix(COMPONENT_CLASS)}-button
+				${UIPrefix(COMPONENT_CLASS)}-date
 				${customClass}
 			">
 				<span>${date.getDate()}</span>
 			</button>`;
 	}
 
-	_createUi(elem,uiValue) {
+	_renderUI(elem,uiValue) {
 
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
-		FwEvent.trigger(element,EVENT_BEFORE_CREATE);
+		FwEvent.trigger(element,EVENT_BEFORE_RENDER);
 
 		uiValue =
 			uiValue
@@ -406,53 +410,53 @@ class FormCalendar extends FwComponent {
 
 		this.renderValue = uiValue;
 
-		const theUi = {};
+		const theUI = {};
 
-		FwEvent.trigger(element,EVENT_CREATE);
+		FwEvent.trigger(element,EVENT_RENDER);
 
-		theUi.container = this.UiRoot;
+		theUI.container = this.UIRoot;
 			
-		if (!theUi.container) {
-			theUi.container = document.createElement('div');
+		if (!theUI.container) {
+			theUI.container = document.createElement('div');
 			element.parentNode.insertBefore(
-				theUi.container,
+				theUI.container,
 				element
 			);
-			theUi.container.appendChild(element);
-			theUi.container.setAttribute(
+			theUI.container.appendChild(element);
+			theUI.container.setAttribute(
 				'class',
-				`${FwCore.settings.uiClass}
-				${FwCore.settings.uiJsClass}
+				`${Settings.get('uiClass')}
+				${Settings.get('uiJsClass')}
 				${element.getAttribute('class')
 					.toString()
 					.replace(
 						COMPONENT_CLASS,
-						UiPrefix(COMPONENT_CLASS, true)
+						UIPrefix(COMPONENT_CLASS)
 					)
 				}`
 			);
 		}
 
-		theUi.inputWrapper = theUi.container
-			.querySelector(`.${UiPrefix(COMPONENT_CLASS)}input`);
+		theUI.inputWrapper = theUI.container
+			.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
 
 		const components = FwDom.getSiblings(element);
 		components.forEach((component) => {
-			if (component !== theUi.inputWrapper) {
+			if (component !== theUI.inputWrapper) {
 				component.parentNode.removeChild(component);
 			}
 		});
 
 		//input
 		if (this.args.textInput) {
-			if (!theUi.inputWrapper) {
-				theUi.inputWrapper = document.createElement('div');
-				theUi.container.appendChild(theUi.inputWrapper);
-				theUi.inputWrapper.setAttribute(
+			if (!theUI.inputWrapper) {
+				theUI.inputWrapper = document.createElement('div');
+				theUI.container.appendChild(theUI.inputWrapper);
+				theUI.inputWrapper.setAttribute(
 					'class',
-					`${UiPrefix(COMPONENT_CLASS)}input`
+					`${UIPrefix(COMPONENT_CLASS)}-input`
 				);
-				theUi.inputWrapper.innerHTML =
+				theUI.inputWrapper.innerHTML =
 					'<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
 			}
 		}
@@ -460,11 +464,11 @@ class FormCalendar extends FwComponent {
 		//date 4 u
 
 		//heading
-			theUi.heading = document.createElement('div');
-			theUi.container.appendChild(theUi.heading);
-			theUi.heading.setAttribute(
+			theUI.heading = document.createElement('div');
+			theUI.container.appendChild(theUI.heading);
+			theUI.heading.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}heading`
+				`${UIPrefix(COMPONENT_CLASS)}-heading`
 			);
 
 		//arrowz
@@ -493,41 +497,41 @@ class FormCalendar extends FwComponent {
 						)
 					)
 				) {
-					theUi.heading.innerHTML += this._arrowHtml(butt);
+					theUI.heading.innerHTML += this._arrowHtml(butt);
 				}
 			});
 
 		//title
-			theUi.title = document.createElement('div');
-			theUi.heading.appendChild(theUi.title);
-			theUi.title.setAttribute(
+			theUI.title = document.createElement('div');
+			theUI.heading.appendChild(theUI.title);
+			theUI.title.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}title ${UiPrefix(COMPONENT_CLASS)}dropdown-toggle
-				${UiDynamicClass}` //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
+				`${UIPrefix(COMPONENT_CLASS)}-title ${UIPrefix(COMPONENT_CLASS)}-dropdown-toggle
+				${UIDynamicClass}` //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
 			);
-			theUi.title.setAttribute('data-toggle', 'dropdown');
-			theUi.title.innerHTML = `<span
-				class="${UiPrefix(COMPONENT_CLASS)}month-text">
+			theUI.title.setAttribute('data-toggle-dropdown','');
+			theUI.title.innerHTML = `<span
+				class="${UIPrefix(COMPONENT_CLASS)}-month-text">
 					${monthNamesShort[this._calendar.month]}
 				</span>
-				<span class="${UiPrefix(COMPONENT_CLASS)}year-text">
+				<span class="${UIPrefix(COMPONENT_CLASS)}-year-text">
 					${this._calendar.year}
 				</span>
-				<i class="${UiPrefix(COMPONENT_CLASS)}symbol symbol symbol-caret-down no-margin-x"></i>`;
+				<i class="${UIPrefix(COMPONENT_CLASS)}-symbol symbol symbol-caret-down no-margin-x"></i>`;
 
 		//dropdown
 			const dropdown = document.createElement('ul');
-			theUi.heading.appendChild(dropdown);
+			theUI.heading.appendChild(dropdown);
 			dropdown.setAttribute('data-dropdown-width', '100%');
 			dropdown.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
+				`${UIPrefix(COMPONENT_CLASS)}-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
 			);
 			dropdown.innerHTML += `<li 
-					class="${UiPrefix(COMPONENT_CLASS)}current-month-year active"
+					class="${UIPrefix(COMPONENT_CLASS)}-current-month-year active"
 				>
 					<a href="#"
-						class="${UiPrefix(COMPONENT_CLASS)}month"
+						class="${UIPrefix(COMPONENT_CLASS)}-month"
 						data-value="${FwDate.toVal(this._calendar.startDate)}"
 					>
 						${monthNamesShort[this._calendar.month]} ${this._calendar.year}
@@ -535,7 +539,7 @@ class FormCalendar extends FwComponent {
 				</li>
 				<li><hr class="dropdown-separator"></li>`;
 
-			theUi.dropdown = new Dropdown(dropdown,theUi.title).UiEl();
+			theUI.dropdown = new Dropdown(dropdown,theUI.title);
 
 			let dropdownInit, dropdownLimit;
 
@@ -589,7 +593,7 @@ class FormCalendar extends FwComponent {
 					let currClass = i == 0 ? 'active' : '',
 						listItem = `<li class="${currClass}">
 							<a href="#"
-								class="${UiPrefix(COMPONENT_CLASS)}month"
+								class="${UIPrefix(COMPONENT_CLASS)}-month"
 								data-value="${FwDate.toVal(listItemDate)}">
 									${
 										monthNamesShort[
@@ -603,24 +607,24 @@ class FormCalendar extends FwComponent {
 								: ''
 						}
 						</li>`;
-					theUi.dropdown.innerHTML += listItem;
+					theUI.dropdown.element.innerHTML += listItem;
 				}
 			}
 
 		//generate grid
-			theUi.grid = document.createElement('div');
-			theUi.container.append(theUi.grid);
-			theUi.grid.setAttribute(
+			theUI.grid = document.createElement('div');
+			theUI.container.append(theUI.grid);
+			theUI.grid.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}grid`
+				`${UIPrefix(COMPONENT_CLASS)}-grid`
 			);
 
 		//days heading
-			theUi.days = document.createElement('div');
-			theUi.grid.append(theUi.days);
-			theUi.days.setAttribute(
+			theUI.days = document.createElement('div');
+			theUI.grid.append(theUI.days);
+			theUI.days.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}days`
+				`${UIPrefix(COMPONENT_CLASS)}-days`
 			);
 
 			let daysHTML = '',
@@ -632,8 +636,8 @@ class FormCalendar extends FwComponent {
 				}
 
 				daysHTML += `<div
-						class="${UiPrefix(COMPONENT_CLASS)}block
-						${UiPrefix(COMPONENT_CLASS)}day"
+						class="${UIPrefix(COMPONENT_CLASS)}-block
+						${UIPrefix(COMPONENT_CLASS)}-day"
 					>
 						${dayNamesShorter[dayToRetrieve]}
 					</div>`;
@@ -641,14 +645,14 @@ class FormCalendar extends FwComponent {
 				dayToRetrieve++;
 			}
 
-			theUi.days.innerHTML = daysHTML;
+			theUI.days.innerHTML = daysHTML;
 
 		//days
-			theUi.dates = document.createElement('div');
-			theUi.grid.append(theUi.dates);
-			theUi.dates.setAttribute(
+			theUI.dates = document.createElement('div');
+			theUI.grid.append(theUI.dates);
+			theUI.dates.setAttribute(
 				'class',
-				`${UiPrefix(COMPONENT_CLASS)}dates`
+				`${UIPrefix(COMPONENT_CLASS)}-dates`
 			);
 
 			//previous month
@@ -681,7 +685,7 @@ class FormCalendar extends FwComponent {
 
 						let dateBlockPrev = this._blockHtml(
 							loopDatePrev,
-							`${UiPrefix(COMPONENT_CLASS)}block-adjacent
+							`${UIPrefix(COMPONENT_CLASS)}-block-adjacent
 							${(!this.validates(loopDatePrev)
 								? 'disabled'
 								: '')
@@ -689,7 +693,7 @@ class FormCalendar extends FwComponent {
 						);
 
 						//prepend because we loopped this bitch in reverse
-						theUi.dates.innerHTML += dateBlockPrev;
+						theUI.dates.innerHTML += dateBlockPrev;
 					}
 				}
 
@@ -703,7 +707,7 @@ class FormCalendar extends FwComponent {
 							: ''
 					);
 
-					theUi.dates.innerHTML += dateBlockCurr;
+					theUI.dates.innerHTML += dateBlockCurr;
 				}
 
 			//next month just fill the shit
@@ -725,43 +729,47 @@ class FormCalendar extends FwComponent {
 
 					let dateBlockNext = this._blockHtml(
 						loopDateNext,
-						UiPrefix(COMPONENT_CLASS) +
-							'block-adjacent ' +
-							(!this.validates(loopDateNext)
-								? 'disabled'
-								: '')
+						`${UIPrefix(COMPONENT_CLASS)}-block-adjacent
+						${(!this.validates(loopDateNext) ? 'disabled' : '')}`
 					);
 
-					theUi.dates.innerHTML += dateBlockNext;
+					theUI.dates.innerHTML += dateBlockNext;
 				}
 			}
 
 
 		
-		FwEvent.trigger(element,EVENT_AFTER_CREATE);
+		FwEvent.trigger(element,EVENT_AFTER_RENDER);
 	}
 
-	_render(){
+	init(elem){
+		const element = elem ?
+			super.UIEl(elem)
+			: super.UIEl();
+
+			FwEvent.trigger(element,EVENT_BEFORE_INIT);
+			FwEvent.trigger(element,EVENT_INIT);
+
+
 		this.update();
+
+		FwEvent.trigger(element,EVENT_AFTER_INIT);
 	}
 
-	static renderAll(){
-		FwEvent.trigger(document,EVENT_BEFORE_INIT);
+	static initAll(){
 
 		const calendars = document.querySelectorAll(`.${COMPONENT_CLASS}`);
-		FwEvent.trigger(document,EVENT_INIT);
 		
-		calendars.forEach((calendar) => {
-			const cal = new FormCalendar(calendar);
+		calendars.forEach((cal) => {
+			const calendar = new Calendar(cal);
 			
-			cal._render();
+			calendar.init();
 		});
-		FwEvent.trigger(document,EVENT_AFTER_INIT);
 	}
 
 	static handleChange() {
 		return (e) => {
-			const calendar = new FormCalendar(e.target);
+			const calendar = new Calendar(e.target);
 			calendar.update();
 		}
 	}
@@ -771,8 +779,8 @@ class FormCalendar extends FwComponent {
 			if (FwComponent.isDisabled(e.target)){
 				e.preventDefault();
 			}else{
-				const calendar = new FormCalendar(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const calendar = new Calendar(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 	
 				const uiInput = e.target.value;
@@ -813,8 +821,8 @@ class FormCalendar extends FwComponent {
 	
 			if (!FwComponent.isDisabled(e.target)) {
 				
-				const calendar = new FormCalendar(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const calendar = new Calendar(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 
 					calendar.update(
@@ -831,8 +839,8 @@ class FormCalendar extends FwComponent {
 	
 			if (!FwComponent.isDisabled(e.target)) {
 				
-				const calendar = new FormCalendar(e.target
-					.closest(`.${UiPrefix(COMPONENT_CLASS, true)}`)
+				const calendar = new Calendar(e.target
+					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
 					.querySelector(`.${COMPONENT_CLASS}`));
 
 					calendar.update(
@@ -847,37 +855,37 @@ class FormCalendar extends FwComponent {
 	static initListeners() {
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CHANGE,
 			COMPONENT_CLASS,
-			FormCalendar.handleChange()
+			Calendar.handleChange()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_KEYUP,
-			`.${UiPrefix(COMPONENT_CLASS)}input input`,
-			FormCalendar.handleUpdateKeyup()
+			`.${UIPrefix(COMPONENT_CLASS)}-input input`,
+			Calendar.handleUpdateKeyup()
 		);
 		
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`.${UiPrefix(COMPONENT_CLASS)}date`,
-			FormCalendar.handleUpdateClick()
+			`.${UIPrefix(COMPONENT_CLASS)}-date`,
+			Calendar.handleUpdateClick()
 		);
 
 		FwEvent.addListener(
-			document,
+			document.documentElement,
 			EVENT_CLICK,
-			`.${UiPrefix(COMPONENT_CLASS)}month, .${UiPrefix(COMPONENT_CLASS)}year`,
-			FormCalendar.handleRenderClick()
+			`.${UIPrefix(COMPONENT_CLASS)}-month, .${UIPrefix(COMPONENT_CLASS)}-year`,
+			Calendar.handleRenderClick()
 		);
-		FwFnsQ.on_ready = FormCalendar.renderAll;
+		Initiator.Q.on_ready = Calendar.initAll;
 
 	}
 }
 
-export default FormCalendar;
+export default Calendar;
 
-FormCalendar.initListeners();
+Calendar.initListeners();

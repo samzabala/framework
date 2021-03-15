@@ -29,22 +29,6 @@ Lazyloading also supports replacement of img tag into the src's svg markup. As l
 
 This way you can utilize [SVG Classes](#svg) to :')
 
-### Disable Lazyloading
-To disable lazyload, do this to ya script
-```js
-(function(fw){
-	fw.settings.lazyLoad = false;
-}(frameWork));
-```
-
-
-
-### Functions for Lazyloading or loading images
-
-As longas yuh image tags vae either `data-src` or `data-srcset` this should be able to work. hopefullly.
-
-`fw.loadImage(imgELEMENT)` - load just one boi
-`fw.loadImages(multipleImages)` - load nultiple bois
 
 ## Classes
 **`.fit-image`**
@@ -56,3 +40,57 @@ As longas yuh image tags vae either `data-src` or `data-srcset` this should be a
 	<img data-src="pichur.jpg" alt="bitch boi" />
 </div>
 ```
+
+## Javascript
+
+### Disable Lazyloading
+To disable lazyload, do this to ya script
+```js
+(function(fw){
+	fw.Settings.modify('lazyLoad',false);
+}(fw));
+```
+
+
+### Functions
+
+#### **`fw.Lazy(element)`**
+
+Make a new boi by going `const lazy = new fw.Lazy(element)`
+
+
+`element` is the element itself. if blank, defaults to the window.location.hash matching block that has the element class
+
+#### **`lazy.load(element)`**
+
+duh
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`lazy.loadSVG(element)`**
+
+replaces element with src svg if qualified to do so
+
+`element` is the element triggered. if left blank, this defaults to the element attached to the instance
+
+#### **`lazy.readyLoaded(element)`**
+
+adds class to element to sofnigy that yis it loaded the asset
+
+#### **`fw.Lazy(.loadAll()`**
+
+loads all images
+
+
+### Events
+
+* `before_init.fw.lazy` - happens on `document` before running functions to set up
+* `init.fw.lazy` - happens on `document` when running functions to set up
+* `after_init.fw.lazy` - happens on `document` after running functions to set up
+* `before_svgconversion.fw.lazy` - happens on `element` before loadSVG runs
+* `svgconversion.fw.lazy` - happens on `element` when loadSVG runs
+* `after_svgconversion.fw.lazy` - happens on `element` after loadSVG runs
+* `before_load.fw.lazy` - happens on `element` before load runs
+* `load.fw.lazy` - happens on `element` when load runs
+* `after_load.fw.lazy` - happens on `element` after load runs
+

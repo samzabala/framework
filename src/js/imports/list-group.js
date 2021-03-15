@@ -1,11 +1,11 @@
-import FwCore from './util/core.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
 import FwDom from './data-helper/dom.js';
 
 import FwComponent from './classes/component.js';
-import { UiToggleGroup } from './util/ui.js';
+import { UIToggleGroup } from './util/ui.js';
 
 
 const NAME = 'listGroup';
@@ -14,7 +14,7 @@ const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}-toggle`; //coz toggling shit
 const CHILD_CLASS = `${FwString.ToDashed(NAME)}-item`;
 const COMPONENT_TOGGLEGROUP_PREFIX = `list`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
@@ -44,12 +44,12 @@ class ListGroup extends FwComponent {
 		return DATA_KEY;
 	}
 
-	get UiTriggeredChild(){
+	get UITriggeredChild(){
 		return this._triggeredChild
 	}
 	
-	set UiTriggeredChild(triggd){
-		if(FwDom.isDescendant(super.UiEl(),triggd)){
+	set UITriggeredChild(triggd){
+		if(FwDom.isDescendant(super.UIEl(),triggd)){
 			this._triggeredChild = triggd;
 		}
 	}
@@ -57,23 +57,23 @@ class ListGroup extends FwComponent {
 	toggle(triggd){
 		const triggeredChild = triggd ?
 			triggd
-			: this.UiTriggeredChild;
+			: this.UITriggeredChild;
 
-		this.UiTriggeredChild = triggeredChild;
+		this.UITriggeredChild = triggeredChild;
 
-		if(!triggeredChild || !FwDom.isDescendant(super.UiEl(),triggeredChild)){
+		if(!triggeredChild || !FwDom.isDescendant(super.UIEl(),triggeredChild)){
 			return;
 		}
 
-		FwEvent.trigger(this.UiTriggeredChild,EVENT_BEFORE_TOGGLE);
-		FwEvent.trigger(this.UiTriggeredChild,EVENT_TOGGLE);
-		UiToggleGroup(
-			this.UiTriggeredChild,
+		FwEvent.trigger(this.UITriggeredChild,EVENT_BEFORE_TOGGLE);
+		FwEvent.trigger(this.UITriggeredChild,EVENT_TOGGLE);
+		UIToggleGroup(
+			this.UITriggeredChild,
 			`${COMPONENT_TOGGLEGROUP_PREFIX}`,
 			null,
 			`li, .${CHILD_CLASS}`
 		);
-		FwEvent.trigger(this.UiTriggeredChild,EVENT_AFTER_TOGGLE);
+		FwEvent.trigger(this.UITriggeredChild,EVENT_AFTER_TOGGLE);
 	}
 
 

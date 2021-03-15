@@ -1,41 +1,46 @@
 /*** MODAL BOARD***/
-$prefix: '.board';
-
-#{$prefix} {
-	display:none!important;
+$prefix: '.modal-ui';
 
 
-	&-wrapper {
-		@extend %for-modal-wrapper !optional;
-		z-index: 99998;
+[data-toggle-modal-board]{
+	@include dump-styles(data-toggle);
+}
 
-		&#{$prefix}-left {
-			padding-left: $board-padding-spacer;
+#{$prefix}#{$prefix}-mode-board {
+	z-index: 99998;
+
+
+	#{$prefix}-wrapper {
+
+		@at-root #{$prefix}-align-left#{&} {
+			padding-left: $modal-board-padding-spacer;
+			#{$prefix}-popup,
+			#{$prefix}-button-wrapper {
+				margin-left: auto;
+			}
 		}
-		&#{$prefix}-right {
-			padding-right: $board-padding-spacer;
+		@at-root #{$prefix}-align-right#{&} {
+			padding-right: $modal-board-padding-spacer;
+			#{$prefix}-popup,
+			#{$prefix}-button-wrapper {
+				margin-right: auto;
+			}
 		}
-
-
 
 
 		@include br(#{$mobile-br-max}-max) {
-			&#{$prefix}-left {
-				padding-left: $board-padding-spacer-mobile;
+			@at-root #{$prefix}-align-left#{&} {
+				padding-left: $modal-board-padding-spacer-mobile;
 			}
-			&#{$prefix}-right {
-				padding-right: $board-padding-spacer-mobile;
+			@at-root #{$prefix}-align-right#{&} {
+				padding-right: $modal-board-padding-spacer-mobile;
 			}
 		}
 	}
 
-	&-title {
-		margin-top:0;
-	}
 
 
-
-	&-button {
+	#{$prefix}-button {
 
 		&-wrapper {
 			position:fixed;
@@ -47,7 +52,7 @@ $prefix: '.board';
 			overflow: visible;
 			top: 0;
 			width:100%;
-			max-width: calc(100% -  #{$board-padding-spacer});
+			max-width: calc(100% -  #{$modal-board-padding-spacer});
 			flex-direction: column;
 
 			&:before {
@@ -55,25 +60,25 @@ $prefix: '.board';
 				display:inline-block;
 				pointer-events:none;
 				flex: 0 0 auto;
-				height: $board-close-offset-y;
+				height: $modal-board-close-offset-y;
 				width:0;
 			}
 	
 			@include br(#{$mobile-br-max}-max) {					
-				max-width: calc(100% -  #{$board-padding-spacer-mobile});
+				max-width: calc(100% -  #{$modal-board-padding-spacer-mobile});
 
 				&:before {
-					height: $board-close-offset-y-mobile;
+					height: $modal-board-close-offset-y-mobile;
 				}
 			}
 			
-			#{$prefix}-left & {
+			@at-root #{$prefix}-align-left#{&} {
 				right: 0;
 				align-items: flex-start;
 			}
 	
 	
-			#{$prefix}-right & {
+			@at-root #{$prefix}-align-right#{&} {
 				left: 0;
 				align-items: flex-end;
 			}
@@ -87,14 +92,14 @@ $prefix: '.board';
 			&-default {
 				border:none;
 				outline:none;
-				font-size: $board-close-button-font-size;
+				font-size: $modal-board-close-button-font-size;
 				display:flex;
 				flex-wrap: wrap;
 				align-items: center;
 				justify-content: center;
 				flex-direction:column;
 				background: $modal-background;
-				box-shadow: $board-close-box-shadow;
+				box-shadow: $modal-board-close-box-shadow;
 				// width: $calculated-board-close-width;
 				// height: $calculated-board-close-height;
 				padding: calc((#{$calculated-board-close-size} - 1em) * .5);
@@ -106,17 +111,17 @@ $prefix: '.board';
 				}
 	
 	
-				.theme-inverse & {
+				.theme-inverse &  {
 					background: $modal-background-inverse;
 				}
 	
-				#{$prefix}-left & {
+				@at-root #{$prefix}-align-left#{&} {
 					left: 0;
 					transform: translateX(-50%);
 				}
 		
 		
-				#{$prefix}-right & {
+				@at-root #{$prefix}-align-right#{&} {
 					right: 0;
 					transform: translateX(50%);
 				}
@@ -127,70 +132,50 @@ $prefix: '.board';
 	
 		// 	#{$prefix}-left &,
 		// 	#{$prefix}-right & {
-		// 		top: $board-close-offset-y;
+		// 		top: $modal-board-close-offset-y;
 	
 	
 		// 		@include br(#{$mobile-br-max}-max) {
-		// 			top: $board-close-offset-y-mobile;
+		// 			top: $modal-board-close-offset-y-mobile;
 		// 		}
 		// 	}
 	
 		// 	#{$prefix}-top &,
 		// 	#{$prefix}-bottom & {
-		// 		right: $board-close-offset-x;
+		// 		right: $modal-board-close-offset-x;
 	
 	
 		// 		@include br(#{$mobile-br-max}-max) {
-		// 			right: $board-close-offset-x-mobile;
+		// 			right: $modal-board-close-offset-x-mobile;
 		// 		}
 		// 	}
 		// }
 	}
 
-	&-resize {
+	#{$prefix}-resize {
 		&:hover {
 			cursor: grab;
 		}
 	}
 
-	&-close {
+	#{$prefix}-close {
 		
-		&-overlay {
-			@extend %for-modal-overlay !optional;
-
-
-			&:not([data-toggle="board-close"]) {
-				@extend %for-modal-overlay-not-closeable !optional;
-			}
-		}
 	}
 
 
-	&-popup {
-		@extend %for-modal-popup !optional;
+	#{$prefix}-popup {
 		@extend %for-modal-scroller !optional;
 		height: 100%;
 
-		padding: $board-padding-y $board-padding-x;
+		padding: $modal-board-padding-y $modal-board-padding-x;
 
 		@include br(#{$mobile-br-max}-max) {
-			padding: $board-padding-y-mobile $board-padding-x-mobile;
+			padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
 		}
 
 		&-content {
 			// flex: 1 1;
 			position:relative;
-		}
-	}
-
-	&-popup,
-	&-button-wrapper {
-		#{$prefix}-left & {
-			margin-left: auto;
-		}
-		
-		#{$prefix}-right & {
-			margin-right: auto;
 		}
 	}
 }

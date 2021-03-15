@@ -41,7 +41,7 @@ $calculated-calendar-exception: '';
 						white-space:nowrap;
 						position:relative;
 						color: inherit;
-						@include reset-anchor(true);
+						@include dump-styles(no-text-decoration);
 
 						&,&:after {
 							border-radius: $input-calendar-block-border-radius;
@@ -200,7 +200,7 @@ $calculated-calendar-exception: '';
 							width:100%;
 
 							&:not(.focus):not(:focus):not(.active):not(:active) {
-								@extend %for-no-shadow-important !optional;
+								@include dump-styles(no-box-shadow-important);
 							}
 						}
 					}
@@ -281,7 +281,7 @@ $calculated-calendar-exception: '';
 						max-height: 300px;
 						overflow-x:auto;
 						overflow-y: scroll;
-						@extend %for-no-scrollbar !optional;
+						@include dump-styles(no-scrollbar);
 					}
 
 					&-days,

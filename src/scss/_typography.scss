@@ -124,26 +124,24 @@ a,.a {
 		text-decoration: $body-anchor-text-decoration-hover;
 		color: $body-anchor-color-hover;
 
-		&,* {
-			cursor: pointer;
-		}
+		// &,* {
+		// 	cursor: pointer;
+		// }
 
-		* {
-			text-decoration: inherit;
-			text-decoration-color: currentColor;
-		}
+		// * {
+		// 	text-decoration: inherit;
+		// 	text-decoration-color: currentColor;
+		// }
 	}
 }
 
-
-// margined shit
-
-
-%for {
-	&-p {
-		margin-bottom: $calculated-body-text-gutter-y;
+	a,a:not([class]) {
+		@include dump-styles(no-text-decoration);
+		&:hover {
+			@include dump-styles(no-text-decoration-hover);
+		}
 	}
-}
+
 
 	p,
 	.p,
@@ -152,7 +150,7 @@ a,.a {
 	address,
 	pre,
 	dl {
-		@extend %for-p;
+		margin-bottom: $calculated-body-text-gutter-y;
 		display:block;
 	}
 
@@ -174,6 +172,7 @@ ol,ul{
 
 		&,li {
 			padding-left:0;
+			margin-top:0;
 		}
 	}
 

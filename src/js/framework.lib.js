@@ -4,6 +4,8 @@
 // import FwDom from './src/data-helper/dom.js';
 
 
+import Initiator from './imports/core/initiator.js';
+import Settings from './imports/core/settings.js';
 
 import Accordion from './imports/accordion.js';
 import Alert from './imports/alert.js';
@@ -16,8 +18,12 @@ import Modal from './imports/modal.js';
 import ModuleGrid from './imports/module-grid.js';
 import Switch from './imports/switch.js';
 import Tabs from './imports/tabs.js';
+import Tooltip from './imports/tooltip.js';
+import Zone from './imports/zone.js';
 
 const FrameWork = {
+	Initiator,
+	Settings,
 	Accordion,
 	Alert,
 	Button,
@@ -28,6 +34,8 @@ const FrameWork = {
 	Modal,
 	ModuleGrid,
 	Switch,
-	Tabs
+	Tabs,
+	Tooltip,
+	Zone,
 };
 export default FrameWork

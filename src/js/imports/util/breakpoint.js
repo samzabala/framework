@@ -45,6 +45,7 @@ parseFloat(
 export const ValidateBr = (breakpoint, mode) => {
 	mode = mode || 'below'; //below,within,above
 	const currIndex = BrTag.indexOf(breakpoint);
+
 	switch (mode) {
 		case 'below': //max-width
 			return (

@@ -1,26 +1,28 @@
-import FwCore from './util/core.js';
-import {FwFnsQ} from './util/initiator.js';
+import Initiator from './core/initiator.js';
+import Settings from './core/settings.js';
 
 import FwEvent from './data-helper/event.js';
+import FwString from './data-helper/string.js';
 import FwDom from './data-helper/dom.js';
 
 import FwComponent from './classes/component.js';
-import { UiPrefix,UiToggled,BodyClass } from './util/ui.js';
+import { UIPrefix,UIToggled,UIBodyClass,UIChangeHash } from './util/ui.js';
 
 const NAME = 'modal';
+const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `active`;
 
+const ARG_ATTRIBUTE_NAME = `${NAME}`;
+const TOGGLE_MODE_PREFIX = `${NAME}`;
 
+const DEFAULT_NAME = `default`;
 const BOARD_NAME = `board`;
 
-const DATA_KEY = `${FwCore.settings.prefix}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
-
-	const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
-	const EVENT_INIT = `init${EVENT_KEY}`;
-	const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
+const EVENT_HASHCHANGE = `hashchange${EVENT_KEY}`;
 
 	const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
 	const EVENT_CREATE = `create${EVENT_KEY}`;
@@ -39,69 +41,137 @@ const EVENT_CLICK = `click${EVENT_KEY}`;
 	const EVENT_AFTER_RESIZE = `after_resize${EVENT_KEY}`;
 
 
-const CURRENT_MODAL_INSTANCE = {
-	element: null,
-	args:null
-}
+const CURRENT_MODAL_INSTANCE = {}
 
 const VALID_MODAL_MODES = [
-	NAME,
-	BOARD_NAME
+	BOARD_NAME,
+	DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
 ];
+
+
+VALID_MODAL_MODES.forEach(mode=>{
+	CURRENT_MODAL_INSTANCE[mode] = {
+		element:false,
+		args:false
+	};
+})
 
 class Modal extends FwComponent {
 	
 	constructor(element,triggerer,args){
-		let currMode;
-		VALID_MODAL_MODES.forEach((mode)=>{
-			if(element.classList.contains(mode) && !currMode){
-				currMode = mode;
-			}
-		});
+		//4 on init by hash
 
-		element = element || UiToggled(currMode) || false;
+
+		element = element || false;
+		args = args || false;
+
+		//get currMode
+		let currMode = false;
+
+		//look by triggerer first
+		if(triggerer && !element){
+			//look for subcom
+			VALID_MODAL_MODES.forEach((mode)=>{
+				if(
+					(
+						triggerer.hasAttribute(`data-toggle-${Modal.#modeToggle(mode)}`)
+						|| triggerer.hasAttribute(`data-toggle-${Modal.#modeToggle(mode)}-open`)
+						|| triggerer.hasAttribute(`data-toggle-${Modal.#modeToggle(mode)}-close`)
+					)
+					&& !currMode
+				){
+					currMode = mode;
+				}
+			});
+		}else if(element){
+			//look for subcom
+			VALID_MODAL_MODES.forEach((mode)=>{
+				if(element.classList.contains(`${COMPONENT_CLASS}-${mode}`) && !currMode){
+					currMode = mode;
+				}
+			});
+
+			//ok default probable
+			if(element.classList.contains(COMPONENT_CLASS) && !currMode){
+				currMode = DEFAULT_NAME;
+			}
+		}
+
+		//kill if not a valid bode boi
+		if(!currMode){
+			element = false;
+		}else{
+			if(currMode && !element){
+				element = Modal.current(currMode).element;
+			}
+		}
+
 
 		super(
 			element,
 			{
-				_triggerer:(
-					triggerer
-						? new FwDom(triggerer)
-					: false
-				),
+				triggerer: triggerer,
 				_customArgs: args
-					|| false
+					|| false,
+				_mode: currMode,
 			}
 		);
 
-		this.mode = currMode;
 	}
 
 	dispose() {
 		super.dispose();
-		this._triggerer = null;
+		this.triggerer = null;
 		this._customArgs = null;
 	}
 
-	static get current() {
-		return CURRENT_MODAL_INSTANCE;
+	static current(mode) {
+		return mode ? CURRENT_MODAL_INSTANCE[mode] : CURRENT_MODAL_INSTANCE;
 	}
 
-	static set current(obj){
-		CURRENT_MODAL_INSTANCE.element = obj.element;
-		CURRENT_MODAL_INSTANCE.args = obj.args;
+	get #current(){
+		return CURRENT_MODAL_INSTANCE[this.mode];
 	}
 
-	get UiRoot () {
-		return document.getElementById(this.UiId);
+	set #current(obj){
+		CURRENT_MODAL_INSTANCE[this.mode].element = obj.element;
+		CURRENT_MODAL_INSTANCE[this.mode].args = obj.args;
 	}
 
-	get UiId (){
-		return `${FwCore.settings.prefix}-${this.mode != 'default' ? this.mode : NAME}`
+	get mode(){
+		return this._mode;
+
 	}
 
-	get UiElId (){
-		return super.UiEl().getAttribute('id');
+	get UIId (){
+		return `${Settings.get('prefix')}-${NAME}-${this.mode}`
+	}
+
+	get UIContentBlock() {
+		return this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup-content`)
+	}
+
+	get UIRoot () {
+		return document.getElementById(this.UIId);
+	}
+	get UIElId (){
+		return super.UIEl().getAttribute('id');
+	}
+
+	static #modeToggle(mode){
+		return FwString.ToDashed(`${TOGGLE_MODE_PREFIX}-${mode}`);
+	}
+
+	get modeToggle(){
+		return Modal.#modeToggle(this.mode);
+	}
+
+	static #modeClass(mode){
+		return FwString.ToDashed(`${TOGGLE_MODE_PREFIX}-${mode}`);
+	}
+
+	get modeClass(){
+		return Modal.#modeClass(this.mode);
 	}
 
 	static get configDefaults(){
@@ -109,7 +179,7 @@ class Modal extends FwComponent {
 		return {
 			
 			changeHash: true,
-			header: '',
+			title: '',
 			close: true,
 			disableOverlay: true,
 			width: null,
@@ -147,73 +217,85 @@ class Modal extends FwComponent {
 				: {
 					changeHash:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-change-hash`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-change-hash`),
-					header:
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`),
+					title:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-title`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-title`),
-					close:
-						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-close`)
-						)
-						|| contentWrap.getAttribute(`data-${this.mode}-close`),
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`),
 					disableOverlay:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-disable-overlay`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-disable-overlay`),
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`),
 					width:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-width`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-width`),
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
 					callback:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-callback`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-callback`),
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`),
 					classes:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-classes`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-classes`),
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`),
+					close:
+						(
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`)
+						)
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`),
 					closeClasses:
 						(
-							this._triggerer
-							&& this._triggerer.getAttribute(`data-${this.mode}-close-classes`)
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
 						)
-						|| contentWrap.getAttribute(`data-${this.mode}-close-classes`),
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`),
+					fullscreen: //@TODO program this pityur
+						(
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
+						)
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`),
+					fullscreenClasses:
+						(
+							this.triggerer
+							&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`)
+						)
+						|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`),
 
 					//board specific
 						align:
 							(
-								this._triggerer
-								&& this._triggerer.getAttribute(`data-${this.mode}-align`)
+								this.triggerer
+								&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`)
 							)
-							|| contentWrap.getAttribute(`data-${this.mode}-align`),
+							|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`),
 						resize:
 							(
-								this._triggerer
-								&& this._triggerer.getAttribute(`data-${this.mode}-resize`)
+								this.triggerer
+								&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`)
 							)
-							|| contentWrap.getAttribute(`data-${this.mode}-resize`),
+							|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`),
 						
 						resizeClasses:
 							(
-								this._triggerer
-								&& this._triggerer.getAttribute(`data-${this.mode}-resize-classes`)
+								this.triggerer
+								&& this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`)
 							)
-							|| contentWrap.getAttribute(`data-${this.mode}-resize-classes`),
+							|| super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`),
 
 					//custom specific
 						// customMarkup: //halat weit
@@ -229,202 +311,215 @@ class Modal extends FwComponent {
 
 	create(elem){
 		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
+			super.UIEl(elem)
+			: super.UIEl();
 
 		if(!element){
 			return;
 		}
 
 		FwEvent.trigger(element,EVENT_BEFORE_CREATE);
+		
+		if(element || !window.location.hash){
+			this.destroy();
+		}
 
 		FwEvent.trigger(element,EVENT_CREATE);
 	
-		const id = this.UiElId || this.UiId;
+		const id = this.UIElId || this.UIId;
 
-		id !== `${this.UiId}` && this.args.changeHash && UiChangeHash(id);;
+		id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
 
-		const theUi = document.createElement('div');
-		document.querySelector('body').appendChild(theUi);
-		theUi.className = `${UiPrefix}-${NAME}-component
-			${this.mode}-wrapper
-			${this.args.classes}
-			${this.args.align ? `${this.mode}-${this.args.align}` : ''}`;
-		theUi.setAttribute('id', this.UiId);
 
-		theUi.innerHTML = this._markup;
+		const theUI = document.createElement('div');
+		document.querySelector('body').appendChild(theUI);
+		theUI.className = `${UIPrefix(COMPONENT_CLASS)}  ${UIPrefix(COMPONENT_CLASS)}-mode-${this.mode} ${UIPrefix(COMPONENT_CLASS)}-component
+			${this.args.align ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}` : ''}
+			${this.args.classes}`;
+		theUI.setAttribute('id', this.UIId);
+
+		theUI.innerHTML = this._markup;
+
 
 		FwDom.moveContents(
 			element,
-			theUi.querySelector(`.${this.mode}-popup-content`)
+			this.UIContentBlock
 		);
 
-		if (this.args.width) {
-			frameWork.resizeModal(this.args.width,theUi,args);
+		this.#current = {
+			element: element,
+			args: this.args
+			
 		}
+
+		if (this.args.width) {
+			this.resize();
+		}
+
+		this.update();
 		
 		if (this.args.callback) {
-			RunFn(this.args.callback);
+			this._runFn(this.args.callback);
 		}
 
-		Modal.current = {
-			element: element,
-			args: this.args,
-		}
-
-		theUi.classList.add(ACTIVATED_CLASS);
-		document.body.classList.add(BodyClass.noScroll);
-
-		Modal.update();
-
+		theUI.classList.add(ACTIVATED_CLASS);
+		document.body.classList.add(UIBodyClass.noScroll);
 
 		FwEvent.trigger(element,EVENT_AFTER_CREATE);
 	}
 
-	destroy(removeHash){
+	destroy(elem){
+		const element = elem ?
+			super.UIEl(elem)
+			: this.#current.element;
 
-		if(!Modal.current.element){
+		if(!element){
 			return;
 		}
-
+		
 		FwEvent.trigger(element,EVENT_BEFORE_DESTROY);
 		FwEvent.trigger(element,EVENT_DESTROY);
-
-		const element = elem ?
-			super.UiEl(elem)
-			: super.UiEl();
-
-		removeHash = removeHash || false;
+		// removeHash = removeHash || false;
 
 		let canRemoveHash = false;
 	
 		if (
-			removeHash
-			&& Modal.current.element.hasAttribute('id')
-			&& Modal.current.element.getAttribute('id') == window.location.hash.replace('#','')
+			element.hasAttribute('id')
+			&& element.getAttribute('id') == window.location.hash.replace('#','')
 		) {
 			canRemoveHash = true;
 		}
 	
-		if (this.UiRoot) {
+		if (this.UIRoot) {
 			FwDom.moveContents(
-				this.UiRoot.querySelector(`.${this.mode}-popup-content`),
-				Modal.current.element
+				this.UIContentBlock,
+				element
 			);
 	
-			this.UiRoot.classList.remove('active');
-			this.UiRoot.parentNode.removeChild(this.UiRoot);
+			this.UIRoot.classList.remove('active');
+			this.UIRoot.parentNode.removeChild(this.UIRoot);
 		}
 	
 		
 	
-		Modal.current = {
-			element: false,
-			args: false,
+		let removeBodClass = true;
+		if(
+			document.getElementById(this.UIId)
+			&& removeBodClass == true
+		){
+			removeBodClass = false;
 		}
 	
-		let removeBodClass = true;
-		VALID_MODAL_MODES.forEach((mode)=> {
-			if(
-				document.getElementById(`${UiPrefix}-${mode}`)
-				&& removeBodClass == true
-			){
-				removeBodClass = false;
-			}
-		})
+		removeBodClass && document.body.classList.remove(UIBodyClass.noScroll);
 	
-		removeBodClass && document.body.classList.remove(BodyClass.noScroll);
+		canRemoveHash && UIChangeHash('');
 	
-		canRemoveHash && ChangeHash('');
-
 		FwEvent.trigger(element,EVENT_AFTER_DESTROY);
+
+		this.#current = {
+			element: false,
+			args: false
+		}
 	}
 
-	static update(){
+	update(elem){
+		const element = elem ?
+			super.UIEl(elem)
+			: this.#current.element;
 	
-		if(this.UiRoot) {
-	
-			FwEvent.trigger(element,EVENT_BEFORE_UPDATE);
-			FwEvent.trigger(element,EVENT_UPDATE);
-	
-			// buttons
-				// resize
-					const currentWidth = this.UiRoot
-						.querySelector(`.${this.mode}-popup`).clientWidth;
-						
-					const resizeBtn = this.UiRoot
-						.querySelectorAll(`*[data-toggle="${this.mode}-resize"]`);
-	
-					if(resizeBtn && currentWidth < parseInt(this.current.args.width)){
-						resizeBtn.forEach((butt) => {
-							butt.classList.add('disabled');
-						});
-					}else{
-						resizeBtn.forEach((butt) => {
-							butt.classList.remove('disabled');
-						});
-					}
-
-			FwEvent.trigger(element,EVENT_AFTER_UPDATE);
+		if(!element) {
+			return
 		}
+	
+		FwEvent.trigger(element,EVENT_BEFORE_UPDATE);
+		FwEvent.trigger(element,EVENT_UPDATE);
+
+		// buttons
+			// resize
+				const currentWidth = this.UIRoot
+					.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup`).clientWidth;
+					
+				const resizeBtn = this.UIRoot
+					.querySelectorAll(`*[data-toggle-${this.modeToggle}-resize]`);
+
+				if(resizeBtn && currentWidth < parseInt(this.args.width)){
+					resizeBtn.forEach((butt) => {
+						butt.classList.add('disabled');
+					});
+				}else{
+					resizeBtn.forEach((butt) => {
+						butt.classList.remove('disabled');
+					});
+				}
+
+		FwEvent.trigger(element,EVENT_AFTER_UPDATE);
 	}
 
 	resize(width){
-		if(this.mode !== BOARD_NAME){
-			return;
+
+	
+		if(!this.#current) {
+			return
 		}
 
-		FwEvent.trigger(element,EVENT_BEFORE_RESIZE);
-		FwEvent.trigger(element,EVENT_RESIZE);
-
-		const args = args || Modal.current.args || {};
+		const args = args || this.args || this.#current.args || {};
 		width = width || args.width || null;
 
-		if(this.UiRoot && parseInt(width) >= parseInt(this.args.width)){
+		if(this.UIRoot && parseInt(width) >= parseInt(args.width)){
+
+			FwEvent.trigger(this.#current.element,EVENT_BEFORE_RESIZE);
+			FwEvent.trigger(this.#current.element,EVENT_RESIZE);
+
 			//all
-			if(this.UiRoot.querySelector(`.${this.mode}-popup`)){
-				this.UiRoot.
-					querySelector(`.${this.mode}-popup`)
+			if(this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup`)){
+				this.UIRoot.
+					querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup`)
 						.style.width = width;
 			}
 
 			//bboard
-			if(this.UiRoot.querySelector(`.${this.mode}-button-wrapper`)){
-				this.UiRoot.
-					querySelector(`.${this.mode}-button-wrapper`)
+			if(this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)){
+				this.UIRoot.
+					querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)
 						.style.width = width;
 			}
-		}
 
-		FwEvent.trigger(element,EVENT_AFTER_RESIZE);
+			FwEvent.trigger(this.#current.element,EVENT_AFTER_RESIZE);
+		}
 	}
 	
 	get _markup(){
-		let html = '';
+		this.triggerer && console.warn(this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`));
+		
+		let html =
+			`<div
+				class="
+					${UIPrefix(COMPONENT_CLASS)}-wrapper"
+			>`;
 	
 				//overlay
 				html += `<a href="#"
 						class="
-							${this.mode}-close-overlay"
+							${UIPrefix(COMPONENT_CLASS)}-close-overlay"
 							${
 								this.args.disableOverlay == false
-								? `data-toggle="${this.mode}-close"`
+								? `data-toggle-${this.modeToggle}-close`
 								: ''
 							}
 					></a>`;
 	
 					switch (this.mode) {
 						case 'board':
-							html += `<div class="${this.mode}-button-wrapper">`;
+							html += `<div class="${UIPrefix(COMPONENT_CLASS)}-button-wrapper">`;
 								if (this.args.close !== false) {
 									html += `<a href="#"
 										class="
-											${this.mode}-close ${this.mode}-button
+											${UIPrefix(COMPONENT_CLASS)}-close ${UIPrefix(COMPONENT_CLASS)}-button
 											${
 												this.args.closeClasses
 												? this.args.closeClasses
-												: `${this.mode}-button-default`}"
-										data-toggle="${this.mode}-close"
+												: `${UIPrefix(COMPONENT_CLASS)}-button-default`}"
+										data-toggle-${ this.modeToggle }-close
 									>
 										<i class="symbol symbol-close "></i>
 									</a>`;
@@ -433,12 +528,12 @@ class Modal extends FwComponent {
 								if (this.args.resize !== false && this.args.width) {
 									html += `<a
 										class="
-											${this.mode}-resize ${this.mode}-button
+											${UIPrefix(COMPONENT_CLASS)}-resize ${UIPrefix(COMPONENT_CLASS)}-button
 											${
 												this.args.resizeClasses
 												? this.args.resizeClasses
-												: `${this.mode}-button-default`}"
-										data-toggle="${this.mode}-resize"
+												: `${UIPrefix(COMPONENT_CLASS)}-button-default`}"
+										data-toggle-${this.modeToggle}-resize
 									>
 										<i class="symbol symbol-arrow-tail-left "></i>
 										<i class="symbol symbol-arrow-tail-right "></i>
@@ -446,44 +541,46 @@ class Modal extends FwComponent {
 								}
 							html += `</div>`;
 	
-							html += `<div class="${this.mode}-popup">`;
+							html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup">`;
 	
-								if (this.args.header) {
-									html += `<div class="${this.mode}-header">
-											<h1 class="${this.mode}-title">${decodeURIComponent(this.args.header)}</h1>
+								if (this.args.title) {
+									html += `<div class="${UIPrefix(COMPONENT_CLASS)}-header">
+											<h1 class="${UIPrefix(COMPONENT_CLASS)}-title">${decodeURIComponent(this.args.title)}</h1>
 										</div>`;
 								}
 	
-								html += `<div class="${this.mode}-popup-content"></div>`;
+								html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup-content"></div>`;
 	
 							html += `</div>`;
 	
 							break;
 	
-						case 'modal':
-							html += `<div class="${this.mode}-popup">`;
+						default:
+							html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup">`;
 	
-							if (this.args.header) {
-								html += `<div class="${this.mode}-header">
-										<h1 class="${this.mode}-title">${decodeURIComponent(this.args.header)}</h1>
-									</div>`;
-							}
-	
-							if (this.args.close !== false) {
-								html += `<a href="#"
-										class="${this.mode}-close ${this.args.closeClasses}"
-										data-toggle="${this.mode}-close"
-									>
-										<i class="symbol symbol-close"></i>
-									</a>`;
-							}
-	
-							html += `<div class="${this.mode}-popup-content"></div>`;
-	
+								if (this.args.title) {
+									html += `<div class="${UIPrefix(COMPONENT_CLASS)}-header">
+											<h1 class="${UIPrefix(COMPONENT_CLASS)}-title">${decodeURIComponent(this.args.title)}</h1>
+										</div>`;
+								}
+		
+								if (this.args.close !== false) {
+									html += `<a href="#"
+											class="${UIPrefix(COMPONENT_CLASS)}-close ${this.args.closeClasses}"
+											data-toggle-${this.modeToggle}-close
+										>
+											<i class="symbol symbol-close"></i>
+										</a>`;
+								}
+		
+								html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup-content"></div>`;
+		
 							html += `</div>`;
 							
 							break;
 					}
+
+		html += '</div>';
 
 		return html;
 
@@ -491,83 +588,111 @@ class Modal extends FwComponent {
 	
 
 	static handleResize(mode) {
-		mode = mode || NAME;
+		return (e) => {
+			VALID_MODAL_MODES.forEach(mode=>{
+				const modal = new Modal(
+					Modal.current(mode).element,
+					null,
+					Modal.current(mode).args
+				);
+				modal.resize();
+				modal.update();
+			});	
+		}
 		
 	}
 	
 
-	static handleUniversal(mode) {
-		mode = mode || NAME;
+	static handleUniversal() {
 		return () => {
-			if(FwCore.settings[`initialize${mode.toUpperCase()}`]){
+			if(Settings.get('initializeModal')){
 
-				FwEvent.trigger(element,EVENT_BEFORE_INIT);
-				FwEvent.trigger(element,EVENT_INIT);
-
-				const modal = new Modal();
-				modal.create();
-
-				FwEvent.trigger(element,EVENT_AFTER_INIT);
+				VALID_MODAL_MODES.forEach(mode=>{
+					const modal = new Modal(
+						UIToggled(
+							Modal.#modeToggle(mode),
+							null,
+							`.${COMPONENT_CLASS}.${Modal.#modeClass(mode)}`
+						)
+					);
+					modal.create();
+				});
 			};
 		}
 		
 	}
 	
 
-	static handleSomethingEvent() {
-		
-	}
-	
-
 	static handleOpen(mode) {
-		mode = mode || NAME;
 		return (e) => {
-			const modal = new Modal(
-				UiToggled(mode,e.target),
-				e.target
-			);
-			modal.create();
+
+			e.preventDefault();
+
+			if (!FwComponent.isDisabled(e.target)) {
+				const modal = new Modal(
+					UIToggled(
+						Modal.#modeToggle(mode),
+						e.target,
+						`.${COMPONENT_CLASS}.${Modal.#modeClass(mode)}`
+					),
+					e.target,
+				);
+				modal.create();
+			}
 		}
 	}
 	
 
 	static handleClose(mode) {
-		mode = mode || NAME;
 		return (e) => {
-			const modal = new Modal(
-				UiToggled(mode,e.target),
-				e.target
-			);
-			modal.destroy();
+
+			e.preventDefault();
+
+			if (!FwComponent.isDisabled(e.target)) {
+				const modal = new Modal(
+					UIToggled(
+						Modal.#modeToggle(mode),
+						e.target,
+						`.${COMPONENT_CLASS}.${Modal.#modeClass(mode)}`
+					),
+					e.target,
+				);
+				modal.destroy();
+			}
 		}
 	}
 	
 
 	static initListeners() {
 		VALID_MODAL_MODES.forEach((mode)=>{
+			const modeToggle = Modal.#modeToggle(mode);
+		
 			FwEvent.addListener(
-				document,
+				document.documentElement,
 				EVENT_CLICK,
-				`*[data-toggle="${mode}"] *[data-toggle="${mode}-open"]`,
+				`*[data-toggle-${modeToggle}], *[data-toggle-${modeToggle}-open]`,
 				Modal.handleOpen(mode)
 			);
 			
 			FwEvent.addListener(
-				document,
+				document.documentElement,
 				EVENT_CLICK,
-				`*[data-toggle="${mode}-close"]`,
+				`*[data-toggle-${modeToggle}-close]`,
 				Modal.handleClose(mode)
 			);
+		});
 		
 
-			window.addEventListener(
-				'hashchange',
-				Modal.handleUniversal(mode)
-			);
-	
-			FwFnsQ.on_ready = Modal.handleUniversal(mode);
-			FwFnsQ.on_resize = Modal.handleResize(mode);
-		});
+		FwEvent.addListener(
+			null,
+			EVENT_HASHCHANGE,
+			window,
+			Modal.handleUniversal()
+		);
+
+		Initiator.Q.on_ready = Modal.handleUniversal();
+		Initiator.Q.on_resize = Modal.handleResize();
+
 	}
 }
 

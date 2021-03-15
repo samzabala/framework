@@ -4,7 +4,7 @@
 		#{$prefix} {
 
 			&,&-fluid {
-				@extend %for-cf;
+				@include dump-styles(cf);
 			}
 			& {
 				width:100%;
