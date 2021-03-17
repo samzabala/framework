@@ -33,7 +33,10 @@ export default {
 			targets: [
 				//fonts
 					//symbols
-					{ src: ['src/fonts/fw-icons/*', '!**/*.(txt|ai|otf)'], dest: 'dist/fonts/fw-icons' }
+					{ src: ['src/fonts/fw-icons/*', '!**/*.(txt|ai|otf)'], dest: 'dist/fonts/fw-icons' },
+				//legacy js
+					{ src: 'src/js/framework.legacy.js', dest: 'dist/js' },
+					{ src: 'src/js/framework.legacy.plugged.js', dest: 'dist/js' }
 			],
 			copyOnce: true
 		  })

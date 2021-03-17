@@ -14,24 +14,24 @@
 	"author": "1Point21 Interactive",
 	"license": "eh",
 	"devDependencies": {
-		"@babel/cli": "^7.12.8",
-		"@babel/core": "^7.12.8",
-		"@babel/plugin-proposal-class-properties": "^7.12.1",
-		"@babel/preset-env": "^7.12.7",
-		"@rollup/plugin-babel": "^5.2.3",
-		"@rollup/plugin-node-resolve": "^11.1.1",
-		"autoprefixer": "^10.0.4",
+		"@babel/cli": "^7.13.10",
+		"@babel/core": "^7.13.10",
+		"@babel/plugin-proposal-class-properties": "^7.13.0",
+		"@babel/preset-env": "^7.13.10",
+		"@rollup/plugin-babel": "^5.3.0",
+		"@rollup/plugin-node-resolve": "^11.2.0",
+		"autoprefixer": "^10.2.5",
 		"babel-eslint": "^10.1.0",
 		"babel-loader": "^8.2.2",
 		"dart-sass": "^1.25.0",
 		"prettier": "^2.2.1",
-		"rollup": "^2.38.4",
-		"sass": "^1.30.0",
+		"rollup": "^2.41.4",
+		"sass": "^1.32.8",
 		"watch": "^1.0.2"
 	},
 	"dependencies": {
-		"postcss": "^8.1.10",
-		"rollup-plugin-copy": "^3.3.0",
+		"postcss": "^8.2.8",
+		"rollup-plugin-copy": "^3.4.0",
 		"style-loader": "^2.0.0"
 	}
 }
