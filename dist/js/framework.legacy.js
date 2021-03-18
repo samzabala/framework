@@ -3017,7 +3017,7 @@
 				frameWork.initGrid(grid);
 			});
 		};
-		__f.fns_on_rightAway.push(frameWork.readyGrids);
+		__f.fns_on_ready.push(frameWork.readyGrids);
 		__f.fns_on_resize.push(frameWork.readyGrids);
 
 		frameWork.readyCalendar = () => {
@@ -3027,7 +3027,7 @@
 				frameWork.updateCalendar(calendar);
 			});
 		};
-		__f.fns_on_rightAway.push(frameWork.readyCalendar);
+		__f.fns_on_ready.push(frameWork.readyCalendar);
 
 		frameWork.readyTags = () => {
 			const inputTags = document.querySelectorAll('.input-tags');

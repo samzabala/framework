@@ -897,7 +897,7 @@ big {
 .container.container-fluid {
   max-width: none;
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .container.container-wide {
     padding-left: 10px;
     padding-right: 10px;
@@ -4397,7 +4397,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 .module-header, .module-footer {
   position: relative;
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .module-header-break, .module-footer-break {
     display: flex;
     flex-wrap: wrap;
@@ -4468,7 +4468,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .module-functions .module-function:nth-child(n+2) {
     margin-left: 0.75rem;
   }
@@ -7802,7 +7802,7 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .btn-group.btn-group-vertical > .btn:nth-child(n+2):not(:focus):not(.focus):not(:hover) {
   border-top-color: var(--fw-color-neutral-alpha-3);
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .btn-group.btn-group-responsive.btn-group-horizontal > .btn-symbol {
     width: auto;
   }
@@ -8813,7 +8813,7 @@ select[multiple].input-single-line, select[multiple].input-select {
 .input-group.input-group-vertical > .input-tags-ui:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-vertical > .input-calendar-ui:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-vertical > .input-single-line:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-vertical > .input-select:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-vertical > .input-multiple-line:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-vertical .btn:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active) {
   border-top-color: var(--fw-color-neutral-alpha-3);
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .input-group.input-group-responsive.input-group-horizontal > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-single-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-select:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal > .input-multiple-line:nth-last-child(n+2), .input-group.input-group-responsive.input-group-horizontal .btn:nth-last-child(n+2) {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
@@ -22083,7 +22083,7 @@ select[multiple].input-single-line, select[multiple].input-select {
     display: none !important;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .only-nonmobile {
     display: block !important;
   }

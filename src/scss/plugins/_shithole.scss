@@ -105,10 +105,10 @@
 	$brsm: 1200px !default;
 	$brmd: 1500px !default;
 	$brlg: 1800px !default;
+	$brxl: 1920px !default;
 
 	//extra breakpoints
 	$brxxs: 400px !default; //for fixing designs that donnt fit average mobile screens
-	$clg: 1920px !default; // max width of desktop design for containers
 
 
 
@@ -119,6 +119,7 @@
 	$brmd-mn: $brsm + 1!default;
 	$brlg-mn: $brmd + 1!default;
 	$brxl-mn: $brlg + 1!default;
+	$brxxl-mn: $brxl + 1!default;
 
 	//configs
 	$autoprefix: true !default; // turn off if ya compiler is gonna do this  then goooood
@@ -137,6 +138,7 @@
 		$screen-sm-max:  #{'max-width: ' + $brsm};
 		$screen-md-max:  #{'max-width: ' + $brmd};
 		$screen-lg-max:  #{'max-width: ' + $brlg};
+		$screen-xl-max:  #{'max-width: ' + $brxl};
 
 		//Min widths
 		$screen-xs:  #{'min-width: ' + $brxs-mn}; //mobile
@@ -144,6 +146,7 @@
 		$screen-md:  #{'min-width: ' + $brmd-mn}; //laptop
 		$screen-lg:  #{'min-width: ' + $brlg-mn}; //desktop
 		$screen-xl:  #{'min-width: ' + $brxl-mn}; //desktop
+		$screen-xxl:  #{'min-width: ' + $brxxl-mn}; //desktop
 
 		// Breakpoint tags
 		$br-tag: (
@@ -152,14 +155,16 @@
 			sm-max: $screen-sm-max,
 			md-max: $screen-md-max,
 			lg-max: $screen-lg-max,
+			xl-max: $screen-xl-max,
 			xs: $screen-xs,
 			sm: $screen-sm,
 			md: $screen-md,
 			lg: $screen-lg,
-			xl: $screen-xl
+			xl: $screen-xl,
+			xxl: $screen-xxl
 		);
 
-		$br-tag-list: (xxs-max, xs-max, sm-max, md-max, lg-max, xs, sm, md, lg, xl);
+		$br-tag-list: (xxs-max, xs-max, sm-max, md-max, lg-max, xl-max, xs, sm, md, lg, xl, xxl);
 
 
 ////////////////////////////////////////////////////////////////////////////// 

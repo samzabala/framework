@@ -2843,7 +2843,7 @@ this.jQuery && this.jQuery.noConflict();
 				frameWork.updateCalendar($(calendar));
 			});
 		};
-		__f.fns_on_rightAway.push(frameWork.readyCalendar);
+		__f.fns_on_ready.push(frameWork.readyCalendar);
 
 		frameWork.readyTags = () => {
 			$('.input-tags').each((i, input) => {

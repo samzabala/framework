@@ -12443,7 +12443,7 @@
     display: none !important;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .only-nonmobile {
     display: block !important;
   }
