@@ -1174,7 +1174,7 @@
 		@function polar-br($breakpoint) {
 			$current-index: index($br-tag-list,$breakpoint);
 			
-			@if($current-index > 4) {
+			@if($current-index > 5) {
 				@return  nth($br-tag-list,$current-index - 5);
 			}@else {
 				@return  nth($br-tag-list,$current-index + 5);
