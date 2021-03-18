@@ -1160,24 +1160,26 @@
 		}
 
 
-		// xxs-max: $screen-xxs-max,
-		// xs-max: $screen-xs-max,
-		// sm-max: $screen-sm-max,
-		// md-max: $screen-md-max,
-		// lg-max: $screen-md-max,
-		// xs: $screen-xs,
-		// sm: $screen-sm,
-		// md: $screen-md,
-		// lg: $screen-lg
-		// xl: $screen-xl
+		// xxs-max:,
+		// xs-max:,
+		// sm-max,
+		// md-max,
+		// lg-max,
+		// xl-max,
+		// xs,
+		// sm,
+		// md,
+		// lg
+		// xl
+		// xxl
 		// gets the max of ya boi or the min of ya boi
 		@function polar-br($breakpoint) {
 			$current-index: index($br-tag-list,$breakpoint);
 			
-			@if($current-index > 5) {
-				@return  nth($br-tag-list,$current-index - 5);
+			@if($current-index > 6) {
+				@return  nth($br-tag-list,$current-index - 6);
 			}@else {
-				@return  nth($br-tag-list,$current-index + 5);
+				@return  nth($br-tag-list,$current-index + 6);
 			}
 		}
 
