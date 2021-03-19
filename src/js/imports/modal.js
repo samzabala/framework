@@ -489,7 +489,6 @@ class Modal extends FwComponent {
 	}
 	
 	get _markup(){
-		this.triggerer && console.warn(this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`));
 		
 		let html =
 			`<div

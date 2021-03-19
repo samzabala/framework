@@ -416,7 +416,7 @@
 
         while (possibleSiblings) {
           if (possibleSiblings.matches(selectorToMatch)) {
-            console.warn('toggle trigger anybody whos a sibling');
+            // console.warn('toggle trigger anybody whos a sibling');
             return possibleSiblings;
           }
 
@@ -497,9 +497,8 @@
 
     if (!element) {
       return;
-    }
+    } //reset da resetti
 
-    console.log(element, noActiveClass); //reset da resetti
 
     var resetter = FwDom.getSiblings(element).filter(function (butt) {
       return butt.classList.contains(resetterClass);
@@ -3717,7 +3716,6 @@
     }, {
       key: "_markup",
       get: function get() {
-        this.triggerer && console.warn(this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-title"));
         var html = "<div\n\t\t\t\tclass=\"\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-wrapper\"\n\t\t\t>"; //overlay
 
         html += "<a href=\"#\"\n\t\t\t\t\t\tclass=\"\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></a>";

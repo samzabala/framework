@@ -138,7 +138,7 @@ export const UIToggled = (toggleMode,triggerer,selector) => {
 			
 			while (possibleSiblings) {
 				if (possibleSiblings.matches(selectorToMatch)) {
-					console.warn('toggle trigger anybody whos a sibling');
+					// console.warn('toggle trigger anybody whos a sibling');
 					return possibleSiblings;
 				}
 				possibleSiblings =
@@ -257,9 +257,6 @@ export const UIToggleGroup = (element, prefix, activatedClass, siblingSelector, 
 	if(!element) {
 		return;
 	}
-
-	console.log(element,
-		noActiveClass);
 
 	//reset da resetti
 	const resetter = FwDom
