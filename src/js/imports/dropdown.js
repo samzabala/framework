@@ -342,6 +342,31 @@ class Dropdown extends FwComponent {
 			Dropdown.handleUniversalPurge()
 		);
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Dropdown.handleToggle()
+		);
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_FOCUS,
+			Dropdown.handleFocusOpen()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_BLUR,
+			Dropdown.handleBlurClose()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK_PURGE,
+			Dropdown.handleUniversalPurge()
+		);
+	}
 }
 
 

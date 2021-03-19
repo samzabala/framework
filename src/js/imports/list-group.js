@@ -101,6 +101,14 @@ class ListGroup extends FwComponent {
 			ListGroup.handleToggle()
 		);
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			ListGroup.handleToggle()
+		);
+	}
 }
 
 

@@ -258,6 +258,9 @@ export const UIToggleGroup = (element, prefix, activatedClass, siblingSelector, 
 		return;
 	}
 
+	console.log(element,
+		noActiveClass);
+
 	//reset da resetti
 	const resetter = FwDom
 		.getSiblings(element)

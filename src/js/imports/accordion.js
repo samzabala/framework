@@ -299,6 +299,21 @@ class Accordion extends FwComponent {
 
 		Initiator.Q.on_ready = Accordion.handleHash();
 	}
+
+	static destroyListeners(){
+		
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Accordion.handleToggler()
+		);
+
+		FwEvent.removeListener(
+			window,
+			EVENT_HASHCHANGE,
+			Accordion.handleHash()
+		);
+	}
 	
 }
 

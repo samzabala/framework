@@ -124,6 +124,14 @@ class Zone extends FwComponent {
 			Zone.handleClick()
 		);
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CHANGE,
+			Zone.handleClick()
+		);
+	}
 	
 }
 

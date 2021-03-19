@@ -497,8 +497,9 @@
 
     if (!element) {
       return;
-    } //reset da resetti
+    }
 
+    console.log(element, noActiveClass); //reset da resetti
 
     var resetter = FwDom.getSiblings(element).filter(function (butt) {
       return butt.classList.contains(resetterClass);
@@ -778,6 +779,16 @@
       return _FwDataHelper.apply(this, arguments) || this;
     }
 
+    FwEvent.UIDEvent = function UIDEvent(element, uid) {
+      return uid && uid + "::" + uidEvent++ || element.uidEvent || uidEvent++;
+    };
+
+    FwEvent.getEvent = function getEvent(element) {
+      var uid = UIDEvent(element);
+      element.uidEvent = uid;
+      return eventRegistry[uid];
+    };
+
     FwEvent.classNester = function classNester(selector) {
       if (selector === '*' || typeof selector !== 'string') {
         return selector;
@@ -822,26 +833,12 @@
             handler(event);
           }
         }
-      }, true); // //stable no api
-      // elemToAddTo.addEventListener(
-      // 	evtNoApi,
-      // 	(event)=>{
-      // 		if(
-      // 			!parent
-      // 			|| (
-      // 				parent
-      // 				&& event.target.matches(FwEvent.classNester(selectorOrParentFallback))
-      // 				// && event.target.closest(selectorOrParentFallback)
-      // 			)
-      // 		){
-      // 			handler(event);
-      // 		}
-      // 	},
-      // 	true
-      // );	
+      }, true);
     };
 
-    FwEvent.translateToNative = function translateToNative(event) {};
+    FwEvent.removeListener = function removeListener(element, evt, handler) {// element.removeEventListener(evt,handler,true);
+      // @TODO. neet to rethink this shit
+    };
 
     FwEvent.trigger = function trigger(el, evt, customEventOpts) {
       var event;
@@ -1254,6 +1251,11 @@
       Initiator.Q.on_ready = Accordion.handleHash();
     };
 
+    Accordion.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$a, Accordion.handleToggler());
+      FwEvent$1.removeListener(window, EVENT_HASHCHANGE$1, Accordion.handleHash());
+    };
+
     _createClass(Accordion, [{
       key: "args",
       get: function get() {
@@ -1395,6 +1397,11 @@
       FwEvent$1.addListener(document.documentElement, EVENT_CLICK$9, "*[data-toggle-" + TOGGLE_MODE$2 + "-all]", Alert.handleCloseAll());
     };
 
+    Alert.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$9, Alert.handleClose());
+      FwEvent$1.removeListener(window, EVENT_CLICK$9, Alert.handleCloseAll());
+    };
+
     _createClass(Alert, null, [{
       key: "DATA_KEY",
       get: function get() {
@@ -1450,6 +1457,10 @@
 
     Button.initListeners = function initListeners() {
       FwEvent$1.addListener(document.documentElement, EVENT_CLICK$8, "." + COMPONENT_CLASS$b + "-group-toggle > ." + COMPONENT_CLASS$b, Button.handleToggle());
+    };
+
+    Button.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$8, Button.handleToggle());
     };
 
     _createClass(Button, null, [{
@@ -1635,6 +1646,13 @@
       FwEvent$1.addListener(document.documentElement, EVENT_FOCUS, "input[data-toggle-" + TOGGLE_MODE$1 + "], *[contenteditable][data-toggle-" + TOGGLE_MODE$1 + "], ." + Settings.get('uiJsClass') + "[data-toggle-" + TOGGLE_MODE$1 + "] [contenteditable]", Dropdown.handleFocusOpen());
       FwEvent$1.addListener(document.documentElement, EVENT_BLUR$1, "input[data-toggle-" + TOGGLE_MODE$1 + "], *[contenteditable][data-toggle-" + TOGGLE_MODE$1 + "], ." + Settings.get('uiJsClass') + "[data-toggle-" + TOGGLE_MODE$1 + "] [contenteditable]", Dropdown.handleBlurClose());
       FwEvent$1.addListener(document.documentElement, EVENT_CLICK_PURGE$2, "*, ." + COMPONENT_PURGER_CLASS$1, Dropdown.handleUniversalPurge());
+    };
+
+    Dropdown.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$7, Dropdown.handleToggle());
+      FwEvent$1.removeListener(document.documentElement, EVENT_FOCUS, Dropdown.handleFocusOpen());
+      FwEvent$1.removeListener(document.documentElement, EVENT_BLUR$1, Dropdown.handleBlurClose());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK_PURGE$2, Dropdown.handleUniversalPurge());
     };
 
     _createClass(Dropdown, [{
@@ -2339,6 +2357,13 @@
       Initiator.Q.on_ready = Calendar.initAll;
     };
 
+    Calendar.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CHANGE$2, Calendar.handleChange());
+      FwEvent$1.removeListener(document.documentElement, EVENT_KEYUP, Calendar.handleUpdateKeyup());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleUpdateClick());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleRenderClick());
+    };
+
     _createClass(Calendar, [{
       key: "theValue",
       get: function get() {
@@ -3018,6 +3043,16 @@
       Initiator.Q.on_resize = Tags.initAll;
     };
 
+    Tags.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CHANGE$1, Tags.handleChange());
+      FwEvent$1.removeListener(document.documentElement, EVENT_PASTE, Tags.handleEditablePaste());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEditableFocus());
+      FwEvent$1.removeListener(document.documentElement, EVENT_BLUR, Tags.handleEditableBlur());
+      FwEvent$1.removeListener(document.documentElement, EVENT_KEYDOWN, Tags.handleEditableKeydown());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleDelete());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEdit());
+    };
+
     _createClass(Tags, [{
       key: "theValue",
       get: function get() {
@@ -3343,6 +3378,10 @@
       FwEvent$1.addListener(document.documentElement, EVENT_CLICK$4, "." + COMPONENT_CLASS$6 + " > ." + CHILD_CLASS + ", ." + COMPONENT_CLASS$6 + " > li", ListGroup.handleToggle());
     };
 
+    ListGroup.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$4, ListGroup.handleToggle());
+    };
+
     _createClass(ListGroup, [{
       key: "UITriggeredChild",
       get: function get() {
@@ -3539,7 +3578,9 @@
         removeBodClass = false;
       }
 
-      removeBodClass && document.body.classList.remove(UIBodyClass.noScroll);
+      if (removeBodClass) {
+        document.body.classList.remove(UIBodyClass.noScroll);
+      }
       canRemoveHash && UIChangeHash('');
       FwEvent$1.trigger(element, EVENT_AFTER_DESTROY$1);
       _classPrivateFieldLooseBase(this, _current)[_current] = {
@@ -3655,6 +3696,16 @@
       Initiator.Q.on_resize = Modal.handleResize();
     };
 
+    Modal.destroyListeners = function destroyListeners() {
+      VALID_MODAL_MODES.forEach(function (mode) {
+        _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode);
+
+        FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleOpen(mode));
+        FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleClose(mode));
+      });
+      FwEvent$1.removeListener(window, EVENT_HASHCHANGE, Modal.handleUniversal());
+    };
+
     _createClass(Modal, [{
       key: "mode",
       get: function get() {
@@ -3716,6 +3767,7 @@
     }, {
       key: "_markup",
       get: function get() {
+        this.triggerer && console.warn(this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-title"));
         var html = "<div\n\t\t\t\tclass=\"\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-wrapper\"\n\t\t\t>"; //overlay
 
         html += "<a href=\"#\"\n\t\t\t\t\t\tclass=\"\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></a>";
@@ -4100,6 +4152,12 @@
       Initiator.Q.on_ready = Switch.handleInit();
     };
 
+    Switch.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOff());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOn());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK_PURGE$1, Switch.handleUniversalPurge());
+    };
+
     _createClass(Switch, null, [{
       key: "DATA_KEY",
       get: function get() {
@@ -4181,6 +4239,10 @@
 
     Tabs.initListeners = function initListeners() {
       FwEvent$1.addListener(document.documentElement, EVENT_CLICK$1, "." + COMPONENT_CLASS$2 + " > " + COMPONENT_CHILDREN_TAG + " > *, ." + COMPONENT_CHILDREN_CLASS + ", ." + COMPONENT_CHILDREN_CLASS + " > *", Tabs.handleClick());
+    };
+
+    Tabs.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$1, Tabs.handleClick());
     };
 
     _createClass(Tabs, null, [{
@@ -4396,6 +4458,13 @@
       FwEvent$1.addListener(document.documentElement, EVENT_CLICK_PURGE, "*, ." + COMPONENT_PURGER_CLASS, Tooltip.handleUniversalPurge());
       Initiator.Q.on_ready = Tooltip.handleResizeScroll();
       Initiator.Q.on_resize = Tooltip.handleResizeScroll();
+    };
+
+    Tooltip.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_MOUSEENTER, Tooltip.handleToggleHoverOn());
+      FwEvent$1.removeListener(document.documentElement, EVENT_MOUSELEAVE, Tooltip.handleToggleHoverOff());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK, Tooltip.handleToggleClickOn());
+      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK_PURGE, Tooltip.handleUniversalPurge());
     };
 
     _createClass(Tooltip, [{
@@ -4680,6 +4749,10 @@
 
     Zone.initListeners = function initListeners() {
       FwEvent$1.addListener(document.documentElement, EVENT_CHANGE, "." + COMPONENT_CLASS, Zone.handleClick());
+    };
+
+    Zone.destroyListeners = function destroyListeners() {
+      FwEvent$1.removeListener(document.documentElement, EVENT_CHANGE, Zone.handleClick());
     };
 
     _createClass(Zone, [{

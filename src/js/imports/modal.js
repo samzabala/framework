@@ -410,7 +410,9 @@ class Modal extends FwComponent {
 			removeBodClass = false;
 		}
 	
-		removeBodClass && document.body.classList.remove(UIBodyClass.noScroll);
+		if(removeBodClass){
+			document.body.classList.remove(UIBodyClass.noScroll)
+		};
 	
 		canRemoveHash && UIChangeHash('');
 	
@@ -489,6 +491,7 @@ class Modal extends FwComponent {
 	}
 	
 	get _markup(){
+		this.triggerer && console.warn(this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`));
 		
 		let html =
 			`<div
@@ -692,6 +695,30 @@ class Modal extends FwComponent {
 		Initiator.Q.on_ready = Modal.handleUniversal();
 		Initiator.Q.on_resize = Modal.handleResize();
 
+	}
+	static destroyListeners(){
+		VALID_MODAL_MODES.forEach((mode)=>{
+			const modeToggle = Modal.#modeToggle(mode);
+		
+			FwEvent.removeListener(
+				document.documentElement,
+				EVENT_CLICK,
+				Modal.handleOpen(mode)
+			);
+			
+			FwEvent.removeListener(
+				document.documentElement,
+				EVENT_CLICK,
+				Modal.handleClose(mode)
+			);
+		});
+		
+
+		FwEvent.removeListener(
+			window,
+			EVENT_HASHCHANGE,
+			Modal.handleUniversal()
+		);
 	}
 }
 

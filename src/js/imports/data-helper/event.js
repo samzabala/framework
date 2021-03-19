@@ -53,8 +53,22 @@ const NativeEvents = [
   ];
   
 
+const EVENT_STORAGE = {};
+
 class FwEvent extends FwDataHelper {
 	
+	static UIDEvent(element, uid) {
+	  return (uid && `${uid}::${uidEvent++}`) || element.uidEvent || uidEvent++
+	}
+	
+	static getEvent(element) {
+		const uid = UIDEvent(element)
+	  
+		element.uidEvent = uid
+		EVENT_STORAGE[uid] = EVENT_STORAGE[uid] || {}
+	  
+		return eventRegistry[uid]
+	  }
 
 	static get cusEventOptsDef () {
 		return {
@@ -88,6 +102,7 @@ class FwEvent extends FwDataHelper {
 		const elemToAddTo = parent || selectorOrParentFallback;
 		const evtNoApi = evt.split(`.${Settings.get('prefix')}`)[0];
 		const isNative = NativeEvents.includes(evt);
+
 		if(!isNative){
 			elemToAddTo.addEventListener(
 				evtNoApi,
@@ -136,31 +151,11 @@ class FwEvent extends FwDataHelper {
 			},
 			true
 		);
-
-		
-		// //stable no api
-		// elemToAddTo.addEventListener(
-		// 	evtNoApi,
-		// 	(event)=>{
-		// 		if(
-		// 			!parent
-		// 			|| (
-		// 				parent
-		// 				&& event.target.matches(FwEvent.classNester(selectorOrParentFallback))
-		// 				// && event.target.closest(selectorOrParentFallback)
-		// 			)
-		// 		){
-		// 			handler(event);
-		// 		}
-		// 	},
-		// 	true
-		// );	
 	}
-	
 
-
-	static translateToNative(event){
-
+	static removeListener(element,evt,handler){
+		// element.removeEventListener(evt,handler,true);
+		// @TODO. neet to rethink this shit
 	}
 
 	static trigger(el, evt, customEventOpts) {

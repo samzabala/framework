@@ -65,6 +65,14 @@ class Button extends FwComponent {
 			Button.handleToggle()
 		);
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Button.handleToggle()
+		);
+	}
 }
 
 

@@ -869,6 +869,50 @@ class Tags extends FwComponent {
 		Initiator.Q.on_resize = Tags.initAll;
 
 	}
+	static destroyListeners(){
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CHANGE,
+			Tags.handleChange()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_PASTE,
+			Tags.handleEditablePaste()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Tags.handleEditableFocus()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_BLUR,
+			Tags.handleEditableBlur()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_KEYDOWN,
+			Tags.handleEditableKeydown()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Tags.handleDelete()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Tags.handleEdit()
+		);
+	}
 }
 
 export default Tags;

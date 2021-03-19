@@ -99,6 +99,14 @@ class Tabs extends FwComponent {
 			Tabs.handleClick()
 		);
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Tabs.handleClick()
+		);
+	}
 	
 }
 

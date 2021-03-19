@@ -539,6 +539,32 @@ class Tooltip extends FwComponent {
 		Initiator.Q.on_resize = Tooltip.handleResizeScroll();
 		
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_MOUSEENTER,
+			Tooltip.handleToggleHoverOn()
+		);
+		
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_MOUSELEAVE,
+			Tooltip.handleToggleHoverOff()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Tooltip.handleToggleClickOn()
+		);
+		
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK_PURGE,
+			Tooltip.handleUniversalPurge()
+		);
+	}
 }
 
 export default Tooltip;

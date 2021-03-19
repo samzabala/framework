@@ -226,6 +226,26 @@ class Switch extends FwComponent {
 
 		Initiator.Q.on_ready = Switch.handleInit();
 	}
+	static destroyListeners(){
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Switch.handleToggleOff()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Switch.handleToggleOn()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK_PURGE,
+			Switch.handleUniversalPurge()
+		);
+	}
 }
 
 export default Switch;

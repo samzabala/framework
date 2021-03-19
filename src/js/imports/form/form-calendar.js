@@ -884,6 +884,32 @@ class Calendar extends FwComponent {
 		Initiator.Q.on_ready = Calendar.initAll;
 
 	}
+	static destroyListeners(){
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CHANGE,
+			Calendar.handleChange()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_KEYUP,
+			Calendar.handleUpdateKeyup()
+		);
+		
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Calendar.handleUpdateClick()
+		);
+
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Calendar.handleRenderClick()
+		);
+	}
 }
 
 export default Calendar;

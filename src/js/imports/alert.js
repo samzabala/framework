@@ -101,6 +101,20 @@ class Alert extends FwComponent {
 			Alert.handleCloseAll()
 		);
 	}
+
+	static destroyListeners(){
+		FwEvent.removeListener(
+			document.documentElement,
+			EVENT_CLICK,
+			Alert.handleClose()
+		);
+
+		FwEvent.removeListener(
+			window,
+			EVENT_CLICK,
+			Alert.handleCloseAll()
+		);
+	}
 }
 
 export default Alert;
