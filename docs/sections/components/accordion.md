@@ -5,7 +5,7 @@ You know what that bitch is.
 ```html
 <a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
 <div id="bitch-ass-accordion" class="accordion">
-	Sup mofos, I'm an accordion content
+  Sup mofos, I'm an accordion content
 </div>
 ```
 
@@ -16,10 +16,11 @@ You know what that bitch is.
 Elements with this attribute looks for an accordion to toggle
 
 This one looks for the `href` of the boi
+
 ```html
 <a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
 <div id="bitch-ass-accordion" class="accordion">
-	Sup mofos, I'm an accordion content
+  Sup mofos, I'm an accordion content
 </div>
 ```
 
@@ -28,7 +29,7 @@ Another way but [data-toggle-accordion] looks for a `data-href` to go to because
 ```html
 <span data-href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</span>
 <div id="bitch-ass-accordion" class="accordion">
-	Sup mofos, I'm an accordion content
+  Sup mofos, I'm an accordion content
 </div>
 ```
 
@@ -36,13 +37,10 @@ Another way but [data-toggle-accordion] looks for a sibling because there's no `
 
 ```html
 <div class="container">
-	<span data-toggle-accordion>Open a bitch</span>
-	<div class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <span data-toggle-accordion>Open a bitch</span>
+  <div class="accordion">Sup mofos, I'm an accordion content</div>
 </div>
 ```
-
 
 ### Change hash
 
@@ -57,7 +55,7 @@ The shit that opens and closes and it contains your boi
 ```html
 <a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
 <div id="bitch-ass-accordion" class="accordion">
-	Sup mofos, I'm an accordion content
+  Sup mofos, I'm an accordion content
 </div>
 ```
 
@@ -67,9 +65,11 @@ The shit is a class to add along with `.accordion`.
 It opens and closes but only on the set [mobile maximum](../scaffolding/breakpoint.md#mobile-split) breakpoint.
 
 ```html
-<a href="#bitch-ass-accordion" data-toggle-accordion class="only-mobile">Mobile accordio</a>
+<a href="#bitch-ass-accordion" data-toggle-accordion class="only-mobile"
+  >Mobile accordio</a
+>
 <div id="bitch-ass-accordion" class="accordion accordion-mobile">
-	Sup mofos, I'm an accordion content
+  Sup mofos, I'm an accordion content
 </div>
 ```
 
@@ -81,23 +81,20 @@ Accordion instances can be contained in this class to group them only only allow
 
 ```html
 <div class="accordion-group">
+  <a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
+  <div id="bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 
-	<a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
-	<div id="bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <a href="#other-bitch-ass-accordion" data-toggle-accordion>Open the other bitch</a>
+  <div id="other-bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an the other accordion content
+  </div>
 
-
-	<a href="#other-bitch-ass-accordion" data-toggle-accordion>Open the other bitch</a>
-	<div id="other-bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an the other accordion content
-	</div>
-
-
-	<a href="#another-bitch-ass-accordion" data-toggle-accordion>Open another bitch</a>
-	<div id="another-bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <a href="#another-bitch-ass-accordion" data-toggle-accordion>Open another bitch</a>
+  <div id="another-bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 </div>
 ```
 
@@ -107,27 +104,22 @@ a class to add with `.accordion-group` if you want to allow multiple accordions 
 
 ```html
 <div class="accordion-group accordion-group-multiple">
+  <a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
+  <div id="bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 
-	<a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
-	<div id="bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <a href="#other-bitch-ass-accordion" data-toggle-accordion>Open the other bitch</a>
+  <div id="other-bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an the other accordion content
+  </div>
 
-
-	<a href="#other-bitch-ass-accordion" data-toggle-accordion>Open the other bitch</a>
-	<div id="other-bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an the other accordion content
-	</div>
-
-
-	<a href="#another-bitch-ass-accordion" data-toggle-accordion>Open another bitch</a>
-	<div id="another-bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <a href="#another-bitch-ass-accordion" data-toggle-accordion>Open another bitch</a>
+  <div id="another-bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 </div>
 ```
-
-
 
 #### **`.accordion-group-no-close`**
 
@@ -137,23 +129,20 @@ Note: It's recommended that one of the accordions must have an open class on ini
 
 ```html
 <div class="accordion-group accordion-group-no-close">
+  <a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
+  <div id="bitch-ass-accordion" class="accordion open">
+    Sup mofos, I'm an accordion content
+  </div>
 
-	<a href="#bitch-ass-accordion" data-toggle-accordion>Open a bitch</a>
-	<div id="bitch-ass-accordion" class="accordion open">
-		Sup mofos, I'm an accordion content
-	</div>
+  <a href="#other-bitch-ass-accordion" data-toggle-accordion>Open the other bitch</a>
+  <div id="other-bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an the other accordion content
+  </div>
 
-
-	<a href="#other-bitch-ass-accordion" data-toggle-accordion>Open the other bitch</a>
-	<div id="other-bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an the other accordion content
-	</div>
-
-
-	<a href="#another-bitch-ass-accordion" data-toggle-accordion>Open another bitch</a>
-	<div id="another-bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <a href="#another-bitch-ass-accordion" data-toggle-accordion>Open another bitch</a>
+  <div id="another-bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 </div>
 ```
 
@@ -171,13 +160,12 @@ As long as you avoid these properties on each element ya good.
 
 ```html
 <div class="accordion-group">
-
-	<h1 data-href="#bitch-ass-accordion" data-toggle-accordion>
-		<i class="symbol symbol-arrow-down symbol-arrow-up-toggle"></i> Open a bitch
-	</h1>
-	<div id="bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <h1 data-href="#bitch-ass-accordion" data-toggle-accordion>
+    <i class="symbol symbol-arrow-down symbol-arrow-up-toggle"></i> Open a bitch
+  </h1>
+  <div id="bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 </div>
 ```
 
@@ -187,18 +175,20 @@ Color based [Helper classes](../scaffolding/helpers.md#background-and-colors) as
 
 ```html
 <div class="accordion-group accordion-group-multiple">
-
-	<h1 data-href="#bitch-ass-accordion" class="color-primary-toggle" data-toggle-accordion>
-		Open a bitch
-	</h1>
-	<div id="bitch-ass-accordion" class="accordion">
-		Sup mofos, I'm an accordion content
-	</div>
+  <h1
+    data-href="#bitch-ass-accordion"
+    class="color-primary-toggle"
+    data-toggle-accordion
+  >
+    Open a bitch
+  </h1>
+  <div id="bitch-ass-accordion" class="accordion">
+    Sup mofos, I'm an accordion content
+  </div>
 </div>
 ```
 
 This makes the `<h1>`'s color to the set primary one when the accordion is open
-
 
 ## Javascript
 
@@ -206,12 +196,12 @@ If a url's hash location matches an element with that id and it has an `accordio
 
 to disable this write ya script
 
-
 ```js
-(function(fw){
-	fw.Settings.modify('initializeAccordion',false);
-}(fw));
+(function (fw) {
+  fw.Settings.modify('initializeAccordion', false);
+})(fw);
 ```
+
 NOTE: this is useless if `fw.settings.get('dynamicHash')` is set to `false`
 
 ### Functions
@@ -224,8 +214,8 @@ Make a new boi by going `const accordion = new fw.Accordion(element,triggerer,ar
 
 `triggerer` is the element that triggers the accordion. if left blank, it doesnt mess with any data-toggle-accordions
 
-
 `args` is the opts available
+
 ```js
 //defaults
 {
@@ -239,7 +229,6 @@ toggles the accordion
 
 `element` is the element triggered. if left blank, this defaults to the element attached to the instance
 
-
 `triggerer` is the element interacted with to manipulate the element. if left blank, it should not destroy anything. if it does pls let sam know
 
 #### **`accordion.open(element,triggerer)`**
@@ -247,7 +236,6 @@ toggles the accordion
 duh
 
 `element` is the element triggered. if left blank, this defaults to the element attached to the instance
-
 
 `triggerer` is the element interacted with to manipulate the element. if left blank, it should not destroy anything. if it does pls let sam know
 
@@ -257,9 +245,7 @@ duh
 
 `element` is the element triggered. if left blank, this defaults to the element attached to the instance
 
-
 `triggerer` is the element interacted with to manipulate the element. if left blank, it should not destroy anything. if it does pls let sam know
-
 
 #### **`fw.Accordion.configDefaults`**
 
@@ -273,18 +259,15 @@ initializes all event listeners
 
 returns obj with component set args
 
-
 ### Events
 
-* `click.fw.accordion` - happens on `triggerer`
-* `hashchange.fw.accordion` - happens on `window` on hashchange
-* `before_close.fw.accordion` - happens on `element` before closing
-* `close.fw.accordion` - happens on `element` when closing
-* `after_close.fw.accordion` - happens on `element` after closing
-* `before_open.fw.accordion` - happens on `element` before opening
-* `open.fw.accordion` - happens on `element` when opening
-* `after_open.fw.accordion` - happens on `element` after opening
-
-
+- `click.fw.accordion` - happens on `triggerer`
+- `hashchange.fw.accordion` - happens on `window` on hashchange
+- `before_close.fw.accordion` - happens on `element` before closing
+- `close.fw.accordion` - happens on `element` when closing
+- `after_close.fw.accordion` - happens on `element` after closing
+- `before_open.fw.accordion` - happens on `element` before opening
+- `open.fw.accordion` - happens on `element` when opening
+- `after_open.fw.accordion` - happens on `element` after opening
 
 [Back to TOC](../../../readme.md)

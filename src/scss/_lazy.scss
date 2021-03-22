@@ -1,7 +1,4 @@
-
 /*** IMAGES ***/
-
-
 
 /* LAZYLOAD */
 
@@ -9,10 +6,9 @@ $prefix: '.lazy';
 #{$prefix},
 *[data-src],
 *[data-srcset] {
-	opacity: 1;
-	transition: $transition-duration-base opacity $transition-timing;
-	body:not(.body-lazy-loaded) & {
-		opacity: 0;
-	}
+  opacity: 1;
+  transition: $transition-duration-base opacity $transition-timing;
+  body:not(.body-lazy-loaded) & {
+    opacity: 0;
+  }
 }
-

@@ -1,181 +1,166 @@
 /*** MODAL BOARD***/
 $prefix: '.modal-ui';
 
-
-[data-toggle-modal-board]{
-	@include dump-styles(data-toggle);
+[data-toggle-modal-board] {
+  @include dump-styles(data-toggle);
 }
 
 #{$prefix}#{$prefix}-mode-board {
-	z-index: 99998;
+  z-index: 99998;
 
+  #{$prefix}-wrapper {
+    @at-root #{$prefix}-align-left#{&} {
+      padding-left: $modal-board-padding-spacer;
+      #{$prefix}-popup,
+      #{$prefix}-button-wrapper {
+        margin-left: auto;
+      }
+    }
+    @at-root #{$prefix}-align-right#{&} {
+      padding-right: $modal-board-padding-spacer;
+      #{$prefix}-popup,
+      #{$prefix}-button-wrapper {
+        margin-right: auto;
+      }
+    }
 
-	#{$prefix}-wrapper {
+    @include br(#{$mobile-br-max}-max) {
+      @at-root #{$prefix}-align-left#{&} {
+        padding-left: $modal-board-padding-spacer-mobile;
+      }
+      @at-root #{$prefix}-align-right#{&} {
+        padding-right: $modal-board-padding-spacer-mobile;
+      }
+    }
+  }
 
-		@at-root #{$prefix}-align-left#{&} {
-			padding-left: $modal-board-padding-spacer;
-			#{$prefix}-popup,
-			#{$prefix}-button-wrapper {
-				margin-left: auto;
-			}
-		}
-		@at-root #{$prefix}-align-right#{&} {
-			padding-right: $modal-board-padding-spacer;
-			#{$prefix}-popup,
-			#{$prefix}-button-wrapper {
-				margin-right: auto;
-			}
-		}
+  #{$prefix}-button {
+    &-wrapper {
+      position: fixed;
+      z-index: 3;
+      justify-content: flex-start;
+      display: flex;
+      height: 0;
+      flex-wrap: nowrap;
+      overflow: visible;
+      top: 0;
+      width: 100%;
+      max-width: calc(100% - #{$modal-board-padding-spacer});
+      flex-direction: column;
 
+      &:before {
+        content: '';
+        display: inline-block;
+        pointer-events: none;
+        flex: 0 0 auto;
+        height: $modal-board-close-offset-y;
+        width: 0;
+      }
 
-		@include br(#{$mobile-br-max}-max) {
-			@at-root #{$prefix}-align-left#{&} {
-				padding-left: $modal-board-padding-spacer-mobile;
-			}
-			@at-root #{$prefix}-align-right#{&} {
-				padding-right: $modal-board-padding-spacer-mobile;
-			}
-		}
-	}
+      @include br(#{$mobile-br-max}-max) {
+        max-width: calc(100% - #{$modal-board-padding-spacer-mobile});
 
+        &:before {
+          height: $modal-board-close-offset-y-mobile;
+        }
+      }
 
+      @at-root #{$prefix}-align-left#{&} {
+        right: 0;
+        align-items: flex-start;
+      }
 
-	#{$prefix}-button {
+      @at-root #{$prefix}-align-right#{&} {
+        left: 0;
+        align-items: flex-end;
+      }
+    }
 
-		&-wrapper {
-			position:fixed;
-			z-index:3;
-			justify-content:flex-start;
-			display: flex;
-			height: 0;
-			flex-wrap: nowrap;
-			overflow: visible;
-			top: 0;
-			width:100%;
-			max-width: calc(100% -  #{$modal-board-padding-spacer});
-			flex-direction: column;
+    & {
+      position: relative;
+      z-index: 9;
 
-			&:before {
-				content:"";
-				display:inline-block;
-				pointer-events:none;
-				flex: 0 0 auto;
-				height: $modal-board-close-offset-y;
-				width:0;
-			}
-	
-			@include br(#{$mobile-br-max}-max) {					
-				max-width: calc(100% -  #{$modal-board-padding-spacer-mobile});
+      &-default {
+        border: none;
+        outline: none;
+        font-size: $modal-board-close-button-font-size;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: $modal-background;
+        box-shadow: $modal-board-close-box-shadow;
+        // width: $calculated-board-close-width;
+        // height: $calculated-board-close-height;
+        padding: calc((#{$calculated-board-close-size} - 1em) * 0.5);
+        flex: 0 0 auto;
+        margin-bottom: 0.5em;
 
-				&:before {
-					height: $modal-board-close-offset-y-mobile;
-				}
-			}
-			
-			@at-root #{$prefix}-align-left#{&} {
-				right: 0;
-				align-items: flex-start;
-			}
-	
-	
-			@at-root #{$prefix}-align-right#{&} {
-				left: 0;
-				align-items: flex-end;
-			}
-		}
+        .symbol {
+          margin: auto;
+        }
 
-		& {
+        .theme-inverse & {
+          background: $modal-background-inverse;
+        }
 
-			position:relative;
-			z-index:9;
+        @at-root #{$prefix}-align-left#{&} {
+          left: 0;
+          transform: translateX(-50%);
+        }
 
-			&-default {
-				border:none;
-				outline:none;
-				font-size: $modal-board-close-button-font-size;
-				display:flex;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: center;
-				flex-direction:column;
-				background: $modal-background;
-				box-shadow: $modal-board-close-box-shadow;
-				// width: $calculated-board-close-width;
-				// height: $calculated-board-close-height;
-				padding: calc((#{$calculated-board-close-size} - 1em) * .5);
-				flex: 0 0 auto;
-				margin-bottom: .5em;
-				
-				.symbol {
-					margin: auto;
-				}
-	
-	
-				.theme-inverse &  {
-					background: $modal-background-inverse;
-				}
-	
-				@at-root #{$prefix}-align-left#{&} {
-					left: 0;
-					transform: translateX(-50%);
-				}
-		
-		
-				@at-root #{$prefix}-align-right#{&} {
-					right: 0;
-					transform: translateX(50%);
-				}
-			}
-		}
+        @at-root #{$prefix}-align-right#{&} {
+          right: 0;
+          transform: translateX(50%);
+        }
+      }
+    }
 
-		// &:first-child {
-	
-		// 	#{$prefix}-left &,
-		// 	#{$prefix}-right & {
-		// 		top: $modal-board-close-offset-y;
-	
-	
-		// 		@include br(#{$mobile-br-max}-max) {
-		// 			top: $modal-board-close-offset-y-mobile;
-		// 		}
-		// 	}
-	
-		// 	#{$prefix}-top &,
-		// 	#{$prefix}-bottom & {
-		// 		right: $modal-board-close-offset-x;
-	
-	
-		// 		@include br(#{$mobile-br-max}-max) {
-		// 			right: $modal-board-close-offset-x-mobile;
-		// 		}
-		// 	}
-		// }
-	}
+    // &:first-child {
 
-	#{$prefix}-resize {
-		&:hover {
-			cursor: grab;
-		}
-	}
+    // 	#{$prefix}-left &,
+    // 	#{$prefix}-right & {
+    // 		top: $modal-board-close-offset-y;
 
-	#{$prefix}-close {
-		
-	}
+    // 		@include br(#{$mobile-br-max}-max) {
+    // 			top: $modal-board-close-offset-y-mobile;
+    // 		}
+    // 	}
 
+    // 	#{$prefix}-top &,
+    // 	#{$prefix}-bottom & {
+    // 		right: $modal-board-close-offset-x;
 
-	#{$prefix}-popup {
-		@extend %for-modal-scroller !optional;
-		height: 100%;
+    // 		@include br(#{$mobile-br-max}-max) {
+    // 			right: $modal-board-close-offset-x-mobile;
+    // 		}
+    // 	}
+    // }
+  }
 
-		padding: $modal-board-padding-y $modal-board-padding-x;
+  #{$prefix}-resize {
+    &:hover {
+      cursor: grab;
+    }
+  }
 
-		@include br(#{$mobile-br-max}-max) {
-			padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
-		}
+  #{$prefix}-close {
+  }
 
-		&-content {
-			// flex: 1 1;
-			position:relative;
-		}
-	}
+  #{$prefix}-popup {
+    @extend %for-modal-scroller !optional;
+    height: 100%;
+
+    padding: $modal-board-padding-y $modal-board-padding-x;
+
+    @include br(#{$mobile-br-max}-max) {
+      padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
+    }
+
+    &-content {
+      // flex: 1 1;
+      position: relative;
+    }
+  }
 }

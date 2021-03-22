@@ -1,15 +1,15 @@
+@function internal-is-convertable($value, $font-value: $body-font-size) {
+  $to_return: false;
+  @if type-of($value) ==
+    number and not
+    unitless($value) and
+    unit($value) ==
+    'px' and
+    unit($font-value) ==
+    'px'
+  {
+    $to_return: true;
+  }
 
-@function internal-is-convertable($value,$font-value: $body-font-size) {
-
-	$to_return: false;
-	@if 
-		type-of($value) == number
-		and not unitless($value)
-		and unit($value) == 'px'
-		and unit($font-value) == 'px'
-	{
-		$to_return: true;
-	}
-
-	@return $to_return;
+  @return $to_return;
 }

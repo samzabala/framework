@@ -1,43 +1,49 @@
-
-
 $calculated-input-tags-padding-x: $input-tags-padding-x;
-@if internal-is-convertable($input-tags-padding-x,$input-font-size){
-	$calculated-input-tags-padding-x: em($input-tags-padding-x/$input-font-size);
-}@else if internal-is-convertable($input-tags-padding-x){
-	$calculated-input-tags-padding-x: rem($input-tags-padding-x/$body-font-size);
+@if internal-is-convertable($input-tags-padding-x, $input-font-size) {
+  $calculated-input-tags-padding-x: em($input-tags-padding-x/$input-font-size);
+} @else if internal-is-convertable($input-tags-padding-x) {
+  $calculated-input-tags-padding-x: rem($input-tags-padding-x/$body-font-size);
 }
-	
-$calculated-input-tags-padding-y: $input-tags-padding-y;
-@if internal-is-convertable($input-tags-padding-y,$input-font-size){
-	$calculated-input-tags-padding-y: em($input-tags-padding-y/$input-font-size);
-}@else if internal-is-convertable($input-tags-padding-y){
-	$calculated-input-tags-padding-y: rem($input-tags-padding-y/$body-font-size);
-}
-	
-	$calculated-input-tags-padding-y-small: $input-tags-padding-y-small;
-	@if internal-is-convertable($input-tags-padding-y-small,$input-font-size){
-		$calculated-input-tags-padding-y-small: em($input-tags-padding-y-small/$input-font-size);
-	}@else if internal-is-convertable($input-tags-padding-y-small){
-		$calculated-input-tags-padding-y-small: rem($input-tags-padding-y-small/$body-font-size);
-	}
 
-	$calculated-input-tags-padding-y-large: $input-tags-padding-y-large;
-	@if internal-is-convertable($input-tags-padding-y-large,$input-font-size){
-		$calculated-input-tags-padding-y-large: em($input-tags-padding-y-large/$input-font-size);
-	}@else if internal-is-convertable($input-tags-padding-y-large){
-		$calculated-input-tags-padding-y-large: rem($input-tags-padding-y-large/$body-font-size);
-	}
+$calculated-input-tags-padding-y: $input-tags-padding-y;
+@if internal-is-convertable($input-tags-padding-y, $input-font-size) {
+  $calculated-input-tags-padding-y: em($input-tags-padding-y/$input-font-size);
+} @else if internal-is-convertable($input-tags-padding-y) {
+  $calculated-input-tags-padding-y: rem($input-tags-padding-y/$body-font-size);
+}
+
+$calculated-input-tags-padding-y-small: $input-tags-padding-y-small;
+@if internal-is-convertable($input-tags-padding-y-small, $input-font-size) {
+  $calculated-input-tags-padding-y-small: em(
+    $input-tags-padding-y-small/$input-font-size
+  );
+} @else if internal-is-convertable($input-tags-padding-y-small) {
+  $calculated-input-tags-padding-y-small: rem(
+    $input-tags-padding-y-small/$body-font-size
+  );
+}
+
+$calculated-input-tags-padding-y-large: $input-tags-padding-y-large;
+@if internal-is-convertable($input-tags-padding-y-large, $input-font-size) {
+  $calculated-input-tags-padding-y-large: em(
+    $input-tags-padding-y-large/$input-font-size
+  );
+} @else if internal-is-convertable($input-tags-padding-y-large) {
+  $calculated-input-tags-padding-y-large: rem(
+    $input-tags-padding-y-large/$body-font-size
+  );
+}
 
 $calculated-input-tags-gutter-x: $input-tags-gutter-x;
-@if internal-is-convertable($input-tags-gutter-x,$input-font-size){
-	$calculated-input-tags-gutter-x: em($input-tags-gutter-x/$input-font-size);
-}@else if internal-is-convertable($input-tags-gutter-x){
-	$calculated-input-tags-gutter-x: rem($input-tags-gutter-x/$body-font-size);
+@if internal-is-convertable($input-tags-gutter-x, $input-font-size) {
+  $calculated-input-tags-gutter-x: em($input-tags-gutter-x/$input-font-size);
+} @else if internal-is-convertable($input-tags-gutter-x) {
+  $calculated-input-tags-gutter-x: rem($input-tags-gutter-x/$body-font-size);
 }
 
 $calculated-input-tags-gutter-y: $input-tags-gutter-y;
-@if internal-is-convertable($input-tags-gutter-y,$input-font-size){
-	$calculated-input-tags-gutter-y: em($input-tags-gutter-y/$input-font-size);
-}@else if internal-is-convertable($input-tags-gutter-y){
-	$calculated-input-tags-gutter-y: rem($input-tags-gutter-y/$body-font-size);
+@if internal-is-convertable($input-tags-gutter-y, $input-font-size) {
+  $calculated-input-tags-gutter-y: em($input-tags-gutter-y/$input-font-size);
+} @else if internal-is-convertable($input-tags-gutter-y) {
+  $calculated-input-tags-gutter-y: rem($input-tags-gutter-y/$body-font-size);
 }

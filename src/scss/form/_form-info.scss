@@ -1,32 +1,33 @@
-
 /*** input ***/
 $prefix: '.input';
 #{$prefix} {
-	&-info {
-		@include type-set((
-			size: $calculated-input-info-font-size,
-			leading: $calculated-input-info-line-height,
-			color: $input-info-color,
-			weight:$input-info-font-weight,
-			style: $input-info-font-style,
-			case: $input-info-text-transform,
-		));
-		margin-top:$calculated-input-info-gutter-y;
-		margin-bottom:$calculated-input-info-gutter-y;
-		display:block;
-	
-		order: 99;
+  &-info {
+    @include type-set(
+      (
+        size: $calculated-input-info-font-size,
+        leading: $calculated-input-info-line-height,
+        color: $input-info-color,
+        weight: $input-info-font-weight,
+        style: $input-info-font-style,
+        case: $input-info-text-transform,
+      )
+    );
+    margin-top: $calculated-input-info-gutter-y;
+    margin-bottom: $calculated-input-info-gutter-y;
+    display: block;
 
-		#{$prefix}-wrapper-horizontal & {
-			width: calc(100% - #{$input-label-horizontal-width});
-			align-self: flex-end;
-			margin-left: auto;
-		}
-		
-		#{$prefix}-wrapper-vertical & {
-			width: 100%;
-			align-self: flex-start;
-			margin-left: 0;
-		}
-	}
+    order: 99;
+
+    #{$prefix}-wrapper-horizontal & {
+      width: calc(100% - #{$input-label-horizontal-width});
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    #{$prefix}-wrapper-vertical & {
+      width: 100%;
+      align-self: flex-start;
+      margin-left: 0;
+    }
+  }
 }

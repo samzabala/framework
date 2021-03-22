@@ -1,132 +1,133 @@
-[data-toggle-dropdown]{
-	@include dump-styles(data-toggle);
+[data-toggle-dropdown] {
+  @include dump-styles(data-toggle);
 }
 
 $prefix: '.dropdown';
 #{$prefix} {
-	@include create-popper-styles(
-		$dropdown-background,
-		$dropdown-background-inverse,
-		$dropdown-color,
-		$dropdown-color-inverse,
-		$dropdown-gutter-x,
-		$dropdown-gutter-y,
-		$dropdown-border-radius,
-		$dropdown-box-shadow
-	);
-	width: $dropdown-width;
-	display:none;
-	color: $nav-color;
-	transform-origin: center center;
-	transform-style: preserve-3d;
+  @include create-popper-styles(
+    $dropdown-background,
+    $dropdown-background-inverse,
+    $dropdown-color,
+    $dropdown-color-inverse,
+    $dropdown-gutter-x,
+    $dropdown-gutter-y,
+    $dropdown-border-radius,
+    $dropdown-box-shadow
+  );
+  width: $dropdown-width;
+  display: none;
+  color: $nav-color;
+  transform-origin: center center;
+  transform-style: preserve-3d;
 
-	&#{$prefix}-small {
-		@include create-popper-styles(
-			null,
-			null,
-			null,
-			null,
-			$dropdown-small-gutter-x,
-			$dropdown-small-gutter-y,
-		);
-	}
+  &#{$prefix}-small {
+    @include create-popper-styles(
+      null,
+      null,
+      null,
+      null,
+      $dropdown-small-gutter-x,
+      $dropdown-small-gutter-y
+    );
+  }
 
-	&#{$prefix}-large {
-		@include create-popper-styles(
-			null,
-			null,
-			null,
-			null,
-			$dropdown-large-gutter-x,
-			$dropdown-large-gutter-y,
-		);
-	}
+  &#{$prefix}-large {
+    @include create-popper-styles(
+      null,
+      null,
+      null,
+      null,
+      $dropdown-large-gutter-x,
+      $dropdown-large-gutter-y
+    );
+  }
 
-	&[data-dropdown-max-height]{
-		overflow-y:auto;
-	}
+  &[data-dropdown-max-height] {
+    overflow-y: auto;
+  }
 
-	.theme-inverse & {
-		color: $nav-color-inverse;
-	}
-	
-	&.open {
-		display: block;
-	}
+  .theme-inverse & {
+    color: $nav-color-inverse;
+  }
 
-	&,ul,li {
-		margin-bottom:0;
-		margin-top:0;
-	}
+  &.open {
+    display: block;
+  }
 
-	li.active {
-		color: $dropdown-active-color;
-	}
+  &,
+  ul,
+  li {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 
-	@at-root hr#{&}-separator {
-		margin: .5em 0;
-	}
+  li.active {
+    color: $dropdown-active-color;
+  }
 
-	a,
-	[data-toggle-dropdown] {
-		color:inherit;
-	}
+  @at-root hr#{&}-separator {
+    margin: 0.5em 0;
+  }
 
-	&#{&}-bottom {
-		bottom:0;
-		&-flush {
-			bottom: 100%;
-		}
-	}
+  a,
+  [data-toggle-dropdown] {
+    color: inherit;
+  }
 
-	&#{&}-top {
-		top:0;
-		
-		&-flush {
-			top: 100%;
-		}
-	}
+  &#{&}-bottom {
+    bottom: 0;
+    &-flush {
+      bottom: 100%;
+    }
+  }
 
-	&#{&}-left {
-		left:0;
-		&-flush {
-			left:100%;
-		}
-	}
+  &#{&}-top {
+    top: 0;
 
-	&#{&}-right {
-		right:0;
-		&-flush {
-			right: 100%;
-		}
-	}
+    &-flush {
+      top: 100%;
+    }
+  }
 
-	&#{&}-center {
-		&-x {
-			left: 50%;
-			transform: translateX(-50%);
-		}
+  &#{&}-left {
+    left: 0;
+    &-flush {
+      left: 100%;
+    }
+  }
 
-		&-y {
+  &#{&}-right {
+    right: 0;
+    &-flush {
+      right: 100%;
+    }
+  }
 
-			top: 50%;
-			transform: translateY(-50%);
-		}
-	}
+  &#{&}-center {
+    &-x {
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-	&#{$prefix}-static {
-		position:static;
-		box-shadow:none;
-		transform: none;
-	}
+    &-y {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 
-	li {
-		&:before {
-			content: none;
-		}
-	}
+  &#{$prefix}-static {
+    position: static;
+    box-shadow: none;
+    transform: none;
+  }
 
-	// @include br(#{$mobile-br-max}-max) {
-	// 	max-width:100%;
-	// }
+  li {
+    &:before {
+      content: none;
+    }
+  }
+
+  // @include br(#{$mobile-br-max}-max) {
+  // 	max-width:100%;
+  // }
 }

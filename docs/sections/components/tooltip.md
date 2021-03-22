@@ -1,35 +1,38 @@
 # Tooltip
 
-
-Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle-tooltip-click]`** or hover with **`[data-toggle-tooltip-hover]`** 
+Oh shit we have tooltis too. This dipshit can be toglled wether on click with **`[data-toggle-tooltip-click]`** or hover with **`[data-toggle-tooltip-hover]`**
 
 NOTE: The toggler for the tooltip mus not be a `position:fixed;` or a descendant of an element with that property unless you want your tooltip to dIE... or position itself like shit
 
 Example tooltip that toggles on click
 
 ```html
-<a href="#" class="btn btn-primary"
-	data-toggle-tooltip-click
-	data-tooltip-placement="top"
-	data-tooltip-content="<strong>YEET</strong>">
-	Bitch boi on the top
+<a
+  href="#"
+  class="btn btn-primary"
+  data-toggle-tooltip-click
+  data-tooltip-placement="top"
+  data-tooltip-content="<strong>YEET</strong>"
+>
+  Bitch boi on the top
 </a>
 ```
 
 A bitch boy toggled on hover
 
 ```html
-<a href="#" class="btn btn-primary"
-	data-toggle-tooltip-hover
-	data-tooltip-placement="top"
-	data-tooltip-content="<strong>YEET</strong>">
-	Bitch boi on the top
+<a
+  href="#"
+  class="btn btn-primary"
+  data-toggle-tooltip-hover
+  data-tooltip-placement="top"
+  data-tooltip-content="<strong>YEET</strong>"
+>
+  Bitch boi on the top
 </a>
 ```
 
-
 ![](../../images/tooltip.png)
-
 
 # Toggler
 
@@ -117,20 +120,16 @@ defaults to false. tooltips are disabled for pointer interactions so it doesn't 
 
 ## Modal markup
 
-This is the markup our framework generates in case you need to make your own. 
+This is the markup our framework generates in case you need to make your own.
 
 ```html
 <!-- Wrapper and color overlay... adding .active shows the boi.. tooltip-[position] styles the tooltip tail's position -->
 <div class="tooltip tooltip-top active">
-
-	<div class="tooltip-content">
-		<!-- content here -->
-	</div>
-
+  <div class="tooltip-content">
+    <!-- content here -->
+  </div>
 </div>
 ```
-
-
 
 ## Styling a tooltip
 
@@ -147,6 +146,7 @@ Make a new boi by going `const tooltip = new fw.Tooltip(triggerElement,args)`
 `triggerElement` is the tooltip triggerer. if blank, does nothing
 
 `args` is the opts available
+
 ```js
 //defaults
 {
@@ -167,18 +167,15 @@ Make a new boi by going `const tooltip = new fw.Tooltip(triggerElement,args)`
 }
 ```
 
-
 #### **`tooltip.create(element)`**
 
 duh
 
 `element` is the element that triggers the tooltip
 
-
 #### **`tooltip.destroy()`**
 
 destroys currently active tooltip
-
 
 #### **`tooltip.position(x,y)`**
 
@@ -190,20 +187,18 @@ gets {x,y} offset for tooltip based on triggerElement's position
 
 ### Events
 
-* `click.fw.tooltip` - happens on `data-toggle-tooltip-click`
-* `mouseenter.fw.tooltip` - happens on `data-toggle-tooltip-hover`
-* `mouseleave.fw.tooltip` - happens on `data-toggle-tooltip-hover`
-* `click.fw.tooltip.purge` - happens on elements that qualify closing tooltip-click components
-* `before_create.fw.tooltip` - happens on `element` before create
-* `create.fw.tooltip` - happens on `element` when create
-* `after_create.fw.tooltip` - happens on `element` after create
-* `before_destroy.fw.tooltip` - happens on `element` before destroy
-* `destroy.fw.tooltip` - happens on `element` when destroy
-* `after_destroy.fw.tooltip` - happens on `element` after destroy
-* `before_position.fw.tooltip` - happens on `element` before position
-* `position.fw.tooltip` - happens on `element` when position
-* `after_position.fw.tooltip` - happens on `element` after position
-
-
+- `click.fw.tooltip` - happens on `data-toggle-tooltip-click`
+- `mouseenter.fw.tooltip` - happens on `data-toggle-tooltip-hover`
+- `mouseleave.fw.tooltip` - happens on `data-toggle-tooltip-hover`
+- `click.fw.tooltip.purge` - happens on elements that qualify closing tooltip-click components
+- `before_create.fw.tooltip` - happens on `element` before create
+- `create.fw.tooltip` - happens on `element` when create
+- `after_create.fw.tooltip` - happens on `element` after create
+- `before_destroy.fw.tooltip` - happens on `element` before destroy
+- `destroy.fw.tooltip` - happens on `element` when destroy
+- `after_destroy.fw.tooltip` - happens on `element` after destroy
+- `before_position.fw.tooltip` - happens on `element` before position
+- `position.fw.tooltip` - happens on `element` when position
+- `after_position.fw.tooltip` - happens on `element` after position
 
 [Back to TOC](../../../readme.md)

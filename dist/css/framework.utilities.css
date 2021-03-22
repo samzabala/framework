@@ -11695,13 +11695,13 @@
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
-  height: calc((1.5em) * 2);
+  height: calc( (1.5em) * 2 );
 }
 .text-leading-compact .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-compact {
-  height: calc((1.5em * 0.875) * 2);
+  height: calc( (1.5em * 0.875) * 2 );
 }
 .text-leading-expanded .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-expanded {
-  height: calc((1.5em * 1.5) * 2);
+  height: calc( (1.5em * 1.5) * 2 );
 }
 @supports not (-webkit-background-clip: text) {
   .text-clip-background {
@@ -12510,5 +12510,3 @@
 .fit-image-contain {
   position: relative;
 }
-
-/*# sourceMappingURL=framework.utilities.css.map */

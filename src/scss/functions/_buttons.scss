@@ -1,7 +1,7 @@
-@function internal-btn-calculate-disabled($color){
-	@if type-of($color) == 'color' and $color != transparent {
-		@return rgba( $color,$global-disabled-opacity );
-	}@else {
-		@return $color;
-	}
+@function internal-btn-calculate-disabled($color) {
+  @if type-of($color) == 'color' and $color != transparent {
+    @return rgba($color, $global-disabled-opacity);
+  } @else {
+    @return $color;
+  }
 }

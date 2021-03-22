@@ -1,12 +1,9 @@
-
-
-
 @mixin generate-symbol-styles($selector) {
-	@at-root #{$selector} {
-		&,
-		.active > &-toggle,
-		.open > &-toggle  {
-			@content;
-		}
-	}
+  @at-root #{$selector} {
+    &,
+    .active > &-toggle,
+    .open > &-toggle {
+      @content;
+    }
+  }
 }

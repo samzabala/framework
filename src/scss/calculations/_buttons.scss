@@ -1,554 +1,515 @@
 // not the palettes good lord the design is a god
 $calculated-btn-theme-relation: (
-	theme : (
-		color: $var-theme-background,
-		background: $var-theme-color,
-		border: transparent
-	),
-
-	theme-polar : (
-		color: $var-theme-color,
-		background: $var-theme-background,
-		border: transparent
-	),
-
-
-	theme-outline : (
-		color: $var-theme-color,
-		background: transparent,
-		border: $var-theme-color
-	),
-
-	theme-polar-outline : (
-		color: $var-theme-background,
-		background: transparent,
-		border: $var-theme-background
-	),
-
-
-	theme-contrast : (
-		color: $var-theme-background-contrast,
-		background: $var-theme-color-contrast,
-		border: transparent
-	),
-
-	theme-polar-contrast : (
-		color: $var-theme-color-contrast,
-		background: $var-theme-background-contrast,
-		border: transparent
-	),
-
+  theme: (
+    color: $var-theme-background,
+    background: $var-theme-color,
+    border: transparent,
+  ),
+  theme-polar: (
+    color: $var-theme-color,
+    background: $var-theme-background,
+    border: transparent,
+  ),
+  theme-outline: (
+    color: $var-theme-color,
+    background: transparent,
+    border: $var-theme-color,
+  ),
+  theme-polar-outline: (
+    color: $var-theme-background,
+    background: transparent,
+    border: $var-theme-background,
+  ),
+  theme-contrast: (
+    color: $var-theme-background-contrast,
+    background: $var-theme-color-contrast,
+    border: transparent,
+  ),
+  theme-polar-contrast: (
+    color: $var-theme-color-contrast,
+    background: $var-theme-background-contrast,
+    border: transparent,
+  ),
 );
- 
+
 $calculated-btn-schemes: (
-
-	default: (
-
-		hover: (
-			background: $btn-background-default-hover,
-			border: $btn-border-default-hover,
-			color: $btn-color-default-hover,
-		),
-
-		active: (
-			background: $btn-background-default-active,
-			border: $btn-border-default-active,
-			color: $btn-color-default-active,
-		),
-		init: (
-			background: $btn-background-default,
-			border: $btn-border-default,
-			color: $btn-color-default,
-		)
-	),
-	
-	primary: (
-
-		hover: (
-			background: $btn-background-primary-hover,
-			border: $btn-border-primary-hover,
-			color: $btn-color-primary-hover,
-		),
-
-		active: (
-			background: $btn-background-primary-active,
-			border: $btn-border-primary-active,
-			color: $btn-color-primary-active,
-		),
-		init: (
-			background: $btn-background-primary,
-			border: $btn-border-primary,
-			color: $btn-color-primary,
-		)
-	),
-	secondary: (
-
-		hover: (
-			background: $btn-background-secondary-hover,
-			border: $btn-border-secondary-hover,
-			color: $btn-color-secondary-hover,
-		),
-
-		active: (
-			background: $btn-background-secondary-active,
-			border: $btn-border-secondary-active,
-			color: $btn-color-secondary-active,
-		),
-		init: (
-			background: $btn-background-secondary,
-			border: $btn-border-secondary,
-			color: $btn-color-secondary,
-		)
-	),
-
-	accent: (
-
-		hover: (
-			background: $btn-background-accent-hover,
-			border: $btn-border-accent-hover,
-			color: $btn-color-accent-hover,
-		),
-
-		active: (
-			background: $btn-background-accent-active,
-			border: $btn-border-accent-active,
-			color: $btn-color-accent-active,
-		),
-		init: (
-			background: $btn-background-accent,
-			border: $btn-border-accent,
-			color: $btn-color-accent,
-		)
-	),
-	neutral: (
-
-		hover: (
-			background: $btn-background-neutral-hover,
-			border: $btn-border-neutral-hover,
-			color: $btn-color-neutral-hover,
-		),
-
-		active: (
-			background: $btn-background-neutral-active,
-			border: $btn-border-neutral-active,
-			color: $btn-color-neutral-active,
-		),
-		init: (
-			background: $btn-background-neutral,
-			border: $btn-border-neutral,
-			color: $btn-color-neutral,
-		)
-	),
-	success: (
-
-		hover: (
-			background: $btn-background-success-hover,
-			border: $btn-border-success-hover,
-			color: $btn-color-success-hover,
-		),
-
-		active: (
-			background: $btn-background-success-active,
-			border: $btn-border-success-active,
-			color: $btn-color-success-active,
-		),
-		init: (
-			background: $btn-background-success,
-			border: $btn-border-success,
-			color: $btn-color-success,
-		)
-	),
-	caution: (
-
-		hover: (
-			background: $btn-background-caution-hover,
-			border: $btn-border-caution-hover,
-			color: $btn-color-caution-hover,
-		),
-
-		active: (
-			background: $btn-background-caution-active,
-			border: $btn-border-caution-active,
-			color: $btn-color-caution-active,
-		),
-		init: (
-			background: $btn-background-caution,
-			border: $btn-border-caution,
-			color: $btn-color-caution,
-		)
-	),
-	error:(
-
-		hover: (
-			background: $btn-background-error-hover,
-			border: $btn-border-error-hover,
-			color: $btn-color-error-hover,
-		),
-
-		active: (
-			background: $btn-background-error-active,
-			border: $btn-border-error-active,
-			color: $btn-color-error-active,
-		),
-		init: (
-			background: $btn-background-error,
-			border: $btn-border-error,
-			color: $btn-color-error,
-		)
-	),
-	link:(
-
-		hover: (
-			background: $btn-background-link-hover,
-			border: $btn-border-link-hover,
-			color: $btn-color-link-hover,
-		),
-
-		active: (
-			background: $btn-background-link-active,
-			border: $btn-border-link-active,
-			color: $btn-color-link-active,
-		),
-		init: (
-			background: $btn-background-link,
-			border: $btn-border-link,
-			color: $btn-color-link,
-		)
-	),
-
-
-	//schemes tthat vars or hooman shouldnt have control over
-	
-		primary-outline: (
-			hover: (
-				background: $btn-background-primary-hover,
-				border: $btn-border-primary-hover,
-				color: $btn-color-primary-hover,
-			),
-
-			active: (
-				background: $btn-background-primary-active,
-				border: $btn-border-primary-active,
-				color: $btn-color-primary-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-primary,
-				color: $var-color-primary,
-			)
-		),
-		secondary-outline: (
-			hover: (
-				background: $btn-background-secondary-hover,
-				border: $btn-border-secondary-hover,
-				color: $btn-color-secondary-hover,
-			),
-
-			active: (
-				background: $btn-background-secondary-active,
-				border: $btn-border-secondary-active,
-				color: $btn-color-secondary-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-secondary,
-				color: $var-color-secondary,
-			)
-		),
-
-		accent-outline: (
-			hover: (
-				background: $btn-background-accent-hover,
-				border: $btn-border-accent-hover,
-				color: $btn-color-accent-hover,
-			),
-
-			active: (
-				background: $btn-background-accent-active,
-				border: $btn-border-accent-active,
-				color: $btn-color-accent-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-accent,
-				color: $var-color-accent,
-			)
-		),
-		neutral-outline: (
-			hover: (
-				background: $btn-background-neutral-hover,
-				border: $btn-border-neutral-hover,
-				color: $btn-color-neutral-hover,
-			),
-
-			active: (
-				background: $btn-background-neutral-active,
-				border: $btn-border-neutral-active,
-				color: $btn-color-neutral-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-neutral,
-				color: $var-color-neutral,
-			)
-		),
-		success-outline: (
-			hover: (
-				background: $btn-background-success-hover,
-				border: $btn-border-success-hover,
-				color: $btn-color-success-hover,
-			),
-
-			active: (
-				background: $btn-background-success-active,
-				border: $btn-border-success-active,
-				color: $btn-color-success-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-success,
-				color: $var-color-success,
-			)
-		),
-		caution-outline: (
-			hover: (
-				background: $btn-background-caution-hover,
-				border: $btn-border-caution-hover,
-				color: $btn-color-caution-hover,
-			),
-
-			active: (
-				background: $btn-background-caution-active,
-				border: $btn-border-caution-active,
-				color: $btn-color-caution-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-caution,
-				color: $var-color-caution,
-			)
-		),
-		error-outline:(
-			hover: (
-				background: $btn-background-error-hover,
-				border: $btn-border-error-hover,
-				color: $btn-color-error-hover,
-			),
-
-			active: (
-				background: $btn-background-error-active,
-				border: $btn-border-error-active,
-				color: $btn-color-error-active,
-			),
-			init: (
-				background: transparent,
-				border: $var-color-error,
-				color: $var-color-error,
-			)
-		),
-
-
-
-		primary-glassy: (
-			hover: (
-				background: $var-color-primary-alpha-3,
-				border: transparent,
-				color: $var-color-primary,
-			),
-
-			active: (
-				background: $btn-background-primary-active,
-				border: $btn-border-primary-active,
-				color: $btn-color-primary-active,
-			),
-			init: (
-				background: $var-color-primary-alpha-2,
-				border: transparent,
-				color: $var-color-primary,
-			)
-		),
-		secondary-glassy: (
-			hover: (
-				background: $var-color-secondary-alpha-3,
-				border: transparent,
-				color: $var-color-secondary,
-			),
-
-			active: (
-				background: $btn-background-secondary-active,
-				border: $btn-border-secondary-active,
-				color: $btn-color-secondary-active,
-			),
-			init: (
-				background: $var-color-secondary-alpha-2,
-				border: transparent,
-				color: $var-color-secondary,
-			)
-		),
-		accent-glassy: (
-			hover: (
-				background: $var-color-accent-alpha-3,
-				border: transparent,
-				color: $var-color-accent,
-			),
-
-			active: (
-				background: $btn-background-accent-active,
-				border: $btn-border-accent-active,
-				color: $btn-color-accent-active,
-			),
-			init: (
-				background: $var-color-accent-alpha-2,
-				border: transparent,
-				color: $var-color-accent,
-			)
-		),
-		success-glassy: (
-			hover: (
-				background: $var-color-success-alpha-3,
-				border: transparent,
-				color: $var-color-success,
-			),
-
-			active: (
-				background: $btn-background-success-active,
-				border: $btn-border-success-active,
-				color: $btn-color-success-active,
-			),
-			init: (
-				background: $var-color-success-alpha-2,
-				border: transparent,
-				color: $var-color-success,
-			)
-		),
-		caution-glassy: (
-			hover: (
-				background: $var-color-caution-alpha-3,
-				border: transparent,
-				color: $var-color-caution,
-			),
-
-			active: (
-				background: $btn-background-caution-active,
-				border: $btn-border-caution-active,
-				color: $btn-color-caution-active,
-			),
-			init: (
-				background: $var-color-caution-alpha-2,
-				border: transparent,
-				color: $var-color-caution,
-			)
-		),
-		error-glassy: (
-			hover: (
-				background: $var-color-error-alpha-3,
-				border: transparent,
-				color: $var-color-error,
-			),
-
-			active: (
-				background: $btn-background-error-active,
-				border: $btn-border-error-active,
-				color: $btn-color-error-active,
-			),
-			init: (
-				background: $var-color-error-alpha-2,
-				border: transparent,
-				color: $var-color-error,
-			)
-		),
-
-		gradient:(
-			hover: (
-				background: linear-gradient($btn-background-angle-gradient-hover,$var-gradient-start, $var-gradient-end), //@TODO var for this angle
-				border: transparent,
-				color: $btn-color-gradient-hover
-			),
-
-			active: (
-				background: linear-gradient($btn-background-angle-gradient-active,$var-gradient-start, $var-gradient-end),
-				border: transparent,
-				color: $btn-color-gradient-active,
-			),
-			init: (
-				background: linear-gradient($btn-background-angle-gradient,$var-gradient-start, $var-gradient-end),
-				border: transparent,
-				color: $btn-color-gradient,
-			)
-		),
-		theme: (
-			hover: map-get($calculated-btn-theme-relation,theme-contrast),
-			active: map-get($calculated-btn-theme-relation,theme-contrast),
-			init: map-get($calculated-btn-theme-relation,theme)
-		),
-
-
-		theme-polar: (
-			hover: map-get($calculated-btn-theme-relation,theme-polar-contrast),
-			active: map-get($calculated-btn-theme-relation,theme-polar-contrast),
-			init: map-get($calculated-btn-theme-relation,theme-polar)
-		),
-
-		theme-outline: (
-			hover: map-get($calculated-btn-theme-relation,theme),
-			active: map-get($calculated-btn-theme-relation,theme),
-			init: map-get($calculated-btn-theme-relation,theme-outline)
-		),
-
-		theme-polar-outline: (
-			hover: map-get($calculated-btn-theme-relation,theme-polar),
-			active: map-get($calculated-btn-theme-relation,theme-polar),
-			init: map-get($calculated-btn-theme-relation,theme-polar-outline)
-		)
+  default: (
+    hover: (
+      background: $btn-background-default-hover,
+      border: $btn-border-default-hover,
+      color: $btn-color-default-hover,
+    ),
+    active: (
+      background: $btn-background-default-active,
+      border: $btn-border-default-active,
+      color: $btn-color-default-active,
+    ),
+    init: (
+      background: $btn-background-default,
+      border: $btn-border-default,
+      color: $btn-color-default,
+    ),
+  ),
+  primary: (
+    hover: (
+      background: $btn-background-primary-hover,
+      border: $btn-border-primary-hover,
+      color: $btn-color-primary-hover,
+    ),
+    active: (
+      background: $btn-background-primary-active,
+      border: $btn-border-primary-active,
+      color: $btn-color-primary-active,
+    ),
+    init: (
+      background: $btn-background-primary,
+      border: $btn-border-primary,
+      color: $btn-color-primary,
+    ),
+  ),
+  secondary: (
+    hover: (
+      background: $btn-background-secondary-hover,
+      border: $btn-border-secondary-hover,
+      color: $btn-color-secondary-hover,
+    ),
+    active: (
+      background: $btn-background-secondary-active,
+      border: $btn-border-secondary-active,
+      color: $btn-color-secondary-active,
+    ),
+    init: (
+      background: $btn-background-secondary,
+      border: $btn-border-secondary,
+      color: $btn-color-secondary,
+    ),
+  ),
+  accent: (
+    hover: (
+      background: $btn-background-accent-hover,
+      border: $btn-border-accent-hover,
+      color: $btn-color-accent-hover,
+    ),
+    active: (
+      background: $btn-background-accent-active,
+      border: $btn-border-accent-active,
+      color: $btn-color-accent-active,
+    ),
+    init: (
+      background: $btn-background-accent,
+      border: $btn-border-accent,
+      color: $btn-color-accent,
+    ),
+  ),
+  neutral: (
+    hover: (
+      background: $btn-background-neutral-hover,
+      border: $btn-border-neutral-hover,
+      color: $btn-color-neutral-hover,
+    ),
+    active: (
+      background: $btn-background-neutral-active,
+      border: $btn-border-neutral-active,
+      color: $btn-color-neutral-active,
+    ),
+    init: (
+      background: $btn-background-neutral,
+      border: $btn-border-neutral,
+      color: $btn-color-neutral,
+    ),
+  ),
+  success: (
+    hover: (
+      background: $btn-background-success-hover,
+      border: $btn-border-success-hover,
+      color: $btn-color-success-hover,
+    ),
+    active: (
+      background: $btn-background-success-active,
+      border: $btn-border-success-active,
+      color: $btn-color-success-active,
+    ),
+    init: (
+      background: $btn-background-success,
+      border: $btn-border-success,
+      color: $btn-color-success,
+    ),
+  ),
+  caution: (
+    hover: (
+      background: $btn-background-caution-hover,
+      border: $btn-border-caution-hover,
+      color: $btn-color-caution-hover,
+    ),
+    active: (
+      background: $btn-background-caution-active,
+      border: $btn-border-caution-active,
+      color: $btn-color-caution-active,
+    ),
+    init: (
+      background: $btn-background-caution,
+      border: $btn-border-caution,
+      color: $btn-color-caution,
+    ),
+  ),
+  error: (
+    hover: (
+      background: $btn-background-error-hover,
+      border: $btn-border-error-hover,
+      color: $btn-color-error-hover,
+    ),
+    active: (
+      background: $btn-background-error-active,
+      border: $btn-border-error-active,
+      color: $btn-color-error-active,
+    ),
+    init: (
+      background: $btn-background-error,
+      border: $btn-border-error,
+      color: $btn-color-error,
+    ),
+  ),
+  link: (
+    hover: (
+      background: $btn-background-link-hover,
+      border: $btn-border-link-hover,
+      color: $btn-color-link-hover,
+    ),
+    active: (
+      background: $btn-background-link-active,
+      border: $btn-border-link-active,
+      color: $btn-color-link-active,
+    ),
+    init: (
+      background: $btn-background-link,
+      border: $btn-border-link,
+      color: $btn-color-link,
+    ),
+  ),
+  //schemes tthat vars or hooman shouldnt have control over
+  primary-outline:
+    (
+      hover: (
+        background: $btn-background-primary-hover,
+        border: $btn-border-primary-hover,
+        color: $btn-color-primary-hover,
+      ),
+      active: (
+        background: $btn-background-primary-active,
+        border: $btn-border-primary-active,
+        color: $btn-color-primary-active,
+      ),
+      init: (
+        background: transparent,
+        border: $var-color-primary,
+        color: $var-color-primary,
+      ),
+    ),
+  secondary-outline: (
+    hover: (
+      background: $btn-background-secondary-hover,
+      border: $btn-border-secondary-hover,
+      color: $btn-color-secondary-hover,
+    ),
+    active: (
+      background: $btn-background-secondary-active,
+      border: $btn-border-secondary-active,
+      color: $btn-color-secondary-active,
+    ),
+    init: (
+      background: transparent,
+      border: $var-color-secondary,
+      color: $var-color-secondary,
+    ),
+  ),
+  accent-outline: (
+    hover: (
+      background: $btn-background-accent-hover,
+      border: $btn-border-accent-hover,
+      color: $btn-color-accent-hover,
+    ),
+    active: (
+      background: $btn-background-accent-active,
+      border: $btn-border-accent-active,
+      color: $btn-color-accent-active,
+    ),
+    init: (
+      background: transparent,
+      border: $var-color-accent,
+      color: $var-color-accent,
+    ),
+  ),
+  neutral-outline: (
+    hover: (
+      background: $btn-background-neutral-hover,
+      border: $btn-border-neutral-hover,
+      color: $btn-color-neutral-hover,
+    ),
+    active: (
+      background: $btn-background-neutral-active,
+      border: $btn-border-neutral-active,
+      color: $btn-color-neutral-active,
+    ),
+    init: (
+      background: transparent,
+      border: $var-color-neutral,
+      color: $var-color-neutral,
+    ),
+  ),
+  success-outline: (
+    hover: (
+      background: $btn-background-success-hover,
+      border: $btn-border-success-hover,
+      color: $btn-color-success-hover,
+    ),
+    active: (
+      background: $btn-background-success-active,
+      border: $btn-border-success-active,
+      color: $btn-color-success-active,
+    ),
+    init: (
+      background: transparent,
+      border: $var-color-success,
+      color: $var-color-success,
+    ),
+  ),
+  caution-outline: (
+    hover: (
+      background: $btn-background-caution-hover,
+      border: $btn-border-caution-hover,
+      color: $btn-color-caution-hover,
+    ),
+    active: (
+      background: $btn-background-caution-active,
+      border: $btn-border-caution-active,
+      color: $btn-color-caution-active,
+    ),
+    init: (
+      background: transparent,
+      border: $var-color-caution,
+      color: $var-color-caution,
+    ),
+  ),
+  error-outline: (
+    hover: (
+      background: $btn-background-error-hover,
+      border: $btn-border-error-hover,
+      color: $btn-color-error-hover,
+    ),
+    active: (
+      background: $btn-background-error-active,
+      border: $btn-border-error-active,
+      color: $btn-color-error-active,
+    ),
+    init: (
+      background: transparent,
+      border: $var-color-error,
+      color: $var-color-error,
+    ),
+  ),
+  primary-glassy: (
+    hover: (
+      background: $var-color-primary-alpha-3,
+      border: transparent,
+      color: $var-color-primary,
+    ),
+    active: (
+      background: $btn-background-primary-active,
+      border: $btn-border-primary-active,
+      color: $btn-color-primary-active,
+    ),
+    init: (
+      background: $var-color-primary-alpha-2,
+      border: transparent,
+      color: $var-color-primary,
+    ),
+  ),
+  secondary-glassy: (
+    hover: (
+      background: $var-color-secondary-alpha-3,
+      border: transparent,
+      color: $var-color-secondary,
+    ),
+    active: (
+      background: $btn-background-secondary-active,
+      border: $btn-border-secondary-active,
+      color: $btn-color-secondary-active,
+    ),
+    init: (
+      background: $var-color-secondary-alpha-2,
+      border: transparent,
+      color: $var-color-secondary,
+    ),
+  ),
+  accent-glassy: (
+    hover: (
+      background: $var-color-accent-alpha-3,
+      border: transparent,
+      color: $var-color-accent,
+    ),
+    active: (
+      background: $btn-background-accent-active,
+      border: $btn-border-accent-active,
+      color: $btn-color-accent-active,
+    ),
+    init: (
+      background: $var-color-accent-alpha-2,
+      border: transparent,
+      color: $var-color-accent,
+    ),
+  ),
+  success-glassy: (
+    hover: (
+      background: $var-color-success-alpha-3,
+      border: transparent,
+      color: $var-color-success,
+    ),
+    active: (
+      background: $btn-background-success-active,
+      border: $btn-border-success-active,
+      color: $btn-color-success-active,
+    ),
+    init: (
+      background: $var-color-success-alpha-2,
+      border: transparent,
+      color: $var-color-success,
+    ),
+  ),
+  caution-glassy: (
+    hover: (
+      background: $var-color-caution-alpha-3,
+      border: transparent,
+      color: $var-color-caution,
+    ),
+    active: (
+      background: $btn-background-caution-active,
+      border: $btn-border-caution-active,
+      color: $btn-color-caution-active,
+    ),
+    init: (
+      background: $var-color-caution-alpha-2,
+      border: transparent,
+      color: $var-color-caution,
+    ),
+  ),
+  error-glassy: (
+    hover: (
+      background: $var-color-error-alpha-3,
+      border: transparent,
+      color: $var-color-error,
+    ),
+    active: (
+      background: $btn-background-error-active,
+      border: $btn-border-error-active,
+      color: $btn-color-error-active,
+    ),
+    init: (
+      background: $var-color-error-alpha-2,
+      border: transparent,
+      color: $var-color-error,
+    ),
+  ),
+  gradient: (
+    hover: (
+      background:
+        linear-gradient(
+          $btn-background-angle-gradient-hover,
+          $var-gradient-start,
+          $var-gradient-end
+        ),
+      //@TODO var for this angle
+      border: transparent,
+      color: $btn-color-gradient-hover,
+    ),
+    active: (
+      background:
+        linear-gradient(
+          $btn-background-angle-gradient-active,
+          $var-gradient-start,
+          $var-gradient-end
+        ),
+      border: transparent,
+      color: $btn-color-gradient-active,
+    ),
+    init: (
+      background:
+        linear-gradient(
+          $btn-background-angle-gradient,
+          $var-gradient-start,
+          $var-gradient-end
+        ),
+      border: transparent,
+      color: $btn-color-gradient,
+    ),
+  ),
+  theme: (
+    hover: map-get($calculated-btn-theme-relation, theme-contrast),
+    active: map-get($calculated-btn-theme-relation, theme-contrast),
+    init: map-get($calculated-btn-theme-relation, theme),
+  ),
+  theme-polar: (
+    hover: map-get($calculated-btn-theme-relation, theme-polar-contrast),
+    active: map-get($calculated-btn-theme-relation, theme-polar-contrast),
+    init: map-get($calculated-btn-theme-relation, theme-polar),
+  ),
+  theme-outline: (
+    hover: map-get($calculated-btn-theme-relation, theme),
+    active: map-get($calculated-btn-theme-relation, theme),
+    init: map-get($calculated-btn-theme-relation, theme-outline),
+  ),
+  theme-polar-outline: (
+    hover: map-get($calculated-btn-theme-relation, theme-polar),
+    active: map-get($calculated-btn-theme-relation, theme-polar),
+    init: map-get($calculated-btn-theme-relation, theme-polar-outline),
+  ),
 );
 
 $calculated-btn-font-size: $btn-font-size;
 @if internal-is-convertable($btn-font-size) {
-	$calculated-btn-font-size: rem($btn-font-size / $body-font-size)
+  $calculated-btn-font-size: rem($btn-font-size / $body-font-size);
 }
 
-	$calculated-btn-font-size-large: $btn-font-size-large;
-	@if internal-is-convertable($btn-font-size-large) {
-		$calculated-btn-font-size-large: rem($btn-font-size-large / $body-font-size)
-	}
+$calculated-btn-font-size-large: $btn-font-size-large;
+@if internal-is-convertable($btn-font-size-large) {
+  $calculated-btn-font-size-large: rem($btn-font-size-large / $body-font-size);
+}
 
-	$calculated-btn-font-size-small: $btn-font-size-small;
-	@if internal-is-convertable($btn-font-size-small) {
-		$calculated-btn-font-size-small: rem($btn-font-size-small / $body-font-size)
-	}
+$calculated-btn-font-size-small: $btn-font-size-small;
+@if internal-is-convertable($btn-font-size-small) {
+  $calculated-btn-font-size-small: rem($btn-font-size-small / $body-font-size);
+}
 
-$calculated-btn-line-height: type-lead( $btn-font-size,$btn-line-height );
+$calculated-btn-line-height: type-lead($btn-font-size, $btn-line-height);
 
 $calculated-btn-single-line: $calculated-btn-line-height;
 @if unitless($calculated-btn-single-line) and unit($btn-font-size) == px {
-	$calculated-btn-single-line: #{1em * type-lead( $btn-font-size,$btn-line-height ) }
+  $calculated-btn-single-line: #{1em * type-lead($btn-font-size, $btn-line-height)};
 }
 
 $calculated-btn-height: $btn-height;
-@if internal-is-convertable($btn-height,$btn-font-size) {
-	$calculated-btn-height: em($btn-height/$btn-font-size)
-}@else if internal-is-convertable($btn-height) {
-	$calculated-btn-height: rem($btn-height/$body-font-size);
+@if internal-is-convertable($btn-height, $btn-font-size) {
+  $calculated-btn-height: em($btn-height/$btn-font-size);
+} @else if internal-is-convertable($btn-height) {
+  $calculated-btn-height: rem($btn-height/$body-font-size);
 }
 
+$calculated-btn-height-large: $btn-height-large;
+@if internal-is-convertable($btn-height-large, $btn-font-size-large) {
+  $calculated-btn-height-large: em($btn-height-large/$btn-font-size-large);
+} @else if internal-is-convertable($btn-height-large) {
+  $calculated-btn-height: rem($btn-height-large/$body-font-size);
+}
 
-	$calculated-btn-height-large: $btn-height-large;
-	@if internal-is-convertable($btn-height-large,$btn-font-size-large) {
-		$calculated-btn-height-large: em($btn-height-large/$btn-font-size-large)
-	}@else if internal-is-convertable($btn-height-large) {
-		$calculated-btn-height: rem($btn-height-large/$body-font-size);
-	}
-
-	$calculated-btn-height-small: $btn-height-small;
-	@if internal-is-convertable($btn-height-small,$btn-font-size-small) {
-		$calculated-btn-height-small: em($btn-height-small/$btn-font-size-small)
-	}@else if internal-is-convertable($btn-height-small) {
-		$calculated-btn-height: rem($btn-height-small/$body-font-size);
-	}
+$calculated-btn-height-small: $btn-height-small;
+@if internal-is-convertable($btn-height-small, $btn-font-size-small) {
+  $calculated-btn-height-small: em($btn-height-small/$btn-font-size-small);
+} @else if internal-is-convertable($btn-height-small) {
+  $calculated-btn-height: rem($btn-height-small/$body-font-size);
+}
 
 $calculated-btn-gutter-x: $btn-gutter-x;
-@if internal-is-convertable($btn-gutter-x,$btn-font-size) {
-	$calculated-btn-gutter-x: em($btn-gutter-x / $btn-font-size)
-}@else if internal-is-convertable($btn-gutter-x){
-	$calculated-btn-height: rem($btn-gutter-x/$body-font-size);
+@if internal-is-convertable($btn-gutter-x, $btn-font-size) {
+  $calculated-btn-gutter-x: em($btn-gutter-x / $btn-font-size);
+} @else if internal-is-convertable($btn-gutter-x) {
+  $calculated-btn-height: rem($btn-gutter-x/$body-font-size);
 }

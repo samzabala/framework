@@ -8,29 +8,23 @@ More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 
 Although styles are reset, To normalize or basically allow the framework to style them items as basic as a hoe add **`.input`** to your input bitch boy
 
-
-
-
 ```html
-<input type="checkbox" class="input">
+<input type="checkbox" class="input" />
 ```
-
-
 
 ### Support
 
-| Element | do it support? |
-| -- | -- |
-| `button` | a little bit, or just use [`.btn`](../components/button.md) |
-| `select` | yes |
-| `textarea` | yes |
-| `datalist` | no |
-| `input` | yes, but depends |
+| Element    | do it support?                                              |
+| ---------- | ----------------------------------------------------------- |
+| `button`   | a little bit, or just use [`.btn`](../components/button.md) |
+| `select`   | yes                                                         |
+| `textarea` | yes                                                         |
+| `datalist` | no                                                          |
+| `input`    | yes, but depends                                            |
 
 ## Form element helpers
 
 These are further classes to add to `.input` to style the boy better dpending on the type of input it is
-
 
 ### **`.input-single-line`**
 
@@ -39,43 +33,41 @@ These are further classes to add to `.input` to style the boy better dpending on
 This styles an input field as a field for single line input.... uuhhhhhh yea
 
 ```html
-<input type="checkbox" class="input">
+<input type="checkbox" class="input" />
 ```
 
 #### Support
 
 ##### Non input tags
 
-| Element | do it support? |
-| -- | -- |
-| `button` | no |
-| `select` | somewhat. just use `.input-select` instead |
-| `textarea` | yeah or just use `.input-multiple-line` |
-| `datalist` | no |
+| Element    | do it support?                             |
+| ---------- | ------------------------------------------ |
+| `button`   | no                                         |
+| `select`   | somewhat. just use `.input-select` instead |
+| `textarea` | yeah or just use `.input-multiple-line`    |
+| `datalist` | no                                         |
 
-#####  Input tags
+##### Input tags
 
-| `input[type*]` 	| do it support? |
-| -- | -- |
-|`submit`, `reset`,`button` | no |
-| `checkbox` | no |
-| `color` | sure |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes |
-| `email` | yes |
-| `file` | yes |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | somewhat.. it depends... why would you do that? |
-| `number` | yes |
-| `password` | yes |
-| `radio` | no |
-| `range` | no | no | yes |
-| `search` | yes |
-| `tel` | yes |
-| `text` | yes, it was built for this bitch |
-| `url` | yes |
-| `list` | yes |
-
-
+| `input[type*]`                                    | do it support?                                  |
+| ------------------------------------------------- | ----------------------------------------------- | --- | --- |
+| `submit`, `reset`,`button`                        | no                                              |
+| `checkbox`                                        | no                                              |
+| `color`                                           | sure                                            |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes                                             |
+| `email`                                           | yes                                             |
+| `file`                                            | yes                                             |
+| `hidden`                                          | IT'S NO USE IT'S HIDDEN                         |
+| `image`                                           | somewhat.. it depends... why would you do that? |
+| `number`                                          | yes                                             |
+| `password`                                        | yes                                             |
+| `radio`                                           | no                                              |
+| `range`                                           | no                                              | no  | yes |
+| `search`                                          | yes                                             |
+| `tel`                                             | yes                                             |
+| `text`                                            | yes, it was built for this bitch                |
+| `url`                                             | yes                                             |
+| `list`                                            | yes                                             |
 
 ### **`.input-select`**
 
@@ -89,18 +81,17 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
 
 ```html
 <select class="input input-select" name="shits">
-	<option value="1">Available option 1</option>
-	<option value="2">Available option 2</option>
-	<option value="3">Available option 3</option>
-	<option value="4">Available option 4</option>
+  <option value="1">Available option 1</option>
+  <option value="2">Available option 2</option>
+  <option value="3">Available option 3</option>
+  <option value="4">Available option 4</option>
 </select>
 
-
 <select class="input input-select" name="other-shits" multiple>
-	<option value="1">Available option 1</option>
-	<option value="2">Available option 2</option>
-	<option value="3">Available option 3</option>
-	<option value="4">Available option 4</option>
+  <option value="1">Available option 1</option>
+  <option value="2">Available option 2</option>
+  <option value="3">Available option 3</option>
+  <option value="4">Available option 4</option>
 </select>
 ```
 
@@ -108,35 +99,34 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
 
 ##### Non input tags
 
-| Element | do it support? |
-| -- | -- |
-| `button` | no |
-| `select` | FUCK YES |
+| Element    | do it support?                       |
+| ---------- | ------------------------------------ |
+| `button`   | no                                   |
+| `select`   | FUCK YES                             |
 | `textarea` | no, why that doesn't even make sense |
-| `datalist` | no wtf |
+| `datalist` | no wtf                               |
 
-#####  Input tags
+##### Input tags
 
-| `input[type*]` 	| do it support? |
-| -- | -- |
-|`submit`, `reset`,`button` | NO |
-| `checkbox` | no |
-| `color` | no |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes |
-| `email` | yes |
-| `file` | yes |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | somewhat.. it depends... why would you do that? |
-| `number` | yes |
-| `password` | yes |
-| `radio` | no |
-| `range` | no |
-| `search` | yes |
-| `tel` | yes |
-| `text` | yes, it was built for this bitch |
-| `url` | yes |
-| `list` | yes |
-
+| `input[type*]`                                    | do it support?                                  |
+| ------------------------------------------------- | ----------------------------------------------- |
+| `submit`, `reset`,`button`                        | NO                                              |
+| `checkbox`                                        | no                                              |
+| `color`                                           | no                                              |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes                                             |
+| `email`                                           | yes                                             |
+| `file`                                            | yes                                             |
+| `hidden`                                          | IT'S NO USE IT'S HIDDEN                         |
+| `image`                                           | somewhat.. it depends... why would you do that? |
+| `number`                                          | yes                                             |
+| `password`                                        | yes                                             |
+| `radio`                                           | no                                              |
+| `range`                                           | no                                              |
+| `search`                                          | yes                                             |
+| `tel`                                             | yes                                             |
+| `text`                                            | yes, it was built for this bitch                |
+| `url`                                             | yes                                             |
+| `list`                                            | yes                                             |
 
 ### **`.input-multiple-line`**
 
@@ -145,82 +135,82 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
 This styles an input field as a field for multiple line input.... uuhhhhhh yea
 
 ```html
-<textarea class="input input-multiple-line" name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+<textarea class="input input-multiple-line" name="message" rows="10" cols="30">
+The cat was playing in the garden.</textarea
+>
 ```
 
 #### Support
 
 ##### Non input tags
 
-| Element | do it support? |
-| -- | -- |
-| `button` | no |
-| `select` | no |
-| `textarea` | YAS BITCH |
-| `datalist` | no |
+| Element    | do it support? |
+| ---------- | -------------- |
+| `button`   | no             |
+| `select`   | no             |
+| `textarea` | YAS BITCH      |
+| `datalist` | no             |
 
-#####  Input tags
+##### Input tags
 
-| `input[type*]` 	| do it support? |
-| -- | -- |
-|`submit`, `reset`,`button` | NO |
-| `checkbox` | no |
-| `color` | no |
-| `date`, `datetime-local`, `month`, `time`, `week` | no |
-| `email` | no |
-| `file` | no |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | no |
-| `number` | no |
-| `password` | no |
-| `radio` | no |
-| `range` | no |
-| `search` | no |
-| `tel` | no |
-| `text` | uh no, use a `textarea` element instead |
-| `url` | no |
-| `list` | yes.. jk NO |
-
+| `input[type*]`                                    | do it support?                          |
+| ------------------------------------------------- | --------------------------------------- |
+| `submit`, `reset`,`button`                        | NO                                      |
+| `checkbox`                                        | no                                      |
+| `color`                                           | no                                      |
+| `date`, `datetime-local`, `month`, `time`, `week` | no                                      |
+| `email`                                           | no                                      |
+| `file`                                            | no                                      |
+| `hidden`                                          | IT'S NO USE IT'S HIDDEN                 |
+| `image`                                           | no                                      |
+| `number`                                          | no                                      |
+| `password`                                        | no                                      |
+| `radio`                                           | no                                      |
+| `range`                                           | no                                      |
+| `search`                                          | no                                      |
+| `tel`                                             | no                                      |
+| `text`                                            | uh no, use a `textarea` element instead |
+| `url`                                             | no                                      |
+| `list`                                            | yes.. jk NO                             |
 
 ### **`.input-inline`**
 
 For inline shit or fields that dont necessarily accept text looking input like radio, checkbox, sliders and stuff
 
-
-
 #### Support
 
 ##### Non input tags
 
-| Element | do it support? |
-| -- | -- |
-| `button` | yes, or just use [`.btn`](../components/button.md) |
-| `select` | yes |
-| `textarea` | yes, but would you want to? |
-| `datalist` | no |
+| Element    | do it support?                                     |
+| ---------- | -------------------------------------------------- |
+| `button`   | yes, or just use [`.btn`](../components/button.md) |
+| `select`   | yes                                                |
+| `textarea` | yes, but would you want to?                        |
+| `datalist` | no                                                 |
 
-#####  Input tags
+##### Input tags
 
-| `input[type*]` 	| do it support? |
-| -- | -- |
-|`submit`, `reset`,`button` |  yes, or just use [`.btn`](../components/button.md) |
-| `checkbox` | yes |
-| `color` | yes on chrome and firefox but not everywhere else |
-| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure |
-| `email` | if you want it ugly-ish, sure |
-| `file` | if you want it ugly-ish, sure |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | yis |
-| `number` | if you want it ugly-ish, sure |
-| `password` | if you want it ugly-ish, sure |
-| `radio` | yes |
-| `range` | yes |
-| `search` | if you want it ugly-ish, sure |
-| `tel` | if you want it ugly-ish, sure |
-| `text` | if you want it ugly-ish, sure |
-| `url` | if you want it ugly-ish, sure |
-| `list` | no |
-<!-- 
+| `input[type*]`                                    | do it support?                                     |
+| ------------------------------------------------- | -------------------------------------------------- |
+| `submit`, `reset`,`button`                        | yes, or just use [`.btn`](../components/button.md) |
+| `checkbox`                                        | yes                                                |
+| `color`                                           | yes on chrome and firefox but not everywhere else  |
+| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure                      |
+| `email`                                           | if you want it ugly-ish, sure                      |
+| `file`                                            | if you want it ugly-ish, sure                      |
+| `hidden`                                          | IT'S NO USE IT'S HIDDEN                            |
+| `image`                                           | yis                                                |
+| `number`                                          | if you want it ugly-ish, sure                      |
+| `password`                                        | if you want it ugly-ish, sure                      |
+| `radio`                                           | yes                                                |
+| `range`                                           | yes                                                |
+| `search`                                          | if you want it ugly-ish, sure                      |
+| `tel`                                             | if you want it ugly-ish, sure                      |
+| `text`                                            | if you want it ugly-ish, sure                      |
+| `url`                                             | if you want it ugly-ish, sure                      |
+| `list`                                            | no                                                 |
+
+<!--
 #### **`.input-round`**
 
 Makes the edges of your stylized `.input` or `.input group` half circle round.
@@ -231,70 +221,68 @@ Makes the edges of your stylized `.input` or `.input group` half circle round.
 </button>
 ``` -->
 
-
 ### Input templates
 
 ```html
 <!-- Bitches that can be setup -->
-<input class="input input-inline" type="button" name="">
+<input class="input input-inline" type="button" name="" />
 
-<input class="input input-inline" type="checkbox" name="">
+<input class="input input-inline" type="checkbox" name="" />
 
-<input class="input input-single-line" type="color" name="">
+<input class="input input-single-line" type="color" name="" />
 
-<input class="input input-calendar" type="date" name="">
+<input class="input input-calendar" type="date" name="" />
 
-<input class="input input-single-line" type="datetime-local" name="">
+<input class="input input-single-line" type="datetime-local" name="" />
 
-<input class="input input-single-line" type="email" name="">
+<input class="input input-single-line" type="email" name="" />
 
-<input class="input input-single-line" type="file" name="">
+<input class="input input-single-line" type="file" name="" />
 
-<input class="input input-single-line" type="hidden" name="">
+<input class="input input-single-line" type="hidden" name="" />
 
-<input class="input input-inline" type="image" data-src="" name="">
+<input class="input input-inline" type="image" data-src="" name="" />
 
-<input class="input input-single-line" type="month" name="">
+<input class="input input-single-line" type="month" name="" />
 
-<input class="input input-single-line" type="number" name="">
+<input class="input input-single-line" type="number" name="" />
 
-<input class="input input-single-line" type="password" name="">
+<input class="input input-single-line" type="password" name="" />
 
-<input class="input input-inline" type="radio" name="">
+<input class="input input-inline" type="radio" name="" />
 
-<input class="input input-inline" type="range" name="">
+<input class="input input-inline" type="range" name="" />
 
-<input class="input input-inline" type="reset" name="">
+<input class="input input-inline" type="reset" name="" />
 
-<input class="input input-single-line" type="search" name="">
+<input class="input input-single-line" type="search" name="" />
 
-<input class="input input-inline" type="submit" name="">
+<input class="input input-inline" type="submit" name="" />
 
-<input class="input input-single-line" type="tel" name="">
+<input class="input input-single-line" type="tel" name="" />
 
-<input class="input input-single-line" type="text" name="">
+<input class="input input-single-line" type="text" name="" />
 
-<input class="input input-single-line" type="time" name="">
+<input class="input input-single-line" type="time" name="" />
 
-<input class="input input-single-line" type="url" name="">
+<input class="input input-single-line" type="url" name="" />
 
-<input class="input input-single-line" type="week" name="">
+<input class="input input-single-line" type="week" name="" />
 
-<input class="input input-single-line" list="" name="">
+<input class="input input-single-line" list="" name="" />
 <datalist>
-	<option value="">
-</option></datalist>
+  <option value=""></option>
+</datalist>
 
 <select class="input input-select" name="">
-	<option value=""></option>
+  <option value=""></option>
 </select>
 
 <select class="input input-select" multiple name="">
-	<option value=""></option>
+  <option value=""></option>
 </select>
 
-<textarea class="input input-multiple-line" name="" rows="" cols="">	
-</textarea>
+<textarea class="input input-multiple-line" name="" rows="" cols=""> </textarea>
 ```
 
 # **`.input-label`**
@@ -302,21 +290,33 @@ Makes the edges of your stylized `.input` or `.input group` half circle round.
 To style a label, add class of `.input-label`
 
 ```html
-<label class="input-label" for="bitch" >Basic Ass</label>
-<input class="input input-single-line" id="bitch" name="bitch" placeholder="Basic Ass" type="text">
+<label class="input-label" for="bitch">Basic Ass</label>
+<input
+  class="input input-single-line"
+  id="bitch"
+  name="bitch"
+  placeholder="Basic Ass"
+  type="text"
+/>
 ```
 
 # **`.input-info`**
 
 Add helper text along the field to help out the user `.input-info`
 
-
 ![](../images/../../images/input-multiple-line.png)
 
 ```html
-<label class="input-label" for="message">Textarea + vertical wrapper</label>						
-<textarea placeholder="git wrecked" class="input input-multiple-line" id="message"></textarea>
-<span class="input-info">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+<label class="input-label" for="message">Textarea + vertical wrapper</label>
+<textarea
+  placeholder="git wrecked"
+  class="input input-multiple-line"
+  id="message"
+></textarea>
+<span class="input-info"
+  >A longer block of help text that breaks onto a new line and may extend beyond one
+  line.</span
+>
 ```
 
 # **`.input-group`**
@@ -329,42 +329,39 @@ NOTE this only works best for `.input-single-line` and or `.input-select` fields
 
 ```html
 <span class="input-group input-group-horizontal">
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
-
-	<select class="input input-single-line input-secondary" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
-
+  <select class="input input-single-line input-secondary">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 </span>
 ```
-
 
 ## Basic examples
 
@@ -376,39 +373,37 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 
 ```html
 <span class="input-group input-group-horizontal">
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
-
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
-
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 </span>
 ```
 
@@ -417,42 +412,40 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 ![](../../images/input-group.png)
 
 ### Vertical
+
 ```html
-
 <span class="input-group input-group-vertical">
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
-
-	<select class="input input-select" >
-		<option>Available option 1</option>
-		<option>Available option 2</option>
-		<option>Available option 3</option>
-		<option>Available option 4</option>
-		<option>Available option 5</option>
-	</select>
-
+  <select class="input input-select">
+    <option>Available option 1</option>
+    <option>Available option 2</option>
+    <option>Available option 3</option>
+    <option>Available option 4</option>
+    <option>Available option 5</option>
+  </select>
 </span>
 ```
 
@@ -464,54 +457,48 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 
 In case absolutely horizontal and vertical button groups look too ugly, use this to make vertical and horizontal groups vertically stack like blocks on [max mobile breakpoint](../scaffolding/breakpoint.md#mobile-split)
 
-
 ### **`.input-block`**
 
 Keep input-group full width all the fucking time
-
-
 
 ### **`.input-block-mobile`**
 
 Keep input-group full width only on mobile
 
-
 # **`.input-wrapper`**
 
-Use to layout an input label and input without doing so much css. These are inline-flex elementos. 
+Use to layout an input label and input without doing so much css. These are inline-flex elementos.
 
-I must have either  **`.input-wrapper-horizontal`** or **`.input-wrapper-vertical`** to actually have a layout
+I must have either **`.input-wrapper-horizontal`** or **`.input-wrapper-vertical`** to actually have a layout
 
 To set the wrapper to a full width block, add **`.input-wrapper-block`**
 
 ```html
 <h4>inline horizontal</h4>
 <p class="input-wrapper input-wrapper-horizontal">
-	<label class="input-label" >Basic Ass</label>
-	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+  <label class="input-label">Basic Ass</label>
+  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
 </p>
 
 <h4>block horizontal</h4>
 <p class="input-wrapper input-wrapper-horizontal input-wrapper-block">
-	<label class="input-label" >Basic Ass</label>
-	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+  <label class="input-label">Basic Ass</label>
+  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
 </p>
 
 <h4>inline vertical</h4>
 <p class="input-wrapper input-wrapper-vertical">
-	<label class="input-label" >Basic Ass</label>
-	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+  <label class="input-label">Basic Ass</label>
+  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
 </p>
 <h4>block vertical</h4>
 <p class="input-wrapper input-wrapper-vertical input-wrapper-block">
-	<label class="input-label" >Basic Ass</label>
-	<input class="input input-single-line" placeholder="Basic Ass" type="text">
+  <label class="input-label">Basic Ass</label>
+  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
 </p>
 ```
 
-
 ![](../../images/input-wrapper.png)
-
 
 # Color Helpers
 
@@ -521,13 +508,13 @@ To add feedback color the `.input`, add `.input-[color-tag]`.
 To add feedback color the `.input-label`, add `.input-[color-tag]`.
 Adding the color class on `.input-group` or `.input-wrapper` styles both the `.input-label` and `.input` within it
 
-*	**`.input-primary`**
-*	**`.input-secondary`**
-*	**`.input-accent`**
-*	**`.input-neutral`**
-*	**`.input-error`**
-*	**`.input-caution`**
-*	**`.input-success`**
+- **`.input-primary`**
+- **`.input-secondary`**
+- **`.input-accent`**
+- **`.input-neutral`**
+- **`.input-error`**
+- **`.input-caution`**
+- **`.input-success`**
 
 ### Input color support
 
@@ -535,87 +522,75 @@ Fuck this shit bro whhyyy
 
 ## Non input tags
 
-| Element | Support it? |
-| -- | -- |
-| `button` | no, JUST USE FUCKiNG [`.btn`](../components/button.md) |
-| `select` | yes |
-| `textarea` | no |
-| `datalist` | no |
+| Element    | Support it?                                            |
+| ---------- | ------------------------------------------------------ |
+| `button`   | no, JUST USE FUCKiNG [`.btn`](../components/button.md) |
+| `select`   | yes                                                    |
+| `textarea` | no                                                     |
+| `datalist` | no                                                     |
 
+## Input tags
 
-##  Input tags
-
-
-| `input[type*]` | Support it? |
-| -- | -- |
-|`submit`, `reset`,`button` | i guess, but you can use [`.btn`](../components/button.md) |
-| `checkbox` | no |
-| `color` | yes |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes |
-| `email` | yes |
-| `file` | yes |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | yes |
-| `number` | yes |
-| `password` | yes |
-| `radio` | no |
-| `range` | no |
-| `search` | yes |
-| `tel` | yes |
-| `text` | yes |
-| `url` | yes |
-| `list` | yes |
-
-
-
-
+| `input[type*]`                                    | Support it?                                                |
+| ------------------------------------------------- | ---------------------------------------------------------- |
+| `submit`, `reset`,`button`                        | i guess, but you can use [`.btn`](../components/button.md) |
+| `checkbox`                                        | no                                                         |
+| `color`                                           | yes                                                        |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes                                                        |
+| `email`                                           | yes                                                        |
+| `file`                                            | yes                                                        |
+| `hidden`                                          | IT'S NO USE IT'S HIDDEN                                    |
+| `image`                                           | yes                                                        |
+| `number`                                          | yes                                                        |
+| `password`                                        | yes                                                        |
+| `radio`                                           | no                                                         |
+| `range`                                           | no                                                         |
+| `search`                                          | yes                                                        |
+| `tel`                                             | yes                                                        |
+| `text`                                            | yes                                                        |
+| `url`                                             | yes                                                        |
+| `list`                                            | yes                                                        |
 
 ## Size
 
-### **`.input-large`** and  **`.input-small`**
+### **`.input-large`** and **`.input-small`**
 
 Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and `.input-wrapper`
 
 ![](../../images/input-single-line.png)
 
-
-
 ### Non input tags
 
-| Element | Support it? |
-| -- | -- |
-| `button` | no |
-| `select` | no |
-| `textarea` | no |
-| `datalist` | no |
+| Element    | Support it? |
+| ---------- | ----------- |
+| `button`   | no          |
+| `select`   | no          |
+| `textarea` | no          |
+| `datalist` | no          |
 
+### Input tags
 
-###  Input tags
-
-
-| `input[type*]` | Support it? |
-| -- | -- |
-|`submit`, `reset`,`button` | i guess, but you can use [`.btn`](../components/button.md) |
-| `checkbox` | no |
-| `color` | no but kinda on safari |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes |
-| `email` | yes |
-| `file` | yes |
-| `hidden` | IT'S NO USE IT'S HIDDEN |
-| `image` | yes |
-| `number` | yes |
-| `password` | yes |
-| `radio` | no |
-| `range` | no |
-| `search` | yes |
-| `tel` | yes |
-| `text` | yes |
-| `url` | yes |
-| `list` | yes |
-
+| `input[type*]`                                    | Support it?                                                |
+| ------------------------------------------------- | ---------------------------------------------------------- |
+| `submit`, `reset`,`button`                        | i guess, but you can use [`.btn`](../components/button.md) |
+| `checkbox`                                        | no                                                         |
+| `color`                                           | no but kinda on safari                                     |
+| `date`, `datetime-local`, `month`, `time`, `week` | yes                                                        |
+| `email`                                           | yes                                                        |
+| `file`                                            | yes                                                        |
+| `hidden`                                          | IT'S NO USE IT'S HIDDEN                                    |
+| `image`                                           | yes                                                        |
+| `number`                                          | yes                                                        |
+| `password`                                        | yes                                                        |
+| `radio`                                           | no                                                         |
+| `range`                                           | no                                                         |
+| `search`                                          | yes                                                        |
+| `tel`                                             | yes                                                        |
+| `text`                                            | yes                                                        |
+| `url`                                             | yes                                                        |
+| `list`                                            | yes                                                        |
 
 # Custom framework fields
-
 
 ## Toggle
 
@@ -625,80 +600,81 @@ This works on either a `checkbox` or `radio`
 
 ```html
 <div class="input-toggle p">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label">
-		Test this fucker. do not use horizontal and vertical input classes with this shit or you dIE
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label">
+    Test this fucker. do not use horizontal and vertical input classes with this shit or
+    you dIE
+  </span>
 </div>
 
 <div class="input-toggle p input-small">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label">
-		Test this fucker. do not use horizontal and vertical input classes with this shit or you dIE
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label">
+    Test this fucker. do not use horizontal and vertical input classes with this shit or
+    you dIE
+  </span>
 </div>
 
 <div class="input-toggle p input-large">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label">
-		Test this fucker. do not use horizontal and vertical input classes with this shit or you dIE
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label">
+    Test this fucker. do not use horizontal and vertical input classes with this shit or
+    you dIE
+  </span>
 </div>
 
 <div class="input-toggle p">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label input-primary">
-		Test this fucker primary
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label input-primary">
+    Test this fucker primary
+  </span>
 </div>
 
 <div class="input-toggle p">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label input-secondary">
-		Test this fucker secondary
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label input-secondary">
+    Test this fucker secondary
+  </span>
 </div>
 
 <div class="input-toggle p">
-	<input type="checkbox" class="input"> 
-	<span class="input-label input-toggle-label input-accent">
-		Test this fucker accent
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label input-accent">
+    Test this fucker accent
+  </span>
 </div>
 
 <div class="input-toggle p">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label input-success"> 
-		Test this fucker success
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label input-success">
+    Test this fucker success
+  </span>
 </div>
 
 <div class="input-toggle p">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label input-caution">
-		Test this fucker caution
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label input-caution">
+    Test this fucker caution
+  </span>
 </div>
 
 <div class="input-toggle p">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label input-error">
-		Test this fucker error
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label input-error">
+    Test this fucker error
+  </span>
 </div>
 
 <div class="input-toggle p input-disabled">
-	<input type="checkbox" class="input">
-	<span class="input-label input-toggle-label">
-		Test this fucker 
-	</span>
+  <input type="checkbox" class="input" />
+  <span class="input-label input-toggle-label"> Test this fucker </span>
 </div>
 
 <div class="input-toggle p input-toggle-reverse">
-	<input type="checkbox" class="input "> 
-	<span class="input-label input-toggle-label">
-		Test this fucker this one should have toggle on the other side of the text
-	</span>
+  <input type="checkbox" class="input " />
+  <span class="input-label input-toggle-label">
+    Test this fucker this one should have toggle on the other side of the text
+  </span>
 </div>
 ```
 
@@ -708,44 +684,40 @@ Also it supports dem color tag bois
 
 ![Toggle](../../images/input-toggle.png)
 
-
-
 #### Non input tags
 
-| Element | do it support? |
-| -- | -- |
-| `button` | no |
-| `select` | no |
-| `textarea` | no|
-| `datalist` | no |
+| Element    | do it support? |
+| ---------- | -------------- |
+| `button`   | no             |
+| `select`   | no             |
+| `textarea` | no             |
+| `datalist` | no             |
 
+### Support
 
-### Support 
-| `input[type*]` | Support it? |
-| -- | -- |
-|`submit`, `reset`,`button` | nope |
-| `checkbox` | yesssss |
-| `color` | no |
-| `date`, `datetime-local`, `month`, `time`, `week` | no |
-| `email` | no |
-| `file` | no |
-| `hidden` | no |
-| `image` | no |
-| `number` | no |
-| `password` | no |
-| `radio` | yea |
-| `range` | no |
-| `search` | no |
-| `tel` | no |
-| `text` | yes |
-| `url` | no |
-| `list` | no |
-
+| `input[type*]`                                    | Support it? |
+| ------------------------------------------------- | ----------- |
+| `submit`, `reset`,`button`                        | nope        |
+| `checkbox`                                        | yesssss     |
+| `color`                                           | no          |
+| `date`, `datetime-local`, `month`, `time`, `week` | no          |
+| `email`                                           | no          |
+| `file`                                            | no          |
+| `hidden`                                          | no          |
+| `image`                                           | no          |
+| `number`                                          | no          |
+| `password`                                        | no          |
+| `radio`                                           | yea         |
+| `range`                                           | no          |
+| `search`                                          | no          |
+| `tel`                                             | no          |
+| `text`                                            | yes         |
+| `url`                                             | no          |
+| `list`                                            | no          |
 
 ## Calendar
 
 For date input except it fancy
-
 
 It's an input where you have a date input type except it's fancier :')
 
@@ -755,6 +727,7 @@ The generated UI will wrap the input field and also replicate the classes added 
 ```html
 <input type="text" class="input input-calendar" value="2020-01-23" />
 ```
+
 ![Calendar](../../images/input-calendar.png)
 
 Once a value is set, the it will return an ISO8601 or `yyyy-mm-dd` formattted value into the `.input-calendar`
@@ -763,48 +736,46 @@ It will also render the date active in the calendar ui
 
 This is also how to set a default value to the calendar as well
 
-
-
 #### Non input tags
 
-| Element | do it support? |
-| -- | -- |
-| `button` | yes |
-| `select` | no |
+| Element    | do it support?           |
+| ---------- | ------------------------ |
+| `button`   | yes                      |
+| `select`   | no                       |
 | `textarea` | i guess??? but pls don't |
-| `datalist` | no |
+| `datalist` | no                       |
 
+### Support
 
-### Support 
-| `input[type*]` | Support it? |
-| -- | -- |
-|`submit`, `reset`,`button` | no |
-| `checkbox` | no |
-| `color` | no |
+| `input[type*]`                                    | Support it?                                                    |
+| ------------------------------------------------- | -------------------------------------------------------------- |
+| `submit`, `reset`,`button`                        | no                                                             |
+| `checkbox`                                        | no                                                             |
+| `color`                                           | no                                                             |
 | `date`, `datetime-local`, `month`, `time`, `week` | no. you either use the actual type or use something else :(((( |
-| `email` | no |
-| `file` | no |
-| `hidden` | yes |
-| `image` | no |
-| `number` | no |
-| `password` | no |
-| `radio` | no |
-| `range` | no |
-| `search` | no |
-| `tel` | no |
-| `text` | yes |
-| `url` | no |
-| `list` | no |
-
+| `email`                                           | no                                                             |
+| `file`                                            | no                                                             |
+| `hidden`                                          | yes                                                            |
+| `image`                                           | no                                                             |
+| `number`                                          | no                                                             |
+| `password`                                        | no                                                             |
+| `radio`                                           | no                                                             |
+| `range`                                           | no                                                             |
+| `search`                                          | no                                                             |
+| `tel`                                             | no                                                             |
+| `text`                                            | yes                                                            |
+| `url`                                             | no                                                             |
+| `list`                                            | no                                                             |
 
 ### Size
 
-Like other reguler input fields, the UI also supports **`.input-large`** and  **`.input-small`**
+Like other reguler input fields, the UI also supports **`.input-large`** and **`.input-small`**
 
 ```html
-<input type="text" class="input input-calendar input-large">
-<input type="text" class="input input-calendar input-small">
+<input type="text" class="input input-calendar input-large" />
+<input type="text" class="input input-calendar input-small" />
 ```
+
 ![Calendar](../../images/input-calendar-size.png)
 
 ### Colors
@@ -819,6 +790,7 @@ Also supports [input color helpers](#input-colors)
 <input type="text" class="input input-calendar input-caution" value="2020-05-05" />
 <input type="text" class="input input-calendar input-error" value="2020-06-05" />
 ```
+
 ![Calendar](../../images/input-calendar-colors.png)
 
 ### Attributes
@@ -830,6 +802,7 @@ Add these to customize ya boi further
 Defaults to `0`
 
 This is the index of the day the calendar starts. meaning...
+
 ```
 0 = Sunday
 1 = Monday
@@ -840,20 +813,17 @@ This is the index of the day the calendar starts. meaning...
 6 = Saturday
 ```
 
-
 **`data-calendar-max`**
 
 Defaults to ``
 
 Maximum date allowed. Must be in ISO8601 format.
 
-
 **`data-calendar-min`**
 
 Defaults to ``
 
 Minimum date allowed. Must be in ISO8601 format.
-
 
 **`data-calendar-year-span`**
 
@@ -869,10 +839,9 @@ Disables specific dates or keywords that must be separated with commas. Dates mu
 
 There also available keywords too
 
-*	`weekends` - disables weekends
-*	`past` - disables dates from before today's date
-*	`future` - disables dates from after today's date
-
+- `weekends` - disables weekends
+- `past` - disables dates from before today's date
+- `future` - disables dates from after today's date
 
 **`data-calendar-text-input`**
 
@@ -880,22 +849,17 @@ Defaults to `false`
 
 Enables a text input field to input dates along with the calendar as well
 
-
-
 **`data-calendar-month-skip`**
 
 Defaults to `true`
 
 Enable skipping through months
 
-
 **`data-calendar-year-skip`**
 
 Defaults to `false`
 
 Enable skipping through years
-
-
 
 ### Javascript
 
@@ -905,12 +869,12 @@ Enable skipping through years
 
 Make a new boi by going `const formCalendar = new fw.Form.Calendar(element,valueToRender,args)`
 
-
 `element` is the element itself. if blank, it does nothing
 
 `valueToRender` is the value the input ui will use to base the render of the calendar. falls back to the `element.value`
 
 `args` is the opts available
+
 ```js
 //defaults
 {
@@ -940,23 +904,19 @@ Make a new boi by going `const formCalendar = new fw.Form.Calendar(element,value
 }
 ```
 
-
 ##### **`formCalendar.update(newValue,valueToRender)`**
 
 updates the values and renders the ui
 
-
 `newValue` is the value for the input falls back to the `element.value`
 
 `valueToRender` is the value the input ui will render. falls back to the `element.value`
-
 
 ##### **`formCalendar.validates(date,rangeOnly)`**
 
 validates the value based on the instance's settings and overall stup of exiostence
 
 `date` date to check
-
 
 `rangeOnly` whether or not to check against disabled dates and weekends set by args
 
@@ -984,20 +944,19 @@ returns obj with component set args
 
 #### Events
 
-* `click.fw.formCalendar` - happens on `triggerer`
-* `keyup.fw.formCalendar` - happens on `triggerer`
-* `change.fw.formCalendar` - happens on `triggerer`
-* `before_init.fw.formCalendar` - happens on `document` before running functions to set up
-* `init.fw.formCalendar` - happens on `document` when running functions to set up
-* `after_init.fw.formCalendar` - happens on `document` after running functions to set up
-* `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
-* `render.fw.formCalendar` - happens on `element` when running functions to create the ui markup and modify the element
-* `after_render.fw.formCalendar` - happens on `element` after running functions to create the ui markup and modify the element
+- `click.fw.formCalendar` - happens on `triggerer`
+- `keyup.fw.formCalendar` - happens on `triggerer`
+- `change.fw.formCalendar` - happens on `triggerer`
+- `before_init.fw.formCalendar` - happens on `document` before running functions to set up
+- `init.fw.formCalendar` - happens on `document` when running functions to set up
+- `after_init.fw.formCalendar` - happens on `document` after running functions to set up
+- `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
+- `render.fw.formCalendar` - happens on `element` when running functions to create the ui markup and modify the element
+- `after_render.fw.formCalendar` - happens on `element` after running functions to create the ui markup and modify the element
 
-* `before_update.fw.button` - happens on `element` before running the update method
-* `update.fw.formCalendar` - happens on `element` when running the update method
-* `after_update.fw.formCalendar` - happens on `element` after running the update method
-
+- `before_update.fw.button` - happens on `element` before running the update method
+- `update.fw.formCalendar` - happens on `element` when running the update method
+- `after_update.fw.formCalendar` - happens on `element` after running the update method
 
 ## Tags
 
@@ -1007,44 +966,61 @@ To allow the framework to generate a UI for this, add a class of `input-tags`
 The generated UI will wrap the input field and also replicate the classes added to the input tag except `input-tags` will now be `input-tags-ui` to avoid clashing outfits and what not
 
 ```html
-	<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+/>
 ```
+
 ![Tagas](../../images/input-tags.png)
 
 Once a value is set, the values separated with commas will be separated as tags in the front end
 
+### Support
 
-### Support 
-| `input[type*]` | Support it? |
-| -- | -- |
-|`submit`, `reset`,`button` | no |
-| `checkbox` | no |
-| `color` | no |
-| `date`, `datetime-local`, `month`, `time`, `week` | no |
-| `email` | no |
-| `file` | no |
-| `hidden` | yes |
-| `image` | no |
-| `number` | no |
-| `password` | no |
-| `radio` | no |
-| `range` | no |
-| `search` | no |
-| `tel` | no |
-| `text` | yes |
-| `url` | no |
-| `list` | no |
-
+| `input[type*]`                                    | Support it? |
+| ------------------------------------------------- | ----------- |
+| `submit`, `reset`,`button`                        | no          |
+| `checkbox`                                        | no          |
+| `color`                                           | no          |
+| `date`, `datetime-local`, `month`, `time`, `week` | no          |
+| `email`                                           | no          |
+| `file`                                            | no          |
+| `hidden`                                          | yes         |
+| `image`                                           | no          |
+| `number`                                          | no          |
+| `password`                                        | no          |
+| `radio`                                           | no          |
+| `range`                                           | no          |
+| `search`                                          | no          |
+| `tel`                                             | no          |
+| `text`                                            | yes         |
+| `url`                                             | no          |
+| `list`                                            | no          |
 
 ### Size
 
-The UI also supports **`.input-large`** and  **`.input-small`**
+The UI also supports **`.input-large`** and **`.input-small`**
 
 ```html
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-small" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-large" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-small"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-large"
+/>
 ```
+
 ![Calendar](../../images/input-tags-size.png)
 
 ### Colors
@@ -1052,14 +1028,43 @@ The UI also supports **`.input-large`** and  **`.input-small`**
 Also supports [input color helpers](#input-colors)
 
 ```html
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-primary" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-secondary" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-accent" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-success" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-error" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-caution" />
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags input-disabled" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-primary"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-secondary"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-accent"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-success"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-error"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-caution"
+/>
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags input-disabled"
+/>
 ```
+
 ![Calendar](../../images/input-tags-colors.png)
 
 ### Attributes
@@ -1069,7 +1074,12 @@ Add these to customize ya boi further
 **`data-tags-width`**
 
 ```html
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-width="69em" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-width="69em"
+/>
 ```
 
 Defaults to `auto`
@@ -1084,43 +1094,52 @@ DEPRECATED ... just add an event listener on `after_update_.fw.formTags`
 
 ```html
 <script>
-	function doSomething(){
-		alert('i did something');
-	}
+  function doSomething() {
+    alert('i did something');
+  }
 </script>
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-callback="doSomehing()" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-callback="doSomehing()"
+/>
 ```
 
 **`data-tags-filter` (previously data-tag-callback-name-filter or something like that)**
 
 name of the function to callback to manipulating and return the value before rendering of the input tags
 
-
 ```html
 <script>
-	function changeCurseWord(value){
-		//manipulate value
-		value = value.replace('bitch','shitbag');
+  function changeCurseWord(value) {
+    //manipulate value
+    value = value.replace('bitch', 'shitbag');
 
-
-		//return value for render 
-		return value;
-	}
+    //return value for render
+    return value;
+  }
 </script>
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-filter="changeCurseWord" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-filter="changeCurseWord"
+/>
 ```
-
 
 **`data-tags-on-keyup` (previously data-tag-callback-on-keyup or something like that)**
 
 callback function after keyup on the input field. NOTE. the field is actually a `span[contenteditable]`
 
-
 ```html
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-on-keyup="logSomeFuckers(e)" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-on-keyup="logSomeFuckers(e)"
+/>
 ```
-
-
 
 **`data-tags-multiple-lines`**
 
@@ -1129,9 +1148,13 @@ defaults to false
 if enabled, allows floe of tags intoo multiple lines like a textarea
 
 ```html
-<input type="text" value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u" class="input input-tags" data-tags-multiple-lines="true" />
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-multiple-lines="true"
+/>
 ```
-
 
 ### Javascript
 
@@ -1141,12 +1164,12 @@ if enabled, allows floe of tags intoo multiple lines like a textarea
 
 Make a new boi by going `const formTags = new fw.Form.Tags(element,valueToRender,args)`
 
-
 `element` is the element itself. if blank, it does nothing
 
 `valueToRender` is the value the input ui will render. falls back to the `element.value`
 
 `args` is the opts available
+
 ```js
 //defaults
 {
@@ -1156,7 +1179,6 @@ Make a new boi by going `const formTags = new fw.Form.Tags(element,valueToRender
 	multipleLines: false,
 }
 ```
-
 
 ##### **`formTags.update(newValue,allowFilter,valueToRender,inputText)`**
 
@@ -1204,25 +1226,22 @@ initializes all event listeners
 
 returns obj with component set args
 
-
 #### Events
 
-* `click.fw.formTags` - happens on `triggerer`
-* `keydown.fw.formTags` - happens on `triggerer`
-* `blur.fw.formTags` - happens on `triggerer`
-* `paste.fw.formTags` - happens on `triggerer`
-* `change.fw.formTags` - happens on `triggerer`
-* `before_init.fw.formTags` - happens on `document` before running functions to set up
-* `init.fw.formTags` - happens on `document` when running functions to set up
-* `after_init.fw.formTags` - happens on `document` after running functions to set up
-* `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
-* `render.fw.formTags` - happens on `element` when running functions to create the ui markup and modify the element
-* `after_render.fw.formTags` - happens on `element` after running functions to create the ui markup and modify the element
+- `click.fw.formTags` - happens on `triggerer`
+- `keydown.fw.formTags` - happens on `triggerer`
+- `blur.fw.formTags` - happens on `triggerer`
+- `paste.fw.formTags` - happens on `triggerer`
+- `change.fw.formTags` - happens on `triggerer`
+- `before_init.fw.formTags` - happens on `document` before running functions to set up
+- `init.fw.formTags` - happens on `document` when running functions to set up
+- `after_init.fw.formTags` - happens on `document` after running functions to set up
+- `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
+- `render.fw.formTags` - happens on `element` when running functions to create the ui markup and modify the element
+- `after_render.fw.formTags` - happens on `element` after running functions to create the ui markup and modify the element
 
-* `before_update.fw.button` - happens on `element` before running the update method
-* `update.fw.formTags` - happens on `element` when running the update method
-* `after_update.fw.formTags` - happens on `element` after running the update method
-
-
+- `before_update.fw.button` - happens on `element` before running the update method
+- `update.fw.formTags` - happens on `element` when running the update method
+- `after_update.fw.formTags` - happens on `element` after running the update method
 
 [Back to TOC](../../../readme.md)

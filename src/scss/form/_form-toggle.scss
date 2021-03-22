@@ -1,235 +1,244 @@
-
 /*** input toggle ***/
 $prefix: '.input';
 
 #{$prefix} {
+  // @TODO align right
 
-	// @TODO align right
+  &-toggle {
+    & {
+      align-items: flex-start;
+      display: inline-flex;
+      justify-content: flex-start;
 
-	&-toggle {
+      &%for-form-label {
+        flex-basis: auto;
+      }
 
-		& {
-			align-items: flex-start;
-			display: inline-flex;
-			justify-content: flex-start;
+      &-reverse {
+        flex-direction: row-reverse;
+      }
+    }
 
-			&%for-form-label {
+    input,
+    .input {
+      & {
+        opacity: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        font: inherit;
+        display: inline-block;
+        width: $calculated-input-toggle-width;
+        height: $calculated-input-toggle-checkbox-height;
+        vertical-align: middle;
+        align-self: flex-start;
+        position: relative;
+        z-index: 9;
+        order: -1;
+        flex: 0 0 auto;
+      }
+    }
 
-				flex-basis: auto;
-			}
+    #{$prefix}-small &,
+    &#{$prefix}-small {
+      .input,
+      input {
+        width: $calculated-input-toggle-width-small;
+      }
+    }
 
-			&-reverse {
-				flex-direction: row-reverse;
-			}
-		}
+    #{$prefix}-large &,
+    &#{$prefix}-large {
+      .input,
+      input {
+        width: $calculated-input-toggle-width-large;
+      }
+    }
 
+    & #{&}-label {
+      position: relative;
+      width: calc(100% - #{$calculated-input-toggle-width});
+      padding-top: 0;
+      padding-bottom: 0;
+      flex: 1 0 auto;
+    }
 
-		input,
-		.input {
-			& {
-				opacity: 0;
-				-webkit-appearance: none;
-				appearance: none;
-				outline:none;
-				font:inherit;
-				display:inline-block;
-				width: $calculated-input-toggle-width;
-				height: $calculated-input-toggle-checkbox-height;
-				vertical-align: middle;
-				align-self: flex-start;
-				position: relative;
-				z-index: 9;
-				order: -1;
-				flex: 0 0 auto;
-			}
-		}
+    &-label {
+      #{$prefix}-toggle:not(#{$prefix}-toggle-reverse) & {
+        padding-left: $input-toggle-margin-x;
+      }
 
-		#{$prefix}-small &,
-		&#{$prefix}-small {
-			.input,input {
-				width: $calculated-input-toggle-width-small;
-			}
-		} 
+      #{$prefix}-toggle#{$prefix}-toggle-reverse & {
+        padding-right: $input-toggle-margin-x;
+      }
 
-		#{$prefix}-large &,
-		&#{$prefix}-large {
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        pointer-events: none;
+        color: $input-toggle-color-default;
+        background-color: currentColor;
+        margin: auto;
+        top: 0;
+        transition: $input-toggle-transition-duration all $transition-timing;
 
-			.input,input {
-				width: $calculated-input-toggle-width-large;
-			}
-		} 
+        #{$prefix}-toggle:not(#{$prefix}-toggle-reverse) & {
+          right: 100%;
+        }
 
+        #{$prefix}-toggle#{$prefix}-toggle-reverse & {
+          left: 100%;
+        }
 
-		& #{&}-label {
-			position:relative;
-			width: calc(100% - #{ $calculated-input-toggle-width});
-			padding-top:0;
-			padding-bottom:0;
-			flex: 1 0 auto;
-		}
+        [type='checkbox']:checked + &,
+        [type='radio']:checked + & {
+          color: $input-toggle-color-default-active;
+        }
 
-		&-label {
+        @each $tag, $color in $calculated-brand-color-declarations-for-components {
+          @at-root &#{$prefix}-#{$tag},
+            #{$prefix}-#{$tag} & {
+            color: $color;
+          }
+        }
+      }
 
-			
-			#{$prefix}-toggle:not(#{$prefix}-toggle-reverse) &  {
-				padding-left: $input-toggle-margin-x;
-			}
-	
-			#{$prefix}-toggle#{$prefix}-toggle-reverse & {
-				padding-right: $input-toggle-margin-x;
-			}
+      &:before {
+        & {
+          height: $calculated-input-toggle-plate-height;
+          width: $calculated-input-toggle-width;
+          margin-top: calc(
+            (
+                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-plate-height}
+              ) / 2
+          );
+          opacity: 0.3;
+          border-radius: $input-toggle-plate-border-radius;
+          margin-right: 0;
+        }
 
-			&:before,&:after {
-				content:"";
-				display: block;
-				position:absolute;
-				pointer-events: none;
-				color: $input-toggle-color-default;
-				background-color: currentColor;
-				margin: auto;
-				top:0;
-				transition: $input-toggle-transition-duration all $transition-timing;
-			
-				#{$prefix}-toggle:not(#{$prefix}-toggle-reverse) &  {
-					right: 100%;
-				}
-		
-				#{$prefix}-toggle#{$prefix}-toggle-reverse & {
-					left: 100%;
-				}
+        @at-root #{$prefix}-small#{&},
+          #{$prefix}-small & {
+          height: $calculated-input-toggle-plate-height-small;
+          width: $calculated-input-toggle-width-small;
+          margin-top: calc(
+            (
+                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-plate-height-small}
+              ) / 2
+          );
+          border-radius: $input-toggle-plate-border-radius-small;
+        }
 
+        @at-root #{$prefix}-large#{&},
+          #{$prefix}-large & {
+          height: $calculated-input-toggle-plate-height-large;
+          width: $calculated-input-toggle-width-large;
+          margin-top: calc(
+            (
+                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-plate-height-large}
+              ) / 2
+          );
+          border-radius: $input-toggle-plate-border-radius-large;
+        }
+      }
 
-				[type=checkbox]:checked + &,
-				[type=radio]:checked + & {
-					color: $input-toggle-color-default-active;
-				}
+      &:after {
+        & {
+          height: $calculated-input-toggle-node-height;
+          width: $calculated-input-toggle-node-width;
+          border-radius: $input-toggle-node-border-radius;
+          margin-right: calc(
+            (#{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width})
+          );
+          margin-left: 0;
+          margin-top: calc(
+            (
+                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height}
+              ) / 2
+          );
 
+          input[type='checkbox']:checked + &,
+          .input[type='checkbox']:checked + &,
+          input[type='radio']:checked + &,
+          .input[type='radio']:checked + & {
+            #{$prefix}-toggle:not(#{$prefix}-toggle-reverse) & {
+              margin-right: 0;
+            }
 
+            #{$prefix}-toggle#{$prefix}-toggle-reverse & {
+              margin-left: calc(
+                (
+                  #{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width}
+                )
+              );
+            }
+          }
+        }
 
-				@each $tag,$color in $calculated-brand-color-declarations-for-components {
-					@at-root &#{$prefix}-#{$tag},
-					#{$prefix}-#{$tag} & {
-						color: $color;
-					}
-				}
-			}
+        @at-root #{$prefix}-small#{&},
+          #{$prefix}-small & {
+          height: $calculated-input-toggle-node-height-small;
+          width: $calculated-input-toggle-node-width-small;
+          border-radius: $input-toggle-node-border-radius-small;
+          margin-right: calc(
+            (
+              #{$calculated-input-toggle-width-small} - #{$calculated-input-toggle-node-width-small}
+            )
+          );
+          margin-left: 0;
+          margin-top: calc(
+            (
+                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height-small}
+              ) / 2
+          );
 
-			&:before {
-				& {
+          input[type='checkbox']:checked + &,
+          .input[type='checkbox']:checked + &,
+          input[type='radio']:checked + &,
+          .input[type='radio']:checked + & {
+            #{$prefix}-toggle#{$prefix}-toggle-reverse & {
+              margin-left: calc(
+                (
+                  #{$calculated-input-toggle-width-small} - #{$calculated-input-toggle-node-width-small}
+                )
+              );
+            }
+          }
+        }
 
-					height: $calculated-input-toggle-plate-height;
-					width: $calculated-input-toggle-width;
-					margin-top: calc(
-						(
-							#{$calculated-input-toggle-checkbox-height}
-							- #{$calculated-input-toggle-plate-height}
-						) / 2
-					);
-					opacity: .3;
-					border-radius: $input-toggle-plate-border-radius;
-					margin-right: 0;
-				}
+        @at-root #{$prefix}-large#{&},
+          #{$prefix}-large & {
+          height: $calculated-input-toggle-node-height-large;
+          width: $calculated-input-toggle-node-width-large;
+          border-radius: $input-toggle-node-border-radius-large;
+          margin-right: calc(
+            (
+              #{$calculated-input-toggle-width-large} - #{$calculated-input-toggle-node-width-large}
+            )
+          );
+          margin-left: 0;
+          margin-top: calc(
+            (
+                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height-large}
+              ) / 2
+          );
 
-
-				
-
-				@at-root #{$prefix}-small#{&},
-				#{$prefix}-small & {
-					height: $calculated-input-toggle-plate-height-small;
-					width: $calculated-input-toggle-width-small;
-					margin-top: calc(
-						(
-							#{$calculated-input-toggle-checkbox-height}
-							- #{$calculated-input-toggle-plate-height-small}
-						) / 2
-					);
-					border-radius: $input-toggle-plate-border-radius-small;
-				} 
-
-				@at-root #{$prefix}-large#{&},
-				#{$prefix}-large & {
-					height: $calculated-input-toggle-plate-height-large;
-					width: $calculated-input-toggle-width-large;
-					margin-top: calc(
-						(
-							#{$calculated-input-toggle-checkbox-height}
-							- #{$calculated-input-toggle-plate-height-large}
-						) / 2
-					);
-					border-radius: $input-toggle-plate-border-radius-large;
-				} 
-			}
-
-			&:after {
-				& {
-
-					height: $calculated-input-toggle-node-height;
-					width: $calculated-input-toggle-node-width;
-					border-radius: $input-toggle-node-border-radius;
-					margin-right: calc( (#{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width})  );
-					margin-left: 0;
-					margin-top: calc( (#{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height}) / 2 );
-	
-					input[type=checkbox]:checked + &,
-					.input[type=checkbox]:checked + &,
-					input[type=radio]:checked + &,
-					.input[type=radio]:checked + & {
-						#{$prefix}-toggle:not(#{$prefix}-toggle-reverse) &  {
-							margin-right: 0;
-						}
-				
-						#{$prefix}-toggle#{$prefix}-toggle-reverse & {
-							margin-left: calc( (#{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width}) );
-						}
-					}
-				}
-
-
-
-				@at-root #{$prefix}-small#{&},
-				#{$prefix}-small & {
-					height: $calculated-input-toggle-node-height-small;
-					width: $calculated-input-toggle-node-width-small;
-					border-radius: $input-toggle-node-border-radius-small;
-					margin-right: calc( (#{$calculated-input-toggle-width-small} - #{$calculated-input-toggle-node-width-small})  );
-					margin-left: 0;
-					margin-top: calc( (#{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height-small}) / 2 );
-
-					input[type=checkbox]:checked + &,
-					.input[type=checkbox]:checked + &,
-					input[type=radio]:checked + &,
-					.input[type=radio]:checked + & {
-				
-						#{$prefix}-toggle#{$prefix}-toggle-reverse & {
-							margin-left: calc( (#{$calculated-input-toggle-width-small} - #{$calculated-input-toggle-node-width-small}) );
-						}
-					}
-				} 
-
-				@at-root #{$prefix}-large#{&},
-				#{$prefix}-large & {
-					height: $calculated-input-toggle-node-height-large;
-					width: $calculated-input-toggle-node-width-large;
-					border-radius: $input-toggle-node-border-radius-large;
-					margin-right: calc( (#{$calculated-input-toggle-width-large} - #{$calculated-input-toggle-node-width-large})  );
-					margin-left: 0;
-					margin-top: calc( (#{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height-large}) / 2 );
-
-					input[type=checkbox]:checked + &,
-					.input[type=checkbox]:checked + &,
-					input[type=radio]:checked + &,
-					.input[type=radio]:checked + & {
-				
-						#{$prefix}-toggle#{$prefix}-toggle-reverse & {
-							margin-left: calc( (#{$calculated-input-toggle-width-large} - #{$calculated-input-toggle-node-width-large}) );
-						}
-					}
-				}
-			}
-
-
-
-		}
-	}
-
+          input[type='checkbox']:checked + &,
+          .input[type='checkbox']:checked + &,
+          input[type='radio']:checked + &,
+          .input[type='radio']:checked + & {
+            #{$prefix}-toggle#{$prefix}-toggle-reverse & {
+              margin-left: calc(
+                (
+                  #{$calculated-input-toggle-width-large} - #{$calculated-input-toggle-node-width-large}
+                )
+              );
+            }
+          }
+        }
+      }
+    }
+  }
 }

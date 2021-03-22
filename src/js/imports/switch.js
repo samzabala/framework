@@ -5,23 +5,22 @@ import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
 
 import FwComponent from './classes/component.js';
-import { UIToggled,UIPurge } from './util/ui.js';
-
+import { UIToggled, UIPurge } from './util/ui.js';
 
 const NAME = 'switch';
 const TOGGLE_MODE = `${NAME}`;
 const TOGGLE_MODE_ON = `${TOGGLE_MODE}-on`;
 const TOGGLE_MODE_OFF = `${TOGGLE_MODE}-off`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
-	const COMPONENT_CLASS_STATUS_OFF = `${COMPONENT_CLASS}-to-off`;
-	const COMPONENT_CLASS_STATUS_ON = `${COMPONENT_CLASS}-to-on`;
-	const COMPONENT_CLASS_IDLE = `${COMPONENT_CLASS}-idle`;
+const COMPONENT_CLASS_STATUS_OFF = `${COMPONENT_CLASS}-to-off`;
+const COMPONENT_CLASS_STATUS_ON = `${COMPONENT_CLASS}-to-on`;
+const COMPONENT_CLASS_IDLE = `${COMPONENT_CLASS}-idle`;
 
 const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
 
 const EVENT_KEY = `.${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
-	const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
+const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
 
 const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;
@@ -35,217 +34,180 @@ const EVENT_BEFORE_OFF = `before_off${EVENT_KEY}`;
 const EVENT_OFF = `off${EVENT_KEY}`;
 const EVENT_AFTER_OFF = `after_off${EVENT_KEY}`;
 
-
 class Switch extends FwComponent {
+  constructor(element) {
+    element = element || UIToggled(TOGGLE_MODE) || false;
 
-	constructor(element){
-		element = element || UIToggled(TOGGLE_MODE) || false;
+    super(element);
+  }
 
-		super(element);
-	}
+  static get DATA_KEY() {
+    return DATA_KEY;
+  }
 
-	static get DATA_KEY(){
-		return DATA_KEY;
-	}
+  isOff(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
+    return element.classList.contains(COMPONENT_CLASS_STATUS_OFF);
+  }
 
-	isOff(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
-			return element.classList.contains(COMPONENT_CLASS_STATUS_OFF);
-	}
+  isOn(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
+    return element.classList.contains(COMPONENT_CLASS_STATUS_ON) || !this.isOff();
+  }
 
-	isOn(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
+  isIdle(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
-			return element.classList.contains(COMPONENT_CLASS_STATUS_ON) || !this.isOff();
+    element.classList.contains(COMPONENT_CLASS_IDLE);
+  }
 
+  //catch bois that re not off
+  init(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
-	}
-	
-	isIdle(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
-			
-			element.classList.contains(COMPONENT_CLASS_IDLE);
-	}
+    if (
+      !element.classList.contains(COMPONENT_CLASS_STATUS_ON) &&
+      !element.classList.contains(COMPONENT_CLASS_STATUS_OFF)
+    ) {
+      element.classList.add(COMPONENT_CLASS_STATUS_OFF);
+    }
+  }
 
-	//catch bois that re not off
-	init(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
+  turnOff(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
+    FwEvent.trigger(element, EVENT_BEFORE_OFF);
 
-		if(!element.classList.contains(COMPONENT_CLASS_STATUS_ON) && !element.classList.contains(COMPONENT_CLASS_STATUS_OFF)){
-			element.classList.add(COMPONENT_CLASS_STATUS_OFF);
-		}
+    FwEvent.trigger(element, EVENT_OFF);
+    element.classList.remove(COMPONENT_CLASS_STATUS_ON);
+    element.classList.add(COMPONENT_CLASS_STATUS_OFF);
 
-	}
+    FwEvent.trigger(element, EVENT_AFTER_OFF);
+  }
 
-	turnOff(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
-			FwEvent.trigger(element,EVENT_BEFORE_OFF);
+  turnOn(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
-			FwEvent.trigger(element,EVENT_OFF);
-			element.classList.remove(COMPONENT_CLASS_STATUS_ON);
-			element.classList.add(COMPONENT_CLASS_STATUS_OFF);
+    FwEvent.trigger(element, EVENT_BEFORE_ON);
+    FwEvent.trigger(element, EVENT_ON);
 
-			FwEvent.trigger(element,EVENT_AFTER_OFF);
-	}
+    element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
+    element.classList.add(COMPONENT_CLASS_STATUS_ON);
 
-	turnOn(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
+    FwEvent.trigger(element, EVENT_AFTER_ON);
+  }
 
-			FwEvent.trigger(element,EVENT_BEFORE_ON);
-			FwEvent.trigger(element,EVENT_ON);
+  toggle(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
-			element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
-			element.classList.add(COMPONENT_CLASS_STATUS_ON);
+    if (this.isOff()) {
+      this.turnOn();
+    } else {
+      this.turnOff();
+    }
+  }
 
-			FwEvent.trigger(element,EVENT_AFTER_ON);
-	}
+  static purge(exempted) {
+    UIPurge(exempted, `.${COMPONENT_CLASS}:not(.${COMPONENT_CLASS_IDLE})`, (elem) => {
+      new Switch(elem).turnOff();
+    });
+  }
 
-	toggle(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
+  static handleToggleOn() {
+    return (e) => {
+      e.preventDefault();
 
+      if (!FwComponent.isDisabled(e.target)) {
+        const switchElement = new Switch(UIToggled(TOGGLE_MODE, e.target));
+        Switch.purge(UIToggled(TOGGLE_MODE, e.target));
+        switchElement.turnOn();
+      }
+    };
+  }
 
-			if(this.isOff()){
-				this.turnOn();
-			}else{
-				this.turnOff();
-			}
-		
-	}
-	
+  static handleToggleOff() {
+    return (e) => {
+      e.preventDefault();
 
-	static purge(exempted){
-		UIPurge(
-			exempted,
-			`.${COMPONENT_CLASS}:not(.${COMPONENT_CLASS_IDLE})`,
-			(elem)=> {
-				new Switch(elem).turnOff();
-			}
-		);
-	}
+      if (!FwComponent.isDisabled(e.target)) {
+        const switchElement = new Switch(UIToggled(TOGGLE_MODE, e.target));
+        switchElement.turnOff();
+      }
+    };
+  }
 
-	static handleToggleOn() {
-		return (e) => {
-			e.preventDefault();
+  static handleInit() {
+    return () => {
+      FwEvent.trigger(document, EVENT_BEFORE_INIT);
+      FwEvent.trigger(document, EVENT_INIT);
 
-			if(!FwComponent.isDisabled(e.target)){
-				const switchElement = new Switch(
-					UIToggled(TOGGLE_MODE,e.target)
-				);
-				Switch.purge(UIToggled(TOGGLE_MODE,e.target));
-				switchElement.turnOn();
+      UIPurge(false, `.${COMPONENT_CLASS}`, (elem) => {
+        new Switch(elem).init();
+      });
 
-			}
-		}
-	}
+      FwEvent.trigger(document, EVENT_AFTER_INIT);
+    };
+  }
 
-	static handleToggleOff() {
-		return (e) => {
-			e.preventDefault();
+  static handleUniversalPurge() {
+    return (e) => {
+      if (FwComponent.isDisabled(e.target)) {
+        e.preventDefault();
+      } else if (!FwComponent.isDynamic(e.target)) {
+        if (
+          !e.target.closest(`[data-toggle-${TOGGLE_MODE_ON}]`) &&
+          !e.target.closest(`[data-toggle-${TOGGLE_MODE_OFF}]`) &&
+          !e.target.closest(`.${COMPONENT_CLASS}`)
+        ) {
+          Switch.purge();
+        }
+      }
+    };
+  }
 
-			if(!FwComponent.isDisabled(e.target)){
-				const switchElement = new Switch(
-					UIToggled(TOGGLE_MODE,e.target)
-				);
-				switchElement.turnOff();
-				
-			}
-		}
-	}
+  static initListeners() {
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK,
+      `*[data-toggle-${TOGGLE_MODE_OFF}]`,
+      Switch.handleToggleOff()
+    );
 
-	static handleInit(){
-		return () => {
-		FwEvent.trigger(document,EVENT_BEFORE_INIT);
-		FwEvent.trigger(document,EVENT_INIT);
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK,
+      `*[data-toggle-${TOGGLE_MODE_ON}]`,
+      Switch.handleToggleOn()
+    );
 
-			UIPurge(
-				false,
-				`.${COMPONENT_CLASS}`,
-				(elem)=> {
-					new Switch(elem).init();
-				}
-			);
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK_PURGE,
+      `*`,
+      Switch.handleUniversalPurge()
+    );
 
-		FwEvent.trigger(document,EVENT_AFTER_INIT);
-		}
-	}
+    Initiator.Q.on_ready = Switch.handleInit();
+  }
+  static destroyListeners() {
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_CLICK,
+      Switch.handleToggleOff()
+    );
 
-	static handleUniversalPurge(){
-		return (e) => {
-			if (FwComponent.isDisabled(e.target)) {
-				e.preventDefault();
-			} else if(!FwComponent.isDynamic(e.target)) {
-				if (
-					!e.target.closest(`[data-toggle-${TOGGLE_MODE_ON}]`)
-					&& !e.target.closest(`[data-toggle-${TOGGLE_MODE_OFF}]`)
-					&& !e.target.closest(`.${COMPONENT_CLASS}`)
-				){
-					Switch.purge();
-				}
-			}
-			
-		}
-	}
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_CLICK,
+      Switch.handleToggleOn()
+    );
 
-	static initListeners(){
-
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CLICK,
-			`*[data-toggle-${TOGGLE_MODE_OFF}]`,
-			Switch.handleToggleOff()
-		);
-
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CLICK,
-			`*[data-toggle-${TOGGLE_MODE_ON}]`,
-			Switch.handleToggleOn()
-		);
-
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CLICK_PURGE,
-			`*`,
-			Switch.handleUniversalPurge()
-		);
-
-		Initiator.Q.on_ready = Switch.handleInit();
-	}
-	static destroyListeners(){
-
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CLICK,
-			Switch.handleToggleOff()
-		);
-
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CLICK,
-			Switch.handleToggleOn()
-		);
-
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CLICK_PURGE,
-			Switch.handleUniversalPurge()
-		);
-	}
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_CLICK_PURGE,
+      Switch.handleUniversalPurge()
+    );
+  }
 }
 
 export default Switch;

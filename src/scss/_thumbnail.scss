@@ -1,116 +1,127 @@
 /*** THUMBNAIL ***/
 $prefix: '.thumbnail';
 #{$prefix} {
-	background: $thumbnail-fallback-background;
-	@include aspect-ratio($thumbnail-size,$thumbnail-size,false,false,false,true,false);
-	width: 1em;
-	max-width:100%;
-	display:inline-block;
-	vertical-align:middle;
-	line-height: inherit;
-	position:relative;
-	font-size: $calculated-thumbnail-size;
+  background: $thumbnail-fallback-background;
+  @include aspect-ratio(
+    $thumbnail-size,
+    $thumbnail-size,
+    false,
+    false,
+    false,
+    true,
+    false
+  );
+  width: 1em;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: inherit;
+  position: relative;
+  font-size: $calculated-thumbnail-size;
 
-	&,&:hover,&:focus,&.focus {
-		text-decoration:none;
-	}
+  &,
+  &:hover,
+  &:focus,
+  &.focus {
+    text-decoration: none;
+  }
 
-	&-text {
-		display:flex;
-		text-align: center;
-		justify-content: center;
-		align-content: center;
-		align-items: center;
+  &-text {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 
-		@include type-set((
-			size: $calculated-thumbnail-font-size,
-			leading: $calculated-thumbnail-line-height,
-			color: $thumbnail-color #{'!important'},
-			weight: $thumbnail-font-weight,
-			style: $thumbnail-font-style,
-			case: $thumbnail-text-transform,
-		));
-	}
+    @include type-set(
+      (
+        size: $calculated-thumbnail-font-size,
+        leading: $calculated-thumbnail-line-height,
+        color: $thumbnail-color #{'!important'},
+        weight: $thumbnail-font-weight,
+        style: $thumbnail-font-style,
+        case: $thumbnail-text-transform,
+      )
+    );
+  }
 
+  &[class*='background-'] {
+    background-image: none;
+  }
 
-	&[class*=background-] {
-		background-image:none;
-	}
+  &,
+  &-image {
+    @include dump-styles(fit-image-cover);
+    border-radius: $thumbnail-border-radius;
+  }
 
-	&,&-image {
-		@include dump-styles(fit-image-cover);
-		border-radius: $thumbnail-border-radius;
-	}
+  &-image {
+    position: absolute;
+  }
 
-	&-image {
-		position:absolute;
-	}
+  &-image,
+  img {
+    overflow: hidden;
+  }
 
-	&-image,img {
-		overflow:hidden;
-	}
+  > *,
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+  }
 
-	> *,
-	img {
-		position:absolute;
-		top:0;
-		bottom:0;
-		right:0;
-		left:0;
-		margin:0;
-		overflow:hidden;
-	}
+  img {
+    max-width: none;
+    border-radius: inherit;
+    overflow: hidden;
+  }
 
-	img {
-		max-width: none;
-		border-radius:inherit;
-		overflow:hidden;
-	}
+  .badge,
+  .tag {
+    bottom: auto;
+    right: auto;
+    z-index: 2;
+    top: $thumbnail-addon-offset-x;
+    left: $thumbnail-addon-offset-y;
+    transform: translate(-50%, -50%);
+  }
 
-	.badge,
-	.tag {
-		bottom: auto;
-		right: auto;
-		z-index: 2;
-		top: $thumbnail-addon-offset-x;
-		left: $thumbnail-addon-offset-y;
-		transform: translate(-50%, -50%);
-	}
+  &-small,
+  &-medium {
+  }
 
-	&-small,
-	&-medium {
+  &#{$prefix}-small {
+    font-size: $calculated-thumbnail-small-size;
 
-	}
+    #{$prefix}-text {
+      font-size: $calculated-thumbnail-small-font-size;
+    }
+  }
 
-	&#{$prefix}-small {
-		font-size: $calculated-thumbnail-small-size;
+  &#{$prefix}-micro {
+    font-size: $calculated-thumbnail-micro-size;
 
-		#{$prefix}-text {
-			font-size: $calculated-thumbnail-small-font-size;
-		}
-	}
+    #{$prefix}-text {
+      font-size: $calculated-thumbnail-micro-font-size;
+    }
+  }
 
-	
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-	&#{$prefix}-micro {
-		font-size: $calculated-thumbnail-micro-size;
-
-		#{$prefix}-text {
-			font-size: $calculated-thumbnail-micro-font-size;
-		}
-	}
-
-	&-content {
-		display:flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	&-cluster {
-		#{$prefix} {
-			&:nth-last-child(n+2) {
-				margin-right: -.5em;
-			}
-		}
-	}
+  &-cluster {
+    #{$prefix} {
+      &:nth-last-child(n + 2) {
+        margin-right: -0.5em;
+      }
+    }
+  }
 }

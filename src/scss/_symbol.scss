@@ -16,1145 +16,1119 @@
 // 	font-style: normal;
 // }
 
-
 $prefix: '.symbol';
 #{$prefix} {
-
-	@include type-set((
-		font: 'FW Icons',
-		size: 1em,
-		weight: normal,
-		style: normal,
-		leading:1,
-	));
-	font-stretch: normal;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	display: inline-block;
-	text-rendering: auto;
-	pointer-events:none;
-	// font-size: 64px; //debug only
-	// outline: 1px solid red;
-
-	&:before {
-		// line-height: 2;
-		// margin: -.5em 0;
-		// display: inline-block;
-
-		body:not(.body-loaded) & {
-			color: transparent!important;
-		}
-	}
-
-	@each $tag,$content in $calculated-symbol-glyphs {
-		@include generate-symbol-styles(#{&}-#{$tag}) {
-			&:before {
-				content: unquote("\"")+unquote(str-insert($content, "\\", 1))+unquote("\"");
-			}
-			
-		}
-	}
-
-
-
-
-	// @DEPRECATE
-
-	// 	font:inherit;
-	// 	font-size: 100%;
-	// 	position:relative;
-	// 	display:inline-flex;
-	// 	line-height:1;
-	// 	font-style: normal;
-	// 	font-variant: normal;
-	// 	text-rendering: auto;
-	// 	flex: 0 0 auto; //retain dimensions
-	// 	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
-	// 	width: 1em;
-	// 	vertical-align:inherit;
-	// 	transform-origin: center center;
-	// 	pointer-events:none;
-	// 	align-self: center;
-	// 	align-items: center;
-	// 	align-content: center;
-	// 	justify-content: center;
-
-
-
-	// 	&:last-child {
-	// 		margin-right:0;
-	// 	}
-	// 	&:first-child {
-	// 		margin-left:0;
-	// 	}
-
-
-	// 	@at-root %for-valid-symbol{
-
-	// 		& {
-	// 			transform:none;
-	// 			transition:none;
-	// 		}
-			
-	// 		&-pseudo {
-	// 			content: "";
-	// 			display:block;
-	// 			color: inherit;
-	// 			position:absolute;
-	// 			top:0;
-	// 			bottom:0;
-	// 			left:0;
-	// 			right:0;
-	// 			margin: auto;
-	// 			transform:none;
-	// 			box-shadow:none;
-	// 			background: none;
-	// 			border: none;
-	// 			transition:
-	// 				none
-	// 				// $transition-duration-short color $transition-timing,
-	// 				// $transition-duration-short background-color $transition-timing
-	// 				;
-
-	// 			&-filled {
-	// 				background: currentColor;
-	// 			}
-
-	// 			&-border-radius {
-	// 				border-radius:  em(3px / $calculated-symbol-basis) * .5;
-	// 			}
-
-	// 			&-circle-ready {
-	// 				border-radius: 50%;
-	// 			}
-		
-	// 			&-vertical {
-	// 				width: em(3px / $calculated-symbol-basis);
-	// 			}
-		
-	// 			&-horizontal {
-	// 				height: em(3px / $calculated-symbol-basis);
-	// 			}
-		
-	// 			&-full-width {
-	// 				width: 1em;
-	// 			}
-		
-	// 			&-full-height {
-	// 				height: 1em;
-	// 			}
-	// 		}
-			
-	// 		&-no-before {
-	// 			&:before {
-	// 				content:none;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-pencil) {
-	// 		@extend %for-valid-symbol;
-	// 		// font-size: 128px;
-		
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 		}
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			width: .3125em;
-	// 			height: .3125em;
-	// 			top:auto;
-	// 			right:auto;
-	// 			clip-path: polygon(
-	// 				0 0,
-	// 				0 100%,
-	// 				100% 100%,
-	// 				calc(100% - #{em(1px/$calculated-symbol-basis)}) calc(100% - #{em(1px/$calculated-symbol-basis)}),
-	// 				45% calc(100% - #{em(1px/$calculated-symbol-basis)}),
-	// 				#{em(1px/$calculated-symbol-basis)} 56%,
-	// 				#{em(1px/$calculated-symbol-basis)} #{em(1px/$calculated-symbol-basis)},
-	// 			);
-	// 		}
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			clip-path: polygon(
-	// 				0 0,
-	// 				0 25%,
-	// 				100% 25%,
-	// 				100% calc(25% + #{em(1px/$calculated-symbol-basis)}),
-	// 				0 calc(25% + #{em(1px/$calculated-symbol-basis)}),
-	// 				0 calc(25% + #{em(2px/$calculated-symbol-basis)}),
-	// 				100% calc(25% + #{em(2px/$calculated-symbol-basis)}),
-	// 				100% calc(25% + #{em(3px/$calculated-symbol-basis)}),
-	// 				0 calc(25% + #{em(3px/$calculated-symbol-basis)}),
-	// 				0 100%,
-	// 				#{em(1.25px/$calculated-symbol-basis)} 100%,
-	// 				#{em(1.25px/$calculated-symbol-basis)} 92%,
-	// 				40% 97%,
-	// 				50% 92%,
-	// 				60% 97%,
-
-	// 				calc(100% - #{em(1.25px/$calculated-symbol-basis)}) 92%,
-	// 				calc(100% - #{em(1.25px/$calculated-symbol-basis)}) 100%,
-	// 				100% 100%,
-	// 				100% 0
-	// 			);
-	// 			transform: rotate(45deg);
-	// 			width: 0.4375em;
-	// 			// top: .125em;
-	// 			// right: .125em;
-	// 			height: .9875em;
-	// 			border-radius: .125em .125em 0 0;
-	// 			background-repeat: no-repeat;
-	// 			background-position: top center;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-edit) {
-	// 		@extend %for-valid-symbol;
-		
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 		}
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			clip-path: polygon(
-	// 				0 0,
-	// 				50% 0,
-	// 				50% em(2px/$calculated-symbol-basis),
-	// 				em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
-	// 				em(2px/$calculated-symbol-basis) calc(100% - #{em(2px/$calculated-symbol-basis)}),
-	// 				calc(100% - #{em(2px/$calculated-symbol-basis)}) calc(100% - #{em(2px/$calculated-symbol-basis)}), 
-	// 				calc(100% - #{em(2px/$calculated-symbol-basis)}) 50%,
-	// 				100% 50%,
-	// 				100% 100%,
-	// 				0 100%
-	// 			);
-	// 		}
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo-full-height;
-	// 			border: em(2px/$calculated-symbol-basis) solid;
-	// 			width: em(7px/$calculated-symbol-basis );
-	// 			border-radius: 0 0 50% 50%;
-	// 			transform: rotate(45deg);
-	// 			bottom: auto;
-	// 			left: auto;
-	// 			top: -.25em;
-	// 			background-image: 
-	// 				repeating-linear-gradient(
-	// 					180deg,
-	// 					currentColor 0,
-	// 					currentColor em(2px/$calculated-symbol-basis),
-	// 					transparent em(2px/$calculated-symbol-basis),
-	// 					transparent 100%
-	// 				)
-	// 			;
-	// 			background-repeat: no-repeat;
-	// 			background-position: bottom center;
-	// 			background-size: 100% .625em;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-delete) {
-	// 		@extend %for-valid-symbol;
-		
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 		}
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			height: em(3px/$calculated-symbol-basis);
-	// 			width: .5625em;
-	// 			bottom:1em;
-	// 			top: auto;
-
-	// 		}
-
-	// 		&:after {
-	// 			border: em(2px/$calculated-symbol-basis) solid;
-	// 			border-bottom-right-radius: .2em;
-	// 			border-bottom-left-radius: .2em;
-	// 			width: 1em;
-	// 			height:1.125em;
-	// 			bottom: -.125em;
-	// 			top: auto;
-	// 			background-image: 
-	// 				repeating-linear-gradient(
-	// 					90deg,
-	// 					currentColor 0,
-	// 					currentColor em(1px/$calculated-symbol-basis),
-	// 					transparent em(1px/$calculated-symbol-basis),
-	// 					transparent em(3px/$calculated-symbol-basis),
-	// 					currentColor em(3px/$calculated-symbol-basis),
-	// 					currentColor em(4px/$calculated-symbol-basis),
-	// 					transparent em(4px/$calculated-symbol-basis),
-	// 					transparent em(6px/$calculated-symbol-basis),
-	// 					currentColor em(6px/$calculated-symbol-basis),
-	// 					currentColor em(7px/$calculated-symbol-basis),
-	// 				),
-
-	// 				// currentColor 0,
-	// 				// currentColor em(1px/$calculated-symbol-basis),
-	// 				// transparent em(1px/$calculated-symbol-basis),
-	// 				// transparent em(2.5px/$calculated-symbol-basis),
-	// 				// currentColor em(2.5px/$calculated-symbol-basis),
-	// 				// currentColor em(3.5px/$calculated-symbol-basis),
-	// 				// transparent em(3.5px/$calculated-symbol-basis),
-	// 				// transparent em(5px/$calculated-symbol-basis),
-	// 				// currentColor em(5px/$calculated-symbol-basis),
-	// 				// currentColor em(6px/$calculated-symbol-basis),
-	// 				;
-	// 			background-size: em(7px/$calculated-symbol-basis) .5em;
-	// 			background-position: center center;
-	// 			background-repeat: no-repeat;
-	// 		}
-	// 	}
-
-
-
-	// 	@include generate-symbol-styles((#{&}-stop,#{&}-square)) {
-	// 		@extend %for-valid-symbol-no-before;
-	// 		@extend %for-valid-symbol;
-		
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			@extend %for-valid-symbol-pseudo-full-width;
-	// 			@extend %for-valid-symbol-pseudo-full-height;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-play) {
-	// 		@extend %for-valid-symbol;
-	// 		@extend %for-valid-symbol-no-before;
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			border-top: .5em solid transparent;
-	// 			border-bottom: .5em solid transparent;
-	// 			border-left: .875em solid;
-	// 			left: .1875em;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-pause) {
-	// 		@extend %for-valid-symbol;
-			
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			@extend %for-valid-symbol-pseudo-full-height;
-	// 			width: .3125em;
-	// 		}
-
-	// 		&:before {
-	// 			right: .5em;
-	// 		}
-
-	// 		&:after {
-	// 			left: .5em;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-search) {
-	// 		@extend %for-valid-symbol;
-	// 		transform: rotate(-45deg);
-
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 		}
-			
-			
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-full-height;
-	// 			@extend %for-valid-symbol-pseudo-full-width;
-	// 			@extend %for-valid-symbol-pseudo-circle-ready;
-	// 			border: em(3px / $calculated-symbol-basis) solid;
-	// 			bottom: auto;
-	// 			top: -.25em
-
-	// 		}
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo-vertical;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			height: .625em;
-	// 			top: calc(.75em - (#{em(3px / $calculated-symbol-basis)} * .5));
-	// 			bottom: auto;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles((#{&}-time,#{&}-timer)) {
-	// 		@extend %for-valid-symbol;
-			
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-circle-ready;
-	// 			// @extend %for-valid-symbol-pseudo-full-height;
-	// 			// @extend %for-valid-symbol-pseudo-full-width;
-	// 			border: em(2px / $calculated-symbol-basis) solid;
-	// 			width: 1.125em;
-	// 			height: 1.125em;
-	// 			left: -.5em;
-	// 			right: -.5em;
-	// 			bottom: -.125em;
-	// 			top: auto;
-	// 			background-image: 
-	// 				//long
-	// 				repeating-linear-gradient(
-	// 					90deg,
-	// 					currentColor 0,
-	// 					currentColor em(2px / $calculated-symbol-basis),
-	// 					transparent em(2px / $calculated-symbol-basis),
-	// 					transparent 100%,
-	// 				),
-	// 				// short
-	// 				linear-gradient(
-	// 					0deg,
-	// 					currentColor 0,
-	// 					currentColor em(2px / $calculated-symbol-basis),
-	// 					transparent em(2px / $calculated-symbol-basis),
-	// 					transparent 100%,
-	// 				),
-	// 				;
-
-	// 			background-position:
-	// 				(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
-	// 				;
-	// 			background-size:
-	// 				.3em .4em
-	// 				// // .25em .5em
-	// 				;
-	// 			background-repeat: no-repeat;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-time) {
-	// 		@extend %for-valid-symbol-no-before;
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-timer) {
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			width: .5em;
-	// 			height:em(2px / $calculated-symbol-basis);
-	// 			right: -.1875em;
-	// 			left: auto;
-	// 			bottom: auto;
-	// 			// top: -.125em;
-	// 			top:0;
-	// 			transform: rotate(45deg);
-	// 		}
-	// 	}
-
-
-
-	// 	@include generate-symbol-styles((#{&}-plus,#{&}-minus)) {
-				
-	// 		&:after{
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-horizontal;
-	// 			@extend %for-valid-symbol-pseudo-full-width;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			// top: 50%;
-	// 			// bottom: auto;
-	// 			// transform: translateY(-50%);
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-plus) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-vertical;
-	// 			@extend %for-valid-symbol-pseudo-full-height;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			height:1em;
-	// 			// left: 50%;
-	// 			// right: auto;
-	// 			// transform: translateX(-50%);
-	// 		}
-	// 	}
-		
-	// 	@include generate-symbol-styles(#{&}-minus) {
-	// 		@extend %for-valid-symbol;
-	// 		@extend %for-valid-symbol-no-before;
-	// 	}
-
-		
-	// 	@include generate-symbol-styles(#{&}-check) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			top: auto;
-	// 			left: .25em;
-	// 			right: auto;
-	// 			bottom: .125em;
-	// 			transform-origin: 42% 88%;
-	// 		}
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo-vertical;
-	// 			height: .5em;
-	// 			transform: rotate(-45deg);
-	// 		}
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo-vertical;
-	// 			height: 1em;
-	// 			transform: rotate(45deg);
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-close) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-vertical;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			height: 1.25em;
-	// 		}
-	// 		&:before {
-	// 			transform: rotate(45deg)
-	// 		}
-	// 		&:after {
-	// 			transform: rotate(-45deg)
-	// 		}
-	// 	}
-
-
-	// 	@include generate-symbol-styles(#{&}-map) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			transform:translateY(#{em(5/$calculated-symbol-basis) * -1});
-	// 			transform-origin: top center;
-	// 			bottom:auto;
-	// 		}
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo-full-height;
-	// 			@extend %for-valid-symbol-pseudo-full-width;
-	// 			border-radius: 50%;
-	// 			border: #{em(4px / $calculated-symbol-basis)} solid;
-				
-	// 		}
-
-	// 		&:after {
-	// 			border: #{em(6.25px / $calculated-symbol-basis)} solid transparent;
-	// 			border-top: #{em(12px / $calculated-symbol-basis)} solid;
-	// 			border-bottom:0;
-	// 			width: 0;
-	// 			height: 0;
-	// 			margin: 0 auto;
-	// 			top:calc(1em - #{em(3px / $calculated-symbol-basis)});
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-file) {
-	// 		@extend %for-valid-symbol;
-	// 		@extend %for-valid-symbol-no-before;
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			width: .875em;
-	// 			clip-path: polygon(
-	// 				0% 0%,
-	// 				0% 100%,
-	// 				100% 100%,
-	// 				100% 30%,
-	// 				calc(50% + #{em(2px / $calculated-symbol-basis)}) 0,
-	// 				50% 0,
-	// 				50% calc(30% + #{em(2px / $calculated-symbol-basis)}),
-	// 				calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(30% + #{em(2px / $calculated-symbol-basis)}),
-	// 				calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
-	// 				calc(50% + #{em(2px / $calculated-symbol-basis)}) 30%,
-	// 				calc(50% + #{em(2px / $calculated-symbol-basis)}) em(2px / $calculated-symbol-basis),
-	// 				calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
-	// 				calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(100% - #{em(2px / $calculated-symbol-basis)}),
-	// 				em(2px / $calculated-symbol-basis) calc(100% - #{em(2px / $calculated-symbol-basis)}),
-	// 				em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
-	// 				50% em(2px / $calculated-symbol-basis),
-	// 				50% 0,
-
-	// 			);
-
-	// 		}
-	// 	}
-
-
-
-	// 	&-star {
-	// 		@include generate-symbol-styles((#{&},#{&}-half,#{&}-stroke)) {
-	// 			@extend %for-valid-symbol;
-	// 			@extend %for-valid-symbol-no-before;
-
-	// 			&:after {
-	// 				@extend %for-valid-symbol-pseudo;
-	// 				@extend %for-valid-symbol-pseudo-filled;
-	// 				width: 1.25em;
-	// 				height: 1.25em;
-	// 				top: -.5em;
-	// 				bottom: -.5em;
-	// 				left: -.5em;
-	// 				right: -.5em;
-
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}) {
-	// 			&:after {
-	// 				clip-path: polygon(
-	// 					50% 5%,
-	// 					64% 38%,
-	// 					100% 41%,
-	// 					73% 65%,
-	// 					80% 100%,
-	// 					50% 82%,
-	// 					20% 100%,
-	// 					27% 65%,
-	// 					0% 41%,
-	// 					36% 38%,
-	// 				);
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-half) {
-	// 			&:after {
-	// 				clip-path: polygon(
-	// 					50% 5%,
-	// 					64% 38%,
-	// 					100% 41%,
-	// 					73% 65%,
-	// 					80% 100%,
-	// 					50% 82%,
-	// 					20% 100%,
-	// 					27% 65%,
-	// 					0% 41%,
-	// 					36% 38%,
-
-	// 					50% 5%,
-
-	// 					50% 26%,
-
-	// 					47% 33%,
-	// 					47% 74%,
-						
-	// 					50% 72%,
-	// 					68% 83%,
-	// 					64% 62%,
-	// 					80% 48%,
-	// 					59% 46%,
-	// 					50% 26%,
-	// 				);
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-stroke) {
-	// 			&:after {
-	// 				clip-path: polygon(
-	// 					50% 5%,
-	// 					64% 38%,
-	// 					100% 41%,
-	// 					73% 65%,
-	// 					80% 100%,
-	// 					50% 82%,
-	// 					20% 100%,
-	// 					27% 65%,
-	// 					0% 41%,
-	// 					36% 38%,
-
-	// 					50% 5%,
-
-	// 					50% 26%,
-	// 					41% 46%,
-	// 					20% 48%,
-	// 					36% 62%,
-	// 					32% 83%,
-	// 					50% 72%,
-	// 					68% 83%,
-	// 					64% 62%,
-	// 					80% 48%,
-	// 					59% 46%,
-	// 					50% 26%,
-						
-	// 				);
-	// 			}
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-download) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 		}
-
-	// 		&:before {
-	// 			@extend %for-valid-symbol-pseudo-full-width;
-	// 			height: .375em;
-	// 			border-bottom: em(2px/$calculated-symbol-basis) solid;
-	// 			border-right: em(2px/$calculated-symbol-basis) solid;
-	// 			border-left: em(2px/$calculated-symbol-basis) solid;
-	// 			top: auto;
-	// 		}
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo-filled;
-	// 			clip-path: polygon(
-	// 				calc(50% - #{em(2px/$calculated-symbol-basis)} * .5) 0,
-	// 				calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 0,
-	// 				calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 60%,
-	// 				100% 60%,
-	// 				50% 100%,
-	// 				0 60%,
-	// 				calc(50% - #{em(2px/$calculated-symbol-basis)} * .5)  60%
-	// 			);
-	// 			height: .625em;
-	// 			width: .5em;
-	// 			bottom: auto;
-	// 			// background-image:
-	// 			// 	repeating-linear-gradient(
-	// 			// 		90deg,
-	// 			// 		transparent 0,
-	// 			// 		transparent calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
-	// 			// 		currentColor calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
-	// 			// 		currentColor calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
-	// 			// 		transparent calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
-	// 			// 		transparent 100%
-	// 			// 	),
-	// 			// 	linear-gradient(
-	// 			// 		45deg,
-	// 			// 		transparent 0,
-	// 			// 		transparent 50%,
-	// 			// 		currentColor 50%,
-	// 			// 		currentColor 100%
-	// 			// 	),
-
-	// 			// 	linear-gradient(
-	// 			// 		-45deg,
-	// 			// 		transparent 0,
-	// 			// 		transparent 50%,
-	// 			// 		currentColor 50%,
-	// 			// 		currentColor 100%
-	// 			// 	)
-	// 			// 	;
-
-	// 			// background-size:
-	// 			// 	100% 90%,
-	// 			// 	.25em .25em,
-	// 			// 	.25em .25em
-	// 			// 	;
-	// 			// background-position:
-	// 			// 	0 0,
-	// 			// 	.125em 100%,
-	// 			// 	bottom 0 right .125em,
-	// 			// 	;
-	// 			// background-repeat: no-repeat;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-hyperlink) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:before,&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			width: .6875em;
-	// 			height: .5em;
-	// 			border-radius: .25em;
-	// 			border: em(2px / $calculated-symbol-basis) solid;
-	// 			// transform-origin: center center;
-	// 			transform: rotate(-45deg)
-	// 		}
-
-	// 		&:before {
-	// 			top: auto;
-	// 			right: auto;
-	// 			bottom: -.125em;
-	// 			left: .25em;
-	// 			transform-origin: bottom left;
-	// 		}
-
-	// 		&:after {
-	// 			bottom: auto;
-	// 			left: auto;
-	// 			top: -.125em;
-	// 			right: .25em;
-	// 			transform-origin: top right;
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles((#{&}-fries,#{&}-burger)) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:after {
-	// 			@extend %for-valid-symbol-pseudo;
-	// 			@extend %for-valid-symbol-pseudo-border-radius;
-	// 			@extend %for-valid-symbol-pseudo-filled;
-				
-
-	// 			box-shadow:
-	// 				0 #{em(3px / $calculated-symbol-basis) * 2} 0 0,
-	// 				0 #{em(3px / $calculated-symbol-basis) * -2} 0 0
-	// 				;
-	// 			height:  em(3px / $calculated-symbol-basis);
-	// 		}
-	// 	}
-
-	// 	@include generate-symbol-styles(#{&}-fries) {
-	// 		@extend %for-valid-symbol;
-
-	// 		&:after {
-	// 			transform: rotate(90deg);
-	// 		}
-	// 	}
-
-
-
-	// 	&-kebab {
-
-	// 		@include generate-symbol-styles((#{&}-horizontal,#{&}-vertical)) {
-	// 			@extend %for-valid-symbol-no-before;
-	// 			@extend %for-valid-symbol;
-
-	// 			&:after {
-	// 				@extend %for-valid-symbol-pseudo;
-	// 				@extend %for-valid-symbol-pseudo-filled;
-	// 				@extend %for-valid-symbol-pseudo-circle-ready;
-	// 				width: em(4px/$calculated-symbol-basis);
-	// 				height: em(4px/$calculated-symbol-basis);
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-vertical) {
-	// 			width: em(4px/$calculated-symbol-basis);
-	// 			&:after {
-	// 				box-shadow: 
-	// 					0 em((4px * -2) /$calculated-symbol-basis) 0 0,
-	// 					0 em((4px * 2) /$calculated-symbol-basis) 0 0
-	// 					;
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-horizontal) {
-	// 			width: em((4px * 5)/$calculated-symbol-basis);
-	// 			&:after {
-	// 				box-shadow: 
-	// 				em((4px * -2) /$calculated-symbol-basis)0  0 0,
-	// 				em((4px * 2) /$calculated-symbol-basis) 0 0 0
-	// 					;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	&-arrow {
-	// 		&,
-	// 		&-double,
-	// 		&-tail {
-	// 			&-left,
-	// 			&-right,
-	// 			&-up,
-	// 			&-down {
-	// 				@include generate-symbol-styles(#{&}){
-	// 					@extend %for-valid-symbol;
-			
-	// 					&:before,&:after {
-	// 						@extend %for-valid-symbol-pseudo;
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-
-	// 		&,
-	// 		&-double {
-	// 			&-left,
-	// 			&-right,
-	// 			&-up,
-	// 			&-down {
-	// 				@include generate-symbol-styles(#{&}){
-	// 					@extend %for-valid-symbol;
-			
-	// 					&:before,&:after {
-	// 						@extend %for-valid-symbol-pseudo-border-radius;
-	// 						@extend %for-valid-symbol-pseudo-filled;
-	// 						@extend %for-valid-symbol-pseudo-vertical;
-	// 						height: .6875em;
-	// 						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
-	// 					}
-			
-	// 					&:before{
-	// 						transform: rotate(-45deg);
-	// 					}
-			
-	// 					&:after{
-	// 						transform: rotate(45deg);
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-
-
-	// 		&-double,
-	// 		&-tail {
-	// 			&-left,
-	// 			&-right,
-	// 			&-up,
-	// 			&-down {
-	// 				@include generate-symbol-styles(#{&}){
-	// 					&:before,&:after {
-	// 						top:0;
-	// 						bottom: auto;
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-
-	// 		& {
-	// 			&-left,
-	// 			&-right,
-	// 			&-up,
-	// 			&-down {
-	// 				@include generate-symbol-styles(#{&}){
-	// 					height: .75em;
-	// 				}
-	// 			}
-	// 		}
-
-	// 		&-double {
-	// 			&-left,
-	// 			&-right,
-	// 			&-up,
-	// 			&-down {
-	// 				@include generate-symbol-styles(#{&}){
-	// 					&:before{
-	// 						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
-	// 					}
-
-	// 					&:after{
-	// 						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * -3.5)/$calculated-symbol-basis) 0 0;
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-
-	// 		&-tail {
-	// 			&-left,
-	// 			&-right,
-	// 			&-up,
-	// 			&-down {
-	// 				@include generate-symbol-styles(#{&}){
-	// 					&:before {
-	// 						height: .625em;
-	// 						width: .625em;
-	// 						border-top: em(2px/$calculated-symbol-basis) solid;
-	// 						border-right: em(2px/$calculated-symbol-basis) solid;
-	// 						transform: rotate(-45deg);
-	// 					}
-
-	// 					&:after {
-	// 						@extend %for-valid-symbol-pseudo-full-height;
-	// 						@extend %for-valid-symbol-pseudo-filled;
-	// 						width: em(2px/$calculated-symbol-basis);
-	// 					}
-	// 					// @extend %for-valid-symbol-pseudo-border-radius;
-	// 					// @extend %for-valid-symbol-pseudo-horizontal;
-	// 					// @extend %for-valid-symbol-pseudo-filled;
-	// 					// transform-origin: 10% 0;
-						
-	// 					// background-image:
-	// 					// 	linear-gradient(currentColor 0, currentColor 100%),
-	// 					// 	radial-gradient(
-	// 					// 		circle at em(($calculated-symbol-basis - (3px * .5))/$calculated-symbol-basis) 50%,
-	// 					// 		currentColor 0,
-	// 					// 		currentColor em((3px * .5)/$calculated-symbol-basis),
-	// 					// 		transparent em((3px * .5)/$calculated-symbol-basis),
-	// 					// 		transparent 100%
-	// 					// 		)
-	// 					// 	;
-
-	// 					// background-size:
-	// 					// 	em(($calculated-symbol-basis - 3px)/$calculated-symbol-basis) em(3px/$calculated-symbol-basis),
-	// 					// 	1em 1em
-	// 					// 	;
-	// 					// background-position:
-	// 					// 	center center,
-	// 					// 	right center
-	// 					// 	;
-	// 					// background-repeat: no-repeat;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-
-	// 	&-caret {
-	// 		// width: em(($calculated-symbol-caret-width * .5) / $calculated-symbol-basis);
-	// 		// width:0;
-
-	// 		&-left,
-	// 		&-right,
-	// 		&-up,
-	// 		&-down {
-	// 			@include generate-symbol-styles(#{&}){
-	// 				@extend %for-valid-symbol;
-	// 				@extend %for-valid-symbol-no-before;
-	// 				width: .625em;
-	// 				height: .75em;
-
-	// 				&:after {
-
-	// 					@extend %for-valid-symbol-pseudo;
-	// 					@extend %for-valid-symbol-pseudo-border-radius;
-	// 					@extend %for-valid-symbol-pseudo-vertical;
-	// 					@include arrow-triangle((
-	// 						pseudo: override, 
-	// 						direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of 
-	// 						display: null,
-	// 						size-base: inherit,
-	// 						main-size: $calculated-symbol-caret-height,//orientation of direction
-	// 						cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
-	// 					));
-	// 				}
-	// 			}
-	// 		}
-
-	// 	}
-
-	// 	&-caret,
-	// 	&-arrow,
-	// 	&-arrow-tail,
-	// 	&-arrow-double {
-	// 		&-up {
-	// 			@include generate-symbol-styles(#{&}) {
-	// 				transform: rotate(0deg);
-	// 			}
-	// 		}
-
-	// 		&-down {
-	// 			@include generate-symbol-styles(#{&}) {
-	// 				transform: rotate(180deg);
-	// 			}
-	// 		}
-
-
-	// 		&-left {
-	// 			@include generate-symbol-styles(#{&}) {
-	// 				transform: rotate(-90deg);
-	// 			}
-	// 		}
-
-	// 		&-right {
-	// 			@include generate-symbol-styles(#{&}) {
-	// 				transform: rotate(90deg);
-	// 			}
-	// 		}
-	// 	}
-
-
-	// 	&-text {
-	// 		&-left,
-	// 		&-right,
-	// 		&-center,
-	// 		&-justify {
-	// 			@include generate-symbol-styles(#{&}){
-	// 				@extend %for-valid-symbol;
-	// 				@extend %for-valid-symbol-no-before;
-
-
-	// 				&:after {
-	// 					@extend %for-valid-symbol-pseudo;
-	// 					@extend %for-valid-symbol-pseudo-border-radius;
-	// 					@extend %for-valid-symbol-pseudo-filled;
-	// 					height: em(2px / $calculated-symbol-basis);
-	// 					width: .5em;
-	// 				}
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-left) {
-	// 			&:after {
-	// 				box-shadow:
-	// 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-
-	// 				-.25em 0 0 0,
-	// 				.25em 0 0 0,
-
-	// 				-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				0em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				;
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-right) {
-	// 			&:after {
-	// 				box-shadow:
-	// 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-
-	// 				-.25em 0 0 0,
-	// 				.25em 0 0 0,
-					
-	// 				.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				;
-	// 			}
-	// 		}
-
-	// 		@include generate-symbol-styles(#{&}-center) {
-	// 			&:after {
-	// 				box-shadow:
-	// 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-
-	// 				-.25em 0 0 0,
-	// 				.25em 0 0 0,
-
-	// 				-.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				;
-	// 			}
-	// 		}
-
-
-	// 		@include generate-symbol-styles(#{&}-justify) {
-	// 			&:after {
-	// 				box-shadow:
-	// 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-	// 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
-
-	// 				-.25em 0 0 0,
-	// 				.25em 0 0 0,
-
-	// 				-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
-	// 				;
-	// 			}
-	// 		}
-	// 	}
-
-
+  @include type-set(
+    (
+      font: 'FW Icons',
+      size: 1em,
+      weight: normal,
+      style: normal,
+      leading: 1,
+    )
+  );
+  font-stretch: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-rendering: auto;
+  pointer-events: none;
+  // font-size: 64px; //debug only
+  // outline: 1px solid red;
+
+  &:before {
+    // line-height: 2;
+    // margin: -.5em 0;
+    // display: inline-block;
+
+    body:not(.body-loaded) & {
+      color: transparent !important;
+    }
+  }
+
+  @each $tag, $content in $calculated-symbol-glyphs {
+    @include generate-symbol-styles(#{&}-#{$tag}) {
+      &:before {
+        content: unquote('"') + unquote(str-insert($content, '\\', 1)) + unquote('"');
+      }
+    }
+  }
+
+  // @DEPRECATE
+
+  // 	font:inherit;
+  // 	font-size: 100%;
+  // 	position:relative;
+  // 	display:inline-flex;
+  // 	line-height:1;
+  // 	font-style: normal;
+  // 	font-variant: normal;
+  // 	text-rendering: auto;
+  // 	flex: 0 0 auto; //retain dimensions
+  // 	height: 1em; //bitch does weird overflow scroll shit on where it shouldnt on things i want to scroll when overflowing and shit so bitchs height is like that now
+  // 	width: 1em;
+  // 	vertical-align:inherit;
+  // 	transform-origin: center center;
+  // 	pointer-events:none;
+  // 	align-self: center;
+  // 	align-items: center;
+  // 	align-content: center;
+  // 	justify-content: center;
+
+  // 	&:last-child {
+  // 		margin-right:0;
+  // 	}
+  // 	&:first-child {
+  // 		margin-left:0;
+  // 	}
+
+  // 	@at-root %for-valid-symbol{
+
+  // 		& {
+  // 			transform:none;
+  // 			transition:none;
+  // 		}
+
+  // 		&-pseudo {
+  // 			content: "";
+  // 			display:block;
+  // 			color: inherit;
+  // 			position:absolute;
+  // 			top:0;
+  // 			bottom:0;
+  // 			left:0;
+  // 			right:0;
+  // 			margin: auto;
+  // 			transform:none;
+  // 			box-shadow:none;
+  // 			background: none;
+  // 			border: none;
+  // 			transition:
+  // 				none
+  // 				// $transition-duration-short color $transition-timing,
+  // 				// $transition-duration-short background-color $transition-timing
+  // 				;
+
+  // 			&-filled {
+  // 				background: currentColor;
+  // 			}
+
+  // 			&-border-radius {
+  // 				border-radius:  em(3px / $calculated-symbol-basis) * .5;
+  // 			}
+
+  // 			&-circle-ready {
+  // 				border-radius: 50%;
+  // 			}
+
+  // 			&-vertical {
+  // 				width: em(3px / $calculated-symbol-basis);
+  // 			}
+
+  // 			&-horizontal {
+  // 				height: em(3px / $calculated-symbol-basis);
+  // 			}
+
+  // 			&-full-width {
+  // 				width: 1em;
+  // 			}
+
+  // 			&-full-height {
+  // 				height: 1em;
+  // 			}
+  // 		}
+
+  // 		&-no-before {
+  // 			&:before {
+  // 				content:none;
+  // 			}
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-pencil) {
+  // 		@extend %for-valid-symbol;
+  // 		// font-size: 128px;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			width: .3125em;
+  // 			height: .3125em;
+  // 			top:auto;
+  // 			right:auto;
+  // 			clip-path: polygon(
+  // 				0 0,
+  // 				0 100%,
+  // 				100% 100%,
+  // 				calc(100% - #{em(1px/$calculated-symbol-basis)}) calc(100% - #{em(1px/$calculated-symbol-basis)}),
+  // 				45% calc(100% - #{em(1px/$calculated-symbol-basis)}),
+  // 				#{em(1px/$calculated-symbol-basis)} 56%,
+  // 				#{em(1px/$calculated-symbol-basis)} #{em(1px/$calculated-symbol-basis)},
+  // 			);
+  // 		}
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			clip-path: polygon(
+  // 				0 0,
+  // 				0 25%,
+  // 				100% 25%,
+  // 				100% calc(25% + #{em(1px/$calculated-symbol-basis)}),
+  // 				0 calc(25% + #{em(1px/$calculated-symbol-basis)}),
+  // 				0 calc(25% + #{em(2px/$calculated-symbol-basis)}),
+  // 				100% calc(25% + #{em(2px/$calculated-symbol-basis)}),
+  // 				100% calc(25% + #{em(3px/$calculated-symbol-basis)}),
+  // 				0 calc(25% + #{em(3px/$calculated-symbol-basis)}),
+  // 				0 100%,
+  // 				#{em(1.25px/$calculated-symbol-basis)} 100%,
+  // 				#{em(1.25px/$calculated-symbol-basis)} 92%,
+  // 				40% 97%,
+  // 				50% 92%,
+  // 				60% 97%,
+
+  // 				calc(100% - #{em(1.25px/$calculated-symbol-basis)}) 92%,
+  // 				calc(100% - #{em(1.25px/$calculated-symbol-basis)}) 100%,
+  // 				100% 100%,
+  // 				100% 0
+  // 			);
+  // 			transform: rotate(45deg);
+  // 			width: 0.4375em;
+  // 			// top: .125em;
+  // 			// right: .125em;
+  // 			height: .9875em;
+  // 			border-radius: .125em .125em 0 0;
+  // 			background-repeat: no-repeat;
+  // 			background-position: top center;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-edit) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			clip-path: polygon(
+  // 				0 0,
+  // 				50% 0,
+  // 				50% em(2px/$calculated-symbol-basis),
+  // 				em(2px/$calculated-symbol-basis) em(2px/$calculated-symbol-basis),
+  // 				em(2px/$calculated-symbol-basis) calc(100% - #{em(2px/$calculated-symbol-basis)}),
+  // 				calc(100% - #{em(2px/$calculated-symbol-basis)}) calc(100% - #{em(2px/$calculated-symbol-basis)}),
+  // 				calc(100% - #{em(2px/$calculated-symbol-basis)}) 50%,
+  // 				100% 50%,
+  // 				100% 100%,
+  // 				0 100%
+  // 			);
+  // 		}
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo-full-height;
+  // 			border: em(2px/$calculated-symbol-basis) solid;
+  // 			width: em(7px/$calculated-symbol-basis );
+  // 			border-radius: 0 0 50% 50%;
+  // 			transform: rotate(45deg);
+  // 			bottom: auto;
+  // 			left: auto;
+  // 			top: -.25em;
+  // 			background-image:
+  // 				repeating-linear-gradient(
+  // 					180deg,
+  // 					currentColor 0,
+  // 					currentColor em(2px/$calculated-symbol-basis),
+  // 					transparent em(2px/$calculated-symbol-basis),
+  // 					transparent 100%
+  // 				)
+  // 			;
+  // 			background-repeat: no-repeat;
+  // 			background-position: bottom center;
+  // 			background-size: 100% .625em;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-delete) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			height: em(3px/$calculated-symbol-basis);
+  // 			width: .5625em;
+  // 			bottom:1em;
+  // 			top: auto;
+
+  // 		}
+
+  // 		&:after {
+  // 			border: em(2px/$calculated-symbol-basis) solid;
+  // 			border-bottom-right-radius: .2em;
+  // 			border-bottom-left-radius: .2em;
+  // 			width: 1em;
+  // 			height:1.125em;
+  // 			bottom: -.125em;
+  // 			top: auto;
+  // 			background-image:
+  // 				repeating-linear-gradient(
+  // 					90deg,
+  // 					currentColor 0,
+  // 					currentColor em(1px/$calculated-symbol-basis),
+  // 					transparent em(1px/$calculated-symbol-basis),
+  // 					transparent em(3px/$calculated-symbol-basis),
+  // 					currentColor em(3px/$calculated-symbol-basis),
+  // 					currentColor em(4px/$calculated-symbol-basis),
+  // 					transparent em(4px/$calculated-symbol-basis),
+  // 					transparent em(6px/$calculated-symbol-basis),
+  // 					currentColor em(6px/$calculated-symbol-basis),
+  // 					currentColor em(7px/$calculated-symbol-basis),
+  // 				),
+
+  // 				// currentColor 0,
+  // 				// currentColor em(1px/$calculated-symbol-basis),
+  // 				// transparent em(1px/$calculated-symbol-basis),
+  // 				// transparent em(2.5px/$calculated-symbol-basis),
+  // 				// currentColor em(2.5px/$calculated-symbol-basis),
+  // 				// currentColor em(3.5px/$calculated-symbol-basis),
+  // 				// transparent em(3.5px/$calculated-symbol-basis),
+  // 				// transparent em(5px/$calculated-symbol-basis),
+  // 				// currentColor em(5px/$calculated-symbol-basis),
+  // 				// currentColor em(6px/$calculated-symbol-basis),
+  // 				;
+  // 			background-size: em(7px/$calculated-symbol-basis) .5em;
+  // 			background-position: center center;
+  // 			background-repeat: no-repeat;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles((#{&}-stop,#{&}-square)) {
+  // 		@extend %for-valid-symbol-no-before;
+  // 		@extend %for-valid-symbol;
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			@extend %for-valid-symbol-pseudo-full-width;
+  // 			@extend %for-valid-symbol-pseudo-full-height;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-play) {
+  // 		@extend %for-valid-symbol;
+  // 		@extend %for-valid-symbol-no-before;
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			border-top: .5em solid transparent;
+  // 			border-bottom: .5em solid transparent;
+  // 			border-left: .875em solid;
+  // 			left: .1875em;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-pause) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			@extend %for-valid-symbol-pseudo-full-height;
+  // 			width: .3125em;
+  // 		}
+
+  // 		&:before {
+  // 			right: .5em;
+  // 		}
+
+  // 		&:after {
+  // 			left: .5em;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-search) {
+  // 		@extend %for-valid-symbol;
+  // 		transform: rotate(-45deg);
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-full-height;
+  // 			@extend %for-valid-symbol-pseudo-full-width;
+  // 			@extend %for-valid-symbol-pseudo-circle-ready;
+  // 			border: em(3px / $calculated-symbol-basis) solid;
+  // 			bottom: auto;
+  // 			top: -.25em
+
+  // 		}
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo-vertical;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			height: .625em;
+  // 			top: calc(.75em - (#{em(3px / $calculated-symbol-basis)} * .5));
+  // 			bottom: auto;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles((#{&}-time,#{&}-timer)) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-circle-ready;
+  // 			// @extend %for-valid-symbol-pseudo-full-height;
+  // 			// @extend %for-valid-symbol-pseudo-full-width;
+  // 			border: em(2px / $calculated-symbol-basis) solid;
+  // 			width: 1.125em;
+  // 			height: 1.125em;
+  // 			left: -.5em;
+  // 			right: -.5em;
+  // 			bottom: -.125em;
+  // 			top: auto;
+  // 			background-image:
+  // 				//long
+  // 				repeating-linear-gradient(
+  // 					90deg,
+  // 					currentColor 0,
+  // 					currentColor em(2px / $calculated-symbol-basis),
+  // 					transparent em(2px / $calculated-symbol-basis),
+  // 					transparent 100%,
+  // 				),
+  // 				// short
+  // 				linear-gradient(
+  // 					0deg,
+  // 					currentColor 0,
+  // 					currentColor em(2px / $calculated-symbol-basis),
+  // 					transparent em(2px / $calculated-symbol-basis),
+  // 					transparent 100%,
+  // 				),
+  // 				;
+
+  // 			background-position:
+  // 				(.475em - em(2px / $calculated-symbol-basis)) em(2px / $calculated-symbol-basis)
+  // 				;
+  // 			background-size:
+  // 				.3em .4em
+  // 				// // .25em .5em
+  // 				;
+  // 			background-repeat: no-repeat;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-time) {
+  // 		@extend %for-valid-symbol-no-before;
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-timer) {
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			width: .5em;
+  // 			height:em(2px / $calculated-symbol-basis);
+  // 			right: -.1875em;
+  // 			left: auto;
+  // 			bottom: auto;
+  // 			// top: -.125em;
+  // 			top:0;
+  // 			transform: rotate(45deg);
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles((#{&}-plus,#{&}-minus)) {
+
+  // 		&:after{
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-horizontal;
+  // 			@extend %for-valid-symbol-pseudo-full-width;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			// top: 50%;
+  // 			// bottom: auto;
+  // 			// transform: translateY(-50%);
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-plus) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-vertical;
+  // 			@extend %for-valid-symbol-pseudo-full-height;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			height:1em;
+  // 			// left: 50%;
+  // 			// right: auto;
+  // 			// transform: translateX(-50%);
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-minus) {
+  // 		@extend %for-valid-symbol;
+  // 		@extend %for-valid-symbol-no-before;
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-check) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			top: auto;
+  // 			left: .25em;
+  // 			right: auto;
+  // 			bottom: .125em;
+  // 			transform-origin: 42% 88%;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo-vertical;
+  // 			height: .5em;
+  // 			transform: rotate(-45deg);
+  // 		}
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo-vertical;
+  // 			height: 1em;
+  // 			transform: rotate(45deg);
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-close) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-vertical;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			height: 1.25em;
+  // 		}
+  // 		&:before {
+  // 			transform: rotate(45deg)
+  // 		}
+  // 		&:after {
+  // 			transform: rotate(-45deg)
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-map) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			transform:translateY(#{em(5/$calculated-symbol-basis) * -1});
+  // 			transform-origin: top center;
+  // 			bottom:auto;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo-full-height;
+  // 			@extend %for-valid-symbol-pseudo-full-width;
+  // 			border-radius: 50%;
+  // 			border: #{em(4px / $calculated-symbol-basis)} solid;
+
+  // 		}
+
+  // 		&:after {
+  // 			border: #{em(6.25px / $calculated-symbol-basis)} solid transparent;
+  // 			border-top: #{em(12px / $calculated-symbol-basis)} solid;
+  // 			border-bottom:0;
+  // 			width: 0;
+  // 			height: 0;
+  // 			margin: 0 auto;
+  // 			top:calc(1em - #{em(3px / $calculated-symbol-basis)});
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-file) {
+  // 		@extend %for-valid-symbol;
+  // 		@extend %for-valid-symbol-no-before;
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			width: .875em;
+  // 			clip-path: polygon(
+  // 				0% 0%,
+  // 				0% 100%,
+  // 				100% 100%,
+  // 				100% 30%,
+  // 				calc(50% + #{em(2px / $calculated-symbol-basis)}) 0,
+  // 				50% 0,
+  // 				50% calc(30% + #{em(2px / $calculated-symbol-basis)}),
+  // 				calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(30% + #{em(2px / $calculated-symbol-basis)}),
+  // 				calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
+  // 				calc(50% + #{em(2px / $calculated-symbol-basis)}) 30%,
+  // 				calc(50% + #{em(2px / $calculated-symbol-basis)}) em(2px / $calculated-symbol-basis),
+  // 				calc(100% - #{em(2px / $calculated-symbol-basis)}) 30%,
+  // 				calc(100% - #{em(2px / $calculated-symbol-basis)}) calc(100% - #{em(2px / $calculated-symbol-basis)}),
+  // 				em(2px / $calculated-symbol-basis) calc(100% - #{em(2px / $calculated-symbol-basis)}),
+  // 				em(2px / $calculated-symbol-basis) em(2px / $calculated-symbol-basis),
+  // 				50% em(2px / $calculated-symbol-basis),
+  // 				50% 0,
+
+  // 			);
+
+  // 		}
+  // 	}
+
+  // 	&-star {
+  // 		@include generate-symbol-styles((#{&},#{&}-half,#{&}-stroke)) {
+  // 			@extend %for-valid-symbol;
+  // 			@extend %for-valid-symbol-no-before;
+
+  // 			&:after {
+  // 				@extend %for-valid-symbol-pseudo;
+  // 				@extend %for-valid-symbol-pseudo-filled;
+  // 				width: 1.25em;
+  // 				height: 1.25em;
+  // 				top: -.5em;
+  // 				bottom: -.5em;
+  // 				left: -.5em;
+  // 				right: -.5em;
+
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}) {
+  // 			&:after {
+  // 				clip-path: polygon(
+  // 					50% 5%,
+  // 					64% 38%,
+  // 					100% 41%,
+  // 					73% 65%,
+  // 					80% 100%,
+  // 					50% 82%,
+  // 					20% 100%,
+  // 					27% 65%,
+  // 					0% 41%,
+  // 					36% 38%,
+  // 				);
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-half) {
+  // 			&:after {
+  // 				clip-path: polygon(
+  // 					50% 5%,
+  // 					64% 38%,
+  // 					100% 41%,
+  // 					73% 65%,
+  // 					80% 100%,
+  // 					50% 82%,
+  // 					20% 100%,
+  // 					27% 65%,
+  // 					0% 41%,
+  // 					36% 38%,
+
+  // 					50% 5%,
+
+  // 					50% 26%,
+
+  // 					47% 33%,
+  // 					47% 74%,
+
+  // 					50% 72%,
+  // 					68% 83%,
+  // 					64% 62%,
+  // 					80% 48%,
+  // 					59% 46%,
+  // 					50% 26%,
+  // 				);
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-stroke) {
+  // 			&:after {
+  // 				clip-path: polygon(
+  // 					50% 5%,
+  // 					64% 38%,
+  // 					100% 41%,
+  // 					73% 65%,
+  // 					80% 100%,
+  // 					50% 82%,
+  // 					20% 100%,
+  // 					27% 65%,
+  // 					0% 41%,
+  // 					36% 38%,
+
+  // 					50% 5%,
+
+  // 					50% 26%,
+  // 					41% 46%,
+  // 					20% 48%,
+  // 					36% 62%,
+  // 					32% 83%,
+  // 					50% 72%,
+  // 					68% 83%,
+  // 					64% 62%,
+  // 					80% 48%,
+  // 					59% 46%,
+  // 					50% 26%,
+
+  // 				);
+  // 			}
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-download) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 		}
+
+  // 		&:before {
+  // 			@extend %for-valid-symbol-pseudo-full-width;
+  // 			height: .375em;
+  // 			border-bottom: em(2px/$calculated-symbol-basis) solid;
+  // 			border-right: em(2px/$calculated-symbol-basis) solid;
+  // 			border-left: em(2px/$calculated-symbol-basis) solid;
+  // 			top: auto;
+  // 		}
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo-filled;
+  // 			clip-path: polygon(
+  // 				calc(50% - #{em(2px/$calculated-symbol-basis)} * .5) 0,
+  // 				calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 0,
+  // 				calc(50% + #{em(2px/$calculated-symbol-basis)} * .5) 60%,
+  // 				100% 60%,
+  // 				50% 100%,
+  // 				0 60%,
+  // 				calc(50% - #{em(2px/$calculated-symbol-basis)} * .5)  60%
+  // 			);
+  // 			height: .625em;
+  // 			width: .5em;
+  // 			bottom: auto;
+  // 			// background-image:
+  // 			// 	repeating-linear-gradient(
+  // 			// 		90deg,
+  // 			// 		transparent 0,
+  // 			// 		transparent calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
+  // 			// 		currentColor calc(50% - #{em(2px/$calculated-symbol-basis) * .5}),
+  // 			// 		currentColor calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
+  // 			// 		transparent calc(50% + #{em(2px/$calculated-symbol-basis) * .5}),
+  // 			// 		transparent 100%
+  // 			// 	),
+  // 			// 	linear-gradient(
+  // 			// 		45deg,
+  // 			// 		transparent 0,
+  // 			// 		transparent 50%,
+  // 			// 		currentColor 50%,
+  // 			// 		currentColor 100%
+  // 			// 	),
+
+  // 			// 	linear-gradient(
+  // 			// 		-45deg,
+  // 			// 		transparent 0,
+  // 			// 		transparent 50%,
+  // 			// 		currentColor 50%,
+  // 			// 		currentColor 100%
+  // 			// 	)
+  // 			// 	;
+
+  // 			// background-size:
+  // 			// 	100% 90%,
+  // 			// 	.25em .25em,
+  // 			// 	.25em .25em
+  // 			// 	;
+  // 			// background-position:
+  // 			// 	0 0,
+  // 			// 	.125em 100%,
+  // 			// 	bottom 0 right .125em,
+  // 			// 	;
+  // 			// background-repeat: no-repeat;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-hyperlink) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:before,&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			width: .6875em;
+  // 			height: .5em;
+  // 			border-radius: .25em;
+  // 			border: em(2px / $calculated-symbol-basis) solid;
+  // 			// transform-origin: center center;
+  // 			transform: rotate(-45deg)
+  // 		}
+
+  // 		&:before {
+  // 			top: auto;
+  // 			right: auto;
+  // 			bottom: -.125em;
+  // 			left: .25em;
+  // 			transform-origin: bottom left;
+  // 		}
+
+  // 		&:after {
+  // 			bottom: auto;
+  // 			left: auto;
+  // 			top: -.125em;
+  // 			right: .25em;
+  // 			transform-origin: top right;
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles((#{&}-fries,#{&}-burger)) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:after {
+  // 			@extend %for-valid-symbol-pseudo;
+  // 			@extend %for-valid-symbol-pseudo-border-radius;
+  // 			@extend %for-valid-symbol-pseudo-filled;
+
+  // 			box-shadow:
+  // 				0 #{em(3px / $calculated-symbol-basis) * 2} 0 0,
+  // 				0 #{em(3px / $calculated-symbol-basis) * -2} 0 0
+  // 				;
+  // 			height:  em(3px / $calculated-symbol-basis);
+  // 		}
+  // 	}
+
+  // 	@include generate-symbol-styles(#{&}-fries) {
+  // 		@extend %for-valid-symbol;
+
+  // 		&:after {
+  // 			transform: rotate(90deg);
+  // 		}
+  // 	}
+
+  // 	&-kebab {
+
+  // 		@include generate-symbol-styles((#{&}-horizontal,#{&}-vertical)) {
+  // 			@extend %for-valid-symbol-no-before;
+  // 			@extend %for-valid-symbol;
+
+  // 			&:after {
+  // 				@extend %for-valid-symbol-pseudo;
+  // 				@extend %for-valid-symbol-pseudo-filled;
+  // 				@extend %for-valid-symbol-pseudo-circle-ready;
+  // 				width: em(4px/$calculated-symbol-basis);
+  // 				height: em(4px/$calculated-symbol-basis);
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-vertical) {
+  // 			width: em(4px/$calculated-symbol-basis);
+  // 			&:after {
+  // 				box-shadow:
+  // 					0 em((4px * -2) /$calculated-symbol-basis) 0 0,
+  // 					0 em((4px * 2) /$calculated-symbol-basis) 0 0
+  // 					;
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-horizontal) {
+  // 			width: em((4px * 5)/$calculated-symbol-basis);
+  // 			&:after {
+  // 				box-shadow:
+  // 				em((4px * -2) /$calculated-symbol-basis)0  0 0,
+  // 				em((4px * 2) /$calculated-symbol-basis) 0 0 0
+  // 					;
+  // 			}
+  // 		}
+  // 	}
+
+  // 	&-arrow {
+  // 		&,
+  // 		&-double,
+  // 		&-tail {
+  // 			&-left,
+  // 			&-right,
+  // 			&-up,
+  // 			&-down {
+  // 				@include generate-symbol-styles(#{&}){
+  // 					@extend %for-valid-symbol;
+
+  // 					&:before,&:after {
+  // 						@extend %for-valid-symbol-pseudo;
+  // 					}
+  // 				}
+  // 			}
+  // 		}
+
+  // 		&,
+  // 		&-double {
+  // 			&-left,
+  // 			&-right,
+  // 			&-up,
+  // 			&-down {
+  // 				@include generate-symbol-styles(#{&}){
+  // 					@extend %for-valid-symbol;
+
+  // 					&:before,&:after {
+  // 						@extend %for-valid-symbol-pseudo-border-radius;
+  // 						@extend %for-valid-symbol-pseudo-filled;
+  // 						@extend %for-valid-symbol-pseudo-vertical;
+  // 						height: .6875em;
+  // 						transform-origin: center em((3px * .5) / $calculated-symbol-basis);
+  // 					}
+
+  // 					&:before{
+  // 						transform: rotate(-45deg);
+  // 					}
+
+  // 					&:after{
+  // 						transform: rotate(45deg);
+  // 					}
+  // 				}
+  // 			}
+  // 		}
+
+  // 		&-double,
+  // 		&-tail {
+  // 			&-left,
+  // 			&-right,
+  // 			&-up,
+  // 			&-down {
+  // 				@include generate-symbol-styles(#{&}){
+  // 					&:before,&:after {
+  // 						top:0;
+  // 						bottom: auto;
+  // 					}
+  // 				}
+  // 			}
+  // 		}
+
+  // 		& {
+  // 			&-left,
+  // 			&-right,
+  // 			&-up,
+  // 			&-down {
+  // 				@include generate-symbol-styles(#{&}){
+  // 					height: .75em;
+  // 				}
+  // 			}
+  // 		}
+
+  // 		&-double {
+  // 			&-left,
+  // 			&-right,
+  // 			&-up,
+  // 			&-down {
+  // 				@include generate-symbol-styles(#{&}){
+  // 					&:before{
+  // 						box-shadow: em(((3px * .5)  * -3.5)/$calculated-symbol-basis) em(((3px * .5)  * 3.5)/$calculated-symbol-basis) 0 0;
+  // 					}
+
+  // 					&:after{
+  // 						box-shadow: em(((3px * .5)  * 3.5)/$calculated-symbol-basis) em(((3px * -.5)  * -3.5)/$calculated-symbol-basis) 0 0;
+  // 					}
+  // 				}
+  // 			}
+  // 		}
+
+  // 		&-tail {
+  // 			&-left,
+  // 			&-right,
+  // 			&-up,
+  // 			&-down {
+  // 				@include generate-symbol-styles(#{&}){
+  // 					&:before {
+  // 						height: .625em;
+  // 						width: .625em;
+  // 						border-top: em(2px/$calculated-symbol-basis) solid;
+  // 						border-right: em(2px/$calculated-symbol-basis) solid;
+  // 						transform: rotate(-45deg);
+  // 					}
+
+  // 					&:after {
+  // 						@extend %for-valid-symbol-pseudo-full-height;
+  // 						@extend %for-valid-symbol-pseudo-filled;
+  // 						width: em(2px/$calculated-symbol-basis);
+  // 					}
+  // 					// @extend %for-valid-symbol-pseudo-border-radius;
+  // 					// @extend %for-valid-symbol-pseudo-horizontal;
+  // 					// @extend %for-valid-symbol-pseudo-filled;
+  // 					// transform-origin: 10% 0;
+
+  // 					// background-image:
+  // 					// 	linear-gradient(currentColor 0, currentColor 100%),
+  // 					// 	radial-gradient(
+  // 					// 		circle at em(($calculated-symbol-basis - (3px * .5))/$calculated-symbol-basis) 50%,
+  // 					// 		currentColor 0,
+  // 					// 		currentColor em((3px * .5)/$calculated-symbol-basis),
+  // 					// 		transparent em((3px * .5)/$calculated-symbol-basis),
+  // 					// 		transparent 100%
+  // 					// 		)
+  // 					// 	;
+
+  // 					// background-size:
+  // 					// 	em(($calculated-symbol-basis - 3px)/$calculated-symbol-basis) em(3px/$calculated-symbol-basis),
+  // 					// 	1em 1em
+  // 					// 	;
+  // 					// background-position:
+  // 					// 	center center,
+  // 					// 	right center
+  // 					// 	;
+  // 					// background-repeat: no-repeat;
+  // 				}
+  // 			}
+  // 		}
+  // 	}
+
+  // 	&-caret {
+  // 		// width: em(($calculated-symbol-caret-width * .5) / $calculated-symbol-basis);
+  // 		// width:0;
+
+  // 		&-left,
+  // 		&-right,
+  // 		&-up,
+  // 		&-down {
+  // 			@include generate-symbol-styles(#{&}){
+  // 				@extend %for-valid-symbol;
+  // 				@extend %for-valid-symbol-no-before;
+  // 				width: .625em;
+  // 				height: .75em;
+
+  // 				&:after {
+
+  // 					@extend %for-valid-symbol-pseudo;
+  // 					@extend %for-valid-symbol-pseudo-border-radius;
+  // 					@extend %for-valid-symbol-pseudo-vertical;
+  // 					@include arrow-triangle((
+  // 						pseudo: override,
+  // 						direction: 'up', //if pseudo is set to both, this will set the direction of :before, :after will be polar of
+  // 						display: null,
+  // 						size-base: inherit,
+  // 						main-size: $calculated-symbol-caret-height,//orientation of direction
+  // 						cross-size: $calculated-symbol-caret-width,// perpendicular orientation of direction
+  // 					));
+  // 				}
+  // 			}
+  // 		}
+
+  // 	}
+
+  // 	&-caret,
+  // 	&-arrow,
+  // 	&-arrow-tail,
+  // 	&-arrow-double {
+  // 		&-up {
+  // 			@include generate-symbol-styles(#{&}) {
+  // 				transform: rotate(0deg);
+  // 			}
+  // 		}
+
+  // 		&-down {
+  // 			@include generate-symbol-styles(#{&}) {
+  // 				transform: rotate(180deg);
+  // 			}
+  // 		}
+
+  // 		&-left {
+  // 			@include generate-symbol-styles(#{&}) {
+  // 				transform: rotate(-90deg);
+  // 			}
+  // 		}
+
+  // 		&-right {
+  // 			@include generate-symbol-styles(#{&}) {
+  // 				transform: rotate(90deg);
+  // 			}
+  // 		}
+  // 	}
+
+  // 	&-text {
+  // 		&-left,
+  // 		&-right,
+  // 		&-center,
+  // 		&-justify {
+  // 			@include generate-symbol-styles(#{&}){
+  // 				@extend %for-valid-symbol;
+  // 				@extend %for-valid-symbol-no-before;
+
+  // 				&:after {
+  // 					@extend %for-valid-symbol-pseudo;
+  // 					@extend %for-valid-symbol-pseudo-border-radius;
+  // 					@extend %for-valid-symbol-pseudo-filled;
+  // 					height: em(2px / $calculated-symbol-basis);
+  // 					width: .5em;
+  // 				}
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-left) {
+  // 			&:after {
+  // 				box-shadow:
+  // 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+
+  // 				-.25em 0 0 0,
+  // 				.25em 0 0 0,
+
+  // 				-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				0em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				;
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-right) {
+  // 			&:after {
+  // 				box-shadow:
+  // 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+
+  // 				-.25em 0 0 0,
+  // 				.25em 0 0 0,
+
+  // 				.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				;
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-center) {
+  // 			&:after {
+  // 				box-shadow:
+  // 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+
+  // 				-.25em 0 0 0,
+  // 				.25em 0 0 0,
+
+  // 				-.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				.125em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				;
+  // 			}
+  // 		}
+
+  // 		@include generate-symbol-styles(#{&}-justify) {
+  // 			&:after {
+  // 				box-shadow:
+  // 				-.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				.25em #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+  // 				0 #{em(2px / $calculated-symbol-basis) * -2.5} 0 0,
+
+  // 				-.25em 0 0 0,
+  // 				.25em 0 0 0,
+
+  // 				-.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				.25em #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				0 #{em(2px / $calculated-symbol-basis) * 2.5} 0 0,
+  // 				;
+  // 			}
+  // 		}
+  // 	}
 }

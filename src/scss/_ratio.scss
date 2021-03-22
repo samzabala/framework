@@ -1,66 +1,62 @@
 /*** RATIO MOTHERFUCKER***/
 $prefix: '.ratio';
 #{$prefix} {
+  & {
+    max-width: 100% !important;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    background: var(--theme-background-contrast);
 
-	& {
-		max-width:100%!important;
-		overflow: hidden;
-		position: relative;
-		display: block;
-		background: var(--theme-background-contrast);
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+    }
 
-		&:before {
+    > * {
+      position: absolute !important;
+      transform-origin: center center !important;
+      transform-style: preserve-3d !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+    }
+  }
 
-			content: "";
-			display: block;
-			width: 100%;
-		}
+  &#{& + '-1-by-1'} {
+    &:before {
+      padding-bottom: 100% !important;
+    }
+  }
 
-		> * {
-			position:absolute!important;
-			transform-origin: center center!important;
-			transform-style: preserve-3d!important;
-			max-width:100%!important;
-			max-height: 100%!important;
-		}
-	}
+  &#{& + '-16-by-9'} {
+    &:before {
+      padding-bottom: percentage(9/16) !important;
+    }
+  }
 
-	&#{&+'-1-by-1'} {
-		&:before {
-			padding-bottom: 100% !important;
-		}
-	}
+  &#{& + '-4-by-3'} {
+    &:before {
+      padding-bottom: percentage(3/4) !important;
+    }
+  }
 
-	&#{&+'-16-by-9'} {
-		&:before {
-			padding-bottom: percentage(9/16) !important;
-		}
-	}
+  &-child {
+    @at-root #{$prefix} *#{&}-stretch {
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
 
-	&#{&+'-4-by-3'} {
-		&:before {
-			padding-bottom: percentage(3/4) !important;
-		}
-	}
+    @at-root #{$prefix} *#{&}-cover {
+      @include dump-styles(fit-image-img);
+    }
 
-	&-child  {
-
-		@at-root #{$prefix} *#{&}-stretch {
-			top:0!important;
-			left:0!important;
-			width:100%!important;
-			height: 100%!important;
-		}
-		
-		@at-root #{$prefix} *#{&}-cover {
-			@include dump-styles(fit-image-img);
-		}
-
-		@at-root  #{$prefix} #{&}-contain {
-
-			top:50%!important;
-			left:50%!important;
-			transform: translate(-50%,-50%)!important;
-		}
-	}
+    @at-root #{$prefix} #{&}-contain {
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+  }
 }

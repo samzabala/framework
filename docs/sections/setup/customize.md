@@ -1,5 +1,7 @@
 # Sass/CSS Customizations
+
 ## Setting up custom variables
+
 - Set up The sass file that will be compiled into the stylesheet
 - Framework sass variables can be customized by declaring custom variables fist before integrating the framework
 
@@ -13,55 +15,49 @@ woah i'm sam
 
 Note: All sass variables in the list are required for the stylesheet to properly compile
 Example:
+
 ```scss
 /*! 
 Custom variables
 ****************************************************************************/
 
-$brand-font-primary: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !default;
+$brand-font-primary: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 $brand-font-accent: $brand-font-primary !default;
-$brand-font-monospace: 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+$brand-font-monospace: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
 $body-font-weight: 500;
-$body-font-weight-bold:900;
+$body-font-weight-bold: 900;
 
 /*! 
 framework sass
 ****************************************************************************/
 @import 'framework/framework.scss';
 
-
 // ya custom css after
-
 ```
 
 Note, some values especially font sizes are recalculated internally by the framework to create equivalent optimal values, if some variable customization looks weird, there's your answer
 eg:
 
 `$body-line-height`. If set as pixels, this will be converted to its unitless equivalent
+
 ```scss
 $body-font-size: 16px;
-$body-line-height: 24px; // will be outputted as 1.5 
+$body-line-height: 24px; // will be outputted as 1.5
 ```
 
 If this causes issues or errors, feel free to hit me up and shit on me so I can troubleshootootoot
 
 # Javascript
 
-
 No conflict mode is enabled for the framework. set up your script like this:
 
 ```js
 window.jQuery && jQuery.noConflict();
-(function(fw,$){
-
-	//ya code
-    console.log('do shiet');
-
-}(fw,jQuery));
-
+(function (fw, $) {
+  //ya code
+  console.log('do shiet');
+})(fw, jQuery);
 ```
-
-
 
 # Native CSS variables
 

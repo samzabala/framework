@@ -1,109 +1,100 @@
-@mixin create-btn-schemes($args:(),$scheme:'',$helper-prefix: '.btn'){
-	$defaults: (
-		init: (
-			border: '',
-			background: '',
-			color: '',
-		),
-		hover: (
-			border: '',
-			background: '',
-			color: '',
-		),
-		active: (
-			border: '',
-			background: '',
-			color: '',
-		)
-	);
-	$opts: map-merge($defaults,$args);
-	
+@mixin create-btn-schemes($args: (), $scheme: '', $helper-prefix: '.btn') {
+  $defaults: (
+    init: (
+      border: '',
+      background: '',
+      color: '',
+    ),
+    hover: (
+      border: '',
+      background: '',
+      color: '',
+    ),
+    active: (
+      border: '',
+      background: '',
+      color: '',
+    ),
+  );
+  $opts: map-merge($defaults, $args);
 
+  @each $state, $properties in $opts {
+    @if $state == 'hover' {
+      @at-root &:hover,
+        #{$helper-prefix}-group#{$helper-prefix}-group-unite:hover &,
+        &:focus,
+        #{$helper-prefix}-group#{$helper-prefix}-group-unite:focus &,
+        &.focus,
+        #{$helper-prefix}-group#{$helper-prefix}-group-unite.focus & {
+        &:not(#{$helper-prefix}-no-interaction):not(#{$helper_prefix}-disabled):not([disabled]) {
+          @include internal-btn-set-scheme($properties);
+        }
+      }
+      // @at-root &:hover,
+      // &:focus,
+      // &:.focus {
+      //     @include internal-btn-set-scheme($properties)
+      // }
+    } @else if $state == 'active' {
+      @at-root &:active,
+        #{$helper-prefix}-group#{$helper-prefix}-group-unite:active &,
+        &.active,
+        #{$helper-prefix}-group#{$helper-prefix}-group-unite.active & {
+        &:not(#{$helper-prefix}-no-interaction):not(#{$helper_prefix}-disabled):not([disabled]) {
+          @include internal-btn-set-scheme($properties);
+        }
+      }
+    } @else if $state == 'init' {
+      // @at-root %extend-internal-btn-init-#{$scheme} {
+      // 	@include internal-btn-set-scheme($properties);
+      // }
 
-	@each $state,$properties in $opts {
+      @at-root & {
+        // @extend %extend-internal-btn-init-#{$scheme};
+        @include internal-btn-set-scheme($properties);
+      }
 
-		@if $state == 'hover' {
-		
-			@at-root &:hover,
-			#{$helper-prefix}-group#{$helper-prefix}-group-unite:hover &,
-			
-			&:focus,
-			#{$helper-prefix}-group#{$helper-prefix}-group-unite:focus &,
+      // @at-root
+      // 	&#{$helper-prefix}-no-interaction:hover,
+      // 	&#{$helper-prefix}-no-interaction:focus,
+      // 	&#{$helper-prefix}-no-interaction.focus,
+      // 	&#{$helper-prefix}-no-interaction:active,
+      // 	&#{$helper-prefix}-no-interaction.active,
 
-			&.focus,
-			#{$helper-prefix}-group#{$helper-prefix}-group-unite.focus & {
-				&:not(#{$helper-prefix}-no-interaction):not(#{$helper_prefix}-disabled):not([disabled]){
-					@include internal-btn-set-scheme($properties)
-				}
-			}
-			// @at-root &:hover,
-			// &:focus,
-			// &:.focus {
-			//     @include internal-btn-set-scheme($properties)
-			// }
+      // 	&#{$helper-prefix}-disabled:hover,
+      // 	&#{$helper-prefix}-disabled:focus,
+      // 	&#{$helper-prefix}-disabled.focus,
+      // 	&#{$helper-prefix}-disabled:active,
+      // 	&#{$helper-prefix}-disabled.active,
 
-		}@else if $state == 'active' {
-			@at-root &:active,
-			#{$helper-prefix}-group#{$helper-prefix}-group-unite:active &,
-			&.active,
-			#{$helper-prefix}-group#{$helper-prefix}-group-unite.active & {
-				&:not(#{$helper-prefix}-no-interaction):not(#{$helper_prefix}-disabled):not([disabled]){
-					@include internal-btn-set-scheme($properties);
-				}
-			}
-			
-		}@else if $state == 'init' {
-			// @at-root %extend-internal-btn-init-#{$scheme} {
-			// 	@include internal-btn-set-scheme($properties);
-			// }
-
-			@at-root & {
-				// @extend %extend-internal-btn-init-#{$scheme};
-				@include internal-btn-set-scheme($properties);
-			}
-		
-			// @at-root 
-			// 	&#{$helper-prefix}-no-interaction:hover,
-			// 	&#{$helper-prefix}-no-interaction:focus,
-			// 	&#{$helper-prefix}-no-interaction.focus,
-			// 	&#{$helper-prefix}-no-interaction:active,
-			// 	&#{$helper-prefix}-no-interaction.active,
-
-			// 	&#{$helper-prefix}-disabled:hover,
-			// 	&#{$helper-prefix}-disabled:focus,
-			// 	&#{$helper-prefix}-disabled.focus,
-			// 	&#{$helper-prefix}-disabled:active,
-			// 	&#{$helper-prefix}-disabled.active,
-				
-			// 	#{$helper-prefix}-disabled:hover &,
-			// 	#{$helper-prefix}-disabled:focus &,
-			// 	#{$helper-prefix}-disabled.focus &,
-			// 	#{$helper-prefix}-disabled:active &,
-			// 	#{$helper-prefix}-disabled.active &
-			// 	{
-			// 		@extend %extend-internal-btn-init-#{$scheme};
-			// 	}
-		}
-	}
-
+      // 	#{$helper-prefix}-disabled:hover &,
+      // 	#{$helper-prefix}-disabled:focus &,
+      // 	#{$helper-prefix}-disabled.focus &,
+      // 	#{$helper-prefix}-disabled:active &,
+      // 	#{$helper-prefix}-disabled.active &
+      // 	{
+      // 		@extend %extend-internal-btn-init-#{$scheme};
+      // 	}
+    }
+  }
 }
 
-@mixin internal-btn-set-scheme($properties,$add-important: false) {
-	$important: '';
+@mixin internal-btn-set-scheme($properties, $add-important: false) {
+  $important: '';
 
-	@if $add-important {
-		$important: '!important';
-	}
+  @if $add-important {
+    $important: '!important';
+  }
 
-	@if map-get($properties,border) {
-		border-color: map-get($properties,border) #{$important};
-	}
+  @if map-get($properties, border) {
+    border-color: map-get($properties, border) #{$important};
+  }
 
-	@if map-get($properties,background) {
-		background: map-get($properties,background) #{$important};
-	}
+  @if map-get($properties, background) {
+    background: map-get($properties, background) #{$important};
+  }
 
-	@if map-get($properties,color) {
-		color: map-get($properties,color) #{$important};
-	}
+  @if map-get($properties, color) {
+    color: map-get($properties, color) #{$important};
+  }
 }

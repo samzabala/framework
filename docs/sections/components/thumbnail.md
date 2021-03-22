@@ -1,5 +1,3 @@
-
-
 # Thumbnails
 
 Useful for displaying profile images and such. use **`.thumbnail`**
@@ -7,49 +5,40 @@ Useful for displaying profile images and such. use **`.thumbnail`**
 ```html
 <!-- img setup -->
 <a class="thumbnail" href="#">
-	<div class="thumbnail-image">
-		<img data-src="profile-image.jpg" alt="">
-	</div>
+  <div class="thumbnail-image">
+    <img data-src="profile-image.jpg" alt="" />
+  </div>
 </a>
 
 <!-- text setup -->
 <a class="thumbnail" href="#">
-	<span class="thumbnail-text">
-		eh
-	</span>
+  <span class="thumbnail-text"> eh </span>
 </a>
 ```
 
 To make them small, add **`.thumbnail-micro`**
 
-
 ```html
 <!-- img setup -->
 <a class="thumbnail thumbnail-micro" href="#">
-	<div class="thumbnail-image">
-		<img data-src="profile-image.jpg" alt="">
-	</div>
+  <div class="thumbnail-image">
+    <img data-src="profile-image.jpg" alt="" />
+  </div>
 </a>
 
 <!-- text setup -->
 <a class="thumbnail thumbnail-micro" href="#">
-	<span class="thumbnail-text">
-		mf
-	</span>
+  <span class="thumbnail-text"> mf </span>
 </a>
 ```
 
 ![](../../images/thumbnail.png)
 
-
-
 ## Children elements
-
 
 ### **`.thumbnail-image`**
 
 wrapper for image so it doesn't overflow its shapeful wonder
-
 
 ### **`.thumbnail-text`**
 

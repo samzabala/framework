@@ -1,53 +1,51 @@
-
 import { UIBodyClass } from '../util/ui.js';
 
+class FwQueue {
+  constructor() {
+    this._on_load = [];
+    this._on_ready = [];
+    this._on_resize = [];
+    this._on_scroll = [];
+    this._on_rightAway = [];
+    this._on_init = [];
+  }
 
- class FwQueue {
-	constructor(){
-		this._on_load = [];
-		this._on_ready = [];
-		this._on_resize = [];
-		this._on_scroll = [];
-		this._on_rightAway = [];
-		this._on_init = [];
-	}
-
-	get on_load(){
-		return this._on_load;
-	}
-	get on_ready(){
-		return this._on_ready;
-	}
-	get on_resize(){
-		return this._on_resize;
-	}
-	get on_scroll(){
-		return this._on_scroll;
-	}
-	get on_rightAway(){
-		return this._on_rightAway;
-	}
-	get on_init(){
-		return this._on_init;
-	}
-	set on_load(fn){
-		this._on_load.push(fn);
-	}
-	set on_ready(fn){
-		this._on_ready.push(fn);
-	}
-	set on_resize(fn){
-		this._on_resize.push(fn);
-	}
-	set on_scroll(fn){
-		this._on_scroll.push(fn);
-	}
-	set on_rightAway(fn){
-		this._on_rightAway.push(fn);
-	}
-	set on_init(fn){
-		this._on_init.push(fn);
-	}
+  get on_load() {
+    return this._on_load;
+  }
+  get on_ready() {
+    return this._on_ready;
+  }
+  get on_resize() {
+    return this._on_resize;
+  }
+  get on_scroll() {
+    return this._on_scroll;
+  }
+  get on_rightAway() {
+    return this._on_rightAway;
+  }
+  get on_init() {
+    return this._on_init;
+  }
+  set on_load(fn) {
+    this._on_load.push(fn);
+  }
+  set on_ready(fn) {
+    this._on_ready.push(fn);
+  }
+  set on_resize(fn) {
+    this._on_resize.push(fn);
+  }
+  set on_scroll(fn) {
+    this._on_scroll.push(fn);
+  }
+  set on_rightAway(fn) {
+    this._on_rightAway.push(fn);
+  }
+  set on_init(fn) {
+    this._on_init.push(fn);
+  }
 }
 
 const INITIATOR_QUEUE = new FwQueue();
@@ -55,143 +53,132 @@ const INITIATOR_QUEUE = new FwQueue();
 let is_started = false;
 
 class Initiator {
-	
-	constructor(){
-		this.resizeTimerInternal = null;
-		this.scrollTimerInternal = null;
-	}
+  constructor() {
+    this.resizeTimerInternal = null;
+    this.scrollTimerInternal = null;
+  }
 
-	static get isStarted(){
-		return is_started;
-	}
+  static get isStarted() {
+    return is_started;
+  }
 
-	static set isStarted(val){
-		is_started = val;
-	}
+  static set isStarted(val) {
+    is_started = val;
+  }
 
-	static get Q(){
-		return INITIATOR_QUEUE;
-	}
+  static get Q() {
+    return INITIATOR_QUEUE;
+  }
 
-	#execqt(fnsArray){
-		fnsArray.forEach((fn) => {
-			fn(); 
-		});
-	}
+  #execqt(fnsArray) {
+    fnsArray.forEach((fn) => {
+      fn();
+    });
+  }
 
-	static isDocReady(fn){
-		if (document.readyState != 'loading') {
-			fn();
-		} else {
-			document.addEventListener('DOMContentLoaded', fn);
-		}
-	}
+  static isDocReady(fn) {
+    if (document.readyState != 'loading') {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
 
-	#runRightAway(){
-		this.#execqt(Initiator.Q.on_rightAway);
-	}
-	
-	#runReady(){
-		this.#execqt(Initiator.Q.on_ready);
-	}
-	
-	#runLoad(){
-		this.#execqt(Initiator.Q.on_load);
-	}
+  #runRightAway() {
+    this.#execqt(Initiator.Q.on_rightAway);
+  }
 
-	#runResize() {
-		const ini = this;
-		clearTimeout(ini.resizeTimerInternal);
-		ini.resizeTimerInternal = setTimeout(() => {
-			ini.#execqt(Initiator.Q.on_resize);
-		}, 100);
-	}
-	
-	#runScroll() {
-		const ini = this;
-		clearTimeout(ini.scrollTimerInternal);
-		ini.scrollTimerInternal = setTimeout(() => {
-			ini.#execqt(Initiator.Q.on_scroll);
-		}, 100);
-	}
+  #runReady() {
+    this.#execqt(Initiator.Q.on_ready);
+  }
 
-	static setState(mode) {
-		mode = mode || 'complete';
+  #runLoad() {
+    this.#execqt(Initiator.Q.on_load);
+  }
 
-		const body = document.querySelector('body');
+  #runResize() {
+    const ini = this;
+    clearTimeout(ini.resizeTimerInternal);
+    ini.resizeTimerInternal = setTimeout(() => {
+      ini.#execqt(Initiator.Q.on_resize);
+    }, 100);
+  }
 
-		switch(mode){
-			case 'loading':
-				body
-					.classList
-					.remove(UIBodyClass.loaded);
-				body
-					.classList
-					.add(UIBodyClass.loading);
-				break;
-			case 'complete':
-			default:
-				setTimeout(()=>{ 
-					body
-						.classList
-						.remove(UIBodyClass.loading);
-					body
-						.classList
-						.add(UIBodyClass.loaded);
-				},100);
-				break;
-		}
+  #runScroll() {
+    const ini = this;
+    clearTimeout(ini.scrollTimerInternal);
+    ini.scrollTimerInternal = setTimeout(() => {
+      ini.#execqt(Initiator.Q.on_scroll);
+    }, 100);
+  }
 
-	}
+  static setState(mode) {
+    mode = mode || 'complete';
 
-	static setLoadingState(){
-		Initiator.setState('loading');
-	}
+    const body = document.querySelector('body');
 
-	static setCompleteState(){
-		Initiator.setState('complete');
-	}
+    switch (mode) {
+      case 'loading':
+        body.classList.remove(UIBodyClass.loaded);
+        body.classList.add(UIBodyClass.loading);
+        break;
+      case 'complete':
+      default:
+        setTimeout(() => {
+          body.classList.remove(UIBodyClass.loading);
+          body.classList.add(UIBodyClass.loaded);
+        }, 100);
+        break;
+    }
+  }
 
-	static start(){
-		//component events
-		const ini = new Initiator();
+  static setLoadingState() {
+    Initiator.setState('loading');
+  }
 
-			Initiator.isStarted = true;
+  static setCompleteState() {
+    Initiator.setState('complete');
+  }
 
-			ini.#execqt(Initiator.Q.on_init);
+  static start() {
+    //component events
+    const ini = new Initiator();
 
-			ini.#runRightAway();
+    Initiator.isStarted = true;
 
-			Initiator.isDocReady(()=>{
-				ini.#runReady();
-				Initiator.setCompleteState();
-			});
+    ini.#execqt(Initiator.Q.on_init);
 
-			window.addEventListener('load', () => {
-				ini.#runLoad()
-			});
-			window.addEventListener('resize', () => {
-				ini.#runResize()
-			});
-			window.addEventListener('scroll', () => {
-				ini.#runScroll()
-			});
-	}
+    ini.#runRightAway();
 
-	static restart(){
-		if(!Initiator.isStarted){
-			return;
-		}
-		const ini = new Initiator();
+    Initiator.isDocReady(() => {
+      ini.#runReady();
+      Initiator.setCompleteState();
+    });
 
-		Initiator.setLoadingState();
-		ini.#runRightAway();
-		ini.#runReady();
-		Initiator.setCompleteState();
-		ini.#runLoad();
-		console.info('frameWork restarted');
-	}
+    window.addEventListener('load', () => {
+      ini.#runLoad();
+    });
+    window.addEventListener('resize', () => {
+      ini.#runResize();
+    });
+    window.addEventListener('scroll', () => {
+      ini.#runScroll();
+    });
+  }
 
+  static restart() {
+    if (!Initiator.isStarted) {
+      return;
+    }
+    const ini = new Initiator();
+
+    Initiator.setLoadingState();
+    ini.#runRightAway();
+    ini.#runReady();
+    Initiator.setCompleteState();
+    ini.#runLoad();
+    console.info('frameWork restarted');
+  }
 }
 
 Initiator.start();

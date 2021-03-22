@@ -1,83 +1,82 @@
 $prefix: '.input';
 .fieldset,
 fieldset {
-	padding: $fieldset-gutter-y $fieldset-gutter-x;
-	position:relative;
-	margin-bottom: $fieldset-gutter-y;
-	// overflow:hidden;
+  padding: $fieldset-gutter-y $fieldset-gutter-x;
+  position: relative;
+  margin-bottom: $fieldset-gutter-y;
+  // overflow:hidden;
 
-	&,
-	legend,
-	.fieldset-legend {
-		background: $fieldset-background;
-		border-radius: $fieldset-border-radius;
+  &,
+  legend,
+  .fieldset-legend {
+    background: $fieldset-background;
+    border-radius: $fieldset-border-radius;
 
-		.theme-inverse & {
-			background: $fieldset-background-inverse;
-		}
-	}
-	
-	legend,
-	.fieldset-legend {
-		padding: ($fieldset-gutter-y * .75) $fieldset-gutter-x 0;
-		margin-left: $fieldset-gutter-x * -1;
-		position:relative;
-		top: -1em;
-		border-bottom-right-radius: 0;
-		border-bottom-left-radius: 0;
-	}
+    .theme-inverse & {
+      background: $fieldset-background-inverse;
+    }
+  }
 
+  legend,
+  .fieldset-legend {
+    padding: ($fieldset-gutter-y * 0.75) $fieldset-gutter-x 0;
+    margin-left: $fieldset-gutter-x * -1;
+    position: relative;
+    top: -1em;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 
-	#{$prefix}-wrapper {
-		max-width: none;
-		display:flex;
-		flex-wrap:wrap;
-		padding-right:0;
+  #{$prefix}-wrapper {
+    max-width: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 0;
 
-		&-horizontal {
-			#{$prefix} {
-				margin-left:0;
-				margin-right:0;
-				padding-left:0;
-				padding-right:0;
-			}
-		}
+    &-horizontal {
+      #{$prefix} {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
 
-		&:nth-last-child(n+2) {
-			border-bottom: 1px solid gray;
-		}
-	}
+    &:nth-last-child(n + 2) {
+      border-bottom: 1px solid gray;
+    }
+  }
 
-	#{$prefix} {
-		background-color:transparent!important;
-		border-color: transparent!important;
-	}
+  #{$prefix} {
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
 
-	#{$prefix} {
-		outline: none!important;
-		box-shadow: none !important;
-	}
+  #{$prefix} {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 
-	%for-form-input-boxy,
-	#{$prefix}-inline {
-		background-color:transparent;
-		// width:calc(100% + (#{$fieldset-gutter-x} * 2));
-		max-width:none;
-		padding-left: 0;
-		padding-right:0;
-		// margin-left: $fieldset-gutter-x * -1;
-		// margin-right:$fieldset-gutter-x * -1;
-		border-radius:0!important;
-	}
+  %for-form-input-boxy,
+  #{$prefix}-inline {
+    background-color: transparent;
+    // width:calc(100% + (#{$fieldset-gutter-x} * 2));
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+    // margin-left: $fieldset-gutter-x * -1;
+    // margin-right:$fieldset-gutter-x * -1;
+    border-radius: 0 !important;
+  }
 
-	.btn:last-child {
-		position:absolute;
-		top:100%;
-		right:0;
-		margin-top:$fieldset-gutter-y;
-	}
+  .btn:last-child {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: $fieldset-gutter-y;
+  }
 
-	#{$prefix}-calendar-ui {
-		max-width: 400px;
-	}
+  #{$prefix}-calendar-ui {
+    max-width: 400px;
+  }
 }

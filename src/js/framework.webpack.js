@@ -3,8 +3,6 @@
 // import FwDate from './imports/data-helper/date.js';
 // import FwDom from './imports/data-helper/dom.js';
 
-
-
 import Accordion from './imports/accordion.js';
 import Alert from './imports/alert.js';
 import Button from './imports/button.js';
@@ -15,12 +13,12 @@ import ListGroup from './imports/list-group.js';
 import Modal from './imports/modal.js';
 
 export default {
-	Accordion,
-	Alert,
-	Button,
-	Dropdown,
-	Form,
-	Lazy,
-	ListGroup,
-	Modal
+  Accordion,
+  Alert,
+  Button,
+  Dropdown,
+  Form,
+  Lazy,
+  ListGroup,
+  Modal,
 };

@@ -3,22 +3,18 @@
 /* it */
 $prefix: '.pagination';
 #{$prefix} {
-	display:inline-flex;
-	align-items: center;
+  display: inline-flex;
+  align-items: center;
 
-	&-current {
+  &-current {
+  }
 
-	} 
+  &-total {
+  }
 
-	&-total {
+  .next {
+  }
 
-	}
-
-	.next {
-
-	}
-
-	.prev {
-		
-	}
+  .prev {
+  }
 }

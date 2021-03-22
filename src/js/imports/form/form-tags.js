@@ -25,894 +25,777 @@ const EVENT_BLUR = `blur${EVENT_KEY}`;
 const EVENT_PASTE = `paste${EVENT_KEY}`;
 const EVENT_CHANGE = `change${EVENT_KEY}`;
 
-	const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
-	const EVENT_INIT = `init${EVENT_KEY}`;
-	const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
+const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
+const EVENT_INIT = `init${EVENT_KEY}`;
+const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 
-	const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
-	const EVENT_RENDER = `render${EVENT_KEY}`;
-	const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
+const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
+const EVENT_RENDER = `render${EVENT_KEY}`;
+const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
 
-	const EVENT_BEFORE_UPDATE = `before_update${EVENT_KEY}`;
-	const EVENT_UPDATE = `update${EVENT_KEY}`;
-	const EVENT_AFTER_UPDATE = `after_update${EVENT_KEY}`;
-
+const EVENT_BEFORE_UPDATE = `before_update${EVENT_KEY}`;
+const EVENT_UPDATE = `update${EVENT_KEY}`;
+const EVENT_AFTER_UPDATE = `after_update${EVENT_KEY}`;
 
 const INPUT_STRING = `__fw_input__`;
 
 class Tags extends FwComponent {
+  constructor(element, valueToRender, args) {
+    super(element, {
+      UIValue: valueToRender || false,
+      _customArgs: args || false,
+    });
+  }
 
-	constructor(element,valueToRender,args){
-		super(
-			element,
-			{
-				UIValue: valueToRender
-					|| false,
-				_customArgs: args
-					|| false
-			}
-		);
-	}
+  dispose() {
+    super.dispose();
+    this.UIValue = null;
+    this._customArgs = null;
+  }
 
-	dispose() {
-		super.dispose();
-		this.UIValue = null;
-		this._customArgs = null;
-	}
+  static get DATA_KEY() {
+    return DATA_KEY;
+  }
 
-	static get DATA_KEY(){
-		return DATA_KEY;
-	}
+  static get __is() {
+    return INPUT_STRING;
+  }
 
-	static get __is () {
-		return INPUT_STRING;
-	}
+  get theValue() {
+    return super.UIEl().value;
+  }
 
-	get theValue() {
-		return super.UIEl().value;;
-	}
+  set theValue(theValue) {
+    if (theValue) {
+      super.UIEl().setAttribute('value', Tags.toVal(theValue, false));
+      super.UIEl().value = Tags.toVal(theValue, false);
+    }
+  }
 
-	set theValue(theValue) {
-		if(theValue){
-			super.UIEl().setAttribute('value', Tags.toVal(theValue,false));
-			super.UIEl().value = Tags.toVal(theValue,false);
-		}
-	}
+  get renderValue() {
+    const renderTags = this.UIValue
+      ? this.UIValue
+      : super.UIEl().hasAttribute('data-value-ui')
+      ? super.UIEl().getAttribute('data-value-ui')
+      : this.theValue;
+    return renderTags;
+  }
 
-	get renderValue() {
-		const renderTags = this.UIValue
-			? this.UIValue
-		: (super.UIEl().hasAttribute('data-value-ui'))
-			? super.UIEl().getAttribute('data-value-ui')
-		: this.theValue;
-		return renderTags;
-	}
+  set renderValue(renderTags) {
+    this.UIValue = Tags.toVal(renderTags);
+  }
 
-	set renderValue(renderTags) {
-		this.UIValue = Tags.toVal(renderTags);
-	}
+  get UIRoot() {
+    return super.UIEl().closest(`.${UIPrefix(COMPONENT_CLASS)}`);
+  }
 
-	get UIRoot () {
-		return super.UIEl().closest(`.${UIPrefix(COMPONENT_CLASS)}`);
-	}
+  get UIInput() {
+    return (
+      this.UIRoot && this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`)
+    );
+  }
 
-	get UIInput(){
-		return this.UIRoot && this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
-	}
+  get UIInputValue() {
+    return this.UIInput.innerText;
+  }
 
-	get UIInputValue() {
-		return this.UIInput.innerText;
-	}
+  set UIInputValue(inputValue) {
+    this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
+  }
 
-	set UIInputValue(inputValue) {
-		this.UIInput.innerText = inputValue.toString().replace(
-			/\n|\r/g,
-			'\\n'
-		);
-	}
+  get UIInputIdx() {
+    let toReturn = Tags.toArr(this.renderValue).indexOf(Tags.__is);
 
-	get UIInputIdx() {
-		let toReturn = Tags.toArr(this.renderValue).indexOf(Tags.__is);
+    if (toReturn < 0) {
+      Tags.toArr(this.renderValue).length > 0
+        ? Tags.toArr(this.renderValue).length - 1
+        : 0;
+    }
 
+    return toReturn;
 
-		if(toReturn < 0){
-			Tags.toArr(this.renderValue).length > 0
-			? Tags.toArr(this.renderValue).length - 1
-			: 0;
-		}
+    // (
+    // 	this.UIInput
+    // 	&& parseInt(this.UIInput.getAttribute('data-ui-i'))
+    // )
+    // || Tags.toArr(this.renderValue).indexOf(Tags.__is)
+    // || Tags.toArr(this.theValue).length;
+  }
 
-		return toReturn;
-		
-		// (
-		// 	this.UIInput
-		// 	&& parseInt(this.UIInput.getAttribute('data-ui-i'))
-		// )
-		// || Tags.toArr(this.renderValue).indexOf(Tags.__is)
-		// || Tags.toArr(this.theValue).length;
-	}
+  _scrollToUIInput() {
+    if (this.args.multipleLines || !this.UIInput) {
+      return;
+    }
 
+    if (
+      this.UIRoot.scrollLeft > this.UIInput.offsetLeft + this.UIInput.offsetWidth ||
+      this.UIRoot.scrollLeft + this.UIRoot.clientWidth <
+        this.UIInput.offsetLeft + this.UIInput.offsetWidth
+    ) {
+      FwDom.scrollToElem(this.UIRoot, this.UIInput, 'x');
+      FwDom.scrollToElem(this.UIRoot, this.UIInput, 'y');
+    }
+  }
 
-	_scrollToUIInput(){
-		if(this.args.multipleLines || !this.UIInput){
-			return
-		}
+  static get configDefaults() {
+    return {
+      width: null,
+      filter: null,
+      onKeyUp: null,
+      multipleLines: false,
+    };
+  }
 
-		if(
-			(this.UIRoot.scrollLeft > (this.UIInput.offsetLeft + this.UIInput.offsetWidth))
-			|| ((this.UIRoot.scrollLeft + this.UIRoot.clientWidth) < (this.UIInput.offsetLeft + this.UIInput.offsetWidth))
-		){
-			FwDom.scrollToElem(this.UIRoot,this.UIInput,'x');
-			FwDom.scrollToElem(this.UIRoot,this.UIInput,'y');
-		}
-	}
+  get args() {
+    return FwComponent._parseArgs(
+      this._customArgs
+        ? this._customArgs
+        : {
+            width: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
+            onKeyUp: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`),
+            filter: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`),
+            multipleLines: super
+              .UIEl()
+              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`),
+          },
+      Tags.configDefaults
+    );
+  }
 
-	static get configDefaults(){
-		return {
-			width: null,
-			filter: null,
-			onKeyUp: null,
-			multipleLines: false,
-		}
-	}
+  static toArr(value, returnsWithInput) {
+    returnsWithInput = returnsWithInput !== false || returnsWithInput == true;
 
-	get args () {
-		return FwComponent._parseArgs(
-			(this._customArgs
-				? this._customArgs
-				: {
-					width:
-						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
-					onKeyUp:
-						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`),
-					filter:
-						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`),
-					multipleLines:
-						super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`),
-				}
-			),
-			Tags.configDefaults
-		);
-	}
+    let toReturn = Array.isArray(value)
+      ? value
+      : typeof value == 'string'
+      ? value.split(',')
+      : [];
 
-	static toArr (value,returnsWithInput) {
-		
-		returnsWithInput =
-			returnsWithInput !== false || returnsWithInput == true;
-	
-		let toReturn = Array.isArray(value)
-				? value
-			: typeof value == 'string'
-				? value.split(',')
-			: [];
-	
-		//remove duplicates
-		toReturn = toReturn.reduce((acc, tag) => {
-			if (!acc.includes(tag)  && tag !== '') {
-				acc.push(tag);
-			}
-	
-			return acc;
-		}, []);
-	
-	
-		//check for ya boi
-		toReturn.forEach((tag, i) => {
-			if (
-				(!tag || tag == '')
-				|| (tag === Tags.__is && !returnsWithInput)
-			) {
-				toReturn.splice(i, 1);
-			}
-		});
-	
-		if (returnsWithInput && toReturn.indexOf(Tags.__is) < 0) {
-			toReturn.push(Tags.__is);
-		}
+    //remove duplicates
+    toReturn = toReturn.reduce((acc, tag) => {
+      if (!acc.includes(tag) && tag !== '') {
+        acc.push(tag);
+      }
 
-		return toReturn;
-	};
+      return acc;
+    }, []);
 
-	static toVal (value,returnsWithInput){
-		return Tags.toArr(value, returnsWithInput).join(',');
-	}
+    //check for ya boi
+    toReturn.forEach((tag, i) => {
+      if (!tag || tag == '' || (tag === Tags.__is && !returnsWithInput)) {
+        toReturn.splice(i, 1);
+      }
+    });
 
-	filterValue(custFn){
-		let fnToFilter,applyFilter;
+    if (returnsWithInput && toReturn.indexOf(Tags.__is) < 0) {
+      toReturn.push(Tags.__is);
+    }
 
-		try {
-			fnToFilter = custFn || eval(this.args.filter);
-		} catch (err) {}
+    return toReturn;
+  }
 
-		if (typeof fnToFilter === 'function') {
-			applyFilter = (valueToFilter, filterFnName) => {
-				const noInputValueToFilter = (() => {
-							return Tags.toVal(valueToFilter, false);
-						})();
+  static toVal(value, returnsWithInput) {
+    return Tags.toArr(value, returnsWithInput).join(',');
+  }
 
-				// turn to array ya bopi without the input tag string
-				let toReturn = Tags.toArr(
-					eval(`${filterFnName}("${noInputValueToFilter}")`),
-					false
-				);
+  filterValue(custFn) {
+    let fnToFilter, applyFilter;
 
-				// console.log(
-				// 	'index of input\n',inputIndex,
-				// 	'\n\n\nfiltered and ready for splice\n',toReturn,
-				// 	'\n\n\npassed to the fil;ter\n'Tags.toVal(valueToFilter,false),
-				// 	'\n\n\nrar array\n'Tags.toArr(valueToFilter),
-				// 	'\n\n\n no input field\n',noInputValueToFilter,Tags.toVal(valueToFilter,false),
-				// 	'\n\n\n no input fieldas array\n'Tags.toArr(valueToFilter,false),
-				// 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
-				// 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
-				// 	'whAT ETHE FUCK'
-				// );
+    try {
+      fnToFilter = custFn || eval(this.args.filter);
+    } catch (err) {}
 
-				if (this.UIInputIdx > -1) {
-					toReturn.splice(
-						this.UIInputIdx <
-							Tags.toArr(valueToFilter).length - 1
-							? this.UIInputIdx
-							: toReturn.length,
-						0,
-						Tags.__is
-					);
-				}
+    if (typeof fnToFilter === 'function') {
+      applyFilter = (valueToFilter, filterFnName) => {
+        const noInputValueToFilter = (() => {
+          return Tags.toVal(valueToFilter, false);
+        })();
 
-				return Tags.toVal(toReturn);
-			};
+        // turn to array ya bopi without the input tag string
+        let toReturn = Tags.toArr(
+          eval(`${filterFnName}("${noInputValueToFilter}")`),
+          false
+        );
 
-			this.theValue = applyFilter(
-				this.theValue,
-				this.args.filter
-			);
-			this.renderValue = applyFilter(
-				this.renderValue,
-				this.args.filter
-			);
-		}
-	}
+        // console.log(
+        // 	'index of input\n',inputIndex,
+        // 	'\n\n\nfiltered and ready for splice\n',toReturn,
+        // 	'\n\n\npassed to the fil;ter\n'Tags.toVal(valueToFilter,false),
+        // 	'\n\n\nrar array\n'Tags.toArr(valueToFilter),
+        // 	'\n\n\n no input field\n',noInputValueToFilter,Tags.toVal(valueToFilter,false),
+        // 	'\n\n\n no input fieldas array\n'Tags.toArr(valueToFilter,false),
+        // 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
+        // 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
+        // 	'whAT ETHE FUCK'
+        // );
 
-	update(newValue,allowFilter,valueToRender,inputText) {
-		FwEvent.trigger(super.UIEl(),EVENT_BEFORE_UPDATE);
+        if (this.UIInputIdx > -1) {
+          toReturn.splice(
+            this.UIInputIdx < Tags.toArr(valueToFilter).length - 1
+              ? this.UIInputIdx
+              : toReturn.length,
+            0,
+            Tags.__is
+          );
+        }
 
-		let theValue = newValue
-			|| this.theValue
-			|| '';
-		
-		let uiValue = valueToRender
-			|| theValue
-			|| this.renderValue
-			|| '';
+        return Tags.toVal(toReturn);
+      };
 
-		allowFilter = allowFilter != false || allowFilter == true;
+      this.theValue = applyFilter(this.theValue, this.args.filter);
+      this.renderValue = applyFilter(this.renderValue, this.args.filter);
+    }
+  }
 
-		inputText = inputText || false;
+  update(newValue, allowFilter, valueToRender, inputText) {
+    FwEvent.trigger(super.UIEl(), EVENT_BEFORE_UPDATE);
 
+    let theValue = newValue || this.theValue || '';
 
-		FwEvent.trigger(super.UIEl(),EVENT_UPDATE);
+    let uiValue = valueToRender || theValue || this.renderValue || '';
 
-		this.theValue = theValue;
-		this.renderValue = uiValue;
+    allowFilter = allowFilter != false || allowFilter == true;
 
-		
-		if (this.args.filter && allowFilter) {
-			this.filterValue();
-		}
+    inputText = inputText || false;
 
-		this._renderUI();
+    FwEvent.trigger(super.UIEl(), EVENT_UPDATE);
 
-		if(inputText){
-			this.UIInputValue = inputText;
-			this.focus();
-		}
-		
-		FwEvent.trigger(super.UIEl(),EVENT_AFTER_UPDATE);
-	}
+    this.theValue = theValue;
+    this.renderValue = uiValue;
 
-	_renderUI(elem) {
+    if (this.args.filter && allowFilter) {
+      this.filterValue();
+    }
 
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
+    this._renderUI();
 
-			if(!element){
-				return
-			}
+    if (inputText) {
+      this.UIInputValue = inputText;
+      this.focus();
+    }
 
-		FwEvent.trigger(element,EVENT_BEFORE_RENDER);
+    FwEvent.trigger(super.UIEl(), EVENT_AFTER_UPDATE);
+  }
 
-		const theUI = {};
+  _renderUI(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
+    if (!element) {
+      return;
+    }
 
-		FwEvent.trigger(element,EVENT_RENDER);
-		
-		theUI.container = this.UIRoot;
-		if (!theUI.container) {
-			theUI.container = document.createElement('div');
-			element.parentNode.insertBefore(
-				theUI.container,
-				element
-			);
-			theUI.container.appendChild(element);
-			theUI.container.classList.add('input');
-			theUI.container.setAttribute(
-				'class',
-				`${Settings.get('uiClass')}
+    FwEvent.trigger(element, EVENT_BEFORE_RENDER);
+
+    const theUI = {};
+
+    FwEvent.trigger(element, EVENT_RENDER);
+
+    theUI.container = this.UIRoot;
+    if (!theUI.container) {
+      theUI.container = document.createElement('div');
+      element.parentNode.insertBefore(theUI.container, element);
+      theUI.container.appendChild(element);
+      theUI.container.classList.add('input');
+      theUI.container.setAttribute(
+        'class',
+        `${Settings.get('uiClass')}
 				${Settings.get('uiJsClass')}
-				${
-					element
-					.getAttribute('class')
-					.toString()
-					.replace(
-						COMPONENT_CLASS,
-						UIPrefix(COMPONENT_CLASS)
-					)
-				}`
-			);
+				${element
+          .getAttribute('class')
+          .toString()
+          .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
+      );
 
-			theUI.container.classList.add(
-				this.args.multipleLines
-					? `${UIPrefix(COMPONENT_CLASS)}-multiple`
-					: `${UIPrefix(COMPONENT_CLASS)}-single`
-			);
-		}
+      theUI.container.classList.add(
+        this.args.multipleLines
+          ? `${UIPrefix(COMPONENT_CLASS)}-multiple`
+          : `${UIPrefix(COMPONENT_CLASS)}-single`
+      );
+    }
 
-		if (this.args.width) {
-			theUI.container.style = this.args.width;
-		}
-		//idk it never exists on initial so we dont have to do weird div wraping catches here
+    if (this.args.width) {
+      theUI.container.style = this.args.width;
+    }
+    //idk it never exists on initial so we dont have to do weird div wraping catches here
 
-		theUI.wrapper = theUI.container.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-wrapper`);
+    theUI.wrapper = theUI.container.querySelector(
+      `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
+    );
 
-		if (!theUI.wrapper) {
-			theUI.wrapper = document.createElement('div');
-			theUI.container.appendChild(theUI.wrapper);
-			theUI.wrapper.setAttribute(
-				'class',
-				`${UIPrefix(COMPONENT_CLASS)}-wrapper`
-			);
-			theUI.wrapper = theUI.container.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-wrapper`);
-		}
+    if (!theUI.wrapper) {
+      theUI.wrapper = document.createElement('div');
+      theUI.container.appendChild(theUI.wrapper);
+      theUI.wrapper.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-wrapper`);
+      theUI.wrapper = theUI.container.querySelector(
+        `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
+      );
+    }
 
-		theUI.input = this.UIInput;
+    theUI.input = this.UIInput;
 
+    if (!theUI.input) {
+      theUI.input = document.createElement('span');
+      theUI.wrapper.appendChild(theUI.input);
+      theUI.input.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
+      theUI.input.contentEditable = true;
+      theUI.input = theUI.wrapper.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
 
-		if (!theUI.input) {
-			theUI.input = document.createElement('span');
-			theUI.wrapper.appendChild(theUI.input);
-			theUI.input.setAttribute(
-				'class',
-				`${UIPrefix(COMPONENT_CLASS)}-input`
-			);
-			theUI.input.contentEditable = true;
-			theUI.input = theUI.wrapper.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
+      if (element.hasAttribute('placeholder')) {
+        theUI.input.setAttribute(
+          'data-placeholder',
+          element.getAttribute('placeholder')
+        );
+      }
 
-			if(element.hasAttribute('placeholder')){
-				theUI.input.setAttribute(
-					'data-placeholder',
-					element.getAttribute('placeholder')
-				);
-			}
+      //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
+      if (element.hasAttribute('data-toggle')) {
+        theUI.input.setAttribute('data-toggle', element.getAttribute('data-toggle'));
+      }
 
-			//nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
-			if (element.hasAttribute('data-toggle')) {
-				theUI.input.setAttribute(
-					'data-toggle',
-					element.getAttribute('data-toggle')
-				);
-			}
+      if (FwComponent.isDisabled(element)) {
+        theUI.input.classList.add('disabled');
+      }
 
-			if (FwComponent.isDisabled(element)) {
-				theUI.input.classList.add('disabled');
-			}
+      //bitch
+      if (this.args.onKeyUp) {
+        theUI.input.addEventListener('keyup', (event) => {
+          const keyUpScript = eval(this.args.onKeyUp);
+          if (keyUpScript) {
+            return keyUpScript;
+          }
+        });
+      }
+    }
 
-			//bitch
-			if (this.args.onKeyUp) {
-				theUI.input.addEventListener('keyup', (event)=>{
-					const keyUpScript = eval(this.args.onKeyUp);
-					if(keyUpScript){
-						return keyUpScript;
-					};
-				});
-			}
-		}
+    //updoot tags
+    const oldTags = theUI.wrapper.querySelectorAll(`.${UIPrefix(COMPONENT_CLASS)}-tag`);
 
-		//updoot tags
-		const oldTags = theUI.wrapper.querySelectorAll(`.${UIPrefix(COMPONENT_CLASS)}-tag`);
+    oldTags.forEach((tag) => {
+      tag.parentNode.removeChild(tag);
+    });
 
-		oldTags.forEach((tag) => {
-			tag.parentNode.removeChild(tag);
-		});
+    let valArr = Tags.toArr(this.renderValue, true);
 
+    theUI.input.setAttribute('data-ui-i', this.UIInputIdx);
 
-		let valArr = Tags.toArr(this.renderValue, true);
+    //validate tags
+    // valArr = valArr.reduce((acc, tag) => {
+    // 	if (!acc.includes(tag)) {
+    // 		acc.push(tag);
+    // 	}
+    // 	return acc;
+    // }, []);
 
-		theUI.input.setAttribute(
-			'data-ui-i',
-			this.UIInputIdx
-		);
+    valArr.forEach((tag, i) => {
+      //get index of input
+      if (tag !== Tags.__is) {
+        const tagHtml = document.createElement('span');
 
-		//validate tags
-		// valArr = valArr.reduce((acc, tag) => {
-		// 	if (!acc.includes(tag)) {
-		// 		acc.push(tag);
-		// 	}
-		// 	return acc;
-		// }, []);
+        if (i < this.UIInputIdx) {
+          theUI.input.insertAdjacentElement('beforebegin', tagHtml);
+        } else {
+          theUI.wrapper.appendChild(tagHtml);
+        }
 
-		valArr.forEach((tag, i) => {
-			//get index of input
-			if (tag !== Tags.__is) {
-				const tagHtml = document.createElement('span');
+        tagHtml.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-tag`);
 
-				if(i < this.UIInputIdx){
-					theUI.input.insertAdjacentElement(
-						'beforebegin',
-						tagHtml
-					);
-				}else{
-					theUI.wrapper.appendChild(tagHtml);
-				}
-				
-
-				tagHtml.setAttribute(
-					'class',
-					`${UIPrefix(COMPONENT_CLASS)}-tag`
-				);
-
-				tagHtml.innerHTML = `<button
+        tagHtml.innerHTML = `<button
 						data-ui-i="${i}"
 						class="${UIPrefix(COMPONENT_CLASS)}-tag-text ${UIPrefix(COMPONENT_CLASS)}-tag-button"
 						type="button"
 					>
 						${tag}
 					</button>
-					<button data-ui-i="${i}" class="${UIPrefix(COMPONENT_CLASS)}-tag-close ${UIPrefix(COMPONENT_CLASS)}-tag-button" type="button">
+					<button data-ui-i="${i}" class="${UIPrefix(COMPONENT_CLASS)}-tag-close ${UIPrefix(
+          COMPONENT_CLASS
+        )}-tag-button" type="button">
 						<i class="symbol symbol-close"></i>
 					</button>`;
-			}
-		});
+      }
+    });
 
-		//attribues
-		for (let i = 0; i < element.attributes.length; i++) {
-			let attr = element.attributes[i];
+    //attribues
+    for (let i = 0; i < element.attributes.length; i++) {
+      let attr = element.attributes[i];
 
-			if (attr.specified) {
-				if (
-					attr.name.includes('data')
-					&& !attr.name.includes('data-tags')
-					&& !attr.name.includes('data-toggle')
-					&& !attr.name.includes('data-value-ui')
-				) {
-					theUI.container.setAttribute(attr.name, attr.value);
-				}
-			}
-		}
+      if (attr.specified) {
+        if (
+          attr.name.includes('data') &&
+          !attr.name.includes('data-tags') &&
+          !attr.name.includes('data-toggle') &&
+          !attr.name.includes('data-value-ui')
+        ) {
+          theUI.container.setAttribute(attr.name, attr.value);
+        }
+      }
+    }
 
-		element.setAttribute('data-value-ui', this.renderValue);
+    element.setAttribute('data-value-ui', this.renderValue);
 
-		//keep that shoit bisibol
-		this._scrollToUIInput();
-		FwEvent.trigger(element,EVENT_AFTER_RENDER);
-	}
+    //keep that shoit bisibol
+    this._scrollToUIInput();
+    FwEvent.trigger(element, EVENT_AFTER_RENDER);
+  }
 
-	focus(disableNative){
-		disableNative = disableNative || false;
-		const self = this;
-		!disableNative && setTimeout(function() {
-			// console.log('poku','naAAANDATAAAOOOO');
-			self.UIInput.focus();
-		}, 0);
-		self.UIRoot.classList.add(FOCUS_CLASS);
-		self._scrollToUIInput();
-	}
+  focus(disableNative) {
+    disableNative = disableNative || false;
+    const self = this;
+    !disableNative &&
+      setTimeout(function () {
+        // console.log('poku','naAAANDATAAAOOOO');
+        self.UIInput.focus();
+      }, 0);
+    self.UIRoot.classList.add(FOCUS_CLASS);
+    self._scrollToUIInput();
+  }
 
-	blur(disableNative){
-		disableNative = disableNative || false;
-		const self = this;
-		!disableNative && setTimeout(function() {
-			// console.log('bru','naAAANDATAAAOOOO');
-			self.UIInput.blur();
-		}, 0);
-		self.UIRoot.classList.remove(FOCUS_CLASS);
-	}
+  blur(disableNative) {
+    disableNative = disableNative || false;
+    const self = this;
+    !disableNative &&
+      setTimeout(function () {
+        // console.log('bru','naAAANDATAAAOOOO');
+        self.UIInput.blur();
+      }, 0);
+    self.UIRoot.classList.remove(FOCUS_CLASS);
+  }
 
-	init(elem){
-		const element = elem ?
-			super.UIEl(elem)
-			: super.UIEl();
+  init(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
 
-		this.update();
-	}
+    this.update();
+  }
 
-	static initAll(){
-		FwEvent.trigger(document,EVENT_BEFORE_INIT);
+  static initAll() {
+    FwEvent.trigger(document, EVENT_BEFORE_INIT);
 
-		FwEvent.trigger(document,EVENT_INIT);
+    FwEvent.trigger(document, EVENT_INIT);
 
-		const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
-		
-		tagsInputs.forEach((poot) => {
-			const tagsInput = new Tags(poot);
-			
-			tagsInput.init();
-		});
+    const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 
-		FwEvent.trigger(document,EVENT_AFTER_INIT);
-	}
+    tagsInputs.forEach((poot) => {
+      const tagsInput = new Tags(poot);
 
-	static handleChange() {
-		return (e) => {
-			const tagsInput = new Tags(e.target);
-			tagsInput.update();
-		}
-	}
+      tagsInput.init();
+    });
 
-	static handleEditablePaste() {
-		return (e) => {
-			e.preventDefault();
-			
-			if (!FwComponent.isDisabled(e.target)) {
-				const tagsInput = new Tags(e.target
-					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
-					.querySelector(`.${COMPONENT_CLASS}`));
+    FwEvent.trigger(document, EVENT_AFTER_INIT);
+  }
 
-				const pasted =
-					e.clipboardData
-					|| window.clipboardData
-					|| e.originalEvent.clipboardData;
-				
-				tagsInput.UIInputValue += pasted.getData('text');
+  static handleChange() {
+    return (e) => {
+      const tagsInput = new Tags(e.target);
+      tagsInput.update();
+    };
+  }
 
-				tagsInput.blur();
-			}
-		}
-	}
+  static handleEditablePaste() {
+    return (e) => {
+      e.preventDefault();
 
-	static handleEditableFocus() {
-		return (e) => {
-			e.preventDefault();
-			if (!FwComponent.isDisabled(e.target)) {
-				const tagsInput = new Tags(e.target);
-				tagsInput.focus();
-			}
-		}
-	}
+      if (!FwComponent.isDisabled(e.target)) {
+        const tagsInput = new Tags(
+          e.target
+            .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
+            .querySelector(`.${COMPONENT_CLASS}`)
+        );
 
-	static handleEditableBlur() {
-		return (e) => {
-	
-			if (!FwComponent.isDisabled(e.target)) {
-				const tagsInput = new Tags(e.target
-					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
-					.querySelector(`.${COMPONENT_CLASS}`));
-					//value para mareset ta kung hain si buloy
-					let currValue = Tags.toArr(tagsInput.theValue);
-	
-				if(
-					tagsInput.UIInputValue
-				){
-					currValue.splice(
-						tagsInput.UIInputIdx,
-						0,
-						tagsInput.UIInputValue.replace(',', '')
-					);
-				}
-	
-	
-				tagsInput.UIInputValue = '';
-	
-				tagsInput.update(
-					Tags.toVal(currValue,false),
-					true,
-				);
+        const pasted =
+          e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
 
-				tagsInput.blur(true);
-			}
-		}
-	}
+        tagsInput.UIInputValue += pasted.getData('text');
 
-	static handleEditableKeydown() {
-		return (e) => {
-			if (FwComponent.isDisabled(e.target)) {
-				e.preventDefault();
-	
-			} else {
-				const tagsInput = new Tags(e.target
-					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
-					.querySelector(`.${COMPONENT_CLASS}`));
-				let currUIValue = Tags.toArr(tagsInput.renderValue),
-					newValue,
-					allowFilter = false;
+        tagsInput.blur();
+      }
+    };
+  }
 
-				switch (e.key) {
-					//enter
-					case 'Enter':
-						e.preventDefault();
-						tagsInput.blur();
-						break;
-	
-					//comma
-					case ',':
-						if (!Modifiers.hasActive()) {
-							allowFilter = true;
-							e.preventDefault();
-							currUIValue.splice(
-								tagsInput.UIInputIdx,
-								0,
-								tagsInput.UIInputValue.replace(',', '')
-							);
-	
-							tagsInput.UIInputValue = '';
-							
+  static handleEditableFocus() {
+    return (e) => {
+      e.preventDefault();
+      if (!FwComponent.isDisabled(e.target)) {
+        const tagsInput = new Tags(e.target);
+        tagsInput.focus();
+      }
+    };
+  }
 
-						}
-						// currUIValue.splice()
-						break;
-	
-					//left
-					case 'ArrowLeft':
-						if (!tagsInput.UIInputValue) {
-							e.preventDefault();
-							currUIValue = FwArray.moveItem(
-								currUIValue,
-								tagsInput.UIInputIdx,
-								tagsInput.UIInputIdx > 0
-								? tagsInput.UIInputIdx - 1
-								: 0
-							);
-						}
-	
-						break;
-	
-					//right
-					case 'ArrowRight':
-						if (!tagsInput.UIInputValue) {
-							e.preventDefault();
-							currUIValue = FwArray.moveItem(
-								currUIValue,
-								tagsInput.UIInputIdx,
-								tagsInput.UIInputIdx < currUIValue.length
-									? tagsInput.UIInputIdx + 1
-									: currUIValue.length - 1
-							);
-							// tagsInput._scrollToUIInput();
-						}
-						break;
-	
-					//up
-					case 'ArrowUp':
-						if (!tagsInput.UIInputValue) {
-							e.preventDefault();
-							currUIValue = FwArray.moveItem(
-								currUIValue,
-								tagsInput.UIInputIdx,
-								0
-							);
-						}
-	
-						break;
-	
-					//down
-					case 'ArrowDown':
-						if (!tagsInput.UIInputValue) {
-							e.preventDefault();
-							currUIValue = FwArray.moveItem(
-								currUIValue,
-								tagsInput.UIInputIdx,
-								currUIValue.length - 1
-							);
-							// tagsInput._scrollToUIInput();
-						}
-						break;
-	
-					//backspace
-					case 'Backspace':
-						if (!tagsInput.UIInputValue) {
-							e.preventDefault();
-							allowFilter = true;
-							currUIValue.splice(
-								tagsInput.UIInputIdx - 1,
-								1
-							);
-						}
-						break;
-	
-					//delete
-					case 'Delete':
-						if (!tagsInput.UIInputValue) {
-							e.preventDefault();
-							allowFilter = true;
-							currUIValue.splice(
-								tagsInput.UIInputIdx + 1,
-								1
-							);
-						}
-						break;
-				}
+  static handleEditableBlur() {
+    return (e) => {
+      if (!FwComponent.isDisabled(e.target)) {
+        const tagsInput = new Tags(
+          e.target
+            .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
+            .querySelector(`.${COMPONENT_CLASS}`)
+        );
+        //value para mareset ta kung hain si buloy
+        let currValue = Tags.toArr(tagsInput.theValue);
 
-	
-				newValue = Tags.toVal(currUIValue);
-				// tagsInput._scrollToUIInput();
-	
-				tagsInput.update(
-					newValue,
-					allowFilter,
-				);
-			}
-		}
-	}
-	
+        if (tagsInput.UIInputValue) {
+          currValue.splice(
+            tagsInput.UIInputIdx,
+            0,
+            tagsInput.UIInputValue.replace(',', '')
+          );
+        }
 
-	static handleDelete() {
-		return (e) => {
-	
-			e.preventDefault();
-	
-			if (!FwComponent.isDisabled(e.target)) {
-	
-				const tagsInput = new Tags(e.target
-					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
-					.querySelector(`.${COMPONENT_CLASS}`));
+        tagsInput.UIInputValue = '';
 
-				const tagToRemove = parseInt(e.target.getAttribute(
-						'data-ui-i'
-					));
+        tagsInput.update(Tags.toVal(currValue, false), true);
 
-				let currValue = Tags.toArr(tagsInput.theValue);
+        tagsInput.blur(true);
+      }
+    };
+  }
 
-				currValue.splice(
-					parseInt(tagToRemove),
-					1
-				);
-	
-				const newValue = Tags.toVal(currValue);
-	
-				tagsInput.update(
-					newValue,
-					true,
-				);
-			}
-		}
-	}
-	
+  static handleEditableKeydown() {
+    return (e) => {
+      if (FwComponent.isDisabled(e.target)) {
+        e.preventDefault();
+      } else {
+        const tagsInput = new Tags(
+          e.target
+            .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
+            .querySelector(`.${COMPONENT_CLASS}`)
+        );
+        let currUIValue = Tags.toArr(tagsInput.renderValue),
+          newValue,
+          allowFilter = false;
 
-	static handleEdit() {
-		return (e) => {
-			const triggerer = e.target;
-	
-			e.preventDefault();
-	
-			if (!FwComponent.isDisabled(triggerer)) {
+        switch (e.key) {
+          //enter
+          case 'Enter':
+            e.preventDefault();
+            tagsInput.blur();
+            break;
 
-				const tagsInput = new Tags(e.target
-					.closest(`.${UIPrefix(COMPONENT_CLASS)}`)
-					.querySelector(`.${COMPONENT_CLASS}`));
+          //comma
+          case ',':
+            if (!Modifiers.hasActive()) {
+              allowFilter = true;
+              e.preventDefault();
+              currUIValue.splice(
+                tagsInput.UIInputIdx,
+                0,
+                tagsInput.UIInputValue.replace(',', '')
+              );
 
-				const tagToEdit = parseInt(e.target.getAttribute(
-					'data-ui-i'
-				));
+              tagsInput.UIInputValue = '';
+            }
+            // currUIValue.splice()
+            break;
 
-				let currValue = Tags.toArr(tagsInput.theValue,false);
+          //left
+          case 'ArrowLeft':
+            if (!tagsInput.UIInputValue) {
+              e.preventDefault();
+              currUIValue = FwArray.moveItem(
+                currUIValue,
+                tagsInput.UIInputIdx,
+                tagsInput.UIInputIdx > 0 ? tagsInput.UIInputIdx - 1 : 0
+              );
+            }
 
-				currValue.splice(
-					tagToEdit,
-					1,
-					Tags.__is
-				);
-	
-				const newUIValue = Tags.toVal(currValue);
-	
-				tagsInput.update(
-					null,
-					false,
-					newUIValue,
-					e.target.innerText
-				);
-			}
-		}
-	}
-	
+            break;
 
-	static initListeners() {
+          //right
+          case 'ArrowRight':
+            if (!tagsInput.UIInputValue) {
+              e.preventDefault();
+              currUIValue = FwArray.moveItem(
+                currUIValue,
+                tagsInput.UIInputIdx,
+                tagsInput.UIInputIdx < currUIValue.length
+                  ? tagsInput.UIInputIdx + 1
+                  : currUIValue.length - 1
+              );
+              // tagsInput._scrollToUIInput();
+            }
+            break;
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CHANGE,
-			COMPONENT_CLASS,
-			Tags.handleChange()
-		);
+          //up
+          case 'ArrowUp':
+            if (!tagsInput.UIInputValue) {
+              e.preventDefault();
+              currUIValue = FwArray.moveItem(currUIValue, tagsInput.UIInputIdx, 0);
+            }
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_PASTE,
-			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
-			Tags.handleEditablePaste()
-		);
+            break;
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CLICK,
-			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
-			Tags.handleEditableFocus()
-		);
+          //down
+          case 'ArrowDown':
+            if (!tagsInput.UIInputValue) {
+              e.preventDefault();
+              currUIValue = FwArray.moveItem(
+                currUIValue,
+                tagsInput.UIInputIdx,
+                currUIValue.length - 1
+              );
+              // tagsInput._scrollToUIInput();
+            }
+            break;
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_BLUR,
-			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
-			Tags.handleEditableBlur()
-		);
+          //backspace
+          case 'Backspace':
+            if (!tagsInput.UIInputValue) {
+              e.preventDefault();
+              allowFilter = true;
+              currUIValue.splice(tagsInput.UIInputIdx - 1, 1);
+            }
+            break;
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_KEYDOWN,
-			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
-			Tags.handleEditableKeydown()
-		);
+          //delete
+          case 'Delete':
+            if (!tagsInput.UIInputValue) {
+              e.preventDefault();
+              allowFilter = true;
+              currUIValue.splice(tagsInput.UIInputIdx + 1, 1);
+            }
+            break;
+        }
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CLICK,
-			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-tag-close`,
-			Tags.handleDelete()
-		);
+        newValue = Tags.toVal(currUIValue);
+        // tagsInput._scrollToUIInput();
 
-		FwEvent.addListener(
-			document.documentElement,
-			EVENT_CLICK,
-			`.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-tag-text`,
-			Tags.handleEdit()
-		);
+        tagsInput.update(newValue, allowFilter);
+      }
+    };
+  }
 
-		Initiator.Q.on_ready = Tags.initAll;
-		Initiator.Q.on_resize = Tags.initAll;
+  static handleDelete() {
+    return (e) => {
+      e.preventDefault();
 
-	}
-	static destroyListeners(){
+      if (!FwComponent.isDisabled(e.target)) {
+        const tagsInput = new Tags(
+          e.target
+            .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
+            .querySelector(`.${COMPONENT_CLASS}`)
+        );
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CHANGE,
-			Tags.handleChange()
-		);
+        const tagToRemove = parseInt(e.target.getAttribute('data-ui-i'));
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_PASTE,
-			Tags.handleEditablePaste()
-		);
+        let currValue = Tags.toArr(tagsInput.theValue);
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CLICK,
-			Tags.handleEditableFocus()
-		);
+        currValue.splice(parseInt(tagToRemove), 1);
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_BLUR,
-			Tags.handleEditableBlur()
-		);
+        const newValue = Tags.toVal(currValue);
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_KEYDOWN,
-			Tags.handleEditableKeydown()
-		);
+        tagsInput.update(newValue, true);
+      }
+    };
+  }
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CLICK,
-			Tags.handleDelete()
-		);
+  static handleEdit() {
+    return (e) => {
+      const triggerer = e.target;
 
-		FwEvent.removeListener(
-			document.documentElement,
-			EVENT_CLICK,
-			Tags.handleEdit()
-		);
-	}
+      e.preventDefault();
+
+      if (!FwComponent.isDisabled(triggerer)) {
+        const tagsInput = new Tags(
+          e.target
+            .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
+            .querySelector(`.${COMPONENT_CLASS}`)
+        );
+
+        const tagToEdit = parseInt(e.target.getAttribute('data-ui-i'));
+
+        let currValue = Tags.toArr(tagsInput.theValue, false);
+
+        currValue.splice(tagToEdit, 1, Tags.__is);
+
+        const newUIValue = Tags.toVal(currValue);
+
+        tagsInput.update(null, false, newUIValue, e.target.innerText);
+      }
+    };
+  }
+
+  static initListeners() {
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CHANGE,
+      COMPONENT_CLASS,
+      Tags.handleChange()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_PASTE,
+      `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+      Tags.handleEditablePaste()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK,
+      `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+      Tags.handleEditableFocus()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_BLUR,
+      `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+      Tags.handleEditableBlur()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_KEYDOWN,
+      `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
+      Tags.handleEditableKeydown()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK,
+      `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-tag-close`,
+      Tags.handleDelete()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK,
+      `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-tag-text`,
+      Tags.handleEdit()
+    );
+
+    Initiator.Q.on_ready = Tags.initAll;
+    Initiator.Q.on_resize = Tags.initAll;
+  }
+  static destroyListeners() {
+    FwEvent.removeListener(document.documentElement, EVENT_CHANGE, Tags.handleChange());
+
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_PASTE,
+      Tags.handleEditablePaste()
+    );
+
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_CLICK,
+      Tags.handleEditableFocus()
+    );
+
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_BLUR,
+      Tags.handleEditableBlur()
+    );
+
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_KEYDOWN,
+      Tags.handleEditableKeydown()
+    );
+
+    FwEvent.removeListener(document.documentElement, EVENT_CLICK, Tags.handleDelete());
+
+    FwEvent.removeListener(document.documentElement, EVENT_CLICK, Tags.handleEdit());
+  }
 }
 
 export default Tags;

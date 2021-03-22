@@ -6,7 +6,7 @@ See [Helpers](../scaffolding/helpers.md)
 
 ## Headings
 
-Why yes, they are all available	
+Why yes, they are all available
 
 ```html
 <h1>Big bitch one</h1>
@@ -18,7 +18,6 @@ Why yes, they are all available
 ```
 
 If you want something that's not suppose to be a heading semantic-wise but styled as one, each heading has an available class
-
 
 ```html
 <p class="h1">Big bitch one</p>
@@ -47,17 +46,17 @@ The framework supports `ol` (Ordered lists),`ul` (Unorderde Lists), and `dl (yi 
 
 Ordered and Unordered lists have classes to remove or modify styles to your needs :')
 
-*	**`inline`**
+- **`inline`**
 
-	Inline all the list items and remove stylings
+  Inline all the list items and remove stylings
 
-*	**`.unstyled`**
+- **`.unstyled`**
 
-	Removes or resets styles of list. Not to be confused with `.style-none`
+  Removes or resets styles of list. Not to be confused with `.style-none`
 
-*	**`.style-none`**
+- **`.style-none`**
 
-	Removes list bullets or numbering but not padding styles. Not to be confused with unstyled
+  Removes list bullets or numbering but not padding styles. Not to be confused with unstyled
 
 #### List Style
 
@@ -67,23 +66,22 @@ Ordered and unordered lists have classes available for list types
 
 ##### Ordered List helpers
 
-*	**`.style-decimal`** (Also default styles, but useful for re-normalizing lists)
-*	**`.style-decimal-leading-zero`**
-*	**`.style-lower-alpha`**
-*	**`.style-lower-roman`**
-*	**`.style-upper-alpha`**
-*	**`.style-upper-roman`**
+- **`.style-decimal`** (Also default styles, but useful for re-normalizing lists)
+- **`.style-decimal-leading-zero`**
+- **`.style-lower-alpha`**
+- **`.style-lower-roman`**
+- **`.style-upper-alpha`**
+- **`.style-upper-roman`**
 
 ##### Unordered List helpers
 
-*	**`.style-disc`** (Also default styles, but useful for re-normalizing lists)
-*	**`.style-circle`**
-*	**`.style-squeare`**
+- **`.style-disc`** (Also default styles, but useful for re-normalizing lists)
+- **`.style-circle`**
+- **`.style-squeare`**
 
 ## Blockquote
 
 We have that. just make a `<blockquote>` boi and ya good
-
 
 ## Horizontal Rules
 
@@ -138,52 +136,42 @@ United States</address>
 <p><strong>Variable Tag</strong></p>
 <p>This allows you to denote <var>variables</var>.</p>
 
-
 ```html
+<address>
+  1 Infinite Loop<br />
+  Cupertino, CA 95014<br />
+  United States
+</address>
 
+<p>This is an example of a <a title="Apple" href="http://apple.com">link</a>.</p>
 
-<address>1 Infinite Loop<br>
-Cupertino, CA 95014<br>
-United States</address>
+<p>The abbreviation <abbr title="Seriously">srsly</abbr> stands for “seriously”.</p>
+
+<p>The acronym <acronym title="For The Win">ftw</acronym> stands for “for the win”.</p>
 
 <p>
-	This is an example of a <a title="Apple" href="http://apple.com">link</a>.
+  These tests are a <big>big</big> deal, but this tag is no longer supported in HTML5 .
+</p>
+
+<p>“Code is poetry.” —<cite>Automattic</cite></p>
+
+<p>
+  You will learn later on in these tests that <code>word-wrap: break-word;</code> will
+  be your best friend.
 </p>
 
 <p>
-	The abbreviation <abbr title="Seriously">srsly</abbr> stands for “seriously”.
+  This tag will let you <del>strikeout text</del>, but this tag is no longer supported
+  in HTML5 (use the <code>&lt;strike&gt;</code> instead).
 </p>
 
-<p>
-	The acronym <acronym title="For The Win">ftw</acronym> stands for “for the win”.
-</p>
+<p>The emphasize tag should <em>italicize</em> text.</p>
+
+<p>This tag should denote <ins>inserted</ins> text.</p>
 
 <p>
-	These tests are a <big>big</big> deal, but this tag is no longer supported in HTML5
-.</p>
-
-<p>
-	“Code is poetry.” —<cite>Automattic</cite>
-</p>
-
-<p>
-	You will learn later on in these tests that <code>word-wrap: break-word;</code> will be your best friend.
-</p>
-
-<p>
-	This tag will let you <del>strikeout text</del>, but this tag is no longer supported in HTML5 (use the <code>&lt;strike&gt;</code> instead).
-</p>
-
-<p>
-	The emphasize tag should <em>italicize</em> text.
-</p>
-
-<p>
-	This tag should denote <ins>inserted</ins> text.
-</p>
-
-<p>
-	This <a href="#">scarcely</a> known tag emulates <kbd>keyboard text</kbd>, which is usually styled like the <code>&lt;code&gt;</code> tag.
+  This <a href="#">scarcely</a> known tag emulates <kbd>keyboard text</kbd>, which is
+  usually styled like the <code>&lt;code&gt;</code> tag.
 </p>
 
 <p>The pre tag styles large blocks of code.</p>
@@ -196,30 +184,27 @@ United States</address>
 	}
 </pre>
 
+<p><q>Developers, developers, developers…</q> –Steve Ballmer</p>
+
 <p>
-	<q>Developers, developers, developers…</q> –Steve Ballmer
+  This tag shows <strong>bold<strong> text.</strong></strong>
 </p>
 
 <p>
-	This tag shows <strong>bold<strong> text.</strong></strong>
+  Getting our science styling on with H<sub>2</sub>O, which should push the “2” down.
 </p>
 
 <p>
-	Getting our science styling on with H<sub>2</sub>O, which should push the “2” down.
+  Still sticking with science and Isaac Newton’s E = MC<sup>2</sup>, which should lift
+  the 2 up.
 </p>
 
 <p>
-	Still sticking with science and Isaac Newton’s E = MC<sup>2</sup>, which should lift the 2 up.
+  This rarely used tag emulates <tt>teletype text</tt>, which is usually styled like the
+  <code>&lt;code&gt;</code> tag.
 </p>
 
-<p>
-	This rarely used tag emulates <tt>teletype text</tt>, which is usually styled like the <code>&lt;code&gt;</code> tag.
-</p>
-
-<p>
-	This allows you to denote <var>variables</var>.
-</p>
+<p>This allows you to denote <var>variables</var>.</p>
 ```
-
 
 [Back to TOC](../../../readme.md)

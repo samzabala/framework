@@ -3,7 +3,6 @@
 // import FwDate from './src/data-helper/date.js';
 // import FwDom from './src/data-helper/dom.js';
 
-
 import Initiator from './imports/core/initiator.js';
 import Settings from './imports/core/settings.js';
 
@@ -22,20 +21,20 @@ import Tooltip from './imports/tooltip.js';
 import Zone from './imports/zone.js';
 
 const FrameWork = {
-	Initiator,
-	Settings,
-	Accordion,
-	Alert,
-	Button,
-	Dropdown,
-	Form,
-	Lazy,
-	ListGroup,
-	Modal,
-	ModuleGrid,
-	Switch,
-	Tabs,
-	Tooltip,
-	Zone,
+  Initiator,
+  Settings,
+  Accordion,
+  Alert,
+  Button,
+  Dropdown,
+  Form,
+  Lazy,
+  ListGroup,
+  Modal,
+  ModuleGrid,
+  Switch,
+  Tabs,
+  Tooltip,
+  Zone,
 };
-export default FrameWork
+export default FrameWork;

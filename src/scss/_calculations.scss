@@ -1,32 +1,32 @@
 //global/helper calculations
-	@import 'calculations/_global';
+@import 'calculations/_global';
 //to cascade
-	@import 'calculations/_typography';
+@import 'calculations/_typography';
 //layout
-	@import 'calculations/_module';
+@import 'calculations/_module';
 //ui components
-	//fonting/iconography
-		@import 'calculations/_symbol';
-		@import 'calculations/_asset';
-	//navigation
-		@import 'calculations/_nav';
-		@import 'calculations/_tab';
-	//other
-		@import 'calculations/_thumbnail';
-		@import 'calculations/_progress';
-		@import 'calculations/_badge';
-		@import 'calculations/_well';
-		@import 'calculations/_tag';
-		@import 'calculations/_tooltip';
-		@import 'calculations/_highlight';
-		@import 'calculations/_legend';
-		@import 'calculations/_alert'; 
-		@import 'calculations/_zone';
-		@import 'calculations/_list-group';
-		@import 'calculations/_table';
-		@import 'calculations/_buttons';
-		@import 'calculations/_form';
-			@import 'calculations/_form-calendar';
-			@import 'calculations/_form-tags';
-			@import 'calculations/_form-toggle';
-		@import 'calculations/_modal-board';
+//fonting/iconography
+@import 'calculations/_symbol';
+@import 'calculations/_asset';
+//navigation
+@import 'calculations/_nav';
+@import 'calculations/_tab';
+//other
+@import 'calculations/_thumbnail';
+@import 'calculations/_progress';
+@import 'calculations/_badge';
+@import 'calculations/_well';
+@import 'calculations/_tag';
+@import 'calculations/_tooltip';
+@import 'calculations/_highlight';
+@import 'calculations/_legend';
+@import 'calculations/_alert';
+@import 'calculations/_zone';
+@import 'calculations/_list-group';
+@import 'calculations/_table';
+@import 'calculations/_buttons';
+@import 'calculations/_form';
+@import 'calculations/_form-calendar';
+@import 'calculations/_form-tags';
+@import 'calculations/_form-toggle';
+@import 'calculations/_modal-board';

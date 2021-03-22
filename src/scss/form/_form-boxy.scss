@@ -1,748 +1,713 @@
-
 /*** input-boxy (scaffolding) ***/
 $prefix: '.input';
 
 %for-form-input-boxy {
-	& {
-		@extend %for-form-global-radius;
-		@extend %for-form-global-transition;
-		-webkit-appearance: none;
-		appearance: none;
-		outline:none;
-		max-width:100%;
-		@include type-set((
-			size: $calculated-input-font-size,
-			leading: $calculated-input-line-height,
-			weight: $input-font-weight,
-			style: $input-font-style,
-			font: $input-font-family,
-			align:inherit,
-			decoration:none,
-			case: $input-text-transform,
-		));
-		display:inline-block;
-		border: $input-border-width solid $input-border-color;
-		background-color: $input-background;
-		padding-right: $calculated-input-gutter-x;
-		padding-left: $calculated-input-gutter-x;
-		padding-top: $calculated-value-input-paddiny-y;
-		padding-bottom: $calculated-value-input-paddiny-y;
-		box-shadow: $input-box-shadow;
+  & {
+    @extend %for-form-global-radius;
+    @extend %for-form-global-transition;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    max-width: 100%;
+    @include type-set(
+      (
+        size: $calculated-input-font-size,
+        leading: $calculated-input-line-height,
+        weight: $input-font-weight,
+        style: $input-font-style,
+        font: $input-font-family,
+        align: inherit,
+        decoration: none,
+        case: $input-text-transform,
+      )
+    );
+    display: inline-block;
+    border: $input-border-width solid $input-border-color;
+    background-color: $input-background;
+    padding-right: $calculated-input-gutter-x;
+    padding-left: $calculated-input-gutter-x;
+    padding-top: $calculated-value-input-paddiny-y;
+    padding-bottom: $calculated-value-input-paddiny-y;
+    box-shadow: $input-box-shadow;
 
-		&,
-		&:hover,
-		&:focus,
-		&.focus,
-		&:active,
-		&.active {
-			color:$input-color;
-		}
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      color: $input-color;
+    }
 
-		.theme-inverse & {
-			background-color: $input-background-inverse;
+    .theme-inverse & {
+      background-color: $input-background-inverse;
 
-			&,
-			&:hover,
-			&:focus,
-			&.focus,
-			&:active,
-			&.active {
-					color:$input-color-inverse;
-			}
-		}
+      &,
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        color: $input-color-inverse;
+      }
+    }
 
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      border-color: $input-border-color-focus;
+    }
 
+    option {
+      font: inherit;
+      outline: none;
+    }
 
-		&:focus,
-		&.focus,
-		&:active,
-		&.active {
-			border-color: $input-border-color-focus;
-		}
-		
-		option {
-			font:inherit;
-			outline:none;
-		}
+    &::-webkit-input-placeholder {
+      color: inherit;
+      opacity: $input-placeholder-opacity;
+    }
 
-		&::-webkit-input-placeholder {
-			color: inherit;
-			opacity: $input-placeholder-opacity;
-		}
-		
-		&::-moz-placeholder {
-			color: inherit;
-			opacity: $input-placeholder-opacity;
-		}
-		
-		&:-ms-input-placeholder{
-			color: inherit;
-			opacity: $input-placeholder-opacity;
-		}
-		&:-moz-placeholder { /* Firefox 18- */
-			color: inherit;
-			opacity: $input-placeholder-opacity;
-		}
-		
-		//color
-			&[type=color] {
-				min-width:100px;
-				padding: .5em;
-			}
+    &::-moz-placeholder {
+      color: inherit;
+      opacity: $input-placeholder-opacity;
+    }
 
-		//file
-			&::-webkit-file-upload-button {
-				appearance: none;
-				border: none;
-				font:inherit;
-				color:inherit;
-				opacity: $input-placeholder-opacity;
-				background: none;
-				margin: 0 .25em 0 0;
-				padding: 0;
-				// vertical-align:middle;
-				// display:flex;
-			}
-			// &::-webkit-file-upload-text {
-			// 	-webkit-appearance: none;
-			// }
-		
-		&:focus::-webkit-input-placeholder {
-			color: transparent !important;
-		}
-		
-		&:focus:-moz-placeholder {
-			color: transparent !important;
-		}
-		
-		&:focus:-ms-input-placeholder{
-			color: transparent !important;
-		}
+    &:-ms-input-placeholder {
+      color: inherit;
+      opacity: $input-placeholder-opacity;
+    }
+    &:-moz-placeholder {
+      /* Firefox 18- */
+      color: inherit;
+      opacity: $input-placeholder-opacity;
+    }
 
-		
-		&.focus::-webkit-input-placeholder {
-			color: transparent !important;
-		}
-		
-		&.focus:-moz-placeholder {
-			color: transparent !important;
-		}
-		
-		&.focus:-ms-input-placeholder{
-			color: transparent !important;
-		}
-		
+    //color
+    &[type='color'] {
+      min-width: 100px;
+      padding: 0.5em;
+    }
 
-	}
+    //file
+    &::-webkit-file-upload-button {
+      appearance: none;
+      border: none;
+      font: inherit;
+      color: inherit;
+      opacity: $input-placeholder-opacity;
+      background: none;
+      margin: 0 0.25em 0 0;
+      padding: 0;
+      // vertical-align:middle;
+      // display:flex;
+    }
+    // &::-webkit-file-upload-text {
+    // 	-webkit-appearance: none;
+    // }
 
+    &:focus::-webkit-input-placeholder {
+      color: transparent !important;
+    }
 
+    &:focus:-moz-placeholder {
+      color: transparent !important;
+    }
 
-	&-single{
-		vertical-align: middle;
+    &:focus:-ms-input-placeholder {
+      color: transparent !important;
+    }
 
-		// height: $calculated-input-height;
+    &.focus::-webkit-input-placeholder {
+      color: transparent !important;
+    }
 
-		// &#{$prefix}-large,
-		// #{$prefix}-large & {
-		// 	height: $calculated-input-height-large;
-		// }
+    &.focus:-moz-placeholder {
+      color: transparent !important;
+    }
 
-		// &#{$prefix}-small,
-		// #{$prefix}-small & {
-		// 	height: $calculated-input-height-small;
-		// }
-	}
+    &.focus:-ms-input-placeholder {
+      color: transparent !important;
+    }
+  }
 
-	&-multiple{
+  &-single {
+    vertical-align: middle;
 
-		& {
+    // height: $calculated-input-height;
 
-			vertical-align: top;
-			overflow-y: auto;
-			flex: 1;
-	
-			.input-group & {
-				max-height:100%;
-			}
-	
-			option {
-				padding-right: $calculated-input-gutter-x;
-				padding-left: $calculated-input-gutter-x;
-				margin-right: $calculated-input-gutter-x * -1;
-				margin-left: $calculated-input-gutter-x * -1;
-			}
-	
+    // &#{$prefix}-large,
+    // #{$prefix}-large & {
+    // 	height: $calculated-input-height-large;
+    // }
 
-		}
-		&-height {
-			height: auto;
-			resize: both;
-			min-height: $calculated-input-height * $input-height-multiple-factor;
+    // &#{$prefix}-small,
+    // #{$prefix}-small & {
+    // 	height: $calculated-input-height-small;
+    // }
+  }
 
-			&-large {
-				min-height: $calculated-input-height-large * $input-height-multiple-factor;
-			}
-	
-			&-small {
-				min-height: $calculated-input-height-small * $input-height-multiple-factor;
-			}
+  &-multiple {
+    & {
+      vertical-align: top;
+      overflow-y: auto;
+      flex: 1;
 
-		}
-	}
+      .input-group & {
+        max-height: 100%;
+      }
 
-	&-select {
+      option {
+        padding-right: $calculated-input-gutter-x;
+        padding-left: $calculated-input-gutter-x;
+        margin-right: $calculated-input-gutter-x * -1;
+        margin-left: $calculated-input-gutter-x * -1;
+      }
+    }
+    &-height {
+      height: auto;
+      resize: both;
+      min-height: $calculated-input-height * $input-height-multiple-factor;
 
-		background-image:
-			linear-gradient(-130deg, $input-select-dropdown-color 0%, $input-select-dropdown-color 50%, transparent 51%, transparent 100%),
-			linear-gradient(130deg, $input-select-dropdown-color 0%, $input-select-dropdown-color 50%, transparent 51%, transparent 100%)
-			;
-		background-size:
-			#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height,
-			#{$calculated-symbol-caret-width * .5} $calculated-symbol-caret-height
-			;
-		background-position:
-			calc(100% - ((#{$calculated-input-gutter-x} * .5) + #{$calculated-symbol-caret-width * .5} )) 50%,
-			calc(100% - (#{$calculated-input-gutter-x} * .5)) 50%
-			;
-		background-repeat: no-repeat,no-repeat;
+      &-large {
+        min-height: $calculated-input-height-large * $input-height-multiple-factor;
+      }
 
-		&:not([multiple]) {
-			padding-right: $calculated-input-gutter-x * 2;
-		}
-		@at-root select#{&}[multiple] {
-			background-image: none;
-		}
-	}
+      &-small {
+        min-height: $calculated-input-height-small * $input-height-multiple-factor;
+      }
+    }
+  }
 
+  &-select {
+    background-image: linear-gradient(
+        -130deg,
+        $input-select-dropdown-color 0%,
+        $input-select-dropdown-color 50%,
+        transparent 51%,
+        transparent 100%
+      ),
+      linear-gradient(
+        130deg,
+        $input-select-dropdown-color 0%,
+        $input-select-dropdown-color 50%,
+        transparent 51%,
+        transparent 100%
+      );
+    background-size: #{$calculated-symbol-caret-width * 0.5} $calculated-symbol-caret-height,
+      #{$calculated-symbol-caret-width * 0.5} $calculated-symbol-caret-height;
+    background-position: calc(
+          100% -
+            (
+              (#{$calculated-input-gutter-x} * 0.5) + #{$calculated-symbol-caret-width *
+                0.5}
+            )
+        )
+        50%,
+      calc(100% - (#{$calculated-input-gutter-x} * 0.5)) 50%;
+    background-repeat: no-repeat, no-repeat;
 
-	&-large{
-	}
+    &:not([multiple]) {
+      padding-right: $calculated-input-gutter-x * 2;
+    }
+    @at-root select#{&}[multiple] {
+      background-image: none;
+    }
+  }
 
-	&-small{
-	}
+  &-large {
+  }
 
-	&-in-nav {
-	}
+  &-small {
+  }
 
-	&-in-group {
+  &-in-nav {
+  }
 
-		& {
-			border-radius:inherit;
-		}
-		
-		&-horizontal {
+  &-in-group {
+    & {
+      border-radius: inherit;
+    }
 
-		}
+    &-horizontal {
+    }
 
-		&-vertical {
-			
-		}
+    &-vertical {
+    }
 
-		&-block {
-			
-		}
+    &-block {
+    }
+  }
 
-	}
+  &-in-wrapper {
+    &-horizontal {
+    }
 
-	&-in-wrapper {
+    &-vertical {
+    }
 
-		&-horizontal {
-		}
+    &-block {
+      width: 100%;
+    }
+  }
 
-		&-vertical {
+  & {
+    &#{$prefix}-large,
+    #{$prefix}-large & {
+      @extend %for-form-input-boxy-large !optional;
+      @extend %for-form-global-radius-large !optional;
+      padding-top: $calculated-value-input-paddiny-y-large;
+      padding-bottom: $calculated-value-input-paddiny-y-large;
+    }
 
-		}
+    &#{$prefix}-small,
+    #{$prefix}-small & {
+      @extend %for-form-input-boxy-small !optional;
+      @extend %for-form-global-radius-small !optional;
+      padding-top: $calculated-value-input-paddiny-y-small;
+      padding-bottom: $calculated-value-input-paddiny-y-small;
+    }
 
-		&-block {
-			width:100%;
-		}
+    .nav-block.nav-block-stretch > &,
+    .nav > & {
+      @extend %for-form-input-boxy-in-nav !optional;
+      @extend %for-form-global-in-nav-custom;
+      padding-top: $calculated-value-input-paddiny-y-nav !important;
+      padding-bottom: $calculated-value-input-paddiny-y-nav !important;
+    }
 
-	}
+    #{$prefix}-no-radius & {
+      @include dump-styles(no-border-radius);
+    }
 
-	& {
+    #{$prefix}-group & {
+      @extend %for-form-input-boxy-in-group !optional;
 
-		&#{$prefix}-large,
-		#{$prefix}-large & {
-			@extend %for-form-input-boxy-large !optional;
-			@extend %for-form-global-radius-large !optional;
-			padding-top: $calculated-value-input-paddiny-y-large;
-			padding-bottom: $calculated-value-input-paddiny-y-large;
-		}
+      &:not(.focus):not(:focus):not(.active):not(:active) {
+        @include dump-styles(no-box-shadow);
+      }
+    }
 
-		&#{$prefix}-small,
-		#{$prefix}-small & {
-			@extend %for-form-input-boxy-small !optional;
-			@extend %for-form-global-radius-small !optional;
-			padding-top: $calculated-value-input-paddiny-y-small;
-			padding-bottom: $calculated-value-input-paddiny-y-small;
-		}
+    #{$prefix}-wrapper & {
+      @extend %for-form-input-boxy-in-wrapper !optional;
+      display: block;
+      flex: 1 1;
+    }
 
-		.nav-block.nav-block-stretch > &,
-		.nav > & {
-			@extend %for-form-input-boxy-in-nav !optional;
-			@extend %for-form-global-in-nav-custom;
-			padding-top: $calculated-value-input-paddiny-y-nav !important;
-			padding-bottom: $calculated-value-input-paddiny-y-nav !important;
-		}
+    #{$prefix}-wrapper-horizontal & {
+      @extend %for-form-input-boxy-in-wrapper-horizontal !optional;
 
-		#{$prefix}-no-radius & {
-			@include dump-styles(no-border-radius);
-		}
+      @at-root #{$prefix}-wrapper-block#{&} {
+        @extend %for-form-input-boxy-in-wrapper-horizontal-block !optional;
+      }
+    }
 
-		#{$prefix}-group & {
-			@extend %for-form-input-boxy-in-group !optional;
+    #{$prefix}-wrapper-vertical & {
+      @extend %for-form-input-boxy-in-wrapper-vertical !optional;
 
-			&:not(.focus):not(:focus):not(.active):not(:active) {
-				@include dump-styles(no-box-shadow);
-			}
-		}
+      @at-root #{$prefix}-wrapper-block#{&} {
+        @extend %for-form-input-boxy-in-wrapper-vertical-block !optional;
+      }
+    }
 
-		#{$prefix}-wrapper & {
-			@extend %for-form-input-boxy-in-wrapper !optional;
-			display: block;
-			flex: 1 1;
-		}
+    #{$prefix}-wrapper-block & {
+      @extend %for-form-input-boxy-in-wrapper-block !optional;
+    }
 
-		#{$prefix}-wrapper-horizontal & {
-			@extend %for-form-input-boxy-in-wrapper-horizontal !optional;
+    #{$prefix}-disabled & {
+      @include dump-styles(no-box-shadow-important);
+    }
 
-			@at-root #{$prefix}-wrapper-block#{&} {
-				@extend %for-form-input-boxy-in-wrapper-horizontal-block !optional;
-			}
-		}
+    &-block {
+      display: block;
 
-		#{$prefix}-wrapper-vertical & {
-			@extend %for-form-input-boxy-in-wrapper-vertical !optional;
-
-			@at-root #{$prefix}-wrapper-block#{&} {
-				@extend %for-form-input-boxy-in-wrapper-vertical-block !optional;
-			}
-		}
-
-		#{$prefix}-wrapper-block & {
-			@extend %for-form-input-boxy-in-wrapper-block !optional;
-		}
-
-
-		#{$prefix}-disabled & {
-			@include dump-styles(no-box-shadow-important);
-		}
-		
-		
-		&-block {
-			display:block;
-
-			&-mobile {
-				@include br(#{$mobile-br-max}-max) {
-					display:block;
-				}
-			}
-		}
-	}
+      &-mobile {
+        @include br(#{$mobile-br-max}-max) {
+          display: block;
+        }
+      }
+    }
+  }
 }
 
 #{$prefix} {
-	&-single-line {
-		@extend %for-form-input-boxy !optional;
-		@extend %for-form-input-boxy-single !optional;
-	}
-	@at-root select#{&}-single-line,
-	&-select {
-		@extend %for-form-input-boxy !optional;
-		@extend %for-form-input-boxy-select !optional;
-	}
-	select#{$prefix}-multiple-line,
-	&-select[multiple],
-	&-multiple-line {
-		@extend %for-form-input-boxy-multiple !optional;
-	}
+  &-single-line {
+    @extend %for-form-input-boxy !optional;
+    @extend %for-form-input-boxy-single !optional;
+  }
+  @at-root select#{&}-single-line,
+    &-select {
+    @extend %for-form-input-boxy !optional;
+    @extend %for-form-input-boxy-select !optional;
+  }
+  select#{$prefix}-multiple-line,
+  &-select[multiple],
+  &-multiple-line {
+    @extend %for-form-input-boxy-multiple !optional;
+  }
 
-	&-multiple-line {
-		@extend %for-form-input-boxy !optional;
-		@extend %for-form-input-boxy-multiple-height !optional;
-		
-		&#{$prefix}-large,
-		#{$prefix}-large & {
-			@extend %for-form-input-boxy-multiple-height-large !optional;
-		}
+  &-multiple-line {
+    @extend %for-form-input-boxy !optional;
+    @extend %for-form-input-boxy-multiple-height !optional;
 
-		&#{$prefix}-small,
-		#{$prefix}-small & {
-			@extend %for-form-input-boxy-multiple-height-small !optional;
-		}
-		
-		#{$prefix}-group & {
-			resize: none;
-		}
-	}
+    &#{$prefix}-large,
+    #{$prefix}-large & {
+      @extend %for-form-input-boxy-multiple-height-large !optional;
+    }
 
-	
+    &#{$prefix}-small,
+    #{$prefix}-small & {
+      @extend %for-form-input-boxy-multiple-height-small !optional;
+    }
 
-	@at-root %for-form-input-and-group {
-		
-		&:focus,
-		&.focus {
-			outline: none;
-			// box-shadow: $input-box-shadow-focus!important;
-			box-shadow: $input-box-shadow-focus;
-		}
-	}
+    #{$prefix}-group & {
+      resize: none;
+    }
+  }
 
-	&,
-	&-group {
-		@extend %for-form-input-and-group;
-	}
+  @at-root %for-form-input-and-group {
+    &:focus,
+    &.focus {
+      outline: none;
+      // box-shadow: $input-box-shadow-focus!important;
+      box-shadow: $input-box-shadow-focus;
+    }
+  }
 
+  &,
+  &-group {
+    @extend %for-form-input-and-group;
+  }
 
-	@at-root %for-form-input-boxy-and-group {
-		& {
-			@extend %for-form-global-radius;
-		}
-		&-small {
-			@extend %for-form-global-radius-small;
-		}
+  @at-root %for-form-input-boxy-and-group {
+    & {
+      @extend %for-form-global-radius;
+    }
+    &-small {
+      @extend %for-form-global-radius-small;
+    }
 
-		&-large {
-			@extend %for-form-global-radius-large;
-		}
-		
+    &-large {
+      @extend %for-form-global-radius-large;
+    }
 
-		&-in-nav {
-			@include dump-styles(no-border-radius);
-			@include dump-styles(no-box-shadow-important);
+    &-in-nav {
+      @include dump-styles(no-border-radius);
+      @include dump-styles(no-box-shadow-important);
+    }
+  }
 
-		}
+  @at-root %for-form-input-boxy,
+    &-group {
+    @extend %for-form-input-boxy-and-group !optional;
 
+    &#{$prefix}-large {
+      @extend %for-form-input-boxy-and-group-large !optional;
+    }
 
-	}
+    &#{$prefix}-small {
+      @extend %for-form-input-boxy-and-group-small !optional;
+    }
 
-	@at-root %for-form-input-boxy,
-	&-group {
-		@extend %for-form-input-boxy-and-group !optional;
+    .nav-block.nav-block-stretch > &,
+    .nav > & {
+      @extend %for-form-input-boxy-and-group-in-nav !optional;
+    }
 
-		&#{$prefix}-large {
-			@extend %for-form-input-boxy-and-group-large !optional;
-		}
+    &#{$prefix}-round {
+      @extend %for-form-global-round;
 
-		&#{$prefix}-small {
-			@extend %for-form-input-boxy-and-group-small !optional;
-		}
+      &#{$prefix}-large {
+        @extend %for-form-global-round-large !optional;
+      }
 
-		.nav-block.nav-block-stretch > &,
-		.nav > & {
-			@extend %for-form-input-boxy-and-group-in-nav !optional;
-		}
+      &#{$prefix}-small {
+        @extend %for-form-global-round-small !optional;
+      }
+    }
 
-		&#{$prefix}-round {
-			@extend %for-form-global-round;
+    &#{$prefix}-no-radius {
+      @include dump-styles(no-border-radius);
+    }
 
+    &#{$prefix}-no-shadow {
+      @include dump-styles(no-box-shadow-important);
+    }
 
-			&#{$prefix}-large {
-				@extend %for-form-global-round-large !optional;
-			}
+    &#{$prefix}-block {
+      width: 100%;
 
-			&#{$prefix}-small {
-				@extend %for-form-global-round-small !optional;
-			}
-		}
+      &-mobile {
+        @include br(#{$mobile-br-max}-max) {
+          width: 100%;
+        }
+      }
+    }
+  }
 
-		&#{$prefix}-no-radius {
-			@include dump-styles(no-border-radius);
-		}
-		
-		&#{$prefix}-no-shadow {
-			@include dump-styles(no-box-shadow-important);
-		}
+  &-group {
+    display: inline-flex;
+    align-content: stretch;
+    align-items: stretch;
+    position: relative;
+    max-width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    overflow-x: auto;
+    overflow-y: visible;
 
+    .btn.btn-symbol {
+      flex: 0 0 auto;
+    }
 
-		&#{$prefix}-block {
-			width:100%;
+    &#{$prefix}-block {
+      display: flex;
+      width: 100%;
 
-			&-mobile {
-				@include br(#{$mobile-br-max}-max) {
-					width:100%;
-				}
-			}
-		}
-	}
-
-
-	&-group {
-		display:inline-flex;
-		align-content: stretch;
-		align-items: stretch;
-		position:relative;
-		max-width:100%;
-		padding:0;
-		border:0;
-		background:none;
-		font:inherit;
-		overflow-x:auto;
-		overflow-y:visible;
-
-		.btn.btn-symbol {
-			flex: 0 0 auto;
-		}
-
-
-		&#{$prefix}-block {
-			display:flex;
-			width:100%;
-
-			> #{$prefix}
+      > #{$prefix}
 			// ,
 			// > .btn:not(.btn-symbol)
-			{
-				flex: 1 1;
-			}
+      {
+        flex: 1 1;
+      }
 
-			&-mobile {
-				@include br(#{$mobile-br-max}-max) {
-					display:flex;
-					width:100%;
+      &-mobile {
+        @include br(#{$mobile-br-max}-max) {
+          display: flex;
+          width: 100%;
 
-					> #{$prefix},
-					> .btn:not(.btn-symbol) {
-						flex: 1 1;
-					}
-				}
-			}
-		}
+          > #{$prefix},
+          > .btn:not(.btn-symbol) {
+            flex: 1 1;
+          }
+        }
+      }
+    }
 
-		#{$prefix} {
-			@extend %for-form-input-in-group !optional;
-		}
+    #{$prefix} {
+      @extend %for-form-input-in-group !optional;
+    }
 
-		.btn {
-			@extend %for-form-input-boxy-in-group !optional;
-		}
+    .btn {
+      @extend %for-form-input-boxy-in-group !optional;
+    }
 
-		&#{&}-large {
-			@extend %for-form-input-boxy-and-group-large !optional;
-		}
+    &#{&}-large {
+      @extend %for-form-input-boxy-and-group-large !optional;
+    }
 
-		&#{&}-small {
-			@extend %for-form-input-boxy-and-group-small !optional;
-		}
+    &#{&}-small {
+      @extend %for-form-input-boxy-and-group-small !optional;
+    }
 
-		&#{&}-horizontal {
-			
+    &#{&}-horizontal {
+      &:not(#{$prefix}-group-responsive) {
+        > %for-form-input-boxy,
+        .btn {
+          &:nth-last-child(n + 2) {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+          }
+        }
 
-			&:not(#{$prefix}-group-responsive) {
+        > %for-form-input-boxy,
+        .btn {
+          &:nth-child(n + 2) {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            margin-left: $input-border-width * -1;
 
-				> %for-form-input-boxy,.btn {
-					&:nth-last-child(n+2) {
-						border-top-right-radius: 0!important;
-						border-bottom-right-radius: 0!important;
-					}
-				}
+            &:not(.focus):not(:focus):not(.active):not(:active) {
+              border-left-color: $input-group-separator-color;
+            }
+          }
+        }
+      }
+    }
 
-				> %for-form-input-boxy,.btn {
-					&:nth-child(n+2) {
-						border-top-left-radius: 0!important;
-						border-bottom-left-radius: 0!important;
-						margin-left: $input-border-width * -1;
+    &#{&}-vertical {
+      flex-direction: column;
 
-						&:not(.focus):not(:focus):not(.active):not(:active) {
-							border-left-color: $input-group-separator-color;
-						}
-					}
-				}
-			}
-		}
+      > .btn-symbol {
+        width: auto;
+      }
 
-		&#{&}-vertical {
-			flex-direction:column;
-			
-			> .btn-symbol {
-				width:auto;
-			}
+      > %for-form-input-boxy,
+      .btn {
+        &:nth-last-child(n + 2) {
+          border-bottom-right-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+      }
 
-			> %for-form-input-boxy,.btn {
-				&:nth-last-child(n+2) {
-					border-bottom-right-radius: 0!important;
-					border-bottom-left-radius: 0!important;
-				}
-			}
+      > %for-form-input-boxy,
+      .btn {
+        &:nth-child(n + 2) {
+          border-top-right-radius: 0 !important;
+          border-top-left-radius: 0 !important;
+          margin-top: $input-border-width * -1;
 
-			> %for-form-input-boxy,.btn {
-				&:nth-child(n+2) {
-					border-top-right-radius: 0!important;
-					border-top-left-radius: 0!important;
-					margin-top: $input-border-width * -1;
+          &:not(.focus):not(:focus):not(.active):not(:active) {
+            border-top-color: $input-group-separator-color;
+          }
+        }
+      }
+    }
 
-					&:not(.focus):not(:focus):not(.active):not(:active) {
-						border-top-color: $input-group-separator-color;
-					}
-				}
-			}
-		}
+    &#{&}-responsive {
+      @include br($mobile-br-max-polar) {
+        &#{$prefix}-group-horizontal {
+          > %for-form-input-boxy,
+          .btn {
+            &:nth-last-child(n + 2) {
+              border-top-right-radius: 0 !important;
+              border-bottom-right-radius: 0 !important;
+            }
+          }
 
-		&#{&}-responsive {
+          > %for-form-input-boxy,
+          .btn {
+            &:nth-child(n + 2) {
+              border-top-left-radius: 0 !important;
+              border-bottom-left-radius: 0 !important;
+              margin-left: $input-border-width * -1;
 
-			@include br($mobile-br-max-polar){
-				
-				&#{$prefix}-group-horizontal {
+              &:not(.focus):not(:focus):not(.active):not(:active) {
+                border-left-color: $input-group-separator-color;
+              }
+            }
+          }
+        }
+      }
 
-					> %for-form-input-boxy,.btn {
-						&:nth-last-child(n+2) {
-							border-top-right-radius: 0!important;
-							border-bottom-right-radius: 0!important;
-						}
-					}
+      @include br(#{$mobile-br-max}-max) {
+        width: 100%;
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
 
-					> %for-form-input-boxy,.btn {
-						&:nth-child(n+2) {
-							border-top-left-radius: 0!important;
-							border-bottom-left-radius: 0!important;
-							margin-left: $input-border-width * -1;
+        > .btn-symbol {
+          width: auto;
+        }
 
-							&:not(.focus):not(:focus):not(.active):not(:active) {
-								border-left-color:$input-group-separator-color;
-							}
-						}
-					}
-				}
-				
-			}
+        > %for-form-input-boxy,
+        .btn {
+          &:nth-last-child(n + 2) {
+            border-bottom-right-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+          }
+        }
 
-			@include br(#{$mobile-br-max}-max) {
-				width:100%;
-				flex-wrap:wrap;
-				display:flex;
-				flex-direction:column;
+        > %for-form-input-boxy,
+        .btn {
+          &:nth-child(n + 2) {
+            border-top-right-radius: 0 !important;
+            border-top-left-radius: 0 !important;
+            margin-top: $input-border-width * -1;
 
-				> .btn-symbol {
-					width:auto;
-				}
+            &:not(.focus):not(:focus):not(.active):not(:active) {
+              border-top-color: $input-group-separator-color;
+            }
+          }
+        }
+      }
+    }
+  }
 
-				> %for-form-input-boxy,.btn {
-					&:nth-last-child(n+2) {
-						border-bottom-right-radius: 0!important;
-						border-bottom-left-radius: 0!important;
-					}
-				}
-	
-				> %for-form-input-boxy,.btn {
-					&:nth-child(n+2) {
-						border-top-right-radius: 0!important;
-						border-top-left-radius: 0!important;
-						margin-top: $input-border-width * -1;
-		
-						&:not(.focus):not(:focus):not(.active):not(:active) {
-							border-top-color: $input-group-separator-color;
-						}
-					}
-				}
-			}
-		}
-	}
+  @at-root %for-form-wrapper {
+    & {
+      max-width: 100%;
+      position: relative;
+      display: inline-flex;
+      padding-right: 2rem;
+    }
 
+    &-horizontal {
+      flex-direction: row;
+      align-items: flex-start;
+    }
 
+    &-vertical {
+      flex-direction: column;
+    }
 
-	@at-root %for-form-wrapper {
-		& {
-			max-width:100%;
-			position:relative;
-			display:inline-flex;
-			padding-right: 2rem;
-		}
-			
+    &-block {
+      display: flex;
+      padding-right: 0;
+    }
+  }
 
-		&-horizontal {
-			flex-direction: row;
-			align-items: flex-start;
-			
-		}
+  &-wrapper {
+    & {
+    }
 
-		&-vertical {
-			flex-direction: column;
-		}
+    &#{&}-horizontal {
+      @extend %for-form-wrapper !optional;
+      @extend %for-form-wrapper-horizontal !optional;
+    }
 
-		&-block {
+    &#{&}-vertical {
+      @extend %for-form-wrapper !optional;
+      @extend %for-form-wrapper-vertical !optional;
+    }
 
-			display:flex;
-			padding-right: 0;
+    &#{&}-block {
+      @extend %for-form-wrapper-block !optional;
+    }
 
-		}
-	}
+    &#{&}-responsive {
+      @include br(#{$mobile-br-max}-max) {
+        flex-direction: column;
 
-		&-wrapper {
-			& {
-			}
-				
+        > %for-form-input-boxy {
+          width: 100%;
+        }
+      }
+    }
+  }
 
-			&#{&}-horizontal {
-				@extend %for-form-wrapper !optional;
-				@extend %for-form-wrapper-horizontal !optional;
-				
-			}
+  //components of component
 
-			&#{&}-vertical {
-				@extend %for-form-wrapper !optional;
-				@extend %for-form-wrapper-vertical !optional;
-			}
+  //color
+  @each $tag, $color in $calculated-brand-color-declarations-for-components {
+    @at-root %for-form-label-color-#{$tag} {
+      color: $color;
+    }
+    //label
+    @at-root #{$prefix}-label#{$prefix}-#{$tag},
+      #{$prefix}-#{$tag} #{$prefix}-label {
+      @extend %for-form-label-color-#{$tag};
+    }
 
-			&#{&}-block {
-				@extend %for-form-wrapper-block !optional;
-			}
+    @at-root %for-form-input-color-#{$tag} {
+      & {
+        &,
+        &:hover,
+        &:focus,
+        &.focus,
+        &:active,
+        &.active {
+          color: $color;
+        }
+        border-color: $color;
 
-			&#{&}-responsive {
+        @if type-of($color) == color and $color != transparent {
+          background-color: var(--fw-color-#{$tag}-#{$input-color-feedback-var-slug});
+        }
 
-				@include br(#{$mobile-br-max}-max) {
-					flex-direction: column;
-
-					> %for-form-input-boxy {
-						width:100%;
-					}
-				}
-			}
-		}
-
-
-	//components of component
-
-	
-
-	//color
-	@each $tag,$color in $calculated-brand-color-declarations-for-components {
-
-		@at-root %for-form-label-color-#{$tag} {
-			color: $color;
-		}
-			//label
-			@at-root #{$prefix}-label#{$prefix}-#{$tag},
-			#{$prefix}-#{$tag} #{$prefix}-label {
-				@extend %for-form-label-color-#{$tag};
-			}
-
-		@at-root %for-form-input-color-#{$tag} {
-			& {
-		
-				&,
-				&:hover,
-				&:focus,
-				&.focus,
-				&:active,
-				&.active {
-					color:$color;
-				}
-				border-color: $color;
-				
-				@if type-of($color) == color and $color != transparent {
-					background-color: var(--fw-color-#{$tag}-#{$input-color-feedback-var-slug});
-				}
-
-				&:not(.focus):not(:focus):not(.active):not(:active) {
-					box-shadow: $input-box-shadow-palette-basis $color;
-					z-index:1;
-				}
-			}
-		}
-			//inputs
-			@at-root &#{$prefix}-#{$tag},
-			#{$prefix}-#{$tag} & {
-				@extend %for-form-input-color-#{$tag};
-			}
-	}
+        &:not(.focus):not(:focus):not(.active):not(:active) {
+          box-shadow: $input-box-shadow-palette-basis $color;
+          z-index: 1;
+        }
+      }
+    }
+    //inputs
+    @at-root &#{$prefix}-#{$tag},
+      #{$prefix}-#{$tag} & {
+      @extend %for-form-input-color-#{$tag};
+    }
+  }
 }

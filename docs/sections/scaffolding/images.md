@@ -7,7 +7,8 @@ It do things on images too
 [Here](../components/lazy.md)
 
 ### SVG
-####	**`.svg-gradient-start`** and **`.svg-gradient-end`** 
+
+#### **`.svg-gradient-start`** and **`.svg-gradient-end`**
 
 Classes to add on `<stop>` tags in a gradient element
 
@@ -18,7 +19,6 @@ Classes to add on `<stop>` tags in a gradient element
 </linearGradient>
 ```
 
-
 #### Fill and stroke
 
 These helper classes follow the same setup as [background and color helpers](../scaffolding/helpers.md#background-and-colors)
@@ -27,21 +27,20 @@ These helper classes follow the same setup as [background and color helpers](../
 
 ###### Absolute values
 
-*   **`.['fill' or 'stroke']-primary`**
-*   **`.['fill' or 'stroke']-secondary`**
-*   **`.['fill' or 'stroke']-accent`**
-*   **`.['fill' or 'stroke']-neutral`**
-*   **`.['fill' or 'stroke']-success`**
-*   **`.['fill' or 'stroke']-caution`**
-*   **`.['fill' or 'stroke']-error`**
-*   **`.['fill' or 'stroke']-intensity-1`**
-*   **`.['fill' or 'stroke']-intensity-2`**
-*   **`.['fill' or 'stroke']-intensity-3`**
-*   **`.['fill' or 'stroke']-intensity-4`**
-*   **`.['fill' or 'stroke']-intensity-5`**
-*   **`.['fill' or 'stroke']-currentColor`**
-*   **`.['fill' or 'stroke']-none`**
-
+- **`.['fill' or 'stroke']-primary`**
+- **`.['fill' or 'stroke']-secondary`**
+- **`.['fill' or 'stroke']-accent`**
+- **`.['fill' or 'stroke']-neutral`**
+- **`.['fill' or 'stroke']-success`**
+- **`.['fill' or 'stroke']-caution`**
+- **`.['fill' or 'stroke']-error`**
+- **`.['fill' or 'stroke']-intensity-1`**
+- **`.['fill' or 'stroke']-intensity-2`**
+- **`.['fill' or 'stroke']-intensity-3`**
+- **`.['fill' or 'stroke']-intensity-4`**
+- **`.['fill' or 'stroke']-intensity-5`**
+- **`.['fill' or 'stroke']-currentColor`**
+- **`.['fill' or 'stroke']-none`**
 
 ```xml
 <svg>
@@ -53,23 +52,20 @@ These helper classes follow the same setup as [background and color helpers](../
 
 These classes will set the proper color based off of html tag having the `.theme-inverse` class
 
-| Class							 | Set color | Set color when `.theme-inverse is active`				|
-| --							| --		| --														|
-| **`.['fill' or 'stroke']-theme`**			| `$brand-theme-color` 				| `$brand-theme-color-inverse`				|
-| **`.['fill' or 'stroke']-theme-contrast`** 	| `$brand-theme-color-contrast`		| `$brand-theme-color-contrast-inverse`		|
-| **`.['fill' or 'stroke']-polar`** 			| `$brand-theme-background`			| `$brand-theme-background-inverse`			|
-| **`.['fill' or 'stroke']-polar-contrast`** 	| `$brand-theme-background-contrast` 	| `$brand-theme-background-contrast-inverse` 	|
-
+| Class                                      | Set color                          | Set color when `.theme-inverse is active`  |
+| ------------------------------------------ | ---------------------------------- | ------------------------------------------ |
+| **`.['fill' or 'stroke']-theme`**          | `$brand-theme-color`               | `$brand-theme-color-inverse`               |
+| **`.['fill' or 'stroke']-theme-contrast`** | `$brand-theme-color-contrast`      | `$brand-theme-color-contrast-inverse`      |
+| **`.['fill' or 'stroke']-polar`**          | `$brand-theme-background`          | `$brand-theme-background-inverse`          |
+| **`.['fill' or 'stroke']-polar-contrast`** | `$brand-theme-background-contrast` | `$brand-theme-background-contrast-inverse` |
 
 ###### Pseudo/Toggle Based
 
-| Appendage | Condition when the color is applied |
-| -- | -- |
-| **.['fill' or 'stroke']-[color]-hover** | &:hover |
-| **.['fill' or 'stroke']-[color]-focus** | &:focus,&.focus |
-| **.['fill' or 'stroke']-[color]-active** | &:active |
-| **.['fill' or 'stroke']-[color]-toggle** | &.open,&.active |
-
-
+| Appendage                                | Condition when the color is applied |
+| ---------------------------------------- | ----------------------------------- |
+| **.['fill' or 'stroke']-[color]-hover**  | &:hover                             |
+| **.['fill' or 'stroke']-[color]-focus**  | &:focus,&.focus                     |
+| **.['fill' or 'stroke']-[color]-active** | &:active                            |
+| **.['fill' or 'stroke']-[color]-toggle** | &.open,&.active                     |
 
 [Back to TOC](../../../readme.md)

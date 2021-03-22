@@ -1,16 +1,15 @@
 /*** SWITCH ***/
 /* it */
 [data-toggle-switch-on],
-[data-toggle-switch-off]{
-	@include dump-styles(data-toggle);
+[data-toggle-switch-off] {
+  @include dump-styles(data-toggle);
 }
 $prefix: '.switch';
 #{$prefix} {
-	&#{&}-to-off &-on,
-	&#{&}-to-on &-off,
-	
-	&:not(#{&}-to-off):not(#{&}-to-on) &-on,
-	&:not(#{&}-to-off):not(#{&}-to-on) &-off {
-		display:none!important;
-	}
+  &#{&}-to-off &-on,
+  &#{&}-to-on &-off,
+  &:not(#{&}-to-off):not(#{&}-to-on) &-on,
+  &:not(#{&}-to-off):not(#{&}-to-on) &-off {
+    display: none !important;
+  }
 }

@@ -4,24 +4,18 @@ This div contains everything and padds contents away from edges. It also clearfi
 
 ```html
 <body>
-	<div class="container">
-		Hi I'm a shit
-	</div>
+  <div class="container">Hi I'm a shit</div>
 </body>
 ```
 
 If you want the container to not have a max-width, use **`.container-fluid`**
 
-
 ```html
 <body>
-	<div class="container-fluid">
-		Hi I'm a shit. buT YOU CAN'T MAX ME OUT HAHAHAHAHAH
-	</div>
+  <div class="container-fluid">Hi I'm a shit. buT YOU CAN'T MAX ME OUT HAHAHAHAHAH</div>
 </body>
 ```
 
 That's it, that's all I have for this
-
 
 [Back to TOC](../../../readme.md)

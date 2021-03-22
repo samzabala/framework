@@ -1,197 +1,168 @@
 import FwDataHelper from './../classes/data-helper.js';
 
-
 class FwDom extends FwDataHelper {
+  constructor(data) {
+    super(data, (dat) => {
+      let toReturn;
 
-	constructor(data){
+      if (typeof dat === 'string') {
+        // console.log('looks like a selector');
+        const selection = document.querySelectorAll(dat);
 
-		super(
-			data,
-			(dat) => {
-				
-				let toReturn;
-			
-				if(typeof dat === 'string'){
-					// console.log('looks like a selector');
-					const selection = document.querySelectorAll(dat);
-		
-					if(selection.length > 1){
-						toReturn = selection;
-					}else{
-						toReturn = document.querySelector(dat);
-					}
-				}else{
-					// console.log('looks like a dom obj');
-					toReturn = dat;
-				}
-	
-				return toReturn;
-			}
-		);
-		
-	}
+        if (selection.length > 1) {
+          toReturn = selection;
+        } else {
+          toReturn = document.querySelector(dat);
+        }
+      } else {
+        // console.log('looks like a dom obj');
+        toReturn = dat;
+      }
 
-	
+      return toReturn;
+    });
+  }
 
-	static slideDown(elem){
-		elem = elem || super.getData();
-		elem && (elem.style.display = 'block');
+  static slideDown(elem) {
+    elem = elem || super.getData();
+    elem && (elem.style.display = 'block');
 
-		return elem
-	}
+    return elem;
+  }
 
-	static slideUp(elem){
-		elem = elem || super.getData();
-		elem && (elem.style.display = 'none');
+  static slideUp(elem) {
+    elem = elem || super.getData();
+    elem && (elem.style.display = 'none');
 
-		return elem
-	}
+    return elem;
+  }
 
-	static getSiblings(elem){
-		elem = elem || super.getData();
-		return Array.prototype.filter.call(
-			elem.parentNode.children,
-			(child)=>{
-				return child !== elem;
-			}
-		);
-	}
-	
-	static isDescendant(parent, child) {
-		var node = child.parentNode;
-		while (node != null) {
-			if (node == parent) {
-				return true;
-			}
-			node = node.parentNode;
-		}
-		return false;
-   }
+  static getSiblings(elem) {
+    elem = elem || super.getData();
+    return Array.prototype.filter.call(elem.parentNode.children, (child) => {
+      return child !== elem;
+    });
+  }
 
-	static getAncestors(elem,selector){
-		elem = elem || super.getData();
-		const parents = [];
+  static isDescendant(parent, child) {
+    var node = child.parentNode;
+    while (node != null) {
+      if (node == parent) {
+        return true;
+      }
+      node = node.parentNode;
+    }
+    return false;
+  }
 
-		let firstChar;
+  static getAncestors(elem, selector) {
+    elem = elem || super.getData();
+    const parents = [];
 
-		if (selector) {
-			firstChar = selector.charAt(0);
-		}
+    let firstChar;
 
-		// Get matches
-		for (; elem && elem !== document; elem = elem.parentNode) {
+    if (selector) {
+      firstChar = selector.charAt(0);
+    }
 
-			if (selector) {
-				// If selector is a class
-				if (firstChar === '.') {
-					if (elem.classList.contains(selector.substr(1))) {
-						parents.push(elem);
-					}
-				}
+    // Get matches
+    for (; elem && elem !== document; elem = elem.parentNode) {
+      if (selector) {
+        // If selector is a class
+        if (firstChar === '.') {
+          if (elem.classList.contains(selector.substr(1))) {
+            parents.push(elem);
+          }
+        }
 
-				// If selector is an ID
-				if (firstChar === '#') {
-					if (elem.id === selector.substr(1)) {
-						parents.push(elem);
-					}
-				}
+        // If selector is an ID
+        if (firstChar === '#') {
+          if (elem.id === selector.substr(1)) {
+            parents.push(elem);
+          }
+        }
 
-				// If selector is a data attribute
-				if (firstChar === '[') {
-					if (
-						elem.hasAttribute(selector.substr(1, selector.length - 1))
-					) {
-						parents.push(elem);
-					}
-				}
+        // If selector is a data attribute
+        if (firstChar === '[') {
+          if (elem.hasAttribute(selector.substr(1, selector.length - 1))) {
+            parents.push(elem);
+          }
+        }
 
-				// If selector is a tag
-				if (elem.tagName.toLowerCase() === selector) {
-					parents.push(elem);
-				}
+        // If selector is a tag
+        if (elem.tagName.toLowerCase() === selector) {
+          parents.push(elem);
+        }
+      } else {
+        parents.push(elem);
+      }
+    }
+    // Return parents if any exist
+    if (parents.length === 0) {
+      return null;
+    } else {
+      return parents;
+    }
+  }
 
-			} else {
-				parents.push(elem);
-			}
+  static moveContents(elem, elementToMoveContentsTo) {
+    elem = elem || super.getData();
+    const oldParent = elem;
+    const newParent = new FwDom(elementToMoveContentsTo);
 
-		}
-		// Return parents if any exist
-		if (parents.length === 0) {
-			return null;
-		} else {
-			return parents;
-		}
-	}
+    if (!elem && !elementToMoveContentsTo) {
+      return;
+    }
 
-	static moveContents(elem,elementToMoveContentsTo){
-		elem = elem || super.getData();
-		const oldParent = elem;
-		const newParent = new FwDom(elementToMoveContentsTo);
+    if (newParent && newParent !== oldParent) {
+      while (oldParent.childNodes.length > 0) {
+        newParent.appendChild(oldParent.childNodes[0]);
+      }
+    }
 
-		if(!elem && !elementToMoveContentsTo){
-			return
-		}
-		
-		if (
-			newParent
-			&& newParent !== oldParent) {
-			while (oldParent.childNodes.length > 0) {
-				newParent.appendChild(oldParent.childNodes[0]); 
-			}
-		}
+    return elem;
+  }
 
-		return elem;
-	}
+  static scrollToElem(elem, ToScrollTo, direction) {
+    elem = elem || super.getData();
+    if (!ToScrollTo) {
+      return;
+    }
 
-	static scrollToElem(elem,ToScrollTo,direction){
-		elem = elem || super.getData();
-		if(!ToScrollTo){
-			return;
-		}
+    direction = direction || 'y';
 
-		direction = direction || 'y';
+    const methods = direction == 'x' ? ['scrollLeft', 'left'] : ['scrollTop', 'top'];
 
-			const methods =
-				direction == 'x'
-					? ['scrollLeft', 'left']
-					: ['scrollTop', 'top'];
+    const scrollOpts = {};
 
-			const scrollOpts = {};
+    scrollOpts[methods[1]] =
+      elem[methods[0]] -
+      elem.getBoundingClientRect()[methods[1]] +
+      ToScrollTo.getBoundingClientRect()[methods[1]];
 
-			scrollOpts[methods[1]] =
-				elem[methods[0]]
-				- elem.getBoundingClientRect()[methods[1]]
-				+ ToScrollTo.getBoundingClientRect()[methods[1]]
+    elem.scrollTo(scrollOpts);
 
-			elem.scrollTo(scrollOpts);
+    return elem;
+  }
 
-			return elem;
-	}
+  static RunFnForChildren(ancestorElem, selector, parentSelector, fn) {
+    //@TODO wtf
 
-	static RunFnForChildren(ancestorElem,selector,parentSelector,fn) { //@TODO wtf
+    if (ancestorElem && selector && parentSelector && fn) {
+      let children = ancestorElem.querySelectorAll(selector);
 
-		if(
-			ancestorElem
-			&& selector
-			&& parentSelector
-			&& fn	
-		){
-			let children = ancestorElem.querySelectorAll(selector);
-	
-			children.forEach((child) => {
-	
-				if(
-					child.closest(parentSelector)
-					&& (ancestorElem.isSameNode(child.closest(parentSelector)))
-				){
-					fn(child);
-				}
-			})
+      children.forEach((child) => {
+        if (
+          child.closest(parentSelector) &&
+          ancestorElem.isSameNode(child.closest(parentSelector))
+        ) {
+          fn(child);
+        }
+      });
 
-			return ancestorElem;
-		}
-	}
-	
+      return ancestorElem;
+    }
+  }
 }
 
 export default FwDom;

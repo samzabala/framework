@@ -1,448 +1,403 @@
 /*** ASSET ***/
 $prefix: '.asset';
 #{$prefix} {
-	max-width: 100%;
-	width: $asset-width;
-	color:inherit;
-	display:inline-block;
-	position:relative;
+  max-width: 100%;
+  width: $asset-width;
+  color: inherit;
+  display: inline-block;
+  position: relative;
 
-	&-function {
+  &-function {
+    &s {
+      z-index: 2;
+      position: absolute;
+      top: $asset-functions-offset-y;
+      right: 0;
+      opacity: 0;
+      text-align: center;
+      transform: translateX(50%);
 
-		&s {
-			z-index: 2;
-			position: absolute;
-			top: $asset-functions-offset-y;
-			right: 0;
-			opacity: 0;
-			text-align: center;
-			transform: translateX(50%);
-	
-			#{$prefix}:hover &,
-			#{$prefix}:focus &,
-			#{$prefix}.focus & {
-				opacity: 1;
-			}
-		}
+      #{$prefix}:hover &,
+      #{$prefix}:focus &,
+      #{$prefix}.focus & {
+        opacity: 1;
+      }
+    }
 
-		& {
-			margin-bottom: .25rem;
-		}
-	}
+    & {
+      margin-bottom: 0.25rem;
+    }
+  }
 
-	&-thumbnail,
-	&-title,
-	&-caption {
-		display:block;
-		margin: 0;
-	}
+  &-thumbnail,
+  &-title,
+  &-caption {
+    display: block;
+    margin: 0;
+  }
 
-	&-image {
-		position:absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		overflow:hidden;
-		@include type-set((
-			size: $asset-image-glyph-size,
-			align: center
-		));
+  &-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    @include type-set(
+      (
+        size: $asset-image-glyph-size,
+        align: center,
+      )
+    );
 
-		@at-root %for-valid-asset-image {
-			& {
-				border: $asset-thumbnail-image-border solid $asset-thumbnail-border-color;
+    @at-root %for-valid-asset-image {
+      & {
+        border: $asset-thumbnail-image-border solid $asset-thumbnail-border-color;
 
-				&:before, &:after {
-					content:"";
-					position:absolute;
-					margin: auto;
-					top:0;
-					bottom:0;
-				}
-	
-				//label
-				&:before {
-					@include type-set((
-						leading: 1,
-						color: $asset-image-glyph-color,
-						case: $asset-image-glyph-text-transform,
-						weight: $asset-image-glyph-font-weight
-					));
-					height: 1em;
-					left:0;
-					width:33%;
-				}
-	
-				&:after {
-					opacity: .5;
-					margin: auto;
-				}
-			}
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+        }
 
-			&-after {
+        //label
+        &:before {
+          @include type-set(
+            (
+              leading: 1,
+              color: $asset-image-glyph-color,
+              case: $asset-image-glyph-text-transform,
+              weight: $asset-image-glyph-font-weight,
+            )
+          );
+          height: 1em;
+          left: 0;
+          width: 33%;
+        }
 
-				&-img {
+        &:after {
+          opacity: 0.5;
+          margin: auto;
+        }
+      }
 
-					width: 40%;
-					height: 65%;
-					left: 33%;
-					right:0;
-					background-color: $var-color-background;
-					background-image:
+      &-after {
+        &-img {
+          width: 40%;
+          height: 65%;
+          left: 33%;
+          right: 0;
+          background-color: $var-color-background;
+          background-image:
 						// bottom-left
-						linear-gradient(27deg, currentColor 22%, transparent 22%),
-						// middle-right
-						linear-gradient(-27deg, currentColor 33%, transparent 33%),
-						// moon
-						radial-gradient(circle at 35% 35%, currentColor 11%, transparent 11.5%),
-						;
-					
-					background-position:
-						// bottom-left
-						0 0,
-						// middle-right
-						0 0,
-						// moon
-						0 0,
-						;
-					
-					background-size:
-						// bottom-left
-						100% 100%,
-						// middle-right
-						100% 100%,
-						// moon
-						100% 100%,
-						;
-				}
+            linear-gradient(27deg, currentColor 22%, transparent 22%),
+            // middle-right
+            linear-gradient(-27deg, currentColor 33%, transparent 33%),
+            // moon
+            radial-gradient(circle at 35% 35%, currentColor 11%, transparent 11.5%);
 
-				&-striped-base {
-					height: percentage($calculated-ass-thumb-image-ratio-y);
-					width: percentage($calculated-ass-thumb-image-ratio-x);
-					left: 33%;
-					right: 0;
-					top:0;
-					bottom:0;
-				}
-				
-				&-layout {
-					@extend %for-valid-asset-image-after-striped-base;
-					background-image:
+          background-position:
+						// bottom-left
+            0 0,
+            // middle-right
+            0 0,
+            // moon
+            0 0;
+
+          background-size:
+						// bottom-left
+            100% 100%,
+            // middle-right
+            100% 100%,
+            // moon
+            100% 100%;
+        }
+
+        &-striped-base {
+          height: percentage($calculated-ass-thumb-image-ratio-y);
+          width: percentage($calculated-ass-thumb-image-ratio-x);
+          left: 33%;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+
+        &-layout {
+          @extend %for-valid-asset-image-after-striped-base;
+          background-image:
 						// img
-						repeating-linear-gradient(
-							180deg,
-							currentColor 0,
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent 100%
-						),
-						// lines below
-						repeating-linear-gradient(
-							180deg,
-							transparent 0,
-							transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor 100%
-						),
-						//right col
-						repeating-linear-gradient(
-							180deg,
-							currentColor 0,
-							currentColor percentage($calculated-ass-thumb-weight-ratio),
-							transparent percentage($calculated-ass-thumb-weight-ratio),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor 100%
-						),
-						;
-					background-size: 
-						percentage(
-							(
-								(
-									($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
-									- $calculated-ass-thumb-gutter-px
-								)
-								* .5
-							)
-							/ ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
-						) 100%
-					;
+            repeating-linear-gradient(
+              180deg,
+              currentColor 0,
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent 100%
+            ),
+            // lines below
+            repeating-linear-gradient(
+                180deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor 100%
+              ),
+            //right col
+            repeating-linear-gradient(
+                180deg,
+                currentColor 0,
+                currentColor percentage($calculated-ass-thumb-weight-ratio),
+                transparent percentage($calculated-ass-thumb-weight-ratio),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor 100%
+              );
+          background-size: percentage(
+              (
+                  (
+                      ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
+                        $calculated-ass-thumb-gutter-px
+                    ) * 0.5
+                ) / ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+            )
+            100%;
 
-					background-position:
-						0 0,
-						0 0,
-						100% 0
-						;
+          background-position: 0 0, 0 0, 100% 0;
 
-					background-repeat:
-						repeat-y
-						;
+          background-repeat: repeat-y;
+        }
 
-				}
-
-				&-justify {
-					@extend %for-valid-asset-image-after-striped-base;
-					background-image:
+        &-justify {
+          @extend %for-valid-asset-image-after-striped-base;
+          background-image:
 						//ebry oder line
-						repeating-linear-gradient(
-							180deg,
-							currentColor 0,
-							currentColor percentage($calculated-ass-thumb-weight-ratio),
-							transparent percentage($calculated-ass-thumb-weight-ratio),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent 100%,
-						),
-						//last line
-						repeating-linear-gradient(
-							180deg,
-							transparent 0,
-							transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor 100%
-						),
-						;
-					background-size: 
-						100% 100%,
-						60% 100%,
-					;
+            repeating-linear-gradient(
+              180deg,
+              currentColor 0,
+              currentColor percentage($calculated-ass-thumb-weight-ratio),
+              transparent percentage($calculated-ass-thumb-weight-ratio),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 2),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 3),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 6),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+              transparent 100%
+            ),
+            //last line
+            repeating-linear-gradient(
+                180deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor 100%
+              );
+          background-size: 100% 100%, 60% 100%;
 
-					background-repeat:
-						repeat-y
-						;
-				}
+          background-repeat: repeat-y;
+        }
 
-				&-indent {
-
-					@extend %for-valid-asset-image-after-striped-base;
-					background-image:
+        &-indent {
+          @extend %for-valid-asset-image-after-striped-base;
+          background-image:
 						// line 1 line 2
-						repeating-linear-gradient(
-							180deg,
-							currentColor 0,
-							currentColor percentage($calculated-ass-thumb-weight-ratio),
-							transparent percentage($calculated-ass-thumb-weight-ratio),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-							transparent 100%,
-						),
-						//line 2 and 4
-						repeating-linear-gradient(
-							180deg,
-							transparent 0,
-							transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-							transparent 100%,
-						),
-						repeating-linear-gradient(
-							180deg,
-							transparent 0,
-							transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
-							currentColor 100%
-						),
-						;
-					background-size: 60% 100%;
-	
-					background-position:
-						0 0,
-						40% 0,
-						80% 0
-						;
-	
-	
-					background-repeat:
-						repeat-y
-						;
-				}
+            repeating-linear-gradient(
+              180deg,
+              currentColor 0,
+              currentColor percentage($calculated-ass-thumb-weight-ratio),
+              transparent percentage($calculated-ass-thumb-weight-ratio),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent 100%
+            ),
+            //line 2 and 4
+            repeating-linear-gradient(
+                180deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent 100%
+              ),
+            repeating-linear-gradient(
+              180deg,
+              transparent 0,
+              transparent percentage($calculated-ass-thumb-weight-ratio * 8),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+              currentColor 100%
+            );
+          background-size: 60% 100%;
 
-				&-table {
-					@extend %for-valid-asset-image-after-striped-base;
-					background-image: 
-						linear-gradient(
-							transparent 0%,
-							transparent $calculated-ass-thumb-table-gutter-3,
-							currentColor $calculated-ass-thumb-table-gutter-3,
-							currentColor 100%
-						),
-						linear-gradient(
-							transparent 0%,
-							transparent $calculated-ass-thumb-table-gutter-3,
-							currentColor $calculated-ass-thumb-table-gutter-3,
-							currentColor 100%
-						),
-						linear-gradient(
-							transparent 0%,
-							transparent $calculated-ass-thumb-table-gutter-3,
-							currentColor $calculated-ass-thumb-table-gutter-3,
-							currentColor 100%
-						),
-					;
+          background-position: 0 0, 40% 0, 80% 0;
 
-					background-size:
-						percentage(
-							(
-								(
-									($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
-									- ($calculated-ass-thumb-gutter-px * 2)
-								)
-								/ 3
-							)
-							/ ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
-						) 33%
-					;
-					background-position:
-						0 ($calculated-ass-thumb-table-gutter  * -.5),
-						50% ($calculated-ass-thumb-table-gutter  * -.5),
-						100% ($calculated-ass-thumb-table-gutter  * -.5)
-						; 
+          background-repeat: repeat-y;
+        }
 
-					background-repeat: repeat-y;
+        &-table {
+          @extend %for-valid-asset-image-after-striped-base;
+          background-image: linear-gradient(
+              transparent 0%,
+              transparent $calculated-ass-thumb-table-gutter-3,
+              currentColor $calculated-ass-thumb-table-gutter-3,
+              currentColor 100%
+            ),
+            linear-gradient(
+              transparent 0%,
+              transparent $calculated-ass-thumb-table-gutter-3,
+              currentColor $calculated-ass-thumb-table-gutter-3,
+              currentColor 100%
+            ),
+            linear-gradient(
+              transparent 0%,
+              transparent $calculated-ass-thumb-table-gutter-3,
+              currentColor $calculated-ass-thumb-table-gutter-3,
+              currentColor 100%
+            );
 
-				}
+          background-size: percentage(
+              (
+                  (
+                      ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
+                        ($calculated-ass-thumb-gutter-px * 2)
+                    ) / 3
+                ) / ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+            )
+            33%;
+          background-position: 0 ($calculated-ass-thumb-table-gutter * -0.5),
+            50% ($calculated-ass-thumb-table-gutter * -0.5),
+            100% ($calculated-ass-thumb-table-gutter * -0.5);
 
-				&-waves {
-					@extend %for-valid-asset-image-after-striped-base;			
-					background-image:
+          background-repeat: repeat-y;
+        }
+
+        &-waves {
+          @extend %for-valid-asset-image-after-striped-base;
+          background-image:
 					// line 1,8
-					repeating-linear-gradient(
-						90deg,
-						currentColor 0,
-						currentColor percentage($calculated-ass-thumb-weight-ratio * .5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * .5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 7.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 7.5),
-						transparent 100%,
-					),
-					//2,6,10
-					repeating-linear-gradient(
-						90deg,
-						transparent 0,
-						transparent percentage($calculated-ass-thumb-weight-ratio * 1),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 1),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 1.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 1.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 5.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 5.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 9),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 9),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 9.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 9.5),
-						transparent 100%,
-					),
-					// 3
-					repeating-linear-gradient(
-						90deg,
-						transparent 0,
-						transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 2.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 2.5),
-						transparent 100%,
-					),
-					
-					// 4,9
-					repeating-linear-gradient(
-						90deg,
-						transparent 0,
-						transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 3.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 3.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 8.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 8.5),
-						transparent 100%,
-					),
-					
-					// 5
-					repeating-linear-gradient(
-						90deg,
-						transparent 0,
-						transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 4.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 4.5),
-						transparent 100%,
-					),
+            repeating-linear-gradient(
+              90deg,
+              currentColor 0,
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 0.5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 0.5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
+              currentColor percentage($calculated-ass-thumb-weight-ratio * 7.5),
+              transparent percentage($calculated-ass-thumb-weight-ratio * 7.5),
+              transparent 100%
+            ),
+            //2,6,10
+            repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 1),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 1),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 1.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 1.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 5.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 5.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 9),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 9),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 9.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 9.5),
+                transparent 100%
+              ),
+            // 3
+            repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 2.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 2.5),
+                transparent 100%
+              ),
+            // 4,9
+            repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 3),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 3.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 3.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 8.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 8.5),
+                transparent 100%
+              ),
+            // 5
+            repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 4.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 4.5),
+                transparent 100%
+              ),
+            // 7
+            repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent percentage($calculated-ass-thumb-weight-ratio * 0.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor percentage($calculated-ass-thumb-weight-ratio * 6.5),
+                transparent percentage($calculated-ass-thumb-weight-ratio * 6.5),
+                transparent 100%
+              );
 
+          background-position: left center;
+          background-repeat: repeat-x;
 
-					
-					// 7
-					repeating-linear-gradient(
-						90deg,
-						transparent 0,
-						transparent percentage($calculated-ass-thumb-weight-ratio * .5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-						currentColor percentage($calculated-ass-thumb-weight-ratio * 6.5),
-						transparent percentage($calculated-ass-thumb-weight-ratio * 6.5),
-						transparent 100%,
-					),
-					;
+          background-size: $calculated-ass-thumb-background-size-x 20%,
+            $calculated-ass-thumb-background-size-x 50%,
+            $calculated-ass-thumb-background-size-x 30%,
+            $calculated-ass-thumb-background-size-x 60%,
+            $calculated-ass-thumb-background-size-x 100%,
+            $calculated-ass-thumb-background-size-x 80%;
+        }
+      }
+    }
 
-					background-position: left center;
-					background-repeat: repeat-x;
-				
-					background-size:
-						$calculated-ass-thumb-background-size-x 20%,
-						$calculated-ass-thumb-background-size-x 50%,
-						$calculated-ass-thumb-background-size-x 30%,
-						$calculated-ass-thumb-background-size-x 60%,
-						$calculated-ass-thumb-background-size-x 100%,
-						$calculated-ass-thumb-background-size-x 80%
-						;
-				}
-			}
-		}
-
-		
-
-		/*
+    /*
 		default
 		audio
 		code
@@ -457,370 +412,342 @@ $prefix: '.asset';
 		zip
 		*/
 
-		@each $type,$tag in $calculated-asset-palettes {
-			&#{&}-#{$type} {
-				color: var(--fw-color-#{$tag});
-				@include gradient((
-					angle: 0deg,
-					colors: (
-						(
-							color: var(--fw-color-#{$tag}),
-							offset:0 
-						),
-						(
-							color: var(--fw-color-#{$tag}),
-							offset: 33%
-						),
-						(
-							color: var(--fw-color-#{$tag}-alpha-2),
-							offset: 33%
-						),
-						(
-							color: var(--fw-color-#{$tag}-alpha-2),
-							offset: 100%
-						)
-					)
-				));
-			}
-		}
+    @each $type, $tag in $calculated-asset-palettes {
+      &#{&}-#{$type} {
+        color: var(--fw-color-#{$tag});
+        @include gradient(
+          (
+            angle: 0deg,
+            colors: (
+              (color: var(--fw-color-#{$tag}), offset: 0),
+              (color: var(--fw-color-#{$tag}), offset: 33%),
+              (color: var(--fw-color-#{$tag}-alpha-2), offset: 33%),
+              (color: var(--fw-color-#{$tag}-alpha-2), offset: 100%),
+            ),
+          )
+        );
+      }
+    }
 
+    &#{&}-default {
+      @extend %for-valid-asset-image;
 
-		&#{&}-default {
-			@extend %for-valid-asset-image;
-			
-			&:before {
-				content:"?";
-			}
+      &:before {
+        content: '?';
+      }
 
-			&:after {
-				width: percentage(40px/$asset-thumbnail-width);
-				height: percentage(40px/$asset-thumbnail-height);
-				// right: auto;
-				bottom: auto;
-				left: auto;
-				right: 0;
-				top: 0;
-				opacity:.75;
-				
-				@include gradient((
-					angle: 45deg,
-					colors: (
-						(
-							color: $var-color-background,
-							offset: 0
-						),
-						(
-							color: $var-color-background,
-							offset: 50%
-						),
-						(
-							color: currentColor,
-							offset: 50%
-						),
-						(
-							color: currentColor,
-							offset: 0
-						),
-					)
-				));
-			}
-		}
+      &:after {
+        width: percentage(40px / $asset-thumbnail-width);
+        height: percentage(40px / $asset-thumbnail-height);
+        // right: auto;
+        bottom: auto;
+        left: auto;
+        right: 0;
+        top: 0;
+        opacity: 0.75;
 
-		&#{&}-audio {
-			@extend %for-valid-asset-image;
+        @include gradient(
+          (
+            angle: 45deg,
+            colors: (
+              (color: $var-color-background, offset: 0),
+              (color: $var-color-background, offset: 50%),
+              (color: currentColor, offset: 50%),
+              (color: currentColor, offset: 0),
+            ),
+          )
+        );
+      }
+    }
 
-			&:before {
-				content: "\266B";
-			}
+    &#{&}-audio {
+      @extend %for-valid-asset-image;
 
-			&:after {
-				@extend %for-valid-asset-image-after-waves;
-			}
-		}
+      &:before {
+        content: '\266B';
+      }
 
+      &:after {
+        @extend %for-valid-asset-image-after-waves;
+      }
+    }
 
-		&#{&}-code {
-			@extend %for-valid-asset-image;
+    &#{&}-code {
+      @extend %for-valid-asset-image;
 
-			&:before {
-				content:"</>";
-			}
+      &:before {
+        content: '</>';
+      }
 
-			&:after {
-				@extend %for-valid-asset-image-after-indent;
-			}
-		}
+      &:after {
+        @extend %for-valid-asset-image-after-indent;
+      }
+    }
 
+    &#{&}-text {
+      @extend %for-valid-asset-image;
 
-		
-		&#{&}-text {
-			@extend %for-valid-asset-image;
+      &:before {
+        content: 'tx';
+      }
 
-			&:before {
-				content:"tx";
-			}
+      &:after {
+        @extend %for-valid-asset-image-after-justify;
+      }
+    }
 
-			&:after {
-				@extend %for-valid-asset-image-after-justify;
-			}
-		}
-		
-		&#{&}-doc {
-			@extend %for-valid-asset-image;
+    &#{&}-doc {
+      @extend %for-valid-asset-image;
 
-			&:before {
-				content:"w";
-			}
+      &:before {
+        content: 'w';
+      }
 
-			&:after {
-				@extend %for-valid-asset-image-after-justify;
-			}
-		}
-		
-		&#{&}-font {
-			@extend %for-valid-asset-image;
-			
-			&:before {
-				content:"f";
-			}
+      &:after {
+        @extend %for-valid-asset-image-after-justify;
+      }
+    }
 
-			&:after {
+    &#{&}-font {
+      @extend %for-valid-asset-image;
 
-				@include type-set((
-					size: 2.25em,
-					leading: 1.25,
-					font: serif,
-					style: italic,
-					align: center,
-					weight: 300,
-				));
-				content: "Aa";
-				white-space: nowrap;
-				overflow: hidden;
-				width: 66%;
-				left: 33%;
-				height: 1.25em;
-				margin: auto;
-			}
-		}
+      &:before {
+        content: 'f';
+      }
 
-		&#{&}-img {
-			@extend %for-valid-asset-image;
-			&:before {
-				content: "img";
-			}
-			&:after {
-				@extend %for-valid-asset-image-after-img;
-			}
-		}
+      &:after {
+        @include type-set(
+          (
+            size: 2.25em,
+            leading: 1.25,
+            font: serif,
+            style: italic,
+            align: center,
+            weight: 300,
+          )
+        );
+        content: 'Aa';
+        white-space: nowrap;
+        overflow: hidden;
+        width: 66%;
+        left: 33%;
+        height: 1.25em;
+        margin: auto;
+      }
+    }
 
+    &#{&}-img {
+      @extend %for-valid-asset-image;
+      &:before {
+        content: 'img';
+      }
+      &:after {
+        @extend %for-valid-asset-image-after-img;
+      }
+    }
 
-		&#{&}-ps {
-			@extend %for-valid-asset-image;
-			&:before {
-				content: "ps";
-			}
-			&:after {
-				@extend %for-valid-asset-image-after-img;
-			}
-		}
+    &#{&}-ps {
+      @extend %for-valid-asset-image;
+      &:before {
+        content: 'ps';
+      }
+      &:after {
+        @extend %for-valid-asset-image-after-img;
+      }
+    }
 
-		&#{&}-ai {
-			@extend %for-valid-asset-image;
-			&:before {
-				content: "ai";
-			}
-			&:after {
-				@extend %for-valid-asset-image-after-img;
-			}
-		}
+    &#{&}-ai {
+      @extend %for-valid-asset-image;
+      &:before {
+        content: 'ai';
+      }
+      &:after {
+        @extend %for-valid-asset-image-after-img;
+      }
+    }
 
-		&#{&}-xd {
-			@extend %for-valid-asset-image;
-			&:before {
-				content: "xd";
-			}
-			&:after {
-				@extend %for-valid-asset-image-after-img;
-			}
-		}
+    &#{&}-xd {
+      @extend %for-valid-asset-image;
+      &:before {
+        content: 'xd';
+      }
+      &:after {
+        @extend %for-valid-asset-image-after-img;
+      }
+    }
 
-		&#{&}-pdf {
-			@extend %for-valid-asset-image;
+    &#{&}-pdf {
+      @extend %for-valid-asset-image;
 
-			&:before {
-				content:"pdf";
-			}
+      &:before {
+        content: 'pdf';
+      }
 
-			&:after {
-				@extend %for-valid-asset-image-after-layout;
-			}
-		}
+      &:after {
+        @extend %for-valid-asset-image-after-layout;
+      }
+    }
 
-		&#{&}-id {
-			@extend %for-valid-asset-image;
+    &#{&}-id {
+      @extend %for-valid-asset-image;
 
-			&:before {
-				content:"id";
-			}
+      &:before {
+        content: 'id';
+      }
 
-			&:after {
-				@extend %for-valid-asset-image-after-layout;
-			}
-		}
-		
-		&#{&}-table {
-			@extend %for-valid-asset-image;
+      &:after {
+        @extend %for-valid-asset-image-after-layout;
+      }
+    }
 
-			&:before {
-				content:"x";
-			}
+    &#{&}-table {
+      @extend %for-valid-asset-image;
 
-			&:after {
-				@extend %for-valid-asset-image-after-table;
-			}
-		}
+      &:before {
+        content: 'x';
+      }
 
+      &:after {
+        @extend %for-valid-asset-image-after-table;
+      }
+    }
 
-		
-		&#{&}-video {
-			@extend %for-valid-asset-image;
+    &#{&}-video {
+      @extend %for-valid-asset-image;
 
-			&:before {
-				content:"\25B6";
-			}
+      &:before {
+        content: '\25B6';
+      }
 
-			&:after {
-				width: 8%;
-				height:100%;
-				@include gradient((
-					angle: 90deg,
-					type: repeating-linear,
-					use-shorthand: false,
-					colors: (
-						(
-							color: transparent,
-							offset: 0%
-						),(
-							color: transparent,
-							offset: 25%
-						),(
-							color: currentColor,
-							offset: 25%
-						),(
-							color: currentColor,
-							offset: 75%
-						),(
-							color: transparent,
-							offset: 75%
-						),
-					)
-				));
-				background-size: 100% 20%;
-				left: 40%;
-				right: auto;
-			}
-		}
-		
-		&#{&}-zip {
-			@extend %for-valid-asset-image;
+      &:after {
+        width: 8%;
+        height: 100%;
+        @include gradient(
+          (
+            angle: 90deg,
+            type: repeating-linear,
+            use-shorthand: false,
+            colors: (
+              (color: transparent, offset: 0%),
+              (color: transparent, offset: 25%),
+              (color: currentColor, offset: 25%),
+              (color: currentColor, offset: 75%),
+              (color: transparent, offset: 75%),
+            ),
+          )
+        );
+        background-size: 100% 20%;
+        left: 40%;
+        right: auto;
+      }
+    }
 
-			&:before {
-				content:"z";
-			}
-			&:after {
-				width: percentage(20px/$asset-thumbnail-width);
-				left: 44%;
+    &#{&}-zip {
+      @extend %for-valid-asset-image;
 
-				background-image:
-					repeating-linear-gradient(
-						0deg,
-						currentColor, 0,
-						currentColor, 50%,
-						transparent, 50%,
-						transparent 100%,
-					),
-					repeating-linear-gradient(
-						0deg,
-						transparent, 0,
-						transparent, 50%,
-						currentColor, 50%,
-						currentColor 100%,
-					)
-					;
-				background-size:
-					50% #{(percentage(20px/$asset-thumbnail-height))};
-				background-position:
-					0 0,
-					100% 0
-					;
-					background-repeat: repeat-y;
-			}
-		}
+      &:before {
+        content: 'z';
+      }
+      &:after {
+        width: percentage(20px / $asset-thumbnail-width);
+        left: 44%;
 
+        background-image: repeating-linear-gradient(
+            0deg,
+            currentColor,
+            0,
+            currentColor,
+            50%,
+            transparent,
+            50%,
+            transparent 100%
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            0,
+            transparent,
+            50%,
+            currentColor,
+            50%,
+            currentColor 100%
+          );
+        background-size: 50% #{(percentage(20px / $asset-thumbnail-height))};
+        background-position: 0 0, 100% 0;
+        background-repeat: repeat-y;
+      }
+    }
+  }
 
-	}
+  &-thumbnail {
+    position: relative;
+    box-shadow: $asset-box-shadow;
+    margin-bottom: $asset-thumbnail-margin-bottom;
+    background: $asset-thumbnail-background;
+    border-radius: $asset-border-radius;
+    overflow: hidden;
 
-	&-thumbnail {
-		position:relative;
-		box-shadow: $asset-box-shadow;
-		margin-bottom: $asset-thumbnail-margin-bottom;
-		background: $asset-thumbnail-background;
-		border-radius: $asset-border-radius;
-		overflow:hidden;
+    img {
+      display: block;
+      width: 100%;
+    }
 
-		img {
-			display:block;
-			width: 100%;
-		}
+    &:not(#{&}-freeform) {
+      @include aspect-ratio(
+        $asset-thumbnail-width,
+        $asset-thumbnail-height,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      );
 
-		&:not(#{&}-freeform) {
-			@include aspect-ratio($asset-thumbnail-width,$asset-thumbnail-height,false,false,false,false,false,false);
+      & > img,
+      & > #{$prefix}-thumbnail-image {
+        z-index: 1;
+        @include dump-styles(fit-image-cover-img);
+      }
+    }
 
-			& > img,
-			& > #{$prefix}-thumbnail-image {
-				z-index:1;
-				@include dump-styles(fit-image-cover-img);
-			}
-		}
+    > * {
+      pointer-events: none;
+    }
 
-		> * {
-			pointer-events: none;
-		}
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+    &:hover {
+      box-shadow: $asset-box-shadow-hover;
+    }
+  }
 
-		&:after {
-			content:"";
-			position:absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			z-index:1;
-		}
-		&:hover {
-			box-shadow: $asset-box-shadow-hover;
-		}
-	}
+  &-title {
+    @include type-set(
+      (
+        color: $asset-title-color,
+        case: $asset-title-text-transform,
+        weight: $asset-title-font-weight,
+        style: $asset-title-font-style,
+      )
+    );
+  }
 
-
-	&-title {
-
-		@include type-set((
-			color: $asset-title-color,
-			case: $asset-title-text-transform,
-			weight: $asset-title-font-weight,
-			style: $asset-title-font-style
-		));
-	}
-
-	&-caption {
-
-
-		@include type-set((
-			color: $asset-caption-color,
-			case: $asset-caption-text-transform,
-			weight: $asset-caption-font-weight,
-			style: $asset-caption-font-style
-		));
-	}
+  &-caption {
+    @include type-set(
+      (
+        color: $asset-caption-color,
+        case: $asset-caption-text-transform,
+        weight: $asset-caption-font-weight,
+        style: $asset-caption-font-style,
+      )
+    );
+  }
 }

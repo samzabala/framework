@@ -5,52 +5,50 @@ No. it's not the nintendo switch
 Suppose you wanna have two blocks appear when the other disappears, this boi is for you
 
 ```html
-
 <div class="switch" id="switch-boi">
-	<div class="switch-off">
-		<h1>Title</h1>
-		<button class="btn btn-link" data-toggle-switch-on href="#switch-boi">Click to edit me </button>
-		
-	</div>
-	<div class="switch-on">
-		<div class="input-group input-large input-block input-group-horizontal">
-			<input type="text" class="input input-single-line">
-			<button data-toggle-switch-off href="#switch-boi" class="btn btn-primary">Save</button>
-		</div>
-	</div>
+  <div class="switch-off">
+    <h1>Title</h1>
+    <button class="btn btn-link" data-toggle-switch-on href="#switch-boi">
+      Click to edit me
+    </button>
+  </div>
+  <div class="switch-on">
+    <div class="input-group input-large input-block input-group-horizontal">
+      <input type="text" class="input input-single-line" />
+      <button data-toggle-switch-off href="#switch-boi" class="btn btn-primary">
+        Save
+      </button>
+    </div>
+  </div>
 </div>
 ```
 
 ## Classes
 
-### **`.switch`** 
+### **`.switch`**
 
 Wrapper of the blocks that will toggle each other. By default, javascript will set this to off with the class `switch-to-off`. If you want this to default to on by default, add `switch-to-on` to the block. if it doesn't work, Sam's programming is shit and feel free to tell her so.
 
 If yopu dont want it to automatically off itself when ckiclity clack awei, add class `switch-idle`
 If you want it top be on its on state on initial page load,, add class `switch-to-on`
 
-### **`.switch-on`** 
+### **`.switch-on`**
 
 The block to show when the switch is "on"
 
-### **`.switch-off`** 
+### **`.switch-off`**
 
 The block to show when the switch is "off"
 
 ## Toggle Attributes
 
-
-### **`[data-toggle-switch-on]`** 
+### **`[data-toggle-switch-on]`**
 
 Toggle to enable the on state of a switch. will look for the matching href, data-href, or closest `.switch` ancestor to toggle
 
-
-### **`[data-toggle-switch-off]`** 
+### **`[data-toggle-switch-off]`**
 
 Toggle to enable the off state of a switch. will look for the matching href, data-href, or closest `.switch` ancestor to toggle
-
-
 
 ## Javascript
 
@@ -60,17 +58,13 @@ Toggle to enable the off state of a switch. will look for the matching href, dat
 
 Make a new boi by going `const switchElement = new fw.Switch(element)`
 
-
 `element` is the switchElement itself. if blank, does nothing
-
-
 
 #### **`switchElement.init(element)`**
 
 turns off the switch as initial state, unless it was deliberately turned on in the first place
 
 `element` is the element triggered. if left blank, this defaults to the element attached to the instance
-
 
 #### **`switchElement.turnOff(element)`**
 
@@ -96,8 +90,6 @@ turns off all switches
 
 `exemptedSwitchElement` is DOMElement of dropdown to exempt from the purge
 
-
-
 #### **`fw.Switch.configDefaults`**
 
 returns obj with component arg defaults
@@ -112,16 +104,16 @@ returns obj with component set args
 
 ### Events
 
-* `click.fw.switch` - happens on `triggerer`
-* `click.fw.switch.purge` - happens on elements that qualify closing switchElement components
-* `before_init.fw.switch` - happens on `document` before running functions to set up
-* `init.fw.switch` - happens on `document` when running functions to set up
-* `after_init.fw.switch` - happens on `document` after running functions to set up
-* `before_on.fw.switch` - happens on `element` before turning it on
-* `on.fw.switch` - happens on `element` when turning it on
-* `after_on.fw.switch` - happens on `element` after turning it on
-* `before_off.fw.switch` - happens on `element` before turning it off
-* `off.fw.switch` - happens on `element` when turning it off
-* `after_off.fw.switch` - happens on `element` after turning it off
+- `click.fw.switch` - happens on `triggerer`
+- `click.fw.switch.purge` - happens on elements that qualify closing switchElement components
+- `before_init.fw.switch` - happens on `document` before running functions to set up
+- `init.fw.switch` - happens on `document` when running functions to set up
+- `after_init.fw.switch` - happens on `document` after running functions to set up
+- `before_on.fw.switch` - happens on `element` before turning it on
+- `on.fw.switch` - happens on `element` when turning it on
+- `after_on.fw.switch` - happens on `element` after turning it on
+- `before_off.fw.switch` - happens on `element` before turning it off
+- `off.fw.switch` - happens on `element` when turning it off
+- `after_off.fw.switch` - happens on `element` after turning it off
 
 [Back to TOC](../../../readme.md)

@@ -1,51 +1,46 @@
 $calculated-asset-palettes: (
-	default: $asset-image-default-palette-tag,
-	audio: $asset-image-audio-palette-tag,
-	code: $asset-image-code-palette-tag,
-	text: $asset-image-text-palette-tag,
-	doc: $asset-image-doc-palette-tag,
-	font: $asset-image-font-palette-tag,
-	img: $asset-image-img-palette-tag,
-	ps: $asset-image-ps-palette-tag,
-	ai: $asset-image-ai-palette-tag,
-	xd: $asset-image-xd-palette-tag,
-	pdf: $asset-image-pdf-palette-tag,
-	id: $asset-image-id-palette-tag,
-	table: $asset-image-table-palette-tag,
-	video: $asset-image-video-palette-tag,
-	zip: $asset-image-zip-palette-tag,
+  default: $asset-image-default-palette-tag,
+  audio: $asset-image-audio-palette-tag,
+  code: $asset-image-code-palette-tag,
+  text: $asset-image-text-palette-tag,
+  doc: $asset-image-doc-palette-tag,
+  font: $asset-image-font-palette-tag,
+  img: $asset-image-img-palette-tag,
+  ps: $asset-image-ps-palette-tag,
+  ai: $asset-image-ai-palette-tag,
+  xd: $asset-image-xd-palette-tag,
+  pdf: $asset-image-pdf-palette-tag,
+  id: $asset-image-id-palette-tag,
+  table: $asset-image-table-palette-tag,
+  video: $asset-image-video-palette-tag,
+  zip: $asset-image-zip-palette-tag,
 );
 
 $calculated-asset-image-trail: 5px;
 
 $calculated-ass-thumb-weight-ratio: (100/9)/100;
 
-$calculated-ass-thumb-image-ratio-y: .5;
-$calculated-ass-thumb-image-ratio-x: .4;
+$calculated-ass-thumb-image-ratio-y: 0.5;
+$calculated-ass-thumb-image-ratio-x: 0.4;
 
 $calculated-ass-thumb-gutter-px: (
-	($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y)
-	* $calculated-ass-thumb-weight-ratio
+  ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y) *
+    $calculated-ass-thumb-weight-ratio
 );
 
 $calculated-ass-thumb-background-size-x: percentage(
-	($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y * 2)
-	/ ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+  ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y * 2) /
+    ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
 );
 
-
 $calculated-ass-thumb-table-gutter: percentage(
-	$calculated-ass-thumb-gutter-px / ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y)
+  $calculated-ass-thumb-gutter-px /
+    ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y)
 );
 
 $calculated-ass-thumb-table-gutter-3: percentage(
-	(
-		($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y)
-		* $calculated-ass-thumb-weight-ratio
-	)
-	/ (
-		($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y)
-		/ 3
-	)
+  (
+      ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y) *
+        $calculated-ass-thumb-weight-ratio
+    ) / (($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y) / 3)
 );
-

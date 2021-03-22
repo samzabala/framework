@@ -1,110 +1,103 @@
 $calculated-zone-font-size: $zone-font-size;
 @if internal-is-convertable($zone-font-size) {
-	$calculated-zone-font-size: rem($zone-font-size / $body-font-size);
+  $calculated-zone-font-size: rem($zone-font-size / $body-font-size);
 }
 
 $calculated-zone-schemes: (
-	default: (
-		init:(
-			background: $zone-background-default,
-			border: $zone-border-default,
-			color: $zone-color-default,
-		),
-		active:(
-			background: $zone-background-default-hover,
-			border: $zone-border-default-hover,
-			color: $zone-color-default-hover,
-		)
-	),
-
-	primary: (
-		init:(
-			background: $zone-background-primary,
-			border: $zone-border-primary,
-			color: $zone-color-primary,
-		),
-		active:(
-			background: $zone-background-primary-hover,
-			border: $zone-border-primary-hover,
-			color: $zone-color-primary-hover,
-		)
-	),
-
-	secondary: (
-		init:(
-			background: $zone-background-secondary,
-			border: $zone-border-secondary,
-			color: $zone-color-secondary,
-		),
-		active:(
-			background: $zone-background-secondary-hover,
-			border: $zone-border-secondary-hover,
-			color: $zone-color-secondary-hover,
-		)
-	),
-
-	accent:  (
-		init:(
-			background: $zone-background-accent,
-			border: $zone-border-accent,
-			color: $zone-color-accent,
-		),
-		active:(
-			background: $zone-background-accent-hover,
-			border: $zone-border-accent-hover,
-			color: $zone-color-accent-hover,
-		)
-	),
-
-	neutral:  (
-		init:(
-			background: $zone-background-neutral,
-			border: $zone-border-neutral,
-			color: $zone-color-neutral,
-		),
-		active:(
-			background: $zone-background-neutral-hover,
-			border: $zone-border-neutral-hover,
-			color: $zone-color-neutral-hover,
-		)
-	),
-
-	success:  (
-		init:(
-			background: $zone-background-success,
-			border: $zone-border-success,
-			color: $zone-color-success,
-		),
-		active:(
-			background: $zone-background-success-hover,
-			border: $zone-border-success-hover,
-			color: $zone-color-success-hover,
-		)
-	),
-
-	caution:  (
-		init:(
-			background: $zone-background-caution,
-			border: $zone-border-caution,
-			color: $zone-color-caution,
-		),
-		active:(
-			background: $zone-background-caution-hover,
-			border: $zone-border-caution-hover,
-			color: $zone-color-caution-hover,
-		)
-	),
-
-	error:  (
-		init:(
-			background: $zone-background-error,
-			border: $zone-border-error,
-			color: $zone-color-error,
-		),
-		active:(
-			background: $zone-background-error-hover,
-			border: $zone-border-error-hover,
-			color: $zone-color-error-hover,
-		)
-	)
+  default: (
+    init: (
+      background: $zone-background-default,
+      border: $zone-border-default,
+      color: $zone-color-default,
+    ),
+    active: (
+      background: $zone-background-default-hover,
+      border: $zone-border-default-hover,
+      color: $zone-color-default-hover,
+    ),
+  ),
+  primary: (
+    init: (
+      background: $zone-background-primary,
+      border: $zone-border-primary,
+      color: $zone-color-primary,
+    ),
+    active: (
+      background: $zone-background-primary-hover,
+      border: $zone-border-primary-hover,
+      color: $zone-color-primary-hover,
+    ),
+  ),
+  secondary: (
+    init: (
+      background: $zone-background-secondary,
+      border: $zone-border-secondary,
+      color: $zone-color-secondary,
+    ),
+    active: (
+      background: $zone-background-secondary-hover,
+      border: $zone-border-secondary-hover,
+      color: $zone-color-secondary-hover,
+    ),
+  ),
+  accent: (
+    init: (
+      background: $zone-background-accent,
+      border: $zone-border-accent,
+      color: $zone-color-accent,
+    ),
+    active: (
+      background: $zone-background-accent-hover,
+      border: $zone-border-accent-hover,
+      color: $zone-color-accent-hover,
+    ),
+  ),
+  neutral: (
+    init: (
+      background: $zone-background-neutral,
+      border: $zone-border-neutral,
+      color: $zone-color-neutral,
+    ),
+    active: (
+      background: $zone-background-neutral-hover,
+      border: $zone-border-neutral-hover,
+      color: $zone-color-neutral-hover,
+    ),
+  ),
+  success: (
+    init: (
+      background: $zone-background-success,
+      border: $zone-border-success,
+      color: $zone-color-success,
+    ),
+    active: (
+      background: $zone-background-success-hover,
+      border: $zone-border-success-hover,
+      color: $zone-color-success-hover,
+    ),
+  ),
+  caution: (
+    init: (
+      background: $zone-background-caution,
+      border: $zone-border-caution,
+      color: $zone-color-caution,
+    ),
+    active: (
+      background: $zone-background-caution-hover,
+      border: $zone-border-caution-hover,
+      color: $zone-color-caution-hover,
+    ),
+  ),
+  error: (
+    init: (
+      background: $zone-background-error,
+      border: $zone-border-error,
+      color: $zone-color-error,
+    ),
+    active: (
+      background: $zone-background-error-hover,
+      border: $zone-border-error-hover,
+      color: $zone-color-error-hover,
+    ),
+  ),
 );

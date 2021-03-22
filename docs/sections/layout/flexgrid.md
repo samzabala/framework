@@ -7,28 +7,14 @@ The framework has a grid setup using flex. No floats. because sadness. The colum
 ![](../../images/flex-grid.png)
 
 ```html
-
 <div class="flex-grid">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">A column boi</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">A column boi</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi</div>
 </div>
-
 ```
 
 ## Container classes
@@ -49,26 +35,17 @@ Modifies grid item spacing.
 
 ```html
 <div class="flex-grid flex-grid-compact">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi but compact
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi but compact
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but compact
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but compact
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but compact
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but compact
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
+    A column boi but compact
+  </div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
+    A column boi but compact
+  </div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but compact</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but compact</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but compact</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but compact</div>
 </div>
-
 ```
 
 **`.flex-grid-expanded`** makes it mORE SPACED OUT HOHO
@@ -77,29 +54,20 @@ Modifies grid item spacing.
 
 ```html
 <div class="flex-grid flex-grid-expanded">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi but expanded
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi but expanded
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but expanded
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but expanded
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but expanded
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but expanded
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
+    A column boi but expanded
+  </div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
+    A column boi but expanded
+  </div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but expanded</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but expanded</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but expanded</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but expanded</div>
 </div>
 ```
 
-
-####  **`.flex-no-gutter`**, and **`.flex-grid-no-gutter-x`** or **`.flex-grid-no-gutter-y`** 
+#### **`.flex-no-gutter`**, and **`.flex-grid-no-gutter-x`** or **`.flex-grid-no-gutter-y`**
 
 Use classes to remove margins
 
@@ -109,27 +77,18 @@ Use classes to remove margins
 
 ```html
 <div class="flex-grid flex-grid-no-gutter">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi but no gutter
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi but no gutter
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
+    A column boi but no gutter
+  </div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
+    A column boi but no gutter
+  </div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter</div>
 </div>
 ```
-
 
 **`.flex-grid-no-gutter-x`** removes gaps horizontally
 
@@ -137,24 +96,16 @@ Use classes to remove margins
 
 ```html
 <div class="flex-grid flex-grid-no-gutter-x">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi but no gutter x
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi but no gutter x
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter x
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter x
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter x
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter x
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
+    A column boi but no gutter x
+  </div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
+    A column boi but no gutter x
+  </div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter x</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter x</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter x</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter x</div>
 </div>
 ```
 
@@ -164,24 +115,16 @@ Use classes to remove margins
 
 ```html
 <div class="flex-grid flex-grid-no-gutter-y">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi but no gutter y
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi but no gutter y
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter y
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter y
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter y
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but no gutter y
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
+    A column boi but no gutter y
+  </div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
+    A column boi but no gutter y
+  </div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter y</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter y</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter y</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but no gutter y</div>
 </div>
 ```
 
@@ -192,53 +135,46 @@ By default flex grid items will grow and shrink depending on available blank spa
 
 ```html
 <div class="flex-grid flex-grid-fixed">
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
-		A column boi but fixed
-	</div>
-	<div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
-		A column boi but fixed
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but fixed
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but fixed
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but fixed
-	</div>
-	<div class="flex-col-12 flex-col-md-4">
-		A column boi but fixed
-	</div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-4 flex-col-lg-3">
+    A column boi but fixed
+  </div>
+  <div class="flex-col-12 flex-col-sm-6 flex-col-md-8 flex-col-lg-9">
+    A column boi but fixed
+  </div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but fixed</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but fixed</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but fixed</div>
+  <div class="flex-col-12 flex-col-md-4">A column boi but fixed</div>
 </div>
 ```
 
 ### Other helpers
 
 The container also supports the following helper classes
-*	[Justify Content](../scaffolding/helpers.md#justify-content)
-*	[Align Items](../scaffolding/helpers.md#align-items)
-*	[Align Content](../scaffolding/helpers.md#align-content)
-*	[Flex wrap](../scaffolding/helpers.md#flex-wrap)
-*	[Flex direction](../scaffolding/helpers.md#flex-direction)
+
+- [Justify Content](../scaffolding/helpers.md#justify-content)
+- [Align Items](../scaffolding/helpers.md#align-items)
+- [Align Content](../scaffolding/helpers.md#align-content)
+- [Flex wrap](../scaffolding/helpers.md#flex-wrap)
+- [Flex direction](../scaffolding/helpers.md#flex-direction)
 
 ## Children classes
 
-### **`.flex-col-[number]`** and  **`.flex-col-[breakpoint]-[number]`**
-
+### **`.flex-col-[number]`** and **`.flex-col-[breakpoint]-[number]`**
 
 #### Basic Layout
 
-The number suffix of the class is based on the amount of space out of the set `$grid-units` will be taken 
+The number suffix of the class is based on the amount of space out of the set `$grid-units` will be taken
 
 By default `$grid-units` is 12 (see [customize](../setup/customize.md));
 
-so for example,  if a class of `.flex-col-6` is declared, this column item will take 6/12 or 1/2 of the space
+so for example, if a class of `.flex-col-6` is declared, this column item will take 6/12 or 1/2 of the space
 
 ```html
 <div class="flex-grid">
-	<div class="flex-col-6">
-	<div class="flex-col-6">
+  <div class="flex-col-6">
+    <div class="flex-col-6"></div>
+  </div>
 </div>
 ```
 
@@ -248,15 +184,15 @@ I have no graphic to show you because i'm an asshole
 
 See [Breakpoints](../scaffolding/breakpoint.md)
 
-To change the flex basis of the column item on certain breakpoints,  **`.flex-col-[breakpoint]-[number]`** is the best class to add.
+To change the flex basis of the column item on certain breakpoints, **`.flex-col-[breakpoint]-[number]`** is the best class to add.
 
 Note that the grid setup is made mobile first, so the `.flex-col` class will cascade unto larger breakpoints unless a class for one of the larger breakpoints than the declared.. is declared.. woah I can english :O
 
-
 ```html
 <div class="flex-grid">
-	<div class="flex-col-xs-12 flex-col-md-6">
-	<div class="flex-col-xs-12 flex-col-md-6">
+  <div class="flex-col-xs-12 flex-col-md-6">
+    <div class="flex-col-xs-12 flex-col-md-6"></div>
+  </div>
 </div>
 ```
 
@@ -266,37 +202,35 @@ On this code, the column bois is set for full width on `xs` devices until `md` b
 
 Suppose you didn't want yuh flex items to be a set width or basis but rather shrink and or grow or not based on the content it has, but allow the usual grid spacing to happen, use `.flex-child`
 
-
 ![](../../images/flex-grid-flex-child.png)
-
-
 
 ```html
 <div class="flex-grid">
-	<div class="flex-col-6">
-		A column boi but not really column
-	</div>
-	<div class="flex-col-6">
-		A column boi but not really column
-	</div>
-	<div class="flex-col-3 flex-0-1">
-		A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit A column boi but not really column, just has the margin setup and shit 
-	</div>
-	<div class="flex-child">
-		A column boi but not really column
-	</div>
-	<div class="flex-child flex-1-1">
-		A column boi but not really column, just has the margin setup and shit 
-	</div>
-	<div class="flex-col-4">
-		A column boi but not really column, just has the margin setup and shit 
-	</div>
-	<div class="flex-col-4">
-		A column boi but not really column, just has the margin setup and shit 
-	</div>
-	<div class="flex-col-4">
-		A column boi but not really column, just has the margin setup and shit 
-	</div>
+  <div class="flex-col-6">A column boi but not really column</div>
+  <div class="flex-col-6">A column boi but not really column</div>
+  <div class="flex-col-3 flex-0-1">
+    A column boi but not really column, just has the margin setup and shit A column boi
+    but not really column, just has the margin setup and shit A column boi but not
+    really column, just has the margin setup and shit A column boi but not really
+    column, just has the margin setup and shit A column boi but not really column, just
+    has the margin setup and shit A column boi but not really column, just has the
+    margin setup and shit A column boi but not really column, just has the margin setup
+    and shit A column boi but not really column, just has the margin setup and shit A
+    column boi but not really column, just has the margin setup and shit
+  </div>
+  <div class="flex-child">A column boi but not really column</div>
+  <div class="flex-child flex-1-1">
+    A column boi but not really column, just has the margin setup and shit
+  </div>
+  <div class="flex-col-4">
+    A column boi but not really column, just has the margin setup and shit
+  </div>
+  <div class="flex-col-4">
+    A column boi but not really column, just has the margin setup and shit
+  </div>
+  <div class="flex-col-4">
+    A column boi but not really column, just has the margin setup and shit
+  </div>
 </div>
 ```
 
@@ -307,9 +241,8 @@ You can also use the grow and shrink helpers to dictate how much shrinkage and g
 ### Other helpers
 
 The column bois also supports the following helper classes
-*	[Align Self](../scaffolding/helpers.md#align-self)
-*	[Grow and Shrink](../scaffolding/helpers.md#grow-and-shrink)
 
-
+- [Align Self](../scaffolding/helpers.md#align-self)
+- [Grow and Shrink](../scaffolding/helpers.md#grow-and-shrink)
 
 [Back to TOC](../../../readme.md)

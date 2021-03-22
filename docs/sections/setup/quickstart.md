@@ -1,25 +1,29 @@
-
 # Installation
+
 include the following files:
 
 css/sass
-*	[framework.scss](../../../scss/framework.scss)
-	*	If you want to be a basic bitch just [framework.css](../../../dist/framework.css) is super cool too :)
+
+- [framework.scss](../../../scss/framework.scss)
+  - If you want to be a basic bitch just [framework.css](../../../dist/framework.css) is super cool too :)
 
 js files (in order)
-*	Dependencies
-	*	[jQuery](https://jquery.com/) (for plugged version)
-*	Optional
-	*	~[Trumbowyg](https://alex-d.github.io/Trumbowyg/)~ Bye felicia
-*	[framework.js](../../../dist/framework.min.js) 
-	*	If full on jQuery dependency is preferred, [framework.plugged.js](../../../dist/framework.plugged.js)
+
+- Dependencies
+  - [jQuery](https://jquery.com/) (for plugged version)
+- Optional
+  - ~[Trumbowyg](https://alex-d.github.io/Trumbowyg/)~ Bye felicia
+- [framework.js](../../../dist/framework.min.js)
+  - If full on jQuery dependency is preferred, [framework.plugged.js](../../../dist/framework.plugged.js)
 
 ## File structure
-*	Put this bitch boy wherever the fuq u want. 69/10 recommend the root folder
+
+- Put this bitch boy wherever the fuq u want. 69/10 recommend the root folder
 
 ## HTML setup
 
 ...must look like this
+
 ```html
 
 <!DOCTYPE html>
@@ -83,8 +87,5 @@ Disables overflow scroll on the bod so user can focus on the active [modal](../c
 ## **`.body-nav-sticky-offset`**
 
 Offsets the body to the set height of the [nav](../components/nav.md)
-
-
-
 
 [Back to TOC](../../../readme.md)

@@ -1,158 +1,142 @@
 /* input (scaffolding) */
 $prefix: '.input';
 
-
 @at-root %for-form-global {
-	
-	&-radius {
-		border-radius: $input-border-radius;
+  &-radius {
+    border-radius: $input-border-radius;
 
-		&-small {
-			border-radius: $input-border-radius-small;
-		}
+    &-small {
+      border-radius: $input-border-radius-small;
+    }
 
-		&-large {
-			border-radius: $input-border-radius-large;
-		}
-	}
+    &-large {
+      border-radius: $input-border-radius-large;
+    }
+  }
 
-	&-round {
+  &-round {
+    & {
+      border-radius: $calculated-input-height * 0.5;
+    }
 
-		& {
-			border-radius: $calculated-input-height * .5;
-		}
+    &-large {
+      border-radius: $calculated-input-height-large * 0.5;
+    }
 
-		&-large {
-			border-radius: $calculated-input-height-large  * .5;
-		}
+    &-small {
+      border-radius: $calculated-input-height-small * 0.5;
+    }
+  }
 
-		&-small {
-			border-radius: $calculated-input-height-small * .5;
-		}
-	}
+  &-in-nav {
+    align-self: center;
 
-	&-in-nav {
-		align-self: center;
+    &-custom {
+      height: $calculated-nav-height !important;
+      align-self: stretch;
+    }
+  }
 
-		&-custom {
-			height: $calculated-nav-height!important;
-			align-self:stretch;
-		}
-	}
-	
-	&-transition {
-		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
-		max-width:100%;
-	}
+  &-transition {
+    transition: $transition-duration-short color $transition-timing,
+      $transition-duration-short border $transition-timing,
+      $transition-duration-short box-shadow $transition-timing;
+    max-width: 100%;
+  }
 }
 
 @at-root %for-form-input {
+  & {
+    text-decoration: none;
+    font: inherit;
+    color: inherit;
+    // vertical-align: middle;
+    background-color: $input-background;
+    transition: $transition-duration-short color $transition-timing,
+      $transition-duration-short border $transition-timing,
+      $transition-duration-short box-shadow $transition-timing;
+    max-width: 100%;
 
-	& {
-		text-decoration: none;
-		font: inherit;
-		color:inherit;
-		// vertical-align: middle;
-		background-color: $input-background;
-		transition: $transition-duration-short color $transition-timing, $transition-duration-short border $transition-timing, $transition-duration-short box-shadow $transition-timing;
-		max-width:100%;
+    .theme-inverse & {
+      background-color: $input-background-inverse;
+    }
+  }
 
-		.theme-inverse & {
-			background-color: $input-background-inverse;
-		}
-	}
+  &-large {
+    font-size: $calculated-input-font-size-large;
+  }
 
-	&-large {
-		font-size: $calculated-input-font-size-large;
+  &-small {
+    font-size: $calculated-input-font-size-small;
+  }
 
-	}
+  &-in-nav {
+    @extend %for-form-global-in-nav-custom;
+  }
 
-	&-small {
-		font-size: $calculated-input-font-size-small;
-		
-	}
+  &-in-group {
+    position: relative;
+    max-width: 100%;
 
-	&-in-nav {
-		@extend %for-form-global-in-nav-custom;
-	}
+    &:focus,
+    &.focus,
+    &:active,
+    &.active &.open {
+      z-index: 1;
+    }
+  }
 
-	&-in-group {
-		position:relative;
-		max-width:100%;
+  &-ui {
+    &-button {
+      font-size: 100%;
+      font: inherit;
+      border: none;
+      background: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
 
-		&:focus,
-		&.focus,
-		&:active,
-		&.active
-		&.open {
-			z-index:1;
-		}
-
-	}
-
-	&-ui {
-		&-button {
-			font-size: 100%;
-			font: inherit;
-			border: none;
-			background: none;
-			-webkit-appearance:none;
-			appearance:none;
-		}
-
-
-
-		&-control {
-
-
-			@include dump-styles(display-none-important);
-			//fallback
-			height:0!important;
-			width:0!important;
-			overflow:hidden!important;
-	
-		}
-	}
-	
+    &-control {
+      @include dump-styles(display-none-important);
+      //fallback
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+    }
+  }
 }
 
-	
+#{$prefix} {
+  //scaffold
+  @extend %for-form-input;
 
-#{$prefix} { //scaffold
-	@extend %for-form-input;
+  &#{$prefix}-large,
+  #{$prefix}-group#{$prefix}-large & {
+    @extend %for-form-input-large;
+  }
 
+  &#{$prefix}-small,
+  #{$prefix}-group#{$prefix}-small & {
+    @extend %for-form-input-small;
+  }
 
+  .nav-block.nav-block-stretch > &,
+  .nav > & {
+    @extend %for-form-input-in-nav;
+  }
 
-	&#{$prefix}-large,
-	#{$prefix}-group#{$prefix}-large & {
-		@extend %for-form-input-large;
-	}
+  &-disabled,
+  &[disabled] {
+    @include dump-styles(disabled);
+  }
 
-	&#{$prefix}-small,
-	#{$prefix}-group#{$prefix}-small & {
-		@extend %for-form-input-small;
-	}
+  &-disabled,
+  &[disabled],
+  &-disabled & {
+    @include dump-styles(no-box-shadow-important);
+  }
 
-
-	.nav-block.nav-block-stretch > &,
-	.nav > & {
-		@extend %for-form-input-in-nav;
-	}
-
-	&-disabled,
-	&[disabled] {
-		@include dump-styles(disabled);
-
-	}
-
-	&-disabled,
-	&[disabled],
-	&-disabled & {
-		@include dump-styles(no-box-shadow-important);
-	}
-
-	&-in-group {
-		@extend %for-form-input-in-group;
-	}
-
+  &-in-group {
+    @extend %for-form-input-in-group;
+  }
 }

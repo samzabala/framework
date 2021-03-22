@@ -1,318 +1,336 @@
 /*** input calendar ***/
 $prefix: '.input';
 
-
 $calculated-calendar-exception: '';
 
-@each $tag,$color in $calculated-tag-schemes-color {
-	$calculated-calendar-exception: #{$calculated-calendar-exception+':not(' + $prefix +'-'+$tag+')'};
+@each $tag, $color in $calculated-tag-schemes-color {
+  $calculated-calendar-exception: #{$calculated-calendar-exception +
+    ':not(' +
+    $prefix +
+    '-' +
+    $tag +
+    ')'};
 }
 
 #{$prefix} {
+  &-calendar {
+    &-ui {
+      @extend %for-form-input-boxy !optional;
+      @extend %for-form-input-boxy-and-group !optional;
+      min-width: 20em;
+    }
 
-		&-calendar {
+    //components of component
+    & {
+      @extend %for-form-input-ui-control !optional;
 
-			&-ui {
-				@extend %for-form-input-boxy !optional;
-				@extend %for-form-input-boxy-and-group !optional;
-				min-width: 20em;
-			}
+      &-ui {
+        vertical-align: top;
+        text-align: center;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
 
+        &-block {
+          @extend %for-form-input-ui-button !optional;
+          padding: $calculated-input-calendar-block-gutter-y
+            $calculated-input-calendar-block-gutter-x;
+          text-align: center;
+          display: block;
+          white-space: nowrap;
+          position: relative;
+          color: inherit;
+          @include dump-styles(no-text-decoration);
 
-			//components of component
-			& {
-				@extend %for-form-input-ui-control !optional;
-	
+          &,
+          &:after {
+            border-radius: $input-calendar-block-border-radius;
+          }
 
-				&-ui {
-					vertical-align: top;
-					text-align:center;
-					-webkit-user-select: none;
-					-moz-user-select: none;
-					-ms-user-select: none;
-						user-select: none;
-					
-					
-					&-block {
-						@extend %for-form-input-ui-button !optional;
-						padding:$calculated-input-calendar-block-gutter-y $calculated-input-calendar-block-gutter-x;
-						text-align: center;
-						display:block;
-						white-space:nowrap;
-						position:relative;
-						color: inherit;
-						@include dump-styles(no-text-decoration);
+          > span {
+            display: block;
+            margin: 0 ($calculated-input-calendar-block-gutter-x * -1);
+          }
 
-						&,&:after {
-							border-radius: $input-calendar-block-border-radius;
-						}
+          &-adjacent {
+            opacity: 0.125 !important;
+            pointer-events: none !important;
 
-						> span {
-							display:block;
-							margin:0 ($calculated-input-calendar-block-gutter-x * -1);
-						}
+            // &:hover,&:focus,&.focus {
+            // 	opacity:1!important;
+            // }
+          }
 
-						&-adjacent {
-							opacity: .125!important;
-							pointer-events:none!important;
+          // 	content:"";
+          // 	padding-bottom:100%;
+          // }
 
-							// &:hover,&:focus,&.focus {
-							// 	opacity:1!important;
-							// }
-						}
+          // &-content {
+          // 	position: absolute;
+          // 	top:0;
+          // 	bottom:0;
+          // 	left:0;
+          // 	right:0;
+          // }
+        }
 
-						// 	content:"";
-						// 	padding-bottom:100%;
-						// }
+        &-date {
+          position: relative;
+          z-index: 1;
+          overflow: hidden;
 
-						// &-content {
-						// 	position: absolute;
-						// 	top:0;
-						// 	bottom:0;
-						// 	left:0;
-						// 	right:0;
-						// }
-					}
+          &:after,
+          span {
+            pointer-events: none;
+          }
 
-					&-date {
-						position:relative;
-						z-index:1;
-						overflow:hidden;
+          &:after {
+            content: '';
+            z-index: -1;
+            background: currentColor;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 100%;
+            max-width: 4em;
+            height: 100%;
+            opacity: 0;
+          }
 
-						&:after,span{
-							pointer-events:none;
-						}
+          &.disabled {
+            &:after {
+              opacity: 0;
+            }
+          }
 
-						&:after{
-							content:"";
-							z-index:-1;
-							background: currentColor;
-							display:block;
-							position:absolute;
-							top:0;
-							left:0;
-							right:0;
-							margin:auto;
-							width:100%;
-							max-width: 4em;
-							height:100%;
-							opacity:0;
+          &:hover,
+          &:focus,
+          &.focus {
+            color: inherit;
+            // background: $input-calendar-date-hover-background;
 
-						}
+            &:after {
+              opacity: 0.2;
+            }
 
-						&.disabled {
-							&:after {
-								opacity:0;
-							}
-						}
+            span {
+              color: $input-calendar-date-hover-color;
+            }
+          }
+          &.active {
+            &,
+            &:hover {
+              // background: $input-calendar-date-active-background;
+              &:after {
+                opacity: 1;
+                @at-root #{$prefix
+                    + '-calendar-ui'
+                    + $calculated-calendar-exception}
+                    & {
+                  background: $input-calendar-date-active-background;
+                }
+              }
 
-						&:hover,
-						&:focus,
-						&.focus {
-							color:inherit;
-							// background: $input-calendar-date-hover-background;
+              span {
+                color: $input-calendar-date-active-color;
+              }
+            }
+          }
+        }
 
-							&:after {
-								opacity: .2;
-							}
+        &-grid {
+          padding-bottom: $calculated-input-calendar-block-gutter-y;
+        }
+        &-days,
+        &-dates,
+        &-heading {
+          justify-content: space-evenly;
+          display: grid;
+          // grid-template-columns: repeat(7, minmax(min-content,1fr));
+          grid-template-columns: repeat(7, 1fr);
+          grid-gap: $input-calendar-gap;
+        }
 
-							span {
-								color: $input-calendar-date-hover-color;
-							}
-						}
-						&.active{
-							&,&:hover {
-								// background: $input-calendar-date-active-background;
-								&:after {
-									opacity: 1;
-									@at-root #{$prefix +'-calendar-ui' + $calculated-calendar-exception} & {
-										background: $input-calendar-date-active-background;
-									}
-								}
+        &-input {
+          margin-bottom: $calculated-input-calendar-block-gutter-y;
+          padding-bottom: $calculated-input-calendar-block-gutter-y;
+          margin-left: $calculated-input-gutter-x * -1;
+          margin-right: $calculated-input-gutter-x * -1;
+          margin-top: $calculated-value-input-paddiny-y-negative;
+          position: relative;
 
-								span {
-									color: $input-calendar-date-active-color;
-								}
-							}
-						}
-					}
+          &:last-child {
+            margin-bottom: calc(
+              ((#{$calculated-input-height} - (#{$calculated-input-single-line})) * 0.5) *
+                -1
+            );
 
-					&-grid {
-						padding-bottom:$calculated-input-calendar-block-gutter-y;
-					}
-					&-days,
-					&-dates,
-					&-heading {
-						justify-content: space-evenly;
-						display:grid;
-						// grid-template-columns: repeat(7, minmax(min-content,1fr));
-						grid-template-columns: repeat(7, 1fr);
-						grid-gap: $input-calendar-gap;
-					}
+            &:after {
+              content: none;
+            }
+          }
 
-					&-input {
-						margin-bottom: $calculated-input-calendar-block-gutter-y;
-						padding-bottom: $calculated-input-calendar-block-gutter-y;
-						margin-left:$calculated-input-gutter-x * -1;
-						margin-right:$calculated-input-gutter-x * -1;
-						margin-top: $calculated-value-input-paddiny-y-negative;
-						position:relative;
+          #{$prefix}-small & {
+            margin-top: $calculated-value-input-paddiny-y-small-negative;
+            position: relative;
 
-						&:last-child {
-						margin-bottom: calc( ( (#{ $calculated-input-height } - (#{$calculated-input-single-line}) ) * .5) * -1 );
+            &:last-child {
+              margin-bottom: calc(
+                (
+                    (
+                        #{$calculated-input-height-small} - (#{$calculated-input-single-line})
+                      ) * 0.5
+                  ) * -1
+              );
+            }
+          }
 
-							&:after {
-								content:none;
-							}
-						}
+          #{$prefix}-large & {
+            margin-top: $calculated-value-input-paddiny-y-large-negative;
+            position: relative;
 
-						#{$prefix}-small & {
-							margin-top: $calculated-value-input-paddiny-y-small-negative;
-							position:relative;
+            &:last-child {
+              margin-bottom: calc(
+                (
+                    (
+                        #{$calculated-input-height-large} - (#{$calculated-input-single-line})
+                      ) * 0.5
+                  ) * -1
+              );
+            }
+          }
 
-							&:last-child {
-								margin-bottom: calc( ( (#{ $calculated-input-height-small } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-							}
-						}
+          &:after {
+            content: '';
+            display: block;
+            height: $input-border-width;
+            width: 100%;
+            background: currentColor;
+            opacity: 0.25;
+          }
 
-						#{$prefix}-large & {
-							margin-top: $calculated-value-input-paddiny-y-large-negative;
-							position:relative;
+          input {
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            border-width: 0;
+            width: 100%;
 
-							&:last-child {
-								margin-bottom: calc( ( (#{ $calculated-input-height-large } - (#{$calculated-input-single-line}) ) * .5) * -1 );
-							}
-						}
+            &:not(.focus):not(:focus):not(.active):not(:active) {
+              @include dump-styles(no-box-shadow-important);
+            }
+          }
+        }
 
-						&:after {
-							content:"";
-							display:block;
-							height:$input-border-width;
-							width:100%;
-							background: currentColor;
-							opacity: .25;
-						}
-						
-						input {
-							border-bottom-left-radius:0!important;
-							border-bottom-right-radius:0!important;
-							border-width:0;
-							width:100%;
+        &-heading {
+          padding-top: $calculated-input-calendar-block-gutter-y;
+          padding-bottom: $calculated-input-calendar-block-gutter-y;
+          position: relative;
+        }
 
-							&:not(.focus):not(:focus):not(.active):not(:active) {
-								@include dump-styles(no-box-shadow-important);
-							}
-						}
-					}
+        &-button {
+          color: inherit;
+          @extend %for-form-input-ui-button !optional;
 
-					&-heading {
-						padding-top:$calculated-input-calendar-block-gutter-y;
-						padding-bottom:$calculated-input-calendar-block-gutter-y;
-						position:relative;
-					}
+          &:hover {
+            color: $input-calendar-date-heading-button-color-hover;
+          }
+        }
+        &-block,
+        &-button {
+          &.disabled,
+          .input-disabled & {
+            &,
+            &:hover,
+            &:focus,
+            &.focus {
+              background: none !important;
+              color: inherit !important;
+            }
+          }
+        }
 
-					&-button{
-						color:inherit;
-						@extend %for-form-input-ui-button !optional;
+        &-navigation,
+        &-title {
+          grid-row: 1;
+        }
 
+        &-prev-year,
+        &-prev-month:first-child {
+          grid-column: 1;
+        }
+        &-prev-month {
+          grid-column: 2;
+        }
 
-						&:hover {
-							color: $input-calendar-date-heading-button-color-hover;
-						}
-					}
-					&-block,
-					&-button{
+        &-next-year,
+        &-next-month:nth-last-child(3) {
+          grid-column: 7;
+        }
+        &-next-month {
+          grid-column: 6;
+        }
 
+        &-title {
+          grid-column: 3 / span 3;
+        }
 
-						&.disabled,
-						.input-disabled & {
-							&,
-							&:hover,
-							&:focus,
-							&.focus {
-								background: none!important;
-								color:inherit!important;
-							}
-						}
-						
-					}
+        // &-prev-month {
 
-					&-navigation,&-title{
-						grid-row: 1;
-					}
+        // 	margin-right: .25em;
+        // }
+        // &-prev-year {
+        // 	margin-right: .75em;
+        // }
 
-					&-prev-year,
-					&-prev-month:first-child {
-						grid-column: 1;
-					}
-					&-prev-month {
-						grid-column: 2;
-					}
+        // &-next-month {
 
-					&-next-year,
-					&-next-month:nth-last-child(3) {
-						grid-column: 7;
-					}
-					&-next-month {
-						grid-column: 6;
-					}
+        // 	margin-left: .25em;
+        // }
+        // &-next-year {
+        // 	margin-left: .75em;
+        // }
 
-					&-title {
-						grid-column: 3 / span 3;
-					}
+        &-dropdown {
+          max-height: 300px;
+          overflow-x: auto;
+          overflow-y: scroll;
+          @include dump-styles(no-scrollbar);
+        }
 
-					// &-prev-month {
+        &-days,
+        &-dates {
+          grid-auto-rows: 1fr;
 
-					// 	margin-right: .25em;
-					// }
-					// &-prev-year {
-					// 	margin-right: .75em;
-					// }
+          &:nth-child(n + 2) {
+            margin-top: $input-calendar-gap;
+          }
+        }
 
-					// &-next-month {
+        &-days {
+          margin-bottom: $calculated-input-calendar-block-gutter-y;
+          border-bottom: $input-calendar-days-border-width solid;
+          opacity: 0.375;
+          font-size: $calculated-input-calendar-days-font-size;
+        }
 
-					// 	margin-left: .25em;
-					// }
-					// &-next-year {
-					// 	margin-left: .75em;
-					// }
+        &-dates {
+          // grid-template-rows: repeat(6, 1fr);
+          margin-bottom: $calculated-input-calendar-block-gutter-y * 0.5;
+        }
+      }
 
-					&-dropdown {
-						max-height: 300px;
-						overflow-x:auto;
-						overflow-y: scroll;
-						@include dump-styles(no-scrollbar);
-					}
-
-					&-days,
-					&-dates {
-						grid-auto-rows: 1fr;
-						
-						&:nth-child(n+2) {
-							margin-top: $input-calendar-gap;
-						}
-					}
-
-					&-days {
-						margin-bottom:$calculated-input-calendar-block-gutter-y;
-						border-bottom: $input-calendar-days-border-width solid;
-						opacity: .375;
-						font-size: $calculated-input-calendar-days-font-size;
-					}
-
-					&-dates {
-						// grid-template-rows: repeat(6, 1fr);
-						margin-bottom:$calculated-input-calendar-block-gutter-y * .5;
-					}
-				}
-
-				@include br(#{$mobile-br-max}-max) {
-					&-ui {
-						&-block {
-							padding:$calculated-input-calendar-block-gutter-y-mobile $calculated-input-calendar-block-gutter-x-mobile;
-						}
-					}
-				}
-			}
-		}
+      @include br(#{$mobile-br-max}-max) {
+        &-ui {
+          &-block {
+            padding: $calculated-input-calendar-block-gutter-y-mobile
+              $calculated-input-calendar-block-gutter-x-mobile;
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,17 +1,17 @@
 /*! basic styling shits only bitch */
 //resets
-	@import '_reset';
+@import '_reset';
 //vars
-	@import '_vars';
-	
+@import '_vars';
+
 //core shits
-	//plugin deps
-		@import 'plugins/_shithole.scss';
-	//api
-		@import '_functions';
-		@import '_mixins';
-		@import '_calculations';
+//plugin deps
+@import 'plugins/_shithole.scss';
+//api
+@import '_functions';
+@import '_mixins';
+@import '_calculations';
 
 //to cascade
-	@import '_scaffolding';
-	@import '_typography';
+@import '_scaffolding';
+@import '_typography';

@@ -112,14 +112,14 @@
       template: 'mm/dd/yy'
     },
     HumanTime24: {
-      placeholder: "hh:mm",
-      pattern: "",
-      template: "HH:MM"
+      placeholder: 'hh:mm',
+      pattern: '',
+      template: 'HH:MM'
     },
     HumanTime12: {
-      placeholder: "hh:mm",
-      pattern: "",
-      template: "HH:MM"
+      placeholder: 'hh:mm',
+      pattern: '',
+      template: 'HH:MM'
     },
     Value: {
       placeholder: 'yyyy-mm-dd',
@@ -127,9 +127,9 @@
       template: 'yy-mm-dd'
     },
     ValueDateTimePreset: {
-      placeholder: "yy-mm-ddThh:gg",
-      pattern: "",
-      template: "yy-mm-ddThh:gg"
+      placeholder: 'yy-mm-ddThh:gg',
+      pattern: '',
+      template: 'yy-mm-ddThh:gg'
     }
   };
   var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -466,11 +466,11 @@
         }
       } else {
         var scrollV, scrollH;
-        if (window.history.pushState) window.history.pushState("", document.title, window.location.pathname + window.location.search);else {
+        if (window.history.pushState) window.history.pushState('', document.title, window.location.pathname + window.location.search);else {
           // Prevent scrolling by storing the page's current scroll offset
           scrollV = document.body.scrollTop;
           scrollH = document.body.scrollLeft;
-          window.location.hash = ""; // Restore the scroll offset, should be flicker free
+          window.location.hash = ''; // Restore the scroll offset, should be flicker free
 
           document.body.scrollTop = scrollV;
           document.body.scrollLeft = scrollH;
@@ -814,19 +814,19 @@
         elemToAddTo.addEventListener(evtNoApi, function (event) {
           if (!parent || parent && event.target.matches(FwEvent.classNester(selectorOrParentFallback)) // && event.target.closest(selectorOrParentFallback)
           ) {
-            FwEvent.trigger(event.target, evt, {
-              detail: {
-                nativeEvt: event,
-                _selection: FwEvent.classNester(selectorOrParentFallback)
-              }
-            });
-          }
+              FwEvent.trigger(event.target, evt, {
+                detail: {
+                  nativeEvt: event,
+                  _selection: FwEvent.classNester(selectorOrParentFallback)
+                }
+              });
+            }
         }, true);
       }
 
       elemToAddTo.addEventListener(evt, function (event) {
-        if (!parent || parent // && event.target.matches(FwEvent.classNester(selectorOrParentFallback))
-        && event.target.closest(selectorOrParentFallback)) {
+        if (!parent || parent && // && event.target.matches(FwEvent.classNester(selectorOrParentFallback))
+        event.target.closest(selectorOrParentFallback)) {
           if (!isNative) {
             handler(event.detail.nativeEvt);
           } else {
@@ -1158,7 +1158,7 @@
       triggerer = triggerer || this.triggerer;
 
       if (this._isValidWithinQuery) {
-        FwEvent$1.trigger(element, EVENT_BEFORE_CLOSE$2); //is not within an accordion group that needs one of them open 
+        FwEvent$1.trigger(element, EVENT_BEFORE_CLOSE$2); //is not within an accordion group that needs one of them open
 
         if (!this.UIGroot || this._isWithinAllowNoActive) {
           triggerer && triggerer.classList.remove(ACTIVATED_CLASS$7);
@@ -1303,8 +1303,8 @@
 
         if (!toReturn || toReturn && !toReturn.matches("." + COMPONENT_CLASS$d + "-group") //***
         ) {
-          toReturn = false;
-        }
+            toReturn = false;
+          }
 
         return toReturn;
       }
@@ -3581,6 +3581,7 @@
       if (removeBodClass) {
         document.body.classList.remove(UIBodyClass.noScroll);
       }
+
       canRemoveHash && UIChangeHash('');
       FwEvent$1.trigger(element, EVENT_AFTER_DESTROY$1);
       _classPrivateFieldLooseBase(this, _current)[_current] = {
@@ -3753,8 +3754,8 @@
           classes: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-classes"),
           close: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close"),
           closeClasses: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close-classes"),
-          fullscreen: //@TODO program this pityur
-          this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen"),
+          //@TODO program this pityur
+          fullscreen: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen"),
           fullscreenClasses: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen-classes"),
           //board specific
           align: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-align") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-align"),
@@ -4798,4 +4799,3 @@
   return FrameWork;
 
 })));
-//# sourceMappingURL=framework.lib.js.map
