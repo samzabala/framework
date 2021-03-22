@@ -1077,7 +1077,7 @@ this.jQuery && this.jQuery.noConflict();
         customClass = customClass || '';
         return `<a href="#" data-value="${__f.dateToVal(date)}"
 							class="
-							${__f.uiPrefix('calendar')}block 
+							${__f.uiPrefix('calendar')}block
 							${__f.uiPrefix('calendar')}date
 							${customClass}
 						">

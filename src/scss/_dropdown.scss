@@ -69,10 +69,12 @@ $prefix: '.dropdown';
     margin: 0.5em 0;
   }
 
-  a,
-  [data-toggle-dropdown] {
-    color: inherit;
-  }
+  // a,
+  // [data-toggle-dropdown] {
+  //   &:not(:hover,:focus){
+  //     color:inherit;
+  //   }
+  // }
 
   &#{&}-bottom {
     bottom: 0;

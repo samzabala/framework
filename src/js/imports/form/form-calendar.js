@@ -321,7 +321,7 @@ class Calendar extends FwComponent {
     }
 
     //kung yung at least yung last day nang prev or first day ng next man lang ay valid pwidi sya ipindoot
-    let htmlString = `<button type="button" 
+    let htmlString = `<button type="button"
 			class="
 				${!disValid ? `disabled ` : ''}
 				${UIPrefix(COMPONENT_CLASS)}-navigation
@@ -450,7 +450,7 @@ class Calendar extends FwComponent {
         COMPONENT_CLASS
       )}-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
     );
-    dropdown.innerHTML += `<li 
+    dropdown.innerHTML += `<li
 					class="${UIPrefix(COMPONENT_CLASS)}-current-month-year active"
 				>
 					<a href="#"

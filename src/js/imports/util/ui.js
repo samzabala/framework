@@ -232,8 +232,6 @@ export const UIToggleGroup = (
     return;
   }
 
-  console.log(element, noActiveClass);
-
   //reset da resetti
   const resetter = FwDom.getSiblings(element).filter((butt) => {
     return butt.classList.contains(resetterClass);

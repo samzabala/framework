@@ -1126,7 +1126,7 @@
           'calendar'
         )}dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
       );
-      theUi.dropdown.innerHTML += `<li 
+      theUi.dropdown.innerHTML += `<li
 						class="${__f.uiPrefix('calendar')}current-month-year active"
 					>
 						<a href="#"
@@ -1201,7 +1201,7 @@
         customClass = customClass || '';
         return `<a href="#" data-value="${__f.dateToVal(date)}"
 							class="
-							${__f.uiPrefix('calendar')}block 
+							${__f.uiPrefix('calendar')}block
 							${__f.uiPrefix('calendar')}date
 							${customClass}
 						">

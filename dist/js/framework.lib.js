@@ -497,9 +497,8 @@
 
     if (!element) {
       return;
-    }
+    } //reset da resetti
 
-    console.log(element, noActiveClass); //reset da resetti
 
     var resetter = FwDom.getSiblings(element).filter(function (butt) {
       return butt.classList.contains(resetterClass);
@@ -1997,7 +1996,7 @@
         } //kung yung at least yung last day nang prev or first day ng next man lang ay valid pwidi sya ipindoot
 
 
-        var htmlString = "<button type=\"button\" \n\t\t\tclass=\"\n\t\t\t\t" + (!disValid ? "disabled " : '') + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-navigation\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-button\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + arrowClass + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + buttonClass + "\" data-value=\"" + arrowDate + "\"\n\t\t\t>\n\t\t\t\t<i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "symbol symbol " + symbolClass + "\"></i>\n\t\t\t</button>";
+        var htmlString = "<button type=\"button\"\n\t\t\tclass=\"\n\t\t\t\t" + (!disValid ? "disabled " : '') + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-navigation\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-button\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + arrowClass + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + buttonClass + "\" data-value=\"" + arrowDate + "\"\n\t\t\t>\n\t\t\t\t<i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "symbol symbol " + symbolClass + "\"></i>\n\t\t\t</button>";
         return htmlString;
       };
 
@@ -2163,7 +2162,7 @@
       theUI.heading.appendChild(dropdown);
       dropdown.setAttribute('data-dropdown-width', '100%');
       dropdown.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center");
-      dropdown.innerHTML += "<li \n\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n\t\t\t\t>\n\t\t\t\t\t<a href=\"#\"\n\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n\t\t\t\t\t\tdata-value=\"" + FwDate.toVal(this._calendar.startDate) + "\"\n\t\t\t\t\t>\n\t\t\t\t\t\t" + monthNamesShort[this._calendar.month] + " " + this._calendar.year + "\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t\t<li><hr class=\"dropdown-separator\"></li>";
+      dropdown.innerHTML += "<li\n\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n\t\t\t\t>\n\t\t\t\t\t<a href=\"#\"\n\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n\t\t\t\t\t\tdata-value=\"" + FwDate.toVal(this._calendar.startDate) + "\"\n\t\t\t\t\t>\n\t\t\t\t\t\t" + monthNamesShort[this._calendar.month] + " " + this._calendar.year + "\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t\t<li><hr class=\"dropdown-separator\"></li>";
       theUI.dropdown = new Dropdown(dropdown, theUI.title);
       var dropdownInit, dropdownLimit;
 
@@ -3768,7 +3767,6 @@
     }, {
       key: "_markup",
       get: function get() {
-        this.triggerer && console.warn(this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-title"));
         var html = "<div\n\t\t\t\tclass=\"\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-wrapper\"\n\t\t\t>"; //overlay
 
         html += "<a href=\"#\"\n\t\t\t\t\t\tclass=\"\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></a>";

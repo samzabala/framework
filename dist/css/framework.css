@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*! it's scary terry bitch */
 /*** RESET BOIS ***/
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -6160,10 +6160,6 @@ hr.dropdown-separator {
   margin: 0.5em 0;
 }
 
-.dropdown a,
-.dropdown [data-toggle-dropdown] {
-  color: inherit;
-}
 .dropdown.dropdown-bottom {
   bottom: 0;
 }

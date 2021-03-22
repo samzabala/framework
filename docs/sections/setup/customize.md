@@ -17,7 +17,7 @@ Note: All sass variables in the list are required for the stylesheet to properly
 Example:
 
 ```scss
-/*! 
+/*!
 Custom variables
 ****************************************************************************/
 
@@ -27,7 +27,7 @@ $brand-font-monospace: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
 $body-font-weight: 500;
 $body-font-weight-bold: 900;
 
-/*! 
+/*!
 framework sass
 ****************************************************************************/
 @import 'framework/framework.scss';
