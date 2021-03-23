@@ -3590,7 +3590,8 @@
     };
 
     _proto.update = function update(elem) {
-      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current].element;
+      console.warn(Modal.current());
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
 
       if (!element) {
         return;
@@ -4797,3 +4798,4 @@
   return FrameWork;
 
 })));
+//# sourceMappingURL=framework.lib.js.map

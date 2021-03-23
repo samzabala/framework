@@ -379,7 +379,11 @@ class Modal extends FwComponent {
   }
 
   update(elem) {
-    const element = elem ? super.UIEl(elem) : this.#current.element;
+    const element = elem
+      ? super.UIEl(elem)
+      : this.#current
+      ? this.#current.element
+      : false;
 
     if (!element) {
       return;

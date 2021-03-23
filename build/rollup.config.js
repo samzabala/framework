@@ -8,7 +8,7 @@ export default {
     name: 'fw',
     file: 'dist/js/framework.lib.js',
     format: 'umd',
-    sourcemap: false,
+    sourcemap: true,
   },
   moduleContext: {
     this: 'window',
