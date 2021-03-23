@@ -30,10 +30,15 @@ class Button extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_TOGGLE);
-    FwEvent.trigger(element, EVENT_TOGGLE);
-    UIToggleGroup(element, NAME);
-    FwEvent.trigger(element, EVENT_AFTER_TOGGLE);
+    super.runCycle(
+      EVENT_BEFORE_TOGGLE,
+      EVENT_TOGGLE,
+      EVENT_AFTER_TOGGLE,
+      () => {
+        UIToggleGroup(element, NAME);
+      },
+      element
+    );
   }
 
   static handleToggle() {

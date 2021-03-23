@@ -1,6 +1,7 @@
-import DataHandler from '../util/datahandler.js';
-import { DisableClasses } from '../util/validation.js';
-import { UIDynamicClass } from '../util/ui.js';
+import DataHandler from './../util/datahandler.js';
+import FwEvent from './../data-helper/event.js';
+import { DisableClasses } from './../util/validation.js';
+import { UIDynamicClass } from './../util/ui.js';
 
 /*
 NAME
@@ -41,6 +42,37 @@ class FwComponent {
 
   static getInstance(element) {
     return DataHandler.get(element, this.DATA_KEY);
+  }
+
+  static docCycle(beforeEvt, duringEvt, AfterEvt, callback, component) {
+    if (!beforeEvt || !duringEvt || !AfterEvt) {
+      return;
+    }
+
+    if (FwEvent.trigger(document, beforeEvt)) {
+      if (FwEvent.trigger(document, duringEvt)) {
+        if (typeof callback === 'function') {
+          callback(component);
+        }
+        FwEvent.trigger(document, AfterEvt);
+      }
+    }
+  }
+
+  runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
+    triggeredElem = triggeredElem ? this.UIEl(triggeredElem) : this.UIEl();
+    if (!beforeEvt || !duringEvt || !AfterEvt) {
+      return;
+    }
+
+    if (FwEvent.trigger(triggeredElem, beforeEvt)) {
+      if (FwEvent.trigger(triggeredElem, duringEvt)) {
+        if (typeof callback === 'function') {
+          callback(this);
+        }
+        FwEvent.trigger(triggeredElem, AfterEvt);
+      }
+    }
   }
 
   UIEl(elem) {

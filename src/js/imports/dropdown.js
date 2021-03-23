@@ -96,16 +96,22 @@ class Dropdown extends FwComponent {
 
     triggerer = triggerer || this.triggerer;
 
-    FwEvent.trigger(element, EVENT_BEFORE_CLOSE);
+    if (element.classList.contains(ACTIVATED_CLASS)) {
+      super.runCycle(
+        EVENT_BEFORE_CLOSE,
+        EVENT_CLOSE,
+        EVENT_AFTER_CLOSE,
+        () => {
+          element.classList.remove(ACTIVATED_CLASS);
 
-    this.setDimensions(null, Dropdown.configDefaults);
+          triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
+          this.UIElNavcestor && this.UIElNavcestor.classList.remove(ACTIVATED_CLASS);
 
-    FwEvent.trigger(element, EVENT_CLOSE);
-    element.classList.remove(ACTIVATED_CLASS);
-    triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
-    this.UIElNavcestor && this.UIElNavcestor.classList.remove(ACTIVATED_CLASS);
-
-    FwEvent.trigger(element, EVENT_AFTER_CLOSE);
+          this.setDimensions(null, Dropdown.configDefaults);
+        },
+        element
+      );
+    }
   }
 
   open(elem, triggerer) {
@@ -117,25 +123,25 @@ class Dropdown extends FwComponent {
 
     triggerer = triggerer || this.triggerer;
 
-    FwEvent.trigger(element, EVENT_BEFORE_OPEN);
-
-    Dropdown.purge(element);
-
-    FwEvent.trigger(element, EVENT_OPEN);
-
-    this.setDimensions();
-
-    element.classList.add(ACTIVATED_CLASS);
-
-    triggerer && triggerer.classList.add(ACTIVATED_CLASS);
-
-    // if(this.UIElUncles){
-    // 	this.UIElUncles.forEach((uncle) => {
-    // 		uncle.classList.remove(ACTIVATED_CLASS);
-    // 	});
-    // }
-
-    FwEvent.trigger(element, EVENT_AFTER_OPEN);
+    if (!element.classList.contains(ACTIVATED_CLASS)) {
+      super.runCycle(
+        EVENT_BEFORE_OPEN,
+        EVENT_OPEN,
+        EVENT_AFTER_OPEN,
+        () => {
+          Dropdown.purge(element);
+          element.classList.add(ACTIVATED_CLASS);
+          triggerer && triggerer.classList.add(ACTIVATED_CLASS);
+          // if(this.UIElUncles){
+          // 	this.UIElUncles.forEach((uncle) => {
+          // 		uncle.classList.remove(ACTIVATED_CLASS);
+          // 	});
+          // }
+          this.setDimensions();
+        },
+        element
+      );
+    }
   }
 
   toggle(elem, triggerer) {

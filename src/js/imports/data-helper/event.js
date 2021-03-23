@@ -67,13 +67,6 @@ class FwEvent extends FwDataHelper {
     return eventRegistry[uid];
   }
 
-  static get cusEventOptsDef() {
-    return {
-      bubbles: true,
-      cancelable: true,
-    };
-  }
-
   static classNester(selector) {
     if (selector === '*' || typeof selector !== 'string') {
       return selector;
@@ -112,6 +105,8 @@ class FwEvent extends FwDataHelper {
               detail: {
                 nativeEvt: event,
                 _selection: FwEvent.classNester(selectorOrParentFallback),
+                bubbles: true,
+                cancelable: true,
               },
             });
           }
@@ -141,7 +136,7 @@ class FwEvent extends FwDataHelper {
   }
 
   static removeListener(element, evt, handler) {
-    // element.removeEventListener(evt,handler,true);
+    element.removeEventListener(evt, handler, true);
     // @TODO. neet to rethink this shit
   }
 
@@ -152,14 +147,18 @@ class FwEvent extends FwDataHelper {
       event = document.createEvent('HTMLEvents');
       event.initEvent(evt, true, false);
     } else {
-      customEventOpts = customEventOpts || false;
+      customEventOpts = customEventOpts || {
+        bubbles: true,
+        cancelable: true,
+      };
       if (customEventOpts) {
         event = new CustomEvent(evt, customEventOpts);
       } else {
         event = new CustomEvent(evt);
       }
     }
-    el.dispatchEvent(event);
+
+    return el.dispatchEvent(event);
 
     // return event;
   }

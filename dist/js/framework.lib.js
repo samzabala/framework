@@ -771,7 +771,7 @@
 
   var NativeEvents = ['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'paste', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll'];
 
-  var FwEvent$1 = /*#__PURE__*/function (_FwDataHelper) {
+  var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
     _inheritsLoose(FwEvent, _FwDataHelper);
 
     function FwEvent() {
@@ -816,7 +816,9 @@
               FwEvent.trigger(event.target, evt, {
                 detail: {
                   nativeEvt: event,
-                  _selection: FwEvent.classNester(selectorOrParentFallback)
+                  _selection: FwEvent.classNester(selectorOrParentFallback),
+                  bubbles: true,
+                  cancelable: true
                 }
               });
             }
@@ -835,8 +837,8 @@
       }, true);
     };
 
-    FwEvent.removeListener = function removeListener(element, evt, handler) {// element.removeEventListener(evt,handler,true);
-      // @TODO. neet to rethink this shit
+    FwEvent.removeListener = function removeListener(element, evt, handler) {
+      element.removeEventListener(evt, handler, true); // @TODO. neet to rethink this shit
     };
 
     FwEvent.trigger = function trigger(el, evt, customEventOpts) {
@@ -847,7 +849,10 @@
         event = document.createEvent('HTMLEvents');
         event.initEvent(evt, true, false);
       } else {
-        customEventOpts = customEventOpts || false;
+        customEventOpts = customEventOpts || {
+          bubbles: true,
+          cancelable: true
+        };
 
         if (customEventOpts) {
           event = new CustomEvent(evt, customEventOpts);
@@ -856,18 +861,8 @@
         }
       }
 
-      el.dispatchEvent(event); // return event;
+      return el.dispatchEvent(event); // return event;
     };
-
-    _createClass(FwEvent, null, [{
-      key: "cusEventOptsDef",
-      get: function get() {
-        return {
-          bubbles: true,
-          cancelable: true
-        };
-      }
-    }]);
 
     return FwEvent;
   }(FwDataHelper);
@@ -968,6 +963,40 @@
 
     FwComponent.getInstance = function getInstance(element) {
       return DataHandler.get(element, this.DATA_KEY);
+    };
+
+    FwComponent.docCycle = function docCycle(beforeEvt, duringEvt, AfterEvt, callback, component) {
+      if (!beforeEvt || !duringEvt || !AfterEvt) {
+        return;
+      }
+
+      if (FwEvent.trigger(document, beforeEvt)) {
+        if (FwEvent.trigger(document, duringEvt)) {
+          if (typeof callback === 'function') {
+            callback(component);
+          }
+
+          FwEvent.trigger(document, AfterEvt);
+        }
+      }
+    };
+
+    _proto.runCycle = function runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
+      triggeredElem = triggeredElem ? this.UIEl(triggeredElem) : this.UIEl();
+
+      if (!beforeEvt || !duringEvt || !AfterEvt) {
+        return;
+      }
+
+      if (FwEvent.trigger(triggeredElem, beforeEvt)) {
+        if (FwEvent.trigger(triggeredElem, duringEvt)) {
+          if (typeof callback === 'function') {
+            callback(this);
+          }
+
+          FwEvent.trigger(triggeredElem, AfterEvt);
+        }
+      }
     };
 
     _proto.UIEl = function UIEl(elem) {
@@ -1148,6 +1177,8 @@
     ;
 
     _proto.close = function close(elem, triggerer) {
+      var _this2 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (!element) {
@@ -1157,28 +1188,27 @@
       triggerer = triggerer || this.triggerer;
 
       if (this._isValidWithinQuery) {
-        FwEvent$1.trigger(element, EVENT_BEFORE_CLOSE$2); //is not within an accordion group that needs one of them open
-
         if (!this.UIGroot || this._isWithinAllowNoActive) {
-          triggerer && triggerer.classList.remove(ACTIVATED_CLASS$7);
+          _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CLOSE$2, EVENT_CLOSE$2, EVENT_AFTER_CLOSE$2, function () {
+            triggerer && triggerer.classList.remove(ACTIVATED_CLASS$7);
 
-          this._probablyToggle.forEach(function (toggle) {
-            toggle.classList.remove(ACTIVATED_CLASS$7);
-          });
+            _this2._probablyToggle.forEach(function (toggle) {
+              toggle.classList.remove(ACTIVATED_CLASS$7);
+            });
 
-          FwEvent$1.trigger(element, EVENT_CLOSE$2);
-          element.classList.remove(ACTIVATED_CLASS$7);
+            element.classList.remove(ACTIVATED_CLASS$7);
 
-          if (this.args.changeHash && this._id) {
-            UIChangeHash('');
-          }
-
-          FwEvent$1.trigger(element, EVENT_AFTER_CLOSE$2);
+            if (_this2.args.changeHash && _this2._id) {
+              UIChangeHash('');
+            }
+          }, element);
         }
       }
     };
 
     _proto.open = function open(elem, triggerer) {
+      var _this3 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (!element) {
@@ -1187,24 +1217,22 @@
 
       triggerer = triggerer || this.triggerer;
 
-      this._siblicide();
-
       if (this._isValidWithinQuery) {
-        FwEvent$1.trigger(element, EVENT_BEFORE_OPEN$1);
-        triggerer && triggerer.classList.add(ACTIVATED_CLASS$7);
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OPEN$1, EVENT_OPEN$1, EVENT_AFTER_OPEN$1, function () {
+          _this3._siblicide();
 
-        this._probablyToggle.forEach(function (toggle) {
-          toggle.classList.add(ACTIVATED_CLASS$7);
-        });
+          triggerer && triggerer.classList.add(ACTIVATED_CLASS$7);
 
-        FwEvent$1.trigger(element, EVENT_OPEN$1);
-        element.classList.add(ACTIVATED_CLASS$7);
+          _this3._probablyToggle.forEach(function (toggle) {
+            toggle.classList.add(ACTIVATED_CLASS$7);
+          });
 
-        if (this.args.changeHash && this._id) {
-          UIChangeHash(this._id);
-        }
+          element.classList.add(ACTIVATED_CLASS$7);
 
-        FwEvent$1.trigger(element, EVENT_AFTER_OPEN$1);
+          if (_this3.args.changeHash && _this3._id) {
+            UIChangeHash(_this3._id);
+          }
+        }, element);
       }
     };
 
@@ -1245,14 +1273,14 @@
     };
 
     Accordion.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$a, "*[data-toggle-" + TOGGLE_MODE$3 + "]", Accordion.handleToggler());
-      FwEvent$1.addListener(null, EVENT_HASHCHANGE$1, window, Accordion.handleHash());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$a, "*[data-toggle-" + TOGGLE_MODE$3 + "]", Accordion.handleToggler());
+      FwEvent.addListener(null, EVENT_HASHCHANGE$1, window, Accordion.handleHash());
       Initiator.Q.on_ready = Accordion.handleHash();
     };
 
     Accordion.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$a, Accordion.handleToggler());
-      FwEvent$1.removeListener(window, EVENT_HASHCHANGE$1, Accordion.handleHash());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$a, Accordion.handleToggler());
+      FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Accordion.handleHash());
     };
 
     _createClass(Accordion, [{
@@ -1351,10 +1379,9 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_CLOSE$1);
-      FwEvent$1.trigger(element, EVENT_CLOSE$1);
-      element.parentNode.removeChild(element);
-      FwEvent$1.trigger(element, EVENT_AFTER_CLOSE$1);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CLOSE$1, EVENT_CLOSE$1, EVENT_AFTER_CLOSE$1, function () {
+        element.parentNode.removeChild(element);
+      }, element);
     };
 
     Alert.closeAll = function closeAll() {
@@ -1392,13 +1419,13 @@
     };
 
     Alert.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$9, "*[data-toggle-" + TOGGLE_MODE$2 + "]", Alert.handleClose());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$9, "*[data-toggle-" + TOGGLE_MODE$2 + "-all]", Alert.handleCloseAll());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$9, "*[data-toggle-" + TOGGLE_MODE$2 + "]", Alert.handleClose());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$9, "*[data-toggle-" + TOGGLE_MODE$2 + "-all]", Alert.handleCloseAll());
     };
 
     Alert.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$9, Alert.handleClose());
-      FwEvent$1.removeListener(window, EVENT_CLICK$9, Alert.handleCloseAll());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$9, Alert.handleClose());
+      FwEvent.removeListener(window, EVENT_CLICK$9, Alert.handleCloseAll());
     };
 
     _createClass(Alert, null, [{
@@ -1417,9 +1444,9 @@
   var DATA_KEY$b = Settings.get('prefix') + "." + NAME$b;
   var EVENT_KEY$b = "." + DATA_KEY$b;
   var EVENT_CLICK$8 = "click" + EVENT_KEY$b;
-  var EVENT_BEFORE_TOGGLE$1 = "before_toggle" + EVENT_KEY$b;
-  var EVENT_TOGGLE$1 = "toggle" + EVENT_KEY$b;
-  var EVENT_AFTER_TOGGLE$1 = "after_toggle" + EVENT_KEY$b;
+  var EVENT_BEFORE_TOGGLE$2 = "before_toggle" + EVENT_KEY$b;
+  var EVENT_TOGGLE$2 = "toggle" + EVENT_KEY$b;
+  var EVENT_AFTER_TOGGLE$2 = "after_toggle" + EVENT_KEY$b;
 
   var Button = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Button, _FwComponent);
@@ -1437,10 +1464,9 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_TOGGLE$1);
-      FwEvent$1.trigger(element, EVENT_TOGGLE$1);
-      UIToggleGroup(element, NAME$b);
-      FwEvent$1.trigger(element, EVENT_AFTER_TOGGLE$1);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_TOGGLE$2, EVENT_TOGGLE$2, EVENT_AFTER_TOGGLE$2, function () {
+        UIToggleGroup(element, NAME$b);
+      }, element);
     };
 
     Button.handleToggle = function handleToggle() {
@@ -1455,11 +1481,11 @@
     };
 
     Button.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$8, "." + COMPONENT_CLASS$b + "-group-toggle > ." + COMPONENT_CLASS$b, Button.handleToggle());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$8, "." + COMPONENT_CLASS$b + "-group-toggle > ." + COMPONENT_CLASS$b, Button.handleToggle());
     };
 
     Button.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$8, Button.handleToggle());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$8, Button.handleToggle());
     };
 
     _createClass(Button, null, [{
@@ -1513,6 +1539,8 @@
     };
 
     _proto.close = function close(elem, triggerer) {
+      var _this = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : this.element;
 
       if (!element) {
@@ -1520,16 +1548,21 @@
       }
 
       triggerer = triggerer || this.triggerer;
-      FwEvent$1.trigger(element, EVENT_BEFORE_CLOSE);
-      this.setDimensions(null, Dropdown.configDefaults);
-      FwEvent$1.trigger(element, EVENT_CLOSE);
-      element.classList.remove(ACTIVATED_CLASS$6);
-      triggerer && triggerer.classList.remove(ACTIVATED_CLASS$6);
-      this.UIElNavcestor && this.UIElNavcestor.classList.remove(ACTIVATED_CLASS$6);
-      FwEvent$1.trigger(element, EVENT_AFTER_CLOSE);
+
+      if (element.classList.contains(ACTIVATED_CLASS$6)) {
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CLOSE, EVENT_CLOSE, EVENT_AFTER_CLOSE, function () {
+          element.classList.remove(ACTIVATED_CLASS$6);
+          triggerer && triggerer.classList.remove(ACTIVATED_CLASS$6);
+          _this.UIElNavcestor && _this.UIElNavcestor.classList.remove(ACTIVATED_CLASS$6);
+
+          _this.setDimensions(null, Dropdown.configDefaults);
+        }, element);
+      }
     };
 
     _proto.open = function open(elem, triggerer) {
+      var _this2 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : this.element;
 
       if (!element) {
@@ -1537,18 +1570,20 @@
       }
 
       triggerer = triggerer || this.triggerer;
-      FwEvent$1.trigger(element, EVENT_BEFORE_OPEN);
-      Dropdown.purge(element);
-      FwEvent$1.trigger(element, EVENT_OPEN);
-      this.setDimensions();
-      element.classList.add(ACTIVATED_CLASS$6);
-      triggerer && triggerer.classList.add(ACTIVATED_CLASS$6); // if(this.UIElUncles){
-      // 	this.UIElUncles.forEach((uncle) => {
-      // 		uncle.classList.remove(ACTIVATED_CLASS);
-      // 	});
-      // }
 
-      FwEvent$1.trigger(element, EVENT_AFTER_OPEN);
+      if (!element.classList.contains(ACTIVATED_CLASS$6)) {
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OPEN, EVENT_OPEN, EVENT_AFTER_OPEN, function () {
+          Dropdown.purge(element);
+          element.classList.add(ACTIVATED_CLASS$6);
+          triggerer && triggerer.classList.add(ACTIVATED_CLASS$6); // if(this.UIElUncles){
+          // 	this.UIElUncles.forEach((uncle) => {
+          // 		uncle.classList.remove(ACTIVATED_CLASS);
+          // 	});
+          // }
+
+          _this2.setDimensions();
+        }, element);
+      }
     };
 
     _proto.toggle = function toggle(elem, triggerer) {
@@ -1641,17 +1676,17 @@
     };
 
     Dropdown.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$7, "*[data-toggle-" + TOGGLE_MODE$1 + "]:not(input):not([contenteditable]):not(." + Settings.get('uiJsClass') + ")", Dropdown.handleToggle());
-      FwEvent$1.addListener(document.documentElement, EVENT_FOCUS, "input[data-toggle-" + TOGGLE_MODE$1 + "], *[contenteditable][data-toggle-" + TOGGLE_MODE$1 + "], ." + Settings.get('uiJsClass') + "[data-toggle-" + TOGGLE_MODE$1 + "] [contenteditable]", Dropdown.handleFocusOpen());
-      FwEvent$1.addListener(document.documentElement, EVENT_BLUR$1, "input[data-toggle-" + TOGGLE_MODE$1 + "], *[contenteditable][data-toggle-" + TOGGLE_MODE$1 + "], ." + Settings.get('uiJsClass') + "[data-toggle-" + TOGGLE_MODE$1 + "] [contenteditable]", Dropdown.handleBlurClose());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK_PURGE$2, "*, ." + COMPONENT_PURGER_CLASS$1, Dropdown.handleUniversalPurge());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$7, "*[data-toggle-" + TOGGLE_MODE$1 + "]:not(input):not([contenteditable]):not(." + Settings.get('uiJsClass') + ")", Dropdown.handleToggle());
+      FwEvent.addListener(document.documentElement, EVENT_FOCUS, "input[data-toggle-" + TOGGLE_MODE$1 + "], *[contenteditable][data-toggle-" + TOGGLE_MODE$1 + "], ." + Settings.get('uiJsClass') + "[data-toggle-" + TOGGLE_MODE$1 + "] [contenteditable]", Dropdown.handleFocusOpen());
+      FwEvent.addListener(document.documentElement, EVENT_BLUR$1, "input[data-toggle-" + TOGGLE_MODE$1 + "], *[contenteditable][data-toggle-" + TOGGLE_MODE$1 + "], ." + Settings.get('uiJsClass') + "[data-toggle-" + TOGGLE_MODE$1 + "] [contenteditable]", Dropdown.handleBlurClose());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK_PURGE$2, "*, ." + COMPONENT_PURGER_CLASS$1, Dropdown.handleUniversalPurge());
     };
 
     Dropdown.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$7, Dropdown.handleToggle());
-      FwEvent$1.removeListener(document.documentElement, EVENT_FOCUS, Dropdown.handleFocusOpen());
-      FwEvent$1.removeListener(document.documentElement, EVENT_BLUR$1, Dropdown.handleBlurClose());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK_PURGE$2, Dropdown.handleUniversalPurge());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$7, Dropdown.handleToggle());
+      FwEvent.removeListener(document.documentElement, EVENT_FOCUS, Dropdown.handleFocusOpen());
+      FwEvent.removeListener(document.documentElement, EVENT_BLUR$1, Dropdown.handleBlurClose());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK_PURGE$2, Dropdown.handleUniversalPurge());
     };
 
     _createClass(Dropdown, [{
@@ -1946,9 +1981,9 @@
   var EVENT_BEFORE_RENDER$2 = "before_render" + EVENT_KEY$9;
   var EVENT_RENDER$2 = "render" + EVENT_KEY$9;
   var EVENT_AFTER_RENDER$2 = "after_render" + EVENT_KEY$9;
-  var EVENT_BEFORE_UPDATE$2 = "before_update" + EVENT_KEY$9;
-  var EVENT_UPDATE$2 = "update" + EVENT_KEY$9;
-  var EVENT_AFTER_UPDATE$2 = "after_update" + EVENT_KEY$9;
+  var EVENT_BEFORE_UPDATE$1 = "before_update" + EVENT_KEY$9;
+  var EVENT_UPDATE$1 = "update" + EVENT_KEY$9;
+  var EVENT_AFTER_UPDATE$1 = "after_update" + EVENT_KEY$9;
 
   var Calendar = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Calendar, _FwComponent);
@@ -2018,41 +2053,42 @@
     };
 
     _proto.update = function update(newValue, valueToRender) {
+      var _this2 = this;
+
       var element = this.element;
-      FwEvent$1.trigger(element, EVENT_BEFORE_UPDATE$2);
       var theValue = FwDate.toVal(newValue) || this.theValue;
       var uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
-      FwEvent$1.trigger(element, EVENT_UPDATE$2); //set up calendar
 
-      if (this.validates(theValue) || !theValue) {
-        this.theValue = FwDate.toVal(theValue, false);
-        this.renderValue = uiValue;
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
+        //set up calendar
+        if (_this2.validates(theValue) || !theValue) {
+          _this2.theValue = FwDate.toVal(theValue, false);
+          _this2.renderValue = uiValue;
 
-        this._renderUI();
-      } //user visual feedback if it has a valid bitch
+          _this2._renderUI();
+        } //user visual feedback if it has a valid bitch
 
 
-      if (this.validates(theValue)) {
-        this.UIRoot.classList.remove('input-error');
-      } else {
-        this.UIRoot.classList.add('input-error');
-      }
-
-      if (this.theValue) {
-        this.UIDates.forEach(function (date) {
-          if (date.getAttribute('data-value') == theValue) {
-            date.classList.add(ACTIVATED_CLASS$5);
-          } else {
-            date.classList.remove(ACTIVATED_CLASS$5);
-          }
-        });
-
-        if (this.UIInput) {
-          this.UIInputValue = theValue;
+        if (_this2.validates(theValue)) {
+          _this2.UIRoot.classList.remove('input-error');
+        } else {
+          _this2.UIRoot.classList.add('input-error');
         }
-      }
 
-      FwEvent$1.trigger(element, EVENT_AFTER_UPDATE$2);
+        if (_this2.theValue) {
+          _this2.UIDates.forEach(function (date) {
+            if (date.getAttribute('data-value') == theValue) {
+              date.classList.add(ACTIVATED_CLASS$5);
+            } else {
+              date.classList.remove(ACTIVATED_CLASS$5);
+            }
+          });
+
+          if (_this2.UIInput) {
+            _this2.UIInputValue = theValue;
+          }
+        }
+      }, element);
     };
 
     _proto.validates = function validates(date, rangeOnly) {
@@ -2104,189 +2140,187 @@
     };
 
     _proto._renderUI = function _renderUI(elem, uiValue) {
-      var _this2 = this;
+      var _this3 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_RENDER$2);
       uiValue = uiValue || this.renderValue;
       this.renderValue = uiValue;
       var theUI = {};
-      FwEvent$1.trigger(element, EVENT_RENDER$2);
-      theUI.container = this.UIRoot;
 
-      if (!theUI.container) {
-        theUI.container = document.createElement('div');
-        element.parentNode.insertBefore(theUI.container, element);
-        theUI.container.appendChild(element);
-        theUI.container.setAttribute('class', Settings.get('uiClass') + "\n\t\t\t\t" + Settings.get('uiJsClass') + "\n\t\t\t\t" + element.getAttribute('class').toString().replace(COMPONENT_CLASS$9, UIPrefix(COMPONENT_CLASS$9)));
-      }
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER$2, EVENT_RENDER$2, EVENT_AFTER_RENDER$2, function () {
+        theUI.container = _this3.UIRoot;
 
-      theUI.inputWrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$9) + "-input");
-      var components = FwDom.getSiblings(element);
-      components.forEach(function (component) {
-        if (component !== theUI.inputWrapper) {
-          component.parentNode.removeChild(component);
+        if (!theUI.container) {
+          theUI.container = document.createElement('div');
+          element.parentNode.insertBefore(theUI.container, element);
+          theUI.container.appendChild(element);
+          theUI.container.setAttribute('class', Settings.get('uiClass') + "\n          " + Settings.get('uiJsClass') + "\n          " + element.getAttribute('class').toString().replace(COMPONENT_CLASS$9, UIPrefix(COMPONENT_CLASS$9)));
         }
-      }); //input
 
-      if (this.args.textInput) {
-        if (!theUI.inputWrapper) {
-          theUI.inputWrapper = document.createElement('div');
-          theUI.container.appendChild(theUI.inputWrapper);
-          theUI.inputWrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-input");
-          theUI.inputWrapper.innerHTML = '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
-        }
-      } //date 4 u
-      //heading
+        theUI.inputWrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$9) + "-input");
+        var components = FwDom.getSiblings(element);
+        components.forEach(function (component) {
+          if (component !== theUI.inputWrapper) {
+            component.parentNode.removeChild(component);
+          }
+        }); //input
 
-
-      theUI.heading = document.createElement('div');
-      theUI.container.appendChild(theUI.heading);
-      theUI.heading.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-heading"); //arrowz
-
-      var butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
-      butts.forEach(function (butt) {
-        if (_this2.args.yearSkip && (butt == 'prev-year' || butt == 'next-year') || _this2.args.monthSkip && (butt == 'prev-month' || butt == 'next-month')) {
-          theUI.heading.innerHTML += _this2._arrowHtml(butt);
-        }
-      }); //title
-
-      theUI.title = document.createElement('div');
-      theUI.heading.appendChild(theUI.title);
-      theUI.title.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-title " + UIPrefix(COMPONENT_CLASS$9) + "-dropdown-toggle\n\t\t\t\t" + UIDynamicClass //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
-      );
-      theUI.title.setAttribute('data-toggle-dropdown', '');
-      theUI.title.innerHTML = "<span\n\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month-text\">\n\t\t\t\t\t" + monthNamesShort[this._calendar.month] + "\n\t\t\t\t</span>\n\t\t\t\t<span class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-year-text\">\n\t\t\t\t\t" + this._calendar.year + "\n\t\t\t\t</span>\n\t\t\t\t<i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-symbol symbol symbol-caret-down no-margin-x\"></i>"; //dropdown
-
-      var dropdown = document.createElement('ul');
-      theUI.heading.appendChild(dropdown);
-      dropdown.setAttribute('data-dropdown-width', '100%');
-      dropdown.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center");
-      dropdown.innerHTML += "<li\n\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n\t\t\t\t>\n\t\t\t\t\t<a href=\"#\"\n\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n\t\t\t\t\t\tdata-value=\"" + FwDate.toVal(this._calendar.startDate) + "\"\n\t\t\t\t\t>\n\t\t\t\t\t\t" + monthNamesShort[this._calendar.month] + " " + this._calendar.year + "\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t\t<li><hr class=\"dropdown-separator\"></li>";
-      theUI.dropdown = new Dropdown(dropdown, theUI.title);
-      var dropdownInit, dropdownLimit;
-
-      if (this.args.yearSpan == 0) {
-        dropdownInit = this._calendar.startDate.getMonth() * -1;
-        dropdownLimit = 11 - this._calendar.startDate.getMonth();
-      } else {
-        dropdownInit = parseInt(-12 * parseInt(this.args.yearSpan));
-        dropdownLimit = parseInt(12 * parseInt(this.args.yearSpan));
-      } //update dropdown
+        if (_this3.args.textInput) {
+          if (!theUI.inputWrapper) {
+            theUI.inputWrapper = document.createElement('div');
+            theUI.container.appendChild(theUI.inputWrapper);
+            theUI.inputWrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-input");
+            theUI.inputWrapper.innerHTML = '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
+          }
+        } //date 4 u
+        //heading
 
 
-      var _loop = function _loop(i) {
-        var listItemDate = FwDate.adjacentMonth(_this2._calendar.startDate, i);
+        theUI.heading = document.createElement('div');
+        theUI.container.appendChild(theUI.heading);
+        theUI.heading.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-heading"); //arrowz
 
-        var dateForValidation = function () {
-          var toReturn;
+        var butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
+        butts.forEach(function (butt) {
+          if (_this3.args.yearSkip && (butt == 'prev-year' || butt == 'next-year') || _this3.args.monthSkip && (butt == 'prev-month' || butt == 'next-month')) {
+            theUI.heading.innerHTML += _this3._arrowHtml(butt);
+          }
+        }); //title
 
-          if (i >= 0) {
-            //first day of month
-            toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth(), 1);
-          } else {
-            //last day of month
-            toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth() + 1, 0);
+        theUI.title = document.createElement('div');
+        theUI.heading.appendChild(theUI.title);
+        theUI.title.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-title " + UIPrefix(COMPONENT_CLASS$9) + "-dropdown-toggle\n          " + UIDynamicClass //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
+        );
+        theUI.title.setAttribute('data-toggle-dropdown', '');
+        theUI.title.innerHTML = "<span\n          class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month-text\">\n            " + monthNamesShort[_this3._calendar.month] + "\n          </span>\n          <span class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-year-text\">\n            " + _this3._calendar.year + "\n          </span>\n          <i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-symbol symbol symbol-caret-down no-margin-x\"></i>"; //dropdown
+
+        var dropdown = document.createElement('ul');
+        theUI.heading.appendChild(dropdown);
+        dropdown.setAttribute('data-dropdown-width', '100%');
+        dropdown.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center");
+        dropdown.innerHTML += "<li\n            class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n          >\n            <a href=\"#\"\n              class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n              data-value=\"" + FwDate.toVal(_this3._calendar.startDate) + "\"\n            >\n              " + monthNamesShort[_this3._calendar.month] + " " + _this3._calendar.year + "\n            </a>\n          </li>\n          <li><hr class=\"dropdown-separator\"></li>";
+        theUI.dropdown = new Dropdown(dropdown, theUI.title);
+        var dropdownInit, dropdownLimit;
+
+        if (_this3.args.yearSpan == 0) {
+          dropdownInit = _this3._calendar.startDate.getMonth() * -1;
+          dropdownLimit = 11 - _this3._calendar.startDate.getMonth();
+        } else {
+          dropdownInit = parseInt(-12 * parseInt(_this3.args.yearSpan));
+          dropdownLimit = parseInt(12 * parseInt(_this3.args.yearSpan));
+        } //update dropdown
+
+
+        var _loop = function _loop(i) {
+          var listItemDate = FwDate.adjacentMonth(_this3._calendar.startDate, i);
+
+          var dateForValidation = function () {
+            var toReturn;
+
+            if (i >= 0) {
+              //first day of month
+              toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth(), 1);
+            } else {
+              //last day of month
+              toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth() + 1, 0);
+            }
+
+            return toReturn;
+          }();
+
+          if (_this3.validates(dateForValidation, true)) {
+            var currClass = i == 0 ? 'active' : '',
+                listItem = "<li class=\"" + currClass + "\">\n                <a href=\"#\"\n                  class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n                  data-value=\"" + FwDate.toVal(listItemDate) + "\">\n                    " + monthNamesShort[listItemDate.getMonth()] + " " + listItemDate.getFullYear() + "\n                </a>\n              " + (listItemDate.getMonth() == 11 && i !== dropdownLimit ? "</li><li><hr class=\"dropdown-separator\">" : '') + "\n              </li>";
+            theUI.dropdown.element.innerHTML += listItem;
+          }
+        };
+
+        for (var i = dropdownInit; i <= dropdownLimit; i++) {
+          _loop(i);
+        } //generate grid
+
+
+        theUI.grid = document.createElement('div');
+        theUI.container.append(theUI.grid);
+        theUI.grid.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-grid"); //days heading
+
+        theUI.days = document.createElement('div');
+        theUI.grid.append(theUI.days);
+        theUI.days.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-days");
+        var daysHTML = '',
+            dayToRetrieve = parseInt(_this3.args.startDay);
+
+        for (var _i = 0; _i < 7; _i++) {
+          if (dayToRetrieve > 6) {
+            dayToRetrieve -= 7;
           }
 
-          return toReturn;
-        }();
-
-        if (_this2.validates(dateForValidation, true)) {
-          var currClass = i == 0 ? 'active' : '',
-              listItem = "<li class=\"" + currClass + "\">\n\t\t\t\t\t\t\t<a href=\"#\"\n\t\t\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n\t\t\t\t\t\t\t\tdata-value=\"" + FwDate.toVal(listItemDate) + "\">\n\t\t\t\t\t\t\t\t\t" + monthNamesShort[listItemDate.getMonth()] + " " + listItemDate.getFullYear() + "\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t" + (listItemDate.getMonth() == 11 && i !== dropdownLimit ? "</li><li><hr class=\"dropdown-separator\">" : '') + "\n\t\t\t\t\t\t</li>";
-          theUI.dropdown.element.innerHTML += listItem;
-        }
-      };
-
-      for (var i = dropdownInit; i <= dropdownLimit; i++) {
-        _loop(i);
-      } //generate grid
-
-
-      theUI.grid = document.createElement('div');
-      theUI.container.append(theUI.grid);
-      theUI.grid.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-grid"); //days heading
-
-      theUI.days = document.createElement('div');
-      theUI.grid.append(theUI.days);
-      theUI.days.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-days");
-      var daysHTML = '',
-          dayToRetrieve = parseInt(this.args.startDay);
-
-      for (var _i = 0; _i < 7; _i++) {
-        if (dayToRetrieve > 6) {
-          dayToRetrieve -= 7;
+          daysHTML += "<div\n              class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-block\n              " + UIPrefix(COMPONENT_CLASS$9) + "-day\"\n            >\n              " + dayNamesShorter[dayToRetrieve] + "\n            </div>";
+          dayToRetrieve++;
         }
 
-        daysHTML += "<div\n\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$9) + "-block\n\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-day\"\n\t\t\t\t\t>\n\t\t\t\t\t\t" + dayNamesShorter[dayToRetrieve] + "\n\t\t\t\t\t</div>";
-        dayToRetrieve++;
-      }
+        theUI.days.innerHTML = daysHTML; //days
 
-      theUI.days.innerHTML = daysHTML; //days
+        theUI.dates = document.createElement('div');
+        theUI.grid.append(theUI.dates);
+        theUI.dates.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dates"); //previous month
 
-      theUI.dates = document.createElement('div');
-      theUI.grid.append(theUI.dates);
-      theUI.dates.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dates"); //previous month
+        var freeGridSpacePrev = (_this3._calendar.startDate.getDay() - parseInt(_this3.args.startDay) + 7) % 7,
+            calendarPrevDayStart = _this3._calendar.prevDay == 6 ? 0 : _this3._calendar.prevDay + 1;
 
-      var freeGridSpacePrev = (this._calendar.startDate.getDay() - parseInt(this.args.startDay) + 7) % 7,
-          calendarPrevDayStart = this._calendar.prevDay == 6 ? 0 : this._calendar.prevDay + 1;
+        if (calendarPrevDayStart !== parseInt(_this3.args.startDay)) {
+          //if it doenst take its own row of shit
+          // i = 0; i <= freeGridSpacePrev; i++
+          // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
+          // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
+          // for(let i = 0; i < 7; i++){
+          for (var _i2 = 0; _i2 < freeGridSpacePrev; _i2++) {
+            var offset = _this3._calendar.prevDate.getDate() - _i2;
 
-      if (calendarPrevDayStart !== parseInt(this.args.startDay)) {
-        //if it doenst take its own row of shit
-        // i = 0; i <= freeGridSpacePrev; i++
-        // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
-        // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
-        // for(let i = 0; i < 7; i++){
-        for (var _i2 = 0; _i2 < freeGridSpacePrev; _i2++) {
-          var offset = this._calendar.prevDate.getDate() - _i2;
+            var loopDatePrev = new Date(_this3._calendar.prevDate.getFullYear(), _this3._calendar.prevDate.getMonth(), offset);
 
-          var loopDatePrev = new Date(this._calendar.prevDate.getFullYear(), this._calendar.prevDate.getMonth(), offset);
-
-          var dateBlockPrev = this._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n\t\t\t\t\t\t\t" + (!this.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
+            var dateBlockPrev = _this3._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n                " + (!_this3.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
 
 
-          theUI.dates.innerHTML += dateBlockPrev;
+            theUI.dates.innerHTML += dateBlockPrev;
+          }
+        } //curr month
+
+
+        for (var _i3 = 1; _i3 <= _this3._calendar.lastDate.getDate(); _i3++) {
+          var dateBlockCurr = _this3._blockHtml(new Date(_this3._calendar.year, _this3._calendar.month, _i3), !_this3.validates(new Date(_this3._calendar.year, _this3._calendar.month, _i3)) ? 'disabled' : '');
+
+          theUI.dates.innerHTML += dateBlockCurr;
+        } //next month just fill the shit
+
+
+        var currNextFirstDay = new Date(_this3._calendar.year, _this3._calendar.month + 1, 1).getDay(),
+            freeGridSpaceNext = (7 - currNextFirstDay + parseInt(_this3.args.startDay)) % 7;
+
+        if (currNextFirstDay !== parseInt(_this3.args.startDay)) {
+          for (var _i4 = 1; _i4 <= freeGridSpaceNext; _i4++) {
+            var loopDateNext = new Date(_this3._calendar.year, _this3._calendar.month + 1, _i4);
+
+            var dateBlockNext = _this3._blockHtml(loopDateNext, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n              " + (!_this3.validates(loopDateNext) ? 'disabled' : ''));
+
+            theUI.dates.innerHTML += dateBlockNext;
+          }
         }
-      } //curr month
-
-
-      for (var _i3 = 1; _i3 <= this._calendar.lastDate.getDate(); _i3++) {
-        var dateBlockCurr = this._blockHtml(new Date(this._calendar.year, this._calendar.month, _i3), !this.validates(new Date(this._calendar.year, this._calendar.month, _i3)) ? 'disabled' : '');
-
-        theUI.dates.innerHTML += dateBlockCurr;
-      } //next month just fill the shit
-
-
-      var currNextFirstDay = new Date(this._calendar.year, this._calendar.month + 1, 1).getDay(),
-          freeGridSpaceNext = (7 - currNextFirstDay + parseInt(this.args.startDay)) % 7;
-
-      if (currNextFirstDay !== parseInt(this.args.startDay)) {
-        for (var _i4 = 1; _i4 <= freeGridSpaceNext; _i4++) {
-          var loopDateNext = new Date(this._calendar.year, this._calendar.month + 1, _i4);
-
-          var dateBlockNext = this._blockHtml(loopDateNext, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n\t\t\t\t\t\t" + (!this.validates(loopDateNext) ? 'disabled' : ''));
-
-          theUI.dates.innerHTML += dateBlockNext;
-        }
-      }
-
-      FwEvent$1.trigger(element, EVENT_AFTER_RENDER$2);
+      }, element);
     };
 
     _proto.init = function init(elem) {
-      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_INIT$4);
-      FwEvent$1.trigger(element, EVENT_INIT$4);
+      elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
       this.update();
-      FwEvent$1.trigger(element, EVENT_AFTER_INIT$4);
     };
 
     Calendar.initAll = function initAll() {
-      var calendars = document.querySelectorAll("." + COMPONENT_CLASS$9);
-      calendars.forEach(function (cal) {
-        var calendar = new Calendar(cal);
-        calendar.init();
+      FwComponent.docCycle(EVENT_BEFORE_INIT$4, EVENT_INIT$4, EVENT_AFTER_INIT$4, function () {
+        var calendars = document.querySelectorAll("." + COMPONENT_CLASS$9);
+        calendars.forEach(function (cal) {
+          var calendar = new Calendar(cal);
+          calendar.init();
+        });
       });
     };
 
@@ -2349,18 +2383,18 @@
     };
 
     Calendar.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CHANGE$2, COMPONENT_CLASS$9, Calendar.handleChange());
-      FwEvent$1.addListener(document.documentElement, EVENT_KEYUP, "." + UIPrefix(COMPONENT_CLASS$9) + "-input input", Calendar.handleUpdateKeyup());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-date", Calendar.handleUpdateClick());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-month, ." + UIPrefix(COMPONENT_CLASS$9) + "-year", Calendar.handleRenderClick());
+      FwEvent.addListener(document.documentElement, EVENT_CHANGE$2, COMPONENT_CLASS$9, Calendar.handleChange());
+      FwEvent.addListener(document.documentElement, EVENT_KEYUP, "." + UIPrefix(COMPONENT_CLASS$9) + "-input input", Calendar.handleUpdateKeyup());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-date", Calendar.handleUpdateClick());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-month, ." + UIPrefix(COMPONENT_CLASS$9) + "-year", Calendar.handleRenderClick());
       Initiator.Q.on_ready = Calendar.initAll;
     };
 
     Calendar.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CHANGE$2, Calendar.handleChange());
-      FwEvent$1.removeListener(document.documentElement, EVENT_KEYUP, Calendar.handleUpdateKeyup());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleUpdateClick());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleRenderClick());
+      FwEvent.removeListener(document.documentElement, EVENT_CHANGE$2, Calendar.handleChange());
+      FwEvent.removeListener(document.documentElement, EVENT_KEYUP, Calendar.handleUpdateKeyup());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleUpdateClick());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleRenderClick());
     };
 
     _createClass(Calendar, [{
@@ -2573,9 +2607,6 @@
   var EVENT_BEFORE_RENDER$1 = "before_render" + EVENT_KEY$8;
   var EVENT_RENDER$1 = "render" + EVENT_KEY$8;
   var EVENT_AFTER_RENDER$1 = "after_render" + EVENT_KEY$8;
-  var EVENT_BEFORE_UPDATE$1 = "before_update" + EVENT_KEY$8;
-  var EVENT_UPDATE$1 = "update" + EVENT_KEY$8;
-  var EVENT_AFTER_UPDATE$1 = "after_update" + EVENT_KEY$8;
   var INPUT_STRING = "__fw_input__";
 
   var Tags = /*#__PURE__*/function (_FwComponent) {
@@ -2678,31 +2709,33 @@
     };
 
     _proto.update = function update(newValue, allowFilter, valueToRender, inputText) {
-      FwEvent$1.trigger(_FwComponent.prototype.UIEl.call(this), EVENT_BEFORE_UPDATE$1);
+      var _this2 = this;
+
       var theValue = newValue || this.theValue || '';
       var uiValue = valueToRender || theValue || this.renderValue || '';
       allowFilter = allowFilter != false || allowFilter == true;
       inputText = inputText || false;
-      FwEvent$1.trigger(_FwComponent.prototype.UIEl.call(this), EVENT_UPDATE$1);
-      this.theValue = theValue;
-      this.renderValue = uiValue;
 
-      if (this.args.filter && allowFilter) {
-        this.filterValue();
-      }
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_TOGGLE, EVENT_TOGGLE, EVENT_AFTER_TOGGLE, function () {
+        _this2.theValue = theValue;
+        _this2.renderValue = uiValue;
 
-      this._renderUI();
+        if (_this2.args.filter && allowFilter) {
+          _this2.filterValue();
+        }
 
-      if (inputText) {
-        this.UIInputValue = inputText;
-        this.focus();
-      }
+        _this2._renderUI();
 
-      FwEvent$1.trigger(_FwComponent.prototype.UIEl.call(this), EVENT_AFTER_UPDATE$1);
+        if (inputText) {
+          _this2.UIInputValue = inputText;
+
+          _this2.focus();
+        }
+      }, element);
     };
 
     _proto._renderUI = function _renderUI(elem) {
-      var _this2 = this;
+      var _this3 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
@@ -2710,113 +2743,112 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_RENDER$1);
       var theUI = {};
-      FwEvent$1.trigger(element, EVENT_RENDER$1);
-      theUI.container = this.UIRoot;
 
-      if (!theUI.container) {
-        theUI.container = document.createElement('div');
-        element.parentNode.insertBefore(theUI.container, element);
-        theUI.container.appendChild(element);
-        theUI.container.classList.add('input');
-        theUI.container.setAttribute('class', Settings.get('uiClass') + "\n\t\t\t\t" + Settings.get('uiJsClass') + "\n\t\t\t\t" + element.getAttribute('class').toString().replace(COMPONENT_CLASS$8, UIPrefix(COMPONENT_CLASS$8)));
-        theUI.container.classList.add(this.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
-      }
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER$1, EVENT_RENDER$1, EVENT_AFTER_RENDER$1, function () {
+        theUI.container = _this3.UIRoot;
 
-      if (this.args.width) {
-        theUI.container.style = this.args.width;
-      } //idk it never exists on initial so we dont have to do weird div wraping catches here
+        if (!theUI.container) {
+          theUI.container = document.createElement('div');
+          element.parentNode.insertBefore(theUI.container, element);
+          theUI.container.appendChild(element);
+          theUI.container.classList.add('input');
+          theUI.container.setAttribute('class', Settings.get('uiClass') + "\n          " + Settings.get('uiJsClass') + "\n          " + element.getAttribute('class').toString().replace(COMPONENT_CLASS$8, UIPrefix(COMPONENT_CLASS$8)));
+          theUI.container.classList.add(_this3.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
+        }
+
+        if (_this3.args.width) {
+          theUI.container.style = _this3.args.width;
+        } //idk it never exists on initial so we dont have to do weird div wraping catches here
 
 
-      theUI.wrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
-
-      if (!theUI.wrapper) {
-        theUI.wrapper = document.createElement('div');
-        theUI.container.appendChild(theUI.wrapper);
-        theUI.wrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
         theUI.wrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
-      }
 
-      theUI.input = this.UIInput;
-
-      if (!theUI.input) {
-        theUI.input = document.createElement('span');
-        theUI.wrapper.appendChild(theUI.input);
-        theUI.input.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-input");
-        theUI.input.contentEditable = true;
-        theUI.input = theUI.wrapper.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-input");
-
-        if (element.hasAttribute('placeholder')) {
-          theUI.input.setAttribute('data-placeholder', element.getAttribute('placeholder'));
-        } //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
-
-
-        if (element.hasAttribute('data-toggle')) {
-          theUI.input.setAttribute('data-toggle', element.getAttribute('data-toggle'));
+        if (!theUI.wrapper) {
+          theUI.wrapper = document.createElement('div');
+          theUI.container.appendChild(theUI.wrapper);
+          theUI.wrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
+          theUI.wrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
         }
 
-        if (FwComponent.isDisabled(element)) {
-          theUI.input.classList.add('disabled');
-        } //bitch
+        theUI.input = _this3.UIInput;
+
+        if (!theUI.input) {
+          theUI.input = document.createElement('span');
+          theUI.wrapper.appendChild(theUI.input);
+          theUI.input.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-input");
+          theUI.input.contentEditable = true;
+          theUI.input = theUI.wrapper.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-input");
+
+          if (element.hasAttribute('placeholder')) {
+            theUI.input.setAttribute('data-placeholder', element.getAttribute('placeholder'));
+          } //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
 
 
-        if (this.args.onKeyUp) {
-          theUI.input.addEventListener('keyup', function (event) {
-            var keyUpScript = eval(_this2.args.onKeyUp);
+          if (element.hasAttribute('data-toggle')) {
+            theUI.input.setAttribute('data-toggle', element.getAttribute('data-toggle'));
+          }
 
-            if (keyUpScript) {
-              return keyUpScript;
+          if (FwComponent.isDisabled(element)) {
+            theUI.input.classList.add('disabled');
+          } //bitch
+
+
+          if (_this3.args.onKeyUp) {
+            theUI.input.addEventListener('keyup', function (event) {
+              var keyUpScript = eval(_this3.args.onKeyUp);
+
+              if (keyUpScript) {
+                return keyUpScript;
+              }
+            });
+          }
+        } //updoot tags
+
+
+        var oldTags = theUI.wrapper.querySelectorAll("." + UIPrefix(COMPONENT_CLASS$8) + "-tag");
+        oldTags.forEach(function (tag) {
+          tag.parentNode.removeChild(tag);
+        });
+        var valArr = Tags.toArr(_this3.renderValue, true);
+        theUI.input.setAttribute('data-ui-i', _this3.UIInputIdx); //validate tags
+        // valArr = valArr.reduce((acc, tag) => {
+        // 	if (!acc.includes(tag)) {
+        // 		acc.push(tag);
+        // 	}
+        // 	return acc;
+        // }, []);
+
+        valArr.forEach(function (tag, i) {
+          //get index of input
+          if (tag !== Tags.__is) {
+            var tagHtml = document.createElement('span');
+
+            if (i < _this3.UIInputIdx) {
+              theUI.input.insertAdjacentElement('beforebegin', tagHtml);
+            } else {
+              theUI.wrapper.appendChild(tagHtml);
             }
-          });
-        }
-      } //updoot tags
 
-
-      var oldTags = theUI.wrapper.querySelectorAll("." + UIPrefix(COMPONENT_CLASS$8) + "-tag");
-      oldTags.forEach(function (tag) {
-        tag.parentNode.removeChild(tag);
-      });
-      var valArr = Tags.toArr(this.renderValue, true);
-      theUI.input.setAttribute('data-ui-i', this.UIInputIdx); //validate tags
-      // valArr = valArr.reduce((acc, tag) => {
-      // 	if (!acc.includes(tag)) {
-      // 		acc.push(tag);
-      // 	}
-      // 	return acc;
-      // }, []);
-
-      valArr.forEach(function (tag, i) {
-        //get index of input
-        if (tag !== Tags.__is) {
-          var tagHtml = document.createElement('span');
-
-          if (i < _this2.UIInputIdx) {
-            theUI.input.insertAdjacentElement('beforebegin', tagHtml);
-          } else {
-            theUI.wrapper.appendChild(tagHtml);
+            tagHtml.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-tag");
+            tagHtml.innerHTML = "<button\n              data-ui-i=\"" + i + "\"\n              class=\"" + UIPrefix(COMPONENT_CLASS$8) + "-tag-text " + UIPrefix(COMPONENT_CLASS$8) + "-tag-button\"\n              type=\"button\"\n            >\n              " + tag + "\n            </button>\n            <button data-ui-i=\"" + i + "\" class=\"" + UIPrefix(COMPONENT_CLASS$8) + "-tag-close " + UIPrefix(COMPONENT_CLASS$8) + "-tag-button\" type=\"button\">\n              <i class=\"symbol symbol-close\"></i>\n            </button>";
           }
+        }); //attribues
 
-          tagHtml.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-tag");
-          tagHtml.innerHTML = "<button\n\t\t\t\t\t\tdata-ui-i=\"" + i + "\"\n\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$8) + "-tag-text " + UIPrefix(COMPONENT_CLASS$8) + "-tag-button\"\n\t\t\t\t\t\ttype=\"button\"\n\t\t\t\t\t>\n\t\t\t\t\t\t" + tag + "\n\t\t\t\t\t</button>\n\t\t\t\t\t<button data-ui-i=\"" + i + "\" class=\"" + UIPrefix(COMPONENT_CLASS$8) + "-tag-close " + UIPrefix(COMPONENT_CLASS$8) + "-tag-button\" type=\"button\">\n\t\t\t\t\t\t<i class=\"symbol symbol-close\"></i>\n\t\t\t\t\t</button>";
-        }
-      }); //attribues
+        for (var i = 0; i < element.attributes.length; i++) {
+          var attr = element.attributes[i];
 
-      for (var i = 0; i < element.attributes.length; i++) {
-        var attr = element.attributes[i];
-
-        if (attr.specified) {
-          if (attr.name.includes('data') && !attr.name.includes('data-tags') && !attr.name.includes('data-toggle') && !attr.name.includes('data-value-ui')) {
-            theUI.container.setAttribute(attr.name, attr.value);
+          if (attr.specified) {
+            if (attr.name.includes('data') && !attr.name.includes('data-tags') && !attr.name.includes('data-toggle') && !attr.name.includes('data-value-ui')) {
+              theUI.container.setAttribute(attr.name, attr.value);
+            }
           }
         }
-      }
 
-      element.setAttribute('data-value-ui', this.renderValue); //keep that shoit bisibol
+        element.setAttribute('data-value-ui', _this3.renderValue); //keep that shoit bisibol
 
-      this._scrollToUIInput();
-
-      FwEvent$1.trigger(element, EVENT_AFTER_RENDER$1);
+        _this3._scrollToUIInput();
+      }, element);
     };
 
     _proto.focus = function focus(disableNative) {
@@ -2847,14 +2879,13 @@
     };
 
     Tags.initAll = function initAll() {
-      FwEvent$1.trigger(document, EVENT_BEFORE_INIT$3);
-      FwEvent$1.trigger(document, EVENT_INIT$3);
-      var tagsInputs = document.querySelectorAll("." + COMPONENT_CLASS$8);
-      tagsInputs.forEach(function (poot) {
-        var tagsInput = new Tags(poot);
-        tagsInput.init();
+      FwComponent.docCycle(EVENT_BEFORE_INIT$3, EVENT_INIT$3, EVENT_AFTER_INIT$3, function () {
+        var tagsInputs = document.querySelectorAll("." + COMPONENT_CLASS$8);
+        tagsInputs.forEach(function (poot) {
+          var tagsInput = new Tags(poot);
+          tagsInput.init();
+        });
       });
-      FwEvent$1.trigger(document, EVENT_AFTER_INIT$3);
     };
 
     Tags.handleChange = function handleChange() {
@@ -3031,25 +3062,25 @@
     };
 
     Tags.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CHANGE$1, COMPONENT_CLASS$8, Tags.handleChange());
-      FwEvent$1.addListener(document.documentElement, EVENT_PASTE, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditablePaste());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableFocus());
-      FwEvent$1.addListener(document.documentElement, EVENT_BLUR, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableBlur());
-      FwEvent$1.addListener(document.documentElement, EVENT_KEYDOWN, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableKeydown());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-close", Tags.handleDelete());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-text", Tags.handleEdit());
+      FwEvent.addListener(document.documentElement, EVENT_CHANGE$1, COMPONENT_CLASS$8, Tags.handleChange());
+      FwEvent.addListener(document.documentElement, EVENT_PASTE, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditablePaste());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableFocus());
+      FwEvent.addListener(document.documentElement, EVENT_BLUR, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableBlur());
+      FwEvent.addListener(document.documentElement, EVENT_KEYDOWN, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableKeydown());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-close", Tags.handleDelete());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-text", Tags.handleEdit());
       Initiator.Q.on_ready = Tags.initAll;
       Initiator.Q.on_resize = Tags.initAll;
     };
 
     Tags.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CHANGE$1, Tags.handleChange());
-      FwEvent$1.removeListener(document.documentElement, EVENT_PASTE, Tags.handleEditablePaste());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEditableFocus());
-      FwEvent$1.removeListener(document.documentElement, EVENT_BLUR, Tags.handleEditableBlur());
-      FwEvent$1.removeListener(document.documentElement, EVENT_KEYDOWN, Tags.handleEditableKeydown());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleDelete());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEdit());
+      FwEvent.removeListener(document.documentElement, EVENT_CHANGE$1, Tags.handleChange());
+      FwEvent.removeListener(document.documentElement, EVENT_PASTE, Tags.handleEditablePaste());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEditableFocus());
+      FwEvent.removeListener(document.documentElement, EVENT_BLUR, Tags.handleEditableBlur());
+      FwEvent.removeListener(document.documentElement, EVENT_KEYDOWN, Tags.handleEditableKeydown());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleDelete());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEdit());
     };
 
     _createClass(Tags, [{
@@ -3192,13 +3223,13 @@
       var _this = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_SVGCONVERSION);
+      FwEvent.trigger(element, EVENT_BEFORE_SVGCONVERSION);
       var imgID = element.getAttribute('id');
       var imgClass = element.getAttribute('class');
       fetch(this.theSrc).then(function (response) {
         return response.text();
       }).then(function (markup) {
-        FwEvent$1.trigger(element, EVENT_SVGCONVERSION);
+        FwEvent.trigger(element, EVENT_SVGCONVERSION);
         var parser = new DOMParser();
         var dom = parser.parseFromString(markup, 'text/html');
         var svg = dom.querySelector('svg');
@@ -3222,7 +3253,7 @@
 
         _this.readyLoaded();
 
-        FwEvent$1.trigger(element, EVENT_AFTER_SVGCONVERSION);
+        FwEvent.trigger(element, EVENT_AFTER_SVGCONVERSION);
       });
     };
 
@@ -3233,10 +3264,10 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_LOAD);
+      FwEvent.trigger(element, EVENT_BEFORE_LOAD);
 
       if (element.classList.contains("" + COMPONENT_CLASS$7)) {
-        FwEvent$1.trigger(element, EVENT_LOAD);
+        FwEvent.trigger(element, EVENT_LOAD);
 
         if (element.matches('img') || element.closest('picture')) {
           this.theSrc && element.setAttribute('src', this.theSrc);
@@ -3252,7 +3283,7 @@
           this.readyLoaded();
         }
 
-        FwEvent$1.trigger(element, EVENT_AFTER_LOAD);
+        FwEvent.trigger(element, EVENT_AFTER_LOAD);
       }
     };
 
@@ -3277,8 +3308,8 @@
     };
 
     Lazy.loadAll = function loadAll(images) {
-      FwEvent$1.trigger(document, EVENT_BEFORE_INIT$2);
-      FwEvent$1.trigger(document, EVENT_INIT$2);
+      FwEvent.trigger(document, EVENT_BEFORE_INIT$2);
+      FwEvent.trigger(document, EVENT_INIT$2);
       Lazy.setStatus('loading');
       images = images || document.querySelectorAll(COMPONENT_SELECTOR);
       images.forEach(function (img) {
@@ -3286,7 +3317,7 @@
         lazy.load();
       });
       Lazy.setStatus('loaded');
-      FwEvent$1.trigger(document, EVENT_AFTER_INIT$2);
+      FwEvent.trigger(document, EVENT_AFTER_INIT$2);
     };
 
     Lazy.initListeners = function initListeners() {
@@ -3332,9 +3363,9 @@
   var DATA_KEY$6 = Settings.get('prefix') + "." + NAME$6;
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var EVENT_CLICK$4 = "click" + EVENT_KEY$6;
-  var EVENT_BEFORE_TOGGLE = "before_toggle" + EVENT_KEY$6;
-  var EVENT_TOGGLE = "toggle" + EVENT_KEY$6;
-  var EVENT_AFTER_TOGGLE = "after_toggle" + EVENT_KEY$6;
+  var EVENT_BEFORE_TOGGLE$1 = "before_toggle" + EVENT_KEY$6;
+  var EVENT_TOGGLE$1 = "toggle" + EVENT_KEY$6;
+  var EVENT_AFTER_TOGGLE$1 = "after_toggle" + EVENT_KEY$6;
 
   var ListGroup = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(ListGroup, _FwComponent);
@@ -3356,10 +3387,10 @@
         return;
       }
 
-      FwEvent$1.trigger(this.UITriggeredChild, EVENT_BEFORE_TOGGLE);
-      FwEvent$1.trigger(this.UITriggeredChild, EVENT_TOGGLE);
+      FwEvent.trigger(this.UITriggeredChild, EVENT_BEFORE_TOGGLE$1);
+      FwEvent.trigger(this.UITriggeredChild, EVENT_TOGGLE$1);
       UIToggleGroup(this.UITriggeredChild, "" + COMPONENT_TOGGLEGROUP_PREFIX, null, "li, ." + CHILD_CLASS);
-      FwEvent$1.trigger(this.UITriggeredChild, EVENT_AFTER_TOGGLE);
+      FwEvent.trigger(this.UITriggeredChild, EVENT_AFTER_TOGGLE$1);
     };
 
     ListGroup.handleToggle = function handleToggle() {
@@ -3374,11 +3405,11 @@
     };
 
     ListGroup.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$4, "." + COMPONENT_CLASS$6 + " > ." + CHILD_CLASS + ", ." + COMPONENT_CLASS$6 + " > li", ListGroup.handleToggle());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "." + COMPONENT_CLASS$6 + " > ." + CHILD_CLASS + ", ." + COMPONENT_CLASS$6 + " > li", ListGroup.handleToggle());
     };
 
     ListGroup.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$4, ListGroup.handleToggle());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, ListGroup.handleToggle());
     };
 
     _createClass(ListGroup, [{
@@ -3514,13 +3545,13 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_CREATE$1);
+      FwEvent.trigger(element, EVENT_BEFORE_CREATE$1);
 
       if (element || !window.location.hash) {
         this.destroy();
       }
 
-      FwEvent$1.trigger(element, EVENT_CREATE$1);
+      FwEvent.trigger(element, EVENT_CREATE$1);
       var id = this.UIElId || this.UIId;
       id !== "" + this.UIId && this.args.changeHash && UIChangeHash(id);
       var theUI = document.createElement('div');
@@ -3546,7 +3577,7 @@
 
       theUI.classList.add(ACTIVATED_CLASS$3);
       document.body.classList.add(UIBodyClass.noScroll);
-      FwEvent$1.trigger(element, EVENT_AFTER_CREATE$1);
+      FwEvent.trigger(element, EVENT_AFTER_CREATE$1);
     };
 
     _proto.destroy = function destroy(elem) {
@@ -3556,8 +3587,8 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_DESTROY$1);
-      FwEvent$1.trigger(element, EVENT_DESTROY$1); // removeHash = removeHash || false;
+      FwEvent.trigger(element, EVENT_BEFORE_DESTROY$1);
+      FwEvent.trigger(element, EVENT_DESTROY$1); // removeHash = removeHash || false;
 
       var canRemoveHash = false;
 
@@ -3582,7 +3613,7 @@
       }
 
       canRemoveHash && UIChangeHash('');
-      FwEvent$1.trigger(element, EVENT_AFTER_DESTROY$1);
+      FwEvent.trigger(element, EVENT_AFTER_DESTROY$1);
       _classPrivateFieldLooseBase(this, _current)[_current] = {
         element: false,
         args: false
@@ -3590,15 +3621,14 @@
     };
 
     _proto.update = function update(elem) {
-      console.warn(Modal.current());
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
 
       if (!element) {
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_UPDATE);
-      FwEvent$1.trigger(element, EVENT_UPDATE); // buttons
+      FwEvent.trigger(element, EVENT_BEFORE_UPDATE);
+      FwEvent.trigger(element, EVENT_UPDATE); // buttons
       // resize
 
       var currentWidth = this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup").clientWidth;
@@ -3614,7 +3644,7 @@
         });
       }
 
-      FwEvent$1.trigger(element, EVENT_AFTER_UPDATE);
+      FwEvent.trigger(element, EVENT_AFTER_UPDATE);
     };
 
     _proto.resize = function resize(width) {
@@ -3626,8 +3656,8 @@
       width = width || args.width || null;
 
       if (this.UIRoot && parseInt(width) >= parseInt(args.width)) {
-        FwEvent$1.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_BEFORE_RESIZE);
-        FwEvent$1.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_RESIZE); //all
+        FwEvent.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_BEFORE_RESIZE);
+        FwEvent.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_RESIZE); //all
 
         if (this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup")) {
           this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup").style.width = width;
@@ -3638,7 +3668,7 @@
           this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper").style.width = width;
         }
 
-        FwEvent$1.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_AFTER_RESIZE);
+        FwEvent.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_AFTER_RESIZE);
       }
     };
 
@@ -3689,10 +3719,10 @@
       VALID_MODAL_MODES.forEach(function (mode) {
         var modeToggle = _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode);
 
-        FwEvent$1.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "], *[data-toggle-" + modeToggle + "-open]", Modal.handleOpen(mode));
-        FwEvent$1.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "-close]", Modal.handleClose(mode));
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "], *[data-toggle-" + modeToggle + "-open]", Modal.handleOpen(mode));
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "-close]", Modal.handleClose(mode));
       });
-      FwEvent$1.addListener(null, EVENT_HASHCHANGE, window, Modal.handleUniversal());
+      FwEvent.addListener(null, EVENT_HASHCHANGE, window, Modal.handleUniversal());
       Initiator.Q.on_ready = Modal.handleUniversal();
       Initiator.Q.on_resize = Modal.handleResize();
     };
@@ -3701,10 +3731,10 @@
       VALID_MODAL_MODES.forEach(function (mode) {
         _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode);
 
-        FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleOpen(mode));
-        FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleClose(mode));
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleOpen(mode));
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleClose(mode));
       });
-      FwEvent$1.removeListener(window, EVENT_HASHCHANGE, Modal.handleUniversal());
+      FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleUniversal());
     };
 
     _createClass(Modal, [{
@@ -3945,46 +3975,46 @@
 
     _proto.renderGrid = function renderGrid(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(elem, EVENT_BEFORE_RENDER_GRID);
-      FwEvent$1.trigger(elem, EVENT_RENDER_GRID);
+      FwEvent.trigger(elem, EVENT_BEFORE_RENDER_GRID);
+      FwEvent.trigger(elem, EVENT_RENDER_GRID);
 
       this._loopProps(element, PROPERTIES_WRAPPER);
 
-      FwEvent$1.trigger(elem, EVENT_AFTER_RENDER_GRID);
+      FwEvent.trigger(elem, EVENT_AFTER_RENDER_GRID);
     };
 
     _proto.renderBlocks = function renderBlocks() {
       var _this = this;
 
       this.UIChildren.forEach(function (child) {
-        FwEvent$1.trigger(child, EVENT_BEFORE_RENDER_BLOCK);
-        FwEvent$1.trigger(child, EVENT_RENDER_BLOCK);
+        FwEvent.trigger(child, EVENT_BEFORE_RENDER_BLOCK);
+        FwEvent.trigger(child, EVENT_RENDER_BLOCK);
 
         _this._loopProps(child, PROPERTIES_CHILDREN);
 
-        FwEvent$1.trigger(child, EVENT_AFTER_RENDER_BLOCK);
+        FwEvent.trigger(child, EVENT_AFTER_RENDER_BLOCK);
       });
     };
 
     _proto.render = function render(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(elem, EVENT_BEFORE_RENDER);
-      FwEvent$1.trigger(elem, EVENT_RENDER);
+      FwEvent.trigger(elem, EVENT_BEFORE_RENDER);
+      FwEvent.trigger(elem, EVENT_RENDER);
       this.renderGrid(element);
       this.renderBlocks();
-      FwEvent$1.trigger(elem, EVENT_AFTER_RENDER);
+      FwEvent.trigger(elem, EVENT_AFTER_RENDER);
     };
 
     ModuleGrid.handleUniversal = function handleUniversal() {
       return function () {
-        FwEvent$1.trigger(document, EVENT_BEFORE_INIT$1);
-        FwEvent$1.trigger(document, EVENT_INIT$1);
+        FwEvent.trigger(document, EVENT_BEFORE_INIT$1);
+        FwEvent.trigger(document, EVENT_INIT$1);
         var grids = document.querySelectorAll("." + COMPONENT_CLASS$4);
         grids.forEach(function (grid) {
           var moduleGrid = new ModuleGrid(grid);
           moduleGrid.render();
         });
-        FwEvent$1.trigger(document, EVENT_AFTER_INIT$1);
+        FwEvent.trigger(document, EVENT_AFTER_INIT$1);
       };
     };
 
@@ -4067,29 +4097,33 @@
 
     _proto.turnOff = function turnOff(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_OFF);
-      FwEvent$1.trigger(element, EVENT_OFF);
-      element.classList.remove(COMPONENT_CLASS_STATUS_ON);
-      element.classList.add(COMPONENT_CLASS_STATUS_OFF);
-      FwEvent$1.trigger(element, EVENT_AFTER_OFF);
+
+      if (this.isOn()) {
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OFF, EVENT_OFF, EVENT_AFTER_OFF, function () {
+          element.classList.remove(COMPONENT_CLASS_STATUS_ON);
+          element.classList.add(COMPONENT_CLASS_STATUS_OFF);
+        }, element);
+      }
     };
 
     _proto.turnOn = function turnOn(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_ON);
-      FwEvent$1.trigger(element, EVENT_ON);
-      element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
-      element.classList.add(COMPONENT_CLASS_STATUS_ON);
-      FwEvent$1.trigger(element, EVENT_AFTER_ON);
+
+      if (this.isOff()) {
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_ON, EVENT_ON, EVENT_AFTER_ON, function () {
+          element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
+          element.classList.add(COMPONENT_CLASS_STATUS_ON);
+        }, element);
+      }
     };
 
     _proto.toggle = function toggle(elem) {
-      elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (this.isOff()) {
-        this.turnOn();
+        this.turnOn(element);
       } else {
-        this.turnOff();
+        this.turnOff(element);
       }
     };
 
@@ -4124,12 +4158,11 @@
 
     Switch.handleInit = function handleInit() {
       return function () {
-        FwEvent$1.trigger(document, EVENT_BEFORE_INIT);
-        FwEvent$1.trigger(document, EVENT_INIT);
-        UIPurge(false, "." + COMPONENT_CLASS$3, function (elem) {
-          new Switch(elem).init();
+        FwComponent.docCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, function () {
+          UIPurge(false, "." + COMPONENT_CLASS$3, function (elem) {
+            new Switch(elem).init();
+          });
         });
-        FwEvent$1.trigger(document, EVENT_AFTER_INIT);
       };
     };
 
@@ -4146,16 +4179,16 @@
     };
 
     Switch.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_OFF + "]", Switch.handleToggleOff());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_ON + "]", Switch.handleToggleOn());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK_PURGE$1, "*", Switch.handleUniversalPurge());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_OFF + "]", Switch.handleToggleOff());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_ON + "]", Switch.handleToggleOn());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK_PURGE$1, "*", Switch.handleUniversalPurge());
       Initiator.Q.on_ready = Switch.handleInit();
     };
 
     Switch.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOff());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOn());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK_PURGE$1, Switch.handleUniversalPurge());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOff());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOn());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK_PURGE$1, Switch.handleUniversalPurge());
     };
 
     _createClass(Switch, null, [{
@@ -4210,10 +4243,10 @@
         return false;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_ACTIVATE$1);
+      FwEvent.trigger(element, EVENT_BEFORE_ACTIVATE$1);
 
       if (!theTab.classList.contains("" + ACTIVATED_CLASS$2)) {
-        FwEvent$1.trigger(element, EVENT_ACTIVATE$1);
+        FwEvent.trigger(element, EVENT_ACTIVATE$1);
         var triggererSiblings = FwDom.getSiblings(theTab);
         triggererSiblings.filter(function (sibling) {
           return sibling.matches("." + COMPONENT_CHILDREN_CLASS) || sibling.matches("" + COMPONENT_CHILDREN_TAG);
@@ -4223,7 +4256,7 @@
         theTab.classList.add("" + ACTIVATED_CLASS$2);
       }
 
-      FwEvent$1.trigger(element, EVENT_AFTER_ACTIVATE$1);
+      FwEvent.trigger(element, EVENT_AFTER_ACTIVATE$1);
     };
 
     Tabs.handleClick = function handleClick() {
@@ -4238,11 +4271,11 @@
     };
 
     Tabs.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK$1, "." + COMPONENT_CLASS$2 + " > " + COMPONENT_CHILDREN_TAG + " > *, ." + COMPONENT_CHILDREN_CLASS + ", ." + COMPONENT_CHILDREN_CLASS + " > *", Tabs.handleClick());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$1, "." + COMPONENT_CLASS$2 + " > " + COMPONENT_CHILDREN_TAG + " > *, ." + COMPONENT_CHILDREN_CLASS + ", ." + COMPONENT_CHILDREN_CLASS + " > *", Tabs.handleClick());
     };
 
     Tabs.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK$1, Tabs.handleClick());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$1, Tabs.handleClick());
     };
 
     _createClass(Tabs, null, [{
@@ -4333,9 +4366,9 @@
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_CREATE);
+      FwEvent.trigger(element, EVENT_BEFORE_CREATE);
       this.destroy();
-      FwEvent$1.trigger(element, EVENT_CREATE);
+      FwEvent.trigger(element, EVENT_CREATE);
       var tip = document.createElement('div');
       document.body.appendChild(tip);
       tip.className = COMPONENT_CLASS$1 + " " + COMPONENT_CLASS$1 + "-" + this.args.placement + "\n\t\t\t" + (this.args.width ? COMPONENT_CUSTOM_WIDTH_CLASS : '') + "\n\t\t\t" + (this.args.allowInteraction ? COMPONENT_ALLOW_INTERACTION_CLASS : '') + "\n\t\t\t" + (this.args.size ? COMPONENT_CLASS$1 + "-" + this.args.size : '') + "\n\t\t\t" + (this.args.inverse ? 'theme-inverse' : '');
@@ -4357,43 +4390,43 @@
 
       tip.classList.add(ACTIVATED_CLASS$1);
       this.position();
-      FwEvent$1.trigger(element, EVENT_AFTER_CREATE);
+      FwEvent.trigger(element, EVENT_AFTER_CREATE);
     };
 
     _proto.destroy = function destroy() {
       var element = Tooltip.current.UI;
-      FwEvent$1.trigger(element, EVENT_BEFORE_DESTROY);
+      FwEvent.trigger(element, EVENT_BEFORE_DESTROY);
 
       if (!element) {
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_DESTROY);
+      FwEvent.trigger(element, EVENT_DESTROY);
       element.parentNode.removeChild(element);
       Tooltip.current = {
         UI: false,
         args: false,
         triggerer: false
       };
-      FwEvent$1.trigger(element, EVENT_AFTER_DESTROY);
+      FwEvent.trigger(element, EVENT_AFTER_DESTROY);
     };
 
     _proto.position = function position(posX, posY) {
       var element = _FwComponent.prototype.UIEl.call(this);
 
-      FwEvent$1.trigger(element, EVENT_BEFORE_POSITION);
+      FwEvent.trigger(element, EVENT_BEFORE_POSITION);
 
       if (!Tooltip.current.UI) {
         return;
       }
 
-      FwEvent$1.trigger(element, EVENT_POSITION);
+      FwEvent.trigger(element, EVENT_POSITION);
       var toolTip = Tooltip.current.UI;
       posX = posX || this.elementOrigin.x;
       posY = posY || this.elementOrigin.y;
       toolTip.style.left = posX + this.UIOffset.x + 'px';
       toolTip.style.top = posY + this.UIOffset.y + 'px';
-      FwEvent$1.trigger(element, EVENT_AFTER_POSITION);
+      FwEvent.trigger(element, EVENT_AFTER_POSITION);
     };
 
     Tooltip.handleToggleClickOn = function handleToggleClickOn() {
@@ -4452,19 +4485,19 @@
     };
 
     Tooltip.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_MOUSEENTER, "*[data-toggle-" + TOGGLE_MODE_HOVER + "]", Tooltip.handleToggleHoverOn());
-      FwEvent$1.addListener(document.documentElement, EVENT_MOUSELEAVE, "*[data-toggle-" + TOGGLE_MODE_HOVER + "]", Tooltip.handleToggleHoverOff());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK, "*[data-toggle-" + TOGGLE_MODE_CLICK + "]", Tooltip.handleToggleClickOn());
-      FwEvent$1.addListener(document.documentElement, EVENT_CLICK_PURGE, "*, ." + COMPONENT_PURGER_CLASS, Tooltip.handleUniversalPurge());
+      FwEvent.addListener(document.documentElement, EVENT_MOUSEENTER, "*[data-toggle-" + TOGGLE_MODE_HOVER + "]", Tooltip.handleToggleHoverOn());
+      FwEvent.addListener(document.documentElement, EVENT_MOUSELEAVE, "*[data-toggle-" + TOGGLE_MODE_HOVER + "]", Tooltip.handleToggleHoverOff());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK, "*[data-toggle-" + TOGGLE_MODE_CLICK + "]", Tooltip.handleToggleClickOn());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK_PURGE, "*, ." + COMPONENT_PURGER_CLASS, Tooltip.handleUniversalPurge());
       Initiator.Q.on_ready = Tooltip.handleResizeScroll();
       Initiator.Q.on_resize = Tooltip.handleResizeScroll();
     };
 
     Tooltip.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_MOUSEENTER, Tooltip.handleToggleHoverOn());
-      FwEvent$1.removeListener(document.documentElement, EVENT_MOUSELEAVE, Tooltip.handleToggleHoverOff());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK, Tooltip.handleToggleClickOn());
-      FwEvent$1.removeListener(document.documentElement, EVENT_CLICK_PURGE, Tooltip.handleUniversalPurge());
+      FwEvent.removeListener(document.documentElement, EVENT_MOUSEENTER, Tooltip.handleToggleHoverOn());
+      FwEvent.removeListener(document.documentElement, EVENT_MOUSELEAVE, Tooltip.handleToggleHoverOff());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK, Tooltip.handleToggleClickOn());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK_PURGE, Tooltip.handleUniversalPurge());
     };
 
     _createClass(Tooltip, [{
@@ -4706,25 +4739,25 @@
 
     _proto.activate = function activate(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_ACTIVATE);
-      FwEvent$1.trigger(element, EVENT_ACTIVATE);
+      FwEvent.trigger(element, EVENT_BEFORE_ACTIVATE);
+      FwEvent.trigger(element, EVENT_ACTIVATE);
 
       this._killDyText();
 
       element.classList.add(ACTIVATED_CLASS);
       element.innerHTML += "<div class=\"" + COMPONENT_TEXT_CLASS + "\">\n\t\t\t\t\t<span>" + this.UIControl.files.length + " files selected.<br> Click or drag and drop to reselect</span>\n\t\t\t\t</div>";
-      FwEvent$1.trigger(element, EVENT_AFTER_ACTIVATE);
+      FwEvent.trigger(element, EVENT_AFTER_ACTIVATE);
     };
 
     _proto.deactivate = function deactivate(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent$1.trigger(element, EVENT_BEFORE_DEACTIVATE);
-      FwEvent$1.trigger(element, EVENT_DEACTIVATE);
+      FwEvent.trigger(element, EVENT_BEFORE_DEACTIVATE);
+      FwEvent.trigger(element, EVENT_DEACTIVATE);
 
       this._killDyText();
 
       element.classList.remove(ACTIVATED_CLASS);
-      FwEvent$1.trigger(element, EVENT_AFTER_DEACTIVATE);
+      FwEvent.trigger(element, EVENT_AFTER_DEACTIVATE);
     };
 
     _proto.toggle = function toggle(elem) {
@@ -4748,11 +4781,11 @@
     };
 
     Zone.initListeners = function initListeners() {
-      FwEvent$1.addListener(document.documentElement, EVENT_CHANGE, "." + COMPONENT_CLASS, Zone.handleClick());
+      FwEvent.addListener(document.documentElement, EVENT_CHANGE, "." + COMPONENT_CLASS, Zone.handleClick());
     };
 
     Zone.destroyListeners = function destroyListeners() {
-      FwEvent$1.removeListener(document.documentElement, EVENT_CHANGE, Zone.handleClick());
+      FwEvent.removeListener(document.documentElement, EVENT_CHANGE, Zone.handleClick());
     };
 
     _createClass(Zone, [{

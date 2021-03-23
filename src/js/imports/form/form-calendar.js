@@ -6,12 +6,12 @@ import FwDom from './../data-helper/dom.js';
 import FwDate from './../data-helper/date.js';
 
 import FwComponent from './../classes/component.js';
-import { UIPrefix, UIDynamicClass } from '../util/ui.js';
+import { UIPrefix, UIDynamicClass } from './../util/ui.js';
 import {
   DateTimePreset,
   dayNamesShorter,
   monthNamesShort,
-} from '../util/validation.js';
+} from './../util/validation.js';
 
 import Dropdown from './../dropdown.js';
 
@@ -167,42 +167,46 @@ class Calendar extends FwComponent {
   update(newValue, valueToRender) {
     const element = this.element;
 
-    FwEvent.trigger(element, EVENT_BEFORE_UPDATE);
-
     const theValue = FwDate.toVal(newValue) || this.theValue;
 
     const uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
 
-    FwEvent.trigger(element, EVENT_UPDATE);
-    //set up calendar
-    if (this.validates(theValue) || !theValue) {
-      this.theValue = FwDate.toVal(theValue, false);
-      this.renderValue = uiValue;
+    super.runCycle(
+      EVENT_BEFORE_UPDATE,
+      EVENT_UPDATE,
+      EVENT_AFTER_UPDATE,
+      () => {
+        //set up calendar
+        if (this.validates(theValue) || !theValue) {
+          this.theValue = FwDate.toVal(theValue, false);
+          this.renderValue = uiValue;
 
-      this._renderUI();
-    }
-
-    //user visual feedback if it has a valid bitch
-    if (this.validates(theValue)) {
-      this.UIRoot.classList.remove('input-error');
-    } else {
-      this.UIRoot.classList.add('input-error');
-    }
-
-    if (this.theValue) {
-      this.UIDates.forEach((date) => {
-        if (date.getAttribute('data-value') == theValue) {
-          date.classList.add(ACTIVATED_CLASS);
-        } else {
-          date.classList.remove(ACTIVATED_CLASS);
+          this._renderUI();
         }
-      });
 
-      if (this.UIInput) {
-        this.UIInputValue = theValue;
-      }
-    }
-    FwEvent.trigger(element, EVENT_AFTER_UPDATE);
+        //user visual feedback if it has a valid bitch
+        if (this.validates(theValue)) {
+          this.UIRoot.classList.remove('input-error');
+        } else {
+          this.UIRoot.classList.add('input-error');
+        }
+
+        if (this.theValue) {
+          this.UIDates.forEach((date) => {
+            if (date.getAttribute('data-value') == theValue) {
+              date.classList.add(ACTIVATED_CLASS);
+            } else {
+              date.classList.remove(ACTIVATED_CLASS);
+            }
+          });
+
+          if (this.UIInput) {
+            this.UIInputValue = theValue;
+          }
+        }
+      },
+      element
+    );
   }
 
   validates(date, rangeOnly) {
@@ -351,293 +355,304 @@ class Calendar extends FwComponent {
   _renderUI(elem, uiValue) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    FwEvent.trigger(element, EVENT_BEFORE_RENDER);
-
     uiValue = uiValue || this.renderValue;
-
     this.renderValue = uiValue;
 
     const theUI = {};
 
-    FwEvent.trigger(element, EVENT_RENDER);
+    super.runCycle(
+      EVENT_BEFORE_RENDER,
+      EVENT_RENDER,
+      EVENT_AFTER_RENDER,
+      () => {
+        theUI.container = this.UIRoot;
 
-    theUI.container = this.UIRoot;
-
-    if (!theUI.container) {
-      theUI.container = document.createElement('div');
-      element.parentNode.insertBefore(theUI.container, element);
-      theUI.container.appendChild(element);
-      theUI.container.setAttribute(
-        'class',
-        `${Settings.get('uiClass')}
-				${Settings.get('uiJsClass')}
-				${element
-          .getAttribute('class')
-          .toString()
-          .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
-      );
-    }
-
-    theUI.inputWrapper = theUI.container.querySelector(
-      `.${UIPrefix(COMPONENT_CLASS)}-input`
-    );
-
-    const components = FwDom.getSiblings(element);
-    components.forEach((component) => {
-      if (component !== theUI.inputWrapper) {
-        component.parentNode.removeChild(component);
-      }
-    });
-
-    //input
-    if (this.args.textInput) {
-      if (!theUI.inputWrapper) {
-        theUI.inputWrapper = document.createElement('div');
-        theUI.container.appendChild(theUI.inputWrapper);
-        theUI.inputWrapper.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
-        theUI.inputWrapper.innerHTML =
-          '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
-      }
-    }
-
-    //date 4 u
-
-    //heading
-    theUI.heading = document.createElement('div');
-    theUI.container.appendChild(theUI.heading);
-    theUI.heading.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-heading`);
-
-    //arrowz
-
-    const butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
-
-    butts.forEach((butt) => {
-      if (
-        (this.args.yearSkip && (butt == 'prev-year' || butt == 'next-year')) ||
-        (this.args.monthSkip && (butt == 'prev-month' || butt == 'next-month'))
-      ) {
-        theUI.heading.innerHTML += this._arrowHtml(butt);
-      }
-    });
-
-    //title
-    theUI.title = document.createElement('div');
-    theUI.heading.appendChild(theUI.title);
-    theUI.title.setAttribute(
-      'class',
-      `${UIPrefix(COMPONENT_CLASS)}-title ${UIPrefix(COMPONENT_CLASS)}-dropdown-toggle
-				${UIDynamicClass}` //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
-    );
-    theUI.title.setAttribute('data-toggle-dropdown', '');
-    theUI.title.innerHTML = `<span
-				class="${UIPrefix(COMPONENT_CLASS)}-month-text">
-					${monthNamesShort[this._calendar.month]}
-				</span>
-				<span class="${UIPrefix(COMPONENT_CLASS)}-year-text">
-					${this._calendar.year}
-				</span>
-				<i class="${UIPrefix(
-          COMPONENT_CLASS
-        )}-symbol symbol symbol-caret-down no-margin-x"></i>`;
-
-    //dropdown
-    const dropdown = document.createElement('ul');
-    theUI.heading.appendChild(dropdown);
-    dropdown.setAttribute('data-dropdown-width', '100%');
-    dropdown.setAttribute(
-      'class',
-      `${UIPrefix(
-        COMPONENT_CLASS
-      )}-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
-    );
-    dropdown.innerHTML += `<li
-					class="${UIPrefix(COMPONENT_CLASS)}-current-month-year active"
-				>
-					<a href="#"
-						class="${UIPrefix(COMPONENT_CLASS)}-month"
-						data-value="${FwDate.toVal(this._calendar.startDate)}"
-					>
-						${monthNamesShort[this._calendar.month]} ${this._calendar.year}
-					</a>
-				</li>
-				<li><hr class="dropdown-separator"></li>`;
-
-    theUI.dropdown = new Dropdown(dropdown, theUI.title);
-
-    let dropdownInit, dropdownLimit;
-
-    if (this.args.yearSpan == 0) {
-      dropdownInit = this._calendar.startDate.getMonth() * -1;
-      dropdownLimit = 11 - this._calendar.startDate.getMonth();
-    } else {
-      dropdownInit = parseInt(-12 * parseInt(this.args.yearSpan));
-      dropdownLimit = parseInt(12 * parseInt(this.args.yearSpan));
-    }
-
-    //update dropdown
-    for (let i = dropdownInit; i <= dropdownLimit; i++) {
-      const listItemDate = FwDate.adjacentMonth(this._calendar.startDate, i);
-
-      const dateForValidation = (() => {
-        let toReturn;
-
-        if (i >= 0) {
-          //first day of month
-          toReturn = new Date(listItemDate.getFullYear(), listItemDate.getMonth(), 1);
-        } else {
-          //last day of month
-          toReturn = new Date(
-            listItemDate.getFullYear(),
-            listItemDate.getMonth() + 1,
-            0
+        if (!theUI.container) {
+          theUI.container = document.createElement('div');
+          element.parentNode.insertBefore(theUI.container, element);
+          theUI.container.appendChild(element);
+          theUI.container.setAttribute(
+            'class',
+            `${Settings.get('uiClass')}
+          ${Settings.get('uiJsClass')}
+          ${element
+            .getAttribute('class')
+            .toString()
+            .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
           );
         }
 
-        return toReturn;
-      })();
+        theUI.inputWrapper = theUI.container.querySelector(
+          `.${UIPrefix(COMPONENT_CLASS)}-input`
+        );
 
-      if (this.validates(dateForValidation, true)) {
-        let currClass = i == 0 ? 'active' : '',
-          listItem = `<li class="${currClass}">
-							<a href="#"
-								class="${UIPrefix(COMPONENT_CLASS)}-month"
-								data-value="${FwDate.toVal(listItemDate)}">
-									${monthNamesShort[listItemDate.getMonth()]} ${listItemDate.getFullYear()}
-							</a>
-						${
-              listItemDate.getMonth() == 11 && i !== dropdownLimit
-                ? `</li><li><hr class="dropdown-separator">`
-                : ''
+        const components = FwDom.getSiblings(element);
+        components.forEach((component) => {
+          if (component !== theUI.inputWrapper) {
+            component.parentNode.removeChild(component);
+          }
+        });
+
+        //input
+        if (this.args.textInput) {
+          if (!theUI.inputWrapper) {
+            theUI.inputWrapper = document.createElement('div');
+            theUI.container.appendChild(theUI.inputWrapper);
+            theUI.inputWrapper.setAttribute(
+              'class',
+              `${UIPrefix(COMPONENT_CLASS)}-input`
+            );
+            theUI.inputWrapper.innerHTML =
+              '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
+          }
+        }
+
+        //date 4 u
+
+        //heading
+        theUI.heading = document.createElement('div');
+        theUI.container.appendChild(theUI.heading);
+        theUI.heading.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-heading`);
+
+        //arrowz
+
+        const butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
+
+        butts.forEach((butt) => {
+          if (
+            (this.args.yearSkip && (butt == 'prev-year' || butt == 'next-year')) ||
+            (this.args.monthSkip && (butt == 'prev-month' || butt == 'next-month'))
+          ) {
+            theUI.heading.innerHTML += this._arrowHtml(butt);
+          }
+        });
+
+        //title
+        theUI.title = document.createElement('div');
+        theUI.heading.appendChild(theUI.title);
+        theUI.title.setAttribute(
+          'class',
+          `${UIPrefix(COMPONENT_CLASS)}-title ${UIPrefix(
+            COMPONENT_CLASS
+          )}-dropdown-toggle
+          ${UIDynamicClass}` //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
+        );
+        theUI.title.setAttribute('data-toggle-dropdown', '');
+        theUI.title.innerHTML = `<span
+          class="${UIPrefix(COMPONENT_CLASS)}-month-text">
+            ${monthNamesShort[this._calendar.month]}
+          </span>
+          <span class="${UIPrefix(COMPONENT_CLASS)}-year-text">
+            ${this._calendar.year}
+          </span>
+          <i class="${UIPrefix(
+            COMPONENT_CLASS
+          )}-symbol symbol symbol-caret-down no-margin-x"></i>`;
+
+        //dropdown
+        const dropdown = document.createElement('ul');
+        theUI.heading.appendChild(dropdown);
+        dropdown.setAttribute('data-dropdown-width', '100%');
+        dropdown.setAttribute(
+          'class',
+          `${UIPrefix(
+            COMPONENT_CLASS
+          )}-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
+        );
+        dropdown.innerHTML += `<li
+            class="${UIPrefix(COMPONENT_CLASS)}-current-month-year active"
+          >
+            <a href="#"
+              class="${UIPrefix(COMPONENT_CLASS)}-month"
+              data-value="${FwDate.toVal(this._calendar.startDate)}"
+            >
+              ${monthNamesShort[this._calendar.month]} ${this._calendar.year}
+            </a>
+          </li>
+          <li><hr class="dropdown-separator"></li>`;
+
+        theUI.dropdown = new Dropdown(dropdown, theUI.title);
+
+        let dropdownInit, dropdownLimit;
+
+        if (this.args.yearSpan == 0) {
+          dropdownInit = this._calendar.startDate.getMonth() * -1;
+          dropdownLimit = 11 - this._calendar.startDate.getMonth();
+        } else {
+          dropdownInit = parseInt(-12 * parseInt(this.args.yearSpan));
+          dropdownLimit = parseInt(12 * parseInt(this.args.yearSpan));
+        }
+
+        //update dropdown
+        for (let i = dropdownInit; i <= dropdownLimit; i++) {
+          const listItemDate = FwDate.adjacentMonth(this._calendar.startDate, i);
+
+          const dateForValidation = (() => {
+            let toReturn;
+
+            if (i >= 0) {
+              //first day of month
+              toReturn = new Date(
+                listItemDate.getFullYear(),
+                listItemDate.getMonth(),
+                1
+              );
+            } else {
+              //last day of month
+              toReturn = new Date(
+                listItemDate.getFullYear(),
+                listItemDate.getMonth() + 1,
+                0
+              );
             }
-						</li>`;
-        theUI.dropdown.element.innerHTML += listItem;
-      }
-    }
 
-    //generate grid
-    theUI.grid = document.createElement('div');
-    theUI.container.append(theUI.grid);
-    theUI.grid.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-grid`);
+            return toReturn;
+          })();
 
-    //days heading
-    theUI.days = document.createElement('div');
-    theUI.grid.append(theUI.days);
-    theUI.days.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-days`);
+          if (this.validates(dateForValidation, true)) {
+            let currClass = i == 0 ? 'active' : '',
+              listItem = `<li class="${currClass}">
+                <a href="#"
+                  class="${UIPrefix(COMPONENT_CLASS)}-month"
+                  data-value="${FwDate.toVal(listItemDate)}">
+                    ${
+                      monthNamesShort[listItemDate.getMonth()]
+                    } ${listItemDate.getFullYear()}
+                </a>
+              ${
+                listItemDate.getMonth() == 11 && i !== dropdownLimit
+                  ? `</li><li><hr class="dropdown-separator">`
+                  : ''
+              }
+              </li>`;
+            theUI.dropdown.element.innerHTML += listItem;
+          }
+        }
 
-    let daysHTML = '',
-      dayToRetrieve = parseInt(this.args.startDay);
+        //generate grid
+        theUI.grid = document.createElement('div');
+        theUI.container.append(theUI.grid);
+        theUI.grid.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-grid`);
 
-    for (let i = 0; i < 7; i++) {
-      if (dayToRetrieve > 6) {
-        dayToRetrieve -= 7;
-      }
+        //days heading
+        theUI.days = document.createElement('div');
+        theUI.grid.append(theUI.days);
+        theUI.days.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-days`);
 
-      daysHTML += `<div
-						class="${UIPrefix(COMPONENT_CLASS)}-block
-						${UIPrefix(COMPONENT_CLASS)}-day"
-					>
-						${dayNamesShorter[dayToRetrieve]}
-					</div>`;
+        let daysHTML = '',
+          dayToRetrieve = parseInt(this.args.startDay);
 
-      dayToRetrieve++;
-    }
+        for (let i = 0; i < 7; i++) {
+          if (dayToRetrieve > 6) {
+            dayToRetrieve -= 7;
+          }
 
-    theUI.days.innerHTML = daysHTML;
+          daysHTML += `<div
+              class="${UIPrefix(COMPONENT_CLASS)}-block
+              ${UIPrefix(COMPONENT_CLASS)}-day"
+            >
+              ${dayNamesShorter[dayToRetrieve]}
+            </div>`;
 
-    //days
-    theUI.dates = document.createElement('div');
-    theUI.grid.append(theUI.dates);
-    theUI.dates.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-dates`);
+          dayToRetrieve++;
+        }
 
-    //previous month
-    const freeGridSpacePrev =
-        (this._calendar.startDate.getDay() - parseInt(this.args.startDay) + 7) % 7,
-      calendarPrevDayStart =
-        this._calendar.prevDay == 6 ? 0 : this._calendar.prevDay + 1;
+        theUI.days.innerHTML = daysHTML;
 
-    if (calendarPrevDayStart !== parseInt(this.args.startDay)) {
-      //if it doenst take its own row of shit
+        //days
+        theUI.dates = document.createElement('div');
+        theUI.grid.append(theUI.dates);
+        theUI.dates.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-dates`);
 
-      // i = 0; i <= freeGridSpacePrev; i++
-      // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
-      // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
-      // for(let i = 0; i < 7; i++){
-      for (let i = 0; i < freeGridSpacePrev; i++) {
-        let offset = this._calendar.prevDate.getDate() - i;
+        //previous month
+        const freeGridSpacePrev =
+            (this._calendar.startDate.getDay() - parseInt(this.args.startDay) + 7) % 7,
+          calendarPrevDayStart =
+            this._calendar.prevDay == 6 ? 0 : this._calendar.prevDay + 1;
 
-        let loopDatePrev = new Date(
-          this._calendar.prevDate.getFullYear(),
-          this._calendar.prevDate.getMonth(),
-          offset
-        );
+        if (calendarPrevDayStart !== parseInt(this.args.startDay)) {
+          //if it doenst take its own row of shit
 
-        let dateBlockPrev = this._blockHtml(
-          loopDatePrev,
-          `${UIPrefix(COMPONENT_CLASS)}-block-adjacent
-							${!this.validates(loopDatePrev) ? 'disabled' : ''}`
-        );
+          // i = 0; i <= freeGridSpacePrev; i++
+          // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
+          // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
+          // for(let i = 0; i < 7; i++){
+          for (let i = 0; i < freeGridSpacePrev; i++) {
+            let offset = this._calendar.prevDate.getDate() - i;
 
-        //prepend because we loopped this bitch in reverse
-        theUI.dates.innerHTML += dateBlockPrev;
-      }
-    }
+            let loopDatePrev = new Date(
+              this._calendar.prevDate.getFullYear(),
+              this._calendar.prevDate.getMonth(),
+              offset
+            );
 
-    //curr month
+            let dateBlockPrev = this._blockHtml(
+              loopDatePrev,
+              `${UIPrefix(COMPONENT_CLASS)}-block-adjacent
+                ${!this.validates(loopDatePrev) ? 'disabled' : ''}`
+            );
 
-    for (let i = 1; i <= this._calendar.lastDate.getDate(); i++) {
-      let dateBlockCurr = this._blockHtml(
-        new Date(this._calendar.year, this._calendar.month, i),
-        !this.validates(new Date(this._calendar.year, this._calendar.month, i))
-          ? 'disabled'
-          : ''
-      );
+            //prepend because we loopped this bitch in reverse
+            theUI.dates.innerHTML += dateBlockPrev;
+          }
+        }
 
-      theUI.dates.innerHTML += dateBlockCurr;
-    }
+        //curr month
 
-    //next month just fill the shit
-    const currNextFirstDay = new Date(
-        this._calendar.year,
-        this._calendar.month + 1,
-        1
-      ).getDay(),
-      freeGridSpaceNext = (7 - currNextFirstDay + parseInt(this.args.startDay)) % 7;
+        for (let i = 1; i <= this._calendar.lastDate.getDate(); i++) {
+          let dateBlockCurr = this._blockHtml(
+            new Date(this._calendar.year, this._calendar.month, i),
+            !this.validates(new Date(this._calendar.year, this._calendar.month, i))
+              ? 'disabled'
+              : ''
+          );
 
-    if (currNextFirstDay !== parseInt(this.args.startDay)) {
-      for (let i = 1; i <= freeGridSpaceNext; i++) {
-        let loopDateNext = new Date(this._calendar.year, this._calendar.month + 1, i);
+          theUI.dates.innerHTML += dateBlockCurr;
+        }
 
-        let dateBlockNext = this._blockHtml(
-          loopDateNext,
-          `${UIPrefix(COMPONENT_CLASS)}-block-adjacent
-						${!this.validates(loopDateNext) ? 'disabled' : ''}`
-        );
+        //next month just fill the shit
+        const currNextFirstDay = new Date(
+            this._calendar.year,
+            this._calendar.month + 1,
+            1
+          ).getDay(),
+          freeGridSpaceNext = (7 - currNextFirstDay + parseInt(this.args.startDay)) % 7;
 
-        theUI.dates.innerHTML += dateBlockNext;
-      }
-    }
+        if (currNextFirstDay !== parseInt(this.args.startDay)) {
+          for (let i = 1; i <= freeGridSpaceNext; i++) {
+            let loopDateNext = new Date(
+              this._calendar.year,
+              this._calendar.month + 1,
+              i
+            );
 
-    FwEvent.trigger(element, EVENT_AFTER_RENDER);
+            let dateBlockNext = this._blockHtml(
+              loopDateNext,
+              `${UIPrefix(COMPONENT_CLASS)}-block-adjacent
+              ${!this.validates(loopDateNext) ? 'disabled' : ''}`
+            );
+
+            theUI.dates.innerHTML += dateBlockNext;
+          }
+        }
+      },
+      element
+    );
   }
 
   init(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
-
-    FwEvent.trigger(element, EVENT_BEFORE_INIT);
-    FwEvent.trigger(element, EVENT_INIT);
-
     this.update();
-
-    FwEvent.trigger(element, EVENT_AFTER_INIT);
   }
 
   static initAll() {
-    const calendars = document.querySelectorAll(`.${COMPONENT_CLASS}`);
+    FwComponent.docCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, () => {
+      const calendars = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 
-    calendars.forEach((cal) => {
-      const calendar = new Calendar(cal);
-
-      calendar.init();
+      calendars.forEach((cal) => {
+        const calendar = new Calendar(cal);
+        calendar.init();
+      });
     });
   }
 
