@@ -148,11 +148,17 @@ class Switch extends FwComponent {
 
   static handleInit() {
     return () => {
-      FwComponent.docCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, () => {
-        UIPurge(false, `.${COMPONENT_CLASS}`, (elem) => {
-          new Switch(elem).init();
-        });
-      });
+      new Switch().runCycle(
+        EVENT_BEFORE_INIT,
+        EVENT_INIT,
+        EVENT_AFTER_INIT,
+        () => {
+          UIPurge(false, `.${COMPONENT_CLASS}`, (elem) => {
+            new Switch(elem).init();
+          });
+        },
+        document
+      );
     };
   }
 

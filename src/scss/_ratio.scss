@@ -50,13 +50,14 @@ $prefix: '.ratio';
     }
 
     @at-root #{$prefix} *#{&}-cover {
-      @include dump-styles(fit-image-img);
+      @include dump-styles(fit-image-cover-child);
     }
 
     @at-root #{$prefix} #{&}-contain {
       top: 50% !important;
       left: 50% !important;
       transform: translate(-50%, -50%) !important;
+      @include dump-styles(fit-image-contain-child);
     }
   }
 }

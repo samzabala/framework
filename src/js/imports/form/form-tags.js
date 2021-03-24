@@ -255,27 +255,21 @@ class Tags extends FwComponent {
 
     inputText = inputText || false;
 
-    super.runCycle(
-      EVENT_BEFORE_TOGGLE,
-      EVENT_TOGGLE,
-      EVENT_AFTER_TOGGLE,
-      () => {
-        this.theValue = theValue;
-        this.renderValue = uiValue;
+    super.runCycle(EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, () => {
+      this.theValue = theValue;
+      this.renderValue = uiValue;
 
-        if (this.args.filter && allowFilter) {
-          this.filterValue();
-        }
+      if (this.args.filter && allowFilter) {
+        this.filterValue();
+      }
 
-        this._renderUI();
+      this._renderUI();
 
-        if (inputText) {
-          this.UIInputValue = inputText;
-          this.focus();
-        }
-      },
-      element
-    );
+      if (inputText) {
+        this.UIInputValue = inputText;
+        this.focus();
+      }
+    });
   }
 
   _renderUI(elem) {
@@ -480,13 +474,19 @@ class Tags extends FwComponent {
   }
 
   static initAll() {
-    FwComponent.docCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, () => {
-      const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
-      tagsInputs.forEach((poot) => {
-        const tagsInput = new Tags(poot);
-        tagsInput.init();
-      });
-    });
+    new Tags().runCycle(
+      EVENT_BEFORE_INIT,
+      EVENT_INIT,
+      EVENT_AFTER_INIT,
+      () => {
+        const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
+        tagsInputs.forEach((poot) => {
+          const tagsInput = new Tags(poot);
+          tagsInput.init();
+        });
+      },
+      document
+    );
   }
 
   static handleChange() {

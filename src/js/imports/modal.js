@@ -286,50 +286,56 @@ class Modal extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_CREATE);
+    super.runCycle(
+      EVENT_BEFORE_CREATE,
+      EVENT_CREATE,
+      EVENT_AFTER_CREATE,
+      () => {
+        if (element || !window.location.hash) {
+          this.destroy();
+        }
 
-    if (element || !window.location.hash) {
-      this.destroy();
-    }
+        const id = this.UIElId || this.UIId;
 
-    FwEvent.trigger(element, EVENT_CREATE);
+        id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
 
-    const id = this.UIElId || this.UIId;
+        const theUI = document.createElement('div');
+        document.querySelector('body').appendChild(theUI);
+        theUI.className = `${UIPrefix(COMPONENT_CLASS)}  ${UIPrefix(
+          COMPONENT_CLASS
+        )}-mode-${this.mode} ${UIPrefix(COMPONENT_CLASS)}-component
+          ${
+            this.args.align
+              ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}`
+              : ''
+          }
+          ${this.args.classes}`;
+        theUI.setAttribute('id', this.UIId);
 
-    id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
+        theUI.innerHTML = this._markup;
 
-    const theUI = document.createElement('div');
-    document.querySelector('body').appendChild(theUI);
-    theUI.className = `${UIPrefix(COMPONENT_CLASS)}  ${UIPrefix(
-      COMPONENT_CLASS
-    )}-mode-${this.mode} ${UIPrefix(COMPONENT_CLASS)}-component
-			${this.args.align ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}` : ''}
-			${this.args.classes}`;
-    theUI.setAttribute('id', this.UIId);
+        FwDom.moveContents(element, this.UIContentBlock);
 
-    theUI.innerHTML = this._markup;
+        this.#current = {
+          element: element,
+          args: this.args,
+        };
 
-    FwDom.moveContents(element, this.UIContentBlock);
+        if (this.args.width) {
+          this.resize();
+        }
 
-    this.#current = {
-      element: element,
-      args: this.args,
-    };
+        this.update();
 
-    if (this.args.width) {
-      this.resize();
-    }
+        if (this.args.callback) {
+          this._runFn(this.args.callback);
+        }
 
-    this.update();
-
-    if (this.args.callback) {
-      this._runFn(this.args.callback);
-    }
-
-    theUI.classList.add(ACTIVATED_CLASS);
-    document.body.classList.add(UIBodyClass.noScroll);
-
-    FwEvent.trigger(element, EVENT_AFTER_CREATE);
+        theUI.classList.add(ACTIVATED_CLASS);
+        document.body.classList.add(UIBodyClass.noScroll);
+      },
+      element
+    );
   }
 
   destroy(elem) {
@@ -339,43 +345,45 @@ class Modal extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_DESTROY);
-    FwEvent.trigger(element, EVENT_DESTROY);
-    // removeHash = removeHash || false;
+    super.runCycle(
+      EVENT_BEFORE_DESTROY,
+      EVENT_DESTROY,
+      EVENT_AFTER_DESTROY,
+      () => {
+        let canRemoveHash = false;
 
-    let canRemoveHash = false;
+        if (
+          element.hasAttribute('id') &&
+          element.getAttribute('id') == window.location.hash.replace('#', '')
+        ) {
+          canRemoveHash = true;
+        }
 
-    if (
-      element.hasAttribute('id') &&
-      element.getAttribute('id') == window.location.hash.replace('#', '')
-    ) {
-      canRemoveHash = true;
-    }
+        if (this.UIRoot) {
+          FwDom.moveContents(this.UIContentBlock, element);
 
-    if (this.UIRoot) {
-      FwDom.moveContents(this.UIContentBlock, element);
+          this.UIRoot.classList.remove('active');
+          this.UIRoot.parentNode.removeChild(this.UIRoot);
+        }
 
-      this.UIRoot.classList.remove('active');
-      this.UIRoot.parentNode.removeChild(this.UIRoot);
-    }
+        let removeBodClass = true;
+        if (document.getElementById(this.UIId) && removeBodClass == true) {
+          removeBodClass = false;
+        }
 
-    let removeBodClass = true;
-    if (document.getElementById(this.UIId) && removeBodClass == true) {
-      removeBodClass = false;
-    }
+        if (removeBodClass) {
+          document.body.classList.remove(UIBodyClass.noScroll);
+        }
 
-    if (removeBodClass) {
-      document.body.classList.remove(UIBodyClass.noScroll);
-    }
+        canRemoveHash && UIChangeHash('');
 
-    canRemoveHash && UIChangeHash('');
-
-    FwEvent.trigger(element, EVENT_AFTER_DESTROY);
-
-    this.#current = {
-      element: false,
-      args: false,
-    };
+        this.#current = {
+          element: false,
+          args: false,
+        };
+      },
+      element
+    );
   }
 
   update(elem) {
@@ -389,30 +397,33 @@ class Modal extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_UPDATE);
-    FwEvent.trigger(element, EVENT_UPDATE);
+    super.runCycle(
+      EVENT_BEFORE_UPDATE,
+      EVENT_UPDATE,
+      EVENT_AFTER_UPDATE,
+      () => {
+        // buttons
+        // resize
+        const currentWidth = this.UIRoot.querySelector(
+          `.${UIPrefix(COMPONENT_CLASS)}-popup`
+        ).clientWidth;
 
-    // buttons
-    // resize
-    const currentWidth = this.UIRoot.querySelector(
-      `.${UIPrefix(COMPONENT_CLASS)}-popup`
-    ).clientWidth;
+        const resizeBtn = this.UIRoot.querySelectorAll(
+          `*[data-toggle-${this.modeToggle}-resize]`
+        );
 
-    const resizeBtn = this.UIRoot.querySelectorAll(
-      `*[data-toggle-${this.modeToggle}-resize]`
+        if (resizeBtn && currentWidth < parseInt(this.args.width)) {
+          resizeBtn.forEach((butt) => {
+            butt.classList.add('disabled');
+          });
+        } else {
+          resizeBtn.forEach((butt) => {
+            butt.classList.remove('disabled');
+          });
+        }
+      },
+      element
     );
-
-    if (resizeBtn && currentWidth < parseInt(this.args.width)) {
-      resizeBtn.forEach((butt) => {
-        butt.classList.add('disabled');
-      });
-    } else {
-      resizeBtn.forEach((butt) => {
-        butt.classList.remove('disabled');
-      });
-    }
-
-    FwEvent.trigger(element, EVENT_AFTER_UPDATE);
   }
 
   resize(width) {
@@ -424,24 +435,29 @@ class Modal extends FwComponent {
     width = width || args.width || null;
 
     if (this.UIRoot && parseInt(width) >= parseInt(args.width)) {
-      FwEvent.trigger(this.#current.element, EVENT_BEFORE_RESIZE);
-      FwEvent.trigger(this.#current.element, EVENT_RESIZE);
+      super.runCycle(
+        EVENT_BEFORE_RESIZE,
+        EVENT_RESIZE,
+        EVENT_AFTER_RESIZE,
+        () => {
+          //all
+          if (this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup`)) {
+            this.UIRoot.querySelector(
+              `.${UIPrefix(COMPONENT_CLASS)}-popup`
+            ).style.width = width;
+          }
 
-      //all
-      if (this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup`)) {
-        this.UIRoot.querySelector(
-          `.${UIPrefix(COMPONENT_CLASS)}-popup`
-        ).style.width = width;
-      }
-
-      //bboard
-      if (this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)) {
-        this.UIRoot.querySelector(
-          `.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`
-        ).style.width = width;
-      }
-
-      FwEvent.trigger(this.#current.element, EVENT_AFTER_RESIZE);
+          //bboard
+          if (
+            this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)
+          ) {
+            this.UIRoot.querySelector(
+              `.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`
+            ).style.width = width;
+          }
+        },
+        this.#current.element
+      );
     }
   }
 

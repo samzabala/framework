@@ -1,5 +1,6 @@
 /*** ALERT ***/
-[data-toggle-alert-close] {
+[data-toggle-alert-close],
+[data-toggle-alert-close-all] {
   @include dump-styles(data-toggle);
 }
 

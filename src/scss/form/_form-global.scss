@@ -97,7 +97,7 @@ $prefix: '.input';
     }
 
     &-control {
-      @include dump-styles(display-none-important);
+      @include dump-styles(hide-js-friendly);
       //fallback
       height: 0 !important;
       width: 0 !important;

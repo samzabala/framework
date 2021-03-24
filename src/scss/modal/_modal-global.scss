@@ -52,7 +52,10 @@
 }
 $prefix: '.modal';
 .modal {
-  display: none !important;
+
+  &,&-ui:not(.active){
+    @include dump-styles(hide-js-friendly);
+  }
 
   &-ui {
     & {

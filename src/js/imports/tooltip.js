@@ -38,13 +38,13 @@ const EVENT_AFTER_POSITION = `after_position${EVENT_KEY}`;
 
 const CURRENT_TOOLTIP_INSTANCE = {
   UI: null,
-  triggerer: null,
+  element: null,
   args: null,
 };
 
 class Tooltip extends FwComponent {
   constructor(triggerElement, args) {
-    triggerElement = triggerElement || Tooltip.current.triggerer || false;
+    triggerElement = triggerElement || false;
 
     super(triggerElement, {
       _customArgs: args || false,
@@ -63,7 +63,7 @@ class Tooltip extends FwComponent {
   static set current(obj) {
     CURRENT_TOOLTIP_INSTANCE.UI = obj.UI;
     CURRENT_TOOLTIP_INSTANCE.args = obj.args;
-    CURRENT_TOOLTIP_INSTANCE.triggerer = obj.triggerer;
+    CURRENT_TOOLTIP_INSTANCE.element = obj.element;
   }
 
   get UICurrent() {
@@ -193,64 +193,68 @@ class Tooltip extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_CREATE);
+    super.runCycle(
+      EVENT_BEFORE_CREATE,
+      EVENT_CREATE,
+      EVENT_AFTER_CREATE,
+      () => {
+        this.destroy();
 
-    this.destroy();
+        const tip = document.createElement('div');
+        document.body.appendChild(tip);
 
-    FwEvent.trigger(element, EVENT_CREATE);
+        tip.className = `${COMPONENT_CLASS} ${COMPONENT_CLASS}-${this.args.placement}
+          ${this.args.width ? COMPONENT_CUSTOM_WIDTH_CLASS : ''}
+          ${this.args.allowInteraction ? COMPONENT_ALLOW_INTERACTION_CLASS : ''}
+          ${this.args.size ? `${COMPONENT_CLASS}-${this.args.size}` : ''}
+          ${this.args.inverse ? 'theme-inverse' : ''}`;
 
-    const tip = document.createElement('div');
-    document.body.appendChild(tip);
+        if (this.args.width) {
+          tip.style.width = this.args.width;
+        }
 
-    tip.className = `${COMPONENT_CLASS} ${COMPONENT_CLASS}-${this.args.placement}
-			${this.args.width ? COMPONENT_CUSTOM_WIDTH_CLASS : ''}
-			${this.args.allowInteraction ? COMPONENT_ALLOW_INTERACTION_CLASS : ''}
-			${this.args.size ? `${COMPONENT_CLASS}-${this.args.size}` : ''}
-			${this.args.inverse ? 'theme-inverse' : ''}`;
+        Tooltip.current = {
+          UI: tip,
+          args: this.args,
+          element: element,
+        };
 
-    if (this.args.width) {
-      tip.style.width = this.args.width;
-    }
+        tip.innerHTML += this._markup();
 
-    tip.innerHTML += this._markup();
+        if (this.args.width) {
+          this.width = this.args.width;
+        }
+        tip.classList.add(ACTIVATED_CLASS);
 
-    Tooltip.current = {
-      UI: tip,
-      args: this.args,
-      triggerer: element,
-    };
-
-    if (this.args.width) {
-      this.width = this.args.width;
-    }
-
-    tip.classList.add(ACTIVATED_CLASS);
-
-    this.position();
-
-    FwEvent.trigger(element, EVENT_AFTER_CREATE);
+        this.position();
+      },
+      element
+    );
   }
 
   destroy() {
-    const element = Tooltip.current.UI;
+    const element = Tooltip.current.element;
+    const tip = Tooltip.current.UI;
 
-    FwEvent.trigger(element, EVENT_BEFORE_DESTROY);
-
-    if (!element) {
+    if (!element || !tip) {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_DESTROY);
+    super.runCycle(
+      EVENT_BEFORE_DESTROY,
+      EVENT_DESTROY,
+      EVENT_AFTER_DESTROY,
+      () => {
+        tip.parentNode.removeChild(tip);
 
-    element.parentNode.removeChild(element);
-
-    Tooltip.current = {
-      UI: false,
-      args: false,
-      triggerer: false,
-    };
-
-    FwEvent.trigger(element, EVENT_AFTER_DESTROY);
+        Tooltip.current = {
+          UI: false,
+          args: false,
+          element: false,
+        };
+      },
+      element
+    );
   }
 
   get UIOffset() {
@@ -313,22 +317,24 @@ class Tooltip extends FwComponent {
   position(posX, posY) {
     const element = super.UIEl();
 
-    FwEvent.trigger(element, EVENT_BEFORE_POSITION);
     if (!Tooltip.current.UI) {
       return;
     }
-
-    FwEvent.trigger(element, EVENT_POSITION);
-
     const toolTip = Tooltip.current.UI;
 
-    posX = posX || this.elementOrigin.x;
-    posY = posY || this.elementOrigin.y;
+    super.runCycle(
+      EVENT_BEFORE_POSITION,
+      EVENT_POSITION,
+      EVENT_AFTER_POSITION,
+      () => {
+        posX = posX || this.elementOrigin.x;
+        posY = posY || this.elementOrigin.y;
 
-    toolTip.style.left = posX + this.UIOffset.x + 'px';
-    toolTip.style.top = posY + this.UIOffset.y + 'px';
-
-    FwEvent.trigger(element, EVENT_AFTER_POSITION);
+        toolTip.style.left = posX + this.UIOffset.x + 'px';
+        toolTip.style.top = posY + this.UIOffset.y + 'px';
+      },
+      element
+    );
   }
 
   get elementOrigin() {
@@ -423,8 +429,8 @@ class Tooltip extends FwComponent {
 
   static handleResizeScroll() {
     return () => {
-      if (Tooltip.current.triggerer) {
-        tooltip = new Tooltip(Tooltip.current.triggerer);
+      if (Tooltip.current.element) {
+        const tooltip = new Tooltip(Tooltip.current.element);
 
         tooltip.position();
       }

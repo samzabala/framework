@@ -646,14 +646,20 @@ class Calendar extends FwComponent {
   }
 
   static initAll() {
-    FwComponent.docCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, () => {
-      const calendars = document.querySelectorAll(`.${COMPONENT_CLASS}`);
+    new Calendar().runCycle(
+      EVENT_BEFORE_INIT,
+      EVENT_INIT,
+      EVENT_AFTER_INIT,
+      () => {
+        const calendars = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 
-      calendars.forEach((cal) => {
-        const calendar = new Calendar(cal);
-        calendar.init();
-      });
-    });
+        calendars.forEach((cal) => {
+          const calendar = new Calendar(cal);
+          calendar.init();
+        });
+      },
+      document
+    );
   }
 
   static handleChange() {

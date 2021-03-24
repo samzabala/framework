@@ -116,50 +116,61 @@ class ModuleGrid extends FwComponent {
   renderGrid(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    FwEvent.trigger(elem, EVENT_BEFORE_RENDER_GRID);
-    FwEvent.trigger(elem, EVENT_RENDER_GRID);
-
-    this._loopProps(element, PROPERTIES_WRAPPER);
-
-    FwEvent.trigger(elem, EVENT_AFTER_RENDER_GRID);
+    super.runCycle(
+      EVENT_BEFORE_RENDER_BLOCK,
+      EVENT_RENDER_BLOCK,
+      EVENT_AFTER_RENDER_BLOCK,
+      () => {
+        this._loopProps(element, PROPERTIES_WRAPPER);
+      },
+      element
+    );
   }
 
   renderBlocks() {
     this.UIChildren.forEach((child) => {
-      FwEvent.trigger(child, EVENT_BEFORE_RENDER_BLOCK);
-      FwEvent.trigger(child, EVENT_RENDER_BLOCK);
-
-      this._loopProps(child, PROPERTIES_CHILDREN);
-
-      FwEvent.trigger(child, EVENT_AFTER_RENDER_BLOCK);
+      super.runCycle(
+        EVENT_BEFORE_RENDER_BLOCK,
+        EVENT_RENDER_BLOCK,
+        EVENT_AFTER_RENDER_BLOCK,
+        () => {
+          this._loopProps(child, PROPERTIES_CHILDREN);
+        },
+        child
+      );
     });
   }
 
   render(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
-
-    FwEvent.trigger(elem, EVENT_BEFORE_RENDER);
-    FwEvent.trigger(elem, EVENT_RENDER);
-
-    this.renderGrid(element);
-    this.renderBlocks();
-
-    FwEvent.trigger(elem, EVENT_AFTER_RENDER);
+    super.runCycle(
+      EVENT_BEFORE_RENDER,
+      EVENT_RENDER,
+      EVENT_AFTER_RENDER,
+      () => {
+        this.renderGrid(element);
+        this.renderBlocks();
+      },
+      element
+    );
   }
 
   static handleUniversal() {
     return () => {
-      FwEvent.trigger(document, EVENT_BEFORE_INIT);
-      FwEvent.trigger(document, EVENT_INIT);
+      new ModuleGrid().runCycle(
+        EVENT_BEFORE_INIT,
+        EVENT_INIT,
+        EVENT_AFTER_INIT,
+        () => {
+          const grids = document.querySelectorAll(`.${COMPONENT_CLASS}`);
 
-      const grids = document.querySelectorAll(`.${COMPONENT_CLASS}`);
-
-      grids.forEach((grid) => {
-        const moduleGrid = new ModuleGrid(grid);
-        moduleGrid.render();
-      });
-
-      FwEvent.trigger(document, EVENT_AFTER_INIT);
+          grids.forEach((grid) => {
+            const moduleGrid = new ModuleGrid(grid);
+            moduleGrid.render();
+          });
+        },
+        document
+      );
     };
   }
 

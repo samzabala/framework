@@ -965,24 +965,8 @@
       return DataHandler.get(element, this.DATA_KEY);
     };
 
-    FwComponent.docCycle = function docCycle(beforeEvt, duringEvt, AfterEvt, callback, component) {
-      if (!beforeEvt || !duringEvt || !AfterEvt) {
-        return;
-      }
-
-      if (FwEvent.trigger(document, beforeEvt)) {
-        if (FwEvent.trigger(document, duringEvt)) {
-          if (typeof callback === 'function') {
-            callback(component);
-          }
-
-          FwEvent.trigger(document, AfterEvt);
-        }
-      }
-    };
-
     _proto.runCycle = function runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
-      triggeredElem = triggeredElem ? this.UIEl(triggeredElem) : this.UIEl();
+      triggeredElem = triggeredElem || this.UIEl();
 
       if (!beforeEvt || !duringEvt || !AfterEvt) {
         return;
@@ -1010,8 +994,6 @@
     _proto._resetUIEl = function _resetUIEl(element) {
       if (element) {
         this.element = element;
-      } else {
-        throw new Error('Needs a valid element to reset component UI root element');
       }
     };
 
@@ -1444,9 +1426,9 @@
   var DATA_KEY$b = Settings.get('prefix') + "." + NAME$b;
   var EVENT_KEY$b = "." + DATA_KEY$b;
   var EVENT_CLICK$8 = "click" + EVENT_KEY$b;
-  var EVENT_BEFORE_TOGGLE$2 = "before_toggle" + EVENT_KEY$b;
-  var EVENT_TOGGLE$2 = "toggle" + EVENT_KEY$b;
-  var EVENT_AFTER_TOGGLE$2 = "after_toggle" + EVENT_KEY$b;
+  var EVENT_BEFORE_TOGGLE$1 = "before_toggle" + EVENT_KEY$b;
+  var EVENT_TOGGLE$1 = "toggle" + EVENT_KEY$b;
+  var EVENT_AFTER_TOGGLE$1 = "after_toggle" + EVENT_KEY$b;
 
   var Button = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Button, _FwComponent);
@@ -1464,7 +1446,7 @@
         return;
       }
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_TOGGLE$2, EVENT_TOGGLE$2, EVENT_AFTER_TOGGLE$2, function () {
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_TOGGLE$1, EVENT_TOGGLE$1, EVENT_AFTER_TOGGLE$1, function () {
         UIToggleGroup(element, NAME$b);
       }, element);
     };
@@ -1981,9 +1963,9 @@
   var EVENT_BEFORE_RENDER$2 = "before_render" + EVENT_KEY$9;
   var EVENT_RENDER$2 = "render" + EVENT_KEY$9;
   var EVENT_AFTER_RENDER$2 = "after_render" + EVENT_KEY$9;
-  var EVENT_BEFORE_UPDATE$1 = "before_update" + EVENT_KEY$9;
-  var EVENT_UPDATE$1 = "update" + EVENT_KEY$9;
-  var EVENT_AFTER_UPDATE$1 = "after_update" + EVENT_KEY$9;
+  var EVENT_BEFORE_UPDATE$2 = "before_update" + EVENT_KEY$9;
+  var EVENT_UPDATE$2 = "update" + EVENT_KEY$9;
+  var EVENT_AFTER_UPDATE$2 = "after_update" + EVENT_KEY$9;
 
   var Calendar = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Calendar, _FwComponent);
@@ -2059,7 +2041,7 @@
       var theValue = FwDate.toVal(newValue) || this.theValue;
       var uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {
         //set up calendar
         if (_this2.validates(theValue) || !theValue) {
           _this2.theValue = FwDate.toVal(theValue, false);
@@ -2315,13 +2297,13 @@
     };
 
     Calendar.initAll = function initAll() {
-      FwComponent.docCycle(EVENT_BEFORE_INIT$4, EVENT_INIT$4, EVENT_AFTER_INIT$4, function () {
+      new Calendar().runCycle(EVENT_BEFORE_INIT$4, EVENT_INIT$4, EVENT_AFTER_INIT$4, function () {
         var calendars = document.querySelectorAll("." + COMPONENT_CLASS$9);
         calendars.forEach(function (cal) {
           var calendar = new Calendar(cal);
           calendar.init();
         });
-      });
+      }, document);
     };
 
     Calendar.handleChange = function handleChange() {
@@ -2607,6 +2589,9 @@
   var EVENT_BEFORE_RENDER$1 = "before_render" + EVENT_KEY$8;
   var EVENT_RENDER$1 = "render" + EVENT_KEY$8;
   var EVENT_AFTER_RENDER$1 = "after_render" + EVENT_KEY$8;
+  var EVENT_BEFORE_UPDATE$1 = "before_update" + EVENT_KEY$8;
+  var EVENT_UPDATE$1 = "update" + EVENT_KEY$8;
+  var EVENT_AFTER_UPDATE$1 = "after_update" + EVENT_KEY$8;
   var INPUT_STRING = "__fw_input__";
 
   var Tags = /*#__PURE__*/function (_FwComponent) {
@@ -2716,7 +2701,7 @@
       allowFilter = allowFilter != false || allowFilter == true;
       inputText = inputText || false;
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_TOGGLE, EVENT_TOGGLE, EVENT_AFTER_TOGGLE, function () {
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
         _this2.theValue = theValue;
         _this2.renderValue = uiValue;
 
@@ -2731,7 +2716,7 @@
 
           _this2.focus();
         }
-      }, element);
+      });
     };
 
     _proto._renderUI = function _renderUI(elem) {
@@ -2879,13 +2864,13 @@
     };
 
     Tags.initAll = function initAll() {
-      FwComponent.docCycle(EVENT_BEFORE_INIT$3, EVENT_INIT$3, EVENT_AFTER_INIT$3, function () {
+      new Tags().runCycle(EVENT_BEFORE_INIT$3, EVENT_INIT$3, EVENT_AFTER_INIT$3, function () {
         var tagsInputs = document.querySelectorAll("." + COMPONENT_CLASS$8);
         tagsInputs.forEach(function (poot) {
           var tagsInput = new Tags(poot);
           tagsInput.init();
         });
-      });
+      }, document);
     };
 
     Tags.handleChange = function handleChange() {
@@ -3223,67 +3208,65 @@
       var _this = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent.trigger(element, EVENT_BEFORE_SVGCONVERSION);
       var imgID = element.getAttribute('id');
       var imgClass = element.getAttribute('class');
-      fetch(this.theSrc).then(function (response) {
-        return response.text();
-      }).then(function (markup) {
-        FwEvent.trigger(element, EVENT_SVGCONVERSION);
-        var parser = new DOMParser();
-        var dom = parser.parseFromString(markup, 'text/html');
-        var svg = dom.querySelector('svg');
 
-        if (svg) {
-          if (element.hasAttribute('id')) {
-            svg.setAttribute('id', imgID);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_SVGCONVERSION, EVENT_SVGCONVERSION, EVENT_AFTER_SVGCONVERSION, function () {
+        fetch(_this.theSrc).then(function (response) {
+          return response.text();
+        }).then(function (markup) {
+          var parser = new DOMParser();
+          var dom = parser.parseFromString(markup, 'text/html');
+          var svg = dom.querySelector('svg');
+
+          if (svg) {
+            if (element.hasAttribute('id')) {
+              svg.setAttribute('id', imgID);
+            }
+
+            if (element.hasAttribute('class')) {
+              svg.setAttribute('class', imgClass + " " + SVG_REPLACED_CLASS);
+            }
+
+            svg.removeAttribute('xmlns:a');
+            _this.UIOriginal = element;
+
+            _FwComponent.prototype._resetUIEl.call(_this, svg);
+
+            element.replaceWith(svg);
           }
 
-          if (element.hasAttribute('class')) {
-            svg.setAttribute('class', imgClass + " " + SVG_REPLACED_CLASS);
-          }
-
-          svg.removeAttribute('xmlns:a');
-          _this.UIOriginal = element;
-
-          _FwComponent.prototype._resetUIEl.call(_this, svg);
-
-          element.replaceWith(svg);
-        }
-
-        _this.readyLoaded();
-
-        FwEvent.trigger(element, EVENT_AFTER_SVGCONVERSION);
-      });
+          _this.readyLoaded();
+        });
+      }, element);
     };
 
     _proto.load = function load(elem) {
+      var _this2 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (!element) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_BEFORE_LOAD);
-
       if (element.classList.contains("" + COMPONENT_CLASS$7)) {
-        FwEvent.trigger(element, EVENT_LOAD);
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_LOAD, EVENT_LOAD, EVENT_AFTER_LOAD, function () {
+          if (element.matches('img') || element.closest('picture')) {
+            _this2.theSrc && element.setAttribute('src', _this2.theSrc);
+            _this2.theSrcSet && element.setAttribute('srcset', _this2.theSrcSet);
 
-        if (element.matches('img') || element.closest('picture')) {
-          this.theSrc && element.setAttribute('src', this.theSrc);
-          this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
-
-          if ((this.theSrc || this.theSrcSet) && FwString.GetFileExtension(this.theSrc) == 'svg' && element.classList.contains(COMPONENT_CLASS_SVG)) {
-            this.loadSVG();
+            if ((_this2.theSrc || _this2.theSrcSet) && FwString.GetFileExtension(_this2.theSrc) == 'svg' && element.classList.contains(COMPONENT_CLASS_SVG)) {
+              _this2.loadSVG();
+            } else {
+              _this2.readyLoaded();
+            }
           } else {
-            this.readyLoaded();
-          }
-        } else {
-          element.style.backgroundImage = "url(" + this.theSrc + ")";
-          this.readyLoaded();
-        }
+            element.style.backgroundImage = "url(" + _this2.theSrc + ")";
 
-        FwEvent.trigger(element, EVENT_AFTER_LOAD);
+            _this2.readyLoaded();
+          }
+        }, element);
       }
     };
 
@@ -3308,16 +3291,15 @@
     };
 
     Lazy.loadAll = function loadAll(images) {
-      FwEvent.trigger(document, EVENT_BEFORE_INIT$2);
-      FwEvent.trigger(document, EVENT_INIT$2);
-      Lazy.setStatus('loading');
-      images = images || document.querySelectorAll(COMPONENT_SELECTOR);
-      images.forEach(function (img) {
-        var lazy = new Lazy(img);
-        lazy.load();
-      });
-      Lazy.setStatus('loaded');
-      FwEvent.trigger(document, EVENT_AFTER_INIT$2);
+      new Lazy().runCycle(EVENT_BEFORE_INIT$2, EVENT_INIT$2, EVENT_AFTER_INIT$2, function () {
+        Lazy.setStatus('loading');
+        images = images || document.querySelectorAll(COMPONENT_SELECTOR);
+        images.forEach(function (img) {
+          var lazy = new Lazy(img);
+          lazy.load();
+        });
+        Lazy.setStatus('loaded');
+      }, document);
     };
 
     Lazy.initListeners = function initListeners() {
@@ -3363,9 +3345,9 @@
   var DATA_KEY$6 = Settings.get('prefix') + "." + NAME$6;
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var EVENT_CLICK$4 = "click" + EVENT_KEY$6;
-  var EVENT_BEFORE_TOGGLE$1 = "before_toggle" + EVENT_KEY$6;
-  var EVENT_TOGGLE$1 = "toggle" + EVENT_KEY$6;
-  var EVENT_AFTER_TOGGLE$1 = "after_toggle" + EVENT_KEY$6;
+  var EVENT_BEFORE_TOGGLE = "before_toggle" + EVENT_KEY$6;
+  var EVENT_TOGGLE = "toggle" + EVENT_KEY$6;
+  var EVENT_AFTER_TOGGLE = "after_toggle" + EVENT_KEY$6;
 
   var ListGroup = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(ListGroup, _FwComponent);
@@ -3380,6 +3362,8 @@
     var _proto = ListGroup.prototype;
 
     _proto.toggle = function toggle(triggd) {
+      var _this = this;
+
       var triggeredChild = triggd ? triggd : this.UITriggeredChild;
       this.UITriggeredChild = triggeredChild;
 
@@ -3387,10 +3371,9 @@
         return;
       }
 
-      FwEvent.trigger(this.UITriggeredChild, EVENT_BEFORE_TOGGLE$1);
-      FwEvent.trigger(this.UITriggeredChild, EVENT_TOGGLE$1);
-      UIToggleGroup(this.UITriggeredChild, "" + COMPONENT_TOGGLEGROUP_PREFIX, null, "li, ." + CHILD_CLASS);
-      FwEvent.trigger(this.UITriggeredChild, EVENT_AFTER_TOGGLE$1);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_TOGGLE, EVENT_TOGGLE, EVENT_AFTER_TOGGLE, function () {
+        UIToggleGroup(_this.UITriggeredChild, "" + COMPONENT_TOGGLEGROUP_PREFIX, null, "li, ." + CHILD_CLASS);
+      }, this.UITriggeredChild);
     };
 
     ListGroup.handleToggle = function handleToggle() {
@@ -3539,115 +3522,120 @@
     };
 
     _proto.create = function create(elem) {
+      var _this2 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (!element) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_BEFORE_CREATE$1);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE$1, EVENT_CREATE$1, EVENT_AFTER_CREATE$1, function () {
+        if (element || !window.location.hash) {
+          _this2.destroy();
+        }
 
-      if (element || !window.location.hash) {
-        this.destroy();
-      }
+        var id = _this2.UIElId || _this2.UIId;
+        id !== "" + _this2.UIId && _this2.args.changeHash && UIChangeHash(id);
+        var theUI = document.createElement('div');
+        document.querySelector('body').appendChild(theUI);
+        theUI.className = UIPrefix(COMPONENT_CLASS$5) + "  " + UIPrefix(COMPONENT_CLASS$5) + "-mode-" + _this2.mode + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + _this2.args.classes;
+        theUI.setAttribute('id', _this2.UIId);
+        theUI.innerHTML = _this2._markup;
+        FwDom.moveContents(element, _this2.UIContentBlock);
+        _classPrivateFieldLooseBase(_this2, _current)[_current] = {
+          element: element,
+          args: _this2.args
+        };
 
-      FwEvent.trigger(element, EVENT_CREATE$1);
-      var id = this.UIElId || this.UIId;
-      id !== "" + this.UIId && this.args.changeHash && UIChangeHash(id);
-      var theUI = document.createElement('div');
-      document.querySelector('body').appendChild(theUI);
-      theUI.className = UIPrefix(COMPONENT_CLASS$5) + "  " + UIPrefix(COMPONENT_CLASS$5) + "-mode-" + this.mode + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n\t\t\t" + (this.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + this.args.align : '') + "\n\t\t\t" + this.args.classes;
-      theUI.setAttribute('id', this.UIId);
-      theUI.innerHTML = this._markup;
-      FwDom.moveContents(element, this.UIContentBlock);
-      _classPrivateFieldLooseBase(this, _current)[_current] = {
-        element: element,
-        args: this.args
-      };
+        if (_this2.args.width) {
+          _this2.resize();
+        }
 
-      if (this.args.width) {
-        this.resize();
-      }
+        _this2.update();
 
-      this.update();
+        if (_this2.args.callback) {
+          _this2._runFn(_this2.args.callback);
+        }
 
-      if (this.args.callback) {
-        this._runFn(this.args.callback);
-      }
-
-      theUI.classList.add(ACTIVATED_CLASS$3);
-      document.body.classList.add(UIBodyClass.noScroll);
-      FwEvent.trigger(element, EVENT_AFTER_CREATE$1);
+        theUI.classList.add(ACTIVATED_CLASS$3);
+        document.body.classList.add(UIBodyClass.noScroll);
+      }, element);
     };
 
     _proto.destroy = function destroy(elem) {
+      var _this3 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current].element;
 
       if (!element) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_BEFORE_DESTROY$1);
-      FwEvent.trigger(element, EVENT_DESTROY$1); // removeHash = removeHash || false;
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_DESTROY$1, EVENT_DESTROY$1, EVENT_AFTER_DESTROY$1, function () {
+        var canRemoveHash = false;
 
-      var canRemoveHash = false;
+        if (element.hasAttribute('id') && element.getAttribute('id') == window.location.hash.replace('#', '')) {
+          canRemoveHash = true;
+        }
 
-      if (element.hasAttribute('id') && element.getAttribute('id') == window.location.hash.replace('#', '')) {
-        canRemoveHash = true;
-      }
+        if (_this3.UIRoot) {
+          FwDom.moveContents(_this3.UIContentBlock, element);
 
-      if (this.UIRoot) {
-        FwDom.moveContents(this.UIContentBlock, element);
-        this.UIRoot.classList.remove('active');
-        this.UIRoot.parentNode.removeChild(this.UIRoot);
-      }
+          _this3.UIRoot.classList.remove('active');
 
-      var removeBodClass = true;
+          _this3.UIRoot.parentNode.removeChild(_this3.UIRoot);
+        }
 
-      if (document.getElementById(this.UIId) && removeBodClass == true) {
-        removeBodClass = false;
-      }
+        var removeBodClass = true;
 
-      if (removeBodClass) {
-        document.body.classList.remove(UIBodyClass.noScroll);
-      }
+        if (document.getElementById(_this3.UIId) && removeBodClass == true) {
+          removeBodClass = false;
+        }
 
-      canRemoveHash && UIChangeHash('');
-      FwEvent.trigger(element, EVENT_AFTER_DESTROY$1);
-      _classPrivateFieldLooseBase(this, _current)[_current] = {
-        element: false,
-        args: false
-      };
+        if (removeBodClass) {
+          document.body.classList.remove(UIBodyClass.noScroll);
+        }
+
+        canRemoveHash && UIChangeHash('');
+        _classPrivateFieldLooseBase(_this3, _current)[_current] = {
+          element: false,
+          args: false
+        };
+      }, element);
     };
 
     _proto.update = function update(elem) {
+      var _this4 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
 
       if (!element) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_BEFORE_UPDATE);
-      FwEvent.trigger(element, EVENT_UPDATE); // buttons
-      // resize
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, function () {
+        // buttons
+        // resize
+        var currentWidth = _this4.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup").clientWidth;
 
-      var currentWidth = this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup").clientWidth;
-      var resizeBtn = this.UIRoot.querySelectorAll("*[data-toggle-" + this.modeToggle + "-resize]");
+        var resizeBtn = _this4.UIRoot.querySelectorAll("*[data-toggle-" + _this4.modeToggle + "-resize]");
 
-      if (resizeBtn && currentWidth < parseInt(this.args.width)) {
-        resizeBtn.forEach(function (butt) {
-          butt.classList.add('disabled');
-        });
-      } else {
-        resizeBtn.forEach(function (butt) {
-          butt.classList.remove('disabled');
-        });
-      }
-
-      FwEvent.trigger(element, EVENT_AFTER_UPDATE);
+        if (resizeBtn && currentWidth < parseInt(_this4.args.width)) {
+          resizeBtn.forEach(function (butt) {
+            butt.classList.add('disabled');
+          });
+        } else {
+          resizeBtn.forEach(function (butt) {
+            butt.classList.remove('disabled');
+          });
+        }
+      }, element);
     };
 
     _proto.resize = function resize(width) {
+      var _this5 = this;
+
       if (!_classPrivateFieldLooseBase(this, _current)[_current]) {
         return;
       }
@@ -3656,19 +3644,17 @@
       width = width || args.width || null;
 
       if (this.UIRoot && parseInt(width) >= parseInt(args.width)) {
-        FwEvent.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_BEFORE_RESIZE);
-        FwEvent.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_RESIZE); //all
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESIZE, EVENT_RESIZE, EVENT_AFTER_RESIZE, function () {
+          //all
+          if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup")) {
+            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup").style.width = width;
+          } //bboard
 
-        if (this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup")) {
-          this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-popup").style.width = width;
-        } //bboard
 
-
-        if (this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper")) {
-          this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper").style.width = width;
-        }
-
-        FwEvent.trigger(_classPrivateFieldLooseBase(this, _current)[_current].element, EVENT_AFTER_RESIZE);
+          if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper")) {
+            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper").style.width = width;
+          }
+        }, _classPrivateFieldLooseBase(this, _current)[_current].element);
       }
     };
 
@@ -3923,9 +3909,6 @@
   var EVENT_BEFORE_RENDER = "before_render" + EVENT_KEY$4;
   var EVENT_RENDER = "render" + EVENT_KEY$4;
   var EVENT_AFTER_RENDER = "after_render" + EVENT_KEY$4;
-  var EVENT_BEFORE_RENDER_GRID = "before_render_grid" + EVENT_KEY$4;
-  var EVENT_RENDER_GRID = "render_grid" + EVENT_KEY$4;
-  var EVENT_AFTER_RENDER_GRID = "after_render_grid" + EVENT_KEY$4;
   var EVENT_BEFORE_RENDER_BLOCK = "before_render_block" + EVENT_KEY$4;
   var EVENT_RENDER_BLOCK = "render_block" + EVENT_KEY$4;
   var EVENT_AFTER_RENDER_BLOCK = "after_render_block" + EVENT_KEY$4;
@@ -3974,47 +3957,46 @@
     };
 
     _proto.renderGrid = function renderGrid(elem) {
+      var _this = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent.trigger(elem, EVENT_BEFORE_RENDER_GRID);
-      FwEvent.trigger(elem, EVENT_RENDER_GRID);
 
-      this._loopProps(element, PROPERTIES_WRAPPER);
-
-      FwEvent.trigger(elem, EVENT_AFTER_RENDER_GRID);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER_BLOCK, EVENT_RENDER_BLOCK, EVENT_AFTER_RENDER_BLOCK, function () {
+        _this._loopProps(element, PROPERTIES_WRAPPER);
+      }, element);
     };
 
     _proto.renderBlocks = function renderBlocks() {
-      var _this = this;
+      var _this2 = this;
 
       this.UIChildren.forEach(function (child) {
-        FwEvent.trigger(child, EVENT_BEFORE_RENDER_BLOCK);
-        FwEvent.trigger(child, EVENT_RENDER_BLOCK);
-
-        _this._loopProps(child, PROPERTIES_CHILDREN);
-
-        FwEvent.trigger(child, EVENT_AFTER_RENDER_BLOCK);
+        _FwComponent.prototype.runCycle.call(_this2, EVENT_BEFORE_RENDER_BLOCK, EVENT_RENDER_BLOCK, EVENT_AFTER_RENDER_BLOCK, function () {
+          _this2._loopProps(child, PROPERTIES_CHILDREN);
+        }, child);
       });
     };
 
     _proto.render = function render(elem) {
+      var _this3 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent.trigger(elem, EVENT_BEFORE_RENDER);
-      FwEvent.trigger(elem, EVENT_RENDER);
-      this.renderGrid(element);
-      this.renderBlocks();
-      FwEvent.trigger(elem, EVENT_AFTER_RENDER);
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER, EVENT_RENDER, EVENT_AFTER_RENDER, function () {
+        _this3.renderGrid(element);
+
+        _this3.renderBlocks();
+      }, element);
     };
 
     ModuleGrid.handleUniversal = function handleUniversal() {
       return function () {
-        FwEvent.trigger(document, EVENT_BEFORE_INIT$1);
-        FwEvent.trigger(document, EVENT_INIT$1);
-        var grids = document.querySelectorAll("." + COMPONENT_CLASS$4);
-        grids.forEach(function (grid) {
-          var moduleGrid = new ModuleGrid(grid);
-          moduleGrid.render();
-        });
-        FwEvent.trigger(document, EVENT_AFTER_INIT$1);
+        new ModuleGrid().runCycle(EVENT_BEFORE_INIT$1, EVENT_INIT$1, EVENT_AFTER_INIT$1, function () {
+          var grids = document.querySelectorAll("." + COMPONENT_CLASS$4);
+          grids.forEach(function (grid) {
+            var moduleGrid = new ModuleGrid(grid);
+            moduleGrid.render();
+          });
+        }, document);
       };
     };
 
@@ -4158,11 +4140,11 @@
 
     Switch.handleInit = function handleInit() {
       return function () {
-        FwComponent.docCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, function () {
+        new Switch().runCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, function () {
           UIPurge(false, "." + COMPONENT_CLASS$3, function (elem) {
             new Switch(elem).init();
           });
-        });
+        }, document);
       };
     };
 
@@ -4243,20 +4225,17 @@
         return false;
       }
 
-      FwEvent.trigger(element, EVENT_BEFORE_ACTIVATE$1);
-
       if (!theTab.classList.contains("" + ACTIVATED_CLASS$2)) {
-        FwEvent.trigger(element, EVENT_ACTIVATE$1);
-        var triggererSiblings = FwDom.getSiblings(theTab);
-        triggererSiblings.filter(function (sibling) {
-          return sibling.matches("." + COMPONENT_CHILDREN_CLASS) || sibling.matches("" + COMPONENT_CHILDREN_TAG);
-        }).forEach(function (sibling) {
-          sibling.classList.remove("" + ACTIVATED_CLASS$2);
-        });
-        theTab.classList.add("" + ACTIVATED_CLASS$2);
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_ACTIVATE$1, EVENT_ACTIVATE$1, EVENT_AFTER_ACTIVATE$1, function () {
+          var triggererSiblings = FwDom.getSiblings(theTab);
+          triggererSiblings.filter(function (sibling) {
+            return sibling.matches("." + COMPONENT_CHILDREN_CLASS) || sibling.matches("" + COMPONENT_CHILDREN_TAG);
+          }).forEach(function (sibling) {
+            sibling.classList.remove("" + ACTIVATED_CLASS$2);
+          });
+          theTab.classList.add("" + ACTIVATED_CLASS$2);
+        }, element);
       }
-
-      FwEvent.trigger(element, EVENT_AFTER_ACTIVATE$1);
     };
 
     Tabs.handleClick = function handleClick() {
@@ -4314,7 +4293,7 @@
   var EVENT_AFTER_POSITION = "after_position" + EVENT_KEY$1;
   var CURRENT_TOOLTIP_INSTANCE = {
     UI: null,
-    triggerer: null,
+    element: null,
     args: null
   };
 
@@ -4322,7 +4301,7 @@
     _inheritsLoose(Tooltip, _FwComponent);
 
     function Tooltip(triggerElement, args) {
-      triggerElement = triggerElement || Tooltip.current.triggerer || false;
+      triggerElement = triggerElement || false;
       return _FwComponent.call(this, triggerElement, {
         _customArgs: args || false
       }) || this;
@@ -4360,73 +4339,77 @@
     };
 
     _proto.create = function create(elem) {
+      var _this = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (!element) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_BEFORE_CREATE);
-      this.destroy();
-      FwEvent.trigger(element, EVENT_CREATE);
-      var tip = document.createElement('div');
-      document.body.appendChild(tip);
-      tip.className = COMPONENT_CLASS$1 + " " + COMPONENT_CLASS$1 + "-" + this.args.placement + "\n\t\t\t" + (this.args.width ? COMPONENT_CUSTOM_WIDTH_CLASS : '') + "\n\t\t\t" + (this.args.allowInteraction ? COMPONENT_ALLOW_INTERACTION_CLASS : '') + "\n\t\t\t" + (this.args.size ? COMPONENT_CLASS$1 + "-" + this.args.size : '') + "\n\t\t\t" + (this.args.inverse ? 'theme-inverse' : '');
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE, EVENT_CREATE, EVENT_AFTER_CREATE, function () {
+        _this.destroy();
 
-      if (this.args.width) {
-        tip.style.width = this.args.width;
-      }
+        var tip = document.createElement('div');
+        document.body.appendChild(tip);
+        tip.className = COMPONENT_CLASS$1 + " " + COMPONENT_CLASS$1 + "-" + _this.args.placement + "\n          " + (_this.args.width ? COMPONENT_CUSTOM_WIDTH_CLASS : '') + "\n          " + (_this.args.allowInteraction ? COMPONENT_ALLOW_INTERACTION_CLASS : '') + "\n          " + (_this.args.size ? COMPONENT_CLASS$1 + "-" + _this.args.size : '') + "\n          " + (_this.args.inverse ? 'theme-inverse' : '');
 
-      tip.innerHTML += this._markup();
-      Tooltip.current = {
-        UI: tip,
-        args: this.args,
-        triggerer: element
-      };
+        if (_this.args.width) {
+          tip.style.width = _this.args.width;
+        }
 
-      if (this.args.width) {
-        this.width = this.args.width;
-      }
+        Tooltip.current = {
+          UI: tip,
+          args: _this.args,
+          element: element
+        };
+        tip.innerHTML += _this._markup();
 
-      tip.classList.add(ACTIVATED_CLASS$1);
-      this.position();
-      FwEvent.trigger(element, EVENT_AFTER_CREATE);
+        if (_this.args.width) {
+          _this.width = _this.args.width;
+        }
+
+        tip.classList.add(ACTIVATED_CLASS$1);
+
+        _this.position();
+      }, element);
     };
 
     _proto.destroy = function destroy() {
-      var element = Tooltip.current.UI;
-      FwEvent.trigger(element, EVENT_BEFORE_DESTROY);
+      var element = Tooltip.current.element;
+      var tip = Tooltip.current.UI;
 
-      if (!element) {
+      if (!element || !tip) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_DESTROY);
-      element.parentNode.removeChild(element);
-      Tooltip.current = {
-        UI: false,
-        args: false,
-        triggerer: false
-      };
-      FwEvent.trigger(element, EVENT_AFTER_DESTROY);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_DESTROY, EVENT_DESTROY, EVENT_AFTER_DESTROY, function () {
+        tip.parentNode.removeChild(tip);
+        Tooltip.current = {
+          UI: false,
+          args: false,
+          element: false
+        };
+      }, element);
     };
 
     _proto.position = function position(posX, posY) {
-      var element = _FwComponent.prototype.UIEl.call(this);
+      var _this2 = this;
 
-      FwEvent.trigger(element, EVENT_BEFORE_POSITION);
+      var element = _FwComponent.prototype.UIEl.call(this);
 
       if (!Tooltip.current.UI) {
         return;
       }
 
-      FwEvent.trigger(element, EVENT_POSITION);
       var toolTip = Tooltip.current.UI;
-      posX = posX || this.elementOrigin.x;
-      posY = posY || this.elementOrigin.y;
-      toolTip.style.left = posX + this.UIOffset.x + 'px';
-      toolTip.style.top = posY + this.UIOffset.y + 'px';
-      FwEvent.trigger(element, EVENT_AFTER_POSITION);
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_POSITION, EVENT_POSITION, EVENT_AFTER_POSITION, function () {
+        posX = posX || _this2.elementOrigin.x;
+        posY = posY || _this2.elementOrigin.y;
+        toolTip.style.left = posX + _this2.UIOffset.x + 'px';
+        toolTip.style.top = posY + _this2.UIOffset.y + 'px';
+      }, element);
     };
 
     Tooltip.handleToggleClickOn = function handleToggleClickOn() {
@@ -4434,9 +4417,8 @@
         e.preventDefault();
 
         if (!FwComponent.isDisabled(e.target)) {
-          var _tooltip = new Tooltip(e.target);
-
-          _tooltip.create();
+          var tooltip = new Tooltip(e.target);
+          tooltip.create();
         }
       };
     };
@@ -4448,9 +4430,8 @@
         } else if (!FwComponent.isDynamic(e.target)) {
           if (!e.target.closest("[data-toggle-" + TOGGLE_MODE_CLICK + "]") && !e.target.closest("[data-toggle-" + TOGGLE_MODE_HOVER + "]") // && !e.target.closest(`.${COMPONENT_CLASS}.${COMPONENT_ALLOW_INTERACTION_CLASS}`)
           ) {
-              var _tooltip2 = new Tooltip();
-
-              _tooltip2.destroy();
+              var tooltip = new Tooltip();
+              tooltip.destroy();
             }
         }
       };
@@ -4461,9 +4442,8 @@
         if (FwComponent.isDisabled(e.target)) {
           e.preventDefault();
         } else {
-          var _tooltip3 = new Tooltip(e.target);
-
-          _tooltip3.create();
+          var tooltip = new Tooltip(e.target);
+          tooltip.create();
         }
       };
     };
@@ -4477,8 +4457,8 @@
 
     Tooltip.handleResizeScroll = function handleResizeScroll() {
       return function () {
-        if (Tooltip.current.triggerer) {
-          tooltip = new Tooltip(Tooltip.current.triggerer);
+        if (Tooltip.current.element) {
+          var tooltip = new Tooltip(Tooltip.current.element);
           tooltip.position();
         }
       };
@@ -4674,7 +4654,7 @@
       set: function set(obj) {
         CURRENT_TOOLTIP_INSTANCE.UI = obj.UI;
         CURRENT_TOOLTIP_INSTANCE.args = obj.args;
-        CURRENT_TOOLTIP_INSTANCE.triggerer = obj.triggerer;
+        CURRENT_TOOLTIP_INSTANCE.element = obj.element;
       }
     }, {
       key: "configDefaults",
@@ -4738,36 +4718,37 @@
     };
 
     _proto.activate = function activate(elem) {
+      var _this = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent.trigger(element, EVENT_BEFORE_ACTIVATE);
-      FwEvent.trigger(element, EVENT_ACTIVATE);
 
-      this._killDyText();
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_ACTIVATE, EVENT_ACTIVATE, EVENT_AFTER_ACTIVATE, function () {
+        _this._killDyText();
 
-      element.classList.add(ACTIVATED_CLASS);
-      element.innerHTML += "<div class=\"" + COMPONENT_TEXT_CLASS + "\">\n\t\t\t\t\t<span>" + this.UIControl.files.length + " files selected.<br> Click or drag and drop to reselect</span>\n\t\t\t\t</div>";
-      FwEvent.trigger(element, EVENT_AFTER_ACTIVATE);
+        element.classList.add(ACTIVATED_CLASS);
+        element.innerHTML += "<div class=\"" + COMPONENT_TEXT_CLASS + "\">\n              <span>" + _this.UIControl.files.length + " files selected.<br> Click or drag and drop to reselect</span>\n            </div>";
+      }, element);
     };
 
     _proto.deactivate = function deactivate(elem) {
+      var _this2 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      FwEvent.trigger(element, EVENT_BEFORE_DEACTIVATE);
-      FwEvent.trigger(element, EVENT_DEACTIVATE);
 
-      this._killDyText();
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_DEACTIVATE, EVENT_DEACTIVATE, EVENT_AFTER_DEACTIVATE, function () {
+        _this2._killDyText();
 
-      element.classList.remove(ACTIVATED_CLASS);
-      FwEvent.trigger(element, EVENT_AFTER_DEACTIVATE);
+        element.classList.remove(ACTIVATED_CLASS);
+      }, element);
     };
 
     _proto.toggle = function toggle(elem) {
-      elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      this.UIDyText && this.UIDyText.parentNode.removeChild(this.UIDyText);
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
       if (this.UIControl.value && this.UIControl.files.length) {
-        this.activate();
+        this.activate(element);
       } else {
-        this.deactivate();
+        this.deactivate(element);
       }
     };
 

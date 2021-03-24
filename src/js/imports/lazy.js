@@ -73,37 +73,40 @@ class Lazy extends FwComponent {
   loadSVG(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    FwEvent.trigger(element, EVENT_BEFORE_SVGCONVERSION);
-
     const imgID = element.getAttribute('id');
     const imgClass = element.getAttribute('class');
 
-    fetch(this.theSrc)
-      .then((response) => response.text())
-      .then((markup) => {
-        FwEvent.trigger(element, EVENT_SVGCONVERSION);
-        const parser = new DOMParser();
-        const dom = parser.parseFromString(markup, 'text/html');
+    super.runCycle(
+      EVENT_BEFORE_SVGCONVERSION,
+      EVENT_SVGCONVERSION,
+      EVENT_AFTER_SVGCONVERSION,
+      () => {
+        fetch(this.theSrc)
+          .then((response) => response.text())
+          .then((markup) => {
+            const parser = new DOMParser();
+            const dom = parser.parseFromString(markup, 'text/html');
 
-        const svg = dom.querySelector('svg');
+            const svg = dom.querySelector('svg');
 
-        if (svg) {
-          if (element.hasAttribute('id')) {
-            svg.setAttribute('id', imgID);
-          }
-          if (element.hasAttribute('class')) {
-            svg.setAttribute('class', `${imgClass} ${SVG_REPLACED_CLASS}`);
-          }
+            if (svg) {
+              if (element.hasAttribute('id')) {
+                svg.setAttribute('id', imgID);
+              }
+              if (element.hasAttribute('class')) {
+                svg.setAttribute('class', `${imgClass} ${SVG_REPLACED_CLASS}`);
+              }
 
-          svg.removeAttribute('xmlns:a');
-          this.UIOriginal = element;
-          super._resetUIEl(svg);
-          element.replaceWith(svg);
-        }
-        this.readyLoaded();
-
-        FwEvent.trigger(element, EVENT_AFTER_SVGCONVERSION);
-      });
+              svg.removeAttribute('xmlns:a');
+              this.UIOriginal = element;
+              super._resetUIEl(svg);
+              element.replaceWith(svg);
+            }
+            this.readyLoaded();
+          });
+      },
+      element
+    );
   }
 
   load(elem) {
@@ -113,29 +116,32 @@ class Lazy extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_LOAD);
-
     if (element.classList.contains(`${COMPONENT_CLASS}`)) {
-      FwEvent.trigger(element, EVENT_LOAD);
-      if (element.matches('img') || element.closest('picture')) {
-        this.theSrc && element.setAttribute('src', this.theSrc);
-        this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
+      super.runCycle(
+        EVENT_BEFORE_LOAD,
+        EVENT_LOAD,
+        EVENT_AFTER_LOAD,
+        () => {
+          if (element.matches('img') || element.closest('picture')) {
+            this.theSrc && element.setAttribute('src', this.theSrc);
+            this.theSrcSet && element.setAttribute('srcset', this.theSrcSet);
 
-        if (
-          (this.theSrc || this.theSrcSet) &&
-          FwString.GetFileExtension(this.theSrc) == 'svg' &&
-          element.classList.contains(COMPONENT_CLASS_SVG)
-        ) {
-          this.loadSVG();
-        } else {
-          this.readyLoaded();
-        }
-      } else {
-        element.style.backgroundImage = `url(${this.theSrc})`;
-        this.readyLoaded();
-      }
-
-      FwEvent.trigger(element, EVENT_AFTER_LOAD);
+            if (
+              (this.theSrc || this.theSrcSet) &&
+              FwString.GetFileExtension(this.theSrc) == 'svg' &&
+              element.classList.contains(COMPONENT_CLASS_SVG)
+            ) {
+              this.loadSVG();
+            } else {
+              this.readyLoaded();
+            }
+          } else {
+            element.style.backgroundImage = `url(${this.theSrc})`;
+            this.readyLoaded();
+          }
+        },
+        element
+      );
     }
   }
 
@@ -160,21 +166,23 @@ class Lazy extends FwComponent {
   }
 
   static loadAll(images) {
-    FwEvent.trigger(document, EVENT_BEFORE_INIT);
+    new Lazy().runCycle(
+      EVENT_BEFORE_INIT,
+      EVENT_INIT,
+      EVENT_AFTER_INIT,
+      () => {
+        Lazy.setStatus('loading');
+        images = images || document.querySelectorAll(COMPONENT_SELECTOR);
 
-    FwEvent.trigger(document, EVENT_INIT);
+        images.forEach((img) => {
+          const lazy = new Lazy(img);
+          lazy.load();
+        });
 
-    Lazy.setStatus('loading');
-    images = images || document.querySelectorAll(COMPONENT_SELECTOR);
-
-    images.forEach((img) => {
-      const lazy = new Lazy(img);
-      lazy.load();
-    });
-
-    Lazy.setStatus('loaded');
-
-    FwEvent.trigger(document, EVENT_AFTER_INIT);
+        Lazy.setStatus('loaded');
+      },
+      document
+    );
   }
 
   static initListeners() {

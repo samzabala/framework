@@ -44,23 +44,8 @@ class FwComponent {
     return DataHandler.get(element, this.DATA_KEY);
   }
 
-  static docCycle(beforeEvt, duringEvt, AfterEvt, callback, component) {
-    if (!beforeEvt || !duringEvt || !AfterEvt) {
-      return;
-    }
-
-    if (FwEvent.trigger(document, beforeEvt)) {
-      if (FwEvent.trigger(document, duringEvt)) {
-        if (typeof callback === 'function') {
-          callback(component);
-        }
-        FwEvent.trigger(document, AfterEvt);
-      }
-    }
-  }
-
   runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
-    triggeredElem = triggeredElem ? this.UIEl(triggeredElem) : this.UIEl();
+    triggeredElem = triggeredElem || this.UIEl();
     if (!beforeEvt || !duringEvt || !AfterEvt) {
       return;
     }
@@ -85,8 +70,6 @@ class FwComponent {
   _resetUIEl(element) {
     if (element) {
       this.element = element;
-    } else {
-      throw new Error('Needs a valid element to reset component UI root element');
     }
   }
 
