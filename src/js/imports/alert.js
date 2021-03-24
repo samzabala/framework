@@ -31,12 +31,15 @@ class Alert extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_CLOSE);
-
-    FwEvent.trigger(element, EVENT_CLOSE);
-    element.parentNode.removeChild(element);
-
-    FwEvent.trigger(element, EVENT_AFTER_CLOSE);
+    super.runCycle(
+      EVENT_BEFORE_CLOSE,
+      EVENT_CLOSE,
+      EVENT_AFTER_CLOSE,
+      () => {
+        element.parentNode.removeChild(element);
+      },
+      element
+    );
   }
 
   static closeAll() {

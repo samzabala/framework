@@ -1,6 +1,7 @@
-import DataHandler from '../util/datahandler.js';
-import { DisableClasses } from '../util/validation.js';
-import { UIDynamicClass } from '../util/ui.js';
+import DataHandler from './../util/datahandler.js';
+import FwEvent from './../data-helper/event.js';
+import { DisableClasses } from './../util/validation.js';
+import { UIDynamicClass } from './../util/ui.js';
 
 /*
 NAME
@@ -43,6 +44,22 @@ class FwComponent {
     return DataHandler.get(element, this.DATA_KEY);
   }
 
+  runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
+    triggeredElem = triggeredElem || this.UIEl();
+    if (!beforeEvt || !duringEvt || !AfterEvt) {
+      return;
+    }
+
+    if (FwEvent.trigger(triggeredElem, beforeEvt)) {
+      if (FwEvent.trigger(triggeredElem, duringEvt)) {
+        if (typeof callback === 'function') {
+          callback(this);
+        }
+        FwEvent.trigger(triggeredElem, AfterEvt);
+      }
+    }
+  }
+
   UIEl(elem) {
     if (elem) {
       this._resetUIEl(elem);
@@ -53,8 +70,6 @@ class FwComponent {
   _resetUIEl(element) {
     if (element) {
       this.element = element;
-    } else {
-      throw new Error('Needs a valid element to reset component UI root element');
     }
   }
 

@@ -1,4 +1,4 @@
-import { UIBodyClass } from '../util/ui.js';
+import { UIBodyClass } from './../util/ui.js';
 
 class FwQueue {
   constructor() {

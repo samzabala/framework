@@ -8,8 +8,7 @@ import FwArray from './../data-helper/array.js';
 import FwDom from './../data-helper/dom.js';
 
 import FwComponent from './../classes/component.js';
-import { UIPrefix } from '../util/ui.js';
-import Form from '../form.js';
+import { UIPrefix } from './../util/ui.js';
 
 const NAME = 'formTags';
 const ARG_ATTRIBUTE_NAME = 'tags';
@@ -248,8 +247,6 @@ class Tags extends FwComponent {
   }
 
   update(newValue, allowFilter, valueToRender, inputText) {
-    FwEvent.trigger(super.UIEl(), EVENT_BEFORE_UPDATE);
-
     let theValue = newValue || this.theValue || '';
 
     let uiValue = valueToRender || theValue || this.renderValue || '';
@@ -258,23 +255,21 @@ class Tags extends FwComponent {
 
     inputText = inputText || false;
 
-    FwEvent.trigger(super.UIEl(), EVENT_UPDATE);
+    super.runCycle(EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, () => {
+      this.theValue = theValue;
+      this.renderValue = uiValue;
 
-    this.theValue = theValue;
-    this.renderValue = uiValue;
+      if (this.args.filter && allowFilter) {
+        this.filterValue();
+      }
 
-    if (this.args.filter && allowFilter) {
-      this.filterValue();
-    }
+      this._renderUI();
 
-    this._renderUI();
-
-    if (inputText) {
-      this.UIInputValue = inputText;
-      this.focus();
-    }
-
-    FwEvent.trigger(super.UIEl(), EVENT_AFTER_UPDATE);
+      if (inputText) {
+        this.UIInputValue = inputText;
+        this.focus();
+      }
+    });
   }
 
   _renderUI(elem) {
@@ -284,157 +279,169 @@ class Tags extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_RENDER);
-
     const theUI = {};
 
-    FwEvent.trigger(element, EVENT_RENDER);
+    super.runCycle(
+      EVENT_BEFORE_RENDER,
+      EVENT_RENDER,
+      EVENT_AFTER_RENDER,
+      () => {
+        theUI.container = this.UIRoot;
+        if (!theUI.container) {
+          theUI.container = document.createElement('div');
+          element.parentNode.insertBefore(theUI.container, element);
+          theUI.container.appendChild(element);
+          theUI.container.classList.add('input');
+          theUI.container.setAttribute(
+            'class',
+            `${Settings.get('uiClass')}
+          ${Settings.get('uiJsClass')}
+          ${element
+            .getAttribute('class')
+            .toString()
+            .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
+          );
 
-    theUI.container = this.UIRoot;
-    if (!theUI.container) {
-      theUI.container = document.createElement('div');
-      element.parentNode.insertBefore(theUI.container, element);
-      theUI.container.appendChild(element);
-      theUI.container.classList.add('input');
-      theUI.container.setAttribute(
-        'class',
-        `${Settings.get('uiClass')}
-				${Settings.get('uiJsClass')}
-				${element
-          .getAttribute('class')
-          .toString()
-          .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
-      );
+          theUI.container.classList.add(
+            this.args.multipleLines
+              ? `${UIPrefix(COMPONENT_CLASS)}-multiple`
+              : `${UIPrefix(COMPONENT_CLASS)}-single`
+          );
+        }
 
-      theUI.container.classList.add(
-        this.args.multipleLines
-          ? `${UIPrefix(COMPONENT_CLASS)}-multiple`
-          : `${UIPrefix(COMPONENT_CLASS)}-single`
-      );
-    }
+        if (this.args.width) {
+          theUI.container.style = this.args.width;
+        }
+        //idk it never exists on initial so we dont have to do weird div wraping catches here
 
-    if (this.args.width) {
-      theUI.container.style = this.args.width;
-    }
-    //idk it never exists on initial so we dont have to do weird div wraping catches here
-
-    theUI.wrapper = theUI.container.querySelector(
-      `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
-    );
-
-    if (!theUI.wrapper) {
-      theUI.wrapper = document.createElement('div');
-      theUI.container.appendChild(theUI.wrapper);
-      theUI.wrapper.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-wrapper`);
-      theUI.wrapper = theUI.container.querySelector(
-        `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
-      );
-    }
-
-    theUI.input = this.UIInput;
-
-    if (!theUI.input) {
-      theUI.input = document.createElement('span');
-      theUI.wrapper.appendChild(theUI.input);
-      theUI.input.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
-      theUI.input.contentEditable = true;
-      theUI.input = theUI.wrapper.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input`);
-
-      if (element.hasAttribute('placeholder')) {
-        theUI.input.setAttribute(
-          'data-placeholder',
-          element.getAttribute('placeholder')
+        theUI.wrapper = theUI.container.querySelector(
+          `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
         );
-      }
 
-      //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
-      if (element.hasAttribute('data-toggle')) {
-        theUI.input.setAttribute('data-toggle', element.getAttribute('data-toggle'));
-      }
+        if (!theUI.wrapper) {
+          theUI.wrapper = document.createElement('div');
+          theUI.container.appendChild(theUI.wrapper);
+          theUI.wrapper.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-wrapper`);
+          theUI.wrapper = theUI.container.querySelector(
+            `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
+          );
+        }
 
-      if (FwComponent.isDisabled(element)) {
-        theUI.input.classList.add('disabled');
-      }
+        theUI.input = this.UIInput;
 
-      //bitch
-      if (this.args.onKeyUp) {
-        theUI.input.addEventListener('keyup', (event) => {
-          const keyUpScript = eval(this.args.onKeyUp);
-          if (keyUpScript) {
-            return keyUpScript;
+        if (!theUI.input) {
+          theUI.input = document.createElement('span');
+          theUI.wrapper.appendChild(theUI.input);
+          theUI.input.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
+          theUI.input.contentEditable = true;
+          theUI.input = theUI.wrapper.querySelector(
+            `.${UIPrefix(COMPONENT_CLASS)}-input`
+          );
+
+          if (element.hasAttribute('placeholder')) {
+            theUI.input.setAttribute(
+              'data-placeholder',
+              element.getAttribute('placeholder')
+            );
+          }
+
+          //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
+          if (element.hasAttribute('data-toggle')) {
+            theUI.input.setAttribute(
+              'data-toggle',
+              element.getAttribute('data-toggle')
+            );
+          }
+
+          if (FwComponent.isDisabled(element)) {
+            theUI.input.classList.add('disabled');
+          }
+
+          //bitch
+          if (this.args.onKeyUp) {
+            theUI.input.addEventListener('keyup', (event) => {
+              const keyUpScript = eval(this.args.onKeyUp);
+              if (keyUpScript) {
+                return keyUpScript;
+              }
+            });
+          }
+        }
+
+        //updoot tags
+        const oldTags = theUI.wrapper.querySelectorAll(
+          `.${UIPrefix(COMPONENT_CLASS)}-tag`
+        );
+
+        oldTags.forEach((tag) => {
+          tag.parentNode.removeChild(tag);
+        });
+
+        let valArr = Tags.toArr(this.renderValue, true);
+
+        theUI.input.setAttribute('data-ui-i', this.UIInputIdx);
+
+        //validate tags
+        // valArr = valArr.reduce((acc, tag) => {
+        // 	if (!acc.includes(tag)) {
+        // 		acc.push(tag);
+        // 	}
+        // 	return acc;
+        // }, []);
+
+        valArr.forEach((tag, i) => {
+          //get index of input
+          if (tag !== Tags.__is) {
+            const tagHtml = document.createElement('span');
+
+            if (i < this.UIInputIdx) {
+              theUI.input.insertAdjacentElement('beforebegin', tagHtml);
+            } else {
+              theUI.wrapper.appendChild(tagHtml);
+            }
+
+            tagHtml.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-tag`);
+
+            tagHtml.innerHTML = `<button
+              data-ui-i="${i}"
+              class="${UIPrefix(COMPONENT_CLASS)}-tag-text ${UIPrefix(
+              COMPONENT_CLASS
+            )}-tag-button"
+              type="button"
+            >
+              ${tag}
+            </button>
+            <button data-ui-i="${i}" class="${UIPrefix(
+              COMPONENT_CLASS
+            )}-tag-close ${UIPrefix(COMPONENT_CLASS)}-tag-button" type="button">
+              <i class="symbol symbol-close"></i>
+            </button>`;
           }
         });
-      }
-    }
 
-    //updoot tags
-    const oldTags = theUI.wrapper.querySelectorAll(`.${UIPrefix(COMPONENT_CLASS)}-tag`);
+        //attribues
+        for (let i = 0; i < element.attributes.length; i++) {
+          let attr = element.attributes[i];
 
-    oldTags.forEach((tag) => {
-      tag.parentNode.removeChild(tag);
-    });
-
-    let valArr = Tags.toArr(this.renderValue, true);
-
-    theUI.input.setAttribute('data-ui-i', this.UIInputIdx);
-
-    //validate tags
-    // valArr = valArr.reduce((acc, tag) => {
-    // 	if (!acc.includes(tag)) {
-    // 		acc.push(tag);
-    // 	}
-    // 	return acc;
-    // }, []);
-
-    valArr.forEach((tag, i) => {
-      //get index of input
-      if (tag !== Tags.__is) {
-        const tagHtml = document.createElement('span');
-
-        if (i < this.UIInputIdx) {
-          theUI.input.insertAdjacentElement('beforebegin', tagHtml);
-        } else {
-          theUI.wrapper.appendChild(tagHtml);
+          if (attr.specified) {
+            if (
+              attr.name.includes('data') &&
+              !attr.name.includes('data-tags') &&
+              !attr.name.includes('data-toggle') &&
+              !attr.name.includes('data-value-ui')
+            ) {
+              theUI.container.setAttribute(attr.name, attr.value);
+            }
+          }
         }
 
-        tagHtml.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-tag`);
+        element.setAttribute('data-value-ui', this.renderValue);
 
-        tagHtml.innerHTML = `<button
-						data-ui-i="${i}"
-						class="${UIPrefix(COMPONENT_CLASS)}-tag-text ${UIPrefix(COMPONENT_CLASS)}-tag-button"
-						type="button"
-					>
-						${tag}
-					</button>
-					<button data-ui-i="${i}" class="${UIPrefix(COMPONENT_CLASS)}-tag-close ${UIPrefix(
-          COMPONENT_CLASS
-        )}-tag-button" type="button">
-						<i class="symbol symbol-close"></i>
-					</button>`;
-      }
-    });
-
-    //attribues
-    for (let i = 0; i < element.attributes.length; i++) {
-      let attr = element.attributes[i];
-
-      if (attr.specified) {
-        if (
-          attr.name.includes('data') &&
-          !attr.name.includes('data-tags') &&
-          !attr.name.includes('data-toggle') &&
-          !attr.name.includes('data-value-ui')
-        ) {
-          theUI.container.setAttribute(attr.name, attr.value);
-        }
-      }
-    }
-
-    element.setAttribute('data-value-ui', this.renderValue);
-
-    //keep that shoit bisibol
-    this._scrollToUIInput();
-    FwEvent.trigger(element, EVENT_AFTER_RENDER);
+        //keep that shoit bisibol
+        this._scrollToUIInput();
+      },
+      element
+    );
   }
 
   focus(disableNative) {
@@ -467,19 +474,19 @@ class Tags extends FwComponent {
   }
 
   static initAll() {
-    FwEvent.trigger(document, EVENT_BEFORE_INIT);
-
-    FwEvent.trigger(document, EVENT_INIT);
-
-    const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
-
-    tagsInputs.forEach((poot) => {
-      const tagsInput = new Tags(poot);
-
-      tagsInput.init();
-    });
-
-    FwEvent.trigger(document, EVENT_AFTER_INIT);
+    new Tags().runCycle(
+      EVENT_BEFORE_INIT,
+      EVENT_INIT,
+      EVENT_AFTER_INIT,
+      () => {
+        const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
+        tagsInputs.forEach((poot) => {
+          const tagsInput = new Tags(poot);
+          tagsInput.init();
+        });
+      },
+      document
+    );
   }
 
   static handleChange() {

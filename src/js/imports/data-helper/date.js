@@ -5,7 +5,7 @@ import {
   dayNamesShort,
   monthNames,
   monthNamesShort,
-} from '../util/validation';
+} from './../util/validation';
 
 class FwDate extends FwDataHelper {
   static toParsed(d) {

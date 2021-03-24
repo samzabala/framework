@@ -52,38 +52,43 @@ class Zone extends FwComponent {
   activate(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    FwEvent.trigger(element, EVENT_BEFORE_ACTIVATE);
-    FwEvent.trigger(element, EVENT_ACTIVATE);
-
-    this._killDyText();
-
-    element.classList.add(ACTIVATED_CLASS);
-    element.innerHTML += `<div class="${COMPONENT_TEXT_CLASS}">
-					<span>${this.UIControl.files.length} files selected.<br> Click or drag and drop to reselect</span>
-				</div>`;
-
-    FwEvent.trigger(element, EVENT_AFTER_ACTIVATE);
+    super.runCycle(
+      EVENT_BEFORE_ACTIVATE,
+      EVENT_ACTIVATE,
+      EVENT_AFTER_ACTIVATE,
+      () => {
+        this._killDyText();
+        element.classList.add(ACTIVATED_CLASS);
+        element.innerHTML += `<div class="${COMPONENT_TEXT_CLASS}">
+              <span>${this.UIControl.files.length} files selected.<br> Click or drag and drop to reselect</span>
+            </div>`;
+      },
+      element
+    );
   }
 
   deactivate(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
-    FwEvent.trigger(element, EVENT_BEFORE_DEACTIVATE);
-    FwEvent.trigger(element, EVENT_DEACTIVATE);
 
-    this._killDyText();
-    element.classList.remove(ACTIVATED_CLASS);
-    FwEvent.trigger(element, EVENT_AFTER_DEACTIVATE);
+    super.runCycle(
+      EVENT_BEFORE_DEACTIVATE,
+      EVENT_DEACTIVATE,
+      EVENT_AFTER_DEACTIVATE,
+      () => {
+        this._killDyText();
+        element.classList.remove(ACTIVATED_CLASS);
+      },
+      element
+    );
   }
 
   toggle(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    this.UIDyText && this.UIDyText.parentNode.removeChild(this.UIDyText);
-
     if (this.UIControl.value && this.UIControl.files.length) {
-      this.activate();
+      this.activate(element);
     } else {
-      this.deactivate();
+      this.deactivate(element);
     }
   }
 

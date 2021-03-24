@@ -153,23 +153,23 @@ class Accordion extends FwComponent {
     triggerer = triggerer || this.triggerer;
 
     if (this._isValidWithinQuery) {
-      FwEvent.trigger(element, EVENT_BEFORE_CLOSE);
-      //is not within an accordion group that needs one of them open
       if (!this.UIGroot || this._isWithinAllowNoActive) {
-        triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
-        this._probablyToggle.forEach((toggle) => {
-          toggle.classList.remove(ACTIVATED_CLASS);
-        });
-
-        FwEvent.trigger(element, EVENT_CLOSE);
-
-        element.classList.remove(ACTIVATED_CLASS);
-
-        if (this.args.changeHash && this._id) {
-          UIChangeHash('');
-        }
-
-        FwEvent.trigger(element, EVENT_AFTER_CLOSE);
+        super.runCycle(
+          EVENT_BEFORE_CLOSE,
+          EVENT_CLOSE,
+          EVENT_AFTER_CLOSE,
+          () => {
+            triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
+            this._probablyToggle.forEach((toggle) => {
+              toggle.classList.remove(ACTIVATED_CLASS);
+            });
+            element.classList.remove(ACTIVATED_CLASS);
+            if (this.args.changeHash && this._id) {
+              UIChangeHash('');
+            }
+          },
+          element
+        );
       }
     }
   }
@@ -183,25 +183,24 @@ class Accordion extends FwComponent {
 
     triggerer = triggerer || this.triggerer;
 
-    this._siblicide();
-
     if (this._isValidWithinQuery) {
-      FwEvent.trigger(element, EVENT_BEFORE_OPEN);
-
-      triggerer && triggerer.classList.add(ACTIVATED_CLASS);
-      this._probablyToggle.forEach((toggle) => {
-        toggle.classList.add(ACTIVATED_CLASS);
-      });
-
-      FwEvent.trigger(element, EVENT_OPEN);
-
-      element.classList.add(ACTIVATED_CLASS);
-
-      if (this.args.changeHash && this._id) {
-        UIChangeHash(this._id);
-      }
-
-      FwEvent.trigger(element, EVENT_AFTER_OPEN);
+      super.runCycle(
+        EVENT_BEFORE_OPEN,
+        EVENT_OPEN,
+        EVENT_AFTER_OPEN,
+        () => {
+          this._siblicide();
+          triggerer && triggerer.classList.add(ACTIVATED_CLASS);
+          this._probablyToggle.forEach((toggle) => {
+            toggle.classList.add(ACTIVATED_CLASS);
+          });
+          element.classList.add(ACTIVATED_CLASS);
+          if (this.args.changeHash && this._id) {
+            UIChangeHash(this._id);
+          }
+        },
+        element
+      );
     }
   }
 

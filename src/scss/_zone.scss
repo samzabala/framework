@@ -51,7 +51,7 @@ $prefix: '.zone';
   }
 
   &#{&}-has-content &-text {
-    display: none !important;
+    @include dump-styles(hide-js-friendly);
   }
 
   // &::-webkit-file-upload-button {

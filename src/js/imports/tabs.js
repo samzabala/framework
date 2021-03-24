@@ -53,26 +53,29 @@ class Tabs extends FwComponent {
       return false;
     }
 
-    FwEvent.trigger(element, EVENT_BEFORE_ACTIVATE);
-
     if (!theTab.classList.contains(`${ACTIVATED_CLASS}`)) {
-      FwEvent.trigger(element, EVENT_ACTIVATE);
-      const triggererSiblings = FwDom.getSiblings(theTab);
-      triggererSiblings
-        .filter((sibling) => {
-          return (
-            sibling.matches(`.${COMPONENT_CHILDREN_CLASS}`) ||
-            sibling.matches(`${COMPONENT_CHILDREN_TAG}`)
-          );
-        })
-        .forEach((sibling) => {
-          sibling.classList.remove(`${ACTIVATED_CLASS}`);
-        });
+      super.runCycle(
+        EVENT_BEFORE_ACTIVATE,
+        EVENT_ACTIVATE,
+        EVENT_AFTER_ACTIVATE,
+        () => {
+          const triggererSiblings = FwDom.getSiblings(theTab);
+          triggererSiblings
+            .filter((sibling) => {
+              return (
+                sibling.matches(`.${COMPONENT_CHILDREN_CLASS}`) ||
+                sibling.matches(`${COMPONENT_CHILDREN_TAG}`)
+              );
+            })
+            .forEach((sibling) => {
+              sibling.classList.remove(`${ACTIVATED_CLASS}`);
+            });
 
-      theTab.classList.add(`${ACTIVATED_CLASS}`);
+          theTab.classList.add(`${ACTIVATED_CLASS}`);
+        },
+        element
+      );
     }
-
-    FwEvent.trigger(element, EVENT_AFTER_ACTIVATE);
   }
 
   static handleClick() {

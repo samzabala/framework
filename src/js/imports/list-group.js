@@ -53,15 +53,20 @@ class ListGroup extends FwComponent {
       return;
     }
 
-    FwEvent.trigger(this.UITriggeredChild, EVENT_BEFORE_TOGGLE);
-    FwEvent.trigger(this.UITriggeredChild, EVENT_TOGGLE);
-    UIToggleGroup(
-      this.UITriggeredChild,
-      `${COMPONENT_TOGGLEGROUP_PREFIX}`,
-      null,
-      `li, .${CHILD_CLASS}`
+    super.runCycle(
+      EVENT_BEFORE_TOGGLE,
+      EVENT_TOGGLE,
+      EVENT_AFTER_TOGGLE,
+      () => {
+        UIToggleGroup(
+          this.UITriggeredChild,
+          `${COMPONENT_TOGGLEGROUP_PREFIX}`,
+          null,
+          `li, .${CHILD_CLASS}`
+        );
+      },
+      this.UITriggeredChild
     );
-    FwEvent.trigger(this.UITriggeredChild, EVENT_AFTER_TOGGLE);
   }
 
   static handleToggle() {

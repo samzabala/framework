@@ -10,6 +10,6 @@ $prefix: '.switch';
   &#{&}-to-on &-off,
   &:not(#{&}-to-off):not(#{&}-to-on) &-on,
   &:not(#{&}-to-off):not(#{&}-to-on) &-off {
-    display: none !important;
+    @include dump-styles(hide-js-friendly);
   }
 }

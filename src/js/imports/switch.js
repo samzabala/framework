@@ -73,37 +73,47 @@ class Switch extends FwComponent {
       element.classList.add(COMPONENT_CLASS_STATUS_OFF);
     }
   }
-
   turnOff(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
-    FwEvent.trigger(element, EVENT_BEFORE_OFF);
 
-    FwEvent.trigger(element, EVENT_OFF);
-    element.classList.remove(COMPONENT_CLASS_STATUS_ON);
-    element.classList.add(COMPONENT_CLASS_STATUS_OFF);
-
-    FwEvent.trigger(element, EVENT_AFTER_OFF);
+    if (this.isOn()) {
+      super.runCycle(
+        EVENT_BEFORE_OFF,
+        EVENT_OFF,
+        EVENT_AFTER_OFF,
+        () => {
+          element.classList.remove(COMPONENT_CLASS_STATUS_ON);
+          element.classList.add(COMPONENT_CLASS_STATUS_OFF);
+        },
+        element
+      );
+    }
   }
 
   turnOn(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    FwEvent.trigger(element, EVENT_BEFORE_ON);
-    FwEvent.trigger(element, EVENT_ON);
-
-    element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
-    element.classList.add(COMPONENT_CLASS_STATUS_ON);
-
-    FwEvent.trigger(element, EVENT_AFTER_ON);
+    if (this.isOff()) {
+      super.runCycle(
+        EVENT_BEFORE_ON,
+        EVENT_ON,
+        EVENT_AFTER_ON,
+        () => {
+          element.classList.remove(COMPONENT_CLASS_STATUS_OFF);
+          element.classList.add(COMPONENT_CLASS_STATUS_ON);
+        },
+        element
+      );
+    }
   }
 
   toggle(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
     if (this.isOff()) {
-      this.turnOn();
+      this.turnOn(element);
     } else {
-      this.turnOff();
+      this.turnOff(element);
     }
   }
 
@@ -138,14 +148,17 @@ class Switch extends FwComponent {
 
   static handleInit() {
     return () => {
-      FwEvent.trigger(document, EVENT_BEFORE_INIT);
-      FwEvent.trigger(document, EVENT_INIT);
-
-      UIPurge(false, `.${COMPONENT_CLASS}`, (elem) => {
-        new Switch(elem).init();
-      });
-
-      FwEvent.trigger(document, EVENT_AFTER_INIT);
+      new Switch().runCycle(
+        EVENT_BEFORE_INIT,
+        EVENT_INIT,
+        EVENT_AFTER_INIT,
+        () => {
+          UIPurge(false, `.${COMPONENT_CLASS}`, (elem) => {
+            new Switch(elem).init();
+          });
+        },
+        document
+      );
     };
   }
 

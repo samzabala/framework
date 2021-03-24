@@ -1225,7 +1225,7 @@ $prefix: '.text';
 }
 
 .sr-only {
-  @include dump-styles(display-none-important);
+  @include dump-styles(hide-js-friendly);
 }
 
 .cf {

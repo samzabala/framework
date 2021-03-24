@@ -9,7 +9,7 @@ $prefix: '.accordion';
     // max-height:0;
     // overflow:hidden;
     min-width: 100%;
-    display: none !important;
+    @include dump-styles(hide-js-friendly);
     // transition: $transition-duration-long max-height $transition-timing;
     // overflow:hidden;
 
@@ -22,26 +22,9 @@ $prefix: '.accordion';
   }
 
   &#{&}-mobile {
-    @include br(#{$mobile-br-max}-max) {
-      &:not(.open) {
-        // max-height:0;
-        // overflow:hidden;
-        min-width: 100%;
-        display: none !important;
-        // transition: $transition-duration-long max-height $transition-timing;
-        // overflow:hidden;
-      }
-      // &.open {
-      //     // max-height:none;
-      //     // overflow:visible;
-      //     display:block!important;
-      // }
+    &:not(.open) {
+      @include dump-styles(hide-js-friendly-mobile);
+      min-width: 100%;
     }
-
-    // @include br(#{$mobile-br-max-polar}) {
-    //     // max-height:none;
-    //     // overflow:visible;
-    //     display:block!important;
-    // }
   }
 }

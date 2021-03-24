@@ -412,6 +412,54 @@
     }
   }
 
+  &-hide-js-friendly {
+    pointer-events: none!important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+
+    &-mobile {
+      @include br(#{$mobile-br-max}-max) {
+        pointer-events: none!important;
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        border: 0 !important;
+        padding: 0 !important;
+        clip: rect(0 0 0 0) !important;
+        overflow: hidden !important;
+      }
+    }
+
+    &-nonmobile {
+      @include br(#{$mobile-br-max-polar}) {
+        pointer-events: none!important;
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        border: 0 !important;
+        padding: 0 !important;
+        clip: rect(0 0 0 0) !important;
+        overflow: hidden !important;
+      }
+    }
+  }
+
+  &-visibility-hidden {
+    visibility: hidden;
+
+    &-important {
+      visibility: hidden !important;
+    }
+  }
+
   &-display-none {
     display: none;
 
@@ -430,7 +478,7 @@
   }
 
   &-fit-image {
-    &-img {
+    &-child {
       position: absolute !important;
       width: 100% !important;
       height: 100% !important;
@@ -443,24 +491,24 @@
     }
 
     &-contain {
-      &-img {
-        @extend %fw_dump-fit-image-img;
+      &-child {
+        @extend %fw_dump-fit-image-child;
         object-fit: contain !important;
       }
 
       img {
-        @extend %fw_dump-fit-image-contain-img;
+        @extend %fw_dump-fit-image-contain-child;
       }
     }
 
     &-cover {
-      &-img {
-        @extend %fw_dump-fit-image-img;
+      &-child {
+        @extend %fw_dump-fit-image-child;
         object-fit: cover !important;
       }
 
       img {
-        @extend %fw_dump-fit-image-cover-img;
+        @extend %fw_dump-fit-image-cover-child;
       }
     }
   }
