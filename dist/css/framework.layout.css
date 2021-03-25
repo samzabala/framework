@@ -178,6 +178,8 @@ a:hover {
 .sr-only {
   pointer-events: none !important;
   position: absolute !important;
+  left: -99999999vw !important;
+  top: -99999999vw !important;
   width: 1px !important;
   height: 1px !important;
   margin: -1px !important;
