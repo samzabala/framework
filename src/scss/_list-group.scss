@@ -14,7 +14,7 @@ $prefix: '.list-group';
     }
   }
 
-  @at-root & li,
+  @at-root & > li,
     &-item {
     @include dump-styles(cf);
     font: inherit;
@@ -48,7 +48,7 @@ $prefix: '.list-group';
     }
 
     @at-root #{$prefix}-compact {
-      li,
+      > li,
       #{$prefix}-item {
         padding-top: calc(
           (
@@ -66,7 +66,7 @@ $prefix: '.list-group';
     }
 
     @at-root #{$prefix}-expanded {
-      li,
+      > li,
       #{$prefix}-item {
         padding-top: calc(
           (
@@ -94,7 +94,7 @@ $prefix: '.list-group';
 
   &-interactive,
   &-toggle {
-    li,
+    > li,
     #{$prefix}-item {
       &,
       & a {
@@ -130,7 +130,7 @@ $prefix: '.list-group';
       border-radius: $dropdown-border-radius;
     }
 
-    li,
+    > li,
     #{$prefix}-item {
       > a {
         padding-top: 0;
