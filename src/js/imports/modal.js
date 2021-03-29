@@ -52,6 +52,7 @@ VALID_MODAL_MODES.forEach((mode) => {
     element: false,
     args: false,
     UI: false,
+    UIContentBlock: false,
   };
 });
 
@@ -126,6 +127,11 @@ class Modal extends FwComponent {
     CURRENT_MODAL_INSTANCE[this.mode].element = obj.element;
     CURRENT_MODAL_INSTANCE[this.mode].args = obj.args;
     CURRENT_MODAL_INSTANCE[this.mode].UI = obj.UI;
+    CURRENT_MODAL_INSTANCE[this.mode].UIContentBlock = obj.UIContentBlock;
+  }
+
+  get instance() {
+    return this.#current;
   }
 
   get mode() {
@@ -322,6 +328,7 @@ class Modal extends FwComponent {
           element: element,
           args: this.args,
           UI: this.UIRoot,
+          UIContentBlock: this.UIContentBlock,
         };
 
         if (this.args.width) {
@@ -384,6 +391,7 @@ class Modal extends FwComponent {
           element: false,
           args: false,
           UI: false,
+          UIContentBlock: false,
         };
       },
       element
