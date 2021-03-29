@@ -24,16 +24,12 @@
   }
 
   //duh
-  &-overlay {
+  &-close-overlay {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-
-    &-not-closeable {
-      pointer-events: none;
-    }
   }
 
   //content wrapper
@@ -69,12 +65,8 @@ $prefix: '.modal';
       margin-top: 0;
     }
 
-    &-overlay {
-      @extend %for-modal-overlay !optional;
-
-      &:not([data-toggle-modal-close]) {
-        @extend %for-modal-overlay-not-closeable !optional;
-      }
+    &-close-overlay {
+      @extend %for-modal-close-overlay !optional;
     }
 
     &-popup {

@@ -162,7 +162,8 @@ table {
 .no-shadow, .input-calendar-ui-input input:not(.focus):not(:focus):not(.active):not(:active), .input-no-shadow.input-tags-ui, .input-no-shadow.input-calendar-ui, .input-no-shadow.input-single-line, .input-no-shadow.input-select, .input-no-shadow.input-multiple-line, .input-group.input-no-shadow, .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-disabled .input-tags-ui, .input-disabled .input-calendar-ui, .input-disabled .input-multiple-line, .input-disabled .input-select, .input-disabled .input-single-line, .input-disabled, .input[disabled], .input-disabled .input, .btn.btn-theme-polar-outline, .btn.btn-theme-outline, .btn.btn-error-outline, .btn.btn-caution-outline, .btn.btn-success-outline, .btn.btn-neutral-outline, .btn.btn-accent-outline, .btn.btn-secondary-outline, .btn.btn-primary-outline, .btn.btn-link, .btn.btn-no-shadow, .btn-group.btn-no-shadow, .nav > .btn, .nav > .btn-group, .btn-group .btn {
   box-shadow: none !important;
 }
-.cf:after, .list-group li:after, .list-group-item:after,
+.cf:after, .list-group > li:after, .list-group-item:after,
+.list-group ul > li:after,
 .list-group ul-item:after, .zone:after, .alert-header:after, .alert-content:after, .alert-footer:after, .alert:after, .progress:after, .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
   content: "";
   clear: both;
@@ -7207,8 +7208,8 @@ hr.dropdown-separator {
   margin-bottom: 1.25em;
   padding: 0;
 }
-.list-group li, .list-group-item,
-.list-group ul li,
+.list-group > li, .list-group-item,
+.list-group ul > li,
 .list-group ul-item {
   font: inherit;
   margin-bottom: 0;
@@ -7222,96 +7223,96 @@ hr.dropdown-separator {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
 }
-.theme-inverse .list-group li, .theme-inverse .list-group-item,
-.theme-inverse .list-group ul li,
+.theme-inverse .list-group > li, .theme-inverse .list-group-item,
+.theme-inverse .list-group ul > li,
 .theme-inverse .list-group ul-item {
   border-color: var(--fw-theme-background-contrast);
 }
-.list-group li.list-group-item-no-interaction, .list-group-item.list-group-item-no-interaction,
-.list-group ul li.list-group-item-no-interaction,
+.list-group > li.list-group-item-no-interaction, .list-group-item.list-group-item-no-interaction,
+.list-group ul > li.list-group-item-no-interaction,
 .list-group ul-item.list-group-item-no-interaction {
   pointer-events: none !important;
 }
-.list-group-compact li,
+.list-group-compact > li,
 .list-group-compact .list-group-item {
   padding-top: calc( ( (1.25rem - 1px) - (1.5em) ) * 0.5 );
   padding-bottom: calc( ( (1.25rem - 1px) - (1.5em) ) * 0.5 );
 }
 
-.list-group-expanded li,
+.list-group-expanded > li,
 .list-group-expanded .list-group-item {
   padding-top: calc( ( (3.75rem - 1px) - (1.5em) ) * 0.5 );
   padding-bottom: calc( ( (3.75rem - 1px) - (1.5em) ) * 0.5 );
 }
 
-.list-group li:first-child, .list-group-item:first-child,
-.list-group ul li:first-child,
+.list-group > li:first-child, .list-group-item:first-child,
+.list-group ul > li:first-child,
 .list-group ul-item:first-child {
   border-top-width: 1px;
 }
-.list-group li:before, .list-group-item:before,
-.list-group ul li:before,
+.list-group > li:before, .list-group-item:before,
+.list-group ul > li:before,
 .list-group ul-item:before {
   content: none;
 }
 
-.list-group-interactive li, .list-group-interactive li a,
+.list-group-interactive > li, .list-group-interactive > li a,
 .list-group-interactive .list-group-item,
-.list-group-interactive .list-group-item a, .list-group-toggle li, .list-group-toggle li a,
+.list-group-interactive .list-group-item a, .list-group-toggle > li, .list-group-toggle > li a,
 .list-group-toggle .list-group-item,
 .list-group-toggle .list-group-item a,
-.list-group ul-interactive li,
-.list-group ul-interactive li a,
+.list-group ul-interactive > li,
+.list-group ul-interactive > li a,
 .list-group ul-interactive .list-group-item,
 .list-group ul-interactive .list-group-item a,
-.list-group ul-toggle li,
-.list-group ul-toggle li a,
+.list-group ul-toggle > li,
+.list-group ul-toggle > li a,
 .list-group ul-toggle .list-group-item,
 .list-group ul-toggle .list-group-item a {
   color: inherit;
   text-decoration: inherit;
 }
-.list-group-interactive li > *,
-.list-group-interactive .list-group-item > *, .list-group-toggle li > *,
+.list-group-interactive > li > *,
+.list-group-interactive .list-group-item > *, .list-group-toggle > li > *,
 .list-group-toggle .list-group-item > *,
-.list-group ul-interactive li > *,
+.list-group ul-interactive > li > *,
 .list-group ul-interactive .list-group-item > *,
-.list-group ul-toggle li > *,
+.list-group ul-toggle > li > *,
 .list-group ul-toggle .list-group-item > * {
   pointer-events: none;
 }
-.list-group-interactive li:hover, .list-group-interactive li:focus, .list-group-interactive li.focus,
+.list-group-interactive > li:hover, .list-group-interactive > li:focus, .list-group-interactive > li.focus,
 .list-group-interactive .list-group-item:hover,
 .list-group-interactive .list-group-item:focus,
-.list-group-interactive .list-group-item.focus, .list-group-toggle li:hover, .list-group-toggle li:focus, .list-group-toggle li.focus,
+.list-group-interactive .list-group-item.focus, .list-group-toggle > li:hover, .list-group-toggle > li:focus, .list-group-toggle > li.focus,
 .list-group-toggle .list-group-item:hover,
 .list-group-toggle .list-group-item:focus,
 .list-group-toggle .list-group-item.focus,
-.list-group ul-interactive li:hover,
-.list-group ul-interactive li:focus,
-.list-group ul-interactive li.focus,
+.list-group ul-interactive > li:hover,
+.list-group ul-interactive > li:focus,
+.list-group ul-interactive > li.focus,
 .list-group ul-interactive .list-group-item:hover,
 .list-group ul-interactive .list-group-item:focus,
 .list-group ul-interactive .list-group-item.focus,
-.list-group ul-toggle li:hover,
-.list-group ul-toggle li:focus,
-.list-group ul-toggle li.focus,
+.list-group ul-toggle > li:hover,
+.list-group ul-toggle > li:focus,
+.list-group ul-toggle > li.focus,
 .list-group ul-toggle .list-group-item:hover,
 .list-group ul-toggle .list-group-item:focus,
 .list-group ul-toggle .list-group-item.focus {
   background: var(--fw-color-primary-alpha-1);
 }
-.list-group-interactive li:active, .list-group-interactive li.active,
+.list-group-interactive > li:active, .list-group-interactive > li.active,
 .list-group-interactive .list-group-item:active,
-.list-group-interactive .list-group-item.active, .list-group-toggle li:active, .list-group-toggle li.active,
+.list-group-interactive .list-group-item.active, .list-group-toggle > li:active, .list-group-toggle > li.active,
 .list-group-toggle .list-group-item:active,
 .list-group-toggle .list-group-item.active,
-.list-group ul-interactive li:active,
-.list-group ul-interactive li.active,
+.list-group ul-interactive > li:active,
+.list-group ul-interactive > li.active,
 .list-group ul-interactive .list-group-item:active,
 .list-group ul-interactive .list-group-item.active,
-.list-group ul-toggle li:active,
-.list-group ul-toggle li.active,
+.list-group ul-toggle > li:active,
+.list-group ul-toggle > li.active,
 .list-group ul-toggle .list-group-item:active,
 .list-group ul-toggle .list-group-item.active {
   background: var(--fw-color-primary-alpha-2);
@@ -7322,7 +7323,7 @@ hr.dropdown-separator {
 .dropdown .list-group:first-child:last-child {
   border-radius: 10px;
 }
-.dropdown .list-group li > a,
+.dropdown .list-group > li > a,
 .dropdown .list-group .list-group-item > a {
   padding-top: 0;
   padding-bottom: 0;
@@ -9688,15 +9689,12 @@ select[multiple].input-single-line, select[multiple].input-select {
   margin: 0;
   background: var(--fw-color-base-alpha-5);
 }
-.modal-ui-overlay {
+.modal-ui-close-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-}
-.modal-ui-overlay:not([data-toggle-modal-close]) {
-  pointer-events: none;
 }
 .modal-ui-popup {
   backface-visibility: hidden;
