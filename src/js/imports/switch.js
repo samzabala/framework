@@ -20,7 +20,7 @@ const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
 const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
-const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
+const EVENT_CLICK_PURGE = `click${EVENT_KEY}_purge`;
 
 const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;
