@@ -18,9 +18,9 @@ const TOGGLE_MODE_PREFIX = `${NAME}`;
 const DEFAULT_NAME = `default`;
 const BOARD_NAME = `board`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_HASHCHANGE = `hashchange${EVENT_KEY}`;
 
@@ -308,7 +308,8 @@ class Modal extends FwComponent {
         id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
 
         const theUI = document.createElement('div');
-        document.querySelector('body').appendChild(theUI);
+        // document.querySelector('body').appendChild(theUI);
+        element.parentNode.insertBefore(theUI, element.nextSibling);
         theUI.className = `${UIPrefix(COMPONENT_CLASS)}  ${UIPrefix(
           COMPONENT_CLASS
         )}-mode-${this.mode} ${UIPrefix(COMPONENT_CLASS)}-component
@@ -323,6 +324,7 @@ class Modal extends FwComponent {
         theUI.innerHTML = this._markup;
 
         FwDom.moveContents(element, this.UIContentBlock);
+        element.appendChild(theUI);
 
         this.#current = {
           element: element,
@@ -341,7 +343,7 @@ class Modal extends FwComponent {
           this._runFn(this.args.callback);
         }
 
-        theUI.classList.add(ACTIVATED_CLASS);
+        element.classList.add(ACTIVATED_CLASS);
         document.body.classList.add(UIBodyClass.noScroll);
       },
       element
@@ -370,9 +372,11 @@ class Modal extends FwComponent {
         }
 
         if (this.UIRoot) {
+          element.classList.remove('active');
+
+          element.parentNode.insertBefore(this.UIRoot, element.nextSibling);
           FwDom.moveContents(this.UIContentBlock, element);
 
-          this.UIRoot.classList.remove('active');
           this.UIRoot.parentNode.removeChild(this.UIRoot);
         }
 
@@ -384,6 +388,7 @@ class Modal extends FwComponent {
         if (removeBodClass) {
           document.body.classList.remove(UIBodyClass.noScroll);
         }
+        element.classList.remove(ACTIVATED_CLASS);
 
         canRemoveHash && UIChangeHash('');
 

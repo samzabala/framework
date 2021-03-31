@@ -10,9 +10,9 @@ const NAME = 'alert';
 const TOGGLE_MODE = `${NAME}-close`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 
 const EVENT_BEFORE_CLOSE = `before_close${EVENT_KEY}`;

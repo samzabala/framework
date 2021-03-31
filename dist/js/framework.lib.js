@@ -806,7 +806,7 @@
       //dai mo ilaag sa ddocument ta maerror si matches habo nya ki element
 
       var elemToAddTo = parent || selectorOrParentFallback;
-      var evtNoApi = evt.split("." + Settings.get('prefix'))[0];
+      var evtNoApi = evt.split("_" + Settings.get('prefix'))[0];
       var isNative = NativeEvents.includes(evt);
 
       if (!isNative) {
@@ -1114,8 +1114,8 @@
   var TOGGLE_MODE$3 = "" + NAME$d;
   var COMPONENT_CLASS$d = "" + FwString.ToDashed(NAME$d);
   var ACTIVATED_CLASS$7 = "open";
-  var DATA_KEY$d = Settings.get('prefix') + "." + NAME$d;
-  var EVENT_KEY$d = "." + DATA_KEY$d;
+  var DATA_KEY$d = Settings.get('prefix') + "_" + NAME$d;
+  var EVENT_KEY$d = "_" + DATA_KEY$d;
   var EVENT_CLICK$a = "click" + EVENT_KEY$d;
   var EVENT_HASHCHANGE$1 = "hashchange" + EVENT_KEY$d;
   var EVENT_BEFORE_CLOSE$2 = "before_close" + EVENT_KEY$d;
@@ -1338,8 +1338,8 @@
   var NAME$c = 'alert';
   var TOGGLE_MODE$2 = NAME$c + "-close";
   var COMPONENT_CLASS$c = "" + FwString.ToDashed(NAME$c);
-  var DATA_KEY$c = Settings.get('prefix') + "." + NAME$c;
-  var EVENT_KEY$c = "." + DATA_KEY$c;
+  var DATA_KEY$c = Settings.get('prefix') + "_" + NAME$c;
+  var EVENT_KEY$c = "_" + DATA_KEY$c;
   var EVENT_CLICK$9 = "click" + EVENT_KEY$c;
   var EVENT_BEFORE_CLOSE$1 = "before_close" + EVENT_KEY$c;
   var EVENT_CLOSE$1 = "close" + EVENT_KEY$c;
@@ -1423,8 +1423,8 @@
 
   var NAME$b = 'btn';
   var COMPONENT_CLASS$b = "" + FwString.ToDashed(NAME$b);
-  var DATA_KEY$b = Settings.get('prefix') + "." + NAME$b;
-  var EVENT_KEY$b = "." + DATA_KEY$b;
+  var DATA_KEY$b = Settings.get('prefix') + "_" + NAME$b;
+  var EVENT_KEY$b = "_" + DATA_KEY$b;
   var EVENT_CLICK$8 = "click" + EVENT_KEY$b;
   var EVENT_BEFORE_TOGGLE$1 = "before_toggle" + EVENT_KEY$b;
   var EVENT_TOGGLE$1 = "toggle" + EVENT_KEY$b;
@@ -1488,8 +1488,8 @@
   var COMPONENT_PURGER_CLASS$1 = COMPONENT_CLASS$a + "-purger";
   var ACTIVATED_CLASS$6 = "open";
   var NAV_ANCESTOR = "li, .nav-item";
-  var DATA_KEY$a = Settings.get('prefix') + "." + NAME$a;
-  var EVENT_KEY$a = "." + DATA_KEY$a;
+  var DATA_KEY$a = Settings.get('prefix') + "_" + NAME$a;
+  var EVENT_KEY$a = "_" + DATA_KEY$a;
   var EVENT_CLICK$7 = "click" + EVENT_KEY$a;
   var EVENT_CLICK_PURGE$2 = "click" + EVENT_KEY$a + ".purge";
   var EVENT_FOCUS = "focus" + EVENT_KEY$a;
@@ -1952,8 +1952,8 @@
   var ARG_ATTRIBUTE_NAME$2 = 'calendar';
   var COMPONENT_CLASS$9 = "input-calendar";
   var ACTIVATED_CLASS$5 = "active";
-  var DATA_KEY$9 = Settings.get('prefix') + "." + NAME$9;
-  var EVENT_KEY$9 = "." + DATA_KEY$9;
+  var DATA_KEY$9 = Settings.get('prefix') + "_" + NAME$9;
+  var EVENT_KEY$9 = "_" + DATA_KEY$9;
   var EVENT_CLICK$6 = "click" + EVENT_KEY$9;
   var EVENT_KEYUP = "keyup" + EVENT_KEY$9;
   var EVENT_CHANGE$2 = "change" + EVENT_KEY$9;
@@ -2576,8 +2576,8 @@
   var ARG_ATTRIBUTE_NAME$1 = 'tags';
   var COMPONENT_CLASS$8 = "input-tags";
   var FOCUS_CLASS = "focus";
-  var DATA_KEY$8 = Settings.get('prefix') + "." + NAME$8;
-  var EVENT_KEY$8 = "." + DATA_KEY$8;
+  var DATA_KEY$8 = Settings.get('prefix') + "_" + NAME$8;
+  var EVENT_KEY$8 = "_" + DATA_KEY$8;
   var EVENT_CLICK$5 = "click" + EVENT_KEY$8;
   var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
   var EVENT_BLUR = "blur" + EVENT_KEY$8;
@@ -3172,8 +3172,8 @@
   var COMPONENT_SELECTOR = "*[data-src],*[data-srcset],." + COMPONENT_CLASS$7;
   var BODY_LOADING_CLASS = "body-" + NAME$7 + "-loading";
   var BODY_LOADED_CLASS = "body-" + NAME$7 + "-loaded";
-  var DATA_KEY$7 = Settings.get('prefix') + "." + NAME$7;
-  var EVENT_KEY$7 = "." + DATA_KEY$7;
+  var DATA_KEY$7 = Settings.get('prefix') + "_" + NAME$7;
+  var EVENT_KEY$7 = "_" + DATA_KEY$7;
   var EVENT_BEFORE_INIT$2 = "before_init" + EVENT_KEY$7;
   var EVENT_INIT$2 = "init" + EVENT_KEY$7;
   var EVENT_AFTER_INIT$2 = "after_init" + EVENT_KEY$7;
@@ -3342,8 +3342,8 @@
 
   var CHILD_CLASS = FwString.ToDashed(NAME$6) + "-item";
   var COMPONENT_TOGGLEGROUP_PREFIX = "list";
-  var DATA_KEY$6 = Settings.get('prefix') + "." + NAME$6;
-  var EVENT_KEY$6 = "." + DATA_KEY$6;
+  var DATA_KEY$6 = Settings.get('prefix') + "_" + NAME$6;
+  var EVENT_KEY$6 = "_" + DATA_KEY$6;
   var EVENT_CLICK$4 = "click" + EVENT_KEY$6;
   var EVENT_BEFORE_TOGGLE = "before_toggle" + EVENT_KEY$6;
   var EVENT_TOGGLE = "toggle" + EVENT_KEY$6;
@@ -3423,8 +3423,8 @@
   var TOGGLE_MODE_PREFIX = "" + NAME$5;
   var DEFAULT_NAME = "default";
   var BOARD_NAME = "board";
-  var DATA_KEY$5 = Settings.get('prefix') + "." + NAME$5;
-  var EVENT_KEY$5 = "." + DATA_KEY$5;
+  var DATA_KEY$5 = Settings.get('prefix') + "_" + NAME$5;
+  var EVENT_KEY$5 = "_" + DATA_KEY$5;
   var EVENT_CLICK$3 = "click" + EVENT_KEY$5;
   var EVENT_HASHCHANGE = "hashchange" + EVENT_KEY$5;
   var EVENT_BEFORE_CREATE$1 = "before_create" + EVENT_KEY$5;
@@ -3539,12 +3539,14 @@
 
         var id = _this2.UIElId || _this2.UIId;
         id !== "" + _this2.UIId && _this2.args.changeHash && UIChangeHash(id);
-        var theUI = document.createElement('div');
-        document.querySelector('body').appendChild(theUI);
+        var theUI = document.createElement('div'); // document.querySelector('body').appendChild(theUI);
+
+        element.parentNode.insertBefore(theUI, element.nextSibling);
         theUI.className = UIPrefix(COMPONENT_CLASS$5) + "  " + UIPrefix(COMPONENT_CLASS$5) + "-mode-" + _this2.mode + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + _this2.args.classes;
         theUI.setAttribute('id', _this2.UIId);
         theUI.innerHTML = _this2._markup;
         FwDom.moveContents(element, _this2.UIContentBlock);
+        element.appendChild(theUI);
         _classPrivateFieldLooseBase(_this2, _current)[_current] = {
           element: element,
           args: _this2.args,
@@ -3562,7 +3564,7 @@
           _this2._runFn(_this2.args.callback);
         }
 
-        theUI.classList.add(ACTIVATED_CLASS$3);
+        element.classList.add(ACTIVATED_CLASS$3);
         document.body.classList.add(UIBodyClass.noScroll);
       }, element);
     };
@@ -3584,9 +3586,9 @@
         }
 
         if (_this3.UIRoot) {
+          element.classList.remove('active');
+          element.parentNode.insertBefore(_this3.UIRoot, element.nextSibling);
           FwDom.moveContents(_this3.UIContentBlock, element);
-
-          _this3.UIRoot.classList.remove('active');
 
           _this3.UIRoot.parentNode.removeChild(_this3.UIRoot);
         }
@@ -3601,6 +3603,7 @@
           document.body.classList.remove(UIBodyClass.noScroll);
         }
 
+        element.classList.remove(ACTIVATED_CLASS$3);
         canRemoveHash && UIChangeHash('');
         _classPrivateFieldLooseBase(_this3, _current)[_current] = {
           element: false,
@@ -3914,8 +3917,8 @@
   var NAME$4 = 'moduleGrid';
   var COMPONENT_CLASS$4 = "" + FwString.ToDashed(NAME$4);
   var COMPONENT_CHILDREN_CLASS$1 = "module";
-  var DATA_KEY$4 = Settings.get('prefix') + "." + NAME$4;
-  var EVENT_KEY$4 = "." + DATA_KEY$4;
+  var DATA_KEY$4 = Settings.get('prefix') + "_" + NAME$4;
+  var EVENT_KEY$4 = "_" + DATA_KEY$4;
   var EVENT_BEFORE_INIT$1 = "before_init" + EVENT_KEY$4;
   var EVENT_INIT$1 = "init" + EVENT_KEY$4;
   var EVENT_AFTER_INIT$1 = "after_init" + EVENT_KEY$4;
@@ -4042,8 +4045,8 @@
   var COMPONENT_CLASS_STATUS_OFF = COMPONENT_CLASS$3 + "-to-off";
   var COMPONENT_CLASS_STATUS_ON = COMPONENT_CLASS$3 + "-to-on";
   var COMPONENT_CLASS_IDLE = COMPONENT_CLASS$3 + "-idle";
-  var DATA_KEY$3 = Settings.get('prefix') + "." + NAME$3;
-  var EVENT_KEY$3 = "." + DATA_KEY$3;
+  var DATA_KEY$3 = Settings.get('prefix') + "_" + NAME$3;
+  var EVENT_KEY$3 = "_" + DATA_KEY$3;
   var EVENT_CLICK$2 = "click" + EVENT_KEY$3;
   var EVENT_CLICK_PURGE$1 = "click" + EVENT_KEY$3 + ".purge";
   var EVENT_BEFORE_INIT = "before_init" + EVENT_KEY$3;
@@ -4151,6 +4154,17 @@
       };
     };
 
+    Switch.handleToggle = function handleToggle() {
+      return function (e) {
+        e.preventDefault();
+
+        if (!FwComponent.isDisabled(e.target)) {
+          var switchElement = new Switch(UIToggled(TOGGLE_MODE, e.target));
+          switchElement.toggle();
+        }
+      };
+    };
+
     Switch.handleInit = function handleInit() {
       return function () {
         new Switch().runCycle(EVENT_BEFORE_INIT, EVENT_INIT, EVENT_AFTER_INIT, function () {
@@ -4174,8 +4188,9 @@
     };
 
     Switch.initListeners = function initListeners() {
-      FwEvent.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_OFF + "]", Switch.handleToggleOff());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_ON + "]", Switch.handleToggleOn());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE_OFF + "]", Switch.handleToggleOff());
+      FwEvent.addListener(document.documentElement, EVENT_CLICK$2, "*[data-toggle-" + TOGGLE_MODE + "]", Switch.handleToggle());
       FwEvent.addListener(document.documentElement, EVENT_CLICK_PURGE$1, "*", Switch.handleUniversalPurge());
       Initiator.Q.on_ready = Switch.handleInit();
     };
@@ -4202,8 +4217,8 @@
   var COMPONENT_CHILDREN_CLASS = 'tab';
   var COMPONENT_CHILDREN_TAG = 'li';
   var ACTIVATED_CLASS$2 = "active";
-  var DATA_KEY$2 = Settings.get('prefix') + "." + NAME$2;
-  var EVENT_KEY$2 = "." + DATA_KEY$2;
+  var DATA_KEY$2 = Settings.get('prefix') + "_" + NAME$2;
+  var EVENT_KEY$2 = "_" + DATA_KEY$2;
   var EVENT_CLICK$1 = "click" + EVENT_KEY$2;
   var EVENT_BEFORE_ACTIVATE$1 = "before_activate" + EVENT_KEY$2;
   var EVENT_ACTIVATE$1 = "activate" + EVENT_KEY$2;
@@ -4289,8 +4304,8 @@
   var COMPONENT_PURGER_CLASS = COMPONENT_CLASS$1 + "-purger";
   var COMPONENT_ALLOW_INTERACTION_CLASS = COMPONENT_CLASS$1 + "-allow-interaction";
   var ACTIVATED_CLASS$1 = "active";
-  var DATA_KEY$1 = Settings.get('prefix') + "." + NAME$1;
-  var EVENT_KEY$1 = "." + DATA_KEY$1;
+  var DATA_KEY$1 = Settings.get('prefix') + "_" + NAME$1;
+  var EVENT_KEY$1 = "_" + DATA_KEY$1;
   var EVENT_CLICK = "click" + EVENT_KEY$1;
   var EVENT_CLICK_PURGE = "click" + EVENT_KEY$1 + ".purge";
   var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY$1;
@@ -4704,8 +4719,8 @@
   var COMPONENT_CLASS = "" + FwString.ToDashed(NAME);
   var ACTIVATED_CLASS = COMPONENT_CLASS + "-has-content";
   var COMPONENT_TEXT_CLASS = ACTIVATED_CLASS + "-text";
-  var DATA_KEY = Settings.get('prefix') + "." + NAME;
-  var EVENT_KEY = "." + DATA_KEY;
+  var DATA_KEY = Settings.get('prefix') + "_" + NAME;
+  var EVENT_KEY = "_" + DATA_KEY;
   var EVENT_CHANGE = "change" + EVENT_KEY;
   var EVENT_BEFORE_ACTIVATE = "before_activate" + EVENT_KEY;
   var EVENT_ACTIVATE = "activate" + EVENT_KEY;

@@ -49,7 +49,7 @@
 $prefix: '.modal';
 .modal {
 
-  &,&-ui:not(.active){
+  &:not(.active){
     @include dump-styles(hide-js-friendly);
   }
 

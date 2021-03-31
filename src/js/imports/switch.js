@@ -16,9 +16,9 @@ const COMPONENT_CLASS_STATUS_OFF = `${COMPONENT_CLASS}-to-off`;
 const COMPONENT_CLASS_STATUS_ON = `${COMPONENT_CLASS}-to-on`;
 const COMPONENT_CLASS_IDLE = `${COMPONENT_CLASS}-idle`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
 
@@ -146,6 +146,17 @@ class Switch extends FwComponent {
     };
   }
 
+  static handleToggle() {
+    return (e) => {
+      e.preventDefault();
+
+      if (!FwComponent.isDisabled(e.target)) {
+        const switchElement = new Switch(UIToggled(TOGGLE_MODE, e.target));
+        switchElement.toggle();
+      }
+    };
+  }
+
   static handleInit() {
     return () => {
       new Switch().runCycle(
@@ -182,6 +193,13 @@ class Switch extends FwComponent {
     FwEvent.addListener(
       document.documentElement,
       EVENT_CLICK,
+      `*[data-toggle-${TOGGLE_MODE_ON}]`,
+      Switch.handleToggleOn()
+    );
+
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CLICK,
       `*[data-toggle-${TOGGLE_MODE_OFF}]`,
       Switch.handleToggleOff()
     );
@@ -189,8 +207,8 @@ class Switch extends FwComponent {
     FwEvent.addListener(
       document.documentElement,
       EVENT_CLICK,
-      `*[data-toggle-${TOGGLE_MODE_ON}]`,
-      Switch.handleToggleOn()
+      `*[data-toggle-${TOGGLE_MODE}]`,
+      Switch.handleToggle()
     );
 
     FwEvent.addListener(
