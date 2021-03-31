@@ -61,9 +61,9 @@ toggles the listGroup
 
 ### Events
 
-- `click.fw.listGroup` - happens on the `element`
-- `before_toggle.fw.listGroup` - happens on `element` before toggle
-- `toggle.fw.listGroup` - happens on `element` when toggle
-- `after_toggle.fw.listGroup` - happens on `element` after toggle
+- `click_fw_listGroup` - happens on the `element`
+- `before_toggle_fw_listGroup` - happens on `element` before toggle
+- `toggle_fw_listGroup` - happens on `element` when toggle
+- `after_toggle_fw_listGroup` - happens on `element` after toggle
 
 [Back to TOC](../../../readme.md)

@@ -120,10 +120,10 @@ initializes all event listeners
 
 ### Events
 
-- `click.fw.tabs` - happens on `triggerer`
+- `click_fw_tabs` - happens on `triggerer`
 
-- `before_activate.fw.tabs` - happens on `element` before activate
-- `activate.fw.tabs` - happens on `element` when activate
-- `after_activate.fw.tabs` - happens on `element` after activate
+- `before_activate_fw_tabs` - happens on `element` before activate
+- `activate_fw_tabs` - happens on `element` when activate
+- `after_activate_fw_tabs` - happens on `element` after activate
 
 [Back to TOC](../../../readme.md)

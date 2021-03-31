@@ -365,9 +365,9 @@ initializes all event listeners
 
 ### Events
 
-- `click.fw.button` - happens on the `element`
-- `before_toggle.fw.button` - happens on `element` before toggle
-- `toggle.fw.button` - happens on `element` when toggle
-- `after_toggle.fw.button` - happens on `element` after toggle
+- `click_fw_button` - happens on the `element`
+- `before_toggle_fw_button` - happens on `element` before toggle
+- `toggle_fw_button` - happens on `element` when toggle
+- `after_toggle_fw_button` - happens on `element` after toggle
 
 [Back to TOC](../../../readme.md)

@@ -244,15 +244,15 @@ returns obj with component set args
 
 ### Events
 
-- `click.fw.dropdown` - happens on `triggerer`
-- `focus.fw.dropdown` - happens on `triggerer`
-- `blur.fw.dropdown` - happens on `triggerer`
-- `click.fw.dropdown.purge` - happens on elements that qualify closing dropdown components
-- `before_open.fw.dropdown` - happens on `element` before opening
-- `open.fw.dropdown` - happens on `element` when opening
-- `after_open.fw.dropdown` - happens on `element` after opening
-- `before_close.fw.dropdown` - happens on `element` before closing
-- `close.fw.dropdown` - happens on `element` when closeing
-- `after_close.fw.dropdown` - happens on `element` after closing
+- `click_fw_dropdown` - happens on `triggerer`
+- `focus_fw_dropdown` - happens on `triggerer`
+- `blur_fw_dropdown` - happens on `triggerer`
+- `click_fw_dropdown_purge` - happens on elements that qualify closing dropdown components
+- `before_open_fw_dropdown` - happens on `element` before opening
+- `open_fw_dropdown` - happens on `element` when opening
+- `after_open_fw_dropdown` - happens on `element` after opening
+- `before_close_fw_dropdown` - happens on `element` before closing
+- `close_fw_dropdown` - happens on `element` when closeing
+- `after_close_fw_dropdown` - happens on `element` after closing
 
 [Back to TOC](../../../readme.md)

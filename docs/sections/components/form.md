@@ -944,19 +944,19 @@ returns obj with component set args
 
 #### Events
 
-- `click.fw.formCalendar` - happens on `triggerer`
-- `keyup.fw.formCalendar` - happens on `triggerer`
-- `change.fw.formCalendar` - happens on `triggerer`
-- `before_init.fw.formCalendar` - happens on `document` before running functions to set up
-- `init.fw.formCalendar` - happens on `document` when running functions to set up
-- `after_init.fw.formCalendar` - happens on `document` after running functions to set up
-- `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
-- `render.fw.formCalendar` - happens on `element` when running functions to create the ui markup and modify the element
-- `after_render.fw.formCalendar` - happens on `element` after running functions to create the ui markup and modify the element
+- `click_fw_formCalendar` - happens on `triggerer`
+- `keyup_fw_formCalendar` - happens on `triggerer`
+- `change_fw_formCalendar` - happens on `triggerer`
+- `before_init_fw_formCalendar` - happens on `document` before running functions to set up
+- `init_fw_formCalendar` - happens on `document` when running functions to set up
+- `after_init_fw_formCalendar` - happens on `document` after running functions to set up
+- `before_render_fw_button` - happens on `element` before running functions to create the ui markup and modify the element
+- `render_fw_formCalendar` - happens on `element` when running functions to create the ui markup and modify the element
+- `after_render_fw_formCalendar` - happens on `element` after running functions to create the ui markup and modify the element
 
-- `before_update.fw.button` - happens on `element` before running the update method
-- `update.fw.formCalendar` - happens on `element` when running the update method
-- `after_update.fw.formCalendar` - happens on `element` after running the update method
+- `before_update_fw_button` - happens on `element` before running the update method
+- `update_fw_formCalendar` - happens on `element` when running the update method
+- `after_update_fw_formCalendar` - happens on `element` after running the update method
 
 ## Tags
 
@@ -1090,7 +1090,7 @@ Set a width for the input field. Note that there is a set max-width on ya boi so
 
 callback function for after rendering the ui and changing the value
 
-DEPRECATED ... just add an event listener on `after_update_.fw.formTags`
+DEPRECATED ... just add an event listener on `after_update__fw_formTags`
 
 ```html
 <script>
@@ -1228,20 +1228,20 @@ returns obj with component set args
 
 #### Events
 
-- `click.fw.formTags` - happens on `triggerer`
-- `keydown.fw.formTags` - happens on `triggerer`
-- `blur.fw.formTags` - happens on `triggerer`
-- `paste.fw.formTags` - happens on `triggerer`
-- `change.fw.formTags` - happens on `triggerer`
-- `before_init.fw.formTags` - happens on `document` before running functions to set up
-- `init.fw.formTags` - happens on `document` when running functions to set up
-- `after_init.fw.formTags` - happens on `document` after running functions to set up
-- `before_render.fw.button` - happens on `element` before running functions to create the ui markup and modify the element
-- `render.fw.formTags` - happens on `element` when running functions to create the ui markup and modify the element
-- `after_render.fw.formTags` - happens on `element` after running functions to create the ui markup and modify the element
+- `click_fw_formTags` - happens on `triggerer`
+- `keydown_fw_formTags` - happens on `triggerer`
+- `blur_fw_formTags` - happens on `triggerer`
+- `paste_fw_formTags` - happens on `triggerer`
+- `change_fw_formTags` - happens on `triggerer`
+- `before_init_fw_formTags` - happens on `document` before running functions to set up
+- `init_fw_formTags` - happens on `document` when running functions to set up
+- `after_init_fw_formTags` - happens on `document` after running functions to set up
+- `before_render_fw_button` - happens on `element` before running functions to create the ui markup and modify the element
+- `render_fw_formTags` - happens on `element` when running functions to create the ui markup and modify the element
+- `after_render_fw_formTags` - happens on `element` after running functions to create the ui markup and modify the element
 
-- `before_update.fw.button` - happens on `element` before running the update method
-- `update.fw.formTags` - happens on `element` when running the update method
-- `after_update.fw.formTags` - happens on `element` after running the update method
+- `before_update_fw_button` - happens on `element` before running the update method
+- `update_fw_formTags` - happens on `element` when running the update method
+- `after_update_fw_formTags` - happens on `element` after running the update method
 
 [Back to TOC](../../../readme.md)

@@ -109,16 +109,16 @@ returns obj with component set args
 
 ### Events
 
-- `click.fw.switch` - happens on `triggerer`
-- `click.fw.switch.purge` - happens on elements that qualify closing switchElement components
-- `before_init.fw.switch` - happens on `document` before running functions to set up
-- `init.fw.switch` - happens on `document` when running functions to set up
-- `after_init.fw.switch` - happens on `document` after running functions to set up
-- `before_on.fw.switch` - happens on `element` before turning it on
-- `on.fw.switch` - happens on `element` when turning it on
-- `after_on.fw.switch` - happens on `element` after turning it on
-- `before_off.fw.switch` - happens on `element` before turning it off
-- `off.fw.switch` - happens on `element` when turning it off
-- `after_off.fw.switch` - happens on `element` after turning it off
+- `click_fw_switch` - happens on `triggerer`
+- `click_fw_switch_purge` - happens on elements that qualify closing switchElement components
+- `before_init_fw_switch` - happens on `document` before running functions to set up
+- `init_fw_switch` - happens on `document` when running functions to set up
+- `after_init_fw_switch` - happens on `document` after running functions to set up
+- `before_on_fw_switch` - happens on `element` before turning it on
+- `on_fw_switch` - happens on `element` when turning it on
+- `after_on_fw_switch` - happens on `element` after turning it on
+- `before_off_fw_switch` - happens on `element` before turning it off
+- `off_fw_switch` - happens on `element` when turning it off
+- `after_off_fw_switch` - happens on `element` after turning it off
 
 [Back to TOC](../../../readme.md)

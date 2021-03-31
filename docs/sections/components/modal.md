@@ -288,24 +288,24 @@ returns obj with component set args
 
 ### Events
 
-- `click.fw.modal` - happens on `triggerer`
-- `hashchange.fw.modal` - happens on `window` on hashchange
+- `click_fw_modal` - happens on `triggerer`
+- `hashchange_fw_modal` - happens on `window` on hashchange
 
-- `before_create.fw.modal` - happens on `element` before create
-- `create.fw.modal` - happens on `element` when create
-- `after_create.fw.modal` - happens on `element` after create
+- `before_create_fw_modal` - happens on `element` before create
+- `create_fw_modal` - happens on `element` when create
+- `after_create_fw_modal` - happens on `element` after create
 
-- `before_destroy.fw.modal` - happens on `element` before destroy
-- `destroy.fw.modal` - happens on `element` when destroy
-- `after_destroy.fw.modal` - happens on `element` after destroy
+- `before_destroy_fw_modal` - happens on `element` before destroy
+- `destroy_fw_modal` - happens on `element` when destroy
+- `after_destroy_fw_modal` - happens on `element` after destroy
 
-- `before_update.fw.modal` - happens on `element` before update
-- `update.fw.modal` - happens on `element` when update
-- `after_update.fw.modal` - happens on `element` after update
+- `before_update_fw_modal` - happens on `element` before update
+- `update_fw_modal` - happens on `element` when update
+- `after_update_fw_modal` - happens on `element` after update
 
-- `before_resize.fw.modal` - happens on `element` before resize
-- `resize.fw.modal` - happens on `element` when resize
-- `after_resize.fw.modal` - happens on `element` after resize
+- `before_resize_fw_modal` - happens on `element` before resize
+- `resize_fw_modal` - happens on `element` when resize
+- `after_resize_fw_modal` - happens on `element` after resize
 
 [Back to TOC](../../../readme.md)
 

@@ -166,9 +166,9 @@ initializes all event listeners
 
 ### Events
 
-- `click.fw.alert` - happens on `triggerer`
-- `before_close.fw.alert` - happens on `element` before closing
-- `close.fw.alert` - happens on `element` when closing
-- `after_close.fw.alert` - happens on `element` after closing
+- `click_fw_alert` - happens on `triggerer`
+- `before_close_fw_alert` - happens on `element` before closing
+- `close_fw_alert` - happens on `element` when closing
+- `after_close_fw_alert` - happens on `element` after closing
 
 [Back to TOC](../../../readme.md)

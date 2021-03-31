@@ -82,12 +82,12 @@ loads all images
 
 ### Events
 
-- `before_init.fw.lazy` - happens on `document` before running functions to set up
-- `init.fw.lazy` - happens on `document` when running functions to set up
-- `after_init.fw.lazy` - happens on `document` after running functions to set up
-- `before_svgconversion.fw.lazy` - happens on `element` before loadSVG runs
-- `svgconversion.fw.lazy` - happens on `element` when loadSVG runs
-- `after_svgconversion.fw.lazy` - happens on `element` after loadSVG runs
-- `before_load.fw.lazy` - happens on `element` before load runs
-- `load.fw.lazy` - happens on `element` when load runs
-- `after_load.fw.lazy` - happens on `element` after load runs
+- `before_init_fw_lazy` - happens on `document` before running functions to set up
+- `init_fw_lazy` - happens on `document` when running functions to set up
+- `after_init_fw_lazy` - happens on `document` after running functions to set up
+- `before_svgconversion_fw_lazy` - happens on `element` before loadSVG runs
+- `svgconversion_fw_lazy` - happens on `element` when loadSVG runs
+- `after_svgconversion_fw_lazy` - happens on `element` after loadSVG runs
+- `before_load_fw_lazy` - happens on `element` before load runs
+- `load_fw_lazy` - happens on `element` when load runs
+- `after_load_fw_lazy` - happens on `element` after load runs

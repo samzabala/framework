@@ -187,18 +187,18 @@ gets {x,y} offset for tooltip based on triggerElement's position
 
 ### Events
 
-- `click.fw.tooltip` - happens on `data-toggle-tooltip-click`
-- `mouseenter.fw.tooltip` - happens on `data-toggle-tooltip-hover`
-- `mouseleave.fw.tooltip` - happens on `data-toggle-tooltip-hover`
-- `click.fw.tooltip.purge` - happens on elements that qualify closing tooltip-click components
-- `before_create.fw.tooltip` - happens on `element` before create
-- `create.fw.tooltip` - happens on `element` when create
-- `after_create.fw.tooltip` - happens on `element` after create
-- `before_destroy.fw.tooltip` - happens on `element` before destroy
-- `destroy.fw.tooltip` - happens on `element` when destroy
-- `after_destroy.fw.tooltip` - happens on `element` after destroy
-- `before_position.fw.tooltip` - happens on `element` before position
-- `position.fw.tooltip` - happens on `element` when position
-- `after_position.fw.tooltip` - happens on `element` after position
+- `click_fw_tooltip` - happens on `data-toggle-tooltip-click`
+- `mouseenter_fw_tooltip` - happens on `data-toggle-tooltip-hover`
+- `mouseleave_fw_tooltip` - happens on `data-toggle-tooltip-hover`
+- `click_fw_tooltip_purge` - happens on elements that qualify closing tooltip-click components
+- `before_create_fw_tooltip` - happens on `element` before create
+- `create_fw_tooltip` - happens on `element` when create
+- `after_create_fw_tooltip` - happens on `element` after create
+- `before_destroy_fw_tooltip` - happens on `element` before destroy
+- `destroy_fw_tooltip` - happens on `element` when destroy
+- `after_destroy_fw_tooltip` - happens on `element` after destroy
+- `before_position_fw_tooltip` - happens on `element` before position
+- `position_fw_tooltip` - happens on `element` when position
+- `after_position_fw_tooltip` - happens on `element` after position
 
 [Back to TOC](../../../readme.md)

@@ -281,20 +281,20 @@ renders styles for `element` and qualifying children
 
 ### Events
 
-- `before_init.fw.moduleGrid` - happens on `document` before running functions to set up
-- `init.fw.moduleGrid` - happens on `document` when running functions to set up
-- `after_init.fw.moduleGrid` - happens on `document` after running functions to set up
+- `before_init_fw_moduleGrid` - happens on `document` before running functions to set up
+- `init_fw_moduleGrid` - happens on `document` when running functions to set up
+- `after_init_fw_moduleGrid` - happens on `document` after running functions to set up
 
-- `before_render.fw.moduleGrid` - happens on `element` before render
-- `render.fw.moduleGrid` - happens on `element` when render
-- `after_render.fw.moduleGrid` - happens on `element` after render
+- `before_render_fw_moduleGrid` - happens on `element` before render
+- `render_fw_moduleGrid` - happens on `element` when render
+- `after_render_fw_moduleGrid` - happens on `element` after render
 
-- `before_render_block_.fw.moduleGrid` - happens on `element` before rendering element styles
-- `render_grid.fw.moduleGrid` - happens on `element` when rendering element styles
-- `after_render_grid.fw.moduleGrid` - happens on `element` after rendering element styles
+- `before_render_block__fw_moduleGrid` - happens on `element` before rendering element styles
+- `render_grid_fw_moduleGrid` - happens on `element` when rendering element styles
+- `after_render_grid_fw_moduleGrid` - happens on `element` after rendering element styles
 
-- `before_render_block_.fw.moduleGrid` - happens on `element`'s valid children before rendering child styles
-- `render_block_.fw.moduleGrid` - happens on `element`'s valid children when rendering child styles
-- `after_render_block_.fw.moduleGrid` - happens on `element`'s valid children after rendering child styles
+- `before_render_block__fw_moduleGrid` - happens on `element`'s valid children before rendering child styles
+- `render_block__fw_moduleGrid` - happens on `element`'s valid children when rendering child styles
+- `after_render_block__fw_moduleGrid` - happens on `element`'s valid children after rendering child styles
 
 [Back to TOC](../../../readme.md)

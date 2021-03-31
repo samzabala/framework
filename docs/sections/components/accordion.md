@@ -261,13 +261,13 @@ returns obj with component set args
 
 ### Events
 
-- `click.fw.accordion` - happens on `triggerer`
-- `hashchange.fw.accordion` - happens on `window` on hashchange
-- `before_close.fw.accordion` - happens on `element` before closing
-- `close.fw.accordion` - happens on `element` when closing
-- `after_close.fw.accordion` - happens on `element` after closing
-- `before_open.fw.accordion` - happens on `element` before opening
-- `open.fw.accordion` - happens on `element` when opening
-- `after_open.fw.accordion` - happens on `element` after opening
+- `click_fw_accordion` - happens on `triggerer`
+- `hashchange_fw_accordion` - happens on `window` on hashchange
+- `before_close_fw_accordion` - happens on `element` before closing
+- `close_fw_accordion` - happens on `element` when closing
+- `after_close_fw_accordion` - happens on `element` after closing
+- `before_open_fw_accordion` - happens on `element` before opening
+- `open_fw_accordion` - happens on `element` when opening
+- `after_open_fw_accordion` - happens on `element` after opening
 
 [Back to TOC](../../../readme.md)
