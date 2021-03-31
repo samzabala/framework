@@ -12,9 +12,9 @@ const COMPONENT_CHILDREN_CLASS = 'tab';
 const COMPONENT_CHILDREN_TAG = 'li';
 const ACTIVATED_CLASS = `active`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 
 const EVENT_BEFORE_ACTIVATE = `before_activate${EVENT_KEY}`;

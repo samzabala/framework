@@ -16,9 +16,9 @@ const COMPONENT_PURGER_CLASS = `${COMPONENT_CLASS}-purger`;
 const COMPONENT_ALLOW_INTERACTION_CLASS = `${COMPONENT_CLASS}-allow-interaction`;
 const ACTIVATED_CLASS = `active`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
 const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY}`;

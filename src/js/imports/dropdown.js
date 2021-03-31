@@ -16,9 +16,9 @@ const ACTIVATED_CLASS = `open`;
 
 const NAV_ANCESTOR = `li, .nav-item`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_CLICK_PURGE = `click${EVENT_KEY}.purge`;
 const EVENT_FOCUS = `focus${EVENT_KEY}`;

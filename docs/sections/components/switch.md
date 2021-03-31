@@ -50,6 +50,11 @@ Toggle to enable the on state of a switch. will look for the matching href, data
 
 Toggle to enable the off state of a switch. will look for the matching href, data-href, or closest `.switch` ancestor to toggle
 
+### **`[data-toggle-switch]`**
+
+If u want this toggle to be the all powerful god that can do both
+
+
 ## Javascript
 
 ### Functions

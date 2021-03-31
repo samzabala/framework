@@ -11,9 +11,9 @@ const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `${COMPONENT_CLASS}-has-content`;
 const COMPONENT_TEXT_CLASS = `${ACTIVATED_CLASS}-text`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CHANGE = `change${EVENT_KEY}`;
 
 const EVENT_BEFORE_ACTIVATE = `before_activate${EVENT_KEY}`;

@@ -17,9 +17,9 @@ const COMPONENT_SELECTOR = `*[data-src],*[data-srcset],.${COMPONENT_CLASS}`;
 const BODY_LOADING_CLASS = `body-${NAME}-loading`;
 const BODY_LOADED_CLASS = `body-${NAME}-loaded`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 
 const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;

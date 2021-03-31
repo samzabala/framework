@@ -15,9 +15,9 @@ const TOGGLE_MODE = `${NAME}`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `open`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_HASHCHANGE = `hashchange${EVENT_KEY}`;
 

@@ -197,7 +197,7 @@ table {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
-.sr-only, .modal, .modal-ui:not(.active), .input-tags, .input-calendar, .zone.zone-has-content .zone-text, .tooltip:not(.active), .switch.switch-to-off .switch-on, .switch.switch-to-on .switch-off, .switch:not(.switch-to-off):not(.switch-to-on) .switch-on, .switch:not(.switch-to-off):not(.switch-to-on) .switch-off, .accordion:not(.accordion-mobile):not(.open) {
+.sr-only, .modal:not(.active), .input-tags, .input-calendar, .zone.zone-has-content .zone-text, .tooltip:not(.active), .switch.switch-to-off .switch-on, .switch.switch-to-on .switch-off, .switch:not(.switch-to-off):not(.switch-to-on) .switch-on, .switch:not(.switch-to-off):not(.switch-to-on) .switch-off, .accordion:not(.accordion-mobile):not(.open) {
   pointer-events: none !important;
   position: absolute !important;
   left: -99999999vw !important;

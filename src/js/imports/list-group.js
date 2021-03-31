@@ -13,9 +13,9 @@ const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}-toggle`; //coz toggling shit
 const CHILD_CLASS = `${FwString.ToDashed(NAME)}-item`;
 const COMPONENT_TOGGLEGROUP_PREFIX = `list`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 
 const EVENT_BEFORE_TOGGLE = `before_toggle${EVENT_KEY}`;

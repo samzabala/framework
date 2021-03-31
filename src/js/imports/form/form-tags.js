@@ -15,9 +15,9 @@ const ARG_ATTRIBUTE_NAME = 'tags';
 const COMPONENT_CLASS = `input-tags`;
 const FOCUS_CLASS = `focus`;
 
-const DATA_KEY = `${Settings.get('prefix')}.${NAME}`;
+const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
-const EVENT_KEY = `.${DATA_KEY}`;
+const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
 const EVENT_BLUR = `blur${EVENT_KEY}`;
