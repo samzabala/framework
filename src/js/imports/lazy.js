@@ -66,6 +66,9 @@ class Lazy extends FwComponent {
 
   readyLoaded(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
+    //so it dont run agen when it's already loaded
+    this.theSrc && element.removeAttribute('data-src');
+    this.theSrcSet && element.removeAttribute('data-srcset');
 
     element.classList.add(`${ACTIVATED_CLASS}`);
   }

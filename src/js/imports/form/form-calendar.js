@@ -204,6 +204,7 @@ class Calendar extends FwComponent {
             this.UIInputValue = theValue;
           }
         }
+        newValue && FwEvent.trigger(super.UIEl(), 'change');
       },
       element
     );
@@ -741,13 +742,6 @@ class Calendar extends FwComponent {
   static initListeners() {
     FwEvent.addListener(
       document.documentElement,
-      EVENT_CHANGE,
-      COMPONENT_CLASS,
-      Calendar.handleChange()
-    );
-
-    FwEvent.addListener(
-      document.documentElement,
       EVENT_KEYUP,
       `.${UIPrefix(COMPONENT_CLASS)}-input input`,
       Calendar.handleUpdateKeyup()
@@ -769,12 +763,6 @@ class Calendar extends FwComponent {
     Initiator.Q.on_ready = Calendar.initAll;
   }
   static destroyListeners() {
-    FwEvent.removeListener(
-      document.documentElement,
-      EVENT_CHANGE,
-      Calendar.handleChange()
-    );
-
     FwEvent.removeListener(
       document.documentElement,
       EVENT_KEYUP,

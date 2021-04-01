@@ -269,6 +269,8 @@ class Tags extends FwComponent {
         this.UIInputValue = inputText;
         this.focus();
       }
+
+      newValue && FwEvent.trigger(super.UIEl(), 'change');
     });
   }
 
@@ -487,13 +489,6 @@ class Tags extends FwComponent {
       },
       document
     );
-  }
-
-  static handleChange() {
-    return (e) => {
-      const tagsInput = new Tags(e.target);
-      tagsInput.update();
-    };
   }
 
   static handleEditablePaste() {
@@ -722,13 +717,6 @@ class Tags extends FwComponent {
   static initListeners() {
     FwEvent.addListener(
       document.documentElement,
-      EVENT_CHANGE,
-      COMPONENT_CLASS,
-      Tags.handleChange()
-    );
-
-    FwEvent.addListener(
-      document.documentElement,
       EVENT_PASTE,
       `.${UIPrefix(COMPONENT_CLASS)} .${UIPrefix(COMPONENT_CLASS)}-input`,
       Tags.handleEditablePaste()
@@ -773,8 +761,6 @@ class Tags extends FwComponent {
     Initiator.Q.on_resize = Tags.initAll;
   }
   static destroyListeners() {
-    FwEvent.removeListener(document.documentElement, EVENT_CHANGE, Tags.handleChange());
-
     FwEvent.removeListener(
       document.documentElement,
       EVENT_PASTE,
