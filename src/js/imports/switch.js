@@ -235,6 +235,12 @@ class Switch extends FwComponent {
 
     FwEvent.removeListener(
       document.documentElement,
+      EVENT_CLICK,
+      Switch.handleToggle()
+    );
+
+    FwEvent.removeListener(
+      document.documentElement,
       EVENT_CLICK_PURGE,
       Switch.handleUniversalPurge()
     );

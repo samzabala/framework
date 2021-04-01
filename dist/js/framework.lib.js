@@ -1491,7 +1491,7 @@
   var DATA_KEY$a = Settings.get('prefix') + "_" + NAME$a;
   var EVENT_KEY$a = "_" + DATA_KEY$a;
   var EVENT_CLICK$7 = "click" + EVENT_KEY$a;
-  var EVENT_CLICK_PURGE$2 = "click" + EVENT_KEY$a + ".purge";
+  var EVENT_CLICK_PURGE$2 = "click" + EVENT_KEY$a + "_purge";
   var EVENT_FOCUS = "focus" + EVENT_KEY$a;
   var EVENT_BLUR$1 = "blur" + EVENT_KEY$a;
   var EVENT_BEFORE_CLOSE = "before_close" + EVENT_KEY$a;
@@ -1956,7 +1956,6 @@
   var EVENT_KEY$9 = "_" + DATA_KEY$9;
   var EVENT_CLICK$6 = "click" + EVENT_KEY$9;
   var EVENT_KEYUP = "keyup" + EVENT_KEY$9;
-  var EVENT_CHANGE$2 = "change" + EVENT_KEY$9;
   var EVENT_BEFORE_INIT$4 = "before_init" + EVENT_KEY$9;
   var EVENT_INIT$4 = "init" + EVENT_KEY$9;
   var EVENT_AFTER_INIT$4 = "after_init" + EVENT_KEY$9;
@@ -2070,6 +2069,8 @@
             _this2.UIInputValue = theValue;
           }
         }
+
+        newValue && FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this2), 'change');
       }, element);
     };
 
@@ -2365,7 +2366,6 @@
     };
 
     Calendar.initListeners = function initListeners() {
-      FwEvent.addListener(document.documentElement, EVENT_CHANGE$2, COMPONENT_CLASS$9, Calendar.handleChange());
       FwEvent.addListener(document.documentElement, EVENT_KEYUP, "." + UIPrefix(COMPONENT_CLASS$9) + "-input input", Calendar.handleUpdateKeyup());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-date", Calendar.handleUpdateClick());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-month, ." + UIPrefix(COMPONENT_CLASS$9) + "-year", Calendar.handleRenderClick());
@@ -2373,7 +2373,6 @@
     };
 
     Calendar.destroyListeners = function destroyListeners() {
-      FwEvent.removeListener(document.documentElement, EVENT_CHANGE$2, Calendar.handleChange());
       FwEvent.removeListener(document.documentElement, EVENT_KEYUP, Calendar.handleUpdateKeyup());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleUpdateClick());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleRenderClick());
@@ -2582,7 +2581,6 @@
   var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
   var EVENT_BLUR = "blur" + EVENT_KEY$8;
   var EVENT_PASTE = "paste" + EVENT_KEY$8;
-  var EVENT_CHANGE$1 = "change" + EVENT_KEY$8;
   var EVENT_BEFORE_INIT$3 = "before_init" + EVENT_KEY$8;
   var EVENT_INIT$3 = "init" + EVENT_KEY$8;
   var EVENT_AFTER_INIT$3 = "after_init" + EVENT_KEY$8;
@@ -2716,6 +2714,8 @@
 
           _this2.focus();
         }
+
+        newValue && FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this2), 'change');
       });
     };
 
@@ -2871,13 +2871,6 @@
           tagsInput.init();
         });
       }, document);
-    };
-
-    Tags.handleChange = function handleChange() {
-      return function (e) {
-        var tagsInput = new Tags(e.target);
-        tagsInput.update();
-      };
     };
 
     Tags.handleEditablePaste = function handleEditablePaste() {
@@ -3047,7 +3040,6 @@
     };
 
     Tags.initListeners = function initListeners() {
-      FwEvent.addListener(document.documentElement, EVENT_CHANGE$1, COMPONENT_CLASS$8, Tags.handleChange());
       FwEvent.addListener(document.documentElement, EVENT_PASTE, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditablePaste());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableFocus());
       FwEvent.addListener(document.documentElement, EVENT_BLUR, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableBlur());
@@ -3059,7 +3051,6 @@
     };
 
     Tags.destroyListeners = function destroyListeners() {
-      FwEvent.removeListener(document.documentElement, EVENT_CHANGE$1, Tags.handleChange());
       FwEvent.removeListener(document.documentElement, EVENT_PASTE, Tags.handleEditablePaste());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEditableFocus());
       FwEvent.removeListener(document.documentElement, EVENT_BLUR, Tags.handleEditableBlur());
@@ -3200,7 +3191,10 @@
     };
 
     _proto.readyLoaded = function readyLoaded(elem) {
-      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this); //so it dont run agen when it's already loaded
+
+      this.theSrc && element.removeAttribute('data-src');
+      this.theSrcSet && element.removeAttribute('data-srcset');
       element.classList.add("" + ACTIVATED_CLASS$4);
     };
 
@@ -4048,7 +4042,7 @@
   var DATA_KEY$3 = Settings.get('prefix') + "_" + NAME$3;
   var EVENT_KEY$3 = "_" + DATA_KEY$3;
   var EVENT_CLICK$2 = "click" + EVENT_KEY$3;
-  var EVENT_CLICK_PURGE$1 = "click" + EVENT_KEY$3 + ".purge";
+  var EVENT_CLICK_PURGE$1 = "click" + EVENT_KEY$3 + "_purge";
   var EVENT_BEFORE_INIT = "before_init" + EVENT_KEY$3;
   var EVENT_INIT = "init" + EVENT_KEY$3;
   var EVENT_AFTER_INIT = "after_init" + EVENT_KEY$3;
@@ -4198,6 +4192,7 @@
     Switch.destroyListeners = function destroyListeners() {
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOff());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggleOn());
+      FwEvent.removeListener(document.documentElement, EVENT_CLICK$2, Switch.handleToggle());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK_PURGE$1, Switch.handleUniversalPurge());
     };
 
@@ -4307,7 +4302,7 @@
   var DATA_KEY$1 = Settings.get('prefix') + "_" + NAME$1;
   var EVENT_KEY$1 = "_" + DATA_KEY$1;
   var EVENT_CLICK = "click" + EVENT_KEY$1;
-  var EVENT_CLICK_PURGE = "click" + EVENT_KEY$1 + ".purge";
+  var EVENT_CLICK_PURGE = "click" + EVENT_KEY$1 + "_purge";
   var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY$1;
   var EVENT_MOUSELEAVE = "mouseleave" + EVENT_KEY$1;
   var EVENT_BEFORE_CREATE = "before_create" + EVENT_KEY$1;
