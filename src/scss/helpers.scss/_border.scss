@@ -60,3 +60,8 @@ $prefix: '.border';
     @include create-box-helper(#{& + '-unset'}, '', border, 'width', unset);
   }
 }
+
+//box model helpy
+.no-border {
+  @include create-box-helper(#{&}, '', border, '', 0, 'for-no-border');
+}
