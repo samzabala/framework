@@ -230,16 +230,13 @@ class Dropdown extends FwComponent {
   }
 
   static handleUniversalPurge(isPurger) {
-    isPurger = isPurger || false;
-
     return (e) => {
       if (FwComponent.isDisabled(e.target)) {
         e.preventDefault();
       } else if (!FwComponent.isDynamic(e.target)) {
         if (
-          isPurger ||
-          (!isPurger &&
-            !e.target.closest(`[data-toggle-${TOGGLE_MODE}]`) &&
+          e.target.closest(`.${COMPONENT_PURGER_CLASS}`) ||
+          (!e.target.closest(`[data-toggle-${TOGGLE_MODE}]`) &&
             !e.target.closest(`.${COMPONENT_CLASS}`))
         ) {
           Dropdown.purge();
