@@ -236,8 +236,10 @@ class Dropdown extends FwComponent {
       } else if (!FwComponent.isDynamic(e.target)) {
         if (
           e.target.closest(`.${COMPONENT_PURGER_CLASS}`) ||
-          (!e.target.closest(`[data-toggle-${TOGGLE_MODE}]`) &&
-            !e.target.closest(`.${COMPONENT_CLASS}`))
+          !(
+            e.target.closest(`[data-toggle-${TOGGLE_MODE}]`) ||
+            e.target.closest(`.${COMPONENT_CLASS}`)
+          )
         ) {
           Dropdown.purge();
         }

@@ -6176,7 +6176,7 @@ body:not(.body-lazy-loaded) *[data-srcset] {
 }
 .dropdown,
 .dropdown ul,
-.dropdown li {
+.dropdown > li {
   margin-bottom: 0;
   margin-top: 0;
 }
