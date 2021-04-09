@@ -1,0 +1,37 @@
+
+.float {
+	&-left {
+		float: left !important;
+	}
+	&-right {
+		float: right !important;
+	}
+	&-none {
+		float: none !important;
+	}
+	&-inherit {
+		float: inherit !important;
+	}
+}
+
+.clear {
+	&-left {
+		clear: left !important;
+	}
+	&-right {
+		clear: right !important;
+	}
+	&-both {
+		clear: both !important;
+	}
+	&-none {
+		clear: none !important;
+	}
+	&-inherit {
+		clear: inherit !important;
+	}
+}
+
+.cf {
+	@include dump-styles(cf);
+}

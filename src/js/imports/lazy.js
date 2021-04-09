@@ -66,10 +66,12 @@ class Lazy extends FwComponent {
 
   readyLoaded(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
-    //so it dont run agen when it's already loaded
-    this.theSrc && element.removeAttribute('data-src');
-    this.theSrcSet && element.removeAttribute('data-srcset');
 
+    //so it dont run agen when it's already loaded
+    element.removeAttribute('data-src');
+    element.removeAttribute('data-srcset');
+
+    element.classList.remove(`${COMPONENT_CLASS}`);
     element.classList.add(`${ACTIVATED_CLASS}`);
   }
 
@@ -139,7 +141,7 @@ class Lazy extends FwComponent {
               this.readyLoaded();
             }
           } else {
-            element.style.backgroundImage = `url(${this.theSrc})`;
+            this.theSrc && (element.style.backgroundImage = `url(${this.theSrc})`);
             this.readyLoaded();
           }
         },

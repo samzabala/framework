@@ -1,0 +1,23 @@
+
+.margin {
+  & {
+    @include create-box-helper(#{&}, '', margin, '', $gutter-base, 'for-margin-base');
+  }
+  &-large {
+    @include create-box-helper(#{&}, '', margin, '', $gutter-large, 'for-margin-large');
+  }
+  &-small {
+    @include create-box-helper(#{&}, '', margin, '', $gutter-small, 'for-margin-small');
+  }
+  &-micro {
+    @include create-box-helper(#{&}, '', margin, '', $gutter-micro, 'for-margin-micro');
+  }
+}
+
+.no-margin {
+  @include create-box-helper(#{&}, '', margin, '', 0, 'for-no-margin');
+}
+
+.margin-auto {
+  @include create-box-helper(#{&}, '', margin, '', auto, 'for-margin-auto');
+}
