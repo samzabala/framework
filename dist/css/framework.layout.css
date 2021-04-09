@@ -4569,7 +4569,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   margin-bottom: 10px;
 }
 .module-title {
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: var(--fw-color-neutral);
   font-weight: 700;
   text-transform: none;

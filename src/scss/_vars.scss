@@ -958,7 +958,7 @@ $nav-dropdown-background: $nav-background !default;
 $nav-background-inverse: $nav-dropdown-background !default;
 $nav-icon-width: $icon-size !default;
 $nav-icon-height: $icon-size !default;
-$nav-current-size: 5px !default;
+$nav-current-size: 3px !default;
 $nav-item-height: 35px !default;
 $nav-current-gradient-start: $var-gradient-start !default;
 $nav-current-gradient-end: $var-gradient-end !default;
@@ -967,13 +967,13 @@ $nav-line-height: $body-line-height !default;
 $nav-color: $var-theme-color !default;
 $nav-color-inverse: $nav-color !default;
 $nav-color-hover: $var-color-primary !default;
-$nav-font-weight: 400 !default;
+$nav-font-weight: $body-font-weight !default;
 $nav-font-style: normal !default;
 $nav-text-transform: none !default;
 
 $nav-top-font-size: $nav-font-size !default;
 $nav-top-font-style: normal !default;
-$nav-top-font-weight: 700 !default;
+$nav-top-font-weight: $body-font-weight-bold !default;
 $nav-top-font-color: inherit !default;
 $nav-top-text-transform: none !default;
 
@@ -1015,7 +1015,7 @@ $tabs-item-color-active-inverse: $tabs-item-color-active !default;
 
 $tabs-item-box-shadow: none !default;
 
-$tabs-current-height: 5px !default;
+$tabs-current-height: 3px !default;
 $tabs-current-color: $var-color-primary !default;
 $tabs-current-color-inverse: $var-color-primary !default;
 
@@ -1201,7 +1201,7 @@ $module-grid-gutter: $gutter-base !default;
 
 $module-border-radius: $border-radius-small !default;
 
-$module-title-font-size: $body-font-size !default;
+$module-title-font-size: $body-font-size-small !default;
 $module-title-font-weight: $body-font-weight-bold !default;
 $module-title-font-style: normal !default;
 $module-title-color: $var-color-neutral !default;
@@ -1259,7 +1259,7 @@ $dropdown-small-gutter-x: $gutter-micro !default;
 $dropdown-small-gutter-y: $gutter-micro !default;
 $dropdown-large-gutter-x: $gutter-base !default;
 $dropdown-large-gutter-y: $gutter-base !default;
-$dropdown-border-radius: $border-radius-base !default;
+$dropdown-border-radius: $border-radius-small !default;
 $dropdown-box-shadow: $box-shadow-base $var-color-base !default;
 $dropdown-background: $var-theme-background !default;
 $dropdown-background-inverse: $dropdown-background !default;
@@ -1313,8 +1313,8 @@ $progress-title-margin-bottom: 10px !default;
 $progress-title-margin-top: $gutter-base !default;
 
 // WELL
-$well-spread: 7px !default;
-$well-spread-expanded: 14px !default;
+$well-spread: 6px !default;
+$well-spread-expanded: 12px !default;
 $well-spread-compact: 3px !default;
 
 $well-color: $var-color-base-alpha-2 !default;
@@ -1352,9 +1352,9 @@ $list-group-interactive-background-hover: $var-color-primary-alpha-1;
 $list-group-interactive-background-active: $var-color-primary-alpha-2;
 
 // badge
-$badge-size: 25px !default;
-$badge-size-large: 30px !default;
-$badge-size-small: 18px !default;
+$badge-size: 24px !default;
+$badge-size-large: 32px !default;
+$badge-size-small: 16px !default;
 $badge-border-color: $var-theme-background !default;
 $badge-border-color-inverse: $badge-border-color !default;
 $badge-border-width: 4px !default;
@@ -1379,7 +1379,7 @@ $highlight-font-style: normal !default;
 $highlight-color: $var-color-background !default;
 $highlight-text-transform: none !default;
 $highlight-gutter-x: 20px !default;
-$highlight-border-radius: $border-radius-base !default;
+$highlight-border-radius: $border-radius-small !default;
 
 $highlight-default-color: inherit !default;
 $highlight-default-background: $var-color-base-alpha-2 !default;
@@ -1406,9 +1406,9 @@ $highlight-error-color: $var-color-error !default;
 $highlight-error-background: $var-color-error-lightest !default;
 
 // tag
-$tag-height: 20px !default;
-$tag-height-large: 35px !default;
-$tag-height-small: 21px !default;
+$tag-height: 25px !default;
+$tag-height-large: 30px !default;
+$tag-height-small: 20px !default;
 $tag-gutter-x: 6px !default;
 $tag-font-size: 10px !default;
 $tag-font-weight: $body-font-weight-bold !default;
@@ -1532,9 +1532,9 @@ $toolbar-tile-gutter: $gutter-small !default; //
 
 // input
 
-$input-height: 30px !default;
-$input-height-large: 40px !default;
-$input-height-small: 20px !default;
+$input-height: 32px !default;
+$input-height-large: 50px !default;
+$input-height-small: 24px !default;
 $input-height-multiple-factor: 3 !default;
 $input-placeholder-opacity: 0.5 !default;
 $input-background: $var-theme-background !default;
@@ -1602,9 +1602,9 @@ $input-calendar-gap: 2px;
 
 $input-calendar-block-gutter-x: 0px !default;
 $input-calendar-block-gutter-x-mobile: 0px !default;
-$input-calendar-block-gutter-y: 0.375em !default;
+$input-calendar-block-gutter-y: 0.5em !default;
 $input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y !default;
-$input-calendar-block-border-radius: $border-radius-base !default;
+$input-calendar-block-border-radius: $border-radius-small !default;
 
 $input-calendar-date-hover-color: inherit !default;
 
@@ -1617,8 +1617,8 @@ $input-calendar-days-border-width: 1px !default;
 $input-calendar-days-font-size: 0.75em !default;
 
 //input tag tags
-$input-tags-padding-x: 1em !default;
-$input-tags-padding-y: 0.125em !default;
+$input-tags-padding-x: .5em !default;
+$input-tags-padding-y: 0 !default;
 $input-tags-padding-y-large: $input-tags-padding-y !default;
 $input-tags-padding-y-small: 0.0625em !default;
 $input-tags-gutter-x: 0.25em !default;
@@ -1644,6 +1644,8 @@ $input-toggle-node-width-large: $input-toggle-node-height-large !default;
 
 $input-toggle-node-height-small: $input-toggle-width-small * 0.5 !default;
 $input-toggle-node-width-small: $input-toggle-node-height-small !default;
+
+$input-toggle-node-box-shadow: 0 0 4px -2px $var-color-base !default;
 
 $input-toggle-plate-height: 10px !default;
 $input-toggle-plate-height-small: $input-toggle-plate-height !default;

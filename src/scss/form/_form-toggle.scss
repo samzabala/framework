@@ -96,12 +96,14 @@ $prefix: '.input';
         [type='radio']:checked + & {
           color: $input-toggle-color-default-active;
         }
+      }
 
-        @each $tag, $color in $calculated-brand-color-declarations-for-components {
-          @at-root &#{$prefix}-#{$tag},
-            #{$prefix}-#{$tag} & {
-            color: $color;
-          }
+      @each $tag, $color in $calculated-brand-color-declarations-for-components {
+        @at-root &#{$prefix}-#{$tag},
+          #{$prefix}-#{$tag} & {
+            &:before,&:after {
+              color: $color;
+            }
         }
       }
 
@@ -148,6 +150,7 @@ $prefix: '.input';
         & {
           height: $calculated-input-toggle-node-height;
           width: $calculated-input-toggle-node-width;
+          box-shadow: $input-toggle-node-box-shadow;
           border-radius: $input-toggle-node-border-radius;
           margin-right: calc(
             (#{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width})
@@ -158,6 +161,13 @@ $prefix: '.input';
                 #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height}
               ) / 2
           );
+
+          input[type='checkbox']:not(:checked) + &,
+          .input[type='checkbox']:not(:checked) + &,
+          input[type='radio']:not(:checked) + &,
+          .input[type='radio']:not(:checked) + & {
+            background: $var-theme-background;
+          }
 
           input[type='checkbox']:checked + &,
           .input[type='checkbox']:checked + &,
