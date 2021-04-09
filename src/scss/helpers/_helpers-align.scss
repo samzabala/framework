@@ -1,0 +1,108 @@
+.align {
+  &-content {
+    &-start {
+      align-content: start !important;
+    }
+    &-end {
+      align-content: end !important;
+    }
+    &-flex-start {
+      align-content: flex-start !important;
+    }
+    &-flex-end {
+      align-content: flex-end !important;
+    }
+    &-center {
+      align-content: center !important;
+    }
+    &-stretch {
+      align-content: stretch !important;
+    }
+    &-normal {
+      align-content: normal !important;
+    }
+    &-space-between {
+      align-content: space-between !important;
+    }
+    &-space-around {
+      align-content: space-around !important;
+    }
+    &-space-evenly {
+      align-content: space-evenly !important;
+    }
+    &-inherit {
+      align-content: inherit !important;
+    }
+  }
+  &-items {
+    &-start {
+      align-items: start !important;
+    }
+    &-end {
+      align-items: end !important;
+    }
+    &-flex-start {
+      align-items: flex-start !important;
+    }
+    &-flex-end {
+      align-items: flex-end !important;
+    }
+    &-center {
+      align-items: center !important;
+    }
+    &-baseline {
+      align-items: baseline !important;
+    }
+    &-stretch {
+      align-items: stretch !important;
+    }
+    &-normal {
+      align-items: normal !important;
+    }
+    &-inherit {
+      align-items: inherit !important;
+    }
+  }
+
+  &-self {
+    &-start {
+      align-self: start !important;
+    }
+    &-end {
+      align-self: end !important;
+    }
+    &-flex-start {
+      align-self: flex-start !important;
+    }
+    &-flex-end {
+      align-self: flex-end !important;
+    }
+    &-self-start {
+      align-self: self-start !important;
+    }
+    &-self-end {
+      align-self: self-end !important;
+    }
+    &-self-start {
+      align-self: self-start !important;
+    }
+    &-self-end {
+      align-self: self-end !important;
+    }
+    &-center {
+      align-self: center !important;
+    }
+    &-baseline {
+      align-self: baseline !important;
+    }
+    &-stretch {
+      align-self: stretch !important;
+    }
+    &-normal {
+      align-self: normal !important;
+    }
+    &-inherit {
+      align-self: inherit !important;
+    }
+  }
+}

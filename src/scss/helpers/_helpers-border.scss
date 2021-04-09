@@ -1,0 +1,66 @@
+$prefix: '.border';
+#{$prefix} {
+  &-color {
+    // Theme
+    @include create-palette-helper(#{&}-theme, border-color, $var-theme-color);
+
+    // Theme Contrast
+    @include create-palette-helper(
+      #{&}-theme-contrast,
+      border-color,
+      $var-theme-color-contrast
+    );
+
+    // Theme Polar
+    @include create-palette-helper(
+      #{&}-theme-polar,
+      border-color,
+      $var-theme-background
+    );
+
+    // Theme Contrast Polar
+    @include create-palette-helper(
+      #{&}-theme-polar-contrast,
+      border-color,
+      $var-theme-background-contrast
+    );
+
+    //inherit
+    @include create-palette-helper(#{&}-inherit, border-color, inherit);
+
+    //transparent
+    @include create-palette-helper(#{&}-transparent, border-color, transparent);
+
+    @include dump-palette-helpers(border-color);
+  }
+
+  &-style {
+    @include create-box-helper(#{& + '-none'}, '', border, 'style', none);
+    @include create-box-helper(#{& + '-hidden'}, '', border, 'style', hidden);
+    @include create-box-helper(#{& + '-dotted'}, '', border, 'style', dotted);
+    @include create-box-helper(#{& + '-dashed'}, '', border, 'style', dashed);
+    @include create-box-helper(#{& + '-solid'}, '', border, 'style', solid);
+    @include create-box-helper(#{& + '-double'}, '', border, 'style', double);
+    @include create-box-helper(#{& + '-groove'}, '', border, 'style', groove);
+    @include create-box-helper(#{& + '-ridge'}, '', border, 'style', ridge);
+    @include create-box-helper(#{& + '-inset'}, '', border, 'style', inset);
+    @include create-box-helper(#{& + '-outset'}, '', border, 'style', outset);
+    @include create-box-helper(#{& + '-initial'}, '', border, 'style', initial);
+    @include create-box-helper(#{& + '-inherit'}, '', border, 'style', inherit);
+    @include create-box-helper(#{& + '-unset'}, '', border, 'style', unset);
+  }
+
+  &-width {
+    @include create-box-helper(#{& + '-thin'}, '', border, 'width', thin);
+    @include create-box-helper(#{& + '-medium'}, '', border, 'width', medium);
+    @include create-box-helper(#{& + '-thick'}, '', border, 'width', thick);
+    @include create-box-helper(#{& + '-initial'}, '', border, 'width', initial);
+    @include create-box-helper(#{& + '-inherit'}, '', border, 'width', inherit);
+    @include create-box-helper(#{& + '-unset'}, '', border, 'width', unset);
+  }
+}
+
+//box model helpy
+.no-border {
+  @include create-box-helper(#{&}, '', border, '', 0, 'for-no-border');
+}

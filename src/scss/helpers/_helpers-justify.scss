@@ -1,0 +1,127 @@
+.justify {
+  &-content {
+    &-start {
+      justify-content: start !important;
+    }
+    &-end {
+      justify-content: end !important;
+    }
+    &-flex-start {
+      justify-content: flex-start !important;
+    }
+    &-flex-end {
+      justify-content: flex-end !important;
+    }
+    &-left {
+      justify-content: left !important;
+    }
+    &-right {
+      justify-content: right !important;
+    }
+    &-center {
+      justify-content: center !important;
+    }
+    &-stretch {
+      justify-content: stretch !important;
+    }
+    &-normal {
+      justify-content: normal !important;
+    }
+    &-space-between {
+      justify-content: space-between !important;
+    }
+    &-space-around {
+      justify-content: space-around !important;
+    }
+    &-space-evenly {
+      justify-content: space-evenly !important;
+    }
+    &-inherit {
+      justify-content: inherit !important;
+    }
+  }
+
+  &-items {
+    &-start {
+      justify-items: start !important;
+    }
+    &-end {
+      justify-items: end !important;
+    }
+    &-flex-start {
+      justify-items: flex-start !important;
+    }
+    &-flex-end {
+      justify-items: flex-end !important;
+    }
+    &-self-start {
+      justify-items: self-start !important;
+    }
+    &-self-end {
+      justify-items: self-end !important;
+    }
+    &-left {
+      justify-items: left !important;
+    }
+    &-right {
+      justify-items: right !important;
+    }
+    &-center {
+      justify-items: center !important;
+    }
+    &-baseline {
+      justify-items: baseline !important;
+    }
+    &-stretch {
+      justify-items: stretch !important;
+    }
+    &-normal {
+      justify-items: normal !important;
+    }
+    &-inherit {
+      justify-items: inherit !important;
+    }
+  }
+
+  &-self {
+    &-start {
+      justify-self: start !important;
+    }
+    &-end {
+      justify-self: end !important;
+    }
+    &-flex-start {
+      justify-self: flex-start !important;
+    }
+    &-flex-end {
+      justify-self: flex-end !important;
+    }
+    &-self-start {
+      justify-self: self-start !important;
+    }
+    &-self-end {
+      justify-self: self-end !important;
+    }
+    &-left {
+      justify-self: left !important;
+    }
+    &-right {
+      justify-self: right !important;
+    }
+    &-center {
+      justify-self: center !important;
+    }
+    &-baseline {
+      justify-self: baseline !important;
+    }
+    &-stretch {
+      justify-self: stretch !important;
+    }
+    &-normal {
+      justify-self: normal !important;
+    }
+    &-inherit {
+      justify-self: inherit !important;
+    }
+  }
+}

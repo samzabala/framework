@@ -1,0 +1,68 @@
+$prefix: '.svg';
+#{$prefix} {
+  &-gradient {
+    &-start {
+      stop-color: $svg-gradient-color-start;
+    }
+    &-end {
+      stop-color: $svg-gradient-color-end;
+    }
+  }
+}
+
+.fill {
+  // Theme
+  @include create-palette-helper(#{&}-theme, fill, $var-theme-color);
+
+  // Theme Contrast
+  @include create-palette-helper(#{&}-theme-contrast, fill, $var-theme-color-contrast);
+
+  // Theme Polar
+  @include create-palette-helper(#{&}-theme-polar, fill, $var-theme-background);
+
+  // Theme Contrast Polar
+  @include create-palette-helper(
+    #{&}-theme-polar-contrast,
+    fill,
+    $var-theme-background-contrast
+  );
+
+  //current
+  @include create-palette-helper(#{&}-currentColor, fill, currentColor);
+
+  //none
+  @include create-palette-helper(#{&}-none, fill, none);
+
+  //godspeed bro
+  @include dump-palette-helpers(fill);
+}
+
+.stroke {
+  // Theme
+  @include create-palette-helper(#{&}-theme, stroke, $var-theme-color);
+
+  // Theme Contrast
+  @include create-palette-helper(
+    #{&}-theme-contrast,
+    stroke,
+    $var-theme-color-contrast
+  );
+
+  // Theme Polar
+  @include create-palette-helper(#{&}-theme-polar, stroke, $var-theme-background);
+
+  // Theme Contrast Polar
+  @include create-palette-helper(
+    #{&}-theme-polar-contrast,
+    stroke,
+    $var-theme-background-contrast
+  );
+
+  //current
+  @include create-palette-helper(#{&}-currentColor, stroke, currentColor);
+
+  //none
+  @include create-palette-helper(#{&}-none, stroke, none);
+
+  @include dump-palette-helpers(stroke);
+}

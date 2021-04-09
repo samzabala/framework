@@ -1,0 +1,3 @@
+.no-shadow {
+  @include dump-styles(no-box-shadow-important);
+}

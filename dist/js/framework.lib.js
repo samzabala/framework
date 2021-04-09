@@ -3192,8 +3192,9 @@
     _proto.readyLoaded = function readyLoaded(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this); //so it dont run agen when it's already loaded
 
-      this.theSrc && element.removeAttribute('data-src');
-      this.theSrcSet && element.removeAttribute('data-srcset');
+      element.removeAttribute('data-src');
+      element.removeAttribute('data-srcset');
+      element.classList.remove("" + COMPONENT_CLASS$7);
       element.classList.add("" + ACTIVATED_CLASS$4);
     };
 
@@ -3255,7 +3256,7 @@
               _this2.readyLoaded();
             }
           } else {
-            element.style.backgroundImage = "url(" + _this2.theSrc + ")";
+            _this2.theSrc && (element.style.backgroundImage = "url(" + _this2.theSrc + ")");
 
             _this2.readyLoaded();
           }

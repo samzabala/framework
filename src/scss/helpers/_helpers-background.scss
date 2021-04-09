@@ -1,0 +1,77 @@
+$prefix: '.background';
+#{$prefix} {
+  &-image-none {
+    @include create-palette-helper(#{&}) {
+      background-image: none !important;
+    }
+  }
+
+  // Theme
+  @include create-palette-helper(#{&}-theme, background-color, $var-theme-background);
+
+  // Theme Contrast
+  @include create-palette-helper(
+    #{&}-theme-contrast,
+    background-color,
+    $var-theme-background-contrast
+  );
+
+  // Theme Polar
+  @include create-palette-helper(#{&}-theme-polar, background-color, $var-theme-color);
+
+  // Theme Contrast Polar
+  @include create-palette-helper(
+    #{&}-theme-polar-contrast,
+    background-color,
+    $var-theme-color-contrast
+  );
+
+  //gradient
+  &-gradient {
+    @include gradient(
+      (
+        color1: $var-gradient-start,
+        color2: $var-gradient-end,
+        angle: 0deg,
+        use-shorthand: false,
+        add-important: true,
+      )
+    );
+
+    $calculated-gradient-selector: #{&};
+
+    @each $angle in $calculated-gradient-angles {
+      $calculated-gradient-selector: #{$calculated-gradient-selector
+        ', ' +
+        & +
+        '-' +
+        $angle};
+    }
+
+    @at-root #{$calculated-gradient-selector} {
+      background-color: $var-gradient-start !important;
+    }
+
+    @each $angle in $calculated-gradient-angles {
+      @include create-palette-helper(#{&}-#{$angle}) {
+        @include gradient(
+          (
+            color1: $var-gradient-start,
+            color2: $var-gradient-end,
+            angle: to-unit($angle, deg),
+            use-shorthand: false,
+            add-important: true,
+          )
+        );
+      }
+    }
+  }
+
+  //inherit
+  @include create-palette-helper(#{&}-inherit, background-color, inherit);
+
+  //transparent
+  @include create-palette-helper(#{&}-transparent, background-color, transparent);
+
+  @include dump-palette-helpers(background);
+}

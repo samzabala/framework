@@ -1,0 +1,10 @@
+.fit-image {
+  &-cover {
+    position: relative;
+    @include dump-styles(fit-image-cover);
+  }
+  &-contain {
+    position: relative;
+    @include dump-styles(fit-image-contain);
+  }
+}
