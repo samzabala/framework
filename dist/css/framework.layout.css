@@ -4570,7 +4570,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 }
 .module-title {
   font-size: 1rem;
-  color: var(--fw-color-primary);
+  color: var(--fw-color-neutral);
   font-weight: 700;
   text-transform: none;
   font-style: normal;

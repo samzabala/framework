@@ -4613,7 +4613,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 }
 .module-title {
   font-size: 1rem;
-  color: var(--fw-color-primary);
+  color: var(--fw-color-neutral);
   font-weight: 700;
   text-transform: none;
   font-style: normal;
@@ -6422,16 +6422,16 @@ hr.dropdown-separator {
 
 /*** Tags ***/
 .tag {
-  font-size: 0.8125rem;
+  font-size: 0.625rem;
   line-height: 1;
   font-weight: 700;
   text-transform: uppercase;
   font-style: normal;
-  padding-top: calc( ((2.1538461538em - (1em)) * 0.5) );
-  padding-bottom: calc( ((2.1538461538em - (1em)) * 0.5) );
-  padding-left: 0.4615384615em;
-  padding-right: 0.4615384615em;
-  border-radius: 14px;
+  padding-top: calc( ((2em - (1em)) * 0.5) );
+  padding-bottom: calc( ((2em - (1em)) * 0.5) );
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  border-radius: 5px;
   margin-top: 0.125em;
   margin-bottom: 0.125em;
   display: inline-flex;
@@ -6440,14 +6440,14 @@ hr.dropdown-separator {
   max-width: 100%;
 }
 .tag.tag-large {
-  padding-top: calc( ((2.6923076923em - (1em)) * 0.5) );
-  padding-bottom: calc( ((2.6923076923em - (1em)) * 0.5) );
-  border-radius: 17.5px;
+  padding-top: calc( ((3.5em - (1em)) * 0.5) );
+  padding-bottom: calc( ((3.5em - (1em)) * 0.5) );
+  border-radius: 10px;
 }
 .tag.tag-small {
-  padding-top: calc( ((1.6153846154em - (1em)) * 0.5) );
-  padding-bottom: calc( ((1.6153846154em - (1em)) * 0.5) );
-  border-radius: 5.25px;
+  padding-top: calc( ((2.1em - (1em)) * 0.5) );
+  padding-bottom: calc( ((2.1em - (1em)) * 0.5) );
+  border-radius: 5px;
 }
 .tag a, .tag a:hover, .tag a:focus, .tag a.focus {
   text-decoration: inherit;
@@ -7414,8 +7414,8 @@ td,
 .table-cell.table-cell-heading {
   vertical-align: inherit;
   text-align: inherit;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   height: 100%;
   display: table-cell;
   position: relative;
@@ -7459,15 +7459,15 @@ th,
   padding-top: calc( (2.8125rem - (1.5em)) * 0.5 );
   padding-bottom: calc( (2.8125rem - (1.5em)) * 0.5 );
   background: var(--fw-theme-background);
-  color: var(--fw-theme-color-contrast);
-  font-weight: 700;
-  text-transform: uppercase;
+  color: var(--fw-color-neutral);
+  font-weight: 400;
+  text-transform: none;
   font-style: normal;
 }
 .theme-inverse th,
 .theme-inverse .table-cell.table-cell-heading {
   background: var(--fw-theme-background);
-  color: var(--fw-theme-color-contrast);
+  color: var(--fw-color-neutral);
 }
 .alert th, .theme-inverse .alert th,
 .alert .table-cell.table-cell-heading,

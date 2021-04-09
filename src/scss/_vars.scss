@@ -268,8 +268,16 @@ $brand-color-primary-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-primary-dark: mix($brand-color-primary, $brand-color-base, 60%) !default;
-$brand-color-primary-darker: mix($brand-color-primary, $brand-color-base, 30%) !default;
+$brand-color-primary-dark: mix(
+  $brand-color-primary,
+  $brand-color-base,
+  60%
+) !default;
+$brand-color-primary-darker: mix(
+  $brand-color-primary,
+  $brand-color-base,
+  30%
+) !default;
 $brand-color-primary-darkest: mix(
   $brand-color-primary,
   $brand-color-base,
@@ -324,9 +332,21 @@ $brand-color-accent-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-accent-dark: mix($brand-color-accent, $brand-color-base, 60%) !default;
-$brand-color-accent-darker: mix($brand-color-accent, $brand-color-base, 30%) !default;
-$brand-color-accent-darkest: mix($brand-color-accent, $brand-color-base, 15%) !default;
+$brand-color-accent-dark: mix(
+  $brand-color-accent,
+  $brand-color-base,
+  60%
+) !default;
+$brand-color-accent-darker: mix(
+  $brand-color-accent,
+  $brand-color-base,
+  30%
+) !default;
+$brand-color-accent-darkest: mix(
+  $brand-color-accent,
+  $brand-color-base,
+  15%
+) !default;
 
 $brand-color-neutral: #878787 !default;
 $brand-color-neutral-light: mix(
@@ -344,8 +364,16 @@ $brand-color-neutral-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-neutral-dark: mix($brand-color-neutral, $brand-color-base, 60%) !default;
-$brand-color-neutral-darker: mix($brand-color-neutral, $brand-color-base, 30%) !default;
+$brand-color-neutral-dark: mix(
+  $brand-color-neutral,
+  $brand-color-base,
+  60%
+) !default;
+$brand-color-neutral-darker: mix(
+  $brand-color-neutral,
+  $brand-color-base,
+  30%
+) !default;
 $brand-color-neutral-darkest: mix(
   $brand-color-neutral,
   $brand-color-base,
@@ -368,8 +396,16 @@ $brand-color-success-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-success-dark: mix($brand-color-success, $brand-color-base, 60%) !default;
-$brand-color-success-darker: mix($brand-color-success, $brand-color-base, 30%) !default;
+$brand-color-success-dark: mix(
+  $brand-color-success,
+  $brand-color-base,
+  60%
+) !default;
+$brand-color-success-darker: mix(
+  $brand-color-success,
+  $brand-color-base,
+  30%
+) !default;
 $brand-color-success-darkest: mix(
   $brand-color-success,
   $brand-color-base,
@@ -392,8 +428,16 @@ $brand-color-caution-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-caution-dark: mix($brand-color-caution, $brand-color-base, 60%) !default;
-$brand-color-caution-darker: mix($brand-color-caution, $brand-color-base, 30%) !default;
+$brand-color-caution-dark: mix(
+  $brand-color-caution,
+  $brand-color-base,
+  60%
+) !default;
+$brand-color-caution-darker: mix(
+  $brand-color-caution,
+  $brand-color-base,
+  30%
+) !default;
 $brand-color-caution-darkest: mix(
   $brand-color-caution,
   $brand-color-base,
@@ -416,9 +460,21 @@ $brand-color-error-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-error-dark: mix($brand-color-error, $brand-color-base, 60%) !default;
-$brand-color-error-darker: mix($brand-color-error, $brand-color-base, 30%) !default;
-$brand-color-error-darkest: mix($brand-color-error, $brand-color-base, 15%) !default;
+$brand-color-error-dark: mix(
+  $brand-color-error,
+  $brand-color-base,
+  60%
+) !default;
+$brand-color-error-darker: mix(
+  $brand-color-error,
+  $brand-color-base,
+  30%
+) !default;
+$brand-color-error-darkest: mix(
+  $brand-color-error,
+  $brand-color-base,
+  15%
+) !default;
 
 $brand-color-intensity-1: $brand-color-primary !default;
 $brand-color-intensity-5: $brand-color-accent !default;
@@ -744,15 +800,15 @@ $table-cell-height-small: 25px !default;
 $table-cell-border-color: $var-theme-background-contrast !default;
 $table-cell-border-color-inverse: $table-cell-border-color !default;
 $table-cell-border-width: 1px !default;
-$table-cell-gutter: $gutter-micro !default;
+$table-cell-gutter: $gutter-small !default;
 
 $table-heading-font-size: 14px !default;
 $table-heading-height: 45px !default;
-$table-heading-font-weight: $body-font-weight-bold !default;
+$table-heading-font-weight: $body-font-weight !default;
 $table-heading-font-style: normal !default;
-$table-heading-color: $var-theme-color-contrast !default;
+$table-heading-color: $var-color-neutral !default;
 $table-heading-color-inverse: $table-heading-color !default;
-$table-heading-text-transform: uppercase !default;
+$table-heading-text-transform: none !default;
 $table-heading-background: $var-theme-background !default;
 $table-heading-background-inverse: $table-heading-background !default;
 $table-label-width: 12px !default;
@@ -1148,7 +1204,7 @@ $module-border-radius: $border-radius-small !default;
 $module-title-font-size: $body-font-size !default;
 $module-title-font-weight: $body-font-weight-bold !default;
 $module-title-font-style: normal !default;
-$module-title-color: $var-color-primary !default;
+$module-title-color: $var-color-neutral !default;
 $module-title-text-transform: none !default;
 
 $module-grid-title-font-size: 19px !default;
@@ -1350,20 +1406,20 @@ $highlight-error-color: $var-color-error !default;
 $highlight-error-background: $var-color-error-lightest !default;
 
 // tag
-$tag-height: 28px !default;
+$tag-height: 20px !default;
 $tag-height-large: 35px !default;
 $tag-height-small: 21px !default;
 $tag-gutter-x: 6px !default;
-$tag-font-size: 13px !default;
+$tag-font-size: 10px !default;
 $tag-font-weight: $body-font-weight-bold !default;
 $tag-line-height: 1 !default;
 $tag-font-style: normal !default;
 $tag-color: $var-color-background !default;
 $tag-text-transform: uppercase !default;
 $tag-gutter-y: 20px !default;
-$tag-border-radius: $tag-height * 0.5 !default;
-$tag-border-radius-large: $tag-height-large * 0.5 !default;
-$tag-border-radius-small: $tag-height-small * 0.25 !default;
+$tag-border-radius: $border-radius-small !default;
+$tag-border-radius-large: $border-radius-base !default;
+$tag-border-radius-small: $border-radius-small !default;
 $tag-margin-y: 0.125em !default;
 
 $tag-default-color: $var-theme-color !default;
