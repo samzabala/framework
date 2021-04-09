@@ -413,10 +413,10 @@
   }
 
   &-hide-js-friendly {
-    pointer-events: none!important;
+    pointer-events: none !important;
     position: absolute !important;
-    left: -99999999vw!important;
-    top: -99999999vw!important;
+    left: -99999999vw !important;
+    top: -99999999vw !important;
     width: 1px !important;
     height: 1px !important;
     margin: -1px !important;
@@ -427,10 +427,10 @@
 
     &-mobile {
       @include br(#{$mobile-br-max}-max) {
-        pointer-events: none!important;
+        pointer-events: none !important;
         position: absolute !important;
-        left: -99999999vw!important;
-        top: -99999999vw!important;
+        left: -99999999vw !important;
+        top: -99999999vw !important;
         width: 1px !important;
         height: 1px !important;
         margin: -1px !important;
@@ -443,10 +443,10 @@
 
     &-nonmobile {
       @include br(#{$mobile-br-max-polar}) {
-        pointer-events: none!important;
+        pointer-events: none !important;
         position: absolute !important;
-        left: -99999999vw!important;
-        top: -99999999vw!important;
+        left: -99999999vw !important;
+        top: -99999999vw !important;
         width: 1px !important;
         height: 1px !important;
         margin: -1px !important;

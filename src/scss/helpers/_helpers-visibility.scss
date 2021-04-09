@@ -1,69 +1,68 @@
-
 .only-lg {
-	display: none !important;
+  display: none !important;
 }
 
 .only-md {
-	display: none !important;
+  display: none !important;
 }
 
 .only-sm {
-	display: none !important;
+  display: none !important;
 }
 
 .only-xs {
-	display: none !important;
+  display: none !important;
 }
 
 @include breakpoint(lg) {
-	.only-lg {
-		display: block !important;
-	}
+  .only-lg {
+    display: block !important;
+  }
 
-	.hide-lg {
-		display: none !important;
-	}
+  .hide-lg {
+    display: none !important;
+  }
 }
 
 @include breakpoint((md, md-max)) {
-	.only-md {
-		display: block !important;
-	}
+  .only-md {
+    display: block !important;
+  }
 
-	.hide-md {
-		display: none !important;
-	}
+  .hide-md {
+    display: none !important;
+  }
 }
 
 @include breakpoint((sm, sm-max)) {
-	.only-sm {
-		display: block !important;
-	}
+  .only-sm {
+    display: block !important;
+  }
 
-	.hide-sm {
-		display: none !important;
-	}
+  .hide-sm {
+    display: none !important;
+  }
 }
 
 @include breakpoint(xs-max) {
-	.only-xs {
-		display: block !important;
-	}
+  .only-xs {
+    display: block !important;
+  }
 
-	.hide-xs {
-		display: none !important;
-	}
+  .hide-xs {
+    display: none !important;
+  }
 }
 
 .only-mobile {
-	display: none !important;
+  display: none !important;
 }
 
 .only-nonmobile {
-	display: none !important;
+  display: none !important;
 }
 .pointer-reference:not(:hover):not(:focus):not(.focus):not(:active):not(.active):not(.open)
-	.hide-idle,
+  .hide-idle,
 .pointer-reference:hover .only-idle,
 .pointer-reference:focus .only-idle,
 .pointer-reference.focus .only-idle,
@@ -90,29 +89,29 @@
 .pointer-reference.open .hide-toggle,
 .pointer-reference:not(.active):not(.open) .only-toggle,
 .pointer-reference:not(.active):not(.open) .hide-not-toggle {
-	display: none !important;
+  display: none !important;
 }
 
 @include breakpoint(#{$mobile-br-max}-max) {
-	.only-mobile {
-		display: block !important;
-	}
+  .only-mobile {
+    display: block !important;
+  }
 
-	.hide-mobile {
-		display: none !important;
-	}
+  .hide-mobile {
+    display: none !important;
+  }
 }
 
 @include breakpoint(#{$mobile-br-max-polar}) {
-	.only-nonmobile {
-		display: block !important;
-	}
+  .only-nonmobile {
+    display: block !important;
+  }
 
-	.hide-nonmobile {
-		display: none !important;
-	}
+  .hide-nonmobile {
+    display: none !important;
+  }
 }
 
 .sr-only {
-	@include dump-styles(hide-js-friendly);
+  @include dump-styles(hide-js-friendly);
 }

@@ -101,9 +101,10 @@ $prefix: '.input';
       @each $tag, $color in $calculated-brand-color-declarations-for-components {
         @at-root &#{$prefix}-#{$tag},
           #{$prefix}-#{$tag} & {
-            &:before,&:after {
-              color: $color;
-            }
+          &:before,
+          &:after {
+            color: $color;
+          }
         }
       }
 

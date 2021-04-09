@@ -268,16 +268,8 @@ $brand-color-primary-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-primary-dark: mix(
-  $brand-color-primary,
-  $brand-color-base,
-  60%
-) !default;
-$brand-color-primary-darker: mix(
-  $brand-color-primary,
-  $brand-color-base,
-  30%
-) !default;
+$brand-color-primary-dark: mix($brand-color-primary, $brand-color-base, 60%) !default;
+$brand-color-primary-darker: mix($brand-color-primary, $brand-color-base, 30%) !default;
 $brand-color-primary-darkest: mix(
   $brand-color-primary,
   $brand-color-base,
@@ -332,21 +324,9 @@ $brand-color-accent-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-accent-dark: mix(
-  $brand-color-accent,
-  $brand-color-base,
-  60%
-) !default;
-$brand-color-accent-darker: mix(
-  $brand-color-accent,
-  $brand-color-base,
-  30%
-) !default;
-$brand-color-accent-darkest: mix(
-  $brand-color-accent,
-  $brand-color-base,
-  15%
-) !default;
+$brand-color-accent-dark: mix($brand-color-accent, $brand-color-base, 60%) !default;
+$brand-color-accent-darker: mix($brand-color-accent, $brand-color-base, 30%) !default;
+$brand-color-accent-darkest: mix($brand-color-accent, $brand-color-base, 15%) !default;
 
 $brand-color-neutral: #878787 !default;
 $brand-color-neutral-light: mix(
@@ -364,16 +344,8 @@ $brand-color-neutral-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-neutral-dark: mix(
-  $brand-color-neutral,
-  $brand-color-base,
-  60%
-) !default;
-$brand-color-neutral-darker: mix(
-  $brand-color-neutral,
-  $brand-color-base,
-  30%
-) !default;
+$brand-color-neutral-dark: mix($brand-color-neutral, $brand-color-base, 60%) !default;
+$brand-color-neutral-darker: mix($brand-color-neutral, $brand-color-base, 30%) !default;
 $brand-color-neutral-darkest: mix(
   $brand-color-neutral,
   $brand-color-base,
@@ -396,16 +368,8 @@ $brand-color-success-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-success-dark: mix(
-  $brand-color-success,
-  $brand-color-base,
-  60%
-) !default;
-$brand-color-success-darker: mix(
-  $brand-color-success,
-  $brand-color-base,
-  30%
-) !default;
+$brand-color-success-dark: mix($brand-color-success, $brand-color-base, 60%) !default;
+$brand-color-success-darker: mix($brand-color-success, $brand-color-base, 30%) !default;
 $brand-color-success-darkest: mix(
   $brand-color-success,
   $brand-color-base,
@@ -428,16 +392,8 @@ $brand-color-caution-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-caution-dark: mix(
-  $brand-color-caution,
-  $brand-color-base,
-  60%
-) !default;
-$brand-color-caution-darker: mix(
-  $brand-color-caution,
-  $brand-color-base,
-  30%
-) !default;
+$brand-color-caution-dark: mix($brand-color-caution, $brand-color-base, 60%) !default;
+$brand-color-caution-darker: mix($brand-color-caution, $brand-color-base, 30%) !default;
 $brand-color-caution-darkest: mix(
   $brand-color-caution,
   $brand-color-base,
@@ -460,21 +416,9 @@ $brand-color-error-lightest: mix(
   $brand-color-background,
   15%
 ) !default;
-$brand-color-error-dark: mix(
-  $brand-color-error,
-  $brand-color-base,
-  60%
-) !default;
-$brand-color-error-darker: mix(
-  $brand-color-error,
-  $brand-color-base,
-  30%
-) !default;
-$brand-color-error-darkest: mix(
-  $brand-color-error,
-  $brand-color-base,
-  15%
-) !default;
+$brand-color-error-dark: mix($brand-color-error, $brand-color-base, 60%) !default;
+$brand-color-error-darker: mix($brand-color-error, $brand-color-base, 30%) !default;
+$brand-color-error-darkest: mix($brand-color-error, $brand-color-base, 15%) !default;
 
 $brand-color-intensity-1: $brand-color-primary !default;
 $brand-color-intensity-5: $brand-color-accent !default;
@@ -1617,7 +1561,7 @@ $input-calendar-days-border-width: 1px !default;
 $input-calendar-days-font-size: 0.75em !default;
 
 //input tag tags
-$input-tags-padding-x: .5em !default;
+$input-tags-padding-x: 0.5em !default;
 $input-tags-padding-y: 0 !default;
 $input-tags-padding-y-large: $input-tags-padding-y !default;
 $input-tags-padding-y-small: 0.0625em !default;
