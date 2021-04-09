@@ -78,7 +78,7 @@ $prefix: '.nav';
       box-shadow: none;
     }
   }
-  @at-root .dropdown li,
+  @at-root & .dropdown > li,
     &-item,
     &-list li {
     margin: 0;
