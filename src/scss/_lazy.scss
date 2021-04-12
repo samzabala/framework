@@ -12,3 +12,14 @@ $prefix: '.lazy';
     opacity: 0;
   }
 }
+
+body {
+
+  &:not(.body-loaded) {
+      *,
+      *:before,
+      *:after {
+      transition: none !important;
+      }
+  }
+}

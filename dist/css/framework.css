@@ -490,6 +490,23 @@ table {
   --fw-theme-background-contrast: var(--fw-color-background-alt);
 }
 
+.body-no-scroll {
+  overflow: hidden !important;
+}
+
+.body-on-drag,
+.body-on-drag * {
+  cursor: grabbing !important;
+  -webkit-user-select: none !important;
+  /* Safari 3.1+ */
+  -moz-user-select: none !important;
+  /* Firefox 2+ */
+  -ms-user-select: none !important;
+  /* IE 10+ */
+  user-select: none !important;
+  /* Standard syntax */
+}
+
 *.theme-inverse,
 html.theme-inverse,
 .theme-inverse body {
@@ -508,6 +525,10 @@ body {
 }
 
 /*** SCAFFOLDING ***/
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   width: 100%;
@@ -517,23 +538,6 @@ body {
   font-family: var(--fw-font-primary);
   font-weight: 400;
   min-height: 100vh;
-}
-
-.body-no-scroll {
-  overflow: hidden !important;
-}
-
-.body-on-drag,
-.body-on-drag * {
-  cursor: grabbing !important;
-  -webkit-user-select: none !important;
-  /* Safari 3.1+ */
-  -moz-user-select: none !important;
-  /* Firefox 2+ */
-  -ms-user-select: none !important;
-  /* IE 10+ */
-  user-select: none !important;
-  /* Standard syntax */
 }
 
 body {
@@ -550,12 +554,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--fw-theme-background-contrast);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--fw-color-neutral);
+  background: var(--fw-color-primary);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
@@ -563,7 +567,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--fw-color-neutral);
+  background: var(--fw-color-primary-dark);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
@@ -581,14 +585,6 @@ body {
 
 body {
   text-align: left;
-}
-body.body-nav-sticky-offset {
-  padding-top: 3.75rem;
-}
-body:not(.body-loaded) *,
-body:not(.body-loaded) *:before,
-body:not(.body-loaded) *:after {
-  transition: none !important;
 }
 
 /* SUPER GLOBAL STYLE FIXES */
@@ -652,7 +648,6 @@ a {
   text-decoration: none;
 }
 
-/* to toggley bitches kids  */
 /*** TYPOGRAPHY ***/
 /* special */
 .special-primary {
@@ -5681,6 +5676,10 @@ body:not(.body-loaded) .symbol:before {
 }
 
 /*** NAVIGATION ***/
+body.asset-nav-sticky-offset {
+  padding-top: 3.75rem;
+}
+
 .nav {
   height: 3.75rem;
   background: var(--fw-theme-background);
@@ -5740,19 +5739,19 @@ body:not(.body-loaded) .symbol:before {
   position: static;
   box-shadow: none;
 }
-.dropdown li, .nav-item, .nav-list li {
+.nav .dropdown > li, .nav-item, .nav-list li {
   margin: 0;
   padding: 0;
 }
-.dropdown li:before, .nav-item:before, .nav-list li:before {
+.nav .dropdown > li:before, .nav-item:before, .nav-list li:before {
   content: none;
 }
-.dropdown li > a, .nav-item > a, .nav-list li > a {
+.nav .dropdown > li > a, .nav-item > a, .nav-list li > a {
   padding-top: calc( (2.1875rem - (1.5rem)) * 0.5 );
   padding-bottom: calc( (2.1875rem - (1.5rem)) * 0.5 );
   display: block;
 }
-.dropdown li:hover > a, .nav-item:hover > a, .nav-list li:hover > a {
+.nav .dropdown > li:hover > a, .nav-item:hover > a, .nav-list li:hover > a {
   color: var(--fw-color-primary);
 }
 
@@ -5991,6 +5990,12 @@ body:not(.body-lazy-loaded) .lazy,
 body:not(.body-lazy-loaded) *[data-src],
 body:not(.body-lazy-loaded) *[data-srcset] {
   opacity: 0;
+}
+
+body:not(.body-loaded) *,
+body:not(.body-loaded) *:before,
+body:not(.body-loaded) *:after {
+  transition: none !important;
 }
 
 /*** THUMBNAIL ***/

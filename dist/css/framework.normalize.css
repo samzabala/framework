@@ -392,6 +392,23 @@ a:hover {
   --fw-theme-background-contrast: var(--fw-color-background-alt);
 }
 
+.body-no-scroll {
+  overflow: hidden !important;
+}
+
+.body-on-drag,
+.body-on-drag * {
+  cursor: grabbing !important;
+  -webkit-user-select: none !important;
+  /* Safari 3.1+ */
+  -moz-user-select: none !important;
+  /* Firefox 2+ */
+  -ms-user-select: none !important;
+  /* IE 10+ */
+  user-select: none !important;
+  /* Standard syntax */
+}
+
 *.theme-inverse,
 html.theme-inverse,
 .theme-inverse body {
@@ -410,6 +427,10 @@ body {
 }
 
 /*** SCAFFOLDING ***/
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   width: 100%;
@@ -419,23 +440,6 @@ body {
   font-family: var(--fw-font-primary);
   font-weight: 400;
   min-height: 100vh;
-}
-
-.body-no-scroll {
-  overflow: hidden !important;
-}
-
-.body-on-drag,
-.body-on-drag * {
-  cursor: grabbing !important;
-  -webkit-user-select: none !important;
-  /* Safari 3.1+ */
-  -moz-user-select: none !important;
-  /* Firefox 2+ */
-  -ms-user-select: none !important;
-  /* IE 10+ */
-  user-select: none !important;
-  /* Standard syntax */
 }
 
 body {
@@ -452,12 +456,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--fw-theme-background-contrast);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--fw-color-neutral);
+  background: var(--fw-color-primary);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
@@ -465,7 +469,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--fw-color-neutral);
+  background: var(--fw-color-primary-dark);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
@@ -483,14 +487,6 @@ body {
 
 body {
   text-align: left;
-}
-body.body-nav-sticky-offset {
-  padding-top: 3.75rem;
-}
-body:not(.body-loaded) *,
-body:not(.body-loaded) *:before,
-body:not(.body-loaded) *:after {
-  transition: none !important;
 }
 
 /* SUPER GLOBAL STYLE FIXES */
@@ -554,7 +550,6 @@ a {
   text-decoration: none;
 }
 
-/* to toggley bitches kids  */
 /*** TYPOGRAPHY ***/
 /* special */
 .special-primary {
