@@ -1,4 +1,11 @@
 /*** NAVIGATION ***/
+
+body {
+  &#{$prefix}-nav-sticky-offset {
+      padding-top: $calculated-nav-height;
+  }
+}
+
 $prefix: '.nav';
 #{$prefix} {
   & {
