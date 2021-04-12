@@ -1,7 +1,9 @@
 
 /*** SCAFFOLDING ***/
-$prefix: '.body';
 
+html {
+	scroll-behavior: smooth;
+}
 html,
 body {
   width: 100%;
@@ -31,12 +33,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: $body-scrollbar-track-background;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $var-color-neutral;
+  background: $body-scrollbar-thumb-background;
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
@@ -44,19 +46,19 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $var-color-neutral;
+  background: $body-scrollbar-thumb-background-hover;
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
 }
 
 ::-moz-selection {
-  background-color: $body-scrollbar-background;
-  color: $body-scrollbar-color;
+  background-color: $body-selection-background;
+  color: $body-selection-color;
 }
 ::selection {
-  background-color: $body-scrollbar-background;
-  color: $body-scrollbar-color;
+  background-color: $body-selection-background;
+  color: $body-selection-color;
 }
 
 body {

@@ -721,8 +721,12 @@ $body-mono-color: inherit !default;
 $body-mono-background: $var-color-base-alpha-2 !default;
 $body-pre-padding: $gutter-micro !default;
 
-$body-scrollbar-background: $var-color-primary !default;
-$body-scrollbar-color: $var-color-background !default;
+$body-scrollbar-track-background: $var-theme-background-contrast !default;
+$body-scrollbar-thumb-background: $var-color-primary !default;
+$body-scrollbar-thumb-background-hover: $var-color-primary-dark !default;
+
+$body-selection-background: $var-color-primary !default;
+$body-selection-color: $var-color-background !default;
 
 $global-disabled-opacity: 0.5 !default;
 

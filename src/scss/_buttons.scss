@@ -443,6 +443,10 @@ $prefix: '.btn';
       @if str-index($scheme, '-glassy') {
         backdrop-filter: blur(5px);
       }
+
+      // @if str-index($scheme, '-gradient'){
+      //   background-origin:border-box;
+      // }
     }
     &#{&}-#{$scheme} {
       @extend %for-btn-#{$scheme};

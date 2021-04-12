@@ -1,7 +1,5 @@
 
-// html {
-// 	scroll-behavior: smooth;
-// }
+$prefix: '.body';
 
 #{$prefix}-no-scroll {
     overflow: hidden !important;
