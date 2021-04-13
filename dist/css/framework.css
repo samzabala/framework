@@ -5676,7 +5676,7 @@ body:not(.body-loaded) .symbol:before {
 }
 
 /*** NAVIGATION ***/
-body.asset-nav-sticky-offset {
+body.body-nav-sticky-offset {
   padding-top: 3.75rem;
 }
 

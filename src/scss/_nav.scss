@@ -1,7 +1,7 @@
 /*** NAVIGATION ***/
 
 body {
-  &#{$prefix}-nav-sticky-offset {
+  &.body-nav-sticky-offset {
       padding-top: $calculated-nav-height;
   }
 }
