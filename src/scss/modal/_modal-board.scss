@@ -9,6 +9,7 @@ $prefix: '.modal-ui';
   z-index: 99998;
 
   #{$prefix}-wrapper {
+    @extend %for-modal-wrapper-background !optional;
     @at-root #{$prefix}-align-left#{&} {
       padding-left: $modal-board-padding-spacer;
       #{$prefix}-popup,
@@ -150,6 +151,7 @@ $prefix: '.modal-ui';
 
   #{$prefix}-popup {
     @extend %for-modal-scroller !optional;
+    @extend %for-modal-popup-shadow !optional;
     height: 100%;
 
     padding: $modal-board-padding-y $modal-board-padding-x;

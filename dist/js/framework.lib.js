@@ -3416,6 +3416,7 @@
   var ARG_ATTRIBUTE_NAME = "" + NAME$5;
   var TOGGLE_MODE_PREFIX = "" + NAME$5;
   var DEFAULT_NAME = "default";
+  var FULLSCREEN_NAME = "fullscreen";
   var BOARD_NAME = "board";
   var DATA_KEY$5 = Settings.get('prefix') + "_" + NAME$5;
   var EVENT_KEY$5 = "_" + DATA_KEY$5;
@@ -3434,7 +3435,7 @@
   var EVENT_RESIZE = "resize" + EVENT_KEY$5;
   var EVENT_AFTER_RESIZE = "after_resize" + EVENT_KEY$5;
   var CURRENT_MODAL_INSTANCE = {};
-  var VALID_MODAL_MODES = [BOARD_NAME, DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
+  var VALID_MODAL_MODES = [BOARD_NAME, FULLSCREEN_NAME, DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
   ];
   VALID_MODAL_MODES.forEach(function (mode) {
     CURRENT_MODAL_INSTANCE[mode] = {
@@ -3845,8 +3846,18 @@
         return {
           changeHash: true,
           title: '',
-          close: true,
-          disableOverlay: true,
+          close: {
+            value: true,
+            parser: function parser(value) {
+              return mode !== FULLSCREEN_NAME ? value : false;
+            }
+          },
+          disableOverlay: {
+            value: true,
+            parser: function parser(value) {
+              return mode !== FULLSCREEN_NAME ? value : false;
+            }
+          },
           width: null,
           callback: null,
           classes: '',

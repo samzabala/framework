@@ -1,28 +1,28 @@
-/*** MODAL ***/
+
+/*** MODAL FULLSCREEN ***/
 $prefix: '.modal-ui';
 
 [data-toggle-modal] {
   @include dump-styles(data-toggle);
 }
 
-#{$prefix}#{$prefix}-mode-default {
+#{$prefix}#{$prefix}-mode-fullscreen {
   z-index: 99999;
 
   #{$prefix}-wrapper {
-    @extend %for-modal-wrapper-background !optional;
+    @extend %for-modal-wrapper !optional;
     @extend %for-modal-scroller !optional;
     @extend %for-modal-scroller-no-scrollbar !optional;
+    background: $modal-background;
 
-    padding: $modal-gutter;
-
-    @include br(#{$mobile-br-max}-max) {
-      padding: $modal-gutter-mobile;
+    .theme-inverse & {
+      background: $modal-background-inverse;
     }
   }
 
   #{$prefix}-close {
     & {
-      position: absolute;
+      position: fixed;
       right: $modal-close-offset;
       top: $modal-close-offset;
       z-index: 9;
@@ -39,8 +39,6 @@ $prefix: '.modal-ui';
   }
 
   #{$prefix}-popup {
-    border-radius: $modal-border-radius;
-    @extend %for-modal-popup-shadow !optional;
     margin: auto;
 
     padding: $modal-padding-y $modal-padding-x;

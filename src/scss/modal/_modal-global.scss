@@ -20,7 +20,9 @@
     right: 0 !important;
     bottom: 0 !important;
     margin: 0;
-    background: $modal-overlay-bg;
+    &-background {
+      background: $modal-overlay-bg;
+    }
   }
 
   //duh
@@ -37,12 +39,15 @@
     backface-visibility: hidden;
     position: relative;
     z-index: 2;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
     max-width: 100%;
     background: $modal-background;
 
     .theme-inverse & {
       background: $modal-background-inverse;
+    }
+
+    &-shadow {
+      box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
     }
   }
 }

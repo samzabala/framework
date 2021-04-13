@@ -16,6 +16,7 @@ const ARG_ATTRIBUTE_NAME = `${NAME}`;
 const TOGGLE_MODE_PREFIX = `${NAME}`;
 
 const DEFAULT_NAME = `default`;
+const FULLSCREEN_NAME = `fullscreen`;
 const BOARD_NAME = `board`;
 
 const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
@@ -44,6 +45,7 @@ const CURRENT_MODAL_INSTANCE = {};
 
 const VALID_MODAL_MODES = [
   BOARD_NAME,
+  FULLSCREEN_NAME,
   DEFAULT_NAME, // default's just named after the component istels fo im not confusion also make it last
 ];
 
@@ -174,8 +176,18 @@ class Modal extends FwComponent {
     return {
       changeHash: true,
       title: '',
-      close: true,
-      disableOverlay: true,
+      close: {
+        value: true,
+        parser: (value) => {
+          return mode !== FULLSCREEN_NAME ? value : false;
+        },
+      },
+      disableOverlay: {
+        value: true,
+        parser: (value) => {
+          return mode !== FULLSCREEN_NAME ? value : false;
+        },
+      },
       width: null,
       callback: null,
       classes: '',
