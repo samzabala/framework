@@ -1719,7 +1719,9 @@
     }
 
     FwDate.toParsed = function toParsed(d) {
-      if (d) {
+      if (!d || d === '') {
+        return false;
+      } else {
         var yr,
             mo,
             dy,
@@ -1773,7 +1775,9 @@
       var d = FwDate.toParsed(date);
       format = format || DateTimePreset.HumanDate.template;
 
-      if (d) {
+      if (!d) {
+        return '';
+      } else {
         var iFormat,
             output = '',
             literal = false; // Check whether a format character is doubled
@@ -1884,15 +1888,15 @@
         }
 
         return output;
-      } else {
-        return false;
       }
     };
 
     FwDate.toVal = function toVal(date) {
       var d = FwDate.toParsed(date);
 
-      if (d) {
+      if (!d) {
+        return false;
+      } else {
         return this.toHuman(d, DateTimePreset.Value.template);
       }
     };
@@ -1939,8 +1943,6 @@
         }
 
         return d;
-      } else {
-        return false;
       }
     };
 
@@ -1964,6 +1966,9 @@
   var EVENT_BEFORE_UPDATE$2 = "before_update" + EVENT_KEY$9;
   var EVENT_UPDATE$2 = "update" + EVENT_KEY$9;
   var EVENT_AFTER_UPDATE$2 = "after_update" + EVENT_KEY$9;
+  var EVENT_BEFORE_RESET = "before_reset" + EVENT_KEY$9;
+  var EVENT_RESET = "update" + EVENT_KEY$9;
+  var EVENT_AFTER_RESET = "after_reset" + EVENT_KEY$9;
 
   var Calendar = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Calendar, _FwComponent);
@@ -2032,31 +2037,46 @@
       this._customArgs = null;
     };
 
-    _proto.update = function update(newValue, valueToRender) {
+    _proto.reset = function reset() {
       var _this2 = this;
 
-      var element = this.element;
-      var theValue = FwDate.toVal(newValue) || this.theValue;
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET, EVENT_RESET, EVENT_AFTER_RESET, function () {
+        _this2.theValue = FwDate.toVal(false, false);
+
+        _this2._renderUI();
+      }, element);
+    };
+
+    _proto.update = function update(newValue, valueToRender) {
+      var _this3 = this;
+
+      var element = this.element; // const theValue = (newValue || newValue === '')
+      //   ? FwDate.toVal(newValue)
+      //   : this.theValue
+      //   ;
+
+      var theValue = FwDate.toVal(newValue);
       var uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {
-        //set up calendar
-        if (_this2.validates(theValue) || !theValue) {
-          _this2.theValue = FwDate.toVal(theValue, false);
-          _this2.renderValue = uiValue;
+        if (_this3.validates(theValue) || !theValue) {
+          _this3.theValue = FwDate.toVal(theValue, false);
+          _this3.renderValue = uiValue;
 
-          _this2._renderUI();
+          _this3._renderUI();
         } //user visual feedback if it has a valid bitch
 
 
-        if (_this2.validates(theValue)) {
-          _this2.UIRoot.classList.remove('input-error');
-        } else {
-          _this2.UIRoot.classList.add('input-error');
+        if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
+          if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
+            _this3.UIRoot.classList.remove('input-error');
+          } else {
+            _this3.UIRoot.classList.add('input-error');
+          }
         }
 
-        if (_this2.theValue) {
-          _this2.UIDates.forEach(function (date) {
+        if (_this3.theValue) {
+          _this3.UIDates.forEach(function (date) {
             if (date.getAttribute('data-value') == theValue) {
               date.classList.add(ACTIVATED_CLASS$5);
             } else {
@@ -2064,12 +2084,12 @@
             }
           });
 
-          if (_this2.UIInput) {
-            _this2.UIInputValue = theValue;
+          if (_this3.UIInput) {
+            _this3.UIInputValue = theValue;
           }
         }
 
-        newValue && FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this2), 'change');
+        newValue && FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
       }, element);
     };
 
@@ -2122,7 +2142,7 @@
     };
 
     _proto._renderUI = function _renderUI(elem, uiValue) {
-      var _this3 = this;
+      var _this4 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
       uiValue = uiValue || this.renderValue;
@@ -2130,7 +2150,7 @@
       var theUI = {};
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER$2, EVENT_RENDER$2, EVENT_AFTER_RENDER$2, function () {
-        theUI.container = _this3.UIRoot;
+        theUI.container = _this4.UIRoot;
 
         if (!theUI.container) {
           theUI.container = document.createElement('div');
@@ -2147,15 +2167,14 @@
           }
         }); //input
 
-        if (_this3.args.textInput) {
+        if (_this4.args.textInput) {
           if (!theUI.inputWrapper) {
             theUI.inputWrapper = document.createElement('div');
             theUI.container.appendChild(theUI.inputWrapper);
             theUI.inputWrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-input");
             theUI.inputWrapper.innerHTML = '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
           }
-        } //date 4 u
-        //heading
+        } //heading
 
 
         theUI.heading = document.createElement('div');
@@ -2164,8 +2183,8 @@
 
         var butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
         butts.forEach(function (butt) {
-          if (_this3.args.yearSkip && (butt == 'prev-year' || butt == 'next-year') || _this3.args.monthSkip && (butt == 'prev-month' || butt == 'next-month')) {
-            theUI.heading.innerHTML += _this3._arrowHtml(butt);
+          if (_this4.args.yearSkip && (butt == 'prev-year' || butt == 'next-year') || _this4.args.monthSkip && (butt == 'prev-month' || butt == 'next-month')) {
+            theUI.heading.innerHTML += _this4._arrowHtml(butt);
           }
         }); //title
 
@@ -2174,27 +2193,27 @@
         theUI.title.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-title " + UIPrefix(COMPONENT_CLASS$9) + "-dropdown-toggle\n          " + UIDynamicClass //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
         );
         theUI.title.setAttribute('data-toggle-dropdown', '');
-        theUI.title.innerHTML = "<span\n          class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month-text\">\n            " + monthNamesShort[_this3._calendar.month] + "\n          </span>\n          <span class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-year-text\">\n            " + _this3._calendar.year + "\n          </span>\n          <i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-symbol symbol symbol-caret-down no-margin-x\"></i>"; //dropdown
+        theUI.title.innerHTML = "<span\n          class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month-text\">\n            " + monthNamesShort[_this4._calendar.month] + "\n          </span>\n          <span class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-year-text\">\n            " + _this4._calendar.year + "\n          </span>\n          <i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-symbol symbol symbol-caret-down no-margin-x\"></i>"; //dropdown
 
         var dropdown = document.createElement('ul');
         theUI.heading.appendChild(dropdown);
         dropdown.setAttribute('data-dropdown-width', '100%');
         dropdown.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center");
-        dropdown.innerHTML += "<li\n            class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n          >\n            <a href=\"#\"\n              class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n              data-value=\"" + FwDate.toVal(_this3._calendar.startDate) + "\"\n            >\n              " + monthNamesShort[_this3._calendar.month] + " " + _this3._calendar.year + "\n            </a>\n          </li>\n          <li><hr class=\"dropdown-separator\"></li>";
+        dropdown.innerHTML += "<li\n            class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n          >\n            <a href=\"#\"\n              class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n              data-value=\"" + FwDate.toVal(_this4._calendar.startDate) + "\"\n            >\n              " + monthNamesShort[_this4._calendar.month] + " " + _this4._calendar.year + "\n            </a>\n          </li>\n          <li><hr class=\"dropdown-separator\"></li>";
         theUI.dropdown = new Dropdown(dropdown, theUI.title);
         var dropdownInit, dropdownLimit;
 
-        if (_this3.args.yearSpan == 0) {
-          dropdownInit = _this3._calendar.startDate.getMonth() * -1;
-          dropdownLimit = 11 - _this3._calendar.startDate.getMonth();
+        if (_this4.args.yearSpan == 0) {
+          dropdownInit = _this4._calendar.startDate.getMonth() * -1;
+          dropdownLimit = 11 - _this4._calendar.startDate.getMonth();
         } else {
-          dropdownInit = parseInt(-12 * parseInt(_this3.args.yearSpan));
-          dropdownLimit = parseInt(12 * parseInt(_this3.args.yearSpan));
+          dropdownInit = parseInt(-12 * parseInt(_this4.args.yearSpan));
+          dropdownLimit = parseInt(12 * parseInt(_this4.args.yearSpan));
         } //update dropdown
 
 
         var _loop = function _loop(i) {
-          var listItemDate = FwDate.adjacentMonth(_this3._calendar.startDate, i);
+          var listItemDate = FwDate.adjacentMonth(_this4._calendar.startDate, i);
 
           var dateForValidation = function () {
             var toReturn;
@@ -2210,7 +2229,7 @@
             return toReturn;
           }();
 
-          if (_this3.validates(dateForValidation, true)) {
+          if (_this4.validates(dateForValidation, true)) {
             var currClass = i == 0 ? 'active' : '',
                 listItem = "<li class=\"" + currClass + "\">\n                <a href=\"#\"\n                  class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n                  data-value=\"" + FwDate.toVal(listItemDate) + "\">\n                    " + monthNamesShort[listItemDate.getMonth()] + " " + listItemDate.getFullYear() + "\n                </a>\n              " + (listItemDate.getMonth() == 11 && i !== dropdownLimit ? "</li><li><hr class=\"dropdown-separator\">" : '') + "\n              </li>";
             theUI.dropdown.element.innerHTML += listItem;
@@ -2230,7 +2249,7 @@
         theUI.grid.append(theUI.days);
         theUI.days.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-days");
         var daysHTML = '',
-            dayToRetrieve = parseInt(_this3.args.startDay);
+            dayToRetrieve = parseInt(_this4.args.startDay);
 
         for (var _i = 0; _i < 7; _i++) {
           if (dayToRetrieve > 6) {
@@ -2247,21 +2266,21 @@
         theUI.grid.append(theUI.dates);
         theUI.dates.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dates"); //previous month
 
-        var freeGridSpacePrev = (_this3._calendar.startDate.getDay() - parseInt(_this3.args.startDay) + 7) % 7,
-            calendarPrevDayStart = _this3._calendar.prevDay == 6 ? 0 : _this3._calendar.prevDay + 1;
+        var freeGridSpacePrev = (_this4._calendar.startDate.getDay() - parseInt(_this4.args.startDay) + 7) % 7,
+            calendarPrevDayStart = _this4._calendar.prevDay == 6 ? 0 : _this4._calendar.prevDay + 1;
 
-        if (calendarPrevDayStart !== parseInt(_this3.args.startDay)) {
+        if (calendarPrevDayStart !== parseInt(_this4.args.startDay)) {
           //if it doenst take its own row of shit
           // i = 0; i <= freeGridSpacePrev; i++
           // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
           // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
           // for(let i = 0; i < 7; i++){
           for (var _i2 = 0; _i2 < freeGridSpacePrev; _i2++) {
-            var offset = _this3._calendar.prevDate.getDate() - _i2;
+            var offset = _this4._calendar.prevDate.getDate() - _i2;
 
-            var loopDatePrev = new Date(_this3._calendar.prevDate.getFullYear(), _this3._calendar.prevDate.getMonth(), offset);
+            var loopDatePrev = new Date(_this4._calendar.prevDate.getFullYear(), _this4._calendar.prevDate.getMonth(), offset);
 
-            var dateBlockPrev = _this3._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n                " + (!_this3.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
+            var dateBlockPrev = _this4._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n                " + (!_this4.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
 
 
             theUI.dates.innerHTML += dateBlockPrev;
@@ -2269,21 +2288,21 @@
         } //curr month
 
 
-        for (var _i3 = 1; _i3 <= _this3._calendar.lastDate.getDate(); _i3++) {
-          var dateBlockCurr = _this3._blockHtml(new Date(_this3._calendar.year, _this3._calendar.month, _i3), !_this3.validates(new Date(_this3._calendar.year, _this3._calendar.month, _i3)) ? 'disabled' : '');
+        for (var _i3 = 1; _i3 <= _this4._calendar.lastDate.getDate(); _i3++) {
+          var dateBlockCurr = _this4._blockHtml(new Date(_this4._calendar.year, _this4._calendar.month, _i3), !_this4.validates(new Date(_this4._calendar.year, _this4._calendar.month, _i3)) ? 'disabled' : '');
 
           theUI.dates.innerHTML += dateBlockCurr;
         } //next month just fill the shit
 
 
-        var currNextFirstDay = new Date(_this3._calendar.year, _this3._calendar.month + 1, 1).getDay(),
-            freeGridSpaceNext = (7 - currNextFirstDay + parseInt(_this3.args.startDay)) % 7;
+        var currNextFirstDay = new Date(_this4._calendar.year, _this4._calendar.month + 1, 1).getDay(),
+            freeGridSpaceNext = (7 - currNextFirstDay + parseInt(_this4.args.startDay)) % 7;
 
-        if (currNextFirstDay !== parseInt(_this3.args.startDay)) {
+        if (currNextFirstDay !== parseInt(_this4.args.startDay)) {
           for (var _i4 = 1; _i4 <= freeGridSpaceNext; _i4++) {
-            var loopDateNext = new Date(_this3._calendar.year, _this3._calendar.month + 1, _i4);
+            var loopDateNext = new Date(_this4._calendar.year, _this4._calendar.month + 1, _i4);
 
-            var dateBlockNext = _this3._blockHtml(loopDateNext, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n              " + (!_this3.validates(loopDateNext) ? 'disabled' : ''));
+            var dateBlockNext = _this4._blockHtml(loopDateNext, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n              " + (!_this4.validates(loopDateNext) ? 'disabled' : ''));
 
             theUI.dates.innerHTML += dateBlockNext;
           }
@@ -2327,17 +2346,22 @@
             e.target.value = uiInput + "/";
           }
 
-          var pattern = new RegExp(DateTimePreset.HumanDate.pattern);
-          var isValid = pattern.test(uiInput);
+          var preParsedVal = '';
 
-          if (calendar && isValid) {
-            var theValue = uiInput.split('/');
-            var y = theValue[2] || '';
-            var m = theValue[0] || '';
-            var d = theValue[1] || '';
-            var preParsedVal = y + "-" + m + "-" + d;
-            calendar.update(preParsedVal);
+          if (uiInput) {
+            var pattern = new RegExp(DateTimePreset.HumanDate.pattern);
+            var isValid = pattern.test(uiInput);
+
+            if (calendar && isValid) {
+              var theValue = uiInput.split('/');
+              var y = theValue[2] || '';
+              var m = theValue[0] || '';
+              var d = theValue[1] || '';
+              preParsedVal = y + "-" + m + "-" + d;
+            }
           }
+
+          calendar.update(preParsedVal);
         }
       };
     };
@@ -2348,7 +2372,12 @@
 
         if (!FwComponent.isDisabled(e.target)) {
           var calendar = new Calendar(e.target.closest("." + UIPrefix(COMPONENT_CLASS$9)).querySelector("." + COMPONENT_CLASS$9));
-          calendar.update(e.target.getAttribute('data-value'));
+
+          if (e.target.classList.contains(ACTIVATED_CLASS$5)) {
+            calendar.update('');
+          } else {
+            calendar.update(e.target.getAttribute('data-value'));
+          }
         }
       };
     };
@@ -2378,6 +2407,11 @@
     };
 
     _createClass(Calendar, [{
+      key: "isRequired",
+      get: function get() {
+        return _FwComponent.prototype.UIEl.call(this).hasAttribute('required');
+      }
+    }, {
       key: "theValue",
       get: function get() {
         return _FwComponent.prototype.UIEl.call(this).value ? FwDate.toVal(_FwComponent.prototype.UIEl.call(this).value) : false;
@@ -2404,10 +2438,8 @@
         return this.UIInput && FwDate.toVal(this.UIInput.value);
       },
       set: function set(uiValue) {
-        if (uiValue) {
-          this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
-          this.UIInput.value = FwDate.toHuman(uiValue);
-        }
+        this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
+        this.UIInput.value = FwDate.toHuman(uiValue);
       }
     }, {
       key: "UIRoot",

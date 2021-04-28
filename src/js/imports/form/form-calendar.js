@@ -39,6 +39,10 @@ const EVENT_BEFORE_UPDATE = `before_update${EVENT_KEY}`;
 const EVENT_UPDATE = `update${EVENT_KEY}`;
 const EVENT_AFTER_UPDATE = `after_update${EVENT_KEY}`;
 
+const EVENT_BEFORE_RESET = `before_reset${EVENT_KEY}`;
+const EVENT_RESET = `update${EVENT_KEY}`;
+const EVENT_AFTER_RESET = `after_reset${EVENT_KEY}`;
+
 class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
@@ -51,6 +55,10 @@ class Calendar extends FwComponent {
     super.dispose();
     this.UIValue = null;
     this._customArgs = null;
+  }
+
+  get isRequired() {
+    return super.UIEl().hasAttribute('required');
   }
 
   get theValue() {
@@ -83,10 +91,8 @@ class Calendar extends FwComponent {
   }
 
   set UIInputValue(uiValue) {
-    if (uiValue) {
-      this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
-      this.UIInput.value = FwDate.toHuman(uiValue);
-    }
+    this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
+    this.UIInput.value = FwDate.toHuman(uiValue);
   }
 
   get UIRoot() {
@@ -164,11 +170,28 @@ class Calendar extends FwComponent {
     return DATA_KEY;
   }
 
+  reset() {
+    super.runCycle(
+      EVENT_BEFORE_RESET,
+      EVENT_RESET,
+      EVENT_AFTER_RESET,
+      () => {
+        this.theValue = FwDate.toVal(false, false);
+        this._renderUI();
+      },
+      element
+    );
+  }
+
   update(newValue, valueToRender) {
     const element = this.element;
 
-    const theValue = FwDate.toVal(newValue) || this.theValue;
+    // const theValue = (newValue || newValue === '')
+    //   ? FwDate.toVal(newValue)
+    //   : this.theValue
+    //   ;
 
+    const theValue = FwDate.toVal(newValue);
     const uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
 
     super.runCycle(
@@ -176,7 +199,6 @@ class Calendar extends FwComponent {
       EVENT_UPDATE,
       EVENT_AFTER_UPDATE,
       () => {
-        //set up calendar
         if (this.validates(theValue) || !theValue) {
           this.theValue = FwDate.toVal(theValue, false);
           this.renderValue = uiValue;
@@ -185,10 +207,12 @@ class Calendar extends FwComponent {
         }
 
         //user visual feedback if it has a valid bitch
-        if (this.validates(theValue)) {
-          this.UIRoot.classList.remove('input-error');
-        } else {
-          this.UIRoot.classList.add('input-error');
+        if (!super.UIEl().classList.contains('input-error')) {
+          if (this.validates(theValue) || (!theValue && !this.isRequired)) {
+            this.UIRoot.classList.remove('input-error');
+          } else {
+            this.UIRoot.classList.add('input-error');
+          }
         }
 
         if (this.theValue) {
@@ -408,15 +432,12 @@ class Calendar extends FwComponent {
           }
         }
 
-        //date 4 u
-
         //heading
         theUI.heading = document.createElement('div');
         theUI.container.appendChild(theUI.heading);
         theUI.heading.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-heading`);
 
         //arrowz
-
         const butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
 
         butts.forEach((butt) => {
@@ -688,21 +709,24 @@ class Calendar extends FwComponent {
           e.target.value = `${uiInput}/`;
         }
 
-        const pattern = new RegExp(DateTimePreset.HumanDate.pattern);
+        let preParsedVal = '';
 
-        const isValid = pattern.test(uiInput);
+        if (uiInput) {
+          const pattern = new RegExp(DateTimePreset.HumanDate.pattern);
 
-        if (calendar && isValid) {
-          const theValue = uiInput.split('/');
+          const isValid = pattern.test(uiInput);
 
-          const y = theValue[2] || '';
-          const m = theValue[0] || '';
-          const d = theValue[1] || '';
+          if (calendar && isValid) {
+            const theValue = uiInput.split('/');
 
-          const preParsedVal = `${y}-${m}-${d}`;
+            const y = theValue[2] || '';
+            const m = theValue[0] || '';
+            const d = theValue[1] || '';
 
-          calendar.update(preParsedVal);
+            preParsedVal = `${y}-${m}-${d}`;
+          }
         }
+        calendar.update(preParsedVal);
       }
     };
   }
@@ -718,7 +742,11 @@ class Calendar extends FwComponent {
             .querySelector(`.${COMPONENT_CLASS}`)
         );
 
-        calendar.update(e.target.getAttribute('data-value'));
+        if (e.target.classList.contains(ACTIVATED_CLASS)) {
+          calendar.update('');
+        } else {
+          calendar.update(e.target.getAttribute('data-value'));
+        }
       }
     };
   }

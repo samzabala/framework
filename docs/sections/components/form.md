@@ -908,7 +908,7 @@ Make a new boi by going `const formCalendar = new fw.Form.Calendar(element,value
 
 updates the values and renders the ui
 
-`newValue` is the value for the input falls back to the `element.value`
+`newValue` is the value for the input falls back to the `element.value`. setting it to an empty string removes the value while triggering change as if a user decided the input they put in it aint worth shit
 
 `valueToRender` is the value the input ui will render. falls back to the `element.value`
 
@@ -919,6 +919,11 @@ validates the value based on the instance's settings and overall stup of exioste
 `date` date to check
 
 `rangeOnly` whether or not to check against disabled dates and weekends set by args
+
+
+##### **`formCalendar.reset()`**
+
+reset the input field or some shit but doesnt trigger change value because this is a programmatical solution is this the right way to describe it in english? idk basta kung kelangan mong walang nakalagay dito tapos kelangan ireset yung ui ito na to beh
 
 ##### **`formCalendar.init(element)`**
 

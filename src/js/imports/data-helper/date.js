@@ -9,7 +9,9 @@ import {
 
 class FwDate extends FwDataHelper {
   static toParsed(d) {
-    if (d) {
+    if (!d || d === '') {
+      return false;
+    } else {
       let yr,
         mo,
         dy,
@@ -66,7 +68,9 @@ class FwDate extends FwDataHelper {
     const d = FwDate.toParsed(date);
     format = format || DateTimePreset.HumanDate.template;
 
-    if (d) {
+    if (!d) {
+      return '';
+    } else {
       let iFormat,
         output = '',
         literal = false;
@@ -173,15 +177,15 @@ class FwDate extends FwDataHelper {
       }
 
       return output;
-    } else {
-      return false;
     }
   }
 
   static toVal(date) {
     const d = FwDate.toParsed(date);
 
-    if (d) {
+    if (!d) {
+      return false;
+    } else {
       return this.toHuman(d, DateTimePreset.Value.template);
     }
   }
@@ -227,8 +231,6 @@ class FwDate extends FwDataHelper {
       }
 
       return d;
-    } else {
-      return false;
     }
   }
 }
