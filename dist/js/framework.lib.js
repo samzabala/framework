@@ -2040,6 +2040,8 @@
     _proto.reset = function reset() {
       var _this2 = this;
 
+      var element = this.element;
+
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET, EVENT_RESET, EVENT_AFTER_RESET, function () {
         _this2.theValue = FwDate.toVal(false, false);
 

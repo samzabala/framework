@@ -171,6 +171,7 @@ class Calendar extends FwComponent {
   }
 
   reset() {
+    const element = this.element;
     super.runCycle(
       EVENT_BEFORE_RESET,
       EVENT_RESET,
