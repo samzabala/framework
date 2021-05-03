@@ -73,3 +73,16 @@
     }
   }
 }
+
+.z-index {
+  &-auto {
+    z-index: auto!important;
+  }
+  @for $i from 0 through ($z-index-helper-max){
+    $i: $i * $z-index-helper-multiplier;
+    &-#{$i} {
+      z-index: $i !important;
+    }
+
+  }
+}
