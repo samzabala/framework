@@ -20,3 +20,21 @@
   .theme-inverse body {
     @extend %for-var-inverse;
   }
+  // @TODO
+  // @media (prefers-color-scheme: dark) {
+  //   :root {
+  //     --fw-theme-color: #{$brand-theme-color-inverse};
+  //     --fw-theme-color-contrast: #{$brand-theme-color-contrast-inverse};
+  //     --fw-theme-background: #{$brand-theme-background-inverse};
+  //     --fw-theme-background-contrast: #{$brand-theme-background-contrast-inverse};
+  //   }
+
+  //   *.theme-inverse,
+  //   html.theme-inverse,
+  //   .theme-inverse body {
+  //     --fw-theme-color: #{$brand-theme-color};
+  //     --fw-theme-color-contrast: #{$brand-theme-color-contrast};
+  //     --fw-theme-background: #{$brand-theme-background};
+  //     --fw-theme-background-contrast: #{$brand-theme-background-contrast};
+  //   }
+  // }

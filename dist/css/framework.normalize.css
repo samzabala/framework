@@ -617,7 +617,7 @@ h6,
 .h6 {
   line-height: calc(1em + 10px);
   font-family: var(--fw-font-secondary);
-  color: var(--fw-color-base-alt);
+  color: var(--fw-theme-color-contrast);
   font-weight: 700;
   text-transform: none;
   font-style: inherit;
@@ -638,7 +638,7 @@ h6,
 .theme-inverse .h5,
 .theme-inverse h6,
 .theme-inverse .h6 {
-  color: var(--fw-color-background-alt);
+  color: var(--fw-theme-color-contrast);
 }
 .alert h1, .theme-inverse .alert h1,
 .alert .h1,

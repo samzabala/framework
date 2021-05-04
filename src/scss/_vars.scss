@@ -678,8 +678,8 @@ $body-heading-font-weight: $body-font-weight-bold !default;
 $body-heading-font-style: inherit !default;
 $body-heading-text-transform: none !default;
 $body-heading-font-family: $var-font-secondary !default;
-$body-heading-color: $brand-theme-color-contrast !default;
-$body-heading-color-inverse: $brand-theme-color-contrast-inverse !default;
+$body-heading-color: $var-theme-color-contrast !default;
+$body-heading-color-inverse: $var-theme-color-contrast !default;
 
 $body-size-h1: $body-font-size * 2 !default;
 $body-size-h2: $body-font-size * 1.75 !default;
