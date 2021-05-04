@@ -1,7 +1,7 @@
 /*** MODAL ***/
 $prefix: '.modal-ui';
 
-[data-toggle-modal] {
+[data-toggle-modal-default] {
   @include dump-styles(data-toggle);
 }
 

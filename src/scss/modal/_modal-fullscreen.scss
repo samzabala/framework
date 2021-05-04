@@ -2,7 +2,7 @@
 /*** MODAL FULLSCREEN ***/
 $prefix: '.modal-ui';
 
-[data-toggle-modal] {
+[data-toggle-modal-fullscreen] {
   @include dump-styles(data-toggle);
 }
 

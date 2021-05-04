@@ -1,6 +1,6 @@
-[data-toggle-modal] {
-  @include dump-styles(data-toggle);
-}
+// [data-toggle-modal] {
+//   @include dump-styles(data-toggle);
+// }
 %for-modal {
   //ui block where scrolling is allowed
   &-scroller {
