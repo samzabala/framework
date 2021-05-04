@@ -6180,8 +6180,7 @@ body:not(.body-loaded) *:after {
   display: block;
 }
 .dropdown,
-.dropdown ul,
-.dropdown > li {
+.dropdown ul {
   margin-bottom: 0;
   margin-top: 0;
 }
