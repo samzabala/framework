@@ -616,6 +616,9 @@ $brand-theme-background-inverse: $var-color-base-alt !default; //.dark mode vers
 $brand-theme-background-contrast: $var-color-background-alt !default;
 $brand-theme-background-contrast-inverse: $var-color-base !default; //.dark mode version of boi
 
+$theme-default-scheme: light !default;
+$theme-inverse-scheme: dark !default;
+
 //////////////////////////////// DEBUG FRONT END
 // $debug: true !default;
 

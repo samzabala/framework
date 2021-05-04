@@ -27,8 +27,5 @@
     --fw-gradient-end: #{$brand-gradient-end};
 
     // GLOBAL html + body coloring
-    --fw-theme-color: #{$brand-theme-color};
-    --fw-theme-color-contrast: #{$brand-theme-color-contrast};
-    --fw-theme-background: #{$brand-theme-background};
-    --fw-theme-background-contrast: #{$brand-theme-background-contrast};
+    @include dump-theme-colors(default);
   }

@@ -465,6 +465,15 @@ a:hover {
 }
 
 *.theme-inverse,
+*.theme-default,
+:root,
+html,
+body {
+  color: var(--fw-theme-color);
+  background-color: var(--fw-theme-background);
+}
+
+*.theme-inverse,
 html.theme-inverse,
 .theme-inverse body {
   --fw-theme-color: var(--fw-color-background);
@@ -473,12 +482,11 @@ html.theme-inverse,
   --fw-theme-background-contrast: var(--fw-color-base);
 }
 
-*.theme-inverse,
-:root,
-html,
-body {
-  color: var(--fw-theme-color);
-  background-color: var(--fw-theme-background);
+*.theme-default {
+  --fw-theme-color: var(--fw-color-base);
+  --fw-theme-color-contrast: var(--fw-color-base-alt);
+  --fw-theme-background: var(--fw-color-background);
+  --fw-theme-background-contrast: var(--fw-color-background-alt);
 }
 
 /*** SCAFFOLDING ***/
