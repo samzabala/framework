@@ -138,6 +138,29 @@ Set this data attribute to a bitch up no href or data-href required... it just..
 <div class="alert alert-error" id="bitch-alert">ALERT! HAHAHAHAHAHAH</div>
 ```
 
+### **`.alert-container`**
+
+fixed container on the viewport so ur alerts look like a toaster boi or some shit
+
+```html
+<html>
+  <body>
+    <div class="alert-container alert-top alert-left">
+      <div class="alert alert-error" id="bitch-alert">ALERT! HAHAHAHAHAHAH</div>
+    </div>
+  </body>
+</html>
+```
+
+
+These are valid offset classes for your boi
+
+- `.alert-container-top`
+- `.alert-container-left`
+- `.alert-container-right`
+- `.alert-container-left`
+
+
 ## Javascript
 
 it has some but just for the functionality of closing them
