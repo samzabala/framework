@@ -19,6 +19,7 @@ $prefix: '.dropdown';
   color: $nav-color;
   transform-origin: center center;
   transform-style: preserve-3d;
+  z-index: $z-index-dropdown;
 
   &#{$prefix}-small {
     @include create-popper-styles(

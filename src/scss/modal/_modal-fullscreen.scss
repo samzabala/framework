@@ -7,7 +7,7 @@ $prefix: '.modal-ui';
 }
 
 #{$prefix}#{$prefix}-mode-fullscreen {
-  z-index: 99999;
+  z-index: $z-index-modal-fullscreen;
 
   #{$prefix}-wrapper {
     @extend %for-modal-wrapper !optional;

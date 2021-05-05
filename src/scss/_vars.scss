@@ -1906,6 +1906,13 @@ $symbol-font-path: './../fonts/fw-icons' !default;
 $z-index-helper-max: 10 !default;
 $z-index-helper-multiplier: 1 !default;
 
+$z-index-dropdown: 999 !default;
+$z-index-modal-default: 9990 !default;
+$z-index-modal-board: 99991 !default;
+$z-index-modal-fullscreen: 99992 !default;
+$z-index-nav: 990 !default;
+$z-index-tooltip: 9999 !default;
+
 // @OTHER @TODOS
 //padding and margin classes
 

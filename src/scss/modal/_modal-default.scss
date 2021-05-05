@@ -6,7 +6,7 @@ $prefix: '.modal-ui';
 }
 
 #{$prefix}#{$prefix}-mode-default {
-  z-index: 99999;
+  z-index: $z-index-modal-default;
 
   #{$prefix}-wrapper {
     @extend %for-modal-wrapper-background !optional;

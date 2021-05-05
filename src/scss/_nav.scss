@@ -53,7 +53,7 @@ $prefix: '.nav';
     left: 0;
     right: 0;
     box-shadow: $nav-drop-shadow;
-    z-index: 9999;
+    z-index: $z-index-nav;
 
     .theme-inverse & {
       box-shadow: $nav-drop-shadow-inverse;

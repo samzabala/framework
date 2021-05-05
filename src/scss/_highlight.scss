@@ -23,7 +23,8 @@ $prefix: '.highlight';
   margin-left: $calculated-highlight-margin-x;
   margin-right: $calculated-highlight-margin-x;
   border-radius: $highlight-border-radius;
-  display: inline-flex;
+  // display: inline-flex;
+  // align-items:center;
   margin-bottom: 0.2em;
 
   &,

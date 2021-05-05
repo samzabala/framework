@@ -14,7 +14,7 @@ $prefix: '.tooltip';
     $tooltip-border-radius,
     $tooltip-box-shadow
   );
-  z-index: 99999;
+  z-index: $z-index-tooltip;
 
   &:not(.active) {
     @include dump-styles(hide-js-friendly);
