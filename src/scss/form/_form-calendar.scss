@@ -323,7 +323,7 @@ $calculated-calendar-exception: '';
         }
       }
 
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         &-ui {
           &-block {
             padding: $calculated-input-calendar-block-gutter-y-mobile

@@ -97,9 +97,7 @@ $prefix: '.btn';
           ) * 0.5
       );
       min-height: $calculated-btn-height-large;
-      @include br(xs) {
-        font-size: $calculated-btn-font-size-large;
-      }
+      font-size: $calculated-btn-font-size-large;
     }
 
     &-small {
@@ -297,7 +295,7 @@ $prefix: '.btn';
       width: 100%;
 
       &-mobile {
-        @include br(#{$mobile-br-max}-max) {
+        @include on-breakpoint(mobile) {
           display: flex;
           width: 100%;
         }
@@ -327,7 +325,7 @@ $prefix: '.btn';
         flex: 1 1;
       }
 
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         &-mobile {
           display: flex;
           width: 100%;
@@ -386,7 +384,7 @@ $prefix: '.btn';
     }
 
     &#{&}-responsive {
-      @include br($mobile-br-max-polar) {
+      @include on-breakpoint(nonmobile) {
         &#{$prefix}-group-horizontal {
           > .btn-symbol {
             width: auto;
@@ -408,7 +406,7 @@ $prefix: '.btn';
           }
         }
       }
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         width: 100%;
         flex-wrap: wrap;
         display: flex;

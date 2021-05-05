@@ -92,7 +92,7 @@
   display: none !important;
 }
 
-@include breakpoint(#{$mobile-br-max}-max) {
+@include on-breakpoint(mobile) {
   .only-mobile {
     display: block !important;
   }
@@ -102,7 +102,7 @@
   }
 }
 
-@include breakpoint(#{$mobile-br-max-polar}) {
+@include on-breakpoint(nonmobile) {
   .only-nonmobile {
     display: block !important;
   }

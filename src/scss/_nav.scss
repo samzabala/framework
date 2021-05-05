@@ -5,6 +5,9 @@ body {
       padding-top: $calculated-nav-height;
   }
 }
+.offset-nav-sticky {
+  @include dump-styles(nav-offset-sticky);
+}
 
 $prefix: '.nav';
 #{$prefix} {
@@ -247,7 +250,7 @@ $prefix: '.nav';
     margin: auto;
   }
 
-  @include br(#{$mobile-br-max}-max) {
+  @include on-breakpoint(mobile) {
     &-list {
       &#{&}-responsive {
         display: block;

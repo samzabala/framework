@@ -323,7 +323,7 @@ $prefix: '.input';
       display: block;
 
       &-mobile {
-        @include br(#{$mobile-br-max}-max) {
+        @include on-breakpoint(mobile) {
           display: block;
         }
       }
@@ -439,7 +439,7 @@ $prefix: '.input';
       width: 100%;
 
       &-mobile {
-        @include br(#{$mobile-br-max}-max) {
+        @include on-breakpoint(mobile) {
           width: 100%;
         }
       }
@@ -475,7 +475,7 @@ $prefix: '.input';
       }
 
       &-mobile {
-        @include br(#{$mobile-br-max}-max) {
+        @include on-breakpoint(mobile) {
           display: flex;
           width: 100%;
 
@@ -558,7 +558,7 @@ $prefix: '.input';
     }
 
     &#{&}-responsive {
-      @include br($mobile-br-max-polar) {
+      @include on-breakpoint(nonmobile) {
         &#{$prefix}-group-horizontal {
           > %for-form-input-boxy,
           .btn {
@@ -583,7 +583,7 @@ $prefix: '.input';
         }
       }
 
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         width: 100%;
         flex-wrap: wrap;
         display: flex;
@@ -659,7 +659,7 @@ $prefix: '.input';
     }
 
     &#{&}-responsive {
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         flex-direction: column;
 
         > %for-form-input-boxy {

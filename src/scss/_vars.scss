@@ -1083,14 +1083,20 @@ $alert-gutter-y-ends-large: $alert-gutter-y-large * 0.5 !default;
 $alert-box-shadow: none !default; //$box-shadow-base $var-color-base
 $alert-border-radius: 0 !default;
 
+$alert-container-padding-x: $gutter-base !default;
+$alert-container-padding-x-mobile: $gutter-micro !default;
+$alert-container-padding-y: $gutter-base !default;
+$alert-container-padding-y-mobile: $gutter-micro !default;
+$alert-container-max-width: 400px !default;
+
 $alert-title-font-weight: $body-font-weight-bold !default;
 $alert-title-font-style: normal !default;
 $alert-title-color: inherit !default;
 $alert-title-text-transform: uppercase !default;
 
 //schemes
-$alert-border-default: $var-color-neutral !default;
-$alert-background-default: transparent !default;
+$alert-border-default: $var-color-base-alpha-2 !default;
+$alert-background-default: $var-theme-background !default;
 $alert-color-default: inherit !default;
 
 $alert-border-primary: $var-color-base-alpha-2 !default;
@@ -1299,8 +1305,8 @@ $list-group-height: 40px !default;
 $list-group-height-compact: 20px !default;
 $list-group-height-expanded: 60px !default;
 $list-group-gutter-x: $gutter-small !default;
-$list-group-interactive-background-hover: $var-color-primary-alpha-1;
-$list-group-interactive-background-active: $var-color-primary-alpha-2;
+$list-group-interactive-background-hover: $var-color-primary-alpha-1 !default;
+$list-group-interactive-background-active: $var-color-primary-alpha-2 !default;
 
 // badge
 $badge-size: 24px !default;
@@ -1549,7 +1555,7 @@ $input-info-text-transform: none !default;
 $input-info-gutter-y: 1em !default;
 
 //calendar
-$input-calendar-gap: 2px;
+$input-calendar-gap: 2px !default;
 
 $input-calendar-block-gutter-x: 0px !default;
 $input-calendar-block-gutter-x-mobile: 0px !default;
@@ -1903,14 +1909,22 @@ $btn-gradient-color-default-active: $var-color-background !default;
 $symbol-font-path: './../fonts/fw-icons' !default;
 
 //Z index
-$z-index-helper-max: 10 !default;
-$z-index-helper-multiplier: 1 !default;
 
+$z-index-helper-max: 99 !default;
+$z-index-helper-multiplier: 10 !default;
+
+  $z-index-small-helper-max: 9 !default;
+  $z-index-small-helper-multiplier: 1 !default;
+
+  $z-index-large-helper-max: 10000 !default;
+  $z-index-large-helper-multiplier: 1000 !default;
+
+$z-index-alert-container:99999;
 $z-index-dropdown: 999 !default;
 $z-index-modal-default: 9990 !default;
-$z-index-modal-board: 99991 !default;
-$z-index-modal-fullscreen: 99992 !default;
-$z-index-nav: 990 !default;
+$z-index-modal-board: 9991 !default;
+$z-index-modal-fullscreen: 9992 !default;
+$z-index-nav: 999 !default;
 $z-index-tooltip: 9999 !default;
 
 // @OTHER @TODOS

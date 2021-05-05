@@ -15,7 +15,7 @@ $prefix: '.modal-ui';
 
     padding: $modal-gutter;
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       padding: $modal-gutter-mobile;
     }
   }
@@ -31,7 +31,7 @@ $prefix: '.modal-ui';
         font-size: $modal-close-button-font-size;
       }
 
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         right: $modal-close-offset-mobile;
         top: $modal-close-offset-mobile;
       }
@@ -45,7 +45,7 @@ $prefix: '.modal-ui';
 
     padding: $modal-padding-y $modal-padding-x;
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       padding: $modal-padding-y-mobile $modal-padding-x-mobile;
     }
   }

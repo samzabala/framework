@@ -17,7 +17,7 @@ $prefix: '.special';
     margin-top: $calculated-special-primary-gutter-y;
     display: block;
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       font-size: $calculated-special-primary-font-size-mobile;
     }
   }
@@ -36,7 +36,7 @@ $prefix: '.special';
     margin-top: $calculated-special-secondary-gutter-y;
     display: block;
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       font-size: $calculated-special-secondary-font-size-mobile !important;
     }
   }
@@ -57,7 +57,7 @@ $prefix: '.special';
   margin-top: $calculated-lead-gutter-y;
   display: block;
 
-  @include br(#{$mobile-br-max}-max) {
+  @include on-breakpoint(mobile) {
     font-size: $calculated-lead-font-size-mobile;
   }
 }

@@ -129,7 +129,7 @@ $prefix: '.dropdown';
     }
   }
 
-  // @include br(#{$mobile-br-max}-max) {
+  // @include on-breakpoint(mobile) {
   // 	max-width:100%;
   // }
 }

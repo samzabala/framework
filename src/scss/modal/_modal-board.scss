@@ -25,7 +25,7 @@ $prefix: '.modal-ui';
       }
     }
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       @at-root #{$prefix}-align-left#{&} {
         padding-left: $modal-board-padding-spacer-mobile;
       }
@@ -58,7 +58,7 @@ $prefix: '.modal-ui';
         width: 0;
       }
 
-      @include br(#{$mobile-br-max}-max) {
+      @include on-breakpoint(mobile) {
         max-width: calc(100% - #{$modal-board-padding-spacer-mobile});
 
         &:before {
@@ -124,7 +124,7 @@ $prefix: '.modal-ui';
     // 	#{$prefix}-right & {
     // 		top: $modal-board-close-offset-y;
 
-    // 		@include br(#{$mobile-br-max}-max) {
+    // 		@include on-breakpoint(mobile) {
     // 			top: $modal-board-close-offset-y-mobile;
     // 		}
     // 	}
@@ -133,7 +133,7 @@ $prefix: '.modal-ui';
     // 	#{$prefix}-bottom & {
     // 		right: $modal-board-close-offset-x;
 
-    // 		@include br(#{$mobile-br-max}-max) {
+    // 		@include on-breakpoint(mobile) {
     // 			right: $modal-board-close-offset-x-mobile;
     // 		}
     // 	}
@@ -156,7 +156,7 @@ $prefix: '.modal-ui';
 
     padding: $modal-board-padding-y $modal-board-padding-x;
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
     }
 

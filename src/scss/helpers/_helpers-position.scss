@@ -78,11 +78,7 @@
   &-auto {
     z-index: auto!important;
   }
-  @for $i from 0 through ($z-index-helper-max){
-    $i: $i * $z-index-helper-multiplier;
-    &-#{$i} {
-      z-index: $i !important;
-    }
-
-  }
+  @include dump-z-index-helpers(#{&},$z-index-small-helper-multiplier,$z-index-small-helper-max);
+  @include dump-z-index-helpers(#{&},$z-index-helper-multiplier,$z-index-helper-max);
+  @include dump-z-index-helpers(#{&},$z-index-large-helper-multiplier,$z-index-large-helper-max);
 }

@@ -43,7 +43,7 @@ $prefix: '.tab';
       border-color: $tabs-border-color-inverse;
     }
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       font-size: $calculated-tabs-font-size-mobile;
 
       &#{&}-responsive {

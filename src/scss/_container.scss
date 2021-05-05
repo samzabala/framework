@@ -18,7 +18,7 @@ $prefix: '.container';
     max-width: none;
   }
 
-  @include br($mobile-br-max-polar) {
+  @include on-breakpoint(nonmobile) {
     &#{$prefix}-wide {
       padding-left: $container-gutter-wide;
       padding-right: $container-gutter-wide;
@@ -29,7 +29,7 @@ $prefix: '.container';
     }
   }
 
-  @include br(#{$mobile-br-max}-max) {
+  @include on-breakpoint(mobile) {
     padding-left: $container-gutter-mobile;
     padding-right: $container-gutter-mobile;
     max-width: $container-max-width-mobile;

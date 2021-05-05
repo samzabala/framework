@@ -132,7 +132,7 @@ $prefix: '.module';
     position: relative;
 
     &-break {
-      @include br($mobile-br-max-polar) {
+      @include on-breakpoint(nonmobile) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -192,7 +192,7 @@ $prefix: '.module';
     position: relative;
     display: inline-flex;
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       display: flex;
       max-width: 100%;
     }
@@ -214,7 +214,7 @@ $prefix: '.module';
       margin-bottom: $module-gutter-between * 0.5;
     }
 
-    @include br(#{$mobile-br-max-polar}) {
+    @include on-breakpoint(nonmobile){
       #{$prefix}-function {
         &:nth-child(n + 2) {
           margin-left: 0.75rem;
@@ -222,7 +222,7 @@ $prefix: '.module';
       }
     }
 
-    @include br(#{$mobile-br-max}-max) {
+    @include on-breakpoint(mobile) {
       #{$prefix}-function {
         display: block;
       }
@@ -349,7 +349,7 @@ $prefix: '.module';
     margin-bottom: $module-gutter-y * -1;
   }
 
-  @include br(#{$mobile-br-max}) {
+  @include on-breakpoint(mobile){
     &-small {
       &#{$prefix},
       > #{$prefix}-header,
@@ -435,7 +435,7 @@ $prefix: '.module';
     }
   }
 
-  @include br(#{$mobile-br-max}-max) {
+  @include on-breakpoint(mobile) {
     & {
       padding: $module-gutter-y-mobile $module-gutter-x-mobile;
     }
