@@ -491,7 +491,7 @@
 
   &-disabled {
     cursor: not-allowed !important;
-    opacity: $global-disabled-opacity;
+    opacity: $global-disabled-opacity !important;
 
     * {
       pointer-events: none;

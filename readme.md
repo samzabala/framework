@@ -16,14 +16,35 @@ Works with Libsass and Compass
 - [Tables](docs/sections/scaffolding/table.md)
 - [Breakpoints](docs/sections/scaffolding/breakpoint.md)
 - [Colors](docs/sections/scaffolding/colors.md)
-- [Helpers](docs/sections/scaffolding/helpers.md)
 
 ## Layout
 
 - [Flex Grid](docs/sections/layout/flexgrid.md)
 - [Container](docs/sections/layout/container.md)
 
-## Components (o lawd)
+## Helpers (o lawd)
+
+- [Align](docs/sections/helpers/align.md)
+- [Background](docs/sections/helpers/background.md)
+- [Border](docs/sections/helpers/border.md)
+- [Disable](docs/sections/helpers/disable.md)
+- [Display](docs/sections/helpers/display.md)
+- [Flex](docs/sections/helpers/flex.md)
+- [Float](docs/sections/helpers/float.md)
+- [Font](docs/sections/helpers/font.md)
+- [Image](docs/sections/helpers/image.md)
+- [Justify](docs/sections/helpers/justify.md)
+- [Margin](docs/sections/helpers/margin.md)
+- [Overflow](docs/sections/helpers/overflow.md)
+- [Padding](docs/sections/helpers/padding.md)
+- [Position](docs/sections/helpers/position.md)
+- [Radius](docs/sections/helpers/radius.md)
+- [Shadow](docs/sections/helpers/shadow.md)
+- [Svg](docs/sections/helpers/svg.md)
+- [Text](docs/sections/helpers/text.md)
+- [Visibility](docs/sections/helpers/visibility.md)
+
+## Components (OO LAAAWD)
 
 - [Accordions](docs/sections/components/accordion.md)
 - [Alerts](docs/sections/components/alert.md)

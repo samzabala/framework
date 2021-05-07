@@ -2,7 +2,10 @@
 
 ## Text ultilities
 
-See [Helpers](../scaffolding/helpers.md)
+See [Text Helpers](../helpeers/text.md)
+## Text ultilities
+
+See [Helpers](../helpeers/text.md)
 
 ## Headings
 

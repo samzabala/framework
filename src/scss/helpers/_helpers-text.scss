@@ -46,13 +46,13 @@ $prefix: '.text';
       text-decoration: none !important;
     }
     &-line {
-      &-underline {
+      &-under {
         text-decoration-line: underline !important;
       }
-      &-line-through {
+      &-through {
         text-decoration-line: line-through !important;
       }
-      &-overline {
+      &-over {
         text-decoration-line: overline !important;
       }
     }
