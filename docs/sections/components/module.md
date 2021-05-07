@@ -237,13 +237,13 @@ Like [flex grids](../layout/flexgrid.md), this is also setup mobile first. To se
 
 ### Valid `.module-grid` helpers
 
-- [Justify Content](../scaffolding/helpers.md#justify-content)
-- [Align Items](../scaffolding/helpers.md#align-items)
-- [Align Content](../scaffolding/helpers.md#align-content)
+- [Justify Content](../helpers/justify.md)
+- [Align Items](../helpers/align.md#align-items)
+- [Align Content](../helpers/align.md#align-content)
 
 ### Valid `.module` helpers
 
-- [Align Self](../scaffolding/helpers.md#align-self)
+- [Align Self](../helpers/align.md#align-self)
 
 Disclaimer I didn't setup css grid specific helpers because it completely slipped my dumbass mind whoopsie
 

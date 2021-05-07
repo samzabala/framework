@@ -152,11 +152,11 @@ By default flex grid items will grow and shrink depending on available blank spa
 
 The container also supports the following helper classes
 
-- [Justify Content](../scaffolding/helpers.md#justify-content)
-- [Align Items](../scaffolding/helpers.md#align-items)
-- [Align Content](../scaffolding/helpers.md#align-content)
-- [Flex wrap](../scaffolding/helpers.md#flex-wrap)
-- [Flex direction](../scaffolding/helpers.md#flex-direction)
+- [Justify Content](../helpers/justify.md#justify-content)
+- [Align Items](../helpers/align.md#align-items)
+- [Align Content](../helpers/align.md#align-content)
+- [Flex wrap](../helpers/flex.md#flex-wrap)
+- [Flex direction](../helpers/flex.md#flex-direction)
 
 ## Children classes
 
@@ -242,7 +242,7 @@ You can also use the grow and shrink helpers to dictate how much shrinkage and g
 
 The column bois also supports the following helper classes
 
-- [Align Self](../scaffolding/helpers.md#align-self)
-- [Grow and Shrink](../scaffolding/helpers.md#grow-and-shrink)
+- [Align Self](../scaffolding/align.md#align-self)
+- [Grow and Shrink](../scaffolding/flex.md#grow-and-shrink)
 
 [Back to TOC](../../../readme.md)

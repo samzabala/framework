@@ -1,11 +1,12 @@
 
 # Border Color
 
-**`.border-color-inherit`**
-**`.border-color-transparent`**
-**`.border-color-{COLOR}`**
-**`.border-color-{COLOR}-{VARIATION-TAG}`**
-**`.border-color-{COLOR}-{CONDITION}`**
+- **`.border-color-inherit`**
+- **`.border-color-transparent`**
+- **`.border-color-{COLOR}`**
+- **`.border-color-{COLOR}-{VARIATION-TAG}`**
+- **`.border-color-{COLOR}-{CONDITION}`**
+- **`.border-color-{COLOR}-{VARIATION-TAG}-{CONDITION}`**
 
 For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
@@ -46,7 +47,7 @@ Can also be specific to a side. for example for `.border-width-thick`
 - **`.border-width-thick-x`**
 - **`.border-width-thick-y`**
 
-To reset brder- widths view [Reset Borders](#reset-borders)
+To reset borders view [Reset Borders](#reset-borders)
 
 # Reset borders
 
@@ -79,3 +80,5 @@ To reset brder- widths view [Reset Borders](#reset-borders)
   No border on the right
 
 [More info on the css property](https://www.w3schools.com/css/css_border.asp)
+
+[Back to TOC](../../../readme.md)

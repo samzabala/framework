@@ -2,11 +2,12 @@
 
 #### Color
 
-**`.border-color-inherit`**
-**`.border-color-transparent`**
-**`.border-color-{COLOR}`**
-**`.border-color-{COLOR}-{VARIATION-TAG}`**
-**`.border-color-{COLOR}-{CONDITION}`**
+- **`.color-inherit`**
+- **`.color-transparent`**
+- **`.color-{COLOR}`**
+- **`.color-{COLOR}-{VARIATION-TAG}`**
+- **`.color-{COLOR}-{CONDITION}`**
+- **`.color-{COLOR}-{VARIATION-TAG}-{CONDITION}`**
 
 For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
@@ -48,6 +49,19 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
 [More info on the css property](https://www.w3schools.com/cssref/pr_text_text-align.asp)
 
+## Decoration
+
+- **`.text-decoration-none`**
+- **`.text-decoration-line-under`**
+- **`.text-decoration-line-through`**
+- **`.text-decoration-line-over`**
+- **`.text-decoration-style-solid`**
+- **`.text-decoration-style-wavy`**
+- **`.text-decoration-style-double`**
+- **`.text-decoration-style-wavy`**
+
+[More info on the css property](https://www.w3schools.com/cssref/pr_text_text-decoration.asp)
+
 ## Transform
 
 - **`.text-transform-uppercase`**
@@ -71,20 +85,6 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 - **`.text-vertical-align-inherit`**
 
 [More info on the css property](https://www.w3schools.com/cssref/pr_pos_vertical-align.asp)
-
-## Wrap
-
-- **`.text-hyphens-auto`**
-
-    autuomatically hyphenate
-
-- **`.text-hyphens-manual`**
-
-    manually hyphenate
-
-- **`.text-hyphens-none`**
-
-    nope
 
 ## Wrap
 
@@ -112,6 +112,18 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
   Allows multiple lines based on given `$body-ellipsis-multiple-factor`. 2 by default
 
+- **`.text-wrap-hyphens-auto`**
+
+    autuomatically hyphenate
+
+- **`.text-wrap-hyphens-manual`**
+
+    manually hyphenate
+
+- **`.text-wrap-hyphens-none`**
+
+    nope
+
 ## Clip Background
 
 - **`.text-clip-background`**
@@ -125,3 +137,5 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 - **`.p`**
 
   Adds margins to element as if it were a `<p>` tag
+
+[Back to TOC](../../../readme.md)

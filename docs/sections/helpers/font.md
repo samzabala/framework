@@ -71,3 +71,5 @@ Set to whatever font weight ya need boi
 - **`.font-style-inherit`**
 
 [More info on the css property](https://www.w3schools.com/cssref/pr_font_font-style.asp)
+
+[Back to TOC](../../../readme.md)

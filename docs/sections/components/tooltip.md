@@ -84,7 +84,7 @@ This is the content for the tooltip
 
 ## **`data-tooltip-classes`**
 
-Idk this is how you add classes or [helper classes](../scaffolding/helpers.md) to the tooltip content but you have to be careful because some css may not work on the tooltip
+Idk this is how you add classes or [helper classes](../../../readme.md#helpers-o-lawd) to the tooltip content but you have to be careful because some css may not work on the tooltip
 
 ## **`data-tooltip-center-x`**
 

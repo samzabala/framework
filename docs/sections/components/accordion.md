@@ -171,8 +171,6 @@ As long as you avoid these properties on each element ya good.
 
 `.symbol-arrow-down` will reverse direction to up when ya boi is open
 
-Color based [Helper classes](../scaffolding/helpers.md#background-and-colors) as well by adding `.[color-helper or background-helper]-toggle`
-
 ```html
 <div class="accordion-group accordion-group-multiple">
   <h1

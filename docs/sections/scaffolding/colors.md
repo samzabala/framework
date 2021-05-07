@@ -222,7 +222,7 @@ linear gradient angles
 #### Supports
 
 - `gradient`
-
+-
 # Helpers
 
 color naming and tagging conventions supports the following helpers:
@@ -307,6 +307,143 @@ Components that suport this set up too
 
 - `.btn-{COLOR-TAG}`
 - `.btn-{COLOR-TAG}-outline`
+
+
+
+# Summary
+
+Shouldve just prolly made it to a table godammit
+
+```html
+<div class="{HELPER}-{COLOR} {HELPER}-{COLOR}-{CONDITION}">Boxy boi</div>
+
+<div class="{HELPER}-{COLOR}-{VARIATION} {HELPER}-{COLOR}-{VARIATION}-{CONDITION}">Boxy boi</div>
+
+<div class="{HELPER}-{COLOR}-{VARIATION} {HELPER}-{COLOR}-{CONDITION}">Boxy boi</div>
+
+<div class="{HELPER}-{COLOR} {HELPER}-{COLOR}-{VARIATION}-{CONDITION}">Boxy boi</div>
+```
+<table>
+  <thead>
+    <tr>
+      <th><code>COLOR</code></th>
+      <th colspan="3"><code>VARIATION</code> - Offset or Opacity or Angles</th>
+      <th><code>CONDITION</code> (append)</th>
+      <th><code>HELPER</code> (prepend)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>background</code></th>
+      <td rowspan="2">
+          <p><code>alt</code></p>
+      </td>
+      <td rowspan="14">
+          <p><code>alpha-1</code></p>
+          <p><code>alpha-2</code></p>
+          <p><code>alpha-3</code></p>
+          <p><code>alpha-4</code></p>
+          <p><code>alpha-5</code></p>
+          <p><code>alpha-6</code></p>
+          <p><code>alpha-7</code></p>
+          <p><code>alpha-8</code></p>
+          <p><code>alpha-9</code></p>
+      </td>
+      <td rowspan="18">N/A</td>
+      <td rowspan="19">
+          <p><code>hover</code></p>
+          <p><code>focus</code></p>
+          <p><code>active</code></p>
+          <p><code>toggle</code></p>
+          <p><code>inverse</code></p>
+          <p><code>default</code></p>
+      </td>
+      <td rowspan="18">
+          <p><code>`.backrground-*`</code></p>
+          <p><code>`.border-color-*`</code></p>
+          <p><code>`.fill-*`</code></p>
+          <p><code>`.stroke-*`</code></p>
+          <p><code>`.color-*`</code></p>
+      </td>
+    </tr>
+    <tr>
+      <th><code>base</code></th>
+    </tr>
+    <tr>
+      <th><code>primary</code></th>
+      <td rowspan="12">
+          <p><code>lightest</code></p>
+          <p><code>lighter</code></p>
+          <p><code>light</code></p>
+          <p><code>dark</code></p>
+          <p><code>darker</code></p>
+          <p><code>darkest</code></p>
+      </td>
+    </tr>
+    <tr>
+      <th><code>secondary</code></th>
+    </tr>
+    <tr>
+      <th><code>accent</code></th>
+    </tr>
+    <tr>
+      <th><code>neutral</code></th>
+    </tr>
+    <tr>
+      <th><code>error</code></th>
+    </tr>
+    <tr>
+      <th><code>caution</code></th>
+    </tr>
+    <tr>
+      <th><code>success</code></th>
+    </tr>
+    <tr>
+      <th><code>intensity-1</code></th>
+    </tr>
+    <tr>
+      <th><code>intensity-2</code></th>
+    </tr>
+    <tr>
+      <th><code>intensity-3</code></th>
+    </tr>
+    <tr>
+      <th><code>intensity-4</code></th>
+    </tr>
+    <tr>
+      <th><code>intensity-5</code></th>
+    </tr>
+    <tr>
+      <th><code>theme</code></th>
+      <td rowspan="5"> N/A</td>
+      <td rowspan="5"> N/A</td>
+    </tr>
+    <tr>
+      <th><code>theme-contrast</code></th>
+    </tr>
+    <tr>
+      <th><code>theme-polar</code></th>
+    </tr>
+    <tr>
+      <th><code>theme-polar-contrast</code></th>
+    </tr>
+    <tr>
+      <th><code>gradient</code></th>
+      <td>
+          <p><code>45</code></p>
+          <p><code>90</code></p>
+          <p><code>135</code></p>
+          <p><code>180</code></p>
+          <p><code>225</code></p>
+          <p><code>270</code></p>
+          <p><code>315</code></p>
+      </td>
+      <td>
+          <p><code>`.backrground-*`</code></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 See [Buttons](../components/button.md)
 
