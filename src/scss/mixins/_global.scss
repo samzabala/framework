@@ -566,3 +566,44 @@
     $z: $z + $multiplier;
   }
 }
+
+@mixin dump-flex-increments($max: 1) {
+
+  //extend
+  @for $h from 0 through $max {
+    @at-root %fw_flex_inc {
+      &-grow-#{$h} {
+        flex-grow: #{$h} !important;
+      }
+
+      &-shrink-#{$h} {
+        flex-shrink: #{$h} !important;
+      }
+    }
+  }
+
+  @for $i from 0 through $max {
+    @for $j from 0 through $max {
+    // @each $j in $past-flex-increments {
+      @at-root #{& + '-'+$i+'-'+$i},
+      #{& + '-'+$i+'-'+$j} {
+          @extend %fw_flex_inc-grow-#{$i} !optional;
+      }
+
+      @at-root #{& + '-'+$i+'-'+$i},
+        #{& + '-'+$j+'-'+$i} {
+          @extend %fw_flex_inc-shrink-#{$i} !optional;
+      }
+
+      @at-root #{& + '-'+$j+'-'+$i},
+        #{& + '-'+$j+'-'+$j} {
+          @extend %for-flex-grow-#{$j} !optional;
+      }
+
+      @at-root #{& + '-'+$i+'-'+$j},
+        #{& + '-'+$j+'-'+$j} {
+        @extend %for-flex-shrink-#{$j} !optional;
+      }
+    }
+  }
+}

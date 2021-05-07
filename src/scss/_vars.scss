@@ -733,7 +733,7 @@ $body-selection-color: $var-color-background !default;
 
 $global-disabled-opacity: 0.5 !default;
 
-$body-ellipsis-multiple-factor: 2 !default;
+$body-ellipsis-multiple-factor: 3 !default;
 
 //hr
 $hr-color: $var-color-neutral !default;
@@ -1087,7 +1087,7 @@ $alert-container-padding-x: $gutter-base !default;
 $alert-container-padding-x-mobile: $gutter-micro !default;
 $alert-container-padding-y: $gutter-base !default;
 $alert-container-padding-y-mobile: $gutter-micro !default;
-$alert-container-max-width: 400px !default;
+$alert-container-max-width: 460px !default;
 
 $alert-title-font-weight: $body-font-weight-bold !default;
 $alert-title-font-style: normal !default;
@@ -1255,7 +1255,8 @@ $progress-background-stripe-width: 1px !default;
 $progress-background-stripe-gap: 5px !default;
 
 $progress-border-radius: 20px !default;
-$progress-transition-duration: $transition-duration-long * 4 !default;
+$progress-animation-duration: $transition-duration-long * 4 !default;
+$progress-transition-duration: $progress-animation-duration !default;
 
 $progress-bar-background-color: $var-color-neutral-alpha-7 !default;
 
@@ -1329,7 +1330,7 @@ $badge-box-shadow: $box-shadow-mild $var-color-base !default;
 
 $highlight-height: $body-font-size * 1.75 !default;
 $highlight-padding-x: 5px !default;
-$highlight-margin-x: 0 !default;
+$highlight-margin: 1px !default;
 $highlight-font-size: 13px !default;
 $highlight-font-weight: inherit !default;
 $highlight-font-style: normal !default;
@@ -1919,13 +1920,16 @@ $z-index-helper-multiplier: 10 !default;
   $z-index-large-helper-max: 10000 !default;
   $z-index-large-helper-multiplier: 1000 !default;
 
-$z-index-alert-container:99999;
+$z-index-alert-container:999;
 $z-index-dropdown: 999 !default;
 $z-index-modal-default: 9990 !default;
 $z-index-modal-board: 9991 !default;
 $z-index-modal-fullscreen: 9992 !default;
 $z-index-nav: 999 !default;
 $z-index-tooltip: 9999 !default;
+
+//grow shrink
+$flex-max: 3 !default;
 
 // @OTHER @TODOS
 //padding and margin classes

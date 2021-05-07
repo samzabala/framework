@@ -41,7 +41,7 @@ $calculated-highlight-padding-x: $highlight-padding-x;
 @if internal-is-convertable($highlight-padding-x, $body-font-size) {
   $calculated-highlight-padding-x: $calculated-highlight-padding-x;
 }
-$calculated-highlight-margin-x: $highlight-margin-x;
-@if internal-is-convertable($highlight-margin-x, $body-font-size) {
+$calculated-highlight-margin-x: $highlight-margin;
+@if internal-is-convertable($highlight-margin, $body-font-size) {
   $calculated-highlight-margin-x: $calculated-highlight-margin-x;
 }

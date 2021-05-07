@@ -125,7 +125,7 @@ i {
 
 a,
 .a {
-  transition: $transition-duration-base color $transition-timing;
+  // transition: $transition-duration-base color $transition-timing;
 
   &,
   &.disabled {

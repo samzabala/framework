@@ -43,7 +43,7 @@ $prefix: '.progress';
           )
         );
         animation-name: progress-bar-stripes;
-        animation-duration: $progress-transition-duration;
+        animation-duration: $progress-animation-duration;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }

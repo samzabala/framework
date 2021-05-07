@@ -84,23 +84,6 @@
     flex-wrap: inherit !important;
   }
 
-  @at-root #{& + '-1-1'},
-    #{& + '-1-0'} {
-    flex-grow: 1 !important;
-  }
 
-  @at-root #{& + '-1-1'},
-    #{& + '-0-1'} {
-    flex-shrink: 1 !important;
-  }
-
-  @at-root #{& + '-0-1'},
-    #{& + '-0-0'} {
-    flex-grow: 0 !important;
-  }
-
-  @at-root #{& + '-1-0'},
-    #{& + '-1-0'} {
-    flex-shrink: 0 !important;
-  }
+  @include dump-flex-increments($flex-max);
 }

@@ -770,10 +770,6 @@ i {
   font-style: italic;
 }
 
-a,
-.a {
-  transition: 0.25s color ease-in-out;
-}
 a, a.disabled,
 .a,
 .a.disabled {
@@ -1113,6 +1109,7 @@ big {
   margin-top: 20px;
   margin-left: 20px;
   max-width: calc(100% - 20px);
+  min-width: 0;
 }
 .flex-grid-fixed > *[class*=flex-col-],
 .flex-grid-fixed > .flex-child {
@@ -12050,24 +12047,48 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 .flex-wrap-inherit {
   flex-wrap: inherit !important;
 }
-.flex-1-1,
+.flex-0-3,
+.flex-0-2,
+.flex-0-1, .flex-0-0 {
+  flex-grow: 0 !important;
+}
+.flex-3-0,
+.flex-2-0,
+.flex-1-0, .flex-0-0 {
+  flex-shrink: 0 !important;
+}
+
+.flex-1-3,
+.flex-1-2, .flex-1-1,
 .flex-1-0 {
   flex-grow: 1 !important;
 }
-
-.flex-1-1,
+.flex-3-1,
+.flex-2-1, .flex-1-1,
 .flex-0-1 {
   flex-shrink: 1 !important;
 }
 
-.flex-0-1,
-.flex-0-0 {
-  flex-grow: 0 !important;
+.flex-2-3,
+.flex-2-1, .flex-2-2,
+.flex-2-0 {
+  flex-grow: 2 !important;
+}
+.flex-3-2,
+.flex-1-2, .flex-2-2,
+.flex-0-2 {
+  flex-shrink: 2 !important;
 }
 
-.flex-1-0,
-.flex-1-0 {
-  flex-shrink: 0 !important;
+.flex-3-2,
+.flex-3-1, .flex-3-3,
+.flex-3-0 {
+  flex-grow: 3 !important;
+}
+.flex-2-3,
+.flex-1-3, .flex-3-3,
+.flex-0-3 {
+  flex-shrink: 3 !important;
 }
 
 .float-left {
@@ -17251,15 +17272,24 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   display: -webkit-box !important;
-  -webkit-line-clamp: 2 !important;
+  -webkit-line-clamp: 3 !important;
   -webkit-box-orient: vertical !important;
-  height: calc( (1.5em) * 2 );
+  max-height: calc( (1.5em) * 3 );
 }
 .text-leading-compact .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-compact {
-  height: calc( (1.5em * 0.875) * 2 );
+  max-height: calc( (1.5em * 0.875) * 3 );
 }
 .text-leading-expanded .text-wrap-ellipsis-multiple, .text-wrap-ellipsis-multiple.text-leading-expanded {
-  height: calc( (1.5em * 1.5) * 2 );
+  max-height: calc( (1.5em * 1.5) * 3 );
+}
+.text-hyphens-auto {
+  hyphens: auto !important;
+}
+.text-hyphens-manual {
+  hyphens: manual !important;
+}
+.text-hyphens-none {
+  hyphens: none !important;
 }
 @supports not (-webkit-background-clip: text) {
   .text-clip-background {

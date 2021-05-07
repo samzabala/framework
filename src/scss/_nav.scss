@@ -202,7 +202,6 @@ $prefix: '.nav';
         right: 0;
         left: 0;
         height: 0;
-        transition: $transition-duration-short all $transition-timing;
         @include gradient(
           (
             color1: $nav-current-gradient-start,
@@ -211,12 +210,14 @@ $prefix: '.nav';
             use-shorthand: false,
           )
         );
+        transition: $transition-duration-short height $transition-timing;
 
         #{$prefix}-vertical & {
           height: auto;
           width: 0;
           top: 0;
           left: auto;
+          transition: $transition-duration-short width $transition-timing;
 
           @include gradient(
             (

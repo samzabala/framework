@@ -715,10 +715,6 @@ i {
   font-style: italic;
 }
 
-a,
-.a {
-  transition: 0.25s color ease-in-out;
-}
 a, a.disabled,
 .a,
 .a.disabled {

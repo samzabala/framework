@@ -146,23 +146,35 @@ $prefix: '.text';
         display: -webkit-box !important;
         -webkit-line-clamp: $body-ellipsis-multiple-factor !important;
         -webkit-box-orient: vertical !important;
-        height: calc(
+        max-height: calc(
           (#{$calculated-body-single-line}) * #{$body-ellipsis-multiple-factor}
         );
 
         #{$prefix}-leading-compact &,
         &#{$prefix}-leading-compact {
-          height: calc(
+          max-height: calc(
             (#{$calculated-body-single-line} * #{$body-line-height-compact-factor}) * #{$body-ellipsis-multiple-factor}
           );
         }
         #{$prefix}-leading-expanded &,
         &#{$prefix}-leading-expanded {
-          height: calc(
+          max-height: calc(
             (#{$calculated-body-single-line} * #{$body-line-height-expanded-factor}) * #{$body-ellipsis-multiple-factor}
           );
         }
       }
+    }
+  }
+
+  &-hyphens {
+    &-auto {
+      hyphens: auto !important;
+    }
+    &-manual {
+      hyphens: manual !important;
+    }
+    &-none {
+      hyphens: none !important;
     }
   }
 
