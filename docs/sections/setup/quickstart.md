@@ -76,10 +76,6 @@ While javascript is initialized. some modules are at opacity: 0; while this is t
 
 When bitch is ready. JS adds this shit, you don't have to fuck with it
 
-## **`.theme-inverse`**
-
-This switches color or background properties to allow dark mode
-
 ## **`.body-modal-active`**
 
 Disables overflow scroll on the bod so user can focus on the active [modal](../components/modal.md). JS adds this shit, you don't have to fuck with it
@@ -87,5 +83,20 @@ Disables overflow scroll on the bod so user can focus on the active [modal](../c
 ## **`.body-nav-sticky-offset`**
 
 Offsets the body to the set height of the [nav](../components/nav.md)
+
+
+# Theme Classes
+
+Can be applied to the body or whatever
+
+element
+
+## **`.theme-default`**
+
+Applies default background-color and color properties
+
+## **`.theme-inverse`**
+
+This switches color or background properties to allow inverse mode. good for supporting light and dark preferences
 
 [Back to TOC](../../../readme.md)
