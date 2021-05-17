@@ -599,17 +599,17 @@
   var INITIATOR_QUEUE = new FwQueue();
   var is_started = false;
 
-  var _execqt = _classPrivateFieldLooseKey("execqt");
+  var _execqt = /*#__PURE__*/_classPrivateFieldLooseKey("execqt");
 
-  var _runRightAway = _classPrivateFieldLooseKey("runRightAway");
+  var _runRightAway = /*#__PURE__*/_classPrivateFieldLooseKey("runRightAway");
 
-  var _runReady = _classPrivateFieldLooseKey("runReady");
+  var _runReady = /*#__PURE__*/_classPrivateFieldLooseKey("runReady");
 
-  var _runLoad = _classPrivateFieldLooseKey("runLoad");
+  var _runLoad = /*#__PURE__*/_classPrivateFieldLooseKey("runLoad");
 
-  var _runResize = _classPrivateFieldLooseKey("runResize");
+  var _runResize = /*#__PURE__*/_classPrivateFieldLooseKey("runResize");
 
-  var _runScroll = _classPrivateFieldLooseKey("runScroll");
+  var _runScroll = /*#__PURE__*/_classPrivateFieldLooseKey("runScroll");
 
   var Initiator = /*#__PURE__*/function () {
     function Initiator() {
@@ -3480,11 +3480,11 @@
     };
   });
 
-  var _current = _classPrivateFieldLooseKey("current");
+  var _current = /*#__PURE__*/_classPrivateFieldLooseKey("current");
 
-  var _modeToggle = _classPrivateFieldLooseKey("modeToggle");
+  var _modeToggle = /*#__PURE__*/_classPrivateFieldLooseKey("modeToggle");
 
-  var _modeClass = _classPrivateFieldLooseKey("modeClass");
+  var _modeClass = /*#__PURE__*/_classPrivateFieldLooseKey("modeClass");
 
   var Modal = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Modal, _FwComponent);

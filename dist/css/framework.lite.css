@@ -193,7 +193,7 @@ a:hover {
 }
 .disabled, [disabled] {
   cursor: not-allowed !important;
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }
 .disabled *, [disabled] * {
   pointer-events: none;
@@ -17190,13 +17190,13 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 .text-decoration-none {
   text-decoration: none !important;
 }
-.text-decoration-line-underline {
+.text-decoration-line-under {
   text-decoration-line: underline !important;
 }
-.text-decoration-line-line-through {
+.text-decoration-line-through {
   text-decoration-line: line-through !important;
 }
-.text-decoration-line-overline {
+.text-decoration-line-over {
   text-decoration-line: overline !important;
 }
 .text-decoration-style-solid {

@@ -236,7 +236,7 @@ table {
 .table-cell-disabled td,
 .table-cell-disabled .table-cell, .zone.zone-disabled, .tab.tab-disabled, .tabs > li.tab-disabled, [disabled] {
   cursor: not-allowed !important;
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }
 .disabled *, .input-disabled *, .input[disabled] *, .btn-disabled *, .table-row-disabled td *,
 .table-row-disabled .table-cell *,
@@ -22473,13 +22473,13 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 .text-decoration-none {
   text-decoration: none !important;
 }
-.text-decoration-line-underline {
+.text-decoration-line-under {
   text-decoration-line: underline !important;
 }
-.text-decoration-line-line-through {
+.text-decoration-line-through {
   text-decoration-line: line-through !important;
 }
-.text-decoration-line-overline {
+.text-decoration-line-over {
   text-decoration-line: overline !important;
 }
 .text-decoration-style-solid {

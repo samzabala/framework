@@ -28,7 +28,7 @@
     "prettier": "^2.2.1",
     "rollup": "^2.41.4",
     "sass": "^1.32.8",
-    "watch": "^1.0.2"
+    "watch": "^0.13.0"
   },
   "dependencies": {
     "postcss": "^8.2.8",

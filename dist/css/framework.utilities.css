@@ -40,7 +40,7 @@
 }
 .disabled {
   cursor: not-allowed !important;
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }
 .disabled * {
   pointer-events: none;
@@ -12444,13 +12444,13 @@
 .text-decoration-none {
   text-decoration: none !important;
 }
-.text-decoration-line-underline {
+.text-decoration-line-under {
   text-decoration-line: underline !important;
 }
-.text-decoration-line-line-through {
+.text-decoration-line-through {
   text-decoration-line: line-through !important;
 }
-.text-decoration-line-overline {
+.text-decoration-line-over {
   text-decoration-line: overline !important;
 }
 .text-decoration-style-solid {
