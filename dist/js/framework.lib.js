@@ -2052,12 +2052,8 @@
     _proto.update = function update(newValue, valueToRender) {
       var _this3 = this;
 
-      var element = this.element; // const theValue = (newValue || newValue === '')
-      //   ? FwDate.toVal(newValue)
-      //   : this.theValue
-      //   ;
-
-      var theValue = FwDate.toVal(newValue);
+      var element = this.element;
+      var theValue = newValue || newValue === '' ? FwDate.toVal(newValue) : this.theValue;
       var uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {

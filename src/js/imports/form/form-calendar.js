@@ -187,12 +187,8 @@ class Calendar extends FwComponent {
   update(newValue, valueToRender) {
     const element = this.element;
 
-    // const theValue = (newValue || newValue === '')
-    //   ? FwDate.toVal(newValue)
-    //   : this.theValue
-    //   ;
-
-    const theValue = FwDate.toVal(newValue);
+    const theValue =
+      newValue || newValue === '' ? FwDate.toVal(newValue) : this.theValue;
     const uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
 
     super.runCycle(
