@@ -16,7 +16,7 @@ It's got it's opwn syntax with classes and shit so u better pay attention... or 
 
   lightest color, usually for body background. not to be confused with the set theme values
 
-_Both schemes has an alt value for contrasting background instances._
+_Both schemes has an alt value for contrasting background instances. More on it in a lil bit_
 
 _These values interchange on dark mode by default (eg: `$background-base-alt` )_
 
@@ -36,7 +36,7 @@ _These values interchange on dark mode by default (eg: `$background-base-alt` )_
 
   For stuff that are there but not that important so it shouldnt stand out as much
 
-_Both schemes are used by [gradient and intensity](#gradient-and-intensity) palette variables by default_
+_Both Primary and Secondary are used by [gradient and intensity](#gradient-and-intensity) palette variables by default_
 
 ### User feedback
 
