@@ -1470,7 +1470,7 @@ $keyframe-instance: 1;
             map-get($color, offset)};
         }
       } @else {
-        $fallback: map-get($gradient, color1-offset);
+        $fallback: map-get($gradient, color1);
         $points: #{', ' +
           map-get($gradient, color1) +
           ' ' +
