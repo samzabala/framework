@@ -460,7 +460,7 @@ class Modal extends FwComponent {
       return;
     }
 
-    const args = args || this.args || this.#current.args || {};
+    const args = this.args || this.#current.args || {};
     width = width || args.width || null;
 
     if (this.UIRoot && parseInt(width) >= parseInt(args.width)) {
