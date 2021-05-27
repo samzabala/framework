@@ -3674,7 +3674,7 @@
         return;
       }
 
-      var args = args || this.args || _classPrivateFieldLooseBase(this, _current)[_current].args || {};
+      var args = this.args || _classPrivateFieldLooseBase(this, _current)[_current].args || {};
       width = width || args.width || null;
 
       if (this.UIRoot && parseInt(width) >= parseInt(args.width)) {

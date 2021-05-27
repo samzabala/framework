@@ -213,7 +213,7 @@
   background-color: var(--fw-theme-color-contrast) !important;
 }
 .background-gradient {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -234,7 +234,7 @@
 .background-gradient-45-active.active,
 .background-gradient-45-toggle.active,
 .background-gradient-45-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -251,7 +251,7 @@
 .background-gradient-90-active.active,
 .background-gradient-90-toggle.active,
 .background-gradient-90-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -268,7 +268,7 @@
 .background-gradient-135-active.active,
 .background-gradient-135-toggle.active,
 .background-gradient-135-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -285,7 +285,7 @@
 .background-gradient-180-active.active,
 .background-gradient-180-toggle.active,
 .background-gradient-180-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -302,7 +302,7 @@
 .background-gradient-225-active.active,
 .background-gradient-225-toggle.active,
 .background-gradient-225-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -319,7 +319,7 @@
 .background-gradient-270-active.active,
 .background-gradient-270-toggle.active,
 .background-gradient-270-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
@@ -336,7 +336,7 @@
 .background-gradient-315-active.active,
 .background-gradient-315-toggle.active,
 .background-gradient-315-toggle.open {
-  background-color: 0%  !important;
+  background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
   background-image: -moz-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
