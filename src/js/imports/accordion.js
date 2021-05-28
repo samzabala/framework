@@ -19,7 +19,7 @@ const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
 const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
-const EVENT_HASHCHANGE = `hashchange${EVENT_KEY}`;
+const EVENT_HASHCHANGE = `hashchange`;
 
 const EVENT_BEFORE_CLOSE = `before_close${EVENT_KEY}`;
 const EVENT_CLOSE = `close${EVENT_KEY}`;
@@ -50,7 +50,7 @@ class Accordion extends FwComponent {
 
   static get configDefaults() {
     return {
-      changeHash: 'true',
+      changeHash: true,
     };
   }
 

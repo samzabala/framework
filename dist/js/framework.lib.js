@@ -102,7 +102,9 @@
   var DisableClasses = ['table-row-disabled', 'tab-disabled', 'btn-disabled', 'input-disabled', 'disabled']; // @TODO push instead of hard coding to arrays because
 
   var lookupResetToParentClass = ['input-group', 'btn-group'];
-  var lookupResetFromClosestComponent = ['dropdown', 'modal-default', 'modal-board', 'switch', 'alert'];
+  var lookupResetFromClosestComponent = ['dropdown', // 'modal-default',
+  // 'modal-board',
+  'switch', 'alert'];
   var lookupResetFromClosestComponentUi = [//root component name, subcomponent mods
   'modal-default', 'modal-board', 'input-calendar', 'input-tags'];
   var DateTimePreset = {
@@ -412,43 +414,44 @@
         // console.warn('toggle trigger was in group');
         toReturn = UIToggled(toggleMode, triggerer.parentNode);
       } else {
+        // console.warn('toggle trigger anybody whos a sibling',selectorToMatch);
         var possibleSiblings = triggerer.nextElementSibling;
 
         while (possibleSiblings) {
-          if (possibleSiblings.matches(selectorToMatch)) {
-            // console.warn('toggle trigger anybody whos a sibling');
-            return possibleSiblings;
+          if (possibleSiblings.matches(selectorToMatch) && !toReturn) {
+            toReturn = possibleSiblings;
           }
 
           possibleSiblings = possibleSiblings.nextElementSibling;
         }
-
-        toReturn = possibleSiblings;
       }
-    }
+    } // console.warn(toReturn);
 
-    if (!toReturn && lookupResetFromClosestComponent.filter(function (i) {
+
+    if (!toReturn && triggerer && toggleMode && lookupResetFromClosestComponent.filter(function (i) {
       return i == componentClass;
     })) {
       //look if theres an ancestor it can toggle. last prioroty
-      // console.warn('has a ttrigger, looking for closest compopnent');
-      if (triggerer && toggleMode && lookupResetFromClosestComponentUi.filter(function (i) {
+      // console.warn('has a ttrigger, looking for closest compopnent',componentClass);
+      if (lookupResetFromClosestComponentUi.filter(function (i) {
         return triggerer.parentNode.matches("." + i);
       }).length > 0 && triggerer.parentNode.closest("." + UIPrefix(componentClass))) {
         // console.warn('found for a ui ancestor');
         toReturn = triggerer.parentNode.closest("." + componentClass);
-      } else if (triggerer && toggleMode && triggerer.parentNode.closest(selectorToMatch)) {
+      } else if (triggerer.parentNode.closest(selectorToMatch)) {
         // console.warn('found for an ancestor');
         toReturn = triggerer.parentNode.closest(selectorToMatch);
       }
     }
 
     if (!toReturn) {
+      // console.warn( window.location.hash,'looking for by this hash',selectorToMatch);
       if (window.location.hash !== '' && document.querySelector(window.location.hash) && document.querySelector(window.location.hash).matches(selectorToMatch)) {
-        // console.warn('no trigger but found the hash is a matching toggle');
+        // console.warn(document.querySelector(window.location.hash),'no trigger but found the hash is a matching toggle');
         toReturn = document.querySelector(window.location.hash);
       }
-    }
+    } // console.warn('idiot',toReturn);
+
 
     return toReturn;
   };
@@ -529,6 +532,8 @@
     document.querySelectorAll(selector).forEach(function (elem) {
       if (!exempted || exempted && elem !== exempted && !elem.contains(exempted)) {
         callback(elem);
+      } else {
+        console.log('exepmted', exempted);
       }
     });
   };
@@ -769,7 +774,7 @@
 
   Initiator.start();
 
-  var NativeEvents = ['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'paste', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll'];
+  var NativeEvents = ['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'paste', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll', 'hashchange'];
 
   var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
     _inheritsLoose(FwEvent, _FwDataHelper);
@@ -1117,7 +1122,7 @@
   var DATA_KEY$d = Settings.get('prefix') + "_" + NAME$d;
   var EVENT_KEY$d = "_" + DATA_KEY$d;
   var EVENT_CLICK$a = "click" + EVENT_KEY$d;
-  var EVENT_HASHCHANGE$1 = "hashchange" + EVENT_KEY$d;
+  var EVENT_HASHCHANGE$1 = "hashchange";
   var EVENT_BEFORE_CLOSE$2 = "before_close" + EVENT_KEY$d;
   var EVENT_CLOSE$2 = "close" + EVENT_KEY$d;
   var EVENT_AFTER_CLOSE$2 = "after_close" + EVENT_KEY$d;
@@ -1326,7 +1331,7 @@
       key: "configDefaults",
       get: function get() {
         return {
-          changeHash: 'true'
+          changeHash: true
         };
       }
     }]);
@@ -3451,7 +3456,7 @@
   var DATA_KEY$5 = Settings.get('prefix') + "_" + NAME$5;
   var EVENT_KEY$5 = "_" + DATA_KEY$5;
   var EVENT_CLICK$3 = "click" + EVENT_KEY$5;
-  var EVENT_HASHCHANGE = "hashchange" + EVENT_KEY$5;
+  var EVENT_HASHCHANGE = "hashchange";
   var EVENT_BEFORE_CREATE$1 = "before_create" + EVENT_KEY$5;
   var EVENT_CREATE$1 = "create" + EVENT_KEY$5;
   var EVENT_AFTER_CREATE$1 = "after_create" + EVENT_KEY$5;
@@ -3492,35 +3497,37 @@
       element = element || false;
       args = args || false; //get currMode
 
-      var currMode = false; //look by triggerer first
+      var currMode = false; //look for currMode
 
-      if (triggerer && !element) {
-        //look for subcom
-        VALID_MODAL_MODES.forEach(function (mode) {
-          if ((triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode)) || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-open") || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-close")) && !currMode) {
-            currMode = mode;
-          }
-        });
-      } else if (element) {
-        //look for subcom
-        VALID_MODAL_MODES.forEach(function (mode) {
-          if (element.classList.contains(COMPONENT_CLASS$5 + "-" + mode) && !currMode) {
-            currMode = mode;
-          }
-        }); //ok default probable
+      VALID_MODAL_MODES.forEach(function (mode) {
+        if (!element) {
+          element = UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](currMode), null, "." + COMPONENT_CLASS$5 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)) || Modal.current(currMode).element;
+        } //if not set yet of course
 
-        if (element.classList.contains(COMPONENT_CLASS$5) && !currMode) {
-          currMode = DEFAULT_NAME;
+
+        if (!currMode) {
+          // by triggerer first
+          if (triggerer && !element) {
+            if (triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode)) || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-open") || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-close")) {
+              currMode = mode;
+            }
+          } else if (element) {
+            //look for subcom
+            if (element.classList.contains(COMPONENT_CLASS$5 + "-" + mode)) {
+              currMode = mode; //ok default probable
+            } else if (element.classList.contains(COMPONENT_CLASS$5)) {
+              currMode = DEFAULT_NAME;
+            }
+          } else if (!element) {
+            if (Modal.current(mode).element) {
+              currMode = mode;
+            }
+          }
         }
-      } //kill if not a valid bode boi
-
+      }); //kill if not a valid bode boi
 
       if (!currMode) {
         element = false;
-      } else {
-        if (currMode && !element) {
-          element = Modal.current(currMode).element;
-        }
       }
 
       _this = _FwComponent.call(this, element, {
@@ -3548,6 +3555,16 @@
       return mode ? CURRENT_MODAL_INSTANCE[mode] : CURRENT_MODAL_INSTANCE;
     };
 
+    _proto.toggle = function toggle(elem) {
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+
+      if (element && element.classList.contains(ACTIVATED_CLASS$3)) {
+        this.create();
+      } else {
+        this.destroy();
+      }
+    };
+
     _proto.create = function create(elem) {
       var _this2 = this;
 
@@ -3558,8 +3575,8 @@
       }
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE$1, EVENT_CREATE$1, EVENT_AFTER_CREATE$1, function () {
-        if (element || !window.location.hash) {
-          _this2.destroy();
+        if ((element || !window.location.hash) && _classPrivateFieldLooseBase(_this2, _current)[_current] && _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
+          new Modal(_classPrivateFieldLooseBase(_this2, _current)[_current].element).destroy();
         }
 
         var id = _this2.UIElId || _this2.UIId;
@@ -3567,7 +3584,7 @@
         var theUI = document.createElement('div'); // document.querySelector('body').appendChild(theUI);
 
         element.parentNode.insertBefore(theUI, element.nextSibling);
-        theUI.className = UIPrefix(COMPONENT_CLASS$5) + "  " + UIPrefix(COMPONENT_CLASS$5) + "-mode-" + _this2.mode + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + _this2.args.classes;
+        theUI.className = UIPrefix(COMPONENT_CLASS$5) + " " + _this2.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + _this2.args.classes;
         theUI.setAttribute('id', _this2.UIId);
         theUI.innerHTML = _this2._markup;
         FwDom.moveContents(element, _this2.UIContentBlock);
@@ -3597,7 +3614,8 @@
     _proto.destroy = function destroy(elem) {
       var _this3 = this;
 
-      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current].element;
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+      var hash = window.location.hash;
 
       if (!element) {
         return;
@@ -3606,7 +3624,7 @@
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_DESTROY$1, EVENT_DESTROY$1, EVENT_AFTER_DESTROY$1, function () {
         var canRemoveHash = false;
 
-        if (element.hasAttribute('id') && element.getAttribute('id') == window.location.hash.replace('#', '')) {
+        if (element.hasAttribute('id') && element.getAttribute('id') == hash.replace('#', '')) {
           canRemoveHash = true;
         }
 
@@ -3702,13 +3720,11 @@
       };
     };
 
-    Modal.handleUniversal = function handleUniversal() {
-      return function () {
+    Modal.handleHash = function handleHash() {
+      return function (e) {
         if (Settings.get('initializeModal')) {
-          VALID_MODAL_MODES.forEach(function (mode) {
-            var modal = new Modal(UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode), null, "." + COMPONENT_CLASS$5 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)));
-            modal.create();
-          });
+          var modal = new Modal();
+          modal.create();
         }
       };
     };
@@ -3742,8 +3758,8 @@
         FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "], *[data-toggle-" + modeToggle + "-open]", Modal.handleOpen(mode));
         FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "-close]", Modal.handleClose(mode));
       });
-      FwEvent.addListener(null, EVENT_HASHCHANGE, window, Modal.handleUniversal());
-      Initiator.Q.on_ready = Modal.handleUniversal();
+      FwEvent.addListener(null, EVENT_HASHCHANGE, window, Modal.handleHash());
+      Initiator.Q.on_ready = Modal.handleHash();
       Initiator.Q.on_resize = Modal.handleResize();
     };
 
@@ -3754,7 +3770,7 @@
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleOpen(mode));
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleClose(mode));
       });
-      FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleUniversal());
+      FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleHash());
     };
 
     _createClass(Modal, [{
@@ -3798,6 +3814,11 @@
         return _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](this.mode);
       }
     }, {
+      key: "UiModeClass",
+      get: function get() {
+        return " " + UIPrefix(COMPONENT_CLASS$5) + "-mode-" + this.mode;
+      }
+    }, {
       key: "args",
       get: function get() {
         return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
@@ -3823,45 +3844,45 @@
     }, {
       key: "_markup",
       get: function get() {
-        var html = "<div\n\t\t\t\tclass=\"\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-wrapper\"\n\t\t\t>"; //overlay
+        var html = "<div\n\t\t\t\tclass=\"\n          " + this.UiModeClass + "\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-wrapper\"\n\t\t\t>"; //overlay
 
-        html += "<a href=\"#\"\n\t\t\t\t\t\tclass=\"\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></a>";
+        html += "<a href=\"#\"\n\t\t\t\t\t\tclass=\"\n              " + this.UiModeClass + "\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></a>";
 
         switch (this.mode) {
           case 'board':
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper\">";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-popup\">";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-button-wrapper\">";
 
             if (this.args.close !== false) {
-              html += "<a href=\"#\"\n\t\t\t\t\t\t\t\t\t\tclass=\"\n\t\t\t\t\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close " + UIPrefix(COMPONENT_CLASS$5) + "-button\n\t\t\t\t\t\t\t\t\t\t\t" + (this.args.closeClasses ? this.args.closeClasses : UIPrefix(COMPONENT_CLASS$5) + "-button-default") + "\"\n\t\t\t\t\t\t\t\t\t\tdata-toggle-" + this.modeToggle + "-close\n\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t<i class=\"symbol symbol-close \"></i>\n\t\t\t\t\t\t\t\t\t</a>";
+              html += "<a href=\"#\"\n                      class=\"\n                        " + this.UiModeClass + "\n                        " + UIPrefix(COMPONENT_CLASS$5) + "-close\n                        " + UIPrefix(COMPONENT_CLASS$5) + "-button\n                        " + (this.args.closeClasses ? this.args.closeClasses : UIPrefix(COMPONENT_CLASS$5) + "-button-default") + "\"\n                      data-toggle-" + this.modeToggle + "-close\n                    >\n                      <i class=\"symbol symbol-close \"></i>\n                    </a>";
             }
 
             if (this.args.resize !== false && this.args.width) {
-              html += "<a\n\t\t\t\t\t\t\t\t\t\tclass=\"\n\t\t\t\t\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-resize " + UIPrefix(COMPONENT_CLASS$5) + "-button\n\t\t\t\t\t\t\t\t\t\t\t" + (this.args.resizeClasses ? this.args.resizeClasses : UIPrefix(COMPONENT_CLASS$5) + "-button-default") + "\"\n\t\t\t\t\t\t\t\t\t\tdata-toggle-" + this.modeToggle + "-resize\n\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t<i class=\"symbol symbol-arrow-tail-left \"></i>\n\t\t\t\t\t\t\t\t\t\t<i class=\"symbol symbol-arrow-tail-right \"></i>\n\t\t\t\t\t\t\t\t\t</a>";
+              html += "<a\n                      class=\"\n                        " + this.UiModeClass + "\n                        " + UIPrefix(COMPONENT_CLASS$5) + "-resize\n                        " + UIPrefix(COMPONENT_CLASS$5) + "-button\n                        " + (this.args.resizeClasses ? this.args.resizeClasses : UIPrefix(COMPONENT_CLASS$5) + "-button-default") + "\"\n                      data-toggle-" + this.modeToggle + "-resize\n                    >\n                      <i class=\"symbol symbol-arrow-tail-left \"></i>\n                      <i class=\"symbol symbol-arrow-tail-right \"></i>\n                    </a>";
             }
 
             html += "</div>";
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-popup\">";
 
             if (this.args.title) {
-              html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-header\">\n\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n\t\t\t\t\t\t\t\t\t\t</div>";
+              html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-header\">\n\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n\t\t\t\t\t\t\t\t\t\t</div>";
             }
 
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-popup-content\"></div>";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-popup-content\"></div>";
             html += "</div>";
             break;
 
           default:
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-popup\">";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-popup\">";
 
             if (this.args.title) {
-              html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-header\">\n\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n\t\t\t\t\t\t\t\t\t\t</div>";
+              html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-header\">\n\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n\t\t\t\t\t\t\t\t\t\t</div>";
             }
 
             if (this.args.close !== false) {
-              html += "<a href=\"#\"\n\t\t\t\t\t\t\t\t\t\t\tclass=\"" + UIPrefix(COMPONENT_CLASS$5) + "-close " + this.args.closeClasses + "\"\n\t\t\t\t\t\t\t\t\t\t\tdata-toggle-" + this.modeToggle + "-close\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"symbol symbol-close\"></i>\n\t\t\t\t\t\t\t\t\t\t</a>";
+              html += "<a href=\"#\"\n\t\t\t\t\t\t\t\t\t\t\tclass=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-close " + this.args.closeClasses + "\"\n\t\t\t\t\t\t\t\t\t\t\tdata-toggle-" + this.modeToggle + "-close\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"symbol symbol-close\"></i>\n\t\t\t\t\t\t\t\t\t\t</a>";
             }
 
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$5) + "-popup-content\"></div>";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-popup-content\"></div>";
             html += "</div>";
             break;
         }

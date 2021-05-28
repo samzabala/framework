@@ -49,6 +49,7 @@ const NativeEvents = [
   'error',
   'abort',
   'scroll',
+  'hashchange',
 ];
 
 const EVENT_STORAGE = {};

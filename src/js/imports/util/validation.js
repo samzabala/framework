@@ -13,8 +13,8 @@ export const lookupResetToParentClass = ['input-group', 'btn-group'];
 
 export const lookupResetFromClosestComponent = [
   'dropdown',
-  'modal-default',
-  'modal-board',
+  // 'modal-default',
+  // 'modal-board',
   'switch',
   'alert',
 ];

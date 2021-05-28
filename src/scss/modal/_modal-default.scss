@@ -1,52 +1,53 @@
 /*** MODAL ***/
 $prefix: '.modal-ui';
+$mode-class: #{$prefix}-mode-default;
 
 [data-toggle-modal-default] {
   @include dump-styles(data-toggle);
 }
 
-#{$prefix}#{$prefix}-mode-default {
+#{$mode-class}#{$prefix} {
   z-index: $z-index-modal-default;
+}
 
-  #{$prefix}-wrapper {
-    @extend %for-modal-wrapper-background !optional;
-    @extend %for-modal-scroller !optional;
-    @extend %for-modal-scroller-no-scrollbar !optional;
+#{$mode-class}#{$prefix}-wrapper {
+  @extend %for-modal-wrapper-background !optional;
+  @extend %for-modal-scroller !optional;
+  @extend %for-modal-scroller-no-scrollbar !optional;
 
-    padding: $modal-gutter;
+  padding: $modal-gutter;
+
+  @include on-breakpoint(mobile) {
+    padding: $modal-gutter-mobile;
+  }
+}
+
+#{$mode-class}#{$prefix}-close {
+  & {
+    position: absolute;
+    right: $modal-close-offset;
+    top: $modal-close-offset;
+    z-index: 9;
+
+    &-default {
+      font-size: $modal-close-button-font-size;
+    }
 
     @include on-breakpoint(mobile) {
-      padding: $modal-gutter-mobile;
+      right: $modal-close-offset-mobile;
+      top: $modal-close-offset-mobile;
     }
   }
+}
 
-  #{$prefix}-close {
-    & {
-      position: absolute;
-      right: $modal-close-offset;
-      top: $modal-close-offset;
-      z-index: 9;
+#{$mode-class}#{$prefix}-popup {
+  border-radius: $modal-border-radius;
+  @extend %for-modal-popup-shadow !optional;
+  margin: auto;
 
-      &-default {
-        font-size: $modal-close-button-font-size;
-      }
+  padding: $modal-padding-y $modal-padding-x;
 
-      @include on-breakpoint(mobile) {
-        right: $modal-close-offset-mobile;
-        top: $modal-close-offset-mobile;
-      }
-    }
-  }
-
-  #{$prefix}-popup {
-    border-radius: $modal-border-radius;
-    @extend %for-modal-popup-shadow !optional;
-    margin: auto;
-
-    padding: $modal-padding-y $modal-padding-x;
-
-    @include on-breakpoint(mobile) {
-      padding: $modal-padding-y-mobile $modal-padding-x-mobile;
-    }
+  @include on-breakpoint(mobile) {
+    padding: $modal-padding-y-mobile $modal-padding-x-mobile;
   }
 }

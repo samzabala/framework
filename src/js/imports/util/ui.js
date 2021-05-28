@@ -114,31 +114,33 @@ export const UIToggled = (toggleMode, triggerer, selector) => {
       // console.warn('toggle trigger was in group');
       toReturn = UIToggled(toggleMode, triggerer.parentNode);
     } else {
+      // console.warn('toggle trigger anybody whos a sibling',selectorToMatch);
+
       let possibleSiblings = triggerer.nextElementSibling;
 
       while (possibleSiblings) {
-        if (possibleSiblings.matches(selectorToMatch)) {
-          // console.warn('toggle trigger anybody whos a sibling');
-          return possibleSiblings;
+        if (possibleSiblings.matches(selectorToMatch) && !toReturn) {
+          toReturn = possibleSiblings;
         }
         possibleSiblings = possibleSiblings.nextElementSibling;
       }
-      toReturn = possibleSiblings;
     }
   }
 
+  // console.warn(toReturn);
+
   if (
     !toReturn &&
+    triggerer &&
+    toggleMode &&
     lookupResetFromClosestComponent.filter((i) => {
       return i == componentClass;
     })
   ) {
     //look if theres an ancestor it can toggle. last prioroty
-    // console.warn('has a ttrigger, looking for closest compopnent');
+    // console.warn('has a ttrigger, looking for closest compopnent',componentClass);
 
     if (
-      triggerer &&
-      toggleMode &&
       lookupResetFromClosestComponentUi.filter((i) => {
         return triggerer.parentNode.matches(`.${i}`);
       }).length > 0 &&
@@ -146,26 +148,24 @@ export const UIToggled = (toggleMode, triggerer, selector) => {
     ) {
       // console.warn('found for a ui ancestor');
       toReturn = triggerer.parentNode.closest(`.${componentClass}`);
-    } else if (
-      triggerer &&
-      toggleMode &&
-      triggerer.parentNode.closest(selectorToMatch)
-    ) {
+    } else if (triggerer.parentNode.closest(selectorToMatch)) {
       // console.warn('found for an ancestor');
       toReturn = triggerer.parentNode.closest(selectorToMatch);
     }
   }
 
   if (!toReturn) {
+    // console.warn( window.location.hash,'looking for by this hash',selectorToMatch);
     if (
       window.location.hash !== '' &&
       document.querySelector(window.location.hash) &&
       document.querySelector(window.location.hash).matches(selectorToMatch)
     ) {
-      // console.warn('no trigger but found the hash is a matching toggle');
+      // console.warn(document.querySelector(window.location.hash),'no trigger but found the hash is a matching toggle');
       toReturn = document.querySelector(window.location.hash);
     }
   }
+  // console.warn('idiot',toReturn);
 
   return toReturn;
 };
@@ -273,7 +273,7 @@ export const UIPurge = (exempted, selector, callback) => {
     if (!exempted || (exempted && elem !== exempted && !elem.contains(exempted))) {
       callback(elem);
     } else {
-      // console.log('exepmted',exempted);
+      console.log('exepmted', exempted);
     }
   });
 };
