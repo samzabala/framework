@@ -325,6 +325,19 @@ class Modal extends FwComponent {
 
     let matchedHashDestroy = false;
 
+    if (!window.location.hash && this.#current && this.#current.element) {
+      if (element === this.#current.element) {
+        matchedHashDestroy = true;
+      }
+
+      new Modal(this.#current.element).destroy();
+    }
+
+    //no need to create it twice or create it after already desttroiny it
+    if (matchedHashDestroy) {
+      return;
+    }
+
     if (!element) {
       return;
     }
@@ -334,21 +347,6 @@ class Modal extends FwComponent {
       EVENT_CREATE,
       EVENT_AFTER_CREATE,
       () => {
-        if (!window.location.hash && this.#current && this.#current.element) {
-          console.log('may el');
-
-          if (element === this.#current.element) {
-            matchedHashDestroy = true;
-            console.log('matched');
-          }
-
-          new Modal(this.#current.element).destroy();
-        }
-
-        if (matchedHashDestroy) {
-          return;
-        }
-
         const id = this.UIElId || this.UIId;
 
         id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
