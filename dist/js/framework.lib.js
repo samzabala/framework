@@ -532,8 +532,6 @@
     document.querySelectorAll(selector).forEach(function (elem) {
       if (!exempted || exempted && elem !== exempted && !elem.contains(exempted)) {
         callback(elem);
-      } else {
-        console.log('exepmted', exempted);
       }
     });
   };
@@ -1122,7 +1120,7 @@
   var DATA_KEY$d = Settings.get('prefix') + "_" + NAME$d;
   var EVENT_KEY$d = "_" + DATA_KEY$d;
   var EVENT_CLICK$a = "click" + EVENT_KEY$d;
-  var EVENT_HASHCHANGE$1 = "hashchange";
+  var EVENT_HASHCHANGE$1 = "hashchange" + EVENT_KEY$d;
   var EVENT_BEFORE_CLOSE$2 = "before_close" + EVENT_KEY$d;
   var EVENT_CLOSE$2 = "close" + EVENT_KEY$d;
   var EVENT_AFTER_CLOSE$2 = "after_close" + EVENT_KEY$d;
@@ -1961,7 +1959,8 @@
   var DATA_KEY$9 = Settings.get('prefix') + "_" + NAME$9;
   var EVENT_KEY$9 = "_" + DATA_KEY$9;
   var EVENT_CLICK$6 = "click" + EVENT_KEY$9;
-  var EVENT_KEYUP = "keyup" + EVENT_KEY$9;
+  var EVENT_KEYUP = "keyup" + EVENT_KEY$9; // const EVENT_CHANGE = `change${EVENT_KEY}`;
+
   var EVENT_BEFORE_INIT$4 = "before_init" + EVENT_KEY$9;
   var EVENT_INIT$4 = "init" + EVENT_KEY$9;
   var EVENT_AFTER_INIT$4 = "after_init" + EVENT_KEY$9;
@@ -2614,7 +2613,8 @@
   var EVENT_CLICK$5 = "click" + EVENT_KEY$8;
   var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
   var EVENT_BLUR = "blur" + EVENT_KEY$8;
-  var EVENT_PASTE = "paste" + EVENT_KEY$8;
+  var EVENT_PASTE = "paste" + EVENT_KEY$8; // const EVENT_CHANGE = `change${EVENT_KEY}`;
+
   var EVENT_BEFORE_INIT$3 = "before_init" + EVENT_KEY$8;
   var EVENT_INIT$3 = "init" + EVENT_KEY$8;
   var EVENT_AFTER_INIT$3 = "after_init" + EVENT_KEY$8;
@@ -2730,7 +2730,7 @@
 
       var theValue = newValue || this.theValue || '';
       var uiValue = valueToRender || theValue || this.renderValue || '';
-      allowFilter = allowFilter != false || allowFilter == true;
+      allowFilter = allowFilter == false ? false : true;
       inputText = inputText || false;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
@@ -2774,6 +2774,7 @@
           theUI.container.classList.add('input');
           theUI.container.setAttribute('class', Settings.get('uiClass') + "\n          " + Settings.get('uiJsClass') + "\n          " + element.getAttribute('class').toString().replace(COMPONENT_CLASS$8, UIPrefix(COMPONENT_CLASS$8)));
           theUI.container.classList.add(_this3.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
+          _this3.args.multipleLines && _this3.args.multipleLinesBreak && theUI.container.classList.add(UIPrefix(COMPONENT_CLASS$8) + "-multiple-break");
         }
 
         if (_this3.args.width) {
@@ -2793,20 +2794,24 @@
         theUI.input = _this3.UIInput;
 
         if (!theUI.input) {
-          theUI.input = document.createElement('span');
+          theUI.input = document.createElement('input'); // theUI.input = document.createElement('span');
+
           theUI.wrapper.appendChild(theUI.input);
-          theUI.input.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-input");
-          theUI.input.contentEditable = true;
+          theUI.input.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-input"); // theUI.input.contentEditable = true;
+
           theUI.input = theUI.wrapper.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-input");
 
           if (element.hasAttribute('placeholder')) {
-            theUI.input.setAttribute('data-placeholder', element.getAttribute('placeholder'));
+            theUI.input.setAttribute( // 'data-placeholder',
+            'placeholder', element.getAttribute('placeholder'));
           } //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
+          // if (element.hasAttribute('data-toggle')) {
+          //   theUI.input.setAttribute(
+          //     'data-toggle',
+          //     element.getAttribute('data-toggle')
+          //   );
+          // }
 
-
-          if (element.hasAttribute('data-toggle')) {
-            theUI.input.setAttribute('data-toggle', element.getAttribute('data-toggle'));
-          }
 
           if (FwComponent.isDisabled(element)) {
             theUI.input.classList.add('disabled');
@@ -2874,7 +2879,7 @@
       disableNative = disableNative || false;
       var self = this;
       !disableNative && setTimeout(function () {
-        // console.log('poku','naAAANDATAAAOOOO');
+        // console.log('poku','naAAANDATAAAOOOO',self.UIInput);
         self.UIInput.focus();
       }, 0);
       self.UIRoot.classList.add(FOCUS_CLASS);
@@ -3127,10 +3132,10 @@
     }, {
       key: "UIInputValue",
       get: function get() {
-        return this.UIInput.innerText;
+        return this.UIInput.value;
       },
       set: function set(inputValue) {
-        this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
+        this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
       }
     }, {
       key: "UIInputIdx",
@@ -3155,7 +3160,8 @@
           width: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-width"),
           onKeyUp: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-on-keyup"),
           filter: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-filter"),
-          multipleLines: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-multiple-lines")
+          multipleLines: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-multiple-lines"),
+          multipleLinesBreak: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-multiple-lines-break")
         }, Tags.configDefaults);
       }
     }], [{
@@ -3173,9 +3179,20 @@
       get: function get() {
         return {
           width: null,
-          filter: null,
-          onKeyUp: null,
-          multipleLines: false
+          filter: {
+            value: null,
+            parser: function parser(value) {
+              return value ? value.toString() : null;
+            }
+          },
+          onKeyUp: {
+            value: null,
+            parser: function parser(value) {
+              return value ? value.toString() : null;
+            }
+          },
+          multipleLines: false,
+          multipleLinesBreak: false
         };
       }
     }]);
@@ -3456,7 +3473,7 @@
   var DATA_KEY$5 = Settings.get('prefix') + "_" + NAME$5;
   var EVENT_KEY$5 = "_" + DATA_KEY$5;
   var EVENT_CLICK$3 = "click" + EVENT_KEY$5;
-  var EVENT_HASHCHANGE = "hashchange";
+  var EVENT_HASHCHANGE = "hashchange" + EVENT_KEY$5;
   var EVENT_BEFORE_CREATE$1 = "before_create" + EVENT_KEY$5;
   var EVENT_CREATE$1 = "create" + EVENT_KEY$5;
   var EVENT_AFTER_CREATE$1 = "after_create" + EVENT_KEY$5;
@@ -3571,26 +3588,24 @@
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
       var matchedHashDestroy = false;
 
+      if (!window.location.hash && _classPrivateFieldLooseBase(this, _current)[_current] && _classPrivateFieldLooseBase(this, _current)[_current].element) {
+        if (element === _classPrivateFieldLooseBase(this, _current)[_current].element) {
+          matchedHashDestroy = true;
+        }
+
+        new Modal(_classPrivateFieldLooseBase(this, _current)[_current].element).destroy();
+      } //no need to create it twice or create it after already desttroiny it
+
+
+      if (matchedHashDestroy) {
+        return;
+      }
+
       if (!element) {
         return;
       }
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE$1, EVENT_CREATE$1, EVENT_AFTER_CREATE$1, function () {
-        if (!window.location.hash && _classPrivateFieldLooseBase(_this2, _current)[_current] && _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
-          console.log('may el');
-
-          if (element === _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
-            matchedHashDestroy = true;
-            console.log('matched');
-          }
-
-          new Modal(_classPrivateFieldLooseBase(_this2, _current)[_current].element).destroy();
-        }
-
-        if (matchedHashDestroy) {
-          return;
-        }
-
         var id = _this2.UIElId || _this2.UIId;
         id !== "" + _this2.UIId && _this2.args.changeHash && UIChangeHash(id);
         var theUI = document.createElement('div'); // document.querySelector('body').appendChild(theUI);

@@ -22,7 +22,7 @@ const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
 const EVENT_BLUR = `blur${EVENT_KEY}`;
 const EVENT_PASTE = `paste${EVENT_KEY}`;
-const EVENT_CHANGE = `change${EVENT_KEY}`;
+// const EVENT_CHANGE = `change${EVENT_KEY}`;
 
 const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;
@@ -95,11 +95,11 @@ class Tags extends FwComponent {
   }
 
   get UIInputValue() {
-    return this.UIInput.innerText;
+    return this.UIInput.value;
   }
 
   set UIInputValue(inputValue) {
-    this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
+    this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
   }
 
   get UIInputIdx() {
@@ -139,9 +139,20 @@ class Tags extends FwComponent {
   static get configDefaults() {
     return {
       width: null,
-      filter: null,
-      onKeyUp: null,
+      filter: {
+        value: null,
+        parser: (value) => {
+          return value ? value.toString() : null;
+        },
+      },
+      onKeyUp: {
+        value: null,
+        parser: (value) => {
+          return value ? value.toString() : null;
+        },
+      },
       multipleLines: false,
+      multipleLinesBreak: false,
     };
   }
 
@@ -156,6 +167,9 @@ class Tags extends FwComponent {
             multipleLines: super
               .UIEl()
               .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`),
+            multipleLinesBreak: super
+              .UIEl()
+              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`),
           },
       Tags.configDefaults
     );
@@ -251,7 +265,7 @@ class Tags extends FwComponent {
 
     let uiValue = valueToRender || theValue || this.renderValue || '';
 
-    allowFilter = allowFilter != false || allowFilter == true;
+    allowFilter = allowFilter == false ? false : true;
 
     inputText = inputText || false;
 
@@ -309,6 +323,12 @@ class Tags extends FwComponent {
               ? `${UIPrefix(COMPONENT_CLASS)}-multiple`
               : `${UIPrefix(COMPONENT_CLASS)}-single`
           );
+
+          this.args.multipleLines &&
+            this.args.multipleLinesBreak &&
+            theUI.container.classList.add(
+              `${UIPrefix(COMPONENT_CLASS)}-multiple-break`
+            );
         }
 
         if (this.args.width) {
@@ -332,28 +352,30 @@ class Tags extends FwComponent {
         theUI.input = this.UIInput;
 
         if (!theUI.input) {
-          theUI.input = document.createElement('span');
+          theUI.input = document.createElement('input');
+          // theUI.input = document.createElement('span');
           theUI.wrapper.appendChild(theUI.input);
           theUI.input.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
-          theUI.input.contentEditable = true;
+          // theUI.input.contentEditable = true;
           theUI.input = theUI.wrapper.querySelector(
             `.${UIPrefix(COMPONENT_CLASS)}-input`
           );
 
           if (element.hasAttribute('placeholder')) {
             theUI.input.setAttribute(
-              'data-placeholder',
+              // 'data-placeholder',
+              'placeholder',
               element.getAttribute('placeholder')
             );
           }
 
           //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
-          if (element.hasAttribute('data-toggle')) {
-            theUI.input.setAttribute(
-              'data-toggle',
-              element.getAttribute('data-toggle')
-            );
-          }
+          // if (element.hasAttribute('data-toggle')) {
+          //   theUI.input.setAttribute(
+          //     'data-toggle',
+          //     element.getAttribute('data-toggle')
+          //   );
+          // }
 
           if (FwComponent.isDisabled(element)) {
             theUI.input.classList.add('disabled');
@@ -451,7 +473,7 @@ class Tags extends FwComponent {
     const self = this;
     !disableNative &&
       setTimeout(function () {
-        // console.log('poku','naAAANDATAAAOOOO');
+        // console.log('poku','naAAANDATAAAOOOO',self.UIInput);
         self.UIInput.focus();
       }, 0);
     self.UIRoot.classList.add(FOCUS_CLASS);

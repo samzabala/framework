@@ -23,7 +23,7 @@ const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
 const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
-const EVENT_HASHCHANGE = `hashchange`;
+const EVENT_HASHCHANGE = `hashchange${EVENT_KEY}`;
 
 const EVENT_BEFORE_CREATE = `before_create${EVENT_KEY}`;
 const EVENT_CREATE = `create${EVENT_KEY}`;

@@ -9575,6 +9575,11 @@ select[multiple].input-single-line, select[multiple].input-select {
   flex-wrap: wrap;
   align-self: flex-start;
 }
+.input-tags-ui-multiple-break.input-tags-ui-multiple .input-tags-ui-wrapper {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
 .input-tags-ui-tag, .input-tags-ui-input {
   display: flex;
   align-items: center;
@@ -9599,6 +9604,9 @@ select[multiple].input-single-line, select[multiple].input-select {
   background: var(--fw-color-primary-alpha-2);
   border-radius: 5px;
 }
+.input-tags-ui-multiple-break .input-tags-ui-tag {
+  justify-content: space-between;
+}
 .input-tags-ui-tag-button {
   vertical-align: middle;
   color: inherit;
@@ -9607,13 +9615,15 @@ select[multiple].input-single-line, select[multiple].input-select {
   padding: 0;
   margin: 0;
   font: inherit;
-  max-width: 10em;
   cursor: text;
 }
+.input-tags-ui-single .input-tags-ui-tag-text, .input-tags-ui-multiple:not(.input-tags-ui-multiple-break) .input-tags-ui-tag-text {
+  max-width: 10em;
+}
 .input-tags-ui-tag-close {
-  margin-left: 0.25em;
-  line-height: 1;
+  margin: 0 0 0 0.25em;
   font-size: 0.75em;
+  padding: 0;
   color: inherit;
   opacity: 0.5;
   cursor: pointer;
@@ -9643,18 +9653,13 @@ select[multiple].input-single-line, select[multiple].input-select {
   background: var(--fw-color-error-alpha-2);
 }
 .input-tags-ui-input {
-  border: 0;
+  border: none;
   -webkit-appearance: none;
   background: none !important;
   appearance: none;
   outline: none;
   white-space: nowrap;
   padding-left: 0.5em;
-  display: block;
-}
-.input-tags-ui-input:empty:not(:focus):not(.focus):before {
-  opacity: 0.5;
-  content: attr(data-placeholder) " ";
   display: block;
 }
 .input-tags-ui-input:first-child {

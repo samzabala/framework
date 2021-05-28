@@ -28,6 +28,9 @@ $prefix: '.input';
           @extend %for-form-input-boxy-multiple !optional;
           // @extend %for-form-input-boxy-multiple-height !optional;
           overflow: hidden;
+
+          &-line-break {
+          }
         }
 
         &-wrapper {
@@ -64,6 +67,12 @@ $prefix: '.input';
           #{$prefix}-tags-ui-multiple & {
             flex-wrap: wrap;
             align-self: flex-start;
+
+            @at-root #{$prefix}-tags-ui-multiple-break#{&} {
+              flex-direction: column;
+              flex-wrap: nowrap;
+              // align-items:flex-end,
+            }
           }
         }
 
@@ -98,6 +107,10 @@ $prefix: '.input';
           );
           border-radius: $input-tags-border-radius;
 
+          #{$prefix}-tags-ui-multiple-break & {
+            justify-content: space-between;
+          }
+
           &-button {
             vertical-align: middle;
             color: inherit;
@@ -109,14 +122,19 @@ $prefix: '.input';
             padding: 0;
             margin: 0;
             font: inherit;
-            max-width: 10em;
             cursor: text;
+
+            #{$prefix}-tags-ui-single &,
+            #{$prefix}-tags-ui-multiple:not(#{$prefix}-tags-ui-multiple-break) & {
+              max-width: 10em;
+            }
           }
 
           &-close {
-            margin-left: 0.25em;
-            line-height: 1;
+            margin: 0 0 0 0.25em;
+            // line-height: 1;
             font-size: 0.75em;
+            padding: 0;
             color: inherit;
             opacity: 0.5;
             cursor: pointer;
@@ -136,7 +154,7 @@ $prefix: '.input';
         }
 
         &-input {
-          border: 0;
+          border: none;
           -webkit-appearance: none;
           background: none !important;
           appearance: none;
@@ -145,11 +163,11 @@ $prefix: '.input';
           padding-left: $calculated-input-tags-padding-x;
           display: block;
 
-          &:empty:not(:focus):not(.focus):before {
-            opacity: $input-placeholder-opacity;
-            content: attr(data-placeholder) '\00A0';
-            display: block;
-          }
+          // &:empty:not(:focus):not(.focus):before {
+          //   opacity: $input-placeholder-opacity;
+          //   content: attr(data-placeholder) '\00A0';
+          //   display: block;
+          // }
 
           &:first-child {
             padding-left: 0;

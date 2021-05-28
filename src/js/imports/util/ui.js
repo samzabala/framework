@@ -273,7 +273,7 @@ export const UIPurge = (exempted, selector, callback) => {
     if (!exempted || (exempted && elem !== exempted && !elem.contains(exempted))) {
       callback(elem);
     } else {
-      console.log('exepmted', exempted);
+      // console.log('exepmted', exempted);
     }
   });
 };
