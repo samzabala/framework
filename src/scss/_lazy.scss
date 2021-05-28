@@ -14,12 +14,11 @@ $prefix: '.lazy';
 }
 
 body {
-
   &:not(.body-loaded) {
-      *,
-      *:before,
-      *:after {
+    *,
+    *:before,
+    *:after {
       transition: none !important;
-      }
+    }
   }
 }

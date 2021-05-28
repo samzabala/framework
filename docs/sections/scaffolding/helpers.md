@@ -5,30 +5,3 @@
 All influenced by [color declarations](../scaffolding/colors.md)
 
 ### Basic
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -76,9 +76,17 @@
 
 .z-index {
   &-auto {
-    z-index: auto!important;
+    z-index: auto !important;
   }
-  @include dump-z-index-helpers(#{&},$z-index-small-helper-multiplier,$z-index-small-helper-max);
-  @include dump-z-index-helpers(#{&},$z-index-helper-multiplier,$z-index-helper-max);
-  @include dump-z-index-helpers(#{&},$z-index-large-helper-multiplier,$z-index-large-helper-max);
+  @include dump-z-index-helpers(
+    #{&},
+    $z-index-small-helper-multiplier,
+    $z-index-small-helper-max
+  );
+  @include dump-z-index-helpers(#{&}, $z-index-helper-multiplier, $z-index-helper-max);
+  @include dump-z-index-helpers(
+    #{&},
+    $z-index-large-helper-multiplier,
+    $z-index-large-helper-max
+  );
 }

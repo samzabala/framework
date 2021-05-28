@@ -1,31 +1,31 @@
 :root {
-    //prefix must not change here because these variables are affected by js
-    --fw-br-xxs: #{$br-xxs-max};
-    --fw-br-xs: #{$br-xs-max};
-    --fw-br-sm: #{$br-sm-max};
-    --fw-br-md: #{$br-md-max};
-    --fw-br-lg: #{$br-lg-max};
+  //prefix must not change here because these variables are affected by js
+  --fw-br-xxs: #{$br-xxs-max};
+  --fw-br-xs: #{$br-xs-max};
+  --fw-br-sm: #{$br-sm-max};
+  --fw-br-md: #{$br-md-max};
+  --fw-br-lg: #{$br-lg-max};
 
-    --fw-br-mobile-max: #{$mobile-br-max};
+  --fw-br-mobile-max: #{$mobile-br-max};
 
-    // FONT
-    --fw-font-primary: #{$brand-font-primary};
-    --fw-font-accent: #{$brand-font-secondary};
-    --fw-font-monospace: #{$brand-font-monospace};
+  // FONT
+  --fw-font-primary: #{$brand-font-primary};
+  --fw-font-accent: #{$brand-font-secondary};
+  --fw-font-monospace: #{$brand-font-monospace};
 
-    //colour
+  //colour
 
-    @each $tag, $value in $calculated-color-tags {
-      --fw-color-#{$tag}: #{$value};
+  @each $tag, $value in $calculated-color-tags {
+    --fw-color-#{$tag}: #{$value};
 
-      @each $slug, $slug-value in map-get($calculated-color-variations, $tag) {
-        --fw-color-#{$tag}-#{$slug}: #{$slug-value};
-      }
+    @each $slug, $slug-value in map-get($calculated-color-variations, $tag) {
+      --fw-color-#{$tag}-#{$slug}: #{$slug-value};
     }
-
-    --fw-gradient-start: #{$brand-gradient-start};
-    --fw-gradient-end: #{$brand-gradient-end};
-
-    // GLOBAL html + body coloring
-    @include dump-theme-colors(default);
   }
+
+  --fw-gradient-start: #{$brand-gradient-start};
+  --fw-gradient-end: #{$brand-gradient-end};
+
+  // GLOBAL html + body coloring
+  @include dump-theme-colors(default);
+}

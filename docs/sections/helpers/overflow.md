@@ -29,9 +29,8 @@
 
 - **`.no-scrollbar`**
 
-    Hide scrollbar for browsers that can support it
+  Hide scrollbar for browsers that can support it
 
 [More info on the css property](https://www.w3schools.com/css/css_overflow.asp)
-
 
 [Back to TOC](../../../readme.md)

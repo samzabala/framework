@@ -214,7 +214,7 @@ $prefix: '.module';
       margin-bottom: $module-gutter-between * 0.5;
     }
 
-    @include on-breakpoint(nonmobile){
+    @include on-breakpoint(nonmobile) {
       #{$prefix}-function {
         &:nth-child(n + 2) {
           margin-left: 0.75rem;
@@ -349,7 +349,7 @@ $prefix: '.module';
     margin-bottom: $module-gutter-y * -1;
   }
 
-  @include on-breakpoint(mobile){
+  @include on-breakpoint(mobile) {
     &-small {
       &#{$prefix},
       > #{$prefix}-header,

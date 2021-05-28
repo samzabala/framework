@@ -13,7 +13,6 @@ Can also be specific to a side. for example for `.margin-small`
 - **`.margin-small-x`**
 - **`.margin-small-y`**
 
-
 # Reset Margins
 
 - **`.no-margin`**

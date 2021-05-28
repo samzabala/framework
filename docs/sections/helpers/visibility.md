@@ -14,7 +14,6 @@ Hide on breakpoint or device
 - **`.hide-mobile`**
 - **`.hide-nonmobile`**
 
-
 Show on certain ineractions of its ancestor with a `.pointer-reference` class
 
 - **`.hide-hover`** (hide when on hover)

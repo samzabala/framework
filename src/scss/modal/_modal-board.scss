@@ -2,7 +2,6 @@
 $prefix: '.modal-ui';
 $mode-class: #{$prefix}-mode-board;
 
-
 [data-toggle-modal-board] {
   @include dump-styles(data-toggle);
 }

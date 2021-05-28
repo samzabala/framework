@@ -1,4 +1,3 @@
-
 # Border Color
 
 - **`.border-color-inherit`**

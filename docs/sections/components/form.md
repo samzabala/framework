@@ -920,7 +920,6 @@ validates the value based on the instance's settings and overall stup of exioste
 
 `rangeOnly` whether or not to check against disabled dates and weekends set by args
 
-
 ##### **`formCalendar.reset()`**
 
 reset the input field or some shit but doesnt trigger change value because this is a programmatical solution is this the right way to describe it in english? idk basta kung kelangan mong walang nakalagay dito tapos kelangan ireset yung ui ito na to beh

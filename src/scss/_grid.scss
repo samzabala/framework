@@ -83,7 +83,7 @@ $prefix-raw: str-replace($prefix, '.', '');
     margin-top: #{$grid-gap};
     margin-left: #{$grid-gap};
     max-width: calc(100% - #{$grid-gap});
-    min-width:0;
+    min-width: 0;
 
     #{$prefix}-grid-fixed > & {
       flex-grow: 0;

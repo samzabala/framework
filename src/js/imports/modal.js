@@ -323,6 +323,8 @@ class Modal extends FwComponent {
   create(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
+    let matchedHashDestroy = false;
+
     if (!element) {
       return;
     }
@@ -332,12 +334,19 @@ class Modal extends FwComponent {
       EVENT_CREATE,
       EVENT_AFTER_CREATE,
       () => {
-        if (
-          (element || !window.location.hash) &&
-          this.#current &&
-          this.#current.element
-        ) {
+        if (!window.location.hash && this.#current && this.#current.element) {
+          console.log('may el');
+
+          if (element === this.#current.element) {
+            matchedHashDestroy = true;
+            console.log('matched');
+          }
+
           new Modal(this.#current.element).destroy();
+        }
+
+        if (matchedHashDestroy) {
+          return;
         }
 
         const id = this.UIElId || this.UIId;

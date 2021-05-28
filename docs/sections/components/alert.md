@@ -152,14 +152,12 @@ fixed container on the viewport so ur alerts look like a toaster boi or some shi
 </html>
 ```
 
-
 These are valid offset classes for your boi
 
 - `.alert-container-top`
 - `.alert-container-left`
 - `.alert-container-right`
 - `.alert-container-left`
-
 
 ## Javascript
 

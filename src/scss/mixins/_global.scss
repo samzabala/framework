@@ -1,10 +1,10 @@
-@mixin on-breakpoint($device: nonmobile){
+@mixin on-breakpoint($device: nonmobile) {
   @if $device == mobile {
-    @include br(#{$mobile-br-max}-max){
+    @include br(#{$mobile-br-max}-max) {
       @content;
     }
-  }@else{
-    @include br(#{$mobile-br-max-polar}){
+  } @else {
+    @include br(#{$mobile-br-max-polar}) {
       @content;
     }
   }
@@ -539,14 +539,13 @@
   @extend %fw_dump-#{$slug};
 }
 
-@mixin dump-theme-colors($theme:default){
-  @if ($theme == inverse){
+@mixin dump-theme-colors($theme: default) {
+  @if ($theme == inverse) {
     --fw-theme-color: #{$brand-theme-color-inverse};
     --fw-theme-color-contrast: #{$brand-theme-color-contrast-inverse};
     --fw-theme-background: #{$brand-theme-background-inverse};
     --fw-theme-background-contrast: #{$brand-theme-background-contrast-inverse};
-
-  }@else{
+  } @else {
     --fw-theme-color: #{$brand-theme-color};
     --fw-theme-color-contrast: #{$brand-theme-color-contrast};
     --fw-theme-background: #{$brand-theme-background};
@@ -554,21 +553,20 @@
   }
 }
 
-@mixin dump-z-index-helpers($prefix: '.z-index',$multiplier,$max){
+@mixin dump-z-index-helpers($prefix: '.z-index', $multiplier, $max) {
   $z: $multiplier;
 
   @while $z <= $max {
     // @if $z != $multiplier or $z == 1 {
-      @at-root #{$prefix}-#{$z} {
-        z-index: $z !important;
-      }
+    @at-root #{$prefix}-#{$z} {
+      z-index: $z !important;
+    }
     // }
     $z: $z + $multiplier;
   }
 }
 
 @mixin dump-flex-increments($max: 1) {
-
   //extend
   @for $h from 0 through $max {
     @at-root %fw_flex_inc {
@@ -584,24 +582,24 @@
 
   @for $i from 0 through $max {
     @for $j from 0 through $max {
-    // @each $j in $past-flex-increments {
-      @at-root #{& + '-'+$i+'-'+$i},
-      #{& + '-'+$i+'-'+$j} {
-          @extend %fw_flex_inc-grow-#{$i} !optional;
+      // @each $j in $past-flex-increments {
+      @at-root #{& + '-' + $i + '-' + $i},
+        #{& + '-' + $i + '-' + $j} {
+        @extend %fw_flex_inc-grow-#{$i} !optional;
       }
 
-      @at-root #{& + '-'+$i+'-'+$i},
-        #{& + '-'+$j+'-'+$i} {
-          @extend %fw_flex_inc-shrink-#{$i} !optional;
+      @at-root #{& + '-' + $i + '-' + $i},
+        #{& + '-' + $j + '-' + $i} {
+        @extend %fw_flex_inc-shrink-#{$i} !optional;
       }
 
-      @at-root #{& + '-'+$j+'-'+$i},
-        #{& + '-'+$j+'-'+$j} {
-          @extend %for-flex-grow-#{$j} !optional;
+      @at-root #{& + '-' + $j + '-' + $i},
+        #{& + '-' + $j + '-' + $j} {
+        @extend %for-flex-grow-#{$j} !optional;
       }
 
-      @at-root #{& + '-'+$i+'-'+$j},
-        #{& + '-'+$j+'-'+$j} {
+      @at-root #{& + '-' + $i + '-' + $j},
+        #{& + '-' + $j + '-' + $j} {
         @extend %for-flex-shrink-#{$j} !optional;
       }
     }

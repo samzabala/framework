@@ -5,21 +5,21 @@
 @import '_vars';
 
 //core shits
-  //plugin deps
-    @import 'plugins/_shithole.scss';
-  //api
-    @import '_functions';
-    @import '_calculations';
-    @import '_mixins';
+//plugin deps
+@import 'plugins/_shithole.scss';
+//api
+@import '_functions';
+@import '_calculations';
+@import '_mixins';
 
 //to cascade
-  @import '_scaffolding';
-  @import '_typography';
+@import '_scaffolding';
+@import '_typography';
 
 //elements
-  //layout
-    @import '_container';
-    @import '_grid';
-    @import '_module';
-  //helpers
-    @import '_helpers';
+//layout
+@import '_container';
+@import '_grid';
+@import '_module';
+//helpers
+@import '_helpers';

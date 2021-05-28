@@ -84,6 +84,5 @@
     flex-wrap: inherit !important;
   }
 
-
   @include dump-flex-increments($flex-max);
 }

@@ -126,7 +126,6 @@ These color tags are valid for css helpers and most components. just not for [bt
 - `theme-polar-contrast`
 - `gradient`
 
-
 # Variations
 
 tags syntac means it look like this `{COLOR-TAG}-{VARIATION-TAG}`
@@ -223,11 +222,13 @@ linear gradient angles
 
 - `gradient`
 -
+
 # Helpers
 
 color naming and tagging conventions supports the following helpers:
 
 @TODO update
+
 - [`.fill-*`](../helpers/svg.md#fill)
 - [`.stroke-*`](../helpers//svg.md#stroke)
 - [`.background-*`](../helpers/background.md#background-color)
@@ -256,6 +257,7 @@ what's them conditions about?? well...
 | **`{HELPER}-{COLOR-TAG or COLOR-TAG +'-'+ VARIATION-TAG}-default`** | .theme-default &                    |
 
 @TODO findreplace
+
 ## Background helper classes
 
 See [Helpers](../helpers/background.md)
@@ -273,18 +275,18 @@ See [Images](../helpers/images.md#svg)
 Depends on the color tags too so...
 
 #### Color basis helpers
+
 These helpers' values are set as the `theme-[color|color-contrast]`:
 
 - `.color-*`
 - `.border-color-*`
 
 | Class                                           | Set by default (or when `.theme-default is active`) | Set color when `.theme-inverse is active`  |
-| ------------------------------------------------| --------------------------------------------------- | ------------------------------------------ |
+| ----------------------------------------------- | --------------------------------------------------- | ------------------------------------------ |
 | **`{HELPER}-theme(-CONDITION)`**                | `$brand-theme-color`                                | `$brand-theme-color-inverse`               |
 | **`{HELPER}-theme-contrast(-CONDITION)`**       | `$brand-theme-color-contrast`                       | `$brand-theme-color-contrast-inverse`      |
 | **`{HELPER}-theme-polar(-CONDITION)`**          | `$brand-theme-background`                           | `$brand-theme-background-inverse`          |
 | **`{HELPER}-theme-polar-contrast(-CONDITION)`** | `$brand-theme-background-contrast`                  | `$brand-theme-background-contrast-inverse` |
-
 
 #### Background basis helpers
 
@@ -295,7 +297,7 @@ These helpers' values are set as the `theme-[background|background-contrast]`:
 - `.background-*`
 
 | Class                                           | Set by default (or when `.theme-default is active`) | Set color when `.theme-inverse is active`  |
-| ------------------------------------------------| --------------------------------------------------- | ------------------------------------------ |
+| ----------------------------------------------- | --------------------------------------------------- | ------------------------------------------ |
 | **`{HELPER}-theme(-CONDITION)`**                | `$brand-theme-background`                           | `$brand-theme-background-inverse`          |
 | **`{HELPER}-theme-contrast(-CONDITION)`**       | `$brand-theme-background-contrast`                  | `$brand-theme-background-contrast-inverse` |
 | **`{HELPER}-theme-polar(-CONDITION)`**          | `$brand-theme-color`                                | `$brand-theme-color-inverse`               |
@@ -308,8 +310,6 @@ Components that suport this set up too
 - `.btn-{COLOR-TAG}`
 - `.btn-{COLOR-TAG}-outline`
 
-
-
 # Summary
 
 Shouldve just prolly made it to a table godammit
@@ -317,12 +317,15 @@ Shouldve just prolly made it to a table godammit
 ```html
 <div class="{HELPER}-{COLOR} {HELPER}-{COLOR}-{CONDITION}">Boxy boi</div>
 
-<div class="{HELPER}-{COLOR}-{VARIATION} {HELPER}-{COLOR}-{VARIATION}-{CONDITION}">Boxy boi</div>
+<div class="{HELPER}-{COLOR}-{VARIATION} {HELPER}-{COLOR}-{VARIATION}-{CONDITION}">
+  Boxy boi
+</div>
 
 <div class="{HELPER}-{COLOR}-{VARIATION} {HELPER}-{COLOR}-{CONDITION}">Boxy boi</div>
 
 <div class="{HELPER}-{COLOR} {HELPER}-{COLOR}-{VARIATION}-{CONDITION}">Boxy boi</div>
 ```
+
 <table>
   <thead>
     <tr>

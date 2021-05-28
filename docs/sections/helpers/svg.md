@@ -1,4 +1,3 @@
-
 # SVG
 
 ## **`.svg-gradient-start`** and **`.svg-gradient-end`**
@@ -28,6 +27,7 @@ These helper classes follow the same setup as [color declaration helpers](../sca
 	<circle cx="20" cy="50" r="50" class="fill-primary stroke-neutral">
 </svg>
 ```
+
 For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
 [Back to TOC](../../../readme.md)

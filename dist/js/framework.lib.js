@@ -3569,14 +3569,26 @@
       var _this2 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+      var matchedHashDestroy = false;
 
       if (!element) {
         return;
       }
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE$1, EVENT_CREATE$1, EVENT_AFTER_CREATE$1, function () {
-        if ((element || !window.location.hash) && _classPrivateFieldLooseBase(_this2, _current)[_current] && _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
+        if (!window.location.hash && _classPrivateFieldLooseBase(_this2, _current)[_current] && _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
+          console.log('may el');
+
+          if (element === _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
+            matchedHashDestroy = true;
+            console.log('matched');
+          }
+
           new Modal(_classPrivateFieldLooseBase(_this2, _current)[_current].element).destroy();
+        }
+
+        if (matchedHashDestroy) {
+          return;
         }
 
         var id = _this2.UIElId || _this2.UIId;

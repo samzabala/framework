@@ -13,34 +13,33 @@ $prefix: '.alert';
   @include dump-styles(cf);
 
   &-container {
-    position:fixed;
+    position: fixed;
     z-index: $z-index-alert-container;
     padding: $alert-container-padding-y $alert-container-padding-x;
-    width:100%;
+    width: 100%;
     max-width: $alert-container-max-width;
 
-    @include on-breakpoint(mobile){
+    @include on-breakpoint(mobile) {
       padding: $alert-container-padding-y-mobile $alert-container-padding-x-mobile;
-
     }
     &-nav-offset {
       @include dump-styles(nav-offset-sticky);
     }
 
     &-top {
-      top:0;
+      top: 0;
     }
 
     &-bottom {
-      bottom:0;
+      bottom: 0;
     }
 
     &-left {
-      left:0;
+      left: 0;
     }
 
     &-right {
-      right:0;
+      right: 0;
     }
   }
 

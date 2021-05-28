@@ -1,5 +1,3 @@
-
-
 #### Color
 
 - **`.color-inherit`**
@@ -10,8 +8,6 @@
 - **`.color-{COLOR}-{VARIATION-TAG}-{CONDITION}`**
 
 For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
-
-
 
 # Text
 
@@ -114,15 +110,15 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
 - **`.text-wrap-hyphens-auto`**
 
-    autuomatically hyphenate
+  autuomatically hyphenate
 
 - **`.text-wrap-hyphens-manual`**
 
-    manually hyphenate
+  manually hyphenate
 
 - **`.text-wrap-hyphens-none`**
 
-    nope
+  nope
 
 ## Clip Background
 

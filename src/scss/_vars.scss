@@ -1914,13 +1914,13 @@ $symbol-font-path: './../fonts/fw-icons' !default;
 $z-index-helper-max: 99 !default;
 $z-index-helper-multiplier: 10 !default;
 
-  $z-index-small-helper-max: 9 !default;
-  $z-index-small-helper-multiplier: 1 !default;
+$z-index-small-helper-max: 9 !default;
+$z-index-small-helper-multiplier: 1 !default;
 
-  $z-index-large-helper-max: 10000 !default;
-  $z-index-large-helper-multiplier: 1000 !default;
+$z-index-large-helper-max: 10000 !default;
+$z-index-large-helper-multiplier: 1000 !default;
 
-$z-index-alert-container:999;
+$z-index-alert-container: 999;
 $z-index-dropdown: 999 !default;
 $z-index-modal-default: 9990 !default;
 $z-index-modal-board: 9991 !default;
