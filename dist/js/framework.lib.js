@@ -4827,7 +4827,7 @@
     function Zone(element, formControl) {
       element = element || false;
       return _FwComponent.call(this, element, {
-        _formControl: formControl ? new FwDom(formControl) : element ? element._triggerer : false
+        _formControl: formControl ? new FwDom(formControl) : element ? element.__formControl : false
       }) || this;
     }
 
