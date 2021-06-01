@@ -1,8 +1,6 @@
 import Initiator from './core/initiator.js';
 import Settings from './core/settings.js';
 
-import FwEvent from './data-helper/event.js';
-import FwDom from './data-helper/dom.js';
 import FwString from './data-helper/string.js';
 import FwArray from './data-helper/array.js';
 
@@ -24,10 +22,6 @@ const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
 const EVENT_RENDER = `render${EVENT_KEY}`;
 const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
-
-const EVENT_BEFORE_RENDER_GRID = `before_render_grid${EVENT_KEY}`;
-const EVENT_RENDER_GRID = `render_grid${EVENT_KEY}`;
-const EVENT_AFTER_RENDER_GRID = `after_render_grid${EVENT_KEY}`;
 
 const EVENT_BEFORE_RENDER_BLOCK = `before_render_block${EVENT_KEY}`;
 const EVENT_RENDER_BLOCK = `render_block${EVENT_KEY}`;
