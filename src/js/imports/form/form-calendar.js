@@ -47,7 +47,7 @@ class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
       UIValue: valueToRender || false,
-      _customArgs: args || false,
+      _customArgs: args || (element ? element.__customArgs : false),
     });
   }
 

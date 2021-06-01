@@ -953,6 +953,7 @@
       if (typeof props === 'object') {
         for (var key in props) {
           this[key] = props[key];
+          this.element["_" + key] = props[key];
         }
       }
     }
@@ -1134,8 +1135,8 @@
     function Accordion(element, triggerer, args) {
       element = element || UIToggled(TOGGLE_MODE$3) || false;
       return _FwComponent.call(this, element, {
-        triggerer: triggerer ? triggerer : false,
-        _customArgs: args || false
+        triggerer: triggerer ? triggerer : element ? element._triggerer : false,
+        _customArgs: args || (element ? element.__customArgs : false)
       }) || this;
     }
 
@@ -1509,8 +1510,8 @@
 
     function Dropdown(element, triggerer, args) {
       return _FwComponent.call(this, element, {
-        triggerer: triggerer ? triggerer : false,
-        _customArgs: args || false
+        triggerer: triggerer ? triggerer : element ? element._triggerer : false,
+        _customArgs: args || (element ? element.__customArgs : false)
       }) || this;
     }
 
@@ -1982,7 +1983,7 @@
 
       _this = _FwComponent.call(this, element, {
         UIValue: valueToRender || false,
-        _customArgs: args || false
+        _customArgs: args || (element ? element.__customArgs : false)
       }) || this;
 
       _this._arrowHtml = function (buttonClass) {
@@ -2631,8 +2632,8 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
-        UIValue: valueToRender || false,
-        _customArgs: args || false
+        UIValue: valueToRender || (element ? element.UIValue : false),
+        _customArgs: args || (element ? element.__customArgs : false)
       }) || this;
     }
 
@@ -2691,17 +2692,23 @@
       var fnToFilter, applyFilter;
 
       try {
-        fnToFilter = custFn || eval(this.args.filter);
+        fnToFilter = custFn || (typeof this.args.filter === 'string' ? eval(this.args.filter) : this.args.filter);
       } catch (err) {}
 
       if (typeof fnToFilter === 'function') {
-        applyFilter = function applyFilter(valueToFilter, filterFnName) {
+        var fn = fnToFilter;
+
+        applyFilter = function applyFilter(valueToFilter, fn) {
           var noInputValueToFilter = function () {
             return Tags.toVal(valueToFilter, false);
           }(); // turn to array ya bopi without the input tag string
+          // let toReturn = Tags.toArr(
+          //   eval(`${filterFnName}("${noInputValueToFilter}")`),
+          //   false
+          // );
 
 
-          var toReturn = Tags.toArr(eval(filterFnName + "(\"" + noInputValueToFilter + "\")"), false); // console.log(
+          var toReturn = Tags.toArr(fn(noInputValueToFilter), false); // console.log(
           // 	'index of input\n',inputIndex,
           // 	'\n\n\nfiltered and ready for splice\n',toReturn,
           // 	'\n\n\npassed to the fil;ter\n'Tags.toVal(valueToFilter,false),
@@ -2720,8 +2727,8 @@
           return Tags.toVal(toReturn);
         };
 
-        this.theValue = applyFilter(this.theValue, this.args.filter);
-        this.renderValue = applyFilter(this.renderValue, this.args.filter);
+        this.theValue = applyFilter(this.theValue, fn);
+        this.renderValue = applyFilter(this.renderValue, fn);
       }
     };
 
@@ -2732,6 +2739,7 @@
       var uiValue = valueToRender || theValue || this.renderValue || '';
       allowFilter = allowFilter == false ? false : true;
       inputText = inputText || false;
+      var triggerChange = newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
         _this2.theValue = theValue;
@@ -2749,7 +2757,9 @@
           _this2.focus();
         }
 
-        newValue && FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this2), 'change');
+        if (triggerChange) {
+          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this2), 'change');
+        }
       });
     };
 
@@ -3179,12 +3189,7 @@
       get: function get() {
         return {
           width: null,
-          filter: {
-            value: null,
-            parser: function parser(value) {
-              return value ? value.toString() : null;
-            }
-          },
+          filter: null,
           onKeyUp: {
             value: null,
             parser: function parser(value) {
@@ -3231,7 +3236,7 @@
 
     function Lazy(element) {
       return _FwComponent.call(this, element, {
-        _ogElement: false
+        _ogElement: element ? element.__ogElement : false
       }) || this;
     }
 
@@ -3401,7 +3406,7 @@
     function ListGroup(element, triggeredChild) {
       element = element || false;
       return _FwComponent.call(this, element, {
-        _triggeredChild: triggeredChild ? new FwDom(triggeredChild) : false
+        _triggeredChild: triggeredChild ? new FwDom(triggeredChild) : element ? element.__triggeredChild : false
       }) || this;
     }
 
@@ -3548,9 +3553,9 @@
       }
 
       _this = _FwComponent.call(this, element, {
-        triggerer: triggerer,
-        _customArgs: args || false,
-        _mode: currMode
+        triggerer: triggerer ? triggerer : element ? element._triggerer : false,
+        _customArgs: args || (element ? element.__customArgs : false),
+        _mode: currMode || (element && element._mode ? element._mode : false)
       }) || this;
       Object.defineProperty(_assertThisInitialized(_this), _current, {
         get: _get_current,
@@ -3873,7 +3878,7 @@
       get: function get() {
         var html = "<div\n\t\t\t\tclass=\"\n          " + this.UiModeClass + "\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-wrapper\"\n\t\t\t>"; //overlay
 
-        html += "<a href=\"#\"\n\t\t\t\t\t\tclass=\"\n              " + this.UiModeClass + "\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></a>";
+        html += "<div\n\t\t\t\t\t\tclass=\"\n              " + this.UiModeClass + "\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$5) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></div>";
 
         switch (this.mode) {
           case 'board':
@@ -4008,6 +4013,9 @@
   var EVENT_BEFORE_RENDER = "before_render" + EVENT_KEY$4;
   var EVENT_RENDER = "render" + EVENT_KEY$4;
   var EVENT_AFTER_RENDER = "after_render" + EVENT_KEY$4;
+  var EVENT_BEFORE_RENDER_GRID = "before_render_grid" + EVENT_KEY$4;
+  var EVENT_RENDER_GRID = "render_grid" + EVENT_KEY$4;
+  var EVENT_AFTER_RENDER_GRID = "after_render_grid" + EVENT_KEY$4;
   var EVENT_BEFORE_RENDER_BLOCK = "before_render_block" + EVENT_KEY$4;
   var EVENT_RENDER_BLOCK = "render_block" + EVENT_KEY$4;
   var EVENT_AFTER_RENDER_BLOCK = "after_render_block" + EVENT_KEY$4;
@@ -4060,7 +4068,7 @@
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER_BLOCK, EVENT_RENDER_BLOCK, EVENT_AFTER_RENDER_BLOCK, function () {
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER_GRID, EVENT_RENDER_GRID, EVENT_AFTER_RENDER_GRID, function () {
         _this._loopProps(element, PROPERTIES_WRAPPER);
       }, element);
     };
@@ -4415,7 +4423,7 @@
     function Tooltip(triggerElement, args) {
       triggerElement = triggerElement || false;
       return _FwComponent.call(this, triggerElement, {
-        _customArgs: args || false
+        _customArgs: args || (triggerElement ? triggerElement.__customArgs : false)
       }) || this;
     }
 
@@ -4819,7 +4827,7 @@
     function Zone(element, formControl) {
       element = element || false;
       return _FwComponent.call(this, element, {
-        _formControl: formControl ? new FwDom(formControl) : false
+        _formControl: formControl ? new FwDom(formControl) : element ? element._triggerer : false
       }) || this;
     }
 

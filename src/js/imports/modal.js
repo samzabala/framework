@@ -112,9 +112,9 @@ class Modal extends FwComponent {
     }
 
     super(element, {
-      triggerer: triggerer,
-      _customArgs: args || false,
-      _mode: currMode,
+      triggerer: triggerer ? triggerer : element ? element._triggerer : false,
+      _customArgs: args || (element ? element.__customArgs : false),
+      _mode: currMode || (element && element._mode ? element._mode : false),
     });
   }
 
@@ -532,12 +532,12 @@ class Modal extends FwComponent {
 			>`;
 
     //overlay
-    html += `<a href="#"
+    html += `<div
 						class="
               ${this.UiModeClass}
 							${UIPrefix(COMPONENT_CLASS)}-close-overlay"
 							${this.args.disableOverlay == false ? `data-toggle-${this.modeToggle}-close` : ''}
-					></a>`;
+					></div>`;
 
     switch (this.mode) {
       case 'board':

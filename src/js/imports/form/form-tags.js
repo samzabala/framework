@@ -42,7 +42,7 @@ class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
       UIValue: valueToRender || (element ? element.UIValue : false),
-      _customArgs: args || (element ? element._customArgs : false),
+      _customArgs: args || (element ? element.__customArgs : false),
     });
   }
 

@@ -1118,11 +1118,7 @@ $keyframe-instance: 1;
 @mixin keyframes($args: ()) {
   $defaults: (
     name: null,
-    frames: (
-      // '10%' : (
-      //	 property: value
-      // ),,,,,
-    ),
+    frames: (),
     add-reverse: false,
   );
   $opts: map-merge($defaults, $args);
@@ -1549,12 +1545,7 @@ $keyframe-instance: 1;
       color2-offset: 100%,
       angle: -45deg,
       type: linear,
-      colors: (
-        // (
-        //	 color:,
-        //	 offset:
-        // ),,,,,,,,,,,,,,,,
-      ),
+      colors: (),
     ),
     $args
   );

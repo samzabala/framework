@@ -26,7 +26,11 @@ class ListGroup extends FwComponent {
   constructor(element, triggeredChild) {
     element = element || false;
     super(element, {
-      _triggeredChild: triggeredChild ? new FwDom(triggeredChild) : false,
+      _triggeredChild: triggeredChild
+        ? new FwDom(triggeredChild)
+        : element
+        ? element.__triggeredChild
+        : false,
     });
   }
 

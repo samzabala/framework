@@ -29,7 +29,11 @@ class Zone extends FwComponent {
     element = element || false;
 
     super(element, {
-      _formControl: formControl ? new FwDom(formControl) : false,
+      _formControl: formControl
+        ? new FwDom(formControl)
+        : element
+        ? element._triggerer
+        : false,
     });
   }
 
