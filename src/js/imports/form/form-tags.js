@@ -41,8 +41,8 @@ const INPUT_STRING = `__fw_input__`;
 class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      UIValue: valueToRender || false,
-      _customArgs: args || false,
+      UIValue: valueToRender || (element ? element.UIValue : false),
+      _customArgs: args || (element ? element._customArgs : false),
     });
   }
 
@@ -139,12 +139,7 @@ class Tags extends FwComponent {
   static get configDefaults() {
     return {
       width: null,
-      filter: {
-        value: null,
-        parser: (value) => {
-          return value ? value.toString() : null;
-        },
-      },
+      filter: null,
       onKeyUp: {
         value: null,
         parser: (value) => {
@@ -215,20 +210,28 @@ class Tags extends FwComponent {
     let fnToFilter, applyFilter;
 
     try {
-      fnToFilter = custFn || eval(this.args.filter);
+      fnToFilter =
+        custFn ||
+        (typeof this.args.filter === 'string'
+          ? eval(this.args.filter)
+          : this.args.filter);
     } catch (err) {}
 
     if (typeof fnToFilter === 'function') {
-      applyFilter = (valueToFilter, filterFnName) => {
+      const fn = fnToFilter;
+
+      applyFilter = (valueToFilter, fn) => {
         const noInputValueToFilter = (() => {
           return Tags.toVal(valueToFilter, false);
         })();
 
         // turn to array ya bopi without the input tag string
-        let toReturn = Tags.toArr(
-          eval(`${filterFnName}("${noInputValueToFilter}")`),
-          false
-        );
+        // let toReturn = Tags.toArr(
+        //   eval(`${filterFnName}("${noInputValueToFilter}")`),
+        //   false
+        // );
+
+        let toReturn = Tags.toArr(fn(noInputValueToFilter), false);
 
         // console.log(
         // 	'index of input\n',inputIndex,
@@ -255,8 +258,8 @@ class Tags extends FwComponent {
         return Tags.toVal(toReturn);
       };
 
-      this.theValue = applyFilter(this.theValue, this.args.filter);
-      this.renderValue = applyFilter(this.renderValue, this.args.filter);
+      this.theValue = applyFilter(this.theValue, fn);
+      this.renderValue = applyFilter(this.renderValue, fn);
     }
   }
 
@@ -268,6 +271,9 @@ class Tags extends FwComponent {
     allowFilter = allowFilter == false ? false : true;
 
     inputText = inputText || false;
+
+    const triggerChange =
+      newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
     super.runCycle(EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, () => {
       this.theValue = theValue;
@@ -284,7 +290,9 @@ class Tags extends FwComponent {
         this.focus();
       }
 
-      newValue && FwEvent.trigger(super.UIEl(), 'change');
+      if (triggerChange) {
+        FwEvent.trigger(super.UIEl(), 'change');
+      }
     });
   }
 

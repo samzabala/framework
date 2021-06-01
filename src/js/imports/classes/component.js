@@ -31,6 +31,7 @@ class FwComponent {
     if (typeof props === 'object') {
       for (let key in props) {
         this[key] = props[key];
+        this.element[key] = props[key];
       }
     }
   }
