@@ -32,7 +32,7 @@ class Zone extends FwComponent {
       _formControl: formControl
         ? new FwDom(formControl)
         : element
-        ? element._triggerer
+        ? element.__formControl
         : false,
     });
   }
