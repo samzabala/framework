@@ -23,6 +23,10 @@ const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
 const EVENT_RENDER = `render${EVENT_KEY}`;
 const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
 
+const EVENT_BEFORE_RENDER_GRID = `before_render_grid${EVENT_KEY}`;
+const EVENT_RENDER_GRID = `render_grid${EVENT_KEY}`;
+const EVENT_AFTER_RENDER_GRID = `after_render_grid${EVENT_KEY}`;
+
 const EVENT_BEFORE_RENDER_BLOCK = `before_render_block${EVENT_KEY}`;
 const EVENT_RENDER_BLOCK = `render_block${EVENT_KEY}`;
 const EVENT_AFTER_RENDER_BLOCK = `after_render_block${EVENT_KEY}`;
@@ -111,9 +115,9 @@ class ModuleGrid extends FwComponent {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
     super.runCycle(
-      EVENT_BEFORE_RENDER_BLOCK,
-      EVENT_RENDER_BLOCK,
-      EVENT_AFTER_RENDER_BLOCK,
+      EVENT_BEFORE_RENDER_GRID,
+      EVENT_RENDER_GRID,
+      EVENT_AFTER_RENDER_GRID,
       () => {
         this._loopProps(element, PROPERTIES_WRAPPER);
       },
