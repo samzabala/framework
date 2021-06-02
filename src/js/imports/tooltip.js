@@ -47,11 +47,11 @@ class Tooltip extends FwComponent {
     triggerElement = triggerElement || false;
 
     super(triggerElement, {
-      _customArgs:
-        args ||
-        (triggerElement && triggerElement.__customArgs
-          ? triggerElement.__customArgs
-          : false),
+      _customArgs: args
+        ? args
+        : triggerElement && triggerElement.__customArgs
+        ? triggerElement.__customArgs
+        : false,
     });
   }
 

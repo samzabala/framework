@@ -46,9 +46,16 @@ const EVENT_AFTER_RESET = `after_reset${EVENT_KEY}`;
 class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      UIValue: valueToRender || (element && element.UIValue ? element.UIValue : false),
-      _customArgs:
-        args || (element && element.__customArgs ? element.__customArgs : false),
+      UIValue: valueToRender
+        ? valueToRender
+        : element && element.UIValue
+        ? element.UIValue
+        : false,
+      _customArgs: args
+        ? args
+        : element && element.__customArgs
+        ? element.__customArgs
+        : false,
     });
   }
 
@@ -786,7 +793,10 @@ class Calendar extends FwComponent {
       `.${UIPrefix(COMPONENT_CLASS)}-month, .${UIPrefix(COMPONENT_CLASS)}-year`,
       Calendar.handleRenderClick()
     );
-    Initiator.Q.on_ready = Calendar.initAll;
+
+    if (Settings.get('initializeForm')) {
+      Initiator.Q.on_ready = Calendar.initAll;
+    }
   }
   static destroyListeners() {
     FwEvent.removeListener(

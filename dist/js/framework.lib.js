@@ -63,6 +63,7 @@
   CORE_SETTINGS.lazyLoad = true;
   CORE_SETTINGS.initializeModal = true;
   CORE_SETTINGS.initializeAccordion = true;
+  CORE_SETTINGS.initializeForm = true;
   CORE_SETTINGS.dynamicHash = true;
   CORE_SETTINGS.uiClass = CORE_SETTINGS.prefix + "-ui"; //for styles
 
@@ -83,6 +84,7 @@
         lazyLoad: CORE_SETTINGS.lazyLoad,
         initializeModal: CORE_SETTINGS.initializeModal,
         initializeAccordion: CORE_SETTINGS.initializeAccordion,
+        initializeForm: CORE_SETTINGS.initializeForm,
         dynamicHash: CORE_SETTINGS.dynamicHash,
         uiClass: CORE_SETTINGS.uiClass,
         uiJsClass: CORE_SETTINGS.uiJsClass
@@ -1135,8 +1137,8 @@
     function Accordion(element, triggerer, args) {
       element = element || UIToggled(TOGGLE_MODE$3) || false;
       return _FwComponent.call(this, element, {
-        triggerer: triggerer || element && element._triggerer ? element._triggerer : false,
-        _customArgs: args || (element && element.__customArgs ? element.__customArgs : false)
+        triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
       }) || this;
     }
 
@@ -1510,8 +1512,8 @@
 
     function Dropdown(element, triggerer, args) {
       return _FwComponent.call(this, element, {
-        triggerer: triggerer || element && element._triggerer ? element._triggerer : false,
-        _customArgs: args || (element && element.__customArgs ? element.__customArgs : false)
+        triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
       }) || this;
     }
 
@@ -1982,8 +1984,8 @@
       var _this;
 
       _this = _FwComponent.call(this, element, {
-        UIValue: valueToRender || (element && element.UIValue ? element.UIValue : false),
-        _customArgs: args || (element && element.__customArgs ? element.__customArgs : false)
+        UIValue: valueToRender ? valueToRender : element && element.UIValue ? element.UIValue : false,
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
       }) || this;
 
       _this._arrowHtml = function (buttonClass) {
@@ -2400,7 +2402,10 @@
       FwEvent.addListener(document.documentElement, EVENT_KEYUP, "." + UIPrefix(COMPONENT_CLASS$9) + "-input input", Calendar.handleUpdateKeyup());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-date", Calendar.handleUpdateClick());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-month, ." + UIPrefix(COMPONENT_CLASS$9) + "-year", Calendar.handleRenderClick());
-      Initiator.Q.on_ready = Calendar.initAll;
+
+      if (Settings.get('initializeForm')) {
+        Initiator.Q.on_ready = Calendar.initAll;
+      }
     };
 
     Calendar.destroyListeners = function destroyListeners() {
@@ -2632,8 +2637,8 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
-        UIValue: valueToRender || (element && element.UIValue ? element.UIValue : false),
-        _customArgs: args || (element && element.__customArgs ? element.__customArgs : false)
+        UIValue: valueToRender ? valueToRender : element && element.UIValue ? element.UIValue : false,
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
       }) || this;
     }
 
@@ -3095,7 +3100,11 @@
       FwEvent.addListener(document.documentElement, EVENT_KEYDOWN, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableKeydown());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-close", Tags.handleDelete());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-text", Tags.handleEdit());
-      Initiator.Q.on_ready = Tags.initAll;
+
+      if (Settings.get('initializeForm')) {
+        Initiator.Q.on_ready = Tags.initAll;
+      }
+
       Initiator.Q.on_resize = Tags.initAll;
     };
 
@@ -3553,9 +3562,9 @@
       }
 
       _this = _FwComponent.call(this, element, {
-        triggerer: triggerer || element && element._triggerer ? element._triggerer : false,
-        _customArgs: args || (element && element.__customArgs ? element.__customArgs : false),
-        _mode: currMode || (element && element._mode ? element._mode : false)
+        triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false,
+        _mode: currMode ? currMode : element && element._mode ? element._mode : false
       }) || this;
       Object.defineProperty(_assertThisInitialized(_this), _current, {
         get: _get_current,
@@ -4423,7 +4432,7 @@
     function Tooltip(triggerElement, args) {
       triggerElement = triggerElement || false;
       return _FwComponent.call(this, triggerElement, {
-        _customArgs: args || (triggerElement && triggerElement.__customArgs ? triggerElement.__customArgs : false)
+        _customArgs: args ? args : triggerElement && triggerElement.__customArgs ? triggerElement.__customArgs : false
       }) || this;
     }
 

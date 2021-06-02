@@ -41,9 +41,16 @@ const INPUT_STRING = `__fw_input__`;
 class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      UIValue: valueToRender || (element && element.UIValue ? element.UIValue : false),
-      _customArgs:
-        args || (element && element.__customArgs ? element.__customArgs : false),
+      UIValue: valueToRender
+        ? valueToRender
+        : element && element.UIValue
+        ? element.UIValue
+        : false,
+      _customArgs: args
+        ? args
+        : element && element.__customArgs
+        ? element.__customArgs
+        : false,
     });
   }
 
@@ -788,7 +795,9 @@ class Tags extends FwComponent {
       Tags.handleEdit()
     );
 
-    Initiator.Q.on_ready = Tags.initAll;
+    if (Settings.get('initializeForm')) {
+      Initiator.Q.on_ready = Tags.initAll;
+    }
     Initiator.Q.on_resize = Tags.initAll;
   }
   static destroyListeners() {

@@ -3,6 +3,7 @@ CORE_SETTINGS.prefix = 'fw';
 CORE_SETTINGS.lazyLoad = true;
 CORE_SETTINGS.initializeModal = true;
 CORE_SETTINGS.initializeAccordion = true;
+CORE_SETTINGS.initializeForm = true;
 CORE_SETTINGS.dynamicHash = true;
 CORE_SETTINGS.uiClass = `${CORE_SETTINGS.prefix}-ui`; //for styles
 CORE_SETTINGS.uiJsClass = CORE_SETTINGS.uiClass.replace('-', '_'); // for scripting events and shit
@@ -20,6 +21,7 @@ class Settings {
       lazyLoad: CORE_SETTINGS.lazyLoad,
       initializeModal: CORE_SETTINGS.initializeModal,
       initializeAccordion: CORE_SETTINGS.initializeAccordion,
+      initializeForm: CORE_SETTINGS.initializeForm,
       dynamicHash: CORE_SETTINGS.dynamicHash,
       uiClass: CORE_SETTINGS.uiClass,
       uiJsClass: CORE_SETTINGS.uiJsClass,

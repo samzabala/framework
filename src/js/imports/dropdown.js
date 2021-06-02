@@ -35,10 +35,16 @@ const EVENT_AFTER_OPEN = `after_open${EVENT_KEY}`;
 class Dropdown extends FwComponent {
   constructor(element, triggerer, args) {
     super(element, {
-      triggerer:
-        triggerer || (element && element._triggerer) ? element._triggerer : false,
-      _customArgs:
-        args || (element && element.__customArgs ? element.__customArgs : false),
+      triggerer: triggerer
+        ? triggerer
+        : element && element._triggerer
+        ? element._triggerer
+        : false,
+      _customArgs: args
+        ? args
+        : element && element.__customArgs
+        ? element.__customArgs
+        : false,
     });
   }
 
