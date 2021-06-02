@@ -46,8 +46,9 @@ const EVENT_AFTER_RESET = `after_reset${EVENT_KEY}`;
 class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      UIValue: valueToRender || false,
-      _customArgs: args || (element ? element.__customArgs : false),
+      UIValue: valueToRender || (element && element.UIValue ? element.UIValue : false),
+      _customArgs:
+        args || (element && element.__customArgs ? element.__customArgs : false),
     });
   }
 

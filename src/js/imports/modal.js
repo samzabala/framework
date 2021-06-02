@@ -112,8 +112,10 @@ class Modal extends FwComponent {
     }
 
     super(element, {
-      triggerer: triggerer ? triggerer : element ? element._triggerer : false,
-      _customArgs: args || (element ? element.__customArgs : false),
+      triggerer:
+        triggerer || (element && element._triggerer) ? element._triggerer : false,
+      _customArgs:
+        args || (element && element.__customArgs ? element.__customArgs : false),
       _mode: currMode || (element && element._mode ? element._mode : false),
     });
   }

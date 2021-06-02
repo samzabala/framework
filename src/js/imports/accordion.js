@@ -33,8 +33,10 @@ class Accordion extends FwComponent {
   constructor(element, triggerer, args) {
     element = element || UIToggled(TOGGLE_MODE) || false;
     super(element, {
-      triggerer: triggerer ? triggerer : element ? element._triggerer : false,
-      _customArgs: args || (element ? element.__customArgs : false),
+      triggerer:
+        triggerer || (element && element._triggerer) ? element._triggerer : false,
+      _customArgs:
+        args || (element && element.__customArgs ? element.__customArgs : false),
     });
   }
 

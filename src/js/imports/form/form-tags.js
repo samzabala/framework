@@ -41,8 +41,9 @@ const INPUT_STRING = `__fw_input__`;
 class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      UIValue: valueToRender || (element ? element.UIValue : false),
-      _customArgs: args || (element ? element.__customArgs : false),
+      UIValue: valueToRender || (element && element.UIValue ? element.UIValue : false),
+      _customArgs:
+        args || (element && element.__customArgs ? element.__customArgs : false),
     });
   }
 

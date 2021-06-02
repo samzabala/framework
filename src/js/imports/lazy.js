@@ -36,7 +36,7 @@ const EVENT_AFTER_LOAD = `after_load${EVENT_KEY}`;
 class Lazy extends FwComponent {
   constructor(element) {
     super(element, {
-      _ogElement: element ? element.__ogElement : false,
+      _ogElement: element && element.__ogElement ? element.__ogElement : false,
     });
   }
 

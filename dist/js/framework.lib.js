@@ -1135,8 +1135,8 @@
     function Accordion(element, triggerer, args) {
       element = element || UIToggled(TOGGLE_MODE$3) || false;
       return _FwComponent.call(this, element, {
-        triggerer: triggerer ? triggerer : element ? element._triggerer : false,
-        _customArgs: args || (element ? element.__customArgs : false)
+        triggerer: triggerer || (element && element._triggerer) ? element._triggerer : false,
+        _customArgs: _customArgs: args || ((element && element.__customArgs) ? element.__customArgs : false),
       }) || this;
     }
 
@@ -1510,8 +1510,8 @@
 
     function Dropdown(element, triggerer, args) {
       return _FwComponent.call(this, element, {
-        triggerer: triggerer ? triggerer : element ? element._triggerer : false,
-        _customArgs: args || (element ? element.__customArgs : false)
+        triggerer: triggerer || (element && element._triggerer) ? element._triggerer : false,
+        _customArgs: _customArgs: args || ((element && element.__customArgs) ? element.__customArgs : false),
       }) || this;
     }
 
@@ -1983,7 +1983,7 @@
 
       _this = _FwComponent.call(this, element, {
         UIValue: valueToRender || false,
-        _customArgs: args || (element ? element.__customArgs : false)
+        _customArgs: _customArgs: args || ((element && element.__customArgs) ? element.__customArgs : false),
       }) || this;
 
       _this._arrowHtml = function (buttonClass) {
@@ -2633,7 +2633,7 @@
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
         UIValue: valueToRender || (element ? element.UIValue : false),
-        _customArgs: args || (element ? element.__customArgs : false)
+        _customArgs: _customArgs: args || ((element && element.__customArgs) ? element.__customArgs : false),
       }) || this;
     }
 
@@ -3553,8 +3553,8 @@
       }
 
       _this = _FwComponent.call(this, element, {
-        triggerer: triggerer ? triggerer : element ? element._triggerer : false,
-        _customArgs: args || (element ? element.__customArgs : false),
+        triggerer: triggerer || (element && element._triggerer) ? element._triggerer : false,
+        _customArgs: args || ((element && element.__customArgs) ? element.__customArgs : false),
         _mode: currMode || (element && element._mode ? element._mode : false)
       }) || this;
       Object.defineProperty(_assertThisInitialized(_this), _current, {
