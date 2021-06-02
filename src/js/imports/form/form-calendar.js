@@ -55,7 +55,7 @@ class Calendar extends FwComponent {
         ? args
         : element && element.__customArgs
         ? element.__customArgs
-        : false,
+        : {},
     });
   }
 
@@ -119,7 +119,6 @@ class Calendar extends FwComponent {
 
   static get configDefaults() {
     return {
-      class: '',
       startDay: {
         value: 0,
         parser: (value) => {
@@ -147,29 +146,38 @@ class Calendar extends FwComponent {
 
   get args() {
     return FwComponent._parseArgs(
-      this._customArgs
-        ? this._customArgs
-        : {
-            class: super.UIEl().getAttribute('class'),
-            startDay: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-start-day`), // 0,1,2,3,4,5,6
-            min:
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-min`) ||
-              super.UIEl().getAttribute('min'),
-            max:
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max`) ||
-              super.UIEl().getAttribute('max'),
-            yearSpan: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-span`),
-            disabledDates: super
-              .UIEl()
-              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disabled-dates`),
-            textInput: super
-              .UIEl()
-              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-text-input`),
-            monthSkip: super
-              .UIEl()
-              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-month-skip`),
-            yearSkip: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-skip`),
-          },
+      {
+        startDay: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-start-day`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-start-day`)
+          : this._customArgs.startDay,
+        min: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-min`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-min`)
+          : super.UIEl().hasAttribute(`min`)
+          ? super.UIEl().getAttribute(`min`)
+          : this._customArgs.min,
+        max: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-max`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max`)
+          : super.UIEl().hasAttribute(`max`)
+          ? super.UIEl().getAttribute(`max`)
+          : this._customArgs.max,
+        yearSpan: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-span`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-span`)
+          : this._customArgs.yearSpan,
+        disabledDates: super
+          .UIEl()
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-disabled-dates`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disabled-dates`)
+          : this._customArgs.disabledDates,
+        textInput: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-text-input`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-text-input`)
+          : this._customArgs.textInput,
+        monthSkip: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-month-skip`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-month-skip`)
+          : this._customArgs.monthSkip,
+        yearSkip: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-skip`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-skip`)
+          : this._customArgs.yearSkip,
+      },
       Calendar.configDefaults
     );
   }

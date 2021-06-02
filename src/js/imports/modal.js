@@ -10,10 +10,10 @@ import { UIPrefix, UIToggled, UIBodyClass, UIChangeHash } from './util/ui.js';
 
 const NAME = 'modal';
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
-const ACTIVATED_CLASS = `active`;
-
 const ARG_ATTRIBUTE_NAME = `${NAME}`;
 const TOGGLE_MODE_PREFIX = `${NAME}`;
+
+const ACTIVATED_CLASS = `active`;
 
 const DEFAULT_NAME = `default`;
 const FULLSCREEN_NAME = `fullscreen`;
@@ -121,8 +121,8 @@ class Modal extends FwComponent {
         ? args
         : element && element.__customArgs
         ? element.__customArgs
-        : false,
-      _mode: currMode ? currMode : element && element._mode ? element._mode : false,
+        : {},
+      _mode: currMode ? currMode : element && element.__mode ? element.__mode : false,
     });
   }
 
@@ -218,14 +218,14 @@ class Modal extends FwComponent {
           if (mode == BOARD_NAME) return value;
         },
       },
-      resizeClasses: {
-        value: null,
+      resize: {
+        value: false,
         parser: (value) => {
           if (mode == BOARD_NAME) return value;
         },
       },
-      resize: {
-        value: false,
+      resizeClasses: {
+        value: null,
         parser: (value) => {
           if (mode == BOARD_NAME) return value;
         },
@@ -235,81 +235,105 @@ class Modal extends FwComponent {
 
   get args() {
     return FwComponent._parseArgs(
-      this._customArgs
-        ? this._customArgs
-        : {
-            changeHash:
-              (this.triggerer &&
-                this.triggerer.getAttribute(
-                  `data-${ARG_ATTRIBUTE_NAME}-change-hash`
-                )) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`),
-            title:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`),
-            disableOverlay:
-              (this.triggerer &&
-                this.triggerer.getAttribute(
-                  `data-${ARG_ATTRIBUTE_NAME}-disable-overlay`
-                )) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`),
-            width:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
-            callback:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`),
-            classes:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`),
-            close:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`),
-            closeClasses:
-              (this.triggerer &&
-                this.triggerer.getAttribute(
-                  `data-${ARG_ATTRIBUTE_NAME}-close-classes`
-                )) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`),
-            //@TODO program this pityur
-            fullscreen:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`),
-            fullscreenClasses:
-              (this.triggerer &&
-                this.triggerer.getAttribute(
-                  `data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`
-                )) ||
-              super
-                .UIEl()
-                .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`),
-
-            //board specific
-            align:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`),
-            resize:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`)) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`),
-
-            resizeClasses:
-              (this.triggerer &&
-                this.triggerer.getAttribute(
-                  `data-${ARG_ATTRIBUTE_NAME}-resize-classes`
-                )) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`),
-
-            //custom specific
-            // customMarkup: //halat weit
-          },
+      {
+        changeHash:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            : this._customArgs.changeHash,
+        title:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-title`)
+            : this._customArgs.title,
+        disableOverlay:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-disable-overlay`)
+            : this._customArgs.disableOverlay,
+        width:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            : this._customArgs.width,
+        callback:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
+            : this._customArgs.callback,
+        classes:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
+            : this._customArgs.callback,
+        close:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close`)
+            : this._customArgs.close,
+        closeClasses:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
+            : this._customArgs.closeClasses,
+        //@TODO
+        fullscreen:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
+            : this._customArgs.fullscreen,
+        fullscreenClasses:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`)
+            ? this.triggerer.getAttribute(
+                `data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`
+              )
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`)
+            : this._customArgs.fullscreenClasses,
+        //board shits
+        align:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-align`)
+            : this._customArgs.align,
+        resize:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize`)
+            : this._customArgs.resize,
+        resizeClasses:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-resize-classes`)
+            : this._customArgs.resizeClasses,
+        //custom specific
+        // customMarkup: //halat weit
+      },
       Modal.configDefaults
     );
   }

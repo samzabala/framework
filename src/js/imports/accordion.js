@@ -42,7 +42,7 @@ class Accordion extends FwComponent {
         ? args
         : element && element.__customArgs
         ? element.__customArgs
-        : false,
+        : {},
     });
   }
 
@@ -64,16 +64,15 @@ class Accordion extends FwComponent {
 
   get args() {
     return FwComponent._parseArgs(
-      this._customArgs
-        ? this._customArgs
-        : {
-            changeHash:
-              (this.triggerer &&
-                this.triggerer.getAttribute(
-                  `data-${ARG_ATTRIBUTE_NAME}-change-hash`
-                )) ||
-              super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`),
-          },
+      {
+        changeHash:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
+            : this._customArgs.changeHash,
+      },
       Accordion.configDefaults
     );
   }

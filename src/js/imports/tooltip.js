@@ -8,8 +8,11 @@ import FwString from './data-helper/string.js';
 import FwComponent from './classes/component.js';
 
 const NAME = 'tooltip';
+
 const TOGGLE_MODE_CLICK = `${NAME}-click`;
 const TOGGLE_MODE_HOVER = `${NAME}-hover`;
+const ARG_ATTRIBUTE_NAME = NAME;
+
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const COMPONENT_CUSTOM_WIDTH_CLASS = `${COMPONENT_CLASS}-has-custom-width`;
 const COMPONENT_PURGER_CLASS = `${COMPONENT_CLASS}-purger`;
@@ -51,7 +54,7 @@ class Tooltip extends FwComponent {
         ? args
         : triggerElement && triggerElement.__customArgs
         ? triggerElement.__customArgs
-        : false,
+        : {},
     });
   }
 
@@ -95,26 +98,54 @@ class Tooltip extends FwComponent {
 
   get args() {
     return FwComponent._parseArgs(
-      this._customArgs
-        ? this._customArgs
-        : {
-            placement: super.UIEl().getAttribute(`data-${NAME}-placement`),
-            badge: super.UIEl().getAttribute(`data-${NAME}-badge`),
-            badgeBg: super.UIEl().getAttribute(`data-${NAME}-badge-background`),
-            badgeSize: super.UIEl().getAttribute(`data-${NAME}-badge-size`),
-            classes: super.UIEl().getAttribute(`data-${NAME}-classes`),
-            content: super.UIEl().getAttribute(`data-${NAME}-content`),
-            inverse: super.UIEl().getAttribute(`data-${NAME}-inverse`),
-            size: super.UIEl().getAttribute(`data-${NAME}-size`),
-            centerX: super.UIEl().getAttribute(`data-${NAME}-center-x`),
-            centerY: super.UIEl().getAttribute(`data-${NAME}-center-y`),
-            x: super.UIEl().getAttribute(`data-${NAME}-x`),
-            y: super.UIEl().getAttribute(`data-${NAME}-y`),
-            width: super.UIEl().getAttribute(`data-${NAME}-width`),
-            allowInteraction: super
-              .UIEl()
-              .getAttribute(`data-${NAME}-allow-interaction`),
-          },
+      {
+        placement: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-placement`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-placement`)
+          : this._customArgs.placement,
+        badge: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-badge`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-badge`)
+          : this._customArgs.badge,
+        badgeBg: super
+          .UIEl()
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-badge-background`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-badge-background`)
+          : this._customArgs.badgeBg,
+        badgeSize: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-badge-size`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-badge-size`)
+          : this._customArgs.badgeSize,
+        classes: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
+          : this._customArgs.classes,
+        content: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-content`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-content`)
+          : this._customArgs.content,
+        inverse: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-inverse`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-inverse`)
+          : this._customArgs.inverse,
+        size: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-size`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-size`)
+          : this._customArgs.size,
+        centerX: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-x`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-x`)
+          : this._customArgs.centerX,
+        centerY: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
+          : this._customArgs.centerY,
+        x: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-x`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-x`)
+          : this._customArgs.x,
+        y: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-y`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-y`)
+          : this._customArgs.y,
+        width: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+          : this._customArgs.width,
+        allowInteraction: super
+          .UIEl()
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-allow-interaction`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-allow-interaction`)
+          : this._customArgs.allowInteraction,
+      },
       Tooltip.configDefaults
     );
   }

@@ -50,7 +50,7 @@ class Tags extends FwComponent {
         ? args
         : element && element.__customArgs
         ? element.__customArgs
-        : false,
+        : {},
     });
   }
 
@@ -148,12 +148,7 @@ class Tags extends FwComponent {
     return {
       width: null,
       filter: null,
-      onKeyUp: {
-        value: null,
-        parser: (value) => {
-          return value ? value.toString() : null;
-        },
-      },
+      onKeyUp: null,
       multipleLines: false,
       multipleLinesBreak: false,
     };
@@ -161,19 +156,27 @@ class Tags extends FwComponent {
 
   get args() {
     return FwComponent._parseArgs(
-      this._customArgs
-        ? this._customArgs
-        : {
-            width: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
-            onKeyUp: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`),
-            filter: super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`),
-            multipleLines: super
-              .UIEl()
-              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`),
-            multipleLinesBreak: super
-              .UIEl()
-              .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`),
-          },
+      {
+        width: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+          : this._customArgs.width,
+        onKeyUp: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-on-keyup`)
+          : this._customArgs.onKeyUp,
+        filter: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`)
+          : this._customArgs.filter,
+        multipleLines: super
+          .UIEl()
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`)
+          : this._customArgs.multipleLines,
+        multipleLinesBreak: super
+          .UIEl()
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
+          : this._customArgs.multipleLinesBreak,
+      },
       Tags.configDefaults
     );
   }

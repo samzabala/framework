@@ -1116,7 +1116,7 @@
   };
 
   var NAME$d = 'accordion';
-  var ARG_ATTRIBUTE_NAME$4 = "" + NAME$d;
+  var ARG_ATTRIBUTE_NAME$5 = "" + NAME$d;
   var TOGGLE_MODE$3 = "" + NAME$d;
   var COMPONENT_CLASS$d = "" + FwString.ToDashed(NAME$d);
   var ACTIVATED_CLASS$7 = "open";
@@ -1138,7 +1138,7 @@
       element = element || UIToggled(TOGGLE_MODE$3) || false;
       return _FwComponent.call(this, element, {
         triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
-        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
     }
 
@@ -1274,8 +1274,8 @@
     _createClass(Accordion, [{
       key: "args",
       get: function get() {
-        return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
-          changeHash: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-change-hash") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-change-hash")
+        return FwComponent._parseArgs({
+          changeHash: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") : this._customArgs.changeHash
         }, Accordion.configDefaults);
       }
     }, {
@@ -1488,7 +1488,7 @@
   Button.initListeners();
 
   var NAME$a = 'dropdown';
-  var ARG_ATTRIBUTE_NAME$3 = "" + NAME$a;
+  var ARG_ATTRIBUTE_NAME$4 = "" + NAME$a;
   var TOGGLE_MODE$1 = "" + NAME$a;
   var COMPONENT_CLASS$a = "" + FwString.ToDashed(NAME$a);
   var COMPONENT_PURGER_CLASS$1 = COMPONENT_CLASS$a + "-purger";
@@ -1513,7 +1513,7 @@
     function Dropdown(element, triggerer, args) {
       return _FwComponent.call(this, element, {
         triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
-        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
     }
 
@@ -1679,9 +1679,9 @@
     _createClass(Dropdown, [{
       key: "args",
       get: function get() {
-        return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
-          width: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-width") || this.element.getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-width"),
-          maxHeight: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-max-height") || this.element.getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-max-height")
+        return FwComponent._parseArgs({
+          width: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") : this._customArgs.width,
+          maxHeight: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") : this._customArgs.maxHeight
         }, Dropdown.configDefaults);
       }
     }, {
@@ -1956,7 +1956,7 @@
   }(FwDataHelper);
 
   var NAME$9 = 'formCalendar';
-  var ARG_ATTRIBUTE_NAME$2 = 'calendar';
+  var ARG_ATTRIBUTE_NAME$3 = 'calendar';
   var COMPONENT_CLASS$9 = "input-calendar";
   var ACTIVATED_CLASS$5 = "active";
   var DATA_KEY$9 = Settings.get('prefix') + "_" + NAME$9;
@@ -1985,7 +1985,7 @@
 
       _this = _FwComponent.call(this, element, {
         UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
-        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
 
       _this._arrowHtml = function (buttonClass) {
@@ -2467,17 +2467,15 @@
     }, {
       key: "args",
       get: function get() {
-        return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
-          "class": _FwComponent.prototype.UIEl.call(this).getAttribute('class'),
-          startDay: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-start-day"),
-          // 0,1,2,3,4,5,6
-          min: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-min") || _FwComponent.prototype.UIEl.call(this).getAttribute('min'),
-          max: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-max") || _FwComponent.prototype.UIEl.call(this).getAttribute('max'),
-          yearSpan: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-year-span"),
-          disabledDates: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-disabled-dates"),
-          textInput: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-text-input"),
-          monthSkip: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-month-skip"),
-          yearSkip: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-year-skip")
+        return FwComponent._parseArgs({
+          startDay: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-start-day") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-start-day") : this._customArgs.startDay,
+          min: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-min") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-min") : _FwComponent.prototype.UIEl.call(this).hasAttribute("min") ? _FwComponent.prototype.UIEl.call(this).getAttribute("min") : this._customArgs.min,
+          max: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-max") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-max") : _FwComponent.prototype.UIEl.call(this).hasAttribute("max") ? _FwComponent.prototype.UIEl.call(this).getAttribute("max") : this._customArgs.max,
+          yearSpan: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-year-span") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-year-span") : this._customArgs.yearSpan,
+          disabledDates: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-disabled-dates") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-disabled-dates") : this._customArgs.disabledDates,
+          textInput: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-text-input") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-text-input") : this._customArgs.textInput,
+          monthSkip: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-month-skip") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-month-skip") : this._customArgs.monthSkip,
+          yearSkip: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-year-skip") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-year-skip") : this._customArgs.yearSkip
         }, Calendar.configDefaults);
       }
     }, {
@@ -2498,7 +2496,6 @@
       key: "configDefaults",
       get: function get() {
         return {
-          "class": '',
           startDay: {
             value: 0,
             parser: function parser(value) {
@@ -2611,7 +2608,7 @@
   }(FwDataHelper);
 
   var NAME$8 = 'formTags';
-  var ARG_ATTRIBUTE_NAME$1 = 'tags';
+  var ARG_ATTRIBUTE_NAME$2 = 'tags';
   var COMPONENT_CLASS$8 = "input-tags";
   var FOCUS_CLASS = "focus";
   var DATA_KEY$8 = Settings.get('prefix') + "_" + NAME$8;
@@ -2638,7 +2635,7 @@
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
         UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
-        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
     }
 
@@ -3178,12 +3175,12 @@
     }, {
       key: "args",
       get: function get() {
-        return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
-          width: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-width"),
-          onKeyUp: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-on-keyup"),
-          filter: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-filter"),
-          multipleLines: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-multiple-lines"),
-          multipleLinesBreak: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-multiple-lines-break")
+        return FwComponent._parseArgs({
+          width: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-width") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-width") : this._customArgs.width,
+          onKeyUp: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-on-keyup") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-on-keyup") : this._customArgs.onKeyUp,
+          filter: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-filter") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-filter") : this._customArgs.filter,
+          multipleLines: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines") : this._customArgs.multipleLines,
+          multipleLinesBreak: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") : this._customArgs.multipleLinesBreak
         }, Tags.configDefaults);
       }
     }], [{
@@ -3202,12 +3199,7 @@
         return {
           width: null,
           filter: null,
-          onKeyUp: {
-            value: null,
-            parser: function parser(value) {
-              return value ? value.toString() : null;
-            }
-          },
+          onKeyUp: null,
           multipleLines: false,
           multipleLinesBreak: false
         };
@@ -3481,9 +3473,9 @@
 
   var NAME$5 = 'modal';
   var COMPONENT_CLASS$5 = "" + FwString.ToDashed(NAME$5);
-  var ACTIVATED_CLASS$3 = "active";
-  var ARG_ATTRIBUTE_NAME = "" + NAME$5;
+  var ARG_ATTRIBUTE_NAME$1 = "" + NAME$5;
   var TOGGLE_MODE_PREFIX = "" + NAME$5;
+  var ACTIVATED_CLASS$3 = "active";
   var DEFAULT_NAME = "default";
   var FULLSCREEN_NAME = "fullscreen";
   var BOARD_NAME = "board";
@@ -3566,8 +3558,8 @@
 
       _this = _FwComponent.call(this, element, {
         triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
-        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false,
-        _mode: currMode ? currMode : element && element._mode ? element._mode : false
+        _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {},
+        _mode: currMode ? currMode : element && element.__mode ? element.__mode : false
       }) || this;
       Object.defineProperty(_assertThisInitialized(_this), _current, {
         get: _get_current,
@@ -3865,22 +3857,22 @@
     }, {
       key: "args",
       get: function get() {
-        return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
-          changeHash: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-change-hash") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-change-hash"),
-          title: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-title") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-title"),
-          disableOverlay: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-disable-overlay") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-disable-overlay"),
-          width: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-width") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-width"),
-          callback: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-callback") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-callback"),
-          classes: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-classes"),
-          close: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close"),
-          closeClasses: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-close-classes"),
-          //@TODO program this pityur
-          fullscreen: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen"),
-          fullscreenClasses: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-fullscreen-classes"),
-          //board specific
-          align: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-align") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-align"),
-          resize: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-resize") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-resize"),
-          resizeClasses: this.triggerer && this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-resize-classes") || _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-resize-classes") //custom specific
+        return FwComponent._parseArgs({
+          changeHash: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-change-hash") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-change-hash") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-change-hash") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-change-hash") : this._customArgs.changeHash,
+          title: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-title") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-title") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-title") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-title") : this._customArgs.title,
+          disableOverlay: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-disable-overlay") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-disable-overlay") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-disable-overlay") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-disable-overlay") : this._customArgs.disableOverlay,
+          width: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-width") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-width") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-width") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-width") : this._customArgs.width,
+          callback: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-callback") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-callback") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-callback") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-callback") : this._customArgs.callback,
+          classes: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-classes") : this._customArgs.callback,
+          close: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close") : this._customArgs.close,
+          closeClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-close-classes") : this._customArgs.closeClasses,
+          //@TODO
+          fullscreen: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") : this._customArgs.fullscreen,
+          fullscreenClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") : this._customArgs.fullscreenClasses,
+          //board shits
+          align: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") : this._customArgs.align,
+          resize: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") : this._customArgs.resize,
+          resizeClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") : this._customArgs.resizeClasses //custom specific
           // customMarkup: //halat weit
 
         }, Modal.configDefaults);
@@ -3963,14 +3955,14 @@
               if (mode == BOARD_NAME) return value;
             }
           },
-          resizeClasses: {
-            value: null,
+          resize: {
+            value: false,
             parser: function parser(value) {
               if (mode == BOARD_NAME) return value;
             }
           },
-          resize: {
-            value: false,
+          resizeClasses: {
+            value: null,
             parser: function parser(value) {
               if (mode == BOARD_NAME) return value;
             }
@@ -4403,6 +4395,7 @@
   var NAME$1 = 'tooltip';
   var TOGGLE_MODE_CLICK = NAME$1 + "-click";
   var TOGGLE_MODE_HOVER = NAME$1 + "-hover";
+  var ARG_ATTRIBUTE_NAME = NAME$1;
   var COMPONENT_CLASS$1 = "" + FwString.ToDashed(NAME$1);
   var COMPONENT_CUSTOM_WIDTH_CLASS = COMPONENT_CLASS$1 + "-has-custom-width";
   var COMPONENT_PURGER_CLASS = COMPONENT_CLASS$1 + "-purger";
@@ -4435,7 +4428,7 @@
     function Tooltip(triggerElement, args) {
       triggerElement = triggerElement || false;
       return _FwComponent.call(this, triggerElement, {
-        _customArgs: args ? args : triggerElement && triggerElement.__customArgs ? triggerElement.__customArgs : false
+        _customArgs: args ? args : triggerElement && triggerElement.__customArgs ? triggerElement.__customArgs : {}
       }) || this;
     }
 
@@ -4620,21 +4613,21 @@
     }, {
       key: "args",
       get: function get() {
-        return FwComponent._parseArgs(this._customArgs ? this._customArgs : {
-          placement: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-placement"),
-          badge: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-badge"),
-          badgeBg: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-badge-background"),
-          badgeSize: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-badge-size"),
-          classes: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-classes"),
-          content: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-content"),
-          inverse: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-inverse"),
-          size: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-size"),
-          centerX: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-center-x"),
-          centerY: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-center-y"),
-          x: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-x"),
-          y: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-y"),
-          width: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-width"),
-          allowInteraction: _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + NAME$1 + "-allow-interaction")
+        return FwComponent._parseArgs({
+          placement: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-placement") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-placement") : this._customArgs.placement,
+          badge: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-badge") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-badge") : this._customArgs.badge,
+          badgeBg: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-badge-background") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-badge-background") : this._customArgs.badgeBg,
+          badgeSize: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-badge-size") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-badge-size") : this._customArgs.badgeSize,
+          classes: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-classes") : this._customArgs.classes,
+          content: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-content") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-content") : this._customArgs.content,
+          inverse: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-inverse") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-inverse") : this._customArgs.inverse,
+          size: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-size") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-size") : this._customArgs.size,
+          centerX: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-center-x") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-center-x") : this._customArgs.centerX,
+          centerY: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-center-y") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-center-y") : this._customArgs.centerY,
+          x: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-x") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-x") : this._customArgs.x,
+          y: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-y") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-y") : this._customArgs.y,
+          width: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-width") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-width") : this._customArgs.width,
+          allowInteraction: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-allow-interaction") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-allow-interaction") : this._customArgs.allowInteraction
         }, Tooltip.configDefaults);
       }
     }, {

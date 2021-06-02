@@ -44,7 +44,7 @@ class Dropdown extends FwComponent {
         ? args
         : element && element.__customArgs
         ? element.__customArgs
-        : false,
+        : {},
     });
   }
 
@@ -63,18 +63,22 @@ class Dropdown extends FwComponent {
 
   get args() {
     return FwComponent._parseArgs(
-      this._customArgs
-        ? this._customArgs
-        : {
-            width:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)) ||
-              this.element.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`),
-            maxHeight:
-              (this.triggerer &&
-                this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)) ||
-              this.element.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`),
-          },
+      {
+        width:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-width`)
+            : this._customArgs.width,
+        maxHeight:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
+            : this._customArgs.maxHeight,
+      },
       Dropdown.configDefaults
     );
   }
