@@ -2804,6 +2804,11 @@
           theUI.container.appendChild(theUI.wrapper);
           theUI.wrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
           theUI.wrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
+          var self = _this3;
+
+          Initiator.Q.on_resize = function () {
+            self._scrollToUIInput();
+          };
         }
 
         theUI.input = _this3.UIInput;
@@ -3104,8 +3109,6 @@
       if (Settings.get('initializeForm')) {
         Initiator.Q.on_ready = Tags.initAll;
       }
-
-      Initiator.Q.on_resize = Tags.initAll;
     };
 
     Tags.destroyListeners = function destroyListeners() {

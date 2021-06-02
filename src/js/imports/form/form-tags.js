@@ -363,6 +363,10 @@ class Tags extends FwComponent {
           theUI.wrapper = theUI.container.querySelector(
             `.${UIPrefix(COMPONENT_CLASS)}-wrapper`
           );
+          const self = this;
+          Initiator.Q.on_resize = () => {
+            self._scrollToUIInput();
+          };
         }
 
         theUI.input = this.UIInput;
@@ -798,7 +802,6 @@ class Tags extends FwComponent {
     if (Settings.get('initializeForm')) {
       Initiator.Q.on_ready = Tags.initAll;
     }
-    Initiator.Q.on_resize = Tags.initAll;
   }
   static destroyListeners() {
     FwEvent.removeListener(
