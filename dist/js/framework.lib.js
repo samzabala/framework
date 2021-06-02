@@ -1984,7 +1984,7 @@
       var _this;
 
       _this = _FwComponent.call(this, element, {
-        UIValue: valueToRender ? valueToRender : element && element.value ? element.value : element && element._UIValue ? element._UIValue : false,
+        UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
       }) || this;
 
@@ -2637,7 +2637,7 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
-        UIValue: valueToRender ? valueToRender : element && element.value ? element.value : element && element._UIValue ? element._UIValue : false,
+        UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : false
       }) || this;
     }

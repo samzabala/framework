@@ -43,8 +43,6 @@ class Tags extends FwComponent {
     super(element, {
       UIValue: valueToRender
         ? valueToRender
-        : element && element.value
-        ? element.value
         : element && element._UIValue
         ? element._UIValue
         : false,
