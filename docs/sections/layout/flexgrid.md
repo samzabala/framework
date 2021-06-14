@@ -242,7 +242,7 @@ You can also use the grow and shrink helpers to dictate how much shrinkage and g
 
 The column bois also supports the following helper classes
 
-- [Align Self](../scaffolding/align.md#align-self)
-- [Grow and Shrink](../scaffolding/flex.md#grow-and-shrink)
+- [Align Self](../helpers/align.md#align-self)
+- [Grow and Shrink](../helpers/flex.md#grow-and-shrink)
 
 [Back to TOC](../../../readme.md)

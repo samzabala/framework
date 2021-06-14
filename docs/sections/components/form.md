@@ -14,13 +14,36 @@ Although styles are reset, To normalize or basically allow the framework to styl
 
 ### Support
 
-| Element    | do it support?                                              |
-| ---------- | ----------------------------------------------------------- |
-| `button`   | a little bit, or just use [`.btn`](../components/button.md) |
-| `select`   | yes                                                         |
-| `textarea` | yes                                                         |
-| `datalist` | no                                                          |
-| `input`    | yes, but depends                                            |
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>a little bit, or just use <a href="../components/button.md"><code>.btn</code></a></td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>input</code></td>
+      <td>yes, but depends</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Form element helpers
 
@@ -33,41 +56,121 @@ These are further classes to add to `.input` to style the boy better dpending on
 This styles an input field as a field for single line input.... uuhhhhhh yea
 
 ```html
-<input type="checkbox" class="input" />
+<input type="text" class="input input-single-line" />
 ```
 
 #### Support
 
 ##### Non input tags
 
-| Element    | do it support?                             |
-| ---------- | ------------------------------------------ |
-| `button`   | no                                         |
-| `select`   | somewhat. just use `.input-select` instead |
-| `textarea` | yeah or just use `.input-multiple-line`    |
-| `datalist` | no                                         |
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>somewhat. just use <code>.input-select</code> instead</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>yeah or just use <code>.input-multiple-line</code></td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### Input tags
 
-| `input[type*]`                                    | do it support?                                  |
-| ------------------------------------------------- | ----------------------------------------------- | --- | --- |
-| `submit`, `reset`,`button`                        | no                                              |
-| `checkbox`                                        | no                                              |
-| `color`                                           | sure                                            |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes                                             |
-| `email`                                           | yes                                             |
-| `file`                                            | yes                                             |
-| `hidden`                                          | IT'S NO USE IT'S HIDDEN                         |
-| `image`                                           | somewhat.. it depends... why would you do that? |
-| `number`                                          | yes                                             |
-| `password`                                        | yes                                             |
-| `radio`                                           | no                                              |
-| `range`                                           | no                                              | no  | yes |
-| `search`                                          | yes                                             |
-| `tel`                                             | yes                                             |
-| `text`                                            | yes, it was built for this bitch                |
-| `url`                                             | yes                                             |
-| `list`                                            | yes                                             |
+<table>
+  <thead>
+    <tr>
+      <th><code>input[type*]</code></th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>submit</code>, <code>reset</code>,<code>button</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>sure</td>
+    </tr>
+    <tr>
+      <td><code>date</code>, <code>datetime-local</code>, <code>month</code>, <code>time</code>, <code>week</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>IT&#39;S NO USE IT&#39;S HIDDEN</td>
+    </tr>
+    <tr>
+      <td><code>image</code></td>
+      <td>somewhat.. it depends... why would you do that?</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>text</code></td>
+      <td>yes, it was built for this bitch</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### **`.input-select`**
 
@@ -99,34 +202,114 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
 
 ##### Non input tags
 
-| Element    | do it support?                       |
-| ---------- | ------------------------------------ |
-| `button`   | no                                   |
-| `select`   | FUCK YES                             |
-| `textarea` | no, why that doesn't even make sense |
-| `datalist` | no wtf                               |
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>FUCK YES</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>no, why that doesn&#39;t even make sense</td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no wtf</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### Input tags
 
-| `input[type*]`                                    | do it support?                                  |
-| ------------------------------------------------- | ----------------------------------------------- |
-| `submit`, `reset`,`button`                        | NO                                              |
-| `checkbox`                                        | no                                              |
-| `color`                                           | no                                              |
-| `date`, `datetime-local`, `month`, `time`, `week` | yes                                             |
-| `email`                                           | yes                                             |
-| `file`                                            | yes                                             |
-| `hidden`                                          | IT'S NO USE IT'S HIDDEN                         |
-| `image`                                           | somewhat.. it depends... why would you do that? |
-| `number`                                          | yes                                             |
-| `password`                                        | yes                                             |
-| `radio`                                           | no                                              |
-| `range`                                           | no                                              |
-| `search`                                          | yes                                             |
-| `tel`                                             | yes                                             |
-| `text`                                            | yes, it was built for this bitch                |
-| `url`                                             | yes                                             |
-| `list`                                            | yes                                             |
+<table>
+  <thead>
+    <tr>
+      <th><code>input[type*]</code></th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>submit</code>, <code>reset</code>,<code>button</code></td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>date</code>, <code>datetime-local</code>, <code>month</code>, <code>time</code>, <code>week</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>IT&#39;S NO USE IT&#39;S HIDDEN</td>
+    </tr>
+    <tr>
+      <td><code>image</code></td>
+      <td>somewhat.. it depends... why would you do that?</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>text</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>sure i guess or u know use a <code>select</code> element</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### **`.input-multiple-line`**
 
@@ -144,34 +327,114 @@ The cat was playing in the garden.</textarea
 
 ##### Non input tags
 
-| Element    | do it support? |
-| ---------- | -------------- |
-| `button`   | no             |
-| `select`   | no             |
-| `textarea` | YAS BITCH      |
-| `datalist` | no             |
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>YAS BITCH</td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ##### Input tags
 
-| `input[type*]`                                    | do it support?                          |
-| ------------------------------------------------- | --------------------------------------- |
-| `submit`, `reset`,`button`                        | NO                                      |
-| `checkbox`                                        | no                                      |
-| `color`                                           | no                                      |
-| `date`, `datetime-local`, `month`, `time`, `week` | no                                      |
-| `email`                                           | no                                      |
-| `file`                                            | no                                      |
-| `hidden`                                          | IT'S NO USE IT'S HIDDEN                 |
-| `image`                                           | no                                      |
-| `number`                                          | no                                      |
-| `password`                                        | no                                      |
-| `radio`                                           | no                                      |
-| `range`                                           | no                                      |
-| `search`                                          | no                                      |
-| `tel`                                             | no                                      |
-| `text`                                            | uh no, use a `textarea` element instead |
-| `url`                                             | no                                      |
-| `list`                                            | yes.. jk NO                             |
+<table>
+  <thead>
+    <tr>
+    <th><code>input[type*]</code></th>
+    <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>submit</code>, <code>reset</code>,<code>button</code></td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>date</code>, <code>datetime-local</code>, <code>month</code>, <code>time</code>, <code>week</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>IT&#39;S NO USE IT&#39;S HIDDEN</td>
+    </tr>
+    <tr>
+      <td><code>image</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>text</code></td>
+      <td>uh no, use a <code>textarea</code> element instead</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>yes.. jk NO</td>
+    </tr>
+  </tbody>
+</table>
 
 ### **`.input-inline`**
 
@@ -181,34 +444,113 @@ For inline shit or fields that dont necessarily accept text looking input like r
 
 ##### Non input tags
 
-| Element    | do it support?                                     |
-| ---------- | -------------------------------------------------- |
-| `button`   | yes, or just use [`.btn`](../components/button.md) |
-| `select`   | yes                                                |
-| `textarea` | yes, but would you want to?                        |
-| `datalist` | no                                                 |
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>yes, or just use <a href="../components/button.md"><code>.btn</code></a></td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>yes, but would you want to?</td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### Input tags
 
-| `input[type*]`                                    | do it support?                                     |
-| ------------------------------------------------- | -------------------------------------------------- |
-| `submit`, `reset`,`button`                        | yes, or just use [`.btn`](../components/button.md) |
-| `checkbox`                                        | yes                                                |
-| `color`                                           | yes on chrome and firefox but not everywhere else  |
-| `date`, `datetime-local`, `month`, `time`, `week` | if you want it ugly-ish, sure                      |
-| `email`                                           | if you want it ugly-ish, sure                      |
-| `file`                                            | if you want it ugly-ish, sure                      |
-| `hidden`                                          | IT'S NO USE IT'S HIDDEN                            |
-| `image`                                           | yis                                                |
-| `number`                                          | if you want it ugly-ish, sure                      |
-| `password`                                        | if you want it ugly-ish, sure                      |
-| `radio`                                           | yes                                                |
-| `range`                                           | yes                                                |
-| `search`                                          | if you want it ugly-ish, sure                      |
-| `tel`                                             | if you want it ugly-ish, sure                      |
-| `text`                                            | if you want it ugly-ish, sure                      |
-| `url`                                             | if you want it ugly-ish, sure                      |
-| `list`                                            | no                                                 |
+<table>
+  <thead>
+    <tr>
+      <th><code>input[type*]</code></th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>submit</code>, <code>reset</code>,<code>button</code></td>
+      <td>yes, or just use <a href="../components/button.md"><code>.btn</code></a></td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>yes on chrome and firefox but not everywhere else</td>
+    </tr>
+    <tr>
+      <td><code>date</code>, <code>datetime-local</code>, <code>month</code>, <code>time</code>, <code>week</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>IT&#39;S NO USE IT&#39;S HIDDEN</td>
+    </tr>
+    <tr>
+      <td><code>image</code></td>
+      <td>yis</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>text</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>if you want it ugly-ish, sure</td>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
 
 <!--
 #### **`.input-round`**

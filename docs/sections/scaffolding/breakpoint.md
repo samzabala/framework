@@ -4,38 +4,45 @@ Breakpoints are where media queries separate. Declared values or maximums
 
 **`xs`**
 
-- framework var: `$br-xs`
+- framework var: `$br-xs-max`
 - Larger Mobile Devices (767px by default)
 
 **`sm`**
 
-- framework var: `$br-sm`
-- Tablet (1279px by default)
+- framework var: `$br-sm-max`
+- Tablet (1199px by default)
 
 **`md`**
 
-- framework var: `$br-md`
-- Laptop (1799px by default)
-
-## Special breakpoints
+- framework var: `$br-md-max`
+- Laptop (1599px by default)
 
 **`lg`**
 
-- Mobile (+1 of md breakpoint value)
-- For desktop elements. Since it's the largest breakpoint, it does not have a max value, instead it's minimum is based on md breakpoints value
+- framework var: `$br-lg-max`
+- Laptop (1799px by default)
+- For large laptop/desktop elements. Since it's the largest breakpoint, it does not have a max value, instead it's minimum is based on md breakpoints value
+
+## Special breakpoints
 
 **`xxs`**
 
-- framework var: `$br-xxs`
+- framework var: `$br-xxs-max`
 - True Mobile (0px - 400px by default)
 - UI Design may have elements designed too large for many mobile devices. use this to fix or tweak them. This breakpoint is for adding custom css for the framework and is not natively by the core framework's styles although used at some places by js bois.
+
+**`xl`**
+
+- framework var: `$br-xxs-max`
+- HD (1800px+ based on `$br-lg-max` set value by default)
+- very very very large viewports. AAAAAAAAAAAAAAAAA
 
 ## Mobile split
 
 **`$mobile-br-max`**
 
 - Defaults to `sm`
-- Can't be used by shithole functionalities, but declares which breakpoint tag the mobile and nonmobile devices split. The set tag will be the maximum of the framework mobile styles
+- declares which breakpoint tag the mobile and nonmobile devices split. The set tag will be the maximum width for framework mobile styles. `$mobile-br-max-polar` is calculated based on this value
 
 ## Mixins
 
@@ -46,6 +53,24 @@ defaults to `nonmobile`. valid value is either `nonmobile` or `mobile`. generate
 #### Third Party Sass Functions (All from shithole)
 
 NOTE:Since the shithole library is built mobile first, Declared framework sass variable values are set as the maximum value of these breakpoints, but using their tags with shithole functionalities will be interpretted as the corresponding min value of the breakpoint.
+
+#### Core utilities
+
+##### `on-breakpoint($mobile-tag)`
+
+create media queries based on mobile split
+
+###### Parameters
+- @param $mobile-tag: 'nonmobile' !default | string | device to use. only takes `mobile` or `nonmobile`
+
+```scss
+@include on-breakpoint(mobile) {
+  //styles for mobile devices
+}
+```
+
+
+#### Shithole utilities
 
 If you use shithole mixins or functions and want to use these max values append `-max` to the tags
 

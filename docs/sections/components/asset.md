@@ -35,23 +35,76 @@ helper that can display a css coded thumbnail for file types. append one of of t
 
 ### supported file type classes:
 
-| asset-image-class      | file types suggested for..                 |
-| ---------------------- | :----------------------------------------- |
-| `.asset-image-default` | anything duh                               |
-| `.asset-image-audio`   | wav,mp3,wma if that still exists, m4a etc. |
-| `.asset-image-code`    | json,css,html,xml etc                      |
-| `.asset-image-text`    | txt or rich text idk                       |
-| `.asset-image-doc`     | doc,docx etc                               |
-| `.asset-image-font`    | otf,ttf eot etc                            |
-| `.asset-image-img`     | jpg,png,gif,tiff,bmp etc                   |
-| `.asset-image-ps`      | psd,psb,raw,pxr                            |
-| `.asset-image-ai`      | ai                                         |
-| `.asset-image-xd`      | xd                                         |
-| `.asset-image-pdf`     | duh                                        |
-| `.asset-image-id`      | indd,indb,idml,indl,indt,xqx,pmd,inx       |
-| `.asset-image-table`   | excel files, csv,tsv..                     |
-| `.asset-image-video`   | mp4, quicktime etc                         |
-| `.asset-image-zip`     | zip.. probably a rar file tooo idk         |
+<table>
+  <thead>
+    <tr>
+      <th>asset-image-class</th>
+      <th>file types suggested for..</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.asset-image-default</code></td>
+      <td>anything duh</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-audio</code></td>
+      <td>wav,mp3,wma if that still exists, m4a etc.</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-code</code></td>
+      <td>json,css,html,xml etc</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-text</code></td>
+      <td>txt or rich text idk</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-doc</code></td>
+      <td>doc,docx etc</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-font</code></td>
+      <td>otf,ttf eot etc</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-img</code></td>
+      <td>jpg,png,gif,tiff,bmp etc</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-ps</code></td>
+      <td>psd,psb,raw,pxr</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-ai</code></td>
+      <td>ai</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-xd</code></td>
+      <td>xd</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-pdf</code></td>
+      <td>duh</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-id</code></td>
+      <td>indd,indb,idml,indl,indt,xqx,pmd,inx</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-table</code></td>
+      <td>excel files, csv,tsv..</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-video</code></td>
+      <td>mp4, quicktime etc</td>
+    </tr>
+    <tr>
+      <td><code>.asset-image-zip</code></td>
+      <td>zip.. probably a rar file tooo idk</td>
+    </tr>
+  </tbody>
+</table>
 
 ## `.asset-delete` and `[data-toggle="asset-close"]`
 
