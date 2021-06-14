@@ -2,11 +2,11 @@
 
 ## Text ultilities
 
-See [Text Helpers](../helpeers/text.md)
+See [Text Helpers](../helpers/text.md)
 
-## Text ultilities
+## Font ultilities
 
-See [Helpers](../helpeers/text.md)
+See [Helpers](../helpeers/font.md)
 
 ## Headings
 

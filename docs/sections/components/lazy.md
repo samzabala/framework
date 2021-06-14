@@ -28,18 +28,6 @@ Lazyloading also supports replacement of img tag into the src's svg markup. As l
 
 This way you can utilize [SVG Classes](#svg) to :')
 
-## Classes
-
-**`.fit-image`**
-
-- Simulate a background-size: cover on an element containing an <img>;
-
-```html
-<div class="fit-image">
-  <img data-src="pichur.jpg" alt="bitch boi" />
-</div>
-```
-
 ## Javascript
 
 ### Disable Lazyloading

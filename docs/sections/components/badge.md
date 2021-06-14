@@ -18,7 +18,7 @@ To color the badges, add `.badge-[color-tag]`
 - **`.badge-caution`**
 - **`.badge-success`**
 
-More info on [color tags](../scaffolding/colors.md#color-tags)
+More info on [color tags](../scaffolding/colors.md)
 
 The color can be customized by adding a background-color property to the badge
 

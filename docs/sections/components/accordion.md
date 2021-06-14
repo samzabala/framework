@@ -42,7 +42,9 @@ Another way but [data-toggle-accordion] looks for a sibling because there's no `
 </div>
 ```
 
-### Change hash
+##Attributes/Settings
+
+### **`[data-accordion-change-hash]`** - `args.changeHash`
 
 If you dont wish for the accordion to change the hashand shit addd an attribute of `data-accordion-change-hash="false"` to either the toffler or accordion and it should not do the thing. hopefully
 
@@ -212,12 +214,12 @@ Make a new boi by going `const accordion = new fw.Accordion(element,triggerer,ar
 
 `triggerer` is the element that triggers the accordion. if left blank, it doesnt mess with any data-toggle-accordions
 
-`args` is the opts available
+`args` is the settings above available
 
 ```js
 //defaults
 {
-	changeHash: 'true', //make the addressbar do the location change
+	changeHash: 'true', //data-accordion-change-hash
 }
 ```
 

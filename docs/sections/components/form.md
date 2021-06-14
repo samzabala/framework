@@ -793,11 +793,11 @@ Also supports [input color helpers](#input-colors)
 
 ![Calendar](../../images/input-calendar-colors.png)
 
-### Attributes
+### Attributes/ Settings
 
 Add these to customize ya boi further
 
-**`data-calendar-start-day`**
+**`data-calendar-start-day`** - `args.startDay`
 
 Defaults to `0`
 
@@ -813,25 +813,25 @@ This is the index of the day the calendar starts. meaning...
 6 = Saturday
 ```
 
-**`data-calendar-max`**
-
-Defaults to ``
-
-Maximum date allowed. Must be in ISO8601 format.
-
-**`data-calendar-min`**
+**`data-calendar-min`** - `args.min`
 
 Defaults to ``
 
 Minimum date allowed. Must be in ISO8601 format.
 
-**`data-calendar-year-span`**
+**`data-calendar-max`** - `args.max`
 
-Defaults to `1`
+Defaults to ``
 
-Number of years the heading dropdown will output
+Maximum date allowed. Must be in ISO8601 format.
 
-**`data-calendar-disabled-dates`**
+**`data-calendar-year-span`** - `args.yearSpan`
+
+Defaults to `0`
+
+Number of additional year range the heading dropdown will output. Setting to 0 outputs only current year, 1 outputs 1 additional preceeding the year and 1 after the current year and then so on.
+
+**`data-calendar-disabled-dates`** - `args.disabledDates`
 
 Defaults to ``
 
@@ -842,20 +842,22 @@ There also available keywords too
 - `weekends` - disables weekends
 - `past` - disables dates from before today's date
 - `future` - disables dates from after today's date
+- `yyyy-dd-mm` - a disabled date
+- `yyyy-dd-mm,yyyy-dd-mm,yyyy-dd-mm...` - maraming disabled date
 
-**`data-calendar-text-input`**
+**`data-calendar-text-input`** - `args.textInput`
 
 Defaults to `false`
 
 Enables a text input field to input dates along with the calendar as well
 
-**`data-calendar-month-skip`**
+**`data-calendar-month-skip`** - `args.monthSkip`
 
 Defaults to `true`
 
 Enable skipping through months
 
-**`data-calendar-year-skip`**
+**`data-calendar-year-skip`** - `args.yearSkip`
 
 Defaults to `false`
 
@@ -873,34 +875,19 @@ Make a new boi by going `const formCalendar = new fw.Form.Calendar(element,value
 
 `valueToRender` is the value the input ui will use to base the render of the calendar. falls back to the `element.value`
 
-`args` is the opts available
+`args` is the settings above available
 
 ```js
 //defaults
 {
-	class: '',
-	startDay: {
-		value: 0,
-		parser: (value)=>{
-			return parseInt(value) % 7
-		}
-	}, // su,mo,tu,we,th,fr,sa,
-	min: null,
-	max: null,
-	yearSpan: {
-		value: 0,
-		parser: (value)=>{
-			if (parseInt(value) <= 0) {
-				value = 0;
-			}
-
-			return value;
-		}
-	},
-	disabledDates: '', //yyyy-mm-dd,weekends,past,future
-	textInput: false,
-	monthSkip: true,
-	yearSkip: false,
+	startDay:0,  //data-calendar-start-day
+	min: null, //data-calendar-max
+	max: null, //data-calendar-min
+	yearSpan: 0, //data-calendar-year-span
+	disabledDates: '',  //data-calendar-disabled-datese
+	textInput: false, //data-calendar-text-input
+	monthSkip: true, //data-calendar-month-skip
+	yearSkip: false, //data-calendar-year-skip
 }
 ```
 
@@ -1071,11 +1058,11 @@ Also supports [input color helpers](#input-colors)
 
 ![Calendar](../../images/input-tags-colors.png)
 
-### Attributes
+### Attributes/Settings
 
 Add these to customize ya boi further
 
-**`data-tags-width`**
+**`data-tags-width`** - `args.width`
 
 ```html
 <input
@@ -1110,7 +1097,7 @@ DEPRECATED ... just add an event listener on `after_update__fw_formTags`
 />
 ```
 
-**`data-tags-filter` (previously data-tag-callback-name-filter or something like that)**
+**`data-tags-filter` (previously data-tag-callback-name-filter or something like that)** - `args.filter`
 
 name of the function to callback to manipulating and return the value before rendering of the input tags
 
@@ -1132,7 +1119,7 @@ name of the function to callback to manipulating and return the value before ren
 />
 ```
 
-**`data-tags-on-keyup` (previously data-tag-callback-on-keyup or something like that)**
+**`data-tags-on-keyup` (previously data-tag-callback-on-keyup or something like that)** - `args.onKeyUp`
 
 callback function after keyup on the input field. NOTE. the field is actually a `span[contenteditable]`
 
@@ -1145,7 +1132,7 @@ callback function after keyup on the input field. NOTE. the field is actually a 
 />
 ```
 
-**`data-tags-multiple-lines`**
+**`data-tags-multiple-lines`** - `args.multipleLines`
 
 defaults to false
 
@@ -1157,6 +1144,22 @@ if enabled, allows floe of tags intoo multiple lines like a textarea
   value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
   class="input input-tags"
   data-tags-multiple-lines="true"
+/>
+```
+
+**`data-tags-multiple-lines-break`** - `args.multipleLinesBreak`
+
+defaults to false
+
+if enabled, makes the tags occupy their own block widths. only works if set to multiple
+
+```html
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-multiple-lines="true"
+  data-tags-multiple-lines-break="true"
 />
 ```
 
@@ -1172,15 +1175,17 @@ Make a new boi by going `const formTags = new fw.Form.Tags(element,valueToRender
 
 `valueToRender` is the value the input ui will render. falls back to the `element.value`
 
-`args` is the opts available
+`args` is the settings above available
 
 ```js
 //defaults
 {
-	width: null,
-	filter: null,
-	onKeyUp: null,
-	multipleLines: false,
+	width: null, //data-tags-width
+	callback: null, //data-tags-callback
+	filter: null, //data-tags-filter
+	onKeyUp: null, //data-tags-on-keyup
+	multipleLines: false, //data-tags-multiple-lines
+	multipleLinesBreak: false, //data-tags-multiple-lines-break
 }
 ```
 

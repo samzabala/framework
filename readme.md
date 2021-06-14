@@ -60,7 +60,6 @@ Works with Libsass and Compass
 - [Modal](docs/sections/components/modal.md)
 - [Module](docs/sections/components/module.md)
 - [Nav](docs/sections/components/nav.md)
-- [Pagination](docs/sections/components/pagination.md)
 - [Progress](docs/sections/components/progress.md)
 - [Ratio](docs/sections/components/ratio.md)
 - [Symbols](docs/sections/components/symbol.md)

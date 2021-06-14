@@ -36,7 +36,7 @@ _These values interchange on dark mode by default (eg: `$background-base-alt` )_
 
   For stuff that are there but not that important so it shouldnt stand out as much
 
-_Both schemes are used by [gradient and intensity](#gradient-and-intensity) palette variables by default_
+_Peimary and Secondary schemes are used by [gradient and intensity](#gradient-and-intensity) palette variables by default_
 
 ### User feedback
 
@@ -103,7 +103,6 @@ Color and contrast palettes interchange on inverse theme by default. to see this
 
 These are valid color tags for all javascript arguments or data attributes
 
-- `background`
 - `base`
 - `primary`
 - `secondary`
@@ -113,7 +112,7 @@ These are valid color tags for all javascript arguments or data attributes
 - `caution`
 - `success`
 
-These color tags are valid for css helpers and most components. just not for [btn](../components/button.md), [btn](../components/badges.md), [forms](../components/forms.md) and [alerts](../components/alert.md). basically anything that javascript has fucked, or the component has multiple color based setup, this bitch is never gonna happen
+These color tags are valid for css helpers and most components. just not for [btn](../components/button.md) (`gradient` is ok tho), [btn](../components/badges.md), [forms](../components/forms.md) and [alerts](../components/alert.md). basically anything that javascript has fucked, or the component has multiple color based setup, this bitch is never gonna happen
 
 - `intensity-1`
 - `intensity-2`
@@ -128,9 +127,9 @@ These color tags are valid for css helpers and most components. just not for [bt
 
 # Variations
 
-tags syntac means it look like this `{COLOR-TAG}-{VARIATION-TAG}`
+tags syntax means it look like this `{COLOR-TAG}-{VARIATION-TAG}`
 
-Javascript doesn support this
+Javascript doesn't support this
 
 ## Simple Offset - `alt`
 
@@ -227,10 +226,8 @@ linear gradient angles
 
 color naming and tagging conventions supports the following helpers:
 
-@TODO update
-
 - [`.fill-*`](../helpers/svg.md#fill)
-- [`.stroke-*`](../helpers//svg.md#stroke)
+- [`.stroke-*`](../helpers/svg.md#stroke)
 - [`.background-*`](../helpers/background.md#background-color)
 - [`.color-*`](../helpers/text.md#color)
 - [`.border-color-*`](../helpers/helper)

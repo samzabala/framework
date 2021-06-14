@@ -54,11 +54,11 @@ Another way but [data-toggle-modal-{MODE}] looks for a sibling because there's n
 
 Unlike just `[data-toggle-modal-{MODE}]`, these attributes are more specific whether to close, or to open the modal
 
-## Toggle Attributes
+## Attributes/Settings
 
 These attributes can be embedded to either the `[data-toggle-modal-{MODE}]`, or the `.modal `itself, but will prioritize the attributes embedded on `[data-toggle-modal-{MODE}]`
 
-### **`data-modal-change-hash`**
+### **`data-modal-change-hash`** - `args.changeHash`
 
 Dafaults to `true`
 
@@ -74,7 +74,7 @@ Whether or not to have the modal change the location.hash when enabled and then 
 </div>
 ```
 
-### **`data-modal-title`**
+### **`data-modal-title`** - `args.title`
 
 Dafaults to `''`
 
@@ -90,7 +90,7 @@ Title to add a modal. Adding this will add a header to ya modal
 </div>
 ```
 
-### **`data-modal-close`**
+### **`data-modal-close`** - `args.close`
 
 Defaults to `true`
 
@@ -106,7 +106,7 @@ Adds a close button to the modal
 </div>
 ```
 
-### **`data-modal-disable-overlay`**
+### **`data-modal-disable-overlay`** - `args.disableOverlay`
 
 Dafaults to `true`
 
@@ -123,7 +123,7 @@ Whether or not to allow clicking on the overlay to close the modal
 </div>
 ```
 
-### **`data-modal-width`**
+### **`data-modal-width`** - `args.width`
 
 Dafaults to `null`
 
@@ -139,7 +139,7 @@ Whether or not to add a max-width to the modal. The modal is styled to be respon
 </div>
 ```
 
-### **`data-modal-callback`**
+### **`data-modal-callback`** - `args.callback`
 
 Dafaults to `null`
 
@@ -161,7 +161,7 @@ Function to run after the modal is ready but before it's displays
 </script>
 ```
 
-### **`data-modal-classes`**
+### **`data-modal-classes`** - `args.classes`
 
 Dafaults to `null`
 
@@ -173,7 +173,7 @@ classes to add to the generated modal or `#fw-modal`
 >
 ```
 
-### **`data-close-classes`**
+### **`data-close-classes`** - `args.closeClasses`
 
 Dafaults to `null`
 
@@ -184,6 +184,26 @@ classes to add to the generated `.modal-ui-close`
   >Modal boi with classes</a
 >
 ```
+
+## Board Specific Attributes/Settings
+
+### **`data-close-align`** - `args.align`
+
+Dafaults to `left`
+
+sets where the board mofal is aligned to
+
+### **`data-close-resize`** - `args.resize`
+
+Dafaults to `false`
+
+enable resize feature
+
+### **`data-close-resize-classes`** - `args.resizeClasses`
+
+Dafaults to `null`
+
+classes to add to resize btn
 
 ### All together now
 
@@ -235,13 +255,23 @@ Make a new boi by going `const modal = new fw.Modal(element,triggerer,args)`
 
 `triggerer` is the element that triggers the element. if left blank, it doesnt mess with any data-toggle-elements
 
-`args` is the opts available
+`args` is the settings above available
 
 ```js
 //defaults
 {
-	width: null,
-	maxHeight: null
+  changeHash: true,
+  title: '',
+  close: true,
+  disableOverlay: true,
+  width: null,
+  callback: null,
+  classes: '',
+  closeClasses: '',
+  //board mode specific
+    align: 'left',
+    resize: false,
+    resizeClasses: ''
 }
 ```
 

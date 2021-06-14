@@ -20,6 +20,6 @@ Put on wrapper of image so it covers it.
 </div>
 ```
 
-[See SVGs](svg.md);
+[See SVGs](svg.md)
 
 [Back to TOC](../../../readme.md)

@@ -144,9 +144,9 @@ Example:
 
 You get it...
 
-## Available Attributes
+## Attributes/Settings
 
-### **`[data-dropdown-width="['css width property']"]`**
+### **`[data-dropdown-width="['css width property']"]`** - `args.width`
 
 Defaults to nothing, or closest positioned element's width
 
@@ -154,7 +154,7 @@ Can be applied to either `.dropdown` or `[data-toggle-dropdown]`
 
 This sets a custom width for the dropdown
 
-### **`[data-dropdown-max-height="['css max-height property']"]`**
+### **`[data-dropdown-max-height="['css max-height property']"]`** - `args.maxHeight`
 
 Defaults to nothing, or closest positioned element's max-height
 
@@ -182,13 +182,13 @@ Make a new boi by going `const dropdown = new fw.Dropdown(element,triggerer,args
 
 `triggerer` is the element that triggers the element. if left blank, it doesnt mess with any data-toggle-elements
 
-`args` is the opts available
+`args` is the settings above available
 
 ```js
 //defaults
 {
-	width: null,
-	maxHeight: null
+	width: null, //data-dropdown-width
+	maxHeight: null //data-dropdown-max-height
 }
 ```
 

@@ -73,7 +73,7 @@ The folloing classes style table rows to [framework colors](../scaffolding/color
 
 ##### Colors
 
-The folloing classes style a single table cell to [framework colors](../scaffolding/colors.md#color-tags)
+The following classes style a single table cell to [framework colors](../scaffolding/colors.md#color-tags)
 
 - **.table-cell-primary**
 - **.table-cell-secondary**

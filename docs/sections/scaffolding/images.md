@@ -1,8 +1,14 @@
-# Images and SVGs
+# Images
 
 It do things on images too
 
-[See SVGs](../helpers/svg.md);
+[See Images](../helpers/image.md).
+
+# SVGs
+
+It do things on images too
+
+[See SVGs](../helpers/svg.md).
 
 ## Lazyloading
 

@@ -44,9 +44,9 @@ A bitch boy toggled on hover
 
 This makes a tooltip, but there's nothing in it yet because you need...
 
-# Other Attributes
+# Attributes/Settings
 
-## **`data-tooltip-placement`**
+## **`data-tooltip-placement`** - `args.placement`
 
 defaults to `left`
 
@@ -54,13 +54,13 @@ It places the boi somewhere you want
 
 Other Available parameters: `top`,`bottom`,`right`,
 
-## **`data-tooltip-badge`**
+## **`data-tooltip-badge`** - `args.badge`
 
 defaults to false
 
 Whether or not you want the tooltip's pointy boi have a [badge](../components/badge.md) element on it
 
-## **`data-tooltip-badge-background`**
+## **`data-tooltip-badge-background`** - `args.badgeBg`
 
 defaults to `'primary'`
 
@@ -68,51 +68,59 @@ This sets a color on the badge boi
 
 Only useful if `data-tooltip-badge` is true. It accepts valid [color tags](../scaffolding/colors.md#color-tags) values or valid `background-color` value
 
-## **`data-tooltip-badge-size`**
+## **`data-tooltip-badge-size`** - `args.badgeSize`
 
 defaults to `''`
 
 How big do you want the boi?
 
-Other Available parameters: `small`,`big`
+Other Available parameters: `small`,`large`
 
-## **`data-tooltip-content`**
+## **`data-tooltip-classes`** - `args.classes`
+
+Idk this is how you add classes or [helper classes](../../../readme.md#helpers-o-lawd) to the tooltip content but you have to be careful because some css may not work on the tooltip
+
+## **`data-tooltip-content`** - `args.content`
 
 defaults to `''`
 
 This is the content for the tooltip
 
-## **`data-tooltip-classes`**
-
-Idk this is how you add classes or [helper classes](../../../readme.md#helpers-o-lawd) to the tooltip content but you have to be careful because some css may not work on the tooltip
-
-## **`data-tooltip-center-x`**
+## **`data-tooltip-center-x`** - `args.centerX`
 
 By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled horizontally. NOTE: will not work if `data-tooltip-x` is set
 
-## **`data-tooltip-center-y`**
+## **`data-tooltip-center-y`** - `args.centerY`
 
 By default tooltips attaches the tip by the edge, enable this to center the tooltips tail or badge if enabled vertically. NOTE: will not work if `data-tooltip-y` is set
 
 ![](../../images/tooltip-with-center.png)
 
-## **`data-tooltip-x`**
+## **`data-tooltip-inverse`** - `args.inverse`
+
+use inverse theme
+
+## **`data-tooltip-size`** - `args.size`
+
+duh. leave blank or `large` or `small`
+
+## **`data-tooltip-x`** - `args.x`
 
 Custom x offset. has to be a number,
 
 NOTE: the tooltip is appended to the body so position ofset will be calculated based on the body
 
-## **`data-tooltip-y`**
+## **`data-tooltip-y`** - `args.y`
 
 Custom y offset. has to be a number,
 
 NOTE: the tooltip is appended to the body so position ofset will be calculated based on the body
 
-## **`data-tooltip-width`**
+## **`data-tooltip-width`** - `args.width`
 
 duh
 
-## **`data-tooltip-allow-interaction`**
+## **`data-tooltip-allow-interaction`** - `args.allowInteraction`
 
 defaults to false. tooltips are disabled for pointer interactions so it doesn't get in the way of the clickiness of elements in the page. set to tru so you can interact with things in it
 
@@ -145,25 +153,25 @@ Make a new boi by going `const tooltip = new fw.Tooltip(triggerElement,args)`
 
 `triggerElement` is the tooltip triggerer. if blank, does nothing
 
-`args` is the opts available
+`args` is the settings above available
 
 ```js
 //defaults
 {
-	placement: 'left',
-	badge: false,
-	badgeBg: 'primary',
-	badgeSize: '',
-	classes: '',
-	inverse:false,
-	size: '',
-	content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
-	centerX: false,
-	centerY: false,
-	x: false,
-	y: false,
-	width: null,
-	allowInteraction: false
+	placement: 'left', //data-tooltip-placement
+	badge: false, //data-tooltip-badge
+	badgeBg: 'primary', //data-tooltip-badge-background
+	badgeSize: '', //
+	classes: '', //data-tooltip-classes
+	inverse:false, //data-tooltip-inverse
+	size: '', //data-tooltip-size
+	content: '<em class="color-neutral tooltip-placeholder">No info...</em>', //data-tooltip-content
+	centerX: false, //data-tooltip-center-x
+	centerY: false, //data-tooltip-center-y
+	x: false, //data-tooltip-x
+	y: false, //data-tooltip-y
+	width: null, //data-tooltip-width
+	allowInteraction: false //data-tooltip-allow-interaction
 }
 ```
 

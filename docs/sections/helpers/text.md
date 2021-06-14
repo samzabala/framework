@@ -1,4 +1,4 @@
-#### Color
+# Color
 
 - **`.color-inherit`**
 - **`.color-transparent`**

@@ -1,4 +1,4 @@
-# Border Color
+# Disabled
 
 **`.disabled`**
 

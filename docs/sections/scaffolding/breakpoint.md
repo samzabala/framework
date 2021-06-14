@@ -37,7 +37,13 @@ Breakpoints are where media queries separate. Declared values or maximums
 - Defaults to `sm`
 - Can't be used by shithole functionalities, but declares which breakpoint tag the mobile and nonmobile devices split. The set tag will be the maximum of the framework mobile styles
 
-#### Internal Sass Functions (All from shithole)
+## Mixins
+
+### **`on-breakpoint($device)`**
+
+defaults to `nonmobile`. valid value is either `nonmobile` or `mobile`. generates media queries for styles
+
+#### Third Party Sass Functions (All from shithole)
 
 NOTE:Since the shithole library is built mobile first, Declared framework sass variable values are set as the maximum value of these breakpoints, but using their tags with shithole functionalities will be interpretted as the corresponding min value of the breakpoint.
 
