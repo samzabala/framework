@@ -69,7 +69,7 @@ Works with Libsass and Compass
 - [Tooltip](docs/sections/components/tooltip.md)
 - [Toolbar](docs/sections/components/toolbar.md)
 - [Thumbnails](docs/sections/components/thumbnail.md)
-- [Well](docs/sections/components/trumbowyg.md)
+- [Well](docs/sections/components/well.md)
 - [Zone](docs/sections/components/zone.md)
 
 ## Other Obscure things

@@ -91,10 +91,6 @@ $prefix: '.thumbnail';
     transform: translate(-50%, -50%);
   }
 
-  &-small,
-  &-medium {
-  }
-
   &#{$prefix}-small {
     font-size: $calculated-thumbnail-small-size;
 

@@ -20,13 +20,23 @@ To make them small, add **`.thumbnail-micro`**
 
 ```html
 <!-- img setup -->
-<a class="thumbnail thumbnail-micro" href="#">
+<a class="thumbnail" href="#">
   <div class="thumbnail-image">
     <img data-src="profile-image.jpg" alt="" />
   </div>
 </a>
 
 <!-- text setup -->
+<a class="thumbnail" href="#">
+  <span class="thumbnail-text"> mf </span>
+</a>
+
+<!-- Small -->
+<a class="thumbnail thumbnail-small" href="#">
+  <span class="thumbnail-text"> mf </span>
+</a>
+
+<!-- Smaller... like micro -->
 <a class="thumbnail thumbnail-micro" href="#">
   <span class="thumbnail-text"> mf </span>
 </a>
