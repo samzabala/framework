@@ -61,6 +61,7 @@ NOTE:Since the shithole library is built mobile first, Declared framework sass v
 create media queries based on mobile split
 
 ###### Parameters
+
 - @param $mobile-tag: 'nonmobile' !default | string | device to use. only takes `mobile` or `nonmobile`
 
 ```scss
@@ -68,7 +69,6 @@ create media queries based on mobile split
   //styles for mobile devices
 }
 ```
-
 
 #### Shithole utilities
 

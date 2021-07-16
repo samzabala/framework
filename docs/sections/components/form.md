@@ -171,7 +171,6 @@ This styles an input field as a field for single line input.... uuhhhhhh yea
   </tbody>
 </table>
 
-
 ### **`.input-select`**
 
 ![](../images/../../images/input-select.png)
@@ -310,7 +309,6 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
   </tbody>
 </table>
 
-
 ### **`.input-multiple-line`**
 
 ![](../images/../../images/input-multiple-line.png)
@@ -353,7 +351,6 @@ The cat was playing in the garden.</textarea
     </tr>
   </tbody>
 </table>
-
 
 ##### Input tags
 

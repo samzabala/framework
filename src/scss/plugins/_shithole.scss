@@ -190,7 +190,7 @@ $br-tag-list: (
     $only: 'only';
   }
 
-  @if $media-string != '' {
+  @if $media != '' {
     $media-string: #{$media + ' and'};
   }
 
