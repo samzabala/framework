@@ -2301,7 +2301,7 @@ $keyframe-instance: 1;
   $opts: map-merge($defaults, $args);
   &,
   & > * {
-    @include gradient(map-get($opts, type-set));
+    @include type-set(map-get($opts, type-set));
     @supports not (-webkit-background-clip: text) {
       background: transparent;
       color: inherit;
