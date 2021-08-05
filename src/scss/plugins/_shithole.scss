@@ -2293,6 +2293,29 @@ $keyframe-instance: 1;
   }
 }
 
+@mixin gradient-text($args:()) {
+  $defaults: (
+    gradient: (),
+    type-set: ()
+  );
+  $opts: map-merge($defaults, $args);
+  &,
+  & > * {
+    @include gradient(map-get($opts, type-set));
+    @supports not (-webkit-background-clip: text) {
+      background: transparent;
+      color: inherit;
+    }
+    @supports (-webkit-background-clip: text) {
+      color: transparent;
+      @include gradient(map-get($opts, gradient));
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+  }
+}
+
 //arrow but triangols by border
 @mixin arrow-triangle($args: ()) {
   $defaults: (
