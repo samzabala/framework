@@ -2296,7 +2296,8 @@ $keyframe-instance: 1;
 @mixin gradient-text($args:()) {
   $defaults: (
     gradient: (),
-    type-set: ()
+    type-set: (),
+    add-inverse-fallback: true,
   );
   $opts: map-merge($defaults, $args);
 
@@ -2310,6 +2311,14 @@ $keyframe-instance: 1;
       * {
         background: transparent;
       }
+    }
+
+    .theme-inverse & {
+      background: transparent;
+      color: inherit;
+      background-clip: unset;
+      -webkit-text-fill-color: unset;
+      -webkit-background-clip: unset;
     }
 
     &,
