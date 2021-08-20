@@ -2293,7 +2293,7 @@ $keyframe-instance: 1;
   }
 }
 
-@mixin gradient-text($args:()) {
+@mixin gradient-text($args: ()) {
   $defaults: (
     gradient: (),
     type-set: (),
@@ -2306,7 +2306,7 @@ $keyframe-instance: 1;
   @if map-get($opts, gradient) {
     & > * {
       font: inherit;
-      color:inherit;
+      color: inherit;
 
       * {
         background: transparent;
@@ -2335,7 +2335,7 @@ $keyframe-instance: 1;
         -webkit-background-clip: text;
       }
     }
-}
+  }
 }
 
 //arrow but triangols by border

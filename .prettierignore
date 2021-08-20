@@ -1,2 +1,5 @@
 **/dist/
 **/static/
+**/plugins/
+framework.*.scss
+framework.scss
