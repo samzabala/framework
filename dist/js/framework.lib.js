@@ -4275,7 +4275,7 @@
         if (FwComponent.isDisabled(e.target)) {
           e.preventDefault();
         } else if (!FwComponent.isDynamic(e.target)) {
-          if (!e.target.closest("[data-toggle-" + TOGGLE_MODE_ON + "]") && !e.target.closest("[data-toggle-" + TOGGLE_MODE_OFF + "]") && !e.target.closest("." + COMPONENT_CLASS$3)) {
+          if (!e.target.closest("[data-toggle-" + TOGGLE_MODE_ON + "]") && !e.target.closest("[data-toggle-" + TOGGLE_MODE_OFF + "]") && !e.target.closest("[data-toggle-" + TOGGLE_MODE + "]") && !e.target.closest("." + COMPONENT_CLASS$3)) {
             Switch.purge();
           }
         }

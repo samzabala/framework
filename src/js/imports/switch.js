@@ -181,6 +181,7 @@ class Switch extends FwComponent {
         if (
           !e.target.closest(`[data-toggle-${TOGGLE_MODE_ON}]`) &&
           !e.target.closest(`[data-toggle-${TOGGLE_MODE_OFF}]`) &&
+          !e.target.closest(`[data-toggle-${TOGGLE_MODE}]`) &&
           !e.target.closest(`.${COMPONENT_CLASS}`)
         ) {
           Switch.purge();
