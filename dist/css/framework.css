@@ -6646,6 +6646,7 @@ hr.dropdown-separator {
   box-shadow: 0px 3px 10px -6px var(--fw-color-base);
   z-index: 2;
   z-index: 9999;
+  pointer-events: auto;
 }
 .theme-inverse .tooltip {
   background: var(--fw-theme-background);

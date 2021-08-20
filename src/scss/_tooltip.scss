@@ -15,6 +15,7 @@ $prefix: '.tooltip';
     $tooltip-box-shadow
   );
   z-index: $z-index-tooltip;
+  pointer-events: none;
 
   &:not(.active) {
     @include dump-styles(hide-js-friendly);
