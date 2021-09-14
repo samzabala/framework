@@ -215,11 +215,11 @@
 .background-gradient {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .background-gradient, .background-gradient-45, .background-gradient-90, .background-gradient-135, .background-gradient-180, .background-gradient-225, .background-gradient-270, .background-gradient-315 {
@@ -236,9 +236,9 @@
 .background-gradient-45-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
   background-image: linear-gradient(45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -253,11 +253,11 @@
 .background-gradient-90-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .theme-inverse .background-gradient-135-inverse, .background-gradient-135,
@@ -270,11 +270,11 @@
 .background-gradient-135-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-45deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .theme-inverse .background-gradient-180-inverse, .background-gradient-180,
@@ -287,11 +287,11 @@
 .background-gradient-180-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-90deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .theme-inverse .background-gradient-225-inverse, .background-gradient-225,
@@ -304,11 +304,11 @@
 .background-gradient-225-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-135deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .theme-inverse .background-gradient-270-inverse, .background-gradient-270,
@@ -321,11 +321,11 @@
 .background-gradient-270-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(360deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(360deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-180deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(270deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .theme-inverse .background-gradient-315-inverse, .background-gradient-315,
@@ -338,11 +338,11 @@
 .background-gradient-315-toggle.open {
   background-color: var(--fw-gradient-start)  !important;
   /* Old browsers */
-  background-image: -moz-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -moz-linear-gradient(405deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* FF3.6-15 */
-  background-image: -webkit-linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: -webkit-linear-gradient(405deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* Chrome10-25,Safari5.1-6 */
-  background-image: linear-gradient(-225deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+  background-image: linear-gradient(315deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 .theme-inverse .background-inherit-inverse, .background-inherit,

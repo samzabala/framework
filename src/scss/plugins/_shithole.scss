@@ -1296,7 +1296,7 @@ $keyframe-instance: 1;
     pseudo: after,
     // duh
     base-size: 15px,
-    color: color(p),
+    color: $brand-color-primary,
     stroke-width: 3px,
     size: 16px,
     zag-number: 5,
@@ -1523,10 +1523,19 @@ $keyframe-instance: 1;
 }
 
 @function internal__gradient_get_vals($type, $angle, $points, $fallback) {
+  $native: #{$type}-gradient((#{$angle}) #{$points});
+  $moz: -moz-#{$type}-gradient(#{$angle} #{$points});
+  $webkit: -webkit-#{$type}-gradient(#{$angle} #{$points});
+
+  @if type-of($angle) == number {
+    $moz: -moz-#{$type}-gradient(#{$angle + 90deg} #{$points});
+    $webkit: -webkit-#{$type}-gradient(#{$angle + 90deg} #{$points});
+  }
+
   @return (
-    native: #{$type}-gradient((#{90deg - $angle}) #{$points}),
-    moz: -moz-#{$type}-gradient(#{$angle} #{$points}),
-    webkit: -webkit-#{$type}-gradient(#{$angle} #{$points}),
+    native: $native,
+    moz: $moz,
+    webkit: $webkit,
     fallback: $fallback
   );
 }
@@ -1584,7 +1593,7 @@ $keyframe-instance: 1;
     auto-set-animation: false,
     gradient: null,
     //@mixin gradient args
-    color: color(p),
+    color: $brand-color-primary,
     animation: (),
     //@mixin animation args
     br: md,
@@ -2313,7 +2322,7 @@ $keyframe-instance: 1;
       }
     }
 
-    .theme-inverse & {
+    .theme-palette-inverse & {
       background: transparent;
       color: inherit;
       background-clip: unset;

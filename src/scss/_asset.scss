@@ -417,7 +417,7 @@ $prefix: '.asset';
         color: var(--fw-color-#{$tag});
         @include gradient(
           (
-            angle: 0deg,
+            angle: 90deg,
             colors: (
               (color: var(--fw-color-#{$tag}), offset: 0),
               (color: var(--fw-color-#{$tag}), offset: 33%),
@@ -624,7 +624,7 @@ $prefix: '.asset';
         height: 100%;
         @include gradient(
           (
-            angle: 90deg,
+            angle: 0deg,
             type: repeating-linear,
             use-shorthand: false,
             colors: (

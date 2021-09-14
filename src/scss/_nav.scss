@@ -206,7 +206,7 @@ $prefix: '.nav';
           (
             color1: $nav-current-gradient-start,
             color2: $nav-current-gradient-end,
-            angle: 0deg,
+            angle: 90deg,
             use-shorthand: false,
           )
         );
@@ -223,7 +223,7 @@ $prefix: '.nav';
             (
               color1: $nav-current-gradient-start,
               color2: $nav-current-gradient-end,
-              angle: 90deg,
+              angle: 0deg,
               use-shorthand: false,
             )
           );
