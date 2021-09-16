@@ -1296,7 +1296,7 @@ $keyframe-instance: 1;
     pseudo: after,
     // duh
     base-size: 15px,
-    color: $brand-color-primary,
+    color: color(p),
     stroke-width: 3px,
     size: 16px,
     zag-number: 5,
@@ -1593,7 +1593,7 @@ $keyframe-instance: 1;
     auto-set-animation: false,
     gradient: null,
     //@mixin gradient args
-    color: $brand-color-primary,
+    color: color(p),
     animation: (),
     //@mixin animation args
     br: md,
