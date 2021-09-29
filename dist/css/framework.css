@@ -6366,7 +6366,7 @@ hr.dropdown-separator {
   border-radius: 5px;
   margin-top: 0.125em;
   margin-bottom: 0.125em;
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   vertical-align: middle;
   max-width: 100%;
