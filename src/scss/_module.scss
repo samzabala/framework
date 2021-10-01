@@ -233,7 +233,8 @@ $prefix: '.module';
 
     @include on-breakpoint(mobile) {
       #{$prefix}-function {
-        display: block;
+        width:100%;
+        display:block;
       }
     }
 

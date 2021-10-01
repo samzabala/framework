@@ -190,8 +190,8 @@ class Modal extends FwComponent {
     return ` ${UIPrefix(COMPONENT_CLASS)}-mode-${this.mode}`;
   }
 
-  static get configDefaults() {
-    const mode = this.mode;
+  static configDefaults(mode) {
+    mode = mode || DEFAULT_NAME;
     return {
       changeHash: true,
       title: '',
@@ -215,7 +215,7 @@ class Modal extends FwComponent {
       align: {
         value: 'left',
         parser: (value) => {
-          if (mode == BOARD_NAME) return value;
+          if (mode == BOARD_NAME && (value == 'left' || value == 'right')) return value;
         },
       },
       resize: {
@@ -334,7 +334,7 @@ class Modal extends FwComponent {
         //custom specific
         // customMarkup: //halat weit
       },
-      Modal.configDefaults
+      Modal.configDefaults(this.mode)
     );
   }
 

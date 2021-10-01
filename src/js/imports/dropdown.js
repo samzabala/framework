@@ -54,7 +54,7 @@ class Dropdown extends FwComponent {
     this._customArgs = null;
   }
 
-  static get configDefaults() {
+  static configDefaults() {
     return {
       width: null,
       maxHeight: null,
@@ -79,7 +79,7 @@ class Dropdown extends FwComponent {
             ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-height`)
             : this._customArgs.maxHeight,
       },
-      Dropdown.configDefaults
+      Dropdown.configDefaults()
     );
   }
 

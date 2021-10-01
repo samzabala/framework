@@ -18,6 +18,10 @@ $mode-class: #{$prefix}-mode-board;
     #{$prefix}-button-wrapper {
       margin-left: auto;
     }
+
+    #{$prefix}-popup {
+      padding-left: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
+    }
   }
   #{$prefix}-align-right & {
     padding-right: $modal-board-padding-spacer;
@@ -25,14 +29,26 @@ $mode-class: #{$prefix}-mode-board;
     #{$prefix}-button-wrapper {
       margin-right: auto;
     }
+
+    #{$prefix}-popup {
+      padding-right: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
+    }
   }
 
   @include on-breakpoint(mobile) {
     #{$prefix}-align-left & {
       padding-left: $modal-board-padding-spacer-mobile;
+
+      #{$prefix}-popup {
+        padding-left: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile});
+      }
     }
     #{$prefix}-align-right & {
       padding-right: $modal-board-padding-spacer-mobile;
+
+      #{$prefix}-popup {
+        padding-right: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile});
+      }
     }
   }
 }

@@ -4582,6 +4582,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 }
 @media (max-width: 1199px) {
   .module-functions .module-function {
+    width: 100%;
     display: block;
   }
 }
@@ -9889,25 +9890,37 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 }
 
 .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
-  padding-left: 20px;
+  padding-left: 30px;
 }
 .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup,
 .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
   margin-left: auto;
 }
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+  padding-left: calc((2.375rem * 0.5) + 20px);
+}
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
-  padding-right: 20px;
+  padding-right: 30px;
 }
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup,
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
   margin-right: auto;
 }
+.modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+  padding-right: calc((2.375rem * 0.5) + 20px);
+}
 @media (max-width: 1199px) {
   .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
-    padding-left: 10px;
+    padding-left: 20px;
+  }
+  .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+    padding-left: calc((2.375rem * 0.5) + 10px);
   }
   .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
-    padding-right: 10px;
+    padding-right: 20px;
+  }
+  .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+    padding-right: calc((2.375rem * 0.5) + 10px);
   }
 }
 
@@ -9921,7 +9934,7 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   overflow: visible;
   top: 0;
   width: 100%;
-  max-width: calc(100% - 20px);
+  max-width: calc(100% - 30px);
   flex-direction: column;
 }
 .modal-ui-mode-board.modal-ui-button-wrapper:before {
@@ -9934,7 +9947,7 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 }
 @media (max-width: 1199px) {
   .modal-ui-mode-board.modal-ui-button-wrapper {
-    max-width: calc(100% - 10px);
+    max-width: calc(100% - 20px);
   }
   .modal-ui-mode-board.modal-ui-button-wrapper:before {
     height: 10px;

@@ -144,7 +144,7 @@ class Tags extends FwComponent {
     }
   }
 
-  static get configDefaults() {
+  static configDefaults() {
     return {
       width: null,
       filter: null,
@@ -177,7 +177,7 @@ class Tags extends FwComponent {
           ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
           : this._customArgs.multipleLinesBreak,
       },
-      Tags.configDefaults
+      Tags.configDefaults()
     );
   }
 

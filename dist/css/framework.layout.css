@@ -4536,6 +4536,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 }
 @media (max-width: 1199px) {
   .module-functions .module-function {
+    width: 100%;
     display: block;
   }
 }

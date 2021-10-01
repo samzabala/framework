@@ -1151,6 +1151,12 @@
       this._customArgs = null;
     };
 
+    Accordion.configDefaults = function configDefaults() {
+      return {
+        changeHash: true
+      };
+    };
+
     _proto._siblicide = function _siblicide() {
       var _this = this;
 
@@ -1272,7 +1278,7 @@
       get: function get() {
         return FwComponent._parseArgs({
           changeHash: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$5 + "-change-hash") : this._customArgs.changeHash
-        }, Accordion.configDefaults);
+        }, Accordion.configDefaults());
       }
     }, {
       key: "_isValidWithinQuery",
@@ -1323,13 +1329,6 @@
       key: "DATA_KEY",
       get: function get() {
         return DATA_KEY$d;
-      }
-    }, {
-      key: "configDefaults",
-      get: function get() {
-        return {
-          changeHash: true
-        };
       }
     }]);
 
@@ -1522,6 +1521,13 @@
       this._customArgs = null;
     };
 
+    Dropdown.configDefaults = function configDefaults() {
+      return {
+        width: null,
+        maxHeight: null
+      };
+    };
+
     _proto.close = function close(elem, triggerer) {
       var _this = this;
 
@@ -1678,7 +1684,7 @@
         return FwComponent._parseArgs({
           width: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-width") : this._customArgs.width,
           maxHeight: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$4 + "-max-height") : this._customArgs.maxHeight
-        }, Dropdown.configDefaults);
+        }, Dropdown.configDefaults());
       }
     }, {
       key: "UIElNavcestor",
@@ -1695,14 +1701,6 @@
         }
       }
     }], [{
-      key: "configDefaults",
-      get: function get() {
-        return {
-          width: null,
-          maxHeight: null
-        };
-      }
-    }, {
       key: "DATA_KEY",
       get: function get() {
         return DATA_KEY$a;
@@ -2038,6 +2036,35 @@
 
       this.UIValue = null;
       this._customArgs = null;
+    };
+
+    Calendar.configDefaults = function configDefaults() {
+      return {
+        startDay: {
+          value: 0,
+          parser: function parser(value) {
+            return parseInt(value) % 7;
+          }
+        },
+        // su,mo,tu,we,th,fr,sa,
+        min: null,
+        max: null,
+        yearSpan: {
+          value: 0,
+          parser: function parser(value) {
+            if (parseInt(value) <= 0) {
+              value = 0;
+            }
+
+            return value;
+          }
+        },
+        disabledDates: '',
+        //yyyy-mm-dd,weekends,past,future
+        textInput: false,
+        monthSkip: true,
+        yearSkip: false
+      };
     };
 
     _proto.reset = function reset() {
@@ -2472,7 +2499,7 @@
           textInput: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-text-input") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-text-input") : this._customArgs.textInput,
           monthSkip: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-month-skip") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-month-skip") : this._customArgs.monthSkip,
           yearSkip: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-year-skip") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$3 + "-year-skip") : this._customArgs.yearSkip
-        }, Calendar.configDefaults);
+        }, Calendar.configDefaults());
       }
     }, {
       key: "_calendar",
@@ -2489,36 +2516,6 @@
         return toReturn;
       }
     }], [{
-      key: "configDefaults",
-      get: function get() {
-        return {
-          startDay: {
-            value: 0,
-            parser: function parser(value) {
-              return parseInt(value) % 7;
-            }
-          },
-          // su,mo,tu,we,th,fr,sa,
-          min: null,
-          max: null,
-          yearSpan: {
-            value: 0,
-            parser: function parser(value) {
-              if (parseInt(value) <= 0) {
-                value = 0;
-              }
-
-              return value;
-            }
-          },
-          disabledDates: '',
-          //yyyy-mm-dd,weekends,past,future
-          textInput: false,
-          monthSkip: true,
-          yearSkip: false
-        };
-      }
-    }, {
       key: "DATA_KEY",
       get: function get() {
         return DATA_KEY$9;
@@ -2653,6 +2650,16 @@
         FwDom.scrollToElem(this.UIRoot, this.UIInput, 'x');
         FwDom.scrollToElem(this.UIRoot, this.UIInput, 'y');
       }
+    };
+
+    Tags.configDefaults = function configDefaults() {
+      return {
+        width: null,
+        filter: null,
+        onKeyUp: null,
+        multipleLines: false,
+        multipleLinesBreak: false
+      };
     };
 
     Tags.toArr = function toArr(value, returnsWithInput) {
@@ -3177,7 +3184,7 @@
           filter: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-filter") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-filter") : this._customArgs.filter,
           multipleLines: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines") : this._customArgs.multipleLines,
           multipleLinesBreak: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") : this._customArgs.multipleLinesBreak
-        }, Tags.configDefaults);
+        }, Tags.configDefaults());
       }
     }], [{
       key: "DATA_KEY",
@@ -3188,17 +3195,6 @@
       key: "__is",
       get: function get() {
         return INPUT_STRING;
-      }
-    }, {
-      key: "configDefaults",
-      get: function get() {
-        return {
-          width: null,
-          filter: null,
-          onKeyUp: null,
-          multipleLines: false,
-          multipleLinesBreak: false
-        };
       }
     }]);
 
@@ -3577,6 +3573,48 @@
       return mode ? CURRENT_MODAL_INSTANCE[mode] : CURRENT_MODAL_INSTANCE;
     };
 
+    Modal.configDefaults = function configDefaults(mode) {
+      mode = mode || DEFAULT_NAME;
+      return {
+        changeHash: true,
+        title: '',
+        close: {
+          value: true,
+          parser: function parser(value) {
+            return mode !== FULLSCREEN_NAME ? value : false;
+          }
+        },
+        disableOverlay: {
+          value: true,
+          parser: function parser(value) {
+            return mode !== FULLSCREEN_NAME ? value : false;
+          }
+        },
+        width: null,
+        callback: null,
+        classes: '',
+        closeClasses: '',
+        align: {
+          value: 'left',
+          parser: function parser(value) {
+            if (mode == BOARD_NAME && (value == 'left' || value == 'right')) return value;
+          }
+        },
+        resize: {
+          value: false,
+          parser: function parser(value) {
+            if (mode == BOARD_NAME) return value;
+          }
+        },
+        resizeClasses: {
+          value: null,
+          parser: function parser(value) {
+            if (mode == BOARD_NAME) return value;
+          }
+        }
+      };
+    };
+
     _proto.toggle = function toggle(elem) {
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
@@ -3871,7 +3909,7 @@
           resizeClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize-classes") : this._customArgs.resizeClasses //custom specific
           // customMarkup: //halat weit
 
-        }, Modal.configDefaults);
+        }, Modal.configDefaults(this.mode));
       }
     }, {
       key: "_markup",
@@ -3923,49 +3961,6 @@
         return html;
       }
     }], [{
-      key: "configDefaults",
-      get: function get() {
-        var mode = this.mode;
-        return {
-          changeHash: true,
-          title: '',
-          close: {
-            value: true,
-            parser: function parser(value) {
-              return mode !== FULLSCREEN_NAME ? value : false;
-            }
-          },
-          disableOverlay: {
-            value: true,
-            parser: function parser(value) {
-              return mode !== FULLSCREEN_NAME ? value : false;
-            }
-          },
-          width: null,
-          callback: null,
-          classes: '',
-          closeClasses: '',
-          align: {
-            value: 'left',
-            parser: function parser(value) {
-              if (mode == BOARD_NAME) return value;
-            }
-          },
-          resize: {
-            value: false,
-            parser: function parser(value) {
-              if (mode == BOARD_NAME) return value;
-            }
-          },
-          resizeClasses: {
-            value: null,
-            parser: function parser(value) {
-              if (mode == BOARD_NAME) return value;
-            }
-          }
-        };
-      }
-    }, {
       key: "DATA_KEY",
       get: function get() {
         return DATA_KEY$5;
@@ -4436,6 +4431,25 @@
       this._customArgs = null;
     };
 
+    Tooltip.configDefaults = function configDefaults() {
+      return {
+        placement: 'left',
+        badge: false,
+        badgeBg: 'primary',
+        badgeSize: '',
+        classes: '',
+        inverse: false,
+        size: '',
+        content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
+        centerX: false,
+        centerY: false,
+        x: false,
+        y: false,
+        width: null,
+        allowInteraction: false
+      };
+    };
+
     _proto._markup = function _markup() {
       var html = '';
 
@@ -4624,7 +4638,7 @@
           y: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-y") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-y") : this._customArgs.y,
           width: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-width") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-width") : this._customArgs.width,
           allowInteraction: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME + "-allow-interaction") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME + "-allow-interaction") : this._customArgs.allowInteraction
-        }, Tooltip.configDefaults);
+        }, Tooltip.configDefaults());
       }
     }, {
       key: "elementOffset",
@@ -4776,26 +4790,6 @@
         CURRENT_TOOLTIP_INSTANCE.UI = obj.UI;
         CURRENT_TOOLTIP_INSTANCE.args = obj.args;
         CURRENT_TOOLTIP_INSTANCE.element = obj.element;
-      }
-    }, {
-      key: "configDefaults",
-      get: function get() {
-        return {
-          placement: 'left',
-          badge: false,
-          badgeBg: 'primary',
-          badgeSize: '',
-          classes: '',
-          inverse: false,
-          size: '',
-          content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
-          centerX: false,
-          centerY: false,
-          x: false,
-          y: false,
-          width: null,
-          allowInteraction: false
-        };
       }
     }, {
       key: "DATA_KEY",

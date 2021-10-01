@@ -117,7 +117,7 @@ class Calendar extends FwComponent {
     return this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input input`);
   }
 
-  static get configDefaults() {
+  static configDefaults() {
     return {
       startDay: {
         value: 0,
@@ -178,7 +178,7 @@ class Calendar extends FwComponent {
           ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-year-skip`)
           : this._customArgs.yearSkip,
       },
-      Calendar.configDefaults
+      Calendar.configDefaults()
     );
   }
 

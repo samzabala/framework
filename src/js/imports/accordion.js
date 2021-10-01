@@ -56,7 +56,7 @@ class Accordion extends FwComponent {
     return DATA_KEY;
   }
 
-  static get configDefaults() {
+  static configDefaults() {
     return {
       changeHash: true,
     };
@@ -73,7 +73,7 @@ class Accordion extends FwComponent {
             ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-change-hash`)
             : this._customArgs.changeHash,
       },
-      Accordion.configDefaults
+      Accordion.configDefaults()
     );
   }
 

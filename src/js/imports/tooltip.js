@@ -77,7 +77,7 @@ class Tooltip extends FwComponent {
     return Tooltip.current.UI;
   }
 
-  static get configDefaults() {
+  static configDefaults() {
     return {
       placement: 'left',
       badge: false,
@@ -146,7 +146,7 @@ class Tooltip extends FwComponent {
           ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-allow-interaction`)
           : this._customArgs.allowInteraction,
       },
-      Tooltip.configDefaults
+      Tooltip.configDefaults()
     );
   }
 
