@@ -4546,14 +4546,6 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   position: relative;
   display: inline-flex;
 }
-@media (min-width: 1200px) {
-  .module-function {
-    margin-right: 5px;
-  }
-  .module-function:last-child {
-    margin-right: 0;
-  }
-}
 @media (max-width: 1199px) {
   .module-function {
     display: flex;
@@ -4576,8 +4568,11 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   margin-bottom: 5px;
 }
 @media (min-width: 1200px) {
-  .module-functions .module-function:nth-child(n+2) {
-    margin-left: 0.75rem;
+  .module-functions .module-function {
+    margin-right: 5px;
+  }
+  .module-functions .module-function:last-child {
+    margin-right: 0;
   }
 }
 @media (max-width: 1199px) {
@@ -9889,38 +9884,38 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   z-index: 9991;
 }
 
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
-  padding-left: 30px;
-}
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup,
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
-  margin-left: auto;
-}
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-  padding-left: calc((2.375rem * 0.5) + 20px);
-}
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
-  padding-right: 30px;
+  padding-left: 30px;
 }
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup,
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
-  margin-right: auto;
+  margin-left: auto;
 }
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-  padding-right: calc((2.375rem * 0.5) + 20px);
+  padding-left: calc((2.375rem * 0.5) + 20px);
+}
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
+  padding-right: 30px;
+}
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup,
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
+  margin-right: auto;
+}
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+  padding-right: calc( (2.375rem * 0.5) + 20px );
 }
 @media (max-width: 1199px) {
-  .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
+  .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
     padding-left: 20px;
   }
-  .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-    padding-left: calc((2.375rem * 0.5) + 10px);
+  .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+    padding-left: calc( (2.375rem * 0.5) + 10px );
   }
-  .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
+  .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
     padding-right: 20px;
   }
-  .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-    padding-right: calc((2.375rem * 0.5) + 10px);
+  .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+    padding-right: calc( (2.375rem * 0.5) + 10px );
   }
 }
 
@@ -9953,11 +9948,11 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
     height: 10px;
   }
 }
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-button-wrapper {
+.modal-ui-align-right .modal-ui-mode-board.modal-ui-button-wrapper {
   right: 0;
   align-items: flex-start;
 }
-.modal-ui-align-right .modal-ui-mode-board.modal-ui-button-wrapper {
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-button-wrapper {
   left: 0;
   align-items: flex-end;
 }
@@ -9986,11 +9981,11 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 .theme-inverse .modal-ui-mode-board.modal-ui-button-default {
   background: var(--fw-theme-background);
 }
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-button-default {
+.modal-ui-align-right .modal-ui-mode-board.modal-ui-button-default {
   left: 0;
   transform: translateX(-50%);
 }
-.modal-ui-align-right .modal-ui-mode-board.modal-ui-button-default {
+.modal-ui-align-left .modal-ui-mode-board.modal-ui-button-default {
   right: 0;
   transform: translateX(50%);
 }

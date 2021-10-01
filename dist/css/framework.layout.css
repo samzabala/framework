@@ -4500,14 +4500,6 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   position: relative;
   display: inline-flex;
 }
-@media (min-width: 1200px) {
-  .module-function {
-    margin-right: 5px;
-  }
-  .module-function:last-child {
-    margin-right: 0;
-  }
-}
 @media (max-width: 1199px) {
   .module-function {
     display: flex;
@@ -4530,8 +4522,11 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   margin-bottom: 5px;
 }
 @media (min-width: 1200px) {
-  .module-functions .module-function:nth-child(n+2) {
-    margin-left: 0.75rem;
+  .module-functions .module-function {
+    margin-right: 5px;
+  }
+  .module-functions .module-function:last-child {
+    margin-right: 0;
   }
 }
 @media (max-width: 1199px) {

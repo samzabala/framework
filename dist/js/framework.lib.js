@@ -3595,7 +3595,7 @@
         classes: '',
         closeClasses: '',
         align: {
-          value: 'left',
+          value: 'right',
           parser: function parser(value) {
             if (mode == BOARD_NAME && (value == 'left' || value == 'right')) return value;
           }
