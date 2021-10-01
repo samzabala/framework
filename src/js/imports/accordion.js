@@ -158,26 +158,23 @@ class Accordion extends FwComponent {
     }
 
     triggerer = triggerer || this.triggerer;
-
-    if (this._isValidWithinQuery) {
-      if (!this.UIGroot || this._isWithinAllowNoActive) {
-        super.runCycle(
-          EVENT_BEFORE_CLOSE,
-          EVENT_CLOSE,
-          EVENT_AFTER_CLOSE,
-          () => {
-            triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
-            this._probablyToggle.forEach((toggle) => {
-              toggle.classList.remove(ACTIVATED_CLASS);
-            });
-            element.classList.remove(ACTIVATED_CLASS);
-            if (this.args.changeHash && this._id) {
-              UIChangeHash('');
-            }
-          },
-          element
-        );
-      }
+    if (!this.UIGroot || this._isWithinAllowNoActive) {
+      super.runCycle(
+        EVENT_BEFORE_CLOSE,
+        EVENT_CLOSE,
+        EVENT_AFTER_CLOSE,
+        () => {
+          triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
+          this._probablyToggle.forEach((toggle) => {
+            toggle.classList.remove(ACTIVATED_CLASS);
+          });
+          element.classList.remove(ACTIVATED_CLASS);
+          if (this.args.changeHash && this._id) {
+            UIChangeHash('');
+          }
+        },
+        element
+      );
     }
   }
 
@@ -190,25 +187,23 @@ class Accordion extends FwComponent {
 
     triggerer = triggerer || this.triggerer;
 
-    if (this._isValidWithinQuery) {
-      super.runCycle(
-        EVENT_BEFORE_OPEN,
-        EVENT_OPEN,
-        EVENT_AFTER_OPEN,
-        () => {
-          this._siblicide();
-          triggerer && triggerer.classList.add(ACTIVATED_CLASS);
-          this._probablyToggle.forEach((toggle) => {
-            toggle.classList.add(ACTIVATED_CLASS);
-          });
-          element.classList.add(ACTIVATED_CLASS);
-          if (this.args.changeHash && this._id) {
-            UIChangeHash(this._id);
-          }
-        },
-        element
-      );
-    }
+    super.runCycle(
+      EVENT_BEFORE_OPEN,
+      EVENT_OPEN,
+      EVENT_AFTER_OPEN,
+      () => {
+        this._siblicide();
+        triggerer && triggerer.classList.add(ACTIVATED_CLASS);
+        this._probablyToggle.forEach((toggle) => {
+          toggle.classList.add(ACTIVATED_CLASS);
+        });
+        element.classList.add(ACTIVATED_CLASS);
+        if (this.args.changeHash && this._id) {
+          UIChangeHash(this._id);
+        }
+      },
+      element
+    );
   }
 
   toggle(elem, triggerer) {
@@ -220,9 +215,9 @@ class Accordion extends FwComponent {
     triggerer = triggerer || this.triggerer;
 
     if (element.classList.contains(ACTIVATED_CLASS)) {
-      this.close(elem, triggerer);
+      this.close(element, triggerer);
     } else {
-      this.open(elem, triggerer);
+      this.open(element, triggerer);
     }
   }
 

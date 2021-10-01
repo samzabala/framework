@@ -1175,22 +1175,20 @@
 
       triggerer = triggerer || this.triggerer;
 
-      if (this._isValidWithinQuery) {
-        if (!this.UIGroot || this._isWithinAllowNoActive) {
-          _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CLOSE$2, EVENT_CLOSE$2, EVENT_AFTER_CLOSE$2, function () {
-            triggerer && triggerer.classList.remove(ACTIVATED_CLASS$7);
+      if (!this.UIGroot || this._isWithinAllowNoActive) {
+        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CLOSE$2, EVENT_CLOSE$2, EVENT_AFTER_CLOSE$2, function () {
+          triggerer && triggerer.classList.remove(ACTIVATED_CLASS$7);
 
-            _this2._probablyToggle.forEach(function (toggle) {
-              toggle.classList.remove(ACTIVATED_CLASS$7);
-            });
+          _this2._probablyToggle.forEach(function (toggle) {
+            toggle.classList.remove(ACTIVATED_CLASS$7);
+          });
 
-            element.classList.remove(ACTIVATED_CLASS$7);
+          element.classList.remove(ACTIVATED_CLASS$7);
 
-            if (_this2.args.changeHash && _this2._id) {
-              UIChangeHash('');
-            }
-          }, element);
-        }
+          if (_this2.args.changeHash && _this2._id) {
+            UIChangeHash('');
+          }
+        }, element);
       }
     };
 
@@ -1205,23 +1203,21 @@
 
       triggerer = triggerer || this.triggerer;
 
-      if (this._isValidWithinQuery) {
-        _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OPEN$1, EVENT_OPEN$1, EVENT_AFTER_OPEN$1, function () {
-          _this3._siblicide();
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OPEN$1, EVENT_OPEN$1, EVENT_AFTER_OPEN$1, function () {
+        _this3._siblicide();
 
-          triggerer && triggerer.classList.add(ACTIVATED_CLASS$7);
+        triggerer && triggerer.classList.add(ACTIVATED_CLASS$7);
 
-          _this3._probablyToggle.forEach(function (toggle) {
-            toggle.classList.add(ACTIVATED_CLASS$7);
-          });
+        _this3._probablyToggle.forEach(function (toggle) {
+          toggle.classList.add(ACTIVATED_CLASS$7);
+        });
 
-          element.classList.add(ACTIVATED_CLASS$7);
+        element.classList.add(ACTIVATED_CLASS$7);
 
-          if (_this3.args.changeHash && _this3._id) {
-            UIChangeHash(_this3._id);
-          }
-        }, element);
-      }
+        if (_this3.args.changeHash && _this3._id) {
+          UIChangeHash(_this3._id);
+        }
+      }, element);
     };
 
     _proto.toggle = function toggle(elem, triggerer) {
@@ -1234,9 +1230,9 @@
       triggerer = triggerer || this.triggerer;
 
       if (element.classList.contains(ACTIVATED_CLASS$7)) {
-        this.close(elem, triggerer);
+        this.close(element, triggerer);
       } else {
-        this.open(elem, triggerer);
+        this.open(element, triggerer);
       }
     };
 
