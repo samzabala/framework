@@ -141,7 +141,6 @@ $prefix: '.input';
   }
 }
 
-
 @at-root %for-form-wrapper {
   & {
     max-width: 100%;
@@ -162,13 +161,13 @@ $prefix: '.input';
   &-block {
     display: flex;
     padding-right: 0;
-    width:100%;
+    width: 100%;
 
     &-mobile {
       @include on-breakpoint(mobile) {
         display: flex;
         padding-right: 0;
-        width:100%;
+        width: 100%;
       }
     }
   }

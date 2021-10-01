@@ -31,7 +31,9 @@ $mode-class: #{$prefix}-mode-board;
     }
 
     #{$prefix}-popup {
-      padding-right: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
+      padding-right: calc(
+        (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x}
+      );
     }
   }
 
@@ -40,14 +42,18 @@ $mode-class: #{$prefix}-mode-board;
       padding-left: $modal-board-padding-spacer-mobile;
 
       #{$prefix}-popup {
-        padding-left: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile});
+        padding-left: calc(
+          (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
+        );
       }
     }
     #{$prefix}-align-right & {
       padding-right: $modal-board-padding-spacer-mobile;
 
       #{$prefix}-popup {
-        padding-right: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile});
+        padding-right: calc(
+          (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
+        );
       }
     }
   }
