@@ -4546,10 +4546,19 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   position: relative;
   display: inline-flex;
 }
+@media (min-width: 1200px) {
+  .module-function {
+    margin-right: 5px;
+  }
+  .module-function:last-child {
+    margin-right: 0;
+  }
+}
 @media (max-width: 1199px) {
   .module-function {
     display: flex;
-    max-width: 100%;
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 
@@ -8676,6 +8685,41 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   overflow: hidden !important;
 }
 
+.input-wrapper.input-wrapper-vertical, .input-wrapper.input-wrapper-horizontal {
+  max-width: 100%;
+  position: relative;
+  display: inline-flex;
+  padding-right: 2rem;
+}
+.input-wrapper.input-wrapper-horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+.input-wrapper.input-wrapper-vertical {
+  flex-direction: column;
+}
+.input-wrapper.input-wrapper-block {
+  display: flex;
+  padding-right: 0;
+  width: 100%;
+}
+@media (max-width: 1199px) {
+  .input-wrapper.input-wrapper-block-mobile {
+    display: flex;
+    padding-right: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .input-wrapper.input-wrapper-responsive {
+    flex-direction: column;
+  }
+  .input-wrapper.input-wrapper-responsive > .input-tags-ui, .input-wrapper.input-wrapper-responsive > .input-calendar-ui, .input-wrapper.input-wrapper-responsive > .input-multiple-line, .input-wrapper.input-wrapper-responsive > .input-select, .input-wrapper.input-wrapper-responsive > .input-single-line {
+    width: 100%;
+  }
+}
+
 /*** input-label ***/
 .input-label {
   font-size: 0.875rem;
@@ -9127,32 +9171,6 @@ select[multiple].input-single-line, select[multiple].input-select {
   .input-group.input-group-responsive > .input-tags-ui:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-responsive > .input-calendar-ui:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-responsive > .input-single-line:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-responsive > .input-select:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active), .input-group.input-group-responsive > .input-multiple-line:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active),
 .input-group.input-group-responsive .btn:nth-child(n+2):not(.focus):not(:focus):not(.active):not(:active) {
     border-top-color: var(--fw-color-neutral-alpha-3);
-  }
-}
-.input-wrapper.input-wrapper-vertical, .input-wrapper.input-wrapper-horizontal {
-  max-width: 100%;
-  position: relative;
-  display: inline-flex;
-  padding-right: 2rem;
-}
-.input-wrapper.input-wrapper-horizontal {
-  flex-direction: row;
-  align-items: flex-start;
-}
-.input-wrapper.input-wrapper-vertical {
-  flex-direction: column;
-}
-.input-wrapper.input-wrapper-block {
-  display: flex;
-  padding-right: 0;
-}
-
-@media (max-width: 1199px) {
-  .input-wrapper.input-wrapper-responsive {
-    flex-direction: column;
-  }
-  .input-wrapper.input-wrapper-responsive > .input-tags-ui, .input-wrapper.input-wrapper-responsive > .input-calendar-ui, .input-wrapper.input-wrapper-responsive > .input-single-line, .input-wrapper.input-wrapper-responsive > .input-select, .input-wrapper.input-wrapper-responsive > .input-multiple-line {
-    width: 100%;
   }
 }
 .input-label.input-primary,

@@ -4500,10 +4500,19 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   position: relative;
   display: inline-flex;
 }
+@media (min-width: 1200px) {
+  .module-function {
+    margin-right: 5px;
+  }
+  .module-function:last-child {
+    margin-right: 0;
+  }
+}
 @media (max-width: 1199px) {
   .module-function {
     display: flex;
-    max-width: 100%;
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 

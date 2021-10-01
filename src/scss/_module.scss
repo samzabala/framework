@@ -192,9 +192,18 @@ $prefix: '.module';
     position: relative;
     display: inline-flex;
 
+    @include on-breakpoint(nonmobile){
+      margin-right: $module-gutter-between * 0.5;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
     @include on-breakpoint(mobile) {
       display: flex;
-      max-width: 100%;
+      width: 100%;
+      margin-bottom: $module-gutter-between;
     }
   }
 

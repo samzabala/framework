@@ -140,3 +140,69 @@ $prefix: '.input';
     @extend %for-form-input-in-group;
   }
 }
+
+
+@at-root %for-form-wrapper {
+  & {
+    max-width: 100%;
+    position: relative;
+    display: inline-flex;
+    padding-right: 2rem;
+  }
+
+  &-horizontal {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &-vertical {
+    flex-direction: column;
+  }
+
+  &-block {
+    display: flex;
+    padding-right: 0;
+    width:100%;
+
+    &-mobile {
+      @include on-breakpoint(mobile) {
+        display: flex;
+        padding-right: 0;
+        width:100%;
+      }
+    }
+  }
+}
+
+#{$prefix}-wrapper {
+  & {
+  }
+
+  &#{&}-horizontal {
+    @extend %for-form-wrapper !optional;
+    @extend %for-form-wrapper-horizontal !optional;
+  }
+
+  &#{&}-vertical {
+    @extend %for-form-wrapper !optional;
+    @extend %for-form-wrapper-vertical !optional;
+  }
+
+  &#{&}-block {
+    @extend %for-form-wrapper-block !optional;
+
+    &-mobile {
+      @extend %for-form-wrapper-block-mobile !optional;
+    }
+  }
+
+  &#{&}-responsive {
+    @include on-breakpoint(mobile) {
+      flex-direction: column;
+
+      > %for-form-input-boxy {
+        width: 100%;
+      }
+    }
+  }
+}

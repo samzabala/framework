@@ -617,60 +617,6 @@ $prefix: '.input';
     }
   }
 
-  @at-root %for-form-wrapper {
-    & {
-      max-width: 100%;
-      position: relative;
-      display: inline-flex;
-      padding-right: 2rem;
-    }
-
-    &-horizontal {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-
-    &-vertical {
-      flex-direction: column;
-    }
-
-    &-block {
-      display: flex;
-      padding-right: 0;
-    }
-  }
-
-  &-wrapper {
-    & {
-    }
-
-    &#{&}-horizontal {
-      @extend %for-form-wrapper !optional;
-      @extend %for-form-wrapper-horizontal !optional;
-    }
-
-    &#{&}-vertical {
-      @extend %for-form-wrapper !optional;
-      @extend %for-form-wrapper-vertical !optional;
-    }
-
-    &#{&}-block {
-      @extend %for-form-wrapper-block !optional;
-    }
-
-    &#{&}-responsive {
-      @include on-breakpoint(mobile) {
-        flex-direction: column;
-
-        > %for-form-input-boxy {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  //components of component
-
   //color
   @each $tag, $color in $calculated-brand-color-declarations-for-components {
     @at-root %for-form-label-color-#{$tag} {
