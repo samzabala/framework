@@ -189,7 +189,7 @@ classes to add to the generated `.modal-ui-close`
 
 ### **`data-close-align`** - `args.align`
 
-Dafaults to `left`
+Dafaults to `right`
 
 sets where the board mofal is aligned to
 

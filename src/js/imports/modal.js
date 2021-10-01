@@ -213,7 +213,7 @@ class Modal extends FwComponent {
       closeClasses: '',
 
       align: {
-        value: 'left',
+        value: 'right',
         parser: (value) => {
           if (mode == BOARD_NAME && (value == 'left' || value == 'right')) return value;
         },

@@ -12,7 +12,7 @@ $mode-class: #{$prefix}-mode-board;
 
 #{$mode-class}#{$prefix}-wrapper {
   @extend %for-modal-wrapper-background !optional;
-  #{$prefix}-align-left & {
+  #{$prefix}-align-right & {
     padding-left: $modal-board-padding-spacer;
     #{$prefix}-popup,
     #{$prefix}-button-wrapper {
@@ -23,7 +23,7 @@ $mode-class: #{$prefix}-mode-board;
       padding-left: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
     }
   }
-  #{$prefix}-align-right & {
+  #{$prefix}-align-left & {
     padding-right: $modal-board-padding-spacer;
     #{$prefix}-popup,
     #{$prefix}-button-wrapper {
@@ -38,7 +38,7 @@ $mode-class: #{$prefix}-mode-board;
   }
 
   @include on-breakpoint(mobile) {
-    #{$prefix}-align-left & {
+    #{$prefix}-align-right & {
       padding-left: $modal-board-padding-spacer-mobile;
 
       #{$prefix}-popup {
@@ -47,7 +47,7 @@ $mode-class: #{$prefix}-mode-board;
         );
       }
     }
-    #{$prefix}-align-right & {
+    #{$prefix}-align-left & {
       padding-right: $modal-board-padding-spacer-mobile;
 
       #{$prefix}-popup {
@@ -90,12 +90,12 @@ $mode-class: #{$prefix}-mode-board;
       }
     }
 
-    #{$prefix}-align-left & {
+    #{$prefix}-align-right & {
       right: 0;
       align-items: flex-start;
     }
 
-    #{$prefix}-align-right & {
+    #{$prefix}-align-left & {
       left: 0;
       align-items: flex-end;
     }
@@ -130,12 +130,12 @@ $mode-class: #{$prefix}-mode-board;
         background: $modal-background-inverse;
       }
 
-      #{$prefix}-align-left & {
+      #{$prefix}-align-right & {
         left: 0;
         transform: translateX(-50%);
       }
 
-      #{$prefix}-align-right & {
+      #{$prefix}-align-left & {
         right: 0;
         transform: translateX(50%);
       }

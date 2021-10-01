@@ -192,14 +192,6 @@ $prefix: '.module';
     position: relative;
     display: inline-flex;
 
-    @include on-breakpoint(nonmobile) {
-      margin-right: $module-gutter-between * 0.5;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-
     @include on-breakpoint(mobile) {
       display: flex;
       width: 100%;
@@ -225,8 +217,10 @@ $prefix: '.module';
 
     @include on-breakpoint(nonmobile) {
       #{$prefix}-function {
-        &:nth-child(n + 2) {
-          margin-left: 0.75rem;
+        margin-right: $module-gutter-between * 0.5;
+
+        &:last-child {
+          margin-right: 0;
         }
       }
     }
