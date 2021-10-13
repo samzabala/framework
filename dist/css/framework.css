@@ -149,14 +149,16 @@ table {
 .display-none {
   display: none !important;
 }
-.disabled, .input-disabled, .input[disabled], .btn-disabled, .table-row-disabled td,
+.disabled, .input-toggle input[disabled] + .input-label,
+.input-toggle .input[disabled] + .input-label, .input-disabled, .input[disabled], .btn-disabled, .table-row-disabled td,
 .table-row-disabled .table-cell,
 .table-cell-disabled td,
 .table-cell-disabled .table-cell, .zone.zone-disabled, .tab.tab-disabled, .tabs > li.tab-disabled, [disabled] {
   cursor: not-allowed !important;
   opacity: 0.5 !important;
 }
-.disabled *, .input-disabled *, .input[disabled] *, .btn-disabled *, .table-row-disabled td *,
+.disabled *, .input-toggle input[disabled] + .input-label *,
+.input-toggle .input[disabled] + .input-label *, .input-disabled *, .input[disabled] *, .btn-disabled *, .table-row-disabled td *,
 .table-row-disabled .table-cell *,
 .table-cell-disabled td *,
 .table-cell-disabled .table-cell *, .zone.zone-disabled *, .tab.tab-disabled *, .tabs > li.tab-disabled *, [disabled] * {
@@ -9645,7 +9647,9 @@ select[multiple].input-single-line, select[multiple].input-select {
 }
 .input-toggle input,
 .input-toggle .input {
-  opacity: 0;
+  opacity: 0 !important;
+  background: transparent;
+  color: transparent;
   -webkit-appearance: none;
   appearance: none;
   outline: none;
