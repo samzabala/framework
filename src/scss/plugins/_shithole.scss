@@ -256,9 +256,7 @@ $br-tag-list: (
   @each $property-or-selector, $value-or-more-css in $css {
     @if $value-or-more-css == 'type-set' {
       @include type-set($css);
-    } @else if $value-or-more-css == 'type' {
-      @include type($css);
-    } @else if type-of($value-or-more-css) == map {
+   } @else if type-of($value-or-more-css) == map {
       #{$property-or-selector} {
         @include custom-css($value-or-more-css);
       }
