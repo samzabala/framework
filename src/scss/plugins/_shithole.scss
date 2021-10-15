@@ -253,15 +253,19 @@ $br-tag-list: (
 /// @param $css: () !default | (list: (property: value, selector: ( property: value,...)...)) | list of properties and values for custom csss on mixins. list it like u would in a css js object declaration idk
 /// @return: map converted to css
 @mixin custom-css($css: ()) {
-  @each $property-or-selector, $value-or-more-css in $css {
-    @if $value-or-more-css == 'type-set' {
-      @include type-set($css);
-   } @else if type-of($value-or-more-css) == map {
-      #{$property-or-selector} {
-        @include custom-css($value-or-more-css);
+  @each $key, $value in $css {
+    @if $key == type-set or $key == 'type-set' {
+      @include type-set($value);
+    } @else if contains($br-tag-list,$key) {
+        @include br($key){
+          @include custom-css($value);
+        }
+    } @else if type-of($value) == map {
+      #{$key} {
+        @include custom-css($value);
       }
     } @else {
-      #{$property-or-selector}: $value-or-more-css;
+      #{$key}: $value;
     }
   }
 }
