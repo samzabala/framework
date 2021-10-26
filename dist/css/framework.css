@@ -118,8 +118,8 @@ table {
 .sr-only, .modal:not(.active), .input-tags, .input-calendar, .zone.zone-has-content .zone-text, .tooltip:not(.active), .switch.switch-to-off .switch-on, .switch.switch-to-on .switch-off, .switch:not(.switch-to-off):not(.switch-to-on) .switch-on, .switch:not(.switch-to-off):not(.switch-to-on) .switch-off, .accordion:not(.accordion-mobile):not(.open) {
   pointer-events: none !important;
   position: absolute !important;
-  left: -99999999vw !important;
-  top: -99999999vw !important;
+  left: -9999vw !important;
+  top: -9999vw !important;
   width: 1px !important;
   height: 1px !important;
   margin: -1px !important;
@@ -132,8 +132,8 @@ table {
   .accordion.accordion-mobile:not(.open) {
     pointer-events: none !important;
     position: absolute !important;
-    left: -99999999vw !important;
-    top: -99999999vw !important;
+    left: -9999vw !important;
+    top: -9999vw !important;
     width: 1px !important;
     height: 1px !important;
     margin: -1px !important;
