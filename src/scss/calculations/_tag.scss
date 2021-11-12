@@ -55,7 +55,7 @@ $calculated-tag-schemes-color: (
 
 $calculated-tag-font-size: $tag-font-size;
 @if internal-is-convertable($tag-font-size, $body-font-size) {
-  $calculated-tag-font-size: rem($tag-font-size / $body-font-size);
+  $calculated-tag-font-size: rem($tag-font-size, $body-font-size);
 }
 
 $calculated-tag-line-height: type-lead($tag-font-size, $tag-line-height);
@@ -67,24 +67,24 @@ $calculated-tag-single-line: $calculated-tag-line-height;
 
 $calculated-tag-height: $tag-height;
 @if internal-is-convertable($tag-height, $tag-font-size) {
-  $calculated-tag-height: em($tag-height/$tag-font-size);
+  $calculated-tag-height: em($tag-height, $tag-font-size);
 }
 
 $calculated-tag-height-large: $tag-height-large;
 @if internal-is-convertable($tag-height-large, $tag-font-size) {
-  $calculated-tag-height-large: em($tag-height-large/$tag-font-size);
+  $calculated-tag-height-large: em($tag-height-large, $tag-font-size);
 }
 $calculated-tag-height-small: $tag-height-small;
 @if internal-is-convertable($tag-height-small, $tag-font-size) {
-  $calculated-tag-height-small: em($tag-height-small/$tag-font-size);
+  $calculated-tag-height-small: em($tag-height-small, $tag-font-size);
 }
 
 $calculated-tag-gutter-x: $tag-gutter-x;
 @if internal-is-convertable($tag-gutter-x, $tag-font-size) {
-  $calculated-tag-gutter-x: em($tag-gutter-x/$tag-font-size);
+  $calculated-tag-gutter-x: em($tag-gutter-x, $tag-font-size);
 }
 
 $calculated-tag-margin-y: $tag-margin-y;
 @if internal-is-convertable($tag-margin-y, $tag-font-size) {
-  $calculated-tag-gutter-y: em($tag-gutter-y/$tag-font-size);
+  $calculated-tag-gutter-y: em($tag-gutter-y, $tag-font-size);
 }

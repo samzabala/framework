@@ -99,3 +99,23 @@ $calculated-table-cell-background: (
     inverse: $table-cell-intensity-5-background-inverse,
   ),
 );
+
+//table
+$calculated-table-heading-height: $table-heading-height;
+@if internal-is-convertable($table-heading-height) {
+  $calculated-table-heading-height: rem($table-heading-height, $body-font-size);
+}
+
+$calculated-table-cell-height: $table-cell-height;
+@if internal-is-convertable($table-cell-height) {
+  $calculated-table-cell-height: rem($table-cell-height, $body-font-size);
+}
+
+$calculated-table-cell-height-large: $table-cell-height-large;
+@if internal-is-convertable($table-cell-height-large) {
+  $calculated-table-cell-height-large: rem($table-cell-height-large, $body-font-size);
+}
+$calculated-table-cell-height-small: $table-cell-height-small;
+@if internal-is-convertable($table-cell-height-small) {
+  $calculated-table-cell-height-small: rem($table-cell-height-small, $body-font-size);
+}

@@ -1,6 +1,6 @@
 @mixin internal-set-grid-col-width($prepend-sel: '', $gap: null, $nest: true) {
   @for $i from 1 through $grid-units {
-    $col-width: 100% * ($i/$grid-units);
+    $col-width: 100% * math.div($i, $grid-units);
 
     @if $nest == true {
       @at-root & > #{$prepend-sel}-#{$i} {

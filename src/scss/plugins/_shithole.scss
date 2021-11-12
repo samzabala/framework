@@ -1,3 +1,6 @@
+
+@use 'sass:math';
+
 // Mixins ****hole
 // follow my soundlcloud for mor surprises
 // github.io/samzabala
@@ -383,7 +386,7 @@ $br-tag-list: (
     content: '';
     display: block;
     width: 100%;
-    padding-top: percentage($height / $width);
+    padding-top: math.percentage(math.div($height,$width));
   }
 
   > * {
@@ -754,7 +757,7 @@ $br-tag-list: (
   }
 
   @if $col-number {
-    $col-width: #{(100% / $col-number)}; //responsiiiieeeeve
+    $col-width: #{math.div(100%,$col-number)}; //responsiiiieeeeve
   }
 
   @if $gap-x {
@@ -920,11 +923,11 @@ $br-tag-list: (
 /// @return width value
 @function col-width($col-number: 2, $gap-width: $gutter, $col-width: null) {
   @if $col-width == null {
-    $col-width: decimal-round(100% / $col-number, 3);
+    $col-width: decimal-round(math.div(100%,$col-number), 3);
   }
   @return calc(
     #{$col-width} - #{decimal-round(
-        (($gap-width * ($col-number - 1)) / $col-number),
+        (math.div(($gap-width * ($col-number - 1)),$col-number)),
         2
       )}
   );
@@ -979,9 +982,9 @@ $br-tag-list: (
       px
     {
       @if (map-get($opts, force-em)) {
-        font-size: em(map-get($opts, size) / map-get($opts, root-size));
+        font-size: em(math.div(map-get($opts, size),map-get($opts, root-size)));
       } @else {
-        font-size: rem(map-get($opts, size) / map-get($opts, root-size));
+        font-size: rem(math.div(map-get($opts, size),map-get($opts, root-size)));
       }
     } @else {
       font-size: map-get($opts, size);
@@ -1072,7 +1075,7 @@ $br-tag-list: (
     (unit($line-height) == px)
   {
     @if unitless($line-height) == false {
-      @return strip-unit($line-height / $font-size);
+      @return strip-unit(math.div($line-height,$font-size));
     } @else {
       @return $line-height;
     }
@@ -1089,7 +1092,7 @@ $br-tag-list: (
     number and
     unitless($should-be-the-value-from-photoshop)
   {
-    @return ($should-be-the-value-from-photoshop / 1000) * 1em;
+    @return math.div($should-be-the-value-from-photoshop,1000) * 1em;
   } @else {
     @return $should-be-the-value-from-photoshop;
   }
@@ -1224,7 +1227,7 @@ $keyframe-instance: 1;
   @if (
     type-of($color) ==
       color and
-      ((red($color) + green($color) + blue($color)) / 3) >
+      math.div((red($color) + green($color) + blue($color)),3) >
       $threshold
   ) {
     @return true; // Lighter backgorund, return dark color
@@ -1334,37 +1337,37 @@ $keyframe-instance: 1;
         repeating-linear-gradient(
           135deg,
           $color 0,
-          $color #{percentage($stroke / $size)},
-          transparent #{percentage($stroke / $size)},
-          transparent #{percentage(0.25)},
-          transparent #{percentage(0.25)},
+          $color #{math.percentage(math.div($stroke,$size))},
+          transparent #{math.percentage(math.div($stroke,$size))},
+          transparent #{math.percentage(0.25)},
+          transparent #{math.percentage(0.25)},
           transparent 100%
         ),
         repeating-linear-gradient(
           -135deg,
           $color 0,
-          $color #{percentage($stroke / $size)},
-          transparent #{percentage($stroke / $size)},
-          transparent #{percentage(0.25)},
-          transparent #{percentage(0.25)},
+          $color #{math.percentage(math.div($stroke,$size))},
+          transparent #{math.percentage(math.div($stroke,$size))},
+          transparent #{math.percentage(0.25)},
+          transparent #{math.percentage(0.25)},
           transparent 100%
         ),
         repeating-linear-gradient(
           -45deg,
           transparent 0,
-          transparent #{percentage((($size * 0.25) - $stroke) / $size)},
-          $color #{percentage((($size * 0.25) - $stroke) / $size)},
-          $color #{percentage(0.25)},
-          transparent #{percentage(0.25)},
+          transparent #{math.percentage( math.div((($size * 0.25) - $stroke),$size) )},
+          $color #{math.percentage( math.div((($size * 0.25) - $stroke),$size) )},
+          $color #{math.percentage(0.25)},
+          transparent #{math.percentage(0.25)},
           transparent 100%
         ),
         repeating-linear-gradient(
           45deg,
           transparent 0,
-          transparent #{percentage((($size * 0.25) - $stroke) / $size)},
-          $color #{percentage((($size * 0.25) - $stroke) / $size)},
-          $color #{percentage(0.25)},
-          transparent #{percentage(0.25)},
+          transparent #{math.percentage( math.div((($size * 0.25) - $stroke),$size) )},
+          $color #{math.percentage( math.div((($size * 0.25) - $stroke),$size) )},
+          $color #{math.percentage(0.25)},
+          transparent #{math.percentage(0.25)},
           transparent 100%
         ),
       ),
@@ -1720,7 +1723,7 @@ $keyframe-instance: 1;
       $frame-milestone: 0%;
       $frame-counter: 0;
       // oh bruh this some fibonacci
-      $total-frames-needed: (length($clip-path) / 2) - 1;
+      $total-frames-needed: ( length($clip-path) *.5 ) - 1;
       @while $frame-counter <= $total-frames-needed {
         $clip-path-for-frame: ();
         $point-counter: 0;
@@ -1774,7 +1777,7 @@ $keyframe-instance: 1;
         $frames: map-merge($frames, $frame);
 
         $frame-counter: $frame-counter + 1;
-        $frame-milestone: (100% / $total-frames-needed) * $frame-counter;
+        $frame-milestone: math.div(100%,$total-frames-needed) * $frame-counter;
       }
 
       $keyframes-args: map-merge(
@@ -1806,7 +1809,7 @@ $keyframe-instance: 1;
 
   $pattern-size: map-get($opts, size) + (map-get($opts, gap) * 2);
 
-  $pattern-diameter: map-get($opts, size) / 2;
+  $pattern-diameter: map-get($opts, size) * .5;
 
   #{internal__pseudo-generator(map-get($opts,pseudo))} {
     @if map-get($opts, pseudo) != 'override' {
@@ -2553,11 +2556,11 @@ $keyframe-instance: 1;
     }
   }
   @if $mode == round {
-    @return round($number * $n) / $n;
+    @return math.div(round($number * $n),$n);
   } @else if $mode == ceil {
-    @return ceil($number * $n) / $n;
+    @return math.div(ceil($number * $n),$n);
   } @else if $mode == floor {
-    @return floor($number * $n) / $n;
+    @return math.div(floor($number * $n),$n);
   } @else {
     @warn '#{ $mode } is undefined keyword.';
     @return $number;
@@ -2619,13 +2622,13 @@ $keyframe-instance: 1;
 
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+    @return math.div($number,($number * 0 + 1));
   }
 
   @return $number;
 }
 
-@function to-unit($number, $unit: null) {
+@function to-unit($number, $unit: null, $root-size:null) {
   $available-units: (
     em: 1em,
     px: 1px,
@@ -2651,34 +2654,37 @@ $keyframe-instance: 1;
     //		 @return $number;
     //	 }
     // } @else {
+      @if type-of($number) == number and type-of($root-size) == number {
+        $calc-number: math.div($number,$root-size);
+        @return strip-unit($calc-number) * map-get($available-units, $unit);
+      }@else if type-of($number) == number {
+          @return strip-unit($number) * map-get($available-units, $unit);
+      } @else {
+        @return $number;
+      }
 
-    @if type-of($number) == number {
-      @return strip-unit($number) * map-get($available-units, $unit);
-    } @else {
-      @return $number;
-    }
     // }
   }
 }
 
-@function em($number) {
-  @return to-unit($number, em);
+@function em($number,$root-size:null) {
+  @return to-unit($number, em, $root-size);
 }
 
-@function rem($number) {
-  @return to-unit($number, rem);
+@function rem($number,$root-size:null) {
+  @return to-unit($number, rem, $root-size);
 }
 
-@function px($number) {
-  @return to-unit($number, px);
+@function px($number,$root-size:null) {
+  @return to-unit($number, px, $root-size);
 }
 
-@function vw($number) {
-  @return to-unit($number, vw);
+@function vw($number,$root-size:null) {
+  @return to-unit($number, vw, $root-size);
 }
 
-@function vh($number) {
-  @return to-unit($number, vh);
+@function vh($number,$root-size:null) {
+  @return to-unit($number, vh, $root-size);
 }
 
 @function string($value) {
@@ -2737,24 +2743,8 @@ $keyframe-instance: 1;
   @return $result;
 }
 
-@function approximateSq($num, $approx) {
-  $root: (($num / $approx) + $approx) / 2;
-  @return $root;
-}
-
 @function sqrt($num) {
-  $root: 0;
-  $testRoot: 0;
-  $upperBounds: round($num / 2) + 1; //never need over half the main number. Add one just to be sure!
-  $loops: $upperBounds;
-  @for $test from 2 through $upperBounds {
-    $sq: $test * $test;
-    @if $sq <= $num {
-      $testRoot: $test;
-    }
-  }
-
-  $root: (approximateSq($num, $testRoot));
+  $root: math.sqrt($num);
 
   @return $root;
 }

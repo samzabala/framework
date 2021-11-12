@@ -1,5 +1,5 @@
 $calculated-tooltip-point-px: 10px;
-$calculated-tooltip-point: rem($calculated-tooltip-point-px / $body-font-size);
+$calculated-tooltip-point: rem($calculated-tooltip-point-px, $body-font-size);
 $calculated-gutter-hypotenus: to-unit(
   sqrt(
     (

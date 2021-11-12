@@ -1,21 +1,21 @@
 $calculated-progress-height: $progress-height;
 @if internal-is-convertable($progress-height) {
-  $calculated-progress-height: rem($progress-height / $body-font-size);
+  $calculated-progress-height: rem($progress-height, $body-font-size);
 }
 
 $calculated-progress-height-small: $progress-height-small;
 @if internal-is-convertable($progress-height-small) {
-  $calculated-progress-height-small: rem($progress-height-small / $body-font-size);
+  $calculated-progress-height-small: rem($progress-height-small, $body-font-size);
 }
 
 $calculated-progress-height-large: $progress-height-large;
 @if internal-is-convertable($progress-height-large) {
-  $calculated-progress-height-large: rem($progress-height-large / $body-font-size);
+  $calculated-progress-height-large: rem($progress-height-large, $body-font-size);
 }
 
 $calculated-progress-title-font-size: $progress-title-font-size;
 @if internal-is-convertable($progress-title-font-size) {
-  $calculated-progress-title-font-size: em($progress-title-font-size / $body-font-size);
+  $calculated-progress-title-font-size: em($progress-title-font-size, $body-font-size);
 }
 
 $calculated-progress-title-line-height: type-lead(
@@ -26,13 +26,15 @@ $calculated-progress-title-line-height: type-lead(
 $calculated-progress-title-margin-bottom: $progress-title-margin-bottom;
 @if internal-is-convertable($progress-title-margin-bottom) {
   $calculated-progress-title-margin-bottom: em(
-    $progress-title-margin-bottom / $progress-title-font-size
+    $progress-title-margin-bottom,
+    $progress-title-font-size
   );
 }
 
 $calculated-progress-title-margin-top: $progress-title-margin-top;
 @if internal-is-convertable($progress-title-margin-top) {
   $calculated-progress-title-margin-top: em(
-    $progress-title-margin-top / $progress-title-font-size
+    $progress-title-margin-top,
+    $progress-title-font-size
   );
 }

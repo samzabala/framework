@@ -117,8 +117,8 @@ $prefix: '.asset';
         }
 
         &-striped-base {
-          height: percentage($calculated-ass-thumb-image-ratio-y);
-          width: percentage($calculated-ass-thumb-image-ratio-x);
+          height: math.percentage($calculated-ass-thumb-image-ratio-y);
+          width: math.percentage($calculated-ass-thumb-image-ratio-x);
           left: 33%;
           right: 0;
           top: 0;
@@ -132,55 +132,58 @@ $prefix: '.asset';
             repeating-linear-gradient(
               180deg,
               currentColor 0,
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 5),
               transparent 100%
             ),
             // lines below
             repeating-linear-gradient(
                 180deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 8),
                 currentColor 100%
               ),
             //right col
             repeating-linear-gradient(
                 180deg,
                 currentColor 0,
-                currentColor percentage($calculated-ass-thumb-weight-ratio),
-                transparent percentage($calculated-ass-thumb-weight-ratio),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 8),
                 currentColor 100%
               );
-          background-size: percentage(
-              (
+          background-size: math.percentage(
+              math.div(
+                (
                   (
                       ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
                         $calculated-ass-thumb-gutter-px
                     ) * 0.5
-                ) / ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+                ),
+                ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+              )
             )
             100%;
 
@@ -196,28 +199,28 @@ $prefix: '.asset';
             repeating-linear-gradient(
               180deg,
               currentColor 0,
-              currentColor percentage($calculated-ass-thumb-weight-ratio),
-              transparent percentage($calculated-ass-thumb-weight-ratio),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 2),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 2),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 3),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 3),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 6),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 6),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 7),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 7),
               transparent 100%
             ),
             //last line
             repeating-linear-gradient(
                 180deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 8),
                 currentColor 100%
               );
           background-size: 100% 100%, 60% 100%;
@@ -232,33 +235,33 @@ $prefix: '.asset';
             repeating-linear-gradient(
               180deg,
               currentColor 0,
-              currentColor percentage($calculated-ass-thumb-weight-ratio),
-              transparent percentage($calculated-ass-thumb-weight-ratio),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 5),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 4),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 5),
               transparent 100%
             ),
             //line 2 and 4
             repeating-linear-gradient(
                 180deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 3),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 7),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 7),
                 transparent 100%
               ),
             repeating-linear-gradient(
               180deg,
               transparent 0,
-              transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 8),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 8),
               currentColor 100%
             );
           background-size: 60% 100%;
@@ -289,13 +292,17 @@ $prefix: '.asset';
               currentColor 100%
             );
 
-          background-size: percentage(
-              (
+          background-size: math.percentage(
+              math.div(
+                math.div(
                   (
-                      ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
-                        ($calculated-ass-thumb-gutter-px * 2)
-                    ) / 3
-                ) / ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+                    ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
+                      ($calculated-ass-thumb-gutter-px * 2)
+                  ),
+                  3
+                ),
+                ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+              )
             )
             33%;
           background-position: 0 ($calculated-ass-thumb-table-gutter * -0.5),
@@ -312,75 +319,75 @@ $prefix: '.asset';
             repeating-linear-gradient(
               90deg,
               currentColor 0,
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 0.5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 0.5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 7),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 7),
-              currentColor percentage($calculated-ass-thumb-weight-ratio * 7.5),
-              transparent percentage($calculated-ass-thumb-weight-ratio * 7.5),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 0.5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 0.5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 7),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 7),
+              currentColor math.percentage($calculated-ass-thumb-weight-ratio * 7.5),
+              transparent math.percentage($calculated-ass-thumb-weight-ratio * 7.5),
               transparent 100%
             ),
             //2,6,10
             repeating-linear-gradient(
                 90deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 1),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 1),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 1.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 1.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 5),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 5),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 5.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 5.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 9),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 9),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 9.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 9.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 1),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 1),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 1.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 1.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 5),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 5.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 5.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 9),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 9),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 9.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 9.5),
                 transparent 100%
               ),
             // 3
             repeating-linear-gradient(
                 90deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 2),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 2),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 2.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 2.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 2),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 2.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 2.5),
                 transparent 100%
               ),
             // 4,9
             repeating-linear-gradient(
                 90deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 3),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 3),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 3.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 3.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 8),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 8),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 8.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 8.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 3),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 3),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 3.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 3.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 8),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 8.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 8.5),
                 transparent 100%
               ),
             // 5
             repeating-linear-gradient(
                 90deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 4),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 4),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 4.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 4.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 4),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 4.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 4.5),
                 transparent 100%
               ),
             // 7
             repeating-linear-gradient(
                 90deg,
                 transparent 0,
-                transparent percentage($calculated-ass-thumb-weight-ratio * 0.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 6),
-                currentColor percentage($calculated-ass-thumb-weight-ratio * 6.5),
-                transparent percentage($calculated-ass-thumb-weight-ratio * 6.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 0.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 6),
+                currentColor math.percentage($calculated-ass-thumb-weight-ratio * 6.5),
+                transparent math.percentage($calculated-ass-thumb-weight-ratio * 6.5),
                 transparent 100%
               );
 
@@ -437,8 +444,8 @@ $prefix: '.asset';
       }
 
       &:after {
-        width: percentage(40px / $asset-thumbnail-width);
-        height: percentage(40px / $asset-thumbnail-height);
+        width: math.percentage(math.div(40px, $asset-thumbnail-width));
+        height: math.percentage(math.div(40px, $asset-thumbnail-height));
         // right: auto;
         bottom: auto;
         left: auto;
@@ -649,7 +656,7 @@ $prefix: '.asset';
         content: 'z';
       }
       &:after {
-        width: percentage(20px / $asset-thumbnail-width);
+        width: math.percentage(math.div(20px, $asset-thumbnail-width));
         left: 44%;
 
         background-image: repeating-linear-gradient(
@@ -672,7 +679,9 @@ $prefix: '.asset';
             50%,
             currentColor 100%
           );
-        background-size: 50% #{(percentage(20px / $asset-thumbnail-height))};
+        background-size: 50% #{(
+            math.percentage(math.div(20px, $asset-thumbnail-height))
+          )};
         background-position: 0 0, 100% 0;
         background-repeat: repeat-y;
       }

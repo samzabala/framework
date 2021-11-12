@@ -1,11 +1,12 @@
 $calculated-module-title-font-size: $module-title-font-size;
 @if internal-is-convertable($module-title-font-size) {
-  $calculated-module-title-font-size: rem($module-title-font-size / $body-font-size);
+  $calculated-module-title-font-size: rem($module-title-font-size, $body-font-size);
 }
 
 $calculated-module-grid-title-font-size: $module-grid-title-font-size;
 @if internal-is-convertable($module-grid-title-font-size) {
   $calculated-module-grid-title-font-size: rem(
-    $module-grid-title-font-size / $body-font-size
+    $module-grid-title-font-size,
+    $body-font-size
   );
 }

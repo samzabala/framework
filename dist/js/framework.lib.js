@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.fw = factory());
-}(this, (function () { 'use strict';
+})(this, (function () { 'use strict';
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -775,6 +775,7 @@
   Initiator.start();
 
   var NativeEvents = ['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'paste', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll', 'hashchange'];
+  var EVENT_STORAGE = {};
 
   var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
     _inheritsLoose(FwEvent, _FwDataHelper);
@@ -790,6 +791,7 @@
     FwEvent.getEvent = function getEvent(element) {
       var uid = UIDEvent(element);
       element.uidEvent = uid;
+      EVENT_STORAGE[uid] = EVENT_STORAGE[uid] || {};
       return eventRegistry[uid];
     };
 
@@ -818,15 +820,15 @@
         elemToAddTo.addEventListener(evtNoApi, function (event) {
           if (!parent || parent && event.target.matches(FwEvent.classNester(selectorOrParentFallback)) // && event.target.closest(selectorOrParentFallback)
           ) {
-              FwEvent.trigger(event.target, evt, {
-                detail: {
-                  nativeEvt: event,
-                  _selection: FwEvent.classNester(selectorOrParentFallback),
-                  bubbles: true,
-                  cancelable: true
-                }
-              });
-            }
+            FwEvent.trigger(event.target, evt, {
+              detail: {
+                nativeEvt: event,
+                _selection: FwEvent.classNester(selectorOrParentFallback),
+                bubbles: true,
+                cancelable: true
+              }
+            });
+          }
         }, true);
       }
 
@@ -1320,8 +1322,8 @@
 
         if (!toReturn || toReturn && !toReturn.matches("." + COMPONENT_CLASS$d + "-group") //***
         ) {
-            toReturn = false;
-          }
+          toReturn = false;
+        }
 
         return toReturn;
       }
@@ -4565,9 +4567,9 @@
         } else if (!FwComponent.isDynamic(e.target)) {
           if (!e.target.closest("[data-toggle-" + TOGGLE_MODE_CLICK + "]") && !e.target.closest("[data-toggle-" + TOGGLE_MODE_HOVER + "]") // && !e.target.closest(`.${COMPONENT_CLASS}.${COMPONENT_ALLOW_INTERACTION_CLASS}`)
           ) {
-              var tooltip = new Tooltip();
-              tooltip.destroy();
-            }
+            var tooltip = new Tooltip();
+            tooltip.destroy();
+          }
         }
       };
     };
@@ -4926,5 +4928,5 @@
 
   return FrameWork;
 
-})));
+}));
 //# sourceMappingURL=framework.lib.js.map
