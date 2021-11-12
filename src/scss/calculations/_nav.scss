@@ -1,26 +1,26 @@
 //FOR GLOBAL
 $calculated-nav-height: $nav-height;
 @if internal-is-convertable($nav-height) {
-  $calculated-nav-height: rem($nav-height / $body-font-size);
+  $calculated-nav-height: rem($nav-height,$body-font-size);
 }
 
 $calculated-body-text-gutter-y: $body-text-gutter-y;
 @if internal-is-convertable($calculated-body-text-gutter-y) {
-  $calculated-body-text-gutter-y: em($body-text-gutter-y / $body-font-size);
+  $calculated-body-text-gutter-y: em($body-text-gutter-y,$body-font-size);
 }
 //EH OK
 $calculated-nav-font-size: $nav-font-size;
 @if internal-is-convertable($nav-font-size) {
-  $calculated-nav-font-size: rem($nav-font-size / $body-font-size);
+  $calculated-nav-font-size: rem($nav-font-size,$body-font-size);
 }
 
 $calculated-nav-top-font-size: $nav-top-font-size;
 @if internal-is-convertable($nav-top-font-size) {
-  $calculated-nav-top-font-size: rem($nav-top-font-size / $body-font-size);
+  $calculated-nav-top-font-size: rem($nav-top-font-size,$body-font-size);
 }
 $calculated-nav-line-height: $nav-line-height;
 @if internal-is-convertable($nav-line-height) {
-  $calculated-nav-line-height: rem($nav-line-height / $body-font-size);
+  $calculated-nav-line-height: rem($nav-line-height,$body-font-size);
 }
 
 $calculated-nav-single-line: $calculated-nav-line-height;
@@ -31,15 +31,15 @@ $calculated-nav-single-line: $calculated-nav-line-height;
 // $calculated-nav-height is internal vars because the body needs it. tHE BODEH
 $calculated-nav-item-height: $nav-item-height;
 @if internal-is-convertable($nav-item-height) {
-  $calculated-nav-item-height: rem($nav-item-height / $body-font-size);
+  $calculated-nav-item-height: rem($nav-item-height,$body-font-size);
 }
 
 $calculated-nav-icon-width: $nav-icon-width;
 @if internal-is-convertable($nav-icon-width, $nav-top-font-size) {
-  $calculated-nav-icon-width: em($nav-icon-width / $nav-top-font-size);
+  $calculated-nav-icon-width: em($nav-icon-width,$nav-top-font-size);
 }
 
 $calculated-nav-icon-height: $nav-icon-height;
 @if internal-is-convertable($nav-icon-height, $nav-top-font-size) {
-  $calculated-nav-icon-height: em($nav-icon-width / $nav-top-font-size);
+  $calculated-nav-icon-height: em($nav-icon-width,$nav-top-font-size);
 }

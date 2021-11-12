@@ -1,6 +1,6 @@
 $calculated-zone-font-size: $zone-font-size;
 @if internal-is-convertable($zone-font-size) {
-  $calculated-zone-font-size: rem($zone-font-size / $body-font-size);
+  $calculated-zone-font-size: rem($zone-font-size,$body-font-size);
 }
 
 $calculated-zone-schemes: (

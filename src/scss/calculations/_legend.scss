@@ -1,9 +1,9 @@
 $calculated-legend-width: $legend-width;
 @if internal-is-convertable($legend-width) {
-  $calculated-legend-width: rem($legend-width / $body-font-size);
+  $calculated-legend-width: rem($legend-width,$body-font-size);
 }
 
 $calculated-legend-height: $legend-height;
 @if internal-is-convertable($legend-height) {
-  $calculated-legend-height: rem($legend-height / $body-font-size);
+  $calculated-legend-height: rem($legend-height,$body-font-size);
 }

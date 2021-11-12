@@ -2,14 +2,14 @@
 $calculated-special-primary-font-size: $special-primary-font-size;
 @if internal-is-convertable($special-primary-font-size) {
   $calculated-special-primary-font-size: em(
-    $special-primary-font-size / $body-font-size
+    $special-primary-font-size,$body-font-size
   );
 }
 
 $calculated-special-primary-font-size-mobile: $special-primary-font-size-mobile;
 @if internal-is-convertable($special-primary-font-size-mobile) {
   $calculated-special-primary-font-size-mobile: em(
-    $special-primary-font-size-mobile / $body-font-size
+    $special-primary-font-size-mobile,$body-font-size
   );
 }
 
@@ -21,7 +21,7 @@ $calculated-special-primary-line-height: type-lead(
 $calculated-special-primary-gutter-y: $special-primary-gutter-y;
 @if internal-is-convertable($special-primary-gutter-y) {
   $calculated-special-primary-gutter-y: em(
-    $special-primary-gutter-y / $special-primary-font-size
+    $special-primary-gutter-y,$special-primary-font-size
   );
 }
 
@@ -30,14 +30,14 @@ $calculated-special-primary-gutter-y: $special-primary-gutter-y;
 $calculated-special-secondary-font-size: $special-secondary-font-size;
 @if internal-is-convertable($special-secondary-font-size) {
   $calculated-special-secondary-font-size: em(
-    $special-secondary-font-size / $body-font-size
+    $special-secondary-font-size,$body-font-size
   );
 }
 
 $calculated-special-secondary-font-size-mobile: $special-secondary-font-size-mobile;
 @if internal-is-convertable($special-secondary-font-size-mobile) {
   $calculated-special-secondary-font-size-mobile: em(
-    $special-secondary-font-size-mobile / $body-font-size
+    $special-secondary-font-size-mobile,$body-font-size
   );
 }
 
@@ -49,89 +49,89 @@ $calculated-special-secondary-line-height: type-lead(
 $calculated-special-secondary-gutter-y: $special-secondary-gutter-y;
 @if internal-is-convertable($special-secondary-gutter-y) {
   $calculated-special-secondary-gutter-y: em(
-    $special-secondary-gutter-y / $special-secondary-font-size
+    $special-secondary-gutter-y,$special-secondary-font-size
   );
 }
 
 // lead
 $calculated-lead-font-size: $lead-font-size;
 @if internal-is-convertable($lead-font-size) {
-  $calculated-lead-font-size: em($lead-font-size / $body-font-size);
+  $calculated-lead-font-size: em($lead-font-size,$body-font-size);
 }
 
 $calculated-lead-font-size-mobile: $lead-font-size-mobile;
 @if internal-is-convertable($lead-font-size-mobile) {
-  $calculated-lead-font-size-mobile: em($lead-font-size-mobile / $body-font-size);
+  $calculated-lead-font-size-mobile: em($lead-font-size-mobile,$body-font-size);
 }
 
 $calculated-lead-line-height: type-lead($lead-font-size, $lead-line-height);
 
 $calculated-lead-gutter-y: $lead-gutter-y;
 @if internal-is-convertable($lead-gutter-y) {
-  $calculated-lead-gutter-y: em($lead-gutter-y / $lead-font-size);
+  $calculated-lead-gutter-y: em($lead-gutter-y,$lead-font-size);
 }
 
 //headings
 $calculated-body-size-h1: $body-size-h1;
 @if internal-is-convertable($body-size-h1) {
-  $calculated-body-size-h1: em($body-size-h1 / $body-font-size);
+  $calculated-body-size-h1: em($body-size-h1,$body-font-size);
 }
 
 $calculated-body-size-h2: $body-size-h2;
 @if internal-is-convertable($body-size-h2) {
-  $calculated-body-size-h2: em($body-size-h2 / $body-font-size);
+  $calculated-body-size-h2: em($body-size-h2,$body-font-size);
 }
 
 $calculated-body-size-h3: $body-size-h3;
 @if internal-is-convertable($body-size-h3) {
-  $calculated-body-size-h3: em($body-size-h3 / $body-font-size);
+  $calculated-body-size-h3: em($body-size-h3,$body-font-size);
 }
 
 $calculated-body-size-h4: $body-size-h4;
 @if internal-is-convertable($body-size-h4) {
-  $calculated-body-size-h4: em($body-size-h4 / $body-font-size);
+  $calculated-body-size-h4: em($body-size-h4,$body-font-size);
 }
 
 $calculated-body-size-h5: $body-size-h5;
 @if internal-is-convertable($body-size-h5) {
-  $calculated-body-size-h5: em($body-size-h5 / $body-font-size);
+  $calculated-body-size-h5: em($body-size-h5,$body-font-size);
 }
 
 $calculated-body-size-h6: $body-size-h6;
 @if internal-is-convertable($body-size-h6) {
-  $calculated-body-size-h6: em($body-size-h6 / $body-font-size);
+  $calculated-body-size-h6: em($body-size-h6,$body-font-size);
 }
 
 $calculated-body-size-small: $body-font-size-small;
 @if internal-is-convertable($body-font-size-small) {
-  $calculated-body-size-small: em($body-font-size-small / $body-font-size);
+  $calculated-body-size-small: em($body-font-size-small,$body-font-size);
 }
 $calculated-body-size-large: $body-font-size-large;
 @if internal-is-convertable($body-font-size-large) {
-  $calculated-body-size-large: em($body-font-size-large / $body-font-size);
+  $calculated-body-size-large: em($body-font-size-large,$body-font-size);
 }
 
 $calculated-body-heading-gutter-bottom: $body-heading-gutter-bottom;
 @if internal-is-convertable($body-heading-gutter-bottom) {
   $calculated-body-heading-gutter-bottom: rem(
-    $body-heading-gutter-bottom / $body-font-size
+    $body-heading-gutter-bottom,$body-font-size
   );
 }
 
 $calculated-body-heading-gutter-top: $body-heading-gutter-top;
 @if internal-is-convertable($body-heading-gutter-top) {
-  $calculated-body-heading-gutter-top: rem($body-heading-gutter-top / $body-font-size);
+  $calculated-body-heading-gutter-top: rem($body-heading-gutter-top,$body-font-size);
 }
 
 //hr
 $calculated-hr-height: $hr-height;
 @if internal-is-convertable($hr-height) {
-  $calculated-hr-height: rem($hr-height / $body-font-size);
+  $calculated-hr-height: rem($hr-height,$body-font-size);
 }
 
 $calculated-hr-gutter-y: $hr-gutter-y;
 @if internal-is-convertable($hr-gutter-y) {
-  $calculated-hr-gutter-y: rem($hr-gutter-y / $body-font-size);
+  $calculated-hr-gutter-y: rem($hr-gutter-y,$body-font-size);
 }
 
 $calculated-body-heading-size: (
@@ -146,22 +146,22 @@ $calculated-body-heading-size: (
 //list
 $calculated-body-list-offset: $body-list-offset;
 @if internal-is-convertable($body-list-offset) {
-  $calculated-body-list-offset: em($body-list-offset / $body-font-size);
+  $calculated-body-list-offset: em($body-list-offset,$body-font-size);
 }
 
 $calculated-body-list-offset-inline: $body-list-offset-inline;
 @if internal-is-convertable($body-list-offset-inline) {
-  $calculated-body-list-offset-inline: em($body-list-offset-inline / $body-font-size);
+  $calculated-body-list-offset-inline: em($body-list-offset-inline,$body-font-size);
 }
 
 $calculated-body-list-bullet-size: $body-list-bullet-size;
 @if internal-is-convertable($body-list-bullet-size) {
-  $calculated-body-list-bullet-size: em($body-list-bullet-size / $body-font-size);
+  $calculated-body-list-bullet-size: em($body-list-bullet-size,$body-font-size);
 }
 
 $calculated-body-list-gutter-y: $body-list-gutter-y;
 @if internal-is-convertable($body-list-gutter-y) {
-  $calculated-body-list-gutter-y: em($body-list-gutter-y / $body-font-size);
+  $calculated-body-list-gutter-y: em($body-list-gutter-y,$body-font-size);
 }
 
 $calculated-body-list-margin-right: calc(
@@ -171,7 +171,7 @@ $calculated-body-list-margin-right: calc(
   internal-is-convertable($body-list-offset)
 {
   $calculated-body-list-margin-right: em(
-    ($body-list-offset - $body-list-bullet-size) / $body-font-size
+    ($body-list-offset - $body-list-bullet-size),$body-font-size
   );
 }
 
@@ -183,7 +183,7 @@ $calculated-body-list-top: calc(
   internal-is-convertable($body-line-height)
 {
   $calculated-body-list-top: em(
-    (($body-line-height - $body-list-bullet-size) * 0.5) / $body-font-size
+    (($body-line-height - $body-list-bullet-size) * 0.5),$body-font-size
   );
 }
 
@@ -191,7 +191,7 @@ $calculated-body-list-top: calc(
 $calculated-body-blockquote-font-size: $body-blockquote-font-size;
 @if internal-is-convertable($body-blockquote-font-size) {
   $calculated-body-blockquote-font-size: em(
-    $body-blockquote-font-size / $body-font-size
+    $body-blockquote-font-size,$body-font-size
   );
 }
 
@@ -205,10 +205,10 @@ $calculated-body-blockquote-gutter-x: $body-blockquote-gutter-x;
   internal-is-convertable($body-blockquote-font-size)
 {
   $calculated-body-blockquote-gutter-x: em(
-    $body-blockquote-gutter-x / $body-blockquote-font-size
+    $body-blockquote-gutter-x,$body-blockquote-font-size
   );
 } @else if internal-is-convertable($body-blockquote-gutter-x) {
-  $calculated-body-blockquote-gutter-x: em($body-blockquote-gutter-x / $body-font-size);
+  $calculated-body-blockquote-gutter-x: em($body-blockquote-gutter-x,$body-font-size);
 }
 
 $calculated-body-blockquote-margin-y: $body-blockquote-margin-y;
@@ -216,32 +216,32 @@ $calculated-body-blockquote-margin-y: $body-blockquote-margin-y;
   internal-is-convertable($body-blockquote-font-size)
 {
   $calculated-body-blockquote-margin-y: em(
-    $body-blockquote-margin-y / $body-blockquote-font-size
+    $body-blockquote-margin-y,$body-blockquote-font-size
   );
 } @else if internal-is-convertable($body-blockquote-margin-y) {
-  $calculated-body-blockquote-margin-y: em($body-blockquote-margin-y / $body-font-size);
+  $calculated-body-blockquote-margin-y: em($body-blockquote-margin-y,$body-font-size);
 }
 $calculated-body-blockquote-padding-y: $body-blockquote-padding-y;
 @if internal-is-convertable($body-blockquote-padding-y) and
   internal-is-convertable($body-blockquote-font-size)
 {
   $calculated-body-blockquote-padding-y: em(
-    $body-blockquote-padding-y / $body-blockquote-font-size
+    $body-blockquote-padding-y,$body-blockquote-font-size
   );
 } @else if internal-is-convertable($body-blockquote-padding-y) {
   $calculated-body-blockquote-padding-y: em(
-    $body-blockquote-padding-y / $body-font-size
+    $body-blockquote-padding-y,$body-font-size
   );
 }
 
 //pre
 $calculated-body-pre-padding: $body-pre-padding;
 @if internal-is-convertable($body-pre-padding) {
-  $calculated-body-pre-padding: em($body-pre-padding / $body-font-size);
+  $calculated-body-pre-padding: em($body-pre-padding,$body-font-size);
 }
 
 //cite
 $calculated-body-cite-font-size: $body-cite-font-size;
 @if internal-is-convertable($body-cite-font-size) {
-  $calculated-body-cite-font-size: em($body-cite-font-size / $body-font-size);
+  $calculated-body-cite-font-size: em($body-cite-font-size,$body-font-size);
 }
