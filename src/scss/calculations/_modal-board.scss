@@ -1,14 +1,14 @@
 $calculated-board-close-width: $modal-board-resize-width;
 @if internal-is-convertable($modal-board-resize-width) {
-  $calculated-board-resize-width: rem($modal-board-resize-width,$body-font-size);
+  $calculated-board-resize-width: rem($modal-board-resize-width, $body-font-size);
 }
 
 $calculated-board-resize-height: $modal-board-resize-height;
 @if internal-is-convertable($modal-board-resize-height) {
-  $calculated-board-resize-height: rem($modal-board-resize-height,$body-font-size);
+  $calculated-board-resize-height: rem($modal-board-resize-height, $body-font-size);
 }
 
 $calculated-board-close-size: $modal-board-close-size;
 @if internal-is-convertable($modal-board-close-size) {
-  $calculated-board-close-size: rem($modal-board-close-size,$body-font-size);
+  $calculated-board-close-size: rem($modal-board-close-size, $body-font-size);
 }

@@ -1,35 +1,37 @@
 // GLOBAL
 $calculated-input-font-size: $input-font-size;
 @if internal-is-convertable($input-font-size) {
-  $calculated-input-font-size: rem($input-font-size,$body-font-size);
+  $calculated-input-font-size: rem($input-font-size, $body-font-size);
 }
 
 $calculated-input-font-size-large: $input-font-size-large;
 @if internal-is-convertable($input-font-size-large) {
-  $calculated-input-font-size-large: rem($input-font-size-large,$body-font-size);
+  $calculated-input-font-size-large: rem($input-font-size-large, $body-font-size);
 }
 
 $calculated-input-font-size-small: $input-font-size-small;
 @if internal-is-convertable($input-font-size-small) {
-  $calculated-input-font-size-small: rem($input-font-size-small,$body-font-size);
+  $calculated-input-font-size-small: rem($input-font-size-small, $body-font-size);
 }
 
 $calculated-input-label-font-size: $input-label-font-size;
 @if internal-is-convertable($input-label-font-size) {
-  $calculated-input-label-font-size: rem($input-label-font-size,$body-font-size);
+  $calculated-input-label-font-size: rem($input-label-font-size, $body-font-size);
 }
 
 $calculated-input-label-font-size-large: $input-label-font-size-large;
 @if internal-is-convertable($input-label-font-size-large) {
   $calculated-input-label-font-size-large: rem(
-    $input-label-font-size-large,$body-font-size
+    $input-label-font-size-large,
+    $body-font-size
   );
 }
 
 $calculated-input-label-font-size-small: $input-label-font-size-small;
 @if internal-is-convertable($input-label-font-size-small) {
   $calculated-input-label-font-size-small: rem(
-    $input-label-font-size-small,$body-font-size
+    $input-label-font-size-small,
+    $body-font-size
   );
 }
 
@@ -45,30 +47,30 @@ $calculated-input-label-single-line: #{1em * $calculated-body-line-height};
 
 $calculated-input-height: $input-height;
 @if internal-is-convertable($input-height) {
-  $calculated-input-height: rem($input-height,$body-font-size);
+  $calculated-input-height: rem($input-height, $body-font-size);
 }
 
 $calculated-input-height-large: $input-height-large;
 @if internal-is-convertable($input-height-large) {
-  $calculated-input-height-large: rem($input-height-large,$body-font-size);
+  $calculated-input-height-large: rem($input-height-large, $body-font-size);
 }
 
 $calculated-input-height-small: $input-height-small;
 @if internal-is-convertable($input-height-small) {
-  $calculated-input-height-small: rem($input-height-small,$body-font-size);
+  $calculated-input-height-small: rem($input-height-small, $body-font-size);
 }
 
 $calculated-input-gutter-x: $input-gutter-x;
 @if internal-is-convertable($input-gutter-x, $input-font-size) {
-  $calculated-input-gutter-x: em($input-gutter-x,$input-font-size);
+  $calculated-input-gutter-x: em($input-gutter-x, $input-font-size);
 } @else if internal-is-convertable($input-gutter-x) {
-  $calculated-input-gutter-x: rem($input-gutter-x,$body-font-size);
+  $calculated-input-gutter-x: rem($input-gutter-x, $body-font-size);
 }
 
 $calculated-input-info-font-size: $input-info-font-size;
 
 @if internal-is-convertable($input-info-font-size) {
-  $calculated-input-info-font-size: rem($input-info-font-size,$body-font-size);
+  $calculated-input-info-font-size: rem($input-info-font-size, $body-font-size);
 }
 
 $calculated-input-info-line-height: type-lead(
@@ -78,7 +80,7 @@ $calculated-input-info-line-height: type-lead(
 
 $calculated-input-info-gutter-y: $input-info-gutter-y;
 @if internal-is-convertable($input-info-gutter-y) {
-  $calculated-input-info-gutter-y: em($input-info-gutter-y,$input-info-font-size);
+  $calculated-input-info-gutter-y: em($input-info-gutter-y, $input-info-font-size);
 }
 
 //spacing calcs

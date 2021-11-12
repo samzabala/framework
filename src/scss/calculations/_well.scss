@@ -1,14 +1,14 @@
 $calculated-well-spread: $well-spread;
 @if internal-is-convertable($well-spread) {
-  $calculated-well-spread: rem($well-spread,$body-font-size);
+  $calculated-well-spread: rem($well-spread, $body-font-size);
 }
 
 $calculated-well-spread-expanded: $well-spread-expanded;
 @if internal-is-convertable($well-spread-expanded) {
-  $calculated-well-spread-expanded: rem($well-spread-expanded,$body-font-size);
+  $calculated-well-spread-expanded: rem($well-spread-expanded, $body-font-size);
 }
 
 $calculated-well-spread-compact: $well-spread-compact;
 @if internal-is-convertable($well-spread-compact) {
-  $calculated-well-spread-compact: rem($well-spread-compact,$body-font-size);
+  $calculated-well-spread-compact: rem($well-spread-compact, $body-font-size);
 }

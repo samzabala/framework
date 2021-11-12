@@ -22,9 +22,9 @@ $prefix: '.input';
     input,
     .input {
       & {
-        opacity: 0!important;
-        background:transparent;
-        color:transparent;
+        opacity: 0 !important;
+        background: transparent;
+        color: transparent;
         -webkit-appearance: none;
         appearance: none;
         outline: none;

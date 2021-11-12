@@ -35,7 +35,7 @@ $calculated-highlight-schemes-color: (
 
 $calculated-highlight-height: $highlight-height;
 @if internal-is-convertable($highlight-height, $body-font-size) {
-  $calculated-highlight-height: em($highlight-height,$highlight-font-size);
+  $calculated-highlight-height: em($highlight-height, $highlight-font-size);
 }
 $calculated-highlight-padding-x: $highlight-padding-x;
 @if internal-is-convertable($highlight-padding-x, $body-font-size) {

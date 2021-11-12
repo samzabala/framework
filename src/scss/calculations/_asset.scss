@@ -18,10 +18,7 @@ $calculated-asset-palettes: (
 
 $calculated-asset-image-trail: 5px;
 
-$calculated-ass-thumb-weight-ratio: math.div(
-  math.div(100,9),
-  100
-);
+$calculated-ass-thumb-weight-ratio: math.div(math.div(100, 9), 100);
 
 $calculated-ass-thumb-image-ratio-y: 0.5;
 $calculated-ass-thumb-image-ratio-x: 0.4;
@@ -51,6 +48,6 @@ $calculated-ass-thumb-table-gutter-3: math.percentage(
       ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y) *
         $calculated-ass-thumb-weight-ratio
     ),
-    math.div(($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y),3)
+    math.div(($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y), 3)
   )
 );

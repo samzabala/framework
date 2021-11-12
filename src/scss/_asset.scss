@@ -175,15 +175,15 @@ $prefix: '.asset';
                 currentColor 100%
               );
           background-size: math.percentage(
-            math.div(
-              (
+              math.div(
                 (
-                    ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
-                      $calculated-ass-thumb-gutter-px
-                  ) * 0.5
-              ),
-              ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
-            )
+                  (
+                      ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
+                        $calculated-ass-thumb-gutter-px
+                    ) * 0.5
+                ),
+                ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+              )
             )
             100%;
 
@@ -298,7 +298,8 @@ $prefix: '.asset';
                   (
                     ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x) -
                       ($calculated-ass-thumb-gutter-px * 2)
-                  ),3
+                  ),
+                  3
                 ),
                 ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
               )
@@ -443,12 +444,8 @@ $prefix: '.asset';
       }
 
       &:after {
-        width: math.percentage(
-          math.div(40px,$asset-thumbnail-width)
-        );
-        height: math.percentage(
-          math.div(40px,$asset-thumbnail-height)
-        );
+        width: math.percentage(math.div(40px, $asset-thumbnail-width));
+        height: math.percentage(math.div(40px, $asset-thumbnail-height));
         // right: auto;
         bottom: auto;
         left: auto;
@@ -659,9 +656,7 @@ $prefix: '.asset';
         content: 'z';
       }
       &:after {
-        width: math.percentage(
-          math.div(20px,$asset-thumbnail-width)
-        );
+        width: math.percentage(math.div(20px, $asset-thumbnail-width));
         left: 44%;
 
         background-image: repeating-linear-gradient(
@@ -684,9 +679,9 @@ $prefix: '.asset';
             50%,
             currentColor 100%
           );
-        background-size: 50% #{(math.percentage(
-          math.div(20px,$asset-thumbnail-height)
-        ))};
+        background-size: 50% #{(
+            math.percentage(math.div(20px, $asset-thumbnail-height))
+          )};
         background-position: 0 0, 100% 0;
         background-repeat: repeat-y;
       }

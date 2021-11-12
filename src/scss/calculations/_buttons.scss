@@ -609,17 +609,17 @@ $calculated-btn-schemes: (
 
 $calculated-btn-font-size: $btn-font-size;
 @if internal-is-convertable($btn-font-size) {
-  $calculated-btn-font-size: rem($btn-font-size,$body-font-size);
+  $calculated-btn-font-size: rem($btn-font-size, $body-font-size);
 }
 
 $calculated-btn-font-size-large: $btn-font-size-large;
 @if internal-is-convertable($btn-font-size-large) {
-  $calculated-btn-font-size-large: rem($btn-font-size-large,$body-font-size);
+  $calculated-btn-font-size-large: rem($btn-font-size-large, $body-font-size);
 }
 
 $calculated-btn-font-size-small: $btn-font-size-small;
 @if internal-is-convertable($btn-font-size-small) {
-  $calculated-btn-font-size-small: rem($btn-font-size-small,$body-font-size);
+  $calculated-btn-font-size-small: rem($btn-font-size-small, $body-font-size);
 }
 
 $calculated-btn-line-height: type-lead($btn-font-size, $btn-line-height);
@@ -631,28 +631,28 @@ $calculated-btn-single-line: $calculated-btn-line-height;
 
 $calculated-btn-height: $btn-height;
 @if internal-is-convertable($btn-height, $btn-font-size) {
-  $calculated-btn-height: em($btn-height,$btn-font-size);
+  $calculated-btn-height: em($btn-height, $btn-font-size);
 } @else if internal-is-convertable($btn-height) {
-  $calculated-btn-height: rem($btn-height,$body-font-size);
+  $calculated-btn-height: rem($btn-height, $body-font-size);
 }
 
 $calculated-btn-height-large: $btn-height-large;
 @if internal-is-convertable($btn-height-large, $btn-font-size-large) {
-  $calculated-btn-height-large: em($btn-height-large,$btn-font-size-large);
+  $calculated-btn-height-large: em($btn-height-large, $btn-font-size-large);
 } @else if internal-is-convertable($btn-height-large) {
-  $calculated-btn-height: rem($btn-height-large,$body-font-size);
+  $calculated-btn-height: rem($btn-height-large, $body-font-size);
 }
 
 $calculated-btn-height-small: $btn-height-small;
 @if internal-is-convertable($btn-height-small, $btn-font-size-small) {
-  $calculated-btn-height-small: em($btn-height-small,$btn-font-size-small);
+  $calculated-btn-height-small: em($btn-height-small, $btn-font-size-small);
 } @else if internal-is-convertable($btn-height-small) {
-  $calculated-btn-height: rem($btn-height-small,$body-font-size);
+  $calculated-btn-height: rem($btn-height-small, $body-font-size);
 }
 
 $calculated-btn-gutter-x: $btn-gutter-x;
 @if internal-is-convertable($btn-gutter-x, $btn-font-size) {
-  $calculated-btn-gutter-x: em($btn-gutter-x,$btn-font-size);
+  $calculated-btn-gutter-x: em($btn-gutter-x, $btn-font-size);
 } @else if internal-is-convertable($btn-gutter-x) {
-  $calculated-btn-height: rem($btn-gutter-x,$body-font-size);
+  $calculated-btn-height: rem($btn-gutter-x, $body-font-size);
 }
