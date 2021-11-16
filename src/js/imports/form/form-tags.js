@@ -192,7 +192,10 @@ class Tags extends FwComponent {
 
     //remove duplicates
     toReturn = toReturn.reduce((acc, tag) => {
-      if (!acc.includes(tag) && tag !== '') {
+      //check against a case so you can catch different cases
+      const matcher = acc.map((tag) => tag.toUpperCase());
+
+      if (!acc.includes(tag) && !matcher.includes(tag.toUpperCase()) && tag !== '') {
         acc.push(tag);
       }
 

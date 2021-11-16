@@ -2669,7 +2669,12 @@
       var toReturn = Array.isArray(value) ? value : typeof value == 'string' ? value.split(',') : []; //remove duplicates
 
       toReturn = toReturn.reduce(function (acc, tag) {
-        if (!acc.includes(tag) && tag !== '') {
+        //check against a case so you can catch different cases
+        var matcher = acc.map(function (tag) {
+          return tag.toUpperCase();
+        });
+
+        if (!acc.includes(tag) && !matcher.includes(tag.toUpperCase()) && tag !== '') {
           acc.push(tag);
         }
 
