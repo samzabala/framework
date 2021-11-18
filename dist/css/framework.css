@@ -9563,6 +9563,9 @@ select[multiple].input-single-line, select[multiple].input-select {
   vertical-align: middle;
   color: inherit;
 }
+.input-tags-ui-tag-text:hover, .input-tags-ui-tag-text:focus, .input-tags-ui-tag-text.focus, .input-tags-ui-tag-close:hover, .input-tags-ui-tag-close:focus, .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-primary);
+}
 .input-tags-ui-tag-text {
   padding: 0;
   margin: 0;
@@ -9586,23 +9589,44 @@ select[multiple].input-single-line, select[multiple].input-select {
 .input-primary .input-tags-ui-tag {
   background: var(--fw-color-primary-alpha-2);
 }
+.input-primary .input-tags-ui-tag-text:hover, .input-primary .input-tags-ui-tag-text:focus, .input-primary .input-tags-ui-tag-text.focus, .input-primary .input-tags-ui-tag-close:hover, .input-primary .input-tags-ui-tag-close:focus, .input-primary .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-primary-dark);
+}
 .input-secondary .input-tags-ui-tag {
   background: var(--fw-color-secondary-alpha-2);
+}
+.input-secondary .input-tags-ui-tag-text:hover, .input-secondary .input-tags-ui-tag-text:focus, .input-secondary .input-tags-ui-tag-text.focus, .input-secondary .input-tags-ui-tag-close:hover, .input-secondary .input-tags-ui-tag-close:focus, .input-secondary .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-secondary-dark);
 }
 .input-accent .input-tags-ui-tag {
   background: var(--fw-color-accent-alpha-2);
 }
+.input-accent .input-tags-ui-tag-text:hover, .input-accent .input-tags-ui-tag-text:focus, .input-accent .input-tags-ui-tag-text.focus, .input-accent .input-tags-ui-tag-close:hover, .input-accent .input-tags-ui-tag-close:focus, .input-accent .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-accent-dark);
+}
 .input-neutral .input-tags-ui-tag {
   background: var(--fw-color-neutral-alpha-2);
+}
+.input-neutral .input-tags-ui-tag-text:hover, .input-neutral .input-tags-ui-tag-text:focus, .input-neutral .input-tags-ui-tag-text.focus, .input-neutral .input-tags-ui-tag-close:hover, .input-neutral .input-tags-ui-tag-close:focus, .input-neutral .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-neutral-dark);
 }
 .input-success .input-tags-ui-tag {
   background: var(--fw-color-success-alpha-2);
 }
+.input-success .input-tags-ui-tag-text:hover, .input-success .input-tags-ui-tag-text:focus, .input-success .input-tags-ui-tag-text.focus, .input-success .input-tags-ui-tag-close:hover, .input-success .input-tags-ui-tag-close:focus, .input-success .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-success-dark);
+}
 .input-caution .input-tags-ui-tag {
   background: var(--fw-color-caution-alpha-2);
 }
+.input-caution .input-tags-ui-tag-text:hover, .input-caution .input-tags-ui-tag-text:focus, .input-caution .input-tags-ui-tag-text.focus, .input-caution .input-tags-ui-tag-close:hover, .input-caution .input-tags-ui-tag-close:focus, .input-caution .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-caution-dark);
+}
 .input-error .input-tags-ui-tag {
   background: var(--fw-color-error-alpha-2);
+}
+.input-error .input-tags-ui-tag-text:hover, .input-error .input-tags-ui-tag-text:focus, .input-error .input-tags-ui-tag-text.focus, .input-error .input-tags-ui-tag-close:hover, .input-error .input-tags-ui-tag-close:focus, .input-error .input-tags-ui-tag-close.focus {
+  color: var(--fw-color-error-dark);
 }
 .input-tags-ui-input {
   border: none;

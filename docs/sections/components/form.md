@@ -1502,6 +1502,39 @@ if enabled, makes the tags occupy their own block widths. only works if set to m
 />
 ```
 
+**`data-tags-max-char`** - `args.maxChar`
+
+defaults to 0
+
+if set to more than 0, component will be filtered to only accept tags that are at most that amount of characters
+
+```html
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-max-char="5"
+/>
+<!-- 'stupid' will be removed since it's 6 characters and 6 is more than 5. duh  -->
+```
+
+**`data-tags-max-char-snip`** - `args.maxCharSnip`
+
+defaults to false
+
+if enabled, will cut the tags that are more than the set `args.maxChar` and replace the last character with the ellipsis character (&hellip;) to signify that yes, the tag was trimmed because there too much words. Has no effect if there is no set `args.maxChar`.
+
+```html
+<input
+  type="text"
+  value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
+  class="input input-tags"
+  data-tags-max-char="5"
+  data-tags-max-char-snip="true"
+/>
+<!-- 'stupid' will become 'stupi…'  -->
+```
+
 ### Javascript
 
 #### Functions
@@ -1525,16 +1558,16 @@ Make a new boi by going `const formTags = new fw.Form.Tags(element,valueToRender
 	onKeyUp: null, //data-tags-on-keyup
 	multipleLines: false, //data-tags-multiple-lines
 	multipleLinesBreak: false, //data-tags-multiple-lines-break
+  maxChar: 0,
+  maxCharSnip: false,
 }
 ```
 
-##### **`formTags.update(newValue,allowFilter,valueToRender,inputText)`**
+##### **`formTags.update(newValue,valueToRender,inputText)`**
 
 updates the values and renders the ui
 
 `newValue` is the value for the input falls back to the `element.value`
-
-`allowFilter` whether or not to allow filter on render
 
 `valueToRender` is the value the input ui will render. falls back to the `element.value`
 

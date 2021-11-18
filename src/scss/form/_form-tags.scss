@@ -117,6 +117,15 @@ $prefix: '.input';
             @extend %for-form-input-ui-button !optional;
           }
 
+          &-text,
+          &-close {
+            &:hover,
+            &:focus,
+            &.focus {
+              color: var(--fw-color-#{$input-tags-palette-tag});
+            }
+          }
+
           &-text {
             @include dump-styles(text-ellipsis-single);
             padding: 0;
@@ -149,6 +158,15 @@ $prefix: '.input';
           @each $tag, $color in $calculated-brand-color-declarations-for-components {
             #{$prefix}-#{$tag} & {
               background: var(--fw-color-#{$tag}-#{$input-tags-palette-tag-slug});
+
+              &-text,
+              &-close {
+                &:hover,
+                &:focus,
+                &.focus {
+                  color: var(--fw-color-#{$tag}-dark);
+                }
+              }
             }
           }
         }

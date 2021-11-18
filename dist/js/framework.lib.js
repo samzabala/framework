@@ -2629,6 +2629,7 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
+        isFiltering: true,
         UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
@@ -2641,6 +2642,14 @@
 
       this.UIValue = null;
       this._customArgs = null;
+    };
+
+    _proto.__enableFilter = function __enableFilter() {
+      return this.isFiltering = true;
+    };
+
+    _proto.__disableFilter = function __disableFilter() {
+      this.isFiltering = false;
     };
 
     _proto._scrollToUIInput = function _scrollToUIInput() {
@@ -2660,7 +2669,20 @@
         filter: null,
         onKeyUp: null,
         multipleLines: false,
-        multipleLinesBreak: false
+        multipleLinesBreak: false,
+        maxChar: {
+          value: 0,
+          parser: function parser(value) {
+            if (parseInt(value) > 0) {
+              value = parseInt(value);
+            } else {
+              return 0;
+            }
+
+            return value;
+          }
+        },
+        snipToLimit: false
       };
     };
 
@@ -2698,8 +2720,39 @@
       return Tags.toArr(value, returnsWithInput).join(',');
     };
 
-    _proto.filterValue = function filterValue(custFn) {
+    _proto._trimOrLimit = function _trimOrLimit(tags) {
       var _this = this;
+
+      var trimmed = [];
+      tags.forEach(function (tag) {
+        //do not filter ya boi because you need that to type stuff in it
+        if (tag === INPUT_STRING) {
+          trimmed.push(tag);
+          return;
+        }
+
+        if (tag.toString().length > _this.args.maxChar) {
+          if (_this.args.maxCharSnip) {
+            trimmed.push(tag.substr(0, _this.args.maxChar - 1) + '…');
+          }
+        } else {
+          trimmed.push(tag);
+        }
+      });
+      return trimmed;
+    };
+
+    _proto.trim = function trim() {
+      if (!(this.args.maxChar > 0)) {
+        return;
+      }
+
+      this.theValue = this._trimOrLimit(Tags.toArr(this.theValue));
+      this.renderValue = this._trimOrLimit(Tags.toArr(this.renderValue, true));
+    };
+
+    _proto.filterValue = function filterValue(custFn) {
+      var _this2 = this;
 
       var fnToFilter, applyFilter;
 
@@ -2732,8 +2785,8 @@
           // 	'whAT ETHE FUCK'
           // );
 
-          if (_this.UIInputIdx > -1) {
-            toReturn.splice(_this.UIInputIdx < Tags.toArr(valueToFilter).length - 1 ? _this.UIInputIdx : toReturn.length, 0, Tags.__is);
+          if (_this2.UIInputIdx > -1) {
+            toReturn.splice(_this2.UIInputIdx < Tags.toArr(valueToFilter).length - 1 ? _this2.UIInputIdx : toReturn.length, 0, Tags.__is);
           }
 
           return Tags.toVal(toReturn);
@@ -2744,39 +2797,50 @@
       }
     };
 
-    _proto.update = function update(newValue, allowFilter, valueToRender, inputText) {
-      var _this2 = this;
+    _proto.validate = function validate() {
+      //limit tag lengths
+      this.trim();
+      console.log('trim', this.theValue, this.renderValue); //filter args
+
+      if (this.args.filter && this.isFiltering) {
+        this.filterValue(); //reset filtering to true after
+
+        this.__enableFilter();
+
+        console.log('filter', this.theValue, this.renderValue);
+      }
+    };
+
+    _proto.update = function update(newValue, valueToRender, inputText) {
+      var _this3 = this;
 
       var theValue = newValue || this.theValue || '';
       var uiValue = valueToRender || theValue || this.renderValue || '';
-      allowFilter = allowFilter == false ? false : true;
       inputText = inputText || false;
       var triggerChange = newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
-        _this2.theValue = theValue;
-        _this2.renderValue = uiValue;
+        _this3.theValue = theValue;
+        _this3.renderValue = uiValue;
 
-        if (_this2.args.filter && allowFilter) {
-          _this2.filterValue();
-        }
+        _this3.validate();
 
-        _this2._renderUI();
+        _this3._renderUI();
 
         if (inputText) {
-          _this2.UIInputValue = inputText;
+          _this3.UIInputValue = inputText;
 
-          _this2.focus();
+          _this3.focus();
         }
 
         if (triggerChange) {
-          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this2), 'change');
+          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
         }
       });
     };
 
     _proto._renderUI = function _renderUI(elem) {
-      var _this3 = this;
+      var _this4 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
@@ -2787,7 +2851,7 @@
       var theUI = {};
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER$1, EVENT_RENDER$1, EVENT_AFTER_RENDER$1, function () {
-        theUI.container = _this3.UIRoot;
+        theUI.container = _this4.UIRoot;
 
         if (!theUI.container) {
           theUI.container = document.createElement('div');
@@ -2795,12 +2859,12 @@
           theUI.container.appendChild(element);
           theUI.container.classList.add('input');
           theUI.container.setAttribute('class', Settings.get('uiClass') + "\n          " + Settings.get('uiJsClass') + "\n          " + element.getAttribute('class').toString().replace(COMPONENT_CLASS$8, UIPrefix(COMPONENT_CLASS$8)));
-          theUI.container.classList.add(_this3.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
-          _this3.args.multipleLines && _this3.args.multipleLinesBreak && theUI.container.classList.add(UIPrefix(COMPONENT_CLASS$8) + "-multiple-break");
+          theUI.container.classList.add(_this4.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
+          _this4.args.multipleLines && _this4.args.multipleLinesBreak && theUI.container.classList.add(UIPrefix(COMPONENT_CLASS$8) + "-multiple-break");
         }
 
-        if (_this3.args.width) {
-          theUI.container.style = _this3.args.width;
+        if (_this4.args.width) {
+          theUI.container.style = _this4.args.width;
         } //idk it never exists on initial so we dont have to do weird div wraping catches here
 
 
@@ -2811,26 +2875,26 @@
           theUI.container.appendChild(theUI.wrapper);
           theUI.wrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
           theUI.wrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
-          var self = _this3;
+          var self = _this4;
 
           Initiator.Q.on_resize = function () {
             self._scrollToUIInput();
           };
         }
 
-        theUI.input = _this3.UIInput;
+        theUI.input = _this4.UIInput;
 
         if (!theUI.input) {
-          theUI.input = document.createElement('input'); // theUI.input = document.createElement('span');
-
+          // theUI.input = document.createElement('input');
+          theUI.input = document.createElement('span');
           theUI.wrapper.appendChild(theUI.input);
-          theUI.input.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-input"); // theUI.input.contentEditable = true;
-
+          theUI.input.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-input");
+          theUI.input.contentEditable = true;
           theUI.input = theUI.wrapper.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-input");
 
           if (element.hasAttribute('placeholder')) {
-            theUI.input.setAttribute( // 'data-placeholder',
-            'placeholder', element.getAttribute('placeholder'));
+            theUI.input.setAttribute('data-placeholder', // 'placeholder',
+            element.getAttribute('placeholder'));
           } //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
           // if (element.hasAttribute('data-toggle')) {
           //   theUI.input.setAttribute(
@@ -2845,9 +2909,9 @@
           } //bitch
 
 
-          if (_this3.args.onKeyUp) {
+          if (_this4.args.onKeyUp) {
             theUI.input.addEventListener('keyup', function (event) {
-              var keyUpScript = eval(_this3.args.onKeyUp);
+              var keyUpScript = eval(_this4.args.onKeyUp);
 
               if (keyUpScript) {
                 return keyUpScript;
@@ -2861,8 +2925,8 @@
         oldTags.forEach(function (tag) {
           tag.parentNode.removeChild(tag);
         });
-        var valArr = Tags.toArr(_this3.renderValue, true);
-        theUI.input.setAttribute('data-ui-i', _this3.UIInputIdx); //validate tags
+        var valArr = Tags.toArr(_this4.renderValue, true);
+        theUI.input.setAttribute('data-ui-i', _this4.UIInputIdx); //validate tags
         // valArr = valArr.reduce((acc, tag) => {
         // 	if (!acc.includes(tag)) {
         // 		acc.push(tag);
@@ -2875,7 +2939,7 @@
           if (tag !== Tags.__is) {
             var tagHtml = document.createElement('span');
 
-            if (i < _this3.UIInputIdx) {
+            if (i < _this4.UIInputIdx) {
               theUI.input.insertAdjacentElement('beforebegin', tagHtml);
             } else {
               theUI.wrapper.appendChild(tagHtml);
@@ -2896,9 +2960,9 @@
           }
         }
 
-        element.setAttribute('data-value-ui', _this3.renderValue); //keep that shoit bisibol
+        element.setAttribute('data-value-ui', _this4.renderValue); //keep that shoit bisibol
 
-        _this3._scrollToUIInput();
+        _this4._scrollToUIInput();
       }, element);
     };
 
@@ -2975,7 +3039,7 @@
           }
 
           tagsInput.UIInputValue = '';
-          tagsInput.update(Tags.toVal(currValue, false), true);
+          tagsInput.update(Tags.toVal(currValue, false));
           tagsInput.blur(true);
         }
       };
@@ -3069,7 +3133,11 @@
 
           newValue = Tags.toVal(currUIValue); // tagsInput._scrollToUIInput();
 
-          tagsInput.update(newValue, allowFilter);
+          if (!allowFilter) {
+            tagsInput.__disableFilter();
+          }
+
+          tagsInput.update(newValue);
         }
       };
     };
@@ -3084,7 +3152,7 @@
           var currValue = Tags.toArr(tagsInput.theValue);
           currValue.splice(parseInt(tagToRemove), 1);
           var newValue = Tags.toVal(currValue);
-          tagsInput.update(newValue, true);
+          tagsInput.update(newValue);
         }
       };
     };
@@ -3100,7 +3168,10 @@
           var currValue = Tags.toArr(tagsInput.theValue, false);
           currValue.splice(tagToEdit, 1, Tags.__is);
           var newUIValue = Tags.toVal(currValue);
-          tagsInput.update(null, false, newUIValue, e.target.innerText);
+
+          tagsInput.__disableFilter();
+
+          tagsInput.update(null, newUIValue, e.target.innerText);
         }
       };
     };
@@ -3161,10 +3232,13 @@
     }, {
       key: "UIInputValue",
       get: function get() {
-        return this.UIInput.value;
+        // return this.UIInput.value;
+        return this.UIInput.innerText;
       },
       set: function set(inputValue) {
-        this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
+        console.log(this.UIInput.innerText, inputValue); // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
+
+        this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
       }
     }, {
       key: "UIInputIdx",
@@ -3190,7 +3264,9 @@
           onKeyUp: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-on-keyup") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-on-keyup") : this._customArgs.onKeyUp,
           filter: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-filter") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-filter") : this._customArgs.filter,
           multipleLines: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines") : this._customArgs.multipleLines,
-          multipleLinesBreak: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") : this._customArgs.multipleLinesBreak
+          multipleLinesBreak: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-multiple-lines-break") : this._customArgs.multipleLinesBreak,
+          maxChar: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-max-char") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-max-char") : this._customArgs.maxChar,
+          maxCharSnip: _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-max-char-snip") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-max-char-snip") : this._customArgs.maxCharSnip
         }, Tags.configDefaults());
       }
     }], [{

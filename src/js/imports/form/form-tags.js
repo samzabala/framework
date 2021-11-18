@@ -41,6 +41,7 @@ const INPUT_STRING = `__fw_input__`;
 class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
+      isFiltering: true,
       UIValue: valueToRender
         ? valueToRender
         : element && element._UIValue
@@ -103,11 +104,14 @@ class Tags extends FwComponent {
   }
 
   get UIInputValue() {
-    return this.UIInput.value;
+    // return this.UIInput.value;
+    return this.UIInput.innerText;
   }
 
   set UIInputValue(inputValue) {
-    this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
+    console.log(this.UIInput.innerText, inputValue);
+    // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
+    this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
   }
 
   get UIInputIdx() {
@@ -127,6 +131,14 @@ class Tags extends FwComponent {
     // )
     // || Tags.toArr(this.renderValue).indexOf(Tags.__is)
     // || Tags.toArr(this.theValue).length;
+  }
+
+  __enableFilter() {
+    return (this.isFiltering = true);
+  }
+
+  __disableFilter() {
+    this.isFiltering = false;
   }
 
   _scrollToUIInput() {
@@ -151,6 +163,19 @@ class Tags extends FwComponent {
       onKeyUp: null,
       multipleLines: false,
       multipleLinesBreak: false,
+      maxChar: {
+        value: 0,
+        parser: (value) => {
+          if (parseInt(value) > 0) {
+            value = parseInt(value);
+          } else {
+            return 0;
+          }
+
+          return value;
+        },
+      },
+      snipToLimit: false,
     };
   }
 
@@ -176,6 +201,14 @@ class Tags extends FwComponent {
           .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
           ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
           : this._customArgs.multipleLinesBreak,
+        maxChar: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-char`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-char`)
+          : this._customArgs.maxChar,
+        maxCharSnip: super
+          .UIEl()
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-char-snip`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-char-snip`)
+          : this._customArgs.maxCharSnip,
       },
       Tags.configDefaults()
     );
@@ -218,6 +251,37 @@ class Tags extends FwComponent {
 
   static toVal(value, returnsWithInput) {
     return Tags.toArr(value, returnsWithInput).join(',');
+  }
+
+  _trimOrLimit(tags) {
+    let trimmed = [];
+
+    tags.forEach((tag) => {
+      //do not filter ya boi because you need that to type stuff in it
+      if (tag === INPUT_STRING) {
+        trimmed.push(tag);
+        return;
+      }
+
+      if (tag.toString().length > this.args.maxChar) {
+        if (this.args.maxCharSnip) {
+          trimmed.push(tag.substr(0, this.args.maxChar - 1) + '…');
+        }
+      } else {
+        trimmed.push(tag);
+      }
+    });
+
+    return trimmed;
+  }
+
+  trim() {
+    if (!(this.args.maxChar > 0)) {
+      return;
+    }
+
+    this.theValue = this._trimOrLimit(Tags.toArr(this.theValue));
+    this.renderValue = this._trimOrLimit(Tags.toArr(this.renderValue, true));
   }
 
   filterValue(custFn) {
@@ -277,12 +341,24 @@ class Tags extends FwComponent {
     }
   }
 
-  update(newValue, allowFilter, valueToRender, inputText) {
+  validate() {
+    //limit tag lengths
+    this.trim();
+    console.log('trim', this.theValue, this.renderValue);
+
+    //filter args
+    if (this.args.filter && this.isFiltering) {
+      this.filterValue();
+      //reset filtering to true after
+      this.__enableFilter();
+      console.log('filter', this.theValue, this.renderValue);
+    }
+  }
+
+  update(newValue, valueToRender, inputText) {
     let theValue = newValue || this.theValue || '';
 
     let uiValue = valueToRender || theValue || this.renderValue || '';
-
-    allowFilter = allowFilter == false ? false : true;
 
     inputText = inputText || false;
 
@@ -293,9 +369,7 @@ class Tags extends FwComponent {
       this.theValue = theValue;
       this.renderValue = uiValue;
 
-      if (this.args.filter && allowFilter) {
-        this.filterValue();
-      }
+      this.validate();
 
       this._renderUI();
 
@@ -378,19 +452,19 @@ class Tags extends FwComponent {
         theUI.input = this.UIInput;
 
         if (!theUI.input) {
-          theUI.input = document.createElement('input');
-          // theUI.input = document.createElement('span');
+          // theUI.input = document.createElement('input');
+          theUI.input = document.createElement('span');
           theUI.wrapper.appendChild(theUI.input);
           theUI.input.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
-          // theUI.input.contentEditable = true;
+          theUI.input.contentEditable = true;
           theUI.input = theUI.wrapper.querySelector(
             `.${UIPrefix(COMPONENT_CLASS)}-input`
           );
 
           if (element.hasAttribute('placeholder')) {
             theUI.input.setAttribute(
-              // 'data-placeholder',
-              'placeholder',
+              'data-placeholder',
+              // 'placeholder',
               element.getAttribute('placeholder')
             );
           }
@@ -591,7 +665,7 @@ class Tags extends FwComponent {
 
         tagsInput.UIInputValue = '';
 
-        tagsInput.update(Tags.toVal(currValue, false), true);
+        tagsInput.update(Tags.toVal(currValue, false));
 
         tagsInput.blur(true);
       }
@@ -706,8 +780,10 @@ class Tags extends FwComponent {
 
         newValue = Tags.toVal(currUIValue);
         // tagsInput._scrollToUIInput();
-
-        tagsInput.update(newValue, allowFilter);
+        if (!allowFilter) {
+          tagsInput.__disableFilter();
+        }
+        tagsInput.update(newValue);
       }
     };
   }
@@ -731,7 +807,7 @@ class Tags extends FwComponent {
 
         const newValue = Tags.toVal(currValue);
 
-        tagsInput.update(newValue, true);
+        tagsInput.update(newValue);
       }
     };
   }
@@ -757,7 +833,9 @@ class Tags extends FwComponent {
 
         const newUIValue = Tags.toVal(currValue);
 
-        tagsInput.update(null, false, newUIValue, e.target.innerText);
+        tagsInput.__disableFilter();
+
+        tagsInput.update(null, newUIValue, e.target.innerText);
       }
     };
   }
