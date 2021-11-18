@@ -29,6 +29,10 @@ $prefix: '.tag';
   max-width: 100%;
   @include dump-styles(text-ellipsis-single);
 
+  &:nth-child(n + 2) {
+    margin-left: $calculated-tag-margin-x;
+  }
+
   &#{&}-large {
     padding-top: calc(
       ((#{$calculated-tag-height-large} - (#{$calculated-tag-single-line})) * 0.5)

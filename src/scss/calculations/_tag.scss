@@ -88,3 +88,7 @@ $calculated-tag-margin-y: $tag-margin-y;
 @if internal-is-convertable($tag-margin-y, $tag-font-size) {
   $calculated-tag-gutter-y: em($tag-gutter-y, $tag-font-size);
 }
+$calculated-tag-margin-x: $tag-margin-x;
+@if internal-is-convertable($tag-margin-x, $tag-font-size) {
+  $calculated-tag-gutter-x: em($tag-gutter-x, $tag-font-size);
+}
