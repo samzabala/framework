@@ -6379,7 +6379,7 @@ hr.dropdown-separator {
   max-width: 100%;
 }
 .tag:nth-child(n+2) {
-  margin-left: 0.125em;
+  margin-left: 0.0625em;
 }
 .tag.tag-large {
   padding-top: calc((3em - (1em)) * 0.5);
