@@ -1379,7 +1379,7 @@ $tag-border-radius: $border-radius-small !default;
 $tag-border-radius-large: $border-radius-base !default;
 $tag-border-radius-small: $border-radius-small !default;
 $tag-margin-y: 0.125em !default;
-$tag-margin-x: $tag-margin-y * .5 !default;
+$tag-margin-x: $tag-margin-y !default;
 
 $tag-default-color: $var-theme-color !default;
 $tag-default-background: $var-color-neutral-alpha-5 !default;
