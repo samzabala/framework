@@ -2799,15 +2799,12 @@
 
     _proto.validate = function validate() {
       //limit tag lengths
-      this.trim();
-      console.log('trim', this.theValue, this.renderValue); //filter args
+      this.trim(); //filter args
 
       if (this.args.filter && this.isFiltering) {
         this.filterValue(); //reset filtering to true after
 
         this.__enableFilter();
-
-        console.log('filter', this.theValue, this.renderValue);
       }
     };
 
@@ -3236,8 +3233,7 @@
         return this.UIInput.innerText;
       },
       set: function set(inputValue) {
-        console.log(this.UIInput.innerText, inputValue); // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
-
+        // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
         this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
       }
     }, {

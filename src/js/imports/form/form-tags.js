@@ -109,7 +109,6 @@ class Tags extends FwComponent {
   }
 
   set UIInputValue(inputValue) {
-    console.log(this.UIInput.innerText, inputValue);
     // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
     this.UIInput.innerText = inputValue.toString().replace(/\n|\r/g, '\\n');
   }
@@ -344,14 +343,12 @@ class Tags extends FwComponent {
   validate() {
     //limit tag lengths
     this.trim();
-    console.log('trim', this.theValue, this.renderValue);
 
     //filter args
     if (this.args.filter && this.isFiltering) {
       this.filterValue();
       //reset filtering to true after
       this.__enableFilter();
-      console.log('filter', this.theValue, this.renderValue);
     }
   }
 
