@@ -676,7 +676,7 @@ class Calendar extends FwComponent {
   }
 
   init(elem) {
-    const element = elem ? super.UIEl(elem) : super.UIEl();
+    elem ? super.UIEl(elem) : super.UIEl();
     this.update();
   }
 

@@ -818,6 +818,7 @@
 
       if (!isNative) {
         elemToAddTo.addEventListener(evtNoApi, function (event) {
+          // console.warn('add listener cust',evt);
           if (!parent || parent && event.target.matches(FwEvent.classNester(selectorOrParentFallback)) // && event.target.closest(selectorOrParentFallback)
           ) {
             FwEvent.trigger(event.target, evt, {
@@ -833,6 +834,7 @@
       }
 
       elemToAddTo.addEventListener(evt, function (event) {
+        // console.warn('add listener',evt);
         if (!parent || parent && // && event.target.matches(FwEvent.classNester(selectorOrParentFallback))
         event.target.closest(selectorOrParentFallback)) {
           if (!isNative) {
@@ -866,7 +868,8 @@
         } else {
           event = new CustomEvent(evt);
         }
-      }
+      } // console.warn('trig',evt);
+
 
       return el.dispatchEvent(event); // return event;
     };
@@ -2611,8 +2614,8 @@
   var EVENT_CLICK$5 = "click" + EVENT_KEY$8;
   var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
   var EVENT_BLUR = "blur" + EVENT_KEY$8;
-  var EVENT_PASTE = "paste" + EVENT_KEY$8; // const EVENT_CHANGE = `change${EVENT_KEY}`;
-
+  var EVENT_PASTE = "paste" + EVENT_KEY$8;
+  var EVENT_CHANGE$1 = "change" + EVENT_KEY$8;
   var EVENT_BEFORE_INIT$3 = "before_init" + EVENT_KEY$8;
   var EVENT_INIT$3 = "init" + EVENT_KEY$8;
   var EVENT_AFTER_INIT$3 = "after_init" + EVENT_KEY$8;
@@ -2630,6 +2633,7 @@
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
         isFiltering: true,
+        triggerChange: false,
         UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
@@ -2650,6 +2654,14 @@
 
     _proto.__disableFilter = function __disableFilter() {
       this.isFiltering = false;
+    };
+
+    _proto.__enableChange = function __enableChange() {
+      return this.triggerChange = true;
+    };
+
+    _proto.__disableChange = function __disableChange() {
+      this.triggerChange = false;
     };
 
     _proto._scrollToUIInput = function _scrollToUIInput() {
@@ -2813,25 +2825,34 @@
 
       var theValue = newValue || this.theValue || '';
       var uiValue = valueToRender || theValue || this.renderValue || '';
-      inputText = inputText || false;
-      var triggerChange = newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
+      inputText = inputText || false; // const triggerChange =
+      //   newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
+        var allowRender = true;
+
+        if (_this3.triggerChange) {
+          allowRender = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+
+          _this3.__disableChange();
+
+          return false;
+        } //reset trigger
+
+
         _this3.theValue = theValue;
         _this3.renderValue = uiValue;
 
         _this3.validate();
 
-        _this3._renderUI();
+        if (allowRender) {
+          _this3._renderUI();
 
-        if (inputText) {
-          _this3.UIInputValue = inputText;
+          if (inputText) {
+            _this3.UIInputValue = inputText;
 
-          _this3.focus();
-        }
-
-        if (triggerChange) {
-          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+            _this3.focus();
+          }
         }
       });
     };
@@ -3000,6 +3021,21 @@
       }, document);
     };
 
+    Tags.handleChange = function handleChange() {
+      return function (e) {
+        console.log('change');
+
+        if (!FwComponent.isDisabled(e.target)) {
+          var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
+
+          tagsInput.__disableChange(); // so it dont loop
+
+
+          tagsInput.update();
+        }
+      };
+    };
+
     Tags.handleEditablePaste = function handleEditablePaste() {
       return function (e) {
         e.preventDefault();
@@ -3036,6 +3072,9 @@
           }
 
           tagsInput.UIInputValue = '';
+
+          tagsInput.__enableChange();
+
           tagsInput.update(Tags.toVal(currValue, false));
           tagsInput.blur(true);
         }
@@ -3050,6 +3089,7 @@
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           var currUIValue = Tags.toArr(tagsInput.renderValue),
               newValue,
+              enableChange,
               allowFilter = false;
 
           switch (e.key) {
@@ -3057,14 +3097,16 @@
             case 'Enter':
               e.preventDefault();
               tagsInput.blur();
+              enableChange = true;
               break;
             //comma
 
             case ',':
               if (!Modifiers.hasActive()) {
-                allowFilter = true;
                 e.preventDefault();
                 currUIValue.splice(tagsInput.UIInputIdx, 0, tagsInput.UIInputValue.replace(',', ''));
+                allowFilter = true;
+                enableChange = true;
                 tagsInput.UIInputValue = '';
               } // currUIValue.splice()
 
@@ -3113,6 +3155,7 @@
                 e.preventDefault();
                 allowFilter = true;
                 currUIValue.splice(tagsInput.UIInputIdx - 1, 1);
+                enableChange = true;
               }
 
               break;
@@ -3123,6 +3166,7 @@
                 e.preventDefault();
                 allowFilter = true;
                 currUIValue.splice(tagsInput.UIInputIdx + 1, 1);
+                enableChange = true;
               }
 
               break;
@@ -3132,6 +3176,10 @@
 
           if (!allowFilter) {
             tagsInput.__disableFilter();
+          }
+
+          if (enableChange) {
+            tagsInput.__enableChange();
           }
 
           tagsInput.update(newValue);
@@ -3149,6 +3197,9 @@
           var currValue = Tags.toArr(tagsInput.theValue);
           currValue.splice(parseInt(tagToRemove), 1);
           var newValue = Tags.toVal(currValue);
+
+          tagsInput.__enableChange();
+
           tagsInput.update(newValue);
         }
       };
@@ -3174,6 +3225,7 @@
     };
 
     Tags.initListeners = function initListeners() {
+      FwEvent.addListener(document.documentElement, EVENT_CHANGE$1, "." + COMPONENT_CLASS$8, Tags.handleChange());
       FwEvent.addListener(document.documentElement, EVENT_PASTE, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditablePaste());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableFocus());
       FwEvent.addListener(document.documentElement, EVENT_BLUR, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableBlur());
@@ -3187,6 +3239,7 @@
     };
 
     Tags.destroyListeners = function destroyListeners() {
+      FwEvent.removeListener(document.documentElement, EVENT_CHANGE$1, Tags.handleChange());
       FwEvent.removeListener(document.documentElement, EVENT_PASTE, Tags.handleEditablePaste());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEditableFocus());
       FwEvent.removeListener(document.documentElement, EVENT_BLUR, Tags.handleEditableBlur());

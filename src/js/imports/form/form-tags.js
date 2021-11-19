@@ -22,7 +22,7 @@ const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
 const EVENT_BLUR = `blur${EVENT_KEY}`;
 const EVENT_PASTE = `paste${EVENT_KEY}`;
-// const EVENT_CHANGE = `change${EVENT_KEY}`;
+const EVENT_CHANGE = `change${EVENT_KEY}`;
 
 const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;
@@ -42,6 +42,7 @@ class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
       isFiltering: true,
+      triggerChange: false,
       UIValue: valueToRender
         ? valueToRender
         : element && element._UIValue
@@ -138,6 +139,14 @@ class Tags extends FwComponent {
 
   __disableFilter() {
     this.isFiltering = false;
+  }
+
+  __enableChange() {
+    return (this.triggerChange = true);
+  }
+
+  __disableChange() {
+    this.triggerChange = false;
   }
 
   _scrollToUIInput() {
@@ -359,24 +368,30 @@ class Tags extends FwComponent {
 
     inputText = inputText || false;
 
-    const triggerChange =
-      newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
+    // const triggerChange =
+    //   newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
     super.runCycle(EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, () => {
+      let allowRender = true;
+      if (this.triggerChange) {
+        allowRender = FwEvent.trigger(super.UIEl(), 'change');
+        this.__disableChange();
+        return false;
+      }
+      //reset trigger
+
       this.theValue = theValue;
       this.renderValue = uiValue;
 
       this.validate();
 
-      this._renderUI();
+      if (allowRender) {
+        this._renderUI();
 
-      if (inputText) {
-        this.UIInputValue = inputText;
-        this.focus();
-      }
-
-      if (triggerChange) {
-        FwEvent.trigger(super.UIEl(), 'change');
+        if (inputText) {
+          this.UIInputValue = inputText;
+          this.focus();
+        }
       }
     });
   }
@@ -589,8 +604,7 @@ class Tags extends FwComponent {
   }
 
   init(elem) {
-    const element = elem ? super.UIEl(elem) : super.UIEl();
-
+    elem ? super.UIEl(elem) : super.UIEl();
     this.update();
   }
 
@@ -608,6 +622,21 @@ class Tags extends FwComponent {
       },
       document
     );
+  }
+
+  static handleChange() {
+    return (e) => {
+      console.log('change');
+      if (!FwComponent.isDisabled(e.target)) {
+        const tagsInput = new Tags(
+          e.target
+            .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
+            .querySelector(`.${COMPONENT_CLASS}`)
+        );
+        tagsInput.__disableChange(); // so it dont loop
+        tagsInput.update();
+      }
+    };
   }
 
   static handleEditablePaste() {
@@ -662,6 +691,8 @@ class Tags extends FwComponent {
 
         tagsInput.UIInputValue = '';
 
+        tagsInput.__enableChange();
+
         tagsInput.update(Tags.toVal(currValue, false));
 
         tagsInput.blur(true);
@@ -681,6 +712,7 @@ class Tags extends FwComponent {
         );
         let currUIValue = Tags.toArr(tagsInput.renderValue),
           newValue,
+          enableChange,
           allowFilter = false;
 
         switch (e.key) {
@@ -688,19 +720,20 @@ class Tags extends FwComponent {
           case 'Enter':
             e.preventDefault();
             tagsInput.blur();
+            enableChange = true;
             break;
 
           //comma
           case ',':
             if (!Modifiers.hasActive()) {
-              allowFilter = true;
               e.preventDefault();
               currUIValue.splice(
                 tagsInput.UIInputIdx,
                 0,
                 tagsInput.UIInputValue.replace(',', '')
               );
-
+              allowFilter = true;
+              enableChange = true;
               tagsInput.UIInputValue = '';
             }
             // currUIValue.splice()
@@ -762,6 +795,7 @@ class Tags extends FwComponent {
               e.preventDefault();
               allowFilter = true;
               currUIValue.splice(tagsInput.UIInputIdx - 1, 1);
+              enableChange = true;
             }
             break;
 
@@ -771,6 +805,7 @@ class Tags extends FwComponent {
               e.preventDefault();
               allowFilter = true;
               currUIValue.splice(tagsInput.UIInputIdx + 1, 1);
+              enableChange = true;
             }
             break;
         }
@@ -779,6 +814,9 @@ class Tags extends FwComponent {
         // tagsInput._scrollToUIInput();
         if (!allowFilter) {
           tagsInput.__disableFilter();
+        }
+        if (enableChange) {
+          tagsInput.__enableChange();
         }
         tagsInput.update(newValue);
       }
@@ -804,6 +842,7 @@ class Tags extends FwComponent {
 
         const newValue = Tags.toVal(currValue);
 
+        tagsInput.__enableChange();
         tagsInput.update(newValue);
       }
     };
@@ -831,13 +870,18 @@ class Tags extends FwComponent {
         const newUIValue = Tags.toVal(currValue);
 
         tagsInput.__disableFilter();
-
         tagsInput.update(null, newUIValue, e.target.innerText);
       }
     };
   }
 
   static initListeners() {
+    FwEvent.addListener(
+      document.documentElement,
+      EVENT_CHANGE,
+      `.${COMPONENT_CLASS}`,
+      Tags.handleChange()
+    );
     FwEvent.addListener(
       document.documentElement,
       EVENT_PASTE,
@@ -885,6 +929,7 @@ class Tags extends FwComponent {
     }
   }
   static destroyListeners() {
+    FwEvent.removeListener(document.documentElement, EVENT_CHANGE, Tags.handleChange());
     FwEvent.removeListener(
       document.documentElement,
       EVENT_PASTE,

@@ -96,6 +96,7 @@ class FwEvent extends FwDataHelper {
       elemToAddTo.addEventListener(
         evtNoApi,
         (event) => {
+          // console.warn('add listener cust',evt);
           if (
             !parent ||
             (parent &&
@@ -119,6 +120,7 @@ class FwEvent extends FwDataHelper {
     elemToAddTo.addEventListener(
       evt,
       (event) => {
+        // console.warn('add listener',evt);
         if (
           !parent ||
           (parent &&
@@ -159,6 +161,7 @@ class FwEvent extends FwDataHelper {
       }
     }
 
+    // console.warn('trig',evt);
     return el.dispatchEvent(event);
 
     // return event;
