@@ -61,18 +61,43 @@ class FwComponent {
     return DataHandler.get(element, this.DATA_KEY);
   }
 
-  runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
+  runCycle(beforeEvt, duringEvt, AfterEvt, callbacks, triggeredElem) {
     triggeredElem = triggeredElem || this.UIEl();
     if (!beforeEvt || !duringEvt || !AfterEvt) {
       return;
     }
 
+    let callBackBefore, callBackDuring, callbackAfter;
+
+    if (typeof callbacks === 'function') {
+      callBackDuring = callbacks;
+    } else if (
+      typeof callbacks === 'object' &&
+      !Array.isArray(callbacks) &&
+      callbacks !== null
+    ) {
+      callBackBefore = callbacks.before;
+      callBackDuring = callbacks.during;
+      callbackAfter = callbacks.after;
+    }
+
     if (FwEvent.trigger(triggeredElem, beforeEvt)) {
-      if (FwEvent.trigger(triggeredElem, duringEvt)) {
-        if (typeof callback === 'function') {
-          callback(this);
+      if (typeof callBackBefore === 'function') {
+        callBackBefore(this);
+      }
+
+      const continueDuring = FwEvent.trigger(triggeredElem, duringEvt);
+      if (continueDuring) {
+        if (typeof callBackDuring === 'function') {
+          callBackDuring(this);
         }
-        FwEvent.trigger(triggeredElem, AfterEvt);
+
+        const continueAfter = FwEvent.trigger(triggeredElem, AfterEvt);
+        if (continueAfter) {
+          if (typeof continueAfter === 'function') {
+            callBackAfter(this);
+          }
+        }
       }
     }
   }

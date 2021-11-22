@@ -104,10 +104,4 @@ Works with Libsass and Compass
 
 # To Do
 
-- Cleanup both indie and plugged js files because they're just 2 huge walls of scripts coz ya girl dumb
-
-- change plugged to jquery
-
-- make a script... no.. scriptssss for vue
-
-- Cleanup sass errors or warnings
+- Emulate form ui life cycles to other components so the settings actually get passed properly goooood

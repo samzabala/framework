@@ -993,20 +993,41 @@
       return DataHandler.get(element, this.DATA_KEY);
     };
 
-    _proto.runCycle = function runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
+    _proto.runCycle = function runCycle(beforeEvt, duringEvt, AfterEvt, callbacks, triggeredElem) {
       triggeredElem = triggeredElem || this.UIEl();
 
       if (!beforeEvt || !duringEvt || !AfterEvt) {
         return;
       }
 
+      var callBackBefore, callBackDuring;
+
+      if (typeof callbacks === 'function') {
+        callBackDuring = callbacks;
+      } else if (typeof callbacks === 'object' && !Array.isArray(callbacks) && callbacks !== null) {
+        callBackBefore = callbacks.before;
+        callBackDuring = callbacks.during;
+      }
+
       if (FwEvent.trigger(triggeredElem, beforeEvt)) {
-        if (FwEvent.trigger(triggeredElem, duringEvt)) {
-          if (typeof callback === 'function') {
-            callback(this);
+        if (typeof callBackBefore === 'function') {
+          callBackBefore(this);
+        }
+
+        var continueDuring = FwEvent.trigger(triggeredElem, duringEvt);
+
+        if (continueDuring) {
+          if (typeof callBackDuring === 'function') {
+            callBackDuring(this);
           }
 
-          FwEvent.trigger(triggeredElem, AfterEvt);
+          var continueAfter = FwEvent.trigger(triggeredElem, AfterEvt);
+
+          if (continueAfter) {
+            if (typeof continueAfter === 'function') {
+              callBackAfter(this);
+            }
+          }
         }
       }
     };
@@ -1914,7 +1935,6 @@
     };
 
     FwDate.toVal = function toVal(date) {
-      if (date === '') return date;
       var d = FwDate.toParsed(date);
 
       if (!d) {
@@ -2057,10 +2077,13 @@
     var _proto = Calendar.prototype;
 
     _proto.dispose = function dispose() {
-      this.setProp('triggerChange', '__dispose');
-      this.setProp('_UIInputValue', '__dispose');
-      this.setProp('_renderValue', '__dispose');
-      this.setProp('_customArgs', '__dispose');
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_UIInputValue', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_renderValue', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_customArgs', '__dispose');
 
       _FwComponent.prototype.dispose.call(this);
     };
@@ -2116,27 +2139,22 @@
       }, element);
     };
 
-    _proto.update = function update(newValue, valueToRender, inputText) {
+    _proto.update = function update(newValue, valueToRender) {
       var _this3 = this;
 
       var element = this.element;
       var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
       var uiValue = valueToRender || theValue || this.renderValue || false;
-      var UIInputValue = inputText ? inputText : theValue || theValue === '' ? theValue : false;
+      console.log(this.__mustOnChange);
       console.warn('passed');
-      console.log(newValue, '|', valueToRender, '|', inputText);
+      console.log(newValue, '|', valueToRender);
       console.warn('parsed');
-      console.log(theValue, '|', uiValue, '|', UIInputValue);
+      console.log(theValue, '|', uiValue);
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {
         if (_this3.validates(theValue) || !theValue) {
           _this3.theValue = theValue;
           _this3.renderValue = uiValue;
-
-          if (UIInputValue) {
-            _this3.UIInputValue = UIInputValue;
-          }
-
           console.warn('set');
           console.log(_this3.theValue, '|', _this3.renderValue, '|', _this3.UIInputValue);
         }
@@ -2144,12 +2162,12 @@
         var continueUpdate = true;
 
         if (_this3.__mustOnChange()) {
-          //reset trigger
-          _this3.__disableChange();
-
           continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
           return false;
-        }
+        } //reset trigger
+
+
+        _this3.__disableChange();
 
         if (continueUpdate) {
           if (_this3.validates(theValue) || !theValue) {
@@ -2173,6 +2191,10 @@
                 date.classList.remove(ACTIVATED_CLASS$5);
               }
             });
+          }
+
+          if (_this3.UIInput) {
+            _this3.UIInputValue = theValue;
           }
         }
       }, element);
@@ -2258,7 +2280,7 @@
             theUI.inputWrapper = document.createElement('div');
             theUI.container.appendChild(theUI.inputWrapper);
             theUI.inputWrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-input");
-            theUI.inputWrapper.innerHTML = "<input class=\"input input-single-line\"\n                value=\"" + FwDate(_this4.uiInputValue) + "\"\n                type=\"text\" maxlength=\"10\" placeholder=\"MM/DD/YY\" />";
+            theUI.inputWrapper.innerHTML = "<input class=\"input input-single-line\"\n                value=\"" + FwDate.toHuman(_this4.UIInputValue) + "\"\n                type=\"text\" maxlength=\"10\" placeholder=\"MM/DD/YY\" />";
           }
         } //heading
 
@@ -2398,7 +2420,7 @@
 
     _proto.init = function init(elem) {
       elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      this.update(this.theValue, null, this.theValue);
+      this.update(this.theValue, null);
     };
 
     Calendar.initAll = function initAll() {
@@ -2414,8 +2436,10 @@
     Calendar.handleChange = function handleChange() {
       return function (e) {
         var calendar = new Calendar(e.target);
-        console.log(calendar.UIInputValue, FwDate.toParsed(calendar.UIInputValue));
-        calendar.update(calendar.theValue, calendar.renderDate, calendar.UIInputValue);
+
+        calendar.__disableChange();
+
+        calendar.update(calendar.theValue, calendar.renderDate);
       };
     };
 
@@ -2447,7 +2471,11 @@
               var m = theValue[0] || '';
               var d = theValue[1] || '';
               preParsedVal = y + "-" + m + "-" + d;
-              renderValue = preParsedVal; // calendar.__enableChange();
+              renderValue = preParsedVal;
+
+              calendar.__enableChange();
+            } else {
+              calendar.__disableChange();
             }
           }
 
@@ -2533,24 +2561,36 @@
       },
       set: function set(renderDate) {
         var parsedRenderDate = FwDate.toVal(renderDate);
-        this._renderValue = parsedRenderDate;
+
+        _FwComponent.prototype.setProp.call(this, '_renderValue', parsedRenderDate);
       }
     }, {
       key: "UIInputValue",
       get: function get() {
-        if (!this._UIInputValue || this._UIInputValue !== '') {
-          this._UIInputValue = this.theValue;
+        if (!_FwComponent.prototype.getProp.call(this, '_UIInputValue')) {
+          _FwComponent.prototype.setProp.call(this, '_UIInputValue', FwDate.toHuman(this.theValue));
         }
 
-        return this._UIInputValue || '';
+        return this.UIInput ? this.UIInput.value : _FwComponent.prototype.getProp.call(this, '_UIInputValue');
       },
       set: function set(uIInputValue) {
-        if (!uIInputValue && uIInputValue !== '') return;
+        //pass valid date value format only
+        var parsedUiInputValue = FwDate.toHuman(uIInputValue);
 
-        if (this.UIInput) {
-          this._UIInputValue = FwDate.toVal(uIInputValue);
-          this.UIInput.setAttribute('value', FwDate.toHuman(this._UIInputValue));
-          this.UIInput.value = FwDate.toHuman(this._UIInputValue);
+        if (parsedUiInputValue) {
+          _FwComponent.prototype.setProp.call(this, '_UIInputValue', parsedUiInputValue);
+
+          if (this.UIInput) {
+            this.UIInput.setAttribute('value', parsedUiInputValue);
+            this.UIInput.value = parsedUiInputValue;
+          }
+        } else if (uIInputValue === '') {
+          _FwComponent.prototype.setProp.call(this, '_UIInputValue', uIInputValue);
+
+          if (this.UIInput) {
+            this.UIInput.setAttribute('value', uIInputValue);
+            this.UIInput.value = uIInputValue;
+          }
         }
       }
     }, {
@@ -2718,10 +2758,13 @@
     var _proto = Tags.prototype;
 
     _proto.dispose = function dispose() {
-      this.setProp('isFiltering', '__dispose');
-      this.setProp('triggerChange', '__dispose');
-      this.setProp('_renderValue', '__dispose');
-      this.setProp('_customArgs', '__dispose');
+      _FwComponent.prototype.setProp.call(this, 'isFiltering', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_renderValue', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_customArgs', '__dispose');
 
       _FwComponent.prototype.dispose.call(this);
     };
@@ -2744,8 +2787,6 @@
 
     _proto.__disableChange = function __disableChange() {
       _FwComponent.prototype.setProp.call(this, 'triggerChange', false);
-
-      console.log(_FwComponent.prototype.getProp.call(this, 'triggerChange'));
     };
 
     _proto._scrollToUIInput = function _scrollToUIInput() {
@@ -2929,12 +2970,12 @@
         var continueUpdate = true;
 
         if (_this3.__mustOnChange()) {
-          //reset trigger
-          _this3.__disableChange();
-
           continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
           return false;
-        }
+        } //reset trigger
+
+
+        _this3.__disableChange();
 
         if (continueUpdate) {
           _this3.validate();

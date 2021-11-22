@@ -57,10 +57,10 @@ class Tags extends FwComponent {
   }
 
   dispose() {
-    this.setProp('isFiltering', '__dispose');
-    this.setProp('triggerChange', '__dispose');
-    this.setProp('_renderValue', '__dispose');
-    this.setProp('_customArgs', '__dispose');
+    super.setProp('isFiltering', '__dispose');
+    super.setProp('triggerChange', '__dispose');
+    super.setProp('_renderValue', '__dispose');
+    super.setProp('_customArgs', '__dispose');
     super.dispose();
   }
 
@@ -157,7 +157,6 @@ class Tags extends FwComponent {
 
   __disableChange() {
     super.setProp('triggerChange', false);
-    console.log(super.getProp('triggerChange'));
   }
 
   _scrollToUIInput() {
@@ -397,13 +396,12 @@ class Tags extends FwComponent {
 
       let continueUpdate = true;
       if (this.__mustOnChange()) {
-        //reset trigger
-        this.__disableChange();
-
         continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
 
         return false;
       }
+      //reset trigger
+      this.__disableChange();
 
       if (continueUpdate) {
         this.validate();

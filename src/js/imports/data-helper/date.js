@@ -181,8 +181,6 @@ class FwDate extends FwDataHelper {
   }
 
   static toVal(date) {
-    if (date === '') return date;
-
     const d = FwDate.toParsed(date);
 
     if (!d) {

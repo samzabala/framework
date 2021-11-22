@@ -62,10 +62,10 @@ class Calendar extends FwComponent {
   }
 
   dispose() {
-    this.setProp('triggerChange', '__dispose');
-    this.setProp('_UIInputValue', '__dispose');
-    this.setProp('_renderValue', '__dispose');
-    this.setProp('_customArgs', '__dispose');
+    super.setProp('triggerChange', '__dispose');
+    super.setProp('_UIInputValue', '__dispose');
+    super.setProp('_renderValue', '__dispose');
+    super.setProp('_customArgs', '__dispose');
     super.dispose();
   }
 
@@ -98,22 +98,32 @@ class Calendar extends FwComponent {
 
   set renderValue(renderDate) {
     const parsedRenderDate = FwDate.toVal(renderDate);
-    this._renderValue = parsedRenderDate;
+    super.setProp('_renderValue', parsedRenderDate);
   }
 
   get UIInputValue() {
-    if (!this.getProp('_UIInputValue') || this.getProp('_UIInputValue') !== '') {
-      this.setProp('_UIInputValue', this.theValue) = this.theValue;
+    if (!super.getProp('_UIInputValue')) {
+      super.setProp('_UIInputValue', FwDate.toHuman(this.theValue));
     }
-    return this._UIInputValue;
+    return this.UIInput ? this.UIInput.value : super.getProp('_UIInputValue');
   }
 
   set UIInputValue(uIInputValue) {
-    if (!uIInputValue && uIInputValue !== '') return;
-    if (this.UIInput) {
-      this._UIInputValue = FwDate.toVal(uIInputValue);
-      this.UIInput.setAttribute('value', FwDate.toHuman(this._UIInputValue));
-      this.UIInput.value = FwDate.toHuman(this._UIInputValue);
+    //pass valid date value format only
+    let parsedUiInputValue = FwDate.toHuman(uIInputValue);
+
+    if (parsedUiInputValue) {
+      super.setProp('_UIInputValue', parsedUiInputValue);
+      if (this.UIInput) {
+        this.UIInput.setAttribute('value', parsedUiInputValue);
+        this.UIInput.value = parsedUiInputValue;
+      }
+    } else if (uIInputValue === '') {
+      super.setProp('_UIInputValue', uIInputValue);
+      if (this.UIInput) {
+        this.UIInput.setAttribute('value', uIInputValue);
+        this.UIInput.value = uIInputValue;
+      }
     }
   }
 
@@ -228,23 +238,12 @@ class Calendar extends FwComponent {
     );
   }
 
-  update(newValue, valueToRender, inputText) {
+  update(newValue, valueToRender) {
     const element = this.element;
 
     const theValue =
       newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
     const uiValue = valueToRender || theValue || this.renderValue || false;
-
-    const UIInputValue = inputText
-      ? inputText
-      : theValue || theValue === ''
-      ? theValue
-      : false;
-
-    console.warn('passed');
-    console.log(newValue, '|', valueToRender, '|', inputText);
-    console.warn('parsed');
-    console.log(theValue, '|', uiValue, '|', UIInputValue);
 
     super.runCycle(
       EVENT_BEFORE_UPDATE,
@@ -254,23 +253,17 @@ class Calendar extends FwComponent {
         if (this.validates(theValue) || !theValue) {
           this.theValue = theValue;
           this.renderValue = uiValue;
-          if (UIInputValue) {
-            this.UIInputValue = UIInputValue;
-          }
-          console.warn('set');
-          console.log(this.theValue, '|', this.renderValue, '|', this.UIInputValue);
         }
 
         let continueUpdate = true;
 
         if (this.__mustOnChange()) {
-          //reset trigger
-          this.__disableChange();
-
           continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
 
           return false;
         }
+        //reset trigger
+        this.__disableChange();
 
         if (continueUpdate) {
           if (this.validates(theValue) || !theValue) {
@@ -294,6 +287,10 @@ class Calendar extends FwComponent {
                 date.classList.remove(ACTIVATED_CLASS);
               }
             });
+          }
+
+          if (this.UIInput) {
+            this.UIInputValue = theValue;
           }
         }
       },
@@ -496,7 +493,7 @@ class Calendar extends FwComponent {
               `${UIPrefix(COMPONENT_CLASS)}-input`
             );
             theUI.inputWrapper.innerHTML = `<input class="input input-single-line"
-                value="${FwDate(this.uiInputValue)}"
+                value="${FwDate.toHuman(this.UIInputValue)}"
                 type="text" maxlength="10" placeholder="MM/DD/YY" />`;
           }
         }
@@ -733,7 +730,7 @@ class Calendar extends FwComponent {
 
   init(elem) {
     elem ? super.UIEl(elem) : super.UIEl();
-    this.update(this.theValue, null, this.theValue);
+    this.update(this.theValue, null);
   }
 
   static initAll() {
@@ -756,8 +753,8 @@ class Calendar extends FwComponent {
   static handleChange() {
     return (e) => {
       const calendar = new Calendar(e.target);
-      console.log(calendar.UIInputValue, FwDate.toParsed(calendar.UIInputValue));
-      calendar.update(calendar.theValue, calendar.renderDate, calendar.UIInputValue);
+      calendar.__disableChange();
+      calendar.update(calendar.theValue, calendar.renderDate);
     };
   }
 
@@ -799,7 +796,9 @@ class Calendar extends FwComponent {
             preParsedVal = `${y}-${m}-${d}`;
             renderValue = preParsedVal;
 
-            // calendar.__enableChange();
+            calendar.__enableChange();
+          } else {
+            calendar.__disableChange();
           }
         }
         calendar.update(preParsedVal, renderValue);
