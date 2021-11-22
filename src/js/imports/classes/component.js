@@ -41,6 +41,22 @@ class FwComponent {
     this.element = null;
   }
 
+  setProp(key, value) {
+    if (!key) return;
+    if (value === '__dispose') {
+      delete this[key];
+      delete this.element[`_${key}`];
+    } else {
+      this[key] = value;
+      this.element[`_${key}`] = value;
+    }
+  }
+
+  getProp(key) {
+    if (!key) return;
+    return this.element[`_${key}`];
+  }
+
   static getInstance(element) {
     return DataHandler.get(element, this.DATA_KEY);
   }

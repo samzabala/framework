@@ -972,6 +972,23 @@
       this.element = null;
     };
 
+    _proto.setProp = function setProp(key, value) {
+      if (!key) return;
+
+      if (value === '__dispose') {
+        delete this[key];
+        delete this.element["_" + key];
+      } else {
+        this[key] = value;
+        this.element["_" + key] = value;
+      }
+    };
+
+    _proto.getProp = function getProp(key) {
+      if (!key) return;
+      return this.element["_" + key];
+    };
+
     FwComponent.getInstance = function getInstance(element) {
       return DataHandler.get(element, this.DATA_KEY);
     };
@@ -1897,6 +1914,7 @@
     };
 
     FwDate.toVal = function toVal(date) {
+      if (date === '') return date;
       var d = FwDate.toParsed(date);
 
       if (!d) {
@@ -1961,8 +1979,8 @@
   var DATA_KEY$9 = Settings.get('prefix') + "_" + NAME$9;
   var EVENT_KEY$9 = "_" + DATA_KEY$9;
   var EVENT_CLICK$6 = "click" + EVENT_KEY$9;
-  var EVENT_KEYUP = "keyup" + EVENT_KEY$9; // const EVENT_CHANGE = `change${EVENT_KEY}`;
-
+  var EVENT_KEYUP = "keyup" + EVENT_KEY$9;
+  var EVENT_CHANGE$2 = "change" + EVENT_KEY$9;
   var EVENT_BEFORE_INIT$4 = "before_init" + EVENT_KEY$9;
   var EVENT_INIT$4 = "init" + EVENT_KEY$9;
   var EVENT_AFTER_INIT$4 = "after_init" + EVENT_KEY$9;
@@ -1983,7 +2001,9 @@
       var _this;
 
       _this = _FwComponent.call(this, element, {
-        UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
+        triggerChange: element && element._triggerChange ? element._triggerChange : false,
+        _UIInputValue: element && element.__UIInputValue ? element.__UIInputValue : false,
+        _renderValue: valueToRender ? valueToRender : element && element.__renderValue ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
 
@@ -2037,10 +2057,24 @@
     var _proto = Calendar.prototype;
 
     _proto.dispose = function dispose() {
-      _FwComponent.prototype.dispose.call(this);
+      this.setProp('triggerChange', '__dispose');
+      this.setProp('_UIInputValue', '__dispose');
+      this.setProp('_renderValue', '__dispose');
+      this.setProp('_customArgs', '__dispose');
 
-      this.UIValue = null;
-      this._customArgs = null;
+      _FwComponent.prototype.dispose.call(this);
+    };
+
+    _proto.__mustOnChange = function __mustOnChange() {
+      return _FwComponent.prototype.getProp.call(this, 'triggerChange');
+    };
+
+    _proto.__enableChange = function __enableChange() {
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', true);
+    };
+
+    _proto.__disableChange = function __disableChange() {
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', false);
     };
 
     Calendar.configDefaults = function configDefaults() {
@@ -2078,51 +2112,69 @@
       var element = this.element;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET, EVENT_RESET, EVENT_AFTER_RESET, function () {
-        _this2.theValue = FwDate.toVal(false, false);
-
-        _this2._renderUI();
+        update(FwDate.toVal(false), _this2.renderValue);
       }, element);
     };
 
-    _proto.update = function update(newValue, valueToRender) {
+    _proto.update = function update(newValue, valueToRender, inputText) {
       var _this3 = this;
 
       var element = this.element;
-      var theValue = newValue || newValue === '' ? FwDate.toVal(newValue) : this.theValue;
-      var uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
+      var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
+      var uiValue = valueToRender || theValue || this.renderValue || false;
+      var UIInputValue = inputText ? inputText : theValue || theValue === '' ? theValue : false;
+      console.warn('passed');
+      console.log(newValue, '|', valueToRender, '|', inputText);
+      console.warn('parsed');
+      console.log(theValue, '|', uiValue, '|', UIInputValue);
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {
         if (_this3.validates(theValue) || !theValue) {
-          _this3.theValue = FwDate.toVal(theValue, false);
+          _this3.theValue = theValue;
           _this3.renderValue = uiValue;
 
-          _this3._renderUI();
-        } //user visual feedback if it has a valid bitch
-
-
-        if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
-          if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
-            _this3.UIRoot.classList.remove('input-error');
-          } else {
-            _this3.UIRoot.classList.add('input-error');
+          if (UIInputValue) {
+            _this3.UIInputValue = UIInputValue;
           }
+
+          console.warn('set');
+          console.log(_this3.theValue, '|', _this3.renderValue, '|', _this3.UIInputValue);
         }
 
-        if (_this3.theValue) {
-          _this3.UIDates.forEach(function (date) {
-            if (date.getAttribute('data-value') == theValue) {
-              date.classList.add(ACTIVATED_CLASS$5);
+        var continueUpdate = true;
+
+        if (_this3.__mustOnChange()) {
+          //reset trigger
+          _this3.__disableChange();
+
+          continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+          return false;
+        }
+
+        if (continueUpdate) {
+          if (_this3.validates(theValue) || !theValue) {
+            _this3._renderUI();
+          } //user visual feedback if it has a valid bitch
+
+
+          if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
+            if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
+              _this3.UIRoot.classList.remove('input-error');
             } else {
-              date.classList.remove(ACTIVATED_CLASS$5);
+              _this3.UIRoot.classList.add('input-error');
             }
-          });
+          }
 
-          if (_this3.UIInput) {
-            _this3.UIInputValue = theValue;
+          if (_this3.theValue) {
+            _this3.UIDates.forEach(function (date) {
+              if (date.getAttribute('data-value') == theValue) {
+                date.classList.add(ACTIVATED_CLASS$5);
+              } else {
+                date.classList.remove(ACTIVATED_CLASS$5);
+              }
+            });
           }
         }
-
-        newValue && FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
       }, element);
     };
 
@@ -2202,10 +2254,11 @@
 
         if (_this4.args.textInput) {
           if (!theUI.inputWrapper) {
+            //should only run on init but lagot ka kung hindi
             theUI.inputWrapper = document.createElement('div');
             theUI.container.appendChild(theUI.inputWrapper);
             theUI.inputWrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-input");
-            theUI.inputWrapper.innerHTML = '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
+            theUI.inputWrapper.innerHTML = "<input class=\"input input-single-line\"\n                value=\"" + FwDate(_this4.uiInputValue) + "\"\n                type=\"text\" maxlength=\"10\" placeholder=\"MM/DD/YY\" />";
           }
         } //heading
 
@@ -2345,7 +2398,7 @@
 
     _proto.init = function init(elem) {
       elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      this.update();
+      this.update(this.theValue, null, this.theValue);
     };
 
     Calendar.initAll = function initAll() {
@@ -2361,7 +2414,8 @@
     Calendar.handleChange = function handleChange() {
       return function (e) {
         var calendar = new Calendar(e.target);
-        calendar.update();
+        console.log(calendar.UIInputValue, FwDate.toParsed(calendar.UIInputValue));
+        calendar.update(calendar.theValue, calendar.renderDate, calendar.UIInputValue);
       };
     };
 
@@ -2377,9 +2431,11 @@
             e.target.value = uiInput + "/";
           } else if (uiInput.match(/^\d{2}\/\d{2}$/) !== null) {
             e.target.value = uiInput + "/";
-          }
+          } //@TODO
 
-          var preParsedVal = '';
+
+          var preParsedVal,
+              renderValue = calendar.renderValue;
 
           if (uiInput) {
             var pattern = new RegExp(DateTimePreset.HumanDate.pattern);
@@ -2391,10 +2447,11 @@
               var m = theValue[0] || '';
               var d = theValue[1] || '';
               preParsedVal = y + "-" + m + "-" + d;
+              renderValue = preParsedVal; // calendar.__enableChange();
             }
           }
 
-          calendar.update(preParsedVal);
+          calendar.update(preParsedVal, renderValue);
         }
       };
     };
@@ -2405,6 +2462,8 @@
 
         if (!FwComponent.isDisabled(e.target)) {
           var calendar = new Calendar(e.target.closest("." + UIPrefix(COMPONENT_CLASS$9)).querySelector("." + COMPONENT_CLASS$9));
+
+          calendar.__enableChange();
 
           if (e.target.classList.contains(ACTIVATED_CLASS$5)) {
             calendar.update('');
@@ -2427,6 +2486,7 @@
     };
 
     Calendar.initListeners = function initListeners() {
+      FwEvent.addListener(document.documentElement, EVENT_CHANGE$2, "." + COMPONENT_CLASS$9, Calendar.handleChange());
       FwEvent.addListener(document.documentElement, EVENT_KEYUP, "." + UIPrefix(COMPONENT_CLASS$9) + "-input input", Calendar.handleUpdateKeyup());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-date", Calendar.handleUpdateClick());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$6, "." + UIPrefix(COMPONENT_CLASS$9) + "-month, ." + UIPrefix(COMPONENT_CLASS$9) + "-year", Calendar.handleRenderClick());
@@ -2437,6 +2497,7 @@
     };
 
     Calendar.destroyListeners = function destroyListeners() {
+      FwEvent.removeListener(document.documentElement, EVENT_CHANGE$2, Calendar.handleChange());
       FwEvent.removeListener(document.documentElement, EVENT_KEYUP, Calendar.handleUpdateKeyup());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleUpdateClick());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$6, Calendar.handleRenderClick());
@@ -2450,32 +2511,47 @@
     }, {
       key: "theValue",
       get: function get() {
-        return _FwComponent.prototype.UIEl.call(this).value ? FwDate.toVal(_FwComponent.prototype.UIEl.call(this).value) : false;
+        return _FwComponent.prototype.UIEl.call(this).value;
       },
       set: function set(theValue) {
-        if (theValue) {
-          _FwComponent.prototype.UIEl.call(this).setAttribute('value', FwDate.toVal(theValue));
+        var parsedTheValue = FwDate.toVal(theValue) ? FwDate.toVal(theValue) : '';
 
-          _FwComponent.prototype.UIEl.call(this).value = FwDate.toVal(theValue);
-        }
+        _FwComponent.prototype.UIEl.call(this).setAttribute('value', parsedTheValue);
+
+        _FwComponent.prototype.UIEl.call(this).value = parsedTheValue;
       }
     }, {
       key: "renderValue",
       get: function get() {
-        var theRenderDate = this.UIValue ? this.UIValue : this.theValue ? this.theValue : new Date();
-        return FwDate.toVal(theRenderDate);
+        var theRenderDate = _FwComponent.prototype.getProp.call(this, '_renderValue') ? _FwComponent.prototype.getProp.call(this, '_renderValue') : this.theValue ? this.theValue : new Date();
+
+        if (!_FwComponent.prototype.getProp.call(this, '_renderValue')) {
+          _FwComponent.prototype.setProp.call(this, '_renderValue', theRenderDate);
+        }
+
+        return _FwComponent.prototype.getProp.call(this, '_renderValue');
       },
       set: function set(renderDate) {
-        this.UIValue = renderDate;
+        var parsedRenderDate = FwDate.toVal(renderDate);
+        this._renderValue = parsedRenderDate;
       }
     }, {
       key: "UIInputValue",
       get: function get() {
-        return this.UIInput && FwDate.toVal(this.UIInput.value);
+        if (!this._UIInputValue || this._UIInputValue !== '') {
+          this._UIInputValue = this.theValue;
+        }
+
+        return this._UIInputValue || '';
       },
-      set: function set(uiValue) {
-        this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
-        this.UIInput.value = FwDate.toHuman(uiValue);
+      set: function set(uIInputValue) {
+        if (!uIInputValue && uIInputValue !== '') return;
+
+        if (this.UIInput) {
+          this._UIInputValue = FwDate.toVal(uIInputValue);
+          this.UIInput.setAttribute('value', FwDate.toHuman(this._UIInputValue));
+          this.UIInput.value = FwDate.toHuman(this._UIInputValue);
+        }
       }
     }, {
       key: "UIRoot",
@@ -2490,7 +2566,7 @@
     }, {
       key: "UIInput",
       get: function get() {
-        return this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$9) + "-input input");
+        return this.UIRoot && this.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$9) + "-input input");
       }
     }, {
       key: "args",
@@ -2632,9 +2708,9 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
-        isFiltering: true,
-        triggerChange: false,
-        UIValue: valueToRender ? valueToRender : element && element._UIValue ? element._UIValue : false,
+        isFiltering: element && element._isFiltering ? element._isFiltering : true,
+        triggerChange: element && element._triggerChange ? element._triggerChange : false,
+        _renderValue: valueToRender ? valueToRender : element && element.__renderValue ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
     }
@@ -2642,26 +2718,34 @@
     var _proto = Tags.prototype;
 
     _proto.dispose = function dispose() {
-      _FwComponent.prototype.dispose.call(this);
+      this.setProp('isFiltering', '__dispose');
+      this.setProp('triggerChange', '__dispose');
+      this.setProp('_renderValue', '__dispose');
+      this.setProp('_customArgs', '__dispose');
 
-      this.UIValue = null;
-      this._customArgs = null;
+      _FwComponent.prototype.dispose.call(this);
     };
 
     _proto.__enableFilter = function __enableFilter() {
-      return this.isFiltering = true;
+      _FwComponent.prototype.setProp.call(this, 'isFiltering', true);
     };
 
     _proto.__disableFilter = function __disableFilter() {
-      this.isFiltering = false;
+      _FwComponent.prototype.setProp.call(this, 'isFiltering', false);
+    };
+
+    _proto.__mustOnChange = function __mustOnChange() {
+      return _FwComponent.prototype.getProp.call(this, 'triggerChange');
     };
 
     _proto.__enableChange = function __enableChange() {
-      return this.triggerChange = true;
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', true);
     };
 
     _proto.__disableChange = function __disableChange() {
-      this.triggerChange = false;
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', false);
+
+      console.log(_FwComponent.prototype.getProp.call(this, 'triggerChange'));
     };
 
     _proto._scrollToUIInput = function _scrollToUIInput() {
@@ -2825,32 +2909,39 @@
 
       var theValue = newValue || this.theValue || '';
       var uiValue = valueToRender || theValue || this.renderValue || '';
-      inputText = inputText || false; // const triggerChange =
+      inputText = inputText || false; // console.warn('passed');
+      // console.log(newValue,'|',valueToRender,'|',inputText);
+      // console.warn('parsed');
+      // console.log(theValue,'|',uiValue,'|',inputText);
+      // const triggerChange =
       //   newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
-        var allowRender = true;
-
-        if (_this3.triggerChange) {
-          allowRender = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
-
-          _this3.__disableChange();
-
-          return false;
-        } //reset trigger
-
-
         _this3.theValue = theValue;
         _this3.renderValue = uiValue;
 
-        _this3.validate();
+        if (inputText) {
+          _this3.UIInputValue = inputText;
+        } // console.warn('set');
+        // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
 
-        if (allowRender) {
+
+        var continueUpdate = true;
+
+        if (_this3.__mustOnChange()) {
+          //reset trigger
+          _this3.__disableChange();
+
+          continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+          return false;
+        }
+
+        if (continueUpdate) {
+          _this3.validate();
+
           _this3._renderUI();
 
           if (inputText) {
-            _this3.UIInputValue = inputText;
-
             _this3.focus();
           }
         }
@@ -2976,9 +3067,8 @@
               theUI.container.setAttribute(attr.name, attr.value);
             }
           }
-        }
+        } //keep that shoit bisibol
 
-        element.setAttribute('data-value-ui', _this4.renderValue); //keep that shoit bisibol
 
         _this4._scrollToUIInput();
       }, element);
@@ -3008,7 +3098,7 @@
 
     _proto.init = function init(elem) {
       elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      this.update();
+      this.update(this.theValue, this.theValue);
     };
 
     Tags.initAll = function initAll() {
@@ -3023,15 +3113,13 @@
 
     Tags.handleChange = function handleChange() {
       return function (e) {
-        console.log('change');
-
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
 
           tagsInput.__disableChange(); // so it dont loop
 
 
-          tagsInput.update();
+          tagsInput.update(tagsInput.theValue, tagsInput.renderValue, tagsInput.UIInputValue);
         }
       };
     };
@@ -3068,14 +3156,14 @@
           var currValue = Tags.toArr(tagsInput.theValue);
 
           if (tagsInput.UIInputValue) {
-            currValue.splice(tagsInput.UIInputIdx, 0, tagsInput.UIInputValue.replace(',', ''));
+            currValue.splice(tagsInput.UIInputIdx, currValue[tagsInput.UIInputIdx] == tagsInput.UIInputValue ? 1 : 0, tagsInput.UIInputValue.replace(',', ''));
           }
 
           tagsInput.UIInputValue = '';
 
           tagsInput.__enableChange();
 
-          tagsInput.update(Tags.toVal(currValue, false));
+          tagsInput.update(Tags.toVal(currValue));
           tagsInput.blur(true);
         }
       };
@@ -3087,7 +3175,7 @@
           e.preventDefault();
         } else {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
-          var currUIValue = Tags.toArr(tagsInput.renderValue),
+          var currUIValue = Tags.toArr(tagsInput.renderValue, true),
               newValue,
               enableChange,
               allowFilter = false;
@@ -3108,8 +3196,7 @@
                 allowFilter = true;
                 enableChange = true;
                 tagsInput.UIInputValue = '';
-              } // currUIValue.splice()
-
+              }
 
               break;
             //left
@@ -3182,7 +3269,7 @@
             tagsInput.__enableChange();
           }
 
-          tagsInput.update(newValue);
+          tagsInput.update(newValue, currUIValue);
         }
       };
     };
@@ -3212,6 +3299,7 @@
 
         if (!FwComponent.isDisabled(triggerer)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
+          tagsInput.UIInput.blur(true);
           var tagToEdit = parseInt(e.target.getAttribute('data-ui-i'));
           var currValue = Tags.toArr(tagsInput.theValue, false);
           currValue.splice(tagToEdit, 1, Tags.__is);
@@ -3254,20 +3342,29 @@
         return _FwComponent.prototype.UIEl.call(this).value;
       },
       set: function set(theValue) {
-        if (theValue) {
-          _FwComponent.prototype.UIEl.call(this).setAttribute('value', Tags.toVal(theValue, false));
+        theValue = theValue || '';
 
-          _FwComponent.prototype.UIEl.call(this).value = Tags.toVal(theValue, false);
-        }
+        _FwComponent.prototype.UIEl.call(this).setAttribute('value', Tags.toVal(theValue, false));
+
+        _FwComponent.prototype.UIEl.call(this).value = Tags.toVal(theValue, false);
       }
     }, {
       key: "renderValue",
       get: function get() {
-        var renderTags = this.UIValue ? this.UIValue : _FwComponent.prototype.UIEl.call(this).hasAttribute('data-value-ui') ? _FwComponent.prototype.UIEl.call(this).getAttribute('data-value-ui') : this.theValue;
-        return renderTags;
+        var renderTags = _FwComponent.prototype.getProp.call(this, '_renderValue') ? _FwComponent.prototype.getProp.call(this, '_renderValue') : Tags.toVal(this.theValue, true);
+
+        if (!this._renderValue) {
+          _FwComponent.prototype.setProp.call(this, '_renderValue', renderTags);
+        }
+
+        return _FwComponent.prototype.getProp.call(this, '_renderValue');
       },
       set: function set(renderTags) {
-        this.UIValue = Tags.toVal(renderTags);
+        var parsedRenderTags = Tags.toVal(renderTags, true);
+
+        _FwComponent.prototype.UIEl.call(this).setAttribute('data-value-ui', parsedRenderTags);
+
+        _FwComponent.prototype.setProp.call(this, '_renderValue', parsedRenderTags);
       }
     }, {
       key: "UIRoot",
@@ -3283,7 +3380,7 @@
       key: "UIInputValue",
       get: function get() {
         // return this.UIInput.value;
-        return this.UIInput.innerText;
+        return this.UIInput && this.UIInput.innerText ? this.UIInput.innerText : false;
       },
       set: function set(inputValue) {
         // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');
@@ -3292,7 +3389,7 @@
     }, {
       key: "UIInputIdx",
       get: function get() {
-        var toReturn = Tags.toArr(this.renderValue).indexOf(Tags.__is);
+        var toReturn = Tags.toArr(this.renderValue, true).indexOf(Tags.__is);
 
         if (toReturn < 0) {
           Tags.toArr(this.renderValue).length > 0 ? Tags.toArr(this.renderValue).length - 1 : 0;

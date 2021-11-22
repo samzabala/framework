@@ -25,7 +25,7 @@ const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 const EVENT_KEYUP = `keyup${EVENT_KEY}`;
-// const EVENT_CHANGE = `change${EVENT_KEY}`;
+const EVENT_CHANGE = `change${EVENT_KEY}`;
 
 const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;
@@ -46,10 +46,12 @@ const EVENT_AFTER_RESET = `after_reset${EVENT_KEY}`;
 class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      UIValue: valueToRender
+      triggerChange: element && element._triggerChange ? element._triggerChange : false,
+      _UIInputValue: element && element.__UIInputValue ? element.__UIInputValue : false,
+      _renderValue: valueToRender
         ? valueToRender
-        : element && element._UIValue
-        ? element._UIValue
+        : element && element.__renderValue
+        ? element.__renderValue
         : false,
       _customArgs: args
         ? args
@@ -60,9 +62,11 @@ class Calendar extends FwComponent {
   }
 
   dispose() {
+    this.setProp('triggerChange', '__dispose');
+    this.setProp('_UIInputValue', '__dispose');
+    this.setProp('_renderValue', '__dispose');
+    this.setProp('_customArgs', '__dispose');
     super.dispose();
-    this.UIValue = null;
-    this._customArgs = null;
   }
 
   get isRequired() {
@@ -70,37 +74,47 @@ class Calendar extends FwComponent {
   }
 
   get theValue() {
-    return super.UIEl().value ? FwDate.toVal(super.UIEl().value) : false;
+    return super.UIEl().value;
   }
 
   set theValue(theValue) {
-    if (theValue) {
-      super.UIEl().setAttribute('value', FwDate.toVal(theValue));
-      super.UIEl().value = FwDate.toVal(theValue);
-    }
+    const parsedTheValue = FwDate.toVal(theValue) ? FwDate.toVal(theValue) : '';
+    super.UIEl().setAttribute('value', parsedTheValue);
+    super.UIEl().value = parsedTheValue;
   }
 
   get renderValue() {
-    const theRenderDate = this.UIValue
-      ? this.UIValue
+    const theRenderDate = super.getProp('_renderValue')
+      ? super.getProp('_renderValue')
       : this.theValue
       ? this.theValue
       : new Date();
 
-    return FwDate.toVal(theRenderDate);
+    if (!super.getProp('_renderValue')) {
+      super.setProp('_renderValue', theRenderDate);
+    }
+    return super.getProp('_renderValue');
   }
 
   set renderValue(renderDate) {
-    this.UIValue = renderDate;
+    const parsedRenderDate = FwDate.toVal(renderDate);
+    this._renderValue = parsedRenderDate;
   }
 
   get UIInputValue() {
-    return this.UIInput && FwDate.toVal(this.UIInput.value);
+    if (!this.getProp('_UIInputValue') || this.getProp('_UIInputValue') !== '') {
+      this.setProp('_UIInputValue', this.theValue) = this.theValue;
+    }
+    return this._UIInputValue;
   }
 
-  set UIInputValue(uiValue) {
-    this.UIInput.setAttribute('value', FwDate.toHuman(uiValue));
-    this.UIInput.value = FwDate.toHuman(uiValue);
+  set UIInputValue(uIInputValue) {
+    if (!uIInputValue && uIInputValue !== '') return;
+    if (this.UIInput) {
+      this._UIInputValue = FwDate.toVal(uIInputValue);
+      this.UIInput.setAttribute('value', FwDate.toHuman(this._UIInputValue));
+      this.UIInput.value = FwDate.toHuman(this._UIInputValue);
+    }
   }
 
   get UIRoot() {
@@ -114,7 +128,22 @@ class Calendar extends FwComponent {
   }
 
   get UIInput() {
-    return this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input input`);
+    return (
+      this.UIRoot &&
+      this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-input input`)
+    );
+  }
+
+  __mustOnChange() {
+    return super.getProp('triggerChange');
+  }
+
+  __enableChange() {
+    super.setProp('triggerChange', true);
+  }
+
+  __disableChange() {
+    super.setProp('triggerChange', false);
   }
 
   static configDefaults() {
@@ -193,19 +222,29 @@ class Calendar extends FwComponent {
       EVENT_RESET,
       EVENT_AFTER_RESET,
       () => {
-        this.theValue = FwDate.toVal(false, false);
-        this._renderUI();
+        update(FwDate.toVal(false), this.renderValue);
       },
       element
     );
   }
 
-  update(newValue, valueToRender) {
+  update(newValue, valueToRender, inputText) {
     const element = this.element;
 
     const theValue =
-      newValue || newValue === '' ? FwDate.toVal(newValue) : this.theValue;
-    const uiValue = FwDate.toVal(valueToRender) || theValue || this.renderValue;
+      newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
+    const uiValue = valueToRender || theValue || this.renderValue || false;
+
+    const UIInputValue = inputText
+      ? inputText
+      : theValue || theValue === ''
+      ? theValue
+      : false;
+
+    console.warn('passed');
+    console.log(newValue, '|', valueToRender, '|', inputText);
+    console.warn('parsed');
+    console.log(theValue, '|', uiValue, '|', UIInputValue);
 
     super.runCycle(
       EVENT_BEFORE_UPDATE,
@@ -213,35 +252,50 @@ class Calendar extends FwComponent {
       EVENT_AFTER_UPDATE,
       () => {
         if (this.validates(theValue) || !theValue) {
-          this.theValue = FwDate.toVal(theValue, false);
+          this.theValue = theValue;
           this.renderValue = uiValue;
-
-          this._renderUI();
-        }
-
-        //user visual feedback if it has a valid bitch
-        if (!super.UIEl().classList.contains('input-error')) {
-          if (this.validates(theValue) || (!theValue && !this.isRequired)) {
-            this.UIRoot.classList.remove('input-error');
-          } else {
-            this.UIRoot.classList.add('input-error');
+          if (UIInputValue) {
+            this.UIInputValue = UIInputValue;
           }
+          console.warn('set');
+          console.log(this.theValue, '|', this.renderValue, '|', this.UIInputValue);
         }
 
-        if (this.theValue) {
-          this.UIDates.forEach((date) => {
-            if (date.getAttribute('data-value') == theValue) {
-              date.classList.add(ACTIVATED_CLASS);
+        let continueUpdate = true;
+
+        if (this.__mustOnChange()) {
+          //reset trigger
+          this.__disableChange();
+
+          continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
+
+          return false;
+        }
+
+        if (continueUpdate) {
+          if (this.validates(theValue) || !theValue) {
+            this._renderUI();
+          }
+
+          //user visual feedback if it has a valid bitch
+          if (!super.UIEl().classList.contains('input-error')) {
+            if (this.validates(theValue) || (!theValue && !this.isRequired)) {
+              this.UIRoot.classList.remove('input-error');
             } else {
-              date.classList.remove(ACTIVATED_CLASS);
+              this.UIRoot.classList.add('input-error');
             }
-          });
+          }
 
-          if (this.UIInput) {
-            this.UIInputValue = theValue;
+          if (this.theValue) {
+            this.UIDates.forEach((date) => {
+              if (date.getAttribute('data-value') == theValue) {
+                date.classList.add(ACTIVATED_CLASS);
+              } else {
+                date.classList.remove(ACTIVATED_CLASS);
+              }
+            });
           }
         }
-        newValue && FwEvent.trigger(super.UIEl(), 'change');
       },
       element
     );
@@ -434,14 +488,16 @@ class Calendar extends FwComponent {
         //input
         if (this.args.textInput) {
           if (!theUI.inputWrapper) {
+            //should only run on init but lagot ka kung hindi
             theUI.inputWrapper = document.createElement('div');
             theUI.container.appendChild(theUI.inputWrapper);
             theUI.inputWrapper.setAttribute(
               'class',
               `${UIPrefix(COMPONENT_CLASS)}-input`
             );
-            theUI.inputWrapper.innerHTML =
-              '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
+            theUI.inputWrapper.innerHTML = `<input class="input input-single-line"
+                value="${FwDate(this.uiInputValue)}"
+                type="text" maxlength="10" placeholder="MM/DD/YY" />`;
           }
         }
 
@@ -677,7 +733,7 @@ class Calendar extends FwComponent {
 
   init(elem) {
     elem ? super.UIEl(elem) : super.UIEl();
-    this.update();
+    this.update(this.theValue, null, this.theValue);
   }
 
   static initAll() {
@@ -700,7 +756,8 @@ class Calendar extends FwComponent {
   static handleChange() {
     return (e) => {
       const calendar = new Calendar(e.target);
-      calendar.update();
+      console.log(calendar.UIInputValue, FwDate.toParsed(calendar.UIInputValue));
+      calendar.update(calendar.theValue, calendar.renderDate, calendar.UIInputValue);
     };
   }
 
@@ -722,7 +779,10 @@ class Calendar extends FwComponent {
           e.target.value = `${uiInput}/`;
         }
 
-        let preParsedVal = '';
+        //@TODO
+
+        let preParsedVal,
+          renderValue = calendar.renderValue;
 
         if (uiInput) {
           const pattern = new RegExp(DateTimePreset.HumanDate.pattern);
@@ -737,9 +797,12 @@ class Calendar extends FwComponent {
             const d = theValue[1] || '';
 
             preParsedVal = `${y}-${m}-${d}`;
+            renderValue = preParsedVal;
+
+            // calendar.__enableChange();
           }
         }
-        calendar.update(preParsedVal);
+        calendar.update(preParsedVal, renderValue);
       }
     };
   }
@@ -754,6 +817,8 @@ class Calendar extends FwComponent {
             .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
             .querySelector(`.${COMPONENT_CLASS}`)
         );
+
+        calendar.__enableChange();
 
         if (e.target.classList.contains(ACTIVATED_CLASS)) {
           calendar.update('');
@@ -783,6 +848,12 @@ class Calendar extends FwComponent {
   static initListeners() {
     FwEvent.addListener(
       document.documentElement,
+      EVENT_CHANGE,
+      `.${COMPONENT_CLASS}`,
+      Calendar.handleChange()
+    );
+    FwEvent.addListener(
+      document.documentElement,
       EVENT_KEYUP,
       `.${UIPrefix(COMPONENT_CLASS)}-input input`,
       Calendar.handleUpdateKeyup()
@@ -807,6 +878,11 @@ class Calendar extends FwComponent {
     }
   }
   static destroyListeners() {
+    FwEvent.removeListener(
+      document.documentElement,
+      EVENT_CHANGE,
+      Calendar.handleChange()
+    );
     FwEvent.removeListener(
       document.documentElement,
       EVENT_KEYUP,
