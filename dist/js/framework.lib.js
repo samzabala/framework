@@ -2145,18 +2145,11 @@
       var element = this.element;
       var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
       var uiValue = valueToRender || theValue || this.renderValue || false;
-      console.log(this.__mustOnChange);
-      console.warn('passed');
-      console.log(newValue, '|', valueToRender);
-      console.warn('parsed');
-      console.log(theValue, '|', uiValue);
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {
         if (_this3.validates(theValue) || !theValue) {
           _this3.theValue = theValue;
           _this3.renderValue = uiValue;
-          console.warn('set');
-          console.log(_this3.theValue, '|', _this3.renderValue, '|', _this3.UIInputValue);
         }
 
         var continueUpdate = true;
