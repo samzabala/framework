@@ -818,7 +818,6 @@
 
       if (!isNative) {
         elemToAddTo.addEventListener(evtNoApi, function (event) {
-          // console.warn('add listener cust',evt);
           if (!parent || parent && event.target.matches(FwEvent.classNester(selectorOrParentFallback)) // && event.target.closest(selectorOrParentFallback)
           ) {
             FwEvent.trigger(event.target, evt, {
@@ -834,7 +833,6 @@
       }
 
       elemToAddTo.addEventListener(evt, function (event) {
-        // console.warn('add listener',evt);
         if (!parent || parent && // && event.target.matches(FwEvent.classNester(selectorOrParentFallback))
         event.target.closest(selectorOrParentFallback)) {
           if (!isNative) {
@@ -868,8 +866,7 @@
         } else {
           event = new CustomEvent(evt);
         }
-      } // console.warn('trig',evt);
-
+      }
 
       return el.dispatchEvent(event); // return event;
     };
@@ -1000,32 +997,41 @@
         return;
       }
 
-      var callBackBefore, callBackDuring;
+      var callBackBefore,
+          callBackDuring,
+          callbackAfter,
+          callbackSuccessBefore = true,
+          callbackSuccessDuring = true;
 
       if (typeof callbacks === 'function') {
         callBackDuring = callbacks;
       } else if (typeof callbacks === 'object' && !Array.isArray(callbacks) && callbacks !== null) {
         callBackBefore = callbacks.before;
         callBackDuring = callbacks.during;
+        callbackAfter = callbacks.after;
       }
 
       if (FwEvent.trigger(triggeredElem, beforeEvt)) {
+        // console.log('before event');
         if (typeof callBackBefore === 'function') {
-          callBackBefore(this);
+          var callbackReturnBefore = callBackBefore(this);
+          callbackSuccessBefore = callbackReturnBefore === false ? callbackReturnBefore : true;
         }
 
-        var continueDuring = FwEvent.trigger(triggeredElem, duringEvt);
+        var continueDuring = callbackSuccessBefore && FwEvent.trigger(triggeredElem, duringEvt);
 
         if (continueDuring) {
+          // console.log('during event');
           if (typeof callBackDuring === 'function') {
-            callBackDuring(this);
+            var callbackReturnDuring = callBackDuring(this);
+            callbackSuccessDuring = callbackReturnDuring === false ? callbackReturnDuring : true;
           }
 
-          var continueAfter = FwEvent.trigger(triggeredElem, AfterEvt);
+          var continueAfter = callbackSuccessDuring && FwEvent.trigger(triggeredElem, AfterEvt);
 
           if (continueAfter) {
-            if (typeof continueAfter === 'function') {
-              callBackAfter(this);
+            if (typeof callbackAfter === 'function') {
+              callbackAfter(this);
             }
           }
         }
@@ -2021,8 +2027,8 @@
       var _this;
 
       _this = _FwComponent.call(this, element, {
-        triggerChange: element && element._triggerChange ? element._triggerChange : false,
-        _UIInputValue: element && element.__UIInputValue ? element.__UIInputValue : false,
+        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : true,
+        _UIInputValue: element && element.hasOwnProperty('__UIInputValue') ? element.__UIInputValue : true,
         _renderValue: valueToRender ? valueToRender : element && element.__renderValue ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
@@ -2139,58 +2145,67 @@
       }, element);
     };
 
+    _proto._updateValues = function _updateValues(theValue, uiValue) {
+      if (this.validates(theValue) || !theValue) {
+        this.theValue = theValue;
+        this.renderValue = uiValue;
+      }
+    };
+
     _proto.update = function update(newValue, valueToRender) {
       var _this3 = this;
 
       var element = this.element;
       var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
       var uiValue = valueToRender || theValue || this.renderValue || false;
+      var continueUpdate = true;
+      var lifeCycle = {};
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, function () {
-        if (_this3.validates(theValue) || !theValue) {
-          _this3.theValue = theValue;
-          _this3.renderValue = uiValue;
-        }
-
-        var continueUpdate = true;
+      lifeCycle.before = function () {
+        _this3._updateValues(theValue, uiValue);
 
         if (_this3.__mustOnChange()) {
           continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
           return false;
-        } //reset trigger
+        }
+
+        _this3.__enableChange();
+      };
+
+      if (!this.__mustOnChange()) {
+        lifeCycle.during = function () {
+          if (continueUpdate) {
+            if (_this3.validates(theValue) || !theValue) {
+              _this3._renderUI();
+            } //user visual feedback if it has a valid bitch
 
 
-        _this3.__disableChange();
+            if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
+              if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
+                _this3.UIRoot.classList.remove('input-error');
+              } else {
+                _this3.UIRoot.classList.add('input-error');
+              }
+            }
 
-        if (continueUpdate) {
-          if (_this3.validates(theValue) || !theValue) {
-            _this3._renderUI();
-          } //user visual feedback if it has a valid bitch
+            if (_this3.theValue) {
+              _this3.UIDates.forEach(function (date) {
+                if (date.getAttribute('data-value') == theValue) {
+                  date.classList.add(ACTIVATED_CLASS$5);
+                } else {
+                  date.classList.remove(ACTIVATED_CLASS$5);
+                }
+              });
+            }
 
-
-          if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
-            if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
-              _this3.UIRoot.classList.remove('input-error');
-            } else {
-              _this3.UIRoot.classList.add('input-error');
+            if (_this3.UIInput) {
+              _this3.UIInputValue = theValue;
             }
           }
+        };
+      }
 
-          if (_this3.theValue) {
-            _this3.UIDates.forEach(function (date) {
-              if (date.getAttribute('data-value') == theValue) {
-                date.classList.add(ACTIVATED_CLASS$5);
-              } else {
-                date.classList.remove(ACTIVATED_CLASS$5);
-              }
-            });
-          }
-
-          if (_this3.UIInput) {
-            _this3.UIInputValue = theValue;
-          }
-        }
-      }, element);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, lifeCycle, element);
     };
 
     _proto.validates = function validates(date, rangeOnly) {
@@ -2465,8 +2480,6 @@
               var d = theValue[1] || '';
               preParsedVal = y + "-" + m + "-" + d;
               renderValue = preParsedVal;
-
-              calendar.__enableChange();
             } else {
               calendar.__disableChange();
             }
@@ -2501,6 +2514,9 @@
 
         if (!FwComponent.isDisabled(e.target)) {
           var calendar = new Calendar(e.target.closest("." + UIPrefix(COMPONENT_CLASS$9)).querySelector("." + COMPONENT_CLASS$9));
+
+          calendar.__disableChange();
+
           calendar.update(null, e.target.getAttribute('data-value'));
         }
       };
@@ -2561,7 +2577,7 @@
       key: "UIInputValue",
       get: function get() {
         if (!_FwComponent.prototype.getProp.call(this, '_UIInputValue')) {
-          _FwComponent.prototype.setProp.call(this, '_UIInputValue', FwDate.toHuman(this.theValue));
+          this.UIInputValue = FwDate.toHuman(this.theValue);
         }
 
         return this.UIInput ? this.UIInput.value : _FwComponent.prototype.getProp.call(this, '_UIInputValue');
@@ -2742,8 +2758,8 @@
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
         isFiltering: element && element._isFiltering ? element._isFiltering : true,
-        triggerChange: element && element._triggerChange ? element._triggerChange : false,
-        _renderValue: valueToRender ? valueToRender : element && element.__renderValue ? element.__renderValue : false,
+        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : true,
+        _renderValue: valueToRender ? valueToRender : element && element.hasOwnProperty('__renderValue') ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
     }
@@ -2938,6 +2954,20 @@
       }
     };
 
+    _proto._updateValues = function _updateValues(theValue, uiValue, inputText) {
+      this.theValue = theValue;
+      this.renderValue = uiValue;
+
+      if (inputText) {
+        this.UIInputValue = inputText;
+      } // console.warn('set');
+      // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
+      // this.validate();
+      // console.warn('after validate');
+      // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
+
+    };
+
     _proto.update = function update(newValue, valueToRender, inputText) {
       var _this3 = this;
 
@@ -2950,36 +2980,37 @@
       // const triggerChange =
       //   newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, function () {
-        _this3.theValue = theValue;
-        _this3.renderValue = uiValue;
+      var continueUpdate = true;
+      var lifeCycle = {};
 
-        if (inputText) {
-          _this3.UIInputValue = inputText;
-        } // console.warn('set');
-        // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
-
-
-        var continueUpdate = true;
+      lifeCycle.before = function () {
+        _this3._updateValues(theValue, uiValue, inputText);
 
         if (_this3.__mustOnChange()) {
           continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
           return false;
-        } //reset trigger
+        }
 
+        _this3.__enableChange();
+      };
 
-        _this3.__disableChange();
+      if (!this.__mustOnChange()) {
+        lifeCycle.during = function () {
+          _this3.__enableChange();
 
-        if (continueUpdate) {
-          _this3.validate();
+          if (continueUpdate) {
+            _this3._renderUI();
+          }
+        };
 
-          _this3._renderUI();
-
+        lifeCycle.after = function () {
           if (inputText) {
             _this3.focus();
           }
-        }
-      });
+        };
+      }
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, lifeCycle);
     };
 
     _proto._renderUI = function _renderUI(elem) {
@@ -3140,6 +3171,9 @@
         var tagsInputs = document.querySelectorAll("." + COMPONENT_CLASS$8);
         tagsInputs.forEach(function (poot) {
           var tagsInput = new Tags(poot);
+
+          tagsInput.__disableChange();
+
           tagsInput.init();
         });
       }, document);
@@ -3148,12 +3182,12 @@
     Tags.handleChange = function handleChange() {
       return function (e) {
         if (!FwComponent.isDisabled(e.target)) {
-          var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
+          var tagsInput = new Tags(e.target);
 
           tagsInput.__disableChange(); // so it dont loop
 
 
-          tagsInput.update(tagsInput.theValue, tagsInput.renderValue, tagsInput.UIInputValue);
+          tagsInput.update(tagsInput.theValue, tagsInput.renderValue);
         }
       };
     };
@@ -3165,7 +3199,7 @@
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           var pasted = e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
-          tagsInput.UIInputValue += pasted.getData('text');
+          tagsInput.UIInputValue += pasted.getData('text').replace(',', '');
           tagsInput.blur();
         }
       };
@@ -3176,7 +3210,10 @@
         e.preventDefault();
 
         if (!FwComponent.isDisabled(e.target)) {
-          var tagsInput = new Tags(e.target);
+          var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
+
+          tagsInput.__disableChange();
+
           tagsInput.focus();
         }
       };
@@ -3187,17 +3224,14 @@
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8)); //value para mareset ta kung hain si buloy
 
-          var currValue = Tags.toArr(tagsInput.theValue);
+          var currValue = Tags.toArr(tagsInput.renderValue);
 
-          if (tagsInput.UIInputValue) {
+          if (tagsInput.UIInputValue !== '') {
             currValue.splice(tagsInput.UIInputIdx, currValue[tagsInput.UIInputIdx] == tagsInput.UIInputValue ? 1 : 0, tagsInput.UIInputValue.replace(',', ''));
           }
 
           tagsInput.UIInputValue = '';
-
-          tagsInput.__enableChange();
-
-          tagsInput.update(Tags.toVal(currValue));
+          tagsInput.update(Tags.toVal(currValue, false));
           tagsInput.blur(true);
         }
       };
@@ -3211,7 +3245,7 @@
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           var currUIValue = Tags.toArr(tagsInput.renderValue, true),
               newValue,
-              enableChange,
+              disableChange = true,
               allowFilter = false;
 
           switch (e.key) {
@@ -3219,7 +3253,7 @@
             case 'Enter':
               e.preventDefault();
               tagsInput.blur();
-              enableChange = true;
+              disableChange = false;
               break;
             //comma
 
@@ -3228,8 +3262,8 @@
                 e.preventDefault();
                 currUIValue.splice(tagsInput.UIInputIdx, 0, tagsInput.UIInputValue.replace(',', ''));
                 allowFilter = true;
-                enableChange = true;
                 tagsInput.UIInputValue = '';
+                disableChange = false;
               }
 
               break;
@@ -3276,9 +3310,9 @@
                 e.preventDefault();
                 allowFilter = true;
                 currUIValue.splice(tagsInput.UIInputIdx - 1, 1);
-                enableChange = true;
               }
 
+              disableChange = false;
               break;
             //delete
 
@@ -3287,9 +3321,9 @@
                 e.preventDefault();
                 allowFilter = true;
                 currUIValue.splice(tagsInput.UIInputIdx + 1, 1);
-                enableChange = true;
               }
 
+              disableChange = false;
               break;
           }
 
@@ -3299,8 +3333,8 @@
             tagsInput.__disableFilter();
           }
 
-          if (enableChange) {
-            tagsInput.__enableChange();
+          if (disableChange) {
+            tagsInput.__disableChange();
           }
 
           tagsInput.update(newValue, currUIValue);
@@ -3315,12 +3349,9 @@
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           var tagToRemove = parseInt(e.target.getAttribute('data-ui-i'));
-          var currValue = Tags.toArr(tagsInput.theValue);
+          var currValue = Tags.toArr(tagsInput.renderValue);
           currValue.splice(parseInt(tagToRemove), 1);
           var newValue = Tags.toVal(currValue);
-
-          tagsInput.__enableChange();
-
           tagsInput.update(newValue);
         }
       };
@@ -3328,10 +3359,9 @@
 
     Tags.handleEdit = function handleEdit() {
       return function (e) {
-        var triggerer = e.target;
         e.preventDefault();
 
-        if (!FwComponent.isDisabled(triggerer)) {
+        if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           tagsInput.UIInput.blur(true);
           var tagToEdit = parseInt(e.target.getAttribute('data-ui-i'));
@@ -3340,6 +3370,8 @@
           var newUIValue = Tags.toVal(currValue);
 
           tagsInput.__disableFilter();
+
+          tagsInput.__disableChange();
 
           tagsInput.update(null, newUIValue, e.target.innerText);
         }
@@ -3385,9 +3417,9 @@
     }, {
       key: "renderValue",
       get: function get() {
-        var renderTags = _FwComponent.prototype.getProp.call(this, '_renderValue') ? _FwComponent.prototype.getProp.call(this, '_renderValue') : Tags.toVal(this.theValue, true);
+        var renderTags = _FwComponent.prototype.getProp.call(this, '_renderValue') || Tags.toVal(this.theValue, true);
 
-        if (!this._renderValue) {
+        if (!_FwComponent.prototype.getProp.call(this, '_renderValue')) {
           _FwComponent.prototype.setProp.call(this, '_renderValue', renderTags);
         }
 
@@ -3414,7 +3446,7 @@
       key: "UIInputValue",
       get: function get() {
         // return this.UIInput.value;
-        return this.UIInput && this.UIInput.innerText ? this.UIInput.innerText : false;
+        return this.UIInput && this.UIInput.innerText ? this.UIInput.innerText : '';
       },
       set: function set(inputValue) {
         // this.UIInput.value = inputValue.toString().replace(/\n|\r/g, '\\n');

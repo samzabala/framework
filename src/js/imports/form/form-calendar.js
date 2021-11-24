@@ -46,8 +46,14 @@ const EVENT_AFTER_RESET = `after_reset${EVENT_KEY}`;
 class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      triggerChange: element && element._triggerChange ? element._triggerChange : false,
-      _UIInputValue: element && element.__UIInputValue ? element.__UIInputValue : false,
+      triggerChange:
+        element && element.hasOwnProperty('_triggerChange')
+          ? element._triggerChange
+          : true,
+      _UIInputValue:
+        element && element.hasOwnProperty('__UIInputValue')
+          ? element.__UIInputValue
+          : true,
       _renderValue: valueToRender
         ? valueToRender
         : element && element.__renderValue
@@ -103,7 +109,7 @@ class Calendar extends FwComponent {
 
   get UIInputValue() {
     if (!super.getProp('_UIInputValue')) {
-      super.setProp('_UIInputValue', FwDate.toHuman(this.theValue));
+      this.UIInputValue = FwDate.toHuman(this.theValue);
     }
     return this.UIInput ? this.UIInput.value : super.getProp('_UIInputValue');
   }
@@ -238,6 +244,13 @@ class Calendar extends FwComponent {
     );
   }
 
+  _updateValues(theValue, uiValue) {
+    if (this.validates(theValue) || !theValue) {
+      this.theValue = theValue;
+      this.renderValue = uiValue;
+    }
+  }
+
   update(newValue, valueToRender) {
     const element = this.element;
 
@@ -245,26 +258,23 @@ class Calendar extends FwComponent {
       newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
     const uiValue = valueToRender || theValue || this.renderValue || false;
 
-    super.runCycle(
-      EVENT_BEFORE_UPDATE,
-      EVENT_UPDATE,
-      EVENT_AFTER_UPDATE,
-      () => {
-        if (this.validates(theValue) || !theValue) {
-          this.theValue = theValue;
-          this.renderValue = uiValue;
-        }
+    let continueUpdate = true;
 
-        let continueUpdate = true;
+    const lifeCycle = {};
 
-        if (this.__mustOnChange()) {
-          continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
+    lifeCycle.before = () => {
+      this._updateValues(theValue, uiValue);
 
-          return false;
-        }
-        //reset trigger
-        this.__disableChange();
+      if (this.__mustOnChange()) {
+        continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
+        return false;
+      }
 
+      this.__enableChange();
+    };
+
+    if (!this.__mustOnChange()) {
+      lifeCycle.during = () => {
         if (continueUpdate) {
           if (this.validates(theValue) || !theValue) {
             this._renderUI();
@@ -293,7 +303,14 @@ class Calendar extends FwComponent {
             this.UIInputValue = theValue;
           }
         }
-      },
+      };
+    }
+
+    super.runCycle(
+      EVENT_BEFORE_UPDATE,
+      EVENT_UPDATE,
+      EVENT_AFTER_UPDATE,
+      lifeCycle,
       element
     );
   }
@@ -795,8 +812,6 @@ class Calendar extends FwComponent {
 
             preParsedVal = `${y}-${m}-${d}`;
             renderValue = preParsedVal;
-
-            calendar.__enableChange();
           } else {
             calendar.__disableChange();
           }
@@ -839,6 +854,7 @@ class Calendar extends FwComponent {
             .querySelector(`.${COMPONENT_CLASS}`)
         );
 
+        calendar.__disableChange();
         calendar.update(null, e.target.getAttribute('data-value'));
       }
     };

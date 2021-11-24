@@ -67,8 +67,11 @@ class FwComponent {
       return;
     }
 
-    let callBackBefore, callBackDuring, callbackAfter;
-
+    let callBackBefore,
+      callBackDuring,
+      callbackAfter,
+      callbackSuccessBefore = true,
+      callbackSuccessDuring = true;
     if (typeof callbacks === 'function') {
       callBackDuring = callbacks;
     } else if (
@@ -82,20 +85,28 @@ class FwComponent {
     }
 
     if (FwEvent.trigger(triggeredElem, beforeEvt)) {
+      // console.log('before event');
       if (typeof callBackBefore === 'function') {
-        callBackBefore(this);
+        const callbackReturnBefore = callBackBefore(this);
+        callbackSuccessBefore =
+          callbackReturnBefore === false ? callbackReturnBefore : true;
       }
 
-      const continueDuring = FwEvent.trigger(triggeredElem, duringEvt);
+      const continueDuring =
+        callbackSuccessBefore && FwEvent.trigger(triggeredElem, duringEvt);
       if (continueDuring) {
+        // console.log('during event');
         if (typeof callBackDuring === 'function') {
-          callBackDuring(this);
+          const callbackReturnDuring = callBackDuring(this);
+          callbackSuccessDuring =
+            callbackReturnDuring === false ? callbackReturnDuring : true;
         }
 
-        const continueAfter = FwEvent.trigger(triggeredElem, AfterEvt);
+        const continueAfter =
+          callbackSuccessDuring && FwEvent.trigger(triggeredElem, AfterEvt);
         if (continueAfter) {
-          if (typeof continueAfter === 'function') {
-            callBackAfter(this);
+          if (typeof callbackAfter === 'function') {
+            callbackAfter(this);
           }
         }
       }
