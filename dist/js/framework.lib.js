@@ -2983,6 +2983,8 @@
       if (this.__mustOnChange()) {
         lifeCycle.before = function () {
           _this3.change();
+
+          return false;
         };
       } else {
         lifeCycle.during = function () {
