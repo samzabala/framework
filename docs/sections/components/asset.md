@@ -106,6 +106,17 @@ helper that can display a css coded thumbnail for file types. append one of of t
   </tbody>
 </table>
 
+Also if you wanna use some of these styles but then don't like the extension, you can override it with `[data-asset-extension]`
+
+
+```html
+<div class="asset">
+  <div class="asset-thumbnail">
+    <span data-asset-extension="CSV" class="asset-image asset-image-table"></span>
+  </div>
+</div>
+```
+
 ## `.asset-delete` and `[data-toggle="asset-close"]`
 
 Bitches been deprecated. never use it again

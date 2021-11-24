@@ -82,6 +82,13 @@ $prefix: '.asset';
           opacity: 0.5;
           margin: auto;
         }
+
+        &[data-asset-extension] {
+          &:before {
+            content: attr(data-asset-extension);
+            text-transform: none;
+          }
+        }
       }
 
       &-after {

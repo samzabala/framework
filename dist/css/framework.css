@@ -5246,6 +5246,10 @@ body:not(.body-loaded) .symbol:before {
   opacity: 0.5;
   margin: auto;
 }
+[data-asset-extension].asset-image.asset-image-zip:before, [data-asset-extension].asset-image.asset-image-video:before, [data-asset-extension].asset-image.asset-image-table:before, [data-asset-extension].asset-image.asset-image-id:before, [data-asset-extension].asset-image.asset-image-pdf:before, [data-asset-extension].asset-image.asset-image-xd:before, [data-asset-extension].asset-image.asset-image-ai:before, [data-asset-extension].asset-image.asset-image-ps:before, [data-asset-extension].asset-image.asset-image-img:before, [data-asset-extension].asset-image.asset-image-font:before, [data-asset-extension].asset-image.asset-image-doc:before, [data-asset-extension].asset-image.asset-image-text:before, [data-asset-extension].asset-image.asset-image-code:before, [data-asset-extension].asset-image.asset-image-audio:before, [data-asset-extension].asset-image.asset-image-default:before {
+  content: attr(data-asset-extension);
+  text-transform: none;
+}
 .asset-image.asset-image-xd:after, .asset-image.asset-image-ai:after, .asset-image.asset-image-ps:after, .asset-image.asset-image-img:after {
   width: 40%;
   height: 65%;
