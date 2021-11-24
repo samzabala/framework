@@ -49,11 +49,11 @@ class Calendar extends FwComponent {
       triggerChange:
         element && element.hasOwnProperty('_triggerChange')
           ? element._triggerChange
-          : true,
+          : false,
       _UIInputValue:
         element && element.hasOwnProperty('__UIInputValue')
           ? element.__UIInputValue
-          : true,
+          : false,
       _renderValue: valueToRender
         ? valueToRender
         : element && element.__renderValue
@@ -258,50 +258,43 @@ class Calendar extends FwComponent {
       newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
     const uiValue = valueToRender || theValue || this.renderValue || false;
 
-    let continueUpdate = true;
+    this._updateValues(theValue, uiValue);
 
     const lifeCycle = {};
 
-    lifeCycle.before = () => {
-      this._updateValues(theValue, uiValue);
-
-      if (this.__mustOnChange()) {
-        continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
+    if (this.__mustOnChange()) {
+      lifeCycle.before = () => {
+        this.__disableChange(); // so it dont loop
+        FwEvent.trigger(super.UIEl(), 'change');
         return false;
-      }
-
-      this.__enableChange();
-    };
-
-    if (!this.__mustOnChange()) {
+      };
+    } else {
       lifeCycle.during = () => {
-        if (continueUpdate) {
-          if (this.validates(theValue) || !theValue) {
-            this._renderUI();
-          }
+        if (this.validates(theValue) || !theValue) {
+          this._renderUI();
+        }
 
-          //user visual feedback if it has a valid bitch
-          if (!super.UIEl().classList.contains('input-error')) {
-            if (this.validates(theValue) || (!theValue && !this.isRequired)) {
-              this.UIRoot.classList.remove('input-error');
+        //user visual feedback if it has a valid bitch
+        if (!super.UIEl().classList.contains('input-error')) {
+          if (this.validates(theValue) || (!theValue && !this.isRequired)) {
+            this.UIRoot.classList.remove('input-error');
+          } else {
+            this.UIRoot.classList.add('input-error');
+          }
+        }
+
+        if (this.theValue) {
+          this.UIDates.forEach((date) => {
+            if (date.getAttribute('data-value') == theValue) {
+              date.classList.add(ACTIVATED_CLASS);
             } else {
-              this.UIRoot.classList.add('input-error');
+              date.classList.remove(ACTIVATED_CLASS);
             }
-          }
+          });
+        }
 
-          if (this.theValue) {
-            this.UIDates.forEach((date) => {
-              if (date.getAttribute('data-value') == theValue) {
-                date.classList.add(ACTIVATED_CLASS);
-              } else {
-                date.classList.remove(ACTIVATED_CLASS);
-              }
-            });
-          }
-
-          if (this.UIInput) {
-            this.UIInputValue = theValue;
-          }
+        if (this.UIInput) {
+          this.UIInputValue = theValue;
         }
       };
     }
@@ -770,7 +763,6 @@ class Calendar extends FwComponent {
   static handleChange() {
     return (e) => {
       const calendar = new Calendar(e.target);
-      calendar.__disableChange();
       calendar.update(calendar.theValue, calendar.renderDate);
     };
   }
@@ -812,8 +804,7 @@ class Calendar extends FwComponent {
 
             preParsedVal = `${y}-${m}-${d}`;
             renderValue = preParsedVal;
-          } else {
-            calendar.__disableChange();
+            calendar.__enableChange();
           }
         }
         calendar.update(preParsedVal, renderValue);
@@ -833,7 +824,6 @@ class Calendar extends FwComponent {
         );
 
         calendar.__enableChange();
-
         if (e.target.classList.contains(ACTIVATED_CLASS)) {
           calendar.update('');
         } else {
@@ -853,8 +843,6 @@ class Calendar extends FwComponent {
             .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
             .querySelector(`.${COMPONENT_CLASS}`)
         );
-
-        calendar.__disableChange();
         calendar.update(null, e.target.getAttribute('data-value'));
       }
     };

@@ -41,11 +41,12 @@ const INPUT_STRING = `__fw_input__`;
 class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
-      isFiltering: element && element._isFiltering ? element._isFiltering : true,
+      isFiltering:
+        element && element.hasOwnProperty('isFiltering') ? element._isFiltering : true,
       triggerChange:
         element && element.hasOwnProperty('_triggerChange')
           ? element._triggerChange
-          : true,
+          : false,
       _renderValue: valueToRender
         ? valueToRender
         : element && element.hasOwnProperty('__renderValue')
@@ -399,28 +400,18 @@ class Tags extends FwComponent {
     // const triggerChange =
     //   newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
-    let continueUpdate = true;
+    this._updateValues(theValue, uiValue, inputText);
 
     const lifeCycle = {};
 
-    lifeCycle.before = () => {
-      this._updateValues(theValue, uiValue, inputText);
-
-      if (this.__mustOnChange()) {
-        continueUpdate = FwEvent.trigger(super.UIEl(), 'change');
-        return false;
-      }
-
-      this.__enableChange();
-    };
-
-    if (!this.__mustOnChange()) {
+    if (this.__mustOnChange()) {
+      lifeCycle.before = () => {
+        this.__disableChange(); // so it dont loop
+        FwEvent.trigger(super.UIEl(), 'change');
+      };
+    } else {
       lifeCycle.during = () => {
-        this.__enableChange();
-
-        if (continueUpdate) {
-          this._renderUI();
-        }
+        this._renderUI();
       };
 
       lifeCycle.after = () => {
@@ -653,7 +644,6 @@ class Tags extends FwComponent {
         const tagsInputs = document.querySelectorAll(`.${COMPONENT_CLASS}`);
         tagsInputs.forEach((poot) => {
           const tagsInput = new Tags(poot);
-          tagsInput.__disableChange();
           tagsInput.init();
         });
       },
@@ -663,10 +653,10 @@ class Tags extends FwComponent {
 
   static handleChange() {
     return (e) => {
+      console.log('change');
+      debugger;
       if (!FwComponent.isDisabled(e.target)) {
         const tagsInput = new Tags(e.target);
-
-        tagsInput.__disableChange(); // so it dont loop
         tagsInput.update(tagsInput.theValue, tagsInput.renderValue);
       }
     };
@@ -688,6 +678,7 @@ class Tags extends FwComponent {
 
         tagsInput.UIInputValue += pasted.getData('text').replace(',', '');
 
+        tagsInput.__enableChange();
         tagsInput.blur();
       }
     };
@@ -702,7 +693,6 @@ class Tags extends FwComponent {
             .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
             .querySelector(`.${COMPONENT_CLASS}`)
         );
-        tagsInput.__disableChange();
         tagsInput.focus();
       }
     };
@@ -725,6 +715,7 @@ class Tags extends FwComponent {
             currValue[tagsInput.UIInputIdx] == tagsInput.UIInputValue ? 1 : 0,
             tagsInput.UIInputValue.replace(',', '')
           );
+          tagsInput.__enableChange();
         }
 
         tagsInput.UIInputValue = '';
@@ -747,14 +738,14 @@ class Tags extends FwComponent {
         );
         let currUIValue = Tags.toArr(tagsInput.renderValue, true),
           newValue,
-          disableChange = true,
-          allowFilter = false;
+          enableChange,
+          allowFilter;
         switch (e.key) {
           //enter
           case 'Enter':
             e.preventDefault();
             tagsInput.blur();
-            disableChange = false;
+            enableChange = true;
             break;
 
           //comma
@@ -768,7 +759,7 @@ class Tags extends FwComponent {
               );
               allowFilter = true;
               tagsInput.UIInputValue = '';
-              disableChange = false;
+              enableChange = true;
             }
             break;
 
@@ -828,8 +819,8 @@ class Tags extends FwComponent {
               e.preventDefault();
               allowFilter = true;
               currUIValue.splice(tagsInput.UIInputIdx - 1, 1);
+              enableChange = true;
             }
-            disableChange = false;
             break;
 
           //delete
@@ -838,8 +829,8 @@ class Tags extends FwComponent {
               e.preventDefault();
               allowFilter = true;
               currUIValue.splice(tagsInput.UIInputIdx + 1, 1);
+              enableChange = true;
             }
-            disableChange = false;
             break;
         }
 
@@ -848,8 +839,8 @@ class Tags extends FwComponent {
         if (!allowFilter) {
           tagsInput.__disableFilter();
         }
-        if (disableChange) {
-          tagsInput.__disableChange();
+        if (enableChange) {
+          tagsInput.__enableChange();
         }
         tagsInput.update(newValue, currUIValue);
       }
@@ -875,6 +866,7 @@ class Tags extends FwComponent {
 
         const newValue = Tags.toVal(currValue);
 
+        tagsInput.__enableChange();
         tagsInput.update(newValue);
       }
     };

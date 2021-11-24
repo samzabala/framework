@@ -902,7 +902,7 @@
 
         return null;
       },
-      _remove: function _remove(element, key) {
+      _delete: function _delete(element, key) {
         if (typeof element.fwKeys === 'undefined') {
           return;
         }
@@ -924,8 +924,8 @@
     get: function get(elm, key) {
       return _dataobj._get(elm, key);
     },
-    remove: function remove(elm, key) {
-      _dataobj._remove(elm, key);
+    "delete": function _delete(elm, key) {
+      _dataobj._delete(elm, key);
     }
   };
 
@@ -2027,8 +2027,8 @@
       var _this;
 
       _this = _FwComponent.call(this, element, {
-        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : true,
-        _UIInputValue: element && element.hasOwnProperty('__UIInputValue') ? element.__UIInputValue : true,
+        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : false,
+        _UIInputValue: element && element.hasOwnProperty('__UIInputValue') ? element.__UIInputValue : false,
         _renderValue: valueToRender ? valueToRender : element && element.__renderValue ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
@@ -2158,49 +2158,46 @@
       var element = this.element;
       var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
       var uiValue = valueToRender || theValue || this.renderValue || false;
-      var continueUpdate = true;
+
+      this._updateValues(theValue, uiValue);
+
       var lifeCycle = {};
 
-      lifeCycle.before = function () {
-        _this3._updateValues(theValue, uiValue);
+      if (this.__mustOnChange()) {
+        lifeCycle.before = function () {
+          _this3.__disableChange(); // so it dont loop
 
-        if (_this3.__mustOnChange()) {
-          continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+
+          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
           return false;
-        }
-
-        _this3.__enableChange();
-      };
-
-      if (!this.__mustOnChange()) {
+        };
+      } else {
         lifeCycle.during = function () {
-          if (continueUpdate) {
-            if (_this3.validates(theValue) || !theValue) {
-              _this3._renderUI();
-            } //user visual feedback if it has a valid bitch
+          if (_this3.validates(theValue) || !theValue) {
+            _this3._renderUI();
+          } //user visual feedback if it has a valid bitch
 
 
-            if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
-              if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
-                _this3.UIRoot.classList.remove('input-error');
+          if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
+            if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
+              _this3.UIRoot.classList.remove('input-error');
+            } else {
+              _this3.UIRoot.classList.add('input-error');
+            }
+          }
+
+          if (_this3.theValue) {
+            _this3.UIDates.forEach(function (date) {
+              if (date.getAttribute('data-value') == theValue) {
+                date.classList.add(ACTIVATED_CLASS$5);
               } else {
-                _this3.UIRoot.classList.add('input-error');
+                date.classList.remove(ACTIVATED_CLASS$5);
               }
-            }
+            });
+          }
 
-            if (_this3.theValue) {
-              _this3.UIDates.forEach(function (date) {
-                if (date.getAttribute('data-value') == theValue) {
-                  date.classList.add(ACTIVATED_CLASS$5);
-                } else {
-                  date.classList.remove(ACTIVATED_CLASS$5);
-                }
-              });
-            }
-
-            if (_this3.UIInput) {
-              _this3.UIInputValue = theValue;
-            }
+          if (_this3.UIInput) {
+            _this3.UIInputValue = theValue;
           }
         };
       }
@@ -2444,9 +2441,6 @@
     Calendar.handleChange = function handleChange() {
       return function (e) {
         var calendar = new Calendar(e.target);
-
-        calendar.__disableChange();
-
         calendar.update(calendar.theValue, calendar.renderDate);
       };
     };
@@ -2480,8 +2474,8 @@
               var d = theValue[1] || '';
               preParsedVal = y + "-" + m + "-" + d;
               renderValue = preParsedVal;
-            } else {
-              calendar.__disableChange();
+
+              calendar.__enableChange();
             }
           }
 
@@ -2514,9 +2508,6 @@
 
         if (!FwComponent.isDisabled(e.target)) {
           var calendar = new Calendar(e.target.closest("." + UIPrefix(COMPONENT_CLASS$9)).querySelector("." + COMPONENT_CLASS$9));
-
-          calendar.__disableChange();
-
           calendar.update(null, e.target.getAttribute('data-value'));
         }
       };
@@ -2757,8 +2748,8 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
-        isFiltering: element && element._isFiltering ? element._isFiltering : true,
-        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : true,
+        isFiltering: element && element.hasOwnProperty('isFiltering') ? element._isFiltering : true,
+        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : false,
         _renderValue: valueToRender ? valueToRender : element && element.hasOwnProperty('__renderValue') ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
@@ -2980,27 +2971,20 @@
       // const triggerChange =
       //   newValue && Tags.toVal(newValue, false) !== this.theValue ? true : false;
 
-      var continueUpdate = true;
+      this._updateValues(theValue, uiValue, inputText);
+
       var lifeCycle = {};
 
-      lifeCycle.before = function () {
-        _this3._updateValues(theValue, uiValue, inputText);
+      if (this.__mustOnChange()) {
+        lifeCycle.before = function () {
+          _this3.__disableChange(); // so it dont loop
 
-        if (_this3.__mustOnChange()) {
-          continueUpdate = FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
-          return false;
-        }
 
-        _this3.__enableChange();
-      };
-
-      if (!this.__mustOnChange()) {
+          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+        };
+      } else {
         lifeCycle.during = function () {
-          _this3.__enableChange();
-
-          if (continueUpdate) {
-            _this3._renderUI();
-          }
+          _this3._renderUI();
         };
 
         lifeCycle.after = function () {
@@ -3171,9 +3155,6 @@
         var tagsInputs = document.querySelectorAll("." + COMPONENT_CLASS$8);
         tagsInputs.forEach(function (poot) {
           var tagsInput = new Tags(poot);
-
-          tagsInput.__disableChange();
-
           tagsInput.init();
         });
       }, document);
@@ -3181,12 +3162,11 @@
 
     Tags.handleChange = function handleChange() {
       return function (e) {
+        console.log('change');
+        debugger;
+
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target);
-
-          tagsInput.__disableChange(); // so it dont loop
-
-
           tagsInput.update(tagsInput.theValue, tagsInput.renderValue);
         }
       };
@@ -3200,6 +3180,9 @@
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           var pasted = e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
           tagsInput.UIInputValue += pasted.getData('text').replace(',', '');
+
+          tagsInput.__enableChange();
+
           tagsInput.blur();
         }
       };
@@ -3211,9 +3194,6 @@
 
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
-
-          tagsInput.__disableChange();
-
           tagsInput.focus();
         }
       };
@@ -3228,6 +3208,8 @@
 
           if (tagsInput.UIInputValue !== '') {
             currValue.splice(tagsInput.UIInputIdx, currValue[tagsInput.UIInputIdx] == tagsInput.UIInputValue ? 1 : 0, tagsInput.UIInputValue.replace(',', ''));
+
+            tagsInput.__enableChange();
           }
 
           tagsInput.UIInputValue = '';
@@ -3245,15 +3227,15 @@
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$8)).querySelector("." + COMPONENT_CLASS$8));
           var currUIValue = Tags.toArr(tagsInput.renderValue, true),
               newValue,
-              disableChange = true,
-              allowFilter = false;
+              enableChange,
+              allowFilter;
 
           switch (e.key) {
             //enter
             case 'Enter':
               e.preventDefault();
               tagsInput.blur();
-              disableChange = false;
+              enableChange = true;
               break;
             //comma
 
@@ -3263,7 +3245,7 @@
                 currUIValue.splice(tagsInput.UIInputIdx, 0, tagsInput.UIInputValue.replace(',', ''));
                 allowFilter = true;
                 tagsInput.UIInputValue = '';
-                disableChange = false;
+                enableChange = true;
               }
 
               break;
@@ -3310,9 +3292,9 @@
                 e.preventDefault();
                 allowFilter = true;
                 currUIValue.splice(tagsInput.UIInputIdx - 1, 1);
+                enableChange = true;
               }
 
-              disableChange = false;
               break;
             //delete
 
@@ -3321,9 +3303,9 @@
                 e.preventDefault();
                 allowFilter = true;
                 currUIValue.splice(tagsInput.UIInputIdx + 1, 1);
+                enableChange = true;
               }
 
-              disableChange = false;
               break;
           }
 
@@ -3333,8 +3315,8 @@
             tagsInput.__disableFilter();
           }
 
-          if (disableChange) {
-            tagsInput.__disableChange();
+          if (enableChange) {
+            tagsInput.__enableChange();
           }
 
           tagsInput.update(newValue, currUIValue);
@@ -3352,6 +3334,9 @@
           var currValue = Tags.toArr(tagsInput.renderValue);
           currValue.splice(parseInt(tagToRemove), 1);
           var newValue = Tags.toVal(currValue);
+
+          tagsInput.__enableChange();
+
           tagsInput.update(newValue);
         }
       };
