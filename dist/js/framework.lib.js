@@ -3708,9 +3708,13 @@
       var _this2 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      var matchedHashDestroy = false;
+      var matchedHashDestroy = false; // if (!window.location.hash && this.#current && this.#current.element) {
+      //   if (element === this.#current.element) {
+      //     matchedHashDestroy = true;
+      //   }
+      // }
 
-      if (!window.location.hash && _classPrivateFieldLooseBase(this, _current)[_current] && _classPrivateFieldLooseBase(this, _current)[_current].element) {
+      if (_classPrivateFieldLooseBase(this, _current)[_current] && _classPrivateFieldLooseBase(this, _current)[_current].element) {
         if (element === _classPrivateFieldLooseBase(this, _current)[_current].element) {
           matchedHashDestroy = true;
         }

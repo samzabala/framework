@@ -357,7 +357,13 @@ class Modal extends FwComponent {
 
     let matchedHashDestroy = false;
 
-    if (!window.location.hash && this.#current && this.#current.element) {
+    // if (!window.location.hash && this.#current && this.#current.element) {
+    //   if (element === this.#current.element) {
+    //     matchedHashDestroy = true;
+    //   }
+    // }
+
+    if (this.#current && this.#current.element) {
       if (element === this.#current.element) {
         matchedHashDestroy = true;
       }

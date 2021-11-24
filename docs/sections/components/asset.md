@@ -108,7 +108,6 @@ helper that can display a css coded thumbnail for file types. append one of of t
 
 Also if you wanna use some of these styles but then don't like the extension, you can override it with `[data-asset-extension]`
 
-
 ```html
 <div class="asset">
   <div class="asset-thumbnail">
