@@ -264,8 +264,7 @@ class Calendar extends FwComponent {
 
     if (this.__mustOnChange()) {
       lifeCycle.before = () => {
-        this.__disableChange(); // so it dont loop
-        FwEvent.trigger(super.UIEl(), 'change');
+        this.change();
         return false;
       };
     } else {
@@ -306,6 +305,11 @@ class Calendar extends FwComponent {
       lifeCycle,
       element
     );
+  }
+
+  change() {
+    this.__disableChange(); // so it dont loop
+    FwEvent.trigger(super.UIEl(), 'change');
   }
 
   validates(date, rangeOnly) {

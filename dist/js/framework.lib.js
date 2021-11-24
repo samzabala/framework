@@ -2165,10 +2165,8 @@
 
       if (this.__mustOnChange()) {
         lifeCycle.before = function () {
-          _this3.__disableChange(); // so it dont loop
+          _this3.change();
 
-
-          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
           return false;
         };
       } else {
@@ -2203,6 +2201,13 @@
       }
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, lifeCycle, element);
+    };
+
+    _proto.change = function change() {
+      this.__disableChange(); // so it dont loop
+
+
+      FwEvent.trigger(_FwComponent.prototype.UIEl.call(this), 'change');
     };
 
     _proto.validates = function validates(date, rangeOnly) {
@@ -2977,10 +2982,7 @@
 
       if (this.__mustOnChange()) {
         lifeCycle.before = function () {
-          _this3.__disableChange(); // so it dont loop
-
-
-          FwEvent.trigger(_FwComponent.prototype.UIEl.call(_this3), 'change');
+          _this3.change();
         };
       } else {
         lifeCycle.during = function () {
@@ -2995,6 +2997,13 @@
       }
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, lifeCycle);
+    };
+
+    _proto.change = function change() {
+      this.__disableChange(); // so it dont loop
+
+
+      FwEvent.trigger(_FwComponent.prototype.UIEl.call(this), 'change');
     };
 
     _proto._renderUI = function _renderUI(elem) {

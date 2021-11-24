@@ -406,8 +406,8 @@ class Tags extends FwComponent {
 
     if (this.__mustOnChange()) {
       lifeCycle.before = () => {
-        this.__disableChange(); // so it dont loop
-        FwEvent.trigger(super.UIEl(), 'change');
+        this.change();
+        return false;
       };
     } else {
       lifeCycle.during = () => {
@@ -422,6 +422,11 @@ class Tags extends FwComponent {
     }
 
     super.runCycle(EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, lifeCycle);
+  }
+
+  change() {
+    this.__disableChange(); // so it dont loop
+    FwEvent.trigger(super.UIEl(), 'change');
   }
 
   _renderUI(elem) {
