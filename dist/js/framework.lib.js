@@ -2016,9 +2016,9 @@
   var EVENT_BEFORE_UPDATE$2 = "before_update" + EVENT_KEY$9;
   var EVENT_UPDATE$2 = "update" + EVENT_KEY$9;
   var EVENT_AFTER_UPDATE$2 = "after_update" + EVENT_KEY$9;
-  var EVENT_BEFORE_RESET = "before_reset" + EVENT_KEY$9;
-  var EVENT_RESET = "update" + EVENT_KEY$9;
-  var EVENT_AFTER_RESET = "after_reset" + EVENT_KEY$9;
+  var EVENT_BEFORE_RESET$1 = "before_reset" + EVENT_KEY$9;
+  var EVENT_RESET$1 = "update" + EVENT_KEY$9;
+  var EVENT_AFTER_RESET$1 = "after_reset" + EVENT_KEY$9;
 
   var Calendar = /*#__PURE__*/function (_FwComponent) {
     _inheritsLoose(Calendar, _FwComponent);
@@ -2140,8 +2140,10 @@
 
       var element = this.element;
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET, EVENT_RESET, EVENT_AFTER_RESET, function () {
-        update(FwDate.toVal(false), _this2.renderValue);
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET$1, EVENT_RESET$1, EVENT_AFTER_RESET$1, function () {
+        _this2.__enableChange();
+
+        _this2.update(FwDate.toVal(false), _this2.renderValue);
       }, element);
     };
 
@@ -2203,11 +2205,13 @@
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$2, EVENT_UPDATE$2, EVENT_AFTER_UPDATE$2, lifeCycle, element);
     };
 
-    _proto.change = function change() {
+    _proto.change = function change(elem) {
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+
       this.__disableChange(); // so it dont loop
 
 
-      FwEvent.trigger(_FwComponent.prototype.UIEl.call(this), 'change');
+      FwEvent.trigger(element, 'change');
     };
 
     _proto.validates = function validates(date, rangeOnly) {
@@ -2451,6 +2455,8 @@
     };
 
     Calendar.handleUpdateKeyup = function handleUpdateKeyup() {
+      var _this5 = this;
+
       return function (e) {
         if (FwComponent.isDisabled(e.target)) {
           e.preventDefault();
@@ -2462,10 +2468,10 @@
             e.target.value = uiInput + "/";
           } else if (uiInput.match(/^\d{2}\/\d{2}$/) !== null) {
             e.target.value = uiInput + "/";
-          } //@TODO
-
+          }
 
           var preParsedVal,
+              enableChange,
               renderValue = calendar.renderValue;
 
           if (uiInput) {
@@ -2480,11 +2486,23 @@
               preParsedVal = y + "-" + m + "-" + d;
               renderValue = preParsedVal;
 
-              calendar.__enableChange();
+              if (preParsedVal !== _this5.theValue && calendar.validates(preParsedVal)) {
+                enableChange = true;
+              }
             }
+          } else {
+            //blank. letterrrippp
+            preParsedVal = '';
+            enableChange = true;
           }
 
-          calendar.update(preParsedVal, renderValue);
+          if (enableChange) {
+            calendar.__enableChange();
+          }
+
+          if (typeof preParsedVal !== 'undefined') {
+            calendar.update(preParsedVal, renderValue);
+          }
         }
       };
     };
@@ -2740,6 +2758,9 @@
   var EVENT_BEFORE_INIT$3 = "before_init" + EVENT_KEY$8;
   var EVENT_INIT$3 = "init" + EVENT_KEY$8;
   var EVENT_AFTER_INIT$3 = "after_init" + EVENT_KEY$8;
+  var EVENT_BEFORE_RESET = "before_reset" + EVENT_KEY$8;
+  var EVENT_RESET = "reset" + EVENT_KEY$8;
+  var EVENT_AFTER_RESET = "after_reset" + EVENT_KEY$8;
   var EVENT_BEFORE_RENDER$1 = "before_render" + EVENT_KEY$8;
   var EVENT_RENDER$1 = "render" + EVENT_KEY$8;
   var EVENT_AFTER_RENDER$1 = "after_render" + EVENT_KEY$8;
@@ -3001,15 +3022,29 @@
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE$1, EVENT_UPDATE$1, EVENT_AFTER_UPDATE$1, lifeCycle);
     };
 
-    _proto.change = function change() {
+    _proto.reset = function reset() {
+      var _this4 = this;
+
+      var element = this.element;
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET, EVENT_RESET, EVENT_AFTER_RESET, function () {
+        _this4.__enableChange();
+
+        _this4.update('', '');
+      }, element);
+    };
+
+    _proto.change = function change(elem) {
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
+
       this.__disableChange(); // so it dont loop
 
 
-      FwEvent.trigger(_FwComponent.prototype.UIEl.call(this), 'change');
+      FwEvent.trigger(element, 'change');
     };
 
     _proto._renderUI = function _renderUI(elem) {
-      var _this4 = this;
+      var _this5 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
 
@@ -3020,7 +3055,7 @@
       var theUI = {};
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER$1, EVENT_RENDER$1, EVENT_AFTER_RENDER$1, function () {
-        theUI.container = _this4.UIRoot;
+        theUI.container = _this5.UIRoot;
 
         if (!theUI.container) {
           theUI.container = document.createElement('div');
@@ -3028,12 +3063,12 @@
           theUI.container.appendChild(element);
           theUI.container.classList.add('input');
           theUI.container.setAttribute('class', Settings.get('uiClass') + "\n          " + Settings.get('uiJsClass') + "\n          " + element.getAttribute('class').toString().replace(COMPONENT_CLASS$8, UIPrefix(COMPONENT_CLASS$8)));
-          theUI.container.classList.add(_this4.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
-          _this4.args.multipleLines && _this4.args.multipleLinesBreak && theUI.container.classList.add(UIPrefix(COMPONENT_CLASS$8) + "-multiple-break");
+          theUI.container.classList.add(_this5.args.multipleLines ? UIPrefix(COMPONENT_CLASS$8) + "-multiple" : UIPrefix(COMPONENT_CLASS$8) + "-single");
+          _this5.args.multipleLines && _this5.args.multipleLinesBreak && theUI.container.classList.add(UIPrefix(COMPONENT_CLASS$8) + "-multiple-break");
         }
 
-        if (_this4.args.width) {
-          theUI.container.style = _this4.args.width;
+        if (_this5.args.width) {
+          theUI.container.style = _this5.args.width;
         } //idk it never exists on initial so we dont have to do weird div wraping catches here
 
 
@@ -3044,14 +3079,14 @@
           theUI.container.appendChild(theUI.wrapper);
           theUI.wrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
           theUI.wrapper = theUI.container.querySelector("." + UIPrefix(COMPONENT_CLASS$8) + "-wrapper");
-          var self = _this4;
+          var self = _this5;
 
           Initiator.Q.on_resize = function () {
             self._scrollToUIInput();
           };
         }
 
-        theUI.input = _this4.UIInput;
+        theUI.input = _this5.UIInput;
 
         if (!theUI.input) {
           // theUI.input = document.createElement('input');
@@ -3078,9 +3113,9 @@
           } //bitch
 
 
-          if (_this4.args.onKeyUp) {
+          if (_this5.args.onKeyUp) {
             theUI.input.addEventListener('keyup', function (event) {
-              var keyUpScript = eval(_this4.args.onKeyUp);
+              var keyUpScript = eval(_this5.args.onKeyUp);
 
               if (keyUpScript) {
                 return keyUpScript;
@@ -3094,8 +3129,8 @@
         oldTags.forEach(function (tag) {
           tag.parentNode.removeChild(tag);
         });
-        var valArr = Tags.toArr(_this4.renderValue, true);
-        theUI.input.setAttribute('data-ui-i', _this4.UIInputIdx); //validate tags
+        var valArr = Tags.toArr(_this5.renderValue, true);
+        theUI.input.setAttribute('data-ui-i', _this5.UIInputIdx); //validate tags
         // valArr = valArr.reduce((acc, tag) => {
         // 	if (!acc.includes(tag)) {
         // 		acc.push(tag);
@@ -3108,7 +3143,7 @@
           if (tag !== Tags.__is) {
             var tagHtml = document.createElement('span');
 
-            if (i < _this4.UIInputIdx) {
+            if (i < _this5.UIInputIdx) {
               theUI.input.insertAdjacentElement('beforebegin', tagHtml);
             } else {
               theUI.wrapper.appendChild(tagHtml);
@@ -3130,7 +3165,7 @@
         } //keep that shoit bisibol
 
 
-        _this4._scrollToUIInput();
+        _this5._scrollToUIInput();
       }, element);
     };
 
@@ -3173,9 +3208,6 @@
 
     Tags.handleChange = function handleChange() {
       return function (e) {
-        console.log('change');
-        debugger;
-
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target);
           tagsInput.update(tagsInput.theValue, tagsInput.renderValue);

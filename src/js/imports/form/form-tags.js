@@ -28,6 +28,10 @@ const EVENT_BEFORE_INIT = `before_init${EVENT_KEY}`;
 const EVENT_INIT = `init${EVENT_KEY}`;
 const EVENT_AFTER_INIT = `after_init${EVENT_KEY}`;
 
+const EVENT_BEFORE_RESET = `before_reset${EVENT_KEY}`;
+const EVENT_RESET = `reset${EVENT_KEY}`;
+const EVENT_AFTER_RESET = `after_reset${EVENT_KEY}`;
+
 const EVENT_BEFORE_RENDER = `before_render${EVENT_KEY}`;
 const EVENT_RENDER = `render${EVENT_KEY}`;
 const EVENT_AFTER_RENDER = `after_render${EVENT_KEY}`;
@@ -420,13 +424,28 @@ class Tags extends FwComponent {
         }
       };
     }
-
     super.runCycle(EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, lifeCycle);
   }
 
-  change() {
+  reset() {
+    const element = this.element;
+    super.runCycle(
+      EVENT_BEFORE_RESET,
+      EVENT_RESET,
+      EVENT_AFTER_RESET,
+      () => {
+        this.__enableChange();
+        this.update('', '');
+      },
+      element
+    );
+  }
+
+  change(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
+
     this.__disableChange(); // so it dont loop
-    FwEvent.trigger(super.UIEl(), 'change');
+    FwEvent.trigger(element, 'change');
   }
 
   _renderUI(elem) {
@@ -658,8 +677,6 @@ class Tags extends FwComponent {
 
   static handleChange() {
     return (e) => {
-      console.log('change');
-      debugger;
       if (!FwComponent.isDisabled(e.target)) {
         const tagsInput = new Tags(e.target);
         tagsInput.update(tagsInput.theValue, tagsInput.renderValue);

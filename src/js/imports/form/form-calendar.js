@@ -238,7 +238,8 @@ class Calendar extends FwComponent {
       EVENT_RESET,
       EVENT_AFTER_RESET,
       () => {
-        update(FwDate.toVal(false), this.renderValue);
+        this.__enableChange();
+        this.update(FwDate.toVal(false), this.renderValue);
       },
       element
     );
@@ -307,9 +308,11 @@ class Calendar extends FwComponent {
     );
   }
 
-  change() {
+  change(elem) {
+    const element = elem ? super.UIEl(elem) : super.UIEl();
+
     this.__disableChange(); // so it dont loop
-    FwEvent.trigger(super.UIEl(), 'change');
+    FwEvent.trigger(element, 'change');
   }
 
   validates(date, rangeOnly) {
@@ -789,9 +792,8 @@ class Calendar extends FwComponent {
           e.target.value = `${uiInput}/`;
         }
 
-        //@TODO
-
         let preParsedVal,
+          enableChange,
           renderValue = calendar.renderValue;
 
         if (uiInput) {
@@ -808,10 +810,24 @@ class Calendar extends FwComponent {
 
             preParsedVal = `${y}-${m}-${d}`;
             renderValue = preParsedVal;
-            calendar.__enableChange();
+
+            if (preParsedVal !== this.theValue && calendar.validates(preParsedVal)) {
+              enableChange = true;
+            }
           }
+        } else {
+          //blank. letterrrippp
+          preParsedVal = '';
+          enableChange = true;
         }
-        calendar.update(preParsedVal, renderValue);
+
+        if (enableChange) {
+          calendar.__enableChange();
+        }
+
+        if (typeof preParsedVal !== 'undefined') {
+          calendar.update(preParsedVal, renderValue);
+        }
       }
     };
   }
