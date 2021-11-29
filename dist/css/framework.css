@@ -9521,8 +9521,8 @@ select[multiple].input-single-line, select[multiple].input-select {
   direction: rtl;
 }
 .input-small.input-tags-ui .input-tags-ui-wrapper {
-  margin-bottom: -0.0625em;
-  margin-top: -0.3125em;
+  margin-bottom: 0;
+  margin-top: -0.25em;
 }
 
 .input-large.input-tags-ui .input-tags-ui-wrapper {
@@ -9550,8 +9550,8 @@ select[multiple].input-single-line, select[multiple].input-select {
   margin-top: 0.25em;
 }
 .input-small .input-tags-ui-tag, .input-small .input-tags-ui-input {
-  padding-top: 0.0625em;
-  padding-bottom: 0.0625em;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .input-large .input-tags-ui-tag, .input-large .input-tags-ui-input {
   padding-top: 0;

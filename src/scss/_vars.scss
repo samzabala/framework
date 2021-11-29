@@ -1500,8 +1500,8 @@ $input-background: $var-theme-background !default;
 $input-background-inverse: $input-background !default;
 
 $input-font-size: $body-font-size !default;
-$input-font-size-large: $body-font-size * 1.5 !default;
-$input-font-size-small: $body-font-size * 0.75 !default;
+$input-font-size-large: $body-font-size-large !default;
+$input-font-size-small: $body-font-size-small !default;
 
 $input-select-dropdown-color: $var-color-primary !default;
 
@@ -1579,7 +1579,7 @@ $input-calendar-days-font-size: 0.75em !default;
 $input-tags-padding-x: 0.5em !default;
 $input-tags-padding-y: 0 !default;
 $input-tags-padding-y-large: $input-tags-padding-y !default;
-$input-tags-padding-y-small: 0.0625em !default;
+$input-tags-padding-y-small: $input-tags-padding-y !default;
 $input-tags-gutter-x: 0.25em !default;
 $input-tags-gutter-y: $input-tags-gutter-x !default;
 
