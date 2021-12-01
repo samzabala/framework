@@ -385,7 +385,7 @@ class Tags extends FwComponent {
     }
     // console.warn('set');
     // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
-    // this.validate();
+    this.validate();
     // console.warn('after validate');
     // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
   }
@@ -434,7 +434,7 @@ class Tags extends FwComponent {
       EVENT_RESET,
       EVENT_AFTER_RESET,
       () => {
-        this.__enableChange();
+        // this.__enableChange();
         this.update('', '');
       },
       element

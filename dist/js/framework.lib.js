@@ -2141,8 +2141,7 @@
       var element = this.element;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET$1, EVENT_RESET$1, EVENT_AFTER_RESET$1, function () {
-        _this2.__enableChange();
-
+        // this.__enableChange();
         _this2.update(FwDate.toVal(false), _this2.renderValue);
       }, element);
     };
@@ -2979,10 +2978,10 @@
         this.UIInputValue = inputText;
       } // console.warn('set');
       // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
-      // this.validate();
-      // console.warn('after validate');
-      // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
 
+
+      this.validate(); // console.warn('after validate');
+      // console.log(this.theValue,'|',this.renderValue,'|',this.UIInputValue);
     };
 
     _proto.update = function update(newValue, valueToRender, inputText) {
@@ -3028,8 +3027,7 @@
       var element = this.element;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET, EVENT_RESET, EVENT_AFTER_RESET, function () {
-        _this4.__enableChange();
-
+        // this.__enableChange();
         _this4.update('', '');
       }, element);
     };

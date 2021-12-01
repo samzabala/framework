@@ -238,7 +238,7 @@ class Calendar extends FwComponent {
       EVENT_RESET,
       EVENT_AFTER_RESET,
       () => {
-        this.__enableChange();
+        // this.__enableChange();
         this.update(FwDate.toVal(false), this.renderValue);
       },
       element
