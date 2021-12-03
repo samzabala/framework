@@ -41,22 +41,74 @@ class FwComponent {
     this.element = null;
   }
 
+  setProp(key, value) {
+    if (!key) return;
+    if (value === '__dispose') {
+      delete this[key];
+      delete this.element[`_${key}`];
+    } else {
+      this[key] = value;
+      this.element[`_${key}`] = value;
+    }
+  }
+
+  getProp(key) {
+    if (!key) return;
+    return this.element[`_${key}`];
+  }
+
   static getInstance(element) {
     return DataHandler.get(element, this.DATA_KEY);
   }
 
-  runCycle(beforeEvt, duringEvt, AfterEvt, callback, triggeredElem) {
+  runCycle(beforeEvt, duringEvt, AfterEvt, callbacks, triggeredElem) {
     triggeredElem = triggeredElem || this.UIEl();
     if (!beforeEvt || !duringEvt || !AfterEvt) {
       return;
     }
 
+    let callBackBefore,
+      callBackDuring,
+      callbackAfter,
+      callbackSuccessBefore = true,
+      callbackSuccessDuring = true;
+    if (typeof callbacks === 'function') {
+      callBackDuring = callbacks;
+    } else if (
+      typeof callbacks === 'object' &&
+      !Array.isArray(callbacks) &&
+      callbacks !== null
+    ) {
+      callBackBefore = callbacks.before;
+      callBackDuring = callbacks.during;
+      callbackAfter = callbacks.after;
+    }
+
     if (FwEvent.trigger(triggeredElem, beforeEvt)) {
-      if (FwEvent.trigger(triggeredElem, duringEvt)) {
-        if (typeof callback === 'function') {
-          callback(this);
+      // console.log('before event');
+      if (typeof callBackBefore === 'function') {
+        const callbackReturnBefore = callBackBefore(this);
+        callbackSuccessBefore =
+          callbackReturnBefore === false ? callbackReturnBefore : true;
+      }
+
+      const continueDuring =
+        callbackSuccessBefore && FwEvent.trigger(triggeredElem, duringEvt);
+      if (continueDuring) {
+        // console.log('during event');
+        if (typeof callBackDuring === 'function') {
+          const callbackReturnDuring = callBackDuring(this);
+          callbackSuccessDuring =
+            callbackReturnDuring === false ? callbackReturnDuring : true;
         }
-        FwEvent.trigger(triggeredElem, AfterEvt);
+
+        const continueAfter =
+          callbackSuccessDuring && FwEvent.trigger(triggeredElem, AfterEvt);
+        if (continueAfter) {
+          if (typeof callbackAfter === 'function') {
+            callbackAfter(this);
+          }
+        }
       }
     }
   }

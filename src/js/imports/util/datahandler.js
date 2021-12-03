@@ -25,7 +25,7 @@ const _dataobj = (() => {
 
       return null;
     },
-    _remove(element, key) {
+    _delete(element, key) {
       if (typeof element.fwKeys === 'undefined') {
         return;
       }
@@ -46,8 +46,8 @@ const DataHandler = {
   get(elm, key) {
     return _dataobj._get(elm, key);
   },
-  remove(elm, key) {
-    _dataobj._remove(elm, key);
+  delete(elm, key) {
+    _dataobj._delete(elm, key);
   },
 };
 
