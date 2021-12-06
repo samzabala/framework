@@ -7333,8 +7333,8 @@ table.table-fixed {
 .table .text-wrap-ellipsis-multiple,
 table .text-wrap-ellipsis,
 table .text-wrap-ellipsis-multiple {
-  width: 10em;
-  width: clamp(14em, 25vw, 12em);
+  width: 10rem;
+  width: clamp(12rem, 100%, 16rem);
 }
 thead,
 tbody,
