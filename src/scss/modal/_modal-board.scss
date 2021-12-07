@@ -12,15 +12,16 @@ $mode-class: #{$prefix}-mode-board;
 
 #{$mode-class}#{$prefix}-wrapper {
   @extend %for-modal-wrapper-background !optional;
+  #{$prefix}-popup {
+    padding-left: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
+    padding-right: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
+  }
+
   #{$prefix}-align-right & {
     padding-left: $modal-board-padding-spacer;
     #{$prefix}-popup,
     #{$prefix}-button-wrapper {
       margin-left: auto;
-    }
-
-    #{$prefix}-popup {
-      padding-left: calc((#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x});
     }
   }
   #{$prefix}-align-left & {
@@ -29,32 +30,22 @@ $mode-class: #{$prefix}-mode-board;
     #{$prefix}-button-wrapper {
       margin-right: auto;
     }
-
-    #{$prefix}-popup {
-      padding-right: calc(
-        (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x}
-      );
-    }
   }
 
   @include on-breakpoint(mobile) {
+    #{$prefix}-popup {
+      padding-left: calc(
+        (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
+      );
+      padding-right: calc(
+        (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
+      );
+    }
     #{$prefix}-align-right & {
       padding-left: $modal-board-padding-spacer-mobile;
-
-      #{$prefix}-popup {
-        padding-left: calc(
-          (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
-        );
-      }
     }
     #{$prefix}-align-left & {
       padding-right: $modal-board-padding-spacer-mobile;
-
-      #{$prefix}-popup {
-        padding-right: calc(
-          (#{$calculated-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
-        );
-      }
     }
   }
 }
