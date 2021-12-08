@@ -7536,112 +7536,160 @@ td,
   background-color: var(--fw-color-intensity-5);
 }
 
-.table-row-primary {
+.table-row-primary td,
+.table-row-primary .table-cell {
   background-color: var(--fw-color-primary-lightest);
 }
-.theme-inverse .table-row-primary {
+.theme-inverse .table-row-primary td,
+.theme-inverse .table-row-primary .table-cell {
   background-color: var(--fw-color-primary-darkest);
 }
-.alert .table-row-primary, .theme-inverse .alert .table-row-primary {
+.alert .table-row-primary td, .theme-inverse .alert .table-row-primary td,
+.alert .table-row-primary .table-cell,
+.theme-inverse .alert .table-row-primary .table-cell {
   background: var(--fw-color-primary-alpha-2);
 }
-.table-row-secondary {
+.table-row-secondary td,
+.table-row-secondary .table-cell {
   background-color: var(--fw-color-secondary-lightest);
 }
-.theme-inverse .table-row-secondary {
+.theme-inverse .table-row-secondary td,
+.theme-inverse .table-row-secondary .table-cell {
   background-color: var(--fw-color-secondary-darkest);
 }
-.alert .table-row-secondary, .theme-inverse .alert .table-row-secondary {
+.alert .table-row-secondary td, .theme-inverse .alert .table-row-secondary td,
+.alert .table-row-secondary .table-cell,
+.theme-inverse .alert .table-row-secondary .table-cell {
   background: var(--fw-color-secondary-alpha-2);
 }
-.table-row-accent {
+.table-row-accent td,
+.table-row-accent .table-cell {
   background-color: var(--fw-color-accent-lightest);
 }
-.theme-inverse .table-row-accent {
+.theme-inverse .table-row-accent td,
+.theme-inverse .table-row-accent .table-cell {
   background-color: var(--fw-color-accent-darkest);
 }
-.alert .table-row-accent, .theme-inverse .alert .table-row-accent {
+.alert .table-row-accent td, .theme-inverse .alert .table-row-accent td,
+.alert .table-row-accent .table-cell,
+.theme-inverse .alert .table-row-accent .table-cell {
   background: var(--fw-color-accent-alpha-2);
 }
-.table-row-neutral {
+.table-row-neutral td,
+.table-row-neutral .table-cell {
   background-color: var(--fw-color-neutral-lightest);
 }
-.theme-inverse .table-row-neutral {
+.theme-inverse .table-row-neutral td,
+.theme-inverse .table-row-neutral .table-cell {
   background-color: var(--fw-color-neutral-darkest);
 }
-.alert .table-row-neutral, .theme-inverse .alert .table-row-neutral {
+.alert .table-row-neutral td, .theme-inverse .alert .table-row-neutral td,
+.alert .table-row-neutral .table-cell,
+.theme-inverse .alert .table-row-neutral .table-cell {
   background: var(--fw-color-neutral-alpha-2);
 }
-.table-row-success {
+.table-row-success td,
+.table-row-success .table-cell {
   background-color: var(--fw-color-success-lightest);
 }
-.theme-inverse .table-row-success {
+.theme-inverse .table-row-success td,
+.theme-inverse .table-row-success .table-cell {
   background-color: var(--fw-color-success-darkest);
 }
-.alert .table-row-success, .theme-inverse .alert .table-row-success {
+.alert .table-row-success td, .theme-inverse .alert .table-row-success td,
+.alert .table-row-success .table-cell,
+.theme-inverse .alert .table-row-success .table-cell {
   background: var(--fw-color-success-alpha-2);
 }
-.table-row-caution {
+.table-row-caution td,
+.table-row-caution .table-cell {
   background-color: var(--fw-color-caution-lightest);
 }
-.theme-inverse .table-row-caution {
+.theme-inverse .table-row-caution td,
+.theme-inverse .table-row-caution .table-cell {
   background-color: var(--fw-color-caution-darkest);
 }
-.alert .table-row-caution, .theme-inverse .alert .table-row-caution {
+.alert .table-row-caution td, .theme-inverse .alert .table-row-caution td,
+.alert .table-row-caution .table-cell,
+.theme-inverse .alert .table-row-caution .table-cell {
   background: var(--fw-color-caution-alpha-2);
 }
-.table-row-error {
+.table-row-error td,
+.table-row-error .table-cell {
   background-color: var(--fw-color-error-lightest);
 }
-.theme-inverse .table-row-error {
+.theme-inverse .table-row-error td,
+.theme-inverse .table-row-error .table-cell {
   background-color: var(--fw-color-error-darkest);
 }
-.alert .table-row-error, .theme-inverse .alert .table-row-error {
+.alert .table-row-error td, .theme-inverse .alert .table-row-error td,
+.alert .table-row-error .table-cell,
+.theme-inverse .alert .table-row-error .table-cell {
   background: var(--fw-color-error-alpha-2);
 }
-.table-row-intensity-1 {
+.table-row-intensity-1 td,
+.table-row-intensity-1 .table-cell {
   background-color: var(--fw-color-intensity-1-lightest);
 }
-.theme-inverse .table-row-intensity-1 {
+.theme-inverse .table-row-intensity-1 td,
+.theme-inverse .table-row-intensity-1 .table-cell {
   background-color: var(--fw-color-intensity-1-darkest);
 }
-.alert .table-row-intensity-1, .theme-inverse .alert .table-row-intensity-1 {
+.alert .table-row-intensity-1 td, .theme-inverse .alert .table-row-intensity-1 td,
+.alert .table-row-intensity-1 .table-cell,
+.theme-inverse .alert .table-row-intensity-1 .table-cell {
   background: var(--fw-color-intensity-1-alpha-2);
 }
-.table-row-intensity-2 {
+.table-row-intensity-2 td,
+.table-row-intensity-2 .table-cell {
   background-color: var(--fw-color-intensity-2-lightest);
 }
-.theme-inverse .table-row-intensity-2 {
+.theme-inverse .table-row-intensity-2 td,
+.theme-inverse .table-row-intensity-2 .table-cell {
   background-color: var(--fw-color-intensity-2-darkest);
 }
-.alert .table-row-intensity-2, .theme-inverse .alert .table-row-intensity-2 {
+.alert .table-row-intensity-2 td, .theme-inverse .alert .table-row-intensity-2 td,
+.alert .table-row-intensity-2 .table-cell,
+.theme-inverse .alert .table-row-intensity-2 .table-cell {
   background: var(--fw-color-intensity-2-alpha-2);
 }
-.table-row-intensity-3 {
+.table-row-intensity-3 td,
+.table-row-intensity-3 .table-cell {
   background-color: var(--fw-color-intensity-3-lightest);
 }
-.theme-inverse .table-row-intensity-3 {
+.theme-inverse .table-row-intensity-3 td,
+.theme-inverse .table-row-intensity-3 .table-cell {
   background-color: var(--fw-color-intensity-3-darkest);
 }
-.alert .table-row-intensity-3, .theme-inverse .alert .table-row-intensity-3 {
+.alert .table-row-intensity-3 td, .theme-inverse .alert .table-row-intensity-3 td,
+.alert .table-row-intensity-3 .table-cell,
+.theme-inverse .alert .table-row-intensity-3 .table-cell {
   background: var(--fw-color-intensity-3-alpha-2);
 }
-.table-row-intensity-4 {
+.table-row-intensity-4 td,
+.table-row-intensity-4 .table-cell {
   background-color: var(--fw-color-intensity-4-lightest);
 }
-.theme-inverse .table-row-intensity-4 {
+.theme-inverse .table-row-intensity-4 td,
+.theme-inverse .table-row-intensity-4 .table-cell {
   background-color: var(--fw-color-intensity-4-darkest);
 }
-.alert .table-row-intensity-4, .theme-inverse .alert .table-row-intensity-4 {
+.alert .table-row-intensity-4 td, .theme-inverse .alert .table-row-intensity-4 td,
+.alert .table-row-intensity-4 .table-cell,
+.theme-inverse .alert .table-row-intensity-4 .table-cell {
   background: var(--fw-color-intensity-4-alpha-2);
 }
-.table-row-intensity-5 {
+.table-row-intensity-5 td,
+.table-row-intensity-5 .table-cell {
   background-color: var(--fw-color-intensity-5-lightest);
 }
-.theme-inverse .table-row-intensity-5 {
+.theme-inverse .table-row-intensity-5 td,
+.theme-inverse .table-row-intensity-5 .table-cell {
   background-color: var(--fw-color-intensity-5-darkest);
 }
-.alert .table-row-intensity-5, .theme-inverse .alert .table-row-intensity-5 {
+.alert .table-row-intensity-5 td, .theme-inverse .alert .table-row-intensity-5 td,
+.alert .table-row-intensity-5 .table-cell,
+.theme-inverse .alert .table-row-intensity-5 .table-cell {
   background: var(--fw-color-intensity-5-alpha-2);
 }
 

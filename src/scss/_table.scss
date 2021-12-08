@@ -252,18 +252,21 @@ $prefix: '.table';
     @at-root #{$prefix}-row {
       @each $tag, $colors in $calculated-table-row-background {
         &-#{$tag} {
-          background-color: map-get($colors, normal);
+          td,
+          #{$prefix}-cell {
+            background-color: map-get($colors, normal);
 
-          .theme-inverse & {
-            background-color: map-get($colors, inverse);
-          }
+            .theme-inverse & {
+              background-color: map-get($colors, inverse);
+            }
 
-          .alert &,
-          .theme-inverse .alert & {
-            background: map-get(
-              map-get($calculated-color-vars-variations, #{$tag}),
-              alpha-2
-            );
+            .alert &,
+            .theme-inverse .alert & {
+              background: map-get(
+                map-get($calculated-color-vars-variations, #{$tag}),
+                alpha-2
+              );
+            }
           }
         }
       }
