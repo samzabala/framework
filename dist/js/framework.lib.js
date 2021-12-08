@@ -3918,7 +3918,7 @@
         //@TODO: this shit
         fullscreenClasses: '',
         centerY: {
-          value: false,
+          value: true,
           parser: function parser(value) {
             if (mode !== BOARD_NAME) return value;
           }

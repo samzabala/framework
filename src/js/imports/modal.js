@@ -202,7 +202,7 @@ class Modal extends FwComponent {
       fullscreen: false, //@TODO: this shit
       fullscreenClasses: '',
       centerY: {
-        value: false,
+        value: true,
         parser: (value) => {
           if (mode !== BOARD_NAME) return value;
         },
