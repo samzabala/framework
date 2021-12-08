@@ -16,7 +16,6 @@ const TOGGLE_MODE_PREFIX = `${NAME}`;
 const ACTIVATED_CLASS = `active`;
 
 const DEFAULT_NAME = `default`;
-const FULLSCREEN_NAME = `fullscreen`;
 const BOARD_NAME = `board`;
 
 const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
@@ -45,7 +44,6 @@ const CURRENT_MODAL_INSTANCE = {};
 
 const VALID_MODAL_MODES = [
   BOARD_NAME,
-  FULLSCREEN_NAME,
   DEFAULT_NAME, // default's just named after the component istels fo im not confusion also make it last
 ];
 
@@ -195,27 +193,28 @@ class Modal extends FwComponent {
     return {
       changeHash: true,
       title: '',
-      close: {
-        value: true,
-        parser: (value) => {
-          return mode !== FULLSCREEN_NAME ? value : false;
-        },
-      },
-      disableOverlay: {
-        value: true,
-        parser: (value) => {
-          return mode !== FULLSCREEN_NAME ? value : false;
-        },
-      },
+      close: true,
+      disableOverlay: true,
       width: null,
       callback: null,
       classes: '',
       closeClasses: '',
-
+      fullscreen: false, //@TODO: this shit
+      fullscreenClasses: '',
+      centerY: {
+        value: true,
+        parser: (value) => {
+          if (mode !== BOARD_NAME) return value;
+        },
+      },
       align: {
         value: 'right',
         parser: (value) => {
-          if (mode == BOARD_NAME && (value == 'left' || value == 'right')) return value;
+          if (mode == BOARD_NAME && (value == 'left' || value == 'right')) {
+            return value;
+          } else {
+            return false;
+          }
         },
       },
       resize: {
@@ -309,6 +308,13 @@ class Modal extends FwComponent {
             : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`)
             ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-classes`)
             : this._customArgs.fullscreenClasses,
+        centerY:
+          this.triggerer &&
+          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
+            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
+            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
+            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
+            : this._customArgs.centerY,
         //board shits
         align:
           this.triggerer &&
@@ -400,6 +406,7 @@ class Modal extends FwComponent {
               ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}`
               : ''
           }
+          ${this.args.centerY ? `${UIPrefix(COMPONENT_CLASS)}-center-y` : ''}
           ${this.args.classes}`;
         theUI.setAttribute('id', this.UIId);
 

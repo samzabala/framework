@@ -59,8 +59,8 @@ class Tooltip extends FwComponent {
   }
 
   dispose() {
+    super.setProp('_customArgs', '__dispose');
     super.dispose();
-    this._customArgs = null;
   }
 
   static get current() {

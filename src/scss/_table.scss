@@ -38,6 +38,7 @@ $prefix: '.table';
     .text-wrap-ellipsis-multiple {
       width: 10rem;
       width: clamp(12rem, 100%, 16rem);
+      max-width: 16rem !important;
     }
 
     @at-root thead,

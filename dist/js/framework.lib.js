@@ -1083,26 +1083,26 @@
       var args = {};
 
       for (var prop in defaults) {
-        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && arr[prop] !== '' && defaults[prop].hasOwnProperty('value')) {
+        //defaults
+        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && defaults[prop].hasOwnProperty('value')) {
           args[prop] = defaults[prop].value;
         } else {
           args[prop] = defaults[prop];
-        }
-      }
-
-      for (var _prop in arr) {
-        if (arr.hasOwnProperty(_prop) && arr[_prop] !== undefined && arr[_prop] !== null && arr[_prop] !== '') {
-          // Push each value from `obj` into `extended`
-          if (typeof defaults[_prop] === 'object' && defaults[_prop] !== null && defaults[_prop].hasOwnProperty('value') && defaults[_prop].hasOwnProperty('parser')) {
-            args[_prop] = defaults[_prop].parser(arr[_prop]);
-          } else {
-            args[_prop] = arr[_prop];
-          } // catch boolean
+        } //custom
 
 
-          if (args[_prop] == 'false' || args[_prop] == 'true') {
-            args[_prop] = args[_prop] == 'true' ? true : false;
-          }
+        if (arr.hasOwnProperty(prop) && arr[prop] !== undefined && arr[prop] !== null && arr[prop] !== '') {
+          args[prop] = arr[prop];
+        } //validate
+
+
+        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && defaults[prop].hasOwnProperty('parser')) {
+          args[prop] = defaults[prop].parser(args[prop]);
+        } // catch boolean
+
+
+        if (args[prop] == 'false' || args[prop] == 'true') {
+          args[prop] = args[prop] == 'true' ? true : false;
         }
       }
 
@@ -1194,10 +1194,11 @@
     var _proto = Accordion.prototype;
 
     _proto.dispose = function dispose() {
-      _FwComponent.prototype.dispose.call(this);
+      _FwComponent.prototype.setProp.call(this, 'isFiltering', 'triggerer');
 
-      this.triggerer = null;
-      this._customArgs = null;
+      _FwComponent.prototype.setProp.call(this, 'triggerChange', '_customArgs');
+
+      _FwComponent.prototype.dispose.call(this);
     };
 
     Accordion.configDefaults = function configDefaults() {
@@ -1564,10 +1565,11 @@
     var _proto = Dropdown.prototype;
 
     _proto.dispose = function dispose() {
-      _FwComponent.prototype.dispose.call(this);
+      _FwComponent.prototype.setProp.call(this, 'triggerer', '__dispose');
 
-      this.triggerer = null;
-      this._customArgs = null;
+      _FwComponent.prototype.setProp.call(this, '_customArgs', '__dispose');
+
+      _FwComponent.prototype.dispose.call(this);
     };
 
     Dropdown.configDefaults = function configDefaults() {
@@ -3560,6 +3562,8 @@
     var _proto = Lazy.prototype;
 
     _proto.dispose = function dispose() {
+      _FwComponent.prototype.setProp.call(this, '_ogElement', '__dispose');
+
       _FwComponent.prototype.dispose.call(this);
     };
 
@@ -3729,6 +3733,12 @@
 
     var _proto = ListGroup.prototype;
 
+    _proto.dispose = function dispose() {
+      _FwComponent.prototype.setProp.call(this, '_triggeredChild', '__dispose');
+
+      _FwComponent.prototype.dispose.call(this);
+    };
+
     _proto.toggle = function toggle(triggd) {
       var _this = this;
 
@@ -3790,7 +3800,6 @@
   var TOGGLE_MODE_PREFIX = "" + NAME$5;
   var ACTIVATED_CLASS$3 = "active";
   var DEFAULT_NAME = "default";
-  var FULLSCREEN_NAME = "fullscreen";
   var BOARD_NAME = "board";
   var DATA_KEY$5 = Settings.get('prefix') + "_" + NAME$5;
   var EVENT_KEY$5 = "_" + DATA_KEY$5;
@@ -3809,7 +3818,7 @@
   var EVENT_RESIZE = "resize" + EVENT_KEY$5;
   var EVENT_AFTER_RESIZE = "after_resize" + EVENT_KEY$5;
   var CURRENT_MODAL_INSTANCE = {};
-  var VALID_MODAL_MODES = [BOARD_NAME, FULLSCREEN_NAME, DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
+  var VALID_MODAL_MODES = [BOARD_NAME, DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
   ];
   VALID_MODAL_MODES.forEach(function (mode) {
     CURRENT_MODAL_INSTANCE[mode] = {
@@ -3899,26 +3908,29 @@
       return {
         changeHash: true,
         title: '',
-        close: {
-          value: true,
-          parser: function parser(value) {
-            return mode !== FULLSCREEN_NAME ? value : false;
-          }
-        },
-        disableOverlay: {
-          value: true,
-          parser: function parser(value) {
-            return mode !== FULLSCREEN_NAME ? value : false;
-          }
-        },
+        close: true,
+        disableOverlay: true,
         width: null,
         callback: null,
         classes: '',
         closeClasses: '',
+        fullscreen: false,
+        //@TODO: this shit
+        fullscreenClasses: '',
+        centerY: {
+          value: true,
+          parser: function parser(value) {
+            if (mode !== BOARD_NAME) return value;
+          }
+        },
         align: {
           value: 'right',
           parser: function parser(value) {
-            if (mode == BOARD_NAME && (value == 'left' || value == 'right')) return value;
+            if (mode == BOARD_NAME && (value == 'left' || value == 'right')) {
+              return value;
+            } else {
+              return false;
+            }
           }
         },
         resize: {
@@ -3979,7 +3991,7 @@
         var theUI = document.createElement('div'); // document.querySelector('body').appendChild(theUI);
 
         element.parentNode.insertBefore(theUI, element.nextSibling);
-        theUI.className = UIPrefix(COMPONENT_CLASS$5) + " " + _this2.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + _this2.args.classes;
+        theUI.className = UIPrefix(COMPONENT_CLASS$5) + " " + _this2.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + (_this2.args.centerY ? UIPrefix(COMPONENT_CLASS$5) + "-center-y" : '') + "\n          " + _this2.args.classes;
         theUI.setAttribute('id', _this2.UIId);
         theUI.innerHTML = _this2._markup;
         FwDom.moveContents(element, _this2.UIContentBlock);
@@ -4228,6 +4240,7 @@
           //@TODO
           fullscreen: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen") : this._customArgs.fullscreen,
           fullscreenClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-fullscreen-classes") : this._customArgs.fullscreenClasses,
+          centerY: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-center-y") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-center-y") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-center-y") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-center-y") : this._customArgs.centerY,
           //board shits
           align: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-align") : this._customArgs.align,
           resize: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$1 + "-resize") : this._customArgs.resize,
@@ -4751,9 +4764,9 @@
     var _proto = Tooltip.prototype;
 
     _proto.dispose = function dispose() {
-      _FwComponent.prototype.dispose.call(this);
+      _FwComponent.prototype.setProp.call(this, '_customArgs', '__dispose');
 
-      this._customArgs = null;
+      _FwComponent.prototype.dispose.call(this);
     };
 
     Tooltip.configDefaults = function configDefaults() {
@@ -5152,6 +5165,12 @@
     }
 
     var _proto = Zone.prototype;
+
+    _proto.dispose = function dispose() {
+      _FwComponent.prototype.setProp.call(this, '_formControl', '__dispose');
+
+      _FwComponent.prototype.dispose.call(this);
+    };
 
     _proto._killDyText = function _killDyText() {
       this.UIDyText && this.UIDyText.parentNode.removeChild(this.UIDyText);

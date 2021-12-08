@@ -1573,7 +1573,6 @@ updates the values and renders the ui
 
 `inputText` is the contents of the input field
 
-
 ##### **`formTags.reset()`**
 
 reset the input field or some shit but doesnt trigger change value because this is a programmatical solution is this the right way to describe it in english? idk basta kung kelangan mong walang nakalagay dito tapos kelangan ireset yung ui ito na to beh

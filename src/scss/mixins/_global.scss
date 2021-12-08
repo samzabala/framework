@@ -539,6 +539,12 @@
   @extend %fw_dump-#{$slug};
 }
 
+@mixin dump-select($slug) {
+  %fw_dump-#{$slug} {
+    @content;
+  }
+}
+
 @mixin dump-theme-colors($theme: default) {
   @if ($theme == inverse) {
     --fw-theme-color: #{$brand-theme-color-inverse};

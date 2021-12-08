@@ -60,7 +60,7 @@ These attributes can be embedded to either the `[data-toggle-modal-{MODE}]`, or 
 
 ### **`data-modal-change-hash`** - `args.changeHash`
 
-Dafaults to `true`
+Defaults to `true`
 
 Whether or not to have the modal change the location.hash when enabled and then disabled
 
@@ -76,7 +76,7 @@ Whether or not to have the modal change the location.hash when enabled and then 
 
 ### **`data-modal-title`** - `args.title`
 
-Dafaults to `''`
+Defaults to `''`
 
 Title to add a modal. Adding this will add a header to ya modal
 
@@ -108,7 +108,7 @@ Adds a close button to the modal
 
 ### **`data-modal-disable-overlay`** - `args.disableOverlay`
 
-Dafaults to `true`
+Defaults to `true`
 
 Whether or not to allow clicking on the overlay to close the modal
 
@@ -125,7 +125,7 @@ Whether or not to allow clicking on the overlay to close the modal
 
 ### **`data-modal-width`** - `args.width`
 
-Dafaults to `null`
+Defaults to `null`
 
 Whether or not to add a max-width to the modal. The modal is styled to be responsive. adding a max width can add limit to width
 
@@ -141,7 +141,7 @@ Whether or not to add a max-width to the modal. The modal is styled to be respon
 
 ### **`data-modal-callback`** - `args.callback`
 
-Dafaults to `null`
+Defaults to `null`
 
 Function to run after the modal is ready but before it's displays
 
@@ -163,7 +163,7 @@ Function to run after the modal is ready but before it's displays
 
 ### **`data-modal-classes`** - `args.classes`
 
-Dafaults to `null`
+Defaults to `null`
 
 classes to add to the generated modal or `#fw-modal`
 
@@ -173,41 +173,34 @@ classes to add to the generated modal or `#fw-modal`
 >
 ```
 
-### **`data-close-classes`** - `args.closeClasses`
+### **`data-modal-close-classes`** - `args.closeClasses`
 
-Dafaults to `null`
+Defaults to `null`
 
 classes to add to the generated `.modal-ui-close`
 
 ```html
-<a data-toggle-modal-default data-close-classes="theme-inverse" href="#modal-demo"
+<a data-toggle-modal-default data-modal-close-classes="theme-inverse" href="#modal-demo"
   >Modal boi with classes</a
 >
 ```
 
-## Board Specific Attributes/Settings
+### **`data-modal-center-y`** - `args.centerY`
 
-### **`data-close-align`** - `args.align`
+Defaults to `false`
 
-Dafaults to `right`
+centers modal on the screen. won't work for boards because ya boi is already stretching top to bottom why would you ?? nani??
 
-sets where the board mofal is aligned to
+````html
+<a data-toggle-modal-default data-modal-center-y="true" href="#modal-demo"
+  >Modal gonna be centered vertically</a
+>
 
-### **`data-close-resize`** - `args.resize`
-
-Dafaults to `false`
-
-enable resize feature
-
-### **`data-close-resize-classes`** - `args.resizeClasses`
-
-Dafaults to `null`
-
-classes to add to resize btn
-
-### All together now
-
-```html
+## Board Specific Attributes/Settings ### **`data-close-align`** - `args.align` Defaults
+to `right` sets where the board mofal is aligned to ### **`data-close-resize`** -
+`args.resize` Defaults to `false` enable resize feature ###
+**`data-close-resize-classes`** - `args.resizeClasses` Defaults to `null` classes to add
+to resize btn ### All together now ```html
 <a
   data-toggle-modal-default
   data-modal-close="false"
@@ -221,7 +214,7 @@ classes to add to resize btn
 <div class="modal modal-default" id="modal-demo">
   <!-- content heeeere -->
 </div>
-```
+````
 
 ![](../../images/modal.png)
 

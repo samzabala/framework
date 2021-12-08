@@ -2,7 +2,17 @@
 
 A framework for your appy dashboardy needs :')
 
-Works with Libsass and Compass
+Works with Dart Sass
+
+Dependencies:
+
+- @babel/cli ^7.12.1"
+- @babel/core ^7.13.10"
+- @babel/plugin-proposal-class-properties ^7.13.0
+- @babel/plugin-proposal-private-methods ^7.13.0
+- @babel/preset-env ^7.13.10
+- dart-sass ^1.25.0
+- sass ^1.33.0
 
 ## Setup
 

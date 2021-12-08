@@ -9,3 +9,6 @@ static/*
 static
 
 *.map
+
+webpack.*.js
+webpack.*.json

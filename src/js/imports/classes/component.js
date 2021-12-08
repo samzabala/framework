@@ -157,41 +157,39 @@ class FwComponent {
     const args = {};
 
     for (let prop in defaults) {
+      //defaults
       if (
         typeof defaults[prop] === 'object' &&
         defaults[prop] !== null &&
-        arr[prop] !== '' &&
         defaults[prop].hasOwnProperty('value')
       ) {
         args[prop] = defaults[prop].value;
       } else {
         args[prop] = defaults[prop];
       }
-    }
 
-    for (let prop in arr) {
+      //custom
       if (
         arr.hasOwnProperty(prop) &&
         arr[prop] !== undefined &&
         arr[prop] !== null &&
         arr[prop] !== ''
       ) {
-        // Push each value from `obj` into `extended`
-        if (
-          typeof defaults[prop] === 'object' &&
-          defaults[prop] !== null &&
-          defaults[prop].hasOwnProperty('value') &&
-          defaults[prop].hasOwnProperty('parser')
-        ) {
-          args[prop] = defaults[prop].parser(arr[prop]);
-        } else {
-          args[prop] = arr[prop];
-        }
+        args[prop] = arr[prop];
+      }
 
-        // catch boolean
-        if (args[prop] == 'false' || args[prop] == 'true') {
-          args[prop] = args[prop] == 'true' ? true : false;
-        }
+      //validate
+      if (
+        typeof defaults[prop] === 'object' &&
+        defaults[prop] !== null &&
+        defaults[prop].hasOwnProperty('parser')
+      ) {
+        args[prop] = defaults[prop].parser(args[prop]);
+      }
+
+      // catch boolean
+      if (args[prop] == 'false' || args[prop] == 'true') {
+        args[prop] = args[prop] == 'true' ? true : false;
       }
     }
 

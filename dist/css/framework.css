@@ -7335,6 +7335,7 @@ table .text-wrap-ellipsis,
 table .text-wrap-ellipsis-multiple {
   width: 10rem;
   width: clamp(12rem, 100%, 16rem);
+  max-width: 16rem !important;
 }
 thead,
 tbody,
@@ -9909,6 +9910,10 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 .modal-ui {
   position: fixed;
 }
+.modal-ui-center-y .modal-ui-wrapper {
+  display: flex;
+  align-items: center;
+}
 .modal-ui-title {
   margin-top: 0;
 }
@@ -9958,15 +9963,16 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   z-index: 9991;
 }
 
+.modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+  padding-left: calc((2.375rem * 0.5) + 20px);
+  padding-right: calc((2.375rem * 0.5) + 20px);
+}
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
   padding-left: 30px;
 }
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup,
 .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
   margin-left: auto;
-}
-.modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-  padding-left: calc((2.375rem * 0.5) + 20px);
 }
 .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
   padding-right: 30px;
@@ -9975,27 +9981,20 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-button-wrapper {
   margin-right: auto;
 }
-.modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-  padding-right: calc(
-        (2.375rem * 0.5) + 20px
-      );
-}
 @media (max-width: 1199px) {
+  .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
+    padding-left: calc(
+        (2.375rem * 0.5) + 10px
+      );
+    padding-right: calc(
+        (2.375rem * 0.5) + 10px
+      );
+  }
   .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper {
     padding-left: 20px;
   }
-  .modal-ui-align-right .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-    padding-left: calc(
-          (2.375rem * 0.5) + 10px
-        );
-  }
   .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper {
     padding-right: 20px;
-  }
-  .modal-ui-align-left .modal-ui-mode-board.modal-ui-wrapper .modal-ui-popup {
-    padding-right: calc(
-          (2.375rem * 0.5) + 10px
-        );
   }
 }
 
