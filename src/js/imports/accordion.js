@@ -47,9 +47,9 @@ class Accordion extends FwComponent {
   }
 
   dispose() {
+    super.setProp('isFiltering', 'triggerer');
+    super.setProp('triggerChange', '_customArgs');
     super.dispose();
-    this.triggerer = null;
-    this._customArgs = null;
   }
 
   static get DATA_KEY() {

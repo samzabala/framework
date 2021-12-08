@@ -34,6 +34,11 @@ class ListGroup extends FwComponent {
     });
   }
 
+  dispose() {
+    super.setProp('_triggeredChild', '__dispose');
+    super.dispose();
+  }
+
   static get DATA_KEY() {
     return DATA_KEY;
   }

@@ -41,6 +41,7 @@ class Lazy extends FwComponent {
   }
 
   dispose() {
+    super.setProp('_ogElement', '__dispose');
     super.dispose();
   }
 

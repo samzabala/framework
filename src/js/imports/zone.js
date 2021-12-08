@@ -37,6 +37,11 @@ class Zone extends FwComponent {
     });
   }
 
+  dispose() {
+    super.setProp('_formControl', '__dispose');
+    super.dispose();
+  }
+
   static get DATA_KEY() {
     return DATA_KEY;
   }

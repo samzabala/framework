@@ -49,9 +49,9 @@ class Dropdown extends FwComponent {
   }
 
   dispose() {
+    super.setProp('triggerer', '__dispose');
+    super.setProp('_customArgs', '__dispose');
     super.dispose();
-    this.triggerer = null;
-    this._customArgs = null;
   }
 
   static configDefaults() {

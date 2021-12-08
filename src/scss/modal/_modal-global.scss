@@ -64,11 +64,11 @@ $prefix: '.modal';
     }
     &-wrapper {
       @extend %for-modal-wrapper !optional;
+    }
 
-      #{$prefix}-ui-center-y & {
-        display: flex;
-        align-items: center;
-      }
+    &-center-y &-wrapper {
+      display: flex;
+      align-items: center;
     }
 
     &-title {
