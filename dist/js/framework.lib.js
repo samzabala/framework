@@ -956,8 +956,8 @@
 
       if (typeof props === 'object') {
         for (var key in props) {
-          this[key] = props[key];
-          this.element["_" + key] = props[key];
+          this.setProp(key, props[key]); // this[key] = props[key];
+          // this.element[`_${key}`] = props[key];
         }
       }
     }
