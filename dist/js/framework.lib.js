@@ -3848,8 +3848,9 @@
       var currMode = false; //look for currMode
 
       VALID_MODAL_MODES.forEach(function (mode) {
+        //if no element
         if (!element) {
-          element = UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](currMode), null, "." + COMPONENT_CLASS$5 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)) || Modal.current(currMode).element;
+          element = UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode), null, "." + COMPONENT_CLASS$5 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)) || Modal.current(mode).element;
         } //if not set yet of course
 
 
@@ -3861,7 +3862,9 @@
             }
           } else if (element) {
             //look for subcom
-            if (element.classList.contains(COMPONENT_CLASS$5 + "-" + mode)) {
+            if (element.__mode) {
+              currMode = element.__mode;
+            } else if (element.classList.contains(COMPONENT_CLASS$5 + "-" + mode)) {
               currMode = mode; //ok default probable
             } else if (element.classList.contains(COMPONENT_CLASS$5)) {
               currMode = DEFAULT_NAME;
@@ -3881,7 +3884,8 @@
       _this = _FwComponent.call(this, element, {
         triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {},
-        _mode: currMode ? currMode : element && element.__mode ? element.__mode : false
+        // _mode: currMode ? currMode : element && element.__mode ? element.__mode : false,
+        _mode: currMode
       }) || this;
       Object.defineProperty(_assertThisInitialized(_this), _current, {
         get: _get_current,
@@ -3893,10 +3897,13 @@
     var _proto = Modal.prototype;
 
     _proto.dispose = function dispose() {
-      _FwComponent.prototype.dispose.call(this);
+      _FwComponent.prototype.setProp.call(this, 'triggerer', '__dispose');
 
-      this.triggerer = null;
-      this._customArgs = null;
+      _FwComponent.prototype.setProp.call(this, '_customArgs', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_mode', '__dispose');
+
+      _FwComponent.prototype.dispose.call(this);
     };
 
     Modal.current = function current(mode) {
@@ -3962,22 +3969,8 @@
       var _this2 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
-      var matchedHashDestroy = false; // if (!window.location.hash && this.#current && this.#current.element) {
-      //   if (element === this.#current.element) {
-      //     matchedHashDestroy = true;
-      //   }
-      // }
 
-      if (_classPrivateFieldLooseBase(this, _current)[_current] && _classPrivateFieldLooseBase(this, _current)[_current].element) {
-        if (element === _classPrivateFieldLooseBase(this, _current)[_current].element) {
-          matchedHashDestroy = true;
-        }
-
-        new Modal(_classPrivateFieldLooseBase(this, _current)[_current].element).destroy();
-      } //no need to create it twice or create it after already desttroiny it
-
-
-      if (matchedHashDestroy) {
+      if (!element) {
         return;
       }
 
@@ -3985,13 +3978,36 @@
         return;
       }
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE$1, EVENT_CREATE$1, EVENT_AFTER_CREATE$1, function () {
+      var lifeCycle = {};
+
+      lifeCycle.before = function () {
+        var matchedHashDestroy = false; // if (!window.location.hash && this.#current && this.#current.element) {
+        //   if (element === this.#current.element) {
+        //     matchedHashDestroy = true;
+        //   }
+        // }
+
+        if (_classPrivateFieldLooseBase(_this2, _current)[_current] && _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
+          if (element === _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
+            matchedHashDestroy = true;
+          }
+
+          new Modal(_classPrivateFieldLooseBase(_this2, _current)[_current].element).destroy();
+        } //no need to create it twice or create it after already desttroiny it
+
+
+        if (matchedHashDestroy) {
+          return false;
+        }
+      };
+
+      lifeCycle.during = function () {
         var id = _this2.UIElId || _this2.UIId;
         id !== "" + _this2.UIId && _this2.args.changeHash && UIChangeHash(id);
         var theUI = document.createElement('div'); // document.querySelector('body').appendChild(theUI);
 
         element.parentNode.insertBefore(theUI, element.nextSibling);
-        theUI.className = UIPrefix(COMPONENT_CLASS$5) + " " + _this2.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n          " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n          " + (_this2.args.centerY ? UIPrefix(COMPONENT_CLASS$5) + "-center-y" : '') + "\n          " + _this2.args.classes;
+        theUI.className = UIPrefix(COMPONENT_CLASS$5) + " " + _this2.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$5) + "-component\n        " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$5) + "-align-" + _this2.args.align : '') + "\n        " + (_this2.args.centerY ? UIPrefix(COMPONENT_CLASS$5) + "-center-y" : '') + "\n        " + _this2.args.classes;
         theUI.setAttribute('id', _this2.UIId);
         theUI.innerHTML = _this2._markup;
         FwDom.moveContents(element, _this2.UIContentBlock);
@@ -4015,7 +4031,9 @@
 
         element.classList.add(ACTIVATED_CLASS$3);
         document.body.classList.add(UIBodyClass.noScroll);
-      }, element);
+      };
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CREATE$1, EVENT_CREATE$1, EVENT_AFTER_CREATE$1, lifeCycle, element);
     };
 
     _proto.destroy = function destroy(elem) {
@@ -4188,7 +4206,7 @@
     }, {
       key: "mode",
       get: function get() {
-        return this._mode;
+        return _FwComponent.prototype.getProp.call(this, '_mode');
       }
     }, {
       key: "UIId",
@@ -4309,7 +4327,7 @@
   }(FwComponent);
 
   function _get_current() {
-    return CURRENT_MODAL_INSTANCE[this.mode];
+    return Modal.current(this.mode);
   }
 
   function _set_current(obj) {

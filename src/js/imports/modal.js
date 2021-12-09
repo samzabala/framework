@@ -68,13 +68,14 @@ class Modal extends FwComponent {
 
     //look for currMode
     VALID_MODAL_MODES.forEach((mode) => {
+      //if no element
       if (!element) {
         element =
           UIToggled(
-            Modal.#modeToggle(currMode),
+            Modal.#modeToggle(mode),
             null,
             `.${COMPONENT_CLASS}.${Modal.#modeClass(mode)}`
-          ) || Modal.current(currMode).element;
+          ) || Modal.current(mode).element;
       }
 
       //if not set yet of course
@@ -90,7 +91,9 @@ class Modal extends FwComponent {
           }
         } else if (element) {
           //look for subcom
-          if (element.classList.contains(`${COMPONENT_CLASS}-${mode}`)) {
+          if (element.__mode) {
+            currMode = element.__mode;
+          } else if (element.classList.contains(`${COMPONENT_CLASS}-${mode}`)) {
             currMode = mode;
             //ok default probable
           } else if (element.classList.contains(COMPONENT_CLASS)) {
@@ -120,14 +123,16 @@ class Modal extends FwComponent {
         : element && element.__customArgs
         ? element.__customArgs
         : {},
-      _mode: currMode ? currMode : element && element.__mode ? element.__mode : false,
+      // _mode: currMode ? currMode : element && element.__mode ? element.__mode : false,
+      _mode: currMode,
     });
   }
 
   dispose() {
+    super.setProp('triggerer', '__dispose');
+    super.setProp('_customArgs', '__dispose');
+    super.setProp('_mode', '__dispose');
     super.dispose();
-    this.triggerer = null;
-    this._customArgs = null;
   }
 
   static current(mode) {
@@ -135,7 +140,7 @@ class Modal extends FwComponent {
   }
 
   get #current() {
-    return CURRENT_MODAL_INSTANCE[this.mode];
+    return Modal.current(this.mode);
   }
 
   set #current(obj) {
@@ -150,7 +155,7 @@ class Modal extends FwComponent {
   }
 
   get mode() {
-    return this._mode;
+    return super.getProp('_mode');
   }
 
   get UIId() {
@@ -361,24 +366,7 @@ class Modal extends FwComponent {
   create(elem) {
     const element = elem ? super.UIEl(elem) : super.UIEl();
 
-    let matchedHashDestroy = false;
-
-    // if (!window.location.hash && this.#current && this.#current.element) {
-    //   if (element === this.#current.element) {
-    //     matchedHashDestroy = true;
-    //   }
-    // }
-
-    if (this.#current && this.#current.element) {
-      if (element === this.#current.element) {
-        matchedHashDestroy = true;
-      }
-
-      new Modal(this.#current.element).destroy();
-    }
-
-    //no need to create it twice or create it after already desttroiny it
-    if (matchedHashDestroy) {
+    if (!element) {
       return;
     }
 
@@ -386,55 +374,80 @@ class Modal extends FwComponent {
       return;
     }
 
+    const lifeCycle = {};
+
+    lifeCycle.before = () => {
+      let matchedHashDestroy = false;
+
+      // if (!window.location.hash && this.#current && this.#current.element) {
+      //   if (element === this.#current.element) {
+      //     matchedHashDestroy = true;
+      //   }
+      // }
+
+      if (this.#current && this.#current.element) {
+        if (element === this.#current.element) {
+          matchedHashDestroy = true;
+        }
+
+        new Modal(this.#current.element).destroy();
+      }
+
+      //no need to create it twice or create it after already desttroiny it
+      if (matchedHashDestroy) {
+        return false;
+      }
+    };
+
+    lifeCycle.during = () => {
+      const id = this.UIElId || this.UIId;
+
+      id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
+
+      const theUI = document.createElement('div');
+      // document.querySelector('body').appendChild(theUI);
+      element.parentNode.insertBefore(theUI, element.nextSibling);
+      theUI.className = `${UIPrefix(COMPONENT_CLASS)} ${this.UiModeClass} ${UIPrefix(
+        COMPONENT_CLASS
+      )}-component
+        ${
+          this.args.align ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}` : ''
+        }
+        ${this.args.centerY ? `${UIPrefix(COMPONENT_CLASS)}-center-y` : ''}
+        ${this.args.classes}`;
+      theUI.setAttribute('id', this.UIId);
+
+      theUI.innerHTML = this._markup;
+
+      FwDom.moveContents(element, this.UIContentBlock);
+      element.appendChild(theUI);
+
+      this.#current = {
+        element: element,
+        args: this.args,
+        UI: this.UIRoot,
+        UIContentBlock: this.UIContentBlock,
+      };
+
+      if (this.args.width) {
+        this.resize();
+      }
+
+      this.update();
+
+      if (this.args.callback) {
+        this._runFn(this.args.callback);
+      }
+
+      element.classList.add(ACTIVATED_CLASS);
+      document.body.classList.add(UIBodyClass.noScroll);
+    };
+
     super.runCycle(
       EVENT_BEFORE_CREATE,
       EVENT_CREATE,
       EVENT_AFTER_CREATE,
-      () => {
-        const id = this.UIElId || this.UIId;
-
-        id !== `${this.UIId}` && this.args.changeHash && UIChangeHash(id);
-
-        const theUI = document.createElement('div');
-        // document.querySelector('body').appendChild(theUI);
-        element.parentNode.insertBefore(theUI, element.nextSibling);
-        theUI.className = `${UIPrefix(COMPONENT_CLASS)} ${this.UiModeClass} ${UIPrefix(
-          COMPONENT_CLASS
-        )}-component
-          ${
-            this.args.align
-              ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}`
-              : ''
-          }
-          ${this.args.centerY ? `${UIPrefix(COMPONENT_CLASS)}-center-y` : ''}
-          ${this.args.classes}`;
-        theUI.setAttribute('id', this.UIId);
-
-        theUI.innerHTML = this._markup;
-
-        FwDom.moveContents(element, this.UIContentBlock);
-        element.appendChild(theUI);
-
-        this.#current = {
-          element: element,
-          args: this.args,
-          UI: this.UIRoot,
-          UIContentBlock: this.UIContentBlock,
-        };
-
-        if (this.args.width) {
-          this.resize();
-        }
-
-        this.update();
-
-        if (this.args.callback) {
-          this._runFn(this.args.callback);
-        }
-
-        element.classList.add(ACTIVATED_CLASS);
-        document.body.classList.add(UIBodyClass.noScroll);
-      },
+      lifeCycle,
       element
     );
   }
