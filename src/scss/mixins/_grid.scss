@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @mixin internal-set-grid-col-width($prepend-sel: '', $gap: null, $nest: true) {
   @for $i from 1 through $grid-units {
     $col-width: 100% * math.div($i, $grid-units);

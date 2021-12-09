@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $calculated-asset-palettes: (
   default: $asset-image-default-palette-tag,
   audio: $asset-image-audio-palette-tag,
