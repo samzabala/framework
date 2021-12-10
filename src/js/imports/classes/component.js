@@ -54,8 +54,8 @@ class FwComponent {
   }
 
   getProp(key) {
-    if (!key) return;
-    return this.element[`_${key}`];
+    if (!key || !this.element) return;
+    return this[key] || this.element[`_${key}`];
   }
 
   static getInstance(element) {

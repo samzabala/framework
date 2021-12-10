@@ -140,7 +140,7 @@ class Modal extends FwComponent {
   }
 
   get #current() {
-    return Modal.current(this.mode);
+    if (this.mode) return Modal.current(this.mode);
   }
 
   set #current(obj) {

@@ -982,8 +982,8 @@
     };
 
     _proto.getProp = function getProp(key) {
-      if (!key) return;
-      return this.element["_" + key];
+      if (!key || !this.element) return;
+      return this[key] || this.element["_" + key];
     };
 
     FwComponent.getInstance = function getInstance(element) {
@@ -4327,7 +4327,7 @@
   }(FwComponent);
 
   function _get_current() {
-    return Modal.current(this.mode);
+    if (this.mode) return Modal.current(this.mode);
   }
 
   function _set_current(obj) {
