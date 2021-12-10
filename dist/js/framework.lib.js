@@ -4113,7 +4113,7 @@
     _proto.resize = function resize(width) {
       var _this5 = this;
 
-      if (!_classPrivateFieldLooseBase(this, _current)[_current]) {
+      if (!_classPrivateFieldLooseBase(this, _current)[_current] || !_FwComponent.prototype.UIEl.call(this)) {
         return;
       }
 

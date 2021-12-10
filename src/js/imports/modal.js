@@ -548,7 +548,7 @@ class Modal extends FwComponent {
   }
 
   resize(width) {
-    if (!this.#current) {
+    if (!this.#current || !super.UIEl()) {
       return;
     }
 
