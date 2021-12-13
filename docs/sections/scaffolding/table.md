@@ -40,6 +40,20 @@ Replicate a `<thead>`,`<tbody>`,`<tfoot>` or `<tr>` element
 </div>
 ```
 
+### **.table-bordered**
+
+add to `<table>` or `.table` or even `<td>` or `.table-cell` add borders to columns
+
+### **.table-row**
+
+Replicate a `<thead>`,`<tbody>`,`<tfoot>` or `<tr>` element
+
+```html
+<div class="table">
+  <div class="table-row"></div>
+</div>
+```
+
 #### Row classes
 
 ![Yes](../../images/table-color.png)
