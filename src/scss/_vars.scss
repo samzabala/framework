@@ -748,9 +748,9 @@ $svg-gradient-color-end: $var-gradient-end !default;
 $table-cell-height: 40px !default;
 $table-cell-height-large: 75px !default;
 $table-cell-height-small: 25px !default;
-$table-cell-border-color: $var-theme-background-contrast !default;
-$table-cell-border-color-inverse: $table-cell-border-color !default;
-$table-cell-border-width: 1px !default;
+$table-border-color: $var-theme-background-contrast !default;
+$table-border-color-inverse: $table-border-color !default;
+$table-border-width: 1px !default;
 $table-cell-gutter: $gutter-small !default;
 
 $table-heading-font-size: 14px !default;
