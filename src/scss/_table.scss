@@ -29,16 +29,6 @@ $prefix: '.table';
     border-collapse: collapse;
     text-align: inherit;
     background: transparent;
-    border-color: $table-border-color;
-
-    .theme-inverse & {
-      border-color: $table-border-color-inverse;
-    }
-
-    .alert &,
-    .theme-inverse .alert & {
-      border-color: currentColor;
-    }
 
     .text-wrap-ellipsis,
     .text-wrap-ellipsis-multiple {
@@ -120,27 +110,37 @@ td,
   padding-left: $table-cell-gutter;
   padding-right: $table-cell-gutter;
   display: table-cell;
-  border-color: inherit;
+
+  border-color: $table-cell-border-color;
   border-style: solid;
-  border-top-width: $table-border-width;
+  border-top-width: $table-cell-border-width;
+
+  .theme-inverse & {
+    border-color: $table-cell-border-color-inverse;
+  }
+
+  .alert &,
+  .theme-inverse .alert & {
+    border-color: currentColor;
+  }
 
   tr:last-child &,
   #{$prefix}-row:last-child & {
-    border-bottom-width: $table-border-width;
+    border-bottom-width: $table-cell-border-width;
   }
 
   &#{$prefix}-bordered,
   #{$prefix}-bordered & {
     border-color: $table-cell-border-color;
     border-style: solid;
-    border-left-width: $table-border-width;
+    border-left-width: $table-cell-border-width;
 
     .theme-inverse & {
       border-color: $table-cell-border-color-inverse;
     }
 
     &:last-child {
-      border-right-width: $table-border-width;
+      border-right-width: $table-cell-border-width;
     }
   }
 
