@@ -615,10 +615,9 @@ class Tags extends FwComponent {
             if (
               attr.name.includes('data') &&
               !attr.name.includes('data-tags') &&
-              !attr.name.includes('data-toggle') &&
               !attr.name.includes('data-value-ui')
             ) {
-              theUI.container.setAttribute(attr.name, attr.value);
+              theUI.input.setAttribute(attr.name, attr.value);
             }
           }
         }

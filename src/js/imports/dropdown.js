@@ -215,10 +215,8 @@ class Dropdown extends FwComponent {
       if (FwComponent.isDisabled(e.target)) {
         e.target.blur();
       } else {
-        const dropdown = new Dropdown(
-          UIToggled(TOGGLE_MODE, UITriggerer(e.target)),
-          UITriggerer(e.target)
-        );
+        const triggerer = UITriggerer(e.target);
+        const dropdown = new Dropdown(UIToggled(TOGGLE_MODE, triggerer), triggerer);
 
         dropdown.open();
         triggerer.classList.add('focus');
@@ -228,10 +226,8 @@ class Dropdown extends FwComponent {
   static handleBlurClose() {
     return (e) => {
       if (!FwComponent.isDisabled(e.target)) {
-        const dropdown = new Dropdown(
-          UIToggled(TOGGLE_MODE, UITriggerer(e.target)),
-          UITriggerer(e.target)
-        );
+        const triggerer = UITriggerer(e.target);
+        const dropdown = new Dropdown(UIToggled(TOGGLE_MODE, triggerer), triggerer);
 
         setTimeout(() => {
           dropdown.close();

@@ -7650,14 +7650,10 @@ td,
   margin: 2px 0;
 }
 .table-large .table-label {
-  height: calc(
-      4.6875rem - (2px * 2)
-    );
+  height: calc(4.6875rem - (2px * 2));
 }
 .table-small .table-label {
-  height: calc(
-      1.5625rem - (2px * 2)
-    );
+  height: calc(1.5625rem - (2px * 2));
 }
 .table-label-primary {
   background-color: var(--fw-color-primary);
