@@ -391,9 +391,15 @@ class Tags extends FwComponent {
   }
 
   update(newValue, valueToRender, inputText) {
-    let theValue = newValue || this.theValue || '';
-
-    let uiValue = valueToRender || theValue || this.renderValue || '';
+    const theValue =
+      newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
+    const uiValue = valueToRender
+      ? valueToRender
+      : newValue || newValue == ''
+      ? theValue
+      : this.renderValue
+      ? this.renderValue
+      : false;
 
     inputText = inputText || false;
     // console.warn('passed');

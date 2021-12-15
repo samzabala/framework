@@ -257,7 +257,13 @@ class Calendar extends FwComponent {
 
     const theValue =
       newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
-    const uiValue = valueToRender || theValue || this.renderValue || false;
+    const uiValue = valueToRender
+      ? valueToRender
+      : newValue || newValue == ''
+      ? theValue
+      : this.renderValue
+      ? this.renderValue
+      : false;
 
     this._updateValues(theValue, uiValue);
 

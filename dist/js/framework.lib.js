@@ -2162,7 +2162,7 @@
 
       var element = this.element;
       var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
-      var uiValue = valueToRender || theValue || this.renderValue || false;
+      var uiValue = valueToRender ? valueToRender : newValue || newValue == '' ? theValue : this.renderValue ? this.renderValue : false;
 
       this._updateValues(theValue, uiValue);
 
@@ -2991,8 +2991,8 @@
     _proto.update = function update(newValue, valueToRender, inputText) {
       var _this3 = this;
 
-      var theValue = newValue || this.theValue || '';
-      var uiValue = valueToRender || theValue || this.renderValue || '';
+      var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
+      var uiValue = valueToRender ? valueToRender : newValue || newValue == '' ? theValue : this.renderValue ? this.renderValue : false;
       inputText = inputText || false; // console.warn('passed');
       // console.log(newValue,'|',valueToRender,'|',inputText);
       // console.warn('parsed');

@@ -2557,11 +2557,13 @@ this.jQuery && this.jQuery.noConflict();
           inputUiIndex = triggerer.attr('data-value'),
           currValue = __f.tagsToParse(inputTags.val());
 
-        if (triggerer.text() && triggerer.text() != '') {
+        const updatedTag = triggerer.text().trim();
+
+        if (updatedTag && updatedTag != '') {
           currValue.splice(
             parseInt(inputUiIndex),
             0,
-            triggerer.text().replace(',', '')
+            updatedTag.trim().replace(',', '')
           );
         }
 
