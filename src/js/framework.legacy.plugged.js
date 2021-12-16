@@ -1190,6 +1190,9 @@ this.jQuery && this.jQuery.noConflict();
     valueForUi = valueForUi || theValue || __f.dateToVal(new Date());
     // ignoreInput = ignoreInput || false;
 
+    inputCalendar.get(0).__fwEnableChange =
+      inputCalendar.get(0).__fwEnableChange || false;
+
     const arr = {
       class: inputCalendar.attr('class'),
       startDay: inputCalendar.attr('data-calendar-start-day'), // 0,1,2,3,4,5,6
@@ -1395,9 +1398,7 @@ this.jQuery && this.jQuery.noConflict();
 								<span
 									data-value="${i}"
 									class="${__f.uiPrefix('tags')}tag-text"
-								>
-									${tag}
-								</span>
+								>${tag}</span>
 								<a data-value="${i}" class="${__f.uiPrefix('tags')}tag-close" href="#">
 								<i class="symbol symbol-close"></i></a>
 							</span>`;
@@ -1443,8 +1444,17 @@ this.jQuery && this.jQuery.noConflict();
   frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
     let theValue = newValue || (inputTags.val() !== '' && inputTags.val()) || '';
 
+    inputTags.get(0).__fwEnableChange = inputTags.get(0).__fwEnableChange || false;
+
     inputText = inputText || false;
-    valueForUi = valueForUi || theValue || '';
+    valueForUi = valueForUi
+      ? valueForUi
+      : theValue || theValue == ''
+      ? theValue
+      : inputTags.__fwRenderValue
+      ? inputTags.__fwRenderValue
+      : '';
+
     allowFilter = allowFilter != false;
 
     const arr = {
@@ -1481,10 +1491,9 @@ this.jQuery && this.jQuery.noConflict();
               noInputValueToFilter = (() => {
                 return __f.tagsToVal(valueToFilter, false);
               })();
-
             // turn to array ya bopi without the input tag string
             let toReturn = __f.tagsToParse(
-              eval(`${filterFnName}("${noInputValueToFilter}")`),
+              eval(filterFnName + '("' + noInputValueToFilter + '")'),
               false
             );
 
@@ -1518,16 +1527,21 @@ this.jQuery && this.jQuery.noConflict();
         }
       }
 
-      __f.createTagsUi(inputTags, __f.tagsToVal(valueForUi), inputText, args);
-
       //update the actual butt
       inputTags.attr('value', __f.tagsToVal(theValue, false));
       inputTags.val(__f.tagsToVal(theValue, false));
+      inputTags.__fwRenderValue = __f.tagsToVal(valueForUi);
 
-      //ATODO UPDATE SETUP HERE
-      //update fake hoes
-      if (args.callback) {
-        __f.runFn(args.callback);
+      if (inputTags.get(0).__fwEnableChange) {
+        inputTags.trigger('change');
+      } else {
+        __f.createTagsUi(inputTags, __f.tagsToVal(valueForUi), inputText, args);
+
+        //ATODO UPDATE SETUP HERE
+        //update fake hoes
+        if (args.callback) {
+          __f.runFn(args.callback);
+        }
       }
     }
   };
@@ -2515,8 +2529,9 @@ this.jQuery && this.jQuery.noConflict();
     });
 
     $('html').on('change', '.input-tags', (e) => {
-      const triggerer = $(e.target);
-      frameWork.updateTags(triggerer);
+      const inputTags = $(e.target);
+      inputTags.get(0).__fwEnableChange = false;
+      frameWork.updateTags(inputTags);
     });
 
     $('html').on('paste', '.input-tags-ui .input-tags-ui-input', (e) => {
@@ -2565,6 +2580,7 @@ this.jQuery && this.jQuery.noConflict();
             0,
             updatedTag.trim().replace(',', '')
           );
+          inputTags.get(0).__fwEnableChange = true;
         }
 
         triggerer.text('');
@@ -2589,6 +2605,7 @@ this.jQuery && this.jQuery.noConflict();
           currValue = __f.tagsToParse(inputTags.attr('data-value-ui'));
 
         let newValue,
+          enableChange,
           allowFilter = false;
 
         inputTags.text(inputTags.text().replace(/\n|\r/g, '\\n'));
@@ -2598,6 +2615,7 @@ this.jQuery && this.jQuery.noConflict();
           case 13:
             // e.stopPropagation(); //@ADDEDFORTURBO
             e.preventDefault();
+            enableChange = true;
             break;
 
           //comma
@@ -2611,6 +2629,7 @@ this.jQuery && this.jQuery.noConflict();
                 0,
                 triggerer.text().replace(',', '')
               );
+              enableChange = true;
 
               triggerer.text('');
             }
@@ -2653,6 +2672,7 @@ this.jQuery && this.jQuery.noConflict();
               e.preventDefault();
               allowFilter = true;
               currValue.splice(parseInt(inputUiIndex) - 1, 1);
+              enableChange = true;
             }
             break;
 
@@ -2663,11 +2683,16 @@ this.jQuery && this.jQuery.noConflict();
               e.preventDefault();
               allowFilter = true;
               currValue.splice(parseInt(inputUiIndex) + 1, 1);
+              enableChange = true;
             }
             break;
         }
 
         newValue = __f.tagsToVal(currValue);
+
+        if (enableChange) {
+          inputTags.get(0).__fwEnableChange = true;
+        }
 
         frameWork.updateTags(inputTags, allowFilter, newValue);
       }
@@ -2690,6 +2715,7 @@ this.jQuery && this.jQuery.noConflict();
 
         const newValue = __f.tagsToVal(currValue);
 
+        inputTags.get(0).__fwEnableChange = true;
         frameWork.updateTags(inputTags, true, newValue);
       }
     });

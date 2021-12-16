@@ -9,7 +9,7 @@
     "prettier": "prettier --write .",
     "js-build-umd": "rollup --config build/rollup.config.js",
     "sass-build": "sass --style=expanded --no-source-map --no-error-css src/scss/framework.layout.scss:dist/css/framework.layout.css src/scss/framework.lite.scss:dist/css/framework.lite.css src/scss/framework.normalize.scss:dist/css/framework.normalize.css src/scss/framework.scss:dist/css/framework.css src/scss/framework.utilities.scss:dist/css/framework.utilities.css",
-    "build": "npm run sass-build; npm run js-build-umd;"
+    "build": "npm run js-build-umd; npm run sass-build;"
   },
   "author": "1Point21 Interactive",
   "license": "eh",

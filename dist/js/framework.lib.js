@@ -2939,6 +2939,7 @@
           // );
 
 
+          console.log(noInputValueToFilter);
           var toReturn = Tags.toArr(fn(noInputValueToFilter), false); // console.log(
           // 	'index of input\n',inputIndex,
           // 	'\n\n\nfiltered and ready for splice\n',toReturn,

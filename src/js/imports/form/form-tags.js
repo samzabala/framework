@@ -332,7 +332,7 @@ class Tags extends FwComponent {
         //   eval(`${filterFnName}("${noInputValueToFilter}")`),
         //   false
         // );
-
+        console.log(noInputValueToFilter);
         let toReturn = Tags.toArr(fn(noInputValueToFilter), false);
 
         // console.log(
