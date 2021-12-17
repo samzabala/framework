@@ -2458,8 +2458,6 @@
     };
 
     Calendar.handleUpdateKeyup = function handleUpdateKeyup() {
-      var _this5 = this;
-
       return function (e) {
         if (FwComponent.isDisabled(e.target)) {
           e.preventDefault();
@@ -2489,7 +2487,7 @@
               preParsedVal = y + "-" + m + "-" + d;
               renderValue = preParsedVal;
 
-              if (preParsedVal !== _this5.theValue && calendar.validates(preParsedVal)) {
+              if (preParsedVal !== e.target.value && calendar.validates(preParsedVal)) {
                 enableChange = true;
               }
             }

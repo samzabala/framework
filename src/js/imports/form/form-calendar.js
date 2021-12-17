@@ -817,7 +817,7 @@ class Calendar extends FwComponent {
             preParsedVal = `${y}-${m}-${d}`;
             renderValue = preParsedVal;
 
-            if (preParsedVal !== this.theValue && calendar.validates(preParsedVal)) {
+            if (preParsedVal !== e.target.value && calendar.validates(preParsedVal)) {
               enableChange = true;
             }
           }
