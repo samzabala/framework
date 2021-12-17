@@ -25,7 +25,8 @@ $calculated-nav-line-height: $nav-line-height;
 
 $calculated-nav-single-line: $calculated-nav-line-height;
 @if unitless($calculated-nav-single-line) and unit($nav-font-size) == px {
-  $calculated-nav-single-line: #{1em * type-lead($nav-font-size, $nav-line-height)};
+  $calculated-nav-single-line: #{1em *
+    type-lead($nav-font-size, $calculated-nav-line-height)};
 }
 
 // $calculated-nav-height is internal vars because the body needs it. tHE BODEH

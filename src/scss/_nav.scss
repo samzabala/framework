@@ -230,16 +230,14 @@ $prefix: '.nav';
         }
       }
     }
-    &:hover,
-    &.open {
-      > a {
-        &:after {
-          height: $nav-current-size;
+    &:hover > a,
+    & > a.open {
+      &:after {
+        height: $nav-current-size;
 
-          #{$prefix}-vertical & {
-            height: auto;
-            width: $nav-current-size;
-          }
+        #{$prefix}-vertical & {
+          height: auto;
+          width: $nav-current-size;
         }
       }
     }

@@ -5761,10 +5761,10 @@ body.body-nav-sticky-offset {
   background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
-.nav .nav-item:hover > a:after, .nav .nav-item.open > a:after, .nav-list > li:hover > a:after, .nav-list > li.open > a:after {
+.nav .nav-item:hover > a:after, .nav .nav-item > a.open:after, .nav-list > li:hover > a:after, .nav-list > li > a.open:after {
   height: 3px;
 }
-.nav-vertical .nav .nav-item:hover > a:after, .nav-vertical .nav .nav-item.open > a:after, .nav-vertical .nav-list > li:hover > a:after, .nav-vertical .nav-list > li.open > a:after {
+.nav-vertical .nav .nav-item:hover > a:after, .nav-vertical .nav .nav-item > a.open:after, .nav-vertical .nav-list > li:hover > a:after, .nav-vertical .nav-list > li > a.open:after {
   height: auto;
   width: 3px;
 }
