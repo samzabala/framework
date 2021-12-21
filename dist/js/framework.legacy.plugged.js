@@ -2,20 +2,8 @@ this.jQuery && this.jQuery.noConflict();
 
 (function (global, $, fn) {
   'use strict';
-
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = global.document
-      ? fn(global, $)
-      : function (w) {
-          if (!w.document) {
-            throw new Error("Where's yo window document boi I need it?");
-          }
-          return fn(w, $, true);
-        };
-  } else {
-    fn(global, $, true);
-  }
-})(window !== 'undefined' ? window : this, jQuery, function (window, $, setUpGlobal) {
+  fn(global, $);
+})(window !== 'undefined' ? window : this, jQuery, function (window, $) {
   console.info('Framework plugged script is initiated');
 
   //frameWork shit
@@ -1190,11 +1178,10 @@ this.jQuery && this.jQuery.noConflict();
     const theValue = newValue || __f.dateToVal(inputCalendar.val());
 
     inputCalendar.get(0).__fwEnableChange =
-    inputCalendar.get(0).__fwEnableChange || false;
+      inputCalendar.get(0).__fwEnableChange || false;
 
-
-    if(!inputCalendar.get(0).__fwRenderValue){
-      inputCalendar.get(0).__fwRenderValue = __f.tagsToVal(inputCalendar.val(),true);
+    if (!inputCalendar.get(0).__fwRenderValue) {
+      inputCalendar.get(0).__fwRenderValue = __f.tagsToVal(inputCalendar.val(), true);
     }
 
     valueForUi = valueForUi
@@ -1292,9 +1279,10 @@ this.jQuery && this.jQuery.noConflict();
   __f.tagsToParse = (value, returnWithInput) => {
     returnWithInput = returnWithInput !== false || returnWithInput == true;
 
-    let toReturn =
-      Array.isArray(value) ? value
-      : typeof value === 'string' ? value.split(',')
+    let toReturn = Array.isArray(value)
+      ? value
+      : typeof value === 'string'
+      ? value.split(',')
       : [];
 
     //check for ya boi
@@ -1328,7 +1316,7 @@ this.jQuery && this.jQuery.noConflict();
 
   __f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
     if (inputTags) {
-      valueForUi = valueForUi || __f.tagsToVal(inputTags.val(),true) || '';
+      valueForUi = valueForUi || __f.tagsToVal(inputTags.val(), true) || '';
       inputText = inputText || false;
 
       const theUi = {};
@@ -1467,15 +1455,11 @@ this.jQuery && this.jQuery.noConflict();
 
   frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
     let theValue =
-      newValue || newValue == ''
-      ? newValue
-      : inputTags.val()
-      ? inputTags.val()
-      : false;
+      newValue || newValue == '' ? newValue : inputTags.val() ? inputTags.val() : false;
 
-      if(!inputTags.get(0).__fwRenderValue){
-        inputTags.get(0).__fwRenderValue = __f.tagsToVal(inputTags.val(),true);
-      }
+    if (!inputTags.get(0).__fwRenderValue) {
+      inputTags.get(0).__fwRenderValue = __f.tagsToVal(inputTags.val(), true);
+    }
 
     inputTags.get(0).__fwEnableChange = inputTags.get(0).__fwEnableChange || false;
 
@@ -1563,7 +1547,7 @@ this.jQuery && this.jQuery.noConflict();
       //update the actual butt
       inputTags.attr('value', __f.tagsToVal(theValue, false));
       inputTags.val(__f.tagsToVal(theValue, false));
-      inputTags.get(0).__fwRenderValue = __f.tagsToVal(valueForUi,true);
+      inputTags.get(0).__fwRenderValue = __f.tagsToVal(valueForUi, true);
 
       if (inputTags.get(0).__fwEnableChange) {
         inputTags.trigger('change');
@@ -2636,7 +2620,7 @@ this.jQuery && this.jQuery.noConflict();
 
         // const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
-        frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue,false));
+        frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue, false));
       }
     });
 
@@ -3265,8 +3249,6 @@ this.jQuery && this.jQuery.noConflict();
   frameWork.initcomponentsEvents();
 
   //put boi on global
-  if (typeof setUpGlobal !== 'undefined') {
-    window.frameWork = window.fw = frameWork;
-    window.frameWork.DEBUG = __f;
-  }
+  window.frameWork = window.fw = frameWork;
+  window.frameWork.DEBUG = __f;
 });

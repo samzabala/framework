@@ -1,19 +1,7 @@
 (function (global, fn) {
   'use strict';
-
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = global.document
-      ? fn(global)
-      : function (w) {
-          if (!w.document) {
-            throw new Error("Where's yo window document boi I need it?");
-          }
-          return fn(w, true);
-        };
-  } else {
-    fn(global, true);
-  }
-})(window !== 'undefined' ? window : this, function (window, setUpGlobal) {
+  fn(global, $);
+})(window !== 'undefined' ? window : this, function (window) {
   console.info('Framework vanilla script is initiated');
 
   if (window.fw) {
@@ -1314,12 +1302,10 @@
   frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
     const theValue = newValue || __f.dateToVal(inputCalendar.value);
 
-    inputCalendar.__fwEnableChange =
-      inputCalendar.__fwEnableChange || false;
+    inputCalendar.__fwEnableChange = inputCalendar.__fwEnableChange || false;
 
-
-    if(!inputCalendar.__fwRenderValue){
-      inputCalendar.__fwRenderValue = __f.tagsToVal(inputCalendar.value,true);
+    if (!inputCalendar.__fwRenderValue) {
+      inputCalendar.__fwRenderValue = __f.tagsToVal(inputCalendar.value, true);
     }
 
     valueForUi = valueForUi
@@ -1360,7 +1346,6 @@
 
     const args = __f.parseArgs(arr, defaults);
 
-
     if (theValue) {
       //update the actual butt
       inputCalendar.setAttribute('value', theValue);
@@ -1369,7 +1354,7 @@
     }
 
     if (inputCalendar.__fwEnableChange) {
-      frameWork.triggerEvent(inputCalendar,'change');
+      frameWork.triggerEvent(inputCalendar, 'change');
     } else {
       if (parseInt(arr.dropdownYearSpan) <= 0) {
         args.dropdownYearSpan = defaults.dropdownYearSpan;
@@ -1389,28 +1374,28 @@
         inputCalendar
           .closest(`.${frameWork.settings.uiClass}`)
           .classList.add('input-error');
+      }
 
-        if (theValue) {
-          const dates = inputCalendar.parentNode.querySelectorAll(
-            `.${__f.uiPrefix('calendar')}date`
-          );
+      if (theValue) {
+        const dates = inputCalendar.parentNode.querySelectorAll(
+          `.${__f.uiPrefix('calendar')}date`
+        );
 
-          dates.forEach((date) => {
-            if (date.getAttribute('data-value') == __f.dateToVal(theValue)) {
-              date.classList.add('active');
-            } else {
-              date.classList.remove('active');
-            }
-          });
-
-          const inputField = inputCalendar.parentNode.querySelector(
-            `.${__f.uiPrefix('calendar')}input input`
-          );
-
-          if (inputField) {
-            inputField.setAttribute('value', __f.dateToHuman(theValue));
-            inputField.value = __f.dateToHuman(theValue);
+        dates.forEach((date) => {
+          if (date.getAttribute('data-value') == __f.dateToVal(theValue)) {
+            date.classList.add('active');
+          } else {
+            date.classList.remove('active');
           }
+        });
+
+        const inputField = inputCalendar.parentNode.querySelector(
+          `.${__f.uiPrefix('calendar')}input input`
+        );
+
+        if (inputField) {
+          inputField.setAttribute('value', __f.dateToHuman(theValue));
+          inputField.value = __f.dateToHuman(theValue);
         }
       }
     }
@@ -1422,10 +1407,11 @@
   __f.tagsToParse = (value, returnWithInput) => {
     returnWithInput = returnWithInput !== false || returnWithInput == true;
 
-    let toReturn =
-    Array.isArray(value) ? value
-    : typeof value === 'string' ? value.split(',')
-    : [];
+    let toReturn = Array.isArray(value)
+      ? value
+      : typeof value === 'string'
+      ? value.split(',')
+      : [];
 
     //check for ya boi
     toReturn.forEach((tag, i) => {
@@ -1458,7 +1444,7 @@
 
   __f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
     if (inputTags) {
-      valueForUi = valueForUi || __f.tagsToVal(inputTags.value,true) || '';
+      valueForUi = valueForUi || __f.tagsToVal(inputTags.value, true) || '';
       inputText = inputText || false;
 
       const theUi = {};
@@ -1606,15 +1592,10 @@
 
   frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
     let theValue =
-    newValue || newValue == ''
-    ? newValue
-    : inputTags.value
-    ? inputTags.value
-    : false;
+      newValue || newValue == '' ? newValue : inputTags.value ? inputTags.value : false;
 
-
-    if(!inputTags.__fwRenderValue){
-      inputTags.__fwRenderValue = __f.tagsToVal(inputTags.value,true);
+    if (!inputTags.__fwRenderValue) {
+      inputTags.__fwRenderValue = __f.tagsToVal(inputTags.value, true);
     }
     inputTags.__fwEnableChange = inputTags.__fwEnableChange || false;
 
@@ -1702,10 +1683,10 @@
       //update the actual butt
       inputTags.setAttribute('value', __f.tagsToVal(theValue, false));
       inputTags.value = __f.tagsToVal(theValue, false);
-      inputTags.__fwRenderValue = __f.tagsToVal(valueForUi,true)
+      inputTags.__fwRenderValue = __f.tagsToVal(valueForUi, true);
 
       if (inputTags.__fwEnableChange) {
-        frameWork.triggerEvent(inputTags,'change');
+        frameWork.triggerEvent(inputTags, 'change');
       } else {
         __f.createTagsUi(inputTags, inputTags.__fwRenderValue, inputText, args);
 
@@ -2670,6 +2651,7 @@
             .querySelector('.input-calendar');
 
           if (inputCalendar) {
+            inputCalendar.__fwEnableChange = true;
             frameWork.updateCalendar(
               inputCalendar,
               e.target.getAttribute('data-value'),
@@ -2695,7 +2677,7 @@
             .querySelector('.input-calendar');
 
           if (inputCalendar) {
-          inputCalendar.__fwEnableChange = true;
+            inputCalendar.__fwEnableChange = true;
             frameWork.updateCalendar(
               inputCalendar,
               null,
@@ -2755,7 +2737,6 @@
             inputCalendar__fwEnableChange = true;
           }
 
-
           if (typeof preParsedVal !== 'undefined') {
             frameWork.updateCalendar(inputCalendar, preParsedVal);
           }
@@ -2781,7 +2762,8 @@
           const pasted =
             e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
 
-          triggerer.innerHTML = (triggerer.innerHTML ? triggerer.innerHTML : '') + pasted.getData('text');
+          triggerer.innerHTML =
+            (triggerer.innerHTML ? triggerer.innerHTML : '') + pasted.getData('text');
 
           triggerer.blur();
         }
@@ -2820,8 +2802,7 @@
             inputUiIndex = triggerer.getAttribute('data-value'),
             currValue = __f.tagsToParse(inputTags.value);
 
-
-        const updatedTag = triggerer.innerText.trim();
+          const updatedTag = triggerer.innerText.trim();
 
           if (inputUiIndex) {
             currValue.splice(
@@ -2836,7 +2817,7 @@
 
           // const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
-          frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue,false));
+          frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue, false));
         }
       }
     );
@@ -2858,14 +2839,13 @@
             inputUiIndex = triggerer.getAttribute('data-value'),
             currValue = __f.tagsToParse(inputTags.getAttribute('data-value-ui'));
 
-
           let newValue,
             enableChange,
             allowFilter = false;
 
-            if(triggerer.innerText){
-              triggerer.innerText = triggerer.innerText.replace(/\n|\r/g, '\\n');
-            }
+          if (triggerer.innerText) {
+            triggerer.innerText = triggerer.innerText.replace(/\n|\r/g, '\\n');
+          }
 
           switch (e.keyCode) {
             //enter
@@ -2940,8 +2920,6 @@
           }
 
           newValue = __f.tagsToVal(currValue);
-
-
 
           if (enableChange) {
             inputTags.__fwEnableChange = true;
@@ -3559,8 +3537,6 @@
   frameWork.initcomponentsEvents();
 
   //put boi on global
-  if (typeof setUpGlobal !== 'undefined') {
-    window.frameWork = window.fw = frameWork;
-    window.frameWork.DEBUG = __f;
-  }
+  window.frameWork = window.fw = frameWork;
+  window.frameWork.DEBUG = __f;
 });

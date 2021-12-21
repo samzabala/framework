@@ -1,19 +1,7 @@
 (function (global, fn) {
   'use strict';
-
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = global.document
-      ? fn(global)
-      : function (w) {
-          if (!w.document) {
-            throw new Error("Where's yo window document boi I need it?");
-          }
-          return fn(w, true);
-        };
-  } else {
-    fn(global, true);
-  }
-})(window !== 'undefined' ? window : this, function (window, setUpGlobal) {
+  fn(global, $);
+})(window !== 'undefined' ? window : this, function (window) {
   console.info('Framework vanilla script is initiated');
 
   if (window.fw) {
@@ -1386,28 +1374,28 @@
         inputCalendar
           .closest(`.${frameWork.settings.uiClass}`)
           .classList.add('input-error');
+      }
 
-        if (theValue) {
-          const dates = inputCalendar.parentNode.querySelectorAll(
-            `.${__f.uiPrefix('calendar')}date`
-          );
+      if (theValue) {
+        const dates = inputCalendar.parentNode.querySelectorAll(
+          `.${__f.uiPrefix('calendar')}date`
+        );
 
-          dates.forEach((date) => {
-            if (date.getAttribute('data-value') == __f.dateToVal(theValue)) {
-              date.classList.add('active');
-            } else {
-              date.classList.remove('active');
-            }
-          });
-
-          const inputField = inputCalendar.parentNode.querySelector(
-            `.${__f.uiPrefix('calendar')}input input`
-          );
-
-          if (inputField) {
-            inputField.setAttribute('value', __f.dateToHuman(theValue));
-            inputField.value = __f.dateToHuman(theValue);
+        dates.forEach((date) => {
+          if (date.getAttribute('data-value') == __f.dateToVal(theValue)) {
+            date.classList.add('active');
+          } else {
+            date.classList.remove('active');
           }
+        });
+
+        const inputField = inputCalendar.parentNode.querySelector(
+          `.${__f.uiPrefix('calendar')}input input`
+        );
+
+        if (inputField) {
+          inputField.setAttribute('value', __f.dateToHuman(theValue));
+          inputField.value = __f.dateToHuman(theValue);
         }
       }
     }
@@ -2663,6 +2651,7 @@
             .querySelector('.input-calendar');
 
           if (inputCalendar) {
+            inputCalendar.__fwEnableChange = true;
             frameWork.updateCalendar(
               inputCalendar,
               e.target.getAttribute('data-value'),
@@ -3548,8 +3537,6 @@
   frameWork.initcomponentsEvents();
 
   //put boi on global
-  if (typeof setUpGlobal !== 'undefined') {
-    window.frameWork = window.fw = frameWork;
-    window.frameWork.DEBUG = __f;
-  }
+  window.frameWork = window.fw = frameWork;
+  window.frameWork.DEBUG = __f;
 });
