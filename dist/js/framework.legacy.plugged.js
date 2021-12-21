@@ -1,24 +1,22 @@
-(function (global, fn) {
+this.jQuery && this.jQuery.noConflict();
+
+(function (global, $, fn) {
   'use strict';
 
   if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = global.document
-      ? fn(global)
+      ? fn(global, $)
       : function (w) {
           if (!w.document) {
             throw new Error("Where's yo window document boi I need it?");
           }
-          return fn(w, true);
+          return fn(w, $, true);
         };
   } else {
-    fn(global, true);
+    fn(global, $, true);
   }
-})(window !== 'undefined' ? window : this, function (window, setUpGlobal) {
-  console.info('Framework vanilla script is initiated');
-
-  if (window.fw) {
-    throw new Error('fw already exists oh boi');
-  }
+})(window !== 'undefined' ? window : this, jQuery, function (window, $, setUpGlobal) {
+  console.info('Framework plugged script is initiated');
 
   //frameWork shit
   const frameWork = window.frameWork || {};
@@ -39,6 +37,10 @@
     frameWork.settings.uiClass || `${frameWork.settings.prefix}-ui`; //for styles
   frameWork.settings.uiJsClass =
     frameWork.settings.uiJsClass || frameWork.settings.uiClass.replace('-', '_'); // for scripting events and shit
+
+  if (!$) {
+    throw new Error('jQuery not found bro, what did you do?');
+  }
 
   __f.modifierKeys = {
     ctrl: false,
@@ -62,7 +64,22 @@
     }
   };
 
-  //vanilla already has scrollto btwn... just so u know
+  $.fn.scrollTo = function (elem, direction) {
+    direction = direction || 'y';
+
+    const methods = direction == 'x' ? ['scrollLeft', 'left'] : ['scrollTop', 'top'];
+
+    const scrollResult =
+      $(this)[methods[0]]() -
+      $(this).offset()[methods[1]] +
+      $(elem).offset()[methods[1]];
+
+    $(this)[methods[0]](scrollResult);
+
+    // console.log( scrollResult,'\nscroll parent', $(this)[ methods[0] ](),'\nchild offset', $(elem).offset()[ methods[1] ]   )
+
+    return this;
+  };
 
   __f.strGetFileExtension = (str) => {
     str = str || '';
@@ -98,124 +115,6 @@
     arr.splice(ni, 0, arr.splice(oi, 1)[0]);
 
     return arr;
-  };
-
-  //polyifiulls
-  if (!Element.prototype.matches) {
-    Element.prototype.matches =
-      Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-  }
-
-  if (!Element.prototype.closest) {
-    Element.prototype.closest = (s) => {
-      let el = this;
-      do {
-        if (el.matches(s)) return el;
-        el = el.parentElement || el.parentNode;
-      } while (el !== null && el.nodeType === 1);
-      return null;
-    };
-  }
-
-  frameWork.addEvent = (parent, evt, selector, handler) => {
-    parent = parent || selector;
-
-    parent.addEventListener(
-      evt,
-      (event) => {
-        if (event.target.matches(selector + ', ' + selector + ' *')) {
-          // try {
-          handler(event);
-          // } catch(e) {}
-        }
-      },
-      true
-    );
-  };
-
-  frameWork.triggerEvent = (el, evt) => {
-    const event = document.createEvent('HTMLEvents');
-
-    event.initEvent(evt, true, false);
-    el.dispatchEvent(event);
-  };
-
-  frameWork.slideDown = (elem) => {
-    elem && (elem.style.display = 'block');
-  };
-
-  frameWork.slideUp = (elem) => {
-    elem && (elem.style.display = 'none');
-  };
-
-  frameWork.getSiblings = (elem) => {
-    return Array.prototype.filter.call(elem.parentNode.children, (child) => {
-      return child !== elem;
-    });
-  };
-
-  frameWork.getAncestors = (elem, selector) => {
-    const parents = [];
-    let firstChar;
-
-    if (selector) {
-      firstChar = selector.charAt(0);
-    }
-
-    // Get matches
-    for (; elem && elem !== document; elem = elem.parentNode) {
-      if (selector) {
-        // If selector is a class
-        if (firstChar === '.') {
-          if (elem.classList.contains(selector.substr(1))) {
-            parents.push(elem);
-          }
-        }
-
-        // If selector is an ID
-        if (firstChar === '#') {
-          if (elem.id === selector.substr(1)) {
-            parents.push(elem);
-          }
-        }
-
-        // If selector is a data attribute
-        if (firstChar === '[') {
-          if (elem.hasAttribute(selector.substr(1, selector.length - 1))) {
-            parents.push(elem);
-          }
-        }
-
-        // If selector is a tag
-        if (elem.tagName.toLowerCase() === selector) {
-          parents.push(elem);
-        }
-      } else {
-        parents.push(elem);
-      }
-    }
-    // Return parents if any exist
-    if (parents.length === 0) {
-      return null;
-    } else {
-      return parents;
-    }
-  };
-
-  frameWork.docReady = (fn) => {
-    if (document.readyState != 'loading') {
-      fn();
-    } else {
-      document.addEventListener('DOMContentLoaded', fn);
-    }
-  };
-
-  frameWork.moveContents = (oldParent, newParent) => {
-    if (newParent && newParent !== oldParent) {
-      while (oldParent.childNodes.length > 0) {
-        newParent.appendChild(oldParent.childNodes[0]);
-      }
-    }
   };
 
   __f.datetimeFormatPresets = {
@@ -621,41 +520,30 @@
     resetterClass = resetterClass || `${prefix}-group-toggle-reset`;
     noActiveClass = noActiveClass || `${prefix}-group-toggle-allow-no-active`;
 
-    if (triggerer.closest(siblingSelector) && !triggerer.classList.contains(prefix)) {
+    if (triggerer.closest(siblingSelector).length && !triggerer.hasClass(prefix)) {
       triggerer = triggerer.closest(siblingSelector);
     }
 
     if (triggerer) {
-      const resetter = frameWork.getSiblings(triggerer).filter((butt) => {
-        return butt.classList.contains(resetterClass);
-      });
-      resetter.forEach((butt) => {
-        butt.classList.remove('active');
-      });
+      // fix the children bullshit shit
 
-      const selectorSiblings = frameWork.getSiblings(triggerer).filter((sibling) => {
-        return sibling.matches(siblingSelector);
-      });
+      triggerer.siblings(`.${resetterClass}`).removeClass('active');
 
       if (
-        !triggerer.closest(`.${prefix}-group-toggle-multiple`) ||
-        triggerer.classList.contains(resetterClass)
+        !triggerer.closest(`.${prefix}-group-toggle-multiple`).length ||
+        triggerer.hasClass(resetterClass)
       ) {
-        selectorSiblings.forEach((sibling) => {
-          sibling.classList.remove('active');
-        });
+        triggerer.siblings(siblingSelector).removeClass('active');
       }
 
       if (
-        (triggerer.closest(`.${prefix}-group-toggle-multiple`) &&
-          selectorSiblings.filter((butt) => {
-            return butt.classList.contains('active');
-          }).length > 0) ||
-        triggerer.closest(`.${noActiveClass}`)
+        (triggerer.closest(`.${prefix}-group-toggle-multiple`).length &&
+          triggerer.siblings('.active').length > 0) ||
+        triggerer.closest(`.${noActiveClass}`).length
       ) {
-        triggerer.classList.toggle('active');
+        triggerer.toggleClass('active');
       } else {
-        triggerer.classList.add('active');
+        triggerer.addClass('active');
       }
     }
   };
@@ -669,12 +557,12 @@
     if (triggerer) {
       if (
         //idk what the fuck this was for but it stays for now
-        triggerer.closest(`.input-group${frameWork.settings.uiJsClass}`)
+        triggerer.closest(`.input-group${frameWork.settings.uiJsClass}`).length
       ) {
       } else if (
         //calendar fix
-        triggerer.closest(`.${frameWork.settings.uiJsClass}`) &&
-        !triggerer.closest(`.${frameWork.settings.uiJsClass}_internal_toggle`)
+        triggerer.closest(`.${frameWork.settings.uiJsClass}`).length &&
+        !triggerer.closest(`.${frameWork.settings.uiJsClass}_internal_toggle`).length
       ) {
         toReturn = triggerer.closest(`.${frameWork.settings.uiJsClass}`);
       } else {
@@ -697,68 +585,53 @@
 
       if (triggerer) {
         if (
-          triggerer.hasAttribute('href') &&
-          triggerer.getAttribute('href').startsWith('#') &&
-          triggerer.getAttribute('href') !== '#' &&
-          document.querySelector(triggerer.getAttribute('href')) &&
-          document
-            .querySelector(triggerer.getAttribute('href'))
-            .classList.contains(classToSearch)
+          triggerer.attr('href') &&
+          triggerer.attr('href') !== '' &&
+          triggerer.attr('href') !== '#' &&
+          $(triggerer.attr('href')).hasClass(classToSearch)
         ) {
           // console.warn('toggle found by href');
-          toReturn = document.querySelector(triggerer.getAttribute('href'));
+          toReturn = $(triggerer.attr('href'));
         } else if (
-          triggerer.hasAttribute('data-href') &&
-          triggerer.getAttribute('data-href').startsWith('#') &&
-          triggerer.getAttribute('data-href') !== '#' &&
-          document.querySelector(triggerer.getAttribute('data-href')) &&
-          document
-            .querySelector(triggerer.getAttribute('data-href'))
-            .classList.contains(classToSearch)
+          triggerer.attr('data-href') &&
+          $(triggerer.attr('data-href')).hasClass(classToSearch)
         ) {
           // console.warn('toggle found by data-href');
-          toReturn = document.querySelector(triggerer.getAttribute('data-href'));
+          toReturn = $(triggerer.attr('data-href'));
         } else if (
           toggleMode &&
-          triggerer.parentNode.closest(`[data-toggle="${toggleMode}"]`)
+          triggerer.parent().closest(`[data-toggle="${toggleMode}"]`).length
         ) {
           // console.warn('toggle searching closest data-toggle');
           toReturn = __f.getTheToggled(
-            triggerer.parentNode.closest(`[data-toggle="${toggleMode}"]`),
+            triggerer.closest(`[data-toggle="${toggleMode}"]`),
             toggleMode
           );
-        } else if (
-          toggleMode &&
-          triggerer.parentNode.classList.contains('input-group')
-        ) {
+        } else if (toggleMode && triggerer.parent('.input-group').length) {
           // console.warn('toggle trigger was in input group');
-          toReturn = __f.getTheToggled(triggerer.parentNode, toggleMode);
-        } else if (toggleMode && triggerer.parentNode.classList.contains('btn-group')) {
+          toReturn = __f.getTheToggled(triggerer.parent('.input-group'), toggleMode);
+        } else if (toggleMode && triggerer.parent('.btn-group').length) {
           // console.warn('toggle trigger was in btn group');
-          toReturn = __f.getTheToggled(triggerer.parentNode, toggleMode);
-        } else {
-          let possibleSiblings = triggerer.nextElementSibling;
-          while (possibleSiblings) {
-            if (possibleSiblings.matches(selector)) {
-              // console.warn('toggle trigger anybody whos a sibling');
-              return possibleSiblings;
-            }
-            possibleSiblings = possibleSiblings.nextElementSibling;
-          }
-          toReturn = possibleSiblings;
+          toReturn = __f.getTheToggled(triggerer.parent('.btn-group'), toggleMode);
+        } else if (triggerer.next(selector).first().length) {
+          // console.warn('toggle trigger is prev sibling');
+          toReturn = triggerer.next(selector).first();
+        } else if (triggerer.siblings(selector).first().length) {
+          // console.warn('toggle trigger anybody whos a sibling');
+          toReturn = triggerer.siblings(selector).first();
         }
       } else {
         if (
           window.location.hash !== '' &&
-          document.querySelector(window.location.hash) &&
-          document.querySelector(window.location.hash).classList.contains(classToSearch)
+          $(window.location.hash).length &&
+          $(window.location.hash).hasClass(classToSearch)
         ) {
           // console.warn('no trigger but found the hash is a matching toggle');
-          toReturn = document.querySelector(window.location.hash);
+          toReturn = $(window.location.hash);
         }
       }
 
-      if (!toReturn) {
+      if (!toReturn || !toReturn.length) {
         //look if theres an ancestor it can toggle. last prioroty
         // console.warn('no trigger so looking for an ancestor');
         switch (toggleMode) {
@@ -767,15 +640,21 @@
           case 'board':
           case 'switch':
           case 'alert-close':
-            if (triggerer && toggleMode && triggerer.parentNode.closest(toggledClass)) {
-              // console.log('found ancestor');
-              toReturn = triggerer.parentNode.closest(toggledClass);
+            if (
+              triggerer &&
+              toggleMode &&
+              triggerer.parent().closest(toggledClass).length
+            ) {
+              // console.warn('found ancestor');
+              toReturn = triggerer.parent().closest(toggledClass);
             }
             break;
         }
       }
 
-      return toReturn;
+      if (toReturn && toReturn.length) {
+        return toReturn;
+      }
     }
   };
 
@@ -882,51 +761,43 @@
 
     const renderProps = (modElement, props) => {
       props.forEach((prop) => {
-        // modElement.style[__f.strToCamelCase(prop)] = '';
         let propsSet = false,
           propSetBr = false,
           smallestStyledBr = false;
 
         //check for breakpointz first
         __f.reverseArray(__f.br_arr).forEach((br) => {
-          if (modElement.hasAttribute(`data-${prop}-${br}`) && !propsSet) {
+          if (modElement.attr(`data-${prop}-${br}`) && !propsSet) {
             smallestStyledBr = br;
             if (frameWork.validateBr(br, 'above')) {
-              modElement.style[__f.strToCamelCase(prop)] = modElement.getAttribute(
-                `data-${prop}-${br}`
-              );
+              modElement.css(prop, modElement.attr(`data-${prop}-${br}`));
               propsSet = true;
               propSetBr = true;
             }
           }
         });
 
-        if (modElement.hasAttribute(`data-${prop}`) && !propsSet) {
+        if (modElement.attr(`data-${prop}`) && !propsSet) {
           //check for all breakpoint
           if (!propsSet && !propSetBr) {
-            modElement.style[__f.strToCamelCase(prop)] = modElement.getAttribute(
-              `data-${prop}`
-            );
+            modElement.css(prop, modElement.attr(`data-${prop}`));
             propsSet = true;
           }
         } else {
           if (
-            modElement.style[__f.strToCamelCase(prop)] !== null &&
+            modElement.prop('style')[__f.strToCamelCase(prop)] !== null &&
             smallestStyledBr &&
             !frameWork.validateBr(smallestStyledBr, 'above')
           ) {
-            modElement.style[__f.strToCamelCase(prop)] = null;
+            modElement.css(prop, '');
           }
         }
       });
     };
 
     renderProps(moduleGrid, availablePropertiesParent);
-    const moduleChildren = Array.from(moduleGrid.children).filter((child) => {
-      return child.matches('.module');
-    });
-
-    moduleChildren.forEach((child) => {
+    moduleGrid.children('.module').each((i, elm) => {
+      const child = $(elm);
       renderProps(child, availablePropertiesChildren);
     });
   };
@@ -985,43 +856,43 @@
   __f.createCalendarUi = (inputCalendar, valueForUi, args) => {
     if (inputCalendar) {
       valueForUi =
-        valueForUi || __f.dateToVal(inputCalendar.value) || __f.dateToVal(new Date());
+        valueForUi || __f.dateToVal(inputCalendar.val()) || __f.dateToVal(new Date());
       const theUi = {};
 
       theUi.container = inputCalendar.closest(`.${__f.uiPrefix('calendar', true)}`);
-      if (!theUi.container) {
-        theUi.container = document.createElement('div');
-        inputCalendar.parentNode.insertBefore(theUi.container, inputCalendar);
-        theUi.container.appendChild(inputCalendar);
-        theUi.container.setAttribute(
-          'class',
-          `${frameWork.settings.uiClass}
-						${frameWork.settings.uiJsClass}
-						${inputCalendar
-              .getAttribute('class')
-              .toString()
-              .replace('input-calendar', __f.uiPrefix('calendar', true))}`
+      if (!theUi.container.length) {
+        inputCalendar.wrap(
+          $(`<div
+						class="
+							${frameWork.settings.uiClass}
+							${frameWork.settings.uiJsClass}
+							${inputCalendar
+                .attr('class')
+                .replace('input-calendar', __f.uiPrefix('calendar', true))}"
+						>
+						</div>`)
         );
+        theUi.container = inputCalendar.closest(`.${__f.uiPrefix('calendar', true)}`);
       }
 
-      theUi.input = theUi.container.querySelector(`.${__f.uiPrefix('calendar')}input`);
+      //idk it never exists on initial so we dont have to do weird div wraping catches here
+      theUi.input = theUi.container.children(`.${__f.uiPrefix('calendar')}input`);
 
-      const components = frameWork.getSiblings(inputCalendar);
-      components.forEach((component) => {
-        if (component !== theUi.input) {
-          component.parentNode.removeChild(component);
-        }
-      });
+      inputCalendar.siblings().not(theUi.input).remove();
 
       //input
       if (args.textInput) {
-        if (!theUi.input) {
-          theUi.input = document.createElement('div');
-          theUi.container.appendChild(theUi.input);
-          theUi.input.setAttribute('class', `${__f.uiPrefix('calendar')}input`);
-          theUi.input.innerHTML =
-            '<input class="input input-single-line" type="text" maxlength="10" placeholder="MM/DD/YYYY" />';
+        if (!theUi.input.length) {
+          theUi.input = $(`<div class="${__f.uiPrefix(
+            'calendar'
+          )}input"><input class="input input-single-line" type="text" maxlength="10"  placeholder="MM/DD/YYYY" />
+							</div>`);
+          theUi.container.append(theUi.input);
         }
+      }
+
+      if (frameWork.isDisabled(inputCalendar)) {
+        theUi.input.addClass('disabled');
       }
 
       const currYear = __f.dateToParse(valueForUi).getFullYear(),
@@ -1029,9 +900,8 @@
         currentCalendarDate = new Date(currYear, currMonth, 1); //IT ALSO FIRST DAY MOTHERFUCKER
 
       //heading
-      theUi.heading = document.createElement('div');
-      theUi.container.appendChild(theUi.heading);
-      theUi.heading.setAttribute('class', `${__f.uiPrefix('calendar')}heading`);
+      theUi.heading = $(`<div class="${__f.uiPrefix('calendar')}heading"></div>`);
+      theUi.container.append(theUi.heading);
 
       //arrowz
       const generateArrow = (buttonClass) => {
@@ -1096,49 +966,54 @@
           (args.yearSkip && (butt == 'prev-year' || butt == 'next-year')) ||
           (args.monthSkip && (butt == 'prev-month' || butt == 'next-month'))
         ) {
-          theUi.heading.innerHTML += generateArrow(butt);
+          theUi.heading.append(generateArrow(butt));
         }
       });
 
       //title
-      theUi.title = document.createElement('div');
-      theUi.heading.appendChild(theUi.title);
-      theUi.title.setAttribute(
-        'class',
-        `${__f.uiPrefix('calendar')}title ${__f.uiPrefix('calendar')}dropdown-toggle
-					${frameWork.settings.uiJsClass}_internal_toggle`
-      );
-      theUi.title.setAttribute('data-toggle', 'dropdown');
-      theUi.title.innerHTML = `<span
-					class="${__f.uiPrefix('calendar')}month-text">
-						${__f.monthFormatNamesShort[currMonth]}
-					</span>
-					<span class="${__f.uiPrefix('calendar')}year-text">
-						${currYear}
-					</span>
-					<i class="${__f.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
+      theUi.title = $(`<div
+					data-toggle="dropdown"
+					class="
+						${__f.uiPrefix('calendar')}title
+						${__f.uiPrefix('calendar')}dropdown-toggle
+						${frameWork.settings.uiJsClass}_internal_toggle"
+				></div>`);
+      theUi.heading.append(theUi.title);
+      theUi.title.append(() => {
+        return `<span
+							class="${__f.uiPrefix('calendar')}month-text">
+							${__f.monthFormatNamesShort[currMonth]}
+						</span>
+						<span class="${__f.uiPrefix('calendar')}year-text">
+							${currYear}
+						</span>
+						<i class="${__f.uiPrefix('calendar')}symbol symbol symbol-caret-down no-margin-x"></i>`;
+      });
 
       //dropdown
-      theUi.dropdown = document.createElement('ul');
-      theUi.heading.appendChild(theUi.dropdown);
-      theUi.dropdown.setAttribute('data-dropdown-width', '100%');
-      theUi.dropdown.setAttribute(
-        'class',
-        `${__f.uiPrefix(
-          'calendar'
-        )}dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center`
-      );
-      theUi.dropdown.innerHTML += `<li
-						class="${__f.uiPrefix('calendar')}current-month-year active"
-					>
-						<a href="#"
-							class="${__f.uiPrefix('calendar')}month"
-							data-value="${__f.dateToVal(currentCalendarDate)}"
+      theUi.dropdown = $(`<ul
+					data-dropdown-width="100%"
+					class="${__f.uiPrefix('calendar')}dropdown
+					dropdown
+					dropdown-center-x
+					dropdown-top-flush
+					text-align-center"
+				></ul>`);
+      // theUi.dropdown.
+      theUi.heading.append(theUi.dropdown);
+      theUi.dropdown.append(() => {
+        return `<li
+							class="${__f.uiPrefix('calendar')}current-month-year active"
 						>
-							${__f.monthFormatNamesShort[currMonth]} ${currYear}
-						</a>
-					</li>
-					<li><hr class="dropdown-separator"></li>`;
+								<a href="#"
+									class="${__f.uiPrefix('calendar')}month"
+									data-value="${__f.dateToVal(currentCalendarDate)}"
+								>
+									${__f.monthFormatNamesShort[currMonth]} ${currYear}
+								</a>
+						</li>
+						<li><hr class="dropdown-separator"></li>`;
+      });
 
       let dropdownInit, dropdownLimit;
 
@@ -1151,6 +1026,7 @@
       }
 
       //update dropdown
+      theUi.dropList = [];
       for (let i = dropdownInit; i <= dropdownLimit; i++) {
         const listItemDate = __f.dateGetAdjacent(currentCalendarDate, i);
 
@@ -1176,8 +1052,10 @@
         // console.warn(i,'\nkwan ano ni\n',listItemDate,dateForValidation);
 
         if (__f.dateIsValid(dateForValidation, args, true)) {
-          let currClass = i == 0 ? 'active' : '',
-            listItem = `<li class="${currClass}">
+          let currClass = i == 0 ? 'active' : '';
+
+          theUi.dropdown.append(() => {
+            return `<li class="${currClass}">
 								<a href="#"
 									class="${__f.uiPrefix('calendar')}month"
 									data-value="${__f.dateToVal(listItemDate)}">
@@ -1189,15 +1067,13 @@
                   : ''
               }
 							</li>`;
-
-          theUi.dropdown.innerHTML += listItem;
+          });
         }
       }
 
       //generate grid
-      theUi.grid = document.createElement('div');
+      theUi.grid = $(`<div class="${__f.uiPrefix('calendar')}grid"></div>`);
       theUi.container.append(theUi.grid);
-      theUi.grid.setAttribute('class', `${__f.uiPrefix('calendar')}grid`);
 
       const generateBlock = (date, customClass) => {
         customClass = customClass || '';
@@ -1212,9 +1088,9 @@
       };
 
       //days heading
-      theUi.days = document.createElement('div');
+      theUi.days = $(`<div class="${__f.uiPrefix('calendar')}days"></div>`);
+
       theUi.grid.append(theUi.days);
-      theUi.days.setAttribute('class', `${__f.uiPrefix('calendar')}days`);
 
       let daysHTML = '',
         dayToRetrieve = parseInt(args.startDay);
@@ -1234,12 +1110,11 @@
         dayToRetrieve++;
       }
 
-      theUi.days.innerHTML = daysHTML;
+      theUi.days.html(daysHTML);
 
       //days
-      theUi.dates = document.createElement('div');
+      theUi.dates = $(`<div class="${__f.uiPrefix('calendar')}dates"></div>`);
       theUi.grid.append(theUi.dates);
-      theUi.dates.setAttribute('class', `${__f.uiPrefix('calendar')}dates`);
 
       //previous month
       const currPrevLastDate = (() => {
@@ -1273,7 +1148,7 @@
           );
 
           //prepend because we loopped this bitch in reverse
-          theUi.dates.innerHTML += dateBlockPrev;
+          theUi.dates.prepend(dateBlockPrev);
         }
       }
 
@@ -1286,7 +1161,7 @@
           !__f.dateIsValid(new Date(currYear, currMonth, i), args) ? 'disabled' : ''
         );
 
-        theUi.dates.innerHTML += dateBlockCurr;
+        theUi.dates.append(dateBlockCurr);
       }
 
       //next month just fill the shit
@@ -1304,7 +1179,7 @@
               (!__f.dateIsValid(loopDateNext, args) ? 'disabled' : '')
           );
 
-          theUi.dates.innerHTML += dateBlockNext;
+          theUi.dates.append(dateBlockNext);
         }
       }
     }
@@ -1312,36 +1187,35 @@
 
   //updates both input field and UI
   frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
-    const theValue = newValue || __f.dateToVal(inputCalendar.value);
+    const theValue = newValue || __f.dateToVal(inputCalendar.val());
 
-    inputCalendar.__fwEnableChange = inputCalendar.__fwEnableChange || false;
+    inputCalendar.get(0).__fwEnableChange =
+    inputCalendar.get(0).__fwEnableChange || false;
 
-    if (!inputCalendar.__fwRenderValue) {
-      inputCalendar.__fwRenderValue = __f.tagsToVal(inputCalendar.value, true);
+
+    if(!inputCalendar.get(0).__fwRenderValue){
+      inputCalendar.get(0).__fwRenderValue = __f.tagsToVal(inputCalendar.val(),true);
     }
 
     valueForUi = valueForUi
       ? valueForUi
       : theValue || theValue == ''
       ? theValue
-      : inputCalendar.__fwRenderValue
-      ? inputCalendar.__fwRenderValue
+      : inputCalendar.get(0).__fwRenderValue
+      ? inputCalendar.get(0).__fwRenderValue
       : __f.dateToVal(new Date());
+    // ignoreInput = ignoreInput || false;
 
     const arr = {
-      class: inputCalendar.getAttribute('class'),
-      startDay: inputCalendar.getAttribute('data-calendar-start-day'), // 0,1,2,3,4,5,6
-      min:
-        inputCalendar.getAttribute('data-calendar-min') ||
-        inputCalendar.getAttribute('min'),
-      max:
-        inputCalendar.getAttribute('data-calendar-max') ||
-        inputCalendar.getAttribute('max'),
-      dropdownYearSpan: inputCalendar.getAttribute('data-calendar-dropdown-year-span'),
-      disabledDates: inputCalendar.getAttribute('data-calendar-disabled-dates'),
-      textInput: inputCalendar.getAttribute('data-calendar-text-input'),
-      monthSkip: inputCalendar.getAttribute('data-calendar-month-skip'),
-      yearSkip: inputCalendar.getAttribute('data-calendar-year-skip'),
+      class: inputCalendar.attr('class'),
+      startDay: inputCalendar.attr('data-calendar-start-day'), // 0,1,2,3,4,5,6
+      min: inputCalendar.attr('data-calendar-min') || inputCalendar.attr('min'),
+      max: inputCalendar.attr('data-calendar-max') || inputCalendar.attr('max'),
+      dropdownYearSpan: inputCalendar.attr('data-calendar-dropdown-year-span'),
+      disabledDates: inputCalendar.attr('data-calendar-disabled-dates'),
+      textInput: inputCalendar.attr('data-calendar-text-input'),
+      monthSkip: inputCalendar.attr('data-calendar-month-skip'),
+      yearSkip: inputCalendar.attr('data-calendar-year-skip'),
     };
 
     const defaults = {
@@ -1360,13 +1234,13 @@
 
     if (theValue) {
       //update the actual butt
-      inputCalendar.setAttribute('value', theValue);
-      inputCalendar.value = theValue;
-      inputCalendar.__fwRenderValue = valueForUi;
+      inputCalendar.attr('value', theValue);
+      inputCalendar.val(theValue);
+      inputCalendar.get(0).__fwRenderValue = valueForUi;
     }
 
-    if (inputCalendar.__fwEnableChange) {
-      frameWork.triggerEvent(inputCalendar, 'change');
+    if (inputCalendar.get(0).__fwEnableChange) {
+      inputCalendar.trigger('change');
     } else {
       if (parseInt(arr.dropdownYearSpan) <= 0) {
         args.dropdownYearSpan = defaults.dropdownYearSpan;
@@ -1381,34 +1255,33 @@
       if (__f.dateIsValid(theValue, args)) {
         inputCalendar
           .closest(`.${frameWork.settings.uiClass}`)
-          .classList.remove('input-error');
+          .removeClass('input-error');
       } else {
+        inputCalendar.closest(`.${frameWork.settings.uiClass}`).addClass('input-error');
+      }
+
+      if (theValue) {
         inputCalendar
-          .closest(`.${frameWork.settings.uiClass}`)
-          .classList.add('input-error');
+          .parent()
+          .find(`.${__f.uiPrefix('calendar')}date`)
+          .removeClass('active');
+        inputCalendar
+          .parent()
+          .find(
+            `.${__f.uiPrefix('calendar')}date[data-value=${__f.dateToVal(theValue)}]`
+          )
+          .addClass('active');
 
-        if (theValue) {
-          const dates = inputCalendar.parentNode.querySelectorAll(
-            `.${__f.uiPrefix('calendar')}date`
-          );
-
-          dates.forEach((date) => {
-            if (date.getAttribute('data-value') == __f.dateToVal(theValue)) {
-              date.classList.add('active');
-            } else {
-              date.classList.remove('active');
-            }
-          });
-
-          const inputField = inputCalendar.parentNode.querySelector(
-            `.${__f.uiPrefix('calendar')}input input`
-          );
-
-          if (inputField) {
-            inputField.setAttribute('value', __f.dateToHuman(theValue));
-            inputField.value = __f.dateToHuman(theValue);
-          }
-        }
+        // if(!ignoreInput){
+        inputCalendar
+          .parent()
+          .find(`.${__f.uiPrefix('calendar')}input input`)
+          .attr('value', __f.dateToHuman(theValue));
+        inputCalendar
+          .parent()
+          .find(`.${__f.uiPrefix('calendar')}input input`)
+          .val(__f.dateToHuman(theValue));
+        // }
       }
     }
   };
@@ -1419,10 +1292,9 @@
   __f.tagsToParse = (value, returnWithInput) => {
     returnWithInput = returnWithInput !== false || returnWithInput == true;
 
-    let toReturn = Array.isArray(value)
-      ? value
-      : typeof value === 'string'
-      ? value.split(',')
+    let toReturn =
+      Array.isArray(value) ? value
+      : typeof value === 'string' ? value.split(',')
       : [];
 
     //check for ya boi
@@ -1456,59 +1328,56 @@
 
   __f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
     if (inputTags) {
-      valueForUi = valueForUi || __f.tagsToVal(inputTags.value, true) || '';
+      valueForUi = valueForUi || __f.tagsToVal(inputTags.val(),true) || '';
       inputText = inputText || false;
 
       const theUi = {};
 
       theUi.container = inputTags.closest(`.${__f.uiPrefix('tags', true)}`);
 
-      if (!theUi.container) {
-        theUi.container = document.createElement('div');
-        inputTags.parentNode.insertBefore(theUi.container, inputTags);
-        theUi.container.appendChild(inputTags);
-        theUi.container.classList.add('input');
-        theUi.container.setAttribute(
-          'class',
-          `${frameWork.settings.uiClass}
+      if (!theUi.container.length) {
+        inputTags.wrap(
+          $(`<div
+						class="
+						${frameWork.settings.uiClass}
 						${frameWork.settings.uiJsClass}
-						${inputTags.getAttribute('class').replace('input-tags', __f.uiPrefix('tags', true))}`
+						${inputTags.attr('class').replace('input-tags', __f.uiPrefix('tags', true))}">
+						</div>`)
         );
+        theUi.container = inputTags.closest(`.${__f.uiPrefix('tags', true)}`);
+        theUi.container.addClass('input');
       }
 
-      theUi.container.classList.add(
+      theUi.container.addClass(
         args.multipleLines
           ? `${__f.uiPrefix('tags')}multiple`
           : `${__f.uiPrefix('tags')}single`
       );
 
       if (args.width) {
-        theUi.container.style = args.width;
+        theUi.container.css('width', args.width);
       }
       //idk it never exists on initial so we dont have to do weird div wraping catches here
 
-      theUi.wrapper = theUi.container.querySelector(`.${__f.uiPrefix('tags')}wrapper`);
+      theUi.wrapper = theUi.container.children(`.${__f.uiPrefix('tags')}wrapper`);
 
-      if (!theUi.wrapper) {
-        theUi.wrapper = document.createElement('div');
-        theUi.container.appendChild(theUi.wrapper);
-        theUi.wrapper.setAttribute('class', `${__f.uiPrefix('tags')}wrapper`);
-        theUi.wrapper = theUi.container.querySelector(
-          `.${__f.uiPrefix('tags')}wrapper`
-        );
+      if (!theUi.wrapper.length) {
+        theUi.container.append(`<div class="${__f.uiPrefix('tags')}wrapper"></div>`);
+        theUi.wrapper = theUi.container.children(`.${__f.uiPrefix('tags')}wrapper`);
       }
 
-      theUi.input = theUi.wrapper.querySelector(`.${__f.uiPrefix('tags')}input`);
+      theUi.input = theUi.wrapper.children(`.${__f.uiPrefix('tags')}input`);
 
-      if (!theUi.input) {
-        theUi.input = document.createElement('span');
-        theUi.wrapper.appendChild(theUi.input);
-        theUi.input.setAttribute('class', `${__f.uiPrefix('tags')}input`);
-        theUi.input.contentEditable = true;
-        theUi.input = theUi.wrapper.querySelector(`.${__f.uiPrefix('tags')}input`);
+      if (!theUi.input.length) {
+        theUi.wrapper.append(
+          `<span
+							contenteditable="true"
+							class="input ${__f.uiPrefix('tags')}input"></span>`
+        );
+        theUi.input = theUi.wrapper.children(`.${__f.uiPrefix('tags')}input`);
 
         if (args.callbackOnKeyup) {
-          theUi.input.addEventListener('keyup', (event) => {
+          theUi.input.on('keyup', (event) => {
             const keyUpScript = eval(args.callbackOnKeyup);
             if (keyUpScript) {
               keyUpScript();
@@ -1517,32 +1386,25 @@
         }
       }
 
-      if (inputTags.hasAttribute('placeholder')) {
-        theUi.input.setAttribute(
-          'data-placeholder',
-          inputTags.getAttribute('placeholder')
-        );
+      if (inputTags.attr('placeholder')) {
+        theUi.input.attr('data-placeholder', inputTags.attr('placeholder'));
       }
 
       //nearest fw-ui parent will actually do tgoggl for bby because baby cant stand up on its own
-      if (inputTags.hasAttribute('data-toggle')) {
-        theUi.input.setAttribute('data-toggle', inputTags.getAttribute('data-toggle'));
+      if (inputTags.attr('data-toggle')) {
+        theUi.input.attr('data-toggle', inputTags.attr('data-toggle'));
       }
 
       if (frameWork.isDisabled(inputTags)) {
-        theUi.input.classList.add('disabled');
+        theUi.input.addClass('disabled');
       }
 
-      const oldTags = theUi.wrapper.querySelectorAll(`.${__f.uiPrefix('tags')}tag`);
-
-      oldTags.forEach((tag) => {
-        tag.parentNode.removeChild(tag);
-      });
+      theUi.wrapper.children(`.${__f.uiPrefix('tags')}tag`).remove();
 
       let valArr = __f.tagsToParse(valueForUi, true);
       const inputIn = valArr.indexOf(__f.tagsInputString);
 
-      theUi.input.setAttribute('data-value', inputIn);
+      theUi.input.attr('data-value', inputIn);
 
       //validate tags
       valArr = valArr.reduce((acc, tag) => {
@@ -1555,27 +1417,28 @@
       valArr.forEach((tag, i) => {
         //get index of input
         if (tag !== __f.tagsInputString) {
-          const tagHtml = document.createElement('span');
+          const tagHtmlFn = () => {
+            return `<span class="${__f.uiPrefix('tags')}tag">
+								<span
+									data-value="${i}"
+									class="${__f.uiPrefix('tags')}tag-text"
+								>${tag}</span>
+								<a data-value="${i}" class="${__f.uiPrefix('tags')}tag-close" href="#">
+								<i class="symbol symbol-close"></i></a>
+							</span>`;
+          };
 
           if (i < inputIn) {
-            theUi.input.insertAdjacentElement('beforebegin', tagHtml);
+            theUi.input.before(tagHtmlFn);
           } else {
-            theUi.wrapper.appendChild(tagHtml);
+            theUi.wrapper.append(tagHtmlFn);
           }
-          tagHtml.setAttribute('class', `${__f.uiPrefix('tags')}tag`);
-
-          tagHtml.innerHTML = `<span
-								data-value="${i}"
-								class="${__f.uiPrefix('tags')}tag-text"
-							>${tag}</span>
-							<a data-value="${i}" class="${__f.uiPrefix('tags')}tag-close" href="#">
-							<i class="symbol symbol-close"></i></a>`;
         }
       });
 
       //attribues
-      for (let i = 0; i < inputTags.attributes.length; i++) {
-        let attr = inputTags.attributes[i];
+      for (let i = 0; i < inputTags[0].attributes.length; i++) {
+        let attr = inputTags[0].attributes[i];
 
         if (attr.specified) {
           if (
@@ -1584,19 +1447,19 @@
             !attr.name.includes('data-toggle') &&
             !attr.name.includes('data-value-ui')
           ) {
-            theUi.container.setAttribute(attr.name, attr.value);
+            theUi.container.attr(attr.name, attr.value);
           }
         }
       }
 
-      inputTags.setAttribute('data-value-ui', valueForUi);
+      inputTags.attr('data-value-ui', valueForUi);
 
       //keep that shoit to the right
       theUi.container.scrollTo(theUi.input, 'x');
 
       //jquery u duuumb
       if (inputText) {
-        theUi.input.innerText = inputText;
+        theUi.input.text(inputText);
         theUi.input.focus();
       }
     }
@@ -1604,29 +1467,35 @@
 
   frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
     let theValue =
-      newValue || newValue == '' ? newValue : inputTags.value ? inputTags.value : false;
+      newValue || newValue == ''
+      ? newValue
+      : inputTags.val()
+      ? inputTags.val()
+      : false;
 
-    if (!inputTags.__fwRenderValue) {
-      inputTags.__fwRenderValue = __f.tagsToVal(inputTags.value, true);
-    }
-    inputTags.__fwEnableChange = inputTags.__fwEnableChange || false;
+      if(!inputTags.get(0).__fwRenderValue){
+        inputTags.get(0).__fwRenderValue = __f.tagsToVal(inputTags.val(),true);
+      }
+
+    inputTags.get(0).__fwEnableChange = inputTags.get(0).__fwEnableChange || false;
 
     inputText = inputText || false;
     valueForUi = valueForUi
       ? valueForUi
       : newValue || newValue == ''
       ? theValue
-      : inputTags.__fwRenderValue
-      ? inputTags.__fwRenderValue
+      : inputTags.get(0).__fwRenderValue
+      ? inputTags.get(0).__fwRenderValue
       : false;
+
     allowFilter = allowFilter != false;
 
     const arr = {
-      width: inputTags.getAttribute('data-tags-width'),
-      callback: inputTags.getAttribute('data-tags-callback'),
-      callbackOnKeyup: inputTags.getAttribute('data-tags-callback-on-keyup'),
-      callbackNameFilter: inputTags.getAttribute('data-tags-callback-name-filter'),
-      multipleLines: inputTags.getAttribute('data-tags-multiple-lines'),
+      width: inputTags.attr('data-tags-width'),
+      callback: inputTags.attr('data-tags-callback'),
+      callbackOnKeyup: inputTags.attr('data-tags-callback-on-keyup'),
+      callbackNameFilter: inputTags.attr('data-tags-callback-name-filter'),
+      multipleLines: inputTags.attr('data-tags-multiple-lines'),
     };
 
     const defaults = {
@@ -1655,7 +1524,6 @@
               noInputValueToFilter = (() => {
                 return __f.tagsToVal(valueToFilter, false);
               })();
-
             // turn to array ya bopi without the input tag string
             let toReturn = __f.tagsToParse(
               eval(filterFnName + '("' + noInputValueToFilter + '")'),
@@ -1693,14 +1561,14 @@
       }
 
       //update the actual butt
-      inputTags.setAttribute('value', __f.tagsToVal(theValue, false));
-      inputTags.value = __f.tagsToVal(theValue, false);
-      inputTags.__fwRenderValue = __f.tagsToVal(valueForUi, true);
+      inputTags.attr('value', __f.tagsToVal(theValue, false));
+      inputTags.val(__f.tagsToVal(theValue, false));
+      inputTags.get(0).__fwRenderValue = __f.tagsToVal(valueForUi,true);
 
-      if (inputTags.__fwEnableChange) {
-        frameWork.triggerEvent(inputTags, 'change');
+      if (inputTags.get(0).__fwEnableChange) {
+        inputTags.trigger('change');
       } else {
-        __f.createTagsUi(inputTags, inputTags.__fwRenderValue, inputText, args);
+        __f.createTagsUi(inputTags, inputTags.get(0).__fwRenderValue, inputText, args);
 
         //ATODO UPDATE SETUP HERE
         //update fake hoes
@@ -1721,12 +1589,12 @@
     ];
     let toReturn = false;
 
-    if (elem.closest('[disabled]') || elem.matches(':disabled')) {
+    if (elem.closest('[disabled]').length || elem.is(':disabled')) {
       toReturn = true;
     }
 
     disableClasses.forEach((classString) => {
-      if (elem.closest(`.${classString}`) && !toReturn) {
+      if (elem.closest(`.${classString}`).length && !toReturn) {
         toReturn = true;
       }
     });
@@ -1734,59 +1602,55 @@
     return toReturn;
   };
 
-  // //lazyload
+  //lazyload
   frameWork.loadImage = (img) => {
-    let imgSrc = img.getAttribute('data-src'),
-      imgSrcset = img.getAttribute('data-srcset');
+    const imgSrc = img.attr('data-src'),
+      imgSrcset = img.attr('data-srcset');
 
-    if (img.matches('img') || img.closest('picture')) {
-      if (__f.strGetFileExtension(imgSrc) == 'svg') {
-        const imgID = img.getAttribute('id') || null;
-        const imgClass = img.getAttribute('class') || null;
-
-        fetch(imgSrc)
-          .then((response) => response.text())
-          .then((markup) => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(markup, 'text/html');
-
-            const svg = doc.querySelector('svg');
-
-            if (svg) {
-              if (typeof imgID !== null) {
-                svg.setAttribute('id', imgID);
-              }
-              if (typeof imgClass !== null) {
-                svg.setAttribute('class', `${imgClass} replaced-svg`);
-              }
-
-              svg.removeAttribute('xmlns:a');
-              img.replaceWith(svg);
+    if (img.is('img') || (img.is('source') && img.closest('picture').length)) {
+      if (__f.strGetFileExtension(img.attr('data-src')) == 'svg') {
+        const imgID = img.attr('id');
+        const imgClass = img.attr('class');
+        $.get(
+          imgSrc,
+          (data) => {
+            const svg = $(data).find('svg');
+            if (typeof imgID !== 'undefined') {
+              svg.attr('id', imgID);
             }
-          });
+            if (typeof imgClass !== 'undefined') {
+              svg.attr('class', `${imgClass} replaced-svg`);
+            }
+            svg.removeAttr('xmlns:a');
+            img.replaceWith(svg);
+          },
+          'xml'
+        );
       } else {
-        img.hasAttribute('data-src') && img.setAttribute('src', imgSrc);
-        img.hasAttribute('data-srcset') && img.setAttribute('srcset', imgSrcset);
+        imgSrc !== 'undefined' && img.attr('src', imgSrc);
+        imgSrcset !== 'undefined' && img.attr('srcset', imgSrcset);
       }
     } else {
-      img.style.backgroundImage = `url(${imgSrc})`;
+      img.css('background-image', `url(${imgSrc})`);
     }
-    img.classList.add('lazy-loaded');
+
+    img.addClass('lazy-loaded');
   };
 
   frameWork.loadImages = (images) => {
-    document.documentElement.classList.remove('lazy-completed');
-    document.documentElement.classList.add('lazy-in-progress');
+    $('html').removeClass('lazy-completed');
+    $('html').addClass('lazy-in-progress');
     //css images
     // images
-    images = images || document.querySelectorAll('*[data-src]');
+    images = images || $('*[data-src]');
 
-    images.forEach((img) => {
-      frameWork.loadImage(img);
+    images.each((i, elm) => {
+      frameWork.loadImage($(elm));
     });
 
-    document.documentElement.classList.remove('lazy-in-progress');
-    document.documentElement.classList.add('lazy-completed');
+    //css images
+    $('html').removeClass('lazy-in-progress');
+    $('html').addClass('lazy-completed');
   };
 
   frameWork.settings.lazyLoad && __f.fns_on_ready.push(frameWork.loadImages);
@@ -1794,21 +1658,21 @@
   frameWork.createToolTip = (triggerer) => {
     if (triggerer) {
       frameWork.destroyToolTip();
-      frameWork.toolTip = frameWork.toolTip || {};
+      frameWork.toolTip = {};
 
       const arr = {
-        placement: triggerer.getAttribute('data-tooltip-placement'),
-        badge: triggerer.getAttribute('data-tooltip-badge'),
-        badgeBg: triggerer.getAttribute('data-tooltip-badge-background'),
-        badgeSize: triggerer.getAttribute('data-tooltip-badge-size'),
-        content: triggerer.getAttribute('data-tooltip-content'),
-        classes: triggerer.getAttribute('data-tooltip-classes'),
-        centerX: triggerer.getAttribute('data-tooltip-center-x'),
-        centerY: triggerer.getAttribute('data-tooltip-center-y'),
-        x: triggerer.getAttribute('data-tooltip-x'),
-        y: triggerer.getAttribute('data-tooltip-y'),
-        width: triggerer.getAttribute('data-tooltip-width'),
-        allowInteraction: triggerer.getAttribute('data-tooltip-allow-interaction'),
+        placement: triggerer.attr('data-tooltip-placement'),
+        badge: triggerer.attr('data-tooltip-badge'),
+        badgeBg: triggerer.attr('data-tooltip-badge-background'),
+        badgeSize: triggerer.attr('data-tooltip-badge-size'),
+        content: triggerer.attr('data-tooltip-content'),
+        classes: triggerer.attr('data-tooltip-classes'),
+        centerX: triggerer.attr('data-tooltip-center-x'),
+        centerY: triggerer.attr('data-tooltip-center-y'),
+        x: triggerer.attr('data-tooltip-x'),
+        y: triggerer.attr('data-tooltip-y'),
+        width: triggerer.attr('data-tooltip-width'),
+        allowInteraction: triggerer.attr('data-tooltip-allow-interaction'),
       };
 
       const defaults = {
@@ -1820,54 +1684,62 @@
         content: '<em class="color-neutral tooltip-placeholder">No info...</em>',
         centerX: false,
         centerY: false,
-        x: false,
-        y: false,
         width: null,
         allowInteraction: false,
       };
 
       const args = __f.parseArgs(arr, defaults);
 
-      const toolTip = document.createElement('div');
-      document.querySelector('body').appendChild(toolTip);
+      $('body').append(() => {
+        let html = `<div
+						class="tooltip
+							tooltip-${args.placement}
+							${args.width ? 'tooltip-has-custom-width' : ''}
+							${args.allowInteraction ? `tooltip-allow-interaction` : ''}"
+						${args.width ? ` style="width:${args.width};"` : ''}
+						>`;
 
-      toolTip.className = `tooltip tooltip-${args.placement}
-					${args.width ? 'tooltip-has-custom-width' : ''}
-					${args.allowInteraction ? 'tooltip-allow-interaction' : ''}`;
+        if (args.badge) {
+          html += `<span class="badge tooltip-badge`;
+          if (args.badgeSize == 'small' || args.badgeSize == 'large') {
+            html += ` badge-${args.badgeSize}`;
+          }
 
-      if (args.width) {
-        toolTip.style.width = args.width;
-      }
+          if (__f.palette.includes(args.badgeBg)) {
+            html += ` badge-${args.badgeBg}`;
+          } else {
+            html += `" style="background-color:${args.badgeBg};`;
+          }
 
-      let ttHtml = '';
-
-      if (args.badge) {
-        ttHtml += `<span class="badge tooltip-badge`;
-        if (args.badgeSize == 'small' || args.badgeSize == 'large') {
-          ttHtml += ` badge-${args.badgeSize}`;
+          html += `"></span>`;
         }
 
-        if (__f.palette.includes(args.badgeBg)) {
-          ttHtml += ` badge-${args.badgeBg}`;
-        } else {
-          ttHtml += `" style="background-color:${args.badgeBg};`;
-        }
+        html += `<div class="tooltip-content ${args.classes}">${args.content}</div></div>`;
 
-        ttHtml += `"></span>`;
-      }
+        return html;
+      });
 
-      ttHtml += `<div class="tooltip-content ${args.classes}">${args.content}</div></div>`;
-
-      toolTip.innerHTML += ttHtml;
+      const toolTip = $('body').children('.tooltip:last-child').first();
 
       frameWork.toolTip.current = toolTip;
       frameWork.toolTip.activeTriggerer = triggerer;
       frameWork.toolTip.args = args;
 
-      toolTip.classList.add('active');
+      toolTip.show();
+      toolTip.addClass('active');
 
       frameWork.positionToolTip();
     }
+  };
+
+  frameWork.destroyToolTip = () => {
+    if (frameWork.toolTip) {
+      if (frameWork.toolTip.current) {
+        frameWork.toolTip.current.remove();
+      }
+    }
+
+    delete frameWork.toolTip;
   };
 
   //return origitit
@@ -1880,10 +1752,10 @@
 
       if (triggerer) {
         let triggererProps = {
-          top: triggerer.getBoundingClientRect().top + window.pageYOffset,
-          left: triggerer.getBoundingClientRect().left + window.pageXOffset,
-          height: triggerer.getBoundingClientRect().height,
-          width: triggerer.getBoundingClientRect().width,
+          top: triggerer.offset().top,
+          left: triggerer.offset().left,
+          height: triggerer.outerHeight(),
+          width: triggerer.outerWidth(),
         };
 
         triggererOrigin = {
@@ -1934,16 +1806,6 @@
     }
   };
 
-  frameWork.destroyToolTip = () => {
-    if (frameWork.toolTip) {
-      if (frameWork.toolTip.current) {
-        frameWork.toolTip.current.parentNode.removeChild(frameWork.toolTip.current);
-      }
-
-      delete frameWork.toolTip;
-    }
-  };
-
   //only use when the tooltip is finally active
   frameWork.positionToolTip = (posX, posY) => {
     if (frameWork.toolTip) {
@@ -1961,7 +1823,7 @@
       posY = posY || (triggererOrigin && triggererOrigin.y());
 
       let toolPoint = parseFloat(
-        window.getComputedStyle(toolTip, ':before').getPropertyValue('width')
+        window.getComputedStyle(toolTip[0], ':before').getPropertyValue('width')
       );
 
       //check if we can sqrt it
@@ -1969,11 +1831,11 @@
       isNaN(toolPoint) && (toolPoint = 15);
 
       let toolTipProps = {
-        height: toolTip.getBoundingClientRect().height,
-        width: toolTip.getBoundingClientRect().width,
+        height: toolTip.outerHeight(),
+        width: toolTip.outerWidth(),
       };
 
-      const toolTipBadge = toolTip.querySelector('.tooltip-badge');
+      const toolTipBadge = toolTip.find('.tooltip-badge').first();
 
       let off = {
         x: () => {
@@ -1989,11 +1851,14 @@
               break;
           }
 
-          if (toolTipBadge && (args.placement == 'left' || args.placement == 'right')) {
+          if (
+            toolTipBadge.length > 0 &&
+            (args.placement == 'left' || args.placement == 'right')
+          ) {
             badgeOffset =
               args.placement == 'left'
-                ? toolTipBadge.getBoundingClientRect().width * -0.5
-                : toolTipBadge.getBoundingClientRect().width * 0.5;
+                ? toolTipBadge.outerWidth() * -0.5
+                : toolTipBadge.outerWidth() * 0.5;
           }
 
           toReturn += badgeOffset;
@@ -2014,11 +1879,14 @@
               break;
           }
 
-          if (toolTipBadge && (args.placement == 'top' || args.placement == 'bottom')) {
+          if (
+            toolTipBadge.length > 0 &&
+            (args.placement == 'top' || args.placement == 'bottom')
+          ) {
             badgeOffset =
               args.placement == 'top'
-                ? toolTipBadge.getBoundingClientRect().height * -0.5
-                : toolTipBadge.getBoundingClientRect().height * 0.5;
+                ? toolTipBadge.outerHeight() * -0.5
+                : toolTipBadge.outerHeight() * 0.5;
           }
 
           toReturn += badgeOffset;
@@ -2027,10 +1895,12 @@
         },
       };
 
-      toolTip.style.left = posX + off.x() + 'px';
-      toolTip.style.top = posY + off.y() + 'px';
-      // toolTip.style.left = (posX)+'px';
-      // toolTip.style.top = (posY) +'px';
+      toolTip.css({
+        left: posX + off.x(),
+        top: posY + off.y(),
+        // 'left': posX,
+        // 'top': posY
+      });
     }
   };
   __f.fns_on_scroll.push(frameWork.positionToolTip);
@@ -2051,35 +1921,35 @@
     if (contentWrap && subcom) {
       const arr = {
         resize:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-resize`)) ||
-          contentWrap.getAttribute(`data-${subcom}-resize`),
+          (triggerer && triggerer.attr(`data-${subcom}-resize`)) ||
+          contentWrap.attr(`data-${subcom}-resize`),
         changeHash:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-change-hash`)) ||
-          contentWrap.getAttribute(`data-${subcom}-change-hash`),
+          (triggerer && triggerer.attr(`data-${subcom}-change-hash`)) ||
+          contentWrap.attr(`data-${subcom}-change-hash`),
         header:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-title`)) ||
-          contentWrap.getAttribute(`data-${subcom}-title`),
+          (triggerer && triggerer.attr(`data-${subcom}-title`)) ||
+          contentWrap.attr(`data-${subcom}-title`),
         close:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-close`)) ||
-          contentWrap.getAttribute(`data-${subcom}-close`),
+          (triggerer && triggerer.attr(`data-${subcom}-close`)) ||
+          contentWrap.attr(`data-${subcom}-close`),
         disableOverlay:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-disable-overlay`)) ||
-          contentWrap.getAttribute(`data-${subcom}-disable-overlay`),
+          (triggerer && triggerer.attr(`data-${subcom}-disable-overlay`)) ||
+          contentWrap.attr(`data-${subcom}-disable-overlay`),
         width:
-          contentWrap.getAttribute(`data-${subcom}-width`) ||
-          (triggerer && triggerer.getAttribute(`data-${subcom}-width`)),
+          (triggerer && triggerer.attr(`data-${subcom}-width`)) ||
+          contentWrap.attr(`data-${subcom}-width`),
         callback:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-callback`)) ||
-          contentWrap.getAttribute(`data-${subcom}-callback`),
+          (triggerer && triggerer.attr(`data-${subcom}-callback`)) ||
+          contentWrap.attr(`data-${subcom}-callback`),
         classes:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-classes`)) ||
-          contentWrap.getAttribute(`data-${subcom}-classes`),
+          (triggerer && triggerer.attr(`data-${subcom}-classes`)) ||
+          contentWrap.attr(`data-${subcom}-classes`),
         closeClasses:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-close-classes`)) ||
-          contentWrap.getAttribute(`data-${subcom}-close-classes`),
+          (triggerer && triggerer.attr(`data-${subcom}-close-classes`)) ||
+          contentWrap.attr(`data-${subcom}-close-classes`),
         align:
-          (triggerer && triggerer.getAttribute(`data-${subcom}-align`)) ||
-          contentWrap.getAttribute(`data-${subcom}-align`),
+          (triggerer && triggerer.attr(`data-${subcom}-align`)) ||
+          contentWrap.attr(`data-${subcom}-align`),
       };
 
       const defaults = {
@@ -2100,8 +1970,6 @@
 
       const actualId = `${frameWork.settings.prefix}-${subcom}`;
 
-      // console.log(contentWrap,arr,defaults,args);
-
       switch (subcom) {
         case 'modal':
           args.align = false;
@@ -2110,32 +1978,32 @@
           break;
       }
 
-      const id = contentWrap.getAttribute('id') || actualId;
+      const id = contentWrap.attr('id') || actualId;
 
       id !== `${actualId}` && args.changeHash && __f.changeHash(id);
 
-      const modal = document.createElement('div');
-      document.querySelector('body').appendChild(modal);
-      modal.className = `${frameWork.settings.prefix}-modal-component
-					${subcom}-wrapper
-					${args.classes}
-					${args.align ? `${subcom}-${args.align}` : ''}`;
-      modal.setAttribute('id', actualId);
+      $('body').append(() => {
+        let html = '';
 
-      let html = '';
+        html += `<div id="${actualId}"
+							class="${frameWork.settings.prefix}-modal-component
+							${subcom}-wrapper
+							${args.classes}
+							${args.align ? `${subcom}-${args.align}` : ''}
+						">`;
 
-      //overlay
-      html += `<a href="#"
-							class="
-								${subcom}-close-overlay"
-								${args.disableOverlay == false ? `data-toggle="${subcom}-close"` : ''}
-						></a>`;
+        //overlay
+        html += `<a href="#"
+								class="
+									${subcom}-close-overlay"
+									${args.disableOverlay == false ? `data-toggle="${subcom}-close"` : ''}
+							></a>`;
 
-      switch (subcom) {
-        case 'board':
-          html += `<div class="${subcom}-button-wrapper">`;
-          if (args.close !== false) {
-            html += `<a href="#"
+        switch (subcom) {
+          case 'board':
+            html += `<div class="${subcom}-button-wrapper">`;
+            if (args.close !== false) {
+              html += `<a href="#"
 											class="
 												${subcom}-close ${subcom}-button
 												${args.closeClasses ? args.closeClasses : `${subcom}-button-default`}"
@@ -2143,10 +2011,10 @@
 										>
 											<i class="symbol symbol-close "></i>
 										</a>`;
-          }
+            }
 
-          if (args.resize !== false && args.width) {
-            html += `<a
+            if (args.resize !== false && args.width) {
+              html += `<a
 											class="
 												${subcom}-resize ${subcom}-button
 												${args.resizeClasses ? args.resizeClasses : `${subcom}-button-default`}"
@@ -2155,54 +2023,63 @@
 											<i class="symbol symbol-arrow-tail-left "></i>
 											<i class="symbol symbol-arrow-tail-right "></i>
 										</a>`;
-          }
-          html += `</div>`;
+            }
+            html += `</div>`;
 
-          html += `<div class="${subcom}-popup">`;
+            html += `<div class="${subcom}-popup">`;
 
-          if (args.header) {
-            html += `<div class="${subcom}-header">
+            if (args.header) {
+              html += `<div class="${subcom}-header">
 												<h1 class="${subcom}-title">${decodeURIComponent(args.header)}</h1>
 											</div>`;
-          }
+            }
 
-          html += `<div class="${subcom}-popup-content"></div>`;
+            html += `<div class="${subcom}-popup-content"></div>`;
 
-          html += `</div>`;
+            html += `</div>`;
 
-          break;
+            break;
 
-        case 'modal':
-          html += `<div class="${subcom}-popup">`;
+          case 'modal':
+            html += `<div class="${subcom}-popup">`;
 
-          if (args.header) {
-            html += `<div class="${subcom}-header">
+            if (args.header) {
+              html += `<div class="${subcom}-header">
 											<h1 class="${subcom}-title">${decodeURIComponent(args.header)}</h1>
 										</div>`;
-          }
+            }
 
-          if (args.close !== false) {
-            html += `<a href="#"
+            if (args.close !== false) {
+              html += `<a href="#"
 											class="${subcom}-close ${args.closeClasses}"
 											data-toggle="${subcom}-close"
 										>
 											<i class="symbol symbol-close "></i>
 										</a>`;
-          }
+            }
 
-          html += `<div class="${subcom}-popup-content"></div>`;
+            html += `<div class="${subcom}-popup-content"></div>`;
 
-          html += `</div>`;
+            html += `</div>`;
 
-          break;
-      }
+            break;
+        }
 
-      modal.innerHTML = html;
+        html += `</div>`;
 
-      frameWork.moveContents(
-        contentWrap,
-        modal.querySelector(`.${subcom}-popup-content`)
-      );
+        return html;
+      });
+
+      const modal = $('body').children(`.${subcom}-wrapper`).first();
+
+      contentWrap
+        .contents()
+        .appendTo(
+          $('body')
+            .children(`.${subcom}-wrapper`)
+            .find(`.${subcom}-popup-content`)
+            .first()
+        );
 
       if (args.width) {
         frameWork.resizeModal(subcom, args.width, modal, args);
@@ -2215,8 +2092,9 @@
       frameWork[subcom].current = contentWrap;
       frameWork[subcom].args = args;
 
-      modal.classList.add('active');
-      document.body.classList.add('body-no-scroll');
+      modal.fadeIn();
+      modal.addClass('active');
+      $('body').addClass('body-no-scroll');
 
       frameWork.checkOnModal(subcom);
     }
@@ -2226,23 +2104,19 @@
     subcom = subcom || 'modal';
 
     const args = frameWork[subcom].args || {};
-    const modal = document.getElementById(`${frameWork.settings.prefix}-${subcom}`);
+    const modal = $(`#${frameWork.settings.prefix}-${subcom}`);
 
-    if (modal) {
+    if (modal.length) {
       // buttons
       // resize
-      const currentWidth = modal.querySelector(`.${subcom}-popup`).clientWidth;
+      const currentWidth = modal.find(`.${subcom}-popup`)[0].clientWidth;
 
-      const resizeBtn = modal.querySelectorAll(`*[data-toggle="${subcom}-resize"]`);
+      const resizeBtn = modal.find(`*[data-toggle="${subcom}-resize"]`);
 
-      if (resizeBtn && currentWidth < parseInt(args.width)) {
-        resizeBtn.forEach((butt) => {
-          butt.classList.add('disabled');
-        });
+      if (resizeBtn.length && currentWidth < parseInt(args.width)) {
+        resizeBtn.addClass('disabled');
       } else {
-        resizeBtn.forEach((butt) => {
-          butt.classList.remove('disabled');
-        });
+        resizeBtn.removeClass('disabled');
       }
     }
   };
@@ -2250,20 +2124,16 @@
 
   frameWork.resizeModal = (subcom, width, modal, args) => {
     subcom = subcom || 'modal';
-    modal = modal || document.getElementById(`${frameWork.settings.prefix}-${subcom}`);
+    modal = modal || $(`#${frameWork.settings.prefix}-${subcom}`);
     args = args || frameWork[subcom].args || {};
     width = width || args.width || null;
 
-    if (modal && parseInt(width) >= parseInt(args.width)) {
+    if (modal.length && parseInt(width) >= parseInt(args.width)) {
       //all
-      if (modal.querySelector(`.${subcom}-popup`)) {
-        modal.querySelector(`.${subcom}-popup`).style.width = width;
-      }
+      modal.find(`.${subcom}-popup`).css('width', width);
 
       //bboard
-      if (modal.querySelector(`.${subcom}-button-wrapper`)) {
-        modal.querySelector(`.${subcom}-button-wrapper`).style.width = width;
-      }
+      modal.find(`.${subcom}-button-wrapper`).css('width', width);
     }
   };
 
@@ -2275,39 +2145,33 @@
 
     if (
       removeHash &&
-      frameWork[subcom].current.hasAttribute('id') &&
-      frameWork[subcom].current.getAttribute('id') ==
-        window.location.hash.replace('#', '')
+      frameWork[subcom].current.attr('id') &&
+      frameWork[subcom].current.attr('id') == window.location.hash.replace('#', '')
     ) {
       canRemoveHash = true;
     }
 
-    const modal = document.querySelector(`.${subcom}-wrapper`);
-    if (modal) {
-      frameWork.moveContents(
-        modal.querySelector(`.${subcom}-popup-content`),
-        frameWork[subcom].current
-      );
+    $('body')
+      .children(`.${subcom}-wrapper`)
+      .find(`.${subcom}-popup-content`)
+      .first()
+      .contents()
+      .appendTo(frameWork[subcom].current);
 
-      modal.classList.remove('active');
-      modal.parentNode.removeChild(modal);
-    }
+    $('body').children(`.${subcom}-wrapper`).fadeOut().removeClass('active').remove();
 
     frameWork[subcom].current = false;
     frameWork[subcom].args = false;
 
     const validSubcoms = ['modal', 'board'];
     let removeBodClass = true;
+
     validSubcoms.forEach((sc) => {
-      if (
-        document.getElementById(`${frameWork.settings.prefix}-${sc}`) &&
-        removeBodClass == true
-      ) {
+      if ($(`#${frameWork.settings.prefix}-${sc}`).length && removeBodClass == true) {
         removeBodClass = false;
       }
     });
-
-    removeBodClass && document.body.classList.remove('body-no-scroll');
+    removeBodClass && $('body').removeClass('body-no-scroll');
 
     canRemoveHash && __f.changeHash('');
   };
@@ -2333,47 +2197,28 @@
     triggerer = triggerer || false;
     mode = mode || ''; //on,off,toggle or init probably
 
-    const toggleSwitchBlock = (switchWrapper) => {
-      if (switchWrapper.classList.contains('switch-to-off')) {
-        switchWrapper.classList.remove('switch-to-off');
-        switchWrapper.classList.add('switch-to-on');
-      } else {
-        switchWrapper.classList.remove('switch-to-on');
-        switchWrapper.classList.add('switch-to-off');
-      }
-    };
-
     if (triggerer) {
       const switchWrapper = __f.getTheToggled(triggerer, 'switch');
-      if (switchWrapper) {
+      if (switchWrapper.length) {
         switch (mode) {
           case 'on':
-            switchWrapper.classList.remove('switch-to-off');
-            switchWrapper.classList.add('switch-to-on');
+            switchWrapper.removeClass('switch-to-off').addClass('switch-to-on');
             break;
           case 'off':
-            switchWrapper.classList.remove('switch-to-on');
-            switchWrapper.classList.add('switch-to-off');
+            switchWrapper.removeClass('switch-to-on').addClass('switch-to-off');
             break;
           default:
-            toggleSwitchBlock(switchWrapper);
+            switchWrapper.toggleClass('switch-to-off switch-to-on');
             break;
         }
       }
     } else {
       if (mode == 'off') {
-        document
-          .querySelectorAll('.switch:not(.switch-idle)')
-          .forEach((switchWrapper) => {
-            switchWrapper.classList.remove('switch-to-on');
-            switchWrapper.classList.add('switch-to-off');
-          });
+        $('.switch:not(.switch-idle)')
+          .removeClass('switch-to-on')
+          .addClass('switch-to-off');
       } else {
-        document
-          .querySelectorAll('.switch:not(.switch-to-on)')
-          .forEach((switchWrapper) => {
-            switchWrapper.classList.add('switch-to-off');
-          });
+        $('.switch:not(.switch-to-on)').addClass('switch-to-off');
       }
     }
   };
@@ -2383,17 +2228,16 @@
     currentDropdown = currentDropdown || false;
 
     if (currentDropdown) {
-      document.querySelectorAll('.dropdown').forEach((dropdown) => {
-        // frameWork.slideUp( dropdown );
-
-        if (dropdown !== currentDropdown && !dropdown.contains(currentDropdown)) {
-          dropdown.classList.remove('open');
-        }
-      });
+      $('.dropdown')
+        .not(currentDropdown)
+        .each((i, dropdown) => {
+          if (!currentDropdown.closest($(dropdown)).length) {
+            $(dropdown).removeClass('open');
+          }
+        });
     } else {
-      document.querySelectorAll('.dropdown').forEach((dropdown) => {
-        dropdown.classList.remove('open');
-      });
+      //@TODO. wtf jquery
+      $('.dropdown').removeClass('open');
     }
   };
 
@@ -2403,53 +2247,48 @@
 
     if (selector) {
       const width =
-        selector.getAttribute('data-dropdown-width') ||
-        triggerer.getAttribute('data-dropdown-width') ||
+        selector.attr('data-dropdown-width') ||
+        triggerer.attr('data-dropdown-width') ||
         null;
 
       const maxHeight =
-        selector.getAttribute('data-dropdown-max-height') ||
-        triggerer.getAttribute('data-dropdown-max-height') ||
+        selector.attr('data-dropdown-max-height') ||
+        triggerer.attr('data-dropdown-max-height') ||
         null;
 
       if (width) {
-        selector.style.width = width;
+        selector.css('width', width);
       }
 
       if (maxHeight) {
-        selector.style.maxHeight = maxHeight;
+        selector.css('max-height', maxHeight);
       }
 
       if (mode == 'toggle' || mode == 'open') {
-        document.querySelectorAll('*[data-toggle="dropdown"]').forEach((toggler) => {
-          toggler.classList.remove('open');
-        });
+        $('*[data-toggle="dropdown"]').removeClass('open');
 
         frameWork.closeDropdowns(selector);
       }
 
-      if (
-        (selector.classList.contains('open') && mode == 'toggle') ||
-        mode == 'close'
-      ) {
-        selector.classList.remove('open');
-      } else if (
-        (!selector.classList.contains('open') && mode == 'toggle') ||
-        mode == 'open'
-      ) {
-        selector.classList.add('open');
+      if ((selector.hasClass('open') && mode == 'toggle') || mode == 'close') {
+        selector.removeClass('open');
+      } else if ((!selector.hasClass('open') && mode == 'toggle') || mode == 'open') {
+        selector.addClass('open');
       }
     }
   };
 
+  //for component helpers that can go deep no matter wat but will always be The Children TM... which sounds incestuous oh god why
   __f.funFnForTrueChildren = (AncestorOfAllElm, selector, parentSelector, fn) => {
     if (AncestorOfAllElm && selector && parentSelector && fn) {
-      let children = AncestorOfAllElm.querySelectorAll(selector);
+      let children = AncestorOfAllElm.find(selector);
 
-      children.forEach((child) => {
+      children.each((i, elm) => {
+        const child = $(elm);
+
         if (
-          child.closest(parentSelector) &&
-          AncestorOfAllElm.isSameNode(child.closest(parentSelector))
+          child.closest(parentSelector).length &&
+          AncestorOfAllElm.is(child.closest(parentSelector))
         ) {
           fn(child);
         }
@@ -2463,27 +2302,27 @@
     const selector = __f.getTheToggled(triggerer, 'accordion');
 
     if (selector) {
-      let accClassAns = selector.parentNode.closest('.accordion,.accordion-group');
+      let accClassAns = selector.parent().closest('.accordion-group,.accordion');
 
       //has to actually be accordion-group closest before accordion
       if (
-        !accClassAns ||
-        (accClassAns && !accClassAns.classList.contains('accordion-group'))
+        !accClassAns.length ||
+        (accClassAns.length && !accClassAns.hasClass('accordion-group'))
       ) {
         accClassAns = false;
       }
 
-      if (accClassAns && !accClassAns.matches('.accordion-group-multiple')) {
+      if (accClassAns && !accClassAns.is('.accordion-group-multiple')) {
         __f.funFnForTrueChildren(
           accClassAns,
           '[data-toggle="accordion"],.accordion',
           '.accordion-group',
           (accBbies) => {
             if (
-              (triggerer && accBbies !== triggerer && accBbies !== selector) ||
-              (!triggerer && accBbies !== selector)
+              (triggerer && !accBbies.is(triggerer) && !accBbies.is(selector)) ||
+              (!triggerer && !accBbies.is(selector))
             ) {
-              accBbies.classList.remove('open');
+              accBbies.removeClass('open');
             }
           }
         );
@@ -2492,15 +2331,15 @@
       //only work on accordion-mobile on mobile breakpoints or accordion bois on everiything watwat?? english is confusing
       if (
         !(
-          selector.classList.contains('accordion-mobile') &&
+          selector.hasClass('accordion-mobile') &&
           !frameWork.validateBr(__f.br_mobile_max, 'below')
         )
       ) {
         if (triggerer) {
           const arr = {
             changeHash:
-              (triggerer && triggerer.getAttribute('data-accordion-change-hash')) ||
-              selector.getAttribute('data-accordion-change-hash'),
+              (triggerer && triggerer.attr('data-accordion-change-hash')) ||
+              selector.attr('data-accordion-change-hash'),
           };
 
           const defaults = {
@@ -2509,76 +2348,73 @@
 
           const args = __f.parseArgs(arr, defaults);
 
-          if (
-            selector.classList.contains('open') &&
-            triggerer.classList.contains('open')
-          ) {
+          if (selector.hasClass('open') || triggerer.hasClass('open')) {
             if (
               !accClassAns ||
-              (accClassAns &&
-                !accClassAns.classList.contains('accordion-group-no-close'))
+              (accClassAns.length && !accClassAns.hasClass('accordion-group-no-close'))
             ) {
-              // frameWork.slideUp(selector);
-              triggerer.classList.remove('open');
-              selector.classList.remove('open');
+              // selector.slideUp();
+              triggerer.removeClass('open');
+              selector.removeClass('open');
 
-              if (args.changeHash && selector.hasAttribute('id')) {
+              if (args.changeHash && selector.attr('id')) {
                 __f.changeHash('');
               }
             }
           } else {
-            // frameWork.slideDown(selector);
-            triggerer.classList.add('open');
-            selector.classList.add('open');
+            // selector.slideDown();
+            triggerer.addClass('open');
+            selector.addClass('open');
 
-            if (args.changeHash && selector.hasAttribute('id')) {
-              __f.changeHash(selector.getAttribute('id'));
+            if (args.changeHash && selector.attr('id')) {
+              __f.changeHash(selector.attr('id'));
             }
           }
         } else {
-          const probablyToggle = document.querySelectorAll(
-            `[data-toggle="accordion"][href="#${selector.getAttribute('id')}"],
-							[data-toggle="accordion"][data-href="#${selector.getAttribute('id')}"]`
+          const probablyToggle = $(
+            `[data-toggle="accordion"][href="#${selector.attr('id')}"],
+							[data-toggle="accordion"][data-href="#${selector.attr('id')}"]`
           );
 
-          selector.classList.add('open');
-          probablyToggle.forEach((toggle) => {
-            toggle.classList.add('open');
-          });
+          // //fallback in case true child shit doesnt find shit
+          // probablyToggle
+          // 	.siblings('[data-toggle="accordion"]')
+          // 	.removeClass('open');
+          // probablyToggle
+          // 	.closest('.accordion-group')
+          // 	.children('[data-toggle="accordion"]')
+          // 	.removeClass('open');
 
-          window.scrollTo({
-            top: selector.getBoundingClientRect().top + window.pageYOffset,
-            left: selector.getBoundingClientRect().top + window.pageXOffset,
-            behavior: 'smooth',
-          });
+          selector.addClass('open');
+          probablyToggle.addClass('open');
+
+          $([document.documentElement, document.body]).animate(
+            { scrollTop: selector.offset().top },
+            500
+          );
         }
       }
     }
   };
 
   frameWork.readyGrids = () => {
-    const grids = document.querySelectorAll('.module-grid:not(.module-grid-custom)');
-    grids.forEach((grid) => {
-      frameWork.initGrid(grid);
+    $('.module-grid:not(.module-grid-custom)').each((i, grid) => {
+      frameWork.initGrid($(grid));
     });
   };
   __f.fns_on_ready.push(frameWork.readyGrids);
   __f.fns_on_resize.push(frameWork.readyGrids);
 
   frameWork.readyCalendar = () => {
-    const calendars = document.querySelectorAll('.input-calendar');
-
-    calendars.forEach((calendar) => {
-      frameWork.updateCalendar(calendar);
+    $('.input-calendar').each((i, calendar) => {
+      frameWork.updateCalendar($(calendar));
     });
   };
   __f.fns_on_ready.push(frameWork.readyCalendar);
 
   frameWork.readyTags = () => {
-    const inputTags = document.querySelectorAll('.input-tags');
-
-    inputTags.forEach((input) => {
-      frameWork.updateTags(input);
+    $('.input-tags').each((i, input) => {
+      frameWork.updateTags($(input));
     });
   };
   __f.fns_on_load.push(frameWork.readyTags);
@@ -2586,19 +2422,19 @@
 
   frameWork.initcomponentsEvents = () => {
     //hash events
-    window.addEventListener('hashchange', () => {
+    $(window).on('hashchange', () => {
       frameWork.settings.initializeModal && frameWork.createModal();
-      frameWork.settings.initializeModal && frameWork.createBoard();
+      frameWork.settings.initializeBoard && frameWork.createBoard();
       frameWork.settings.initializeAccordion && frameWork.toggleAccordion();
     });
 
     //windu events
-    window.addEventListener('resize', frameWork.runResize);
+    $(window).on('resize', frameWork.runResize);
 
-    window.addEventListener('scroll', frameWork.runScroll);
+    $(window).on('scroll', '*', frameWork.runScroll);
 
     //key events
-    document.documentElement.addEventListener('keydown', (e) => {
+    $('html').on('keydown', (e) => {
       switch (e.keyCode) {
         //shift
         case 16:
@@ -2619,7 +2455,7 @@
       }
     });
 
-    document.documentElement.addEventListener('keyup', (e) => {
+    $('html').on('keyup', (e) => {
       setTimeout(() => {
         switch (e.keyCode) {
           //shift
@@ -2642,420 +2478,362 @@
       }, 100);
     });
 
-    //component events
-    frameWork.addEvent(document.documentElement, 'change', '.input-calendar', (e) => {
+    $('html').on('change', '.input-calendar', (e) => {
       e.target.__fwEnableChange = false;
-      frameWork.updateCalendar(e.target);
+      frameWork.updateCalendar($(e.target));
     });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      'a.input-calendar-ui-date',
-      (e) => {
-        const triggerer = e.target;
+    //component events
+    $('html').on('click', 'a.input-calendar-ui-date', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-        if (!frameWork.isDisabled(triggerer)) {
-          const inputCalendar = triggerer
-            .closest('.input-calendar-ui')
-            .querySelector('.input-calendar');
+      if (!frameWork.isDisabled(triggerer)) {
+        const inputCalendar = triggerer
+          .closest('.input-calendar-ui')
+          .find('.input-calendar')
+          .first();
 
-          if (inputCalendar) {
-            frameWork.updateCalendar(
-              inputCalendar,
-              e.target.getAttribute('data-value'),
-              null
-            );
-          }
+        if (inputCalendar.length > -1) {
+          inputCalendar.get(0).__fwEnableChange = true;
+          frameWork.updateCalendar(inputCalendar, triggerer.attr('data-value'), null);
         }
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'click',
       'a.input-calendar-ui-navigation, .input-calendar-ui-month',
       (e) => {
-        const triggerer = e.target;
+        const triggerer = $(e.target);
 
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
 
         if (!frameWork.isDisabled(triggerer)) {
           const inputCalendar = triggerer
             .closest('.input-calendar-ui')
-            .querySelector('.input-calendar');
+            .find('.input-calendar')
+            .first();
 
-          if (inputCalendar) {
-            inputCalendar.__fwEnableChange = true;
-            frameWork.updateCalendar(
-              inputCalendar,
-              null,
-              e.target.getAttribute('data-value')
-            );
+          if (inputCalendar.length > -1) {
+            frameWork.updateCalendar(inputCalendar, null, triggerer.attr('data-value'));
           }
         }
       }
     );
 
-    frameWork.addEvent(
-      document.documentElement,
-      'keyup',
-      '.input-calendar-ui-input input',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('keyup', '.input-calendar-ui-input input', (e) => {
+      const triggerer = $(e.target);
 
-        if (frameWork.isDisabled(triggerer)) {
-          e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+
+      if (frameWork.isDisabled(triggerer)) {
+        e.preventDefault();
+      } else {
+        const inputCalendar = triggerer
+          .closest('.input-calendar-ui')
+          .find('.input.input-calendar');
+
+        const uiInput = triggerer.val();
+        if (uiInput.match(/^\d{2}$/) !== null) {
+          triggerer.val(`${uiInput}/`);
+        } else if (uiInput.match(/^\d{2}\/\d{2}$/) !== null) {
+          triggerer.val(`${uiInput}/`);
+        }
+
+        let preParsedVal,
+          enableChange,
+          renderValue = inputCalendar.get(0).__fwRenderValue;
+
+        if (uiInput) {
+          const pattern = new RegExp(__f.datetimeFormatPresets.HumanDate.pattern);
+          const isValid = pattern.test(uiInput);
+
+          if (inputCalendar && isValid) {
+            const theValue = uiInput.split('/');
+
+            const y = theValue[2] || '';
+            const m = theValue[0] || '';
+            const d = theValue[1] || '';
+
+            const preParsedVal = `${y}-${m}-${d}`;
+            renderValue = preParsedVal;
+          }
         } else {
-          const inputCalendar = e.target
-            .closest('.input-calendar-ui')
-            .querySelector('.input.input-calendar');
+          //blank. letterrrippp
+          preParsedVal = '';
+          enableChange = true;
+        }
 
-          const uiInput = e.target.value;
-          if (uiInput.match(/^\d{2}$/) !== null) {
-            e.target.value = `${uiInput}/`;
-          } else if (uiInput.match(/^\d{2}\/\d{2}$/) !== null) {
-            e.target.value = `${uiInput}/`;
-          }
+        if (enableChange) {
+          inputCalendar.get(0).__fwEnableChange = true;
+        }
 
-          let preParsedVal,
-            enableChange,
-            renderValue = inputCalendar.__fwRenderValue;
-
-          if (uiInput) {
-            const pattern = new RegExp(__f.datetimeFormatPresets.HumanDate.pattern);
-            const isValid = pattern.test(uiInput);
-
-            if (inputCalendar && isValid) {
-              const theValue = uiInput.split('/');
-
-              const y = theValue[2] || '';
-              const m = theValue[0] || '';
-              const d = theValue[1] || '';
-
-              const preParsedVal = `${y}-${m}-${d}`;
-              renderValue = preParsedVal;
-            }
-          } else {
-            //blank. letterrrippp
-            preParsedVal = '';
-            enableChange = true;
-          }
-
-          if (enableChange) {
-            inputCalendar__fwEnableChange = true;
-          }
-
-          if (typeof preParsedVal !== 'undefined') {
-            frameWork.updateCalendar(inputCalendar, preParsedVal);
-          }
+        if (typeof preParsedVal !== 'undefined') {
+          frameWork.updateCalendar(inputCalendar, preParsedVal);
         }
       }
-    );
-
-    frameWork.addEvent(document.documentElement, 'change', '.input-tags', (e) => {
-      e.target.__fwEnableChange = false;
-      frameWork.updateTags(e.target);
     });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'paste',
-      '.input-tags-ui .input-tags-ui-input',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('change', '.input-tags', (e) => {
+      e.target.__fwEnableChange = false;
+      frameWork.updateTags($(e.target));
+    });
 
-        e.preventDefault();
+    $('html').on('paste', '.input-tags-ui .input-tags-ui-input', (e) => {
+      const triggerer = $(e.target);
 
-        if (!frameWork.isDisabled(triggerer)) {
-          const pasted =
-            e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-          triggerer.innerHTML =
-            (triggerer.innerHTML ? triggerer.innerHTML : '') + pasted.getData('text');
+      if (!frameWork.isDisabled(triggerer)) {
+        const pasted =
+          e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
 
-          triggerer.blur();
-        }
+        triggerer.html(triggerer.html() + pasted.getData('text'));
+
+        triggerer.blur();
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '.input-tags-ui .input-tags-ui-input',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '.input-tags-ui .input-tags-ui-input', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-        if (!frameWork.isDisabled(triggerer)) {
-          setTimeout(function () {
-            triggerer.focus();
-          }, 0);
-        }
+      if (!frameWork.isDisabled(triggerer)) {
+        setTimeout(function () {
+          triggerer.focus();
+        }, 0);
       }
-    );
+    });
 
     //blur bitch blurr
-    frameWork.addEvent(
-      document.documentElement,
-      'blur',
-      '.input-tags-ui .input-tags-ui-input',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('blur', '.input-tags-ui .input-tags-ui-input', (e) => {
+      const triggerer = $(e.target);
 
-        if (!frameWork.isDisabled(triggerer)) {
-          const inputTags = triggerer
-              .closest('.input-tags-ui')
-              .querySelector('.input-tags'),
-            inputUiIndex = triggerer.getAttribute('data-value'),
-            currValue = __f.tagsToParse(inputTags.value);
+      if (!frameWork.isDisabled(triggerer)) {
+        const inputTags = triggerer.closest('.input-tags-ui').children('.input-tags'),
+          inputUiIndex = triggerer.attr('data-value'),
+          currValue = __f.tagsToParse(inputTags.get('0').__fwRenderValue);
 
-          const updatedTag = triggerer.innerText.trim();
+        const updatedTag = triggerer.text().trim();
 
-          if (inputUiIndex) {
-            currValue.splice(
-              parseInt(inputUiIndex),
-              currValue[inputUiIndex] == updatedTag ? 1 : 0,
-              updatedTag.replace(',', '')
-            );
-            inputTags.__fwEnableChange = true;
-          }
-
-          triggerer.innerText = '';
-
-          // const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
-
-          frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue, false));
+        if (inputUiIndex) {
+          currValue.splice(
+            parseInt(inputUiIndex),
+            currValue[inputUiIndex] == updatedTag ? 1 : 0,
+            updatedTag.replace(',', '')
+          );
+          inputTags.get(0).__fwEnableChange = true;
         }
+
+        triggerer.text('');
+
+        // const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
+
+        frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue,false));
       }
-    );
+    });
 
     //key events on focus bitch
-    frameWork.addEvent(
-      document.documentElement,
-      'keydown',
-      '.input-tags-ui .input-tags-ui-input',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('keydown', '.input-tags-ui .input-tags-ui-input', (e) => {
+      const triggerer = $(e.target);
 
-        if (frameWork.isDisabled(triggerer)) {
-          e.preventDefault();
-        } else {
-          const inputTags = triggerer
-              .closest('.input-tags-ui')
-              .querySelector('.input-tags'),
-            inputUiIndex = triggerer.getAttribute('data-value'),
-            currValue = __f.tagsToParse(inputTags.getAttribute('data-value-ui'));
+      // e.stopPropagation(); //@ADDEDFORTURBO
 
-          let newValue,
-            enableChange,
-            allowFilter = false;
+      if (frameWork.isDisabled(triggerer)) {
+        e.preventDefault();
+      } else {
+        const inputTags = triggerer.closest('.input-tags-ui').children('.input-tags'),
+          inputUiIndex = triggerer.attr('data-value'),
+          currValue = __f.tagsToParse(inputTags.attr('data-value-ui'));
 
-          if (triggerer.innerText) {
-            triggerer.innerText = triggerer.innerText.replace(/\n|\r/g, '\\n');
-          }
+        let newValue,
+          enableChange,
+          allowFilter = false;
 
-          switch (e.keyCode) {
-            //enter
-            case 13:
+        inputTags.text(inputTags.text().replace(/\n|\r/g, '\\n'));
+
+        switch (e.keyCode) {
+          //enter
+          case 13:
+            // e.stopPropagation(); //@ADDEDFORTURBO
+            e.preventDefault();
+            enableChange = true;
+            break;
+
+          //comma
+          case 188:
+            if (!__f.modifierIsActive()) {
+              allowFilter = true;
+              // e.stopPropagation(); //@ADDEDFORTURBO
               e.preventDefault();
+              currValue.splice(
+                parseInt(inputUiIndex),
+                0,
+                triggerer.text().replace(',', '')
+              );
               enableChange = true;
-              break;
 
-            //comma
-            case 188:
-              if (!__f.modifierIsActive()) {
-                allowFilter = true;
-                e.preventDefault();
-                currValue.splice(
-                  parseInt(inputUiIndex),
-                  0,
-                  triggerer.innerText.replace(',', '')
-                );
-                enableChange = true;
+              triggerer.text('');
+            }
+            // currValue.splice()
+            break;
 
-                triggerer.innerText = '';
-              }
-              // currValue.splice()
-              break;
+          //left
+          case 37:
+            if (!triggerer.text()) {
+              // e.stopPropagation(); //@ADDEDFORTURBO
+              e.preventDefault();
+              __f.arrMoveItem(
+                currValue,
+                parseInt(inputUiIndex),
+                parseInt(inputUiIndex) - 1 >= 0 ? parseInt(inputUiIndex) - 1 : 0
+              );
+            }
 
-            //left
-            case 37:
-              if (!triggerer.textContent) {
-                e.preventDefault();
-                __f.arrMoveItem(
-                  currValue,
-                  parseInt(inputUiIndex),
-                  parseInt(inputUiIndex) - 1 >= 0 ? parseInt(inputUiIndex) - 1 : 0
-                );
-              }
+            break;
 
-              break;
+          //right
+          case 39:
+            if (!triggerer.text()) {
+              // e.stopPropagation(); //@ADDEDFORTURBO
+              e.preventDefault();
+              __f.arrMoveItem(
+                currValue,
+                parseInt(inputUiIndex),
+                parseInt(inputUiIndex) + 1 <= currValue.length - 1
+                  ? parseInt(inputUiIndex) + 1
+                  : currValue.length - 1
+              );
+            }
+            break;
 
-            //right
-            case 39:
-              if (!triggerer.textContent) {
-                e.preventDefault();
-                __f.arrMoveItem(
-                  currValue,
-                  parseInt(inputUiIndex),
-                  parseInt(inputUiIndex) + 1 <= currValue.length - 1
-                    ? parseInt(inputUiIndex) + 1
-                    : currValue.length - 1
-                );
-              }
-              break;
+          //backspace
+          case 8:
+            if (!triggerer.text()) {
+              // e.stopPropagation(); //@ADDEDFORTURBO
+              e.preventDefault();
+              allowFilter = true;
+              currValue.splice(parseInt(inputUiIndex) - 1, 1);
+              enableChange = true;
+            }
+            break;
 
-            //backspace
-            case 8:
-              if (!triggerer.textContent) {
-                e.preventDefault();
-                allowFilter = true;
-                currValue.splice(parseInt(inputUiIndex) - 1, 1);
-                enableChange = true;
-              }
-              break;
-
-            //delete
-            case 46:
-              if (!triggerer.textContent) {
-                e.preventDefault();
-                allowFilter = true;
-                currValue.splice(parseInt(inputUiIndex) + 1, 1);
-                enableChange = true;
-              }
-              break;
-          }
-
-          newValue = __f.tagsToVal(currValue);
-
-          if (enableChange) {
-            inputTags.__fwEnableChange = true;
-          }
-
-          frameWork.updateTags(inputTags, allowFilter, newValue);
+          //delete
+          case 46:
+            if (!triggerer.text()) {
+              // e.stopPropagation(); //@ADDEDFORTURBO
+              e.preventDefault();
+              allowFilter = true;
+              currValue.splice(parseInt(inputUiIndex) + 1, 1);
+              enableChange = true;
+            }
+            break;
         }
+
+        newValue = __f.tagsToVal(currValue);
+
+        if (enableChange) {
+          inputTags.get(0).__fwEnableChange = true;
+        }
+
+        frameWork.updateTags(inputTags, allowFilter, newValue);
       }
-    );
+    });
 
     //on click on the text, edit it via input and input should be focused and in place of the tag
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '.input-tags-ui .input-tags-ui-tag-close',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '.input-tags-ui .input-tags-ui-tag-close', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-        const inputTags = triggerer
-          .closest('.input-tags-ui')
-          .querySelector('.input-tags');
+      const inputTags = triggerer.closest('.input-tags-ui').children('.input-tags');
 
-        if (!frameWork.isDisabled(triggerer)) {
-          const tagToRemove = triggerer.getAttribute('data-value'),
-            currValue = __f.tagsToParse(inputTags.getAttribute('data-value-ui'));
-          currValue.splice(parseInt(tagToRemove), 1);
+      if (!frameWork.isDisabled(inputTags)) {
+        const tagToRemove = triggerer.attr('data-value'),
+          currValue = __f.tagsToParse(inputTags.attr('data-value-ui'));
+        currValue.splice(parseInt(tagToRemove), 1);
 
-          const newValue = __f.tagsToVal(currValue);
+        const newValue = __f.tagsToVal(currValue);
 
-          inputTags.__fwEnableChange = true;
-          frameWork.updateTags(inputTags, true, newValue);
+        inputTags.get(0).__fwEnableChange = true;
+        frameWork.updateTags(inputTags, true, newValue);
+      }
+    });
+
+    $('html').on('click', '.input-tags-ui .input-tags-ui-tag-text', (e) => {
+      const triggerer = $(e.target);
+
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
+
+      if (!frameWork.isDisabled(triggerer)) {
+        const tagText = triggerer.text(),
+          inputTags = triggerer.closest('.input-tags-ui').children('.input-tags'),
+          tagToEdit = triggerer.attr('data-value'),
+          currValue = __f.tagsToParse(inputTags.attr('data-value-ui'), false);
+        currValue.splice(parseInt(tagToEdit), 1, __f.tagsInputString);
+
+        const uiValue = __f.tagsToVal(currValue);
+
+        frameWork.updateTags(inputTags, false, null, uiValue, tagText);
+      }
+    });
+
+    $('html').on('click', '*[data-toggle="accordion"]', (e) => {
+      const triggerer = $(e.target);
+
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
+
+      if (!frameWork.isDisabled(triggerer)) {
+        frameWork.toggleAccordion(triggerer, true);
+      }
+    });
+
+    $('html').on('click', '*[data-toggle="alert-close"]', (e) => {
+      const triggerer = $(e.target);
+
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
+
+      if (!frameWork.isDisabled(triggerer)) {
+        const selector = __f.getTheToggled(triggerer, 'alert-close');
+
+        if (selector) {
+          selector.hide().remove();
         }
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '.input-tags-ui .input-tags-ui-tag-text',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '*[data-toggle="alert-close-all"]', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-        if (!frameWork.isDisabled(triggerer)) {
-          const tagText = triggerer.innerText,
-            inputTags = triggerer
-              .closest('.input-tags-ui')
-              .querySelector('.input-tags'),
-            tagToEdit = triggerer.getAttribute('data-value'),
-            currValue = __f.tagsToParse(inputTags.getAttribute('data-value-ui'), false);
-          currValue.splice(parseInt(tagToEdit), 1, __f.tagsInputString);
-
-          const uiValue = __f.tagsToVal(currValue);
-
-          frameWork.updateTags(inputTags, false, null, uiValue, tagText);
-        }
-      }
-    );
-
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="accordion"]',
-      (e) => {
-        const triggerer = e.target;
-
-        e.preventDefault();
-        if (!frameWork.isDisabled(triggerer)) {
-          frameWork.toggleAccordion(triggerer, true);
-        }
-      }
-    );
-
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="alert-close"]',
-      (e) => {
-        const triggerer = e.target;
-
-        e.preventDefault();
-
-        if (!frameWork.isDisabled(triggerer)) {
-          const selector = __f.getTheToggled(triggerer, 'alert-close');
-
-          if (selector) {
-            selector.parentNode.removeChild(selector);
+      if (!frameWork.isDisabled(triggerer)) {
+        $('.alert').each((i, alert) => {
+          if ($(alert).find('[data-toggle="alert-close"]').length) {
+            $(alert).hide().remove();
           }
-        }
+        });
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="alert-close-all"]',
-      (e) => {
-        const triggerer = e.target;
-
-        e.preventDefault();
-
-        if (!frameWork.isDisabled(triggerer)) {
-          const selector = document.querySelectorAll('.alert');
-
-          if (selector.length) {
-            selector.forEach((alert) => {
-              if (alert.querySelectorAll('[data-toggle="alert-close"]').length) {
-                alert.parentNode.removeChild(alert);
-              }
-            });
-          }
-        }
-      }
-    );
-
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'focus',
       `input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiJsClass} [contenteditable]`,
       (e) => {
-        const uiTrigger = e.target;
+        const uiTrigger = $(e.target);
 
         if (frameWork.isDisabled(uiTrigger)) {
           uiTrigger.blur();
@@ -3067,17 +2845,16 @@
             frameWork.setDropdown(selector, triggerer, 'open');
           }
 
-          triggerer.classList.add('focus');
+          triggerer.addClass('focus');
         }
       }
     );
 
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'blur',
       `input[data-toggle="dropdown"], *[contenteditable][data-toggle="dropdown"], .${frameWork.settings.uiJsClass} [contenteditable]`,
       (e) => {
-        const uiTrigger = e.target;
+        const uiTrigger = $(e.target);
 
         if (!frameWork.isDisabled(uiTrigger)) {
           const triggerer = __f.getTheUiTriggerer(uiTrigger);
@@ -3089,18 +2866,18 @@
               frameWork.setDropdown(selector, triggerer, 'close');
             }
           }, 200);
-          triggerer.classList.remove('focus');
+          triggerer.removeClass('focus');
         }
       }
     );
 
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'click',
       `*[data-toggle="dropdown"]:not(input):not([contenteditable]):not(.${frameWork.settings.uiJsClass})`,
       (e) => {
-        const uiTrigger = e.target;
+        const uiTrigger = $(e.target);
 
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
 
         if (!frameWork.isDisabled(uiTrigger)) {
@@ -3108,83 +2885,69 @@
             selector = __f.getTheToggled(triggerer, 'dropdown');
 
           if (selector) {
-            const selectorAncestor = selector.closest('li, .nav-item');
-
             frameWork.setDropdown(selector, triggerer);
 
-            if (selector.classList.contains('open')) {
-              selectorAncestor && selectorAncestor.classList.remove('open');
-              // frameWork.slideUp(selector);
-              triggerer.classList.remove('open');
+            if (selector.hasClass('open')) {
+              // selector.slideUp();
+              triggerer.closest('li, .nav-item').removeClass('open');
+              triggerer.removeClass('open');
             } else {
-              if (selectorAncestor) {
-                const selectorUncles = frameWork
-                  .getSiblings(selectorAncestor)
-                  .filter((sibling) => {
-                    return sibling.matches('li, .nav-item');
-                  });
-                selectorUncles.forEach((sibling) => {
-                  sibling.classList.remove('open');
-                });
-              }
+              //close all the bois
+              $('.dropdown').closest('li, .nav-item').removeClass('open');
 
-              // frameWork.slideDown(selector);
-              triggerer.classList.add('open');
+              $('.dropdown')
+                .closest('li, .nav-item')
+                .find('.dropdown')
+                .removeClass('open');
+              // $('.dropdown').slideUp();
+
+              // selector.slideDown();
+              triggerer.closest('li, .nav-item').addClass('open');
+
+              triggerer.addClass('open');
             }
           }
         }
       }
     );
 
-    frameWork.addEvent(document.documentElement, 'click', '.tab, .tab > *', (e) => {
-      const triggerer = e.target;
+    $('html').on('click', '.tab, .tab > *', (e) => {
+      const triggerer = $(e.target);
+
+      // e.stopPropagation(); //@ADDEDFORTURBO
 
       if (frameWork.isDisabled(triggerer)) {
         e.preventDefault();
       } else {
         const theTab = triggerer.closest('.tab');
 
-        if (theTab) {
-          if (!theTab.classList.contains('active')) {
-            const triggererSiblings = frameWork.getSiblings(theTab);
-            triggererSiblings
-              .filter((sibling) => {
-                return sibling.matches('.tab') || sibling.matches('li');
-              })
-              .forEach((sibling) => {
-                sibling.classList.remove('active');
-              });
-
-            theTab.classList.add('active');
+        if (theTab.length) {
+          if (!theTab.hasClass('active')) {
+            theTab.siblings('.tab, li').removeClass('active');
+            theTab.addClass('active');
           }
         }
       }
     });
 
-    // btn group
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '.btn-group-toggle > .btn',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '.btn-group-toggle > .btn', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-        if (!frameWork.isDisabled(triggerer)) {
-          __f.toggleGroup(triggerer, 'btn');
-        }
+      if (!frameWork.isDisabled(triggerer)) {
+        __f.toggleGroup(triggerer, 'btn');
       }
-    );
+    });
 
-    // btn group
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'click',
       '.list-group-toggle .list-group-item, .list-group-toggle li',
       (e) => {
-        const triggerer = e.target;
+        const triggerer = $(e.target);
 
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
 
         if (!frameWork.isDisabled(triggerer)) {
@@ -3199,53 +2962,40 @@
       }
     );
 
-    //tooltip
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="tooltip-click"]',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '*[data-toggle="tooltip-click"]', (e) => {
+      const triggerer = $(e.target);
 
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
+
+      if (!frameWork.isDisabled(triggerer)) {
+        frameWork.createToolTip(triggerer);
+      }
+    });
+
+    $('html').on('mouseenter', '*[data-toggle="tooltip-hover"]', (e) => {
+      const triggerer = $(e.target);
+
+      // e.stopPropagation(); //@ADDEDFORTURBO
+
+      if (frameWork.isDisabled(triggerer)) {
         e.preventDefault();
-
-        if (!frameWork.isDisabled(triggerer)) {
-          frameWork.createToolTip(triggerer);
-        }
+      } else {
+        frameWork.createToolTip(triggerer);
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'mouseenter',
-      '*[data-toggle="tooltip-hover"]',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('mouseleave', '*[data-toggle="tooltip-hover"]', (e) => {
+      frameWork.destroyToolTip();
+    });
 
-        if (frameWork.isDisabled(triggerer)) {
-          e.preventDefault();
-        } else {
-          frameWork.createToolTip(triggerer);
-        }
-      }
-    );
-
-    frameWork.addEvent(
-      document.documentElement,
-      'mouseleave',
-      '*[data-toggle="tooltip-hover"]',
-      (e) => {
-        frameWork.destroyToolTip();
-      }
-    );
-
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'click',
       '*[data-toggle="modal-open"], *[data-toggle="modal"]',
       (e) => {
-        const triggerer = e.target;
+        const triggerer = $(e.target);
 
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
 
         if (!frameWork.isDisabled(triggerer)) {
@@ -3254,28 +3004,24 @@
       }
     );
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="modal-close"]',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '*[data-toggle="modal-close"]', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
 
-        if (!frameWork.isDisabled(triggerer)) {
-          frameWork.destroyModal(true);
-        }
+      if (!frameWork.isDisabled(triggerer)) {
+        frameWork.destroyModal(true);
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
+    $('html').on(
       'click',
       '*[data-toggle="board-open"], *[data-toggle="board"]',
       (e) => {
-        const triggerer = e.target;
+        const triggerer = $(e.target);
 
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
 
         if (!frameWork.isDisabled(triggerer)) {
@@ -3284,32 +3030,23 @@
       }
     );
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="board-close"]',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('click', '*[data-toggle="board-close"]', (e) => {
+      const triggerer = $(e.target);
 
-        e.preventDefault();
+      e.preventDefault();
 
-        if (!frameWork.isDisabled(triggerer)) {
-          frameWork.destroyBoard(true);
-        }
+      if (!frameWork.isDisabled(triggerer)) {
+        frameWork.destroyBoard(true);
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="board-resize"]',
-      (e) => {
-        e.preventDefault();
-      }
-    );
+    $('html').on('click', '*[data-toggle="board-resize"]', (e) => {
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
+    });
 
     const startBoardResize = (e) => {
-      document.body.classList.add('body-on-drag');
+      $('body').addClass('body-on-drag');
 
       const widthBasis =
         e.clientX ||
@@ -3327,127 +3064,109 @@
     };
 
     const removeBoardResize = (e) => {
-      document.body.classList.remove('body-on-drag');
-      window.removeEventListener('mousemove', startBoardResize);
-      window.removeEventListener('touchmove', startBoardResize);
+      $('body').removeClass('body-on-drag');
+      $(window).off('mousemove', startBoardResize);
+      $(window).off('touchmove', startBoardResize);
     };
 
     const initBoardResize = (e) => {
-      const triggerer = e.target;
+      const triggerer = $(e.target);
 
-      if (!frameWork.isDisabled(triggerer) && frameWork.board.current) {
-        window.addEventListener('mousemove', startBoardResize);
+      if (!frameWork.isDisabled(triggerer) && frameWork.board.current.length) {
+        $(window).on('mousemove', startBoardResize);
 
-        window.addEventListener('touchmove', startBoardResize);
+        $(window).on('touchmove', startBoardResize);
 
-        window.addEventListener('mouseup', removeBoardResize);
+        $(window).on('mouseup', removeBoardResize);
 
-        window.addEventListener('touchend', removeBoardResize);
+        $(window).on('touchend', removeBoardResize);
       }
     };
 
-    frameWork.addEvent(
-      document.documentElement,
-      'mousedown',
-      '*[data-toggle="board-resize"]',
-      (e) => {
+    $('html').on('mousedown', '*[data-toggle="board-resize"]', (e) => {
+      // e.stopPropagation(); //@ADDEDFORTURBO
+      e.preventDefault();
+      initBoardResize(e);
+    });
+
+    $('html').on('touchstart', '*[data-toggle="board-resize"]', initBoardResize);
+
+    $('html').on('click', '*[data-toggle="switch-off"]', (e) => {
+      const triggerer = $(e.target);
+
+      if (!frameWork.isDisabled(triggerer)) {
+        frameWork.initSwitch(triggerer, 'off');
+      } else {
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
-        initBoardResize(e);
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'touchstart',
-      '*[data-toggle="board-resize"]',
-      initBoardResize
-    );
+    $('html').on('click', '*[data-toggle="switch-on"]', (e) => {
+      const triggerer = $(e.target);
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="switch-off"]',
-      (e) => {
-        const triggerer = e.target;
-
-        if (!frameWork.isDisabled(triggerer)) {
-          frameWork.initSwitch(triggerer, 'off');
-        } else {
-          e.preventDefault();
-        }
+      if (!frameWork.isDisabled(triggerer)) {
+        frameWork.initSwitch(triggerer, 'on');
+      } else {
+        // e.stopPropagation(); //@ADDEDFORTURBO
+        e.preventDefault();
       }
-    );
+    });
 
-    frameWork.addEvent(
-      document.documentElement,
-      'click',
-      '*[data-toggle="switch-on"]',
-      (e) => {
-        const triggerer = e.target;
+    $('html').on('change', '.zone input[type="file"]', (e) => {
+      const triggerer = $(e.target);
+      const zone = triggerer.closest('.zone');
+      const files = triggerer[0].files;
 
-        if (!frameWork.isDisabled(triggerer)) {
-          frameWork.initSwitch(triggerer, 'on');
-        } else {
-          e.preventDefault();
-        }
-      }
-    );
+      zone.find('.zone-has-content-text').remove();
 
-    frameWork.addEvent(
-      document.documentElement,
-      'change',
-      '.zone input[type="file"]',
-      (e) => {
-        const triggerer = e.target;
-        const zone = triggerer.closest('.zone');
-        const files = triggerer.files;
+      if (triggerer.val() && files.length) {
+        zone.addClass('zone-has-content');
 
-        const zoneDyText = zone.querySelector('.zone-has-content-text');
-        zoneDyText && zoneDyText.parentNode.removeChild(zoneDyText);
-
-        if (triggerer.value && files.length) {
-          zone.classList.add('zone-has-content');
-
-          zone.innerHTML += `<div class="zone-has-content-text">
+        zone.append(() => {
+          const html = `<div class="zone-has-content-text">
 									<span>${files.length} files selected.<br> Click or drag and drop to reselect</span>
 								</div>`;
-        } else {
-          zone.classList.remove('zone-has-content');
-        }
-      }
-    );
 
-    frameWork.addEvent(document.documentElement, 'click', '*', (e) => {
-      const triggerer = e.target;
+          return html;
+        });
+      } else {
+        zone.removeClass('zone-has-content');
+      }
+    });
+
+    $('html').on('click', '*', (e) => {
+      const triggerer = $(e.target);
 
       if (frameWork.isDisabled(triggerer)) {
+        // e.stopPropagation(); //@ADDEDFORTURBO
         e.preventDefault();
       } else {
         if (
-          !triggerer.hasAttribute('data-value') //temp fix for ui elements not getting ancestry
+          !triggerer.closest('[data-value]').length //temp fix for ui elements not getting ancestry
         ) {
           //tooltip
           if (
-            !triggerer.closest('[data-toggle="tooltip-click"]') &&
-            !triggerer.closest('[data-toggle="tooltip-hover"]') &&
-            !triggerer.closest('.tooltip.tooltip-allow-interaction')
+            !triggerer.closest('[data-toggle="tooltip-click"]').length &&
+            !triggerer.closest('[data-toggle="tooltip-hover"]').length &&
+            !triggerer.closest('.tooltip.tooltip-allow-interaction').length
           ) {
             frameWork.destroyToolTip();
           }
 
           //dropdown
           if (
-            !triggerer.closest('[data-toggle="dropdown"]') &&
-            !triggerer.closest('.dropdown')
+            !triggerer.closest('[data-toggle="dropdown"]').length &&
+            !triggerer.closest('.dropdown').length
           ) {
             frameWork.closeDropdowns(false);
           }
 
           //switch
           if (
-            !triggerer.closest('[data-toggle="switch-off"]') &&
-            !triggerer.closest('[data-toggle="switch-on"]') &&
-            !triggerer.closest('.switch')
+            !triggerer.closest('[data-toggle="switch-off"]').length &&
+            !triggerer.closest('[data-toggle="switch-on"]').length &&
+            !triggerer.closest('.switch').length
           ) {
             frameWork.initSwitch(false, 'off');
           }
@@ -3511,14 +3230,12 @@
 
     switch (mode) {
       case 'loading':
-        document.body.classList.remove('body-loaded');
-        document.body.classList.add('body-loading');
+        $('body').removeClass('body-loaded').addClass('body-loading');
         break;
       case 'complete':
       default:
         setTimeout(() => {
-          document.body.classList.remove('body-loading');
-          document.body.classList.add('body-loaded');
+          $('body').removeClass('body-loading').addClass('body-loaded');
         }, 100);
         break;
     }
@@ -3541,9 +3258,9 @@
 
   frameWork.runInit();
 
-  frameWork.docReady(frameWork.runReady);
+  $(document).ready(frameWork.runReady);
 
-  window.addEventListener('load', frameWork.runLoad);
+  $(window).on('load', frameWork.runLoad);
 
   frameWork.initcomponentsEvents();
 

@@ -1314,10 +1314,12 @@
   frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
     const theValue = newValue || __f.dateToVal(inputCalendar.value);
 
-    inputCalendar.__fwEnableChange = inputCalendar.__fwEnableChange || false;
+    inputCalendar.__fwEnableChange =
+      inputCalendar.__fwEnableChange || false;
 
-    if (!inputCalendar.__fwRenderValue) {
-      inputCalendar.__fwRenderValue = __f.tagsToVal(inputCalendar.value, true);
+
+    if(!inputCalendar.__fwRenderValue){
+      inputCalendar.__fwRenderValue = __f.tagsToVal(inputCalendar.value,true);
     }
 
     valueForUi = valueForUi
@@ -1358,6 +1360,7 @@
 
     const args = __f.parseArgs(arr, defaults);
 
+
     if (theValue) {
       //update the actual butt
       inputCalendar.setAttribute('value', theValue);
@@ -1366,7 +1369,7 @@
     }
 
     if (inputCalendar.__fwEnableChange) {
-      frameWork.triggerEvent(inputCalendar, 'change');
+      frameWork.triggerEvent(inputCalendar,'change');
     } else {
       if (parseInt(arr.dropdownYearSpan) <= 0) {
         args.dropdownYearSpan = defaults.dropdownYearSpan;
@@ -1419,11 +1422,10 @@
   __f.tagsToParse = (value, returnWithInput) => {
     returnWithInput = returnWithInput !== false || returnWithInput == true;
 
-    let toReturn = Array.isArray(value)
-      ? value
-      : typeof value === 'string'
-      ? value.split(',')
-      : [];
+    let toReturn =
+    Array.isArray(value) ? value
+    : typeof value === 'string' ? value.split(',')
+    : [];
 
     //check for ya boi
     toReturn.forEach((tag, i) => {
@@ -1456,7 +1458,7 @@
 
   __f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
     if (inputTags) {
-      valueForUi = valueForUi || __f.tagsToVal(inputTags.value, true) || '';
+      valueForUi = valueForUi || __f.tagsToVal(inputTags.value,true) || '';
       inputText = inputText || false;
 
       const theUi = {};
@@ -1604,10 +1606,15 @@
 
   frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
     let theValue =
-      newValue || newValue == '' ? newValue : inputTags.value ? inputTags.value : false;
+    newValue || newValue == ''
+    ? newValue
+    : inputTags.value
+    ? inputTags.value
+    : false;
 
-    if (!inputTags.__fwRenderValue) {
-      inputTags.__fwRenderValue = __f.tagsToVal(inputTags.value, true);
+
+    if(!inputTags.__fwRenderValue){
+      inputTags.__fwRenderValue = __f.tagsToVal(inputTags.value,true);
     }
     inputTags.__fwEnableChange = inputTags.__fwEnableChange || false;
 
@@ -1695,10 +1702,10 @@
       //update the actual butt
       inputTags.setAttribute('value', __f.tagsToVal(theValue, false));
       inputTags.value = __f.tagsToVal(theValue, false);
-      inputTags.__fwRenderValue = __f.tagsToVal(valueForUi, true);
+      inputTags.__fwRenderValue = __f.tagsToVal(valueForUi,true)
 
       if (inputTags.__fwEnableChange) {
-        frameWork.triggerEvent(inputTags, 'change');
+        frameWork.triggerEvent(inputTags,'change');
       } else {
         __f.createTagsUi(inputTags, inputTags.__fwRenderValue, inputText, args);
 
@@ -2688,7 +2695,7 @@
             .querySelector('.input-calendar');
 
           if (inputCalendar) {
-            inputCalendar.__fwEnableChange = true;
+          inputCalendar.__fwEnableChange = true;
             frameWork.updateCalendar(
               inputCalendar,
               null,
@@ -2748,6 +2755,7 @@
             inputCalendar__fwEnableChange = true;
           }
 
+
           if (typeof preParsedVal !== 'undefined') {
             frameWork.updateCalendar(inputCalendar, preParsedVal);
           }
@@ -2773,8 +2781,7 @@
           const pasted =
             e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
 
-          triggerer.innerHTML =
-            (triggerer.innerHTML ? triggerer.innerHTML : '') + pasted.getData('text');
+          triggerer.innerHTML = (triggerer.innerHTML ? triggerer.innerHTML : '') + pasted.getData('text');
 
           triggerer.blur();
         }
@@ -2813,7 +2820,8 @@
             inputUiIndex = triggerer.getAttribute('data-value'),
             currValue = __f.tagsToParse(inputTags.value);
 
-          const updatedTag = triggerer.innerText.trim();
+
+        const updatedTag = triggerer.innerText.trim();
 
           if (inputUiIndex) {
             currValue.splice(
@@ -2828,7 +2836,7 @@
 
           // const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
-          frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue, false));
+          frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue,false));
         }
       }
     );
@@ -2850,13 +2858,14 @@
             inputUiIndex = triggerer.getAttribute('data-value'),
             currValue = __f.tagsToParse(inputTags.getAttribute('data-value-ui'));
 
+
           let newValue,
             enableChange,
             allowFilter = false;
 
-          if (triggerer.innerText) {
-            triggerer.innerText = triggerer.innerText.replace(/\n|\r/g, '\\n');
-          }
+            if(triggerer.innerText){
+              triggerer.innerText = triggerer.innerText.replace(/\n|\r/g, '\\n');
+            }
 
           switch (e.keyCode) {
             //enter
@@ -2931,6 +2940,8 @@
           }
 
           newValue = __f.tagsToVal(currValue);
+
+
 
           if (enableChange) {
             inputTags.__fwEnableChange = true;

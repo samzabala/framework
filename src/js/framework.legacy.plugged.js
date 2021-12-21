@@ -1189,6 +1189,13 @@ this.jQuery && this.jQuery.noConflict();
   frameWork.updateCalendar = (inputCalendar, newValue, valueForUi) => {
     const theValue = newValue || __f.dateToVal(inputCalendar.val());
 
+    inputCalendar.get(0).__fwEnableChange =
+      inputCalendar.get(0).__fwEnableChange || false;
+
+    if (!inputCalendar.get(0).__fwRenderValue) {
+      inputCalendar.get(0).__fwRenderValue = __f.tagsToVal(inputCalendar.val(), true);
+    }
+
     valueForUi = valueForUi
       ? valueForUi
       : theValue || theValue == ''
@@ -1197,9 +1204,6 @@ this.jQuery && this.jQuery.noConflict();
       ? inputCalendar.get(0).__fwRenderValue
       : __f.dateToVal(new Date());
     // ignoreInput = ignoreInput || false;
-
-    inputCalendar.get(0).__fwEnableChange =
-      inputCalendar.get(0).__fwEnableChange || false;
 
     const arr = {
       class: inputCalendar.attr('class'),
@@ -1287,7 +1291,11 @@ this.jQuery && this.jQuery.noConflict();
   __f.tagsToParse = (value, returnWithInput) => {
     returnWithInput = returnWithInput !== false || returnWithInput == true;
 
-    let toReturn = Array.isArray(value) ? value : value.split(',') || [];
+    let toReturn = Array.isArray(value)
+      ? value
+      : typeof value === 'string'
+      ? value.split(',')
+      : [];
 
     //check for ya boi
     toReturn.forEach((tag, i) => {
@@ -1320,7 +1328,7 @@ this.jQuery && this.jQuery.noConflict();
 
   __f.createTagsUi = (inputTags, valueForUi, inputText, args) => {
     if (inputTags) {
-      valueForUi = valueForUi || __f.tagsToVal(inputTags.val()) || '';
+      valueForUi = valueForUi || __f.tagsToVal(inputTags.val(), true) || '';
       inputText = inputText || false;
 
       const theUi = {};
@@ -1458,18 +1466,23 @@ this.jQuery && this.jQuery.noConflict();
   };
 
   frameWork.updateTags = (inputTags, allowFilter, newValue, valueForUi, inputText) => {
-    let theValue = newValue || (inputTags.val() !== '' && inputTags.val()) || '';
+    let theValue =
+      newValue || newValue == '' ? newValue : inputTags.val() ? inputTags.val() : false;
+
+    if (!inputTags.get(0).__fwRenderValue) {
+      inputTags.get(0).__fwRenderValue = __f.tagsToVal(inputTags.val(), true);
+    }
 
     inputTags.get(0).__fwEnableChange = inputTags.get(0).__fwEnableChange || false;
 
     inputText = inputText || false;
     valueForUi = valueForUi
       ? valueForUi
-      : theValue || theValue == ''
+      : newValue || newValue == ''
       ? theValue
       : inputTags.get(0).__fwRenderValue
       ? inputTags.get(0).__fwRenderValue
-      : '';
+      : false;
 
     allowFilter = allowFilter != false;
 
@@ -1546,12 +1559,12 @@ this.jQuery && this.jQuery.noConflict();
       //update the actual butt
       inputTags.attr('value', __f.tagsToVal(theValue, false));
       inputTags.val(__f.tagsToVal(theValue, false));
-      inputTags.get(0).__fwRenderValue = __f.tagsToVal(valueForUi);
+      inputTags.get(0).__fwRenderValue = __f.tagsToVal(valueForUi, true);
 
       if (inputTags.get(0).__fwEnableChange) {
         inputTags.trigger('change');
       } else {
-        __f.createTagsUi(inputTags, __f.tagsToVal(valueForUi), inputText, args);
+        __f.createTagsUi(inputTags, inputTags.get(0).__fwRenderValue, inputText, args);
 
         //ATODO UPDATE SETUP HERE
         //update fake hoes
@@ -2602,15 +2615,15 @@ this.jQuery && this.jQuery.noConflict();
       if (!frameWork.isDisabled(triggerer)) {
         const inputTags = triggerer.closest('.input-tags-ui').children('.input-tags'),
           inputUiIndex = triggerer.attr('data-value'),
-          currValue = __f.tagsToParse(inputTags.val());
+          currValue = __f.tagsToParse(inputTags.get('0').__fwRenderValue);
 
         const updatedTag = triggerer.text().trim();
 
-        if (updatedTag && updatedTag != '') {
+        if (inputUiIndex) {
           currValue.splice(
             parseInt(inputUiIndex),
-            0,
-            updatedTag.trim().replace(',', '')
+            currValue[inputUiIndex] == updatedTag ? 1 : 0,
+            updatedTag.replace(',', '')
           );
           inputTags.get(0).__fwEnableChange = true;
         }
@@ -2619,7 +2632,7 @@ this.jQuery && this.jQuery.noConflict();
 
         // const newValue = __f.arrMoveItem(currValue,parseInt(inputUiIndex), currValue.length -1);
 
-        frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue));
+        frameWork.updateTags(inputTags, true, __f.tagsToVal(currValue, false));
       }
     });
 
