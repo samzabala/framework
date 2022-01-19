@@ -66,7 +66,7 @@ a:hover {
 .no-shadow {
   box-shadow: none !important;
 }
-.cf:after, .module-header:after, .module-content:after, .module-footer:after, .container:after, .container-fluid:after {
+.cf::after, .module-header::after, .module-content::after, .module-footer::after, .container::after, .container-fluid::after {
   content: "";
   clear: both;
   display: table;

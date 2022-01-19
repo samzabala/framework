@@ -9,7 +9,7 @@
 .no-shadow {
   box-shadow: none !important;
 }
-.cf:after {
+.cf::after {
   content: "";
   clear: both;
   display: table;

@@ -10,7 +10,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 //fonts
-$font-base: Helvetica, Arial sans-serif !default;
+$font-base: Helvetica, Arial, sans-serif !default;
 $font-secondary: Times, serif !default;
 $font-monospace: monospace !default;
 
@@ -314,7 +314,7 @@ $br-tag-list: (
   @if $extend == true {
     @extend %for-cf;
   } @else {
-    &:after {
+    &::after {
       content: '';
       clear: both;
       display: table;
@@ -382,7 +382,7 @@ $br-tag-list: (
   @if $declare-display {
     display: block;
   }
-  &:before {
+  &::before {
     content: '';
     display: block;
     width: 100%;
@@ -1941,11 +1941,11 @@ $keyframe-instance: 1;
 
   @if map-get($opts, position) != null and map-get($opts, position) != static {
     @if map-get($opts, pseudo) == both {
-      &:before {
+      &::before {
         @include internal__stripes-pseudo-offsets(before, $opts);
       }
 
-      &:after {
+      &::after {
         @include internal__stripes-pseudo-offsets(after, $opts);
       }
     }
@@ -2081,8 +2081,8 @@ $keyframe-instance: 1;
   transition: 0.125s ease-in all;
   @content;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     transition: 0.125s ease-in all;
     @if map-get($opts, pseudo) != 'override' {
       content: '';
@@ -2102,7 +2102,7 @@ $keyframe-instance: 1;
     );
   }
 
-  &:before {
+  &::before {
     @if map-get($opts, direction) == 'up' or map-get($opts, direction) == 'down' {
       height: 0.95em;
       width: 1px;
@@ -2118,7 +2118,7 @@ $keyframe-instance: 1;
     background: map-get($opts, border-color);
   }
 
-  &:after {
+  &::after {
     width: 0.291em;
     height: 0.291em;
     border: 1px solid map-get($opts, border-color);
@@ -2144,11 +2144,11 @@ $keyframe-instance: 1;
   &:hover,
   &:focus {
     &,
-    &:after {
+    &::after {
       border-color: map-get($opts, border-color-hover);
     }
 
-    &:before {
+    &::before {
       background: map-get($opts, border-color-hover);
     }
   }
@@ -2255,8 +2255,8 @@ $keyframe-instance: 1;
   }
 
   @if map-get($opts, pseudo) == both {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       @content;
     }
   }
@@ -2472,8 +2472,8 @@ $keyframe-instance: 1;
   }
 
   @if map-get($opts, pseudo) == both {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       @content;
     }
   }
@@ -2489,7 +2489,7 @@ $keyframe-instance: 1;
   } @else if $pseudo != both {
     $selector: '&:' + $pseudo;
   } @else {
-    $selector: '&:before,&:after';
+    $selector: '&::before,&::after';
   }
 
   @return $selector;
