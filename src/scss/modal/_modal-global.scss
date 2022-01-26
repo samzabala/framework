@@ -2,6 +2,7 @@
 //   @include dump-styles(data-toggle);
 // }
 %for-modal {
+  text-align: initial;
   //ui block where scrolling is allowed
   &-scroller {
     overflow-y: scroll;
@@ -20,7 +21,6 @@
     right: 0 !important;
     bottom: 0 !important;
     margin: 0;
-    text-align: initial;
     &-background {
       background: $modal-overlay-bg;
     }
@@ -54,6 +54,7 @@
 }
 $prefix: '.modal';
 .modal {
+  @extend %for-modal !optional;
   &:not(.active) {
     @include dump-styles(hide-js-friendly);
   }

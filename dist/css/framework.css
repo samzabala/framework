@@ -9926,6 +9926,9 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
                 );
 }
 
+.modal {
+  text-align: initial;
+}
 .modal-ui-mode-fullscreen.modal-ui-wrapper, .modal-ui-mode-board.modal-ui-popup, .modal-ui-mode-default.modal-ui-wrapper {
   overflow-y: scroll;
 }
@@ -9936,7 +9939,6 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   right: 0 !important;
   bottom: 0 !important;
   margin: 0;
-  text-align: initial;
 }
 .modal-ui-mode-board.modal-ui-wrapper, .modal-ui-mode-default.modal-ui-wrapper {
   background: var(--fw-color-base-alpha-5);
