@@ -5166,6 +5166,14 @@ body:not(.body-loaded) .symbol:before {
   content: "\e95c";
 }
 
+.symbol-cloud-upload:before, .active > .symbol-cloud-upload-toggle:before, .open > .symbol-cloud-upload-toggle:before {
+  content: "\e95d";
+}
+
+.symbol-cloud-download:before, .active > .symbol-cloud-download-toggle:before, .open > .symbol-cloud-download-toggle:before {
+  content: "\e95e";
+}
+
 /*** ASSET ***/
 .asset {
   max-width: 100%;
