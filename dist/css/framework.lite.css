@@ -869,7 +869,7 @@ pre {
 pre * {
   border: 0;
   margin: 0;
-  padding: 1em;
+  padding: 0;
 }
 
 cite {
