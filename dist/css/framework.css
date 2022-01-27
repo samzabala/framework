@@ -81,8 +81,7 @@ table {
   box-shadow: none !important;
 }
 .cf::after, .list-group > li::after, .list-group-item::after,
-.list-group ul > li::after,
-.list-group ul-item::after, .zone::after, .alert-header::after, .alert-content::after, .alert-footer::after, .alert::after, .progress::after, .module-header::after, .module-content::after, .module-footer::after, .container::after, .container-fluid::after {
+ul.list-group-item::after, .zone::after, .alert-header::after, .alert-content::after, .alert-footer::after, .alert::after, .progress::after, .module-header::after, .module-content::after, .module-footer::after, .container::after, .container-fluid::after {
   content: "";
   clear: both;
   display: table;
@@ -7176,13 +7175,19 @@ hr.dropdown-separator {
 
 /*** LIST GROUPS ***/
 .list-group,
-.list-group ul {
+ul.list-group {
   margin-bottom: 1.25em;
   padding: 0;
 }
+.list-group.list-group-striped > li:nth-child(odd),
+.list-group.list-group-striped .list-group-item:nth-child(odd),
+ul.list-group.list-group-striped > li:nth-child(odd),
+ul.list-group.list-group-striped .list-group-item:nth-child(odd) {
+  background-color: var(--fw-theme-background-contrast);
+}
 .list-group > li, .list-group-item,
-.list-group ul > li,
-.list-group ul-item {
+ul.list-group > li,
+ul.list-group-item {
   font: inherit;
   margin-bottom: 0;
   display: block;
@@ -7196,13 +7201,13 @@ hr.dropdown-separator {
   padding-right: 0.625rem;
 }
 .theme-inverse .list-group > li, .theme-inverse .list-group-item,
-.theme-inverse .list-group ul > li,
-.theme-inverse .list-group ul-item {
+.theme-inverse ul.list-group > li,
+.theme-inverse ul.list-group-item {
   border-color: var(--fw-theme-background-contrast);
 }
 .list-group > li.list-group-item-no-interaction, .list-group-item.list-group-item-no-interaction,
-.list-group ul > li.list-group-item-no-interaction,
-.list-group ul-item.list-group-item-no-interaction {
+ul.list-group > li.list-group-item-no-interaction,
+ul.list-group-item.list-group-item-no-interaction {
   pointer-events: none !important;
 }
 .list-group-compact > li,
@@ -7218,13 +7223,13 @@ hr.dropdown-separator {
 }
 
 .list-group > li:first-child, .list-group-item:first-child,
-.list-group ul > li:first-child,
-.list-group ul-item:first-child {
+ul.list-group > li:first-child,
+ul.list-group-item:first-child {
   border-top-width: 1px;
 }
 .list-group > li:before, .list-group-item:before,
-.list-group ul > li:before,
-.list-group ul-item:before {
+ul.list-group > li:before,
+ul.list-group-item:before {
   content: none;
 }
 
@@ -7233,24 +7238,24 @@ hr.dropdown-separator {
 .list-group-interactive .list-group-item a, .list-group-toggle > li, .list-group-toggle > li a,
 .list-group-toggle .list-group-item,
 .list-group-toggle .list-group-item a,
-.list-group ul-interactive > li,
-.list-group ul-interactive > li a,
-.list-group ul-interactive .list-group-item,
-.list-group ul-interactive .list-group-item a,
-.list-group ul-toggle > li,
-.list-group ul-toggle > li a,
-.list-group ul-toggle .list-group-item,
-.list-group ul-toggle .list-group-item a {
+ul.list-group-interactive > li,
+ul.list-group-interactive > li a,
+ul.list-group-interactive .list-group-item,
+ul.list-group-interactive .list-group-item a,
+ul.list-group-toggle > li,
+ul.list-group-toggle > li a,
+ul.list-group-toggle .list-group-item,
+ul.list-group-toggle .list-group-item a {
   color: inherit;
   text-decoration: inherit;
 }
 .list-group-interactive > li > *,
 .list-group-interactive .list-group-item > *, .list-group-toggle > li > *,
 .list-group-toggle .list-group-item > *,
-.list-group ul-interactive > li > *,
-.list-group ul-interactive .list-group-item > *,
-.list-group ul-toggle > li > *,
-.list-group ul-toggle .list-group-item > * {
+ul.list-group-interactive > li > *,
+ul.list-group-interactive .list-group-item > *,
+ul.list-group-toggle > li > *,
+ul.list-group-toggle .list-group-item > * {
   pointer-events: none;
 }
 .list-group-interactive > li:hover, .list-group-interactive > li:focus, .list-group-interactive > li.focus,
@@ -7260,18 +7265,18 @@ hr.dropdown-separator {
 .list-group-toggle .list-group-item:hover,
 .list-group-toggle .list-group-item:focus,
 .list-group-toggle .list-group-item.focus,
-.list-group ul-interactive > li:hover,
-.list-group ul-interactive > li:focus,
-.list-group ul-interactive > li.focus,
-.list-group ul-interactive .list-group-item:hover,
-.list-group ul-interactive .list-group-item:focus,
-.list-group ul-interactive .list-group-item.focus,
-.list-group ul-toggle > li:hover,
-.list-group ul-toggle > li:focus,
-.list-group ul-toggle > li.focus,
-.list-group ul-toggle .list-group-item:hover,
-.list-group ul-toggle .list-group-item:focus,
-.list-group ul-toggle .list-group-item.focus {
+ul.list-group-interactive > li:hover,
+ul.list-group-interactive > li:focus,
+ul.list-group-interactive > li.focus,
+ul.list-group-interactive .list-group-item:hover,
+ul.list-group-interactive .list-group-item:focus,
+ul.list-group-interactive .list-group-item.focus,
+ul.list-group-toggle > li:hover,
+ul.list-group-toggle > li:focus,
+ul.list-group-toggle > li.focus,
+ul.list-group-toggle .list-group-item:hover,
+ul.list-group-toggle .list-group-item:focus,
+ul.list-group-toggle .list-group-item.focus {
   background: var(--fw-color-primary-alpha-1);
 }
 .list-group-interactive > li:active, .list-group-interactive > li.active,
@@ -7279,14 +7284,14 @@ hr.dropdown-separator {
 .list-group-interactive .list-group-item.active, .list-group-toggle > li:active, .list-group-toggle > li.active,
 .list-group-toggle .list-group-item:active,
 .list-group-toggle .list-group-item.active,
-.list-group ul-interactive > li:active,
-.list-group ul-interactive > li.active,
-.list-group ul-interactive .list-group-item:active,
-.list-group ul-interactive .list-group-item.active,
-.list-group ul-toggle > li:active,
-.list-group ul-toggle > li.active,
-.list-group ul-toggle .list-group-item:active,
-.list-group ul-toggle .list-group-item.active {
+ul.list-group-interactive > li:active,
+ul.list-group-interactive > li.active,
+ul.list-group-interactive .list-group-item:active,
+ul.list-group-interactive .list-group-item.active,
+ul.list-group-toggle > li:active,
+ul.list-group-toggle > li.active,
+ul.list-group-toggle .list-group-item:active,
+ul.list-group-toggle .list-group-item.active {
   background: var(--fw-color-primary-alpha-2);
 }
 .dropdown .list-group {

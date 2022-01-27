@@ -1,16 +1,16 @@
 /*** LIST GROUPS ***/
 $prefix: '.list-group';
 #{$prefix},
-#{$prefix} ul {
+ul#{$prefix}  {
   margin-bottom: $calculated-body-text-gutter-y;
   padding: 0;
-  // border-bottom: $list-group-border-width solid $list-group-border-color;
 
-  .theme-inverse & {
-    // border-bottom-color: $list-group-border-color-inverse;
-
-    li,
+  &#{$prefix}-striped {
+    & > li,
     #{$prefix}-item {
+      &:nth-child(odd){
+        background-color: $list-group-striped-background;
+      }
     }
   }
 
