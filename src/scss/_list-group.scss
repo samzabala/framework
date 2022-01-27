@@ -9,7 +9,7 @@ ul#{$prefix}  {
     & > li,
     #{$prefix}-item {
       &:nth-child(odd){
-        background-color: $list-group-striped-background;
+        background-color: $list-group-background-striped;
       }
     }
   }
@@ -20,6 +20,7 @@ ul#{$prefix}  {
     font: inherit;
     margin-bottom: 0;
     display: block;
+    background-color: $list-group-background;
     margin-top: $list-group-border-width * -1;
     border-color: $list-group-border-color;
     border-style: solid;

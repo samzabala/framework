@@ -357,8 +357,6 @@ blockquote {
       color: $body-mono-color,
     )
   );
-  word-wrap: break-word;
-  white-space: pre-wrap;
   background: $body-mono-background;
 }
 
@@ -377,6 +375,7 @@ tt {
 
 pre {
   padding: $calculated-body-pre-padding;
+  overflow: auto;
 
   * {
     border: 0;

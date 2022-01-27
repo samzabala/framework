@@ -852,8 +852,6 @@ tt {
   font: inherit;
   font-family: var(--fw-font-monospace);
   color: inherit;
-  word-wrap: break-word;
-  white-space: pre-wrap;
   background: var(--fw-color-base-alpha-2);
 }
 
@@ -865,6 +863,7 @@ tt {
 
 pre {
   padding: 0.3125em;
+  overflow: auto;
 }
 pre * {
   border: 0;

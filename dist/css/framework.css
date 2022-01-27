@@ -893,8 +893,6 @@ tt {
   font: inherit;
   font-family: var(--fw-font-monospace);
   color: inherit;
-  word-wrap: break-word;
-  white-space: pre-wrap;
   background: var(--fw-color-base-alpha-2);
 }
 
@@ -906,6 +904,7 @@ tt {
 
 pre {
   padding: 0.3125em;
+  overflow: auto;
 }
 pre * {
   border: 0;
@@ -7191,6 +7190,7 @@ ul.list-group-item {
   font: inherit;
   margin-bottom: 0;
   display: block;
+  background-color: var(--fw-theme-background);
   margin-top: -1px;
   border-color: var(--fw-theme-background-contrast);
   border-style: solid;
