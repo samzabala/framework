@@ -6088,6 +6088,7 @@ body:not(.body-loaded) *:after {
   padding: 10px 10px;
   box-shadow: 0px 3px 10px -6px var(--fw-color-base);
   z-index: 2;
+  text-align: initial;
   width: 300px;
   display: none;
   color: var(--fw-theme-color);
@@ -6103,11 +6104,13 @@ body:not(.body-loaded) *:after {
   position: absolute;
   padding: 5px 5px;
   z-index: 2;
+  text-align: initial;
 }
 .dropdown.dropdown-large {
   position: absolute;
   padding: 20px 20px;
   z-index: 2;
+  text-align: initial;
 }
 .dropdown[data-dropdown-max-height] {
   overflow-y: auto;
@@ -6577,6 +6580,7 @@ hr.dropdown-separator {
   padding: 10px 10px;
   box-shadow: 0px 3px 10px -6px var(--fw-color-base);
   z-index: 2;
+  text-align: initial;
   z-index: 9999;
   pointer-events: none;
 }
@@ -6588,11 +6592,13 @@ hr.dropdown-separator {
   position: absolute;
   padding: 5px 5px;
   z-index: 2;
+  text-align: initial;
 }
 .tooltip.tooltip-large {
   position: absolute;
   padding: 20px 20px;
   z-index: 2;
+  text-align: initial;
 }
 .tooltip:not(.tooltip-has-custom-width) {
   max-width: 300px;
