@@ -4498,6 +4498,7 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 .module-function {
   position: relative;
   display: inline-flex;
+  text-align: initial;
 }
 @media (max-width: 1199px) {
   .module-function {

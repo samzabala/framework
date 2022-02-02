@@ -191,6 +191,7 @@ $prefix: '.module';
   @at-root #{$prefix}-function {
     position: relative;
     display: inline-flex;
+    text-align:initial;
 
     @include on-breakpoint(mobile) {
       display: flex;
