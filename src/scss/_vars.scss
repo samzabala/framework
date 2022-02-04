@@ -1141,19 +1141,21 @@ $module-gutter-x-mobile: $gutter-small !default;
 $module-gutter-y: $gutter-small !default;
 $module-gutter-y-mobile: $gutter-micro !default;
 
-$module-large-gutter-x: $gutter-large !default;
-$module-large-gutter-x-mobile: $module-gutter-x-mobile !default;
-$module-large-gutter-y: $gutter-base !default;
-$module-large-gutter-y-mobile: $module-gutter-y-mobile !default;
+$module-expanded-gutter-x: $gutter-large !default;
+$module-expanded-gutter-x-mobile: $module-gutter-x-mobile !default;
+$module-expanded-gutter-y: $gutter-base !default;
+$module-expanded-gutter-y-mobile: $module-gutter-y-mobile !default;
 
-$module-small-gutter-x: $gutter-small !default;
-$module-small-gutter-x-mobile: $module-gutter-x-mobile !default;
-$module-small-gutter-y: $gutter-micro !default;
-$module-small-gutter-y-mobile: $module-gutter-y-mobile !default;
+$module-compact-gutter-x: $gutter-small !default;
+$module-compact-gutter-x-mobile: $module-gutter-x-mobile !default;
+$module-compact-gutter-y: $gutter-micro !default;
+$module-compact-gutter-y-mobile: $module-gutter-y-mobile !default;
 
 $module-gutter-between: $gutter-small !default;
 
 $module-gutter-grid-gap: $gutter-base !default;
+$module-gutter-grid-expanded-gap: $gutter-large !default;
+$module-gutter-grid-compact-gap: $gutter-small !default;
 $module-grid-gutter: $gutter-base !default;
 
 $module-border-radius: $border-radius-small !default;

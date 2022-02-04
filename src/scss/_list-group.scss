@@ -1,14 +1,14 @@
 /*** LIST GROUPS ***/
 $prefix: '.list-group';
 #{$prefix},
-ul#{$prefix}  {
+ul#{$prefix} {
   margin-bottom: $calculated-body-text-gutter-y;
   padding: 0;
 
   &#{$prefix}-striped {
     & > li,
     #{$prefix}-item {
-      &:nth-child(odd){
+      &:nth-child(odd) {
         background-color: $list-group-background-striped;
       }
     }

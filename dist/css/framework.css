@@ -4421,6 +4421,12 @@ big {
   transition: 0.5s opacity ease-in-out;
   max-width: 100%;
 }
+.module-grid.module-grid-expanded {
+  grid-gap: 30px;
+}
+.module-grid.module-grid-compact {
+  grid-gap: 10px;
+}
 .module-grid:nth-child(n+2) {
   margin-top: 20px;
 }
@@ -4645,60 +4651,60 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 .module-header:last-child, .module-content:last-child, .module-footer:last-child {
   margin-bottom: -10px;
 }
-@media (max-width: 1199px) {
-  .module-small.module,
-.module-small > .module-header,
-.module-small > .module-content,
-.module-small > .module-footer {
+@media (min-width: 1200px) {
+  .module-compact.module,
+.module-compact > .module-header,
+.module-compact > .module-content,
+.module-compact > .module-footer {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .module-small.module,
-.module-small > .module-header:first-child,
-.module-small > .module-content:first-child,
-.module-small > .module-footer:first-child {
+  .module-compact.module,
+.module-compact > .module-header:first-child,
+.module-compact > .module-content:first-child,
+.module-compact > .module-footer:first-child {
     padding-top: 5px;
   }
-  .module-small.module,
-.module-small > .module-header:last-child,
-.module-small > .module-content:last-child,
-.module-small > .module-footer:last-child {
+  .module-compact.module,
+.module-compact > .module-header:last-child,
+.module-compact > .module-content:last-child,
+.module-compact > .module-footer:last-child {
     padding-bottom: 5px;
   }
-  .module-small > .module-header,
-.module-small > .module-content,
-.module-small > .module-footer {
+  .module-compact > .module-header,
+.module-compact > .module-content,
+.module-compact > .module-footer {
     margin-left: -10px;
     margin-right: -10px;
   }
-  .module-small > .module-header:first-child,
-.module-small > .module-content:first-child,
-.module-small > .module-footer:first-child {
+  .module-compact > .module-header:first-child,
+.module-compact > .module-content:first-child,
+.module-compact > .module-footer:first-child {
     margin-top: -5px;
   }
-  .module-small > .module-header:last-child,
-.module-small > .module-content:last-child,
-.module-small > .module-footer:last-child {
+  .module-compact > .module-header:last-child,
+.module-compact > .module-content:last-child,
+.module-compact > .module-footer:last-child {
     margin-bottom: -5px;
   }
-  .module-large.module, .module-large > .module-header, .module-large > .module-content, .module-large > .module-footer {
+  .module-expanded.module, .module-expanded > .module-header, .module-expanded > .module-content, .module-expanded > .module-footer {
     padding-left: 30px;
     padding-right: 30px;
   }
-  .module-large.module, .module-large > .module-header:first-child, .module-large > .module-content:first-child, .module-large > .module-footer:first-child {
+  .module-expanded.module, .module-expanded > .module-header:first-child, .module-expanded > .module-content:first-child, .module-expanded > .module-footer:first-child {
     padding-top: 20px;
   }
-  .module-large.module, .module-large > .module-header:last-child, .module-large > .module-content:last-child, .module-large > .module-footer:last-child {
+  .module-expanded.module, .module-expanded > .module-header:last-child, .module-expanded > .module-content:last-child, .module-expanded > .module-footer:last-child {
     padding-bottom: 20px;
   }
-  .module-large > .module-header, .module-large > .module-content, .module-large > .module-footer {
+  .module-expanded > .module-header, .module-expanded > .module-content, .module-expanded > .module-footer {
     margin-left: -30px;
     margin-right: -30px;
   }
-  .module-large > .module-header:first-child, .module-large > .module-content:first-child, .module-large > .module-footer:first-child {
+  .module-expanded > .module-header:first-child, .module-expanded > .module-content:first-child, .module-expanded > .module-footer:first-child {
     margin-top: -20px;
   }
-  .module-large > .module-header:last-child, .module-large > .module-content:last-child, .module-large > .module-footer:last-child {
+  .module-expanded > .module-header:last-child, .module-expanded > .module-content:last-child, .module-expanded > .module-footer:last-child {
     margin-bottom: -20px;
   }
 }
@@ -4726,44 +4732,44 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   .module-header:last-child, .module-content:last-child, .module-footer:last-child {
     margin-bottom: -5px;
   }
-  .module-small.module, .module-small > .module-header, .module-small > .module-content, .module-small > .module-footer {
+  .module-compact.module, .module-compact > .module-header, .module-compact > .module-content, .module-compact > .module-footer {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .module-small.module, .module-small > .module-header:first-child, .module-small > .module-content:first-child, .module-small > .module-footer:first-child {
+  .module-compact.module, .module-compact > .module-header:first-child, .module-compact > .module-content:first-child, .module-compact > .module-footer:first-child {
     padding-top: 5px;
   }
-  .module-small.module, .module-small > .module-header:last-child, .module-small > .module-content:last-child, .module-small > .module-footer:last-child {
+  .module-compact.module, .module-compact > .module-header:last-child, .module-compact > .module-content:last-child, .module-compact > .module-footer:last-child {
     padding-bottom: 5px;
   }
-  .module-small > .module-header, .module-small > .module-content, .module-small > .module-footer {
+  .module-compact > .module-header, .module-compact > .module-content, .module-compact > .module-footer {
     margin-left: -10px;
     margin-right: -10px;
   }
-  .module-small > .module-header:first-child, .module-small > .module-content:first-child, .module-small > .module-footer:first-child {
+  .module-compact > .module-header:first-child, .module-compact > .module-content:first-child, .module-compact > .module-footer:first-child {
     margin-top: -5px;
   }
-  .module-small > .module-header:last-child, .module-small > .module-content:last-child, .module-small > .module-footer:last-child {
+  .module-compact > .module-header:last-child, .module-compact > .module-content:last-child, .module-compact > .module-footer:last-child {
     margin-bottom: -5px;
   }
-  .module-large.module, .module-large > .module-header, .module-large > .module-content, .module-large > .module-footer {
+  .module-expanded.module, .module-expanded > .module-header, .module-expanded > .module-content, .module-expanded > .module-footer {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .module-large.module, .module-large > .module-header:first-child, .module-large > .module-content:first-child, .module-large > .module-footer:first-child {
+  .module-expanded.module, .module-expanded > .module-header:first-child, .module-expanded > .module-content:first-child, .module-expanded > .module-footer:first-child {
     padding-top: 5px;
   }
-  .module-large.module, .module-large > .module-header:last-child, .module-large > .module-content:last-child, .module-large > .module-footer:last-child {
+  .module-expanded.module, .module-expanded > .module-header:last-child, .module-expanded > .module-content:last-child, .module-expanded > .module-footer:last-child {
     padding-bottom: 5px;
   }
-  .module-large > .module-header, .module-large > .module-content, .module-large > .module-footer {
+  .module-expanded > .module-header, .module-expanded > .module-content, .module-expanded > .module-footer {
     margin-left: -10px;
     margin-right: -10px;
   }
-  .module-large > .module-header:first-child, .module-large > .module-content:first-child, .module-large > .module-footer:first-child {
+  .module-expanded > .module-header:first-child, .module-expanded > .module-content:first-child, .module-expanded > .module-footer:first-child {
     margin-top: -5px;
   }
-  .module-large > .module-header:last-child, .module-large > .module-content:last-child, .module-large > .module-footer:last-child {
+  .module-expanded > .module-header:last-child, .module-expanded > .module-content:last-child, .module-expanded > .module-footer:last-child {
     margin-bottom: -5px;
   }
   .module-title {

@@ -9,6 +9,14 @@ $prefix: '.module';
     transition: $transition-duration-long opacity $transition-timing;
     max-width: 100%;
 
+    &#{&}-expanded {
+      grid-gap: $module-gutter-grid-expanded-gap;
+    }
+
+    &#{&}-compact {
+      grid-gap: $module-gutter-grid-compact-gap;
+    }
+
     &:nth-child(n + 2) {
       margin-top: $module-grid-gutter;
     }
@@ -191,7 +199,7 @@ $prefix: '.module';
   @at-root #{$prefix}-function {
     position: relative;
     display: inline-flex;
-    text-align:initial;
+    text-align: initial;
 
     @include on-breakpoint(mobile) {
       display: flex;
@@ -354,88 +362,88 @@ $prefix: '.module';
     margin-bottom: $module-gutter-y * -1;
   }
 
-  @include on-breakpoint(mobile) {
-    &-small {
+  @include on-breakpoint(nonmobile) {
+    &-compact {
       &#{$prefix},
       > #{$prefix}-header,
       > #{$prefix}-content,
       > #{$prefix}-footer {
-        padding-left: $module-small-gutter-x;
-        padding-right: $module-small-gutter-x;
+        padding-left: $module-compact-gutter-x;
+        padding-right: $module-compact-gutter-x;
       }
 
       &#{$prefix},
       > #{$prefix}-header:first-child,
       > #{$prefix}-content:first-child,
       > #{$prefix}-footer:first-child {
-        padding-top: $module-small-gutter-y;
+        padding-top: $module-compact-gutter-y;
       }
       &#{$prefix},
       > #{$prefix}-header:last-child,
       > #{$prefix}-content:last-child,
       > #{$prefix}-footer:last-child {
-        padding-bottom: $module-small-gutter-y;
+        padding-bottom: $module-compact-gutter-y;
       }
 
       > #{$prefix}-header,
       > #{$prefix}-content,
       > #{$prefix}-footer {
-        margin-left: $module-small-gutter-x * -1;
-        margin-right: $module-small-gutter-x * -1;
+        margin-left: $module-compact-gutter-x * -1;
+        margin-right: $module-compact-gutter-x * -1;
       }
 
       > #{$prefix}-header:first-child,
       > #{$prefix}-content:first-child,
       > #{$prefix}-footer:first-child {
-        margin-top: $module-small-gutter-y * -1;
+        margin-top: $module-compact-gutter-y * -1;
       }
 
       > #{$prefix}-header:last-child,
       > #{$prefix}-content:last-child,
       > #{$prefix}-footer:last-child {
-        margin-bottom: $module-small-gutter-y * -1;
+        margin-bottom: $module-compact-gutter-y * -1;
       }
     }
 
-    &-large {
+    &-expanded {
       &#{$prefix},
       & > #{$prefix}-header,
       & > #{$prefix}-content,
       & > #{$prefix}-footer {
-        padding-left: $module-large-gutter-x;
-        padding-right: $module-large-gutter-x;
+        padding-left: $module-expanded-gutter-x;
+        padding-right: $module-expanded-gutter-x;
       }
 
       &#{$prefix},
       & > #{$prefix}-header:first-child,
       & > #{$prefix}-content:first-child,
       & > #{$prefix}-footer:first-child {
-        padding-top: $module-large-gutter-y;
+        padding-top: $module-expanded-gutter-y;
       }
       &#{$prefix},
       & > #{$prefix}-header:last-child,
       & > #{$prefix}-content:last-child,
       & > #{$prefix}-footer:last-child {
-        padding-bottom: $module-large-gutter-y;
+        padding-bottom: $module-expanded-gutter-y;
       }
 
       & > #{$prefix}-header,
       & > #{$prefix}-content,
       & > #{$prefix}-footer {
-        margin-left: $module-large-gutter-x * -1;
-        margin-right: $module-large-gutter-x * -1;
+        margin-left: $module-expanded-gutter-x * -1;
+        margin-right: $module-expanded-gutter-x * -1;
       }
 
       & > #{$prefix}-header:first-child,
       & > #{$prefix}-content:first-child,
       & > #{$prefix}-footer:first-child {
-        margin-top: $module-large-gutter-y * -1;
+        margin-top: $module-expanded-gutter-y * -1;
       }
 
       & > #{$prefix}-header:last-child,
       & > #{$prefix}-content:last-child,
       & > #{$prefix}-footer:last-child {
-        margin-bottom: $module-large-gutter-y * -1;
+        margin-bottom: $module-expanded-gutter-y * -1;
       }
     }
   }
@@ -487,87 +495,87 @@ $prefix: '.module';
       margin-bottom: $module-gutter-y-mobile * -1;
     }
 
-    &-small {
+    &-compact {
       &#{$prefix},
       & > #{$prefix}-header,
       & > #{$prefix}-content,
       & > #{$prefix}-footer {
-        padding-left: $module-small-gutter-x-mobile;
-        padding-right: $module-small-gutter-x-mobile;
+        padding-left: $module-compact-gutter-x-mobile;
+        padding-right: $module-compact-gutter-x-mobile;
       }
 
       &#{$prefix},
       & > #{$prefix}-header:first-child,
       & > #{$prefix}-content:first-child,
       & > #{$prefix}-footer:first-child {
-        padding-top: $module-small-gutter-y-mobile;
+        padding-top: $module-compact-gutter-y-mobile;
       }
       &#{$prefix},
       & > #{$prefix}-header:last-child,
       & > #{$prefix}-content:last-child,
       & > #{$prefix}-footer:last-child {
-        padding-bottom: $module-small-gutter-y-mobile;
+        padding-bottom: $module-compact-gutter-y-mobile;
       }
 
       & > #{$prefix}-header,
       & > #{$prefix}-content,
       & > #{$prefix}-footer {
-        margin-left: $module-small-gutter-x-mobile * -1;
-        margin-right: $module-small-gutter-x-mobile * -1;
+        margin-left: $module-compact-gutter-x-mobile * -1;
+        margin-right: $module-compact-gutter-x-mobile * -1;
       }
 
       & > #{$prefix}-header:first-child,
       & > #{$prefix}-content:first-child,
       & > #{$prefix}-footer:first-child {
-        margin-top: $module-small-gutter-y-mobile * -1;
+        margin-top: $module-compact-gutter-y-mobile * -1;
       }
 
       & > #{$prefix}-header:last-child,
       & > #{$prefix}-content:last-child,
       & > #{$prefix}-footer:last-child {
-        margin-bottom: $module-small-gutter-y-mobile * -1;
+        margin-bottom: $module-compact-gutter-y-mobile * -1;
       }
     }
 
-    &-large {
+    &-expanded {
       &#{$prefix},
       & > #{$prefix}-header,
       & > #{$prefix}-content,
       & > #{$prefix}-footer {
-        padding-left: $module-large-gutter-x-mobile;
-        padding-right: $module-large-gutter-x-mobile;
+        padding-left: $module-expanded-gutter-x-mobile;
+        padding-right: $module-expanded-gutter-x-mobile;
       }
 
       &#{$prefix},
       & > #{$prefix}-header:first-child,
       & > #{$prefix}-content:first-child,
       & > #{$prefix}-footer:first-child {
-        padding-top: $module-large-gutter-y-mobile;
+        padding-top: $module-expanded-gutter-y-mobile;
       }
       &#{$prefix},
       & > #{$prefix}-header:last-child,
       & > #{$prefix}-content:last-child,
       & > #{$prefix}-footer:last-child {
-        padding-bottom: $module-large-gutter-y-mobile;
+        padding-bottom: $module-expanded-gutter-y-mobile;
       }
 
       & > #{$prefix}-header,
       & > #{$prefix}-content,
       & > #{$prefix}-footer {
-        margin-left: $module-large-gutter-x-mobile * -1;
-        margin-right: $module-large-gutter-x-mobile * -1;
+        margin-left: $module-expanded-gutter-x-mobile * -1;
+        margin-right: $module-expanded-gutter-x-mobile * -1;
       }
 
       & > #{$prefix}-header:first-child,
       & > #{$prefix}-content:first-child,
       & > #{$prefix}-footer:first-child {
-        margin-top: $module-large-gutter-y-mobile * -1;
+        margin-top: $module-expanded-gutter-y-mobile * -1;
       }
 
       & > #{$prefix}-header:last-child,
       & > #{$prefix}-content:last-child,
       & > #{$prefix}-footer:last-child {
-        margin-bottom: $module-large-gutter-y-mobile * -1;
+        margin-bottom: $module-expanded-gutter-y-mobile * -1;
       }
     }
 
