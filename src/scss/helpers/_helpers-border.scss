@@ -2,28 +2,9 @@ $prefix: '.border';
 #{$prefix} {
   &-color {
     // Theme
-    @include create-palette-helper(#{&}-theme, border-color, $var-theme-color);
-
-    // Theme Contrast
-    @include create-palette-helper(
-      #{&}-theme-contrast,
-      border-color,
-      $var-theme-color-contrast
-    );
-
-    // Theme Polar
-    @include create-palette-helper(
-      #{&}-theme-polar,
-      border-color,
-      $var-theme-background
-    );
-
-    // Theme Contrast Polar
-    @include create-palette-helper(
-      #{&}-theme-polar-contrast,
-      border-color,
-      $var-theme-background-contrast
-    );
+    @each $color, $var in $calculated-theme-colors-color {
+      @include create-palette-helper(#{&}-#{$color}, border-color, $var);
+    }
 
     //inherit
     @include create-palette-helper(#{&}-inherit, border-color, inherit);

@@ -1,4 +1,5 @@
 /*** MODAL ***/
+$global-prefix: '.modal';
 $prefix: '.modal-ui';
 $mode-class: #{$prefix}-mode-default;
 
@@ -46,6 +47,15 @@ $mode-class: #{$prefix}-mode-default;
   margin: auto;
 
   padding: $modal-padding-y $modal-padding-x;
+
+  @include on-breakpoint(nonmobile) {
+    #{$global-prefix}-compact & {
+      padding: $modal-compact-padding-y $modal-compact-padding-x;
+    }
+    #{$global-prefix}-expanded & {
+      padding: $modal-expanded-padding-y $modal-expanded-padding-x;
+    }
+  }
 
   @include on-breakpoint(mobile) {
     padding: $modal-padding-y-mobile $modal-padding-x-mobile;

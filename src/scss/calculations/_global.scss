@@ -506,7 +506,39 @@ $calculated-color-vars-variations: (
   ),
 );
 
-$calculated-gradient-angles: (45, 90, 135, 180, 225, 270, 315);
+$calculated-gradient-angles-legacy: (0, 45, 90, 135, 180, 225, 270, 315);
+$calculated-gradient-angles: (0, 45, 90, 135);
+
+$calculated-gradient-color-stops: (
+  base: $var-color-base,
+  background: $var-color-background,
+  primary: $var-color-primary,
+  secondary: $var-color-secondary,
+  accent: $var-color-accent,
+  neutral: $var-color-neutral,
+  success: $var-color-success,
+  caution: $var-color-caution,
+  error: $var-color-error,
+  transparent: transparent,
+  theme: $var-theme-background,
+  theme-contrast: $var-theme-background-contrast,
+  theme-polar: $var-theme-color,
+  theme-polar-contrast: $var-theme-color-contrast,
+);
+
+$calculated-theme-colors-background: (
+  theme: $var-theme-background,
+  theme-contrast: $var-theme-background-contrast,
+  theme-polar: $var-theme-color,
+  theme-polar-contrast: $var-theme-color-contrast,
+);
+
+$calculated-theme-colors-color: (
+  theme: $var-theme-color,
+  theme-contrast: $var-theme-color-contrast,
+  theme-polar: $var-theme-background,
+  theme-polar-contrast: $var-theme-background-contrast,
+);
 
 //for components
 $calculated-brand-color-declarations-for-components: (

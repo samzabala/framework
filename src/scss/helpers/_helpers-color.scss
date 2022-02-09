@@ -1,20 +1,9 @@
 $prefix: '.color';
 #{$prefix} {
   // Theme
-  @include create-palette-helper(#{&}-theme, color, $var-theme-color);
-
-  // Theme Contrast
-  @include create-palette-helper(#{&}-theme-contrast, color, $var-theme-color-contrast);
-
-  // Theme Polar
-  @include create-palette-helper(#{&}-theme-polar, color, $var-theme-background);
-
-  // Theme Contrast Polar
-  @include create-palette-helper(
-    #{&}-theme-polar-contrast,
-    color,
-    $var-theme-background-contrast
-  );
+  @each $color, $var in $calculated-theme-colors-color {
+    @include create-palette-helper(#{&}-#{$color}, color, $var);
+  }
 
   //inherit
   @include create-palette-helper(#{&}-inherit, color, inherit);
