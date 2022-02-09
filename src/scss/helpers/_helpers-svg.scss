@@ -10,22 +10,27 @@ $prefix: '.svg';
   }
 }
 
+.stop-color {
+  // Theme
+  @each $color, $var in $calculated-theme-colors-color {
+    @include create-palette-helper(#{&}-#{$color}, stop-color, $var);
+  }
+
+  //current
+  @include create-palette-helper(#{&}-currentColor, stop-color, currentColor);
+
+  //none
+  @include create-palette-helper(#{&}-none, stop-color, transparent);
+
+  //godspeed bro
+  @include dump-palette-helpers(stop-color);
+}
+
 .fill {
   // Theme
-  @include create-palette-helper(#{&}-theme, fill, $var-theme-color);
-
-  // Theme Contrast
-  @include create-palette-helper(#{&}-theme-contrast, fill, $var-theme-color-contrast);
-
-  // Theme Polar
-  @include create-palette-helper(#{&}-theme-polar, fill, $var-theme-background);
-
-  // Theme Contrast Polar
-  @include create-palette-helper(
-    #{&}-theme-polar-contrast,
-    fill,
-    $var-theme-background-contrast
-  );
+  @each $color, $var in $calculated-theme-colors-color {
+    @include create-palette-helper(#{&}-#{$color}, fill, $var);
+  }
 
   //current
   @include create-palette-helper(#{&}-currentColor, fill, currentColor);
@@ -39,24 +44,9 @@ $prefix: '.svg';
 
 .stroke {
   // Theme
-  @include create-palette-helper(#{&}-theme, stroke, $var-theme-color);
-
-  // Theme Contrast
-  @include create-palette-helper(
-    #{&}-theme-contrast,
-    stroke,
-    $var-theme-color-contrast
-  );
-
-  // Theme Polar
-  @include create-palette-helper(#{&}-theme-polar, stroke, $var-theme-background);
-
-  // Theme Contrast Polar
-  @include create-palette-helper(
-    #{&}-theme-polar-contrast,
-    stroke,
-    $var-theme-background-contrast
-  );
+  @each $color, $var in $calculated-theme-colors-color {
+    @include create-palette-helper(#{&}-#{$color}, stroke, $var);
+  }
 
   //current
   @include create-palette-helper(#{&}-currentColor, stroke, currentColor);

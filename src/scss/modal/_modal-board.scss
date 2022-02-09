@@ -1,4 +1,5 @@
 /*** MODAL BOARD ***/
+$global-prefix: '.modal';
 $prefix: '.modal-ui';
 $mode-class: #{$prefix}-mode-board;
 
@@ -149,6 +150,15 @@ $mode-class: #{$prefix}-mode-board;
   height: 100%;
 
   padding: $modal-board-padding-y $modal-board-padding-x;
+
+  @include on-breakpoint(nonmobile) {
+    #{$global-prefix}-compact & {
+      padding: $modal-board-compact-padding-y $modal-board-compact-padding-x;
+    }
+    #{$global-prefix}-expanded & {
+      padding: $modal-board-expanded-padding-y $modal-board-expanded-padding-x;
+    }
+  }
 
   @include on-breakpoint(mobile) {
     padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
