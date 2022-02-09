@@ -8,7 +8,9 @@
     "dev": "watch 'npm run build' src",
     "prettier": "prettier --write .",
     "js-build-umd": "rollup --config build/rollup.config.js",
-    "sass-build": "sass --style=expanded --no-source-map --no-error-css src/scss/framework.layout.scss:dist/css/framework.layout.css src/scss/framework.lite.scss:dist/css/framework.lite.css src/scss/framework.normalize.scss:dist/css/framework.normalize.css src/scss/framework.scss:dist/css/framework.css src/scss/framework.utilities.scss:dist/css/framework.utilities.css",
+    "sass-compile": "sass --style=expanded --no-source-map --no-error-css src/scss/framework.layout.scss:dist/css/framework.layout.css src/scss/framework.lite.scss:dist/css/framework.lite.css src/scss/framework.normalize.scss:dist/css/framework.normalize.css src/scss/framework.scss:dist/css/framework.css src/scss/framework.utilities.scss:dist/css/framework.utilities.css",
+    "css-autoprefix": "postcss dist/css/*.css --no-map --use autoprefixer --replace",
+    "sass-build": "npm run sass-compile;npm run css-autoprefix;",
     "build": "npm run js-build-umd; npm run sass-build;"
   },
   "author": "1Point21 Interactive",
@@ -23,13 +25,14 @@
     "@rollup/plugin-node-resolve": "^11.2.0",
     "autoprefixer": "^10.2.5",
     "dart-sass": "^1.25.0",
+    "postcss": "^8.4.6",
+    "postcss-cli": "^9.1.0",
     "prettier": "^2.2.1",
     "rollup": "^2.41.4",
     "sass": "^1.33.0",
     "watch": "^0.13.0"
   },
   "dependencies": {
-    "postcss": "^8.2.8",
     "rollup-plugin-copy": "^3.4.0"
   }
 }

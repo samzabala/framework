@@ -11,6 +11,9 @@ $prefix: '.background';
 
   //gradient
   &-gradient {
+    @at-root %for-gradient-legacy-fallback {
+      background-color: $var-gradient-start !important;
+    }
     //legacy/default
     $gradient-legacy-selector: #{&};
     $gradient-legacy-selector-angled: $gradient-legacy-selector;
@@ -18,14 +21,10 @@ $prefix: '.background';
 
     @each $angle in $calculated-gradient-angles-legacy {
       @if $angle > 0 {
-        $calculated-gradient-legacy-all-selector: #{$calculated-gradient-legacy-all-selector
-          ', ' +
-          & +
-          '-' +
-          $angle};
         $gradient-legacy-selector-angled: #{$gradient-legacy-selector}-#{$angle};
 
         @include create-palette-helper(#{$gradient-legacy-selector-angled}) {
+          @extend %for-gradient-legacy-fallback !optional;
           @include gradient(
             (
               color1: $var-gradient-start,
@@ -40,10 +39,6 @@ $prefix: '.background';
       }
     }
 
-    @at-root #{$calculated-gradient-legacy-all-selector} {
-      background-color: $var-gradient-start !important;
-    }
-
     //stops support
     $gradient-selector: #{&};
     $gradient-selector-angled: $gradient-selector;
@@ -54,11 +49,14 @@ $prefix: '.background';
       }
 
       @each $color1, $var1 in $calculated-gradient-color-stops {
+        @at-root %for-gradient-#{""+$color1}-fallback {
+          background-color: $var1 !important;
+        }
         @each $color2, $var2 in $calculated-gradient-color-stops {
-          @include create-palette-helper(
-            #{$gradient-selector-angled}-from-#{$color1}-to-#{$color2}
-          ) {
+          $selector: #{$gradient-selector-angled}-from-#{""+$color1}-to-#{""+$color2};
+          @include create-palette-helper($selector) {
             @if $color1 != $color2 {
+              @extend %for-gradient-#{""+$color1}-fallback !optional;
               @include gradient(
                 (
                   color1: $var1,
@@ -68,6 +66,7 @@ $prefix: '.background';
                   angle: to-unit($angle, deg),
                   use-shorthand: false,
                   add-important: true,
+                  use-fallback: false,
                 )
               );
             }

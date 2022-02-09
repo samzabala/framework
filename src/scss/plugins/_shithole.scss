@@ -1240,7 +1240,7 @@ $keyframe-instance: 1;
 // DESIGN FUNCTIONS
 //////////////////////////////////////////////////////////////////////////////
 
-/* heading bars or rules from tiny rectangles to long rules and what not. */
+// heading bars or rules from tiny rectangles to long rules and what not.
 @mixin decoration-bar($args: ()) {
   $opts: map-merge(
     (
@@ -1507,7 +1507,7 @@ $keyframe-instance: 1;
     @if ($i == 1) {
       @if (map-get($opts, use-fallback) == true) {
         background#{ $shorthand-color }: map-get($focus-stack, fallback)
-          #{$important}; /* Old browsers */
+          #{$important}; // Old browsers
       }
     }
 
@@ -1523,12 +1523,12 @@ $keyframe-instance: 1;
   }
 
   @if map-get($opts, autoprefix) != false {
-    background#{ $shorthand-image }: #{$stack-moz} #{$important}; /* FF3.6-15 */
+    background#{ $shorthand-image }: #{$stack-moz} #{$important}; // FF3.6-15
     background#{ $shorthand-image }: #{$stack-webkit}
-      #{$important}; /* Chrome10-25,Safari5.1-6 */
+      #{$important}; // Chrome10-25,Safari5.1-6
   }
 
-  background#{ $shorthand-image }: #{$stack-native} #{$important}; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background#{ $shorthand-image }: #{$stack-native} #{$important}; // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
 }
 
 @function internal__gradient_get_vals($type, $angle, $points, $fallback) {
@@ -1899,14 +1899,14 @@ $keyframe-instance: 1;
         map-get($opts, color) map-get($opts, width),
         transparent map-get($opts, width),
         transparent $pattern-width
-      ); /* FF3.6-15 */
+      ); // FF3.6-15
       background: -webkit-linear-gradient(
         90deg,
         map-get($opts, color) 0px,
         map-get($opts, color) map-get($opts, width),
         transparent map-get($opts, width),
         transparent $pattern-width
-      ); /* Chrome10-25,Safari5.1-6 */
+      ); // Chrome10-25,Safari5.1-6
     }
     background: linear-gradient(
       90deg,
@@ -1914,7 +1914,7 @@ $keyframe-instance: 1;
       map-get($opts, color) map-get($opts, width),
       transparent map-get($opts, width),
       transparent $pattern-width
-    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    ); // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
     background-size: $pattern-width 100%;
     background-repeat: repeat;
 
