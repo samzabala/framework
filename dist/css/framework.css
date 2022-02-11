@@ -5182,6 +5182,10 @@ body:not(.body-loaded) .symbol:before {
   content: "\e95e";
 }
 
+.symbol-drag:before, .active > .symbol-drag-toggle:before, .open > .symbol-drag-toggle:before {
+  content: "\e95f";
+}
+
 /*** ASSET ***/
 .asset {
   max-width: 100%;
