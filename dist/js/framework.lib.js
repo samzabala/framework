@@ -76,7 +76,7 @@
     function Settings() {}
 
     Settings.modify = function modify(key, value) {
-      if (this.hasOwnProperty(key)) {
+      if (CORE_SETTINGS.hasOwnProperty(key)) {
         CORE_SETTINGS[key] = value;
       }
     };

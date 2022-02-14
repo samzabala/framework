@@ -10,7 +10,7 @@ CORE_SETTINGS.uiJsClass = CORE_SETTINGS.uiClass.replace('-', '_'); // for script
 
 class Settings {
   static modify(key, value) {
-    if (this.hasOwnProperty(key)) {
+    if (CORE_SETTINGS.hasOwnProperty(key)) {
       CORE_SETTINGS[key] = value;
     }
   }
