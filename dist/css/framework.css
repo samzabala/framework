@@ -9858,6 +9858,13 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 
 .modal {
   text-align: initial;
+  transition: 0.5s opacity ease-in-out;
+}
+body:not(.body-loaded) .modal {
+  opacity: 0;
+}
+.body-loaded .modal {
+  opacity: 1;
 }
 .modal-ui-mode-fullscreen.modal-ui-wrapper, .modal-ui-mode-board.modal-ui-popup, .modal-ui-mode-default.modal-ui-wrapper {
   overflow-y: scroll;
