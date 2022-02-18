@@ -4,21 +4,6 @@
 %for-modal {
   & {
     text-align: initial;
-    transition: $transition-duration-long opacity $transition-timing;
-
-    body:not(.body-loaded) & {
-      &,
-      &-title {
-        opacity: 0;
-      }
-    }
-
-    .body-loaded & {
-      &,
-      &-title {
-        opacity: 1;
-      }
-    }
   }
 
   //ui block where scrolling is allowed

@@ -4939,10 +4939,27 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
 .background-gradient-45-focus.focus,
 .background-gradient-45-active.active,
 .background-gradient-45-toggle.active,
-.background-gradient-45-toggle.open {
+.background-gradient-45-toggle.open, .theme-inverse .background-gradient-inverse, .background-gradient,
+.background-gradient-hover:hover,
+.background-gradient-focus:focus,
+.background-gradient-active:active,
+.background-gradient-focus.focus,
+.background-gradient-active.active,
+.background-gradient-toggle.active,
+.background-gradient-toggle.open {
   background-color: var(--fw-gradient-start) !important;
 }
 
+.theme-inverse .background-gradient-inverse, .background-gradient,
+.background-gradient-hover:hover,
+.background-gradient-focus:focus,
+.background-gradient-active:active,
+.background-gradient-focus.focus,
+.background-gradient-active.active,
+.background-gradient-toggle.active,
+.background-gradient-toggle.open {
+  background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%)  !important;
+}
 .theme-inverse .background-gradient-45-inverse, .background-gradient-45,
 .background-gradient-45-hover:hover,
 .background-gradient-45-focus:focus,

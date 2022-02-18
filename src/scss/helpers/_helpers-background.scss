@@ -22,20 +22,20 @@ $prefix: '.background';
     @each $angle in $calculated-gradient-angles-legacy {
       @if $angle > 0 {
         $gradient-legacy-selector-angled: #{$gradient-legacy-selector}-#{$angle};
+      }
 
-        @include create-palette-helper(#{$gradient-legacy-selector-angled}) {
-          @extend %for-gradient-legacy-fallback !optional;
-          @include gradient(
-            (
-              color1: $var-gradient-start,
-              color2: $var-gradient-end,
-              angle: to-unit($angle, deg),
-              use-shorthand: false,
-              add-important: true,
-              use-fallback: false,
-            )
-          );
-        }
+      @include create-palette-helper(#{$gradient-legacy-selector-angled}) {
+        @extend %for-gradient-legacy-fallback !optional;
+        @include gradient(
+          (
+            color1: $var-gradient-start,
+            color2: $var-gradient-end,
+            angle: to-unit($angle, deg),
+            use-shorthand: false,
+            add-important: true,
+            use-fallback: false,
+          )
+        );
       }
     }
 
