@@ -270,10 +270,10 @@
 }
 
 @mixin dump-palette-helpers($property) {
-  @each $tag, $var in $calculated-brand-color-declarations-for-helpers {
+  @each $tag, $var in $_fwc-brand-color-declarations-for-helpers {
     @include create-palette-helper(#{&}-#{$tag}, $property, $var);
 
-    $variations: map-get($calculated-color-vars-variations, $tag);
+    $variations: map-get($_fwc-color-vars-variations, $tag);
 
     @each $variation-tag, $variation-var in $variations {
       @include create-palette-helper(
@@ -471,7 +471,7 @@
   }
 
   &-nav-offset-sticky {
-    top: $calculated-nav-height !important;
+    top: $_fwc-nav-height !important;
   }
 
   &-visibility-hidden {

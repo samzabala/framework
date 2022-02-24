@@ -81,14 +81,14 @@ $prefix: '.progress';
     @extend %for-progress;
   }
   @at-root %for-progress-and-bar {
-    height: $calculated-progress-height;
+    height: $_fwc-progress-height;
     transition: $progress-transition-duration width $transition-timing;
 
     &-small {
-      height: $calculated-progress-height-small;
+      height: $_fwc-progress-height-small;
     }
     &-large {
-      height: $calculated-progress-height-large;
+      height: $_fwc-progress-height-large;
     }
   }
 
@@ -123,16 +123,16 @@ $prefix: '.progress';
     @extend %for-progress-bar;
     @extend %for-progress-bar-default;
 
-    @each $tag, $color in $calculated-brand-color-declarations-for-components {
+    @each $tag, $color in $_fwc-brand-color-declarations-for-components {
       &-#{$tag} {
         background-color: $color;
       }
     }
 
     &-intensity {
-      @for $i from 1 through length($calculated-brand-color-intensity) {
+      @for $i from 1 through length($_fwc-brand-color-intensity) {
         &-#{$i} {
-          background-color: nth($calculated-brand-color-intensity, $i);
+          background-color: nth($_fwc-brand-color-intensity, $i);
         }
       }
     }
@@ -141,8 +141,8 @@ $prefix: '.progress';
   &-title {
     @include type-set(
       (
-        size: $calculated-progress-title-font-size,
-        leading: $calculated-progress-title-line-height,
+        size: $_fwc-progress-title-font-size,
+        leading: $_fwc-progress-title-line-height,
         color: $progress-title-color,
         weight: $progress-title-font-weight,
         style: $progress-title-font-style,
@@ -150,8 +150,8 @@ $prefix: '.progress';
       )
     );
     display: block;
-    margin-bottom: $calculated-progress-title-margin-bottom;
-    margin-top: $calculated-progress-title-margin-top;
+    margin-bottom: $_fwc-progress-title-margin-bottom;
+    margin-top: $_fwc-progress-title-margin-top;
 
     .theme-inverse & {
       color: $progress-title-color-inverse;

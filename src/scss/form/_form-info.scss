@@ -4,16 +4,16 @@ $prefix: '.input';
   &-info {
     @include type-set(
       (
-        size: $calculated-input-info-font-size,
-        leading: $calculated-input-info-line-height,
+        size: $_fwc-input-info-font-size,
+        leading: $_fwc-input-info-line-height,
         color: $input-info-color,
         weight: $input-info-font-weight,
         style: $input-info-font-style,
         case: $input-info-text-transform,
       )
     );
-    margin-top: $calculated-input-info-gutter-y;
-    margin-bottom: $calculated-input-info-gutter-y;
+    margin-top: $_fwc-input-info-gutter-y;
+    margin-bottom: $_fwc-input-info-gutter-y;
     display: block;
 
     order: 99;

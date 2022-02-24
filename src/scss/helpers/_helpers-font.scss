@@ -23,10 +23,10 @@
 
   &-size {
     &-large {
-      font-size: rem($calculated-body-size-large) !important;
+      font-size: rem($_fwc-body-size-large) !important;
     }
     &-small {
-      font-size: rem($calculated-body-size-small) !important;
+      font-size: rem($_fwc-body-size-small) !important;
     }
     &-normalize {
       font-size: 1rem !important;

@@ -1,6 +1,6 @@
-$calculated-symbol-basis: $body-font-size; //so it doesnt look icky whatever custom size is set
+$_fwc-symbol-basis: $body-font-size; //so it doesnt look icky whatever custom size is set
 
-$calculated-symbol-glyphs: (
+$_fwc-symbol-glyphs: (
   1p21: 'e900',
   play: 'e901',
   pause: 'e902',
@@ -101,11 +101,11 @@ $calculated-symbol-glyphs: (
 );
 
 //DEPRECATE
-$calculated-symbol-caret-height: $symbol-caret-height;
+$_fwc-symbol-caret-height: $symbol-caret-height;
 @if internal-is-convertable($symbol-caret-height) {
-  $calculated-symbol-caret-height: em($calculated-symbol-caret-height, $body-font-size);
+  $_fwc-symbol-caret-height: em($_fwc-symbol-caret-height, $body-font-size);
 }
-$calculated-symbol-caret-width: $symbol-caret-width;
+$_fwc-symbol-caret-width: $symbol-caret-width;
 @if internal-is-convertable($symbol-caret-width) {
-  $calculated-symbol-caret-width: em($calculated-symbol-caret-width, $body-font-size);
+  $_fwc-symbol-caret-width: em($_fwc-symbol-caret-width, $body-font-size);
 }

@@ -4,21 +4,21 @@ $prefix: '.legend';
   display: inline-block;
   vertical-align: middle;
   line-height: inherit;
-  width: $calculated-legend-width;
-  height: $calculated-legend-height;
+  width: $_fwc-legend-width;
+  height: $_fwc-legend-height;
   border-radius: $legend-border-radius;
   margin-right: 0.5rem;
 
-  @each $tag, $color in $calculated-brand-color-declarations-for-components {
+  @each $tag, $color in $_fwc-brand-color-declarations-for-components {
     &-#{$tag} {
       background-color: $color;
     }
   }
 
   &-intensity {
-    @for $i from 1 through length($calculated-brand-color-intensity) {
+    @for $i from 1 through length($_fwc-brand-color-intensity) {
       &-#{$i} {
-        background-color: nth($calculated-brand-color-intensity, $i);
+        background-color: nth($_fwc-brand-color-intensity, $i);
       }
     }
   }

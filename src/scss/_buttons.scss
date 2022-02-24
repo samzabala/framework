@@ -16,15 +16,15 @@ $prefix: '.btn';
 
     &-round {
       & {
-        border-radius: $calculated-btn-height * 0.5;
+        border-radius: $_fwc-btn-height * 0.5;
       }
 
       &-large {
-        border-radius: $calculated-btn-height-large * 0.5;
+        border-radius: $_fwc-btn-height-large * 0.5;
       }
 
       &-small {
-        border-radius: $calculated-btn-height-small * 0.5;
+        border-radius: $_fwc-btn-height-small * 0.5;
       }
     }
   }
@@ -33,8 +33,8 @@ $prefix: '.btn';
     & {
       @include type-set(
         (
-          size: #{$calculated-btn-font-size},
-          leading: #{$calculated-btn-line-height},
+          size: #{$_fwc-btn-font-size},
+          leading: #{$_fwc-btn-line-height},
           weight: $btn-font-weight,
           style: $btn-font-style,
           font: $btn-font-family,
@@ -45,19 +45,19 @@ $prefix: '.btn';
       // overflow:hidden;
       padding-top: calc(
         (
-            (#{$calculated-btn-height} - (#{$btn-border-width} * 2)) -
-              (#{$calculated-btn-single-line})
+            (#{$_fwc-btn-height} - (#{$btn-border-width} * 2)) -
+              (#{$_fwc-btn-single-line})
           ) * 0.5
       );
       padding-bottom: calc(
         (
-            (#{$calculated-btn-height} - (#{$btn-border-width} * 2)) -
-              (#{$calculated-btn-single-line})
+            (#{$_fwc-btn-height} - (#{$btn-border-width} * 2)) -
+              (#{$_fwc-btn-single-line})
           ) * 0.5
       );
-      min-height: $calculated-btn-height;
-      padding-right: $calculated-btn-gutter-x;
-      padding-left: $calculated-btn-gutter-x;
+      min-height: $_fwc-btn-height;
+      padding-right: $_fwc-btn-gutter-x;
+      padding-left: $_fwc-btn-gutter-x;
       border: $btn-border-width solid transparent;
       transition: $btn-transition-duration all $transition-timing;
       width: auto;
@@ -86,36 +86,36 @@ $prefix: '.btn';
       @extend %for-btn-global-radius-large;
       padding-top: calc(
         (
-            (#{$calculated-btn-height-large} - (#{$btn-border-width} * 2)) -
-              (#{$calculated-btn-single-line})
+            (#{$_fwc-btn-height-large} - (#{$btn-border-width} * 2)) -
+              (#{$_fwc-btn-single-line})
           ) * 0.5
       );
       padding-bottom: calc(
         (
-            (#{$calculated-btn-height-large} - (#{$btn-border-width} * 2)) -
-              (#{$calculated-btn-single-line})
+            (#{$_fwc-btn-height-large} - (#{$btn-border-width} * 2)) -
+              (#{$_fwc-btn-single-line})
           ) * 0.5
       );
-      min-height: $calculated-btn-height-large;
-      font-size: $calculated-btn-font-size-large;
+      min-height: $_fwc-btn-height-large;
+      font-size: $_fwc-btn-font-size-large;
     }
 
     &-small {
       @extend %for-btn-global-radius-small;
-      font-size: $calculated-btn-font-size-small;
+      font-size: $_fwc-btn-font-size-small;
       padding-top: calc(
         (
-            (#{$calculated-btn-height-small} - (#{$btn-border-width} * 2)) -
-              (#{$calculated-btn-single-line})
+            (#{$_fwc-btn-height-small} - (#{$btn-border-width} * 2)) -
+              (#{$_fwc-btn-single-line})
           ) * 0.5
       );
       padding-bottom: calc(
         (
-            (#{$calculated-btn-height-small} - (#{$btn-border-width} * 2)) -
-              (#{$calculated-btn-single-line})
+            (#{$_fwc-btn-height-small} - (#{$btn-border-width} * 2)) -
+              (#{$_fwc-btn-single-line})
           ) * 0.5
       );
-      min-height: $calculated-btn-height-small;
+      min-height: $_fwc-btn-height-small;
     }
 
     &-in-nav {
@@ -182,17 +182,17 @@ $prefix: '.btn';
 
   @at-root %for-btn-symbol {
     & {
-      width: $calculated-btn-height;
+      width: $_fwc-btn-height;
       padding-left: 0;
       padding-right: 0;
     }
 
     &-large {
-      width: $calculated-btn-height-large;
+      width: $_fwc-btn-height-large;
     }
 
     &-small {
-      width: $calculated-btn-height-small;
+      width: $_fwc-btn-height-small;
     }
   }
 
@@ -248,7 +248,7 @@ $prefix: '.btn';
       &-in-nav {
         @include dump-styles(no-border-radius);
         @include dump-styles(no-box-shadow-important);
-        height: #{$calculated-nav-height} !important;
+        height: #{$_fwc-nav-height} !important;
       }
     }
   }
@@ -430,7 +430,7 @@ $prefix: '.btn';
     }
   }
 
-  @each $scheme, $properties in $calculated-btn-schemes {
+  @each $scheme, $properties in $_fwc-btn-schemes {
     @at-root %for-btn-#{$scheme} {
       @include create-btn-schemes($properties, $scheme);
 

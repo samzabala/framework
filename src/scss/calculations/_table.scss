@@ -1,4 +1,4 @@
-$calculated-table-row-background: (
+$_fwc-table-row-background: (
   primary: (
     normal: $table-row-primary-background,
     inverse: $table-row-primary-background-inverse,
@@ -49,7 +49,7 @@ $calculated-table-row-background: (
   ),
 );
 
-$calculated-table-cell-background: (
+$_fwc-table-cell-background: (
   primary: (
     normal: $table-cell-primary-background,
     inverse: $table-cell-primary-background-inverse,
@@ -101,21 +101,21 @@ $calculated-table-cell-background: (
 );
 
 //table
-$calculated-table-heading-height: $table-heading-height;
+$_fwc-table-heading-height: $table-heading-height;
 @if internal-is-convertable($table-heading-height) {
-  $calculated-table-heading-height: rem($table-heading-height, $body-font-size);
+  $_fwc-table-heading-height: rem($table-heading-height, $body-font-size);
 }
 
-$calculated-table-cell-height: $table-cell-height;
+$_fwc-table-cell-height: $table-cell-height;
 @if internal-is-convertable($table-cell-height) {
-  $calculated-table-cell-height: rem($table-cell-height, $body-font-size);
+  $_fwc-table-cell-height: rem($table-cell-height, $body-font-size);
 }
 
-$calculated-table-cell-height-large: $table-cell-height-large;
+$_fwc-table-cell-height-large: $table-cell-height-large;
 @if internal-is-convertable($table-cell-height-large) {
-  $calculated-table-cell-height-large: rem($table-cell-height-large, $body-font-size);
+  $_fwc-table-cell-height-large: rem($table-cell-height-large, $body-font-size);
 }
-$calculated-table-cell-height-small: $table-cell-height-small;
+$_fwc-table-cell-height-small: $table-cell-height-small;
 @if internal-is-convertable($table-cell-height-small) {
-  $calculated-table-cell-height-small: rem($table-cell-height-small, $body-font-size);
+  $_fwc-table-cell-height-small: rem($table-cell-height-small, $body-font-size);
 }

@@ -1,15 +1,15 @@
-$calculated-tabs-font-size: $tabs-font-size;
+$_fwc-tabs-font-size: $tabs-font-size;
 @if internal-is-convertable($tabs-font-size) {
-  $calculated-tabs-font-size: rem($tabs-font-size, $body-font-size);
+  $_fwc-tabs-font-size: rem($tabs-font-size, $body-font-size);
 }
-$calculated-tabs-font-size-mobile: $tabs-font-size-mobile;
+$_fwc-tabs-font-size-mobile: $tabs-font-size-mobile;
 @if internal-is-convertable($tabs-font-size-mobile) {
-  $calculated-tabs-font-size-mobile: rem($tabs-font-size-mobile, $body-font-size);
+  $_fwc-tabs-font-size-mobile: rem($tabs-font-size-mobile, $body-font-size);
 }
 
-$calculated-tabs-item-height: $tabs-item-height;
+$_fwc-tabs-item-height: $tabs-item-height;
 @if internal-is-convertable($tabs-item-height, $btn-font-size) {
-  $calculated-tabs-item-height: em($tabs-item-height, $btn-font-size);
+  $_fwc-tabs-item-height: em($tabs-item-height, $btn-font-size);
 } @else if internal-is-convertable($tabs-item-height) {
-  $calculated-tabs-item-height: rem($tabs-item-height, $body-font-size);
+  $_fwc-tabs-item-height: rem($tabs-item-height, $body-font-size);
 }

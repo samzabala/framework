@@ -1,33 +1,33 @@
 $mobile-br-max-polar: polar-br(#{$mobile-br-max}-max);
 
-$calculated-br-tags: (xxs, xs, sm, md, lg);
+$_fwc-br-tags: (xs, sm, md, lg);
 
 //body
-$calculated-body-line-height: type-lead($body-font-size, $body-line-height);
+$_fwc-body-line-height: type-lead($body-font-size, $body-line-height);
 
-$calculated-body-single-line: $calculated-body-line-height;
-@if unitless($calculated-body-single-line) {
-  $calculated-body-single-line: #{1em * type-lead($body-font-size, $body-line-height)};
+$_fwc-body-single-line: $_fwc-body-line-height;
+@if unitless($_fwc-body-single-line) {
+  $_fwc-body-single-line: #{1em * type-lead($body-font-size, $body-line-height)};
 }
 
-$calculated-body-single-line-compact: $calculated-body-line-height *
+$_fwc-body-single-line-compact: $_fwc-body-line-height *
   $body-line-height-compact-factor;
-@if unitless($calculated-body-single-line-compact) {
-  $calculated-body-single-line-compact: #{1em *
+@if unitless($_fwc-body-single-line-compact) {
+  $_fwc-body-single-line-compact: #{1em *
     type-lead($body-font-size, $body-line-height) *
     $body-line-height-compact-factor};
 }
 
-$calculated-body-single-line-expanded: $calculated-body-line-height *
+$_fwc-body-single-line-expanded: $_fwc-body-line-height *
   $body-line-height-expanded-factor;
-@if unitless($calculated-body-single-line-expanded) {
-  $calculated-body-single-line-expanded: #{1em *
+@if unitless($_fwc-body-single-line-expanded) {
+  $_fwc-body-single-line-expanded: #{1em *
     type-lead($body-font-size, $body-line-height) *
     $body-line-height-expanded-factor};
 }
 
 //style guide
-$calculated-color-tags: (
+$_fwc-color-tags: (
   base: $brand-color-base,
   background: $brand-color-background,
   primary: $brand-color-primary,
@@ -44,7 +44,7 @@ $calculated-color-tags: (
   intensity-5: $brand-color-intensity-5,
 );
 
-$calculated-color-variations: (
+$_fwc-color-variations: (
   base: (
     alt: $brand-color-base-alt,
     alpha-1: rgba($brand-color-base, 0.1),
@@ -275,7 +275,7 @@ $calculated-color-variations: (
   ),
 );
 
-$calculated-color-vars-variations: (
+$_fwc-color-vars-variations: (
   base: (
     alt: $var-color-base-alt,
     alpha-1: $var-color-base-alpha-1,
@@ -506,12 +506,10 @@ $calculated-color-vars-variations: (
   ),
 );
 
-$calculated-gradient-angles-legacy: (0, 45, 90, 135, 180, 225, 270, 315);
-$calculated-gradient-angles: (0, 45, 90, 135);
+$_fwc-gradient-angles-legacy: (0, 45, 90, 135, 180, 225, 270, 315);
+$_fwc-gradient-angles: (0, 45, 90, 135);
 
-$calculated-gradient-color-stops: (
-  base: $var-color-base,
-  background: $var-color-background,
+$_fwc-gradient-color-stops: (
   primary: $var-color-primary,
   secondary: $var-color-secondary,
   accent: $var-color-accent,
@@ -526,14 +524,14 @@ $calculated-gradient-color-stops: (
   theme-polar-contrast: $var-theme-color-contrast,
 );
 
-$calculated-theme-colors-background: (
+$_fwc-theme-colors-background: (
   theme: $var-theme-background,
   theme-contrast: $var-theme-background-contrast,
   theme-polar: $var-theme-color,
   theme-polar-contrast: $var-theme-color-contrast,
 );
 
-$calculated-theme-colors-color: (
+$_fwc-theme-colors-color: (
   theme: $var-theme-color,
   theme-contrast: $var-theme-color-contrast,
   theme-polar: $var-theme-background,
@@ -541,7 +539,7 @@ $calculated-theme-colors-color: (
 );
 
 //for components
-$calculated-brand-color-declarations-for-components: (
+$_fwc-brand-color-declarations-for-components: (
   primary: $var-color-primary,
   secondary: $var-color-secondary,
   accent: $var-color-accent,
@@ -551,7 +549,7 @@ $calculated-brand-color-declarations-for-components: (
   error: $var-color-error,
 );
 
-$calculated-brand-color-intensity: (
+$_fwc-brand-color-intensity: (
   $var-color-intensity-1,
   $var-color-intensity-2,
   $var-color-intensity-3,
@@ -560,7 +558,7 @@ $calculated-brand-color-intensity: (
 );
 
 //for helpers
-$calculated-brand-color-declarations-for-helpers: (
+$_fwc-brand-color-declarations-for-helpers: (
   base: $var-color-base,
   background: $var-color-background,
   primary: $var-color-primary,

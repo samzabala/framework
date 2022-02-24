@@ -11,8 +11,8 @@ $prefix: '.input';
     max-width: 100%;
     @include type-set(
       (
-        size: $calculated-input-font-size,
-        leading: $calculated-input-line-height,
+        size: $_fwc-input-font-size,
+        leading: $_fwc-input-line-height,
         weight: $input-font-weight,
         style: $input-font-style,
         font: $input-font-family,
@@ -24,10 +24,10 @@ $prefix: '.input';
     display: inline-block;
     border: $input-border-width solid $input-border-color;
     background-color: $input-background;
-    padding-right: $calculated-input-gutter-x;
-    padding-left: $calculated-input-gutter-x;
-    padding-top: $calculated-value-input-paddiny-y;
-    padding-bottom: $calculated-value-input-paddiny-y;
+    padding-right: $_fwc-input-gutter-x;
+    padding-left: $_fwc-input-gutter-x;
+    padding-top: $_fwc-value-input-paddiny-y;
+    padding-bottom: $_fwc-value-input-paddiny-y;
     box-shadow: $input-box-shadow;
 
     &,
@@ -135,16 +135,16 @@ $prefix: '.input';
   &-single {
     vertical-align: middle;
 
-    // height: $calculated-input-height;
+    // height: $_fwc-input-height;
 
     // &#{$prefix}-large,
     // #{$prefix}-large & {
-    // 	height: $calculated-input-height-large;
+    // 	height: $_fwc-input-height-large;
     // }
 
     // &#{$prefix}-small,
     // #{$prefix}-small & {
-    // 	height: $calculated-input-height-small;
+    // 	height: $_fwc-input-height-small;
     // }
   }
 
@@ -159,23 +159,23 @@ $prefix: '.input';
       }
 
       option {
-        padding-right: $calculated-input-gutter-x;
-        padding-left: $calculated-input-gutter-x;
-        margin-right: $calculated-input-gutter-x * -1;
-        margin-left: $calculated-input-gutter-x * -1;
+        padding-right: $_fwc-input-gutter-x;
+        padding-left: $_fwc-input-gutter-x;
+        margin-right: $_fwc-input-gutter-x * -1;
+        margin-left: $_fwc-input-gutter-x * -1;
       }
     }
     &-height {
       height: auto;
       resize: both;
-      min-height: $calculated-input-height * $input-height-multiple-factor;
+      min-height: $_fwc-input-height * $input-height-multiple-factor;
 
       &-large {
-        min-height: $calculated-input-height-large * $input-height-multiple-factor;
+        min-height: $_fwc-input-height-large * $input-height-multiple-factor;
       }
 
       &-small {
-        min-height: $calculated-input-height-small * $input-height-multiple-factor;
+        min-height: $_fwc-input-height-small * $input-height-multiple-factor;
       }
     }
   }
@@ -195,21 +195,17 @@ $prefix: '.input';
         transparent 51%,
         transparent 100%
       );
-    background-size: #{$calculated-symbol-caret-width * 0.5} $calculated-symbol-caret-height,
-      #{$calculated-symbol-caret-width * 0.5} $calculated-symbol-caret-height;
+    background-size: #{$_fwc-symbol-caret-width * 0.5} $_fwc-symbol-caret-height,
+      #{$_fwc-symbol-caret-width * 0.5} $_fwc-symbol-caret-height;
     background-position: calc(
-          100% -
-            (
-              (#{$calculated-input-gutter-x} * 0.5) + #{$calculated-symbol-caret-width *
-                0.5}
-            )
+          100% - ((#{$_fwc-input-gutter-x} * 0.5) + (#{$_fwc-symbol-caret-width} * 0.5))
         )
         50%,
-      calc(100% - (#{$calculated-input-gutter-x} * 0.5)) 50%;
+      calc(100% - (#{$_fwc-input-gutter-x} * 0.5)) 50%;
     background-repeat: no-repeat, no-repeat;
 
     &:not([multiple]) {
-      padding-right: $calculated-input-gutter-x * 2;
+      padding-right: $_fwc-input-gutter-x * 2;
     }
     @at-root select#{&}[multiple] {
       background-image: none;
@@ -257,24 +253,24 @@ $prefix: '.input';
     #{$prefix}-large & {
       @extend %for-form-input-boxy-large !optional;
       @extend %for-form-global-radius-large !optional;
-      padding-top: $calculated-value-input-paddiny-y-large;
-      padding-bottom: $calculated-value-input-paddiny-y-large;
+      padding-top: $_fwc-value-input-paddiny-y-large;
+      padding-bottom: $_fwc-value-input-paddiny-y-large;
     }
 
     &#{$prefix}-small,
     #{$prefix}-small & {
       @extend %for-form-input-boxy-small !optional;
       @extend %for-form-global-radius-small !optional;
-      padding-top: $calculated-value-input-paddiny-y-small;
-      padding-bottom: $calculated-value-input-paddiny-y-small;
+      padding-top: $_fwc-value-input-paddiny-y-small;
+      padding-bottom: $_fwc-value-input-paddiny-y-small;
     }
 
     .nav-block.nav-block-stretch > &,
     .nav > & {
       @extend %for-form-input-boxy-in-nav !optional;
       @extend %for-form-global-in-nav-custom;
-      padding-top: $calculated-value-input-paddiny-y-nav !important;
-      padding-bottom: $calculated-value-input-paddiny-y-nav !important;
+      padding-top: $_fwc-value-input-paddiny-y-nav !important;
+      padding-bottom: $_fwc-value-input-paddiny-y-nav !important;
     }
 
     #{$prefix}-no-radius & {
@@ -618,7 +614,7 @@ $prefix: '.input';
   }
 
   //color
-  @each $tag, $color in $calculated-brand-color-declarations-for-components {
+  @each $tag, $color in $_fwc-brand-color-declarations-for-components {
     @at-root %for-form-label-color-#{$tag} {
       color: $color;
     }

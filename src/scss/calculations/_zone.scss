@@ -1,9 +1,9 @@
-$calculated-zone-font-size: $zone-font-size;
+$_fwc-zone-font-size: $zone-font-size;
 @if internal-is-convertable($zone-font-size) {
-  $calculated-zone-font-size: rem($zone-font-size, $body-font-size);
+  $_fwc-zone-font-size: rem($zone-font-size, $body-font-size);
 }
 
-$calculated-zone-schemes: (
+$_fwc-zone-schemes: (
   default: (
     init: (
       background: $zone-background-default,

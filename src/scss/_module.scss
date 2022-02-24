@@ -39,7 +39,7 @@ $prefix: '.module';
   &-grid-title {
     @include type-set(
       (
-        size: $calculated-module-grid-title-font-size,
+        size: $_fwc-module-grid-title-font-size,
         color: $module-grid-title-color,
         case: $module-grid-title-text-transform,
         weight: $module-grid-title-font-weight,
@@ -184,7 +184,7 @@ $prefix: '.module';
   &-title {
     @include type-set(
       (
-        size: $calculated-module-title-font-size,
+        size: $_fwc-module-title-font-size,
         color: $module-title-color,
         case: $module-title-text-transform,
         weight: $module-title-font-weight,

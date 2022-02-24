@@ -1,52 +1,46 @@
-$calculated-thumbnail-size: $thumbnail-size;
+$_fwc-thumbnail-size: $thumbnail-size;
 @if internal-is-convertable($thumbnail-size) {
-  $calculated-thumbnail-size: rem($thumbnail-size, $body-font-size);
+  $_fwc-thumbnail-size: rem($thumbnail-size, $body-font-size);
 }
 
-$calculated-thumbnail-small-size: $thumbnail-small-size;
+$_fwc-thumbnail-small-size: $thumbnail-small-size;
 @if internal-is-convertable($thumbnail-small-size) {
-  $calculated-thumbnail-small-size: rem($thumbnail-small-size, $body-font-size);
+  $_fwc-thumbnail-small-size: rem($thumbnail-small-size, $body-font-size);
 }
 
-$calculated-thumbnail-micro-size: $thumbnail-micro-size;
+$_fwc-thumbnail-micro-size: $thumbnail-micro-size;
 @if internal-is-convertable($thumbnail-micro-size) {
-  $calculated-thumbnail-micro-size: rem($thumbnail-micro-size, $body-font-size);
+  $_fwc-thumbnail-micro-size: rem($thumbnail-micro-size, $body-font-size);
 }
 
-$calculated-thumbnail-font-size: $thumbnail-font-size;
+$_fwc-thumbnail-font-size: $thumbnail-font-size;
 @if internal-is-convertable($thumbnail-font-size, $thumbnail-size) {
-  $calculated-thumbnail-font-size: em($thumbnail-font-size, $thumbnail-size);
+  $_fwc-thumbnail-font-size: em($thumbnail-font-size, $thumbnail-size);
 } @else if internal-is-convertable($thumbnail-font-size) {
-  $calculated-thumbnail-font-size: rem($thumbnail-font-size, $body-font-size);
+  $_fwc-thumbnail-font-size: rem($thumbnail-font-size, $body-font-size);
 }
 
-$calculated-thumbnail-small-font-size: $thumbnail-small-font-size;
+$_fwc-thumbnail-small-font-size: $thumbnail-small-font-size;
 @if internal-is-convertable($thumbnail-small-font-size, $thumbnail-small-size) {
-  $calculated-thumbnail-small-font-size: em(
+  $_fwc-thumbnail-small-font-size: em(
     $thumbnail-small-font-size,
     $thumbnail-small-size
   );
 } @else if internal-is-convertable($thumbnail-small-font-size) {
-  $calculated-thumbnail-small-font-size: rem(
-    $thumbnail-small-font-size,
-    $body-font-size
-  );
+  $_fwc-thumbnail-small-font-size: rem($thumbnail-small-font-size, $body-font-size);
 }
 
-$calculated-thumbnail-micro-font-size: $thumbnail-micro-font-size;
+$_fwc-thumbnail-micro-font-size: $thumbnail-micro-font-size;
 @if internal-is-convertable($thumbnail-micro-font-size, $thumbnail-micro-size) {
-  $calculated-thumbnail-micro-font-size: em(
+  $_fwc-thumbnail-micro-font-size: em(
     $thumbnail-micro-font-size,
     $thumbnail-micro-size
   );
 } @else if internal-is-convertable($thumbnail-micro-font-size) {
-  $calculated-thumbnail-micro-font-size: rem(
-    $thumbnail-micro-font-size,
-    $body-font-size
-  );
+  $_fwc-thumbnail-micro-font-size: rem($thumbnail-micro-font-size, $body-font-size);
 }
 
-$calculated-thumbnail-line-height: $thumbnail-line-height;
+$_fwc-thumbnail-line-height: $thumbnail-line-height;
 @if internal-is-convertable($thumbnail-line-height) {
-  $calculated-thumbnail-line-height: rem($thumbnail-line-height, $body-font-size);
+  $_fwc-thumbnail-line-height: rem($thumbnail-line-height, $body-font-size);
 }

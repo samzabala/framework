@@ -2,7 +2,7 @@ $prefix: '.border';
 #{$prefix} {
   &-color {
     // Theme
-    @each $color, $var in $calculated-theme-colors-color {
+    @each $color, $var in $_fwc-theme-colors-color {
       @include create-palette-helper(#{&}-#{$color}, border-color, $var);
     }
 

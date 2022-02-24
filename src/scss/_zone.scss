@@ -9,7 +9,7 @@ $prefix: '.zone';
   font: inherit;
   @include type-set(
     (
-      size: $calculated-zone-font-size,
+      size: $_fwc-zone-font-size,
       case: $zone-text-transform,
       weight: $zone-font-weight,
       style: $zone-font-style,
@@ -92,7 +92,7 @@ $prefix: '.zone';
     padding-left: $zone-gutter-x-large;
   }
 
-  @each $tag, $properties in $calculated-zone-schemes {
+  @each $tag, $properties in $_fwc-zone-schemes {
     &#{$prefix}-#{$tag} {
       &,
       &#{$prefix}-disabled,

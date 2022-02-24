@@ -231,7 +231,7 @@ $prefix: '.alert';
     max-width: 80%;
   }
 
-  @each $tag, $color in $calculated-alert-schemes {
+  @each $tag, $color in $_fwc-alert-schemes {
     &#{$prefix}-#{$tag} {
       border-color: map-get($color, border);
       color: map-get($color, color);

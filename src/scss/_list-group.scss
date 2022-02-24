@@ -2,7 +2,7 @@
 $prefix: '.list-group';
 #{$prefix},
 ul#{$prefix} {
-  margin-bottom: $calculated-body-text-gutter-y;
+  margin-bottom: $_fwc-body-text-gutter-y;
   padding: 0;
 
   &#{$prefix}-striped {
@@ -18,27 +18,24 @@ ul#{$prefix} {
     &-item {
     @include dump-styles(cf);
     font: inherit;
-    margin-bottom: 0;
+    margin: 0;
     display: block;
     background-color: $list-group-background;
-    margin-top: $list-group-border-width * -1;
     border-color: $list-group-border-color;
     border-style: solid;
     border-bottom-width: $list-group-border-width;
     padding-top: calc(
       (
-          (#{$calculated-list-group-height} - #{$list-group-border-width}) -
-            (#{$calculated-body-single-line})
+          #{$_fwc-list-group-height} - #{$list-group-border-width} - #{$_fwc-body-single-line}
         ) * 0.5
     );
     padding-bottom: calc(
       (
-          (#{$calculated-list-group-height} - #{$list-group-border-width}) -
-            (#{$calculated-body-single-line})
+          #{$_fwc-list-group-height} - #{$list-group-border-width} - #{$_fwc-body-single-line}
         ) * 0.5
     );
-    padding-left: $calculated-list-group-gutter-x;
-    padding-right: $calculated-list-group-gutter-x;
+    padding-left: $_fwc-list-group-gutter-x;
+    padding-right: $_fwc-list-group-gutter-x;
 
     .theme-inverse & {
       border-color: $list-group-border-color-inverse;
@@ -53,14 +50,12 @@ ul#{$prefix} {
       #{$prefix}-item {
         padding-top: calc(
           (
-              (#{$calculated-list-group-height-compact} - #{$list-group-border-width}) -
-                (#{$calculated-body-single-line})
+              #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
             ) * 0.5
         );
         padding-bottom: calc(
           (
-              (#{$calculated-list-group-height-compact} - #{$list-group-border-width}) -
-                (#{$calculated-body-single-line})
+              #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
             ) * 0.5
         );
       }
@@ -71,14 +66,12 @@ ul#{$prefix} {
       #{$prefix}-item {
         padding-top: calc(
           (
-              (#{$calculated-list-group-height-expanded} - #{$list-group-border-width}) -
-                (#{$calculated-body-single-line})
+              #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
             ) * 0.5
         );
         padding-bottom: calc(
           (
-              (#{$calculated-list-group-height-expanded} - #{$list-group-border-width}) -
-                (#{$calculated-body-single-line})
+              #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
             ) * 0.5
         );
       }

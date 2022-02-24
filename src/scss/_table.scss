@@ -76,7 +76,7 @@ tr,
 }
 
 #{$prefix}-row {
-  @each $tag, $colors in $calculated-table-row-background {
+  @each $tag, $colors in $_fwc-table-row-background {
     &-#{$tag} {
       td,
       #{$prefix}-cell {
@@ -88,10 +88,7 @@ tr,
 
         .alert &,
         .theme-inverse .alert & {
-          background: map-get(
-            map-get($calculated-color-vars-variations, #{$tag}),
-            alpha-2
-          );
+          background: map-get(map-get($_fwc-color-vars-variations, #{$tag}), alpha-2);
         }
       }
     }
@@ -156,10 +153,10 @@ td,
 th,
 #{$prefix}-cell#{$prefix}-cell-heading {
   padding-top: calc(
-    (#{$calculated-table-heading-height} - (#{$calculated-body-single-line})) * 0.5
+    (#{$_fwc-table-heading-height} - (#{$_fwc-body-single-line})) * 0.5
   );
   padding-bottom: calc(
-    (#{$calculated-table-heading-height} - (#{$calculated-body-single-line})) * 0.5
+    (#{$_fwc-table-heading-height} - (#{$_fwc-body-single-line})) * 0.5
   );
   background: $table-heading-background;
   // vertical-align:middle;
@@ -187,75 +184,63 @@ th,
 
 td,
 #{$prefix}-cell {
-  padding-top: calc(
-    (#{$calculated-table-cell-height} - (#{$calculated-body-single-line})) * 0.5
-  );
-  padding-bottom: calc(
-    (#{$calculated-table-cell-height} - (#{$calculated-body-single-line})) * 0.5
-  );
+  padding-top: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
+  padding-bottom: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
 
   #{$prefix}-small & {
     padding-top: calc(
-      (
-          #{$calculated-table-cell-height-small} - (#{$calculated-body-single-line-compact})
-        ) * 0.5
+      (#{$_fwc-table-cell-height-small} - #{$_fwc-body-single-line-compact}) * 0.5
     );
     padding-bottom: calc(
-      (
-          #{$calculated-table-cell-height-small} - (#{$calculated-body-single-line-compact})
-        ) * 0.5
+      (#{$_fwc-table-cell-height-small} - #{$_fwc-body-single-line-compact}) * 0.5
     );
-    line-height: $calculated-body-line-height * $body-line-height-compact-factor;
+    line-height: $_fwc-body-line-height * $body-line-height-compact-factor;
   }
 
   #{$prefix}-large & {
     padding-top: calc(
-      (
-          #{$calculated-table-cell-height-large} - (#{$calculated-body-single-line-expanded})
-        ) * 0.5
+      (#{$_fwc-table-cell-height-large} - #{$_fwc-body-single-line-expanded}) * 0.5
     );
     padding-bottom: calc(
-      (
-          #{$calculated-table-cell-height-large} - (#{$calculated-body-single-line-expanded})
-        ) * 0.5
+      (#{$_fwc-table-cell-height-large} - #{$_fwc-body-single-line-expanded}) * 0.5
     );
-    line-height: $calculated-body-line-height * $body-line-height-expanded-factor;
+    line-height: $_fwc-body-line-height * $body-line-height-expanded-factor;
   }
 }
 
 #{$prefix}-label {
   width: $table-label-width;
-  height: calc(#{$calculated-table-cell-height} - (#{$table-label-offset} * 2));
+  height: calc(#{$_fwc-table-cell-height} - (#{$table-label-offset} * 2));
   border-radius: $table-label-border-radius;
   display: inline-block;
   vertical-align: middle;
   margin: #{$table-label-offset} 0;
 
   #{$prefix}-large & {
-    height: calc(#{$calculated-table-cell-height-large} - (#{$table-label-offset} * 2));
+    height: calc(#{$_fwc-table-cell-height-large} - (#{$table-label-offset} * 2));
   }
 
   #{$prefix}-small & {
-    height: calc(#{$calculated-table-cell-height-small} - (#{$table-label-offset} * 2));
+    height: calc(#{$_fwc-table-cell-height-small} - (#{$table-label-offset} * 2));
   }
 
-  @each $tag, $color in $calculated-brand-color-declarations-for-components {
+  @each $tag, $color in $_fwc-brand-color-declarations-for-components {
     &-#{$tag} {
       background-color: $color;
     }
   }
 
   &-intensity {
-    @for $i from 1 through length($calculated-brand-color-intensity) {
+    @for $i from 1 through length($_fwc-brand-color-intensity) {
       &-#{$i} {
-        background-color: nth($calculated-brand-color-intensity, $i);
+        background-color: nth($_fwc-brand-color-intensity, $i);
       }
     }
   }
 }
 
 #{$prefix}-cell {
-  @each $tag, $colors in $calculated-table-cell-background {
+  @each $tag, $colors in $_fwc-table-cell-background {
     @at-root td#{&}-#{$tag},
       &#{&}-#{$tag} {
       background-color: map-get($colors, normal);
@@ -266,10 +251,7 @@ td,
 
       .alert &,
       .theme-inverse .alert & {
-        background: map-get(
-          map-get($calculated-color-vars-variations, #{$tag}),
-          alpha-5
-        );
+        background: map-get(map-get($_fwc-color-vars-variations, #{$tag}), alpha-5);
       }
     }
   }

@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$calculated-asset-palettes: (
+$_fwc-asset-palettes: (
   default: $asset-image-default-palette-tag,
   audio: $asset-image-audio-palette-tag,
   code: $asset-image-code-palette-tag,
@@ -18,38 +18,38 @@ $calculated-asset-palettes: (
   zip: $asset-image-zip-palette-tag,
 );
 
-$calculated-asset-image-trail: 5px;
+$_fwc-asset-image-trail: 5px;
 
-$calculated-ass-thumb-weight-ratio: math.div(math.div(100, 9), 100);
+$_fwc-ass-thumb-weight-ratio: math.div(math.div(100, 9), 100);
 
-$calculated-ass-thumb-image-ratio-y: 0.5;
-$calculated-ass-thumb-image-ratio-x: 0.4;
+$_fwc-ass-thumb-image-ratio-y: 0.5;
+$_fwc-ass-thumb-image-ratio-x: 0.4;
 
-$calculated-ass-thumb-gutter-px: (
-  ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y) *
-    $calculated-ass-thumb-weight-ratio
+$_fwc-ass-thumb-gutter-px: (
+  ($asset-thumbnail-height * $_fwc-ass-thumb-image-ratio-y) *
+    $_fwc-ass-thumb-weight-ratio
 );
 
-$calculated-ass-thumb-background-size-x: math.percentage(
+$_fwc-ass-thumb-background-size-x: math.percentage(
   math.div(
-    ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y * 2),
-    ($asset-thumbnail-width * $calculated-ass-thumb-image-ratio-x)
+    ($asset-thumbnail-height * $_fwc-ass-thumb-image-ratio-y * 2),
+    ($asset-thumbnail-width * $_fwc-ass-thumb-image-ratio-x)
   )
 );
 
-$calculated-ass-thumb-table-gutter: math.percentage(
+$_fwc-ass-thumb-table-gutter: math.percentage(
   math.div(
-    $calculated-ass-thumb-gutter-px,
-    ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y)
+    $_fwc-ass-thumb-gutter-px,
+    ($asset-thumbnail-height * $_fwc-ass-thumb-image-ratio-y)
   )
 );
 
-$calculated-ass-thumb-table-gutter-3: math.percentage(
+$_fwc-ass-thumb-table-gutter-3: math.percentage(
   math.div(
     (
-      ($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y) *
-        $calculated-ass-thumb-weight-ratio
+      ($asset-thumbnail-height * $_fwc-ass-thumb-image-ratio-y) *
+        $_fwc-ass-thumb-weight-ratio
     ),
-    math.div(($asset-thumbnail-height * $calculated-ass-thumb-image-ratio-y), 3)
+    math.div(($asset-thumbnail-height * $_fwc-ass-thumb-image-ratio-y), 3)
   )
 );

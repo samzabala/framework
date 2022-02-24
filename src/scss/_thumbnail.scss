@@ -17,7 +17,7 @@ $prefix: '.thumbnail';
   vertical-align: middle;
   line-height: inherit;
   position: relative;
-  font-size: $calculated-thumbnail-size;
+  font-size: $_fwc-thumbnail-size;
 
   &,
   &:hover,
@@ -35,8 +35,8 @@ $prefix: '.thumbnail';
 
     @include type-set(
       (
-        size: $calculated-thumbnail-font-size,
-        leading: $calculated-thumbnail-line-height,
+        size: $_fwc-thumbnail-font-size,
+        leading: $_fwc-thumbnail-line-height,
         color: $thumbnail-color #{'!important'},
         weight: $thumbnail-font-weight,
         style: $thumbnail-font-style,
@@ -92,18 +92,18 @@ $prefix: '.thumbnail';
   }
 
   &#{$prefix}-small {
-    font-size: $calculated-thumbnail-small-size;
+    font-size: $_fwc-thumbnail-small-size;
 
     #{$prefix}-text {
-      font-size: $calculated-thumbnail-small-font-size;
+      font-size: $_fwc-thumbnail-small-font-size;
     }
   }
 
   &#{$prefix}-micro {
-    font-size: $calculated-thumbnail-micro-size;
+    font-size: $_fwc-thumbnail-micro-size;
 
     #{$prefix}-text {
-      font-size: $calculated-thumbnail-micro-font-size;
+      font-size: $_fwc-thumbnail-micro-font-size;
     }
   }
 

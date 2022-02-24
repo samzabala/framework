@@ -1,5 +1,5 @@
 // not the palettes good lord the design is a god
-$calculated-btn-theme-relation: (
+$_fwc-btn-theme-relation: (
   theme: (
     color: $var-theme-background,
     background: $var-theme-color,
@@ -32,7 +32,7 @@ $calculated-btn-theme-relation: (
   ),
 );
 
-$calculated-btn-schemes: (
+$_fwc-btn-schemes: (
   default: (
     hover: (
       background: $btn-background-default-hover,
@@ -586,73 +586,73 @@ $calculated-btn-schemes: (
     ),
   ),
   theme: (
-    hover: map-get($calculated-btn-theme-relation, theme-contrast),
-    active: map-get($calculated-btn-theme-relation, theme-contrast),
-    init: map-get($calculated-btn-theme-relation, theme),
+    hover: map-get($_fwc-btn-theme-relation, theme-contrast),
+    active: map-get($_fwc-btn-theme-relation, theme-contrast),
+    init: map-get($_fwc-btn-theme-relation, theme),
   ),
   theme-polar: (
-    hover: map-get($calculated-btn-theme-relation, theme-polar-contrast),
-    active: map-get($calculated-btn-theme-relation, theme-polar-contrast),
-    init: map-get($calculated-btn-theme-relation, theme-polar),
+    hover: map-get($_fwc-btn-theme-relation, theme-polar-contrast),
+    active: map-get($_fwc-btn-theme-relation, theme-polar-contrast),
+    init: map-get($_fwc-btn-theme-relation, theme-polar),
   ),
   theme-outline: (
-    hover: map-get($calculated-btn-theme-relation, theme),
-    active: map-get($calculated-btn-theme-relation, theme),
-    init: map-get($calculated-btn-theme-relation, theme-outline),
+    hover: map-get($_fwc-btn-theme-relation, theme),
+    active: map-get($_fwc-btn-theme-relation, theme),
+    init: map-get($_fwc-btn-theme-relation, theme-outline),
   ),
   theme-polar-outline: (
-    hover: map-get($calculated-btn-theme-relation, theme-polar),
-    active: map-get($calculated-btn-theme-relation, theme-polar),
-    init: map-get($calculated-btn-theme-relation, theme-polar-outline),
+    hover: map-get($_fwc-btn-theme-relation, theme-polar),
+    active: map-get($_fwc-btn-theme-relation, theme-polar),
+    init: map-get($_fwc-btn-theme-relation, theme-polar-outline),
   ),
 );
 
-$calculated-btn-font-size: $btn-font-size;
+$_fwc-btn-font-size: $btn-font-size;
 @if internal-is-convertable($btn-font-size) {
-  $calculated-btn-font-size: rem($btn-font-size, $body-font-size);
+  $_fwc-btn-font-size: rem($btn-font-size, $body-font-size);
 }
 
-$calculated-btn-font-size-large: $btn-font-size-large;
+$_fwc-btn-font-size-large: $btn-font-size-large;
 @if internal-is-convertable($btn-font-size-large) {
-  $calculated-btn-font-size-large: rem($btn-font-size-large, $body-font-size);
+  $_fwc-btn-font-size-large: rem($btn-font-size-large, $body-font-size);
 }
 
-$calculated-btn-font-size-small: $btn-font-size-small;
+$_fwc-btn-font-size-small: $btn-font-size-small;
 @if internal-is-convertable($btn-font-size-small) {
-  $calculated-btn-font-size-small: rem($btn-font-size-small, $body-font-size);
+  $_fwc-btn-font-size-small: rem($btn-font-size-small, $body-font-size);
 }
 
-$calculated-btn-line-height: type-lead($btn-font-size, $btn-line-height);
+$_fwc-btn-line-height: type-lead($btn-font-size, $btn-line-height);
 
-$calculated-btn-single-line: $calculated-btn-line-height;
-@if unitless($calculated-btn-single-line) and unit($btn-font-size) == px {
-  $calculated-btn-single-line: #{1em * type-lead($btn-font-size, $btn-line-height)};
+$_fwc-btn-single-line: $_fwc-btn-line-height;
+@if unitless($_fwc-btn-single-line) and unit($btn-font-size) == px {
+  $_fwc-btn-single-line: #{1em * type-lead($btn-font-size, $btn-line-height)};
 }
 
-$calculated-btn-height: $btn-height;
+$_fwc-btn-height: $btn-height;
 @if internal-is-convertable($btn-height, $btn-font-size) {
-  $calculated-btn-height: em($btn-height, $btn-font-size);
+  $_fwc-btn-height: em($btn-height, $btn-font-size);
 } @else if internal-is-convertable($btn-height) {
-  $calculated-btn-height: rem($btn-height, $body-font-size);
+  $_fwc-btn-height: rem($btn-height, $body-font-size);
 }
 
-$calculated-btn-height-large: $btn-height-large;
+$_fwc-btn-height-large: $btn-height-large;
 @if internal-is-convertable($btn-height-large, $btn-font-size-large) {
-  $calculated-btn-height-large: em($btn-height-large, $btn-font-size-large);
+  $_fwc-btn-height-large: em($btn-height-large, $btn-font-size-large);
 } @else if internal-is-convertable($btn-height-large) {
-  $calculated-btn-height: rem($btn-height-large, $body-font-size);
+  $_fwc-btn-height: rem($btn-height-large, $body-font-size);
 }
 
-$calculated-btn-height-small: $btn-height-small;
+$_fwc-btn-height-small: $btn-height-small;
 @if internal-is-convertable($btn-height-small, $btn-font-size-small) {
-  $calculated-btn-height-small: em($btn-height-small, $btn-font-size-small);
+  $_fwc-btn-height-small: em($btn-height-small, $btn-font-size-small);
 } @else if internal-is-convertable($btn-height-small) {
-  $calculated-btn-height: rem($btn-height-small, $body-font-size);
+  $_fwc-btn-height: rem($btn-height-small, $body-font-size);
 }
 
-$calculated-btn-gutter-x: $btn-gutter-x;
+$_fwc-btn-gutter-x: $btn-gutter-x;
 @if internal-is-convertable($btn-gutter-x, $btn-font-size) {
-  $calculated-btn-gutter-x: em($btn-gutter-x, $btn-font-size);
+  $_fwc-btn-gutter-x: em($btn-gutter-x, $btn-font-size);
 } @else if internal-is-convertable($btn-gutter-x) {
-  $calculated-btn-height: rem($btn-gutter-x, $body-font-size);
+  $_fwc-btn-height: rem($btn-gutter-x, $body-font-size);
 }

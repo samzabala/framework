@@ -4,24 +4,20 @@ $prefix: '.tag';
   @include type-set(
     (
       decoration: get-anchor-dec(),
-      size: $calculated-tag-font-size,
-      leading: $calculated-tag-line-height,
+      size: $_fwc-tag-font-size,
+      leading: $_fwc-tag-line-height,
       weight: $tag-font-weight,
       style: $tag-font-style,
       case: $tag-text-transform,
     )
   );
-  padding-top: calc(
-    ((#{$calculated-tag-height} - (#{$calculated-tag-single-line})) * 0.5)
-  );
-  padding-bottom: calc(
-    ((#{$calculated-tag-height} - (#{$calculated-tag-single-line})) * 0.5)
-  );
-  padding-left: $calculated-tag-gutter-x;
-  padding-right: $calculated-tag-gutter-x;
+  padding-top: calc(((#{$_fwc-tag-height} - (#{$_fwc-tag-single-line})) * 0.5));
+  padding-bottom: calc(((#{$_fwc-tag-height} - (#{$_fwc-tag-single-line})) * 0.5));
+  padding-left: $_fwc-tag-gutter-x;
+  padding-right: $_fwc-tag-gutter-x;
   border-radius: $tag-border-radius;
-  margin-top: $calculated-tag-margin-y;
-  margin-bottom: $calculated-tag-margin-y;
+  margin-top: $_fwc-tag-margin-y;
+  margin-bottom: $_fwc-tag-margin-y;
   // display: inline-flex;
   display: inline-block;
   align-items: center;
@@ -30,25 +26,21 @@ $prefix: '.tag';
   @include dump-styles(text-ellipsis-single);
 
   &:nth-child(n + 2) {
-    margin-left: $calculated-tag-margin-x;
+    margin-left: $_fwc-tag-margin-x;
   }
 
   &#{&}-large {
-    padding-top: calc(
-      ((#{$calculated-tag-height-large} - (#{$calculated-tag-single-line})) * 0.5)
-    );
+    padding-top: calc(((#{$_fwc-tag-height-large} - (#{$_fwc-tag-single-line})) * 0.5));
     padding-bottom: calc(
-      ((#{$calculated-tag-height-large} - (#{$calculated-tag-single-line})) * 0.5)
+      ((#{$_fwc-tag-height-large} - (#{$_fwc-tag-single-line})) * 0.5)
     );
     border-radius: $tag-border-radius-large;
   }
 
   &#{&}-small {
-    padding-top: calc(
-      ((#{$calculated-tag-height-small} - (#{$calculated-tag-single-line})) * 0.5)
-    );
+    padding-top: calc(((#{$_fwc-tag-height-small} - (#{$_fwc-tag-single-line})) * 0.5));
     padding-bottom: calc(
-      ((#{$calculated-tag-height-small} - (#{$calculated-tag-single-line})) * 0.5)
+      ((#{$_fwc-tag-height-small} - (#{$_fwc-tag-single-line})) * 0.5)
     );
     border-radius: $tag-border-radius-small;
   }
@@ -75,7 +67,7 @@ $prefix: '.tag';
     @include dump-styles(no-text-decoration-hover);
   }
 
-  @each $tag, $properties in $calculated-tag-schemes-color {
+  @each $tag, $properties in $_fwc-tag-schemes-color {
     &-#{$tag} {
       background: map-get($properties, background);
       &,

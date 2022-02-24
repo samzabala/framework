@@ -3,15 +3,15 @@ $prefix: '.text';
 #{$prefix} {
   &-leading {
     &-compact {
-      line-height: $calculated-body-line-height * $body-line-height-compact-factor !important;
+      line-height: $_fwc-body-line-height * $body-line-height-compact-factor !important;
     }
 
     &-expanded {
-      line-height: $calculated-body-line-height * $body-line-height-expanded-factor !important;
+      line-height: $_fwc-body-line-height * $body-line-height-expanded-factor !important;
     }
 
     &-normalize {
-      line-height: $calculated-body-line-height !important;
+      line-height: $_fwc-body-line-height !important;
     }
 
     &-inherit {
@@ -146,20 +146,18 @@ $prefix: '.text';
         display: -webkit-box !important;
         -webkit-line-clamp: $body-ellipsis-multiple-factor !important;
         -webkit-box-orient: vertical !important;
-        max-height: calc(
-          (#{$calculated-body-single-line}) * #{$body-ellipsis-multiple-factor}
-        );
+        max-height: calc(#{$_fwc-body-single-line} * #{$body-ellipsis-multiple-factor});
 
         #{$prefix}-leading-compact &,
         &#{$prefix}-leading-compact {
           max-height: calc(
-            (#{$calculated-body-single-line} * #{$body-line-height-compact-factor}) * #{$body-ellipsis-multiple-factor}
+            #{$_fwc-body-single-line} * #{$body-line-height-compact-factor} * #{$body-ellipsis-multiple-factor}
           );
         }
         #{$prefix}-leading-expanded &,
         &#{$prefix}-leading-expanded {
           max-height: calc(
-            (#{$calculated-body-single-line} * #{$body-line-height-expanded-factor}) * #{$body-ellipsis-multiple-factor}
+            #{$_fwc-body-single-line} * #{$body-line-height-expanded-factor} * #{$body-ellipsis-multiple-factor}
           );
         }
       }

@@ -15,10 +15,10 @@
 
   //colour
 
-  @each $tag, $value in $calculated-color-tags {
+  @each $tag, $value in $_fwc-color-tags {
     --fw-color-#{$tag}: #{$value};
 
-    @each $slug, $slug-value in map-get($calculated-color-variations, $tag) {
+    @each $slug, $slug-value in map-get($_fwc-color-variations, $tag) {
       --fw-color-#{$tag}-#{$slug}: #{$slug-value};
     }
   }

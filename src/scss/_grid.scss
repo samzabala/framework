@@ -132,8 +132,8 @@ $prefix-raw: str-replace($prefix, '.', '');
     @include internal-set-grid-col-width(#{$prefix}-col);
   }
 
-  @each $tag in $calculated-br-tags {
-    @if ($tag != xs) {
+  @each $tag in $_fwc-br-tags {
+    @if $tag != xs and $tag != xxs {
       @include br($tag) {
         @include internal-set-grid-col-width(#{&}-col-#{$tag}, $grid-gap, false);
 

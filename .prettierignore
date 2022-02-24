@@ -3,3 +3,5 @@
 **/plugins/
 framework.*.scss
 framework.scss
+docs/**/*
+**/*.md

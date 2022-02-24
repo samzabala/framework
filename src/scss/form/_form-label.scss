@@ -5,7 +5,7 @@ $prefix: '.input';
     @extend %for-form-global-transition;
     @include type-set(
       (
-        size: $calculated-input-label-font-size,
+        size: $_fwc-input-label-font-size,
         color: $input-label-color,
         weight: $input-label-font-weight,
         style: $input-label-font-style,
@@ -19,10 +19,10 @@ $prefix: '.input';
     margin-top: 0;
     margin-bottom: 0;
     padding-top: calc(
-      (#{$calculated-input-height} - (#{$calculated-input-label-single-line})) * 0.5
+      (#{$_fwc-input-height} - (#{$_fwc-input-label-single-line})) * 0.5
     );
     padding-bottom: calc(
-      (#{$calculated-input-height} - (#{$calculated-input-label-single-line})) * 0.5
+      (#{$_fwc-input-height} - (#{$_fwc-input-label-single-line})) * 0.5
     );
     // display: inline-flex;
     // align-items:center;
@@ -34,26 +34,22 @@ $prefix: '.input';
   }
 
   &-large {
-    font-size: $calculated-input-label-font-size-large;
+    font-size: $_fwc-input-label-font-size-large;
     padding-top: calc(
-      (#{$calculated-input-height-large} - (#{$calculated-input-label-single-line})) *
-        0.5
+      (#{$_fwc-input-height-large} - (#{$_fwc-input-label-single-line})) * 0.5
     );
     padding-bottom: calc(
-      (#{$calculated-input-height-large} - (#{$calculated-input-label-single-line})) *
-        0.5
+      (#{$_fwc-input-height-large} - (#{$_fwc-input-label-single-line})) * 0.5
     );
   }
 
   &-small {
-    font-size: $calculated-input-label-font-size-small;
+    font-size: $_fwc-input-label-font-size-small;
     padding-top: calc(
-      (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line})) *
-        0.5
+      (#{$_fwc-input-height-small} - (#{$_fwc-input-label-single-line})) * 0.5
     );
     padding-bottom: calc(
-      (#{$calculated-input-height-small} - (#{$calculated-input-label-single-line})) *
-        0.5
+      (#{$_fwc-input-height-small} - (#{$_fwc-input-label-single-line})) * 0.5
     );
   }
 

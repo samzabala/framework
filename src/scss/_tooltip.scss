@@ -72,8 +72,8 @@ $prefix: '.tooltip';
     // background: blue;
     margin: auto;
     box-shadow: $tooltip-arrow-box-shadow;
-    width: $calculated-tooltip-point-px;
-    height: $calculated-tooltip-point-px;
+    width: $_fwc-tooltip-point-px;
+    height: $_fwc-tooltip-point-px;
     transform-origin: center center;
     transform: rotate(45deg);
   }
@@ -95,7 +95,7 @@ $prefix: '.tooltip';
     }
 
     #{$prefix}-badge {
-      top: calc(100% + (#{$calculated-gutter-hypotenus} * 0.5));
+      top: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
     }
   }
   &#{&}-bottom {
@@ -110,7 +110,7 @@ $prefix: '.tooltip';
     }
 
     #{$prefix}-badge {
-      bottom: calc(100% + (#{$calculated-gutter-hypotenus} * 0.5));
+      bottom: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
     }
   }
 
@@ -126,7 +126,7 @@ $prefix: '.tooltip';
     }
 
     #{$prefix}-badge {
-      right: calc(100% + (#{$calculated-gutter-hypotenus} * 0.5));
+      right: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
     }
   }
 
@@ -142,7 +142,7 @@ $prefix: '.tooltip';
     }
 
     #{$prefix}-badge {
-      left: calc(100% + (#{$calculated-gutter-hypotenus} * 0.5));
+      left: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
     }
   }
 }

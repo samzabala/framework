@@ -1,141 +1,127 @@
 // GLOBAL
-$calculated-input-font-size: $input-font-size;
+$_fwc-input-font-size: $input-font-size;
 @if internal-is-convertable($input-font-size) {
-  $calculated-input-font-size: rem($input-font-size, $body-font-size);
+  $_fwc-input-font-size: rem($input-font-size, $body-font-size);
 }
 
-$calculated-input-font-size-large: $input-font-size-large;
+$_fwc-input-font-size-large: $input-font-size-large;
 @if internal-is-convertable($input-font-size-large) {
-  $calculated-input-font-size-large: rem($input-font-size-large, $body-font-size);
+  $_fwc-input-font-size-large: rem($input-font-size-large, $body-font-size);
 }
 
-$calculated-input-font-size-small: $input-font-size-small;
+$_fwc-input-font-size-small: $input-font-size-small;
 @if internal-is-convertable($input-font-size-small) {
-  $calculated-input-font-size-small: rem($input-font-size-small, $body-font-size);
+  $_fwc-input-font-size-small: rem($input-font-size-small, $body-font-size);
 }
 
-$calculated-input-label-font-size: $input-label-font-size;
+$_fwc-input-label-font-size: $input-label-font-size;
 @if internal-is-convertable($input-label-font-size) {
-  $calculated-input-label-font-size: rem($input-label-font-size, $body-font-size);
+  $_fwc-input-label-font-size: rem($input-label-font-size, $body-font-size);
 }
 
-$calculated-input-label-font-size-large: $input-label-font-size-large;
+$_fwc-input-label-font-size-large: $input-label-font-size-large;
 @if internal-is-convertable($input-label-font-size-large) {
-  $calculated-input-label-font-size-large: rem(
-    $input-label-font-size-large,
-    $body-font-size
-  );
+  $_fwc-input-label-font-size-large: rem($input-label-font-size-large, $body-font-size);
 }
 
-$calculated-input-label-font-size-small: $input-label-font-size-small;
+$_fwc-input-label-font-size-small: $input-label-font-size-small;
 @if internal-is-convertable($input-label-font-size-small) {
-  $calculated-input-label-font-size-small: rem(
-    $input-label-font-size-small,
-    $body-font-size
-  );
+  $_fwc-input-label-font-size-small: rem($input-label-font-size-small, $body-font-size);
 }
 
-$calculated-input-line-height: type-lead($input-font-size, $input-line-height);
+$_fwc-input-line-height: type-lead($input-font-size, $input-line-height);
 
-$calculated-input-single-line: $calculated-input-line-height;
-@if unitless($calculated-input-single-line) and unit($input-font-size) == px {
-  $calculated-input-single-line: #{1em *
-    type-lead($input-font-size, $input-line-height)};
+$_fwc-input-single-line: $_fwc-input-line-height;
+@if unitless($_fwc-input-single-line) and unit($input-font-size) == px {
+  $_fwc-input-single-line: #{1em * type-lead($input-font-size, $input-line-height)};
 }
 
-$calculated-input-label-single-line: #{1em * $calculated-body-line-height};
+$_fwc-input-label-single-line: #{1em * $_fwc-body-line-height};
 
-$calculated-input-height: $input-height;
+$_fwc-input-height: $input-height;
 @if internal-is-convertable($input-height) {
-  $calculated-input-height: rem($input-height, $body-font-size);
+  $_fwc-input-height: rem($input-height, $body-font-size);
 }
 
-$calculated-input-height-large: $input-height-large;
+$_fwc-input-height-large: $input-height-large;
 @if internal-is-convertable($input-height-large) {
-  $calculated-input-height-large: rem($input-height-large, $body-font-size);
+  $_fwc-input-height-large: rem($input-height-large, $body-font-size);
 }
 
-$calculated-input-height-small: $input-height-small;
+$_fwc-input-height-small: $input-height-small;
 @if internal-is-convertable($input-height-small) {
-  $calculated-input-height-small: rem($input-height-small, $body-font-size);
+  $_fwc-input-height-small: rem($input-height-small, $body-font-size);
 }
 
-$calculated-input-gutter-x: $input-gutter-x;
+$_fwc-input-gutter-x: $input-gutter-x;
 @if internal-is-convertable($input-gutter-x, $input-font-size) {
-  $calculated-input-gutter-x: em($input-gutter-x, $input-font-size);
+  $_fwc-input-gutter-x: em($input-gutter-x, $input-font-size);
 } @else if internal-is-convertable($input-gutter-x) {
-  $calculated-input-gutter-x: rem($input-gutter-x, $body-font-size);
+  $_fwc-input-gutter-x: rem($input-gutter-x, $body-font-size);
 }
 
-$calculated-input-info-font-size: $input-info-font-size;
+$_fwc-input-info-font-size: $input-info-font-size;
 
 @if internal-is-convertable($input-info-font-size) {
-  $calculated-input-info-font-size: rem($input-info-font-size, $body-font-size);
+  $_fwc-input-info-font-size: rem($input-info-font-size, $body-font-size);
 }
 
-$calculated-input-info-line-height: type-lead(
-  $input-info-font-size,
-  $input-info-line-height
-);
+$_fwc-input-info-line-height: type-lead($input-info-font-size, $input-info-line-height);
 
-$calculated-input-info-gutter-y: $input-info-gutter-y;
+$_fwc-input-info-gutter-y: $input-info-gutter-y;
 @if internal-is-convertable($input-info-gutter-y) {
-  $calculated-input-info-gutter-y: em($input-info-gutter-y, $input-info-font-size);
+  $_fwc-input-info-gutter-y: em($input-info-gutter-y, $input-info-font-size);
 }
 
 //spacing calcs
-$calculated-value-input-paddiny-y: calc(
+$_fwc-value-input-paddiny-y: calc(
   (
-      (#{$calculated-input-height} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
+      (#{$_fwc-input-height} - (#{$input-border-width} * 2)) -
+        (#{$_fwc-input-single-line})
     ) * 0.5
 );
 
-$calculated-value-input-paddiny-y-large: calc(
+$_fwc-value-input-paddiny-y-large: calc(
   (
-      (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
+      (#{$_fwc-input-height-large} - (#{$input-border-width} * 2)) -
+        (#{$_fwc-input-single-line})
     ) * 0.5
 );
 
-$calculated-value-input-paddiny-y-small: calc(
+$_fwc-value-input-paddiny-y-small: calc(
   (
-      (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
+      (#{$_fwc-input-height-small} - (#{$input-border-width} * 2)) -
+        (#{$_fwc-input-single-line})
     ) * 0.5
 );
 
-$calculated-value-input-paddiny-y-nav: calc(
-  (
-      (#{$calculated-nav-height} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
-    ) * 0.5
+$_fwc-value-input-paddiny-y-nav: calc(
+  ((#{$_fwc-nav-height} - (#{$input-border-width} * 2)) - (#{$_fwc-input-single-line})) *
+    0.5
 );
 
-$calculated-value-input-paddiny-y-negative: calc(
+$_fwc-value-input-paddiny-y-negative: calc(
   (
-      (#{$calculated-input-height} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
+      (#{$_fwc-input-height} - (#{$input-border-width} * 2)) -
+        (#{$_fwc-input-single-line})
     ) * -0.5
 );
 
-$calculated-value-input-paddiny-y-large-negative: calc(
+$_fwc-value-input-paddiny-y-large-negative: calc(
   (
-      (#{$calculated-input-height-large} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
+      (#{$_fwc-input-height-large} - (#{$input-border-width} * 2)) -
+        (#{$_fwc-input-single-line})
     ) * -0.5
 );
 
-$calculated-value-input-paddiny-y-small-negative: calc(
+$_fwc-value-input-paddiny-y-small-negative: calc(
   (
-      (#{$calculated-input-height-small} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
+      (#{$_fwc-input-height-small} - (#{$input-border-width} * 2)) -
+        (#{$_fwc-input-single-line})
     ) * -0.5
 );
 
-$calculated-value-input-paddiny-y-nav-negative: calc(
-  (
-      (#{$calculated-nav-height} - (#{$input-border-width} * 2)) -
-        (#{$calculated-input-single-line})
-    ) * -0.5
+$_fwc-value-input-paddiny-y-nav-negative: calc(
+  ((#{$_fwc-nav-height} - (#{$input-border-width} * 2)) - (#{$_fwc-input-single-line})) *
+    -0.5
 );

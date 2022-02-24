@@ -1,11 +1,6 @@
-$calculated-tooltip-point-px: 10px;
-$calculated-tooltip-point: rem($calculated-tooltip-point-px, $body-font-size);
-$calculated-gutter-hypotenus: to-unit(
-  sqrt(
-    (
-        strip-unit($calculated-tooltip-point-px) *
-          strip-unit($calculated-tooltip-point-px)
-      ) * 2
-  ),
-  unit($calculated-tooltip-point-px)
+$_fwc-tooltip-point-px: 10px;
+$_fwc-tooltip-point: rem($_fwc-tooltip-point-px, $body-font-size);
+$_fwc-gutter-hypotenus: to-unit(
+  sqrt((strip-unit($_fwc-tooltip-point-px) * strip-unit($_fwc-tooltip-point-px)) * 2),
+  unit($_fwc-tooltip-point-px)
 );

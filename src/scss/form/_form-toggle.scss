@@ -30,8 +30,8 @@ $prefix: '.input';
         outline: none;
         font: inherit;
         display: inline-block;
-        width: $calculated-input-toggle-width;
-        height: $calculated-input-toggle-checkbox-height;
+        width: $_fwc-input-toggle-width;
+        height: $_fwc-input-toggle-checkbox-height;
         vertical-align: middle;
         align-self: flex-start;
         position: relative;
@@ -49,7 +49,7 @@ $prefix: '.input';
     &#{$prefix}-small {
       .input,
       input {
-        width: $calculated-input-toggle-width-small;
+        width: $_fwc-input-toggle-width-small;
       }
     }
 
@@ -57,13 +57,13 @@ $prefix: '.input';
     &#{$prefix}-large {
       .input,
       input {
-        width: $calculated-input-toggle-width-large;
+        width: $_fwc-input-toggle-width-large;
       }
     }
 
     & #{&}-label {
       position: relative;
-      width: calc(100% - #{$calculated-input-toggle-width});
+      width: calc(100% - #{$_fwc-input-toggle-width});
       padding-top: 0;
       padding-bottom: 0;
       flex: 1 0 auto;
@@ -104,7 +104,7 @@ $prefix: '.input';
         }
       }
 
-      @each $tag, $color in $calculated-brand-color-declarations-for-components {
+      @each $tag, $color in $_fwc-brand-color-declarations-for-components {
         @at-root &#{$prefix}-#{$tag},
           #{$prefix}-#{$tag} & {
           &:before,
@@ -116,12 +116,11 @@ $prefix: '.input';
 
       &:before {
         & {
-          height: $calculated-input-toggle-plate-height;
-          width: $calculated-input-toggle-width;
+          height: $_fwc-input-toggle-plate-height;
+          width: $_fwc-input-toggle-width;
           margin-top: calc(
-            (
-                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-plate-height}
-              ) / 2
+            (#{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-plate-height}) /
+              2
           );
           opacity: 0.3;
           border-radius: $input-toggle-plate-border-radius;
@@ -130,11 +129,11 @@ $prefix: '.input';
 
         @at-root #{$prefix}-small#{&},
           #{$prefix}-small & {
-          height: $calculated-input-toggle-plate-height-small;
-          width: $calculated-input-toggle-width-small;
+          height: $_fwc-input-toggle-plate-height-small;
+          width: $_fwc-input-toggle-width-small;
           margin-top: calc(
             (
-                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-plate-height-small}
+                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-plate-height-small}
               ) / 2
           );
           border-radius: $input-toggle-plate-border-radius-small;
@@ -142,11 +141,11 @@ $prefix: '.input';
 
         @at-root #{$prefix}-large#{&},
           #{$prefix}-large & {
-          height: $calculated-input-toggle-plate-height-large;
-          width: $calculated-input-toggle-width-large;
+          height: $_fwc-input-toggle-plate-height-large;
+          width: $_fwc-input-toggle-width-large;
           margin-top: calc(
             (
-                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-plate-height-large}
+                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-plate-height-large}
               ) / 2
           );
           border-radius: $input-toggle-plate-border-radius-large;
@@ -155,18 +154,17 @@ $prefix: '.input';
 
       &:after {
         & {
-          height: $calculated-input-toggle-node-height;
-          width: $calculated-input-toggle-node-width;
+          height: $_fwc-input-toggle-node-height;
+          width: $_fwc-input-toggle-node-width;
           box-shadow: $input-toggle-node-box-shadow;
           border-radius: $input-toggle-node-border-radius;
           margin-right: calc(
-            (#{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width})
+            (#{$_fwc-input-toggle-width} - #{$_fwc-input-toggle-node-width})
           );
           margin-left: 0;
           margin-top: calc(
-            (
-                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height}
-              ) / 2
+            (#{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-node-height}) /
+              2
           );
 
           input[type='checkbox']:not(:checked) + &,
@@ -186,9 +184,7 @@ $prefix: '.input';
 
             #{$prefix}-toggle#{$prefix}-toggle-reverse & {
               margin-left: calc(
-                (
-                  #{$calculated-input-toggle-width} - #{$calculated-input-toggle-node-width}
-                )
+                (#{$_fwc-input-toggle-width} - #{$_fwc-input-toggle-node-width})
               );
             }
           }
@@ -196,18 +192,16 @@ $prefix: '.input';
 
         @at-root #{$prefix}-small#{&},
           #{$prefix}-small & {
-          height: $calculated-input-toggle-node-height-small;
-          width: $calculated-input-toggle-node-width-small;
+          height: $_fwc-input-toggle-node-height-small;
+          width: $_fwc-input-toggle-node-width-small;
           border-radius: $input-toggle-node-border-radius-small;
           margin-right: calc(
-            (
-              #{$calculated-input-toggle-width-small} - #{$calculated-input-toggle-node-width-small}
-            )
+            (#{$_fwc-input-toggle-width-small} - #{$_fwc-input-toggle-node-width-small})
           );
           margin-left: 0;
           margin-top: calc(
             (
-                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height-small}
+                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-node-height-small}
               ) / 2
           );
 
@@ -218,7 +212,7 @@ $prefix: '.input';
             #{$prefix}-toggle#{$prefix}-toggle-reverse & {
               margin-left: calc(
                 (
-                  #{$calculated-input-toggle-width-small} - #{$calculated-input-toggle-node-width-small}
+                  #{$_fwc-input-toggle-width-small} - #{$_fwc-input-toggle-node-width-small}
                 )
               );
             }
@@ -227,18 +221,16 @@ $prefix: '.input';
 
         @at-root #{$prefix}-large#{&},
           #{$prefix}-large & {
-          height: $calculated-input-toggle-node-height-large;
-          width: $calculated-input-toggle-node-width-large;
+          height: $_fwc-input-toggle-node-height-large;
+          width: $_fwc-input-toggle-node-width-large;
           border-radius: $input-toggle-node-border-radius-large;
           margin-right: calc(
-            (
-              #{$calculated-input-toggle-width-large} - #{$calculated-input-toggle-node-width-large}
-            )
+            (#{$_fwc-input-toggle-width-large} - #{$_fwc-input-toggle-node-width-large})
           );
           margin-left: 0;
           margin-top: calc(
             (
-                #{$calculated-input-toggle-checkbox-height} - #{$calculated-input-toggle-node-height-large}
+                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-node-height-large}
               ) / 2
           );
 
@@ -249,7 +241,7 @@ $prefix: '.input';
             #{$prefix}-toggle#{$prefix}-toggle-reverse & {
               margin-left: calc(
                 (
-                  #{$calculated-input-toggle-width-large} - #{$calculated-input-toggle-node-width-large}
+                  #{$_fwc-input-toggle-width-large} - #{$_fwc-input-toggle-node-width-large}
                 )
               );
             }

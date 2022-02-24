@@ -40,27 +40,21 @@ $prefix: '.input';
 
           #{$prefix}-tags-ui & {
             min-height: 100%;
-            margin-bottom: $calculated-input-tags-padding-y * -1;
-            margin-top: (
-                $calculated-input-tags-padding-y + $calculated-input-tags-gutter-y
-              ) * -1;
+            margin-bottom: $_fwc-input-tags-padding-y * -1;
+            margin-top: ($_fwc-input-tags-padding-y + $_fwc-input-tags-gutter-y) * -1;
             flex-direction: row-reverse;
             direction: rtl;
 
             @at-root #{$prefix}-small#{&} {
-              margin-bottom: $calculated-input-tags-padding-y-small * -1;
-              margin-top: (
-                  $calculated-input-tags-padding-y-small +
-                    $calculated-input-tags-gutter-y
-                ) * -1;
+              margin-bottom: $_fwc-input-tags-padding-y-small * -1;
+              margin-top: ($_fwc-input-tags-padding-y-small + $_fwc-input-tags-gutter-y) *
+                -1;
             }
 
             @at-root #{$prefix}-large#{&} {
-              margin-bottom: $calculated-input-tags-padding-y-large * -1;
-              margin-top: (
-                  $calculated-input-tags-padding-y-large +
-                    $calculated-input-tags-gutter-y
-                ) * -1;
+              margin-bottom: $_fwc-input-tags-padding-y-large * -1;
+              margin-top: ($_fwc-input-tags-padding-y-large + $_fwc-input-tags-gutter-y) *
+                -1;
             }
           }
 
@@ -82,26 +76,26 @@ $prefix: '.input';
           display: flex;
           align-items: center;
           direction: ltr;
-          padding-top: $calculated-input-tags-padding-y;
-          padding-bottom: $calculated-input-tags-padding-y;
-          padding-left: $calculated-input-tags-padding-x;
-          padding-right: $calculated-input-tags-padding-x;
-          margin-top: $calculated-input-tags-gutter-y;
+          padding-top: $_fwc-input-tags-padding-y;
+          padding-bottom: $_fwc-input-tags-padding-y;
+          padding-left: $_fwc-input-tags-padding-x;
+          padding-right: $_fwc-input-tags-padding-x;
+          margin-top: $_fwc-input-tags-gutter-y;
 
           #{$prefix}-small & {
-            padding-top: $calculated-input-tags-padding-y-small;
-            padding-bottom: $calculated-input-tags-padding-y-small;
+            padding-top: $_fwc-input-tags-padding-y-small;
+            padding-bottom: $_fwc-input-tags-padding-y-small;
           }
 
           #{$prefix}-large & {
-            padding-top: $calculated-input-tags-padding-y-large;
-            padding-bottom: $calculated-input-tags-padding-y-large;
+            padding-top: $_fwc-input-tags-padding-y-large;
+            padding-bottom: $_fwc-input-tags-padding-y-large;
           }
         }
 
         &-tag {
           max-width: 100%;
-          margin-right: $calculated-input-tags-gutter-x;
+          margin-right: $_fwc-input-tags-gutter-x;
           background: var(
             --fw-color-#{$input-tags-palette-tag}-#{$input-tags-palette-tag-slug}
           );
@@ -155,7 +149,7 @@ $prefix: '.input';
             }
           }
 
-          @each $tag, $color in $calculated-brand-color-declarations-for-components {
+          @each $tag, $color in $_fwc-brand-color-declarations-for-components {
             #{$prefix}-#{$tag} & {
               background: var(--fw-color-#{$tag}-#{$input-tags-palette-tag-slug});
 
@@ -178,7 +172,7 @@ $prefix: '.input';
           appearance: none;
           outline: none;
           white-space: nowrap;
-          padding-left: $calculated-input-tags-padding-x;
+          padding-left: $_fwc-input-tags-padding-x;
           display: block;
 
           // &:empty:not(:focus):not(.focus):before {

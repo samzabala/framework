@@ -1,4 +1,4 @@
-$calculated-tag-schemes-color: (
+$_fwc-tag-schemes-color: (
   default: (
     background: $tag-default-background,
     color: $tag-default-color,
@@ -53,42 +53,42 @@ $calculated-tag-schemes-color: (
   ),
 );
 
-$calculated-tag-font-size: $tag-font-size;
+$_fwc-tag-font-size: $tag-font-size;
 @if internal-is-convertable($tag-font-size, $body-font-size) {
-  $calculated-tag-font-size: rem($tag-font-size, $body-font-size);
+  $_fwc-tag-font-size: rem($tag-font-size, $body-font-size);
 }
 
-$calculated-tag-line-height: type-lead($tag-font-size, $tag-line-height);
+$_fwc-tag-line-height: type-lead($tag-font-size, $tag-line-height);
 
-$calculated-tag-single-line: $calculated-tag-line-height;
-@if unitless($calculated-tag-single-line) and unit($tag-font-size) == px {
-  $calculated-tag-single-line: #{1em * type-lead($tag-font-size, $tag-line-height)};
+$_fwc-tag-single-line: $_fwc-tag-line-height;
+@if unitless($_fwc-tag-single-line) and unit($tag-font-size) == px {
+  $_fwc-tag-single-line: #{1em * type-lead($tag-font-size, $tag-line-height)};
 }
 
-$calculated-tag-height: $tag-height;
+$_fwc-tag-height: $tag-height;
 @if internal-is-convertable($tag-height, $tag-font-size) {
-  $calculated-tag-height: em($tag-height, $tag-font-size);
+  $_fwc-tag-height: em($tag-height, $tag-font-size);
 }
 
-$calculated-tag-height-large: $tag-height-large;
+$_fwc-tag-height-large: $tag-height-large;
 @if internal-is-convertable($tag-height-large, $tag-font-size) {
-  $calculated-tag-height-large: em($tag-height-large, $tag-font-size);
+  $_fwc-tag-height-large: em($tag-height-large, $tag-font-size);
 }
-$calculated-tag-height-small: $tag-height-small;
+$_fwc-tag-height-small: $tag-height-small;
 @if internal-is-convertable($tag-height-small, $tag-font-size) {
-  $calculated-tag-height-small: em($tag-height-small, $tag-font-size);
+  $_fwc-tag-height-small: em($tag-height-small, $tag-font-size);
 }
 
-$calculated-tag-gutter-x: $tag-gutter-x;
+$_fwc-tag-gutter-x: $tag-gutter-x;
 @if internal-is-convertable($tag-gutter-x, $tag-font-size) {
-  $calculated-tag-gutter-x: em($tag-gutter-x, $tag-font-size);
+  $_fwc-tag-gutter-x: em($tag-gutter-x, $tag-font-size);
 }
 
-$calculated-tag-margin-y: $tag-margin-y;
+$_fwc-tag-margin-y: $tag-margin-y;
 @if internal-is-convertable($tag-margin-y, $tag-font-size) {
-  $calculated-tag-gutter-y: em($tag-gutter-y, $tag-font-size);
+  $_fwc-tag-gutter-y: em($tag-gutter-y, $tag-font-size);
 }
-$calculated-tag-margin-x: $tag-margin-x;
+$_fwc-tag-margin-x: $tag-margin-x;
 @if internal-is-convertable($tag-margin-x, $tag-font-size) {
-  $calculated-tag-gutter-x: em($tag-gutter-x, $tag-font-size);
+  $_fwc-tag-gutter-x: em($tag-gutter-x, $tag-font-size);
 }

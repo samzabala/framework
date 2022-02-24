@@ -1,10 +1,10 @@
 /*** input calendar ***/
 $prefix: '.input';
 
-$calculated-calendar-exception: '';
+$_fwc-calendar-exception: '';
 
-@each $tag, $color in $calculated-tag-schemes-color {
-  $calculated-calendar-exception: #{$calculated-calendar-exception +
+@each $tag, $color in $_fwc-tag-schemes-color {
+  $_fwc-calendar-exception: #{$_fwc-calendar-exception +
     ':not(' +
     $prefix +
     '-' +
@@ -34,8 +34,8 @@ $calculated-calendar-exception: '';
 
         &-block {
           @extend %for-form-input-ui-button !optional;
-          padding: $calculated-input-calendar-block-gutter-y
-            $calculated-input-calendar-block-gutter-x;
+          padding: $_fwc-input-calendar-block-gutter-y
+            $_fwc-input-calendar-block-gutter-x;
           text-align: center;
           display: block;
           white-space: nowrap;
@@ -50,7 +50,7 @@ $calculated-calendar-exception: '';
 
           > span {
             display: block;
-            margin: 0 ($calculated-input-calendar-block-gutter-x * -1);
+            margin: 0 ($_fwc-input-calendar-block-gutter-x * -1);
           }
 
           &-adjacent {
@@ -127,10 +127,7 @@ $calculated-calendar-exception: '';
               // background: $input-calendar-date-active-background;
               &:after {
                 opacity: 1;
-                @at-root #{$prefix
-                    + '-calendar-ui'
-                    + $calculated-calendar-exception}
-                    & {
+                @at-root #{$prefix + '-calendar-ui' + $_fwc-calendar-exception} & {
                   background: $input-calendar-date-active-background;
                 }
               }
@@ -143,7 +140,7 @@ $calculated-calendar-exception: '';
         }
 
         &-grid {
-          padding-bottom: $calculated-input-calendar-block-gutter-y;
+          padding-bottom: $_fwc-input-calendar-block-gutter-y;
         }
         &-days,
         &-dates,
@@ -156,17 +153,16 @@ $calculated-calendar-exception: '';
         }
 
         &-input {
-          margin-bottom: $calculated-input-calendar-block-gutter-y;
-          padding-bottom: $calculated-input-calendar-block-gutter-y;
-          margin-left: $calculated-input-gutter-x * -1;
-          margin-right: $calculated-input-gutter-x * -1;
-          margin-top: $calculated-value-input-paddiny-y-negative;
+          margin-bottom: $_fwc-input-calendar-block-gutter-y;
+          padding-bottom: $_fwc-input-calendar-block-gutter-y;
+          margin-left: $_fwc-input-gutter-x * -1;
+          margin-right: $_fwc-input-gutter-x * -1;
+          margin-top: $_fwc-value-input-paddiny-y-negative;
           position: relative;
 
           &:last-child {
             margin-bottom: calc(
-              ((#{$calculated-input-height} - (#{$calculated-input-single-line})) * 0.5) *
-                -1
+              ((#{$_fwc-input-height} - (#{$_fwc-input-single-line})) * 0.5) * -1
             );
 
             &:after {
@@ -175,31 +171,25 @@ $calculated-calendar-exception: '';
           }
 
           #{$prefix}-small & {
-            margin-top: $calculated-value-input-paddiny-y-small-negative;
+            margin-top: $_fwc-value-input-paddiny-y-small-negative;
             position: relative;
 
             &:last-child {
               margin-bottom: calc(
-                (
-                    (
-                        #{$calculated-input-height-small} - (#{$calculated-input-single-line})
-                      ) * 0.5
-                  ) * -1
+                ((#{$_fwc-input-height-small} - (#{$_fwc-input-single-line})) * 0.5) *
+                  -1
               );
             }
           }
 
           #{$prefix}-large & {
-            margin-top: $calculated-value-input-paddiny-y-large-negative;
+            margin-top: $_fwc-value-input-paddiny-y-large-negative;
             position: relative;
 
             &:last-child {
               margin-bottom: calc(
-                (
-                    (
-                        #{$calculated-input-height-large} - (#{$calculated-input-single-line})
-                      ) * 0.5
-                  ) * -1
+                ((#{$_fwc-input-height-large} - (#{$_fwc-input-single-line})) * 0.5) *
+                  -1
               );
             }
           }
@@ -226,8 +216,8 @@ $calculated-calendar-exception: '';
         }
 
         &-heading {
-          padding-top: $calculated-input-calendar-block-gutter-y;
-          padding-bottom: $calculated-input-calendar-block-gutter-y;
+          padding-top: $_fwc-input-calendar-block-gutter-y;
+          padding-bottom: $_fwc-input-calendar-block-gutter-y;
           position: relative;
         }
 
@@ -311,23 +301,23 @@ $calculated-calendar-exception: '';
         }
 
         &-days {
-          margin-bottom: $calculated-input-calendar-block-gutter-y;
+          margin-bottom: $_fwc-input-calendar-block-gutter-y;
           border-bottom: $input-calendar-days-border-width solid;
           opacity: 0.375;
-          font-size: $calculated-input-calendar-days-font-size;
+          font-size: $_fwc-input-calendar-days-font-size;
         }
 
         &-dates {
           // grid-template-rows: repeat(6, 1fr);
-          margin-bottom: $calculated-input-calendar-block-gutter-y * 0.5;
+          margin-bottom: $_fwc-input-calendar-block-gutter-y * 0.5;
         }
       }
 
       @include on-breakpoint(mobile) {
         &-ui {
           &-block {
-            padding: $calculated-input-calendar-block-gutter-y-mobile
-              $calculated-input-calendar-block-gutter-x-mobile;
+            padding: $_fwc-input-calendar-block-gutter-y-mobile
+              $_fwc-input-calendar-block-gutter-x-mobile;
           }
         }
       }

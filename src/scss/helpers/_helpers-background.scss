@@ -5,27 +5,23 @@ $prefix: '.background';
       background-image: none !important;
     }
   }
-  @each $color, $var in $calculated-theme-colors-background {
+  @each $color, $var in $_fwc-theme-colors-background {
     @include create-palette-helper(#{&}-#{$color}, background-color, $var);
   }
 
   //gradient
   &-gradient {
-    @at-root %for-gradient-legacy-fallback {
-      background-color: $var-gradient-start !important;
-    }
     //legacy/default
     $gradient-legacy-selector: #{&};
     $gradient-legacy-selector-angled: $gradient-legacy-selector;
-    $calculated-gradient-legacy-all-selector: $gradient-legacy-selector;
+    $_fwc-gradient-legacy-all-selector: $gradient-legacy-selector;
 
-    @each $angle in $calculated-gradient-angles-legacy {
+    @each $angle in $_fwc-gradient-angles-legacy {
       @if $angle > 0 {
         $gradient-legacy-selector-angled: #{$gradient-legacy-selector}-#{$angle};
       }
 
       @include create-palette-helper(#{$gradient-legacy-selector-angled}) {
-        @extend %for-gradient-legacy-fallback !optional;
         @include gradient(
           (
             color1: $var-gradient-start,
@@ -33,7 +29,7 @@ $prefix: '.background';
             angle: to-unit($angle, deg),
             use-shorthand: false,
             add-important: true,
-            use-fallback: false,
+            use-fallback: true,
           )
         );
       }
@@ -43,16 +39,13 @@ $prefix: '.background';
     $gradient-selector: #{&};
     $gradient-selector-angled: $gradient-selector;
 
-    @each $angle in $calculated-gradient-angles {
+    @each $angle in $_fwc-gradient-angles {
       @if $angle > 0 {
         $gradient-selector-angled: #{$gradient-selector}-#{$angle};
       }
 
-      @each $color1, $var1 in $calculated-gradient-color-stops {
-        @at-root %for-gradient-#{'' + $color1}-fallback {
-          background-color: $var1 !important;
-        }
-        @each $color2, $var2 in $calculated-gradient-color-stops {
+      @each $color1, $var1 in $_fwc-gradient-color-stops {
+        @each $color2, $var2 in $_fwc-gradient-color-stops {
           $selector: #{$gradient-selector-angled}-from-#{'' +
             $color1}-to-#{'' +
             $color2};
@@ -68,7 +61,7 @@ $prefix: '.background';
                   angle: to-unit($angle, deg),
                   use-shorthand: false,
                   add-important: true,
-                  use-fallback: false,
+                  use-fallback: true,
                 )
               );
             }

@@ -12,7 +12,7 @@ $prefix: '.svg';
 
 .stop-color {
   // Theme
-  @each $color, $var in $calculated-theme-colors-color {
+  @each $color, $var in $_fwc-theme-colors-color {
     @include create-palette-helper(#{&}-#{$color}, stop-color, $var);
   }
 
@@ -28,7 +28,7 @@ $prefix: '.svg';
 
 .fill {
   // Theme
-  @each $color, $var in $calculated-theme-colors-color {
+  @each $color, $var in $_fwc-theme-colors-color {
     @include create-palette-helper(#{&}-#{$color}, fill, $var);
   }
 
@@ -44,7 +44,7 @@ $prefix: '.svg';
 
 .stroke {
   // Theme
-  @each $color, $var in $calculated-theme-colors-color {
+  @each $color, $var in $_fwc-theme-colors-color {
     @include create-palette-helper(#{&}-#{$color}, stroke, $var);
   }
 

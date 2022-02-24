@@ -6,17 +6,17 @@
   &-padding {
     padding-top: calc(
       (
-          (#{$calculated-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-            (#{$calculated-tabs-font-size * $calculated-body-line-height})
+          (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
+            (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
         ) * 0.5
     );
     padding-bottom: calc(
       (
-          (#{$calculated-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-            (#{$calculated-tabs-font-size * $calculated-body-line-height})
+          (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
+            (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
         ) * 0.5
     );
-    min-height: $calculated-tabs-item-height;
+    min-height: $_fwc-tabs-item-height;
     padding-right: $tabs-item-gutter-x;
     padding-left: $tabs-item-gutter-x;
     align-items: center;
@@ -29,7 +29,7 @@ $prefix: '.tab';
   &s {
     @include type-set(
       (
-        size: $calculated-tabs-font-size,
+        size: $_fwc-tabs-font-size,
         case: $tabs-text-transform,
         weight: $tabs-font-weight,
         style: $tabs-font-style,
@@ -44,7 +44,7 @@ $prefix: '.tab';
     }
 
     @include on-breakpoint(mobile) {
-      font-size: $calculated-tabs-font-size-mobile;
+      font-size: $_fwc-tabs-font-size-mobile;
 
       &#{&}-responsive {
         flex-direction: column;
@@ -156,14 +156,14 @@ $prefix: '.tab';
       );
       margin-top: calc(
         (
-            (#{$calculated-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-              (#{$calculated-tabs-font-size * $calculated-body-line-height})
+            (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
+              (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
           ) * -0.5
       );
       margin-bottom: calc(
         (
-            (#{$calculated-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-              (#{$calculated-tabs-font-size * $calculated-body-line-height})
+            (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
+              (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
           ) * -0.5
       );
       margin-right: $tabs-item-gutter-x * -1;

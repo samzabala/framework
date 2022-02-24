@@ -2,7 +2,7 @@
 
 body {
   &.body-nav-sticky-offset {
-    padding-top: $calculated-nav-height;
+    padding-top: $_fwc-nav-height;
   }
 }
 .offset-nav-sticky {
@@ -12,12 +12,12 @@ body {
 $prefix: '.nav';
 #{$prefix} {
   & {
-    height: $calculated-nav-height;
+    height: $_fwc-nav-height;
     background: $nav-background;
     @include type-set(
       (
-        size: $calculated-nav-font-size,
-        leading: $calculated-nav-line-height,
+        size: $_fwc-nav-font-size,
+        leading: $_fwc-nav-line-height,
         color: $nav-color,
         weight: $nav-font-weight,
         case: $nav-text-transform,
@@ -99,11 +99,9 @@ $prefix: '.nav';
     }
 
     > a {
-      padding-top: calc(
-        (#{$calculated-nav-item-height} - (#{$calculated-nav-single-line})) * 0.5
-      );
+      padding-top: calc((#{$_fwc-nav-item-height} - (#{$_fwc-nav-single-line})) * 0.5);
       padding-bottom: calc(
-        (#{$calculated-nav-item-height} - (#{$calculated-nav-single-line})) * 0.5
+        (#{$_fwc-nav-item-height} - (#{$_fwc-nav-single-line})) * 0.5
       );
       display: block;
     }
@@ -136,8 +134,8 @@ $prefix: '.nav';
   }
 
   &-icon {
-    width: $calculated-nav-icon-width;
-    height: $calculated-nav-icon-height;
+    width: $_fwc-nav-icon-width;
+    height: $_fwc-nav-icon-height;
     max-width: none;
     display: inline-block;
     vertical-align: middle;
@@ -177,7 +175,7 @@ $prefix: '.nav';
         (
           color: inherit,
           decoration: get-anchor-dec(),
-          size: $calculated-nav-top-font-size,
+          size: $_fwc-nav-top-font-size,
           style: $nav-top-font-style,
           weight: $nav-top-font-weight,
           case: $nav-top-text-transform,
@@ -188,12 +186,8 @@ $prefix: '.nav';
       transition: $transition-duration-short all $transition-timing;
       padding-left: $nav-padding-x;
       padding-right: $nav-padding-x;
-      padding-top: calc(
-        (#{$calculated-nav-height} - (#{$calculated-nav-single-line})) * 0.5
-      );
-      padding-bottom: calc(
-        (#{$calculated-nav-height} - (#{$calculated-nav-single-line})) * 0.5
-      );
+      padding-top: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
+      padding-bottom: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
 
       &:after {
         content: '';

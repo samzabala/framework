@@ -5,39 +5,39 @@ $prefix: '.special';
   &-primary {
     @include type-set(
       (
-        size: $calculated-special-primary-font-size,
-        leading: $calculated-special-primary-line-height,
+        size: $_fwc-special-primary-font-size,
+        leading: $_fwc-special-primary-line-height,
         color: $special-primary-color,
         weight: $special-primary-font-weight,
         style: $special-primary-font-style,
         case: $special-primary-text-transform,
       )
     );
-    margin-bottom: $calculated-special-primary-gutter-y;
-    margin-top: $calculated-special-primary-gutter-y;
+    margin-bottom: $_fwc-special-primary-gutter-y;
+    margin-top: $_fwc-special-primary-gutter-y;
     display: block;
 
     @include on-breakpoint(mobile) {
-      font-size: $calculated-special-primary-font-size-mobile;
+      font-size: $_fwc-special-primary-font-size-mobile;
     }
   }
   &-secondary {
     @include type-set(
       (
-        size: $calculated-special-secondary-font-size,
-        leading: $calculated-special-secondary-line-height,
+        size: $_fwc-special-secondary-font-size,
+        leading: $_fwc-special-secondary-line-height,
         color: $special-secondary-color,
         weight: $special-secondary-font-weight,
         style: $special-secondary-font-style,
         case: $special-secondary-text-transform,
       )
     );
-    margin-bottom: $calculated-special-secondary-gutter-y;
-    margin-top: $calculated-special-secondary-gutter-y;
+    margin-bottom: $_fwc-special-secondary-gutter-y;
+    margin-top: $_fwc-special-secondary-gutter-y;
     display: block;
 
     @include on-breakpoint(mobile) {
-      font-size: $calculated-special-secondary-font-size-mobile !important;
+      font-size: $_fwc-special-secondary-font-size-mobile !important;
     }
   }
 }
@@ -45,20 +45,20 @@ $prefix: '.special';
 .lead {
   @include type-set(
     (
-      size: $calculated-lead-font-size,
-      leading: $calculated-lead-line-height,
+      size: $_fwc-lead-font-size,
+      leading: $_fwc-lead-line-height,
       color: $lead-color,
       weight: $lead-font-weight,
       style: $lead-font-style,
       case: $lead-text-transform,
     )
   );
-  margin-bottom: $calculated-lead-gutter-y;
-  margin-top: $calculated-lead-gutter-y;
+  margin-bottom: $_fwc-lead-gutter-y;
+  margin-top: $_fwc-lead-gutter-y;
   display: block;
 
   @include on-breakpoint(mobile) {
-    font-size: $calculated-lead-font-size-mobile;
+    font-size: $_fwc-lead-font-size-mobile;
   }
 }
 
@@ -87,8 +87,8 @@ h6,
   );
   display: block;
   hyphens: auto;
-  margin-bottom: $calculated-body-heading-gutter-bottom;
-  margin-top: $calculated-body-heading-gutter-top;
+  margin-bottom: $_fwc-body-heading-gutter-bottom;
+  margin-top: $_fwc-body-heading-gutter-top;
 
   // &:first-child {
   // 	margin-top:0;
@@ -104,10 +104,10 @@ h6,
   }
 }
 
-@for $i from 1 through length($calculated-body-heading-size) {
+@for $i from 1 through length($_fwc-body-heading-size) {
   h#{$i},
   .h#{$i} {
-    font-size: nth($calculated-body-heading-size, $i);
+    font-size: nth($_fwc-body-heading-size, $i);
   }
 }
 
@@ -164,7 +164,7 @@ ol,
 address,
 pre,
 dl {
-  margin-bottom: $calculated-body-text-gutter-y;
+  margin-bottom: $_fwc-body-text-gutter-y;
   display: block;
 }
 
@@ -173,13 +173,13 @@ li ul,
 li ol,
 dl,
 dt {
-  margin-top: $calculated-body-list-gutter-y;
+  margin-top: $_fwc-body-list-gutter-y;
 }
 
 ol,
 ul,
 dd {
-  padding-left: $calculated-body-list-offset;
+  padding-left: $_fwc-body-list-offset;
 }
 ol,
 ul {
@@ -204,7 +204,7 @@ ul {
     li {
       display: inline-block;
       &:nth-child(n + 2) {
-        margin-left: $calculated-body-list-offset-inline;
+        margin-left: $_fwc-body-list-offset-inline;
       }
     }
   }
@@ -238,13 +238,13 @@ ul {
       display: inline-block;
       vertical-align: middle;
       line-height: inherit;
-      width: $calculated-body-list-bullet-size;
-      height: $calculated-body-list-bullet-size;
+      width: $_fwc-body-list-bullet-size;
+      height: $_fwc-body-list-bullet-size;
       color: $body-list-bullet-color;
       background: currentColor;
-      margin-right: $calculated-body-list-margin-right;
+      margin-right: $_fwc-body-list-margin-right;
       position: absolute;
-      top: $calculated-body-list-top;
+      top: $_fwc-body-list-top;
       border-radius: $body-list-bullet-border-radius;
     }
   }
@@ -319,20 +319,20 @@ ol {
 blockquote {
   @include type-set(
     (
-      size: $calculated-body-blockquote-font-size,
-      leading: $calculated-body-blockquote-line-height,
+      size: $_fwc-body-blockquote-font-size,
+      leading: $_fwc-body-blockquote-line-height,
       weight: $body-blockquote-font-weight,
       style: $body-blockquote-font-style,
       case: $body-blockquote-text-transform,
     )
   );
 
-  padding-left: $calculated-body-blockquote-gutter-x;
+  padding-left: $_fwc-body-blockquote-gutter-x;
 
-  margin-bottom: $calculated-body-blockquote-margin-y;
-  margin-top: $calculated-body-blockquote-margin-y;
-  padding-bottom: $calculated-body-blockquote-padding-y;
-  padding-top: $calculated-body-blockquote-padding-y;
+  margin-bottom: $_fwc-body-blockquote-margin-y;
+  margin-top: $_fwc-body-blockquote-margin-y;
+  padding-bottom: $_fwc-body-blockquote-padding-y;
+  padding-top: $_fwc-body-blockquote-padding-y;
   border-left: $body-blockquote-border-width solid $body-blockquote-border-color;
 
   & > * {
@@ -370,11 +370,11 @@ tt {
 code,
 kbd,
 tt {
-  padding: $calculated-body-pre-padding * 0.125;
+  padding: $_fwc-body-pre-padding * 0.125;
 }
 
 pre {
-  padding: $calculated-body-pre-padding;
+  padding: $_fwc-body-pre-padding;
   overflow: auto;
 
   * {
@@ -387,7 +387,7 @@ pre {
 cite {
   @include type-set(
     (
-      size: $calculated-body-cite-font-size,
+      size: $_fwc-body-cite-font-size,
       weight: $body-cite-font-weight,
       style: $body-cite-font-style,
     )
@@ -395,7 +395,7 @@ cite {
 
   blockquote & {
     display: block;
-    margin-top: $calculated-body-text-gutter-y;
+    margin-top: $_fwc-body-text-gutter-y;
   }
 }
 
@@ -429,21 +429,21 @@ var {
 hr {
   display: block;
   border: 0;
-  height: $calculated-hr-height;
+  height: $_fwc-hr-height;
   background: $hr-color;
   opacity: 0.2;
   width: 100%;
   flex: 1 1 auto;
-  margin-top: $calculated-hr-gutter-y;
-  margin-bottom: $calculated-hr-gutter-y;
+  margin-top: $_fwc-hr-gutter-y;
+  margin-bottom: $_fwc-hr-gutter-y;
   margin-left: auto;
   margin-right: auto;
 }
 
 small {
-  font-size: $calculated-body-size-small;
+  font-size: $_fwc-body-size-small;
 }
 
 big {
-  font-size: $calculated-body-size-large;
+  font-size: $_fwc-body-size-large;
 }
