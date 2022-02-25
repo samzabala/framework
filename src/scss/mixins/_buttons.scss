@@ -1,4 +1,4 @@
-@mixin create-btn-schemes($args: (), $scheme: '', $helper-prefix: '.btn') {
+@mixin create-btn-schemes($args: (), $scheme: '', $custom-css, $helper-prefix: '.btn') {
   $defaults: (
     init: (
       border: '',
@@ -52,6 +52,10 @@
       @at-root & {
         // @extend %extend-internal-btn-init-#{$scheme};
         @include internal-btn-set-scheme($properties);
+
+        @if $custom-css {
+          @include custom-css($custom-css);
+        }
       }
 
       // @at-root

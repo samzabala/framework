@@ -7228,6 +7228,7 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   justify-content: center;
   align-items: center;
   background: none;
+  background-size: calc(100% + (1px * 2)) calc(100% + (1px * 2));
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -7697,13 +7698,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-primary-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-primary-glassy {
   border-color: transparent;
   background: var(--fw-color-primary-alpha-1);
   color: var(--fw-color-primary);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-primary-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-primary-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
@@ -7719,13 +7718,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-secondary-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-secondary-glassy {
   border-color: transparent;
   background: var(--fw-color-secondary-alpha-1);
   color: var(--fw-color-secondary);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-secondary-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-secondary-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
@@ -7741,13 +7738,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-accent-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-accent-glassy {
   border-color: transparent;
   background: var(--fw-color-accent-alpha-1);
   color: var(--fw-color-accent);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-accent-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-accent-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
@@ -7763,13 +7758,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-neutral-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-neutral-glassy {
   border-color: transparent;
   background: var(--fw-color-neutral-alpha-1);
   color: var(--fw-color-neutral);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-neutral-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-neutral-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
@@ -7785,13 +7778,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-success-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-success-glassy {
   border-color: transparent;
   background: var(--fw-color-success-alpha-1);
   color: var(--fw-color-success);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-success-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-success-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
@@ -7807,13 +7798,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-caution-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-caution-glassy {
   border-color: transparent;
   background: var(--fw-color-caution-alpha-1);
   color: var(--fw-color-caution);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-caution-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-caution-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
@@ -7829,13 +7818,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn.btn-error-glassy {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.btn.btn-error-glassy {
   border-color: transparent;
   background: var(--fw-color-error-alpha-1);
   color: var(--fw-color-error);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .btn.btn-error-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-error-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {

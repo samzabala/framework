@@ -66,6 +66,8 @@ $prefix: '.btn';
       justify-content: center;
       align-items: center;
       background: none;
+      background-size: calc(100% + (#{$btn-border-width} * 2))
+        calc(100% + (#{$btn-border-width} * 2));
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -437,9 +439,14 @@ $prefix: '.btn';
   }
 
   @each $scheme, $properties in $_fwc-btn-schemes {
-    @at-root %fwe-btn-#{$scheme} {
-      @include create-btn-schemes($properties, $scheme);
+    $custom-css: ();
 
+    @if str-index($scheme, '-glassy') {
+      $custom-css: (
+        backdrop-filter: blur(5px),
+      );
+    }
+    @at-root %fwe-btn-#{$scheme} {
       @if $scheme == 'link' {
         @include dump-styles(no-box-shadow-important);
       }
@@ -447,10 +454,7 @@ $prefix: '.btn';
       @if str-index($scheme, '-outline') {
         @include dump-styles(no-box-shadow);
       }
-
-      @if str-index($scheme, '-glassy') {
-        backdrop-filter: blur(5px);
-      }
+      @include create-btn-schemes($properties, $scheme, $custom-css);
 
       // @if str-index($scheme, '-gradient'){
       //   background-origin:border-box;
