@@ -11,7 +11,7 @@
 /* Progress bar */
 $prefix: '.progress';
 #{$prefix} {
-  @at-root %for-progress {
+  @at-root %fwe-progress {
     & {
       @include dump-styles(cf);
       text-align: center;
@@ -78,9 +78,9 @@ $prefix: '.progress';
   }
 
   & {
-    @extend %for-progress;
+    @extend %fwe-progress;
   }
-  @at-root %for-progress-and-bar {
+  @at-root %fwe-progress-and-bar {
     height: $_fwc-progress-height;
     transition: $progress-transition-duration width $transition-timing;
 
@@ -94,24 +94,24 @@ $prefix: '.progress';
 
   &,
   &-bar {
-    @extend %for-progress-and-bar;
+    @extend %fwe-progress-and-bar;
   }
 
   &#{&}-small {
     &,
     #{$prefix}-bar {
-      @extend %for-progress-and-bar-small;
+      @extend %fwe-progress-and-bar-small;
     }
   }
 
   &#{&}-large {
     &,
     #{$prefix}-bar {
-      @extend %for-progress-and-bar-large;
+      @extend %fwe-progress-and-bar-large;
     }
   }
 
-  @at-root %for-progress-bar {
+  @at-root %fwe-progress-bar {
     float: left;
 
     &-default {
@@ -120,8 +120,8 @@ $prefix: '.progress';
   }
 
   &-bar {
-    @extend %for-progress-bar;
-    @extend %for-progress-bar-default;
+    @extend %fwe-progress-bar;
+    @extend %fwe-progress-bar-default;
 
     @each $tag, $color in $_fwc-brand-color-declarations-for-components {
       &-#{$tag} {

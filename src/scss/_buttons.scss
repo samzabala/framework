@@ -1,7 +1,7 @@
 /*  BUTTONS ***/
 $prefix: '.btn';
 #{$prefix} {
-  @at-root %for-btn-global {
+  @at-root %fwe-btn-global {
     &-radius {
       border-radius: $btn-border-radius;
 
@@ -29,7 +29,7 @@ $prefix: '.btn';
     }
   }
 
-  @at-root %for-btn {
+  @at-root %fwe-btn {
     & {
       @include type-set(
         (
@@ -83,7 +83,7 @@ $prefix: '.btn';
     }
 
     &-large {
-      @extend %for-btn-global-radius-large;
+      @extend %fwe-btn-global-radius-large;
       padding-top: calc(
         (
             (#{$_fwc-btn-height-large} - (#{$btn-border-width} * 2)) -
@@ -101,7 +101,7 @@ $prefix: '.btn';
     }
 
     &-small {
-      @extend %for-btn-global-radius-small;
+      @extend %fwe-btn-global-radius-small;
       font-size: $_fwc-btn-font-size-small;
       padding-top: calc(
         (
@@ -129,6 +129,15 @@ $prefix: '.btn';
       max-width: 100%;
       flex: 0 0 auto; // ??
       border-radius: inherit;
+      &,
+      &:hover,
+      &:active,
+      &.active,
+      &:focus,
+      &.focus,
+      &.open {
+        @include dump-styles(no-box-shadow-important);
+      }
 
       &:hover,
       &:active,
@@ -138,28 +147,24 @@ $prefix: '.btn';
       &.open {
         z-index: 1;
       }
-
-      & {
-        @include dump-styles(no-box-shadow-important);
-      }
     }
   }
   & {
-    @extend %for-btn;
+    @extend %fwe-btn;
 
     #{$prefix}-large &,
     &#{$prefix}-large {
-      @extend %for-btn-large;
+      @extend %fwe-btn-large;
     }
 
     #{$prefix}-small &,
     &#{$prefix}-small {
-      @extend %for-btn-small;
+      @extend %fwe-btn-small;
     }
 
     .nav-block.nav-block-stretch > &,
     .nav > & {
-      @extend %for-btn-in-nav;
+      @extend %fwe-btn-in-nav;
     }
 
     #{$prefix}-no-radius & {
@@ -167,7 +172,7 @@ $prefix: '.btn';
     }
 
     #{$prefix}-group & {
-      @extend %for-btn-in-group;
+      @extend %fwe-btn-in-group;
     }
 
     &-disabled {
@@ -176,11 +181,11 @@ $prefix: '.btn';
 
     &-disabled,
     &-disabled & {
-      @include dump-styles(no-box-shadow);
+      @include dump-styles(no-box-shadow-important);
     }
   }
 
-  @at-root %for-btn-symbol {
+  @at-root %fwe-btn-symbol {
     & {
       width: $_fwc-btn-height;
       padding-left: 0;
@@ -197,22 +202,22 @@ $prefix: '.btn';
   }
 
   &-symbol {
-    @extend %for-btn-symbol;
+    @extend %fwe-btn-symbol;
 
     #{$prefix}-small &,
     &#{$prefix}-small {
-      @extend %for-btn-symbol-small;
+      @extend %fwe-btn-symbol-small;
     }
 
     #{$prefix}-large &,
     &#{$prefix}-large {
-      @extend %for-btn-symbol-large;
+      @extend %fwe-btn-symbol-large;
     }
   }
 
-  @at-root %for-btn-and-group {
+  @at-root %fwe-btn-and-group {
     & {
-      @extend %for-btn-global-radius;
+      @extend %fwe-btn-global-radius;
       box-shadow: $btn-box-shadow;
       max-width: 100%;
       background-color: transparent;
@@ -231,18 +236,19 @@ $prefix: '.btn';
       &:active,
       &.active {
         color: inherit;
+        box-shadow: $btn-box-shadow-hover;
         @include dump-styles(no-text-decoration-hover);
-        &:not(.btn-no-interaction) {
-          box-shadow: $btn-box-shadow-hover;
+        &.btn-no-interaction {
+          @include dump-styles(no-box-shadow-important);
         }
       }
 
       &-small {
-        @extend %for-btn-global-radius-small;
+        @extend %fwe-btn-global-radius-small;
       }
 
       &-large {
-        @extend %for-btn-global-radius-large;
+        @extend %fwe-btn-global-radius-large;
       }
 
       &-in-nav {
@@ -255,30 +261,30 @@ $prefix: '.btn';
 
   &,
   &-group {
-    @extend %for-btn-and-group;
-    @extend %for-btn-global-radius;
+    @extend %fwe-btn-and-group;
+    @extend %fwe-btn-global-radius;
 
     &#{$prefix}-large {
-      @extend %for-btn-and-group-large;
+      @extend %fwe-btn-and-group-large;
     }
 
     &#{$prefix}-small {
-      @extend %for-btn-and-group-small;
+      @extend %fwe-btn-and-group-small;
     }
 
     .nav > & {
-      @extend %for-btn-and-group-in-nav;
+      @extend %fwe-btn-and-group-in-nav;
     }
 
     &#{$prefix}-round {
-      @extend %for-btn-global-round;
+      @extend %fwe-btn-global-round;
 
       &#{$prefix}-large {
-        @extend %for-btn-global-round-large !optional;
+        @extend %fwe-btn-global-round-large !optional;
       }
 
       &#{$prefix}-small {
-        @extend %for-btn-global-round-small !optional;
+        @extend %fwe-btn-global-round-small !optional;
       }
     }
 
@@ -431,11 +437,15 @@ $prefix: '.btn';
   }
 
   @each $scheme, $properties in $_fwc-btn-schemes {
-    @at-root %for-btn-#{$scheme} {
+    @at-root %fwe-btn-#{$scheme} {
       @include create-btn-schemes($properties, $scheme);
 
-      @if $scheme == 'link' or str-index($scheme, '-outline') {
+      @if $scheme == 'link' {
         @include dump-styles(no-box-shadow-important);
+      }
+
+      @if str-index($scheme, '-outline') {
+        @include dump-styles(no-box-shadow);
       }
 
       @if str-index($scheme, '-glassy') {
@@ -447,7 +457,7 @@ $prefix: '.btn';
       // }
     }
     &#{&}-#{$scheme} {
-      @extend %for-btn-#{$scheme};
+      @extend %fwe-btn-#{$scheme};
     }
   }
 }

@@ -1,8 +1,8 @@
 /*** input-label ***/
 $prefix: '.input';
-@at-root %for-form-label {
+@at-root %fwe-form-label {
   & {
-    @extend %for-form-global-transition;
+    @extend %fwe-form-global-transition;
     @include type-set(
       (
         size: $_fwc-input-label-font-size,
@@ -54,7 +54,7 @@ $prefix: '.input';
   }
 
   &-in-nav {
-    @extend %for-form-global-in-nav-custom;
+    @extend %fwe-form-global-in-nav-custom;
   }
 
   &-in-group {
@@ -114,48 +114,48 @@ $prefix: '.input';
 
 #{$prefix} {
   &-label {
-    @extend %for-form-label;
+    @extend %fwe-form-label;
 
     &#{$prefix}-large,
     #{$prefix}-large & {
-      @extend %for-form-label-large;
+      @extend %fwe-form-label-large;
     }
 
     &#{$prefix}-small,
     #{$prefix}-small & {
-      @extend %for-form-label-small;
+      @extend %fwe-form-label-small;
     }
 
     .nav-block.nav-block-stretch > &,
     .nav > & {
-      @extend %for-form-label-in-nav !optional;
+      @extend %fwe-form-label-in-nav !optional;
     }
 
     #{$prefix}-group & {
-      @extend %for-form-label-in-group !optional;
+      @extend %fwe-form-label-in-group !optional;
     }
 
     #{$prefix}-wrapper > & {
-      @extend %for-form-label-in-wrapper !optional;
+      @extend %fwe-form-label-in-wrapper !optional;
     }
 
     #{$prefix}-wrapper-block > & {
-      @extend %for-form-label-in-wrapper-block !optional;
+      @extend %fwe-form-label-in-wrapper-block !optional;
     }
 
     #{$prefix}-wrapper-horizontal > & {
-      @extend %for-form-label-in-wrapper-horizontal !optional;
+      @extend %fwe-form-label-in-wrapper-horizontal !optional;
 
       @at-root #{$prefix}-wrapper-block#{&} {
-        @extend %for-form-label-in-wrapper-horizontal-block !optional;
+        @extend %fwe-form-label-in-wrapper-horizontal-block !optional;
       }
     }
 
     #{$prefix}-wrapper-vertical > & {
-      @extend %for-form-label-in-wrapper-vertical !optional;
+      @extend %fwe-form-label-in-wrapper-vertical !optional;
 
       @at-root #{$prefix}-wrapper-block#{&} {
-        @extend %for-form-label-in-wrapper-vertical-block !optional;
+        @extend %fwe-form-label-in-wrapper-vertical-block !optional;
       }
     }
   }

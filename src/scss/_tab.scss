@@ -1,4 +1,4 @@
-%for-tab {
+%fwe-tab {
   &-all {
     display: flex;
   }
@@ -68,14 +68,14 @@ $prefix: '.tab';
   &,
   &s,
   > li {
-    @extend %for-tab-all;
+    @extend %fwe-tab-all;
     padding: 0;
     margin: 0;
   }
 
   &,
   &s > li {
-    @extend %for-tab-padding;
+    @extend %fwe-tab-padding;
     border: 0;
     position: relative;
     background-color: $tabs-item-background;
@@ -146,8 +146,8 @@ $prefix: '.tab';
 
     > a,
     #{$prefix}-text {
-      @extend %for-tab-all;
-      @extend %for-tab-padding;
+      @extend %fwe-tab-all;
+      @extend %fwe-tab-padding;
       @include type-set(
         (
           color: inherit,

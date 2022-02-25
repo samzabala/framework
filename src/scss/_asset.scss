@@ -52,7 +52,7 @@ $prefix: '.asset';
       )
     );
 
-    @at-root %for-valid-asset-image {
+    @at-root %fwe-valid-asset-image {
       & {
         border: $asset-thumbnail-image-border solid $asset-thumbnail-border-color;
 
@@ -135,7 +135,7 @@ $prefix: '.asset';
         }
 
         &-layout {
-          @extend %for-valid-asset-image-after-striped-base;
+          @extend %fwe-valid-asset-image-after-striped-base;
           background-image:
 						// img
             repeating-linear-gradient(
@@ -200,7 +200,7 @@ $prefix: '.asset';
         }
 
         &-justify {
-          @extend %for-valid-asset-image-after-striped-base;
+          @extend %fwe-valid-asset-image-after-striped-base;
           background-image:
 						//ebry oder line
             repeating-linear-gradient(
@@ -235,7 +235,7 @@ $prefix: '.asset';
         }
 
         &-indent {
-          @extend %for-valid-asset-image-after-striped-base;
+          @extend %fwe-valid-asset-image-after-striped-base;
           background-image:
 						// line 1 line 2
             repeating-linear-gradient(
@@ -276,7 +276,7 @@ $prefix: '.asset';
         }
 
         &-table {
-          @extend %for-valid-asset-image-after-striped-base;
+          @extend %fwe-valid-asset-image-after-striped-base;
           background-image: linear-gradient(
               transparent 0%,
               transparent $_fwc-ass-thumb-table-gutter-3,
@@ -315,7 +315,7 @@ $prefix: '.asset';
         }
 
         &-waves {
-          @extend %for-valid-asset-image-after-striped-base;
+          @extend %fwe-valid-asset-image-after-striped-base;
           background-image:
 					// line 1,8
             repeating-linear-gradient(
@@ -436,7 +436,7 @@ $prefix: '.asset';
     }
 
     &#{&}-default {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: '?';
@@ -467,55 +467,55 @@ $prefix: '.asset';
     }
 
     &#{&}-audio {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: '\266B';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-waves;
+        @extend %fwe-valid-asset-image-after-waves;
       }
     }
 
     &#{&}-code {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: '</>';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-indent;
+        @extend %fwe-valid-asset-image-after-indent;
       }
     }
 
     &#{&}-text {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'tx';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-justify;
+        @extend %fwe-valid-asset-image-after-justify;
       }
     }
 
     &#{&}-doc {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'w';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-justify;
+        @extend %fwe-valid-asset-image-after-justify;
       }
     }
 
     &#{&}-font {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'f';
@@ -543,83 +543,83 @@ $prefix: '.asset';
     }
 
     &#{&}-img {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
       &:before {
         content: 'img';
       }
       &:after {
-        @extend %for-valid-asset-image-after-img;
+        @extend %fwe-valid-asset-image-after-img;
       }
     }
 
     &#{&}-ps {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
       &:before {
         content: 'ps';
       }
       &:after {
-        @extend %for-valid-asset-image-after-img;
+        @extend %fwe-valid-asset-image-after-img;
       }
     }
 
     &#{&}-ai {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
       &:before {
         content: 'ai';
       }
       &:after {
-        @extend %for-valid-asset-image-after-img;
+        @extend %fwe-valid-asset-image-after-img;
       }
     }
 
     &#{&}-xd {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
       &:before {
         content: 'xd';
       }
       &:after {
-        @extend %for-valid-asset-image-after-img;
+        @extend %fwe-valid-asset-image-after-img;
       }
     }
 
     &#{&}-pdf {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'pdf';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-layout;
+        @extend %fwe-valid-asset-image-after-layout;
       }
     }
 
     &#{&}-id {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'id';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-layout;
+        @extend %fwe-valid-asset-image-after-layout;
       }
     }
 
     &#{&}-table {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'x';
       }
 
       &:after {
-        @extend %for-valid-asset-image-after-table;
+        @extend %fwe-valid-asset-image-after-table;
       }
     }
 
     &#{&}-video {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: '\25B6';
@@ -649,7 +649,7 @@ $prefix: '.asset';
     }
 
     &#{&}-zip {
-      @extend %for-valid-asset-image;
+      @extend %fwe-valid-asset-image;
 
       &:before {
         content: 'z';

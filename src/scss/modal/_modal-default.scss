@@ -12,9 +12,9 @@ $mode-class: #{$prefix}-mode-default;
 }
 
 #{$mode-class}#{$prefix}-wrapper {
-  @extend %for-modal-wrapper-background !optional;
-  @extend %for-modal-scroller !optional;
-  @extend %for-modal-scroller-no-scrollbar !optional;
+  @extend %fwe-modal-wrapper-background !optional;
+  @extend %fwe-modal-scroller !optional;
+  @extend %fwe-modal-scroller-no-scrollbar !optional;
 
   padding: $modal-gutter;
 
@@ -43,7 +43,7 @@ $mode-class: #{$prefix}-mode-default;
 
 #{$mode-class}#{$prefix}-popup {
   border-radius: $modal-border-radius;
-  @extend %for-modal-popup-shadow !optional;
+  @extend %fwe-modal-popup-shadow !optional;
   margin: auto;
 
   padding: $modal-padding-y $modal-padding-x;

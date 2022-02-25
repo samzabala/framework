@@ -51,7 +51,7 @@ $prefix: '.background';
             $color2};
           @include create-palette-helper($selector) {
             @if $color1 != $color2 {
-              @extend %for-gradient-#{'' + $color1}-fallback !optional;
+              @extend %fwe-gradient-#{'' + $color1}-fallback !optional;
               @include gradient(
                 (
                   color1: $var1,

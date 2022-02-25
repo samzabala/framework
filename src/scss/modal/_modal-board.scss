@@ -12,7 +12,7 @@ $mode-class: #{$prefix}-mode-board;
 }
 
 #{$mode-class}#{$prefix}-wrapper {
-  @extend %for-modal-wrapper-background !optional;
+  @extend %fwe-modal-wrapper-background !optional;
   #{$prefix}-popup {
     padding-left: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
     padding-right: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
@@ -145,8 +145,8 @@ $mode-class: #{$prefix}-mode-board;
 }
 
 #{$mode-class}#{$prefix}-popup {
-  @extend %for-modal-scroller !optional;
-  @extend %for-modal-popup-shadow !optional;
+  @extend %fwe-modal-scroller !optional;
+  @extend %fwe-modal-popup-shadow !optional;
   height: 100%;
 
   padding: $modal-board-padding-y $modal-board-padding-x;

@@ -15,14 +15,14 @@ $_fwc-calendar-exception: '';
 #{$prefix} {
   &-calendar {
     &-ui {
-      @extend %for-form-input-boxy !optional;
-      @extend %for-form-input-boxy-and-group !optional;
+      @extend %fwe-form-input-boxy !optional;
+      @extend %fwe-form-input-boxy-and-group !optional;
       min-width: 20em;
     }
 
     //components of component
     & {
-      @extend %for-form-input-ui-control !optional;
+      @extend %fwe-form-input-ui-control !optional;
 
       &-ui {
         vertical-align: top;
@@ -33,7 +33,7 @@ $_fwc-calendar-exception: '';
         user-select: none;
 
         &-block {
-          @extend %for-form-input-ui-button !optional;
+          @extend %fwe-form-input-ui-button !optional;
           padding: $_fwc-input-calendar-block-gutter-y
             $_fwc-input-calendar-block-gutter-x;
           text-align: center;
@@ -223,7 +223,7 @@ $_fwc-calendar-exception: '';
 
         &-button {
           color: inherit;
-          @extend %for-form-input-ui-button !optional;
+          @extend %fwe-form-input-ui-button !optional;
 
           &:hover {
             color: $input-calendar-date-heading-button-color-hover;

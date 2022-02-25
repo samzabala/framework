@@ -1,7 +1,7 @@
 /* input (scaffolding) */
 $prefix: '.input';
 
-@at-root %for-form-global {
+@at-root %fwe-form-global {
   &-radius {
     border-radius: $input-border-radius;
 
@@ -45,7 +45,7 @@ $prefix: '.input';
   }
 }
 
-@at-root %for-form-input {
+@at-root %fwe-form-input {
   & {
     text-decoration: none;
     font: inherit;
@@ -71,7 +71,7 @@ $prefix: '.input';
   }
 
   &-in-nav {
-    @extend %for-form-global-in-nav-custom;
+    @extend %fwe-form-global-in-nav-custom;
   }
 
   &-in-group {
@@ -108,21 +108,21 @@ $prefix: '.input';
 
 #{$prefix} {
   //scaffold
-  @extend %for-form-input;
+  @extend %fwe-form-input;
 
   &#{$prefix}-large,
   #{$prefix}-group#{$prefix}-large & {
-    @extend %for-form-input-large;
+    @extend %fwe-form-input-large;
   }
 
   &#{$prefix}-small,
   #{$prefix}-group#{$prefix}-small & {
-    @extend %for-form-input-small;
+    @extend %fwe-form-input-small;
   }
 
   .nav-block.nav-block-stretch > &,
   .nav > & {
-    @extend %for-form-input-in-nav;
+    @extend %fwe-form-input-in-nav;
   }
 
   &-disabled,
@@ -137,11 +137,11 @@ $prefix: '.input';
   }
 
   &-in-group {
-    @extend %for-form-input-in-group;
+    @extend %fwe-form-input-in-group;
   }
 }
 
-@at-root %for-form-wrapper {
+@at-root %fwe-form-wrapper {
   & {
     max-width: 100%;
     position: relative;
@@ -178,20 +178,20 @@ $prefix: '.input';
   }
 
   &#{&}-horizontal {
-    @extend %for-form-wrapper !optional;
-    @extend %for-form-wrapper-horizontal !optional;
+    @extend %fwe-form-wrapper !optional;
+    @extend %fwe-form-wrapper-horizontal !optional;
   }
 
   &#{&}-vertical {
-    @extend %for-form-wrapper !optional;
-    @extend %for-form-wrapper-vertical !optional;
+    @extend %fwe-form-wrapper !optional;
+    @extend %fwe-form-wrapper-vertical !optional;
   }
 
   &#{&}-block {
-    @extend %for-form-wrapper-block !optional;
+    @extend %fwe-form-wrapper-block !optional;
 
     &-mobile {
-      @extend %for-form-wrapper-block-mobile !optional;
+      @extend %fwe-form-wrapper-block-mobile !optional;
     }
   }
 
@@ -199,7 +199,7 @@ $prefix: '.input';
     @include on-breakpoint(mobile) {
       flex-direction: column;
 
-      > %for-form-input-boxy {
+      > %fwe-form-input-boxy {
         width: 100%;
       }
     }

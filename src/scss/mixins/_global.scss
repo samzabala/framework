@@ -602,12 +602,12 @@
 
       @at-root #{& + '-' + $j + '-' + $i},
         #{& + '-' + $j + '-' + $j} {
-        @extend %for-flex-grow-#{$j} !optional;
+        @extend %fwe-flex-grow-#{$j} !optional;
       }
 
       @at-root #{& + '-' + $i + '-' + $j},
         #{& + '-' + $j + '-' + $j} {
-        @extend %for-flex-shrink-#{$j} !optional;
+        @extend %fwe-flex-shrink-#{$j} !optional;
       }
     }
   }

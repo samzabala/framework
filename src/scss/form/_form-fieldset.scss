@@ -57,7 +57,7 @@ fieldset {
     box-shadow: none !important;
   }
 
-  %for-form-input-boxy,
+  %fwe-form-input-boxy,
   #{$prefix}-inline {
     background-color: transparent;
     // width:calc(100% + (#{$fieldset-gutter-x} * 2));

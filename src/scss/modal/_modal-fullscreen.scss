@@ -12,9 +12,9 @@ $mode-class: #{$prefix}-mode-fullscreen;
 }
 
 #{$mode-class}#{$prefix}-wrapper {
-  @extend %for-modal-wrapper !optional;
-  @extend %for-modal-scroller !optional;
-  @extend %for-modal-scroller-no-scrollbar !optional;
+  @extend %fwe-modal-wrapper !optional;
+  @extend %fwe-modal-scroller !optional;
+  @extend %fwe-modal-scroller-no-scrollbar !optional;
   background: $modal-background;
 
   .theme-inverse & {

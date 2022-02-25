@@ -1,7 +1,7 @@
 // [data-toggle-modal] {
 //   @include dump-styles(data-toggle);
 // }
-%for-modal {
+%fwe-modal {
   & {
     text-align: initial;
   }
@@ -57,7 +57,7 @@
 }
 $prefix: '.modal';
 .modal {
-  @extend %for-modal !optional;
+  @extend %fwe-modal !optional;
   &:not(.active) {
     @include dump-styles(hide-js-friendly);
   }
@@ -67,7 +67,7 @@ $prefix: '.modal';
       position: fixed;
     }
     &-wrapper {
-      @extend %for-modal-wrapper !optional;
+      @extend %fwe-modal-wrapper !optional;
     }
 
     &-center-y &-wrapper {
@@ -80,11 +80,11 @@ $prefix: '.modal';
     }
 
     &-close-overlay {
-      @extend %for-modal-close-overlay !optional;
+      @extend %fwe-modal-close-overlay !optional;
     }
 
     &-popup {
-      @extend %for-modal-popup !optional;
+      @extend %fwe-modal-popup !optional;
     }
   }
 }
