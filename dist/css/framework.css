@@ -8445,19 +8445,13 @@ fieldset .input-calendar-ui {
 .input-multiple-line.input-small, .input-small .input-multiple-line {
   min-height: 4.5rem;
 }
-select.input-single-line, .input-select {
-  background-image: linear-gradient(-130deg, var(--fw-color-primary) 0%, var(--fw-color-primary) 50%, transparent 51%, transparent 100%), linear-gradient(130deg, var(--fw-color-primary) 0%, var(--fw-color-primary) 50%, transparent 51%, transparent 100%);
-  background-size: 0.25em 0.375em, 0.25em 0.375em;
-  background-position: calc(100% - ((0.625em * 0.5) + (0.5em * 0.5))) 50%, calc(100% - (0.625em * 0.5)) 50%;
-  background-repeat: no-repeat, no-repeat;
-}
 select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   padding-right: 1.25em;
+  background-image: linear-gradient(-130deg, var(--fw-color-primary) 0%, var(--fw-color-primary) 50%, transparent 51%, transparent 100%), linear-gradient(130deg, var(--fw-color-primary) 0%, var(--fw-color-primary) 50%, transparent 51%, transparent 100%);
+  background-size: 0.25em 0.375em, 0.25em 0.375em;
+  background-position: calc(100% - ((0.625em) + (0.5em * 0.5))) 50%, calc(100% - (0.625em)) 50%;
+  background-repeat: no-repeat, no-repeat;
 }
-select[multiple].input-single-line, select[multiple].input-select {
-  background-image: none;
-}
-
 .input-group .btn, .input-group .input-tags-ui, .input-group .input-calendar-ui, .input-group .input-multiple-line, .input-group .input-select, .input-group .input-single-line {
   border-radius: inherit;
 }

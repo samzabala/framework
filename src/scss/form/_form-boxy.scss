@@ -181,34 +181,31 @@ $prefix: '.input';
   }
 
   &-select {
-    background-image: linear-gradient(
-        -130deg,
-        $input-select-dropdown-color 0%,
-        $input-select-dropdown-color 50%,
-        transparent 51%,
-        transparent 100%
-      ),
-      linear-gradient(
-        130deg,
-        $input-select-dropdown-color 0%,
-        $input-select-dropdown-color 50%,
-        transparent 51%,
-        transparent 100%
-      );
-    background-size: #{$_fwc-symbol-caret-width * 0.5} $_fwc-symbol-caret-height,
-      #{$_fwc-symbol-caret-width * 0.5} $_fwc-symbol-caret-height;
-    background-position: calc(
-          100% - ((#{$_fwc-input-gutter-x} * 0.5) + (#{$_fwc-symbol-caret-width} * 0.5))
-        )
-        50%,
-      calc(100% - (#{$_fwc-input-gutter-x} * 0.5)) 50%;
-    background-repeat: no-repeat, no-repeat;
 
     &:not([multiple]) {
       padding-right: $_fwc-input-gutter-x * 2;
-    }
-    @at-root select#{&}[multiple] {
-      background-image: none;
+      background-image: linear-gradient(
+          -130deg,
+          $input-select-dropdown-color 0%,
+          $input-select-dropdown-color 50%,
+          transparent 51%,
+          transparent 100%
+        ),
+        linear-gradient(
+          130deg,
+          $input-select-dropdown-color 0%,
+          $input-select-dropdown-color 50%,
+          transparent 51%,
+          transparent 100%
+        );
+      background-size: #{$_fwc-symbol-caret-width * 0.5} $_fwc-symbol-caret-height,
+        #{$_fwc-symbol-caret-width * 0.5} $_fwc-symbol-caret-height;
+      background-position: calc(
+            100% - ((#{$_fwc-input-gutter-x}) + (#{$_fwc-symbol-caret-width} * 0.5))
+          )
+          50%,
+        calc(100% - (#{$_fwc-input-gutter-x})) 50%;
+      background-repeat: no-repeat, no-repeat;
     }
   }
 
