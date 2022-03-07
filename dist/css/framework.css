@@ -4978,7 +4978,7 @@ body.body-nav-sticky-offset {
 }
 
 .nav {
-  height: 3.75rem;
+  min-height: 3.75rem;
   background: var(--fw-theme-background);
   font-size: 1rem;
   line-height: 1.5rem;
@@ -5115,10 +5115,10 @@ body.body-nav-sticky-offset {
   background-color: var(--fw-gradient-start);
   background-image: linear-gradient(0deg , var(--fw-gradient-start) 0%, var(--fw-gradient-end) 100%);
 }
-.nav .nav-item:hover > a:after, .nav .nav-item > a.open:after, .nav-list > li:hover > a:after, .nav-list > li > a.open:after {
+.nav .nav-item:hover > a:after, .nav .nav-item.current > a:after, .nav .nav-item > a.open:after, .nav-list > li:hover > a:after, .nav-list > li.current > a:after, .nav-list > li > a.open:after {
   height: 3px;
 }
-.nav-vertical .nav .nav-item:hover > a:after, .nav-vertical .nav .nav-item > a.open:after, .nav-vertical .nav-list > li:hover > a:after, .nav-vertical .nav-list > li > a.open:after {
+.nav-vertical .nav .nav-item:hover > a:after, .nav-vertical .nav .nav-item.current > a:after, .nav-vertical .nav .nav-item > a.open:after, .nav-vertical .nav-list > li:hover > a:after, .nav-vertical .nav-list > li.current > a:after, .nav-vertical .nav-list > li > a.open:after {
   height: auto;
   width: 3px;
 }

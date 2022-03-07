@@ -12,7 +12,7 @@ body {
 $prefix: '.nav';
 #{$prefix} {
   & {
-    height: $_fwc-nav-height;
+    min-height: $_fwc-nav-height;
     background: $nav-background;
     @include type-set(
       (
@@ -225,6 +225,7 @@ $prefix: '.nav';
       }
     }
     &:hover > a,
+    &.current > a,
     & > a.open {
       &:after {
         height: $nav-current-size;
