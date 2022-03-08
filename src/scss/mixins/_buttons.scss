@@ -1,20 +1,8 @@
 @mixin create-btn-schemes($args: (), $scheme: '', $custom-css, $helper-prefix: '.btn') {
   $defaults: (
-    init: (
-      border: '',
-      background: '',
-      color: '',
-    ),
-    hover: (
-      border: '',
-      background: '',
-      color: '',
-    ),
-    active: (
-      border: '',
-      background: '',
-      color: '',
-    ),
+    init: (),
+    hover: (),
+    active: (),
   );
   $opts: map-merge($defaults, $args);
 
@@ -90,15 +78,7 @@
     $important: '!important';
   }
 
-  @if map-get($properties, border) {
-    border-color: map-get($properties, border) #{$important};
-  }
-
-  @if map-get($properties, background) {
-    background: map-get($properties, background) #{$important};
-  }
-
-  @if map-get($properties, color) {
-    color: map-get($properties, color) #{$important};
+  @each $prop,$value in $properties {
+    #{$prop}: #{$value} #{$important};
   }
 }

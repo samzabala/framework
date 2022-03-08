@@ -7229,6 +7229,7 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   align-items: center;
   background: none;
   background-size: calc(100% + (1px * 2)) calc(100% + (1px * 2));
+  background-position: -1px -1px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -7410,647 +7411,671 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   }
 }
 .btn.btn-default {
-  border-color: var(--fw-color-neutral-alpha-3);
   background: var(--fw-theme-background);
+  border-color: var(--fw-color-neutral-alpha-3);
   color: inherit;
 }
 
 .btn.btn-default:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-default:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: var(--fw-color-neutral-alpha-6);
   background: var(--fw-theme-background);
+  border-color: var(--fw-color-neutral-alpha-6);
   color: var(--fw-color-primary);
 }
 
 .btn.btn-default:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-default:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: var(--fw-color-primary);
   background: var(--fw-color-primary);
+  border-color: var(--fw-color-primary);
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary {
-  border-color: transparent;
   background: var(--fw-color-primary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-primary:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-primary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary {
-  border-color: transparent;
   background: var(--fw-color-secondary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-secondary:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-secondary:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent {
-  border-color: transparent;
   background: var(--fw-color-accent);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-accent:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-accent:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral {
-  border-color: transparent;
   background: var(--fw-color-neutral);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-neutral:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-neutral:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success {
-  border-color: transparent;
   background: var(--fw-color-success);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-success:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-success:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution {
-  border-color: transparent;
   background: var(--fw-color-caution);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-caution:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-caution:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error {
-  border-color: transparent;
   background: var(--fw-color-error);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-error:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-error:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-link {
-  border-color: transparent;
   background: transparent;
+  border-color: transparent;
   color: var(--fw-color-primary);
 }
 
 .btn.btn-link:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-link:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: transparent;
+  border-color: transparent;
   color: var(--fw-color-secondary);
 }
 
 .btn.btn-link:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-link:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: transparent;
+  border-color: transparent;
   color: var(--fw-color-primary);
 }
 
 .btn.btn-primary-outline {
-  border-color: var(--fw-color-primary);
   background: transparent;
+  border-color: var(--fw-color-primary);
   color: var(--fw-color-primary);
 }
 
 .btn.btn-primary-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-primary-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-primary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-outline {
-  border-color: var(--fw-color-secondary);
   background: transparent;
+  border-color: var(--fw-color-secondary);
   color: var(--fw-color-secondary);
 }
 
 .btn.btn-secondary-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-secondary-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-secondary-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent-outline {
-  border-color: var(--fw-color-accent);
   background: transparent;
+  border-color: var(--fw-color-accent);
   color: var(--fw-color-accent);
 }
 
 .btn.btn-accent-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-accent-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-accent-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-outline {
-  border-color: var(--fw-color-neutral);
   background: transparent;
+  border-color: var(--fw-color-neutral);
   color: var(--fw-color-neutral);
 }
 
 .btn.btn-neutral-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-neutral-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-neutral-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success-outline {
-  border-color: var(--fw-color-success);
   background: transparent;
+  border-color: var(--fw-color-success);
   color: var(--fw-color-success);
 }
 
 .btn.btn-success-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-success-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-success-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution-outline {
-  border-color: var(--fw-color-caution);
   background: transparent;
+  border-color: var(--fw-color-caution);
   color: var(--fw-color-caution);
 }
 
 .btn.btn-caution-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-caution-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-caution-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error-outline {
-  border-color: var(--fw-color-error);
   background: transparent;
+  border-color: var(--fw-color-error);
   color: var(--fw-color-error);
 }
 
 .btn.btn-error-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-error-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error-light);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-error-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary-glassy {
-  border-color: transparent;
   background: var(--fw-color-primary-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-primary);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-primary-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-primary-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-primary-light);
   border-color: transparent;
-  background: var(--fw-color-primary-alpha-3);
-  color: var(--fw-color-primary);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-primary-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-primary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-glassy {
-  border-color: transparent;
   background: var(--fw-color-secondary-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-secondary);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-secondary-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-secondary-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-secondary-light);
   border-color: transparent;
-  background: var(--fw-color-secondary-alpha-3);
-  color: var(--fw-color-secondary);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-secondary-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent-glassy {
-  border-color: transparent;
   background: var(--fw-color-accent-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-accent);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-accent-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-accent-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-accent-light);
   border-color: transparent;
-  background: var(--fw-color-accent-alpha-3);
-  color: var(--fw-color-accent);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-accent-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-accent-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-glassy {
-  border-color: transparent;
   background: var(--fw-color-neutral-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-neutral);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-neutral-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-neutral-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-neutral-light);
   border-color: transparent;
-  background: var(--fw-color-neutral-alpha-3);
-  color: var(--fw-color-neutral);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-neutral-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success-glassy {
-  border-color: transparent;
   background: var(--fw-color-success-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-success);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-success-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-success-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-success-light);
   border-color: transparent;
-  background: var(--fw-color-success-alpha-3);
-  color: var(--fw-color-success);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-success-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-success-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution-glassy {
-  border-color: transparent;
   background: var(--fw-color-caution-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-caution);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-caution-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-caution-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-caution-light);
   border-color: transparent;
-  background: var(--fw-color-caution-alpha-3);
-  color: var(--fw-color-caution);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-caution-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-caution-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error-glassy {
-  border-color: transparent;
   background: var(--fw-color-error-alpha-1);
+  border-color: transparent;
   color: var(--fw-color-error);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
 
 .btn.btn-error-glassy:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-error-glassy:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background: var(--fw-color-error-light);
   border-color: transparent;
-  background: var(--fw-color-error-alpha-3);
-  color: var(--fw-color-error);
+  color: var(--fw-color-background);
 }
 
 .btn.btn-error-glassy:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-error-glassy:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error);
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary-gradient {
+  background: var(--fw-color-primary);
+  background-image: linear-gradient(0deg, var(--fw-color-primary) 0%, var(--fw-color-primary-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-primary) 0%, var(--fw-color-primary-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-primary-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-primary-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-primary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-primary);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-gradient {
+  background: var(--fw-color-secondary);
+  background-image: linear-gradient(0deg, var(--fw-color-secondary) 0%, var(--fw-color-secondary-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-secondary) 0%, var(--fw-color-secondary-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-secondary-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-secondary-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-secondary-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-secondary);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent-gradient {
+  background: var(--fw-color-accent);
+  background-image: linear-gradient(0deg, var(--fw-color-accent) 0%, var(--fw-color-accent-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-accent) 0%, var(--fw-color-accent-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-accent-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-accent-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-accent-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-accent);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-gradient {
+  background: var(--fw-color-neutral);
+  background-image: linear-gradient(0deg, var(--fw-color-neutral) 0%, var(--fw-color-neutral-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-neutral) 0%, var(--fw-color-neutral-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-neutral-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-neutral-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-neutral-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-neutral);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success-gradient {
+  background: var(--fw-color-success);
+  background-image: linear-gradient(0deg, var(--fw-color-success) 0%, var(--fw-color-success-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-success) 0%, var(--fw-color-success-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-success-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-success-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-success-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-success-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-success);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution-gradient {
+  background: var(--fw-color-caution);
+  background-image: linear-gradient(0deg, var(--fw-color-caution) 0%, var(--fw-color-caution-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-caution) 0%, var(--fw-color-caution-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-caution-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-caution-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-caution-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-caution);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error-gradient {
+  background: var(--fw-color-error);
+  background-image: linear-gradient(0deg, var(--fw-color-error) 0%, var(--fw-color-error-light) 100%);
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-color-error) 0%, var(--fw-color-error-light) 100%);
   color: var(--fw-color-background);
 }
 
 .btn.btn-error-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-error-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error-light);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-error-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-error-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
   background: var(--fw-color-error);
+  background-image: none;
+  border-color: transparent;
   color: var(--fw-color-background);
 }
 
 .btn.btn-gradient {
+  background-color: var(--fw-gradient-start);
+  background-image: linear-gradient(0deg, var(--fw-gradient-start), var(--fw-gradient-end));
   border-color: transparent;
-  background: linear-gradient(0deg, var(--fw-gradient-start), var(--fw-gradient-end));
   color: var(--fw-color-background);
 }
 
 .btn.btn-gradient:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-gradient:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background-color: var(--fw-gradient-end);
+  background-image: linear-gradient(180deg, var(--fw-gradient-start), var(--fw-gradient-end));
   border-color: transparent;
-  background: linear-gradient(180deg, var(--fw-gradient-start), var(--fw-gradient-end));
   color: var(--fw-color-background);
 }
 
 .btn.btn-gradient:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-gradient:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
+  background-color: var(--fw-gradient-end);
+  background-image: linear-gradient(45deg, var(--fw-gradient-start), var(--fw-gradient-end));
   border-color: transparent;
-  background: linear-gradient(45deg, var(--fw-gradient-start), var(--fw-gradient-end));
   color: var(--fw-color-background);
 }
 
 .btn.btn-theme {
-  border-color: transparent;
-  background: var(--fw-theme-color);
   color: var(--fw-theme-background);
+  background: var(--fw-theme-color);
+  border-color: transparent;
 }
 
 .btn.btn-theme:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-theme:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-color-contrast);
   color: var(--fw-theme-background-contrast);
+  background: var(--fw-theme-color-contrast);
+  border-color: transparent;
 }
 
 .btn.btn-theme:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-theme:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-color-contrast);
   color: var(--fw-theme-background-contrast);
+  background: var(--fw-theme-color-contrast);
+  border-color: transparent;
 }
 
 .btn.btn-theme-polar {
-  border-color: transparent;
-  background: var(--fw-theme-background);
   color: var(--fw-theme-color);
+  background: var(--fw-theme-background);
+  border-color: transparent;
 }
 
 .btn.btn-theme-polar:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-theme-polar:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-background-contrast);
   color: var(--fw-theme-color-contrast);
+  background: var(--fw-theme-background-contrast);
+  border-color: transparent;
 }
 
 .btn.btn-theme-polar:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-theme-polar:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-background-contrast);
   color: var(--fw-theme-color-contrast);
+  background: var(--fw-theme-background-contrast);
+  border-color: transparent;
 }
 
 .btn.btn-theme-outline {
-  border-color: var(--fw-theme-color);
-  background: transparent;
   color: var(--fw-theme-color);
+  background: transparent;
+  border-color: var(--fw-theme-color);
 }
 
 .btn.btn-theme-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-theme-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-color);
   color: var(--fw-theme-background);
+  background: var(--fw-theme-color);
+  border-color: transparent;
 }
 
 .btn.btn-theme-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-theme-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-color);
   color: var(--fw-theme-background);
+  background: var(--fw-theme-color);
+  border-color: transparent;
 }
 
 .btn.btn-theme-polar-outline {
-  border-color: var(--fw-theme-background);
-  background: transparent;
   color: var(--fw-theme-background);
+  background: transparent;
+  border-color: var(--fw-theme-background);
 }
 
 .btn.btn-theme-polar-outline:hover:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:hover .btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn.btn-theme-polar-outline:focus:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:focus .btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .focus.btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.focus .btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-background);
   color: var(--fw-theme-color);
+  background: var(--fw-theme-background);
+  border-color: transparent;
 }
 
 .btn.btn-theme-polar-outline:active:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite:active .btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .active.btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]), .btn-group.btn-group-unite.active .btn.btn-theme-polar-outline:not(.btn-no-interaction):not(.btn-disabled):not([disabled]) {
-  border-color: transparent;
-  background: var(--fw-theme-background);
   color: var(--fw-theme-color);
+  background: var(--fw-theme-background);
+  border-color: transparent;
 }
 
 /* input (scaffolding) */

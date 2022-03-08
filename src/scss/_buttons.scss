@@ -68,6 +68,7 @@ $prefix: '.btn';
       background: none;
       background-size: calc(100% + (#{$btn-border-width} * 2))
         calc(100% + (#{$btn-border-width} * 2));
+      background-position: ($btn-border-width * -1) ($btn-border-width * -1);
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
