@@ -28,12 +28,6 @@ $_fwc-nav-single-line: $_fwc-nav-line-height;
   $_fwc-nav-single-line: #{1em * type-lead($nav-font-size, $_fwc-nav-line-height)};
 }
 
-// $_fwc-nav-height is internal vars because the body needs it. tHE BODEH
-$_fwc-nav-item-height: $nav-item-height;
-@if internal-is-convertable($nav-item-height) {
-  $_fwc-nav-item-height: rem($nav-item-height, $body-font-size);
-}
-
 $_fwc-nav-icon-width: $nav-icon-width;
 @if internal-is-convertable($nav-icon-width, $nav-top-font-size) {
   $_fwc-nav-icon-width: em($nav-icon-width, $nav-top-font-size);

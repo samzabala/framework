@@ -5044,11 +5044,11 @@ body.body-nav-sticky-offset {
   content: none;
 }
 .nav .dropdown > li > a, .nav-item > a, .nav-list li > a {
-  padding-top: calc((2.1875rem - (1.5rem)) * 0.5);
-  padding-bottom: calc((2.1875rem - (1.5rem)) * 0.5);
+  padding-top: calc((3.75rem - (1.5rem)) * 0.5);
+  padding-bottom: calc((3.75rem - (1.5rem)) * 0.5);
   display: block;
 }
-.nav .dropdown > li:hover > a, .nav-item:hover > a, .nav-list li:hover > a {
+.nav .dropdown > li.current > a, .nav .dropdown > li.open > a, .nav .dropdown > li:hover > a, .nav .dropdown > li:focus > a, .nav-item.current > a, .nav-item.open > a, .nav-item:hover > a, .nav-item:focus > a, .nav-list li.current > a, .nav-list li.open > a, .nav-list li:hover > a, .nav-list li:focus > a {
   color: var(--fw-color-primary);
 }
 
