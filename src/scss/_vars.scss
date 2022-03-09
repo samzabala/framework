@@ -653,9 +653,9 @@ $transition-duration-long: 0.5s !default;
 $transition-timing: ease-in-out !default;
 
 //BOX SHADOW globals
-$box-shadow-base: 0px 3px 10px -6px !default;
-$box-shadow-mild: 0px 2px 20px -5px !default;
-$box-shadow-spicy: 0px 5px 20px -10px !default;
+$box-shadow-base: 0px 0px 10px -6px !default;
+$box-shadow-mild: 0px 0px 20px -5px !default;
+$box-shadow-spicy: 0px 0px 20px -10px !default;
 
 //////////////////////////////// CONTENT
 

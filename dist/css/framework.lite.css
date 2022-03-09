@@ -3884,14 +3884,14 @@ body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
   min-width: 0;
   min-height: 0;
   transition: 0.5s box-shadow ease-in-out;
-  box-shadow: 0px 3px 10px -6px var(--fw-color-base-alpha-1);
+  box-shadow: 0px 0px 10px -6px var(--fw-color-base-alpha-1);
 }
 .theme-inverse .module {
   background: var(--fw-theme-background);
   border-color: var(--fw-color-neutral-alpha-2);
 }
 .module[href]:hover, .module[href]:focus, .module[href].focus, .module-interactive:hover, .module-interactive:focus, .module-interactive.focus {
-  box-shadow: 0px 5px 20px -10px var(--fw-color-primary);
+  box-shadow: 0px 0px 20px -10px var(--fw-color-primary);
 }
 .module, .module-header:first-child, .module-content:first-child, .module-footer:first-child {
   border-top-left-radius: 5px;
