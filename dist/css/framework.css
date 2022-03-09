@@ -5010,11 +5010,11 @@ body.body-nav-sticky-offset {
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0px 5px 20px -10px var(--fw-theme-background-contrast);
+  box-shadow: 0px 5px 20px -10px var(--fw-color-base-alpha-5);
   z-index: 999;
 }
 .theme-inverse .nav.nav-sticky {
-  box-shadow: 0px 5px 20px -10px var(--fw-theme-background-contrast);
+  box-shadow: 0px 5px 20px -10px var(--fw-color-base-alpha-5);
 }
 .nav.nav-vertical {
   display: block;
