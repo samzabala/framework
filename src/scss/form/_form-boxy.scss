@@ -233,7 +233,9 @@ $prefix: '.input';
   }
 
   &-in-wrapper {
+    display: block;
     &-horizontal {
+      flex: 1 1;
     }
 
     &-vertical {
@@ -283,8 +285,6 @@ $prefix: '.input';
 
     #{$prefix}-wrapper & {
       @extend %fwe-form-input-boxy-in-wrapper !optional;
-      display: block;
-      flex: 1 1;
     }
 
     #{$prefix}-wrapper-horizontal & {

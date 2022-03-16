@@ -8487,6 +8487,12 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input-group .btn, .input-group .input-tags-ui, .input-group .input-calendar-ui, .input-group .input-multiple-line, .input-group .input-select, .input-group .input-single-line {
   border-radius: inherit;
 }
+.input-wrapper .input-tags-ui, .input-wrapper .input-calendar-ui, .input-wrapper .input-multiple-line, .input-wrapper .input-select, .input-wrapper .input-single-line {
+  display: block;
+}
+.input-wrapper-horizontal .input-tags-ui, .input-wrapper-horizontal .input-calendar-ui, .input-wrapper-horizontal .input-multiple-line, .input-wrapper-horizontal .input-select, .input-wrapper-horizontal .input-single-line {
+  flex: 1 1;
+}
 .input-wrapper-block .input-tags-ui, .input-wrapper-block .input-calendar-ui, .input-wrapper-block .input-multiple-line, .input-wrapper-block .input-select, .input-wrapper-block .input-single-line {
   width: 100%;
 }
@@ -8501,10 +8507,6 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line {
   padding-top: calc(((3.75rem - (1px * 2)) - (1.5em)) * 0.5) !important;
   padding-bottom: calc(((3.75rem - (1px * 2)) - (1.5em)) * 0.5) !important;
-}
-.input-wrapper .input-tags-ui, .input-wrapper .input-calendar-ui, .input-wrapper .input-multiple-line, .input-wrapper .input-select, .input-wrapper .input-single-line {
-  display: block;
-  flex: 1 1;
 }
 .input-group .input-multiple-line {
   resize: none;
