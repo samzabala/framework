@@ -8444,6 +8444,13 @@ fieldset .input-calendar-ui {
 }
 .input-single-line {
   vertical-align: middle;
+  height: 2rem;
+}
+.input-large.input-single-line, .input-large .input-single-line {
+  height: 3.125rem;
+}
+.input-small.input-single-line, .input-small .input-single-line {
+  height: 1.5rem;
 }
 .input-tags-ui.input-tags-ui-multiple, .input select.input-multiple-line, .input-select[multiple], .input-multiple-line {
   vertical-align: top;

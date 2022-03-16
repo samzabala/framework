@@ -135,17 +135,17 @@ $prefix: '.input';
   &-single {
     vertical-align: middle;
 
-    // height: $_fwc-input-height;
+    height: $_fwc-input-height;
 
-    // &#{$prefix}-large,
-    // #{$prefix}-large & {
-    // 	height: $_fwc-input-height-large;
-    // }
+    &#{$prefix}-large,
+    #{$prefix}-large & {
+    	height: $_fwc-input-height-large;
+    }
 
-    // &#{$prefix}-small,
-    // #{$prefix}-small & {
-    // 	height: $_fwc-input-height-small;
-    // }
+    &#{$prefix}-small,
+    #{$prefix}-small & {
+    	height: $_fwc-input-height-small;
+    }
   }
 
   &-multiple {
