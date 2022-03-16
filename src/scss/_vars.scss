@@ -252,173 +252,237 @@ $brand-color-base-alt: lighten($brand-color-base, 5%) !default;
 $brand-color-background: #ffffff !default;
 $brand-color-background-alt: darken($brand-color-background, 5%) !default;
 
+//for calculating variations
+$brand-color-offset-light: 80% !default;
+$brand-color-offset-lighter: 30% !default;
+$brand-color-offset-lightest: 20% !default;
+$brand-color-offset-dark: $brand-color-offset-light !default;
+$brand-color-offset-darker: $brand-color-offset-lighter !default;
+$brand-color-offset-darkest: $brand-color-offset-lightest !default;
+
 $brand-color-primary: #007ece !default;
 $brand-color-primary-light: mix(
   $brand-color-primary,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-primary-lighter: mix(
   $brand-color-primary,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-primary-lightest: mix(
   $brand-color-primary,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
-$brand-color-primary-dark: mix($brand-color-primary, $brand-color-base, 60%) !default;
-$brand-color-primary-darker: mix($brand-color-primary, $brand-color-base, 30%) !default;
+$brand-color-primary-dark: mix(
+  $brand-color-primary,
+  $brand-color-base,
+  $brand-color-offset-dark
+) !default;
+$brand-color-primary-darker: mix(
+  $brand-color-primary,
+  $brand-color-base,
+  $brand-color-offset-darker
+) !default;
 $brand-color-primary-darkest: mix(
   $brand-color-primary,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-secondary: #ff009c !default;
 $brand-color-secondary-light: mix(
   $brand-color-secondary,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-secondary-lighter: mix(
   $brand-color-secondary,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-secondary-lightest: mix(
   $brand-color-secondary,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
 $brand-color-secondary-dark: mix(
   $brand-color-secondary,
   $brand-color-base,
-  60%
+  $brand-color-offset-dark
 ) !default;
 $brand-color-secondary-darker: mix(
   $brand-color-secondary,
   $brand-color-base,
-  30%
+  $brand-color-offset-darker
 ) !default;
 $brand-color-secondary-darkest: mix(
   $brand-color-secondary,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-accent: #7316ca !default;
 $brand-color-accent-light: mix(
   $brand-color-accent,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-accent-lighter: mix(
   $brand-color-accent,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-accent-lightest: mix(
   $brand-color-accent,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
-$brand-color-accent-dark: mix($brand-color-accent, $brand-color-base, 60%) !default;
-$brand-color-accent-darker: mix($brand-color-accent, $brand-color-base, 30%) !default;
-$brand-color-accent-darkest: mix($brand-color-accent, $brand-color-base, 15%) !default;
+$brand-color-accent-dark: mix(
+  $brand-color-accent,
+  $brand-color-base,
+  $brand-color-offset-dark
+) !default;
+$brand-color-accent-darker: mix(
+  $brand-color-accent,
+  $brand-color-base,
+  $brand-color-offset-darker
+) !default;
+$brand-color-accent-darkest: mix(
+  $brand-color-accent,
+  $brand-color-base,
+  $brand-color-offset-darkest
+) !default;
 
 $brand-color-neutral: #878787 !default;
 $brand-color-neutral-light: mix(
   $brand-color-neutral,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-neutral-lighter: mix(
   $brand-color-neutral,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-neutral-lightest: mix(
   $brand-color-neutral,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
-$brand-color-neutral-dark: mix($brand-color-neutral, $brand-color-base, 60%) !default;
-$brand-color-neutral-darker: mix($brand-color-neutral, $brand-color-base, 30%) !default;
+$brand-color-neutral-dark: mix(
+  $brand-color-neutral,
+  $brand-color-base,
+  $brand-color-offset-dark
+) !default;
+$brand-color-neutral-darker: mix(
+  $brand-color-neutral,
+  $brand-color-base,
+  $brand-color-offset-darker
+) !default;
 $brand-color-neutral-darkest: mix(
   $brand-color-neutral,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-success: #00b754 !default;
 $brand-color-success-light: mix(
   $brand-color-success,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-success-lighter: mix(
   $brand-color-success,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-success-lightest: mix(
   $brand-color-success,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
-$brand-color-success-dark: mix($brand-color-success, $brand-color-base, 60%) !default;
-$brand-color-success-darker: mix($brand-color-success, $brand-color-base, 30%) !default;
+$brand-color-success-dark: mix(
+  $brand-color-success,
+  $brand-color-base,
+  $brand-color-offset-dark
+) !default;
+$brand-color-success-darker: mix(
+  $brand-color-success,
+  $brand-color-base,
+  $brand-color-offset-darker
+) !default;
 $brand-color-success-darkest: mix(
   $brand-color-success,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-caution: #fd7f03 !default;
 $brand-color-caution-light: mix(
   $brand-color-caution,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-caution-lighter: mix(
   $brand-color-caution,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-caution-lightest: mix(
   $brand-color-caution,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
-$brand-color-caution-dark: mix($brand-color-caution, $brand-color-base, 60%) !default;
-$brand-color-caution-darker: mix($brand-color-caution, $brand-color-base, 30%) !default;
+$brand-color-caution-dark: mix(
+  $brand-color-caution,
+  $brand-color-base,
+  $brand-color-offset-dark
+) !default;
+$brand-color-caution-darker: mix(
+  $brand-color-caution,
+  $brand-color-base,
+  $brand-color-offset-darker
+) !default;
 $brand-color-caution-darkest: mix(
   $brand-color-caution,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-error: #fd0303 !default;
 $brand-color-error-light: mix(
   $brand-color-error,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-error-lighter: mix(
   $brand-color-error,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-error-lightest: mix(
   $brand-color-error,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
-$brand-color-error-dark: mix($brand-color-error, $brand-color-base, 60%) !default;
-$brand-color-error-darker: mix($brand-color-error, $brand-color-base, 30%) !default;
-$brand-color-error-darkest: mix($brand-color-error, $brand-color-base, 15%) !default;
+$brand-color-error-dark: mix(
+  $brand-color-error,
+  $brand-color-base,
+  $brand-color-offset-dark
+) !default;
+$brand-color-error-darker: mix(
+  $brand-color-error,
+  $brand-color-base,
+  $brand-color-offset-darker
+) !default;
+$brand-color-error-darkest: mix(
+  $brand-color-error,
+  $brand-color-base,
+  $brand-color-offset-darkest
+) !default;
 
 $brand-color-intensity-1: $brand-color-primary !default;
 $brand-color-intensity-5: $brand-color-accent !default;
@@ -442,156 +506,156 @@ $brand-color-intensity-4: mix(
 $brand-color-intensity-1-light: mix(
   $brand-color-intensity-1,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-intensity-1-lighter: mix(
   $brand-color-intensity-1,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-intensity-1-lightest: mix(
   $brand-color-intensity-1,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
 $brand-color-intensity-1-dark: mix(
   $brand-color-intensity-1,
   $brand-color-base,
-  60%
+  $brand-color-offset-dark
 ) !default;
 $brand-color-intensity-1-darker: mix(
   $brand-color-intensity-1,
   $brand-color-base,
-  30%
+  $brand-color-offset-darker
 ) !default;
 $brand-color-intensity-1-darkest: mix(
   $brand-color-intensity-1,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-intensity-2-light: mix(
   $brand-color-intensity-2,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-intensity-2-lighter: mix(
   $brand-color-intensity-2,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-intensity-2-lightest: mix(
   $brand-color-intensity-2,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
 $brand-color-intensity-2-dark: mix(
   $brand-color-intensity-2,
   $brand-color-base,
-  60%
+  $brand-color-offset-dark
 ) !default;
 $brand-color-intensity-2-darker: mix(
   $brand-color-intensity-2,
   $brand-color-base,
-  30%
+  $brand-color-offset-darker
 ) !default;
 $brand-color-intensity-2-darkest: mix(
   $brand-color-intensity-2,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-intensity-3-light: mix(
   $brand-color-intensity-3,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-intensity-3-lighter: mix(
   $brand-color-intensity-3,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-intensity-3-lightest: mix(
   $brand-color-intensity-3,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
 $brand-color-intensity-3-dark: mix(
   $brand-color-intensity-3,
   $brand-color-base,
-  60%
+  $brand-color-offset-dark
 ) !default;
 $brand-color-intensity-3-darker: mix(
   $brand-color-intensity-3,
   $brand-color-base,
-  30%
+  $brand-color-offset-darker
 ) !default;
 $brand-color-intensity-3-darkest: mix(
   $brand-color-intensity-3,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-intensity-4-light: mix(
   $brand-color-intensity-4,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-intensity-4-lighter: mix(
   $brand-color-intensity-4,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-intensity-4-lightest: mix(
   $brand-color-intensity-4,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
 $brand-color-intensity-4-dark: mix(
   $brand-color-intensity-4,
   $brand-color-base,
-  60%
+  $brand-color-offset-dark
 ) !default;
 $brand-color-intensity-4-darker: mix(
   $brand-color-intensity-4,
   $brand-color-base,
-  30%
+  $brand-color-offset-darker
 ) !default;
 $brand-color-intensity-4-darkest: mix(
   $brand-color-intensity-4,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 $brand-color-intensity-5-light: mix(
   $brand-color-intensity-5,
   $brand-color-background,
-  60%
+  $brand-color-offset-light
 ) !default;
 $brand-color-intensity-5-lighter: mix(
   $brand-color-intensity-5,
   $brand-color-background,
-  30%
+  $brand-color-offset-lighter
 ) !default;
 $brand-color-intensity-5-lightest: mix(
   $brand-color-intensity-5,
   $brand-color-background,
-  15%
+  $brand-color-offset-lightest
 ) !default;
 $brand-color-intensity-5-dark: mix(
   $brand-color-intensity-5,
   $brand-color-base,
-  60%
+  $brand-color-offset-dark
 ) !default;
 $brand-color-intensity-5-darker: mix(
   $brand-color-intensity-5,
   $brand-color-base,
-  30%
+  $brand-color-offset-darker
 ) !default;
 $brand-color-intensity-5-darkest: mix(
   $brand-color-intensity-5,
   $brand-color-base,
-  15%
+  $brand-color-offset-darkest
 ) !default;
 
 // FONT
@@ -1785,7 +1849,6 @@ $btn-color-gradient-hover: $var-color-background !default;
 
 $btn-background-angle-gradient-active: 45deg !default;
 $btn-color-gradient-active: $var-color-background !default;
-
 
 //gradient @TODO
 $btn-gradient-border-default: $input-border-color !default;

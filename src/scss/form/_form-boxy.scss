@@ -181,7 +181,6 @@ $prefix: '.input';
   }
 
   &-select {
-
     &:not([multiple]) {
       padding-right: $_fwc-input-gutter-x * 2;
       background-image: linear-gradient(

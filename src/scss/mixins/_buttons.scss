@@ -78,7 +78,7 @@
     $important: '!important';
   }
 
-  @each $prop,$value in $properties {
+  @each $prop, $value in $properties {
     #{$prop}: #{$value} #{$important};
   }
 }

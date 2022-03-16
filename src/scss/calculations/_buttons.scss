@@ -575,7 +575,7 @@ $_fwc-btn-schemes: (
   ),
   gradient: (
     hover: (
-      background-color:$var-gradient-end,
+      background-color: $var-gradient-end,
       background-image:
         linear-gradient(
           $btn-background-angle-gradient-hover,
@@ -587,7 +587,7 @@ $_fwc-btn-schemes: (
       color: $btn-color-gradient-hover,
     ),
     active: (
-      background-color:$var-gradient-end,
+      background-color: $var-gradient-end,
       background-image:
         linear-gradient(
           $btn-background-angle-gradient-active,
@@ -598,7 +598,7 @@ $_fwc-btn-schemes: (
       color: $btn-color-gradient-active,
     ),
     init: (
-      background-color:$var-gradient-start,
+      background-color: $var-gradient-start,
       background-image:
         linear-gradient(
           $btn-background-angle-gradient,

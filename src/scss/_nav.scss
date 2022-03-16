@@ -100,9 +100,7 @@ $prefix: '.nav';
 
     > a {
       padding-top: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
-      padding-bottom: calc(
-        (#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5
-      );
+      padding-bottom: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
       display: block;
     }
 
