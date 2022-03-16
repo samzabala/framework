@@ -3,6 +3,10 @@ $_fwc-nav-height: $nav-height;
 @if internal-is-convertable($nav-height) {
   $_fwc-nav-height: rem($nav-height, $body-font-size);
 }
+$_fwc-nav-item-height: $nav-item-height;
+@if internal-is-convertable($nav-item-height) {
+  $_fwc-nav-item-height: rem($nav-item-height, $body-font-size);
+}
 
 $_fwc-body-text-gutter-y: $body-text-gutter-y;
 @if internal-is-convertable($_fwc-body-text-gutter-y) {
