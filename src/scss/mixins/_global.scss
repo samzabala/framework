@@ -39,16 +39,16 @@
   @if ($extend-prefix != '') {
     @at-root %#{$extend-prefix} {
       &-top#{$parsed-extend-suffix} {
-        #{$property}-top#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(top,$property,$subproperty)}: $value !important;
       }
       &-bottom#{$parsed-extend-suffix} {
-        #{$property}-bottom#{$parsed-subproperty}: $value !important;
-      }
-      &-right#{$parsed-extend-suffix} {
-        #{$property}-right#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(bottom,$property,$subproperty)}: $value !important;
       }
       &-left#{$parsed-extend-suffix} {
-        #{$property}-left#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(left,$property,$subproperty)}: $value !important;
+      }
+      &-right#{$parsed-extend-suffix} {
+        #{internal-helper-property(right,$property,$subproperty)}: $value !important;
       }
       &-x#{$parsed-extend-suffix} {
         @extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
@@ -68,7 +68,6 @@
   }
 
   @at-root #{$selector-prefix} {
-    #{$property}#{$parsed-subproperty}: $value !important;
 
     &,
     &-y,
@@ -76,7 +75,7 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
       } @else {
-        #{$property}-top#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(top,$property,$subproperty)}: $value !important;
       }
     }
     &,
@@ -85,7 +84,7 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
       } @else {
-        #{$property}-bottom#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(bottom,$property,$subproperty)}: $value !important;
       }
     }
     &,
@@ -94,7 +93,7 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
       } @else {
-        #{$property}-left#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(left,$property,$subproperty)}: $value !important;
       }
     }
     &,
@@ -103,7 +102,7 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
       } @else {
-        #{$property}-right#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(right,$property,$subproperty)}: $value !important;
       }
     }
   }
@@ -139,16 +138,16 @@
   @if ($extend-prefix != '') {
     @at-root %#{$extend-prefix} {
       &-top-left#{$parsed-extend-suffix} {
-        #{$property}-top-left#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(top-left,$property,$subproperty)}: $value !important;
       }
       &-top-right#{$parsed-extend-suffix} {
-        #{$property}-top-right#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(top-right,$property,$subproperty)}: $value !important;
       }
       &-bottom-left#{$parsed-extend-suffix} {
-        #{$property}-bottom-left#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(bottom-left,$property,$subproperty)}: $value !important;
       }
       &-bottom-right#{$parsed-extend-suffix} {
-        #{$property}-bottom-right#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(bottom-right,$property,$subproperty)}: $value !important;
       }
 
       &-top#{$parsed-extend-suffix} {
@@ -188,7 +187,7 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-top-left#{$parsed-extend-suffix}!optional;
       } @else {
-        #{$property}-top-left#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(top-left,$property,$subproperty)}: $value !important;
       }
     }
     &#{$parsed-selector-suffix},
@@ -198,18 +197,7 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-top-right#{$parsed-extend-suffix}!optional;
       } @else {
-        #{$property}-top-right#{$parsed-subproperty}: $value !important;
-      }
-    }
-
-    &#{$parsed-selector-suffix},
-    &-bottom#{$parsed-selector-suffix},
-    &-right#{$parsed-selector-suffix},
-    &-bottom-right#{$parsed-selector-suffix} {
-      @if ($extend-prefix != '') {
-        @extend %#{$extend-prefix}-bottom-right#{$parsed-extend-suffix}!optional;
-      } @else {
-        #{$property}-bottom-right#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(top-right,$property,$subproperty)}: $value !important;
       }
     }
 
@@ -220,7 +208,18 @@
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-bottom-left#{$parsed-extend-suffix}!optional;
       } @else {
-        #{$property}-bottom-left#{$parsed-subproperty}: $value !important;
+        #{internal-helper-property(bottom-left,$property,$subproperty)}: $value !important;
+      }
+    }
+
+    &#{$parsed-selector-suffix},
+    &-bottom#{$parsed-selector-suffix},
+    &-right#{$parsed-selector-suffix},
+    &-bottom-right#{$parsed-selector-suffix} {
+      @if ($extend-prefix != '') {
+        @extend %#{$extend-prefix}-bottom-right#{$parsed-extend-suffix}!optional;
+      } @else {
+        #{internal-helper-property(bottom-right,$property,$subproperty)}: $value !important;
       }
     }
   }

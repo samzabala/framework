@@ -13,3 +13,19 @@
 
   @return $to_return;
 }
+
+@function internal-helper-property($direction, $property: '', $subproperty: '') {
+  $parsed-property: '';
+
+  @if ($property != '') {
+    $parsed-property: #{$property + '-'};
+  }
+
+  $parsed-subproperty: '';
+
+  @if ($subproperty != '') {
+    $parsed-subproperty: #{'-' + $subproperty};
+  }
+
+  @return #{$parsed-property + $direction + $parsed-subproperty};
+}

@@ -139,12 +139,12 @@ $prefix: '.input';
 
     &#{$prefix}-large,
     #{$prefix}-large & {
-    	height: $_fwc-input-height-large;
+      height: $_fwc-input-height-large;
     }
 
     &#{$prefix}-small,
     #{$prefix}-small & {
-    	height: $_fwc-input-height-small;
+      height: $_fwc-input-height-small;
     }
   }
 

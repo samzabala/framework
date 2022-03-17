@@ -17,60 +17,14 @@
 }
 
 .offset {
-  &,
-  &-y,
-  &-top {
-    &-0 {
-      top: 0;
-    }
-    &-auto {
-      top: auto;
-    }
-    &-flush {
-      top: 100%;
-    }
+  &-0 {
+    @include create-box-helper(#{&}, '', '', '', 0, 'for-offset');
   }
-
-  &,
-  &-y,
-  &-bottom {
-    &-0 {
-      bottom: 0;
-    }
-    &-auto {
-      bottom: auto;
-    }
-    &-flush {
-      bottom: 100%;
-    }
+  &-auto {
+    @include create-box-helper(#{&}, '', '', '', auto, 'for-offset-auto');
   }
-
-  &,
-  &-x,
-  &-left {
-    &-0 {
-      left: 0;
-    }
-    &-auto {
-      left: auto;
-    }
-    &-flush {
-      left: 100%;
-    }
-  }
-
-  &,
-  &-x,
-  &-right {
-    &-0 {
-      right: 0;
-    }
-    &-auto {
-      right: auto;
-    }
-    &-flush {
-      right: 100%;
-    }
+  &-flush {
+    @include create-box-helper(#{&}, '', '', '', 100%, 'for-offset-flush');
   }
 }
 
