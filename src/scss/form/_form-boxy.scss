@@ -134,17 +134,16 @@ $prefix: '.input';
 
   &-single {
     vertical-align: middle;
-
-    height: $_fwc-input-height;
+    min-height: $_fwc-input-height;
 
     &#{$prefix}-large,
     #{$prefix}-large & {
-      height: $_fwc-input-height-large;
+      min-height: $_fwc-input-height-large;
     }
 
     &#{$prefix}-small,
     #{$prefix}-small & {
-      height: $_fwc-input-height-small;
+      min-height: $_fwc-input-height-small;
     }
   }
 
@@ -220,6 +219,7 @@ $prefix: '.input';
   &-in-group {
     & {
       border-radius: inherit;
+      width:auto;
     }
 
     &-horizontal {
@@ -234,15 +234,15 @@ $prefix: '.input';
 
   &-in-wrapper {
     display: block;
+
     &-horizontal {
-      flex: 1 1;
     }
 
     &-vertical {
     }
 
     &-block {
-      width: 100%;
+
     }
   }
 
@@ -271,11 +271,12 @@ $prefix: '.input';
       padding-bottom: $_fwc-value-input-paddiny-y-nav !important;
     }
 
+    &#{$prefix}-no-radius,
     #{$prefix}-no-radius & {
       @include dump-styles(no-border-radius);
     }
 
-    #{$prefix}-group & {
+    #{$prefix}-group > & {
       @extend %fwe-form-input-boxy-in-group !optional;
 
       &:not(.focus):not(:focus):not(.active):not(:active) {
@@ -283,11 +284,11 @@ $prefix: '.input';
       }
     }
 
-    #{$prefix}-wrapper & {
+    #{$prefix}-wrapper > & {
       @extend %fwe-form-input-boxy-in-wrapper !optional;
     }
 
-    #{$prefix}-wrapper-horizontal & {
+    #{$prefix}-wrapper-horizontal > & {
       @extend %fwe-form-input-boxy-in-wrapper-horizontal !optional;
 
       @at-root #{$prefix}-wrapper-block#{&} {
@@ -295,7 +296,7 @@ $prefix: '.input';
       }
     }
 
-    #{$prefix}-wrapper-vertical & {
+    #{$prefix}-wrapper-vertical > & {
       @extend %fwe-form-input-boxy-in-wrapper-vertical !optional;
 
       @at-root #{$prefix}-wrapper-block#{&} {
@@ -303,10 +304,11 @@ $prefix: '.input';
       }
     }
 
-    #{$prefix}-wrapper-block & {
+    #{$prefix}-wrapper-block > & {
       @extend %fwe-form-input-boxy-in-wrapper-block !optional;
     }
 
+    &#{$prefix}-disabled,
     #{$prefix}-disabled & {
       @include dump-styles(no-box-shadow-important);
     }
@@ -365,11 +367,51 @@ $prefix: '.input';
       // box-shadow: $input-box-shadow-focus!important;
       box-shadow: $input-box-shadow-focus;
     }
+
+    &-in-wrapper {
+      &-horizontal {
+        flex: 1 1;
+      }
+
+      &-vertical {
+        width: 100%;
+      }
+
+      &-block {
+
+      }
+    }
   }
 
   &,
   &-group {
     @extend %fwe-form-input-and-group;
+
+
+
+    #{$prefix}-wrapper > & {
+      @extend %fwe-form-input-and-group-in-wrapper !optional;
+    }
+
+    #{$prefix}-wrapper-horizontal > & {
+      @extend %fwe-form-input-and-group-in-wrapper-horizontal !optional;
+
+      @at-root #{$prefix}-wrapper-block#{&} {
+        @extend %fwe-form-input-and-group-in-wrapper-horizontal-block !optional;
+      }
+    }
+
+    #{$prefix}-wrapper-vertical > & {
+      @extend %fwe-form-input-and-group-in-wrapper-vertical !optional;
+
+      @at-root #{$prefix}-wrapper-block#{&} {
+        @extend %fwe-form-input-and-group-in-wrapper-vertical-block !optional;
+      }
+    }
+
+    #{$prefix}-wrapper-block > & {
+      @extend %fwe-form-input-and-group-in-wrapper-block !optional;
+    }
   }
 
   @at-root %fwe-form-input-boxy-and-group {

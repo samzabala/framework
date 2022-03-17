@@ -155,13 +155,13 @@ $prefix: '.btn';
   & {
     @extend %fwe-btn;
 
-    #{$prefix}-large &,
-    &#{$prefix}-large {
+    &#{$prefix}-large,
+    #{$prefix}-large & {
       @extend %fwe-btn-large;
     }
 
-    #{$prefix}-small &,
-    &#{$prefix}-small {
+    &#{$prefix}-small,
+    #{$prefix}-small & {
       @extend %fwe-btn-small;
     }
 
@@ -170,11 +170,12 @@ $prefix: '.btn';
       @extend %fwe-btn-in-nav;
     }
 
+    &#{$prefix}-no-radius,
     #{$prefix}-no-radius & {
       @include dump-styles(no-border-radius);
     }
 
-    #{$prefix}-group & {
+    #{$prefix}-group > & {
       @extend %fwe-btn-in-group;
     }
 
@@ -182,8 +183,8 @@ $prefix: '.btn';
       @include dump-styles(disabled);
     }
 
-    &-disabled,
-    &-disabled & {
+    &#{$prefix}-disabled,
+    #{$prefix}-disabled & {
       @include dump-styles(no-box-shadow-important);
     }
   }
