@@ -27,6 +27,14 @@ $prefix: '.btn';
         border-radius: $_fwc-btn-height-small * 0.5;
       }
     }
+
+    &-shadow {
+      box-shadow: $btn-box-shadow;
+
+      &-hover {
+        box-shadow: $btn-box-shadow-hover;
+      }
+    }
   }
 
   @at-root %fwe-btn {
@@ -183,6 +191,8 @@ $prefix: '.btn';
       @include dump-styles(disabled);
     }
 
+    &#{$prefix}-no-interaction,
+    #{$prefix}-no-interaction &,
     &#{$prefix}-disabled,
     #{$prefix}-disabled & {
       @include dump-styles(no-box-shadow-important);
@@ -222,7 +232,6 @@ $prefix: '.btn';
   @at-root %fwe-btn-and-group {
     & {
       @extend %fwe-btn-global-radius;
-      box-shadow: $btn-box-shadow;
       max-width: 100%;
       background-color: transparent;
       color: inherit;
@@ -240,11 +249,7 @@ $prefix: '.btn';
       &:active,
       &.active {
         color: inherit;
-        box-shadow: $btn-box-shadow-hover;
         @include dump-styles(no-text-decoration-hover);
-        &.btn-no-interaction {
-          @include dump-styles(no-box-shadow-important);
-        }
       }
 
       &-small {
@@ -296,10 +301,6 @@ $prefix: '.btn';
       @include dump-styles(no-border-radius);
     }
 
-    &#{$prefix}-no-shadow {
-      @include dump-styles(no-box-shadow-important);
-    }
-
     &#{$prefix}-block {
       display: flex;
       width: 100%;
@@ -315,6 +316,7 @@ $prefix: '.btn';
 
   ///updates here should match input-group
   &-group {
+    @extend %fwe-btn-global-shadow;
     display: inline-flex;
     align-content: stretch;
     align-items: stretch;
@@ -326,6 +328,13 @@ $prefix: '.btn';
     font: inherit;
     overflow-x: auto;
     overflow-y: visible;
+
+    &:hover,
+    &:focus-within,
+    &.focus,
+    &.active {
+      @extend %fwe-btn-global-shadow-hover;
+    }
 
     &#{$prefix}-block {
       display: flex;
@@ -450,11 +459,17 @@ $prefix: '.btn';
     }
     @at-root %fwe-btn-#{$scheme} {
       @if $scheme == 'link' {
-        @include dump-styles(no-box-shadow-important);
+      } @else if str-index($scheme, '-outline') {
+      } @else {
+        @extend %fwe-btn-global-shadow;
       }
 
-      @if str-index($scheme, '-outline') {
-        @include dump-styles(no-box-shadow);
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        @extend %fwe-btn-global-shadow-hover;
       }
       @include create-btn-schemes($properties, $scheme, $custom-css);
 

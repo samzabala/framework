@@ -28,7 +28,6 @@ $prefix: '.input';
     padding-left: $_fwc-input-gutter-x;
     padding-top: $_fwc-value-input-paddiny-y;
     padding-bottom: $_fwc-value-input-paddiny-y;
-    box-shadow: $input-box-shadow;
 
     &,
     &:hover,
@@ -50,13 +49,6 @@ $prefix: '.input';
       &.active {
         color: $input-color-inverse;
       }
-    }
-
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
-      border-color: $input-border-color-focus;
     }
 
     option {
@@ -129,6 +121,19 @@ $prefix: '.input';
 
     &.focus:-ms-input-placeholder {
       color: transparent !important;
+    }
+  }
+
+  &-shadow {
+    box-shadow: $input-box-shadow;
+
+    &-hover {
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        border-color: $input-box-shadow-focus;
+      }
     }
   }
 
@@ -323,6 +328,13 @@ $prefix: '.input';
 }
 
 #{$prefix} {
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    @extend %fwe-form-input-boxy-shadow-hover;
+  }
+
   &-single-line {
     @extend %fwe-form-input-boxy !optional;
     @extend %fwe-form-input-boxy-single !optional;
@@ -358,11 +370,11 @@ $prefix: '.input';
   }
 
   @at-root %fwe-form-input-and-group {
+    @extend %fwe-form-input-boxy-shadow;
+
     &:focus,
     &.focus {
       outline: none;
-      // box-shadow: $input-box-shadow-focus!important;
-      box-shadow: $input-box-shadow-focus;
     }
 
     &-in-wrapper {
@@ -459,10 +471,6 @@ $prefix: '.input';
       @include dump-styles(no-border-radius);
     }
 
-    &#{$prefix}-no-shadow {
-      @include dump-styles(no-box-shadow-important);
-    }
-
     &#{$prefix}-block {
       width: 100%;
 
@@ -486,6 +494,13 @@ $prefix: '.input';
     font: inherit;
     overflow-x: auto;
     overflow-y: visible;
+
+    &:hover,
+    &:focus-within,
+    &.focus,
+    &.active {
+      @extend %fwe-form-input-boxy-shadow-hover;
+    }
 
     .btn.btn-symbol {
       flex: 0 0 auto;
@@ -521,6 +536,11 @@ $prefix: '.input';
 
     > .btn {
       @extend %fwe-form-input-boxy-in-group !optional;
+      @extend %fwe-form-input-boxy-in-group-btn !optional;
+
+      &:not(.btn-symbol) {
+        width: auto;
+      }
     }
 
     &#{&}-large {

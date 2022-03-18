@@ -73,10 +73,10 @@ table {
 .input-group.input-no-radius, .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-no-radius.input-tags-ui, .input-no-radius.input-calendar-ui, .input-no-radius.input-multiple-line, .input-no-radius.input-select, .input-no-radius.input-single-line, .input-no-radius .input-tags-ui, .input-no-radius .input-calendar-ui, .input-no-radius .input-multiple-line, .input-no-radius .input-select, .input-no-radius .input-single-line, .btn-group.btn-no-radius, .nav > .btn, .nav > .btn-group, .btn.btn-no-radius, .btn-no-radius .btn {
   border-radius: 0;
 }
-.input-group > .input-tags-ui:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-calendar-ui:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-multiple-line:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-select:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-single-line:not(.focus):not(:focus):not(.active):not(:active), .btn.btn-theme-polar-outline, .btn.btn-theme-outline, .btn.btn-error-outline, .btn.btn-caution-outline, .btn.btn-success-outline, .btn.btn-neutral-outline, .btn.btn-accent-outline, .btn.btn-secondary-outline, .btn.btn-primary-outline {
+.input-group > .input-tags-ui:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-calendar-ui:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-multiple-line:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-select:not(.focus):not(:focus):not(.active):not(:active), .input-group > .input-single-line:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: none;
 }
-.no-shadow, .input-calendar-ui-input input:not(.focus):not(:focus):not(.active):not(:active), .input-no-shadow.input-tags-ui, .input-no-shadow.input-calendar-ui, .input-no-shadow.input-single-line, .input-no-shadow.input-select, .input-no-shadow.input-multiple-line, .input-group.input-no-shadow, .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-disabled.input-tags-ui, .input-disabled.input-calendar-ui, .input-disabled.input-multiple-line, .input-disabled.input-select, .input-disabled.input-single-line, .input-disabled .input-tags-ui, .input-disabled .input-calendar-ui, .input-disabled .input-multiple-line, .input-disabled .input-select, .input-disabled .input-single-line, .input-disabled, .input[disabled], .input-disabled .input, .btn.btn-link, .btn.btn-no-shadow, .btn-group.btn-no-shadow, .nav > .btn, .nav > .btn-group, .btn:hover.btn-no-interaction, .btn-group:hover.btn-no-interaction, .btn:focus.btn-no-interaction, .btn-group:focus.btn-no-interaction, .focus.btn-no-interaction.btn, .focus.btn-no-interaction.btn-group, .btn:active.btn-no-interaction, .btn-group:active.btn-no-interaction, .active.btn-no-interaction.btn, .active.btn-no-interaction.btn-group, .btn.btn-disabled, .btn-disabled .btn, .btn-group > .btn {
+.no-shadow, .input-calendar-ui-input input:not(.focus):not(:focus):not(.active):not(:active), .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-single-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-multiple-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-single-line, .nav > .input-select, .nav > .input-multiple-line, .nav-block.nav-block-stretch > .input-group, .nav > .input-group, .input-disabled.input-tags-ui, .input-disabled.input-calendar-ui, .input-disabled.input-multiple-line, .input-disabled.input-select, .input-disabled.input-single-line, .input-disabled .input-tags-ui, .input-disabled .input-calendar-ui, .input-disabled .input-multiple-line, .input-disabled .input-select, .input-disabled .input-single-line, .input-disabled, .input[disabled], .input-disabled .input, .nav > .btn, .nav > .btn-group, .btn.btn-no-interaction, .btn-no-interaction .btn, .btn.btn-disabled, .btn-disabled .btn, .btn-group > .btn {
   box-shadow: none !important;
 }
 .cf::after, .list-group > li::after, .list-group-item::after,
@@ -7210,6 +7210,12 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .btn.btn-round.btn-small, .btn-group.btn-round.btn-small {
   border-radius: 1em;
 }
+.btn.btn-theme-polar, .btn.btn-theme, .btn.btn-gradient, .btn.btn-error-gradient, .btn.btn-caution-gradient, .btn.btn-success-gradient, .btn.btn-neutral-gradient, .btn.btn-accent-gradient, .btn.btn-secondary-gradient, .btn.btn-primary-gradient, .btn.btn-error-glassy, .btn.btn-caution-glassy, .btn.btn-success-glassy, .btn.btn-neutral-glassy, .btn.btn-accent-glassy, .btn.btn-secondary-glassy, .btn.btn-primary-glassy, .btn.btn-error, .btn.btn-caution, .btn.btn-success, .btn.btn-neutral, .btn.btn-accent, .btn.btn-secondary, .btn.btn-primary, .btn.btn-default, .btn-group {
+  box-shadow: none;
+}
+.btn.btn-theme-polar-outline:hover, .btn.btn-theme-polar-outline:focus, .focus.btn.btn-theme-polar-outline, .btn.btn-theme-polar-outline:active, .active.btn.btn-theme-polar-outline, .btn.btn-theme-outline:hover, .btn.btn-theme-outline:focus, .focus.btn.btn-theme-outline, .btn.btn-theme-outline:active, .active.btn.btn-theme-outline, .btn.btn-theme-polar:hover, .btn.btn-theme-polar:focus, .focus.btn.btn-theme-polar, .btn.btn-theme-polar:active, .active.btn.btn-theme-polar, .btn.btn-theme:hover, .btn.btn-theme:focus, .focus.btn.btn-theme, .btn.btn-theme:active, .active.btn.btn-theme, .btn.btn-gradient:hover, .btn.btn-gradient:focus, .focus.btn.btn-gradient, .btn.btn-gradient:active, .active.btn.btn-gradient, .btn.btn-error-gradient:hover, .btn.btn-error-gradient:focus, .focus.btn.btn-error-gradient, .btn.btn-error-gradient:active, .active.btn.btn-error-gradient, .btn.btn-caution-gradient:hover, .btn.btn-caution-gradient:focus, .focus.btn.btn-caution-gradient, .btn.btn-caution-gradient:active, .active.btn.btn-caution-gradient, .btn.btn-success-gradient:hover, .btn.btn-success-gradient:focus, .focus.btn.btn-success-gradient, .btn.btn-success-gradient:active, .active.btn.btn-success-gradient, .btn.btn-neutral-gradient:hover, .btn.btn-neutral-gradient:focus, .focus.btn.btn-neutral-gradient, .btn.btn-neutral-gradient:active, .active.btn.btn-neutral-gradient, .btn.btn-accent-gradient:hover, .btn.btn-accent-gradient:focus, .focus.btn.btn-accent-gradient, .btn.btn-accent-gradient:active, .active.btn.btn-accent-gradient, .btn.btn-secondary-gradient:hover, .btn.btn-secondary-gradient:focus, .focus.btn.btn-secondary-gradient, .btn.btn-secondary-gradient:active, .active.btn.btn-secondary-gradient, .btn.btn-primary-gradient:hover, .btn.btn-primary-gradient:focus, .focus.btn.btn-primary-gradient, .btn.btn-primary-gradient:active, .active.btn.btn-primary-gradient, .btn.btn-error-glassy:hover, .btn.btn-error-glassy:focus, .focus.btn.btn-error-glassy, .btn.btn-error-glassy:active, .active.btn.btn-error-glassy, .btn.btn-caution-glassy:hover, .btn.btn-caution-glassy:focus, .focus.btn.btn-caution-glassy, .btn.btn-caution-glassy:active, .active.btn.btn-caution-glassy, .btn.btn-success-glassy:hover, .btn.btn-success-glassy:focus, .focus.btn.btn-success-glassy, .btn.btn-success-glassy:active, .active.btn.btn-success-glassy, .btn.btn-neutral-glassy:hover, .btn.btn-neutral-glassy:focus, .focus.btn.btn-neutral-glassy, .btn.btn-neutral-glassy:active, .active.btn.btn-neutral-glassy, .btn.btn-accent-glassy:hover, .btn.btn-accent-glassy:focus, .focus.btn.btn-accent-glassy, .btn.btn-accent-glassy:active, .active.btn.btn-accent-glassy, .btn.btn-secondary-glassy:hover, .btn.btn-secondary-glassy:focus, .focus.btn.btn-secondary-glassy, .btn.btn-secondary-glassy:active, .active.btn.btn-secondary-glassy, .btn.btn-primary-glassy:hover, .btn.btn-primary-glassy:focus, .focus.btn.btn-primary-glassy, .btn.btn-primary-glassy:active, .active.btn.btn-primary-glassy, .btn.btn-error-outline:hover, .btn.btn-error-outline:focus, .focus.btn.btn-error-outline, .btn.btn-error-outline:active, .active.btn.btn-error-outline, .btn.btn-caution-outline:hover, .btn.btn-caution-outline:focus, .focus.btn.btn-caution-outline, .btn.btn-caution-outline:active, .active.btn.btn-caution-outline, .btn.btn-success-outline:hover, .btn.btn-success-outline:focus, .focus.btn.btn-success-outline, .btn.btn-success-outline:active, .active.btn.btn-success-outline, .btn.btn-neutral-outline:hover, .btn.btn-neutral-outline:focus, .focus.btn.btn-neutral-outline, .btn.btn-neutral-outline:active, .active.btn.btn-neutral-outline, .btn.btn-accent-outline:hover, .btn.btn-accent-outline:focus, .focus.btn.btn-accent-outline, .btn.btn-accent-outline:active, .active.btn.btn-accent-outline, .btn.btn-secondary-outline:hover, .btn.btn-secondary-outline:focus, .focus.btn.btn-secondary-outline, .btn.btn-secondary-outline:active, .active.btn.btn-secondary-outline, .btn.btn-primary-outline:hover, .btn.btn-primary-outline:focus, .focus.btn.btn-primary-outline, .btn.btn-primary-outline:active, .active.btn.btn-primary-outline, .btn.btn-link:hover, .btn.btn-link:focus, .focus.btn.btn-link, .btn.btn-link:active, .active.btn.btn-link, .btn.btn-error:hover, .btn.btn-error:focus, .focus.btn.btn-error, .btn.btn-error:active, .active.btn.btn-error, .btn.btn-caution:hover, .btn.btn-caution:focus, .focus.btn.btn-caution, .btn.btn-caution:active, .active.btn.btn-caution, .btn.btn-success:hover, .btn.btn-success:focus, .focus.btn.btn-success, .btn.btn-success:active, .active.btn.btn-success, .btn.btn-neutral:hover, .btn.btn-neutral:focus, .focus.btn.btn-neutral, .btn.btn-neutral:active, .active.btn.btn-neutral, .btn.btn-accent:hover, .btn.btn-accent:focus, .focus.btn.btn-accent, .btn.btn-accent:active, .active.btn.btn-accent, .btn.btn-secondary:hover, .btn.btn-secondary:focus, .focus.btn.btn-secondary, .btn.btn-secondary:active, .active.btn.btn-secondary, .btn.btn-primary:hover, .btn.btn-primary:focus, .focus.btn.btn-primary, .btn.btn-primary:active, .active.btn.btn-primary, .btn.btn-default:hover, .btn.btn-default:focus, .focus.btn.btn-default, .btn.btn-default:active, .active.btn.btn-default, .btn-group:hover, .btn-group:focus-within, .btn-group.focus, .btn-group.active {
+  box-shadow: 0px 0px 10px -6px var(--fw-color-base);
+}
 
 .btn {
   font-size: 1rem;
@@ -7285,7 +7291,6 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .btn, .btn-group {
-  box-shadow: none;
   max-width: 100%;
   background-color: transparent;
   color: inherit;
@@ -7299,7 +7304,6 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 .btn:hover, .btn-group:hover, .btn:focus, .btn-group:focus, .focus.btn, .focus.btn-group, .btn:active, .btn-group:active, .active.btn, .active.btn-group {
   color: inherit;
-  box-shadow: 0px 0px 10px -6px var(--fw-color-base);
 }
 .nav > .btn, .nav > .btn-group {
   height: 3.75rem !important;
@@ -8378,7 +8382,6 @@ fieldset .input-calendar-ui {
   padding-left: 0.625em;
   padding-top: calc(((2rem - (1px * 2)) - (1.5em)) * 0.5);
   padding-bottom: calc(((2rem - (1px * 2)) - (1.5em)) * 0.5);
-  box-shadow: none;
 }
 .input-tags-ui, .input-calendar-ui, .input-multiple-line, select.input-single-line, .input-select, .input-single-line {
   color: inherit;
@@ -8388,9 +8391,6 @@ fieldset .input-calendar-ui {
 }
 .theme-inverse .input-tags-ui, .theme-inverse .input-calendar-ui, .theme-inverse .input-multiple-line, .theme-inverse .input-select, .theme-inverse .input-single-line {
   color: inherit;
-}
-.input-tags-ui:focus, .input-calendar-ui:focus, .input-multiple-line:focus, .input-select:focus, .input-single-line:focus, .focus.input-tags-ui, .focus.input-calendar-ui, .focus.input-multiple-line, .focus.input-select, .focus.input-single-line, .input-tags-ui:active, .input-calendar-ui:active, .input-multiple-line:active, .input-select:active, .input-single-line:active, .active.input-tags-ui, .active.input-calendar-ui, .active.input-multiple-line, .active.input-select, .active.input-single-line {
-  border-color: var(--fw-color-neutral-alpha-6);
 }
 .input-tags-ui option, .input-calendar-ui option, .input-multiple-line option, .input-select option, .input-single-line option {
   font: inherit;
@@ -8445,6 +8445,12 @@ fieldset .input-calendar-ui {
 }
 .focus.input-tags-ui:-ms-input-placeholder, .focus.input-calendar-ui:-ms-input-placeholder, .focus.input-multiple-line:-ms-input-placeholder, .focus.input-select:-ms-input-placeholder, .focus.input-single-line:-ms-input-placeholder {
   color: transparent !important;
+}
+.input, .input-group {
+  box-shadow: none;
+}
+.input-group:focus:hover, .input-group:focus:focus-within, .input:focus, .focus.input-group, .focus.input, .input-group:active:hover, .input-group:active:focus-within, .input:active, .active.input-group, .active.input {
+  border-color: 0px 0 5px 0px var(--fw-color-primary);
 }
 .input-single-line {
   vertical-align: middle;
@@ -8512,7 +8518,6 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 .input:focus, .input-group:focus, .focus.input, .focus.input-group {
   outline: none;
-  box-shadow: 0px 0 5px 0px var(--fw-color-primary);
 }
 .input-wrapper-horizontal > .input, .input-wrapper-horizontal > .input-group {
   flex: 1 1;
@@ -8561,6 +8566,9 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input-group.input-block-mobile > .btn:not(.btn-symbol) {
     flex: 1 1;
   }
+}
+.input-group > .btn:not(.btn-symbol) {
+  width: auto;
 }
 .input-group.input-group-horizontal:not(.input-group-responsive) > .input-tags-ui:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-calendar-ui:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-single-line:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-select:nth-last-child(n+2), .input-group.input-group-horizontal:not(.input-group-responsive) > .input-multiple-line:nth-last-child(n+2),
 .input-group.input-group-horizontal:not(.input-group-responsive) .btn:nth-last-child(n+2) {
@@ -8649,7 +8657,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-primary, .input-primary .input {
   border-color: var(--fw-color-primary);
 }
-.input.input-primary, .input-primary .input, .input.input-primary:hover, .input-primary .input:hover, .input.input-primary:focus, .input-primary .input:focus, .focus.input.input-primary, .input-primary .focus.input, .input.input-primary:active, .input-primary .input:active, .active.input.input-primary, .input-primary .active.input {
+.input.input-primary, .input-primary .input {
   color: var(--fw-color-primary);
 }
 .input.input-primary:not(.focus):not(:focus):not(.active):not(:active), .input-primary .input:not(.focus):not(:focus):not(.active):not(:active) {
@@ -8665,7 +8673,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-secondary, .input-secondary .input {
   border-color: var(--fw-color-secondary);
 }
-.input.input-secondary, .input-secondary .input, .input.input-secondary:hover, .input-secondary .input:hover, .input.input-secondary:focus, .input-secondary .input:focus, .focus.input.input-secondary, .input-secondary .focus.input, .input.input-secondary:active, .input-secondary .input:active, .active.input.input-secondary, .input-secondary .active.input {
+.input.input-secondary, .input-secondary .input {
   color: var(--fw-color-secondary);
 }
 .input.input-secondary:not(.focus):not(:focus):not(.active):not(:active), .input-secondary .input:not(.focus):not(:focus):not(.active):not(:active) {
@@ -8681,7 +8689,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-accent, .input-accent .input {
   border-color: var(--fw-color-accent);
 }
-.input.input-accent, .input-accent .input, .input.input-accent:hover, .input-accent .input:hover, .input.input-accent:focus, .input-accent .input:focus, .focus.input.input-accent, .input-accent .focus.input, .input.input-accent:active, .input-accent .input:active, .active.input.input-accent, .input-accent .active.input {
+.input.input-accent, .input-accent .input {
   color: var(--fw-color-accent);
 }
 .input.input-accent:not(.focus):not(:focus):not(.active):not(:active), .input-accent .input:not(.focus):not(:focus):not(.active):not(:active) {
@@ -8697,7 +8705,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-neutral, .input-neutral .input {
   border-color: var(--fw-color-neutral);
 }
-.input.input-neutral, .input-neutral .input, .input.input-neutral:hover, .input-neutral .input:hover, .input.input-neutral:focus, .input-neutral .input:focus, .focus.input.input-neutral, .input-neutral .focus.input, .input.input-neutral:active, .input-neutral .input:active, .active.input.input-neutral, .input-neutral .active.input {
+.input.input-neutral, .input-neutral .input {
   color: var(--fw-color-neutral);
 }
 .input.input-neutral:not(.focus):not(:focus):not(.active):not(:active), .input-neutral .input:not(.focus):not(:focus):not(.active):not(:active) {
@@ -8713,7 +8721,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-success, .input-success .input {
   border-color: var(--fw-color-success);
 }
-.input.input-success, .input-success .input, .input.input-success:hover, .input-success .input:hover, .input.input-success:focus, .input-success .input:focus, .focus.input.input-success, .input-success .focus.input, .input.input-success:active, .input-success .input:active, .active.input.input-success, .input-success .active.input {
+.input.input-success, .input-success .input {
   color: var(--fw-color-success);
 }
 .input.input-success:not(.focus):not(:focus):not(.active):not(:active), .input-success .input:not(.focus):not(:focus):not(.active):not(:active) {
@@ -8729,7 +8737,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-caution, .input-caution .input {
   border-color: var(--fw-color-caution);
 }
-.input.input-caution, .input-caution .input, .input.input-caution:hover, .input-caution .input:hover, .input.input-caution:focus, .input-caution .input:focus, .focus.input.input-caution, .input-caution .focus.input, .input.input-caution:active, .input-caution .input:active, .active.input.input-caution, .input-caution .active.input {
+.input.input-caution, .input-caution .input {
   color: var(--fw-color-caution);
 }
 .input.input-caution:not(.focus):not(:focus):not(.active):not(:active), .input-caution .input:not(.focus):not(:focus):not(.active):not(:active) {
@@ -8745,7 +8753,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-error, .input-error .input {
   border-color: var(--fw-color-error);
 }
-.input.input-error, .input-error .input, .input.input-error:hover, .input-error .input:hover, .input.input-error:focus, .input-error .input:focus, .focus.input.input-error, .input-error .focus.input, .input.input-error:active, .input-error .input:active, .active.input.input-error, .input-error .active.input {
+.input.input-error, .input-error .input {
   color: var(--fw-color-error);
 }
 .input.input-error:not(.focus):not(:focus):not(.active):not(:active), .input-error .input:not(.focus):not(:focus):not(.active):not(:active) {
