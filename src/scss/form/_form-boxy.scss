@@ -217,10 +217,9 @@ $prefix: '.input';
   }
 
   &-in-group {
-    & {
-      border-radius: inherit;
-      width:auto;
-    }
+    border-radius: inherit;
+    max-width:100%;
+
 
     &-horizontal {
     }
@@ -525,7 +524,7 @@ $prefix: '.input';
       @extend %fwe-form-input-in-group !optional;
     }
 
-    .btn {
+    > .btn {
       @extend %fwe-form-input-boxy-in-group !optional;
     }
 

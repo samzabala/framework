@@ -8488,9 +8488,9 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   background-position: calc(100% - ((0.625em) + (0.5em * 0.5))) 50%, calc(100% - (0.625em)) 50%;
   background-repeat: no-repeat, no-repeat;
 }
-.input-group .btn, .input-group > .input-tags-ui, .input-group > .input-calendar-ui, .input-group > .input-multiple-line, .input-group > .input-select, .input-group > .input-single-line {
+.input-group > .btn, .input-group > .input-tags-ui, .input-group > .input-calendar-ui, .input-group > .input-multiple-line, .input-group > .input-select, .input-group > .input-single-line {
   border-radius: inherit;
-  width: auto;
+  max-width: 100%;
 }
 .input-wrapper > .input-tags-ui, .input-wrapper > .input-calendar-ui, .input-wrapper > .input-multiple-line, .input-wrapper > .input-select, .input-wrapper > .input-single-line {
   display: block;
