@@ -16,15 +16,7 @@ $prefix: '.btn';
 
     &-round {
       & {
-        border-radius: $_fwc-btn-height * 0.5;
-      }
-
-      &-large {
-        border-radius: $_fwc-btn-height-large * 0.5;
-      }
-
-      &-small {
-        border-radius: $_fwc-btn-height-small * 0.5;
+        border-radius: 999rem;
       }
     }
 
@@ -287,14 +279,6 @@ $prefix: '.btn';
 
     &#{$prefix}-round {
       @extend %fwe-btn-global-round;
-
-      &#{$prefix}-large {
-        @extend %fwe-btn-global-round-large !optional;
-      }
-
-      &#{$prefix}-small {
-        @extend %fwe-btn-global-round-small !optional;
-      }
     }
 
     &#{$prefix}-no-radius {

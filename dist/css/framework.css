@@ -7202,13 +7202,7 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   border-radius: 5px;
 }
 .btn.btn-round, .btn-group.btn-round {
-  border-radius: 1em;
-}
-.btn.btn-round.btn-large, .btn-group.btn-round.btn-large {
-  border-radius: 1.0416666667em;
-}
-.btn.btn-round.btn-small, .btn-group.btn-round.btn-small {
-  border-radius: 1em;
+  border-radius: 999rem;
 }
 .btn.btn-link, .btn-group {
   box-shadow: none;
@@ -8097,13 +8091,7 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   border-radius: 5px;
 }
 .input-round.input-tags-ui, .input-round.input-calendar-ui, .input-round.input-single-line, .input-round.input-select, .input-round.input-multiple-line, .input-group.input-round {
-  border-radius: 1rem;
-}
-.input-round.input-large.input-tags-ui, .input-round.input-large.input-calendar-ui, .input-round.input-large.input-single-line, .input-round.input-large.input-select, .input-round.input-large.input-multiple-line, .input-group.input-round.input-large {
-  border-radius: 1.5625rem;
-}
-.input-round.input-small.input-tags-ui, .input-round.input-small.input-calendar-ui, .input-round.input-small.input-single-line, .input-round.input-small.input-select, .input-round.input-small.input-multiple-line, .input-group.input-round.input-small {
-  border-radius: 0.75rem;
+  border-radius: 999rem;
 }
 .nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line, .nav-block.nav-block-stretch > .input-label, .nav > .input-label, .nav-block.nav-block-stretch > .input, .nav > .input {
   height: 3.75rem !important;

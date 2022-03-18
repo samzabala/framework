@@ -16,15 +16,7 @@ $prefix: '.input';
 
   &-round {
     & {
-      border-radius: $_fwc-input-height * 0.5;
-    }
-
-    &-large {
-      border-radius: $_fwc-input-height-large * 0.5;
-    }
-
-    &-small {
-      border-radius: $_fwc-input-height-small * 0.5;
+      border-radius: 999rem;
     }
   }
 
