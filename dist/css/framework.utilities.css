@@ -13634,28 +13634,28 @@
 .radius, .radius-bottom, .radius-right, .radius-bottom-right {
   border-bottom-right-radius: 10px !important;
 }
-.radius-small, .radius-top-small, .radius-left-small, .radius-top-left-small {
+.radius-small, .radius-small-top, .radius-small-left, .radius-small-top-left {
   border-top-left-radius: 5px !important;
 }
-.radius-small, .radius-top-small, .radius-right-small, .radius-top-right-small {
+.radius-small, .radius-small-top, .radius-small-right, .radius-small-top-right {
   border-top-right-radius: 5px !important;
 }
-.radius-small, .radius-bottom-small, .radius-left-small, .radius-bottom-left-small {
+.radius-small, .radius-small-bottom, .radius-small-left, .radius-small-bottom-left {
   border-bottom-left-radius: 5px !important;
 }
-.radius-small, .radius-bottom-small, .radius-right-small, .radius-bottom-right-small {
+.radius-small, .radius-small-bottom, .radius-small-right, .radius-small-bottom-right {
   border-bottom-right-radius: 5px !important;
 }
-.radius-large, .radius-top-large, .radius-left-large, .radius-top-left-large {
+.radius-large, .radius-large-top, .radius-large-left, .radius-large-top-left {
   border-top-left-radius: 20px !important;
 }
-.radius-large, .radius-top-large, .radius-right-large, .radius-top-right-large {
+.radius-large, .radius-large-top, .radius-large-right, .radius-large-top-right {
   border-top-right-radius: 20px !important;
 }
-.radius-large, .radius-bottom-large, .radius-left-large, .radius-bottom-left-large {
+.radius-large, .radius-large-bottom, .radius-large-left, .radius-large-bottom-left {
   border-bottom-left-radius: 20px !important;
 }
-.radius-large, .radius-bottom-large, .radius-right-large, .radius-bottom-right-large {
+.radius-large, .radius-large-bottom, .radius-large-right, .radius-large-bottom-right {
   border-bottom-right-radius: 20px !important;
 }
 .radius-ellipse {

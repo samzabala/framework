@@ -218,8 +218,7 @@ $prefix: '.input';
 
   &-in-group {
     border-radius: inherit;
-    max-width:100%;
-
+    max-width: 100%;
 
     &-horizontal {
     }
@@ -241,7 +240,6 @@ $prefix: '.input';
     }
 
     &-block {
-
     }
   }
 
@@ -377,7 +375,6 @@ $prefix: '.input';
       }
 
       &-block {
-
       }
     }
   }
@@ -385,8 +382,6 @@ $prefix: '.input';
   &,
   &-group {
     @extend %fwe-form-input-and-group;
-
-
 
     #{$prefix}-wrapper > & {
       @extend %fwe-form-input-and-group-in-wrapper !optional;

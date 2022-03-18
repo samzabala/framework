@@ -9,24 +9,28 @@
       'for-radius',
       ''
     );
-    @include create-corner-helper(
-      #{&},
-      'small',
-      'border',
-      'radius',
-      $border-radius-small,
-      'for-radius',
-      'small'
-    );
-    @include create-corner-helper(
-      #{&},
-      'large',
-      'border',
-      'radius',
-      $border-radius-large,
-      'for-radius',
-      'large'
-    );
+    &-small {
+      @include create-corner-helper(
+        #{&},
+        '',
+        'border',
+        'radius',
+        $border-radius-small,
+        'for-radius',
+        'small'
+      );
+    }
+    &-large {
+      @include create-corner-helper(
+        #{&},
+        '',
+        'border',
+        'radius',
+        $border-radius-large,
+        'for-radius',
+        'large'
+      );
+    }
   }
 
   &-ellipse {
