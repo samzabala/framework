@@ -38,6 +38,13 @@ $prefix: '.input';
       color: $input-color;
     }
 
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      border-color: $input-border-color-focus;
+    }
+
     .theme-inverse & {
       background-color: $input-background-inverse;
 
@@ -128,12 +135,7 @@ $prefix: '.input';
     box-shadow: $input-box-shadow;
 
     &-hover {
-      &:focus,
-      &.focus,
-      &:active,
-      &.active {
-        border-color: $input-box-shadow-focus;
-      }
+      box-shadow: $input-box-shadow-focus;
     }
   }
 
@@ -329,9 +331,7 @@ $prefix: '.input';
 
 #{$prefix} {
   &:focus,
-  &.focus,
-  &:active,
-  &.active {
+  &.focus {
     @extend %fwe-form-input-boxy-shadow-hover;
   }
 
@@ -498,6 +498,7 @@ $prefix: '.input';
     &:hover,
     &:focus-within,
     &.focus,
+    &:active,
     &.active {
       @extend %fwe-form-input-boxy-shadow-hover;
     }
@@ -678,14 +679,7 @@ $prefix: '.input';
 
     @at-root %fwe-form-input-color-#{$tag} {
       & {
-        &,
-        &:hover,
-        &:focus,
-        &.focus,
-        &:active,
-        &.active {
-          color: $color;
-        }
+        color: $color;
         border-color: $color;
 
         @if type-of($color) == color and $color != transparent {

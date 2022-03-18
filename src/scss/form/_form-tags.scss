@@ -229,7 +229,7 @@ $prefix: '.input';
           &:hover,
           &:focus,
           &.focus {
-            box-shadow: none !important;
+            box-shadow: none;
             background: transparent;
             font: inherit;
             color: inherit;

@@ -7210,10 +7210,10 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .btn.btn-round.btn-small, .btn-group.btn-round.btn-small {
   border-radius: 1em;
 }
-.btn.btn-theme-polar, .btn.btn-theme, .btn.btn-gradient, .btn.btn-error-gradient, .btn.btn-caution-gradient, .btn.btn-success-gradient, .btn.btn-neutral-gradient, .btn.btn-accent-gradient, .btn.btn-secondary-gradient, .btn.btn-primary-gradient, .btn.btn-error-glassy, .btn.btn-caution-glassy, .btn.btn-success-glassy, .btn.btn-neutral-glassy, .btn.btn-accent-glassy, .btn.btn-secondary-glassy, .btn.btn-primary-glassy, .btn.btn-error, .btn.btn-caution, .btn.btn-success, .btn.btn-neutral, .btn.btn-accent, .btn.btn-secondary, .btn.btn-primary, .btn.btn-default, .btn-group {
+.btn.btn-link, .btn-group {
   box-shadow: none;
 }
-.btn.btn-theme-polar-outline:hover, .btn.btn-theme-polar-outline:focus, .focus.btn.btn-theme-polar-outline, .btn.btn-theme-polar-outline:active, .active.btn.btn-theme-polar-outline, .btn.btn-theme-outline:hover, .btn.btn-theme-outline:focus, .focus.btn.btn-theme-outline, .btn.btn-theme-outline:active, .active.btn.btn-theme-outline, .btn.btn-theme-polar:hover, .btn.btn-theme-polar:focus, .focus.btn.btn-theme-polar, .btn.btn-theme-polar:active, .active.btn.btn-theme-polar, .btn.btn-theme:hover, .btn.btn-theme:focus, .focus.btn.btn-theme, .btn.btn-theme:active, .active.btn.btn-theme, .btn.btn-gradient:hover, .btn.btn-gradient:focus, .focus.btn.btn-gradient, .btn.btn-gradient:active, .active.btn.btn-gradient, .btn.btn-error-gradient:hover, .btn.btn-error-gradient:focus, .focus.btn.btn-error-gradient, .btn.btn-error-gradient:active, .active.btn.btn-error-gradient, .btn.btn-caution-gradient:hover, .btn.btn-caution-gradient:focus, .focus.btn.btn-caution-gradient, .btn.btn-caution-gradient:active, .active.btn.btn-caution-gradient, .btn.btn-success-gradient:hover, .btn.btn-success-gradient:focus, .focus.btn.btn-success-gradient, .btn.btn-success-gradient:active, .active.btn.btn-success-gradient, .btn.btn-neutral-gradient:hover, .btn.btn-neutral-gradient:focus, .focus.btn.btn-neutral-gradient, .btn.btn-neutral-gradient:active, .active.btn.btn-neutral-gradient, .btn.btn-accent-gradient:hover, .btn.btn-accent-gradient:focus, .focus.btn.btn-accent-gradient, .btn.btn-accent-gradient:active, .active.btn.btn-accent-gradient, .btn.btn-secondary-gradient:hover, .btn.btn-secondary-gradient:focus, .focus.btn.btn-secondary-gradient, .btn.btn-secondary-gradient:active, .active.btn.btn-secondary-gradient, .btn.btn-primary-gradient:hover, .btn.btn-primary-gradient:focus, .focus.btn.btn-primary-gradient, .btn.btn-primary-gradient:active, .active.btn.btn-primary-gradient, .btn.btn-error-glassy:hover, .btn.btn-error-glassy:focus, .focus.btn.btn-error-glassy, .btn.btn-error-glassy:active, .active.btn.btn-error-glassy, .btn.btn-caution-glassy:hover, .btn.btn-caution-glassy:focus, .focus.btn.btn-caution-glassy, .btn.btn-caution-glassy:active, .active.btn.btn-caution-glassy, .btn.btn-success-glassy:hover, .btn.btn-success-glassy:focus, .focus.btn.btn-success-glassy, .btn.btn-success-glassy:active, .active.btn.btn-success-glassy, .btn.btn-neutral-glassy:hover, .btn.btn-neutral-glassy:focus, .focus.btn.btn-neutral-glassy, .btn.btn-neutral-glassy:active, .active.btn.btn-neutral-glassy, .btn.btn-accent-glassy:hover, .btn.btn-accent-glassy:focus, .focus.btn.btn-accent-glassy, .btn.btn-accent-glassy:active, .active.btn.btn-accent-glassy, .btn.btn-secondary-glassy:hover, .btn.btn-secondary-glassy:focus, .focus.btn.btn-secondary-glassy, .btn.btn-secondary-glassy:active, .active.btn.btn-secondary-glassy, .btn.btn-primary-glassy:hover, .btn.btn-primary-glassy:focus, .focus.btn.btn-primary-glassy, .btn.btn-primary-glassy:active, .active.btn.btn-primary-glassy, .btn.btn-error-outline:hover, .btn.btn-error-outline:focus, .focus.btn.btn-error-outline, .btn.btn-error-outline:active, .active.btn.btn-error-outline, .btn.btn-caution-outline:hover, .btn.btn-caution-outline:focus, .focus.btn.btn-caution-outline, .btn.btn-caution-outline:active, .active.btn.btn-caution-outline, .btn.btn-success-outline:hover, .btn.btn-success-outline:focus, .focus.btn.btn-success-outline, .btn.btn-success-outline:active, .active.btn.btn-success-outline, .btn.btn-neutral-outline:hover, .btn.btn-neutral-outline:focus, .focus.btn.btn-neutral-outline, .btn.btn-neutral-outline:active, .active.btn.btn-neutral-outline, .btn.btn-accent-outline:hover, .btn.btn-accent-outline:focus, .focus.btn.btn-accent-outline, .btn.btn-accent-outline:active, .active.btn.btn-accent-outline, .btn.btn-secondary-outline:hover, .btn.btn-secondary-outline:focus, .focus.btn.btn-secondary-outline, .btn.btn-secondary-outline:active, .active.btn.btn-secondary-outline, .btn.btn-primary-outline:hover, .btn.btn-primary-outline:focus, .focus.btn.btn-primary-outline, .btn.btn-primary-outline:active, .active.btn.btn-primary-outline, .btn.btn-link:hover, .btn.btn-link:focus, .focus.btn.btn-link, .btn.btn-link:active, .active.btn.btn-link, .btn.btn-error:hover, .btn.btn-error:focus, .focus.btn.btn-error, .btn.btn-error:active, .active.btn.btn-error, .btn.btn-caution:hover, .btn.btn-caution:focus, .focus.btn.btn-caution, .btn.btn-caution:active, .active.btn.btn-caution, .btn.btn-success:hover, .btn.btn-success:focus, .focus.btn.btn-success, .btn.btn-success:active, .active.btn.btn-success, .btn.btn-neutral:hover, .btn.btn-neutral:focus, .focus.btn.btn-neutral, .btn.btn-neutral:active, .active.btn.btn-neutral, .btn.btn-accent:hover, .btn.btn-accent:focus, .focus.btn.btn-accent, .btn.btn-accent:active, .active.btn.btn-accent, .btn.btn-secondary:hover, .btn.btn-secondary:focus, .focus.btn.btn-secondary, .btn.btn-secondary:active, .active.btn.btn-secondary, .btn.btn-primary:hover, .btn.btn-primary:focus, .focus.btn.btn-primary, .btn.btn-primary:active, .active.btn.btn-primary, .btn.btn-default:hover, .btn.btn-default:focus, .focus.btn.btn-default, .btn.btn-default:active, .active.btn.btn-default, .btn-group:hover, .btn-group:focus-within, .btn-group.focus, .btn-group.active {
+.btn.btn-theme-polar-outline:hover, .btn.btn-theme-polar-outline:focus, .focus.btn.btn-theme-polar-outline, .btn.btn-theme-polar-outline:active, .active.btn.btn-theme-polar-outline, .btn.btn-theme-outline:hover, .btn.btn-theme-outline:focus, .focus.btn.btn-theme-outline, .btn.btn-theme-outline:active, .active.btn.btn-theme-outline, .btn.btn-theme-polar:hover, .btn.btn-theme-polar:focus, .focus.btn.btn-theme-polar, .btn.btn-theme-polar:active, .active.btn.btn-theme-polar, .btn.btn-theme:hover, .btn.btn-theme:focus, .focus.btn.btn-theme, .btn.btn-theme:active, .active.btn.btn-theme, .btn.btn-gradient:hover, .btn.btn-gradient:focus, .focus.btn.btn-gradient, .btn.btn-gradient:active, .active.btn.btn-gradient, .btn.btn-error-gradient:hover, .btn.btn-error-gradient:focus, .focus.btn.btn-error-gradient, .btn.btn-error-gradient:active, .active.btn.btn-error-gradient, .btn.btn-caution-gradient:hover, .btn.btn-caution-gradient:focus, .focus.btn.btn-caution-gradient, .btn.btn-caution-gradient:active, .active.btn.btn-caution-gradient, .btn.btn-success-gradient:hover, .btn.btn-success-gradient:focus, .focus.btn.btn-success-gradient, .btn.btn-success-gradient:active, .active.btn.btn-success-gradient, .btn.btn-neutral-gradient:hover, .btn.btn-neutral-gradient:focus, .focus.btn.btn-neutral-gradient, .btn.btn-neutral-gradient:active, .active.btn.btn-neutral-gradient, .btn.btn-accent-gradient:hover, .btn.btn-accent-gradient:focus, .focus.btn.btn-accent-gradient, .btn.btn-accent-gradient:active, .active.btn.btn-accent-gradient, .btn.btn-secondary-gradient:hover, .btn.btn-secondary-gradient:focus, .focus.btn.btn-secondary-gradient, .btn.btn-secondary-gradient:active, .active.btn.btn-secondary-gradient, .btn.btn-primary-gradient:hover, .btn.btn-primary-gradient:focus, .focus.btn.btn-primary-gradient, .btn.btn-primary-gradient:active, .active.btn.btn-primary-gradient, .btn.btn-error-glassy:hover, .btn.btn-error-glassy:focus, .focus.btn.btn-error-glassy, .btn.btn-error-glassy:active, .active.btn.btn-error-glassy, .btn.btn-caution-glassy:hover, .btn.btn-caution-glassy:focus, .focus.btn.btn-caution-glassy, .btn.btn-caution-glassy:active, .active.btn.btn-caution-glassy, .btn.btn-success-glassy:hover, .btn.btn-success-glassy:focus, .focus.btn.btn-success-glassy, .btn.btn-success-glassy:active, .active.btn.btn-success-glassy, .btn.btn-neutral-glassy:hover, .btn.btn-neutral-glassy:focus, .focus.btn.btn-neutral-glassy, .btn.btn-neutral-glassy:active, .active.btn.btn-neutral-glassy, .btn.btn-accent-glassy:hover, .btn.btn-accent-glassy:focus, .focus.btn.btn-accent-glassy, .btn.btn-accent-glassy:active, .active.btn.btn-accent-glassy, .btn.btn-secondary-glassy:hover, .btn.btn-secondary-glassy:focus, .focus.btn.btn-secondary-glassy, .btn.btn-secondary-glassy:active, .active.btn.btn-secondary-glassy, .btn.btn-primary-glassy:hover, .btn.btn-primary-glassy:focus, .focus.btn.btn-primary-glassy, .btn.btn-primary-glassy:active, .active.btn.btn-primary-glassy, .btn.btn-error-outline:hover, .btn.btn-error-outline:focus, .focus.btn.btn-error-outline, .btn.btn-error-outline:active, .active.btn.btn-error-outline, .btn.btn-caution-outline:hover, .btn.btn-caution-outline:focus, .focus.btn.btn-caution-outline, .btn.btn-caution-outline:active, .active.btn.btn-caution-outline, .btn.btn-success-outline:hover, .btn.btn-success-outline:focus, .focus.btn.btn-success-outline, .btn.btn-success-outline:active, .active.btn.btn-success-outline, .btn.btn-neutral-outline:hover, .btn.btn-neutral-outline:focus, .focus.btn.btn-neutral-outline, .btn.btn-neutral-outline:active, .active.btn.btn-neutral-outline, .btn.btn-accent-outline:hover, .btn.btn-accent-outline:focus, .focus.btn.btn-accent-outline, .btn.btn-accent-outline:active, .active.btn.btn-accent-outline, .btn.btn-secondary-outline:hover, .btn.btn-secondary-outline:focus, .focus.btn.btn-secondary-outline, .btn.btn-secondary-outline:active, .active.btn.btn-secondary-outline, .btn.btn-primary-outline:hover, .btn.btn-primary-outline:focus, .focus.btn.btn-primary-outline, .btn.btn-primary-outline:active, .active.btn.btn-primary-outline, .btn.btn-error:hover, .btn.btn-error:focus, .focus.btn.btn-error, .btn.btn-error:active, .active.btn.btn-error, .btn.btn-caution:hover, .btn.btn-caution:focus, .focus.btn.btn-caution, .btn.btn-caution:active, .active.btn.btn-caution, .btn.btn-success:hover, .btn.btn-success:focus, .focus.btn.btn-success, .btn.btn-success:active, .active.btn.btn-success, .btn.btn-neutral:hover, .btn.btn-neutral:focus, .focus.btn.btn-neutral, .btn.btn-neutral:active, .active.btn.btn-neutral, .btn.btn-accent:hover, .btn.btn-accent:focus, .focus.btn.btn-accent, .btn.btn-accent:active, .active.btn.btn-accent, .btn.btn-secondary:hover, .btn.btn-secondary:focus, .focus.btn.btn-secondary, .btn.btn-secondary:active, .active.btn.btn-secondary, .btn.btn-primary:hover, .btn.btn-primary:focus, .focus.btn.btn-primary, .btn.btn-primary:active, .active.btn.btn-primary, .btn.btn-default:hover, .btn.btn-default:focus, .focus.btn.btn-default, .btn.btn-default:active, .active.btn.btn-default, .btn-group:hover, .btn-group:focus-within, .btn-group.focus, .btn-group:active, .btn-group.active {
   box-shadow: 0px 0px 10px -6px var(--fw-color-base);
 }
 
@@ -8386,6 +8386,9 @@ fieldset .input-calendar-ui {
 .input-tags-ui, .input-calendar-ui, .input-multiple-line, select.input-single-line, .input-select, .input-single-line {
   color: inherit;
 }
+.input-tags-ui:focus, .input-calendar-ui:focus, .input-multiple-line:focus, .input-select:focus, .input-single-line:focus, .focus.input-tags-ui, .focus.input-calendar-ui, .focus.input-multiple-line, .focus.input-select, .focus.input-single-line, .input-tags-ui:active, .input-calendar-ui:active, .input-multiple-line:active, .input-select:active, .input-single-line:active, .active.input-tags-ui, .active.input-calendar-ui, .active.input-multiple-line, .active.input-select, .active.input-single-line {
+  border-color: var(--fw-color-neutral-alpha-6);
+}
 .theme-inverse .input-tags-ui, .theme-inverse .input-calendar-ui, .theme-inverse .input-multiple-line, .theme-inverse .input-select, .theme-inverse .input-single-line {
   background-color: var(--fw-theme-background);
 }
@@ -8449,8 +8452,8 @@ fieldset .input-calendar-ui {
 .input, .input-group {
   box-shadow: none;
 }
-.input-group:focus:hover, .input-group:focus:focus-within, .input:focus, .focus.input-group, .focus.input, .input-group:active:hover, .input-group:active:focus-within, .input:active, .active.input-group, .active.input {
-  border-color: 0px 0 5px 0px var(--fw-color-primary);
+.input-group:hover, .input-group:focus-within, .input-group.focus, .input-group:active, .input-group.active, .input:focus, .input.focus {
+  box-shadow: 0px 0 5px 0px var(--fw-color-primary);
 }
 .input-single-line {
   vertical-align: middle;
@@ -8655,10 +8658,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-primary, .input-primary .input {
-  border-color: var(--fw-color-primary);
-}
-.input.input-primary, .input-primary .input {
   color: var(--fw-color-primary);
+  border-color: var(--fw-color-primary);
 }
 .input.input-primary:not(.focus):not(:focus):not(.active):not(:active), .input-primary .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-primary);
@@ -8671,10 +8672,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-secondary, .input-secondary .input {
-  border-color: var(--fw-color-secondary);
-}
-.input.input-secondary, .input-secondary .input {
   color: var(--fw-color-secondary);
+  border-color: var(--fw-color-secondary);
 }
 .input.input-secondary:not(.focus):not(:focus):not(.active):not(:active), .input-secondary .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-secondary);
@@ -8687,10 +8686,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-accent, .input-accent .input {
-  border-color: var(--fw-color-accent);
-}
-.input.input-accent, .input-accent .input {
   color: var(--fw-color-accent);
+  border-color: var(--fw-color-accent);
 }
 .input.input-accent:not(.focus):not(:focus):not(.active):not(:active), .input-accent .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-accent);
@@ -8703,10 +8700,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-neutral, .input-neutral .input {
-  border-color: var(--fw-color-neutral);
-}
-.input.input-neutral, .input-neutral .input {
   color: var(--fw-color-neutral);
+  border-color: var(--fw-color-neutral);
 }
 .input.input-neutral:not(.focus):not(:focus):not(.active):not(:active), .input-neutral .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-neutral);
@@ -8719,10 +8714,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-success, .input-success .input {
-  border-color: var(--fw-color-success);
-}
-.input.input-success, .input-success .input {
   color: var(--fw-color-success);
+  border-color: var(--fw-color-success);
 }
 .input.input-success:not(.focus):not(:focus):not(.active):not(:active), .input-success .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-success);
@@ -8735,10 +8728,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-caution, .input-caution .input {
-  border-color: var(--fw-color-caution);
-}
-.input.input-caution, .input-caution .input {
   color: var(--fw-color-caution);
+  border-color: var(--fw-color-caution);
 }
 .input.input-caution:not(.focus):not(:focus):not(.active):not(:active), .input-caution .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-caution);
@@ -8751,10 +8742,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 }
 
 .input.input-error, .input-error .input {
-  border-color: var(--fw-color-error);
-}
-.input.input-error, .input-error .input {
   color: var(--fw-color-error);
+  border-color: var(--fw-color-error);
 }
 .input.input-error:not(.focus):not(:focus):not(.active):not(:active), .input-error .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-error);
@@ -9131,7 +9120,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   min-width: 100%;
 }
 .input-tags-ui-input, .input-tags-ui-input:hover, .input-tags-ui-input:focus, .input-tags-ui-input.focus {
-  box-shadow: none !important;
+  box-shadow: none;
   background: transparent;
   font: inherit;
   color: inherit;

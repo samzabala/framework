@@ -332,6 +332,7 @@ $prefix: '.btn';
     &:hover,
     &:focus-within,
     &.focus,
+    &:active,
     &.active {
       @extend %fwe-btn-global-shadow-hover;
     }
@@ -458,19 +459,19 @@ $prefix: '.btn';
       );
     }
     @at-root %fwe-btn-#{$scheme} {
-      @if $scheme == 'link' {
+      @if $scheme != 'link' {
+        &:hover,
+        &:focus,
+        &.focus,
+        &:active,
+        &.active {
+          @extend %fwe-btn-global-shadow-hover;
+        }
       } @else if str-index($scheme, '-outline') {
       } @else {
         @extend %fwe-btn-global-shadow;
       }
 
-      &:hover,
-      &:focus,
-      &.focus,
-      &:active,
-      &.active {
-        @extend %fwe-btn-global-shadow-hover;
-      }
       @include create-btn-schemes($properties, $scheme, $custom-css);
 
       // @if str-index($scheme, '-gradient'){
