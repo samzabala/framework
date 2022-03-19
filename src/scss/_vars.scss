@@ -1328,7 +1328,7 @@ $progress-background-stripe-color-inverse: $progress-background-stripe-color !de
 $progress-background-stripe-width: 1px !default;
 $progress-background-stripe-gap: 5px !default;
 
-$progress-border-radius: 20px !default;
+$progress-border-radius: $border-radius-large !default;
 $progress-animation-duration: $transition-duration-long * 4 !default;
 $progress-transition-duration: $progress-animation-duration !default;
 
