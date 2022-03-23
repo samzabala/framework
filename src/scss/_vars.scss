@@ -810,8 +810,8 @@ $svg-gradient-color-end: $var-gradient-end !default;
 
 // TABLE @TODO table high contrast helper class
 $table-cell-height: 40px !default;
-$table-cell-height-large: 75px !default;
-$table-cell-height-small: 25px !default;
+$table-expanded-cell-height: 75px !default;
+$table-compact-cell-height: 25px !default;
 $table-cell-border-color: $var-theme-background-contrast !default;
 $table-cell-border-color-inverse: $table-cell-border-color !default;
 $table-cell-border-width: 1px !default;
@@ -1286,10 +1286,10 @@ $modal-board-close-box-shadow: $box-shadow-base $var-color-base !default;
 // DROPDOWN
 $dropdown-gutter-x: $gutter-small !default;
 $dropdown-gutter-y: $gutter-small !default;
-$dropdown-small-gutter-x: $gutter-micro !default;
-$dropdown-small-gutter-y: $gutter-micro !default;
-$dropdown-large-gutter-x: $gutter-base !default;
-$dropdown-large-gutter-y: $gutter-base !default;
+$dropdown-compact-gutter-x: $gutter-micro !default;
+$dropdown-compact-gutter-y: $gutter-micro !default;
+$dropdown-expanded-gutter-x: $gutter-base !default;
+$dropdown-expanded-gutter-y: $gutter-base !default;
 $dropdown-border-radius: $border-radius-small !default;
 $dropdown-box-shadow: $box-shadow-base $var-color-base !default;
 $dropdown-background: $var-theme-background !default;
@@ -1302,10 +1302,10 @@ $dropdown-active-color: $var-color-primary !default;
 //TOOLTIP
 $tooltip-gutter-x: $dropdown-gutter-x !default;
 $tooltip-gutter-y: $dropdown-gutter-y !default;
-$tooltip-small-gutter-x: $dropdown-small-gutter-x !default;
-$tooltip-small-gutter-y: $dropdown-small-gutter-y !default;
-$tooltip-large-gutter-x: $dropdown-large-gutter-x !default;
-$tooltip-large-gutter-y: $dropdown-large-gutter-y !default;
+$tooltip-compact-gutter-x: $dropdown-compact-gutter-x !default;
+$tooltip-compact-gutter-y: $dropdown-compact-gutter-y !default;
+$tooltip-expanded-gutter-x: $dropdown-expanded-gutter-x !default;
+$tooltip-expanded-gutter-y: $dropdown-expanded-gutter-y !default;
 $tooltip-border-radius: $dropdown-border-radius !default;
 $tooltip-box-shadow: $dropdown-box-shadow !default;
 $tooltip-background: $dropdown-background !default;

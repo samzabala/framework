@@ -111,11 +111,11 @@ $_fwc-table-cell-height: $table-cell-height;
   $_fwc-table-cell-height: rem($table-cell-height, $body-font-size);
 }
 
-$_fwc-table-cell-height-large: $table-cell-height-large;
-@if internal-is-convertable($table-cell-height-large) {
-  $_fwc-table-cell-height-large: rem($table-cell-height-large, $body-font-size);
+$_fwc-table-expanded-cell-height: $table-expanded-cell-height;
+@if internal-is-convertable($table-expanded-cell-height) {
+  $_fwc-table-expanded-cell-height: rem($table-expanded-cell-height, $body-font-size);
 }
-$_fwc-table-cell-height-small: $table-cell-height-small;
-@if internal-is-convertable($table-cell-height-small) {
-  $_fwc-table-cell-height-small: rem($table-cell-height-small, $body-font-size);
+$_fwc-table-compact-cell-height: $table-compact-cell-height;
+@if internal-is-convertable($table-compact-cell-height) {
+  $_fwc-table-compact-cell-height: rem($table-compact-cell-height, $body-font-size);
 }

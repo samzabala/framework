@@ -187,22 +187,22 @@ td,
   padding-top: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
   padding-bottom: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
 
-  #{$prefix}-small & {
+  #{$prefix}-compact & {
     padding-top: calc(
-      (#{$_fwc-table-cell-height-small} - #{$_fwc-body-single-line-compact}) * 0.5
+      (#{$_fwc-table-compact-cell-height} - #{$_fwc-body-single-line-compact}) * 0.5
     );
     padding-bottom: calc(
-      (#{$_fwc-table-cell-height-small} - #{$_fwc-body-single-line-compact}) * 0.5
+      (#{$_fwc-table-compact-cell-height} - #{$_fwc-body-single-line-compact}) * 0.5
     );
     line-height: $_fwc-body-line-height * $body-line-height-compact-factor;
   }
 
-  #{$prefix}-large & {
+  #{$prefix}-expanded & {
     padding-top: calc(
-      (#{$_fwc-table-cell-height-large} - #{$_fwc-body-single-line-expanded}) * 0.5
+      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
     );
     padding-bottom: calc(
-      (#{$_fwc-table-cell-height-large} - #{$_fwc-body-single-line-expanded}) * 0.5
+      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
     );
     line-height: $_fwc-body-line-height * $body-line-height-expanded-factor;
   }
@@ -216,12 +216,12 @@ td,
   vertical-align: middle;
   margin: #{$table-label-offset} 0;
 
-  #{$prefix}-large & {
-    height: calc(#{$_fwc-table-cell-height-large} - (#{$table-label-offset} * 2));
+  #{$prefix}-expanded & {
+    height: calc(#{$_fwc-table-expanded-cell-height} - (#{$table-label-offset} * 2));
   }
 
-  #{$prefix}-small & {
-    height: calc(#{$_fwc-table-cell-height-small} - (#{$table-label-offset} * 2));
+  #{$prefix}-compact & {
+    height: calc(#{$_fwc-table-compact-cell-height} - (#{$table-label-offset} * 2));
   }
 
   @each $tag, $color in $_fwc-brand-color-declarations-for-components {

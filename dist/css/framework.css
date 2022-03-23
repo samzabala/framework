@@ -5452,13 +5452,13 @@ body:not(.body-loaded) *:after {
   background: var(--fw-theme-background);
   color: var(--fw-theme-color);
 }
-.dropdown.dropdown-small {
+.dropdown.dropdown-compact {
   position: absolute;
   padding: 5px 5px;
   z-index: 2;
   text-align: initial;
 }
-.dropdown.dropdown-large {
+.dropdown.dropdown-expanded {
   position: absolute;
   padding: 20px 20px;
   z-index: 2;
@@ -5945,13 +5945,13 @@ hr.dropdown-separator {
   background: var(--fw-theme-background);
   color: var(--fw-theme-color);
 }
-.tooltip.tooltip-small {
+.tooltip.tooltip-compact {
   position: absolute;
   padding: 5px 5px;
   z-index: 2;
   text-align: initial;
 }
-.tooltip.tooltip-large {
+.tooltip.tooltip-expanded {
   position: absolute;
   padding: 20px 20px;
   z-index: 2;
@@ -7007,14 +7007,14 @@ td,
   padding-top: calc((2.5rem - 1.5em) * 0.5);
   padding-bottom: calc((2.5rem - 1.5em) * 0.5);
 }
-.table-small td,
-.table-small .table-cell {
+.table-compact td,
+.table-compact .table-cell {
   padding-top: calc((1.5625rem - 1.3125em) * 0.5);
   padding-bottom: calc((1.5625rem - 1.3125em) * 0.5);
   line-height: 1.3125;
 }
-.table-large td,
-.table-large .table-cell {
+.table-expanded td,
+.table-expanded .table-cell {
   padding-top: calc((4.6875rem - 2.25em) * 0.5);
   padding-bottom: calc((4.6875rem - 2.25em) * 0.5);
   line-height: 2.25;
@@ -7028,10 +7028,10 @@ td,
   vertical-align: middle;
   margin: 2px 0;
 }
-.table-large .table-label {
+.table-expanded .table-label {
   height: calc(4.6875rem - (2px * 2));
 }
-.table-small .table-label {
+.table-compact .table-label {
   height: calc(1.5625rem - (2px * 2));
 }
 .table-label-primary {

@@ -21,25 +21,25 @@ $prefix: '.tooltip';
     @include dump-styles(hide-js-friendly);
   }
 
-  &#{$prefix}-small {
+  &#{$prefix}-compact {
     @include create-popper-styles(
       null,
       null,
       null,
       null,
-      $tooltip-small-gutter-x,
-      $tooltip-small-gutter-y
+      $tooltip-compact-gutter-x,
+      $tooltip-compact-gutter-y
     );
   }
 
-  &#{$prefix}-large {
+  &#{$prefix}-expanded {
     @include create-popper-styles(
       null,
       null,
       null,
       null,
-      $tooltip-large-gutter-x,
-      $tooltip-large-gutter-y
+      $tooltip-expanded-gutter-x,
+      $tooltip-expanded-gutter-y
     );
   }
 

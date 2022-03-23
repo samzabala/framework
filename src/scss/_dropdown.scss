@@ -21,25 +21,25 @@ $prefix: '.dropdown';
   transform-style: preserve-3d;
   z-index: $z-index-dropdown;
 
-  &#{$prefix}-small {
+  &#{$prefix}-compact {
     @include create-popper-styles(
       null,
       null,
       null,
       null,
-      $dropdown-small-gutter-x,
-      $dropdown-small-gutter-y
+      $dropdown-compact-gutter-x,
+      $dropdown-compact-gutter-y
     );
   }
 
-  &#{$prefix}-large {
+  &#{$prefix}-expanded {
     @include create-popper-styles(
       null,
       null,
       null,
       null,
-      $dropdown-large-gutter-x,
-      $dropdown-large-gutter-y
+      $dropdown-expanded-gutter-x,
+      $dropdown-expanded-gutter-y
     );
   }
 
