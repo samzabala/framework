@@ -2339,7 +2339,6 @@ $keyframe-instance: 1;
       -webkit-background-clip: unset;
     }
 
-    &,
     & > * {
       @supports not (-webkit-background-clip: text) {
         background: transparent;
