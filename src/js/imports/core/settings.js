@@ -16,16 +16,7 @@ class Settings {
   }
 
   static get(key) {
-    const toReturn = {
-      prefix: CORE_SETTINGS.prefix,
-      lazyLoad: CORE_SETTINGS.lazyLoad,
-      initializeModal: CORE_SETTINGS.initializeModal,
-      initializeAccordion: CORE_SETTINGS.initializeAccordion,
-      initializeForm: CORE_SETTINGS.initializeForm,
-      dynamicHash: CORE_SETTINGS.dynamicHash,
-      uiClass: CORE_SETTINGS.uiClass,
-      uiJsClass: CORE_SETTINGS.uiJsClass,
-    };
+    const toReturn = CORE_SETTINGS;
 
     if (key) {
       return toReturn[key];

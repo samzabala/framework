@@ -82,16 +82,7 @@
     };
 
     Settings.get = function get(key) {
-      var toReturn = {
-        prefix: CORE_SETTINGS.prefix,
-        lazyLoad: CORE_SETTINGS.lazyLoad,
-        initializeModal: CORE_SETTINGS.initializeModal,
-        initializeAccordion: CORE_SETTINGS.initializeAccordion,
-        initializeForm: CORE_SETTINGS.initializeForm,
-        dynamicHash: CORE_SETTINGS.dynamicHash,
-        uiClass: CORE_SETTINGS.uiClass,
-        uiJsClass: CORE_SETTINGS.uiJsClass
-      };
+      var toReturn = CORE_SETTINGS;
 
       if (key) {
         return toReturn[key];
@@ -681,7 +672,9 @@
 
     Initiator.start = function start() {
       //component events
-      var ini = new Initiator();
+      var ini = new Initiator(); //fw core class so we can see if fw js is on ya boi
+
+      document.documentElement && document.documentElement.classList.add(Settings.get('prefix') + "-ready");
       Initiator.isStarted = true;
 
       _classPrivateFieldLooseBase(ini, _execqt)[_execqt](Initiator.Q.on_init);

@@ -1,4 +1,5 @@
 import { UIBodyClass } from './../util/ui.js';
+import Settings from './settings.js';
 
 class FwQueue {
   constructor() {
@@ -143,6 +144,11 @@ class Initiator {
   static start() {
     //component events
     const ini = new Initiator();
+
+    //fw core class so we can see if fw js is on ya boi
+
+    document.documentElement &&
+      document.documentElement.classList.add(`${Settings.get('prefix')}-ready`);
 
     Initiator.isStarted = true;
 

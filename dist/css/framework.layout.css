@@ -3838,10 +3838,10 @@ big {
 .module-grid:nth-child(n+2) {
   margin-top: 20px;
 }
-body:not(.body-loaded) .module-grid, body:not(.body-loaded) .module-grid-title {
+.fw-ready body:not(.body-loaded) .module-grid, .fw-ready body:not(.body-loaded) .module-grid-title {
   opacity: 0;
 }
-.body-loaded .module-grid, .body-loaded .module-grid-title {
+.fw-ready .body-loaded .module-grid, .fw-ready .body-loaded .module-grid-title {
   opacity: 1;
 }
 .module-grid-title {
