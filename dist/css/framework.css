@@ -3879,10 +3879,10 @@ big {
 .module-grid:nth-child(n+2) {
   margin-top: 20px;
 }
-.fw-ready body:not(.body-loaded) .module-grid, .fw-ready body:not(.body-loaded) .module-grid-title {
+.fw-js-ready body:not(.body-loaded) .module-grid, .fw-js-ready body:not(.body-loaded) .module-grid-title {
   opacity: 0;
 }
-.fw-ready .body-loaded .module-grid, .fw-ready .body-loaded .module-grid-title {
+.fw-js-ready .body-loaded .module-grid, .fw-js-ready .body-loaded .module-grid-title {
   opacity: 1;
 }
 .module-grid-title {
@@ -4242,7 +4242,7 @@ big {
   text-rendering: auto;
   pointer-events: none;
 }
-.fw-ready body:not(.body-loaded) .symbol:before {
+.fw-js-ready body:not(.body-loaded) .symbol:before {
   color: transparent !important;
 }
 .symbol-1p21:before, .active > .symbol-1p21-toggle:before, .open > .symbol-1p21-toggle:before {
@@ -5276,14 +5276,14 @@ body.body-nav-sticky-offset {
   opacity: 1;
   transition: 0.25s opacity ease-in-out;
 }
-.fw-ready body:not(.body-lazy-loaded) .lazy,
-.fw-ready body:not(.body-lazy-loaded) *[data-src],
-.fw-ready body:not(.body-lazy-loaded) *[data-srcset] {
+.fw-js-ready body:not(.body-lazy-loaded) .lazy,
+.fw-js-ready body:not(.body-lazy-loaded) *[data-src],
+.fw-js-ready body:not(.body-lazy-loaded) *[data-srcset] {
   opacity: 0;
 }
-.lazy .fw-ready body:not(.body-loaded),
-*[data-src] .fw-ready body:not(.body-loaded),
-*[data-srcset] .fw-ready body:not(.body-loaded) {
+.lazy .fw-js-ready body:not(.body-loaded),
+*[data-src] .fw-js-ready body:not(.body-loaded),
+*[data-srcset] .fw-js-ready body:not(.body-loaded) {
   transition: none !important;
 }
 

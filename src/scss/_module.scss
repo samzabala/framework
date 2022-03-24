@@ -21,14 +21,14 @@ $prefix: '.module';
       margin-top: $module-grid-gutter;
     }
 
-    .fw-ready body:not(.body-loaded) & {
+    .fw-js-ready body:not(.body-loaded) & {
       &,
       &-title {
         opacity: 0;
       }
     }
 
-    .fw-ready .body-loaded & {
+    .fw-js-ready .body-loaded & {
       &,
       &-title {
         opacity: 1;

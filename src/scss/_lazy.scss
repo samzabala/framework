@@ -8,10 +8,10 @@ $prefix: '.lazy';
 *[data-srcset] {
   opacity: 1;
   transition: $transition-duration-base opacity $transition-timing;
-  .fw-ready body:not(.body-lazy-loaded) & {
+  .fw-js-ready body:not(.body-lazy-loaded) & {
     opacity: 0;
   }
-  .fw-ready body:not(.body-loaded) {
+  .fw-js-ready body:not(.body-loaded) {
     transition: none !important;
   }
 }

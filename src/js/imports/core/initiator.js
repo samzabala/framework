@@ -148,7 +148,7 @@ class Initiator {
     //fw core class so we can see if fw js is on ya boi
 
     document.documentElement &&
-      document.documentElement.classList.add(`${Settings.get('prefix')}-ready`);
+      document.documentElement.classList.add(`${Settings.get('prefix')}-js-ready`);
 
     Initiator.isStarted = true;
 

@@ -674,7 +674,7 @@
       //component events
       var ini = new Initiator(); //fw core class so we can see if fw js is on ya boi
 
-      document.documentElement && document.documentElement.classList.add(Settings.get('prefix') + "-ready");
+      document.documentElement && document.documentElement.classList.add(Settings.get('prefix') + "-js-ready");
       Initiator.isStarted = true;
 
       _classPrivateFieldLooseBase(ini, _execqt)[_execqt](Initiator.Q.on_init);
