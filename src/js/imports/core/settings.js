@@ -10,18 +10,16 @@ CORE_SETTINGS.uiJsClass = CORE_SETTINGS.uiClass.replace('-', '_'); // for script
 
 class Settings {
   static modify(key, value) {
-    if (CORE_SETTINGS.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(CORE_SETTINGS, key)) {
       CORE_SETTINGS[key] = value;
     }
   }
 
   static get(key) {
-    const toReturn = CORE_SETTINGS;
-
     if (key) {
-      return toReturn[key];
+      return CORE_SETTINGS[key];
     } else {
-      return toReturn;
+      return CORE_SETTINGS;
     }
   }
 }

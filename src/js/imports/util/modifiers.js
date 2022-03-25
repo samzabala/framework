@@ -8,7 +8,7 @@ const Modifiers = {
   hasActive(key) {
     key = key || false;
 
-    if (key && this.keys.hasOwnProperty(key)) {
+    if (key && Object.prototype.hasOwnProperty.call(this.keys, key)) {
       return this.keys[key];
     } else {
       return this.keys.ctrl || this.keys.shift || this.keys.alt || this.keys.meta;

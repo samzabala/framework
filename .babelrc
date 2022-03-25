@@ -5,7 +5,8 @@
       {
         "loose": true,
         "bugfixes": true,
-        "modules": false
+        "modules": false,
+        "shippedProposals": true
       }
     ]
   ],

@@ -199,10 +199,7 @@ class Tooltip extends FwComponent {
   }
 
   get badge() {
-    if (!this.UICurrent) {
-      return;
-    }
-    return this.UICurrent.querySelector(`.${COMPONENT_CLASS}-badge`);
+    return this.UICurrent && this.UICurrent.querySelector(`.${COMPONENT_CLASS}-badge`);
   }
 
   get width() {
@@ -374,7 +371,7 @@ class Tooltip extends FwComponent {
 
   get elementOrigin() {
     if (!Tooltip.current.UI) {
-      return;
+      return false;
     }
 
     let the_x = this.elementOffset.left + this.elementOffset.width * 0.5; //top and bottom
@@ -456,7 +453,7 @@ class Tooltip extends FwComponent {
   }
 
   static handleToggleHoverOff() {
-    return (e) => {
+    return () => {
       const tooltip = new Tooltip();
       tooltip.destroy();
     };

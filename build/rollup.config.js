@@ -1,6 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy';
+import eslint from '@rollup/plugin-eslint';
 
 export default {
   input: 'src/js/framework.lib.js',
@@ -23,6 +24,7 @@ export default {
     console.warn(warning.message);
   },
   plugins: [
+    eslint(),
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',

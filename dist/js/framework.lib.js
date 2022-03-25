@@ -76,18 +76,16 @@
     function Settings() {}
 
     Settings.modify = function modify(key, value) {
-      if (CORE_SETTINGS.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(CORE_SETTINGS, key)) {
         CORE_SETTINGS[key] = value;
       }
     };
 
     Settings.get = function get(key) {
-      var toReturn = CORE_SETTINGS;
-
       if (key) {
-        return toReturn[key];
+        return CORE_SETTINGS[key];
       } else {
-        return toReturn;
+        return CORE_SETTINGS;
       }
     };
 
@@ -771,6 +769,7 @@
   Initiator.start();
 
   var NativeEvents = ['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'paste', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll', 'hashchange'];
+  var uIdEvent = 0;
   var EVENT_STORAGE = {};
 
   var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
@@ -780,15 +779,15 @@
       return _FwDataHelper.apply(this, arguments) || this;
     }
 
-    FwEvent.UIDEvent = function UIDEvent(element, uid) {
-      return uid && uid + "::" + uidEvent++ || element.uidEvent || uidEvent++;
+    FwEvent.getUIDEvent = function getUIDEvent(element, uid) {
+      return uid && uid + "::" + uIdEvent++ || element.uIdEvent || uIdEvent++;
     };
 
     FwEvent.getEvent = function getEvent(element) {
-      var uid = UIDEvent(element);
-      element.uidEvent = uid;
+      var uid = FwEvent.getUIDEvent(element);
+      element.uIdEvent = uid;
       EVENT_STORAGE[uid] = EVENT_STORAGE[uid] || {};
-      return eventRegistry[uid];
+      return EVENT_STORAGE[uid];
     };
 
     FwEvent.classNester = function classNester(selector) {
@@ -1064,7 +1063,7 @@
       }
     };
 
-    _proto._setInitState = function _setInitState(beforeEvent, happeningEvent, afterEvent, callback) {
+    _proto._setInitState = function _setInitState(element, beforeEvent, happeningEvent, afterEvent, callback) {
       callback = callback || false;
 
       if (callback) {
@@ -1080,19 +1079,19 @@
 
       for (var prop in defaults) {
         //defaults
-        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && defaults[prop].hasOwnProperty('value')) {
+        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && Object.prototype.hasOwnProperty.call(defaults[prop], 'value')) {
           args[prop] = defaults[prop].value;
         } else {
           args[prop] = defaults[prop];
         } //custom
 
 
-        if (arr.hasOwnProperty(prop) && arr[prop] !== undefined && arr[prop] !== null && arr[prop] !== '') {
+        if (Object.prototype.hasOwnProperty.call(arr, prop) && arr[prop] !== undefined && arr[prop] !== null && arr[prop] !== '') {
           args[prop] = arr[prop];
         } //validate
 
 
-        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && defaults[prop].hasOwnProperty('parser')) {
+        if (typeof defaults[prop] === 'object' && defaults[prop] !== null && Object.prototype.hasOwnProperty.call(defaults[prop], 'parser')) {
           args[prop] = defaults[prop].parser(args[prop]);
         } // catch boolean
 
@@ -1612,11 +1611,13 @@
         _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OPEN, EVENT_OPEN, EVENT_AFTER_OPEN, function () {
           Dropdown.purge(element);
           element.classList.add(ACTIVATED_CLASS$6);
-          triggerer && triggerer.classList.add(ACTIVATED_CLASS$6); // if(this.UIElUncles){
-          // 	this.UIElUncles.forEach((uncle) => {
-          // 		uncle.classList.remove(ACTIVATED_CLASS);
-          // 	});
-          // }
+          triggerer && triggerer.classList.add(ACTIVATED_CLASS$6);
+
+          if (_this2.UIElUncles) {
+            _this2.UIElUncles.forEach(function (uncle) {
+              uncle.classList.remove(ACTIVATED_CLASS$6);
+            });
+          }
 
           _this2.setDimensions();
         }, element);
@@ -1675,7 +1676,7 @@
       };
     };
 
-    Dropdown.handleFocusOpen = function handleFocusOpen(i) {
+    Dropdown.handleFocusOpen = function handleFocusOpen() {
       return function (e) {
         if (FwComponent.isDisabled(e.target)) {
           e.target.blur();
@@ -1701,7 +1702,7 @@
       };
     };
 
-    Dropdown.handleUniversalPurge = function handleUniversalPurge(isPurger) {
+    Dropdown.handleUniversalPurge = function handleUniversalPurge() {
       return function (e) {
         if (FwComponent.isDisabled(e.target)) {
           e.preventDefault();
@@ -1747,6 +1748,8 @@
           return FwDom.getSiblings(this.UIElNavcestor).filter(function (sibling) {
             return sibling.matches(NAV_ANCESTOR);
           });
+        } else {
+          return false;
         }
       }
     }], [{
@@ -2024,60 +2027,12 @@
     _inheritsLoose(Calendar, _FwComponent);
 
     function Calendar(element, valueToRender, args) {
-      var _this;
-
-      _this = _FwComponent.call(this, element, {
-        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : false,
-        _UIInputValue: element && element.hasOwnProperty('__UIInputValue') ? element.__UIInputValue : false,
+      return _FwComponent.call(this, element, {
+        triggerChange: element && Object.prototype.hasOwnProperty.call(element, '_triggerChange') ? element._triggerChange : false,
+        _UIInputValue: element && Object.prototype.hasOwnProperty.call(element, '__UIInputValue') ? element.__UIInputValue : false,
         _renderValue: valueToRender ? valueToRender : element && element.__renderValue ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
-
-      _this._arrowHtml = function (buttonClass) {
-        var symbolClass, arrowDate, disValid, arrowClass; //set a new date with no date because fuck that boi
-        // console.warn(buttonClass,'hello i fucked up','\n',FwDate.toParsed(uiValue),'\n',this._calendar.startDate,'\n', new Date(this._calendar.year,this._calendar.month));
-
-        switch (buttonClass) {
-          case 'prev-month':
-            symbolClass = 'symbol-arrow-left';
-            arrowClass = 'month';
-            arrowDate = FwDate.toVal(FwDate.adjacentMonth(_this._calendar.startDate, -1));
-            disValid = _this.validates(new Date(_this._calendar.year, _this._calendar.month, 0), true);
-            break;
-
-          case 'prev-year':
-            symbolClass = 'symbol-arrow-double-left';
-            arrowClass = 'year';
-            arrowDate = FwDate.toVal(FwDate.adjacentMonth(_this._calendar.startDate, -12));
-            disValid = _this.validates(new Date(_this._calendar.year - 1, _this._calendar.month, 0), true);
-            break;
-
-          case 'next-month':
-            symbolClass = 'symbol-arrow-right';
-            arrowClass = 'month';
-            arrowDate = FwDate.toVal(FwDate.adjacentMonth(_this._calendar.startDate, 1));
-            disValid = _this.validates(new Date(_this._calendar.year, _this._calendar.month + 1, 1), true);
-            break;
-
-          case 'next-year':
-            symbolClass = 'symbol-arrow-double-right';
-            arrowClass = 'year';
-            arrowDate = FwDate.toVal(FwDate.adjacentMonth(_this._calendar.startDate, 12));
-            disValid = _this.validates(new Date(_this._calendar.year + 1, _this._calendar.month, 1), true);
-            break;
-        } //kung yung at least yung last day nang prev or first day ng next man lang ay valid pwidi sya ipindoot
-
-
-        var htmlString = "<button type=\"button\"\n\t\t\tclass=\"\n\t\t\t\t" + (!disValid ? "disabled " : '') + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-navigation\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-button\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + arrowClass + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + buttonClass + "\" data-value=\"" + arrowDate + "\"\n\t\t\t>\n\t\t\t\t<i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "symbol symbol " + symbolClass + "\"></i>\n\t\t\t</button>";
-        return htmlString;
-      };
-
-      _this._blockHtml = function (date, customClass) {
-        customClass = customClass || '';
-        return "<button type=\"button\" data-value=\"" + FwDate.toVal(date) + "\"\n\t\t\t\tclass=\"\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-block\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-button\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-date\n\t\t\t\t" + customClass + "\n\t\t\t\">\n\t\t\t\t<span>" + date.getDate() + "</span>\n\t\t\t</button>";
-      };
-
-      return _this;
     }
 
     var _proto = Calendar.prototype;
@@ -2136,13 +2091,13 @@
     };
 
     _proto.reset = function reset() {
-      var _this2 = this;
+      var _this = this;
 
       var element = this.element;
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESET$1, EVENT_RESET$1, EVENT_AFTER_RESET$1, function () {
         // this.__enableChange();
-        _this2.update(FwDate.toVal(false), _this2.renderValue);
+        _this.update(FwDate.toVal(false), _this.renderValue);
       }, element);
     };
 
@@ -2154,7 +2109,7 @@
     };
 
     _proto.update = function update(newValue, valueToRender) {
-      var _this3 = this;
+      var _this2 = this;
 
       var element = this.element;
       var theValue = newValue || newValue == '' ? newValue : this.theValue ? this.theValue : false;
@@ -2166,27 +2121,27 @@
 
       if (this.__mustOnChange()) {
         lifeCycle.before = function () {
-          _this3.change();
+          _this2.change();
 
           return false;
         };
       } else {
         lifeCycle.during = function () {
-          if (_this3.validates(theValue) || !theValue) {
-            _this3._renderUI();
+          if (_this2.validates(theValue) || !theValue) {
+            _this2._renderUI();
           } //user visual feedback if it has a valid bitch
 
 
-          if (!_FwComponent.prototype.UIEl.call(_this3).classList.contains('input-error')) {
-            if (_this3.validates(theValue) || !theValue && !_this3.isRequired) {
-              _this3.UIRoot.classList.remove('input-error');
+          if (!_FwComponent.prototype.UIEl.call(_this2).classList.contains('input-error')) {
+            if (_this2.validates(theValue) || !theValue && !_this2.isRequired) {
+              _this2.UIRoot.classList.remove('input-error');
             } else {
-              _this3.UIRoot.classList.add('input-error');
+              _this2.UIRoot.classList.add('input-error');
             }
           }
 
-          if (_this3.theValue) {
-            _this3.UIDates.forEach(function (date) {
+          if (_this2.theValue) {
+            _this2.UIDates.forEach(function (date) {
               if (date.getAttribute('data-value') == theValue) {
                 date.classList.add(ACTIVATED_CLASS$5);
               } else {
@@ -2195,8 +2150,8 @@
             });
           }
 
-          if (_this3.UIInput) {
-            _this3.UIInputValue = theValue;
+          if (_this2.UIInput) {
+            _this2.UIInputValue = theValue;
           }
         };
       }
@@ -2261,8 +2216,52 @@
       return toReturn;
     };
 
+    _proto._arrowHtml = function _arrowHtml(buttonClass) {
+      var symbolClass, arrowDate, disValid, arrowClass; //set a new date with no date because fuck that boi
+      // console.warn(buttonClass,'hello i fucked up','\n',FwDate.toParsed(uiValue),'\n',this._calendar.startDate,'\n', new Date(this._calendar.year,this._calendar.month));
+
+      switch (buttonClass) {
+        case 'prev-month':
+          symbolClass = 'symbol-arrow-left';
+          arrowClass = 'month';
+          arrowDate = FwDate.toVal(FwDate.adjacentMonth(this._calendar.startDate, -1));
+          disValid = this.validates(new Date(this._calendar.year, this._calendar.month, 0), true);
+          break;
+
+        case 'prev-year':
+          symbolClass = 'symbol-arrow-double-left';
+          arrowClass = 'year';
+          arrowDate = FwDate.toVal(FwDate.adjacentMonth(this._calendar.startDate, -12));
+          disValid = this.validates(new Date(this._calendar.year - 1, this._calendar.month, 0), true);
+          break;
+
+        case 'next-month':
+          symbolClass = 'symbol-arrow-right';
+          arrowClass = 'month';
+          arrowDate = FwDate.toVal(FwDate.adjacentMonth(this._calendar.startDate, 1));
+          disValid = this.validates(new Date(this._calendar.year, this._calendar.month + 1, 1), true);
+          break;
+
+        case 'next-year':
+          symbolClass = 'symbol-arrow-double-right';
+          arrowClass = 'year';
+          arrowDate = FwDate.toVal(FwDate.adjacentMonth(this._calendar.startDate, 12));
+          disValid = this.validates(new Date(this._calendar.year + 1, this._calendar.month, 1), true);
+          break;
+      } //kung yung at least yung last day nang prev or first day ng next man lang ay valid pwidi sya ipindoot
+
+
+      var htmlString = "<button type=\"button\"\n\t\t\tclass=\"\n\t\t\t\t" + (!disValid ? "disabled " : '') + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-navigation\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-button\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + arrowClass + "\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-" + buttonClass + "\" data-value=\"" + arrowDate + "\"\n\t\t\t>\n\t\t\t\t<i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "symbol symbol " + symbolClass + "\"></i>\n\t\t\t</button>";
+      return htmlString;
+    };
+
+    _proto._blockHtml = function _blockHtml(date, customClass) {
+      customClass = customClass || '';
+      return "<button type=\"button\" data-value=\"" + FwDate.toVal(date) + "\"\n\t\t\t\tclass=\"\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-block\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-button\n\t\t\t\t" + UIPrefix(COMPONENT_CLASS$9) + "-date\n\t\t\t\t" + customClass + "\n\t\t\t\">\n\t\t\t\t<span>" + date.getDate() + "</span>\n\t\t\t</button>";
+    };
+
     _proto._renderUI = function _renderUI(elem, uiValue) {
-      var _this4 = this;
+      var _this3 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _FwComponent.prototype.UIEl.call(this);
       uiValue = uiValue || this.renderValue;
@@ -2270,7 +2269,7 @@
       var theUI = {};
 
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RENDER$2, EVENT_RENDER$2, EVENT_AFTER_RENDER$2, function () {
-        theUI.container = _this4.UIRoot;
+        theUI.container = _this3.UIRoot;
 
         if (!theUI.container) {
           theUI.container = document.createElement('div');
@@ -2287,13 +2286,13 @@
           }
         }); //input
 
-        if (_this4.args.textInput) {
+        if (_this3.args.textInput) {
           if (!theUI.inputWrapper) {
             //should only run on init but lagot ka kung hindi
             theUI.inputWrapper = document.createElement('div');
             theUI.container.appendChild(theUI.inputWrapper);
             theUI.inputWrapper.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-input");
-            theUI.inputWrapper.innerHTML = "<input class=\"input input-single-line\"\n                value=\"" + FwDate.toHuman(_this4.UIInputValue) + "\"\n                type=\"text\" maxlength=\"10\" placeholder=\"MM/DD/YY\" />";
+            theUI.inputWrapper.innerHTML = "<input class=\"input input-single-line\"\n                value=\"" + FwDate.toHuman(_this3.UIInputValue) + "\"\n                type=\"text\" maxlength=\"10\" placeholder=\"MM/DD/YY\" />";
           }
         } //heading
 
@@ -2304,8 +2303,8 @@
 
         var butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
         butts.forEach(function (butt) {
-          if (_this4.args.yearSkip && (butt == 'prev-year' || butt == 'next-year') || _this4.args.monthSkip && (butt == 'prev-month' || butt == 'next-month')) {
-            theUI.heading.innerHTML += _this4._arrowHtml(butt);
+          if (_this3.args.yearSkip && (butt == 'prev-year' || butt == 'next-year') || _this3.args.monthSkip && (butt == 'prev-month' || butt == 'next-month')) {
+            theUI.heading.innerHTML += _this3._arrowHtml(butt);
           }
         }); //title
 
@@ -2314,27 +2313,27 @@
         theUI.title.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-title " + UIPrefix(COMPONENT_CLASS$9) + "-dropdown-toggle\n          " + UIDynamicClass //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
         );
         theUI.title.setAttribute('data-toggle-dropdown', '');
-        theUI.title.innerHTML = "<span\n          class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month-text\">\n            " + monthNamesShort[_this4._calendar.month] + "\n          </span>\n          <span class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-year-text\">\n            " + _this4._calendar.year + "\n          </span>\n          <i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-symbol symbol symbol-caret-down no-margin-x\"></i>"; //dropdown
+        theUI.title.innerHTML = "<span\n          class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month-text\">\n            " + monthNamesShort[_this3._calendar.month] + "\n          </span>\n          <span class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-year-text\">\n            " + _this3._calendar.year + "\n          </span>\n          <i class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-symbol symbol symbol-caret-down no-margin-x\"></i>"; //dropdown
 
         var dropdown = document.createElement('ul');
         theUI.heading.appendChild(dropdown);
         dropdown.setAttribute('data-dropdown-width', '100%');
         dropdown.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dropdown dropdown dropdown-center-x dropdown-top-flush text-align-center");
-        dropdown.innerHTML += "<li\n            class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n          >\n            <a href=\"#\"\n              class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n              data-value=\"" + FwDate.toVal(_this4._calendar.startDate) + "\"\n            >\n              " + monthNamesShort[_this4._calendar.month] + " " + _this4._calendar.year + "\n            </a>\n          </li>\n          <li><hr class=\"dropdown-separator\"></li>";
+        dropdown.innerHTML += "<li\n            class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-current-month-year active\"\n          >\n            <a href=\"#\"\n              class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n              data-value=\"" + FwDate.toVal(_this3._calendar.startDate) + "\"\n            >\n              " + monthNamesShort[_this3._calendar.month] + " " + _this3._calendar.year + "\n            </a>\n          </li>\n          <li><hr class=\"dropdown-separator\"></li>";
         theUI.dropdown = new Dropdown(dropdown, theUI.title);
         var dropdownInit, dropdownLimit;
 
-        if (_this4.args.yearSpan == 0) {
-          dropdownInit = _this4._calendar.startDate.getMonth() * -1;
-          dropdownLimit = 11 - _this4._calendar.startDate.getMonth();
+        if (_this3.args.yearSpan == 0) {
+          dropdownInit = _this3._calendar.startDate.getMonth() * -1;
+          dropdownLimit = 11 - _this3._calendar.startDate.getMonth();
         } else {
-          dropdownInit = parseInt(-12 * parseInt(_this4.args.yearSpan));
-          dropdownLimit = parseInt(12 * parseInt(_this4.args.yearSpan));
+          dropdownInit = parseInt(-12 * parseInt(_this3.args.yearSpan));
+          dropdownLimit = parseInt(12 * parseInt(_this3.args.yearSpan));
         } //update dropdown
 
 
         var _loop = function _loop(i) {
-          var listItemDate = FwDate.adjacentMonth(_this4._calendar.startDate, i);
+          var listItemDate = FwDate.adjacentMonth(_this3._calendar.startDate, i);
 
           var dateForValidation = function () {
             var toReturn;
@@ -2350,7 +2349,7 @@
             return toReturn;
           }();
 
-          if (_this4.validates(dateForValidation, true)) {
+          if (_this3.validates(dateForValidation, true)) {
             var currClass = i == 0 ? 'active' : '',
                 listItem = "<li class=\"" + currClass + "\">\n                <a href=\"#\"\n                  class=\"" + UIPrefix(COMPONENT_CLASS$9) + "-month\"\n                  data-value=\"" + FwDate.toVal(listItemDate) + "\">\n                    " + monthNamesShort[listItemDate.getMonth()] + " " + listItemDate.getFullYear() + "\n                </a>\n              " + (listItemDate.getMonth() == 11 && i !== dropdownLimit ? "</li><li><hr class=\"dropdown-separator\">" : '') + "\n              </li>";
             theUI.dropdown.element.innerHTML += listItem;
@@ -2370,7 +2369,7 @@
         theUI.grid.append(theUI.days);
         theUI.days.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-days");
         var daysHTML = '',
-            dayToRetrieve = parseInt(_this4.args.startDay);
+            dayToRetrieve = parseInt(_this3.args.startDay);
 
         for (var _i = 0; _i < 7; _i++) {
           if (dayToRetrieve > 6) {
@@ -2387,21 +2386,21 @@
         theUI.grid.append(theUI.dates);
         theUI.dates.setAttribute('class', UIPrefix(COMPONENT_CLASS$9) + "-dates"); //previous month
 
-        var freeGridSpacePrev = (_this4._calendar.startDate.getDay() - parseInt(_this4.args.startDay) + 7) % 7,
-            calendarPrevDayStart = _this4._calendar.prevDay == 6 ? 0 : _this4._calendar.prevDay + 1;
+        var freeGridSpacePrev = (_this3._calendar.startDate.getDay() - parseInt(_this3.args.startDay) + 7) % 7,
+            calendarPrevDayStart = _this3._calendar.prevDay == 6 ? 0 : _this3._calendar.prevDay + 1;
 
-        if (calendarPrevDayStart !== parseInt(_this4.args.startDay)) {
+        if (calendarPrevDayStart !== parseInt(_this3.args.startDay)) {
           //if it doenst take its own row of shit
           // i = 0; i <= freeGridSpacePrev; i++
           // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
           // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
           // for(let i = 0; i < 7; i++){
           for (var _i2 = 0; _i2 < freeGridSpacePrev; _i2++) {
-            var offset = _this4._calendar.prevDate.getDate() - _i2;
+            var offset = _this3._calendar.prevDate.getDate() - _i2;
 
-            var loopDatePrev = new Date(_this4._calendar.prevDate.getFullYear(), _this4._calendar.prevDate.getMonth(), offset);
+            var loopDatePrev = new Date(_this3._calendar.prevDate.getFullYear(), _this3._calendar.prevDate.getMonth(), offset);
 
-            var dateBlockPrev = _this4._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n                " + (!_this4.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
+            var dateBlockPrev = _this3._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n                " + (!_this3.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
 
 
             theUI.dates.innerHTML += dateBlockPrev;
@@ -2409,21 +2408,21 @@
         } //curr month
 
 
-        for (var _i3 = 1; _i3 <= _this4._calendar.lastDate.getDate(); _i3++) {
-          var dateBlockCurr = _this4._blockHtml(new Date(_this4._calendar.year, _this4._calendar.month, _i3), !_this4.validates(new Date(_this4._calendar.year, _this4._calendar.month, _i3)) ? 'disabled' : '');
+        for (var _i3 = 1; _i3 <= _this3._calendar.lastDate.getDate(); _i3++) {
+          var dateBlockCurr = _this3._blockHtml(new Date(_this3._calendar.year, _this3._calendar.month, _i3), !_this3.validates(new Date(_this3._calendar.year, _this3._calendar.month, _i3)) ? 'disabled' : '');
 
           theUI.dates.innerHTML += dateBlockCurr;
         } //next month just fill the shit
 
 
-        var currNextFirstDay = new Date(_this4._calendar.year, _this4._calendar.month + 1, 1).getDay(),
-            freeGridSpaceNext = (7 - currNextFirstDay + parseInt(_this4.args.startDay)) % 7;
+        var currNextFirstDay = new Date(_this3._calendar.year, _this3._calendar.month + 1, 1).getDay(),
+            freeGridSpaceNext = (7 - currNextFirstDay + parseInt(_this3.args.startDay)) % 7;
 
-        if (currNextFirstDay !== parseInt(_this4.args.startDay)) {
+        if (currNextFirstDay !== parseInt(_this3.args.startDay)) {
           for (var _i4 = 1; _i4 <= freeGridSpaceNext; _i4++) {
-            var loopDateNext = new Date(_this4._calendar.year, _this4._calendar.month + 1, _i4);
+            var loopDateNext = new Date(_this3._calendar.year, _this3._calendar.month + 1, _i4);
 
-            var dateBlockNext = _this4._blockHtml(loopDateNext, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n              " + (!_this4.validates(loopDateNext) ? 'disabled' : ''));
+            var dateBlockNext = _this3._blockHtml(loopDateNext, UIPrefix(COMPONENT_CLASS$9) + "-block-adjacent\n              " + (!_this3.validates(loopDateNext) ? 'disabled' : ''));
 
             theUI.dates.innerHTML += dateBlockNext;
           }
@@ -2677,7 +2676,7 @@
     hasActive: function hasActive(key) {
       key = key || false;
 
-      if (key && this.keys.hasOwnProperty(key)) {
+      if (key && Object.prototype.hasOwnProperty.call(this.keys, key)) {
         return this.keys[key];
       } else {
         return this.keys.ctrl || this.keys.shift || this.keys.alt || this.keys.meta;
@@ -2771,9 +2770,9 @@
 
     function Tags(element, valueToRender, args) {
       return _FwComponent.call(this, element, {
-        isFiltering: element && element.hasOwnProperty('isFiltering') ? element._isFiltering : true,
-        triggerChange: element && element.hasOwnProperty('_triggerChange') ? element._triggerChange : false,
-        _renderValue: valueToRender ? valueToRender : element && element.hasOwnProperty('__renderValue') ? element.__renderValue : false,
+        isFiltering: element && Object.prototype.hasOwnProperty.call(element, 'isFiltering') ? element._isFiltering : true,
+        triggerChange: element && Object.prototype.hasOwnProperty.call(element, '_triggerChange') ? element._triggerChange : false,
+        _renderValue: valueToRender ? valueToRender : element && Object.prototype.hasOwnProperty.call(element, '__renderValue') ? element.__renderValue : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {}
       }) || this;
     }
@@ -2918,7 +2917,9 @@
 
       try {
         fnToFilter = custFn || (typeof this.args.filter === 'string' ? eval(this.args.filter) : this.args.filter);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
 
       if (typeof fnToFilter === 'function') {
         var fn = fnToFilter;
@@ -3111,7 +3112,7 @@
 
 
           if (_this5.args.onKeyUp) {
-            theUI.input.addEventListener('keyup', function (event) {
+            theUI.input.addEventListener('keyup', function () {
               var keyUpScript = eval(_this5.args.onKeyUp);
 
               if (keyUpScript) {
@@ -4132,8 +4133,8 @@
       }
     };
 
-    Modal.handleResize = function handleResize(mode) {
-      return function (e) {
+    Modal.handleResize = function handleResize() {
+      return function () {
         VALID_MODAL_MODES.forEach(function (mode) {
           var modal = new Modal(Modal.current(mode).element, null, Modal.current(mode).args);
           modal.resize();
@@ -4143,7 +4144,7 @@
     };
 
     Modal.handleHash = function handleHash() {
-      return function (e) {
+      return function () {
         if (Settings.get('initializeModal')) {
           var modal = new Modal();
           modal.create();
@@ -4187,8 +4188,6 @@
 
     Modal.destroyListeners = function destroyListeners() {
       VALID_MODAL_MODES.forEach(function (mode) {
-        _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode);
-
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleOpen(mode));
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleClose(mode));
       });
@@ -4324,7 +4323,11 @@
   }(FwComponent);
 
   function _get_current() {
-    if (this.mode) return Modal.current(this.mode);
+    if (this.mode) {
+      return Modal.current(this.mode);
+    } else {
+      return false;
+    }
   }
 
   function _set_current(obj) {
@@ -4937,7 +4940,7 @@
     };
 
     Tooltip.handleToggleHoverOff = function handleToggleHoverOff() {
-      return function (e) {
+      return function () {
         var tooltip = new Tooltip();
         tooltip.destroy();
       };
@@ -5016,11 +5019,7 @@
     }, {
       key: "badge",
       get: function get() {
-        if (!this.UICurrent) {
-          return;
-        }
-
-        return this.UICurrent.querySelector("." + COMPONENT_CLASS$1 + "-badge");
+        return this.UICurrent && this.UICurrent.querySelector("." + COMPONENT_CLASS$1 + "-badge");
       }
     }, {
       key: "width",
@@ -5090,7 +5089,7 @@
       key: "elementOrigin",
       get: function get() {
         if (!Tooltip.current.UI) {
-          return;
+          return false;
         }
 
         var the_x = this.elementOffset.left + this.elementOffset.width * 0.5; //top and bottom

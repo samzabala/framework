@@ -96,6 +96,8 @@ class Dropdown extends FwComponent {
       return FwDom.getSiblings(this.UIElNavcestor).filter((sibling) => {
         return sibling.matches(NAV_ANCESTOR);
       });
+    } else {
+      return false;
     }
   }
 
@@ -144,11 +146,11 @@ class Dropdown extends FwComponent {
           Dropdown.purge(element);
           element.classList.add(ACTIVATED_CLASS);
           triggerer && triggerer.classList.add(ACTIVATED_CLASS);
-          // if(this.UIElUncles){
-          // 	this.UIElUncles.forEach((uncle) => {
-          // 		uncle.classList.remove(ACTIVATED_CLASS);
-          // 	});
-          // }
+          if (this.UIElUncles) {
+            this.UIElUncles.forEach((uncle) => {
+              uncle.classList.remove(ACTIVATED_CLASS);
+            });
+          }
           this.setDimensions();
         },
         element
@@ -210,7 +212,7 @@ class Dropdown extends FwComponent {
       }
     };
   }
-  static handleFocusOpen(i) {
+  static handleFocusOpen() {
     return (e) => {
       if (FwComponent.isDisabled(e.target)) {
         e.target.blur();
@@ -237,7 +239,7 @@ class Dropdown extends FwComponent {
     };
   }
 
-  static handleUniversalPurge(isPurger) {
+  static handleUniversalPurge() {
     return (e) => {
       if (FwComponent.isDisabled(e.target)) {
         e.preventDefault();

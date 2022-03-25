@@ -51,21 +51,22 @@ const NativeEvents = [
   'scroll',
   'hashchange',
 ];
+let uIdEvent = 0;
 
 const EVENT_STORAGE = {};
 
 class FwEvent extends FwDataHelper {
-  static UIDEvent(element, uid) {
-    return (uid && `${uid}::${uidEvent++}`) || element.uidEvent || uidEvent++;
+  static getUIDEvent(element, uid) {
+    return (uid && `${uid}::${uIdEvent++}`) || element.uIdEvent || uIdEvent++;
   }
 
   static getEvent(element) {
-    const uid = UIDEvent(element);
+    const uid = FwEvent.getUIDEvent(element);
 
-    element.uidEvent = uid;
+    element.uIdEvent = uid;
     EVENT_STORAGE[uid] = EVENT_STORAGE[uid] || {};
 
-    return eventRegistry[uid];
+    return EVENT_STORAGE[uid];
   }
 
   static classNester(selector) {

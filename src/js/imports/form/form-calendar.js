@@ -47,11 +47,11 @@ class Calendar extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
       triggerChange:
-        element && element.hasOwnProperty('_triggerChange')
+        element && Object.prototype.hasOwnProperty.call(element, '_triggerChange')
           ? element._triggerChange
           : false,
       _UIInputValue:
-        element && element.hasOwnProperty('__UIInputValue')
+        element && Object.prototype.hasOwnProperty.call(element, '__UIInputValue')
           ? element.__UIInputValue
           : false,
       _renderValue: valueToRender
@@ -390,7 +390,7 @@ class Calendar extends FwComponent {
     return toReturn;
   }
 
-  _arrowHtml = (buttonClass) => {
+  _arrowHtml(buttonClass) {
     let symbolClass, arrowDate, disValid, arrowClass;
     //set a new date with no date because fuck that boi
     // console.warn(buttonClass,'hello i fucked up','\n',FwDate.toParsed(uiValue),'\n',this._calendar.startDate,'\n', new Date(this._calendar.year,this._calendar.month));
@@ -449,9 +449,9 @@ class Calendar extends FwComponent {
 			</button>`;
 
     return htmlString;
-  };
+  }
 
-  _blockHtml = (date, customClass) => {
+  _blockHtml(date, customClass) {
     customClass = customClass || '';
     return `<button type="button" data-value="${FwDate.toVal(date)}"
 				class="
@@ -462,7 +462,7 @@ class Calendar extends FwComponent {
 			">
 				<span>${date.getDate()}</span>
 			</button>`;
-  };
+  }
 
   _renderUI(elem, uiValue) {
     const element = elem ? super.UIEl(elem) : super.UIEl();

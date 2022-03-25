@@ -46,14 +46,16 @@ class Tags extends FwComponent {
   constructor(element, valueToRender, args) {
     super(element, {
       isFiltering:
-        element && element.hasOwnProperty('isFiltering') ? element._isFiltering : true,
+        element && Object.prototype.hasOwnProperty.call(element, 'isFiltering')
+          ? element._isFiltering
+          : true,
       triggerChange:
-        element && element.hasOwnProperty('_triggerChange')
+        element && Object.prototype.hasOwnProperty.call(element, '_triggerChange')
           ? element._triggerChange
           : false,
       _renderValue: valueToRender
         ? valueToRender
-        : element && element.hasOwnProperty('__renderValue')
+        : element && Object.prototype.hasOwnProperty.call(element, '__renderValue')
         ? element.__renderValue
         : false,
       _customArgs: args
@@ -317,7 +319,9 @@ class Tags extends FwComponent {
         (typeof this.args.filter === 'string'
           ? eval(this.args.filter)
           : this.args.filter);
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
 
     if (typeof fnToFilter === 'function') {
       const fn = fnToFilter;
@@ -553,7 +557,7 @@ class Tags extends FwComponent {
 
           //bitch
           if (this.args.onKeyUp) {
-            theUI.input.addEventListener('keyup', (event) => {
+            theUI.input.addEventListener('keyup', () => {
               const keyUpScript = eval(this.args.onKeyUp);
               if (keyUpScript) {
                 return keyUpScript;

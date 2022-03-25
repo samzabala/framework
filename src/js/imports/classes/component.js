@@ -141,7 +141,7 @@ class FwComponent {
     }
   }
 
-  _setInitState(beforeEvent, happeningEvent, afterEvent, callback) {
+  _setInitState(element, beforeEvent, happeningEvent, afterEvent, callback) {
     callback = callback || false;
 
     if (callback) {
@@ -162,7 +162,7 @@ class FwComponent {
       if (
         typeof defaults[prop] === 'object' &&
         defaults[prop] !== null &&
-        defaults[prop].hasOwnProperty('value')
+        Object.prototype.hasOwnProperty.call(defaults[prop], 'value')
       ) {
         args[prop] = defaults[prop].value;
       } else {
@@ -171,7 +171,7 @@ class FwComponent {
 
       //custom
       if (
-        arr.hasOwnProperty(prop) &&
+        Object.prototype.hasOwnProperty.call(arr, prop) &&
         arr[prop] !== undefined &&
         arr[prop] !== null &&
         arr[prop] !== ''
@@ -183,7 +183,7 @@ class FwComponent {
       if (
         typeof defaults[prop] === 'object' &&
         defaults[prop] !== null &&
-        defaults[prop].hasOwnProperty('parser')
+        Object.prototype.hasOwnProperty.call(defaults[prop], 'parser')
       ) {
         args[prop] = defaults[prop].parser(args[prop]);
       }

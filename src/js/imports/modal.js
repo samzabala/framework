@@ -140,7 +140,11 @@ class Modal extends FwComponent {
   }
 
   get #current() {
-    if (this.mode) return Modal.current(this.mode);
+    if (this.mode) {
+      return Modal.current(this.mode);
+    } else {
+      return false;
+    }
   }
 
   set #current(obj) {
@@ -690,8 +694,8 @@ class Modal extends FwComponent {
     return html;
   }
 
-  static handleResize(mode) {
-    return (e) => {
+  static handleResize() {
+    return () => {
       VALID_MODAL_MODES.forEach((mode) => {
         const modal = new Modal(
           Modal.current(mode).element,
@@ -705,7 +709,7 @@ class Modal extends FwComponent {
   }
 
   static handleHash() {
-    return (e) => {
+    return () => {
       if (Settings.get('initializeModal')) {
         const modal = new Modal();
         modal.create();
@@ -775,8 +779,6 @@ class Modal extends FwComponent {
   }
   static destroyListeners() {
     VALID_MODAL_MODES.forEach((mode) => {
-      const modeToggle = Modal.#modeToggle(mode);
-
       FwEvent.removeListener(
         document.documentElement,
         EVENT_CLICK,

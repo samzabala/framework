@@ -1,11 +1,9 @@
 import Initiator from './core/initiator.js';
 import Settings from './core/settings.js';
 
-import FwEvent from './data-helper/event.js';
 import FwString from './data-helper/string.js';
 
 import FwComponent from './classes/component.js';
-import { UIToggled, UITriggerer } from './util/ui.js';
 
 const NAME = 'lazy';
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
