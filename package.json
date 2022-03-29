@@ -12,7 +12,7 @@
     "css-prettier": "prettier --write dist/css",
     "css-post": "postcss dist/css/*.css --no-map --use autoprefixer -r",
     "sass-build": "npm run sass-compile; npm run css-prettier; npm run css-post",
-    "build": "npm run js-build-umd; npm run sass-build; npm run sass-build;"
+    "build": "npm run js-build-umd; npm run sass-build;"
   },
   "author": "1Point21 Interactive",
   "license": "eh",
