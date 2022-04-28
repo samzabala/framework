@@ -225,7 +225,7 @@
 }
 
 // for colors with hover and shit
-@mixin create-palette-helper($tag, $property: '', $value: '', $value-inverse: '') {
+@mixin create-state-helper($tag, $property: '', $value: '', $value-inverse: '') {
   $parsed-tag: str-replace($tag, '.', '');
 
   @at-root %__internal-extend-for-#{$parsed-tag} {
@@ -269,12 +269,12 @@
 
 @mixin dump-palette-helpers($property) {
   @each $tag, $var in $_fwc-brand-color-declarations-for-helpers {
-    @include create-palette-helper(#{&}-#{$tag}, $property, $var);
+    @include create-state-helper(#{&}-#{$tag}, $property, $var);
 
     $variations: map-get($_fwc-color-vars-variations, $tag);
 
     @each $variation-tag, $variation-var in $variations {
-      @include create-palette-helper(
+      @include create-state-helper(
         #{&}-#{$tag}-#{$variation-tag},
         $property,
         $variation-var

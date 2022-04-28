@@ -107,10 +107,10 @@ class Initiator {
 
   #runScroll() {
     const ini = this;
-    clearTimeout(ini.scrollTimerInternal);
-    ini.scrollTimerInternal = setTimeout(() => {
-      ini.#execqt(Initiator.Q.on_scroll);
-    }, 100);
+    // clearTimeout(ini.scrollTimerInternal);
+    // ini.scrollTimerInternal = setTimeout(() => {
+    ini.#execqt(Initiator.Q.on_scroll);
+    // }, 100);
   }
 
   static setState(mode) {
@@ -167,7 +167,7 @@ class Initiator {
     window.addEventListener('resize', () => {
       ini.#runResize();
     });
-    window.addEventListener('scroll', () => {
+    document.addEventListener('scroll', () => {
       ini.#runScroll();
     });
   }

@@ -2,11 +2,11 @@ $prefix: '.color';
 #{$prefix} {
   // Theme
   @each $color, $var in $_fwc-theme-colors-color {
-    @include create-palette-helper(#{&}-#{$color}, color, $var);
+    @include create-state-helper(#{&}-#{$color}, color, $var);
   }
 
   //inherit
-  @include create-palette-helper(#{&}-inherit, color, inherit);
+  @include create-state-helper(#{&}-inherit, color, inherit);
 
   @include dump-palette-helpers(color);
 }

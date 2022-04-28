@@ -61,35 +61,37 @@
 .only-nonmobile {
   display: none !important;
 }
-.pointer-reference:not(:hover):not(:focus):not(.focus):not(:active):not(.active):not(.open)
-  .hide-idle,
-.pointer-reference:hover .only-idle,
-.pointer-reference:focus .only-idle,
-.pointer-reference.focus .only-idle,
-.pointer-reference:active .only-idle,
-.pointer-reference.active .only-idle,
-.pointer-reference.open .only-idle,
-.pointer-reference:hover .only-not-hover,
-.pointer-reference:hover .hide-hover,
-.pointer-reference:not(:hover) .only-hover,
-.pointer-reference:not(:hover) .hide-not-hover,
-.pointer-reference:focus .only-not-focus,
-.pointer-reference:focus .hide-focus,
-.pointer-reference:not(:focus):not(.focus) .only-focus,
-.pointer-reference:not(:focus):not(.focus) .hide-not-focus,
-.pointer-reference.active .only-not-active,
-.pointer-reference:active .only-not-active,
-.pointer-reference.active .hide-active,
-.pointer-reference:active .hide-active,
-.pointer-reference:not(:active):not(.active) .only-active,
-.pointer-reference:not(:active):not(.active) .hide-not-active,
-.pointer-reference.active .only-not-toggle,
-.pointer-reference.open .only-not-toggle,
-.pointer-reference.active .hide-toggle,
-.pointer-reference.open .hide-toggle,
-.pointer-reference:not(.active):not(.open) .only-toggle,
-.pointer-reference:not(.active):not(.open) .hide-not-toggle {
-  display: none !important;
+
+.pointer-reference {
+  &:not(:hover):not(:focus):not(.focus):not(:active):not(.active):not(.open) .hide-idle,
+  &:hover .only-idle,
+  &:focus .only-idle,
+  &.focus .only-idle,
+  &:active .only-idle,
+  &.active .only-idle,
+  &.open .only-idle,
+  &:hover .only-not-hover,
+  &:hover .hide-hover,
+  &:not(:hover) .only-hover,
+  &:not(:hover) .hide-not-hover,
+  &:focus .only-not-focus,
+  &:focus .hide-focus,
+  &:not(:focus):not(.focus) .only-focus,
+  &:not(:focus):not(.focus) .hide-not-focus,
+  &.active .only-not-active,
+  &:active .only-not-active,
+  &.active .hide-active,
+  &:active .hide-active,
+  &:not(:active):not(.active) .only-active,
+  &:not(:active):not(.active) .hide-not-active,
+  &.active .only-not-toggle,
+  &.open .only-not-toggle,
+  &.active .hide-toggle,
+  &.open .hide-toggle,
+  &:not(.active):not(.open) .only-toggle,
+  &:not(.active):not(.open) .hide-not-toggle {
+    @include dump-styles(hide-js-friendly);
+  }
 }
 
 @include on-breakpoint(mobile) {

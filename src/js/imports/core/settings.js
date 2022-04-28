@@ -4,6 +4,7 @@ CORE_SETTINGS.lazyLoad = true;
 CORE_SETTINGS.initializeModal = true;
 CORE_SETTINGS.initializeAccordion = true;
 CORE_SETTINGS.initializeForm = true;
+CORE_SETTINGS.initializeScroller = true;
 CORE_SETTINGS.dynamicHash = true;
 CORE_SETTINGS.uiClass = `${CORE_SETTINGS.prefix}-ui`; //for styles
 CORE_SETTINGS.uiJsClass = CORE_SETTINGS.uiClass.replace('-', '_'); // for scripting events and shit
