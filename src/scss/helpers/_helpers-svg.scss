@@ -13,14 +13,14 @@ $prefix: '.svg';
 .stop-color {
   // Theme
   @each $color, $var in $_fwc-theme-colors-color {
-    @include create-palette-helper(#{&}-#{$color}, stop-color, $var);
+    @include create-state-helper(#{&}-#{$color}, stop-color, $var);
   }
 
   //current
-  @include create-palette-helper(#{&}-currentColor, stop-color, currentColor);
+  @include create-state-helper(#{&}-currentColor, stop-color, currentColor);
 
   //none
-  @include create-palette-helper(#{&}-none, stop-color, transparent);
+  @include create-state-helper(#{&}-none, stop-color, transparent);
 
   //godspeed bro
   @include dump-palette-helpers(stop-color);
@@ -29,14 +29,14 @@ $prefix: '.svg';
 .fill {
   // Theme
   @each $color, $var in $_fwc-theme-colors-color {
-    @include create-palette-helper(#{&}-#{$color}, fill, $var);
+    @include create-state-helper(#{&}-#{$color}, fill, $var);
   }
 
   //current
-  @include create-palette-helper(#{&}-currentColor, fill, currentColor);
+  @include create-state-helper(#{&}-currentColor, fill, currentColor);
 
   //none
-  @include create-palette-helper(#{&}-none, fill, none);
+  @include create-state-helper(#{&}-none, fill, none);
 
   //godspeed bro
   @include dump-palette-helpers(fill);
@@ -45,14 +45,14 @@ $prefix: '.svg';
 .stroke {
   // Theme
   @each $color, $var in $_fwc-theme-colors-color {
-    @include create-palette-helper(#{&}-#{$color}, stroke, $var);
+    @include create-state-helper(#{&}-#{$color}, stroke, $var);
   }
 
   //current
-  @include create-palette-helper(#{&}-currentColor, stroke, currentColor);
+  @include create-state-helper(#{&}-currentColor, stroke, currentColor);
 
   //none
-  @include create-palette-helper(#{&}-none, stroke, none);
+  @include create-state-helper(#{&}-none, stroke, none);
 
   @include dump-palette-helpers(stroke);
 }

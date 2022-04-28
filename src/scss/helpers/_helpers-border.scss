@@ -3,14 +3,14 @@ $prefix: '.border';
   &-color {
     // Theme
     @each $color, $var in $_fwc-theme-colors-color {
-      @include create-palette-helper(#{&}-#{$color}, border-color, $var);
+      @include create-state-helper(#{&}-#{$color}, border-color, $var);
     }
 
     //inherit
-    @include create-palette-helper(#{&}-inherit, border-color, inherit);
+    @include create-state-helper(#{&}-inherit, border-color, inherit);
 
     //transparent
-    @include create-palette-helper(#{&}-transparent, border-color, transparent);
+    @include create-state-helper(#{&}-transparent, border-color, transparent);
 
     @include dump-palette-helpers(border-color);
   }

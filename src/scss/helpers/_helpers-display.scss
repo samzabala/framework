@@ -1,14 +1,16 @@
 .display {
-  &-block {
-    display: block !important;
-  }
   &-inline-block {
     display: inline-block !important;
   }
   &-inline {
     display: inline !important;
   }
+  &-block {
+    @include create-state-helper(#{&}, display, block);
+  }
   &-none {
-    @include dump-styles(display-none-important);
+    @include create-state-helper(#{&}) {
+      @include dump-styles(display-none-important);
+    }
   }
 }

@@ -1,12 +1,12 @@
 $prefix: '.background';
 #{$prefix} {
   &-image-none {
-    @include create-palette-helper(#{&}) {
+    @include create-state-helper(#{&}) {
       background-image: none !important;
     }
   }
   @each $color, $var in $_fwc-theme-colors-background {
-    @include create-palette-helper(#{&}-#{$color}, background-color, $var);
+    @include create-state-helper(#{&}-#{$color}, background-color, $var);
   }
 
   //gradient
@@ -21,7 +21,7 @@ $prefix: '.background';
         $gradient-legacy-selector-angled: #{$gradient-legacy-selector}-#{$angle};
       }
 
-      @include create-palette-helper(#{$gradient-legacy-selector-angled}) {
+      @include create-state-helper(#{$gradient-legacy-selector-angled}) {
         @include gradient(
           (
             color1: $var-gradient-start,
@@ -49,7 +49,7 @@ $prefix: '.background';
           $selector: #{$gradient-selector-angled}-from-#{'' +
             $color1}-to-#{'' +
             $color2};
-          @include create-palette-helper($selector) {
+          @include create-state-helper($selector) {
             @if $color1 != $color2 {
               @extend %fwe-gradient-#{'' + $color1}-fallback !optional;
               @include gradient(
@@ -72,10 +72,10 @@ $prefix: '.background';
   }
 
   //inherit
-  @include create-palette-helper(#{&}-inherit, background-color, inherit);
+  @include create-state-helper(#{&}-inherit, background-color, inherit);
 
   //transparent
-  @include create-palette-helper(#{&}-transparent, background-color, transparent);
+  @include create-state-helper(#{&}-transparent, background-color, transparent);
 
   @include dump-palette-helpers(background);
 }

@@ -15,6 +15,7 @@ import Lazy from './imports/lazy.js';
 import ListGroup from './imports/list-group.js';
 import Modal from './imports/modal.js';
 import ModuleGrid from './imports/module-grid.js';
+import Scroller from './imports/scroller.js';
 import Switch from './imports/switch.js';
 import Tabs from './imports/tabs.js';
 import Tooltip from './imports/tooltip.js';
@@ -32,6 +33,7 @@ const FrameWork = {
   ListGroup,
   Modal,
   ModuleGrid,
+  Scroller,
   Switch,
   Tabs,
   Tooltip,
