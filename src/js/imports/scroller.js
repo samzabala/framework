@@ -1,7 +1,7 @@
 import Initiator from './core/initiator.js';
 import Settings from './core/settings.js';
 
-import FwDom from './data-helper/dom.js';
+// import FwDom from './data-helper/dom.js';
 import FwString from './data-helper/string.js';
 import FwEvent from './data-helper/event.js';
 

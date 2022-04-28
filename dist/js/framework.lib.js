@@ -760,11 +760,11 @@
   }
 
   function _runScroll2() {
-    var ini = this;
-    clearTimeout(ini.scrollTimerInternal);
-    ini.scrollTimerInternal = setTimeout(function () {
-      _classPrivateFieldLooseBase(ini, _execqt)[_execqt](Initiator.Q.on_scroll);
-    }, 100);
+    var ini = this; // clearTimeout(ini.scrollTimerInternal);
+    // ini.scrollTimerInternal = setTimeout(() => {
+
+    _classPrivateFieldLooseBase(ini, _execqt)[_execqt](Initiator.Q.on_scroll); // }, 100);
+
   }
 
   Initiator.start();
