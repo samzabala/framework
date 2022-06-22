@@ -5358,6 +5358,8 @@ body.body-nav-sticky-offset {
   max-width: none;
   border-radius: inherit;
   overflow: hidden;
+  -o-object-position: center center;
+     object-position: center center;
 }
 .thumbnail .badge,
 .thumbnail .tag {

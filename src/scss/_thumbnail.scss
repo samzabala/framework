@@ -52,7 +52,6 @@ $prefix: '.thumbnail';
   &,
   &-image {
     @include dump-styles(fit-image-cover);
-    object-position: center center;
     border-radius: $thumbnail-border-radius;
   }
 
@@ -80,6 +79,7 @@ $prefix: '.thumbnail';
     max-width: none;
     border-radius: inherit;
     overflow: hidden;
+    object-position: center center;
   }
 
   .badge,
