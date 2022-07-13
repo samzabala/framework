@@ -31,11 +31,10 @@
   }
 
   function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
       o.__proto__ = p;
       return o;
     };
-
     return _setPrototypeOf(o, p);
   }
 
@@ -3113,13 +3112,15 @@
 
 
           if (_this5.args.onKeyUp) {
-            theUI.input.addEventListener('keyup', function () {
-              var keyUpScript = eval(_this5.args.onKeyUp);
-
-              if (keyUpScript) {
-                return keyUpScript;
-              }
-            });
+            if (typeof _this5.args.onKeyUp === 'string') {
+              //attribute setup
+              theUI.input.addEventListener('keyup', function () {
+                return eval(_this5.args.onKeyUp);
+              });
+            } else {
+              //api setup
+              theUI.input.addEventListener('keyup', _this5.args.onKeyUp);
+            }
           }
         } //updoot tags
 

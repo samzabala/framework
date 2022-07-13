@@ -1,5 +1,4 @@
-/*! basic styling shits only bitch */
-/* http://meyerweb.com/eric/tools/css/reset/
+/* basic styling shits only bitch */ /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -58,14 +57,9 @@ a:hover {
 }
 [data-toggle] {
   cursor: pointer;
-  -webkit-user-select: none !important;
-  /* Safari 3.1+ */
-  -moz-user-select: none !important;
-  /* Firefox 2+ */
-  -ms-user-select: none !important;
-  /* IE 10+ */
-  user-select: none !important;
-  /* Standard syntax */
+  -webkit-user-select: none !important; /* Safari 3.1+ */
+  -moz-user-select: none !important; /* Firefox 2+ */ /* IE 10+ */
+  user-select: none !important; /* Standard syntax */
 }
 [data-toggle] * {
   pointer-events: none !important;
@@ -317,14 +311,9 @@ a:hover {
 .body-on-drag * {
   cursor: -webkit-grabbing !important;
   cursor: grabbing !important;
-  -webkit-user-select: none !important;
-  /* Safari 3.1+ */
-  -moz-user-select: none !important;
-  /* Firefox 2+ */
-  -ms-user-select: none !important;
-  /* IE 10+ */
-  user-select: none !important;
-  /* Standard syntax */
+  -webkit-user-select: none !important; /* Safari 3.1+ */
+  -moz-user-select: none !important; /* Firefox 2+ */ /* IE 10+ */
+  user-select: none !important; /* Standard syntax */
 }
 
 *.theme-inverse,
@@ -547,7 +536,6 @@ h6,
   font-style: inherit;
   display: block;
   -webkit-hyphens: auto;
-      -ms-hyphens: auto;
           hyphens: auto;
   margin-bottom: 0.625rem;
   margin-top: 1.5em;

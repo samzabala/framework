@@ -1,4 +1,4 @@
-/*! it's helpers only bitch */
+/* it's helpers only bitch */
 .no-scrollbar {
   scrollbar-width: none;
 }
@@ -20434,17 +20434,14 @@
 }
 .text-hyphens-auto {
   -webkit-hyphens: auto !important;
-      -ms-hyphens: auto !important;
           hyphens: auto !important;
 }
 .text-hyphens-manual {
   -webkit-hyphens: manual !important;
-      -ms-hyphens: manual !important;
           hyphens: manual !important;
 }
 .text-hyphens-none {
   -webkit-hyphens: none !important;
-      -ms-hyphens: none !important;
           hyphens: none !important;
 }
 @supports not (-webkit-background-clip: text) {
@@ -20480,7 +20477,6 @@
   .only-lg {
     display: block !important;
   }
-
   .hide-lg {
     display: none !important;
   }
@@ -20489,7 +20485,6 @@
   .only-md {
     display: block !important;
   }
-
   .hide-md {
     display: none !important;
   }
@@ -20498,7 +20493,6 @@
   .only-sm {
     display: block !important;
   }
-
   .hide-sm {
     display: none !important;
   }
@@ -20507,7 +20501,6 @@
   .only-xs {
     display: block !important;
   }
-
   .hide-xs {
     display: none !important;
   }
@@ -20524,7 +20517,6 @@
   .only-mobile {
     display: block !important;
   }
-
   .hide-mobile {
     display: none !important;
   }
@@ -20533,7 +20525,6 @@
   .only-nonmobile {
     display: block !important;
   }
-
   .hide-nonmobile {
     display: none !important;
   }

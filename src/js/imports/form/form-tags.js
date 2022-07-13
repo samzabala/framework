@@ -557,12 +557,15 @@ class Tags extends FwComponent {
 
           //bitch
           if (this.args.onKeyUp) {
-            theUI.input.addEventListener('keyup', () => {
-              const keyUpScript = eval(this.args.onKeyUp);
-              if (keyUpScript) {
-                return keyUpScript;
-              }
-            });
+            if (typeof this.args.onKeyUp === 'string') {
+              //attribute setup
+              theUI.input.addEventListener('keyup', () => {
+                return eval(this.args.onKeyUp);
+              });
+            } else {
+              //api setup
+              theUI.input.addEventListener('keyup', this.args.onKeyUp);
+            }
           }
         }
 
