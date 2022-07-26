@@ -1,10 +1,10 @@
 /*** NAVIGATION ***/
 
-body {
-  &.body-nav-sticky-offset {
-    padding-top: $_fwc-nav-height;
-  }
-}
+// body {
+//   &.body-nav-sticky-offset {
+//     padding-top: $_fwc-nav-height;
+//   }
+// }
 .offset-nav-sticky {
   @include dump-styles(nav-offset-sticky);
 }
@@ -51,7 +51,7 @@ $prefix: '.nav';
   }
 
   &#{$prefix}-sticky {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;

@@ -4723,10 +4723,6 @@ big {
 }
 
 /*** NAVIGATION ***/
-body.body-nav-sticky-offset {
-  padding-top: 3.75rem;
-}
-
 .nav {
   min-height: 3.75rem;
   background: var(--fw-theme-background);
@@ -4756,7 +4752,8 @@ body.body-nav-sticky-offset {
   display: flex;
 }
 .nav.nav-sticky {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;

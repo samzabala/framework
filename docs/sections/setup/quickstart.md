@@ -82,7 +82,7 @@ Disables overflow scroll on the bod so user can focus on the active [modal](../c
 
 ## **`.body-nav-sticky-offset`**
 
-Offsets the body to the set height of the [nav](../components/nav.md)
+Deprecated. Offsets the body to the set height of the [nav](../components/nav.md)
 
 # Theme Classes
 
