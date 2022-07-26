@@ -75,7 +75,8 @@ $prefix: '.nav';
     .dropdown li,
     #{$prefix}-item,
     #{$prefix}-list li {
-      > a {
+      > a,
+      > #{$prefix}-item-label {
         display: block;
       }
     }
@@ -163,6 +164,22 @@ $prefix: '.nav';
     }
   }
 
+  #{$prefix}-item > a,
+  &-list > li > a,
+  #{$prefix}-item-label > * {
+    padding-left: $nav-padding-x;
+    padding-right: $nav-padding-x;
+  }
+
+  #{$prefix}-item-label {
+    align-self: center;
+    opacity: $nav-item-label-opacity;
+
+    #{$prefix}-vertical {
+      align-self: stretch;
+    }
+  }
+
   #{$prefix}-item,
   &-list > li {
     > a {
@@ -185,10 +202,7 @@ $prefix: '.nav';
         )
       );
       position: relative;
-
       transition: $transition-duration-short all $transition-timing;
-      padding-left: $nav-padding-x;
-      padding-right: $nav-padding-x;
       padding-top: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
       padding-bottom: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
 
@@ -266,7 +280,8 @@ $prefix: '.nav';
 
     &-list > #{$prefix}-item,
     &-list > li {
-      > a {
+      > a,
+      #{$prefix}-item-label {
         display: block;
       }
     }

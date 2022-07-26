@@ -92,6 +92,20 @@ Menu list item
 </div>
 ```
 
+# **`.nav-item-label`**
+
+Label for a group of nav bitches
+
+<div class="nav">
+  <ul class="nav-list">
+    <li class="nav-item-label">These bitches</li>
+    <li class="nav-item"></li>
+    <li class="nav-item"></li>
+    <li class="nav-item"></li>
+    <li class="nav-item"></li>
+  </ul>
+</div>
+
 # **`.nav-icon`**
 
 Icon you wanna use with a top level nav item. best with svgs

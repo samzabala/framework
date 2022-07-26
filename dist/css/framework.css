@@ -4772,8 +4772,11 @@ big {
   display: block;
 }
 .nav.nav-vertical .dropdown li > a,
+.nav.nav-vertical .dropdown li > .nav-item-label,
 .nav.nav-vertical .nav-item > a,
-.nav.nav-vertical .nav-list li > a {
+.nav.nav-vertical .nav-item > .nav-item-label,
+.nav.nav-vertical .nav-list li > a,
+.nav.nav-vertical .nav-list li > .nav-item-label {
   display: block;
 }
 .nav.nav-vertical .dropdown {
@@ -4829,6 +4832,18 @@ big {
   display: inline-block;
   vertical-align: middle;
 }
+.nav .nav-item > a, .nav-list > li > a,
+.nav .nav-item-label > * {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.nav .nav-item-label {
+  align-self: center;
+  opacity: 0.6;
+}
+.nav .nav-item-label .nav-vertical {
+  align-self: stretch;
+}
 .nav .nav-item > a, .nav-list > li > a {
   font-size: 1rem;
   color: inherit;
@@ -4837,8 +4852,6 @@ big {
   font-style: normal;
   position: relative;
   transition: 0.125s all ease-in-out;
-  padding-left: 10px;
-  padding-right: 10px;
   padding-top: calc((3.75rem - (1.5rem)) * 0.5);
   padding-bottom: calc((3.75rem - (1.5rem)) * 0.5);
 }
@@ -4885,7 +4898,9 @@ big {
     position: static;
     box-shadow: none;
   }
-  .nav-list > .nav-item > a, .nav-list > li > a {
+  .nav-list > .nav-item > a,
+.nav-list > .nav-item .nav-item-label, .nav-list > li > a,
+.nav-list > li .nav-item-label {
     display: block;
   }
 }
