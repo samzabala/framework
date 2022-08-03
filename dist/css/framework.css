@@ -7870,6 +7870,54 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .theme-inverse .input {
   background-color: var(--fw-theme-background);
 }
+.input::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+.input::-moz-placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+.input:-ms-input-placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+.input:-moz-placeholder {
+  /* Firefox 18- */
+  color: inherit;
+  opacity: 0.5;
+}
+.theme-inverse .input::-webkit-input-placeholder {
+  color: inherit;
+}
+.theme-inverse .input::-moz-placeholder {
+  color: inherit;
+}
+.theme-inverse .input:-ms-input-placeholder {
+  color: inherit;
+}
+.theme-inverse .input:-moz-placeholder {
+  /* Firefox 18- */
+  color: inherit;
+}
+.input:focus::-webkit-input-placeholder {
+  color: transparent !important;
+}
+.input:focus:-moz-placeholder {
+  color: transparent !important;
+}
+.input:focus:-ms-input-placeholder {
+  color: transparent !important;
+}
+.focus.input::-webkit-input-placeholder {
+  color: transparent !important;
+}
+.focus.input:-moz-placeholder {
+  color: transparent !important;
+}
+.focus.input:-ms-input-placeholder {
+  color: transparent !important;
+}
 .input.input-large, .input-group.input-large .input {
   font-size: 1.5rem;
 }
@@ -8144,36 +8192,6 @@ fieldset .input-calendar-ui {
   font: inherit;
   outline: none;
 }
-.input-tags-ui::-webkit-input-placeholder, .input-calendar-ui::-webkit-input-placeholder, .input-multiple-line::-webkit-input-placeholder, .input-select::-webkit-input-placeholder, .input-single-line::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.5;
-}
-.input-tags-ui::-moz-placeholder, .input-calendar-ui::-moz-placeholder, .input-multiple-line::-moz-placeholder, .input-select::-moz-placeholder, .input-single-line::-moz-placeholder {
-  color: inherit;
-  opacity: 0.5;
-}
-.input-tags-ui:-ms-input-placeholder, .input-calendar-ui:-ms-input-placeholder, .input-multiple-line:-ms-input-placeholder, .input-select:-ms-input-placeholder, .input-single-line:-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.5;
-}
-.input-tags-ui:-moz-placeholder, .input-calendar-ui:-moz-placeholder, .input-multiple-line:-moz-placeholder, .input-select:-moz-placeholder, .input-single-line:-moz-placeholder {
-  /* Firefox 18- */
-  color: inherit;
-  opacity: 0.5;
-}
-.theme-inverse .input-tags-ui::-webkit-input-placeholder, .theme-inverse .input-calendar-ui::-webkit-input-placeholder, .theme-inverse .input-multiple-line::-webkit-input-placeholder, .theme-inverse .input-select::-webkit-input-placeholder, .theme-inverse .input-single-line::-webkit-input-placeholder {
-  color: inherit;
-}
-.theme-inverse .input-tags-ui::-moz-placeholder, .theme-inverse .input-calendar-ui::-moz-placeholder, .theme-inverse .input-multiple-line::-moz-placeholder, .theme-inverse .input-select::-moz-placeholder, .theme-inverse .input-single-line::-moz-placeholder {
-  color: inherit;
-}
-.theme-inverse .input-tags-ui:-ms-input-placeholder, .theme-inverse .input-calendar-ui:-ms-input-placeholder, .theme-inverse .input-multiple-line:-ms-input-placeholder, .theme-inverse .input-select:-ms-input-placeholder, .theme-inverse .input-single-line:-ms-input-placeholder {
-  color: inherit;
-}
-.theme-inverse .input-tags-ui:-moz-placeholder, .theme-inverse .input-calendar-ui:-moz-placeholder, .theme-inverse .input-multiple-line:-moz-placeholder, .theme-inverse .input-select:-moz-placeholder, .theme-inverse .input-single-line:-moz-placeholder {
-  /* Firefox 18- */
-  color: inherit;
-}
 [type=color].input-tags-ui, [type=color].input-calendar-ui, [type=color].input-multiple-line, [type=color].input-select, [type=color].input-single-line {
   min-width: 100px;
   padding: 0.5em;
@@ -8188,24 +8206,6 @@ fieldset .input-calendar-ui {
   background: none;
   margin: 0 0.25em 0 0;
   padding: 0;
-}
-.input-tags-ui:focus::-webkit-input-placeholder, .input-calendar-ui:focus::-webkit-input-placeholder, .input-multiple-line:focus::-webkit-input-placeholder, .input-select:focus::-webkit-input-placeholder, .input-single-line:focus::-webkit-input-placeholder {
-  color: transparent !important;
-}
-.input-tags-ui:focus:-moz-placeholder, .input-calendar-ui:focus:-moz-placeholder, .input-multiple-line:focus:-moz-placeholder, .input-select:focus:-moz-placeholder, .input-single-line:focus:-moz-placeholder {
-  color: transparent !important;
-}
-.input-tags-ui:focus:-ms-input-placeholder, .input-calendar-ui:focus:-ms-input-placeholder, .input-multiple-line:focus:-ms-input-placeholder, .input-select:focus:-ms-input-placeholder, .input-single-line:focus:-ms-input-placeholder {
-  color: transparent !important;
-}
-.focus.input-tags-ui::-webkit-input-placeholder, .focus.input-calendar-ui::-webkit-input-placeholder, .focus.input-multiple-line::-webkit-input-placeholder, .focus.input-select::-webkit-input-placeholder, .focus.input-single-line::-webkit-input-placeholder {
-  color: transparent !important;
-}
-.focus.input-tags-ui:-moz-placeholder, .focus.input-calendar-ui:-moz-placeholder, .focus.input-multiple-line:-moz-placeholder, .focus.input-select:-moz-placeholder, .focus.input-single-line:-moz-placeholder {
-  color: transparent !important;
-}
-.focus.input-tags-ui:-ms-input-placeholder, .focus.input-calendar-ui:-ms-input-placeholder, .focus.input-multiple-line:-ms-input-placeholder, .focus.input-select:-ms-input-placeholder, .focus.input-single-line:-ms-input-placeholder {
-  color: transparent !important;
 }
 .input, .input-group {
   box-shadow: none;
@@ -8506,6 +8506,29 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input.input-error:not(.focus):not(:focus):not(.active):not(:active), .input-error .input:not(.focus):not(:focus):not(.active):not(:active) {
   box-shadow: 0px 0px 10px -6px var(--fw-color-error);
   z-index: 1;
+}
+
+/*** input-blend (scaffolding) ***/
+.input-blend {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  font: inherit;
+  color: inherit;
+  display: inline-block;
+  overflow: hidden;
+  resize: none;
+}
+.input-blend, .input-blend:hover, .input-blend:focus {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.input-blend.input-block {
+  width: 100%;
+  display: block;
 }
 
 /*** input calendar ***/

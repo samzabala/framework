@@ -52,6 +52,68 @@ $prefix: '.input';
     .theme-inverse & {
       background-color: $input-background-inverse;
     }
+
+    &::-webkit-input-placeholder {
+      color: $input-placeholder-color;
+      opacity: $input-placeholder-opacity;
+    }
+
+    &::-moz-placeholder {
+      color: $input-placeholder-color;
+      opacity: $input-placeholder-opacity;
+    }
+
+    &:-ms-input-placeholder {
+      color: $input-placeholder-color;
+      opacity: $input-placeholder-opacity;
+    }
+    &:-moz-placeholder {
+      /* Firefox 18- */
+      color: $input-placeholder-color;
+      opacity: $input-placeholder-opacity;
+    }
+
+    .theme-inverse & {
+      &::-webkit-input-placeholder {
+        color: $input-placeholder-color-inverse;
+      }
+
+      &::-moz-placeholder {
+        color: $input-placeholder-color-inverse;
+      }
+
+      &:-ms-input-placeholder {
+        color: $input-placeholder-color-inverse;
+      }
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: $input-placeholder-color-inverse;
+      }
+    }
+
+    &:focus::-webkit-input-placeholder {
+      color: transparent !important;
+    }
+
+    &:focus:-moz-placeholder {
+      color: transparent !important;
+    }
+
+    &:focus:-ms-input-placeholder {
+      color: transparent !important;
+    }
+
+    &.focus::-webkit-input-placeholder {
+      color: transparent !important;
+    }
+
+    &.focus:-moz-placeholder {
+      color: transparent !important;
+    }
+
+    &.focus:-ms-input-placeholder {
+      color: transparent !important;
+    }
   }
 
   &-large {

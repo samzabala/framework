@@ -1,0 +1,41 @@
+/*** input-blend (scaffolding) ***/
+$prefix: '.input';
+
+%fwe-form-input-blend {
+  &-global {
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+    color: inherit;
+    display: inline-block;
+    overflow: hidden;
+    resize: none;
+  }
+  &-override {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  &-block {
+    width: 100%;
+    display: block;
+  }
+}
+
+#{$prefix} {
+  &-blend {
+    @extend %fwe-form-input-blend-global;
+
+    &,
+    &:hover,
+    &:focus {
+      @extend %fwe-form-input-blend-override;
+    }
+
+    &#{$prefix}-block {
+      @extend %fwe-form-input-blend-block;
+    }
+  }
+}

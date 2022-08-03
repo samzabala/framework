@@ -549,16 +549,238 @@ For inline shit or fields that dont necessarily accept text looking input like r
   </tbody>
 </table>
 
-<!--
-#### **`.input-round`**
+### **`.input-round`**
 
-Makes the edges of your stylized `.input` or `.input group` half circle round.
+makes boxy bois' border radius round
 
-```html
-<button type="button" class="btn btn-round btn-default">
-	my edges are round like the fuCKING EARTH
-</button>
-``` -->
+#### Support
+
+##### Non input tags
+
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>yes, or just use <a href="../components/button.md"><code>.btn-round</code></a></td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+##### Input tags
+
+<table>
+  <thead>
+    <tr>
+      <th><code>input[type*]</code></th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>submit</code>, <code>reset</code>,<code>button</code></td>
+      <td>yes, or just use <a href="../components/button.md"><code>.btn-round</code></a></td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>date</code>, <code>datetime-local</code>, <code>month</code>, <code>time</code>, <code>week</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>IT&#39;S NO USE IT&#39;S HIDDEN</td>
+    </tr>
+    <tr>
+      <td><code>image</code></td>
+      <td>yis</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>text</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### **`.input-blend`**
+
+makes input fields blend in with ancestors' styles. May be bad for UX
+
+#### Support
+
+##### Non input tags
+
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>button</code></td>
+      <td>yes but you will regret it if you don't know what u r doing</td>
+    </tr>
+    <tr>
+      <td><code>select</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>textarea</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>datalist</code></td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+##### Input tags
+
+<table>
+  <thead>
+    <tr>
+      <th><code>input[type*]</code></th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>submit</code>, <code>reset</code>,<code>button</code></td>
+      <td>yes but you will regret it if you don't know what u r doing</td>
+    </tr>
+    <tr>
+      <td><code>checkbox</code></td>
+      <td>no why???</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td>no why???</td>
+    </tr>
+    <tr>
+      <td><code>date</code>, <code>datetime-local</code>, <code>month</code>, <code>time</code>, <code>week</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>email</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>file</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>hidden</code></td>
+      <td>IT&#39;S NO USE IT&#39;S HIDDEN</td>
+    </tr>
+    <tr>
+      <td><code>image</code></td>
+      <td>yis</td>
+    </tr>
+    <tr>
+      <td><code>number</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>password</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>radio</code></td>
+      <td>no why???</td>
+    </tr>
+    <tr>
+      <td><code>range</code></td>
+      <td>no why???</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>tel</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>text</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>url</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code>list</code></td>
+      <td>no why???</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Input templates
 

@@ -63,44 +63,6 @@ $prefix: '.input';
       outline: none;
     }
 
-    &::-webkit-input-placeholder {
-      color: $input-placeholder-color;
-      opacity: $input-placeholder-opacity;
-    }
-
-    &::-moz-placeholder {
-      color: $input-placeholder-color;
-      opacity: $input-placeholder-opacity;
-    }
-
-    &:-ms-input-placeholder {
-      color: $input-placeholder-color;
-      opacity: $input-placeholder-opacity;
-    }
-    &:-moz-placeholder {
-      /* Firefox 18- */
-      color: $input-placeholder-color;
-      opacity: $input-placeholder-opacity;
-    }
-
-    .theme-inverse & {
-      &::-webkit-input-placeholder {
-        color: $input-placeholder-color-inverse;
-      }
-
-      &::-moz-placeholder {
-        color: $input-placeholder-color-inverse;
-      }
-
-      &:-ms-input-placeholder {
-        color: $input-placeholder-color-inverse;
-      }
-      &:-moz-placeholder {
-        /* Firefox 18- */
-        color: $input-placeholder-color-inverse;
-      }
-    }
-
     //color
     &[type='color'] {
       min-width: 100px;
@@ -123,30 +85,6 @@ $prefix: '.input';
     // &::-webkit-file-upload-text {
     // 	-webkit-appearance: none;
     // }
-
-    &:focus::-webkit-input-placeholder {
-      color: transparent !important;
-    }
-
-    &:focus:-moz-placeholder {
-      color: transparent !important;
-    }
-
-    &:focus:-ms-input-placeholder {
-      color: transparent !important;
-    }
-
-    &.focus::-webkit-input-placeholder {
-      color: transparent !important;
-    }
-
-    &.focus:-moz-placeholder {
-      color: transparent !important;
-    }
-
-    &.focus:-ms-input-placeholder {
-      color: transparent !important;
-    }
   }
 
   &-shadow {
