@@ -2,6 +2,13 @@
 $prefix: '.input';
 
 %fwe-form-input-boxy {
+  &-color {
+    color: $input-color;
+
+    &-inverse {
+      color: $input-color-inverse;
+    }
+  }
   & {
     @extend %fwe-form-global-radius;
     @extend %fwe-form-global-transition;
@@ -28,15 +35,7 @@ $prefix: '.input';
     padding-left: $_fwc-input-gutter-x;
     padding-top: $_fwc-value-input-paddiny-y;
     padding-bottom: $_fwc-value-input-paddiny-y;
-
-    &,
-    &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
-      color: $input-color;
-    }
+    color: $input-color;
 
     &:focus,
     &.focus,
@@ -47,15 +46,7 @@ $prefix: '.input';
 
     .theme-inverse & {
       background-color: $input-background-inverse;
-
-      &,
-      &:hover,
-      &:focus,
-      &.focus,
-      &:active,
-      &.active {
-        color: $input-color-inverse;
-      }
+      color: $input-color-inverse;
     }
 
     option {

@@ -8175,8 +8175,6 @@ fieldset .input-calendar-ui {
   padding-left: 0.625em;
   padding-top: calc(((2rem - (1px * 2)) - (1.5em)) * 0.5);
   padding-bottom: calc(((2rem - (1px * 2)) - (1.5em)) * 0.5);
-}
-.input-tags-ui, .input-calendar-ui, .input-multiple-line, select.input-single-line, .input-select, .input-single-line {
   color: inherit;
 }
 .input-tags-ui:focus, .input-calendar-ui:focus, .input-multiple-line:focus, .input-select:focus, .input-single-line:focus, .focus.input-tags-ui, .focus.input-calendar-ui, .focus.input-multiple-line, .focus.input-select, .focus.input-single-line, .input-tags-ui:active, .input-calendar-ui:active, .input-multiple-line:active, .input-select:active, .input-single-line:active, .active.input-tags-ui, .active.input-calendar-ui, .active.input-multiple-line, .active.input-select, .active.input-single-line {
@@ -8184,8 +8182,6 @@ fieldset .input-calendar-ui {
 }
 .theme-inverse .input-tags-ui, .theme-inverse .input-calendar-ui, .theme-inverse .input-multiple-line, .theme-inverse .input-select, .theme-inverse .input-single-line {
   background-color: var(--fw-theme-background);
-}
-.theme-inverse .input-tags-ui, .theme-inverse .input-calendar-ui, .theme-inverse .input-multiple-line, .theme-inverse .input-select, .theme-inverse .input-single-line {
   color: inherit;
 }
 .input-tags-ui option, .input-calendar-ui option, .input-multiple-line option, .input-select option, .input-single-line option {
@@ -8518,13 +8514,14 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   display: inline-block;
   overflow: hidden;
   resize: none;
-}
-.input-blend {
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
   border: 0 !important;
   box-shadow: none !important;
+}
+.input-blend::-webkit-calendar-picker-indicator {
+  display: none;
 }
 .input-blend.input-block {
   width: 100%;
