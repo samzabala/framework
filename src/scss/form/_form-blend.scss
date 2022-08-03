@@ -23,7 +23,7 @@ $prefix: '.input';
   }
 
   //w/ list
-  ::-webkit-calendar-picker-indicator {
+  &::-webkit-calendar-picker-indicator {
 	display: none;
   }
 
