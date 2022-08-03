@@ -18,7 +18,8 @@ $prefix: '.input';
   }
 
   //w/ list
-  &::-webkit-calendar-picker-indicator {
+  &[list]::-webkit-list-button
+  &[list]::-webkit-calendar-picker-indicator {
     display: none;
   }
 
