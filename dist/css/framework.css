@@ -8161,6 +8161,19 @@ fieldset .input-calendar-ui {
   color: inherit;
   opacity: 0.5;
 }
+.theme-inverse .input-tags-ui::-webkit-input-placeholder, .theme-inverse .input-calendar-ui::-webkit-input-placeholder, .theme-inverse .input-multiple-line::-webkit-input-placeholder, .theme-inverse .input-select::-webkit-input-placeholder, .theme-inverse .input-single-line::-webkit-input-placeholder {
+  color: inherit;
+}
+.theme-inverse .input-tags-ui::-moz-placeholder, .theme-inverse .input-calendar-ui::-moz-placeholder, .theme-inverse .input-multiple-line::-moz-placeholder, .theme-inverse .input-select::-moz-placeholder, .theme-inverse .input-single-line::-moz-placeholder {
+  color: inherit;
+}
+.theme-inverse .input-tags-ui:-ms-input-placeholder, .theme-inverse .input-calendar-ui:-ms-input-placeholder, .theme-inverse .input-multiple-line:-ms-input-placeholder, .theme-inverse .input-select:-ms-input-placeholder, .theme-inverse .input-single-line:-ms-input-placeholder {
+  color: inherit;
+}
+.theme-inverse .input-tags-ui:-moz-placeholder, .theme-inverse .input-calendar-ui:-moz-placeholder, .theme-inverse .input-multiple-line:-moz-placeholder, .theme-inverse .input-select:-moz-placeholder, .theme-inverse .input-single-line:-moz-placeholder {
+  /* Firefox 18- */
+  color: inherit;
+}
 [type=color].input-tags-ui, [type=color].input-calendar-ui, [type=color].input-multiple-line, [type=color].input-select, [type=color].input-single-line {
   min-width: 100px;
   padding: 0.5em;

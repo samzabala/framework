@@ -64,23 +64,41 @@ $prefix: '.input';
     }
 
     &::-webkit-input-placeholder {
-      color: inherit;
+      color: $input-placeholder-color;
       opacity: $input-placeholder-opacity;
     }
 
     &::-moz-placeholder {
-      color: inherit;
+      color: $input-placeholder-color;
       opacity: $input-placeholder-opacity;
     }
 
     &:-ms-input-placeholder {
-      color: inherit;
+      color: $input-placeholder-color;
       opacity: $input-placeholder-opacity;
     }
     &:-moz-placeholder {
       /* Firefox 18- */
-      color: inherit;
+      color: $input-placeholder-color;
       opacity: $input-placeholder-opacity;
+    }
+
+    .theme-inverse & {
+      &::-webkit-input-placeholder {
+        color: $input-placeholder-color-inverse;
+      }
+
+      &::-moz-placeholder {
+        color: $input-placeholder-color-inverse;
+      }
+
+      &:-ms-input-placeholder {
+        color: $input-placeholder-color-inverse;
+      }
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: $input-placeholder-color-inverse;
+      }
     }
 
     //color
