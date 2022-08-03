@@ -8520,7 +8520,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   border: 0 !important;
   box-shadow: none !important;
 }
-[list].input-blend::-webkit-list-button [list].input-blend::-webkit-calendar-picker-indicator {
+[list].input-blend::-webkit-list-button, [list].input-blend::-webkit-scrollbar, [list].input-blend::-webkit-calendar-picker-indicator {
   display: none;
 }
 .input-blend.input-block {

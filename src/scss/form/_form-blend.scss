@@ -17,8 +17,9 @@ $prefix: '.input';
     box-shadow: none !important;
   }
 
-  //w/ list
-  &[list]::-webkit-list-button
+//   decorations
+  &[list]::-webkit-list-button,
+  &[list]::-webkit-scrollbar,
   &[list]::-webkit-calendar-picker-indicator {
     display: none;
   }
