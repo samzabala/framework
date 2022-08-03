@@ -8519,7 +8519,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   overflow: hidden;
   resize: none;
 }
-.input-blend, .input-blend:hover, .input-blend:focus {
+.input-blend {
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important;

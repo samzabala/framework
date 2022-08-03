@@ -10,14 +10,23 @@ $prefix: '.input';
     display: inline-block;
     overflow: hidden;
     resize: none;
+
+    &,
+    &:hover,
+    &:focus {
+		background: transparent !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		border: 0 !important;
+		box-shadow: none !important;
+    }
   }
-  &-override {
-    background: transparent !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
+
+  //w/ list
+  ::-webkit-calendar-picker-indicator {
+	display: none;
   }
+
   &-block {
     width: 100%;
     display: block;
@@ -27,12 +36,6 @@ $prefix: '.input';
 #{$prefix} {
   &-blend {
     @extend %fwe-form-input-blend-global;
-
-    &,
-    &:hover,
-    &:focus {
-      @extend %fwe-form-input-blend-override;
-    }
 
     &#{$prefix}-block {
       @extend %fwe-form-input-blend-block;
