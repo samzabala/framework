@@ -21,7 +21,7 @@ $prefix: '.input';
   &[list]::-webkit-list-button,
   &[list]::-webkit-scrollbar,
   &[list]::-webkit-calendar-picker-indicator {
-    display: none;
+    display: none !important;
   }
 
   &-block {

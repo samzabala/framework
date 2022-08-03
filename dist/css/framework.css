@@ -8521,7 +8521,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   box-shadow: none !important;
 }
 [list].input-blend::-webkit-list-button, [list].input-blend::-webkit-scrollbar, [list].input-blend::-webkit-calendar-picker-indicator {
-  display: none;
+  display: none !important;
 }
 .input-blend.input-block {
   width: 100%;
