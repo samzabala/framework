@@ -16,7 +16,7 @@
             (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
         ) * 0.5
     );
-    min-height: $_fwc-tabs-item-height;
+    // min-height: $_fwc-tabs-item-height;
     padding-right: $tabs-item-gutter-x;
     padding-left: $tabs-item-gutter-x;
     align-items: center;

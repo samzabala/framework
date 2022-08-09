@@ -88,16 +88,16 @@ $prefix: '.input';
 
   &-single {
     vertical-align: middle;
-    min-height: $_fwc-input-height;
+    // min-height: $_fwc-input-height;
 
     &#{$prefix}-large,
     #{$prefix}-large & {
-      min-height: $_fwc-input-height-large;
+      // min-height: $_fwc-input-height-large;
     }
 
     &#{$prefix}-small,
     #{$prefix}-small & {
-      min-height: $_fwc-input-height-small;
+      // min-height: $_fwc-input-height-small;
     }
   }
 

@@ -4724,7 +4724,6 @@ big {
 
 /*** NAVIGATION ***/
 .nav {
-  min-height: 3.75rem;
   background: var(--fw-theme-background);
   font-size: 1rem;
   line-height: 1.5rem;
@@ -4916,7 +4915,6 @@ big {
 .tabs > li .tab-text, .tab, .tabs > li {
   padding-top: calc(((2.8125em - (1px * 2)) - (1.5rem)) * 0.5);
   padding-bottom: calc(((2.8125em - (1px * 2)) - (1.5rem)) * 0.5);
-  min-height: 2.8125em;
   padding-right: 0;
   padding-left: 0;
   align-items: center;
@@ -6979,7 +6977,6 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   font-style: normal;
   padding-top: calc(((2em - (1px * 2)) - (1.25em)) * 0.5);
   padding-bottom: calc(((2em - (1px * 2)) - (1.25em)) * 0.5);
-  min-height: 2em;
   padding-right: 0.625em;
   padding-left: 0.625em;
   border: 1px solid transparent;
@@ -7005,14 +7002,12 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .btn.btn-large, .btn-large .btn {
   padding-top: calc(((2.0833333333em - (1px * 2)) - (1.25em)) * 0.5);
   padding-bottom: calc(((2.0833333333em - (1px * 2)) - (1.25em)) * 0.5);
-  min-height: 2.0833333333em;
   font-size: 1.5rem;
 }
 .btn.btn-small, .btn-small .btn {
   font-size: 0.75rem;
   padding-top: calc(((2em - (1px * 2)) - (1.25em)) * 0.5);
   padding-bottom: calc(((2em - (1px * 2)) - (1.25em)) * 0.5);
-  min-height: 2em;
 }
 .nav-block.nav-block-stretch > .btn, .nav > .btn {
   padding-top: 0;
@@ -8211,13 +8206,6 @@ fieldset .input-calendar-ui {
 }
 .input-single-line {
   vertical-align: middle;
-  min-height: 2rem;
-}
-.input-large.input-single-line, .input-large .input-single-line {
-  min-height: 3.125rem;
-}
-.input-small.input-single-line, .input-small .input-single-line {
-  min-height: 1.5rem;
 }
 .input-tags-ui.input-tags-ui-multiple, .input select.input-multiple-line, .input-select[multiple], .input-multiple-line {
   vertical-align: top;

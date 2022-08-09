@@ -55,7 +55,7 @@ $prefix: '.btn';
               (#{$_fwc-btn-single-line})
           ) * 0.5
       );
-      min-height: $_fwc-btn-height;
+      // min-height: $_fwc-btn-height;
       padding-right: $_fwc-btn-gutter-x;
       padding-left: $_fwc-btn-gutter-x;
       border: $btn-border-width solid transparent;
@@ -99,7 +99,7 @@ $prefix: '.btn';
               (#{$_fwc-btn-single-line})
           ) * 0.5
       );
-      min-height: $_fwc-btn-height-large;
+      // min-height: $_fwc-btn-height-large;
       font-size: $_fwc-btn-font-size-large;
     }
 
@@ -118,7 +118,7 @@ $prefix: '.btn';
               (#{$_fwc-btn-single-line})
           ) * 0.5
       );
-      min-height: $_fwc-btn-height-small;
+      // min-height: $_fwc-btn-height-small;
     }
 
     &-in-nav {
