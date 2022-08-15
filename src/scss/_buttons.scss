@@ -194,16 +194,18 @@ $prefix: '.btn';
   @at-root %fwe-btn-symbol {
     & {
       width: $_fwc-btn-height;
-      padding-left: 0;
-      padding-right: 0;
+      height: $_fwc-btn-height;
+      padding: 0;
     }
 
     &-large {
       width: $_fwc-btn-height-large;
+      height: $_fwc-btn-height-large;
     }
 
     &-small {
       width: $_fwc-btn-height-small;
+      height: $_fwc-btn-height-small;
     }
   }
 

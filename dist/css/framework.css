@@ -7026,14 +7026,16 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 
 .btn-symbol {
   width: 2em;
-  padding-left: 0;
-  padding-right: 0;
+  height: 2em;
+  padding: 0;
 }
 .btn-large .btn-symbol, .btn-symbol.btn-large {
   width: 2.0833333333em;
+  height: 2.0833333333em;
 }
 .btn-small .btn-symbol, .btn-symbol.btn-small {
   width: 2em;
+  height: 2em;
 }
 
 .btn, .btn-group {
