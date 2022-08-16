@@ -8504,6 +8504,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
+  border-style: solid;
   border-width: 0 0 1px !important;
   border-color: transparent;
   box-shadow: none !important;
