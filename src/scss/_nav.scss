@@ -12,7 +12,7 @@
 $prefix: '.nav';
 #{$prefix} {
   & {
-    // min-height: $_fwc-nav-height;
+    min-height: $_fwc-nav-height;
     background: $nav-background;
     @include type-set(
       (

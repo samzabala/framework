@@ -4724,6 +4724,7 @@ big {
 
 /*** NAVIGATION ***/
 .nav {
+  min-height: 3.75rem;
   background: var(--fw-theme-background);
   font-size: 1rem;
   line-height: 1.5rem;
