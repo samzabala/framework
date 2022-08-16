@@ -12,7 +12,8 @@ $prefix: '.input';
     background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
-    border: 0 !important;
+    border: 0 0 0 !important;
+    border-color: transparent;
     box-shadow: none !important;
     scrollbar-width: none !important;
   }
@@ -28,6 +29,11 @@ $prefix: '.input';
     width: 100%;
     display: block;
   }
+
+  &-hover {
+    border-color: currentColor;
+  }
+
 }
 
 #{$prefix} {
@@ -38,5 +44,10 @@ $prefix: '.input';
     &#{$prefix}-block {
       @extend %fwe-form-input-blend-block;
     }
+    &:focus,
+    &.focus {
+      @extend %fwe-form-input-blend-hover;
+    }
+
   }
 }

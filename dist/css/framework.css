@@ -8504,7 +8504,8 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
-  border: 0 !important;
+  border: 0 0 0 !important;
+  border-color: transparent;
   box-shadow: none !important;
   scrollbar-width: none !important;
 }
@@ -8514,6 +8515,9 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
 .input-blend.input-block {
   width: 100%;
   display: block;
+}
+.input-blend:focus, .input-blend.focus {
+  border-color: currentColor;
 }
 
 /*** input calendar ***/
