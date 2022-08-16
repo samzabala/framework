@@ -215,7 +215,8 @@ $prefix: '.input';
     }
 
     .nav-block.nav-block-stretch > &,
-    .nav > & {
+    .nav > &,
+    .nav > #{$prefix}-group > & {
       @extend %fwe-form-input-boxy-in-nav !optional;
       @extend %fwe-form-global-in-nav-custom;
       padding-top: $_fwc-value-input-paddiny-y-nav !important;

@@ -125,6 +125,7 @@ $prefix: '.btn';
       padding-top: 0;
       padding-bottom: 0;
       align-self: stretch;
+      height: #{$_fwc-nav-height} !important;
     }
 
     &-in-group {
@@ -166,7 +167,8 @@ $prefix: '.btn';
     }
 
     .nav-block.nav-block-stretch > &,
-    .nav > & {
+    .nav > &,
+    .nav > #{$prefix}-group > & {
       @extend %fwe-btn-in-nav;
     }
 
@@ -257,7 +259,6 @@ $prefix: '.btn';
       &-in-nav {
         @include dump-styles(no-border-radius);
         @include dump-styles(no-box-shadow-important);
-        height: #{$_fwc-nav-height} !important;
       }
     }
   }

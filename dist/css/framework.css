@@ -7009,10 +7009,11 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
   padding-top: calc(((2em - (1px * 2)) - (1.25em)) * 0.5);
   padding-bottom: calc(((2em - (1px * 2)) - (1.25em)) * 0.5);
 }
-.nav-block.nav-block-stretch > .btn, .nav > .btn {
+.nav-block.nav-block-stretch > .btn, .nav > .btn, .nav > .btn-group > .btn {
   padding-top: 0;
   padding-bottom: 0;
   align-self: stretch;
+  height: 3.75rem !important;
 }
 .btn-group > .btn {
   position: relative;
@@ -7053,10 +7054,6 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .btn:hover, .btn-group:hover, .btn:focus, .btn-group:focus, .focus.btn, .focus.btn-group, .btn:active, .btn-group:active, .active.btn, .active.btn-group {
   color: inherit;
 }
-.nav > .btn, .nav > .btn-group {
-  height: 3.75rem !important;
-}
-
 .btn.btn-block, .btn-group.btn-block {
   display: flex;
   width: 100%;
@@ -7847,7 +7844,7 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 .input-round.input-tags-ui, .input-round.input-calendar-ui, .input-round.input-single-line, .input-round.input-select, .input-round.input-multiple-line, .input-group.input-round {
   border-radius: 999rem;
 }
-.nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line, .nav-block.nav-block-stretch > .input-label, .nav > .input-label, .nav-block.nav-block-stretch > .input, .nav > .input {
+.nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line, .nav > .input-group > .input-tags-ui, .nav > .input-group > .input-calendar-ui, .nav > .input-group > .input-multiple-line, .nav > .input-group > .input-select, .nav > .input-group > .input-single-line, .nav-block.nav-block-stretch > .input-label, .nav > .input-label, .nav-block.nav-block-stretch > .input, .nav > .input {
   height: 3.75rem !important;
   align-self: stretch;
 }
@@ -8063,12 +8060,6 @@ td.table-cell-intensity-5, .table-cell.table-cell-intensity-5 {
 }
 
 .fieldset,
-fieldset {
-  padding: 20px 20px;
-  position: relative;
-  margin-bottom: 20px;
-}
-.fieldset,
 .fieldset legend,
 .fieldset .fieldset-legend,
 fieldset,
@@ -8084,6 +8075,13 @@ fieldset .fieldset-legend {
 .theme-inverse fieldset legend,
 .theme-inverse fieldset .fieldset-legend {
   background: var(--fw-theme-background-contrast);
+}
+.fieldset,
+fieldset {
+  padding: 20px 20px;
+  position: relative;
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
 }
 .fieldset legend,
 .fieldset .fieldset-legend,
@@ -8256,7 +8254,7 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   padding-top: calc(((1.5rem - (1px * 2)) - (1.5em)) * 0.5);
   padding-bottom: calc(((1.5rem - (1px * 2)) - (1.5em)) * 0.5);
 }
-.nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line {
+.nav-block.nav-block-stretch > .input-tags-ui, .nav-block.nav-block-stretch > .input-calendar-ui, .nav-block.nav-block-stretch > .input-multiple-line, .nav-block.nav-block-stretch > .input-select, .nav-block.nav-block-stretch > .input-single-line, .nav > .input-tags-ui, .nav > .input-calendar-ui, .nav > .input-multiple-line, .nav > .input-select, .nav > .input-single-line, .nav > .input-group > .input-tags-ui, .nav > .input-group > .input-calendar-ui, .nav > .input-group > .input-multiple-line, .nav > .input-group > .input-select, .nav > .input-group > .input-single-line {
   padding-top: calc(((3.75rem - (1px * 2)) - (1.5em)) * 0.5) !important;
   padding-bottom: calc(((3.75rem - (1px * 2)) - (1.5em)) * 0.5) !important;
 }
@@ -8502,15 +8500,15 @@ select.input-single-line:not([multiple]), .input-select:not([multiple]) {
   font: inherit;
   color: inherit;
   display: inline-block;
-  overflow: hidden;
   resize: none;
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
   border: 0 !important;
   box-shadow: none !important;
+  scrollbar-width: none !important;
 }
-[list].input-blend::-webkit-list-button, [list].input-blend::-webkit-scrollbar, [list].input-blend::-webkit-calendar-picker-indicator {
+[list].input-blend::-webkit-list-button, .input-blend::-webkit-scrollbar, .input-blend::-webkit-calendar-picker-indicator {
   display: none !important;
 }
 .input-blend.input-block {

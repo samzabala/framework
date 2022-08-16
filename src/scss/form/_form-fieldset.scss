@@ -1,11 +1,6 @@
 $prefix: '.input';
 .fieldset,
 fieldset {
-  padding: $fieldset-gutter-y $fieldset-gutter-x;
-  position: relative;
-  margin-bottom: $fieldset-gutter-y;
-  // overflow:hidden;
-
   &,
   legend,
   .fieldset-legend {
@@ -15,6 +10,14 @@ fieldset {
     .theme-inverse & {
       background: $fieldset-background-inverse;
     }
+  }
+
+  & {
+    padding: $fieldset-gutter-y $fieldset-gutter-x;
+    position: relative;
+    margin-bottom: $fieldset-gutter-y;
+    border-top-left-radius: 0;
+    // overflow:hidden;
   }
 
   legend,

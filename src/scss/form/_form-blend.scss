@@ -8,19 +8,19 @@ $prefix: '.input';
     font: inherit;
     color: inherit;
     display: inline-block;
-    overflow: hidden;
     resize: none;
     background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
     border: 0 !important;
     box-shadow: none !important;
+    scrollbar-width: none !important;
   }
 
 //   decorations
   &[list]::-webkit-list-button,
-  &[list]::-webkit-scrollbar,
-  &[list]::-webkit-calendar-picker-indicator {
+  &::-webkit-scrollbar,
+  &::-webkit-calendar-picker-indicator {
     display: none !important;
   }
 

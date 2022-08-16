@@ -25,6 +25,8 @@ $prefix: '.input';
 
     &-custom {
       height: $_fwc-nav-height !important;
+      // padding-top: 0;
+      // padding-bottom: 0;
       align-self: stretch;
     }
   }
