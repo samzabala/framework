@@ -12,13 +12,13 @@ $prefix: '.input';
     background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
-    border: 0 0 0 !important;
+    border-width: 0 0 $input-border-width !important;
     border-color: transparent;
     box-shadow: none !important;
     scrollbar-width: none !important;
   }
 
-//   decorations
+  //   decorations
   &[list]::-webkit-list-button,
   &::-webkit-scrollbar,
   &::-webkit-calendar-picker-indicator {
@@ -33,7 +33,6 @@ $prefix: '.input';
   &-hover {
     border-color: currentColor;
   }
-
 }
 
 #{$prefix} {
@@ -48,6 +47,5 @@ $prefix: '.input';
     &.focus {
       @extend %fwe-form-input-blend-hover;
     }
-
   }
 }
