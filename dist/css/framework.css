@@ -545,6 +545,11 @@ button {
   margin: 0;
 }
 
+option {
+  all: initial;
+  font: inherit;
+}
+
 input,
 textarea,
 fieldset,
