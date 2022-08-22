@@ -545,7 +545,7 @@ button {
   margin: 0;
 }
 
-option {
+option, optgroup {
   all: initial;
   font: inherit;
 }
