@@ -4388,6 +4388,14 @@ big {
   content: "\e960";
 }
 
+.symbol-invisible:before, .active > .symbol-invisible-toggle:before, .open > .symbol-invisible-toggle:before {
+  content: "\e961";
+}
+
+.symbol-visible:before, .active > .symbol-visible-toggle:before, .open > .symbol-visible-toggle:before {
+  content: "\e962";
+}
+
 /*** ASSET ***/
 .asset {
   max-width: 100%;
@@ -6338,26 +6346,6 @@ ul.list-group > li.list-group-item-no-interaction,
 ul.list-group-item.list-group-item-no-interaction {
   pointer-events: none !important;
 }
-.list-group-compact > li,
-.list-group-compact .list-group-item {
-  padding-top: calc((
-              1.25rem - 1px - 1.5em
-            ) * 0.5);
-  padding-bottom: calc((
-              1.25rem - 1px - 1.5em
-            ) * 0.5);
-}
-
-.list-group-expanded > li,
-.list-group-expanded .list-group-item {
-  padding-top: calc((
-              3.75rem - 1px - 1.5em
-            ) * 0.5);
-  padding-bottom: calc((
-              3.75rem - 1px - 1.5em
-            ) * 0.5);
-}
-
 .list-group > li:first-child, .list-group-item:first-child,
 ul.list-group > li:first-child,
 ul.list-group-item:first-child {
@@ -6367,6 +6355,30 @@ ul.list-group-item:first-child {
 ul.list-group > li:before,
 ul.list-group-item:before {
   content: none;
+}
+
+.list-group.list-group-compact > li,
+.list-group.list-group-compact .list-group-item,
+ul.list-group.list-group-compact > li,
+ul.list-group.list-group-compact .list-group-item {
+  padding-top: calc((
+            1.25rem - 1px - 1.5em
+          ) * 0.5);
+  padding-bottom: calc((
+            1.25rem - 1px - 1.5em
+          ) * 0.5);
+}
+
+.list-group.list-group-expanded > li,
+.list-group.list-group-expanded .list-group-item,
+ul.list-group.list-group-expanded > li,
+ul.list-group.list-group-expanded .list-group-item {
+  padding-top: calc((
+            3.75rem - 1px - 1.5em
+          ) * 0.5);
+  padding-bottom: calc((
+            3.75rem - 1px - 1.5em
+          ) * 0.5);
 }
 
 .list-group-interactive > li, .list-group-interactive > li a,

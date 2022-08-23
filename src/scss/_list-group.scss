@@ -45,44 +45,44 @@ ul#{$prefix} {
       pointer-events: none !important;
     }
 
-    @at-root #{$prefix}-compact {
-      > li,
-      #{$prefix}-item {
-        padding-top: calc(
-          (
-              #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-            ) * 0.5
-        );
-        padding-bottom: calc(
-          (
-              #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-            ) * 0.5
-        );
-      }
-    }
-
-    @at-root #{$prefix}-expanded {
-      > li,
-      #{$prefix}-item {
-        padding-top: calc(
-          (
-              #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-            ) * 0.5
-        );
-        padding-bottom: calc(
-          (
-              #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-            ) * 0.5
-        );
-      }
-    }
-
     &:first-child {
       border-top-width: $list-group-border-width;
     }
 
     &:before {
       content: none;
+    }
+  }
+
+  @at-root &#{$prefix}-compact {
+    > li,
+    #{$prefix}-item {
+      padding-top: calc(
+        (
+            #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
+          ) * 0.5
+      );
+      padding-bottom: calc(
+        (
+            #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
+          ) * 0.5
+      );
+    }
+  }
+
+  @at-root &#{$prefix}-expanded {
+    > li,
+    #{$prefix}-item {
+      padding-top: calc(
+        (
+            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
+          ) * 0.5
+      );
+      padding-bottom: calc(
+        (
+            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
+          ) * 0.5
+      );
     }
   }
 
