@@ -3114,8 +3114,8 @@
           if (_this5.args.onKeyUp) {
             if (typeof _this5.args.onKeyUp === 'string') {
               //attribute setup
-              theUI.input.addEventListener('keyup', function () {
-                return eval(_this5.args.onKeyUp);
+              theUI.input.addEventListener('keyup', function (event) {
+                if (event) return eval(_this5.args.onKeyUp);
               });
             } else {
               //api setup
@@ -3391,7 +3391,7 @@
 
         if (!FwComponent.isDisabled(e.target)) {
           var tagsInput = new Tags(e.target.closest("." + UIPrefix(COMPONENT_CLASS$9)).querySelector("." + COMPONENT_CLASS$9));
-          tagsInput.UIInput.blur(true);
+          tagsInput.blur(true);
           var tagToEdit = parseInt(e.target.getAttribute('data-ui-i'));
           var currValue = Tags.toArr(tagsInput.theValue, false);
           currValue.splice(tagToEdit, 1, Tags.__is);
@@ -3917,7 +3917,7 @@
         title: '',
         close: true,
         disableOverlay: true,
-        width: null,
+        width: mode !== BOARD_NAME ? null : '960px',
         callback: null,
         classes: '',
         closeClasses: '',
@@ -4054,24 +4054,13 @@
         }
 
         if (_this3.UIRoot) {
-          element.classList.remove('active');
+          element.classList.remove(ACTIVATED_CLASS$4);
           element.parentNode.insertBefore(_this3.UIRoot, element.nextSibling);
           FwDom.moveContents(_this3.UIContentBlock, element);
 
           _this3.UIRoot.parentNode.removeChild(_this3.UIRoot);
         }
 
-        var removeBodClass = true;
-
-        if (document.getElementById(_this3.UIId) && removeBodClass == true) {
-          removeBodClass = false;
-        }
-
-        if (removeBodClass) {
-          document.body.classList.remove(UIBodyClass.noScroll);
-        }
-
-        element.classList.remove(ACTIVATED_CLASS$4);
         canRemoveHash && UIChangeHash('');
         _classPrivateFieldLooseBase(_this3, _current)[_current] = {
           element: false,
@@ -4079,6 +4068,13 @@
           UI: false,
           UIContentBlock: false
         };
+        var currArr = Object.values(Modal.current()).filter(function (mod) {
+          return mod.element;
+        });
+
+        if (currArr.length < 1) {
+          document.body.classList.remove(UIBodyClass.noScroll);
+        }
       }, element);
     };
 

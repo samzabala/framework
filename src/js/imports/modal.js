@@ -204,7 +204,7 @@ class Modal extends FwComponent {
       title: '',
       close: true,
       disableOverlay: true,
-      width: null,
+      width: mode !== BOARD_NAME ? null : '960px',
       callback: null,
       classes: '',
       closeClasses: '',
@@ -480,23 +480,13 @@ class Modal extends FwComponent {
         }
 
         if (this.UIRoot) {
-          element.classList.remove('active');
+          element.classList.remove(ACTIVATED_CLASS);
 
           element.parentNode.insertBefore(this.UIRoot, element.nextSibling);
           FwDom.moveContents(this.UIContentBlock, element);
 
           this.UIRoot.parentNode.removeChild(this.UIRoot);
         }
-
-        let removeBodClass = true;
-        if (document.getElementById(this.UIId) && removeBodClass == true) {
-          removeBodClass = false;
-        }
-
-        if (removeBodClass) {
-          document.body.classList.remove(UIBodyClass.noScroll);
-        }
-        element.classList.remove(ACTIVATED_CLASS);
 
         canRemoveHash && UIChangeHash('');
 
@@ -506,6 +496,14 @@ class Modal extends FwComponent {
           UI: false,
           UIContentBlock: false,
         };
+
+        const currArr = Object.values(Modal.current()).filter((mod) => {
+          return mod.element;
+        });
+
+        if (currArr.length < 1) {
+          document.body.classList.remove(UIBodyClass.noScroll);
+        }
       },
       element
     );

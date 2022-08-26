@@ -559,8 +559,8 @@ class Tags extends FwComponent {
           if (this.args.onKeyUp) {
             if (typeof this.args.onKeyUp === 'string') {
               //attribute setup
-              theUI.input.addEventListener('keyup', () => {
-                return eval(this.args.onKeyUp);
+              theUI.input.addEventListener('keyup', (event) => {
+                if (event) return eval(this.args.onKeyUp);
               });
             } else {
               //api setup
@@ -916,7 +916,7 @@ class Tags extends FwComponent {
             .closest(`.${UIPrefix(COMPONENT_CLASS)}`)
             .querySelector(`.${COMPONENT_CLASS}`)
         );
-        tagsInput.UIInput.blur(true);
+        tagsInput.blur(true);
 
         const tagToEdit = parseInt(e.target.getAttribute('data-ui-i'));
 
