@@ -504,7 +504,8 @@ button {
   margin: 0;
 }
 
-option, optgroup {
+option,
+optgroup {
   all: initial;
   font: inherit;
 }

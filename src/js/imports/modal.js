@@ -162,6 +162,18 @@ class Modal extends FwComponent {
     return super.getProp('_mode');
   }
 
+  static containsHash(hash) {
+    const anId = hash.replace('#', ''); //just to be sure
+    const possibEl = document.getElementById(anId);
+    return possibEl && possibEl.parentNode.closest(`.${COMPONENT_CLASS}`);
+  }
+
+  static isHash(hash) {
+    const anId = hash.replace('#', ''); //just to be sure
+    const possibEl = document.getElementById(anId);
+    return possibEl && possibEl.classList.contains(COMPONENT_CLASS);
+  }
+
   get UIId() {
     return `${Settings.get('prefix')}-${NAME}-${this.mode}`;
   }
@@ -709,8 +721,11 @@ class Modal extends FwComponent {
   static handleHash() {
     return () => {
       if (Settings.get('initializeModal')) {
-        const modal = new Modal();
-        modal.create();
+        const hash = window.location.hash;
+        if (Modal.isHash(hash) && !Modal.containsHash) {
+          const modal = new Modal();
+          modal.create();
+        }
       }
     };
   }

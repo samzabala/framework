@@ -3256,7 +3256,7 @@
           }
 
           tagsInput.UIInputValue = '';
-          tagsInput.update(Tags.toVal(currValue, false));
+          tagsInput.update(Tags.toVal(currValue, false), Tags.toVal(currValue, false));
           tagsInput.blur(true);
         }
       };
@@ -3910,6 +3910,20 @@
       return mode ? CURRENT_MODAL_INSTANCE[mode] : CURRENT_MODAL_INSTANCE;
     };
 
+    Modal.containsHash = function containsHash(hash) {
+      var anId = hash.replace('#', ''); //just to be sure
+
+      var possibEl = document.getElementById(anId);
+      return possibEl && possibEl.parentNode.closest("." + COMPONENT_CLASS$6);
+    };
+
+    Modal.isHash = function isHash(hash) {
+      var anId = hash.replace('#', ''); //just to be sure
+
+      var possibEl = document.getElementById(anId);
+      return possibEl && possibEl.classList.contains(COMPONENT_CLASS$6);
+    };
+
     Modal.configDefaults = function configDefaults(mode) {
       mode = mode || DEFAULT_NAME;
       return {
@@ -4144,8 +4158,12 @@
     Modal.handleHash = function handleHash() {
       return function () {
         if (Settings.get('initializeModal')) {
-          var modal = new Modal();
-          modal.create();
+          var hash = window.location.hash;
+
+          if (Modal.isHash(hash) && !Modal.containsHash) {
+            var modal = new Modal();
+            modal.create();
+          }
         }
       };
     };

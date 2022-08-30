@@ -753,7 +753,7 @@ class Tags extends FwComponent {
         }
 
         tagsInput.UIInputValue = '';
-        tagsInput.update(Tags.toVal(currValue, false));
+        tagsInput.update(Tags.toVal(currValue, false), Tags.toVal(currValue, false));
 
         tagsInput.blur(true);
       }
