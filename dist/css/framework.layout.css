@@ -16794,6 +16794,120 @@ big {
 .color-intensity-5-alpha-9-toggle.open {
   color: var(--fw-color-intensity-5-alpha-9) !important;
 }
+.cursor-alias, .cursor-alias-active:active {
+  cursor: alias !important;
+}
+.cursor-all-scroll, .cursor-all-scroll-active:active {
+  cursor: all-scroll !important;
+}
+.cursor-auto, .cursor-auto-active:active {
+  cursor: auto !important;
+}
+.cursor-cell, .cursor-cell-active:active {
+  cursor: cell !important;
+}
+.cursor-col-resize, .cursor-col-resize-active:active {
+  cursor: col-resize !important;
+}
+.cursor-context-menu, .cursor-context-menu-active:active {
+  cursor: context-menu !important;
+}
+.cursor-copy, .cursor-copy-active:active {
+  cursor: copy !important;
+}
+.cursor-crosshair, .cursor-crosshair-active:active {
+  cursor: crosshair !important;
+}
+.cursor-default, .cursor-default-active:active {
+  cursor: default !important;
+}
+.cursor-e-resize, .cursor-e-resize-active:active {
+  cursor: e-resize !important;
+}
+.cursor-ew-resize, .cursor-ew-resize-active:active {
+  cursor: ew-resize !important;
+}
+.cursor-grab, .cursor-grab-active:active {
+  cursor: -webkit-grab !important;
+  cursor: grab !important;
+}
+.cursor-grabbing, .cursor-grabbing-active:active {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
+}
+.cursor-help, .cursor-help-active:active {
+  cursor: help !important;
+}
+.cursor-move, .cursor-move-active:active {
+  cursor: move !important;
+}
+.cursor-n-resize, .cursor-n-resize-active:active {
+  cursor: n-resize !important;
+}
+.cursor-ne-resize, .cursor-ne-resize-active:active {
+  cursor: ne-resize !important;
+}
+.cursor-nesw-resize, .cursor-nesw-resize-active:active {
+  cursor: nesw-resize !important;
+}
+.cursor-ns-resize, .cursor-ns-resize-active:active {
+  cursor: ns-resize !important;
+}
+.cursor-nw-resize, .cursor-nw-resize-active:active {
+  cursor: nw-resize !important;
+}
+.cursor-nwse-resize, .cursor-nwse-resize-active:active {
+  cursor: nwse-resize !important;
+}
+.cursor-no-drop, .cursor-no-drop-active:active {
+  cursor: no-drop !important;
+}
+.cursor-none, .cursor-none-active:active {
+  cursor: none !important;
+}
+.cursor-not-allowed, .cursor-not-allowed-active:active {
+  cursor: not-allowed !important;
+}
+.cursor-pointer, .cursor-pointer-active:active {
+  cursor: pointer !important;
+}
+.cursor-progress, .cursor-progress-active:active {
+  cursor: progress !important;
+}
+.cursor-row-resize, .cursor-row-resize-active:active {
+  cursor: row-resize !important;
+}
+.cursor-s-resize, .cursor-s-resize-active:active {
+  cursor: s-resize !important;
+}
+.cursor-se-resize, .cursor-se-resize-active:active {
+  cursor: se-resize !important;
+}
+.cursor-sw-resize, .cursor-sw-resize-active:active {
+  cursor: sw-resize !important;
+}
+.cursor-text, .cursor-text-active:active {
+  cursor: text !important;
+}
+.cursor-vertical-text, .cursor-vertical-text-active:active {
+  cursor: vertical-text !important;
+}
+.cursor-w-resize, .cursor-w-resize-active:active {
+  cursor: w-resize !important;
+}
+.cursor-wait, .cursor-wait-active:active {
+  cursor: wait !important;
+}
+.cursor-zoom-in, .cursor-zoom-in-active:active {
+  cursor: zoom-in !important;
+}
+.cursor-zoom-out, .cursor-zoom-out-active:active {
+  cursor: zoom-out !important;
+}
+.cursor-inherit, .cursor-inherit-active:active {
+  cursor: inherit !important;
+}
+
 .display-inline-block {
   display: inline-block !important;
 }

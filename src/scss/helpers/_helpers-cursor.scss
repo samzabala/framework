@@ -1,0 +1,150 @@
+.cursor {
+  &-alias,
+  &-alias-active:active {
+    cursor: alias !important;
+  }
+  &-all-scroll,
+  &-all-scroll-active:active {
+    cursor: all-scroll !important;
+  }
+  &-auto,
+  &-auto-active:active {
+    cursor: auto !important;
+  }
+  &-cell,
+  &-cell-active:active {
+    cursor: cell !important;
+  }
+  &-col-resize,
+  &-col-resize-active:active {
+    cursor: col-resize !important;
+  }
+  &-context-menu,
+  &-context-menu-active:active {
+    cursor: context-menu !important;
+  }
+  &-copy,
+  &-copy-active:active {
+    cursor: copy !important;
+  }
+  &-crosshair,
+  &-crosshair-active:active {
+    cursor: crosshair !important;
+  }
+  &-default,
+  &-default-active:active {
+    cursor: default !important;
+  }
+  &-e-resize,
+  &-e-resize-active:active {
+    cursor: e-resize !important;
+  }
+  &-ew-resize,
+  &-ew-resize-active:active {
+    cursor: ew-resize !important;
+  }
+  &-grab,
+  &-grab-active:active {
+    cursor: grab !important;
+  }
+  &-grabbing,
+  &-grabbing-active:active {
+    cursor: grabbing !important;
+  }
+  &-help,
+  &-help-active:active {
+    cursor: help !important;
+  }
+  &-move,
+  &-move-active:active {
+    cursor: move !important;
+  }
+  &-n-resize,
+  &-n-resize-active:active {
+    cursor: n-resize !important;
+  }
+  &-ne-resize,
+  &-ne-resize-active:active {
+    cursor: ne-resize !important;
+  }
+  &-nesw-resize,
+  &-nesw-resize-active:active {
+    cursor: nesw-resize !important;
+  }
+  &-ns-resize,
+  &-ns-resize-active:active {
+    cursor: ns-resize !important;
+  }
+  &-nw-resize,
+  &-nw-resize-active:active {
+    cursor: nw-resize !important;
+  }
+  &-nwse-resize,
+  &-nwse-resize-active:active {
+    cursor: nwse-resize !important;
+  }
+  &-no-drop,
+  &-no-drop-active:active {
+    cursor: no-drop !important;
+  }
+  &-none,
+  &-none-active:active {
+    cursor: none !important;
+  }
+  &-not-allowed,
+  &-not-allowed-active:active {
+    cursor: not-allowed !important;
+  }
+  &-pointer,
+  &-pointer-active:active {
+    cursor: pointer !important;
+  }
+  &-progress,
+  &-progress-active:active {
+    cursor: progress !important;
+  }
+  &-row-resize,
+  &-row-resize-active:active {
+    cursor: row-resize !important;
+  }
+  &-s-resize,
+  &-s-resize-active:active {
+    cursor: s-resize !important;
+  }
+  &-se-resize,
+  &-se-resize-active:active {
+    cursor: se-resize !important;
+  }
+  &-sw-resize,
+  &-sw-resize-active:active {
+    cursor: sw-resize !important;
+  }
+  &-text,
+  &-text-active:active {
+    cursor: text !important;
+  }
+  &-vertical-text,
+  &-vertical-text-active:active {
+    cursor: vertical-text !important;
+  }
+  &-w-resize,
+  &-w-resize-active:active {
+    cursor: w-resize !important;
+  }
+  &-wait,
+  &-wait-active:active {
+    cursor: wait !important;
+  }
+  &-zoom-in,
+  &-zoom-in-active:active {
+    cursor: zoom-in !important;
+  }
+  &-zoom-out,
+  &-zoom-out-active:active {
+    cursor: zoom-out !important;
+  }
+  &-inherit,
+  &-inherit-active:active {
+    cursor: inherit !important;
+  }
+}
