@@ -17282,6 +17282,18 @@ big {
 .margin, .margin-x, .margin-right {
   margin-right: 20px !important;
 }
+.margin-negate, .margin-y-negate, .margin-top-negate {
+  margin-top: -20px !important;
+}
+.margin-negate, .margin-y-negate, .margin-bottom-negate {
+  margin-bottom: -20px !important;
+}
+.margin-negate, .margin-x-negate, .margin-left-negate {
+  margin-left: -20px !important;
+}
+.margin-negate, .margin-x-negate, .margin-right-negate {
+  margin-right: -20px !important;
+}
 .margin-large, .margin-large-y, .margin-large-top {
   margin-top: 30px !important;
 }
@@ -17293,6 +17305,18 @@ big {
 }
 .margin-large, .margin-large-x, .margin-large-right {
   margin-right: 30px !important;
+}
+.margin-large-negate, .margin-large-y-negate, .margin-large-top-negate {
+  margin-top: -30px !important;
+}
+.margin-large-negate, .margin-large-y-negate, .margin-large-bottom-negate {
+  margin-bottom: -30px !important;
+}
+.margin-large-negate, .margin-large-x-negate, .margin-large-left-negate {
+  margin-left: -30px !important;
+}
+.margin-large-negate, .margin-large-x-negate, .margin-large-right-negate {
+  margin-right: -30px !important;
 }
 .margin-small, .margin-small-y, .margin-small-top {
   margin-top: 10px !important;
@@ -17306,6 +17330,18 @@ big {
 .margin-small, .margin-small-x, .margin-small-right {
   margin-right: 10px !important;
 }
+.margin-small-negate, .margin-small-y-negate, .margin-small-top-negate {
+  margin-top: -10px !important;
+}
+.margin-small-negate, .margin-small-y-negate, .margin-small-bottom-negate {
+  margin-bottom: -10px !important;
+}
+.margin-small-negate, .margin-small-x-negate, .margin-small-left-negate {
+  margin-left: -10px !important;
+}
+.margin-small-negate, .margin-small-x-negate, .margin-small-right-negate {
+  margin-right: -10px !important;
+}
 .margin-micro, .margin-micro-y, .margin-micro-top {
   margin-top: 5px !important;
 }
@@ -17318,17 +17354,17 @@ big {
 .margin-micro, .margin-micro-x, .margin-micro-right {
   margin-right: 5px !important;
 }
-.no-margin, .no-margin-y, .no-margin-top {
-  margin-top: 0 !important;
+.margin-micro-negate, .margin-micro-y-negate, .margin-micro-top-negate {
+  margin-top: -5px !important;
 }
-.no-margin, .no-margin-y, .no-margin-bottom {
-  margin-bottom: 0 !important;
+.margin-micro-negate, .margin-micro-y-negate, .margin-micro-bottom-negate {
+  margin-bottom: -5px !important;
 }
-.no-margin, .no-margin-x, .no-margin-left {
-  margin-left: 0 !important;
+.margin-micro-negate, .margin-micro-x-negate, .margin-micro-left-negate {
+  margin-left: -5px !important;
 }
-.no-margin, .no-margin-x, .no-margin-right {
-  margin-right: 0 !important;
+.margin-micro-negate, .margin-micro-x-negate, .margin-micro-right-negate {
+  margin-right: -5px !important;
 }
 .margin-auto, .margin-auto-y, .margin-auto-top {
   margin-top: auto !important;
@@ -17341,6 +17377,18 @@ big {
 }
 .margin-auto, .margin-auto-x, .margin-auto-right {
   margin-right: auto !important;
+}
+.no-margin, .no-margin-y, .no-margin-top {
+  margin-top: 0 !important;
+}
+.no-margin, .no-margin-y, .no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+.no-margin, .no-margin-x, .no-margin-left {
+  margin-left: 0 !important;
+}
+.no-margin, .no-margin-x, .no-margin-right {
+  margin-right: 0 !important;
 }
 .overflow-visible {
   overflow: visible !important;
@@ -17468,6 +17516,102 @@ big {
   position: sticky !important;
 }
 
+.offset, .offset-y, .offset-top {
+  top: 20px !important;
+}
+.offset, .offset-y, .offset-bottom {
+  bottom: 20px !important;
+}
+.offset, .offset-x, .offset-left {
+  left: 20px !important;
+}
+.offset, .offset-x, .offset-right {
+  right: 20px !important;
+}
+.offset-negate, .offset-y-negate, .offset-top-negate {
+  top: -20px !important;
+}
+.offset-negate, .offset-y-negate, .offset-bottom-negate {
+  bottom: -20px !important;
+}
+.offset-negate, .offset-x-negate, .offset-left-negate {
+  left: -20px !important;
+}
+.offset-negate, .offset-x-negate, .offset-right-negate {
+  right: -20px !important;
+}
+.offset-large, .offset-large-y, .offset-large-top {
+  top: 30px !important;
+}
+.offset-large, .offset-large-y, .offset-large-bottom {
+  bottom: 30px !important;
+}
+.offset-large, .offset-large-x, .offset-large-left {
+  left: 30px !important;
+}
+.offset-large, .offset-large-x, .offset-large-right {
+  right: 30px !important;
+}
+.offset-large-negate, .offset-large-y-negate, .offset-large-top-negate {
+  top: -30px !important;
+}
+.offset-large-negate, .offset-large-y-negate, .offset-large-bottom-negate {
+  bottom: -30px !important;
+}
+.offset-large-negate, .offset-large-x-negate, .offset-large-left-negate {
+  left: -30px !important;
+}
+.offset-large-negate, .offset-large-x-negate, .offset-large-right-negate {
+  right: -30px !important;
+}
+.offset-small, .offset-small-y, .offset-small-top {
+  top: 10px !important;
+}
+.offset-small, .offset-small-y, .offset-small-bottom {
+  bottom: 10px !important;
+}
+.offset-small, .offset-small-x, .offset-small-left {
+  left: 10px !important;
+}
+.offset-small, .offset-small-x, .offset-small-right {
+  right: 10px !important;
+}
+.offset-small-negate, .offset-small-y-negate, .offset-small-top-negate {
+  top: -10px !important;
+}
+.offset-small-negate, .offset-small-y-negate, .offset-small-bottom-negate {
+  bottom: -10px !important;
+}
+.offset-small-negate, .offset-small-x-negate, .offset-small-left-negate {
+  left: -10px !important;
+}
+.offset-small-negate, .offset-small-x-negate, .offset-small-right-negate {
+  right: -10px !important;
+}
+.offset-micro, .offset-micro-y, .offset-micro-top {
+  top: 5px !important;
+}
+.offset-micro, .offset-micro-y, .offset-micro-bottom {
+  bottom: 5px !important;
+}
+.offset-micro, .offset-micro-x, .offset-micro-left {
+  left: 5px !important;
+}
+.offset-micro, .offset-micro-x, .offset-micro-right {
+  right: 5px !important;
+}
+.offset-micro-negate, .offset-micro-y-negate, .offset-micro-top-negate {
+  top: -5px !important;
+}
+.offset-micro-negate, .offset-micro-y-negate, .offset-micro-bottom-negate {
+  bottom: -5px !important;
+}
+.offset-micro-negate, .offset-micro-x-negate, .offset-micro-left-negate {
+  left: -5px !important;
+}
+.offset-micro-negate, .offset-micro-x-negate, .offset-micro-right-negate {
+  right: -5px !important;
+}
 .offset-0, .offset-0-y, .offset-0-top {
   top: 0 !important;
 }

@@ -68,8 +68,8 @@
   }
 
   @at-root #{$selector-prefix} {
-    &,
-    &-y,
+    &#{$parsed-selector-suffix},
+    &-y#{$parsed-selector-suffix},
     &-top#{$parsed-selector-suffix} {
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-top#{$parsed-extend-suffix} !optional;
@@ -77,8 +77,8 @@
         #{internal-helper-property(top,$property,$subproperty)}: $value !important;
       }
     }
-    &,
-    &-y,
+    &#{$parsed-selector-suffix},
+    &-y#{$parsed-selector-suffix},
     &-bottom#{$parsed-selector-suffix} {
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-bottom#{$parsed-extend-suffix} !optional;
@@ -86,8 +86,8 @@
         #{internal-helper-property(bottom,$property,$subproperty)}: $value !important;
       }
     }
-    &,
-    &-x,
+    &#{$parsed-selector-suffix},
+    &-x#{$parsed-selector-suffix},
     &-left#{$parsed-selector-suffix} {
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-left#{$parsed-extend-suffix} !optional;
@@ -95,8 +95,8 @@
         #{internal-helper-property(left,$property,$subproperty)}: $value !important;
       }
     }
-    &,
-    &-x,
+    &#{$parsed-selector-suffix},
+    &-x#{$parsed-selector-suffix},
     &-right#{$parsed-selector-suffix} {
       @if ($extend-prefix != '') {
         @extend %#{$extend-prefix}-right#{$parsed-extend-suffix} !optional;
