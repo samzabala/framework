@@ -651,11 +651,11 @@ dl {
   display: block;
 }
 
-li,
+li:nth-child(n+2),
 li ul,
 li ol,
-dl,
-dt {
+dl:nth-child(n+2),
+dt:nth-child(n+2) {
   margin-top: 0.625em;
 }
 
