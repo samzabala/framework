@@ -158,6 +158,9 @@ $mode-class: #{$prefix}-mode-board;
     #{$global-prefix}-expanded & {
       padding: $modal-board-expanded-padding-y $modal-board-expanded-padding-x;
     }
+    #{$global-prefix}-no-padding & {
+      padding: 0;
+    }
   }
 
   @include on-breakpoint(mobile) {

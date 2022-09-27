@@ -9185,6 +9185,9 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   .modal-expanded .modal-ui-mode-default.modal-ui-popup {
     padding: 30px 30px;
   }
+  .modal-no-padding .modal-ui-mode-default.modal-ui-popup {
+    padding: 0;
+  }
 }
 @media (max-width: 1199px) {
   .modal-ui-mode-default.modal-ui-popup {
@@ -9318,6 +9321,9 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   }
   .modal-expanded .modal-ui-mode-board.modal-ui-popup {
     padding: 30px 30px;
+  }
+  .modal-no-padding .modal-ui-mode-board.modal-ui-popup {
+    padding: 0;
   }
 }
 @media (max-width: 1199px) {

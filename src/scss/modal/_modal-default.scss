@@ -55,6 +55,9 @@ $mode-class: #{$prefix}-mode-default;
     #{$global-prefix}-expanded & {
       padding: $modal-expanded-padding-y $modal-expanded-padding-x;
     }
+    #{$global-prefix}-no-padding & {
+      padding: 0;
+    }
   }
 
   @include on-breakpoint(mobile) {
