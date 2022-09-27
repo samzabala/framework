@@ -144,6 +144,10 @@ Example:
 
 You get it...
 
+### **`.dropdown-expanded`, `.dropdown-compact` and `dropdown-constricted`**
+
+Add `.dropdown-expanded`, `.dropdown-compact` or `.dropdown-constricted` on the table element to expand, reduce, or remove/reset  padding or line height
+
 ## Attributes/Settings
 
 ### **`[data-dropdown-width="['css width property']"]`** - `args.width`

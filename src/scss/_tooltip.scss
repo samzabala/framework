@@ -21,6 +21,17 @@ $prefix: '.tooltip';
     @include dump-styles(hide-js-friendly);
   }
 
+  &#{$prefix}-expanded {
+    @include create-popper-styles(
+      null,
+      null,
+      null,
+      null,
+      $tooltip-expanded-gutter-x,
+      $tooltip-expanded-gutter-y
+    );
+  }
+
   &#{$prefix}-compact {
     @include create-popper-styles(
       null,
@@ -32,15 +43,8 @@ $prefix: '.tooltip';
     );
   }
 
-  &#{$prefix}-expanded {
-    @include create-popper-styles(
-      null,
-      null,
-      null,
-      null,
-      $tooltip-expanded-gutter-x,
-      $tooltip-expanded-gutter-y
-    );
+  &#{$prefix}-constricted {
+    @include create-popper-styles(null, null, null, null, 0);
   }
 
   &:not(#{$prefix}-has-custom-width) {

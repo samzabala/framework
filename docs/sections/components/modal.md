@@ -17,6 +17,8 @@ on `[data-toggle-modal]` suffix it to `-{MODE}` to partner it with its matching 
 
 More on modes in a bit
 
+You can also modify padding using `modal-expanded` (for larger padding), `modal-compact` (for smaller padding)
+
 ## Toggler
 
 ### **`[data-toggle-modal-{MODE}]`**

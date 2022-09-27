@@ -168,11 +168,11 @@ dl {
   display: block;
 }
 
-li:nth-child(n+2),
+li:nth-child(n + 2),
 li ul,
 li ol,
-dl:nth-child(n+2),
-dt:nth-child(n+2) {
+dl:nth-child(n + 2),
+dt:nth-child(n + 2) {
   margin-top: $_fwc-body-list-gutter-y;
 }
 

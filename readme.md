@@ -115,4 +115,20 @@ Dependencies:
 
 # To Do
 
-- Emulate form ui life cycles to other components so the settings actually get passed properly goooood
+- convert shitty sass vars into native css vars + cleanup ya boi so compilation doesnt take 84 years
+
+find and replace for fw3
+
+will be ready
+*-no-gutter => *-constricted
+flex-child => flex-grid-child
+text-leading-whole => text-leading-constricted
+zone-small => zone-compact
+zone-large => zone-expanded
+zone-large => zone-expanded
+
+
+other clases na hindi ba handa sa kajugaguhan na to
+if it doesnt need constricted in it do not convert small to compact and large to expanded
+do micro tho
+

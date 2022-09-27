@@ -77,19 +77,25 @@ $prefix: '.zone';
   &#{$prefix}-disabled {
     @include dump-styles(disabled);
   }
-
-  &#{$prefix}-small {
-    padding-top: $zone-gutter-y-small;
-    padding-bottom: $zone-gutter-y-small;
-    padding-right: $zone-gutter-x-small;
-    padding-left: $zone-gutter-x-small;
+  &#{$prefix}-constricted {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
   }
 
-  &#{$prefix}-large {
-    padding-top: $zone-gutter-y-large;
-    padding-bottom: $zone-gutter-y-large;
-    padding-right: $zone-gutter-x-large;
-    padding-left: $zone-gutter-x-large;
+  &#{$prefix}-compact {
+    padding-top: $zone-gutter-y-compact;
+    padding-bottom: $zone-gutter-y-compact;
+    padding-right: $zone-gutter-x-compact;
+    padding-left: $zone-gutter-x-compact;
+  }
+
+  &#{$prefix}-expanded {
+    padding-top: $zone-gutter-y-expanded;
+    padding-bottom: $zone-gutter-y-expanded;
+    padding-right: $zone-gutter-x-expanded;
+    padding-left: $zone-gutter-x-expanded;
   }
 
   @each $tag, $properties in $_fwc-zone-schemes {

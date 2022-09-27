@@ -143,15 +143,17 @@ Style a `<td>` or `.table-cell` as a `<tr>` element
 
 ### **.table-cell-no-gutter**
 
+DEPRECATED use [`no-padding-`](../helpers/padding.md) instead
+
 Remove padding on table cell
 
 ```html
 <div class="table-cell table-cell-no-gutter">CELL!</div>
 ```
 
-### **`.table-large` and `.table-small`**
+### **`.table-expanded`, `.table-compact` and `table-constricted`**
 
-Add `.table-large` or `.table-small` to reduce or expand table rows and line height
+Add `.table-expanded`, `.table-compact` or `.table-constricted` on the table element to expand, reduce, or remove/reset  padding or line height
 
 ### **`.table-label`**
 

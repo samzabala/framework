@@ -19,19 +19,51 @@
 .offset {
   & {
     @include create-box-helper(#{&}, '', '', '', $gutter-base, 'for-offset-base');
-    @include create-box-helper(#{&}, 'negate', '', '',( $gutter-base * -1), 'for-offset-base','negate');
+    @include create-box-helper(
+      #{&},
+      'negate',
+      '',
+      '',
+      ($gutter-base * -1),
+      'for-offset-base',
+      'negate'
+    );
   }
   &-large {
     @include create-box-helper(#{&}, '', '', '', $gutter-large, 'for-offset-large');
-    @include create-box-helper(#{&}, 'negate', '', '', ($gutter-large * -1), 'for-offset-large','negate');
+    @include create-box-helper(
+      #{&},
+      'negate',
+      '',
+      '',
+      ($gutter-large * -1),
+      'for-offset-large',
+      'negate'
+    );
   }
   &-small {
     @include create-box-helper(#{&}, '', '', '', $gutter-small, 'for-offset-small');
-    @include create-box-helper(#{&}, 'negate', '', '', ($gutter-small * -1), 'for-offset-small','negate');
+    @include create-box-helper(
+      #{&},
+      'negate',
+      '',
+      '',
+      ($gutter-small * -1),
+      'for-offset-small',
+      'negate'
+    );
   }
   &-micro {
     @include create-box-helper(#{&}, '', '', '', $gutter-micro, 'for-offset-micro');
-    @include create-box-helper(#{&}, 'negate', '', '', ($gutter-micro * -1), 'for-offset-micro','negate');
+    @include create-box-helper(
+      #{&},
+      'negate',
+      '',
+      '',
+      ($gutter-micro * -1),
+      'for-offset-micro',
+      'negate'
+    );
   }
   &-0 {
     @include create-box-helper(#{&}, '', '', '', 0, 'for-offset');

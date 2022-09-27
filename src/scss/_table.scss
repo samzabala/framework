@@ -140,10 +140,6 @@ td,
       border-right-width: $table-cell-border-width;
     }
   }
-
-  &#{$prefix}-cell-no-gutter {
-    padding: 0 !important;
-  }
 }
 
 #{$prefix}-disabled {
@@ -187,6 +183,16 @@ td,
   padding-top: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
   padding-bottom: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
 
+  #{$prefix}-expanded & {
+    padding-top: calc(
+      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
+    );
+    padding-bottom: calc(
+      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
+    );
+    line-height: $_fwc-body-line-height * $body-line-height-expanded-factor;
+  }
+
   #{$prefix}-compact & {
     padding-top: calc(
       (#{$_fwc-table-compact-cell-height} - #{$_fwc-body-single-line-compact}) * 0.5
@@ -197,14 +203,10 @@ td,
     line-height: $_fwc-body-line-height * $body-line-height-compact-factor;
   }
 
-  #{$prefix}-expanded & {
-    padding-top: calc(
-      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
-    );
-    padding-bottom: calc(
-      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
-    );
-    line-height: $_fwc-body-line-height * $body-line-height-expanded-factor;
+  #{$prefix}-constricted & {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1;
   }
 }
 
@@ -214,7 +216,7 @@ td,
   border-radius: $table-label-border-radius;
   display: inline-block;
   vertical-align: middle;
-  margin: #{$table-label-offset} 0;
+  margin: #{$table-label-offset * -1} 0;
 
   #{$prefix}-expanded & {
     height: calc(#{$_fwc-table-expanded-cell-height} - (#{$table-label-offset} * 2));
@@ -222,6 +224,10 @@ td,
 
   #{$prefix}-compact & {
     height: calc(#{$_fwc-table-compact-cell-height} - (#{$table-label-offset} * 2));
+  }
+
+  #{$prefix}-constricted & {
+    height: 1em;
   }
 
   @each $tag, $color in $_fwc-brand-color-declarations-for-components {

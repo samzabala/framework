@@ -25,6 +25,14 @@ $prefix: '.well';
     }
   }
 
+  &#{&}-constricted {
+    box-shadow: 0 0 0 0 #{$well-color} !important;
+
+    .theme-inverse & {
+      box-shadow: 0 0 0 0 #{$well-color-inverse} !important;
+    }
+  }
+
   // //what if it's a square huh?? u dumfuc
   // position: relative;
   // &:after {

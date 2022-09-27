@@ -151,15 +151,23 @@ $mode-class: #{$prefix}-mode-board;
 
   padding: $modal-board-padding-y $modal-board-padding-x;
 
+  #{$global-prefix}-constricted &,
+  #{$global-prefix}-constricted-x & {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #{$global-prefix}-constricted &,
+  #{$global-prefix}-constricted-y & {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   @include on-breakpoint(nonmobile) {
-    #{$global-prefix}-compact & {
-      padding: $modal-board-compact-padding-y $modal-board-compact-padding-x;
-    }
     #{$global-prefix}-expanded & {
       padding: $modal-board-expanded-padding-y $modal-board-expanded-padding-x;
     }
-    #{$global-prefix}-no-padding & {
-      padding: 0;
+    #{$global-prefix}-compact & {
+      padding: $modal-board-compact-padding-y $modal-board-compact-padding-x;
     }
   }
 

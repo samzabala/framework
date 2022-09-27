@@ -54,6 +54,22 @@ ul#{$prefix} {
     }
   }
 
+  @at-root &#{$prefix}-expanded {
+    > li,
+    #{$prefix}-item {
+      padding-top: calc(
+        (
+            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
+          ) * 0.5
+      );
+      padding-bottom: calc(
+        (
+            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
+          ) * 0.5
+      );
+    }
+  }
+
   @at-root &#{$prefix}-compact {
     > li,
     #{$prefix}-item {
@@ -70,19 +86,11 @@ ul#{$prefix} {
     }
   }
 
-  @at-root &#{$prefix}-expanded {
+  @at-root &#{$prefix}-constricted {
     > li,
     #{$prefix}-item {
-      padding-top: calc(
-        (
-            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-          ) * 0.5
-      );
-      padding-bottom: calc(
-        (
-            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-          ) * 0.5
-      );
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 
