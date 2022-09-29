@@ -87,7 +87,7 @@ $prefix: '.modal';
       @extend %fwe-modal-popup !optional;
     }
 
-    #{$prefix} #{&}-on-fullscreen#{&} & {
+    #{&}-on-fullscreen#{&} & {
       &-wrapper {
         padding: 0 !important;
       }

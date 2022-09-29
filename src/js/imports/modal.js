@@ -920,7 +920,7 @@ class Modal extends FwComponent {
             (e.originalEvent.touches && e.originalEvent.touches[0].clientX);
 
           if (LAST_POS_X !== widthBasis) {
-            // console.warn(e.type,'MouseMove',e.clientX,LAST_POS_X);
+            console.warn(e.type, 'MouseMove', e.clientX, LAST_POS_X);
             LAST_POS_X = widthBasis;
 
             let newWidth;

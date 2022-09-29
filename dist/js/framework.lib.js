@@ -4325,7 +4325,7 @@
             var widthBasis = e.clientX || e.touches && e.touches[0].clientX || e.originalEvent.touches && e.originalEvent.touches[0].clientX;
 
             if (LAST_POS_X !== widthBasis) {
-              // console.warn(e.type,'MouseMove',e.clientX,LAST_POS_X);
+              console.warn(e.type, 'MouseMove', e.clientX, LAST_POS_X);
               LAST_POS_X = widthBasis;
               var newWidth;
 
