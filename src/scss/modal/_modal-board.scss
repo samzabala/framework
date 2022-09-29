@@ -1,182 +1,197 @@
 /*** MODAL BOARD ***/
 $global-prefix: '.modal';
 $prefix: '.modal-ui';
-$mode-class: #{$prefix}-mode-board;
+$mode-class: #{$prefix}-on-mode-board;
+$component-class: #{$prefix}-mode-board;
 
 [data-toggle-modal-board] {
   @include dump-styles(data-toggle);
 }
 
-#{$mode-class}#{$prefix} {
+#{$component-class}#{$prefix} {
   z-index: $z-index-modal-board;
 }
-
-#{$mode-class}#{$prefix}-wrapper {
-  @extend %fwe-modal-wrapper-background !optional;
-  #{$prefix}-popup {
-    padding-left: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
-    padding-right: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
-  }
-
-  #{$prefix}-align-right & {
-    padding-left: $modal-board-padding-spacer;
-    #{$prefix}-popup,
-    #{$prefix}-button-wrapper {
-      margin-left: auto;
-    }
-  }
-  #{$prefix}-align-left & {
-    padding-right: $modal-board-padding-spacer;
-    #{$prefix}-popup,
-    #{$prefix}-button-wrapper {
-      margin-right: auto;
-    }
-  }
-
-  @include on-breakpoint(mobile) {
+#{$mode-class} {
+  #{$prefix}-wrapper {
+    @extend %fwe-modal-wrapper-background !optional;
     #{$prefix}-popup {
-      padding-left: calc(
-        (#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
-      );
-      padding-right: calc(
-        (#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
-      );
+      padding-left: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
+      padding-right: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
     }
-    #{$prefix}-align-right & {
-      padding-left: $modal-board-padding-spacer-mobile;
-    }
-    #{$prefix}-align-left & {
-      padding-right: $modal-board-padding-spacer-mobile;
-    }
-  }
-}
 
-#{$mode-class}#{$prefix}-button {
-  &-wrapper {
-    position: fixed;
-    z-index: 3;
-    justify-content: flex-start;
-    display: flex;
-    height: 0;
-    flex-wrap: nowrap;
-    overflow: visible;
-    top: 0;
-    width: 100%;
-    max-width: calc(100% - #{$modal-board-padding-spacer});
-    flex-direction: column;
-
-    &:before {
-      content: '';
-      display: inline-block;
-      pointer-events: none;
-      flex: 0 0 auto;
-      height: $modal-board-close-offset-y;
-      width: 0;
+    @at-root #{$prefix}-align-right#{&} {
+      padding-left: $modal-board-padding-spacer;
+      #{$prefix}-popup,
+      #{$prefix}-button-wrapper {
+        margin-left: auto;
+      }
+    }
+    @at-root #{$prefix}-align-left#{&} {
+      padding-right: $modal-board-padding-spacer;
+      #{$prefix}-popup,
+      #{$prefix}-button-wrapper {
+        margin-right: auto;
+      }
     }
 
     @include on-breakpoint(mobile) {
-      max-width: calc(100% - #{$modal-board-padding-spacer-mobile});
+      #{$prefix}-popup {
+        padding-left: calc(
+          (#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
+        );
+        padding-right: calc(
+          (#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
+        );
+      }
+      @at-root #{$prefix}-align-right#{&} {
+        padding-left: $modal-board-padding-spacer-mobile;
+      }
+      @at-root #{$prefix}-align-left#{&} {
+        padding-right: $modal-board-padding-spacer-mobile;
+      }
+    }
+  }
+
+  #{$prefix}-button {
+    &-wrapper {
+      position: fixed;
+      z-index: 3;
+      justify-content: flex-start;
+      display: flex;
+      height: 0;
+      flex-wrap: nowrap;
+      overflow: visible;
+      top: 0;
+      width: 100%;
+      max-width: calc(100% - #{$modal-board-padding-spacer});
+      flex-direction: column;
 
       &:before {
-        height: $modal-board-close-offset-y-mobile;
-      }
-    }
-
-    #{$prefix}-align-right & {
-      right: 0;
-      align-items: flex-start;
-    }
-
-    #{$prefix}-align-left & {
-      left: 0;
-      align-items: flex-end;
-    }
-  }
-
-  & {
-    position: relative;
-    z-index: 9;
-
-    &-default {
-      border: none;
-      outline: none;
-      font-size: $modal-board-close-button-font-size;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      background: $modal-background;
-      box-shadow: $modal-board-close-box-shadow;
-      // width: $_fwc-board-close-width;
-      // height: $_fwc-board-close-height;
-      padding: calc((#{$_fwc-board-close-size} - 1em) * 0.5);
-      flex: 0 0 auto;
-      margin-bottom: 0.5em;
-
-      .symbol {
-        margin: auto;
+        content: '';
+        display: inline-block;
+        pointer-events: none;
+        flex: 0 0 auto;
+        height: $modal-board-close-offset-y;
+        width: 0;
+        order: -99;
       }
 
-      .theme-inverse & {
-        background: $modal-background-inverse;
+      @include on-breakpoint(mobile) {
+        max-width: calc(100% - #{$modal-board-padding-spacer-mobile});
+
+        &:before {
+          height: $modal-board-close-offset-y-mobile;
+        }
       }
 
-      #{$prefix}-align-right & {
-        left: 0;
-        transform: translateX(-50%);
-      }
-
-      #{$prefix}-align-left & {
+      @at-root #{$prefix}-align-right#{&} {
         right: 0;
-        transform: translateX(50%);
+        align-items: flex-start;
+      }
+
+      @at-root #{$prefix}-align-left#{&} {
+        left: 0;
+        align-items: flex-end;
+      }
+    }
+
+    & {
+      position: relative;
+      z-index: 9;
+
+      &-default {
+        border: none;
+        outline: none;
+        font-size: $modal-board-close-button-font-size;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: $modal-background;
+        box-shadow: $modal-board-close-box-shadow;
+        // width: $_fwc-board-close-width;
+        // height: $_fwc-board-close-height;
+        padding: calc((#{$_fwc-board-close-size} - 1em) * 0.5);
+        flex: 0 0 auto;
+        margin-bottom: 0.5em;
+
+        .symbol {
+          margin: auto;
+        }
+
+        .theme-inverse & {
+          background: $modal-background-inverse;
+        }
+
+        @at-root #{$prefix}-align-right#{&} {
+          left: 0;
+          transform: translateX(-50%);
+        }
+
+        @at-root #{$prefix}-align-left#{&} {
+          right: 0;
+          transform: translateX(50%);
+        }
       }
     }
   }
-}
 
-#{$mode-class}#{$prefix}-resize {
-  &:hover {
-    cursor: grab;
-  }
-}
-
-#{$mode-class}#{$prefix}-close {
-}
-
-#{$mode-class}#{$prefix}-popup {
-  @extend %fwe-modal-scroller !optional;
-  @extend %fwe-modal-popup-shadow !optional;
-  height: 100%;
-
-  padding: $modal-board-padding-y $modal-board-padding-x;
-
-  #{$global-prefix}-constricted &,
-  #{$global-prefix}-constricted-x & {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  #{$global-prefix}-constricted &,
-  #{$global-prefix}-constricted-y & {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  @include on-breakpoint(nonmobile) {
-    #{$global-prefix}-expanded & {
-      padding: $modal-board-expanded-padding-y $modal-board-expanded-padding-x;
-    }
-    #{$global-prefix}-compact & {
-      padding: $modal-board-compact-padding-y $modal-board-compact-padding-x;
+  #{$prefix}-resize {
+    order: 99;
+    &:hover {
+      cursor: grab;
     }
   }
 
-  @include on-breakpoint(mobile) {
-    padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
+  #{$prefix}-close {
+    order: -99;
   }
 
-  &-content {
-    // flex: 1 1;
-    position: relative;
+  #{$prefix}-popup {
+    @extend %fwe-modal-scroller !optional;
+    @extend %fwe-modal-popup-shadow !optional;
+    height: 100%;
+
+    padding: $modal-board-padding-y $modal-board-padding-x;
+
+    #{$global-prefix}-constricted &,
+    #{$global-prefix}-constricted-x & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    #{$global-prefix}-constricted &,
+    #{$global-prefix}-constricted-y & {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    @include on-breakpoint(nonmobile) {
+      #{$global-prefix}-expanded & {
+        padding: $modal-board-expanded-padding-y $modal-board-expanded-padding-x;
+      }
+      #{$global-prefix}-compact & {
+        padding: $modal-board-compact-padding-y $modal-board-compact-padding-x;
+      }
+    }
+
+    @include on-breakpoint(mobile) {
+      padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
+    }
+
+    &-content {
+      // flex: 1 1;
+      position: relative;
+    }
+  }
+}
+
+#{$component-class}#{$prefix}-on-fullscreen {
+  #{$prefix}-button-wrapper {
+    width: auto !important;
+  }
+
+  #{$prefix}-resize {
+    display: none;
   }
 }

@@ -86,5 +86,69 @@ $prefix: '.modal';
     &-popup {
       @extend %fwe-modal-popup !optional;
     }
+
+    #{$prefix} #{&}-on-fullscreen#{&} & {
+      &-wrapper {
+        padding: 0 !important;
+      }
+      &-button-wrapper {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        right: 10px;
+        top: 0;
+        z-index: 9;
+        padding: $gutter-small;
+      }
+      &-close {
+        order: -99;
+      }
+      &-button {
+        margin: 0 0 1em;
+
+        &-default {
+          font-size: $modal-close-button-font-size;
+        }
+      }
+      &-popup {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        overflow-y: scroll;
+        padding: $modal-fullscreen-padding-y $modal-fullscreen-padding-x;
+
+        #{$prefix}-constricted &,
+        #{$prefix}-constricted-x & {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        #{$prefix}-constricted &,
+        #{$prefix}-constricted-y & {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+
+        @include on-breakpoint(nonmobile) {
+          #{$prefix}-expanded & {
+            padding: $modal-fullscreen-expanded-padding-y
+              $modal-fullscreen-expanded-padding-x;
+          }
+          #{$prefix}-compact & {
+            padding: $modal-fullscreen-compact-padding-y
+              $modal-fullscreen-compact-padding-x;
+          }
+        }
+
+        @include on-breakpoint(mobile) {
+          padding: $modal-fullscreen-padding-y-mobile $modal-fullscreen-padding-x-mobile;
+        }
+      }
+    }
   }
 }

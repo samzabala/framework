@@ -507,6 +507,7 @@ button {
 option,
 optgroup {
   all: initial;
+  display: block;
   font: inherit;
 }
 

@@ -769,7 +769,7 @@
   Initiator.start();
 
   var NativeEvents = ['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'paste', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll', 'hashchange'];
-  var uIdEvent = 0;
+  var FWESIDEvent = 0;
   var EVENT_STORAGE = {};
 
   var FwEvent = /*#__PURE__*/function (_FwDataHelper) {
@@ -779,15 +779,33 @@
       return _FwDataHelper.apply(this, arguments) || this;
     }
 
-    FwEvent.getUIDEvent = function getUIDEvent(element, uid) {
-      return uid && uid + "::" + uIdEvent++ || element.uIdEvent || uIdEvent++;
+    FwEvent.getEventSorageId = function getEventSorageId(element, FWESID) {
+      var toReturn = FWESID || element.FWESIDEvent || FWESIDEvent++;
+      element.FWESIDEvent = toReturn; // debugger;
+
+      return toReturn;
     };
 
-    FwEvent.getEvent = function getEvent(element) {
-      var uid = FwEvent.getUIDEvent(element);
-      element.uIdEvent = uid;
-      EVENT_STORAGE[uid] = EVENT_STORAGE[uid] || {};
-      return EVENT_STORAGE[uid];
+    FwEvent.getListenerArgs = function getListenerArgs(element) {
+      var FWESID = FwEvent.getEventSorageId(element);
+      EVENT_STORAGE[FWESID] = EVENT_STORAGE[FWESID] || {};
+      return EVENT_STORAGE[FWESID];
+    };
+
+    FwEvent.saveListenerArgs = function saveListenerArgs(element, evt, evtNoApi, handler, handlerNoApi, trueHandler) {
+      var FWESID = FwEvent.getEventSorageId(element, evt);
+      EVENT_STORAGE[FWESID] = {};
+      if (evt !== null) EVENT_STORAGE[FWESID].evt = evt;
+      if (evtNoApi !== null) EVENT_STORAGE[FWESID].evtNoApi = evtNoApi;
+      if (handler !== null) EVENT_STORAGE[FWESID].handler = handler;
+      if (handlerNoApi !== null) EVENT_STORAGE[FWESID].handlerNoApi = handlerNoApi;
+      if (trueHandler !== null) EVENT_STORAGE[FWESID].trueHandler = trueHandler;
+    };
+
+    FwEvent.deleteListenerArgs = function deleteListenerArgs(element) {
+      var FWESID = FwEvent.getEventSorageId(element);
+      delete element.FWESIDEvent;
+      delete EVENT_STORAGE[FWESID];
     };
 
     FwEvent.classNester = function classNester(selector) {
@@ -801,18 +819,32 @@
         });
         return toReturn;
       }
-    };
+    } // static isNative(evtName) {
+    //   return NativeEvents.filter((nativeEvt) => {
+    //     return evtName.includes(nativeEvt);
+    //   }).length > 0;
+    // }
+    ;
 
     FwEvent.addListener = function addListener(parent, evt, selectorOrParentFallback, handler) {
       parent = parent || false; // runNative = runNative !== false || runNative == true; //no apipipi
       //dai mo ilaag sa ddocument ta maerror si matches habo nya ki element
 
-      var elemToAddTo = parent || selectorOrParentFallback;
+      var remember = {
+        evt: evt,
+        evtNoApi: null,
+        handler: null,
+        handlerNoApi: null,
+        trueHandler: handler
+      };
+      var element = parent || selectorOrParentFallback;
       var evtNoApi = evt.split("_" + Settings.get('prefix'))[0];
       var isNative = NativeEvents.includes(evt);
 
       if (!isNative) {
-        elemToAddTo.addEventListener(evtNoApi, function (event) {
+        remember.evtNoApi = evtNoApi;
+
+        remember.handler = function (event) {
           if (!parent || parent && event.target.matches(FwEvent.classNester(selectorOrParentFallback)) // && event.target.closest(selectorOrParentFallback)
           ) {
             FwEvent.trigger(event.target, evt, {
@@ -824,23 +856,40 @@
               }
             });
           }
-        }, true);
+        };
       }
 
-      elemToAddTo.addEventListener(evt, function (event) {
+      remember.handlerNoApi = function (event) {
         if (!parent || parent && // && event.target.matches(FwEvent.classNester(selectorOrParentFallback))
         event.target.closest(selectorOrParentFallback)) {
-          if (!isNative) {
-            handler(event.detail.nativeEvt);
-          } else {
-            handler(event);
-          }
+          handler(event);
         }
-      }, true);
+      };
+
+      FwEvent.saveListenerArgs(element, remember.evt, remember.evtNoApi, remember.handler, remember.handlerNoApi, remember.trueHandler);
+      var FWESID = FwEvent.getEventSorageId(element);
+
+      if (!isNative) {
+        element.addEventListener(EVENT_STORAGE[FWESID].evtNoApi, EVENT_STORAGE[FWESID].handlerNoApi, true);
+      }
+
+      element.addEventListener(EVENT_STORAGE[FWESID].evt, EVENT_STORAGE[FWESID].handler, true);
     };
 
     FwEvent.removeListener = function removeListener(element, evt, handler) {
-      element.removeEventListener(evt, handler, true); // @TODO. neet to rethink this shit
+      var FWESID = FwEvent.getEventSorageId(element); // const evtNoApi = evt.split(`_${Settings.get('prefix')}`)[0];
+
+      var isNative = NativeEvents.includes(evt);
+
+      if (handler === EVENT_STORAGE[FWESID].trueHandler) {
+        if (!isNative) {
+          // element.removeEventListener(evtNoApi, handler, true);
+          element.removeEventListener(EVENT_STORAGE[FWESID].evt, EVENT_STORAGE[FWESID].handler, true);
+        }
+
+        element.removeEventListener(EVENT_STORAGE[FWESID].evtNoApi, EVENT_STORAGE[FWESID].handlerNoApi, true);
+        FwEvent.deleteListenerArgs(element);
+      }
     };
 
     FwEvent.trigger = function trigger(el, evt, customEventOpts) {
@@ -857,13 +906,14 @@
         };
 
         if (customEventOpts) {
-          event = new CustomEvent(evt, customEventOpts);
+          event = new Event(evt, customEventOpts);
         } else {
-          event = new CustomEvent(evt);
+          event = new Event(evt);
         }
       }
 
-      return el.dispatchEvent(event); // return event;
+      el.dispatchEvent(event);
+      return event;
     };
 
     return FwEvent;
@@ -3798,12 +3848,21 @@
   var COMPONENT_CLASS$6 = "" + FwString.ToDashed(NAME$6);
   var ARG_ATTRIBUTE_NAME$2 = "" + NAME$6;
   var TOGGLE_MODE_PREFIX = "" + NAME$6;
+  var FULLSCREEN_CLASS = UIPrefix(COMPONENT_CLASS$6) + "-on-fullscreen";
   var ACTIVATED_CLASS$4 = "active";
+  var TOGGLE_ACTIVATED_CLASS = ACTIVATED_CLASS$4;
   var DEFAULT_NAME = "default";
   var BOARD_NAME = "board";
   var DATA_KEY$6 = Settings.get('prefix') + "_" + NAME$6;
   var EVENT_KEY$6 = "_" + DATA_KEY$6;
   var EVENT_CLICK$4 = "click" + EVENT_KEY$6;
+  var EVENT_MOUSEDOWN = "mousedown" + EVENT_KEY$6; // const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`;
+
+  var EVENT_MOUSEMOVE = "mousemove" + EVENT_KEY$6; // const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY}`;
+
+  var EVENT_MOUSEUP = "mouseup" + EVENT_KEY$6; // const EVENT_TOUCHEND = `mouseup${EVENT_KEY}`;
+  // const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
+
   var EVENT_HASHCHANGE$1 = "hashchange" + EVENT_KEY$6;
   var EVENT_BEFORE_CREATE$1 = "before_create" + EVENT_KEY$6;
   var EVENT_CREATE$1 = "create" + EVENT_KEY$6;
@@ -3817,7 +3876,11 @@
   var EVENT_BEFORE_RESIZE = "before_resize" + EVENT_KEY$6;
   var EVENT_RESIZE = "resize" + EVENT_KEY$6;
   var EVENT_AFTER_RESIZE = "after_resize" + EVENT_KEY$6;
+  var EVENT_BEFORE_FULLSCREEN = "before_fullscreen" + EVENT_KEY$6;
+  var EVENT_FULLSCREEN = "fullscreen" + EVENT_KEY$6;
+  var EVENT_AFTER_FULLSCREEN = "after_fullscreen" + EVENT_KEY$6;
   var CURRENT_MODAL_INSTANCE = {};
+  var LAST_POS_X = 0;
   var VALID_MODAL_MODES = [BOARD_NAME, DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
   ];
   VALID_MODAL_MODES.forEach(function (mode) {
@@ -3857,7 +3920,7 @@
         if (!currMode) {
           // by triggerer first
           if (triggerer && !element) {
-            if (triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode)) || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-open") || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-close")) {
+            if (triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode)) || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-open") || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-close") || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-fullscreen") || triggerer.hasAttribute("data-toggle-" + _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode) + "-resize")) {
               currMode = mode;
             }
           } else if (element) {
@@ -3884,8 +3947,8 @@
       _this = _FwComponent.call(this, element, {
         triggerer: triggerer ? triggerer : element && element._triggerer ? element._triggerer : false,
         _customArgs: args ? args : element && element.__customArgs ? element.__customArgs : {},
-        // _mode: currMode ? currMode : element && element.__mode ? element.__mode : false,
-        _mode: currMode
+        _mode: currMode,
+        _canDrag: element && element.__canDrag ? element.__canDrag : false
       }) || this;
       Object.defineProperty(_assertThisInitialized(_this), _current, {
         get: _get_current,
@@ -3902,6 +3965,8 @@
       _FwComponent.prototype.setProp.call(this, '_customArgs', '__dispose');
 
       _FwComponent.prototype.setProp.call(this, '_mode', '__dispose');
+
+      _FwComponent.prototype.setProp.call(this, '_canDrag', '__dispose');
 
       _FwComponent.prototype.dispose.call(this);
     };
@@ -3937,7 +4002,6 @@
         closeClasses: '',
         fullscreen: false,
         //@TODO: this shit
-        fullscreenClasses: '',
         centerY: {
           value: true,
           parser: function parser(value) {
@@ -3957,13 +4021,13 @@
         resize: {
           value: false,
           parser: function parser(value) {
-            if (mode == BOARD_NAME) return value;
+            return mode == BOARD_NAME ? value : false;
           }
         },
         resizeClasses: {
           value: null,
           parser: function parser(value) {
-            if (mode == BOARD_NAME) return value;
+            return mode == BOARD_NAME ? value : false;
           }
         }
       };
@@ -4021,7 +4085,7 @@
         var theUI = document.createElement('div'); // document.querySelector('body').appendChild(theUI);
 
         element.parentNode.insertBefore(theUI, element.nextSibling);
-        theUI.className = UIPrefix(COMPONENT_CLASS$6) + " " + _this2.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-component\n        " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$6) + "-align-" + _this2.args.align : '') + "\n        " + (_this2.args.centerY ? UIPrefix(COMPONENT_CLASS$6) + "-center-y" : '') + "\n        " + _this2.args.classes;
+        theUI.className = UIPrefix(COMPONENT_CLASS$6) + " " + _this2.UiModeClass + " " + _this2.UiModeStyleClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-component\n        " + (_this2.args.align ? UIPrefix(COMPONENT_CLASS$6) + "-align-" + _this2.args.align : '') + "\n        " + (_this2.args.centerY ? UIPrefix(COMPONENT_CLASS$6) + "-center-y" : '') + "\n        " + _this2.args.classes;
         theUI.setAttribute('id', _this2.UIId);
         theUI.innerHTML = _this2._markup;
         FwDom.moveContents(element, _this2.UIContentBlock);
@@ -4092,7 +4156,7 @@
       }, element);
     };
 
-    _proto.update = function update(elem) {
+    _proto.toggleFullScreen = function toggleFullScreen(elem) {
       var _this4 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
@@ -4101,22 +4165,57 @@
         return;
       }
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, function () {
-        // buttons
-        // resize
-        var currentWidth = _this4.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup").clientWidth;
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_FULLSCREEN, EVENT_FULLSCREEN, EVENT_AFTER_FULLSCREEN, function () {
+        var fullScreenBtn = _this4.UIRoot.querySelectorAll("*[data-toggle-" + _this4.modeToggle + "-fullscreen]");
 
-        var resizeBtn = _this4.UIRoot.querySelectorAll("*[data-toggle-" + _this4.modeToggle + "-resize]");
+        if (_this4.isFullScreen) {
+          if (fullScreenBtn) {
+            fullScreenBtn.forEach(function (butt) {
+              butt.classList.remove(TOGGLE_ACTIVATED_CLASS);
+            });
+          }
 
-        if (resizeBtn && currentWidth < parseInt(_this4.args.width)) {
-          resizeBtn.forEach(function (butt) {
-            butt.classList.add('disabled');
-          });
+          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.remove(FULLSCREEN_CLASS);
+
+          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.add(_this4.UiModeStyleClass);
         } else {
-          resizeBtn.forEach(function (butt) {
-            butt.classList.remove('disabled');
-          });
+          if (fullScreenBtn) {
+            fullScreenBtn.forEach(function (butt) {
+              butt.classList.add(TOGGLE_ACTIVATED_CLASS);
+            });
+          }
+
+          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.add(FULLSCREEN_CLASS);
+
+          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.remove(_this4.UiModeStyleClass);
         }
+      }, element);
+    };
+
+    _proto.update = function update(elem) {
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
+
+      if (!element) {
+        return;
+      }
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, function () {// buttons
+        // resize
+        // const currentWidth = this.UIRoot.querySelector(
+        //   `.${UIPrefix(COMPONENT_CLASS)}-popup`
+        // ).clientWidth;
+        // const resizeBtn = this.UIRoot.querySelectorAll(
+        //   `*[data-toggle-${this.modeToggle}-resize]`
+        // );
+        // if (resizeBtn && currentWidth < parseInt(this.args.width)) {
+        //   resizeBtn.forEach((butt) => {
+        //     butt.classList.add('disabled');
+        //   });
+        // } else {
+        //   resizeBtn.forEach((butt) => {
+        //     butt.classList.remove('disabled');
+        //   });
+        // }
       }, element);
     };
 
@@ -4127,6 +4226,12 @@
         return;
       }
 
+      var element = _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
+
+      if (!element) {
+        return;
+      }
+
       var args = this.args || _classPrivateFieldLooseBase(this, _current)[_current].args || {};
       width = width || args.width || null;
 
@@ -4134,14 +4239,14 @@
         _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESIZE, EVENT_RESIZE, EVENT_AFTER_RESIZE, function () {
           //all
           if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup")) {
-            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup").style.width = width;
+            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup").style.width = typeof width == 'string' ? width : width + "px";
           } //bboard
 
 
           if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper")) {
-            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper").style.width = width;
+            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper").style.width = typeof width == 'string' ? width : width + "px";
           }
-        }, _classPrivateFieldLooseBase(this, _current)[_current].element);
+        }, element);
       }
     };
 
@@ -4168,7 +4273,7 @@
       };
     };
 
-    Modal.handleOpen = function handleOpen(mode) {
+    Modal.handleToggleOpen = function handleToggleOpen(mode) {
       return function (e) {
         e.preventDefault();
 
@@ -4179,7 +4284,7 @@
       };
     };
 
-    Modal.handleClose = function handleClose(mode) {
+    Modal.handleToggleClose = function handleToggleClose(mode) {
       return function (e) {
         e.preventDefault();
 
@@ -4190,12 +4295,109 @@
       };
     };
 
+    Modal.handleToggleResizeMouseDown = function handleToggleResizeMouseDown(mode) {
+      return function (e) {
+        if (!FwComponent.isDisabled(e.target)) {
+          var modal = new Modal(UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode), e.target, "." + COMPONENT_CLASS$6 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)), e.target);
+
+          if (modal) {
+            // console.warn('MouseDown');
+            modal.canDrag = true;
+            FwEvent.addListener(null, EVENT_MOUSEMOVE, window, Modal.handleToggleResizeMouseMove(mode)); // FwEvent.addListener(
+            //   null,
+            //   EVENT_TOUCHMOVE,
+            //   window,
+            //   Modal.handleToggleResizeMouseMove(mode)
+            // );
+          }
+        }
+      };
+    };
+
+    Modal.handleToggleResizeMouseMove = function handleToggleResizeMouseMove(mode) {
+      return function (e) {
+        if (Modal.current(mode).element) {
+          var modal = new Modal(Modal.current(mode).element, null, Modal.current(mode).args);
+
+          if (modal && modal.canDrag) {
+            var widthBasis = e.clientX || e.touches && e.touches[0].clientX || e.originalEvent.touches && e.originalEvent.touches[0].clientX;
+
+            if (LAST_POS_X !== widthBasis) {
+              // console.warn(e.type,'MouseMove',e.clientX,LAST_POS_X);
+              LAST_POS_X = widthBasis;
+              var newWidth;
+
+              if (modal.args.align == 'right') {
+                newWidth = window.innerWidth - widthBasis;
+              } else if (modal.args.align == 'left') {
+                newWidth = widthBasis;
+              }
+
+              modal.resize(newWidth);
+            }
+          }
+        }
+      };
+    };
+
+    Modal.handleToggleResizeMouseUp = function handleToggleResizeMouseUp(mode) {
+      return function (e) {
+        if (Modal.current(mode).element) {
+          // console.warn(e.type,'MouseUp',document.body.classList);
+          var modal = new Modal(Modal.current(mode).element, null, Modal.current(mode).args);
+
+          if (modal) {
+            modal.canDrag = false;
+          }
+        }
+
+        FwEvent.removeListener(window, EVENT_MOUSEMOVE, Modal.handleToggleResizeMouseMove(mode)); // FwEvent.removeListener(
+        //   window,
+        //   EVENT_TOUCHMOVE,
+        //   Modal.handleToggleResizeMouseMove(mode)
+        // );
+      };
+    };
+
+    Modal.handleToggleResizeClick = function handleToggleResizeClick() {
+      return function (e) {
+        e.preventDefault();
+      };
+    };
+
+    Modal.handleFullScreen = function handleFullScreen(mode) {
+      return function (e) {
+        e.preventDefault();
+
+        if (!FwComponent.isDisabled(e.target)) {
+          var modal = new Modal(UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode), e.target, "." + COMPONENT_CLASS$6 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)), e.target);
+          modal.toggleFullScreen();
+        }
+      };
+    };
+
     Modal.initListeners = function initListeners() {
       VALID_MODAL_MODES.forEach(function (mode) {
         var modeToggle = _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode);
 
-        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "], *[data-toggle-" + modeToggle + "-open]", Modal.handleOpen(mode));
-        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-close]", Modal.handleClose(mode));
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "], *[data-toggle-" + modeToggle + "-open]", Modal.handleToggleOpen(mode));
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-close]", Modal.handleToggleClose(mode));
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-resize]", Modal.handleToggleResizeClick(mode));
+        FwEvent.addListener(window, EVENT_MOUSEDOWN, "*[data-toggle-" + modeToggle + "-resize]", Modal.handleToggleResizeMouseDown(mode)); // FwEvent.addListener(
+        //   window,
+        //   EVENT_TOUCHSTART,
+        //   `*[data-toggle-${modeToggle}-resize]`,
+        //   Modal.handleToggleResizeMouseDown(mode),
+        // );
+
+        FwEvent.addListener(null, EVENT_MOUSEUP, window, Modal.handleToggleResizeMouseUp(mode)); // FwEvent.addListener(
+        //   null,
+        //   EVENT_TOUCHEND,
+        //   window,
+        //   Modal.handleToggleResizeMouseUp(mode)
+        // );
+
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-fullscreen]", Modal.handleFullScreen(mode));
       });
       FwEvent.addListener(null, EVENT_HASHCHANGE$1, window, Modal.handleHash());
       Initiator.Q.on_ready = Modal.handleHash();
@@ -4204,8 +4406,22 @@
 
     Modal.destroyListeners = function destroyListeners() {
       VALID_MODAL_MODES.forEach(function (mode) {
-        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleOpen(mode));
-        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleClose(mode));
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleToggleOpen(mode));
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleToggleClose(mode));
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleToggleResizeClick(mode));
+        FwEvent.addListener(window, EVENT_MOUSEDOWN, Modal.handleToggleResizeMouseDown(mode)); // FwEvent.addListener(
+        //   window,
+        //   EVENT_TOUCHSTART,
+        //   Modal.handleToggleResizeMouseDown(mode)
+        // );
+
+        FwEvent.removeListener(window, EVENT_MOUSEUP, Modal.handleToggleResizeMouseUp(mode)); // FwEvent.removeListener(
+        //   window,
+        //   EVENT_TOUCHEND,
+        //   Modal.handleToggleResizeMouseUp(mode)
+        // );
+
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleFullScreen(mode));
       });
       FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Modal.handleHash());
     };
@@ -4219,6 +4435,30 @@
       key: "mode",
       get: function get() {
         return _FwComponent.prototype.getProp.call(this, '_mode');
+      }
+    }, {
+      key: "hasButtons",
+      get: function get() {
+        return this.args.close !== false || this.args.fullscreen !== false || this.args.resize !== false && this.args.width;
+      }
+    }, {
+      key: "buttonsMarkup",
+      get: function get() {
+        var html = '';
+
+        if (this.args.close !== false) {
+          html += "<a href=\"#\" title=\"Close\"\n        class=\"\n          " + UIPrefix(COMPONENT_CLASS$6) + "-close\n          " + UIPrefix(COMPONENT_CLASS$6) + "-button\n          " + (this.args.closeClasses ? this.args.closeClasses : UIPrefix(COMPONENT_CLASS$6) + "-button-default") + "\"\n        data-toggle-" + this.modeToggle + "-close\n      >\n        <i class=\"symbol symbol-close \"></i>\n      </a>";
+        }
+
+        if (this.args.fullscreen !== false) {
+          html += "<a href=\"#\" title=\"Toggle fullscreen\"\n        class=\"\n          " + UIPrefix(COMPONENT_CLASS$6) + "-fullscreen\n          " + UIPrefix(COMPONENT_CLASS$6) + "-button\n          " + (this.args.closeClasses ? this.args.closeClasses : UIPrefix(COMPONENT_CLASS$6) + "-button-default") + "\"\n        data-toggle-" + this.modeToggle + "-fullscreen\n      >\n        <i class=\"symbol symbol-expand symbol-collapse-toggle\"></i>\n      </a>";
+        }
+
+        if (this.args.resize !== false && this.args.width) {
+          html += "<a title=\"Drag resize\"\n        class=\"\n          " + UIPrefix(COMPONENT_CLASS$6) + "-resize\n          " + UIPrefix(COMPONENT_CLASS$6) + "-button\n          " + (this.args.resizeClasses ? this.args.resizeClasses : UIPrefix(COMPONENT_CLASS$6) + "-button-default") + "\"\n        data-toggle-" + this.modeToggle + "-resize\n      >\n        <i class=\"symbol symbol-fries\"></i>\n      </a>";
+        }
+
+        return html;
       }
     }, {
       key: "UIId",
@@ -4253,7 +4493,17 @@
     }, {
       key: "UiModeClass",
       get: function get() {
-        return " " + UIPrefix(COMPONENT_CLASS$6) + "-mode-" + this.mode;
+        return UIPrefix(COMPONENT_CLASS$6) + "-mode-" + this.mode;
+      }
+    }, {
+      key: "UiModeStyleClass",
+      get: function get() {
+        return UIPrefix(COMPONENT_CLASS$6) + "-on-mode-" + this.mode;
+      }
+    }, {
+      key: "isFullScreen",
+      get: function get() {
+        return this.UIRoot.classList.contains(FULLSCREEN_CLASS);
       }
     }, {
       key: "args",
@@ -4269,7 +4519,6 @@
           closeClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") : this._customArgs.closeClasses,
           //@TODO
           fullscreen: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") : this._customArgs.fullscreen,
-          fullscreenClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-classes") : this._customArgs.fullscreenClasses,
           centerY: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") : this._customArgs.centerY,
           //board shits
           align: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") : this._customArgs.align,
@@ -4280,47 +4529,57 @@
         }, Modal.configDefaults(this.mode));
       }
     }, {
+      key: "canDrag",
+      get: function get() {
+        return _FwComponent.prototype.getProp.call(this, '_canDrag');
+      },
+      set: function set(val) {
+        _FwComponent.prototype.setProp.call(this, '_canDrag', val);
+
+        if (val !== false) {
+          document.body.classList.add(UIBodyClass.onDrag);
+        } else {
+          document.body.classList.remove(UIBodyClass.onDrag);
+        }
+      }
+    }, {
       key: "_markup",
       get: function get() {
-        var html = "<div\n\t\t\t\tclass=\"\n          " + this.UiModeClass + "\n\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$6) + "-wrapper\"\n\t\t\t>"; //overlay
+        var html = "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-wrapper\">"; //overlay
 
-        html += "<div\n\t\t\t\t\t\tclass=\"\n              " + this.UiModeClass + "\n\t\t\t\t\t\t\t" + UIPrefix(COMPONENT_CLASS$6) + "-close-overlay\"\n\t\t\t\t\t\t\t" + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n\t\t\t\t\t></div>";
+        html += "<div\n      class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-close-overlay\" " + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n    ></div>";
 
         switch (this.mode) {
           case 'board':
-            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
-            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">";
-
-            if (this.args.close !== false) {
-              html += "<a href=\"#\"\n                      class=\"\n                        " + this.UiModeClass + "\n                        " + UIPrefix(COMPONENT_CLASS$6) + "-close\n                        " + UIPrefix(COMPONENT_CLASS$6) + "-button\n                        " + (this.args.closeClasses ? this.args.closeClasses : UIPrefix(COMPONENT_CLASS$6) + "-button-default") + "\"\n                      data-toggle-" + this.modeToggle + "-close\n                    >\n                      <i class=\"symbol symbol-close \"></i>\n                    </a>";
-            }
-
-            if (this.args.resize !== false && this.args.width) {
-              html += "<a\n                      class=\"\n                        " + this.UiModeClass + "\n                        " + UIPrefix(COMPONENT_CLASS$6) + "-resize\n                        " + UIPrefix(COMPONENT_CLASS$6) + "-button\n                        " + (this.args.resizeClasses ? this.args.resizeClasses : UIPrefix(COMPONENT_CLASS$6) + "-button-default") + "\"\n                      data-toggle-" + this.modeToggle + "-resize\n                    >\n                      <i class=\"symbol symbol-arrow-tail-left \"></i>\n                      <i class=\"symbol symbol-arrow-tail-right \"></i>\n                    </a>";
-            }
-
-            html += "</div>";
+            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
+            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">\n          " + this.buttonsMarkup + "\n        </div>";
 
             if (this.args.title) {
-              html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-header\">\n\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n\t\t\t\t\t\t\t\t\t\t</div>";
+              html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-header\">\n            <h1 class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n          </div>";
             }
 
-            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
+            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
             html += "</div>";
             break;
 
           default:
-            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
+            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
 
-            if (this.args.title) {
-              html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-header\">\n\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n\t\t\t\t\t\t\t\t\t\t</div>";
+            if (this.args.title || this.hasButtons) {
+              html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-header\">";
+
+              if (this.args.title) {
+                html += "<h1 class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-title\">\n            " + decodeURIComponent(this.args.title) + "\n            </h1>";
+              }
+
+              if (this.hasButtons) {
+                html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">\n              " + this.buttonsMarkup + "\n            </div>";
+              }
+
+              html += "</div>";
             }
 
-            if (this.args.close !== false) {
-              html += "<a href=\"#\"\n\t\t\t\t\t\t\t\t\t\t\tclass=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-close " + this.args.closeClasses + "\"\n\t\t\t\t\t\t\t\t\t\t\tdata-toggle-" + this.modeToggle + "-close\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"symbol symbol-close\"></i>\n\t\t\t\t\t\t\t\t\t\t</a>";
-            }
-
-            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
+            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
             html += "</div>";
             break;
         }

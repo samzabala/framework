@@ -1285,6 +1285,17 @@ $modal-board-resize-height: 55px !default; //not yet
 $modal-board-close-size: 38px !default;
 $modal-board-close-box-shadow: $box-shadow-base $var-color-base !default;
 
+//FULLSCREEN
+
+$modal-fullscreen-padding-x: $modal-padding-x !default;
+$modal-fullscreen-padding-y: $modal-padding-y !default;
+$modal-fullscreen-expanded-padding-x: $modal-expanded-padding-x !default;
+$modal-fullscreen-expanded-padding-y: $modal-expanded-padding-y !default;
+$modal-fullscreen-compact-padding-x: $modal-compact-padding-x !default;
+$modal-fullscreen-compact-padding-y: $modal-compact-padding-y !default;
+$modal-fullscreen-padding-x-mobile: $modal-padding-x-mobile !default;
+$modal-fullscreen-padding-y-mobile: $modal-padding-y-mobile !default;
+
 // DROPDOWN
 $dropdown-gutter-x: $gutter-small !default;
 $dropdown-gutter-y: $gutter-small !default;

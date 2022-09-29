@@ -117,7 +117,7 @@ Dependencies:
 
 - convert shitty sass vars into native css vars + cleanup ya boi so compilation doesnt take 84 years
 
-find and replace for fw3
+- find and replace for fw3
 
 will be ready
 *-no-gutter => *-constricted
@@ -132,3 +132,10 @@ other clases na hindi ba handa sa kajugaguhan na to
 if it doesnt need constricted in it do not convert small to compact and large to expanded
 do micro tho
 
+- cleanup modal styles because wtf did i do
+
+- escape on keydown closes modals too
+
+- variablize the kwan
+- ano
+- scrollbar shits
