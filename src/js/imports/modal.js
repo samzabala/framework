@@ -730,12 +730,14 @@ class Modal extends FwComponent {
           }
 
           //bboard
-          if (
-            this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)
-          ) {
-            this.UIRoot.querySelector(
-              `.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`
-            ).style.width = typeof width == 'string' ? width : `${width}px`;
+          if (this.mode == 'board') {
+            if (
+              this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)
+            ) {
+              this.UIRoot.querySelector(
+                `.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`
+              ).style.width = typeof width == 'string' ? width : `${width}px`;
+            }
           }
         },
         element
@@ -937,7 +939,7 @@ class Modal extends FwComponent {
   }
 
   static handleToggleResizeMouseUp(mode) {
-    return (e) => {
+    return () => {
       if (Modal.current(mode).element) {
         // console.warn(e.type,'MouseUp',document.body.classList);
 

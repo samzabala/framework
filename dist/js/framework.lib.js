@@ -4243,8 +4243,10 @@
           } //bboard
 
 
-          if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper")) {
-            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper").style.width = typeof width == 'string' ? width : width + "px";
+          if (_this5.mode == 'board') {
+            if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper")) {
+              _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper").style.width = typeof width == 'string' ? width : width + "px";
+            }
           }
         }, element);
       }
@@ -4341,7 +4343,7 @@
     };
 
     Modal.handleToggleResizeMouseUp = function handleToggleResizeMouseUp(mode) {
-      return function (e) {
+      return function () {
         if (Modal.current(mode).element) {
           // console.warn(e.type,'MouseUp',document.body.classList);
           var modal = new Modal(Modal.current(mode).element, null, Modal.current(mode).args);
