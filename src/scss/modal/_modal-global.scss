@@ -87,7 +87,7 @@ $prefix: '.modal';
       @extend %fwe-modal-popup !optional;
     }
 
-    #{&}-on-fullscreen#{&} & {
+    #{&}-on-fullscreen & {
       &-wrapper {
         padding: 0 !important;
       }
@@ -113,8 +113,9 @@ $prefix: '.modal';
       &-popup {
         width: 100% !important;
         height: 100% !important;
-        display: block;
         position: fixed;
+        display: flex;
+        flex-direction: column;
         top: 0;
         bottom: 0;
         left: 0;
@@ -147,6 +148,11 @@ $prefix: '.modal';
 
         @include on-breakpoint(mobile) {
           padding: $modal-fullscreen-padding-y-mobile $modal-fullscreen-padding-x-mobile;
+        }
+
+        &-content {
+          width:100%;
+          flex: 1 1;
         }
       }
     }

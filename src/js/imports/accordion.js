@@ -14,6 +14,7 @@ const ARG_ATTRIBUTE_NAME = `${NAME}`;
 const TOGGLE_MODE = `${NAME}`;
 const COMPONENT_CLASS = `${FwString.ToDashed(NAME)}`;
 const ACTIVATED_CLASS = `open`;
+const ACTIVATED_TOGGLE_CLASS = `active`;
 
 const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 
@@ -117,15 +118,20 @@ class Accordion extends FwComponent {
     if (!this._isWithinGroupMultiple) {
       FwDom.RunFnForChildren(
         this.UIGroot,
-        `[data-toggle-${TOGGLE_MODE}],.${COMPONENT_CLASS}`,
+        `[data-toggle-${TOGGLE_MODE}]`,
+        `.${COMPONENT_CLASS}-group`,
+        (toggleBbies) => {
+          if (toggleBbies !== this.triggerer) {
+            toggleBbies.classList.remove(ACTIVATED_TOGGLE_CLASS);
+          }
+        }
+      );
+      FwDom.RunFnForChildren(
+        this.UIGroot,
+        `.${COMPONENT_CLASS}`,
         `.${COMPONENT_CLASS}-group`,
         (accBbies) => {
-          if (
-            (this.triggerer &&
-              accBbies !== this.triggerer &&
-              accBbies !== super.UIEl()) ||
-            (!this.triggerer && accBbies !== super.UIEl())
-          ) {
+          if (accBbies !== super.UIEl()) {
             accBbies.classList.remove(ACTIVATED_CLASS);
           }
         }
@@ -164,9 +170,9 @@ class Accordion extends FwComponent {
         EVENT_CLOSE,
         EVENT_AFTER_CLOSE,
         () => {
-          triggerer && triggerer.classList.remove(ACTIVATED_CLASS);
+          triggerer && triggerer.classList.remove(ACTIVATED_TOGGLE_CLASS);
           this._probablyToggle.forEach((toggle) => {
-            toggle.classList.remove(ACTIVATED_CLASS);
+            toggle.classList.remove(ACTIVATED_TOGGLE_CLASS);
           });
           element.classList.remove(ACTIVATED_CLASS);
           if (this.args.changeHash && this._id) {
@@ -193,9 +199,9 @@ class Accordion extends FwComponent {
       EVENT_AFTER_OPEN,
       () => {
         this._siblicide();
-        triggerer && triggerer.classList.add(ACTIVATED_CLASS);
+        triggerer && triggerer.classList.add(ACTIVATED_TOGGLE_CLASS);
         this._probablyToggle.forEach((toggle) => {
-          toggle.classList.add(ACTIVATED_CLASS);
+          toggle.classList.add(ACTIVATED_TOGGLE_CLASS);
         });
         element.classList.add(ACTIVATED_CLASS);
         if (this.args.changeHash && this._id) {

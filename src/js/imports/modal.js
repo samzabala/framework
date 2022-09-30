@@ -56,9 +56,13 @@ const EVENT_BEFORE_RESIZE = `before_resize${EVENT_KEY}`;
 const EVENT_RESIZE = `resize${EVENT_KEY}`;
 const EVENT_AFTER_RESIZE = `after_resize${EVENT_KEY}`;
 
-const EVENT_BEFORE_FULLSCREEN = `before_fullscreen${EVENT_KEY}`;
-const EVENT_FULLSCREEN = `fullscreen${EVENT_KEY}`;
-const EVENT_AFTER_FULLSCREEN = `after_fullscreen${EVENT_KEY}`;
+const EVENT_BEFORE_FULLSCREEN_ACTIVATE = `before_fullscreen_activate${EVENT_KEY}`;
+const EVENT_FULLSCREEN_ACTIVATE = `fullscreen_activate${EVENT_KEY}`;
+const EVENT_AFTER_FULLSCREEN_ACTIVATE = `after_fullscreen_activate${EVENT_KEY}`;
+
+const EVENT_BEFORE_FULLSCREEN_DEACTIVATE = `before_fullscreen_deactivate${EVENT_KEY}`;
+const EVENT_FULLSCREEN_DEACTIVATE = `fullscreen_deactivate${EVENT_KEY}`;
+const EVENT_AFTER_FULLSCREEN_DEACTIVATE = `after_fullscreen_deactivate${EVENT_KEY}`;
 
 const CURRENT_MODAL_INSTANCE = {};
 
@@ -278,6 +282,22 @@ class Modal extends FwComponent {
     return super.UIEl().getAttribute('id');
   }
 
+  get UIToggle() {
+    return this.UIRoot.querySelectorAll(`*[data-toggle-${this.modeToggle}]`);
+  }
+  get UIToggleClose() {
+    return this.UIRoot.querySelectorAll(`*[data-toggle-${this.modeToggle}-close]`);
+  }
+  get UIToggleOpen() {
+    return this.UIRoot.querySelectorAll(`*[data-toggle-${this.modeToggle}-open]`);
+  }
+  get UIToggleFullscreen() {
+    return this.UIRoot.querySelectorAll(`*[data-toggle-${this.modeToggle}-fullscreen]`);
+  }
+  get UIToggleResize() {
+    return this.UIRoot.querySelectorAll(`*[data-toggle-${this.modeToggle}-resize]`);
+  }
+
   static #modeToggle(mode) {
     return FwString.ToDashed(`${TOGGLE_MODE_PREFIX}-${mode}`);
   }
@@ -302,7 +322,7 @@ class Modal extends FwComponent {
     return `${UIPrefix(COMPONENT_CLASS)}-on-mode-${this.mode}`;
   }
 
-  get isFullScreen() {
+  get isFullscreen() {
     return this.UIRoot.classList.contains(FULLSCREEN_CLASS);
   }
 
@@ -318,6 +338,7 @@ class Modal extends FwComponent {
       classes: '',
       closeClasses: '',
       fullscreen: false, //@TODO: this shit
+      fullscreenContentDisplay: 'block',
       centerY: {
         value: true,
         parser: (value) => {
@@ -408,7 +429,6 @@ class Modal extends FwComponent {
             : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
             ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-close-classes`)
             : this._customArgs.closeClasses,
-        //@TODO
         fullscreen:
           this.triggerer &&
           this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
@@ -416,6 +436,21 @@ class Modal extends FwComponent {
             : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
             ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen`)
             : this._customArgs.fullscreen,
+        fullscreenContentDisplay:
+          this.triggerer &&
+          this.triggerer.hasAttribute(
+            `data-${ARG_ATTRIBUTE_NAME}-fullscreen-content-display`
+          )
+            ? this.triggerer.getAttribute(
+                `data-${ARG_ATTRIBUTE_NAME}-fullscreen-content-display`
+              )
+            : super
+                .UIEl()
+                .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-content-display`)
+            ? super
+                .UIEl()
+                .getAttribute(`data-${ARG_ATTRIBUTE_NAME}-fullscreen-content-display`)
+            : this._customArgs.fullscreenContentDisplay,
         centerY:
           this.triggerer &&
           this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-center-y`)
@@ -495,12 +530,6 @@ class Modal extends FwComponent {
 
     lifeCycle.before = () => {
       let matchedHashDestroy = false;
-
-      // if (!window.location.hash && this.#current && this.#current.element) {
-      //   if (element === this.#current.element) {
-      //     matchedHashDestroy = true;
-      //   }
-      // }
 
       if (this.#current && this.#current.element) {
         if (element === this.#current.element) {
@@ -595,6 +624,8 @@ class Modal extends FwComponent {
         if (this.UIRoot) {
           element.classList.remove(ACTIVATED_CLASS);
 
+          this.update();
+
           element.parentNode.insertBefore(this.UIRoot, element.nextSibling);
           FwDom.moveContents(this.UIContentBlock, element);
 
@@ -622,7 +653,7 @@ class Modal extends FwComponent {
     );
   }
 
-  toggleFullScreen(elem) {
+  activateFullscreen(elem) {
     const element = elem
       ? super.UIEl(elem)
       : this.#current
@@ -634,34 +665,49 @@ class Modal extends FwComponent {
     }
 
     super.runCycle(
-      EVENT_BEFORE_FULLSCREEN,
-      EVENT_FULLSCREEN,
-      EVENT_AFTER_FULLSCREEN,
+      EVENT_BEFORE_FULLSCREEN_ACTIVATE,
+      EVENT_FULLSCREEN_ACTIVATE,
+      EVENT_AFTER_FULLSCREEN_ACTIVATE,
       () => {
-        const fullScreenBtn = this.UIRoot.querySelectorAll(
-          `*[data-toggle-${this.modeToggle}-fullscreen]`
-        );
-
-        if (this.isFullScreen) {
-          if (fullScreenBtn) {
-            fullScreenBtn.forEach((butt) => {
-              butt.classList.remove(TOGGLE_ACTIVATED_CLASS);
-            });
-          }
-          this.#current.UI.classList.remove(FULLSCREEN_CLASS);
-          this.#current.UI.classList.add(this.UiModeStyleClass);
-        } else {
-          if (fullScreenBtn) {
-            fullScreenBtn.forEach((butt) => {
-              butt.classList.add(TOGGLE_ACTIVATED_CLASS);
-            });
-          }
-          this.#current.UI.classList.add(FULLSCREEN_CLASS);
-          this.#current.UI.classList.remove(this.UiModeStyleClass);
-        }
+        this.UIRoot.classList.add(FULLSCREEN_CLASS);
+        this.UIRoot.classList.remove(this.UiModeStyleClass);
+        this.UIContentBlock.style.display = this.args.fullscreenContentDisplay;
       },
       element
     );
+  }
+
+  deactivateFullscreen(elem) {
+    const element = elem
+      ? super.UIEl(elem)
+      : this.#current
+      ? this.#current.element
+      : false;
+
+    if (!element) {
+      return;
+    }
+
+    super.runCycle(
+      EVENT_BEFORE_FULLSCREEN_DEACTIVATE,
+      EVENT_FULLSCREEN_DEACTIVATE,
+      EVENT_AFTER_FULLSCREEN_DEACTIVATE,
+      () => {
+        this.UIRoot.classList.remove(FULLSCREEN_CLASS);
+        this.UIRoot.classList.add(this.UiModeStyleClass);
+        this.UIContentBlock.style.display = '';
+      },
+      element
+    );
+  }
+
+  toggleFullscreen(elem) {
+    if (this.isFullscreen) {
+      this.deactivateFullscreen(elem);
+    } else {
+      this.activateFullscreen(elem);
+    }
+    this.update();
   }
 
   update(elem) {
@@ -681,22 +727,17 @@ class Modal extends FwComponent {
       EVENT_AFTER_UPDATE,
       () => {
         // buttons
-        // resize
-        // const currentWidth = this.UIRoot.querySelector(
-        //   `.${UIPrefix(COMPONENT_CLASS)}-popup`
-        // ).clientWidth;
-        // const resizeBtn = this.UIRoot.querySelectorAll(
-        //   `*[data-toggle-${this.modeToggle}-resize]`
-        // );
-        // if (resizeBtn && currentWidth < parseInt(this.args.width)) {
-        //   resizeBtn.forEach((butt) => {
-        //     butt.classList.add('disabled');
-        //   });
-        // } else {
-        //   resizeBtn.forEach((butt) => {
-        //     butt.classList.remove('disabled');
-        //   });
-        // }
+        if (this.UIToggleFullscreen) {
+          if (this.isFullscreen) {
+            this.UIToggleFullscreen.forEach((butt) => {
+              butt.classList.add(TOGGLE_ACTIVATED_CLASS);
+            });
+          } else {
+            this.UIToggleFullscreen.forEach((butt) => {
+              butt.classList.remove(TOGGLE_ACTIVATED_CLASS);
+            });
+          }
+        }
       },
       element
     );
@@ -739,6 +780,7 @@ class Modal extends FwComponent {
               ).style.width = typeof width == 'string' ? width : `${width}px`;
             }
           }
+          this.update();
         },
         element
       );
@@ -817,7 +859,6 @@ class Modal extends FwComponent {
           Modal.current(mode).args
         );
         modal.resize();
-        modal.update();
       });
     };
   }
@@ -974,7 +1015,7 @@ class Modal extends FwComponent {
     };
   }
 
-  static handleFullScreen(mode) {
+  static handleFullscreen(mode) {
     return (e) => {
       e.preventDefault();
 
@@ -987,7 +1028,7 @@ class Modal extends FwComponent {
           ),
           e.target
         );
-        modal.toggleFullScreen();
+        modal.toggleFullscreen();
       }
     };
   }
@@ -1049,7 +1090,7 @@ class Modal extends FwComponent {
         document.documentElement,
         EVENT_CLICK,
         `*[data-toggle-${modeToggle}-fullscreen]`,
-        Modal.handleFullScreen(mode)
+        Modal.handleFullscreen(mode)
       );
     });
 
@@ -1105,7 +1146,7 @@ class Modal extends FwComponent {
       FwEvent.removeListener(
         document.documentElement,
         EVENT_CLICK,
-        Modal.handleFullScreen(mode)
+        Modal.handleFullscreen(mode)
       );
     });
 

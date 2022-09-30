@@ -1214,6 +1214,7 @@
   var TOGGLE_MODE$4 = "" + NAME$e;
   var COMPONENT_CLASS$e = "" + FwString.ToDashed(NAME$e);
   var ACTIVATED_CLASS$8 = "open";
+  var ACTIVATED_TOGGLE_CLASS = "active";
   var DATA_KEY$e = Settings.get('prefix') + "_" + NAME$e;
   var EVENT_KEY$e = "_" + DATA_KEY$e;
   var EVENT_CLICK$b = "click" + EVENT_KEY$e;
@@ -1256,8 +1257,13 @@
       var _this = this;
 
       if (!this._isWithinGroupMultiple) {
-        FwDom.RunFnForChildren(this.UIGroot, "[data-toggle-" + TOGGLE_MODE$4 + "],." + COMPONENT_CLASS$e, "." + COMPONENT_CLASS$e + "-group", function (accBbies) {
-          if (_this.triggerer && accBbies !== _this.triggerer && accBbies !== _FwComponent.prototype.UIEl.call(_this) || !_this.triggerer && accBbies !== _FwComponent.prototype.UIEl.call(_this)) {
+        FwDom.RunFnForChildren(this.UIGroot, "[data-toggle-" + TOGGLE_MODE$4 + "]", "." + COMPONENT_CLASS$e + "-group", function (toggleBbies) {
+          if (toggleBbies !== _this.triggerer) {
+            toggleBbies.classList.remove(ACTIVATED_TOGGLE_CLASS);
+          }
+        });
+        FwDom.RunFnForChildren(this.UIGroot, "." + COMPONENT_CLASS$e, "." + COMPONENT_CLASS$e + "-group", function (accBbies) {
+          if (accBbies !== _FwComponent.prototype.UIEl.call(_this)) {
             accBbies.classList.remove(ACTIVATED_CLASS$8);
           }
         });
@@ -1278,10 +1284,10 @@
 
       if (!this.UIGroot || this._isWithinAllowNoActive) {
         _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_CLOSE$2, EVENT_CLOSE$2, EVENT_AFTER_CLOSE$2, function () {
-          triggerer && triggerer.classList.remove(ACTIVATED_CLASS$8);
+          triggerer && triggerer.classList.remove(ACTIVATED_TOGGLE_CLASS);
 
           _this2._probablyToggle.forEach(function (toggle) {
-            toggle.classList.remove(ACTIVATED_CLASS$8);
+            toggle.classList.remove(ACTIVATED_TOGGLE_CLASS);
           });
 
           element.classList.remove(ACTIVATED_CLASS$8);
@@ -1307,10 +1313,10 @@
       _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_OPEN$1, EVENT_OPEN$1, EVENT_AFTER_OPEN$1, function () {
         _this3._siblicide();
 
-        triggerer && triggerer.classList.add(ACTIVATED_CLASS$8);
+        triggerer && triggerer.classList.add(ACTIVATED_TOGGLE_CLASS);
 
         _this3._probablyToggle.forEach(function (toggle) {
-          toggle.classList.add(ACTIVATED_CLASS$8);
+          toggle.classList.add(ACTIVATED_TOGGLE_CLASS);
         });
 
         element.classList.add(ACTIVATED_CLASS$8);
@@ -2445,13 +2451,12 @@
           // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
           // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
           // for(let i = 0; i < 7; i++){
-          for (var _i2 = 0; _i2 < freeGridSpacePrev; _i2++) {
+          for (var _i2 = freeGridSpacePrev; _i2 >= 0; _i2--) {
             var offset = _this3._calendar.prevDate.getDate() - _i2;
 
             var loopDatePrev = new Date(_this3._calendar.prevDate.getFullYear(), _this3._calendar.prevDate.getMonth(), offset);
 
-            var dateBlockPrev = _this3._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$a) + "-block-adjacent\n                " + (!_this3.validates(loopDatePrev) ? 'disabled' : '')); //prepend because we loopped this bitch in reverse
-
+            var dateBlockPrev = _this3._blockHtml(loopDatePrev, UIPrefix(COMPONENT_CLASS$a) + "-block-adjacent\n                " + (!_this3.validates(loopDatePrev) ? 'disabled' : ''));
 
             theUI.dates.innerHTML += dateBlockPrev;
           }
@@ -3876,9 +3881,12 @@
   var EVENT_BEFORE_RESIZE = "before_resize" + EVENT_KEY$6;
   var EVENT_RESIZE = "resize" + EVENT_KEY$6;
   var EVENT_AFTER_RESIZE = "after_resize" + EVENT_KEY$6;
-  var EVENT_BEFORE_FULLSCREEN = "before_fullscreen" + EVENT_KEY$6;
-  var EVENT_FULLSCREEN = "fullscreen" + EVENT_KEY$6;
-  var EVENT_AFTER_FULLSCREEN = "after_fullscreen" + EVENT_KEY$6;
+  var EVENT_BEFORE_FULLSCREEN_ACTIVATE = "before_fullscreen_activate" + EVENT_KEY$6;
+  var EVENT_FULLSCREEN_ACTIVATE = "fullscreen_activate" + EVENT_KEY$6;
+  var EVENT_AFTER_FULLSCREEN_ACTIVATE = "after_fullscreen_activate" + EVENT_KEY$6;
+  var EVENT_BEFORE_FULLSCREEN_DEACTIVATE = "before_fullscreen_deactivate" + EVENT_KEY$6;
+  var EVENT_FULLSCREEN_DEACTIVATE = "fullscreen_deactivate" + EVENT_KEY$6;
+  var EVENT_AFTER_FULLSCREEN_DEACTIVATE = "after_fullscreen_deactivate" + EVENT_KEY$6;
   var CURRENT_MODAL_INSTANCE = {};
   var LAST_POS_X = 0;
   var VALID_MODAL_MODES = [BOARD_NAME, DEFAULT_NAME // default's just named after the component istels fo im not confusion also make it last
@@ -4002,6 +4010,7 @@
         closeClasses: '',
         fullscreen: false,
         //@TODO: this shit
+        fullscreenContentDisplay: 'block',
         centerY: {
           value: true,
           parser: function parser(value) {
@@ -4059,11 +4068,7 @@
       var lifeCycle = {};
 
       lifeCycle.before = function () {
-        var matchedHashDestroy = false; // if (!window.location.hash && this.#current && this.#current.element) {
-        //   if (element === this.#current.element) {
-        //     matchedHashDestroy = true;
-        //   }
-        // }
+        var matchedHashDestroy = false;
 
         if (_classPrivateFieldLooseBase(_this2, _current)[_current] && _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
           if (element === _classPrivateFieldLooseBase(_this2, _current)[_current].element) {
@@ -4133,6 +4138,9 @@
 
         if (_this3.UIRoot) {
           element.classList.remove(ACTIVATED_CLASS$4);
+
+          _this3.update();
+
           element.parentNode.insertBefore(_this3.UIRoot, element.nextSibling);
           FwDom.moveContents(_this3.UIContentBlock, element);
 
@@ -4156,7 +4164,7 @@
       }, element);
     };
 
-    _proto.toggleFullScreen = function toggleFullScreen(elem) {
+    _proto.activateFullscreen = function activateFullscreen(elem) {
       var _this4 = this;
 
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
@@ -4165,62 +4173,70 @@
         return;
       }
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_FULLSCREEN, EVENT_FULLSCREEN, EVENT_AFTER_FULLSCREEN, function () {
-        var fullScreenBtn = _this4.UIRoot.querySelectorAll("*[data-toggle-" + _this4.modeToggle + "-fullscreen]");
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_FULLSCREEN_ACTIVATE, EVENT_FULLSCREEN_ACTIVATE, EVENT_AFTER_FULLSCREEN_ACTIVATE, function () {
+        _this4.UIRoot.classList.add(FULLSCREEN_CLASS);
 
-        if (_this4.isFullScreen) {
-          if (fullScreenBtn) {
-            fullScreenBtn.forEach(function (butt) {
-              butt.classList.remove(TOGGLE_ACTIVATED_CLASS);
-            });
-          }
+        _this4.UIRoot.classList.remove(_this4.UiModeStyleClass);
 
-          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.remove(FULLSCREEN_CLASS);
-
-          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.add(_this4.UiModeStyleClass);
-        } else {
-          if (fullScreenBtn) {
-            fullScreenBtn.forEach(function (butt) {
-              butt.classList.add(TOGGLE_ACTIVATED_CLASS);
-            });
-          }
-
-          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.add(FULLSCREEN_CLASS);
-
-          _classPrivateFieldLooseBase(_this4, _current)[_current].UI.classList.remove(_this4.UiModeStyleClass);
-        }
+        _this4.UIContentBlock.style.display = _this4.args.fullscreenContentDisplay;
       }, element);
     };
 
-    _proto.update = function update(elem) {
+    _proto.deactivateFullscreen = function deactivateFullscreen(elem) {
+      var _this5 = this;
+
       var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
 
       if (!element) {
         return;
       }
 
-      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, function () {// buttons
-        // resize
-        // const currentWidth = this.UIRoot.querySelector(
-        //   `.${UIPrefix(COMPONENT_CLASS)}-popup`
-        // ).clientWidth;
-        // const resizeBtn = this.UIRoot.querySelectorAll(
-        //   `*[data-toggle-${this.modeToggle}-resize]`
-        // );
-        // if (resizeBtn && currentWidth < parseInt(this.args.width)) {
-        //   resizeBtn.forEach((butt) => {
-        //     butt.classList.add('disabled');
-        //   });
-        // } else {
-        //   resizeBtn.forEach((butt) => {
-        //     butt.classList.remove('disabled');
-        //   });
-        // }
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_FULLSCREEN_DEACTIVATE, EVENT_FULLSCREEN_DEACTIVATE, EVENT_AFTER_FULLSCREEN_DEACTIVATE, function () {
+        _this5.UIRoot.classList.remove(FULLSCREEN_CLASS);
+
+        _this5.UIRoot.classList.add(_this5.UiModeStyleClass);
+
+        _this5.UIContentBlock.style.display = '';
+      }, element);
+    };
+
+    _proto.toggleFullscreen = function toggleFullscreen(elem) {
+      if (this.isFullscreen) {
+        this.deactivateFullscreen(elem);
+      } else {
+        this.activateFullscreen(elem);
+      }
+
+      this.update();
+    };
+
+    _proto.update = function update(elem) {
+      var _this6 = this;
+
+      var element = elem ? _FwComponent.prototype.UIEl.call(this, elem) : _classPrivateFieldLooseBase(this, _current)[_current] ? _classPrivateFieldLooseBase(this, _current)[_current].element : false;
+
+      if (!element) {
+        return;
+      }
+
+      _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_UPDATE, EVENT_UPDATE, EVENT_AFTER_UPDATE, function () {
+        // buttons
+        if (_this6.UIToggleFullscreen) {
+          if (_this6.isFullscreen) {
+            _this6.UIToggleFullscreen.forEach(function (butt) {
+              butt.classList.add(TOGGLE_ACTIVATED_CLASS);
+            });
+          } else {
+            _this6.UIToggleFullscreen.forEach(function (butt) {
+              butt.classList.remove(TOGGLE_ACTIVATED_CLASS);
+            });
+          }
+        }
       }, element);
     };
 
     _proto.resize = function resize(width) {
-      var _this5 = this;
+      var _this7 = this;
 
       if (!_classPrivateFieldLooseBase(this, _current)[_current] || !_FwComponent.prototype.UIEl.call(this)) {
         return;
@@ -4238,16 +4254,18 @@
       if (this.UIRoot && parseInt(width) >= parseInt(args.width)) {
         _FwComponent.prototype.runCycle.call(this, EVENT_BEFORE_RESIZE, EVENT_RESIZE, EVENT_AFTER_RESIZE, function () {
           //all
-          if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup")) {
-            _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup").style.width = typeof width == 'string' ? width : width + "px";
+          if (_this7.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup")) {
+            _this7.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-popup").style.width = typeof width == 'string' ? width : width + "px";
           } //bboard
 
 
-          if (_this5.mode == 'board') {
-            if (_this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper")) {
-              _this5.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper").style.width = typeof width == 'string' ? width : width + "px";
+          if (_this7.mode == 'board') {
+            if (_this7.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper")) {
+              _this7.UIRoot.querySelector("." + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper").style.width = typeof width == 'string' ? width : width + "px";
             }
           }
+
+          _this7.update();
         }, element);
       }
     };
@@ -4257,7 +4275,6 @@
         VALID_MODAL_MODES.forEach(function (mode) {
           var modal = new Modal(Modal.current(mode).element, null, Modal.current(mode).args);
           modal.resize();
-          modal.update();
         });
       };
     };
@@ -4367,13 +4384,13 @@
       };
     };
 
-    Modal.handleFullScreen = function handleFullScreen(mode) {
+    Modal.handleFullscreen = function handleFullscreen(mode) {
       return function (e) {
         e.preventDefault();
 
         if (!FwComponent.isDisabled(e.target)) {
           var modal = new Modal(UIToggled(_classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode), e.target, "." + COMPONENT_CLASS$6 + "." + _classPrivateFieldLooseBase(Modal, _modeClass)[_modeClass](mode)), e.target);
-          modal.toggleFullScreen();
+          modal.toggleFullscreen();
         }
       };
     };
@@ -4399,7 +4416,7 @@
         //   Modal.handleToggleResizeMouseUp(mode)
         // );
 
-        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-fullscreen]", Modal.handleFullScreen(mode));
+        FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-fullscreen]", Modal.handleFullscreen(mode));
       });
       FwEvent.addListener(null, EVENT_HASHCHANGE$1, window, Modal.handleHash());
       Initiator.Q.on_ready = Modal.handleHash();
@@ -4423,7 +4440,7 @@
         //   Modal.handleToggleResizeMouseUp(mode)
         // );
 
-        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleFullScreen(mode));
+        FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleFullscreen(mode));
       });
       FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Modal.handleHash());
     };
@@ -4483,6 +4500,31 @@
         return _FwComponent.prototype.UIEl.call(this).getAttribute('id');
       }
     }, {
+      key: "UIToggle",
+      get: function get() {
+        return this.UIRoot.querySelectorAll("*[data-toggle-" + this.modeToggle + "]");
+      }
+    }, {
+      key: "UIToggleClose",
+      get: function get() {
+        return this.UIRoot.querySelectorAll("*[data-toggle-" + this.modeToggle + "-close]");
+      }
+    }, {
+      key: "UIToggleOpen",
+      get: function get() {
+        return this.UIRoot.querySelectorAll("*[data-toggle-" + this.modeToggle + "-open]");
+      }
+    }, {
+      key: "UIToggleFullscreen",
+      get: function get() {
+        return this.UIRoot.querySelectorAll("*[data-toggle-" + this.modeToggle + "-fullscreen]");
+      }
+    }, {
+      key: "UIToggleResize",
+      get: function get() {
+        return this.UIRoot.querySelectorAll("*[data-toggle-" + this.modeToggle + "-resize]");
+      }
+    }, {
       key: "modeToggle",
       get: function get() {
         return _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](this.mode);
@@ -4503,7 +4545,7 @@
         return UIPrefix(COMPONENT_CLASS$6) + "-on-mode-" + this.mode;
       }
     }, {
-      key: "isFullScreen",
+      key: "isFullscreen",
       get: function get() {
         return this.UIRoot.classList.contains(FULLSCREEN_CLASS);
       }
@@ -4519,8 +4561,8 @@
           classes: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-classes") : this._customArgs.callback,
           close: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close") : this._customArgs.close,
           closeClasses: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-close-classes") : this._customArgs.closeClasses,
-          //@TODO
           fullscreen: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen") : this._customArgs.fullscreen,
+          fullscreenContentDisplay: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-content-display") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-content-display") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-content-display") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-fullscreen-content-display") : this._customArgs.fullscreenContentDisplay,
           centerY: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-center-y") : this._customArgs.centerY,
           //board shits
           align: this.triggerer && this.triggerer.hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") ? this.triggerer.getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") : _FwComponent.prototype.UIEl.call(this).hasAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") ? _FwComponent.prototype.UIEl.call(this).getAttribute("data-" + ARG_ATTRIBUTE_NAME$2 + "-align") : this._customArgs.align,
@@ -5755,7 +5797,6 @@
   }(FwComponent);
   Zone.initListeners();
 
-  // import FwArrayay from './src/data-helper/array.js';
   var FrameWork = {
     Initiator: Initiator,
     Settings: Settings,

@@ -139,3 +139,8 @@ do micro tho
 - variablize the kwan
 - ano
 - scrollbar shits
+
+- tooltip on mobile mousedown? eh
+
+
+- input calendar borked too wtf

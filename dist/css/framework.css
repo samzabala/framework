@@ -9621,10 +9621,10 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
 .modal-ui-title {
   margin-top: 0;
 }
-.modal-ui-on-fullscreen.modal-ui .modal-ui-wrapper {
+.modal-ui-on-fullscreen .modal-ui-wrapper {
   padding: 0 !important;
 }
-.modal-ui-on-fullscreen.modal-ui .modal-ui-button-wrapper {
+.modal-ui-on-fullscreen .modal-ui-button-wrapper {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -9633,20 +9633,21 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   z-index: 9;
   padding: 10px;
 }
-.modal-ui-on-fullscreen.modal-ui .modal-ui-close {
+.modal-ui-on-fullscreen .modal-ui-close {
   order: -99;
 }
-.modal-ui-on-fullscreen.modal-ui .modal-ui-button {
+.modal-ui-on-fullscreen .modal-ui-button {
   margin: 0 0 1em;
 }
-.modal-ui-on-fullscreen.modal-ui .modal-ui-button-default {
+.modal-ui-on-fullscreen .modal-ui-button-default {
   font-size: 1rem;
 }
-.modal-ui-on-fullscreen.modal-ui .modal-ui-popup {
+.modal-ui-on-fullscreen .modal-ui-popup {
   width: 100% !important;
   height: 100% !important;
-  display: block;
   position: fixed;
+  display: flex;
+  flex-direction: column;
   top: 0;
   bottom: 0;
   left: 0;
@@ -9655,26 +9656,30 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   overflow-y: scroll;
   padding: 20px 20px;
 }
-.modal-constricted .modal-ui-on-fullscreen.modal-ui .modal-ui-popup, .modal-constricted-x .modal-ui-on-fullscreen.modal-ui .modal-ui-popup {
+.modal-constricted .modal-ui-on-fullscreen .modal-ui-popup, .modal-constricted-x .modal-ui-on-fullscreen .modal-ui-popup {
   padding-left: 0;
   padding-right: 0;
 }
-.modal-constricted .modal-ui-on-fullscreen.modal-ui .modal-ui-popup, .modal-constricted-y .modal-ui-on-fullscreen.modal-ui .modal-ui-popup {
+.modal-constricted .modal-ui-on-fullscreen .modal-ui-popup, .modal-constricted-y .modal-ui-on-fullscreen .modal-ui-popup {
   padding-top: 0;
   padding-bottom: 0;
 }
 @media (min-width: 1200px) {
-  .modal-expanded .modal-ui-on-fullscreen.modal-ui .modal-ui-popup {
+  .modal-expanded .modal-ui-on-fullscreen .modal-ui-popup {
     padding: 30px 30px;
   }
-  .modal-compact .modal-ui-on-fullscreen.modal-ui .modal-ui-popup {
+  .modal-compact .modal-ui-on-fullscreen .modal-ui-popup {
     padding: 10px 10px;
   }
 }
 @media (max-width: 1199px) {
-  .modal-ui-on-fullscreen.modal-ui .modal-ui-popup {
+  .modal-ui-on-fullscreen .modal-ui-popup {
     padding: 10px 10px;
   }
+}
+.modal-ui-on-fullscreen .modal-ui-popup-content {
+  width: 100%;
+  flex: 1 1;
 }
 
 /*** MODAL ***/

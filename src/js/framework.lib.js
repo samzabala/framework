@@ -1,8 +1,3 @@
-// import FwArrayay from './src/data-helper/array.js';
-// import FwString from './src/data-helper/string.js';
-// import FwDate from './src/data-helper/date.js';
-// import FwDom from './src/data-helper/dom.js';
-
 import Initiator from './imports/core/initiator.js';
 import Settings from './imports/core/settings.js';
 

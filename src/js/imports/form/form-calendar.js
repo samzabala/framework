@@ -688,7 +688,7 @@ class Calendar extends FwComponent {
           // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
           // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
           // for(let i = 0; i < 7; i++){
-          for (let i = 0; i < freeGridSpacePrev; i++) {
+          for (let i = freeGridSpacePrev; i >= 0; i--) {
             let offset = this._calendar.prevDate.getDate() - i;
 
             let loopDatePrev = new Date(
@@ -703,7 +703,6 @@ class Calendar extends FwComponent {
                 ${!this.validates(loopDatePrev) ? 'disabled' : ''}`
             );
 
-            //prepend because we loopped this bitch in reverse
             theUI.dates.innerHTML += dateBlockPrev;
           }
         }
