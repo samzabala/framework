@@ -4820,6 +4820,18 @@ big {
   content: "\e962";
 }
 
+.symbol-envelope-open:before, .active > .symbol-envelope-open-toggle:before, .open > .symbol-envelope-open-toggle:before {
+  content: "\e963";
+}
+
+.symbol-envelope-open-inverse:before, .active > .symbol-envelope-open-inverse-toggle:before, .open > .symbol-envelope-open-inverse-toggle:before {
+  content: "\e964";
+}
+
+.symbol-reply:before, .active > .symbol-reply-toggle:before, .open > .symbol-reply-toggle:before {
+  content: "\e965";
+}
+
 /*** ASSET ***/
 .asset {
   max-width: 100%;
