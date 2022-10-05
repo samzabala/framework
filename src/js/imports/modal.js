@@ -788,49 +788,57 @@ class Modal extends FwComponent {
   }
 
   get _markup() {
-    let html = `<div class="${UIPrefix(COMPONENT_CLASS)}-wrapper">`;
+    let html = `<div class="${this.UiModeClass} ${UIPrefix(COMPONENT_CLASS)}-wrapper">`;
 
     //overlay
     html += `<div
-      class="${UIPrefix(COMPONENT_CLASS)}-close-overlay" ${
+      class="${this.UiModeClass} ${UIPrefix(COMPONENT_CLASS)}-close-overlay" ${
       this.args.disableOverlay == false ? `data-toggle-${this.modeToggle}-close` : ''
     }
     ></div>`;
 
     switch (this.mode) {
       case 'board':
-        html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup">`;
+        html += `<div class="${this.UiModeClass} ${UIPrefix(COMPONENT_CLASS)}-popup">`;
 
-        html += `<div class="${UIPrefix(COMPONENT_CLASS)}-button-wrapper">
+        html += `<div class="${this.UiModeClass} ${UIPrefix(
+          COMPONENT_CLASS
+        )}-button-wrapper">
           ${this.buttonsMarkup}
         </div>`;
 
         if (this.args.title) {
-          html += `<div class="${UIPrefix(COMPONENT_CLASS)}-header">
-            <h1 class="${UIPrefix(COMPONENT_CLASS)}-title">${decodeURIComponent(
-            this.args.title
-          )}</h1>
+          html += `<div class="${this.UiModeClass} ${UIPrefix(COMPONENT_CLASS)}-header">
+            <h1 class="${this.UiModeClass} ${UIPrefix(
+            COMPONENT_CLASS
+          )}-title">${decodeURIComponent(this.args.title)}</h1>
           </div>`;
         }
 
-        html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup-content"></div>`;
+        html += `<div class="${this.UiModeClass} ${UIPrefix(
+          COMPONENT_CLASS
+        )}-popup-content"></div>`;
         html += `</div>`;
 
         break;
 
       default:
-        html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup">`;
+        html += `<div class="${this.UiModeClass} ${UIPrefix(COMPONENT_CLASS)}-popup">`;
 
         if (this.args.title || this.hasButtons) {
-          html += `<div class="${UIPrefix(COMPONENT_CLASS)}-header">`;
+          html += `<div class="${this.UiModeClass} ${UIPrefix(
+            COMPONENT_CLASS
+          )}-header">`;
           if (this.args.title) {
-            html += `<h1 class="${UIPrefix(COMPONENT_CLASS)}-title">
+            html += `<h1 class="${this.UiModeClass} ${UIPrefix(COMPONENT_CLASS)}-title">
             ${decodeURIComponent(this.args.title)}
             </h1>`;
           }
 
           if (this.hasButtons) {
-            html += `<div class="${UIPrefix(COMPONENT_CLASS)}-button-wrapper">
+            html += `<div class="${this.UiModeClass} ${UIPrefix(
+              COMPONENT_CLASS
+            )}-button-wrapper">
               ${this.buttonsMarkup}
             </div>`;
           }
@@ -838,7 +846,9 @@ class Modal extends FwComponent {
           html += `</div>`;
         }
 
-        html += `<div class="${UIPrefix(COMPONENT_CLASS)}-popup-content"></div>`;
+        html += `<div class="${this.UiModeClass} ${UIPrefix(
+          COMPONENT_CLASS
+        )}-popup-content"></div>`;
 
         html += `</div>`;
 
@@ -863,14 +873,26 @@ class Modal extends FwComponent {
     };
   }
 
-  static handleHash() {
+  static handleInit() {
     return () => {
       if (Settings.get('initializeModal')) {
+        const modal = new Modal();
         const hash = window.location.hash;
-        if (Modal.isHash(hash) && !Modal.containsHash) {
-          const modal = new Modal();
+        if (Modal.isHash(hash)) {
           modal.create();
         }
+      }
+    };
+  }
+
+  static handleHash() {
+    return () => {
+      const modal = new Modal();
+      const hash = window.location.hash;
+      if (Modal.isHash(hash) && !Modal.containsHash(hash)) {
+        modal.open();
+      } else {
+        modal.close();
       }
     };
   }
@@ -1096,7 +1118,7 @@ class Modal extends FwComponent {
 
     FwEvent.addListener(null, EVENT_HASHCHANGE, window, Modal.handleHash());
 
-    Initiator.Q.on_ready = Modal.handleHash();
+    Initiator.Q.on_ready = Modal.handleInit();
     Initiator.Q.on_resize = Modal.handleResize();
   }
   static destroyListeners() {
@@ -1150,7 +1172,7 @@ class Modal extends FwComponent {
       );
     });
 
-    FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleHash());
+    FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleHash(mode));
   }
 }
 

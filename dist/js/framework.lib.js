@@ -457,13 +457,13 @@
 
       if (idToGoTo) {
         if (window.history.pushState) {
-          window.history.pushState(null, null, idToGoTo);
+          window.history.pushState({}, '', idToGoTo);
         } else {
           window.location.hash = idToGoTo;
         }
       } else {
         var scrollV, scrollH;
-        if (window.history.pushState) window.history.pushState('', document.title, window.location.pathname + window.location.search);else {
+        if (window.history.pushState) window.history.pushState({}, '', window.location.href.replace(/#.*$/, ''));else {
           // Prevent scrolling by storing the page's current scroll offset
           scrollV = document.body.scrollTop;
           scrollH = document.body.scrollLeft;
@@ -1247,6 +1247,20 @@
       _FwComponent.prototype.dispose.call(this);
     };
 
+    Accordion.containsHash = function containsHash(hash) {
+      var anId = hash.replace('#', ''); //just to be sure
+
+      var possibEl = document.getElementById(anId);
+      return possibEl && possibEl.parentNode.closest("." + COMPONENT_CLASS$e);
+    };
+
+    Accordion.isHash = function isHash(hash) {
+      var anId = hash.replace('#', ''); //just to be sure
+
+      var possibEl = document.getElementById(anId);
+      return possibEl && possibEl.classList.contains(COMPONENT_CLASS$e);
+    };
+
     Accordion.configDefaults = function configDefaults() {
       return {
         changeHash: true
@@ -1354,11 +1368,28 @@
       };
     };
 
-    Accordion.handleHash = function handleHash() {
+    Accordion.handleInit = function handleInit() {
       return function () {
         if (Settings.get('initializeAccordion')) {
           var accordion = new Accordion();
+          var hash = window.location.hash;
+
+          if (Accordion.isHash(hash)) {
+            accordion.open();
+          }
+        }
+      };
+    };
+
+    Accordion.handleHash = function handleHash() {
+      return function () {
+        var accordion = new Accordion();
+        var hash = window.location.hash;
+
+        if (Accordion.isHash(hash) && !Accordion.containsHash(hash)) {
           accordion.open();
+        } else {
+          accordion.close();
         }
       };
     };
@@ -1366,7 +1397,7 @@
     Accordion.initListeners = function initListeners() {
       FwEvent.addListener(document.documentElement, EVENT_CLICK$b, "*[data-toggle-" + TOGGLE_MODE$4 + "]", Accordion.handleToggler());
       FwEvent.addListener(null, EVENT_HASHCHANGE$2, window, Accordion.handleHash());
-      Initiator.Q.on_ready = Accordion.handleHash();
+      Initiator.Q.on_ready = Accordion.handleInit();
     };
 
     Accordion.destroyListeners = function destroyListeners() {
@@ -4279,15 +4310,28 @@
       };
     };
 
-    Modal.handleHash = function handleHash() {
+    Modal.handleInit = function handleInit() {
       return function () {
         if (Settings.get('initializeModal')) {
+          var modal = new Modal();
           var hash = window.location.hash;
 
-          if (Modal.isHash(hash) && !Modal.containsHash) {
-            var modal = new Modal();
+          if (Modal.isHash(hash)) {
             modal.create();
           }
+        }
+      };
+    };
+
+    Modal.handleHash = function handleHash() {
+      return function () {
+        var modal = new Modal();
+        var hash = window.location.hash;
+
+        if (Modal.isHash(hash) && !Modal.containsHash(hash)) {
+          modal.open();
+        } else {
+          modal.close();
         }
       };
     };
@@ -4419,7 +4463,7 @@
         FwEvent.addListener(document.documentElement, EVENT_CLICK$4, "*[data-toggle-" + modeToggle + "-fullscreen]", Modal.handleFullscreen(mode));
       });
       FwEvent.addListener(null, EVENT_HASHCHANGE$1, window, Modal.handleHash());
-      Initiator.Q.on_ready = Modal.handleHash();
+      Initiator.Q.on_ready = Modal.handleInit();
       Initiator.Q.on_resize = Modal.handleResize();
     };
 
@@ -4442,7 +4486,7 @@
 
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleFullscreen(mode));
       });
-      FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Modal.handleHash());
+      FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Modal.handleHash(mode));
     };
 
     _createClass(Modal, [{
@@ -4589,41 +4633,41 @@
     }, {
       key: "_markup",
       get: function get() {
-        var html = "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-wrapper\">"; //overlay
+        var html = "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-wrapper\">"; //overlay
 
-        html += "<div\n      class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-close-overlay\" " + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n    ></div>";
+        html += "<div\n      class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-close-overlay\" " + (this.args.disableOverlay == false ? "data-toggle-" + this.modeToggle + "-close" : '') + "\n    ></div>";
 
         switch (this.mode) {
           case 'board':
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">\n          " + this.buttonsMarkup + "\n        </div>";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">\n          " + this.buttonsMarkup + "\n        </div>";
 
             if (this.args.title) {
-              html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-header\">\n            <h1 class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n          </div>";
+              html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-header\">\n            <h1 class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-title\">" + decodeURIComponent(this.args.title) + "</h1>\n          </div>";
             }
 
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
             html += "</div>";
             break;
 
           default:
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup\">";
 
             if (this.args.title || this.hasButtons) {
-              html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-header\">";
+              html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-header\">";
 
               if (this.args.title) {
-                html += "<h1 class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-title\">\n            " + decodeURIComponent(this.args.title) + "\n            </h1>";
+                html += "<h1 class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-title\">\n            " + decodeURIComponent(this.args.title) + "\n            </h1>";
               }
 
               if (this.hasButtons) {
-                html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">\n              " + this.buttonsMarkup + "\n            </div>";
+                html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-button-wrapper\">\n              " + this.buttonsMarkup + "\n            </div>";
               }
 
               html += "</div>";
             }
 
-            html += "<div class=\"" + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
+            html += "<div class=\"" + this.UiModeClass + " " + UIPrefix(COMPONENT_CLASS$6) + "-popup-content\"></div>";
             html += "</div>";
             break;
         }

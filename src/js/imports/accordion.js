@@ -57,6 +57,18 @@ class Accordion extends FwComponent {
     return DATA_KEY;
   }
 
+  static containsHash(hash) {
+    const anId = hash.replace('#', ''); //just to be sure
+    const possibEl = document.getElementById(anId);
+    return possibEl && possibEl.parentNode.closest(`.${COMPONENT_CLASS}`);
+  }
+
+  static isHash(hash) {
+    const anId = hash.replace('#', ''); //just to be sure
+    const possibEl = document.getElementById(anId);
+    return possibEl && possibEl.classList.contains(COMPONENT_CLASS);
+  }
+
   static configDefaults() {
     return {
       changeHash: true,
@@ -204,6 +216,7 @@ class Accordion extends FwComponent {
           toggle.classList.add(ACTIVATED_TOGGLE_CLASS);
         });
         element.classList.add(ACTIVATED_CLASS);
+
         if (this.args.changeHash && this._id) {
           UIChangeHash(this._id);
         }
@@ -239,11 +252,26 @@ class Accordion extends FwComponent {
     };
   }
 
-  static handleHash() {
+  static handleInit() {
     return () => {
       if (Settings.get('initializeAccordion')) {
         const accordion = new Accordion();
+        const hash = window.location.hash;
+        if (Accordion.isHash(hash)) {
+          accordion.open();
+        }
+      }
+    };
+  }
+
+  static handleHash() {
+    return () => {
+      const accordion = new Accordion();
+      const hash = window.location.hash;
+      if (Accordion.isHash(hash) && !Accordion.containsHash(hash)) {
         accordion.open();
+      } else {
+        accordion.close();
       }
     };
   }
@@ -258,7 +286,7 @@ class Accordion extends FwComponent {
 
     FwEvent.addListener(null, EVENT_HASHCHANGE, window, Accordion.handleHash());
 
-    Initiator.Q.on_ready = Accordion.handleHash();
+    Initiator.Q.on_ready = Accordion.handleInit();
   }
 
   static destroyListeners() {

@@ -177,18 +177,14 @@ export const UIChangeHash = (id) => {
     const idToGoTo = id !== '' ? `#${id}` : null;
     if (idToGoTo) {
       if (window.history.pushState) {
-        window.history.pushState(null, null, idToGoTo);
+        window.history.pushState({}, '', idToGoTo);
       } else {
         window.location.hash = idToGoTo;
       }
     } else {
       let scrollV, scrollH;
       if (window.history.pushState)
-        window.history.pushState(
-          '',
-          document.title,
-          window.location.pathname + window.location.search
-        );
+        window.history.pushState({}, '', window.location.href.replace(/#.*$/, ''));
       else {
         // Prevent scrolling by storing the page's current scroll offset
         scrollV = document.body.scrollTop;

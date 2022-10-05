@@ -21,9 +21,10 @@
     position: fixed;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;
     bottom: 0 !important;
-    margin: 0;
+    min-height:100% !important;
+    height:auto !important;
+    width:100% !important;
     &-background {
       background: $modal-overlay-bg;
     }
@@ -72,6 +73,7 @@ $prefix: '.modal';
 
     &-center-y &-wrapper {
       display: flex;
+      flex-wrap:wrap;
       align-items: center;
     }
 
@@ -85,6 +87,7 @@ $prefix: '.modal';
 
     &-popup {
       @extend %fwe-modal-popup !optional;
+      @extend %fwe-modal-popup-shadow !optional;
     }
 
     #{&}-on-fullscreen & {

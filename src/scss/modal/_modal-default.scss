@@ -1,31 +1,42 @@
 /*** MODAL ***/
 $global-prefix: '.modal';
 $prefix: '.modal-ui';
-$mode-class: #{$prefix}-on-mode-default;
-$component-class: #{$prefix}-mode-default;
+$mode-wrapper-class: #{$prefix}-on-mode-default;
+$mode-class: #{$prefix}-mode-default;
 
 [data-toggle-modal-default] {
   @include dump-styles(data-toggle);
 }
 
-#{$component-class}#{$prefix} {
+#{$mode-class}#{$prefix} {
   z-index: $z-index-modal-default;
 }
 
-#{$mode-class} {
-  #{$prefix}-wrapper {
+#{$mode-wrapper-class} {
+  #{$mode-class}#{$prefix}-wrapper {
     @extend %fwe-modal-wrapper-background !optional;
     @extend %fwe-modal-scroller !optional;
     @extend %fwe-modal-scroller-no-scrollbar !optional;
 
-    padding: $modal-gutter;
+    &:before,&:after {
+      content:"";
+      display: block;
+      width:100%;
+      flex: 0 0 auto;
+      height: $modal-gutter;
+    }
+
+    padding: 0 $modal-gutter;
 
     @include on-breakpoint(mobile) {
-      padding: $modal-gutter-mobile;
+      padding: 0 $modal-gutter-mobile;
+      &:before,&:after {
+        height: $modal-gutter-mobile;
+      }
     }
   }
 
-  #{$prefix}-button {
+  #{$mode-class}#{$prefix}-button {
     &-wrapper {
       display: flex;
       position: absolute;
@@ -48,15 +59,14 @@ $component-class: #{$prefix}-mode-default;
     }
   }
 
-  #{$prefix}-close {
+  #{$mode-class}#{$prefix}-close {
     & {
       order: 99;
     }
   }
 
-  #{$prefix}-popup {
+  #{$mode-class}#{$prefix}-popup {
     border-radius: $modal-border-radius;
-    @extend %fwe-modal-popup-shadow !optional;
     margin: auto;
 
     padding: $modal-padding-y $modal-padding-x;

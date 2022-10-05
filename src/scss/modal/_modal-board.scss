@@ -1,23 +1,19 @@
 /*** MODAL BOARD ***/
 $global-prefix: '.modal';
 $prefix: '.modal-ui';
-$mode-class: #{$prefix}-on-mode-board;
-$component-class: #{$prefix}-mode-board;
+$mode-wrapper-class: #{$prefix}-on-mode-board;
+$mode-class: #{$prefix}-mode-board;
 
 [data-toggle-modal-board] {
   @include dump-styles(data-toggle);
 }
 
-#{$component-class}#{$prefix} {
+#{$mode-class}#{$prefix} {
   z-index: $z-index-modal-board;
 }
-#{$mode-class} {
+#{$mode-wrapper-class} {
   #{$prefix}-wrapper {
     @extend %fwe-modal-wrapper-background !optional;
-    #{$prefix}-popup {
-      padding-left: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
-      padding-right: calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x});
-    }
 
     @at-root #{$prefix}-align-right#{&} {
       padding-left: $modal-board-padding-spacer;
@@ -35,14 +31,6 @@ $component-class: #{$prefix}-mode-board;
     }
 
     @include on-breakpoint(mobile) {
-      #{$prefix}-popup {
-        padding-left: calc(
-          (#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
-        );
-        padding-right: calc(
-          (#{$_fwc-board-close-size} * 0.5) + #{$modal-padding-x-mobile}
-        );
-      }
       @at-root #{$prefix}-align-right#{&} {
         padding-left: $modal-board-padding-spacer-mobile;
       }
@@ -52,7 +40,7 @@ $component-class: #{$prefix}-mode-board;
     }
   }
 
-  #{$prefix}-button {
+  #{$mode-class}#{$prefix}-button {
     &-wrapper {
       position: fixed;
       z-index: 3;
@@ -137,23 +125,23 @@ $component-class: #{$prefix}-mode-board;
     }
   }
 
-  #{$prefix}-resize {
+  #{$mode-class}#{$prefix}-resize {
     order: 99;
     &:hover {
       cursor: grab;
     }
   }
 
-  #{$prefix}-close {
+  #{$mode-class}#{$prefix}-close {
     order: -99;
   }
 
-  #{$prefix}-popup {
+  #{$mode-class}#{$prefix}-popup {
     @extend %fwe-modal-scroller !optional;
     @extend %fwe-modal-popup-shadow !optional;
     height: 100%;
 
-    padding: $modal-board-padding-y $modal-board-padding-x;
+    padding: $modal-board-padding-y calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-padding-x});
 
     #{$global-prefix}-constricted &,
     #{$global-prefix}-constricted-x & {
@@ -168,15 +156,15 @@ $component-class: #{$prefix}-mode-board;
 
     @include on-breakpoint(nonmobile) {
       #{$global-prefix}-expanded & {
-        padding: $modal-board-expanded-padding-y $modal-board-expanded-padding-x;
+        padding: $modal-board-expanded-padding-y calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-expanded-padding-x});
       }
       #{$global-prefix}-compact & {
-        padding: $modal-board-compact-padding-y $modal-board-compact-padding-x;
+        padding: $modal-board-compact-padding-y calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-compact-padding-x});
       }
     }
 
     @include on-breakpoint(mobile) {
-      padding: $modal-board-padding-y-mobile $modal-board-padding-x-mobile;
+      padding: $modal-board-padding-y-mobile calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-padding-x-mobile});
     }
 
     &-content {
@@ -186,7 +174,7 @@ $component-class: #{$prefix}-mode-board;
   }
 }
 
-#{$component-class}#{$prefix}-on-fullscreen {
+#{$mode-class}#{$prefix}-on-fullscreen {
   #{$prefix}-button-wrapper {
     width: auto !important;
   }
