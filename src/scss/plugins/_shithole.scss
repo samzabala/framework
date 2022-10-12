@@ -1,6 +1,10 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
 
 @use 'sass:math';
-
 // Mixins ****hole
 // follow my soundlcloud for mor surprises
 // github.io/samzabala
@@ -30,15 +34,15 @@ $caution: #fd7f03 !default;
 $error: #fd0303 !default;
 
 //optional color variations
-$white-alt: darken($white, 6.67) !default;
+$white-alt: darken($white, 6.67%) !default;
 $color-base-alt: #000 !default;
-$color-primary-alt: darken($color-primary, 20) !default;
-$color-secondary-alt: darken($color-secondary, 20) !default;
-$color-accent-alt: darken($color-accent, 20) !default;
-$gray-light: lighten($gray, 13.33) !default;
-$gray-lighter: lighten($gray, 40) !default;
-$gray-dark: darken($gray, 13.33) !default;
-$gray-darker: darken($gray, 40) !default;
+$color-primary-alt: darken($color-primary, 20%) !default;
+$color-secondary-alt: darken($color-secondary, 20%) !default;
+$color-accent-alt: darken($color-accent, 20%) !default;
+$gray-light: lighten($gray, 13.33%) !default;
+$gray-lighter: lighten($gray, 40%) !default;
+$gray-dark: darken($gray, 13.33%) !default;
+$gray-darker: darken($gray, 40%) !default;
 
 $force-responsive-units: false !default;
 //map because sass wont interpolate variable names
@@ -126,20 +130,20 @@ $autoprefix: true !default; // turn off if ya compiler is gonna do this  then go
 
 // Media query condition strings
 //Max widths
-$screen-xxs-max: #{'max-width: ' + $brxxs};
-$screen-xs-max: #{'max-width: ' + $brxs};
-$screen-sm-max: #{'max-width: ' + $brsm};
-$screen-md-max: #{'max-width: ' + $brmd};
-$screen-lg-max: #{'max-width: ' + $brlg};
-$screen-xl-max: #{'max-width: ' + $brxl};
+$screen-xxs-max: #{'max-width: ' + $brxxs} !default;
+$screen-xs-max: #{'max-width: ' + $brxs} !default;
+$screen-sm-max: #{'max-width: ' + $brsm} !default;
+$screen-md-max: #{'max-width: ' + $brmd} !default;
+$screen-lg-max: #{'max-width: ' + $brlg} !default;
+$screen-xl-max: #{'max-width: ' + $brxl} !default;
 
 //Min widths
-$screen-xs: #{'min-width: ' + $brxs-mn}; //mobile
-$screen-sm: #{'min-width: ' + $brsm-mn}; //tablet
-$screen-md: #{'min-width: ' + $brmd-mn}; //laptop
-$screen-lg: #{'min-width: ' + $brlg-mn}; //desktop
-$screen-xl: #{'min-width: ' + $brxl-mn}; //desktop
-$screen-xxl: #{'min-width: ' + $brxxl-mn}; //desktop
+$screen-xs: #{'min-width: ' + $brxs-mn} !default; //mobile
+$screen-sm: #{'min-width: ' + $brsm-mn} !default; //tablet
+$screen-md: #{'min-width: ' + $brmd-mn} !default; //laptop
+$screen-lg: #{'min-width: ' + $brlg-mn} !default; //desktop
+$screen-xl: #{'min-width: ' + $brxl-mn} !default; //desktop
+$screen-xxl: #{'min-width: ' + $brxxl-mn} !default; //desktop
 
 // Breakpoint tags
 $br-tag: (
@@ -155,7 +159,7 @@ $br-tag: (
   lg: $screen-lg,
   xl: $screen-xl,
   xxl: $screen-xxl,
-);
+) !default;
 
 $br-tag-list: (
   xxs-max,
@@ -170,7 +174,7 @@ $br-tag-list: (
   lg,
   xl,
   xxl
-);
+) !default;
 
 //////////////////////////////////////////////////////////////////////////////
 // FRAMEWORK MIXINS + FUNCTIONS
@@ -2653,10 +2657,13 @@ $keyframe-instance: 1;
     //		 @return $number;
     //	 }
     // } @else {
-      @if type-of($number) == number and type-of($root-size) == number {
+      @if
+        type-of($number) == number
+        and type-of($root-size) == number
+        and unit($number) == unit($root-size) {
         $calc-number: math.div($number,$root-size);
         @return strip-unit($calc-number) * map-get($available-units, $unit);
-      }@else if type-of($number) == number {
+      }@else if type-of($number) == number and $root-size == null {
           @return strip-unit($number) * map-get($available-units, $unit);
       } @else {
         @return $number;

@@ -1,21 +1,24 @@
-/*** SCAFFOLDING ***/
-
-html {
-  scroll-behavior: smooth;
-}
 html,
 body {
   width: 100%;
   min-width: 320px;
   @include type-set(
     (
-      size: $body-font-size,
+      size: $var-body-font-size,
+      leading: $var-body-line-height,
       font: $body-font-family,
       weight: $body-font-weight,
-      leading: $body-line-height,
+      align: inital,
     )
   );
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   min-height: 100vh;
+  accent-color: $var-color-primary;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -60,90 +63,36 @@ body {
   color: $body-selection-color;
 }
 
-body {
-  text-align: left;
+:where(img, svg, input, textarea, fieldset, legend, select, button) {
+  max-width: 100%;
 }
 
-/* SUPER GLOBAL STYLE FIXES */
-
-img,
-svg {
-  max-width: 100%;
+:where(img, svg) {
   height: auto;
 }
 
-iframe,
-object,
-embed {
+:where(fieldset) {
+  min-width: 0;
+  resize: none;
+}
+
+/* outlines look ugly eew */
+:where(*, :focus, :hover, :active) {
+  outline: none;
+}
+
+/* embed shits */
+:where(iframe, object, embed) {
   max-width: 100% !important;
 }
 
-/* IE7 */
-
-*,
-*:before,
-*:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+[disabled],
+:disabled {
+  @include dump-styles(disabled);
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Firefox 25*/
-}
-
-input,
-textarea,
-fieldset,
-legend,
-select,
-option,
-button {
-  // background:none;
-  // -webkit-border-radius: 0;
-  // border-radius: 0;
-  // border: none;
-  margin: 0;
-  // font: inherit;
-  // line-height: inherit;
-  // color: inherit;
-}
-
-option,
-optgroup {
-  all: initial;
-  display: block;
-  font: inherit;
-}
-
-input,
-textarea,
-fieldset,
-legend,
-select,
-button {
-  max-width: 100%;
-}
-
-fieldset {
-  min-width: 0;
-  resize: none;
-}
-
-button {
-  // margin:0;
-  // padding:0;
-  outline: 0;
-  // border: none;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-}
-
-[disabled] {
-  @include dump-styles(disabled);
 }

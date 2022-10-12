@@ -1,6 +1,0 @@
-$_fwc-tooltip-point-px: 10px;
-$_fwc-tooltip-point: rem($_fwc-tooltip-point-px, $body-font-size);
-$_fwc-gutter-hypotenus: to-unit(
-  sqrt((strip-unit($_fwc-tooltip-point-px) * strip-unit($_fwc-tooltip-point-px)) * 2),
-  unit($_fwc-tooltip-point-px)
-);

@@ -1,10 +1,10 @@
 $prefix: '.body';
 
-#{$prefix}-no-scroll {
+:is(#{$prefix}-no-scroll) {
   overflow: hidden !important;
 }
 
-#{$prefix}-on-drag {
+:is(#{$prefix}-on-drag) {
   &,
   * {
     cursor: grabbing !important;
@@ -13,9 +13,4 @@ $prefix: '.body';
     -ms-user-select: none !important; /* IE 10+ */
     user-select: none !important; /* Standard syntax */
   }
-}
-
-//legacy
-[data-toggle] {
-  @include dump-styles(data-toggle);
 }

@@ -1,0 +1,47 @@
+@function fw-unit-is-convertible($value, $font-value: $body-font-size) {
+  $to_return: false;
+  @if type-of($value) ==
+    number and not
+    unitless($value) and
+    unit($value) ==
+    'px' and
+    unit($font-value) ==
+    'px'
+  {
+    $to_return: true;
+  }
+
+  @return $to_return;
+}
+
+@function internal-helper-property($direction, $property: '', $subproperty: '') {
+  $parsed-property: '';
+
+  @if ($property != '') {
+    @if $direction == 'column' or $direction == 'row' {
+      $parsed-property: #{'-' + $property};
+    } @else {
+      $parsed-property: #{$property + '-'};
+    }
+  }
+
+  $parsed-subproperty: '';
+
+  @if ($subproperty != '') {
+    $parsed-subproperty: #{'-' + $subproperty};
+  }
+
+  @if $direction == 'column' or $direction == 'row' {
+    @return #{$direction + $parsed-property + $parsed-subproperty};
+  } @else {
+    @return #{$parsed-property + $direction + $parsed-subproperty};
+  }
+}
+
+@function calc-single-line() {
+  @if unitless(type-lead($body-font-size, $body-line-height)) {
+    @return calc(1em * #{$var-body-line-height});
+  } @else {
+    @return $var-body-line-height;
+  }
+}

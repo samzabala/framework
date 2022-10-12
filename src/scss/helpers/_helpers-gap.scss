@@ -1,0 +1,18 @@
+.gap {
+  & {
+    @include create-gutter-helper(#{&}, '', gap, '', $var-gutter-base);
+  }
+  &-large {
+    @include create-gutter-helper(#{&}, '', gap, '', $var-gutter-large);
+  }
+  &-small {
+    @include create-gutter-helper(#{&}, '', gap, '', $var-gutter-small);
+  }
+  &-micro {
+    @include create-gutter-helper(#{&}, '', gap, '', $var-gutter-micro);
+  }
+}
+
+.no-gap {
+  @include create-gutter-helper(#{&}, '', gap, '', 0);
+}

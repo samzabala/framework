@@ -1,23 +1,5 @@
 .overflow {
-  & {
-    &-visible {
-      overflow: visible !important;
-    }
-    &-hidden {
-      overflow: hidden !important;
-    }
-    &-scroll {
-      overflow: scroll !important;
-    }
-    &-overlay {
-      overflow: scroll !important;
-      overflow: overlay !important;
-    }
-    &-auto {
-      overflow: auto !important;
-    }
-  }
-
+  &,
   &-x {
     &-visible {
       overflow-x: visible !important;
@@ -25,18 +7,22 @@
     &-hidden {
       overflow-x: hidden !important;
     }
-    &-scroll {
+    @at-root :is(#{&}-scroll, #{&}-overlay, #{&}-clip) {
+      //scroll + fallback
       overflow-x: scroll !important;
     }
     &-overlay {
-      overflow-x: scroll !important;
       overflow-x: overlay !important;
+    }
+    &-clip {
+      overflow-x: clip !important;
     }
     &-auto {
       overflow-x: auto !important;
     }
   }
 
+  &,
   &-y {
     &-visible {
       overflow-y: visible !important;
@@ -44,12 +30,15 @@
     &-hidden {
       overflow-y: hidden !important;
     }
-    &-scroll {
+    @at-root :is(#{&}-scroll, #{&}-overlay, #{&}-clip) {
+      //scroll + fallback
       overflow-y: scroll !important;
     }
     &-overlay {
-      overflow-y: scroll !important;
       overflow-y: overlay !important;
+    }
+    &-clip {
+      overflow-y: clip !important;
     }
     &-auto {
       overflow-y: auto !important;

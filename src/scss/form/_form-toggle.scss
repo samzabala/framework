@@ -1,253 +1,224 @@
-/*** input toggle ***/
-$prefix: '.input';
+$sub-prefix: '.input-toggle';
 
-#{$prefix} {
-  // @TODO align right
+:where(#{$sub-prefix}) {
+  // :where(:root)
+  --fw-input-toggle-box-shadow: #{$input-toggle-box-shadow};
+  --fw-input-toggle-margin-x: #{rem($input-toggle-margin-x, $body-font-size)};
 
-  &-toggle {
-    & {
-      align-items: flex-start;
-      display: inline-flex;
-      justify-content: flex-start;
+  --fw-input-toggle-node-background-color-active: #{$input-toggle-node-background-color-active};
+  --fw-input-toggle-node-border-color-active: #{$input-toggle-node-border-color-active};
+  --fw-input-toggle-node-border-width: #{$input-toggle-node-border-width};
 
-      &%fwe-form-label {
-        flex-basis: auto;
-      }
+  --fw-input-toggle-width: #{rem($input-toggle-width, $body-font-size)};
 
-      &-reverse {
-        flex-direction: row-reverse;
-      }
+  --fw-input-toggle-node-border-radius: #{rem(
+      $input-toggle-node-border-radius,
+      $body-font-size
+    )};
+  --fw-input-toggle-node-width: #{rem($input-toggle-node-width, $body-font-size)};
+  --fw-input-toggle-node-height: #{rem($input-toggle-node-height, $body-font-size)};
+
+  --fw-input-toggle-plate-background-color-active: #{$input-toggle-plate-background-color-active};
+  --fw-input-toggle-plate-border-color-active: #{$input-toggle-plate-border-color-active};
+  --fw-input-toggle-plate-border-width: #{$input-toggle-plate-border-width};
+
+  --fw-input-toggle-plate-border-radius: #{rem(
+      $input-toggle-plate-border-radius,
+      $body-font-size
+    )};
+  --fw-input-toggle-plate-height: #{rem($input-toggle-plate-height, $body-font-size)};
+}
+
+#{$sub-prefix} {
+  align-items: flex-start;
+  display: inline-flex;
+  justify-content: flex-start;
+  position: relative;
+
+  &#{&}-reverse {
+    flex-direction: row-reverse;
+  }
+
+  > :is(#{$prefix}-label, input) {
+    min-width: 0;
+  }
+
+  input {
+    @extend %fwe-form-global-ui-reset !optional;
+    opacity: 0 !important;
+    display: inline-block;
+    width: var(--fw-input-toggle-width);
+    height: max(
+      var(--fw-input-toggle-node-height),
+      var(--fw-input-toggle-plate-height)
+    );
+    vertical-align: middle;
+    align-self: flex-start;
+    position: relative;
+    z-index: 9;
+    order: -1;
+    flex: 0 0 auto;
+    margin-top: min(
+      calc((#{calc-single-line()} - var(--fw-input-toggle-node-height)) * 0.5),
+      calc((var(--fw-input-toggle-node-height) - #{calc-single-line()}) * -0.5)
+    );
+  }
+
+  #{$prefix}-label {
+    position: relative;
+    width: calc(100% - #{var(--fw-input-toggle-width)});
+    padding-top: 0;
+    padding-bottom: 0;
+    flex: 1 0 auto;
+    flex-basis: auto;
+  }
+}
+
+#{$sub-prefix}-label {
+  :not(#{$sub-prefix}-reverse) > & {
+    padding-left: var(--fw-input-toggle-margin-x);
+  }
+
+  #{$sub-prefix}-reverse > & {
+    padding-right: var(--fw-input-toggle-margin-x);
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    margin: auto;
+    top: 0;
+    transition-duration: $input-toggle-transition-duration;
+    transition-timing-function: $input-toggle-transition-timing;
+    transition-property: all;
+    right: 100%;
+
+    :is(#{$sub-prefix}-reverse) > & {
+      left: 100%;
+    }
+  }
+
+  &:before {
+    background-color: $var-color-neutral-alpha-2;
+    border: var(--fw-input-toggle-plate-border-width) solid;
+    height: var(--fw-input-toggle-plate-height);
+    width: var(--fw-input-toggle-width);
+    margin-top: min(
+      calc((#{calc-single-line()} - var(--fw-input-toggle-plate-height)) * 0.5),
+      calc((var(--fw-input-toggle-plate-height) - #{calc-single-line()}) * -0.5)
+    );
+    border-radius: var(--fw-input-toggle-plate-border-radius);
+
+    :is(:checked) + & {
+      background-color: var(--fw-input-toggle-plate-background-color-active);
+      border-color: var(--fw-input-toggle-plate-border-color-active);
+    }
+  }
+
+  &:after {
+    background-color: $var-theme-background;
+    border: var(--fw-input-toggle-node-border-width) solid;
+    height: var(--fw-input-toggle-node-height);
+    width: var(--fw-input-toggle-node-width);
+    box-shadow: var(--fw-input-toggle-box-shadow);
+    border-radius: var(--fw-input-toggle-node-border-radius);
+    margin-top: min(
+      calc((#{calc-single-line()} - var(--fw-input-toggle-node-height)) * 0.5),
+      calc((var(--fw-input-toggle-node-height) - #{calc-single-line()}) * -0.5)
+    );
+    background: $var-theme-background;
+    margin-left: max(
+      (
+        (var(--fw-input-toggle-plate-height) - var(--fw-input-toggle-node-height)) * 0.5
+      ),
+      0px
+    );
+    margin-right: calc(
+      var(--fw-input-toggle-width) - var(--fw-input-toggle-node-width) -
+        max(
+          (
+            (var(--fw-input-toggle-plate-height) - var(--fw-input-toggle-node-height)) *
+              0.5
+          ),
+          0px
+        )
+    );
+
+    :is(#{$sub-prefix}-reverse) > & {
+      margin-right: max(
+        (
+          (var(--fw-input-toggle-plate-height) - var(--fw-input-toggle-node-height)) *
+            0.5
+        ),
+        0px
+      );
     }
 
-    input,
-    .input {
-      & {
-        opacity: 0 !important;
-        background: transparent;
-        color: transparent;
-        -webkit-appearance: none;
-        appearance: none;
-        outline: none;
-        font: inherit;
-        display: inline-block;
-        width: $_fwc-input-toggle-width;
-        height: $_fwc-input-toggle-checkbox-height;
-        vertical-align: middle;
-        align-self: flex-start;
-        position: relative;
-        z-index: 9;
-        order: -1;
-        flex: 0 0 auto;
+    :is(:checked) + & {
+      background-color: var(--fw-input-toggle-node-background-color-active);
+      border: var(--fw-input-toggle-node-border-width) solid
+        var(--fw-input-toggle-node-border-color-active);
+      margin-right: max(
+        (
+          (var(--fw-input-toggle-plate-height) - var(--fw-input-toggle-node-height)) *
+            0.5
+        ),
+        0px
+      );
 
-        &[disabled] + #{$prefix}-label {
-          @include dump-styles(disabled);
-        }
-      }
-    }
-
-    #{$prefix}-small &,
-    &#{$prefix}-small {
-      .input,
-      input {
-        width: $_fwc-input-toggle-width-small;
-      }
-    }
-
-    #{$prefix}-large &,
-    &#{$prefix}-large {
-      .input,
-      input {
-        width: $_fwc-input-toggle-width-large;
-      }
-    }
-
-    & #{&}-label {
-      position: relative;
-      width: calc(100% - #{$_fwc-input-toggle-width});
-      padding-top: 0;
-      padding-bottom: 0;
-      flex: 1 0 auto;
-    }
-
-    &-label {
-      #{$prefix}-toggle:not(#{$prefix}-toggle-reverse) & {
-        padding-left: $input-toggle-margin-x;
-      }
-
-      #{$prefix}-toggle#{$prefix}-toggle-reverse & {
-        padding-right: $input-toggle-margin-x;
-      }
-
-      &:before,
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        pointer-events: none;
-        color: $input-toggle-color-default;
-        background-color: currentColor;
-        margin: auto;
-        top: 0;
-        transition: $input-toggle-transition-duration all $transition-timing;
-
-        #{$prefix}-toggle:not(#{$prefix}-toggle-reverse) & {
-          right: 100%;
-        }
-
-        #{$prefix}-toggle#{$prefix}-toggle-reverse & {
-          left: 100%;
-        }
-
-        [type='checkbox']:checked + &,
-        [type='radio']:checked + & {
-          color: $input-toggle-color-default-active;
-        }
-      }
-
-      @each $tag, $color in $_fwc-brand-color-declarations-for-components {
-        @at-root &#{$prefix}-#{$tag},
-          #{$prefix}-#{$tag} & {
-          &:before,
-          &:after {
-            color: $color;
-          }
-        }
-      }
-
-      &:before {
-        & {
-          height: $_fwc-input-toggle-plate-height;
-          width: $_fwc-input-toggle-width;
-          margin-top: calc(
-            (#{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-plate-height}) /
-              2
-          );
-          opacity: 0.3;
-          border-radius: $input-toggle-plate-border-radius;
-          margin-right: 0;
-        }
-
-        @at-root #{$prefix}-small#{&},
-          #{$prefix}-small & {
-          height: $_fwc-input-toggle-plate-height-small;
-          width: $_fwc-input-toggle-width-small;
-          margin-top: calc(
-            (
-                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-plate-height-small}
-              ) / 2
-          );
-          border-radius: $input-toggle-plate-border-radius-small;
-        }
-
-        @at-root #{$prefix}-large#{&},
-          #{$prefix}-large & {
-          height: $_fwc-input-toggle-plate-height-large;
-          width: $_fwc-input-toggle-width-large;
-          margin-top: calc(
-            (
-                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-plate-height-large}
-              ) / 2
-          );
-          border-radius: $input-toggle-plate-border-radius-large;
-        }
-      }
-
-      &:after {
-        & {
-          height: $_fwc-input-toggle-node-height;
-          width: $_fwc-input-toggle-node-width;
-          box-shadow: $input-toggle-node-box-shadow;
-          border-radius: $input-toggle-node-border-radius;
-          margin-right: calc(
-            (#{$_fwc-input-toggle-width} - #{$_fwc-input-toggle-node-width})
-          );
-          margin-left: 0;
-          margin-top: calc(
-            (#{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-node-height}) /
-              2
-          );
-
-          input[type='checkbox']:not(:checked) + &,
-          .input[type='checkbox']:not(:checked) + &,
-          input[type='radio']:not(:checked) + &,
-          .input[type='radio']:not(:checked) + & {
-            background: $var-theme-background;
-          }
-
-          input[type='checkbox']:checked + &,
-          .input[type='checkbox']:checked + &,
-          input[type='radio']:checked + &,
-          .input[type='radio']:checked + & {
-            #{$prefix}-toggle:not(#{$prefix}-toggle-reverse) & {
-              margin-right: 0;
-            }
-
-            #{$prefix}-toggle#{$prefix}-toggle-reverse & {
-              margin-left: calc(
-                (#{$_fwc-input-toggle-width} - #{$_fwc-input-toggle-node-width})
-              );
-            }
-          }
-        }
-
-        @at-root #{$prefix}-small#{&},
-          #{$prefix}-small & {
-          height: $_fwc-input-toggle-node-height-small;
-          width: $_fwc-input-toggle-node-width-small;
-          border-radius: $input-toggle-node-border-radius-small;
-          margin-right: calc(
-            (#{$_fwc-input-toggle-width-small} - #{$_fwc-input-toggle-node-width-small})
-          );
-          margin-left: 0;
-          margin-top: calc(
-            (
-                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-node-height-small}
-              ) / 2
-          );
-
-          input[type='checkbox']:checked + &,
-          .input[type='checkbox']:checked + &,
-          input[type='radio']:checked + &,
-          .input[type='radio']:checked + & {
-            #{$prefix}-toggle#{$prefix}-toggle-reverse & {
-              margin-left: calc(
+      :is(#{$sub-prefix}-reverse) > & {
+        margin-left: calc(
+          var(--fw-input-toggle-width) - var(--fw-input-toggle-node-width) -
+            max(
+              (
                 (
-                  #{$_fwc-input-toggle-width-small} - #{$_fwc-input-toggle-node-width-small}
-                )
-              );
-            }
-          }
-        }
-
-        @at-root #{$prefix}-large#{&},
-          #{$prefix}-large & {
-          height: $_fwc-input-toggle-node-height-large;
-          width: $_fwc-input-toggle-node-width-large;
-          border-radius: $input-toggle-node-border-radius-large;
-          margin-right: calc(
-            (#{$_fwc-input-toggle-width-large} - #{$_fwc-input-toggle-node-width-large})
-          );
-          margin-left: 0;
-          margin-top: calc(
-            (
-                #{$_fwc-input-toggle-checkbox-height} - #{$_fwc-input-toggle-node-height-large}
-              ) / 2
-          );
-
-          input[type='checkbox']:checked + &,
-          .input[type='checkbox']:checked + &,
-          input[type='radio']:checked + &,
-          .input[type='radio']:checked + & {
-            #{$prefix}-toggle#{$prefix}-toggle-reverse & {
-              margin-left: calc(
-                (
-                  #{$_fwc-input-toggle-width-large} - #{$_fwc-input-toggle-node-width-large}
-                )
-              );
-            }
-          }
-        }
+                    var(--fw-input-toggle-plate-height) -
+                      var(--fw-input-toggle-node-height)
+                  ) * 0.5
+              ),
+              0px
+            )
+        );
       }
     }
   }
+}
+
+:is(#{$prefix}-large, #{$prefix}-large > #{$prefix}) {
+  --fw-input-toggle-width: #{rem($input-toggle-width-large, $body-font-size)};
+  --fw-input-toggle-node-width: #{rem($input-toggle-node-width-large, $body-font-size)};
+  --fw-input-toggle-node-height: #{rem($input-toggle-node-height-large, $body-font-size)};
+  --fw-input-toggle-node-border-radius: #{rem(
+      $input-toggle-node-border-radius-large,
+      $body-font-size
+    )};
+  --fw-input-toggle-plate-height: #{rem(
+      $input-toggle-plate-height-large,
+      $body-font-size
+    )};
+  --fw-input-toggle-plate-border-radius: #{rem(
+      $input-toggle-plate-border-radius-large,
+      $body-font-size
+    )};
+}
+
+:is(#{$prefix}-small, #{$prefix}-small > #{$prefix}) {
+  --fw-input-toggle-width: #{rem($input-toggle-width-small, $body-font-size)};
+  --fw-input-toggle-node-width: #{rem($input-toggle-node-width-small, $body-font-size)};
+  --fw-input-toggle-node-height: #{rem($input-toggle-node-height-small, $body-font-size)};
+  --fw-input-toggle-node-border-radius: #{rem(
+      $input-toggle-node-border-radius-small,
+      $body-font-size
+    )};
+  --fw-input-toggle-plate-height: #{rem(
+      $input-toggle-plate-height-small,
+      $body-font-size
+    )};
+  --fw-input-toggle-plate-border-radius: #{rem(
+      $input-toggle-plate-border-radius-small,
+      $body-font-size
+    )};
 }

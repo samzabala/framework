@@ -1,7 +1,4 @@
-//////////////////////////////// CSS VAR Prefix
-
-//////////////////////////////// CSS VAR Verbiage. cannot be modified
-
+//////////////////////////////// CSS VAR Verbiage. DO NOT MODIFY THIS PART
 $var-color-base: var(--fw-color-base);
 $var-color-base-alt: var(--fw-color-base-alt);
 $var-color-base-alpha-1: var(--fw-color-base-alpha-1);
@@ -244,6 +241,47 @@ $var-theme-color: var(--fw-theme-color);
 $var-theme-color-contrast: var(--fw-theme-color-contrast);
 $var-theme-background: var(--fw-theme-background);
 $var-theme-background-contrast: var(--fw-theme-background-contrast);
+
+// FONT
+$var-gutter-base: var(--fw-gutter-base);
+$var-gutter-large: var(--fw-gutter-large);
+$var-gutter-small: var(--fw-gutter-small);
+$var-gutter-micro: var(--fw-gutter-micro);
+
+// BORDER RADIUS
+$var-border-radius-base: var(--fw-border-radius-base);
+$var-border-radius-large: var(--fw-border-radius-large);
+$var-border-radius-small: var(--fw-border-radius-small);
+$var-border-radius-micro: var(--fw-border-radius-micro);
+
+// TRANSITION
+$var-transition-duration-base: var(--fw-transition-duration-base);
+$var-transition-duration-long: var(--fw-transition-duration-long);
+$var-transition-duration-short: var(--fw-transition-duration-short);
+$var-transition-duration: var(--fw-transition-duration);
+
+// BOX SHADOW
+$var-box-shadow-base: var(--fw-box-shadow-base);
+$var-box-shadow-spicy: var(--fw-box-shadow-spicy);
+$var-box-shadow-mild: var(--fw-box-shadow-mild);
+
+$var-body-anchor-color: var(--fw-body-anchor-color) !default;
+$var-body-anchor-color-hover: var(--fw-body-anchor-color-hover) !default;
+
+$var-body-font-size-base: var(--fw-body-font-size-base);
+$var-body-font-size-small: var(--fw-body-font-size-small);
+$var-body-font-size-large: var(--fw-body-font-size-large);
+
+$var-body-line-height-base: var(--fw-body-line-height-base);
+$var-body-line-height-compact: var(--fw-body-line-height-compact);
+$var-body-line-height-expanded: var(--fw-body-line-height-expanded);
+
+$var-body-line-height-constricted: var(--fw-body-line-height-constricted);
+
+$var-body-font-size: var(--fw-body-font-size);
+$var-body-line-height: var(--fw-body-line-height);
+$var-body-text-gutter: var(--fw-body-text-gutter);
+//////////////////////////////// END FOR CSS VAR Verbiage
 
 //////////////////////////////// THEME/BRANDING
 
@@ -684,6 +722,7 @@ $theme-default-scheme: light !default;
 $theme-inverse-scheme: dark !default;
 
 //////////////////////////////// DEBUG FRONT END
+
 // $debug: true !default;
 
 //////////////////////////////// BREAKPOINTS
@@ -700,53 +739,55 @@ $mobile-br-max: 'sm' !default;
 
 //////////////////////////////// GLOBAL UNITS
 
-$gutter-base: 20px !default;
-$gutter-large: 30px !default;
-$gutter-small: 10px !default;
-$gutter-micro: 5px !default;
+$gutter-base: 1.25rem !default;
+$gutter-large: $gutter-base * 1.5 !default;
+$gutter-small: $gutter-base * 0.5 !default;
+$gutter-micro: $gutter-base * 0.25 !default;
 
 // Border radius globals
-$border-radius-base: 10px !default;
-$border-radius-small: $border-radius-base * 0.5 !default;
+$border-radius-base: 0.75rem !default;
 $border-radius-large: $border-radius-base * 2 !default;
+$border-radius-small: $border-radius-base * 0.5 !default;
+$border-radius-micro: $border-radius-base * 0.25 !default;
 
 // ANIMATION glbals
 $transition-duration-base: 0.25s !default;
 $transition-duration-short: 0.125s !default;
 $transition-duration-long: 0.5s !default;
-$transition-timing: ease-in-out !default;
+$var-transition-timing: ease-in-out !default;
 
 //BOX SHADOW globals
 $box-shadow-base: 0px 0px 10px -6px !default;
 $box-shadow-mild: 0px 0px 20px -5px !default;
 $box-shadow-spicy: 0px 0px 20px -10px !default;
 
-//////////////////////////////// CONTENT
+$body-anchor-color: $var-color-primary !default;
+$body-anchor-color-hover: $var-color-secondary !default;
 
-// SCAFFOLD typography
-$body-font-family: $var-font-primary !default;
-$body-font-weight: 400 !default;
-$body-font-weight-bold: 700 !default;
+//sizing
 $body-font-size: 16px !default;
 $body-font-size-small: $body-font-size * 0.75 !default;
 $body-font-size-large: $body-font-size * 1.5 !default;
-$body-line-height: $body-font-size * 1.5 !default;
-$body-text-gutter-y: 20px !default;
+$body-line-height: 1.5 !default;
+$body-line-height-compact: 1.25 !default;
+$body-line-height-expanded: 2 !default;
 
-$body-line-height-compact-factor: 0.875 !default;
-$body-line-height-expanded-factor: 1.5 !default;
+$body-font-weight: 400 !default;
+$body-font-weight-bold: 700 !default;
+$body-text-gutter: $var-gutter-base !default;
 
-//////////////////////////////// BUILD
+// SCAFFOLD
+$body-font-family: $var-font-primary !default;
 
+// TYPOHRAPHY
 $body-heading-gutter-top: 1.5em !default;
-$body-heading-gutter-bottom: $body-text-gutter-y * 0.5 !default;
+$body-heading-gutter-bottom: $var-gutter-small !default;
+$body-heading-font-family: $var-font-secondary !default;
+$body-heading-color: $var-theme-color-contrast !default;
 $body-heading-line-height: calc(1em + 10px) !default;
 $body-heading-font-weight: $body-font-weight-bold !default;
 $body-heading-font-style: inherit !default;
 $body-heading-text-transform: none !default;
-$body-heading-font-family: $var-font-secondary !default;
-$body-heading-color: $var-theme-color-contrast !default;
-$body-heading-color-inverse: $var-theme-color-contrast !default;
 
 $body-size-h1: $body-font-size * 2 !default;
 $body-size-h2: $body-font-size * 1.75 !default;
@@ -755,17 +796,16 @@ $body-size-h4: $body-font-size * 1.25 !default;
 $body-size-h5: $body-font-size !default;
 $body-size-h6: $body-font-size * 0.875 !default;
 
-$body-anchor-color: $var-color-primary !default;
-$body-anchor-color-hover: $var-color-secondary !default;
 $body-anchor-text-decoration: none !default;
 $body-anchor-text-decoration-hover: underline !default;
+$body-anchor-transition-duration: $var-transition-duration-base !default;
+$body-anchor-transition-timing: $var-transition-timing !default;
 
-$body-list-bullet-size: 6px !default;
 $body-list-bullet-color: $var-color-primary !default;
 $body-list-bullet-border-radius: 50% !default;
-$body-list-offset: 25px !default;
+$body-list-offset: $var-gutter-base !default;
 $body-list-offset-inline: 1em !default;
-$body-list-gutter-y: $body-text-gutter-y * 0.5 !default;
+$body-list-margin-y: $var-gutter-small !default;
 
 $body-blockquote-font-size: inherit !default;
 $body-blockquote-font-weight: 300 !default;
@@ -773,20 +813,21 @@ $body-blockquote-line-height: inherit !default;
 $body-blockquote-text-transform: none !default;
 $body-blockquote-font-style: normal !default;
 $body-blockquote-color: $var-color-neutral !default;
-$body-blockquote-gutter-x: $gutter-small !default;
+$body-blockquote-padding-x: $var-gutter-small !default;
 $body-blockquote-border-width: 4px !default;
 $body-blockquote-border-color: $var-theme-background-contrast !default;
-$body-blockquote-margin-y: $body-text-gutter-y !default;
-$body-blockquote-padding-y: $body-text-gutter-y * 0.5 !default;
+$body-blockquote-margin-y: $var-body-text-gutter !default;
+$body-blockquote-padding-y: $var-gutter-small !default;
 
 $body-cite-font-size: $body-font-size !default;
 $body-cite-font-weight: 300 !default;
 $body-cite-font-style: italic !default;
-$body-cite-gutter-y: $gutter-small !default;
+$body-cite-gutter-y: $var-gutter-small !default;
 
 $body-mono-color: inherit !default;
-$body-mono-background: $var-color-base-alpha-2 !default;
-$body-pre-padding: $gutter-micro !default;
+$body-mono-background: $var-color-neutral-alpha-2 !default;
+$body-mono-inline-padding: $var-gutter-micro !default;
+$body-mono-block-padding: $var-gutter-small !default;
 
 $body-scrollbar-track-background: $var-theme-background-contrast !default;
 $body-scrollbar-thumb-background: $var-color-primary !default;
@@ -797,131 +838,15 @@ $body-selection-color: $var-color-background !default;
 
 $global-disabled-opacity: 0.5 !default;
 
-$body-ellipsis-multiple-factor: 3 !default;
+$body-ellipsis-multiline-factor: 3 !default;
 
-//hr
 $hr-color: $var-color-neutral !default;
 $hr-height: 1px !default;
-$hr-gutter-y: $body-text-gutter-y !default;
+$hr-gutter-y: $var-body-text-gutter !default;
 
-// SVG
 $svg-gradient-color-start: $var-gradient-start !default;
 $svg-gradient-color-end: $var-gradient-end !default;
 
-// TABLE @TODO table high contrast helper class
-$table-cell-height: 40px !default;
-$table-expanded-cell-height: 75px !default;
-$table-compact-cell-height: 25px !default;
-$table-cell-border-color: $var-theme-background-contrast !default;
-$table-cell-border-color-inverse: $table-cell-border-color !default;
-$table-cell-border-width: 1px !default;
-$table-cell-gutter: $gutter-small !default;
-
-$table-heading-font-size: 14px !default;
-$table-heading-height: 45px !default;
-$table-heading-font-weight: $body-font-weight !default;
-$table-heading-font-style: normal !default;
-$table-heading-color: $var-color-neutral !default;
-$table-heading-color-inverse: $table-heading-color !default;
-$table-heading-text-transform: none !default;
-$table-heading-background: $var-theme-background !default;
-$table-heading-background-inverse: $table-heading-background !default;
-$table-label-width: 12px !default;
-$table-label-offset: 2px !default;
-$table-label-border-radius: 2px !default;
-
-$table-row-background: $var-theme-background !default;
-$table-row-background-inverse: $table-row-background !default;
-
-$table-row-primary-background: $var-color-primary-lightest !default;
-$table-row-primary-background-inverse: $var-color-primary-darkest !default;
-
-$table-row-secondary-background: $var-color-secondary-lightest !default;
-$table-row-secondary-background-inverse: $var-color-secondary-darkest !default;
-
-$table-row-accent-background: $var-color-accent-lightest !default;
-$table-row-accent-background-inverse: $var-color-accent-darkest !default;
-
-$table-row-neutral-background: $var-color-neutral-lightest !default;
-$table-row-neutral-background-inverse: $var-color-neutral-darkest !default;
-
-$table-row-success-background: $var-color-success-lightest !default;
-$table-row-success-background-inverse: $var-color-success-darkest !default;
-
-$table-row-caution-background: $var-color-caution-lightest !default;
-$table-row-caution-background-inverse: $var-color-caution-darkest !default;
-
-$table-row-error-background: $var-color-error-lightest !default;
-$table-row-error-background-inverse: $var-color-error-darkest !default;
-
-$table-row-intensity-1-background: $var-color-intensity-1-lightest !default;
-$table-row-intensity-1-background-inverse: $var-color-intensity-1-darkest !default;
-
-$table-row-intensity-2-background: $var-color-intensity-2-lightest !default;
-$table-row-intensity-2-background-inverse: $var-color-intensity-2-darkest !default;
-
-$table-row-intensity-3-background: $var-color-intensity-3-lightest !default;
-$table-row-intensity-3-background-inverse: $var-color-intensity-3-darkest !default;
-
-$table-row-intensity-4-background: $var-color-intensity-4-lightest !default;
-$table-row-intensity-4-background-inverse: $var-color-intensity-4-darkest !default;
-
-$table-row-intensity-5-background: $var-color-intensity-5-lightest !default;
-$table-row-intensity-5-background-inverse: $var-color-intensity-5-darkest !default;
-
-$table-cell-primary-background: $var-color-primary-alpha-1 !default;
-$table-cell-primary-background-inverse: $table-cell-primary-background !default;
-
-$table-cell-secondary-background: $var-color-secondary-alpha-1 !default;
-$table-cell-secondary-background-inverse: $table-cell-secondary-background !default;
-
-$table-cell-accent-background: $var-color-accent-alpha-1 !default;
-$table-cell-accent-background-inverse: $table-cell-accent-background !default;
-
-$table-cell-neutral-background: $var-color-neutral-alpha-1 !default;
-$table-cell-neutral-background-inverse: $table-cell-neutral-background !default;
-
-$table-cell-success-background: $var-color-success-alpha-1 !default;
-$table-cell-success-background-inverse: $table-cell-success-background !default;
-
-$table-cell-caution-background: $var-color-caution-alpha-1 !default;
-$table-cell-caution-background-inverse: $table-cell-caution-background !default;
-
-$table-cell-error-background: $var-color-error-alpha-1 !default;
-$table-cell-error-background-inverse: $table-cell-error-background !default;
-
-$table-cell-intensity-1-background: $var-color-intensity-1-alpha-1 !default;
-$table-cell-intensity-1-background-inverse: $table-cell-intensity-1-background !default;
-
-$table-cell-intensity-2-background: $var-color-intensity-2-alpha-1 !default;
-$table-cell-intensity-2-background-inverse: $table-cell-intensity-2-background !default;
-
-$table-cell-intensity-3-background: $var-color-intensity-3-alpha-1 !default;
-$table-cell-intensity-3-background-inverse: $table-cell-intensity-3-background !default;
-
-$table-cell-intensity-4-background: $var-color-intensity-4-alpha-1 !default;
-$table-cell-intensity-4-background-inverse: $table-cell-intensity-4-background !default;
-
-$table-cell-intensity-5-background: $var-color-intensity-5-alpha-1 !default;
-$table-cell-intensity-5-background-inverse: $table-cell-intensity-5-background !default;
-
-// LAYOUT
-
-// CONTAINERS
-$container-gutter: $gutter-base !default;
-$container-gutter-wide: $gutter-small !default;
-$container-gutter-slim: $gutter-large !default;
-$container-gutter-mobile: $gutter-micro !default;
-$container-max-width: 1920px !default;
-$container-max-width-mobile: 750px !default;
-
-//GRIDING AND SHIT
-$grid-units: 12 !default;
-$grid-gap: $gutter-base !default;
-$grid-gap-compact: $gutter-small !default;
-$grid-gap-expanded: $gutter-large !default;
-
-// speshal bois
 $special-primary-font-size: 56px !default;
 $special-primary-font-size-mobile: 48px !default;
 $special-primary-font-weight: 300 !default;
@@ -929,7 +854,7 @@ $special-primary-line-height: 1 !default;
 $special-primary-font-style: normal !default;
 $special-primary-color: inherit !default;
 $special-primary-text-transform: none !default;
-$special-primary-gutter-y: $gutter-small !default;
+$special-primary-gutter-y: $var-gutter-small !default;
 
 $special-secondary-font-size: 40px !default;
 $special-secondary-font-size-mobile: 32px !default;
@@ -947,284 +872,54 @@ $lead-line-height: 1.25 !default;
 $lead-font-style: normal !default;
 $lead-color: inherit !default;
 $lead-text-transform: none !default;
-$lead-gutter-y: $gutter-base !default;
+$lead-gutter-y: $var-gutter-base !default;
 
-// UI ELEMENTS
+// CONTAINERS
+$container-gutter: $var-gutter-base !default;
+$container-gutter-mobile: $var-gutter-micro !default;
+$container-gutter-slim: $var-gutter-large !default;
+$container-gutter-wide: $var-gutter-small !default;
 
-// ICONS
-$icon-size: 25px !default;
+$container-max-width: 1920px !default;
+$container-max-width-mobile: 750px !default;
 
-// legend
-$legend-width: 30px !default;
-$legend-height: 8px !default;
-$legend-border-radius: 0 !default;
-
-//symbol
-$symbol-caret-width: 8px !default;
-$symbol-caret-height: 6px !default;
-
-// NAV
-$nav-height: 60px !default;
-$nav-item-height: 35px !default;
-$nav-padding-x: $gutter-small !default;
-$nav-drop-shadow: $box-shadow-spicy $var-color-base-alpha-5 !default;
-$nav-drop-shadow-inverse: $nav-drop-shadow !default;
-$nav-background: $var-theme-background !default;
-$nav-dropdown-background: $nav-background !default;
-$nav-background-inverse: $nav-dropdown-background !default;
-$nav-icon-width: $icon-size !default;
-$nav-icon-height: $icon-size !default;
-$nav-current-size: 3px !default;
-$nav-current-gradient-start: $var-gradient-start !default;
-$nav-current-gradient-end: $var-gradient-end !default;
-$nav-font-size: $body-font-size !default;
-$nav-line-height: $body-line-height !default;
-$nav-color: $var-theme-color !default;
-$nav-color-inverse: $nav-color !default;
-$nav-color-hover: $var-color-primary !default;
-$nav-font-weight: $body-font-weight !default;
-$nav-font-style: normal !default;
-$nav-text-transform: none !default;
-
-$nav-top-font-size: $nav-font-size !default;
-$nav-top-font-style: normal !default;
-$nav-top-font-weight: $body-font-weight-bold !default;
-$nav-top-font-color: inherit !default;
-$nav-top-text-transform: none !default;
-
-$nav-item-label-opacity: 0.6 !default;
-
-//tab
-$tabs-font-size: $nav-top-font-size !default;
-$tabs-font-size-mobile: $tabs-font-size !default;
-$tabs-font-weight: $nav-top-font-weight !default;
-$tabs-font-style: normal !default;
-$tabs-text-transform: none !default;
-$tabs-transition-duration: $transition-duration-base !default;
-
-$tabs-color: $var-color-neutral !default;
-$tabs-color-inverse: $tabs-color !default;
-
-$tabs-border-width: 1px !default;
-
-$tabs-border-color: currentColor !default;
-$tabs-border-color-inverse: $tabs-border-color !default;
-
-$tabs-item-height: 45px !default;
-$tabs-item-gutter-x: 0 !default;
-$tabs-item-margin-x: 45px !default;
-
-$tab-item-border-radius: $border-radius-small !default;
-
-$tabs-item-background: transparent !default;
-$tabs-item-background-inverse: $tabs-item-background !default;
-$tabs-item-background-active: $tabs-item-background !default;
-$tabs-item-background-active-inverse: $tabs-item-background-active !default;
-
-$tabs-item-border-width: 1px !default;
-$tabs-item-border-color: transparent !default;
-$tabs-item-border-color-inverse: $tabs-item-border-color !default;
-$tabs-item-border-color-active: $tabs-item-border-color !default;
-$tabs-item-border-color-active-inverse: $tabs-item-border-color-active !default;
-
-$tabs-item-color-active: $var-theme-color !default;
-$tabs-item-color-active-inverse: $tabs-item-color-active !default;
-
-$tabs-item-box-shadow: none !default;
-
-$tabs-current-height: 3px !default;
-$tabs-current-color: $var-color-primary !default;
-$tabs-current-color-inverse: $var-color-primary !default;
-
-//pagination
-$pagination-font-size: 65px !default;
-$pagination-font-weight: 300 !default;
-$pagination-line-height: 1.25 !default;
-$pagination-font-style: normal !default;
-$pagination-color: inherit !default;
-$pagination-text-transform: none !default;
-$pagination-gutter-y: 0 !default;
-
-//zone
-
-$zone-font-size: $body-font-size !default;
-$zone-font-weight: $body-font-weight-bold !default;
-$zone-font-style: normal !default;
-$zone-text-transform: none !default;
-
-$zone-border-width: 1px !default;
-
-$zone-gutter-x: $gutter-base !default;
-$zone-gutter-y: $gutter-base !default;
-$zone-margin-y: $gutter-base !default;
-
-$zone-gutter-x-compact: $gutter-small !default;
-$zone-gutter-y-compact: $gutter-small !default;
-
-$zone-gutter-x-expanded: $gutter-large !default;
-$zone-gutter-y-expanded: $gutter-large !default;
-
-$zone-border-radius: 0 !default;
-
-//schemes
-$zone-border-default: currentColor !default;
-$zone-background-default: $var-color-neutral-alpha-3 !default;
-$zone-color-default: inherit !default;
-
-$zone-border-default-hover: $var-color-neutral-dark !default;
-$zone-background-default-hover: $var-color-neutral-alpha-2 !default;
-$zone-color-default-hover: $var-color-neutral-dark !default;
-
-$zone-border-primary: $var-color-primary !default;
-$zone-background-primary: $var-color-primary-alpha-1 !default;
-$zone-color-primary: $var-color-primary !default;
-
-$zone-border-primary-hover: $var-color-primary-dark !default;
-$zone-background-primary-hover: $var-color-primary-alpha-2 !default;
-$zone-color-primary-hover: $var-color-primary-dark !default;
-
-$zone-border-secondary: $var-color-secondary !default;
-$zone-background-secondary: $var-color-secondary-alpha-1 !default;
-$zone-color-secondary: $var-color-secondary !default;
-
-$zone-border-secondary-hover: $var-color-secondary-dark !default;
-$zone-background-secondary-hover: $var-color-secondary-alpha-2 !default;
-$zone-color-secondary-hover: $var-color-secondary-dark !default;
-
-$zone-border-accent: $var-color-accent !default;
-$zone-background-accent: $var-color-accent-alpha-1 !default;
-$zone-color-accent: $var-color-accent !default;
-
-$zone-border-accent-hover: $var-color-accent-dark !default;
-$zone-background-accent-hover: $var-color-accent-alpha-2 !default;
-$zone-color-accent-hover: $var-color-primary-dark !default;
-
-$zone-border-neutral: $var-color-neutral !default;
-$zone-background-neutral: $var-color-neutral-alpha-1 !default;
-$zone-color-neutral: $var-color-neutral !default;
-
-$zone-border-neutral-hover: $var-color-neutral-dark !default;
-$zone-background-neutral-hover: $var-color-neutral-alpha-2 !default;
-$zone-color-neutral-hover: $var-color-neutral-dark !default;
-
-$zone-border-success: $var-color-success !default;
-$zone-background-success: $var-color-success-alpha-1 !default;
-$zone-color-success: $var-color-success !default;
-
-$zone-border-success-hover: $var-color-success-dark !default;
-$zone-background-success-hover: $var-color-success-alpha-2 !default;
-$zone-color-success-hover: $var-color-success-dark !default;
-
-$zone-border-caution: $var-color-caution !default;
-$zone-background-caution: $var-color-caution-alpha-1 !default;
-$zone-color-caution: $var-color-caution !default;
-
-$zone-border-caution-hover: $var-color-caution-dark !default;
-$zone-background-caution-hover: $var-color-caution-alpha-2 !default;
-$zone-color-caution-hover: $var-color-caution-dark !default;
-
-$zone-border-error: $var-color-error !default;
-$zone-background-error: $var-color-error-alpha-1 !default;
-$zone-color-error: $var-color-error !default;
-
-$zone-border-error-hover: $var-color-error-dark !default;
-$zone-background-error-hover: $var-color-error-alpha-2 !default;
-$zone-color-error-hover: $var-color-error-dark !default;
-
-//alert
-$alert-border-width: 1px !default;
-
-$alert-gutter-x: $gutter-small !default;
-$alert-gutter-y: $gutter-small !default;
-$alert-gutter-y-ends: $alert-gutter-y * 0.5 !default;
-
-$alert-gutter-x-small: $gutter-micro !default;
-$alert-gutter-y-small: $gutter-micro !default;
-$alert-gutter-y-ends-small: $alert-gutter-y-small * 0.5 !default;
-
-$alert-gutter-x-large: $gutter-base !default;
-$alert-gutter-y-large: $gutter-base !default;
-$alert-gutter-y-ends-large: $alert-gutter-y-large * 0.5 !default;
-
-$alert-box-shadow: none !default; //$box-shadow-base $var-color-base
-$alert-border-radius: 0 !default;
-
-$alert-container-padding-x: $gutter-base !default;
-$alert-container-padding-x-mobile: $gutter-micro !default;
-$alert-container-padding-y: $gutter-base !default;
-$alert-container-padding-y-mobile: $gutter-micro !default;
-$alert-container-max-width: 460px !default;
-
-$alert-title-font-weight: $body-font-weight-bold !default;
-$alert-title-font-style: normal !default;
-$alert-title-color: inherit !default;
-$alert-title-text-transform: uppercase !default;
-
-//schemes
-$alert-border-default: $var-color-base-alpha-2 !default;
-$alert-background-default: $var-theme-background !default;
-$alert-color-default: inherit !default;
-
-$alert-border-primary: $var-color-base-alpha-2 !default;
-$alert-background-primary: $var-color-primary !default;
-$alert-color-primary: $var-color-background !default;
-
-$alert-border-secondary: $var-color-base-alpha-2 !default;
-$alert-background-secondary: $var-color-secondary !default;
-$alert-color-secondary: $var-color-background !default;
-
-$alert-border-accent: $var-color-base-alpha-2 !default;
-$alert-background-accent: $var-color-accent !default;
-$alert-color-accent: $var-color-background !default;
-
-$alert-border-neutral: $var-color-base-alpha-2 !default;
-$alert-background-neutral: $var-color-neutral !default;
-$alert-color-neutral: $var-color-background !default;
-
-$alert-border-success: $var-color-base-alpha-2 !default;
-$alert-background-success: $var-color-success !default;
-$alert-color-success: $var-color-background !default;
-
-$alert-border-caution: $var-color-base-alpha-2 !default;
-$alert-background-caution: $var-color-caution !default;
-$alert-color-caution: $var-color-background !default;
-
-$alert-border-error: $var-color-base-alpha-2 !default;
-$alert-background-error: $var-color-error !default;
-$alert-color-error: $var-color-background !default;
+//GRIDING AND SHIT
+$grid-gap: $var-gutter-base !default;
+$grid-gap-compact: $var-gutter-small !default;
+$grid-gap-expanded: $var-gutter-large !default;
+$grid-units: 12 !default;
 
 // MODULE @TODO build padding classes for large and small @TODO add module-hhigh-contrast helper ie activity and notes
-$module-background-color: $var-theme-background !default;
-$module-background-color-inverse: $module-background-color !default;
+$module-background: $var-theme-background !default;
 $module-border-color: $var-color-neutral-alpha-2 !default;
-$module-border-color-inverse: $module-border-color !default;
+$module-border-radius: $var-border-radius-small !default;
 $module-border-width: 1px !default;
-$module-box-shadow: $box-shadow-base $var-color-base-alpha-1 !default;
-$module-box-shadow-hover: $box-shadow-spicy $var-color-primary !default;
+$module-box-shadow: $var-box-shadow-base $var-color-base-alpha-1 !default;
+$module-box-shadow-hover: $var-box-shadow-spicy $var-color-primary !default;
+$module-transition-duration: $var-transition-duration;
+$module-transition-timing: $var-transition-timing;
 
-$module-gutter-x: $gutter-base !default;
-$module-gutter-x-mobile: $gutter-small !default;
-$module-gutter-y: $gutter-small !default;
-$module-gutter-y-mobile: $gutter-micro !default;
+$module-gutter-x: $var-gutter-base !default;
+$module-gutter-x-mobile: $var-gutter-small !default;
+$module-gutter-x-expanded: $var-gutter-large !default;
+$module-gutter-x-expanded-mobile: $module-gutter-x-mobile !default;
+$module-gutter-x-compact: $var-gutter-small !default;
+$module-gutter-x-compact-mobile: $module-gutter-x-mobile !default;
 
-$module-expanded-gutter-x: $gutter-large !default;
-$module-expanded-gutter-x-mobile: $module-gutter-x-mobile !default;
-$module-expanded-gutter-y: $gutter-base !default;
-$module-expanded-gutter-y-mobile: $module-gutter-y-mobile !default;
+$module-gutter-y: $var-gutter-small !default;
+$module-gutter-y-mobile: $var-gutter-micro !default;
+$module-gutter-y-expanded: $var-gutter-base !default;
+$module-gutter-y-expanded-mobile: $module-gutter-y-mobile !default;
+$module-gutter-y-compact: $var-gutter-micro !default;
+$module-gutter-y-compact-mobile: $module-gutter-y-mobile !default;
 
-$module-compact-gutter-x: $gutter-small !default;
-$module-compact-gutter-x-mobile: $module-gutter-x-mobile !default;
-$module-compact-gutter-y: $gutter-micro !default;
-$module-compact-gutter-y-mobile: $module-gutter-y-mobile !default;
+$module-gutter-between: $var-gutter-small !default;
 
-$module-gutter-between: $gutter-small !default;
+$module-grid-gap: $var-gutter-base !default;
+$module-grid-gap-expanded: $var-gutter-large !default;
+$module-grid-gap-compact: $var-gutter-small !default;
 
-$module-gutter-grid-gap: $gutter-base !default;
-$module-gutter-grid-expanded-gap: $gutter-large !default;
-$module-gutter-grid-compact-gap: $gutter-small !default;
-$module-grid-gutter: $gutter-base !default;
-
-$module-border-radius: $border-radius-small !default;
+$module-grid-margin: $var-gutter-base !default;
 
 $module-title-font-size: $body-font-size-small !default;
 $module-title-font-weight: $body-font-weight-bold !default;
@@ -1232,243 +927,529 @@ $module-title-font-style: normal !default;
 $module-title-color: $var-color-neutral !default;
 $module-title-text-transform: none !default;
 
-$module-grid-title-font-size: 19px !default;
-$module-grid-title-font-weight: $body-font-weight-bold !default;
-$module-grid-title-font-style: normal !default;
-$module-grid-title-color: $var-color-primary !default;
-$module-grid-title-text-transform: none !default;
-$module-grid-title-rule-height: 1px !default;
-$module-grid-title-rule-color: $var-color-neutral !default;
-$module-grid-title-rule-inverse: $var-color-neutral !default;
-
 $module-grid-title-margin-bottom: 1em !default;
-$module-grid-title-margin-top: 100px !default;
+$module-grid-title-margin-top: 4em !default;
 
-// modal
-$modal-padding-x: $gutter-base !default;
-$modal-padding-y: $gutter-base !default;
-$modal-padding-x-mobile: $gutter-small !default;
-$modal-padding-y-mobile: $gutter-small !default;
-$modal-expanded-padding-x: $gutter-large !default;
-$modal-expanded-padding-y: $gutter-large !default;
-$modal-compact-padding-x: $gutter-small !default;
-$modal-compact-padding-y: $gutter-small !default;
-$modal-background: $var-theme-background !default;
-$modal-background-inverse: $modal-background !default;
-$modal-close-offset: $gutter-small !default;
-$modal-close-offset-mobile: $modal-close-offset !default;
-$modal-border-radius: $border-radius-small !default;
-$modal-box-shadow: $box-shadow-spicy $var-color-base !default !default;
-$modal-overlay-bg: $var-color-base-alpha-5 !default;
-$modal-close-button-font-size: 1rem !default;
-$modal-gutter: $gutter-base !default;
-$modal-gutter-mobile: $gutter-small !default;
+// ICONS
+$icon-size: 25px !default;
 
-//modal board
-$modal-board-padding-spacer: $gutter-large !default;
-$modal-board-padding-spacer-mobile: $gutter-base !default;
-$modal-board-padding-x: $gutter-base !default;
-$modal-board-padding-y: $gutter-base !default;
-$modal-board-expanded-padding-x: $gutter-large !default;
-$modal-board-expanded-padding-y: $gutter-large !default;
-$modal-board-compact-padding-x: $gutter-small !default;
-$modal-board-compact-padding-y: $gutter-small !default;
-$modal-board-padding-x-mobile: $gutter-small !default;
-$modal-board-padding-y-mobile: $gutter-small !default;
-$modal-board-close-button-font-size: 1rem !default;
-$modal-board-close-offset-x: $modal-board-padding-x !default;
-$modal-board-close-offset-y: $modal-board-padding-y !default;
-$modal-board-close-offset-x-mobile: $modal-board-padding-x-mobile !default;
-$modal-board-close-offset-y-mobile: $modal-board-padding-y-mobile !default;
-$modal-board-resize-width: 20px !default; //not yet
-$modal-board-resize-height: 55px !default; //not yet
-$modal-board-close-size: 38px !default;
-$modal-board-close-box-shadow: $box-shadow-base $var-color-base !default;
+//Z INDEX
+$z-index-helper-max: 99 !default;
+$z-index-helper-multiplier: 10 !default;
 
-//FULLSCREEN
+$z-index-helper-max-small: 9 !default;
+$z-index-helper-multiplier-small: 1 !default;
 
-$modal-fullscreen-padding-x: $modal-padding-x !default;
-$modal-fullscreen-padding-y: $modal-padding-y !default;
-$modal-fullscreen-expanded-padding-x: $modal-expanded-padding-x !default;
-$modal-fullscreen-expanded-padding-y: $modal-expanded-padding-y !default;
-$modal-fullscreen-compact-padding-x: $modal-compact-padding-x !default;
-$modal-fullscreen-compact-padding-y: $modal-compact-padding-y !default;
-$modal-fullscreen-padding-x-mobile: $modal-padding-x-mobile !default;
-$modal-fullscreen-padding-y-mobile: $modal-padding-y-mobile !default;
+$z-index-helper-max-large: 10000 !default;
+$z-index-helper-multiplier-large: 1000 !default;
+
+$z-index-alert-container: 9998;
+$z-index-dropdown: 999 !default;
+$z-index-modal-default: 9990 !default;
+$z-index-modal-board: 9991 !default;
+$z-index-modal-fullscreen: 9992 !default;
+$z-index-nav: 999 !default;
+$z-index-tooltip: 9999 !default;
+
+// FLEX GROW / SHRINK
+$flex-max: 3 !default;
+
+// SYMBOLS
+$symbol-font-path: './../fonts/fw-icons' !default;
+
+// ASSET
+$asset-width: 220px !default;
+
+$asset-caption-font-weight: 300 !default;
+$asset-caption-font-style: normal !default;
+$asset-caption-color: $var-color-neutral !default;
+$asset-caption-text-transform: none !default;
+
+$asset-functions-offset-y: -15px !default;
+
+$asset-thumbnail-aspect-width: 190 !default;
+$asset-thumbnail-aspect-height: 100 !default;
+$asset-thumbnail-box-shadow: $var-box-shadow-base $var-color-base !default;
+$asset-thumbnail-box-shadow-hover: 0 0 0 3px $var-color-primary !default;
+$asset-thumbnail-margin-bottom: $var-gutter-small !default;
+$asset-thumbnail-background: $var-theme-background-contrast !default;
+$asset-thumbnail-border-radius: $var-border-radius-small !default;
+
+$asset-image-border-color: $var-theme-background !default;
+$asset-image-border-width: $var-gutter-micro !default;
+
+$asset-image-glyph-color: $var-color-background !default;
+$asset-image-glyph-font-weight: 900 !default;
+$asset-image-glyph-size: 24px !default;
+$asset-image-glyph-text-transform: capitalize !default;
+
+//this has no meaning at all shut up
+$asset-image-default-palette-tag: neutral !default;
+$asset-image-audio-palette-tag: secondary !default;
+$asset-image-code-palette-tag: primary !default;
+$asset-image-text-palette-tag: neutral !default;
+$asset-image-doc-palette-tag: primary !default;
+$asset-image-font-palette-tag: accent !default;
+$asset-image-img-palette-tag: accent !default;
+$asset-image-ps-palette-tag: primary !default;
+$asset-image-ai-palette-tag: caution !default;
+$asset-image-xd-palette-tag: secondary !default;
+$asset-image-pdf-palette-tag: error !default;
+$asset-image-id-palette-tag: secondary !default;
+$asset-image-table-palette-tag: success !default;
+$asset-image-video-palette-tag: accent !default;
+$asset-image-zip-palette-tag: neutral !default;
+
+$asset-title-color: $var-color-neutral !default;
+$asset-title-font-style: normal !default;
+$asset-title-font-weight: $body-font-weight-bold !default;
+$asset-title-margin-bottom: $var-gutter-micro !default;
+$asset-title-text-transform: none !default;
+
+// NAV
+$nav-background: $var-theme-background !default;
+$nav-box-shadow: $var-box-shadow-spicy $var-color-base-alpha-5 !default;
+$nav-height: 60px !default;
+$nav-padding-x: $var-gutter-small !default;
+$nav-dropdown-background: $nav-background !default;
+
+$nav-item-height: 35px !default;
+$nav-item-color-hover: $var-color-primary !default;
+$nav-item-transition-duration: $var-transition-duration-short !default;
+$nav-item-transition-timing: $var-transition-timing !default;
+
+$nav-item-current-size: 3px !default;
+$nav-item-current-gradient-start: $var-gradient-start !default;
+$nav-item-current-gradient-end: $var-gradient-end !default;
+$nav-item-current-transition-duration: $var-transition-duration-short !default;
+$nav-item-current-transition-timing: $var-transition-timing !default;
+
+$nav-item-label-opacity: 0.6 !default;
+
+$nav-icon-width: $icon-size !default;
+$nav-icon-height: $icon-size !default;
+
+$nav-font-size: $body-font-size !default;
+$nav-color: $var-theme-color !default;
+$nav-font-weight: $body-font-weight !default;
+$nav-font-style: normal !default;
+$nav-text-transform: none !default;
+
+$nav-top-font-size: $nav-font-size !default;
+$nav-top-font-color: inherit !default;
+$nav-top-font-weight: $body-font-weight-bold !default;
+$nav-top-font-style: normal !default;
+$nav-top-text-transform: none !default;
+
+// TABS
+$tabs-color: $var-color-neutral !default;
+$tabs-font-size: $nav-top-font-size !default;
+$tabs-font-weight: $nav-top-font-weight !default;
+$tabs-font-style: normal !default;
+$tabs-text-transform: none !default;
+$tabs-transition-duration: $var-transition-duration-base !default;
+$tabs-transition-timing: $var-transition-duration-base !default;
+
+$tabs-border-color: currentColor !default;
+$tabs-border-width: 1px !default;
+
+$tabs-current-color: $var-color-primary !default;
+$tabs-current-size: 3px !default;
+
+$tab-border-radius: $var-border-radius-small !default;
+$tab-border-width: 1px !default;
+$tab-height: 3em !default;
+$tab-padding-x: 0 !default;
+$tab-margin-x: $var-gutter-base !default;
+
+$tab-background: transparent !default;
+$tab-background-active: $tab-background !default;
+
+$tab-border-color: transparent !default;
+$tab-border-color-active: $tab-border-color !default;
+
+$tab-color: inherit !default;
+$tab-color-active: inherit !default;
+
+// FORM / INPUT
+$input-border-width: 1px !default;
+$input-box-shadow: none !default; //$var-box-shadow-base $var-color-base
+$input-box-shadow-focus: $var-box-shadow-base !default;
+$input-padding-x: $var-gutter-base !default;
+$input-transition-duration: $var-transition-duration-base !default;
+$input-transition-timing: $var-transition-timing !default;
+
+$input-placeholder-color: inherit !default;
+$input-placeholder-opacity: 0.5 !default;
+$input-placeholder-opacity-focus: 0 !default;
+
+$input-font-family: $var-font-primary !default;
+$input-font-weight: $body-font-weight !default;
+$input-font-style: normal !default;
+$input-text-transform: none !default;
+
+$input-height: 36px !default;
+$input-height-large: $input-height * 1.5 !default;
+$input-height-small: $input-height * 0.75 !default;
+
+$input-font-size: $body-font-size !default;
+$input-font-size-large: $body-font-size-large !default;
+$input-font-size-small: $body-font-size-small !default;
+
+$input-border-radius: $var-border-radius-small !default;
+$input-border-radius-large: $input-border-radius !default;
+$input-border-radius-small: $input-border-radius !default;
+
+$input-background-color: $var-theme-background !default;
+
+$input-border-color: $var-color-neutral-alpha-3 !default;
+$input-border-color-focus: $var-color-neutral-alpha-6 !default;
+
+$input-feedback-variation: alpha-1 !default;
+
+$input-wrapper-gap: $var-gutter-base !default;
+$input-wrapper-padding-right: 2rem !default;
+
+$input-wrapper-label-column-width: 25% !default;
+
+$input-label-font-family: $var-font-primary !default;
+$input-label-font-style: normal !default;
+$input-label-font-weight: $body-font-weight-bold !default;
+$input-label-text-transform: none !default;
+$input-group-label-background: $var-color-neutral-alpha-3 !default;
+
+$input-label-font-size: $input-font-size !default;
+$input-label-font-size-large: $input-font-size-large !default;
+$input-label-font-size-small: $input-font-size-small !default;
+
+$input-info-font-size: 0.875em !default;
+$input-info-font-weight: 300 !default;
+$input-info-font-style: italic !default;
+$input-info-color: $var-color-neutral !default;
+$input-info-text-transform: none !default;
+
+$fieldset-padding-x: $var-gutter-base !default;
+$fieldset-padding-y: $var-gutter-base !default;
+$fieldset-background: $var-theme-background-contrast !default;
+$fieldset-border-radius: $var-border-radius-base !default;
+
+$input-box-select-padding-right: 0.5em !default;
+
+$input-box-select-caret-color: $var-color-primary !default;
+$input-box-select-caret-height: 6px !default;
+$input-box-select-caret-width: 8px !default;
+
+$input-box-multiline-height-ratio: 3 !default;
+$input-box-multiline-height-ratio-large: $input-box-multiline-height-ratio + 1 !default;
+$input-box-multiline-height-ratio-small: $input-box-multiline-height-ratio - 1 !default;
+
+$input-calendar-gap: 0.25em !default;
+
+$input-calendar-button-border-radius: $var-border-radius-small !default;
+$input-calendar-button-border-width: 1px !default;
+
+$input-calendar-button-background: transparent !default;
+$input-calendar-button-background-active: $var-color-primary !default;
+$input-calendar-button-background-hover: transparent !default;
+
+$input-calendar-button-border-color: transparent !default;
+$input-calendar-button-border-color-active: transparent !default;
+$input-calendar-button-border-color-hover: currentColor !default;
+
+$input-calendar-button-color: inherit !default;
+$input-calendar-button-color-active: $var-color-background !default;
+$input-calendar-button-color-hover: inherit !default;
+
+$input-calendar-days-font-size: 0.75em !default;
+
+$input-tags-block-margin-x: 0.25em !default;
+$input-tags-block-margin-y: $input-tags-block-margin-x !default;
+$input-tags-block-padding-x: $var-gutter-small !default;
+$input-tags-block-padding-y: 0em !default;
+$input-tags-block-padding-y-large: $input-tags-block-padding-y !default;
+$input-tags-block-padding-y-small: $input-tags-block-padding-y !default;
+
+$input-tags-tag-border-radius: $var-border-radius-small !default;
+
+$input-tags-palette-tag: primary !default;
+$input-tags-palette-variation: alpha-2 !default;
+
+$input-toggle-margin-x: 0.5em !default;
+$input-toggle-transition-duration: $var-transition-duration-short !default;
+$input-toggle-transition-timing: $var-transition-timing !default;
+$input-toggle-box-shadow: 0 0 4px -2px !default;
+
+$input-toggle-width: 2.75em !default;
+$input-toggle-width-large: $input-toggle-width !default;
+$input-toggle-width-small: $input-toggle-width !default;
+
+$input-toggle-node-background-color-active: $var-theme-background !default;
+$input-toggle-node-border-color-active: $var-color-neutral-alpha-2 !default;
+$input-toggle-node-border-width: 1px !default;
+
+$input-toggle-node-border-radius: 999rem !default;
+$input-toggle-node-border-radius-small: $input-toggle-node-border-radius !default;
+$input-toggle-node-border-radius-large: $input-toggle-node-border-radius !default;
+
+$input-toggle-node-width: 1em !default;
+$input-toggle-node-width-large: $input-toggle-node-width !default;
+$input-toggle-node-width-small: $input-toggle-node-width !default;
+
+$input-toggle-node-height: $input-toggle-node-width !default;
+$input-toggle-node-height-large: $input-toggle-node-width-large !default;
+$input-toggle-node-height-small: $input-toggle-node-width-small !default;
+
+$input-toggle-plate-background-color-active: currentColor !default;
+$input-toggle-plate-border-color-active: $input-toggle-node-border-color-active !default;
+$input-toggle-plate-border-width: $input-toggle-node-border-width !default;
+
+$input-toggle-plate-border-radius: 999rem !default;
+$input-toggle-plate-border-radius-small: $input-toggle-plate-border-radius !default;
+$input-toggle-plate-border-radius-large: $input-toggle-plate-border-radius !default;
+
+$input-toggle-plate-height: 1.5em !default;
+$input-toggle-plate-height-small: $input-toggle-plate-height !default;
+$input-toggle-plate-height-large: $input-toggle-plate-height !default;
+
+// BTN
+$btn-border-width: $input-border-width !default;
+$btn-box-shadow: none !default; //$var-box-shadow-base $var-color-base
+$btn-box-shadow-hover: $var-box-shadow-base $var-color-base !default;
+$btn-gap: 0.5em !default;
+$btn-padding-x: $input-padding-x !default;
+$btn-transition-duration: $input-transition-duration !default;
+$btn-transition-timing: $input-transition-timing !default;
+
+$btn-font-family: $var-font-primary !default;
+$btn-font-weight: $body-font-weight-bold !default;
+$btn-font-style: normal !default;
+$btn-text-transform: none !default;
+
+$btn-height: $input-height !default;
+$btn-height-large: $input-height-large !default;
+$btn-height-small: $input-height-small !default;
+
+$btn-font-size: $input-font-size !default;
+$btn-font-size-large: $input-font-size-large !default;
+$btn-font-size-small: $input-font-size-small !default;
+
+$btn-border-radius: $input-border-radius !default;
+$btn-border-radius-large: $input-border-radius-large !default;
+$btn-border-radius-small: $input-border-radius-small !default;
+
+$btn-background-default: $var-theme-background !default;
+$btn-background-default-active: $var-color-primary !default;
+$btn-background-default-hover: $var-theme-background !default;
+
+$btn-border-color-default: $input-border-color !default;
+$btn-border-color-default-active: $var-color-primary !default;
+$btn-border-color-default-hover: $input-border-color-focus !default;
+
+$btn-color-default: inherit !default;
+$btn-color-default-active: $var-color-background !default;
+$btn-color-default-hover: $var-color-primary !default;
+
+$btn-background-primary: $var-color-primary !default;
+$btn-background-primary-active: $var-color-primary !default;
+$btn-background-primary-hover: $var-color-primary-light !default;
+
+$btn-border-color-primary: transparent !default;
+$btn-border-color-primary-active: transparent !default;
+$btn-border-color-primary-hover: transparent !default;
+
+$btn-color-primary: $var-color-background !default;
+$btn-color-primary-active: $var-color-background !default;
+$btn-color-primary-hover: $var-color-background !default;
+
+$btn-background-secondary: $var-color-secondary !default;
+$btn-background-secondary-active: $var-color-secondary !default;
+$btn-background-secondary-hover: $var-color-secondary-light !default;
+
+$btn-border-color-secondary: transparent !default;
+$btn-border-color-secondary-active: transparent !default;
+$btn-border-color-secondary-hover: transparent !default;
+
+$btn-color-secondary: $var-color-background !default;
+$btn-color-secondary-active: $var-color-background !default;
+$btn-color-secondary-hover: $var-color-background !default;
+
+$btn-background-accent: $var-color-accent !default;
+$btn-background-accent-active: $var-color-accent !default;
+$btn-background-accent-hover: $var-color-accent-light !default;
+
+$btn-border-color-accent: transparent !default;
+$btn-border-color-accent-active: transparent !default;
+$btn-border-color-accent-hover: transparent !default;
+
+$btn-color-accent: $var-color-background !default;
+$btn-color-accent-active: $var-color-background !default;
+$btn-color-accent-hover: $var-color-background !default;
+
+$btn-background-neutral: $var-color-neutral !default;
+$btn-background-neutral-active: $var-color-neutral !default;
+$btn-background-neutral-hover: $var-color-neutral-light !default;
+
+$btn-border-color-neutral: transparent !default;
+$btn-border-color-neutral-active: transparent !default;
+$btn-border-color-neutral-hover: transparent !default;
+
+$btn-color-neutral: $var-color-background !default;
+$btn-color-neutral-active: $var-color-background !default;
+$btn-color-neutral-hover: $var-color-background !default;
+
+$btn-background-success: $var-color-success !default;
+$btn-background-success-active: $var-color-success !default;
+$btn-background-success-hover: $var-color-success-light !default;
+
+$btn-border-color-success: transparent !default;
+$btn-border-color-success-active: transparent !default;
+$btn-border-color-success-hover: transparent !default;
+
+$btn-color-success: $var-color-background !default;
+$btn-color-success-active: $var-color-background !default;
+$btn-color-success-hover: $var-color-background !default;
+
+$btn-background-caution: $var-color-caution !default;
+$btn-background-caution-active: $var-color-caution !default;
+$btn-background-caution-hover: $var-color-caution-light !default;
+
+$btn-border-color-caution: transparent !default;
+$btn-border-color-caution-active: transparent !default;
+$btn-border-color-caution-hover: transparent !default;
+
+$btn-color-caution: $var-color-background !default;
+$btn-color-caution-active: $var-color-background !default;
+$btn-color-caution-hover: $var-color-background !default;
+
+$btn-background-error: $var-color-error !default;
+$btn-background-error-active: $var-color-error !default;
+$btn-background-error-hover: $var-color-error-light !default;
+
+$btn-border-color-error: transparent !default;
+$btn-border-color-error-active: transparent !default;
+$btn-border-color-error-hover: transparent !default;
+
+$btn-color-error: $var-color-background !default;
+$btn-color-error-active: $var-color-background !default;
+$btn-color-error-hover: $var-color-background !default;
+
+$btn-background-link: transparent !default;
+$btn-background-link-active: transparent !default;
+$btn-background-link-hover: transparent !default;
+
+$btn-border-color-link: transparent !default;
+$btn-border-color-link-active: transparent !default;
+$btn-border-color-link-hover: transparent !default;
+
+$btn-color-link: $var-body-anchor-color !default;
+$btn-color-link-active: $var-body-anchor-color !default;
+$btn-color-link-hover: $var-body-anchor-color-hover !default;
+
+$btn-background-angle-gradient: 0deg !default;
+$btn-background-angle-gradient-active: 45deg !default;
+$btn-background-angle-gradient-hover: 180deg !default;
+
+$btn-border-color-gradient: transparent !default;
+$btn-border-color-gradient-active: $var-gradient-start !default;
+$btn-border-color-gradient-hover: $var-gradient-start !default;
+
+$btn-color-gradient: $var-color-background !default;
+$btn-color-gradient-active: $var-color-background !default;
+$btn-color-gradient-hover: $var-color-background !default;
+
+// LAZY
+$lazy-transition-duration: $var-transition-duration-base;
+$lazy-transition-timing: $var-transition-timing;
+
+// THUMBNAIL
+$thumbnail-background: $var-color-neutral !default;
+$thumbnail-addon-offset-x: 15% !default;
+$thumbnail-addon-offset-y: 15% !default;
+$thumbnail-border-radius: 50% !default;
+
+$thumbnail-color: $var-color-background !default;
+$thumbnail-font-weight: $body-font-weight-bold !default;
+$thumbnail-font-style: normal !default;
+$thumbnail-text-transform: uppercase !default;
+
+$thumbnail-font-size: 65px !default;
+$thumbnail-font-size-small: 32px !default;
+$thumbnail-font-size-micro: 12px !default;
+
+$thumbnail-size: 140px !default;
+$thumbnail-size-small: 70px !default;
+$thumbnail-size-micro: 35px !default;
 
 // DROPDOWN
-$dropdown-gutter-x: $gutter-small !default;
-$dropdown-gutter-y: $gutter-small !default;
-$dropdown-compact-gutter-x: $gutter-micro !default;
-$dropdown-compact-gutter-y: $gutter-micro !default;
-$dropdown-expanded-gutter-x: $gutter-base !default;
-$dropdown-expanded-gutter-y: $gutter-base !default;
-$dropdown-border-radius: $border-radius-small !default;
-$dropdown-box-shadow: $box-shadow-base $var-color-base !default;
 $dropdown-background: $var-theme-background !default;
-$dropdown-background-inverse: $dropdown-background !default;
+$dropdown-border-radius: $var-border-radius-small !default;
+$dropdown-box-shadow: $var-box-shadow-base $var-color-base !default;
 $dropdown-color: $var-theme-color !default;
-$dropdown-color-inverse: $dropdown-color !default;
 $dropdown-width: 300px !default;
+
+$dropdown-padding-x: $var-gutter-small !default;
+$dropdown-padding-x-compact: $var-gutter-micro !default;
+$dropdown-padding-x-expanded: $var-gutter-base !default;
+
+$dropdown-padding-y: $var-gutter-small !default;
+$dropdown-padding-y-compact: $var-gutter-micro !default;
+$dropdown-padding-y-expanded: $var-gutter-base !default;
+
 $dropdown-active-color: $var-color-primary !default;
 
-//TOOLTIP
-$tooltip-gutter-x: $dropdown-gutter-x !default;
-$tooltip-gutter-y: $dropdown-gutter-y !default;
-$tooltip-compact-gutter-x: $dropdown-compact-gutter-x !default;
-$tooltip-compact-gutter-y: $dropdown-compact-gutter-y !default;
-$tooltip-expanded-gutter-x: $dropdown-expanded-gutter-x !default;
-$tooltip-expanded-gutter-y: $dropdown-expanded-gutter-y !default;
-$tooltip-border-radius: $dropdown-border-radius !default;
-$tooltip-box-shadow: $dropdown-box-shadow !default;
-$tooltip-background: $dropdown-background !default;
-$tooltip-background-inverse: $dropdown-background-inverse !default;
-$tooltip-color: $dropdown-color !default;
-$tooltip-color-inverse: $dropdown-color-inverse !default;
-$tooltip-max-width: 300px !default;
-$tooltip-arrow-box-shadow: $box-shadow-mild $var-color-base !default;
+// PROGRESS
 
-// progress
+$progress-background-color: $var-theme-background-contrast !default;
+
+$progress-animation-duration: $var-transition-duration-long !default;
+$progress-animation-timing: $var-transition-timing !default;
+$progress-border-radius: 999em !default;
+$progress-transition-duration: $var-transition-duration-short !default;
+$progress-transition-timing: $progress-animation-timing !default;
+
 $progress-height: 20px !default;
 $progress-height-large: 30px !default;
 $progress-height-small: 10px !default;
 
-$progress-background-color: $var-theme-background-contrast !default;
-$progress-background-color-inverse: $progress-background-color !default;
-$progress-background-stripe-color: $var-color-neutral-alpha-2 !default;
-$progress-background-stripe-color-inverse: $progress-background-stripe-color !default;
+$progress-stripe-background-color: $var-color-neutral-alpha-2 !default;
+$progress-stripe-width: 1px !default;
+$progress-stripe-gap: 5px !default;
 
-$progress-background-stripe-width: 1px !default;
-$progress-background-stripe-gap: 5px !default;
+$progress-bar-background: $var-color-neutral-alpha-7 !default;
 
-$progress-border-radius: $border-radius-large !default;
-$progress-animation-duration: $transition-duration-long * 4 !default;
-$progress-transition-duration: $progress-animation-duration !default;
+// BADGE
+$badge-border-color: $var-theme-background !default;
+$badge-border-width: 4px !default;
+$badge-box-shadow: $box-shadow-base $var-color-base !default;
 
-$progress-bar-background-color: $var-color-neutral-alpha-7 !default;
-
-$progress-title-font-size: 14px !default;
-$progress-title-font-weight: $body-font-weight-bold !default;
-$progress-title-line-height: 20px !default;
-$progress-title-font-style: normal !default;
-$progress-title-color: $var-color-base-alt !default;
-$progress-title-color-inverse: $var-color-background-alt !default;
-$progress-title-text-transform: uppercase !default;
-$progress-title-margin-bottom: 10px !default;
-$progress-title-margin-top: $gutter-base !default;
+$badge-size: 24px !default;
+$badge-size-large: 32px !default;
+$badge-size-small: 16px !default;
 
 // WELL
+$well-color: $var-color-base-alpha-2 !default;
+
 $well-spread: 6px !default;
 $well-spread-expanded: 12px !default;
 $well-spread-compact: 3px !default;
 
-$well-color: $var-color-base-alpha-2 !default;
-$well-color-inverse: $var-color-base-alpha-2 !default;
+// TAG
+$tag-padding-x: 6px !default;
+$tag-margin-y: 0.125em !default;
+$tag-margin-x: $tag-margin-y !default;
 
-// THUMBNAIL
-$thumbnail-font-size: 65px !default;
-$thumbnail-small-font-size: 32px !default;
-$thumbnail-micro-font-size: 12px !default;
-$thumbnail-text-transform: uppercase !default;
+$tag-font-size: 10px !default;
+$tag-font-style: normal !default;
+$tag-font-weight: $body-font-weight-bold !default;
+$tag-text-transform: uppercase !default;
 
-$thumbnail-size: 140px !default;
-$thumbnail-small-size: 70px !default;
-$thumbnail-micro-size: 30px !default;
+$tag-border-radius: $var-border-radius-small !default;
+$tag-border-radius-large: $var-border-radius-base !default;
+$tag-border-radius-small: $var-border-radius-small !default;
 
-$thumbnail-fallback-background: $var-color-neutral !default;
-$thumbnail-border-radius: 50% !default;
-$thumbnail-line-height: 1.25 !default;
-$thumbnail-color: $var-color-background !default;
-$thumbnail-font-weight: $body-font-weight-bold !default;
-$thumbnail-font-style: normal !default;
-
-$thumbnail-addon-offset-x: 15% !default;
-$thumbnail-addon-offset-y: 15% !default;
-
-//list groups
-$list-group-border-color: $var-theme-background-contrast !default;
-$list-group-background: $var-theme-background !default;
-$list-group-background-striped: $var-theme-background-contrast !default;
-$list-group-border-color-inverse: $list-group-border-color !default;
-$list-group-border-width: 1px !default;
-$list-group-height: 40px !default;
-$list-group-height-compact: 20px !default;
-$list-group-height-expanded: 60px !default;
-$list-group-gutter-x: $gutter-small !default;
-$list-group-interactive-background-hover: $var-color-primary-alpha-1 !default;
-$list-group-interactive-background-active: $var-color-primary-alpha-2 !default;
-
-// badge
-$badge-size: 24px !default;
-$badge-size-large: 32px !default;
-$badge-size-small: 16px !default;
-$badge-border-color: $var-theme-background !default;
-$badge-border-color-inverse: $badge-border-color !default;
-$badge-border-width: 4px !default;
-$badge-box-shadow: 0px 3px 10px -5px $var-color-base !default;
-
-// legend
-$badge-size: 25px !default;
-$badge-size-large: 30px !default;
-$badge-size-small: 20px !default;
-$badge-border-color: $var-color-background !default;
-$badge-border-width: 7px !default;
-$badge-box-shadow: $box-shadow-mild $var-color-base !default;
-
-// highlight
-
-$highlight-height: $body-font-size * 1.75 !default;
-$highlight-padding-x: 5px !default;
-$highlight-margin: 1px !default;
-$highlight-font-size: 13px !default;
-$highlight-font-weight: inherit !default;
-$highlight-font-style: normal !default;
-$highlight-color: $var-color-background !default;
-$highlight-text-transform: none !default;
-$highlight-gutter-x: 20px !default;
-$highlight-border-radius: $border-radius-small !default;
-
-$highlight-default-color: inherit !default;
-$highlight-default-background: $var-color-base-alpha-2 !default;
-
-$highlight-primary-color: $var-color-primary !default;
-$highlight-primary-background: $var-color-primary-lightest !default;
-
-$highlight-secondary-color: $var-color-secondary !default;
-$highlight-secondary-background: $var-color-secondary-lightest !default;
-
-$highlight-accent-color: $var-color-accent !default;
-$highlight-accent-background: $var-color-accent-lightest !default;
-
-$highlight-neutral-color: $var-color-neutral !default;
-$highlight-neutral-background: $var-color-neutral-lightest !default;
-
-$highlight-success-color: $var-color-success !default;
-$highlight-success-background: $var-color-success-lightest !default;
-
-$highlight-caution-color: $var-color-caution !default;
-$highlight-caution-background: $var-color-caution-lightest !default;
-
-$highlight-error-color: $var-color-error !default;
-$highlight-error-background: $var-color-error-lightest !default;
-
-// tag
 $tag-height: 25px !default;
 $tag-height-large: 30px !default;
 $tag-height-small: 20px !default;
-$tag-gutter-x: 6px !default;
-$tag-font-size: 10px !default;
-$tag-font-weight: $body-font-weight-bold !default;
-$tag-line-height: 1 !default;
-$tag-font-style: normal !default;
-$tag-color: $var-color-background !default;
-$tag-text-transform: uppercase !default;
-$tag-gutter-y: 20px !default;
-$tag-border-radius: $border-radius-small !default;
-$tag-border-radius-large: $border-radius-base !default;
-$tag-border-radius-small: $border-radius-small !default;
-$tag-margin-y: 0.125em !default;
-$tag-margin-x: $tag-margin-y !default;
 
 $tag-default-color: $var-theme-color !default;
 $tag-default-background: $var-color-neutral-alpha-5 !default;
@@ -1509,403 +1490,355 @@ $tag-intensity-4-background: $var-color-intensity-4-lightest !default;
 $tag-intensity-5-color: $var-color-intensity-5 !default;
 $tag-intensity-5-background: $var-color-intensity-5-lightest !default;
 
-//asset
-$asset-thumbnail-width: 190px !default;
-$asset-thumbnail-height: 100px !default;
-$asset-thumbnail-background: $var-theme-background-contrast !default;
-$asset-thumbnail-border-color: $var-theme-background !default;
-$asset-width: 220px !default;
-$asset-thumbnail-margin-bottom: $gutter-micro !default;
-$asset-transition-duration: $transition-duration-base !default;
-
-$asset-image-glyph-size: 25px !default;
-$asset-image-glyph-color: $var-color-background !default;
-$asset-image-glyph-text-transform: capitalize !default;
-$asset-image-glyph-font-weight: 900 !default;
-
-$asset-thumbnail-image-border: $gutter-micro !default;
-
-$asset-border-radius: $border-radius-small !default;
-$asset-box-shadow: $box-shadow-base $var-color-base !default;
-$asset-box-shadow-hover: 0 0 0 3px $var-color-primary !default;
-
-$asset-title-font-weight: $body-font-weight-bold !default;
-$asset-title-font-style: normal !default;
-$asset-title-color: $var-color-neutral !default;
-$asset-title-text-transform: none !default;
-$asset-title-margin-bottom: $gutter-micro !default;
-
-$asset-functions-offset-y: -15px !default;
-
-$asset-caption-font-weight: 300 !default;
-$asset-caption-font-style: normal !default;
-$asset-caption-color: $var-color-neutral !default;
-$asset-caption-text-transform: none !default;
-$asset-title-margin-bottom: $gutter-micro !default;
-
-//this has no meaning at all shut up
-$asset-image-default-palette-tag: neutral !default;
-$asset-image-audio-palette-tag: secondary !default;
-$asset-image-code-palette-tag: primary !default;
-$asset-image-text-palette-tag: neutral !default;
-$asset-image-doc-palette-tag: primary !default;
-$asset-image-font-palette-tag: accent !default;
-$asset-image-img-palette-tag: accent !default;
-$asset-image-ps-palette-tag: primary !default;
-$asset-image-ai-palette-tag: caution !default;
-$asset-image-xd-palette-tag: secondary !default;
-$asset-image-pdf-palette-tag: error !default;
-$asset-image-id-palette-tag: secondary !default;
-$asset-image-table-palette-tag: success !default;
-$asset-image-video-palette-tag: accent !default;
-$asset-image-zip-palette-tag: neutral !default;
-
-//toolbar
-$toolbar-cross-min-size: 70px !default;
-$toolbar-cross-min-size-small: 60px !default;
-$toolbar-cross-min-size-large: 90px !default;
-$toolbar-main-gutter: $gutter-base !default;
-$toolbar-main-gutter-small: $gutter-small !default;
-$toolbar-main-gutter-large: $gutter-large !default;
-$toolbar-border-radius: $border-radius-small !default;
-$toolbar-border-radius-small: $border-radius-small !default;
-$toolbar-border-radius-large: $border-radius-small !default;
+// TOOLBAR
 $toolbar-background-color: $var-theme-background !default;
-$toolbar-background-color-inverse: $toolbar-background-color !default;
 $toolbar-border-color: $var-theme-background-contrast !default;
-$toolbar-border-color-inverse: $toolbar-border-color !default;
 $toolbar-border-width: 1px !default;
 $toolbar-box-shadow: none !default; //
-$toolbar-tile-gutter: $gutter-small !default; //
-
-// input
-
-$input-height: 32px !default;
-$input-height-large: 50px !default;
-$input-height-small: 24px !default;
-$input-height-multiple-factor: 3 !default;
-$input-placeholder-opacity: 0.5 !default;
-$input-background: $var-theme-background !default;
-$input-background-inverse: $input-background !default;
-
-$input-font-size: $body-font-size !default;
-$input-font-size-large: $body-font-size-large !default;
-$input-font-size-small: $body-font-size-small !default;
-
-$input-select-dropdown-color: $var-color-primary !default;
-
-$input-color: inherit !default;
-$input-color-inverse: inherit !default;
-$input-placeholder-color: inherit !default;
-$input-placeholder-color-inverse: $input-placeholder-color !default;
-$input-background: none !default;
-$input-background-inverse: none !default;
-$input-line-height: $body-line-height !default;
-$input-font-family: $var-font-primary !default;
-$input-font-weight: $body-font-weight !default;
-$input-font-style: normal !default;
-$input-text-transform: none !default;
-
-$input-gutter-x: $gutter-small !default;
-$input-border-width: 1px !default;
-$input-border-color: $var-color-neutral-alpha-3 !default;
-$input-border-color-focus: $var-color-neutral-alpha-6 !default;
-$input-border-radius: $border-radius-small !default;
-$input-border-radius-large: $input-border-radius !default;
-$input-border-radius-small: $input-border-radius !default;
-$input-box-shadow: none !default; //$box-shadow-base $var-color-base
-$input-box-shadow-palette-basis: $box-shadow-base !default;
-$input-box-shadow-focus: 0px 0 5px 0px $var-color-primary !default;
-$input-group-separator-color: $input-border-color !default;
-$input-color-feedback-var-slug: alpha-1 !default;
-
-$input-label-gutter: 20px !default;
-
-$input-label-font-size: 14px !default;
-$input-label-font-size-large: 20px !default;
-$input-label-font-size-small: 14px !default;
-
-$input-label-color: inherit !default;
-$input-label-color-inverse: inherit !default;
-
-$input-label-font-family: $var-font-primary !default;
-$input-label-font-weight: $body-font-weight-bold !default;
-$input-label-font-style: normal !default;
-$input-label-text-transform: none !default;
-$input-label-in-group-background: $var-color-neutral-alpha-3 !default;
-$input-label-in-group-background-inverse: $input-label-in-group-background !default;
-
-$input-label-horizontal-width: 25% !default;
-
-$input-info-font-size: 0.875em !default;
-$input-info-font-weight: 300 !default;
-$input-info-line-height: 1.25 !default;
-$input-info-font-style: italic !default;
-$input-info-color: $var-color-neutral !default;
-$input-info-text-transform: none !default;
-$input-info-gutter-y: 1em !default;
-
-//calendar
-$input-calendar-gap: 2px !default;
-
-$input-calendar-block-gutter-x: 0px !default;
-$input-calendar-block-gutter-x-mobile: 0px !default;
-$input-calendar-block-gutter-y: 0.5em !default;
-$input-calendar-block-gutter-y-mobile: $input-calendar-block-gutter-y !default;
-$input-calendar-block-border-radius: $border-radius-small !default;
-
-$input-calendar-date-hover-color: inherit !default;
-
-$input-calendar-date-heading-button-color-hover: $var-color-primary !default;
-
-$input-calendar-date-active-color: $var-color-background !default;
-$input-calendar-date-active-background: $var-color-primary !default;
-
-$input-calendar-days-border-width: 1px !default;
-$input-calendar-days-font-size: 0.75em !default;
-
-//input tag tags
-$input-tags-padding-x: 0.5em !default;
-$input-tags-padding-y: 0 !default;
-$input-tags-padding-y-large: $input-tags-padding-y !default;
-$input-tags-padding-y-small: $input-tags-padding-y !default;
-$input-tags-gutter-x: 0.25em !default;
-$input-tags-gutter-y: $input-tags-gutter-x !default;
-
-$input-tags-border-radius: $border-radius-small !default;
-
-$input-tags-palette-tag: primary !default;
-$input-tags-palette-tag-slug: alpha-2 !default;
-
-//input toggle
-$input-toggle-margin-x: 10px !default;
-
-$input-toggle-width: 30px !default;
-$input-toggle-width-small: $input-toggle-width !default;
-$input-toggle-width-large: 40px !default;
-
-$input-toggle-node-height: $input-toggle-width * 0.5 !default;
-$input-toggle-node-width: $input-toggle-node-height !default;
-
-$input-toggle-node-height-large: $input-toggle-width-large * 0.5 !default;
-$input-toggle-node-width-large: $input-toggle-node-height-large !default;
-
-$input-toggle-node-height-small: $input-toggle-width-small * 0.5 !default;
-$input-toggle-node-width-small: $input-toggle-node-height-small !default;
-
-$input-toggle-node-box-shadow: 0 0 4px -2px $var-color-base !default;
-
-$input-toggle-plate-height: 10px !default;
-$input-toggle-plate-height-small: $input-toggle-plate-height !default;
-$input-toggle-plate-height-large: 14px !default;
-
-$input-toggle-node-border-radius: $input-toggle-node-height * 0.5 !default;
-$input-toggle-plate-border-radius: $input-toggle-plate-height * 0.5 !default;
-$input-toggle-node-border-radius-small: $input-toggle-node-height-small * 0.5 !default;
-$input-toggle-plate-border-radius-small: $input-toggle-plate-height-small * 0.5 !default;
-$input-toggle-node-border-radius-large: $input-toggle-node-height-large * 0.5 !default;
-$input-toggle-plate-border-radius-large: $input-toggle-plate-height-large * 0.5 !default;
-
-$input-toggle-color-default: $var-color-neutral !default;
-$input-toggle-color-default-active: $var-color-primary !default;
-
-$input-toggle-label-color-default: $input-label-color !default;
-$input-toggle-label-color-default-active: inherit !default;
-
-$input-toggle-transition-duration: $transition-duration-short !default;
-
-//fieldset
-$fieldset-gutter-x: $gutter-base !default;
-$fieldset-gutter-y: $gutter-base !default;
-$fieldset-background: $var-theme-background-contrast !default;
-$fieldset-background-inverse: $fieldset-background !default;
-
-$fieldset-border-radius: $border-radius-base !default;
-
-// BTN @TODO create btn-light helpers
-$btn-height: $input-height !default;
-$btn-height-large: $input-height-large !default;
-$btn-height-small: $input-height-small !default;
-
-$btn-font-size: $input-font-size !default;
-$btn-font-size-large: $input-font-size-large !default;
-$btn-font-size-small: $input-font-size-small !default;
-$btn-line-height: $body-font-size * 1.25 !default;
-$btn-font-family: $var-font-primary !default;
-$btn-font-weight: $body-font-weight-bold !default;
-$btn-font-style: normal !default;
-$btn-text-transform: none !default;
-$btn-gutter-x: $gutter-small !default;
-$btn-border-width: 1px !default;
-$btn-border-radius: $input-border-radius !default;
-$btn-border-radius-large: $input-border-radius-large !default;
-$btn-border-radius-small: $input-border-radius-small !default;
-$btn-box-shadow: none !default; //$box-shadow-base $var-color-base
-$btn-box-shadow-hover: $box-shadow-base $var-color-base !default;
-$btn-group-separator-color: $input-border-color !default;
-$btn-transition-duration: $transition-duration-base !default;
-
-// SCHEMES
-//basic
-$btn-border-default: $input-border-color !default;
-$btn-background-default: $var-theme-background !default;
-$btn-color-default: inherit !default;
-
-$btn-border-default-hover: $input-border-color-focus !default;
-$btn-background-default-hover: $var-theme-background !default;
-$btn-color-default-hover: $var-color-primary !default;
-
-$btn-border-default-active: $var-color-primary !default;
-$btn-background-default-active: $var-color-primary !default;
-$btn-color-default-active: $var-color-background !default;
-
-$btn-border-primary: transparent !default;
-$btn-background-primary: $var-color-primary !default;
-$btn-color-primary: $var-color-background !default;
-
-$btn-border-primary-hover: transparent !default;
-$btn-background-primary-hover: $var-color-primary-light !default;
-$btn-color-primary-hover: $var-color-background !default;
-
-$btn-border-primary-active: transparent !default;
-$btn-background-primary-active: $var-color-primary !default;
-$btn-color-primary-active: $var-color-background !default;
-
-$btn-border-secondary: transparent !default;
-$btn-background-secondary: $var-color-secondary !default;
-$btn-color-secondary: $var-color-background !default;
-
-$btn-border-secondary-hover: transparent !default;
-$btn-background-secondary-hover: $var-color-secondary-light !default;
-$btn-color-secondary-hover: $var-color-background !default;
-
-$btn-border-secondary-active: transparent !default;
-$btn-background-secondary-active: $var-color-secondary !default;
-$btn-color-secondary-active: $var-color-background !default;
-
-$btn-border-accent: transparent !default;
-$btn-background-accent: $var-color-accent !default;
-$btn-color-accent: $var-color-background !default;
-
-$btn-border-accent-hover: transparent !default;
-$btn-background-accent-hover: $var-color-accent-light !default;
-$btn-color-accent-hover: $var-color-background !default;
-
-$btn-border-accent-active: transparent !default;
-$btn-background-accent-active: $var-color-accent !default;
-$btn-color-accent-active: $var-color-background !default;
-
-$btn-border-neutral: transparent !default;
-$btn-background-neutral: $var-color-neutral !default;
-$btn-color-neutral: $var-color-background !default;
-
-$btn-border-neutral-hover: transparent !default;
-$btn-background-neutral-hover: $var-color-neutral-light !default;
-$btn-color-neutral-hover: $var-color-background !default;
-
-$btn-border-neutral-active: transparent !default;
-$btn-background-neutral-active: $var-color-neutral !default;
-$btn-color-neutral-active: $var-color-background !default;
-
-$btn-border-success: transparent !default;
-$btn-background-success: $var-color-success !default;
-$btn-color-success: $var-color-background !default;
-
-$btn-border-success-hover: transparent !default;
-$btn-background-success-hover: $var-color-success-light !default;
-$btn-color-success-hover: $var-color-background !default;
-
-$btn-border-success-active: transparent !default;
-$btn-background-success-active: $var-color-success !default;
-$btn-color-success-active: $var-color-background !default;
-
-$btn-border-caution: transparent !default;
-$btn-background-caution: $var-color-caution !default;
-$btn-color-caution: $var-color-background !default;
-
-$btn-border-caution-hover: transparent !default;
-$btn-background-caution-hover: $var-color-caution-light !default;
-$btn-color-caution-hover: $var-color-background !default;
-
-$btn-border-caution-active: transparent !default;
-$btn-background-caution-active: $var-color-caution !default;
-$btn-color-caution-active: $var-color-background !default;
-
-$btn-border-error: transparent !default;
-$btn-background-error: $var-color-error !default;
-$btn-color-error: $var-color-background !default;
-
-$btn-border-error-hover: transparent !default;
-$btn-background-error-hover: $var-color-error-light !default;
-$btn-color-error-hover: $var-color-background !default;
-
-$btn-border-error-active: transparent !default;
-$btn-background-error-active: $var-color-error !default;
-$btn-color-error-active: $var-color-background !default;
-
-$btn-border-link: transparent !default;
-$btn-background-link: transparent !default;
-$btn-color-link: $body-anchor-color !default;
-
-$btn-border-link-hover: transparent !default;
-$btn-background-link-hover: transparent !default;
-$btn-color-link-hover: $body-anchor-color-hover !default;
-
-$btn-border-link-active: transparent !default;
-$btn-background-link-active: transparent !default;
-$btn-color-link-active: $body-anchor-color !default;
-
-$btn-background-angle-gradient: 0deg !default;
-$btn-color-gradient: $var-color-background !default;
-
-$btn-background-angle-gradient-hover: 180deg !default;
-$btn-color-gradient-hover: $var-color-background !default;
-
-$btn-background-angle-gradient-active: 45deg !default;
-$btn-color-gradient-active: $var-color-background !default;
-
-//gradient @TODO
-$btn-gradient-border-default: $input-border-color !default;
-$btn-gradient-background-default: $var-theme-background !default;
-$btn-gradient-color-default: inherit !default;
-
-$btn-gradient-border-default-hover: $input-border-color-focus !default;
-$btn-gradient-background-default-hover: $var-theme-background !default;
-$btn-gradient-color-default-hover: $var-color-primary !default;
-
-$btn-gradient-border-default-active: $var-color-primary !default;
-$btn-gradient-background-default-active: $var-color-primary !default;
-$btn-gradient-color-default-active: $var-color-background !default;
-
-// SYMBOLS
-$symbol-font-path: './../fonts/fw-icons' !default;
-
-//Z index
-
-$z-index-helper-max: 99 !default;
-$z-index-helper-multiplier: 10 !default;
-
-$z-index-small-helper-max: 9 !default;
-$z-index-small-helper-multiplier: 1 !default;
-
-$z-index-large-helper-max: 10000 !default;
-$z-index-large-helper-multiplier: 1000 !default;
-
-$z-index-alert-container: 9998;
-$z-index-dropdown: 999 !default;
-$z-index-modal-default: 9990 !default;
-$z-index-modal-board: 9991 !default;
-$z-index-modal-fullscreen: 9992 !default;
-$z-index-nav: 999 !default;
-$z-index-tooltip: 9999 !default;
-
-//grow shrink
-$flex-max: 3 !default;
-
-// @OTHER @TODOS
-//padding and margin classes
-
-//////////////////////////////// CONTENT PLUGIN DEPENDENCIES
+$toolbar-gap: $var-gutter-small !default; //
+
+$toolbar-border-radius: $var-border-radius-small !default;
+$toolbar-border-radius-small: $var-border-radius-small !default;
+$toolbar-border-radius-large: $var-border-radius-small !default;
+
+$toolbar-padding: $var-gutter-base !default;
+$toolbar-padding-small: $var-gutter-small !default;
+$toolbar-padding-large: $var-gutter-large !default;
+
+$toolbar-size: 70px !default;
+$toolbar-size-small: 60px !default;
+$toolbar-size-large: 90px !default;
+
+//TOOLTIP
+$tooltip-background: $dropdown-background !default;
+$tooltip-border-radius: $dropdown-border-radius !default;
+$tooltip-box-shadow: $dropdown-box-shadow !default;
+$tooltip-color: $dropdown-color !default;
+$tooltip-max-width: 300px !default;
+
+$tooltip-padding-x: $dropdown-padding-x !default;
+$tooltip-padding-x-compact: $dropdown-padding-x-compact !default;
+$tooltip-padding-x-expanded: $dropdown-padding-x-expanded !default;
+
+$tooltip-padding-y: $dropdown-padding-y !default;
+$tooltip-padding-y-compact: $dropdown-padding-y-compact !default;
+$tooltip-padding-y-expanded: $dropdown-padding-y-expanded !default;
+
+$tooltip-arrow-box-shadow: $var-box-shadow-mild $var-color-base !default;
+
+// HIGHLIGHT
+$highlight-border-radius: $var-border-radius-small !default;
+$highlight-height: $body-font-size * 1.75 !default;
+$highlight-padding-x: $var-gutter-micro !default;
+$highlight-margin: 1px !default;
+$highlight-font-size: 13px !default;
+$highlight-font-style: normal !default;
+$highlight-font-weight: inherit !default;
+$highlight-text-transform: none !default;
+
+$highlight-default-background: $var-color-base-alpha-2 !default;
+$highlight-default-color: inherit !default;
+
+$highlight-primary-background: $var-color-primary-lightest !default;
+$highlight-primary-color: $var-color-primary !default;
+
+$highlight-secondary-background: $var-color-secondary-lightest !default;
+$highlight-secondary-color: $var-color-secondary !default;
+
+$highlight-accent-background: $var-color-accent-lightest !default;
+$highlight-accent-color: $var-color-accent !default;
+
+$highlight-neutral-background: $var-color-neutral-lightest !default;
+$highlight-neutral-color: $var-color-neutral !default;
+
+$highlight-success-background: $var-color-success-lightest !default;
+$highlight-success-color: $var-color-success !default;
+
+$highlight-caution-background: $var-color-caution-lightest !default;
+$highlight-caution-color: $var-color-caution !default;
+
+$highlight-error-background: $var-color-error-lightest !default;
+$highlight-error-color: $var-color-error !default;
+
+// LEGEND
+$legend-border-radius: 0 !default;
+$legend-height: 8px !default;
+$legend-width: 30px !default;
+
+// ALERT
+$alert-border-radius: 0em !default;
+$alert-border-width: 1px !default;
+$alert-box-shadow: none !default;
+
+$alert-gutter-x: $var-gutter-small !default;
+$alert-gutter-y: $var-gutter-small !default;
+$alert-ends-gutter-y: $var-gutter-micro !default;
+
+$alert-gutter-x-small: $var-gutter-micro !default;
+$alert-gutter-y-small: $var-gutter-micro !default;
+$alert-ends-gutter-y-small: $var-gutter-micro !default;
+
+$alert-gutter-x-large: $var-gutter-base !default;
+$alert-gutter-y-large: $var-gutter-base !default;
+$alert-ends-gutter-y-large: $var-gutter-small !default;
+
+$alert-container-padding-x: $var-gutter-base !default;
+$alert-container-padding-x-mobile: $var-gutter-micro !default;
+$alert-container-padding-y: $var-gutter-base !default;
+$alert-container-padding-y-mobile: $var-gutter-micro !default;
+$alert-container-max-width: 460px !default;
+
+$alert-close-transition-duration: $var-transition-duration-short !default;
+$alert-close-transition-timing: $var-transition-timing !default;
+
+$alert-title-font-weight: $body-font-weight-bold !default;
+$alert-title-font-style: normal !default;
+$alert-title-color: inherit !default;
+$alert-title-text-transform: uppercase !default;
+
+$alert-background-default: $var-theme-background !default;
+$alert-border-default: $var-color-base-alpha-2 !default;
+$alert-color-default: inherit !default;
+
+$alert-background-primary: $var-color-primary !default;
+$alert-border-primary: $var-color-base-alpha-2 !default;
+$alert-color-primary: $var-color-background !default;
+
+$alert-background-secondary: $var-color-secondary !default;
+$alert-border-secondary: $var-color-base-alpha-2 !default;
+$alert-color-secondary: $var-color-background !default;
+
+$alert-background-accent: $var-color-accent !default;
+$alert-border-accent: $var-color-base-alpha-2 !default;
+$alert-color-accent: $var-color-background !default;
+
+$alert-background-neutral: $var-color-neutral !default;
+$alert-border-neutral: $var-color-base-alpha-2 !default;
+$alert-color-neutral: $var-color-background !default;
+
+$alert-background-success: $var-color-success !default;
+$alert-border-success: $var-color-base-alpha-2 !default;
+$alert-color-success: $var-color-background !default;
+
+$alert-background-caution: $var-color-caution !default;
+$alert-border-caution: $var-color-base-alpha-2 !default;
+$alert-color-caution: $var-color-background !default;
+
+$alert-background-error: $var-color-error !default;
+$alert-border-error: $var-color-base-alpha-2 !default;
+$alert-color-error: $var-color-background !default;
+
+// ZONE
+$zone-border-width: 1px !default;
+$zone-font-size: $body-font-size !default;
+$zone-font-weight: $body-font-weight-bold !default;
+$zone-font-style: normal !default;
+$zone-text-transform: none !default;
+$zone-transition-duration: $var-transition-duration;
+$zone-transition-timing: $var-transition-timing;
+
+$zone-padding-x: $var-gutter-base !default;
+$zone-padding-y: $var-gutter-base !default;
+$zone-margin-y: $var-gutter-base !default;
+
+$zone-padding-x-compact: $var-gutter-small !default;
+$zone-padding-y-compact: $var-gutter-small !default;
+
+$zone-padding-x-expanded: $var-gutter-large !default;
+$zone-padding-y-expanded: $var-gutter-large !default;
+
+$zone-border-radius: 0 !default;
+
+$body-anchor-transition-duration: $var-transition-duration-short !default;
+$body-anchor-transition-timing: $var-transition-timing !default;
+
+$zone-background-default: $var-color-neutral-alpha-3 !default;
+$zone-border-default: currentColor !default;
+$zone-color-default: inherit !default;
+
+$zone-background-default-hover: $var-color-neutral-alpha-2 !default;
+$zone-border-default-hover: $var-color-neutral-dark !default;
+$zone-color-default-hover: $var-color-neutral-dark !default;
+
+$zone-background-primary: $var-color-primary-alpha-1 !default;
+$zone-border-primary: $var-color-primary !default;
+$zone-color-primary: $var-color-primary !default;
+
+$zone-background-primary-hover: $var-color-primary-alpha-2 !default;
+$zone-border-primary-hover: $var-color-primary-dark !default;
+$zone-color-primary-hover: $var-color-primary-dark !default;
+
+$zone-background-secondary: $var-color-secondary-alpha-1 !default;
+$zone-border-secondary: $var-color-secondary !default;
+$zone-color-secondary: $var-color-secondary !default;
+
+$zone-background-secondary-hover: $var-color-secondary-alpha-2 !default;
+$zone-border-secondary-hover: $var-color-secondary-dark !default;
+$zone-color-secondary-hover: $var-color-secondary-dark !default;
+
+$zone-background-accent: $var-color-accent-alpha-1 !default;
+$zone-border-accent: $var-color-accent !default;
+$zone-color-accent: $var-color-accent !default;
+
+$zone-background-accent-hover: $var-color-accent-alpha-2 !default;
+$zone-border-accent-hover: $var-color-accent-dark !default;
+$zone-color-accent-hover: $var-color-primary-dark !default;
+
+$zone-background-neutral: $var-color-neutral-alpha-1 !default;
+$zone-border-neutral: $var-color-neutral !default;
+$zone-color-neutral: $var-color-neutral !default;
+
+$zone-background-neutral-hover: $var-color-neutral-alpha-2 !default;
+$zone-border-neutral-hover: $var-color-neutral-dark !default;
+$zone-color-neutral-hover: $var-color-neutral-dark !default;
+
+$zone-background-success: $var-color-success-alpha-1 !default;
+$zone-border-success: $var-color-success !default;
+$zone-color-success: $var-color-success !default;
+
+$zone-background-success-hover: $var-color-success-alpha-2 !default;
+$zone-border-success-hover: $var-color-success-dark !default;
+$zone-color-success-hover: $var-color-success-dark !default;
+
+$zone-background-caution: $var-color-caution-alpha-1 !default;
+$zone-border-caution: $var-color-caution !default;
+$zone-color-caution: $var-color-caution !default;
+
+$zone-background-caution-hover: $var-color-caution-alpha-2 !default;
+$zone-border-caution-hover: $var-color-caution-dark !default;
+$zone-color-caution-hover: $var-color-caution-dark !default;
+
+$zone-background-error: $var-color-error-alpha-1 !default;
+$zone-border-error: $var-color-error !default;
+$zone-color-error: $var-color-error !default;
+
+$zone-background-error-hover: $var-color-error-alpha-2 !default;
+$zone-border-error-hover: $var-color-error-dark !default;
+$zone-color-error-hover: $var-color-error-dark !default;
+
+// LIST GROUP
+$list-group-border-color: $var-theme-background-contrast !default;
+$list-group-border-width: 1px !default;
+$list-group-padding-x: $var-gutter-small !default;
+
+$list-group-item-height: $input-height !default;
+$list-group-item-height-compact: $list-group-item-height * 0.75 !default;
+$list-group-item-height-expanded: $list-group-item-height * 1.5 !default;
+
+$list-group-item-background-color: $var-theme-background !default;
+$list-group-item-background-color-active: $var-color-primary-alpha-2 !default;
+$list-group-item-background-color-hover: $var-color-primary-alpha-1 !default;
+$list-group-item-background-color-striped: $var-theme-background-contrast !default;
+
+// TABLE @TODO table high contrast helper class
+$table-cell-border-color: $var-theme-background-contrast !default;
+$table-cell-border-width: 1px !default;
+$table-cell-padding-x: $var-gutter-small !default;
+
+$table-cell-height: 40px !default;
+$table-cell-height-expanded: $table-cell-height * 1.5 !default;
+$table-cell-height-compact: $table-cell-height * 0.75 !default;
+
+$table-cell-heading-background: $var-theme-background !default;
+
+$table-cell-heading-font-size: 14px !default;
+$table-cell-heading-font-weight: $body-font-weight !default;
+$table-cell-heading-font-style: normal !default;
+$table-cell-heading-color: $var-color-neutral !default;
+$table-cell-heading-text-transform: none !default;
+
+$table-cell-heading-height: 45px !default;
+$table-cell-heading-height-expanded: $table-cell-heading-height * 1.5 !default;
+$table-cell-heading-height-compact: $table-cell-heading-height * 0.75 !default;
+
+$table-label-width: 12px !default;
+$table-label-offset: 2px !default;
+$table-label-border-radius: 2px !default;
+
+$table-row-background: $var-theme-background !default;
+
+$table-row-primary-background: $var-color-primary-alpha-2 !default;
+
+$table-row-secondary-background: $var-color-secondary-alpha-2 !default;
+
+$table-row-accent-background: $var-color-accent-alpha-2 !default;
+
+$table-row-neutral-background: $var-color-neutral-alpha-2 !default;
+
+$table-row-success-background: $var-color-success-alpha-2 !default;
+
+$table-row-caution-background: $var-color-caution-alpha-2 !default;
+
+$table-row-error-background: $var-color-error-alpha-2 !default;
+
+$table-row-intensity-1-background: $var-color-intensity-1-alpha-2 !default;
+
+$table-row-intensity-2-background: $var-color-intensity-2-alpha-2 !default;
+
+$table-row-intensity-3-background: $var-color-intensity-3-alpha-2 !default;
+
+$table-row-intensity-4-background: $var-color-intensity-4-alpha-2 !default;
+
+$table-row-intensity-5-background: $var-color-intensity-5-alpha-2 !default;
+
+$table-cell-primary-background: $var-color-primary-alpha-1 !default;
+
+$table-cell-secondary-background: $var-color-secondary-alpha-1 !default;
+
+$table-cell-accent-background: $var-color-accent-alpha-1 !default;
+
+$table-cell-neutral-background: $var-color-neutral-alpha-1 !default;
+
+$table-cell-success-background: $var-color-success-alpha-1 !default;
+
+$table-cell-caution-background: $var-color-caution-alpha-1 !default;
+
+$table-cell-error-background: $var-color-error-alpha-1 !default;
+
+$table-cell-intensity-1-background: $var-color-intensity-1-alpha-1 !default;
+
+$table-cell-intensity-2-background: $var-color-intensity-2-alpha-1 !default;
+
+$table-cell-intensity-3-background: $var-color-intensity-3-alpha-1 !default;
+
+$table-cell-intensity-4-background: $var-color-intensity-4-alpha-1 !default;
+
+$table-cell-intensity-5-background: $var-color-intensity-5-alpha-1 !default;
+
+// MODAL
+$modal-box-shadow: $var-box-shadow-spicy $var-color-base !default;
+$modal-background: $var-theme-background;
+$modal-overlay-opacity: 0.5 !default;
+$modal-overlay-background: $var-color-base-alt !default;
+
+$modal-padding-x: $var-gutter-base !default;
+$modal-padding-x-mobile: $var-gutter-small !default;
+$modal-padding-x-expanded: $var-gutter-large !default;
+$modal-padding-x-compact: $var-gutter-small !default;
+
+$modal-padding-y: $var-gutter-base !default;
+$modal-padding-y-mobile: $var-gutter-small !default;
+$modal-padding-y-expanded: $var-gutter-large !default;
+$modal-padding-y-compact: $var-gutter-small !default;
+
+$modal-button-font-size: 1rem !default;
+
+$modal-default-border-radius: $var-border-radius-small !default;
+$modal-default-gutter: $var-gutter-base !default;
+$modal-default-gutter-mobile: $var-gutter-small !default;
+
+$modal-default-close-offset: $var-gutter-small !default;
+$modal-default-close-offset-mobile: $modal-default-close-offset !default;
+
+$modal-board-padding-spacer: $var-gutter-large !default;
+$modal-board-padding-spacer-mobile: $var-gutter-base !default;
+
+$modal-board-close-box-shadow: $var-box-shadow-base $var-color-base !default;
+$modal-board-close-offset-y: $modal-padding-y !default;
+$modal-board-close-offset-y-mobile: $modal-padding-y-mobile !default;
+$modal-board-close-size: 2.5rem !default;
+
+//////////////////////////////// CONTENT PLUGIN DEPENDENCIES. DO NOT EDIT
 
 $brxs: $br-xs-max;
 $brsm: $br-sm-max;

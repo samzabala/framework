@@ -2,7 +2,7 @@ $prefix: '.border';
 #{$prefix} {
   &-color {
     // Theme
-    @each $color, $var in $_fwc-theme-colors-color {
+    @each $color, $var in $fwc-theme-colors-color {
       @include create-state-helper(#{&}-#{$color}, border-color, $var);
     }
 
@@ -43,5 +43,5 @@ $prefix: '.border';
 
 //box model helpy
 .no-border {
-  @include create-box-helper(#{&}, '', border, '', 0, 'for-no-border');
+  @include create-box-helper(#{&}, '', border, '', 0);
 }

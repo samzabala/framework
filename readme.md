@@ -29,7 +29,7 @@ Dependencies:
 
 ## Layout
 
-- [Flex Grid](docs/sections/layout/flexgrid.md)
+- [Grid](docs/sections/layout/grid.md)
 - [Container](docs/sections/layout/container.md)
 
 ## Helpers (o lawd)
@@ -42,6 +42,7 @@ Dependencies:
 - [Flex](docs/sections/helpers/flex.md)
 - [Float](docs/sections/helpers/float.md)
 - [Font](docs/sections/helpers/font.md)
+- [Gap](docs/sections/helpers/gap.md)
 - [Image](docs/sections/helpers/image.md)
 - [Justify](docs/sections/helpers/justify.md)
 - [Margin](docs/sections/helpers/margin.md)
@@ -117,16 +118,77 @@ Dependencies:
 
 - convert shitty sass vars into native css vars + cleanup ya boi so compilation doesnt take 84 years
 
-- find and replace for fw3
 
-will be ready
-*-no-gutter => *-constricted
-flex-child => flex-grid-child
-text-leading-whole => text-leading-constricted
-zone-small => zone-compact
-zone-large => zone-expanded
-zone-large => zone-expanded
+# Migrate Framework from v2 to V3
 
+## CLASSES: Find and replace the following classes for both HTML and _custom.scss if any (in order recommended)
+
+* `btn-disabled` => `disabled`
+* `input-disabled` => `disabled`
+* `table-disabled` => `disabled`
+* `table-row-disabled` => `disabled`
+* `tab-disabled` => `disabled`
+* `zone-disabled` => `disabled`
+
+* `module-no-radius` => `no-radius`
+* `btn-no-radius` => `no-radius`
+* `*-no-gutter` => `*-constricted`
+
+* `flex-child` => `grid-col`
+* `flex-col-*` => `grid-col-*`
+* `flex-grid-fixed` => `grid-flex-fixed`
+* `flex-grid-*` => `grid-*`
+* `flex-grid` => `grid grid-flex`
+
+* `zone-small` => `zone-compact`
+* `zone-large` => `zone-expanded`
+
+* `text-wrap-ellipsis-multiple` => `text-wrap-ellipsis-multiline`
+* `text-leading-whole` => `text-leading-constricted`
+
+* `input-single-line` => `input-box`
+* `input-multiple-line` => `input-box input-box-multiline` ****
+* `input-select` => `input-box input-box-select`
+* `input-label` => `input input-label`
+
+* `module-header-break` => `module-end-break`
+* `module-footer-break` => `module-end-break`
+
+
+## HTML ATTRIBUTES/ JS ARGUMENTS: Find and replace the following component attributes + JS arguments
+
+### Form.Tags
+* HTML/VUE/PHP: `data-tags-multiple-lines` => `data-tags-multiline`
+* JS: `multipleLines` => `multiline`
+
+* HTML/VUE/PHP: `data-tags-multiple-lines-break` => `data-tags-multiline-break`
+* JS: `multipleLinesBreak` => `multilineBreak`
+
+
+
+
+
+# Notes for cleanup - specifically for Sam
+
+compact/expanded/constricted spacing`
+small/large/micro => spacing and font sizing
+
+only non-native for componenets: font styules + background
+
+
+cleanup vars
+--global stuff + redundant shits
+-- reduce reliance on vars for default colors / contvwert to themes
+..
+..
+...
+move calculations/mixins/etc.
+check for dump-styles unused extends
+..
+..
+-- remove all -inverse stuff because wtf
+
+import to use ?
 
 other clases na hindi ba handa sa kajugaguhan na to
 if it doesnt need constricted in it do not convert small to compact and large to expanded
@@ -139,3 +201,4 @@ do micro tho
 - variablize the kwan
 - ano
 - scrollbar shits
+

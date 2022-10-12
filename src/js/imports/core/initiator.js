@@ -7,6 +7,7 @@ class FwQueue {
     this._on_ready = [];
     this._on_resize = [];
     this._on_scroll = [];
+    this._on_scroll_timeOut = [];
     this._on_rightAway = [];
     this._on_init = [];
   }
@@ -22,6 +23,9 @@ class FwQueue {
   }
   get on_scroll() {
     return this._on_scroll;
+  }
+  get on_scroll_timeOut() {
+    return this._on_scroll_timeOut;
   }
   get on_rightAway() {
     return this._on_rightAway;
@@ -40,6 +44,9 @@ class FwQueue {
   }
   set on_scroll(fn) {
     this._on_scroll.push(fn);
+  }
+  set on_scroll_timeOut(fn) {
+    this._on_scroll_timeOut.push(fn);
   }
   set on_rightAway(fn) {
     this._on_rightAway.push(fn);
@@ -107,10 +114,11 @@ class Initiator {
 
   #runScroll() {
     const ini = this;
-    // clearTimeout(ini.scrollTimerInternal);
-    // ini.scrollTimerInternal = setTimeout(() => {
+    clearTimeout(ini.scrollTimerInternal);
+    ini.scrollTimerInternal = setTimeout(() => {
+      ini.#execqt(Initiator.Q.on_scroll_timeOut);
+    }, 100);
     ini.#execqt(Initiator.Q.on_scroll);
-    // }, 100);
   }
 
   static setState(mode) {

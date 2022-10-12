@@ -130,14 +130,45 @@ class FwComponent {
   _runFn(callback) {
     if (callback) {
       let fn;
+
+      // let fnAnon,fnName;
+      // //check function name
+      // try {
+      //   fnName = new Function('return ' + /^[^(]+/.exec(callback)[0])();
+      // } catch (err) {
+      //   console.error(err);
+      // }
+
+      // try {
+      //   const fnBody = callback.substring(callback.indexOf('{') + 1, callback.lastIndexOf('}'));
+      //   fnAnon = new Function(fnBody);
+      // } catch (err) {
+      //   console.error(err);
+      // }
+
       try {
-        fn = eval(/^[^(]+/.exec(callback)[0]);
+        fn = new Function(callback);
       } catch (err) {
         console.error(err);
       }
+
       if (typeof fn === 'function') {
-        eval(callback);
+        fn();
       }
+
+      // try {
+      //   fn = new Function('return ' + /^[^(]+/.exec(callback)[0])();
+      // } catch (err) {
+      //   console.error(err);
+      // }
+
+      // //named fn
+      // if (typeof fn === 'function') {
+      //   eval(callback);
+      // } else {
+      //   // o its an anon function okokokok shit
+
+      // }
     }
   }
 
@@ -152,6 +183,18 @@ class FwComponent {
 
       FwEvent.trigger(element, afterEvent);
     }
+  }
+
+  static containsHash(hash, componentClass) {
+    const anId = hash.replace('#', ''); //just to be sure
+    const possibEl = document.getElementById(anId);
+    return possibEl ? possibEl.parentNode.closest(`.${componentClass}`) : false;
+  }
+
+  static isHash(hash, componentClass) {
+    const anId = hash.replace('#', ''); //just to be sure
+    const possibEl = document.getElementById(anId);
+    return possibEl ? possibEl.classList.contains(componentClass) : false;
   }
 
   static _parseArgs(arr, defaults) {

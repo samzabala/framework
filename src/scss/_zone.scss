@@ -1,5 +1,122 @@
-/*** zone ***/
+$fwc-zone-schemes: (
+  default: (
+    init: (
+      background: $zone-background-default,
+      border: $zone-border-default,
+      color: $zone-color-default,
+    ),
+    active: (
+      background: $zone-background-default-hover,
+      border: $zone-border-default-hover,
+      color: $zone-color-default-hover,
+    ),
+  ),
+  primary: (
+    init: (
+      background: $zone-background-primary,
+      border: $zone-border-primary,
+      color: $zone-color-primary,
+    ),
+    active: (
+      background: $zone-background-primary-hover,
+      border: $zone-border-primary-hover,
+      color: $zone-color-primary-hover,
+    ),
+  ),
+  secondary: (
+    init: (
+      background: $zone-background-secondary,
+      border: $zone-border-secondary,
+      color: $zone-color-secondary,
+    ),
+    active: (
+      background: $zone-background-secondary-hover,
+      border: $zone-border-secondary-hover,
+      color: $zone-color-secondary-hover,
+    ),
+  ),
+  accent: (
+    init: (
+      background: $zone-background-accent,
+      border: $zone-border-accent,
+      color: $zone-color-accent,
+    ),
+    active: (
+      background: $zone-background-accent-hover,
+      border: $zone-border-accent-hover,
+      color: $zone-color-accent-hover,
+    ),
+  ),
+  neutral: (
+    init: (
+      background: $zone-background-neutral,
+      border: $zone-border-neutral,
+      color: $zone-color-neutral,
+    ),
+    active: (
+      background: $zone-background-neutral-hover,
+      border: $zone-border-neutral-hover,
+      color: $zone-color-neutral-hover,
+    ),
+  ),
+  success: (
+    init: (
+      background: $zone-background-success,
+      border: $zone-border-success,
+      color: $zone-color-success,
+    ),
+    active: (
+      background: $zone-background-success-hover,
+      border: $zone-border-success-hover,
+      color: $zone-color-success-hover,
+    ),
+  ),
+  caution: (
+    init: (
+      background: $zone-background-caution,
+      border: $zone-border-caution,
+      color: $zone-color-caution,
+    ),
+    active: (
+      background: $zone-background-caution-hover,
+      border: $zone-border-caution-hover,
+      color: $zone-color-caution-hover,
+    ),
+  ),
+  error: (
+    init: (
+      background: $zone-background-error,
+      border: $zone-border-error,
+      color: $zone-color-error,
+    ),
+    active: (
+      background: $zone-background-error-hover,
+      border: $zone-border-error-hover,
+      color: $zone-color-error-hover,
+    ),
+  ),
+);
+
 $prefix: '.zone';
+
+:root {
+  // :where(#{$prefix})
+  --fw-zone-border-radius: #{$zone-border-radius};
+  --fw-zone-border-width: #{$zone-border-width};
+  --fw-zone-margin-y: #{$zone-margin-y};
+  --fw-zone-padding-x: #{$zone-padding-x};
+  --fw-zone-padding-y: #{$zone-padding-y};
+
+  --fw-zone-border-color: currentColor;
+  // --fw-zone-border-color-active: var(--fw-zone-border-color);
+
+  --fw-zone-color: inherit;
+  // --fw-zone-color-active: var(--fw-zone-color);
+
+  --fw-zone-background-color: transparent;
+  // --fw-zone-background-color-active: var(--fw-zone-background-color);
+}
+
 #{$prefix} {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -9,33 +126,36 @@ $prefix: '.zone';
   font: inherit;
   @include type-set(
     (
-      size: $_fwc-zone-font-size,
+      root-size: $body-font-size,
+      size: $zone-font-size,
       case: $zone-text-transform,
       weight: $zone-font-weight,
       style: $zone-font-style,
       align: center,
     )
   );
-  padding-top: $zone-gutter-y;
-  padding-bottom: $zone-gutter-y;
-  padding-right: $zone-gutter-x;
-  padding-left: $zone-gutter-x;
-  margin-top: $zone-margin-y;
-  margin-bottom: $zone-margin-y;
-  border: $zone-border-width dashed transparent;
-  border-radius: $zone-border-radius;
-  text-align: center;
+  border-color: var(--fw-zone-border-color);
+  color: var(--fw-zone-color);
+  background-color: var(--fw-zone-background-color);
+  padding: var(--fw-zone-padding-y) var(--fw-zone-padding-x);
+  margin-top: var(--fw-zone-margin-y);
+  margin-bottom: var(--fw-zone-margin-y);
+  border: var(--fw-zone-border-width) dashed var(--fw-zone-border-color);
+  border-radius: var(--fw-zone-border-radius);
   position: relative;
   display: block;
   width: 100%;
-  transition: $transition-duration-short opacity $transition-timing;
+  transition-duration: $zone-transition-duration;
+  transition-timing-function: $zone-transition-timing;
+  transition-property: opacity;
   @include dump-styles(cf);
-  a {
+
+  :where(a) {
     color: inherit;
     font-weight: $body-font-weight-bold;
   }
 
-  > input {
+  > :where(input) {
     opacity: 0 !important;
     position: absolute;
     display: block;
@@ -45,81 +165,71 @@ $prefix: '.zone';
     width: 100% !important;
   }
 
-  &-text,
-  &-has-content-text {
-    display: block;
+  &:is(:hover, :focus, .focus, :active, .active) {
+    border-color: var(--fw-zone-border-color-active);
+    color: var(--fw-zone-color-active);
+    background-color: var(--fw-zone-background-color-active);
   }
+}
 
-  &#{&}-has-content &-text {
-    @include dump-styles(hide-js-friendly);
+:is(#{$prefix}-text, #{$prefix}-has-content-text) {
+  display: block;
+}
+
+#{$prefix}-has-content #{$prefix}-text {
+  @include dump-styles(hide-js-friendly);
+}
+
+// &::-webkit-file-upload-button {
+// 	appearance: none;
+// 	border: none;
+// 	font:inherit;
+// 	color:inherit;
+// 	opacity: $input-placeholder-opacity;
+// 	background: none;
+// 	margin: 0;
+// 	padding: 0;
+// 	vertical-align:middle;
+// 	display:flex;
+// 	display:none;
+// }
+
+// &:before {
+// 	font:inherit;
+// 	display: block;
+// 	content:"Drag Your Attachments Here";
+// }
+#{$prefix}-constricted {
+  --fw-zone-padding-x: 0rem;
+  --fw-zone-padding-y: 0rem;
+}
+
+#{$prefix}-compact {
+  --fw-zone-padding-x: #{$zone-padding-x-compact};
+  --fw-zone-padding-y: #{$zone-padding-y-compact};
+}
+
+#{$prefix}-expanded {
+  --fw-zone-padding-x: #{$zone-padding-x-expanded};
+  --fw-zone-padding-y: #{$zone-padding-y-expanded};
+}
+
+@each $tag, $properties in $fwc-zone-schemes {
+  #{$prefix}-#{$tag} {
+    --fw-zone-border-color: #{map-get(map-get($properties, init), border)};
+    --fw-zone-color: #{map-get(map-get($properties, init), color)};
+    --fw-zone-background-color: #{map-get(map-get($properties, init), background)};
+    --fw-zone-border-color-active: #{map-get(map-get($properties, active), border)};
+    --fw-zone-color-active: #{map-get(map-get($properties, active), color)};
+    --fw-zone-background-color-active: #{map-get(
+        map-get($properties, active),
+        background
+      )};
   }
+}
 
-  // &::-webkit-file-upload-button {
-  // 	appearance: none;
-  // 	border: none;
-  // 	font:inherit;
-  // 	color:inherit;
-  // 	opacity: $input-placeholder-opacity;
-  // 	background: none;
-  // 	margin: 0;
-  // 	padding: 0;
-  // 	vertical-align:middle;
-  // 	display:flex;
-  // 	display:none;
-  // }
-
-  // &:before {
-  // 	font:inherit;
-  // 	display: block;
-  // 	content:"Drag Your Attachments Here";
-  // }
-
-  &#{$prefix}-disabled {
-    @include dump-styles(disabled);
-  }
-  &#{$prefix}-constricted {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  &#{$prefix}-compact {
-    padding-top: $zone-gutter-y-compact;
-    padding-bottom: $zone-gutter-y-compact;
-    padding-right: $zone-gutter-x-compact;
-    padding-left: $zone-gutter-x-compact;
-  }
-
-  &#{$prefix}-expanded {
-    padding-top: $zone-gutter-y-expanded;
-    padding-bottom: $zone-gutter-y-expanded;
-    padding-right: $zone-gutter-x-expanded;
-    padding-left: $zone-gutter-x-expanded;
-  }
-
-  @each $tag, $properties in $_fwc-zone-schemes {
-    &#{$prefix}-#{$tag} {
-      &,
-      &#{$prefix}-disabled,
-      &#{$prefix}:hover,
-      &#{$prefix}:focus,
-      &#{$prefix}.focus,
-      &#{$prefix}:active,
-      &#{$prefix}.active {
-        border-color: map-get(map-get($properties, init), border);
-        color: map-get(map-get($properties, init), color);
-        background-color: map-get(map-get($properties, init), background);
-      }
-      &:hover,
-      &:focus,
-      &.focus,
-      &:active,
-      &.active {
-        border-color: map-get(map-get($properties, active), border);
-        color: map-get(map-get($properties, active), color);
-        background-color: map-get(map-get($properties, active), background);
-      }
-    }
-  }
+:is(.disabled, [disabled], :disabled) {
+  --fw-zone-border-color-active: var(--fw-zone-border-color);
+  --fw-zone-color-active: var(--fw-zone-color);
+  --fw-zone-background-color-active: var(--fw-zone-background-color);
 }

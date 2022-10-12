@@ -1614,7 +1614,7 @@
       callback: inputTags.getAttribute('data-tags-callback'),
       callbackOnKeyup: inputTags.getAttribute('data-tags-callback-on-keyup'),
       callbackNameFilter: inputTags.getAttribute('data-tags-callback-name-filter'),
-      multipleLines: inputTags.getAttribute('data-tags-multiple-lines'),
+      multipleLines: inputTags.getAttribute('data-tags-multiple-lines-lines'),
     };
 
     const defaults = {

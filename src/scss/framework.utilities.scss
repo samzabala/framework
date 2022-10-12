@@ -9,8 +9,8 @@
   //plugin deps
     @import 'plugins/_shithole';
   //api
-    @import '_functions';
-    @import '_calculations';
-    @import '_mixins';
+    @import 'core/_functions';
+    @import 'core/_calculations';
+    @import 'core/_mixins';
   //helpers
     @import '_helpers';

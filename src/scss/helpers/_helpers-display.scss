@@ -10,7 +10,7 @@
   }
   &-none {
     @include create-state-helper(#{&}) {
-      @include dump-styles(display-none-important);
+      display: none !important;
     }
   }
 }

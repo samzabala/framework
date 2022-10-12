@@ -1,9 +1,10 @@
 @use 'sass:math';
 
-/*** RATIO MOTHERFUCKER***/
 $prefix: '.ratio';
 #{$prefix} {
   & {
+    --ratio-w: 3;
+    --ratio-l: 1;
     max-width: 100% !important;
     overflow: hidden;
     position: relative;
@@ -14,9 +15,10 @@ $prefix: '.ratio';
       content: '';
       display: block;
       width: 100%;
+      padding-bottom: calc(100% * (var(--ratio-l) / var(--ratio-w))) !important;
     }
 
-    > * {
+    > :where(*) {
       position: absolute !important;
       transform-origin: center center !important;
       transform-style: preserve-3d !important;
@@ -26,21 +28,21 @@ $prefix: '.ratio';
   }
 
   &#{& + '-1-by-1'} {
+    --ratio-l: 1;
+    --ratio-w: 1;
     &:before {
       padding-bottom: 100% !important;
     }
   }
 
   &#{& + '-16-by-9'} {
-    &:before {
-      padding-bottom: math.percentage(math.div(9, 16)) !important;
-    }
+    --ratio-l: 9;
+    --ratio-w: 16;
   }
 
   &#{& + '-4-by-3'} {
-    &:before {
-      padding-bottom: math.percentage(math.div(3, 4)) !important;
-    }
+    --ratio-l: 3;
+    --ratio-w: 4;
   }
 
   &-child {

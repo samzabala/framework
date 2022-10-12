@@ -1,196 +1,142 @@
-/*** FLEX GRID ***/
-
-$prefix: '.flex';
+$prefix: '.grid';
 $prefix-raw: str-replace($prefix, '.', '');
 
 #{$prefix} {
-  &-grid {
-    margin-left: $grid-gap * -1;
-    margin-bottom: $grid-gap;
-    padding: 0;
+  --fw-grid-gap-x: #{$grid-gap};
+  --fw-grid-gap-y: #{$grid-gap};
+  --fw-grid-units: #{$grid-units};
+
+  --fw-grid-col-unit: var(--fw-grid-units);
+
+  padding: 0;
+  row-gap: var(--fw-grid-gap-y);
+  column-gap: var(--fw-grid-gap-x);
+  margin-top: var(--fw-grid-gap-y);
+  margin-bottom: var(--fw-grid-gap-y);
+
+  @at-root :is([class*='#{$prefix-raw}-col-'], #{$prefix}-col) {
+    min-width: 0;
+  }
+
+  :is(#{$prefix}-flex-fixed > [class*='#{$prefix-raw}-col-'], #{$prefix}-col) {
+    //@TODO deprecate
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+  }
+
+  &#{$prefix}-expanded {
+    --fw-grid-gap-x: #{$grid-gap-expanded};
+    --fw-grid-gap-y: #{$grid-gap-expanded};
+  }
+
+  &#{$prefix}-compact {
+    --fw-grid-gap-x: #{$grid-gap-compact};
+    --fw-grid-gap-y: #{$grid-gap-compact};
+  }
+
+  &:is(#{$prefix}-constricted, #{$prefix}-constricted-x) {
+    --fw-grid-gap-x: 0rem;
+  }
+
+  &:is(#{$prefix}-constricted, #{$prefix}-constricted-y) {
+    --fw-grid-gap-y: 0rem;
+  }
+
+  &#{$prefix}-default {
+    display: grid;
+    grid-template-columns: repeat(var(--fw-grid-col-unit), 1fr);
+
+    > :is([class*='#{$prefix-raw}-col-'], #{$prefix}-col) {
+      width: 100%;
+      grid-column: span var(--fw-grid-col-unit);
+    }
+  }
+
+  &#{$prefix}-flex {
     display: flex;
     flex-wrap: wrap;
-    min-width: 100%;
+    max-width: none;
+    width: auto;
+    column-gap: 0; //doesnt work >:(
+    margin-left: calc(var(--fw-grid-gap-x) * -1);
+    // margin-bottom: var(--fw-grid-gap-y);
 
-    &-expanded {
-      margin-left: $grid-gap-expanded * -1;
-      margin-bottom: $grid-gap-expanded;
-
-      > [class*='#{$prefix-raw}-col-'],
-      > #{$prefix}-child,
-      > #{$prefix}-grid-child {
-        margin-top: #{$grid-gap-expanded};
-        margin-left: #{$grid-gap-expanded};
-        max-width: calc(100% - #{$grid-gap-expanded});
-      }
-
-      > [class*='#{$prefix-raw}-col-'] {
-        flex-basis: calc(100% - #{$grid-gap-expanded});
-      }
-
-      &#{$prefix}-grid-fixed {
-        > [class*='#{$prefix-raw}-col-'] {
-          width: calc(100% - #{$grid-gap-expanded});
-        }
-      }
+    > :is([class*='#{$prefix-raw}-col-'], #{$prefix}-col) {
+      margin-left: var(--fw-grid-gap-x);
+      max-width: calc(100% - var(--fw-grid-gap-x));
+      // max-width: 100%;
     }
 
-    &-compact {
-      margin-left: $grid-gap-compact * -1;
-      margin-bottom: $grid-gap-compact;
+    > [class*='#{$prefix-raw}-col-'] {
+      // margin-top: var(--fw-grid-gap-y);
 
-      > [class*='#{$prefix-raw}-col-'],
-      > #{$prefix}-child,
-      > #{$prefix}-grid-child {
-        margin-top: #{$grid-gap-compact};
-        margin-left: #{$grid-gap-compact};
-        max-width: calc(100% - #{$grid-gap-compact});
-      }
-
-      > [class*='#{$prefix-raw}-col-'] {
-        flex-basis: calc(100% - #{$grid-gap-compact});
-      }
-
-      &#{$prefix}-grid-fixed {
-        > [class*='#{$prefix-raw}-col-'] {
-          width: calc(100% - #{$grid-gap-compact});
-        }
-      }
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: calc(
+        (100% * (var(--fw-grid-col-unit) / var(--fw-grid-units)) - var(--fw-grid-gap-x))
+      );
+      // flex-basis: calc(
+      //   (100% * (var(--fw-grid-col-unit) / var(--fw-grid-units)))
+      // );
     }
 
-    &-no-gutter,
-    &-constricted {
-      &,
-      &-x {
-        &,
-        > [class*='#{$prefix-raw}-col-'],
-        > #{$prefix}-child,
-        > #{$prefix}-grid-child {
-          margin-left: 0;
-        }
-      }
-
-      &,
-      &-y {
-        margin-bottom: 0;
-
-        > [class*='#{$prefix-raw}-col-'],
-        > #{$prefix}-child,
-        > #{$prefix}-grid-child {
-          margin-top: 0;
-        }
-      }
+    &#{$prefix}-flex-fixed > [class*='#{$prefix-raw}-col-'] {
+      flex: 0 0 auto;
+      width: calc(
+        (100% * (var(--fw-grid-col-unit) / var(--fw-grid-units))) - var(--fw-grid-gap-x)
+      );
+      // width: calc(
+      //   (100% * (var(--fw-grid-col-unit) / var(--fw-grid-units)))
+      // );
     }
   }
 
-  @at-root *[class*='#{$prefix-raw}-col-'],
-    #{$prefix}-child,
-    #{$prefix}-grid-child {
-    margin-top: #{$grid-gap};
-    margin-left: #{$grid-gap};
-    max-width: calc(100% - #{$grid-gap});
-    min-width: 0;
+  &#{$prefix}-masonry {
+    column-count: calc(var(--fw-grid-units) / var(--fw-grid-col-unit));
 
-    #{$prefix}-grid-fixed > & {
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: auto !important;
-    }
+    > :is([class*='#{$prefix-raw}-col-'], #{$prefix}-col) {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
 
-    #{$prefix}-grid-no-gutter > &,
-    #{$prefix}-grid-no-gutter-x > &,
-    #{$prefix}-grid-constricted > &,
-    #{$prefix}-grid-constricted-x > & {
-      max-width: 100%;
+      &:nth-child(n + 2) {
+        margin-top: var(--fw-grid-gap-y);
+      }
     }
   }
+}
 
-  @at-root [class*='#{$prefix-raw}-col-'] {
-    flex-basis: calc(100% - #{$grid-gap});
-    flex-grow: 1;
-    flex-shrink: 1;
-
-    #{$prefix}-grid-no-gutter > &,
-    #{$prefix}-grid-no-gutter-x > &,
-    #{$prefix}-grid-constricted > &,
-    #{$prefix}-grid-constricted-x > & {
-      flex-basis: 100%;
-    }
-
-    #{$prefix}-grid-fixed > & {
-      width: calc(100% - #{$grid-gap});
-    }
-
-    #{$prefix}-grid-no-gutter#{$prefix}-grid-fixed > &,
-    #{$prefix}-grid-no-gutter-x#{$prefix}-grid-fixed > &,
-    #{$prefix}-grid-constricted#{$prefix}-grid-fixed > &,
-    #{$prefix}-grid-constricted-x#{$prefix}-grid-fixed > & {
-      width: 100%;
-    }
-  }
-
-  @include internal-set-grid-col-width(#{&}-col, $grid-gap, false);
-
-  &-grid-expanded {
-    @include internal-set-grid-col-width(#{$prefix}-col, $grid-gap-expanded);
-  }
-
-  &-grid-compact {
-    @include internal-set-grid-col-width(#{$prefix}-col, $grid-gap-compact);
-  }
-
-  &-grid-no-gutter,
-  &-grid-no-gutter-x,
-  &-grid-constricted,
-  &-grid-constricted-x {
-    @include internal-set-grid-col-width(#{$prefix}-col);
-  }
-
-  @each $tag in $_fwc-br-tags {
-    @if $tag != xs and $tag != xxs {
-      @include br($tag) {
-        @include internal-set-grid-col-width(#{&}-col-#{$tag}, $grid-gap, false);
-
-        &-grid-expanded {
-          @include internal-set-grid-col-width(
-            #{$prefix}-col-#{$tag},
-            $grid-gap-expanded
-          );
-        }
-
-        &-grid-compact {
-          @include internal-set-grid-col-width(
-            #{$prefix}-col-#{$tag},
-            $grid-gap-compact
-          );
-        }
-
-        &-grid-no-gutter,
-        &-grid-no-gutter-x,
-        &-grid-constricted,
-        &-grid-constricted-x {
-          @include internal-set-grid-col-width(#{$prefix}-col-#{$tag}, null);
+@each $tag in $fwc-br-tags {
+  @if $tag != xs and $tag != xxs {
+    @include br($tag) {
+      @for $i from 1 through $grid-units {
+        @if ($grid-units % $i == 0) {
+          :is(#{$prefix}-col-#{$tag}-#{$i}, #{$prefix}-masonry-#{$tag}-#{$i}) {
+            --fw-grid-col-unit: #{$i};
+          }
+        } @else {
+          #{$prefix}-col-#{$tag}-#{$i} {
+            --fw-grid-col-unit: #{$i};
+          }
         }
       }
-    } @else {
-      @include internal-set-grid-col-width(#{&}-col-#{$tag}, $grid-gap, false);
-
-      &-grid-expanded {
-        @include internal-set-grid-col-width(
-          #{$prefix}-col-#{$tag},
-          $grid-gap-expanded
-        );
-      }
-
-      &-grid-compact {
-        @include internal-set-grid-col-width(#{$prefix}-col-#{$tag}, $grid-gap-compact);
-      }
-
-      &-grid-no-gutter,
-      &-grid-no-gutter-x,
-      &-grid-constricted,
-      &-grid-constricted-x {
-        @include internal-set-grid-col-width(#{$prefix}-col-#{$tag}, null);
+    }
+  } @else {
+    @for $i from 1 through $grid-units {
+      @if ($grid-units % $i == 0) {
+        :is(
+            #{$prefix}-col-#{$i},
+            #{$prefix}-masonry-#{$i},
+            #{$prefix}-col-xs-#{$i},
+            #{$prefix}-masonry-xs-#{$i}
+          ) {
+          --fw-grid-col-unit: #{$i};
+        }
+      } @else {
+        :is(#{$prefix}-col-#{$i}, #{$prefix}-col-xs-#{$i}) {
+          --fw-grid-col-unit: #{$i};
+        }
       }
     }
   }

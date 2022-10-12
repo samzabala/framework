@@ -1,180 +1,153 @@
-%fwe-tab {
-  &-all {
-    display: flex;
-  }
+$prefix: '.tabs';
+$sub-prefix: '.tab';
 
-  &-padding {
-    padding-top: calc(
-      (
-          (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-            (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
-        ) * 0.5
-    );
-    padding-bottom: calc(
-      (
-          (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-            (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
-        ) * 0.5
-    );
-    // min-height: $_fwc-tabs-item-height;
-    padding-right: $tabs-item-gutter-x;
-    padding-left: $tabs-item-gutter-x;
-    align-items: center;
+:root {
+  // :where(#{$prefix})
+  --fw-tabs-border-color: #{$tabs-border-color};
+  --fw-tabs-border-width: #{$tabs-border-width};
+
+  --fw-tabs-current-color: #{$tabs-current-color};
+  --fw-tabs-current-size: #{$tabs-current-size};
+
+  --fw-tab-border-radius: #{$tab-border-radius};
+  --fw-tab-border-width: #{$tab-border-width};
+  --fw-tab-height: #{em($tab-height, $tabs-font-size)};
+  --fw-tab-padding-x: #{em($tab-padding-x, $tabs-font-size)};
+  --fw-tab-margin-x: #{em($tab-margin-x, $tabs-font-size)};
+
+  --fw-tab-background: #{$tab-background};
+  --fw-tab-background-active: #{$tab-background-active};
+
+  --fw-tab-border-color: #{$tab-border-color};
+  --fw-tab-border-color-active: #{$tab-border-color-active};
+
+  --fw-tab-color: #{$tab-color};
+  --fw-tab-color-active: #{$tab-color-active};
+}
+
+#{$prefix} {
+  @include type-set(
+    (
+      root-size: $body-font-size,
+      size: $tabs-font-size,
+      case: $tabs-text-transform,
+      weight: $tabs-font-weight,
+      style: $tabs-font-style,
+      color: $tabs-color,
+    )
+  );
+  border-bottom: var(--fw-tabs-border-width) solid var(--fw-tabs-border-color);
+
+  &#{$prefix}-responsive {
+    @include on-breakpoint(mobile) {
+      flex-direction: column;
+      border-bottom: 0;
+
+      :is(#{$sub-prefix}, #{$prefix} > li) {
+        border-bottom: var(--fw-tabs-border-width) solid var(--fw-tabs-border-color);
+
+        &:nth-child(n + 2) {
+          margin-left: 0;
+          border-top: 0;
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
+        }
+      }
+    }
   }
 }
 
-$prefix: '.tab';
+:is(#{$sub-prefix}, #{$prefix}, #{$prefix} > li) {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
 
-#{$prefix} {
-  &s {
-    @include type-set(
-      (
-        size: $_fwc-tabs-font-size,
-        case: $tabs-text-transform,
-        weight: $tabs-font-weight,
-        style: $tabs-font-style,
-        color: $tabs-color,
-      )
-    );
-    border-bottom: $tabs-border-width solid $tabs-border-color;
+:is(#{$sub-prefix}, #{$prefix} > li) {
+  border: 0;
+  position: relative;
+  background-color: var(--fw-tab-background);
+  border-radius: var(--fw-tab-border-radius) var(--fw-tab-border-radius) 0 0;
+  border-style: solid;
+  border-color: var(--fw-tab-border-color);
+  border-width: var(--fw-tab-border-width) var(--fw-tab-border-width) 0;
 
-    .theme-inverse & {
-      color: $tabs-color-inverse;
-      border-color: $tabs-border-color-inverse;
-    }
-
-    @include on-breakpoint(mobile) {
-      font-size: $_fwc-tabs-font-size-mobile;
-
-      &#{&}-responsive {
-        flex-direction: column;
-        border-bottom: 0;
-
-        #{$prefix},
-        #{$prefix}s li {
-          border-bottom: $tabs-border-width solid $tabs-border-color !important;
-
-          &:nth-child(n + 2) {
-            margin-left: 0;
-            border-top: 0;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-          }
-        }
-      }
-    }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    background: var(--fw-tabs-current-color);
+    transition-duration: $tabs-transition-duration;
+    transition-timing-function: $tabs-transition-timing;
+    transition-property: height;
   }
 
-  &,
-  &s,
-  > li {
-    @extend %fwe-tab-all;
-    padding: 0;
-    margin: 0;
+  &:nth-child(n + 2) {
+    margin-left: var(--fw-tab-margin-x);
   }
 
-  &,
-  &s > li {
-    @extend %fwe-tab-padding;
-    border: 0;
-    margin: 0;
-    position: relative;
-    background-color: $tabs-item-background;
-    border-top-right-radius: $tab-item-border-radius;
-    border-top-left-radius: $tab-item-border-radius;
-    border: $tabs-item-border-width solid $tabs-item-border-color;
-    border-bottom: 0;
-
-    .theme-inverse & {
-      background-color: $tabs-item-background-inverse;
-      border-color: $tabs-item-border-color-inverse;
-    }
-
-    &#{$prefix}-disabled {
-      @include dump-styles(disabled);
-
-      * {
-        pointer-events: none;
-      }
-    }
-
-    &:not(#{$prefix}-disabled) {
-      &:active,
-      &.active,
-      &:hover,
-      &:focus,
-      &.focus,
-      &.open {
-        background-color: $tabs-item-background-active;
-        border-color: $tabs-item-border-color-active;
-        color: $tabs-item-color-active;
-
-        &:after {
-          height: $tabs-current-height;
-        }
-
-        .theme-inverse & {
-          background-color: $tabs-item-background-active-inverse;
-          border-color: $tabs-item-border-color-active-inverse;
-          color: $tabs-item-color-active-inverse;
-        }
-      }
-    }
-    &:nth-child(n + 2) {
-      margin-left: $tabs-item-margin-x;
-    }
-
-    &:before {
-      content: none;
-    }
+  &:is(:active, .active, :hover, :focus, .focus, .open) {
+    background-color: var(--fw-tab-background-active);
+    border-color: var(--fw-tab-border-color-active);
+    color: var(--fw-tab-color-active);
 
     &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      pointer-events: none;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 0;
-      background: $tabs-current-color;
-      transition: $tabs-transition-duration height $transition-timing;
-
-      .theme-inverse & {
-        background: $tabs-current-color-inverse;
-      }
+      height: var(--fw-tabs-current-size);
     }
+  }
 
-    > a,
-    #{$prefix}-text {
-      @extend %fwe-tab-all;
-      @extend %fwe-tab-padding;
-      @include type-set(
-        (
-          color: inherit,
-          decoration: get-anchor-dec(),
-        )
-      );
-      margin-top: calc(
-        (
-            (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-              (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
-          ) * -0.5
-      );
-      margin-bottom: calc(
-        (
-            (#{$_fwc-tabs-item-height} - (#{$tabs-item-border-width} * 2)) -
-              (#{$_fwc-tabs-font-size * $_fwc-body-line-height})
-          ) * -0.5
-      );
-      margin-right: $tabs-item-gutter-x * -1;
-      margin-left: $tabs-item-gutter-x * -1;
-      flex: 1 1;
-      align-self: stretch;
+  &:is(.disabled, [disabled], :disabled) {
+    --fw-tab-background-active: var(--fw-tab-background);
+    --fw-tab-border-color-active: var(--fw-tab-border-color);
+    --fw-tab-color-active: var(--fw-tab-color);
+  }
 
-      &:hover,
-      &:focus,
-      &.focus {
+  &,
+  > :is(a, #{$sub-prefix}-text) {
+    padding: calc(
+        (
+            (var(--fw-tab-height) - (var(--fw-tab-border-width) * 2)) -
+              (#{calc-single-line()})
+          ) * 0.5
+      )
+      var(--fw-tab-padding-x);
+    align-items: center;
+  }
+
+  > :is(a, #{$sub-prefix}-text) {
+    display: flex;
+    @include type-set(
+      (
+        color: inherit,
+        decoration: none,
+      )
+    );
+    margin-top: calc(
+      (
+          (var(--fw-tab-height) - (var(--fw-tab-border-width) * 2)) -
+            (#{calc-single-line()})
+        ) * -0.5
+    );
+    margin-bottom: calc(
+      (
+          (var(--fw-tab-height) - (var(--fw-tab-border-width) * 2)) -
+            (#{calc-single-line()})
+        ) * -0.5
+    );
+    margin-right: calc(var(--fw-tab-padding-x) * -1);
+    margin-left: calc(var(--fw-tab-padding-x) * -1);
+    flex: 1 1;
+    align-self: stretch;
+    @at-root :is(#{&}, #{&} a) {
+      text-decoration: none;
+      @include dump-styles(no-text-decoration);
+
+      &:is(:hover, :focus, .focus) {
         @include dump-styles(no-text-decoration-hover);
       }
     }

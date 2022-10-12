@@ -441,6 +441,7 @@ class Calendar extends FwComponent {
 			class="
 				${!disValid ? `disabled ` : ''}
 				${UIPrefix(COMPONENT_CLASS)}-navigation
+				${UIPrefix(COMPONENT_CLASS)}-block
 				${UIPrefix(COMPONENT_CLASS)}-button
 				${UIPrefix(COMPONENT_CLASS)}-${arrowClass}
 				${UIPrefix(COMPONENT_CLASS)}-${buttonClass}" data-value="${arrowDate}"
@@ -490,7 +491,8 @@ class Calendar extends FwComponent {
           ${element
             .getAttribute('class')
             .toString()
-            .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
+            .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}
+            input input-box`
           );
         }
 
@@ -513,9 +515,10 @@ class Calendar extends FwComponent {
             theUI.container.appendChild(theUI.inputWrapper);
             theUI.inputWrapper.setAttribute(
               'class',
-              `${UIPrefix(COMPONENT_CLASS)}-input`
+              `${UIPrefix(COMPONENT_CLASS)}-input
+              ${UIPrefix(COMPONENT_CLASS)}-section`
             );
-            theUI.inputWrapper.innerHTML = `<input class="input input-single-line"
+            theUI.inputWrapper.innerHTML = `<input class="input input-box input-block"
                 value="${FwDate.toHuman(this.UIInputValue)}"
                 type="text" maxlength="10" placeholder="MM/DD/YY" />`;
           }
@@ -524,7 +527,11 @@ class Calendar extends FwComponent {
         //heading
         theUI.heading = document.createElement('div');
         theUI.container.appendChild(theUI.heading);
-        theUI.heading.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-heading`);
+        theUI.heading.setAttribute(
+          'class',
+          `${UIPrefix(COMPONENT_CLASS)}-heading
+          ${UIPrefix(COMPONENT_CLASS)}-section`
+        );
 
         //arrowz
         const butts = ['prev-year', 'prev-month', 'next-month', 'next-year'];
@@ -539,17 +546,19 @@ class Calendar extends FwComponent {
         });
 
         //title
-        theUI.title = document.createElement('div');
+        theUI.title = document.createElement('button');
         theUI.heading.appendChild(theUI.title);
         theUI.title.setAttribute(
           'class',
           `${UIPrefix(COMPONENT_CLASS)}-title ${UIPrefix(
             COMPONENT_CLASS
           )}-dropdown-toggle
+          ${UIPrefix(COMPONENT_CLASS)}-block
+          ${UIPrefix(COMPONENT_CLASS)}-button
           ${UIDynamicClass}` //NEED THIS AT ALL TIMES IF U DONT WANNA DIE
         );
         theUI.title.setAttribute('data-toggle-dropdown', '');
-        theUI.title.innerHTML = `<span
+        theUI.title.innerHTML = `<span><span
           class="${UIPrefix(COMPONENT_CLASS)}-month-text">
             ${monthNamesShort[this._calendar.month]}
           </span>
@@ -558,7 +567,7 @@ class Calendar extends FwComponent {
           </span>
           <i class="${UIPrefix(
             COMPONENT_CLASS
-          )}-symbol symbol symbol-caret-down no-margin-x"></i>`;
+          )}-symbol symbol symbol-caret-down no-margin-x"></i></span>`;
 
         //dropdown
         const dropdown = document.createElement('ul');
@@ -643,7 +652,11 @@ class Calendar extends FwComponent {
         //generate grid
         theUI.grid = document.createElement('div');
         theUI.container.append(theUI.grid);
-        theUI.grid.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-grid`);
+        theUI.grid.setAttribute(
+          'class',
+          `${UIPrefix(COMPONENT_CLASS)}-grid
+          ${UIPrefix(COMPONENT_CLASS)}-section`
+        );
 
         //days heading
         theUI.days = document.createElement('div');
@@ -688,7 +701,7 @@ class Calendar extends FwComponent {
           // @TODO AAAAAAAAAAAA FIGURE OUT THE MATH
           // for( dayLoopI = this._calendar.prevDay; dayLoopI >= (parseInt(this.args.startDay)); dayLoopI--){
           // for(let i = 0; i < 7; i++){
-          for (let i = freeGridSpacePrev; i >= 0; i--) {
+          for (let i = freeGridSpacePrev; i > 0; i--) {
             let offset = this._calendar.prevDate.getDate() - i;
 
             let loopDatePrev = new Date(

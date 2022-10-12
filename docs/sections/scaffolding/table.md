@@ -141,14 +141,14 @@ Style a `<td>` or `.table-cell` as a `<tr>` element
 </div>
 ```
 
-### **.table-cell-no-gutter**
+### **.table-cell-constricted**
 
 DEPRECATED use [`no-padding-`](../helpers/padding.md) instead
 
 Remove padding on table cell
 
 ```html
-<div class="table-cell table-cell-no-gutter">CELL!</div>
+<div class="table-cell table-cell-constricted">CELL!</div>
 ```
 
 ### **`.table-expanded`, `.table-compact` and `table-constricted`**
@@ -159,7 +159,7 @@ Add `.table-expanded`, `.table-compact` or `.table-constricted` on the table ele
 
 ![Yes](../../images/table-label.png)
 
-Add tags on the side for more secondary. Works best with a cell classed ass [`.table-cell-no-gutter`](#table-cell-no-gutter).
+Add tags on the side for more secondary. Works best with a cell classed ass [`.table-cell-constricted`](#table-cell-constricted).
 
 This can be colorized with `.table-label-[color]` based on [framework colors](../scaffolding/colors.md#color-tags)
 
@@ -167,7 +167,7 @@ This can be colorized with `.table-label-[color]` based on [framework colors](..
 <table class="table">
   <tbody>
     <tr>
-      <td class="table-cell-no-gutter">
+      <td class="table-cell-constricted">
         <span class="table-label table-label-primary"></span>
       </td>
     </tr>
@@ -181,7 +181,7 @@ Custom color labels can be added to by setting background color properties inste
 <table class="table">
   <tbody>
     <tr>
-      <td class="table-cell-no-gutter">
+      <td class="table-cell-constricted">
         <span class="table-label" style="background-color:red;"></span>
       </td>
     </tr>

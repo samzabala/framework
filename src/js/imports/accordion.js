@@ -57,18 +57,6 @@ class Accordion extends FwComponent {
     return DATA_KEY;
   }
 
-  static containsHash(hash) {
-    const anId = hash.replace('#', ''); //just to be sure
-    const possibEl = document.getElementById(anId);
-    return possibEl && possibEl.parentNode.closest(`.${COMPONENT_CLASS}`);
-  }
-
-  static isHash(hash) {
-    const anId = hash.replace('#', ''); //just to be sure
-    const possibEl = document.getElementById(anId);
-    return possibEl && possibEl.classList.contains(COMPONENT_CLASS);
-  }
-
   static configDefaults() {
     return {
       changeHash: true,
@@ -255,9 +243,16 @@ class Accordion extends FwComponent {
   static handleInit() {
     return () => {
       if (Settings.get('initializeAccordion')) {
-        const accordion = new Accordion();
+        let accordion;
         const hash = window.location.hash;
-        if (Accordion.isHash(hash)) {
+
+        if (FwComponent.isHash(hash, COMPONENT_CLASS)) {
+          accordion = new Accordion();
+        } else if (FwComponent.containsHash(hash, COMPONENT_CLASS)) {
+          accordion = new Accordion(FwComponent.containsHash(hash, COMPONENT_CLASS));
+        }
+
+        if (accordion) {
           accordion.open();
         }
       }
@@ -268,7 +263,11 @@ class Accordion extends FwComponent {
     return () => {
       const accordion = new Accordion();
       const hash = window.location.hash;
-      if (Accordion.isHash(hash) && !Accordion.containsHash(hash)) {
+
+      if (
+        FwComponent.isHash(hash, COMPONENT_CLASS) &&
+        !FwComponent.containsHash(hash, COMPONENT_CLASS)
+      ) {
         accordion.open();
       } else {
         accordion.close();

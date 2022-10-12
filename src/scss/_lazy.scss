@@ -1,17 +1,14 @@
-/*** IMAGES ***/
-
-/* LAZYLOAD */
-
 $prefix: '.lazy';
-#{$prefix},
-*[data-src],
-*[data-srcset] {
+
+:is(#{$prefix}, [data-src], [data-srcset]) {
   opacity: 1;
-  transition: $transition-duration-base opacity $transition-timing;
+  transition-duration: $lazy-transition-duration;
+  transition-timing-function: $lazy-transition-timing;
+  transition-property: opacity;
   .fw-js-ready body:not(.body-lazy-loaded) & {
     opacity: 0;
   }
-  .fw-js-ready body:not(.body-loaded) {
-    transition: none !important;
+  .fw-js-ready body:not(.body-loaded) & {
+    transition: none;
   }
 }

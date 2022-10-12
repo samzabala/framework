@@ -164,9 +164,13 @@ class Switch extends FwComponent {
         EVENT_INIT,
         EVENT_AFTER_INIT,
         () => {
-          UIPurge(false, `.${COMPONENT_CLASS}`, (elem) => {
-            new Switch(elem).init();
-          });
+          UIPurge(
+            false,
+            `.${COMPONENT_CLASS}:not(${COMPONENT_CLASS_STATUS_ON})`,
+            (elem) => {
+              new Switch(elem).init();
+            }
+          );
         },
         document
       );

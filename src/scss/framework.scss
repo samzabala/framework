@@ -10,9 +10,9 @@
     @import 'plugins/_reset';
     @import 'plugins/_shithole';
   //api
-    @import '_functions';
-    @import '_calculations';
-    @import '_mixins';
+    @import 'core/_functions';
+    @import 'core/_calculations';
+    @import 'core/_mixins';
   //to cascade
     @import '_scaffolding';
     @import '_typography';
@@ -29,8 +29,9 @@
   //navigation
     @import '_nav';
     @import '_tab';
-    @import '_pagination';
   //other
+    @import '_form';
+    @import '_buttons';
     @import '_lazy';
     @import '_thumbnail';
     @import '_ratio';
@@ -49,8 +50,8 @@
     @import '_zone';
     @import '_list-group';
     @import '_table';
-    @import '_buttons';
-    @import '_form';
     @import '_modal';
   //helpers
     @import '_helpers';
+
+

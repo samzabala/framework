@@ -1,378 +1,513 @@
-/*  BUTTONS ***/
+@use 'sass:list';
+
+$fwc-btn-theme-relation: (
+  theme: (
+    background: $var-theme-color,
+    border-color: transparent,
+    color: $var-theme-background,
+  ),
+  theme-polar: (
+    background: $var-theme-background,
+    border-color: transparent,
+    color: $var-theme-color,
+  ),
+  theme-outline: (
+    background: transparent,
+    border-color: $var-theme-color,
+    color: $var-theme-color,
+  ),
+  theme-polar-outline: (
+    background: transparent,
+    border-color: $var-theme-background,
+    color: $var-theme-background,
+  ),
+  theme-contrast: (
+    background: $var-theme-color-contrast,
+    border-color: transparent,
+    color: $var-theme-background-contrast,
+  ),
+  theme-polar-contrast: (
+    background: $var-theme-background-contrast,
+    border-color: transparent,
+    color: $var-theme-color-contrast,
+  ),
+);
+
+$fwc-btn-schemes-active: (
+  default: (
+    background: $btn-background-default-active,
+    border-color: $btn-border-color-default-active,
+    color: $btn-color-default-active,
+  ),
+  primary: (
+    background: $btn-background-primary-active,
+    border-color: $btn-border-color-primary-active,
+    color: $btn-color-primary-active,
+  ),
+  secondary: (
+    background: $btn-background-secondary-active,
+    border-color: $btn-border-color-secondary-active,
+    color: $btn-color-secondary-active,
+  ),
+  accent: (
+    background: $btn-background-accent-active,
+    border-color: $btn-border-color-accent-active,
+    color: $btn-color-accent-active,
+  ),
+  neutral: (
+    background: $btn-background-neutral-active,
+    border-color: $btn-border-color-neutral-active,
+    color: $btn-color-neutral-active,
+  ),
+  success: (
+    background: $btn-background-success-active,
+    border-color: $btn-border-color-success-active,
+    color: $btn-color-success-active,
+  ),
+  caution: (
+    background: $btn-background-caution-active,
+    border-color: $btn-border-color-caution-active,
+    color: $btn-color-caution-active,
+  ),
+  error: (
+    background: $btn-background-error-active,
+    border-color: $btn-border-color-error-active,
+    color: $btn-color-error-active,
+  ),
+  link: (
+    background: $btn-background-link-active,
+    border-color: $btn-border-color-link-active,
+    color: $btn-color-link-active,
+  ),
+  //schemes tthat vars or hooman shouldnt have control over
+  gradient:
+    (
+      background: $var-gradient-end
+        linear-gradient(
+          $btn-background-angle-gradient-active,
+          $var-gradient-start,
+          $var-gradient-end
+        ),
+      //@TODO var for this angle
+      border-color: $btn-border-color-gradient-active,
+      color: $btn-color-gradient-hover,
+    ),
+  theme: map-get($fwc-btn-theme-relation, theme-contrast),
+  theme-polar: map-get($fwc-btn-theme-relation, theme-polar-contrast),
+  theme-outline: map-get($fwc-btn-theme-relation, theme),
+  theme-polar-outline: map-get($fwc-btn-theme-relation, theme-polar),
+);
+
+$fwc-btn-schemes-hover: (
+  default: (
+    background: $btn-background-default-hover,
+    border-color: $btn-border-color-default-hover,
+    color: $btn-color-default-hover,
+  ),
+  primary: (
+    background: $btn-background-primary-hover,
+    border-color: $btn-border-color-primary-hover,
+    color: $btn-color-primary-hover,
+  ),
+  secondary: (
+    background: $btn-background-secondary-hover,
+    border-color: $btn-border-color-secondary-hover,
+    color: $btn-color-secondary-hover,
+  ),
+  accent: (
+    background: $btn-background-accent-hover,
+    border-color: $btn-border-color-accent-hover,
+    color: $btn-color-accent-hover,
+  ),
+  neutral: (
+    background: $btn-background-neutral-hover,
+    border-color: $btn-border-color-neutral-hover,
+    color: $btn-color-neutral-hover,
+  ),
+  success: (
+    background: $btn-background-success-hover,
+    border-color: $btn-border-color-success-hover,
+    color: $btn-color-success-hover,
+  ),
+  caution: (
+    background: $btn-background-caution-hover,
+    border-color: $btn-border-color-caution-hover,
+    color: $btn-color-caution-hover,
+  ),
+  error: (
+    background: $btn-background-error-hover,
+    border-color: $btn-border-color-error-hover,
+    color: $btn-color-error-hover,
+  ),
+  link: (
+    background: $btn-background-link-hover,
+    border-color: $btn-border-color-link-hover,
+    color: $btn-color-link-hover,
+  ),
+  //schemes tthat vars or hooman shouldnt have control over
+  gradient:
+    (
+      background: $var-gradient-end
+        linear-gradient(
+          $btn-background-angle-gradient-hover,
+          $var-gradient-start,
+          $var-gradient-end
+        ),
+      border-color: $btn-border-color-gradient-hover,
+      color: $btn-color-gradient-active,
+    ),
+  theme: map-get($fwc-btn-theme-relation, theme-contrast),
+  theme-polar: map-get($fwc-btn-theme-relation, theme-polar-contrast),
+  theme-outline: map-get($fwc-btn-theme-relation, theme),
+  theme-polar-outline: map-get($fwc-btn-theme-relation, theme-polar),
+);
+
+$fwc-btn-schemes: (
+  default: (
+    classic: (
+      background: $btn-background-default,
+      border-color: $btn-border-color-default,
+      color: $btn-color-default,
+    ),
+  ),
+  primary: (
+    classic: (
+      background: $btn-background-primary,
+      border-color: $btn-border-color-primary,
+      color: $btn-color-primary,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-primary,
+      color: $var-color-primary,
+    ),
+    glassy: (
+      background: $var-color-primary-alpha-1,
+      border-color: transparent,
+      color: $var-color-primary,
+    ),
+    gradient: (
+      background: $btn-background-primary
+        linear-gradient(0deg, $var-color-primary 0%, $var-color-primary-light 100%),
+      border-color: transparent,
+      color: $btn-color-primary,
+    ),
+  ),
+  secondary: (
+    classic: (
+      background: $btn-background-secondary,
+      border-color: $btn-border-color-secondary,
+      color: $btn-color-secondary,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-secondary,
+      color: $var-color-secondary,
+    ),
+    glassy: (
+      background: $var-color-secondary-alpha-1,
+      border-color: transparent,
+      color: $var-color-secondary,
+    ),
+    gradient: (
+      background: $btn-background-secondary
+        linear-gradient(0deg, $var-color-secondary 0%, $var-color-secondary-light 100%),
+      border-color: transparent,
+      color: $btn-color-secondary,
+    ),
+  ),
+  accent: (
+    classic: (
+      background: $btn-background-accent,
+      border-color: $btn-border-color-accent,
+      color: $btn-color-accent,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-accent,
+      color: $var-color-accent,
+    ),
+    glassy: (
+      background: $var-color-accent-alpha-1,
+      border-color: transparent,
+      color: $var-color-accent,
+    ),
+    gradient: (
+      background: $btn-background-accent
+        linear-gradient(0deg, $var-color-accent 0%, $var-color-accent-light 100%),
+      border-color: transparent,
+      color: $btn-color-accent,
+    ),
+  ),
+  neutral: (
+    classic: (
+      background: $btn-background-neutral,
+      border-color: $btn-border-color-neutral,
+      color: $btn-color-neutral,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-neutral,
+      color: $var-color-neutral,
+    ),
+    glassy: (
+      background: $var-color-neutral-alpha-1,
+      border-color: transparent,
+      color: $var-color-neutral,
+    ),
+    gradient: (
+      background: $btn-background-neutral
+        linear-gradient(0deg, $var-color-neutral 0%, $var-color-neutral-light 100%),
+      border-color: transparent,
+      color: $btn-color-neutral,
+    ),
+  ),
+  success: (
+    classic: (
+      background: $btn-background-success,
+      border-color: $btn-border-color-success,
+      color: $btn-color-success,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-success,
+      color: $var-color-success,
+    ),
+    glassy: (
+      background: $var-color-success-alpha-1,
+      border-color: transparent,
+      color: $var-color-success,
+    ),
+    gradient: (
+      background: $btn-background-success
+        linear-gradient(0deg, $var-color-success 0%, $var-color-success-light 100%),
+      border-color: transparent,
+      color: $btn-color-success,
+    ),
+  ),
+  caution: (
+    classic: (
+      background: $btn-background-caution,
+      border-color: $btn-border-color-caution,
+      color: $btn-color-caution,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-caution,
+      color: $var-color-caution,
+    ),
+    glassy: (
+      background: $var-color-caution-alpha-1,
+      border-color: transparent,
+      color: $var-color-caution,
+    ),
+    gradient: (
+      background: $btn-background-caution
+        linear-gradient(0deg, $var-color-caution 0%, $var-color-caution-light 100%),
+      border-color: transparent,
+      color: $btn-color-caution,
+    ),
+  ),
+  error: (
+    classic: (
+      background: $btn-background-error,
+      border-color: $btn-border-color-error,
+      color: $btn-color-error,
+    ),
+    outline: (
+      background: transparent,
+      border-color: $var-color-error,
+      color: $var-color-error,
+    ),
+    glassy: (
+      background: $var-color-error-alpha-1,
+      border-color: transparent,
+      color: $var-color-error,
+    ),
+    gradient: (
+      background: $btn-background-error
+        linear-gradient(0deg, $var-color-error 0%, $var-color-error-light 100%),
+      border-color: transparent,
+      color: $btn-color-error,
+    ),
+  ),
+  link: (
+    classic: (
+      background: $btn-background-link,
+      border-color: $btn-border-color-link,
+      color: $btn-color-link,
+    ),
+  ),
+  //schemes tthat vars or hooman shouldnt have control over
+  gradient:
+    (
+      classic: (
+        background: $var-gradient-start
+          linear-gradient(
+            $btn-background-angle-gradient,
+            $var-gradient-start,
+            $var-gradient-end
+          ),
+        border-color: $btn-border-color-gradient,
+        color: $btn-color-gradient,
+      ),
+    ),
+  theme: (
+    classic: map-get($fwc-btn-theme-relation, theme),
+  ),
+  theme-polar: (
+    classic: map-get($fwc-btn-theme-relation, theme-polar),
+  ),
+  theme-outline: (
+    classic: map-get($fwc-btn-theme-relation, theme-outline),
+  ),
+  theme-polar-outline: (
+    classic: map-get($fwc-btn-theme-relation, theme-polar-outline),
+  ),
+);
+
 $prefix: '.btn';
-#{$prefix} {
-  @at-root %fwe-btn-global {
-    &-radius {
-      border-radius: $btn-border-radius;
 
-      &-small {
-        border-radius: $btn-border-radius-small;
-      }
+$glassy-selector: '';
+$gradient-selector: '';
+$outline-selector: '';
 
-      &-large {
-        border-radius: $btn-border-radius-large;
-      }
-    }
+:root {
+  // :where(#{$prefix})
+  --fw-btn-border-width: #{$btn-border-width};
+  --fw-btn-box-shadow: #{$btn-box-shadow};
+  --fw-btn-box-shadow-hover: #{$btn-box-shadow-hover};
+  --fw-btn-gap: #{$btn-gap};
+  --fw-btn-padding-x: #{em($btn-padding-x, $btn-font-size)};
 
-    &-round {
-      & {
-        border-radius: 999rem;
-      }
-    }
+  --fw-btn-height: #{em($btn-height, $btn-font-size)};
+  --fw-btn-border-radius: #{$btn-border-radius};
 
-    &-shadow {
-      box-shadow: $btn-box-shadow;
+  --fw-btn-background: transparent;
+  --fw-btn-border-color: transparent;
+  --fw-btn-color: inherit;
 
-      &-hover {
-        box-shadow: $btn-box-shadow-hover;
-      }
-    }
-  }
+  // --fw-btn-background-active: var(--fw-btn-background);
+  // --fw-btn-background-hover: var(--fw-btn-background);
+  // --fw-btn-border-color-active: var(--fw-btn-border-color);
+  // --fw-btn-border-color-hover: var(--fw-btn-border-color);
+  // --fw-btn-color-active: var(--fw-btn-color);
+  // --fw-btn-color-hover: var(--fw-btn-color);
+}
 
-  @at-root %fwe-btn {
-    & {
-      @include type-set(
-        (
-          size: #{$_fwc-btn-font-size},
-          leading: #{$_fwc-btn-line-height},
-          weight: $btn-font-weight,
-          style: $btn-font-style,
-          font: $btn-font-family,
-          align: center,
-          case: $btn-text-transform,
-        )
-      );
-      // overflow:hidden;
-      padding-top: calc(
-        (
-            (#{$_fwc-btn-height} - (#{$btn-border-width} * 2)) -
-              (#{$_fwc-btn-single-line})
-          ) * 0.5
-      );
-      padding-bottom: calc(
-        (
-            (#{$_fwc-btn-height} - (#{$btn-border-width} * 2)) -
-              (#{$_fwc-btn-single-line})
-          ) * 0.5
-      );
-      // min-height: $_fwc-btn-height;
-      padding-right: $_fwc-btn-gutter-x;
-      padding-left: $_fwc-btn-gutter-x;
-      border: $btn-border-width solid transparent;
-      transition: $btn-transition-duration all $transition-timing;
-      width: auto;
-      display: inline-flex;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      background: none;
-      background-size: calc(100% + (#{$btn-border-width} * 2))
-        calc(100% + (#{$btn-border-width} * 2));
-      background-position: ($btn-border-width * -1) ($btn-border-width * -1);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+@at-root :is(#{$prefix}, #{$prefix}-group) {
+  vertical-align: middle;
+  -webkit-appearance: none;
+  appearance: none;
+  text-decoration: none;
+  line-height: $var-body-line-height;
+  outline: none;
+  max-width: 100%;
+  box-shadow: var(--fw-btn-box-shadow);
 
-      // .symbol,
-      .badge {
-        &:last-child:not(:first-child) {
-          margin-left: 0.25em;
-        }
-        &:first-child:not(:last-child) {
-          margin-right: 0.25em;
-        }
-      }
-    }
+  @at-root :is(#{&}, #{&} a) {
+    text-decoration: none;
+    @include dump-styles(no-text-decoration);
 
-    &-large {
-      @extend %fwe-btn-global-radius-large;
-      padding-top: calc(
-        (
-            (#{$_fwc-btn-height-large} - (#{$btn-border-width} * 2)) -
-              (#{$_fwc-btn-single-line})
-          ) * 0.5
-      );
-      padding-bottom: calc(
-        (
-            (#{$_fwc-btn-height-large} - (#{$btn-border-width} * 2)) -
-              (#{$_fwc-btn-single-line})
-          ) * 0.5
-      );
-      // min-height: $_fwc-btn-height-large;
-      font-size: $_fwc-btn-font-size-large;
-    }
-
-    &-small {
-      @extend %fwe-btn-global-radius-small;
-      font-size: $_fwc-btn-font-size-small;
-      padding-top: calc(
-        (
-            (#{$_fwc-btn-height-small} - (#{$btn-border-width} * 2)) -
-              (#{$_fwc-btn-single-line})
-          ) * 0.5
-      );
-      padding-bottom: calc(
-        (
-            (#{$_fwc-btn-height-small} - (#{$btn-border-width} * 2)) -
-              (#{$_fwc-btn-single-line})
-          ) * 0.5
-      );
-      // min-height: $_fwc-btn-height-small;
-    }
-
-    &-in-nav {
-      padding-top: 0;
-      padding-bottom: 0;
-      align-self: stretch;
-      height: #{$_fwc-nav-height} !important;
-    }
-
-    &-in-group {
-      position: relative;
-      max-width: 100%;
-      flex: 0 0 auto; // ??
-      border-radius: inherit;
-      &,
-      &:hover,
-      &:active,
-      &.active,
-      &:focus,
-      &.focus,
-      &.open {
-        @include dump-styles(no-box-shadow-important);
-      }
-
-      &:hover,
-      &:active,
-      &.active,
-      &:focus,
-      &.focus,
-      &.open {
-        z-index: 1;
-      }
-    }
-  }
-  & {
-    @extend %fwe-btn;
-
-    &#{$prefix}-large,
-    #{$prefix}-large & {
-      @extend %fwe-btn-large;
-    }
-
-    &#{$prefix}-small,
-    #{$prefix}-small & {
-      @extend %fwe-btn-small;
-    }
-
-    .nav-block.nav-block-stretch > &,
-    .nav > &,
-    .nav > #{$prefix}-group > & {
-      @extend %fwe-btn-in-nav;
-    }
-
-    &#{$prefix}-no-radius,
-    #{$prefix}-no-radius & {
-      @include dump-styles(no-border-radius);
-    }
-
-    #{$prefix}-group > & {
-      @extend %fwe-btn-in-group;
-    }
-
-    &-disabled {
-      @include dump-styles(disabled);
-    }
-
-    &#{$prefix}-no-interaction,
-    #{$prefix}-no-interaction &,
-    &#{$prefix}-disabled,
-    #{$prefix}-disabled & {
-      @include dump-styles(no-box-shadow-important);
+    &:is(:hover, :focus, .focus) {
+      @include dump-styles(no-text-decoration-hover);
     }
   }
 
-  @at-root %fwe-btn-symbol {
-    & {
-      width: $_fwc-btn-height;
-      height: $_fwc-btn-height;
-      padding: 0;
-    }
-
-    &-large {
-      width: $_fwc-btn-height-large;
-      height: $_fwc-btn-height-large;
-    }
-
-    &-small {
-      width: $_fwc-btn-height-small;
-      height: $_fwc-btn-height-small;
-    }
+  &:is(:hover, :focus, .focus, :active, .active) {
+    box-shadow: var(--fw-btn-box-shadow-hover);
+    text-decoration: none;
   }
 
-  &-symbol {
-    @extend %fwe-btn-symbol;
+  &#{$prefix}-block {
+    display: flex;
+    width: 100%;
 
-    #{$prefix}-small &,
-    &#{$prefix}-small {
-      @extend %fwe-btn-symbol-small;
-    }
-
-    #{$prefix}-large &,
-    &#{$prefix}-large {
-      @extend %fwe-btn-symbol-large;
-    }
-  }
-
-  @at-root %fwe-btn-and-group {
-    & {
-      @extend %fwe-btn-global-radius;
-      max-width: 100%;
-      background-color: transparent;
-      color: inherit;
-      -webkit-appearance: none;
-      appearance: none;
-      vertical-align: middle;
-      -moz-background-clip: padding;
-      -webkit-background-clip: padding;
-      background-clip: padding-box;
-      @include dump-styles(no-text-decoration);
-
-      &:hover,
-      &:focus,
-      &.focus,
-      &:active,
-      &.active {
-        color: inherit;
-        @include dump-styles(no-text-decoration-hover);
-      }
-
-      &-small {
-        @extend %fwe-btn-global-radius-small;
-      }
-
-      &-large {
-        @extend %fwe-btn-global-radius-large;
-      }
-
-      &-in-nav {
-        @include dump-styles(no-border-radius);
-        @include dump-styles(no-box-shadow-important);
-      }
-    }
-  }
-
-  &,
-  &-group {
-    @extend %fwe-btn-and-group;
-    @extend %fwe-btn-global-radius;
-
-    &#{$prefix}-large {
-      @extend %fwe-btn-and-group-large;
-    }
-
-    &#{$prefix}-small {
-      @extend %fwe-btn-and-group-small;
-    }
-
-    .nav > & {
-      @extend %fwe-btn-and-group-in-nav;
-    }
-
-    &#{$prefix}-round {
-      @extend %fwe-btn-global-round;
-    }
-
-    &#{$prefix}-no-radius {
-      @include dump-styles(no-border-radius);
-    }
-
-    &#{$prefix}-block {
-      display: flex;
-      width: 100%;
-
-      &-mobile {
-        @include on-breakpoint(mobile) {
-          display: flex;
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  ///updates here should match input-group
-  &-group {
-    @extend %fwe-btn-global-shadow;
-    display: inline-flex;
-    align-content: stretch;
-    align-items: stretch;
-    position: relative;
-    max-width: 100%;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
-    overflow-x: auto;
-    overflow-y: visible;
-
-    &:hover,
-    &:focus-within,
-    &.focus,
-    &:active,
-    &.active {
-      @extend %fwe-btn-global-shadow-hover;
-    }
-
-    &#{$prefix}-block {
-      display: flex;
-      width: 100%;
-
-      & > .btn:not(.btn-symbol) {
-        flex: 1 1;
-      }
-
+    &-mobile {
       @include on-breakpoint(mobile) {
-        &-mobile {
-          display: flex;
-          width: 100%;
-
-          & > .btn:not(.btn-symbol) {
-            flex: 1 1;
-          }
-        }
+        display: flex;
+        width: 100%;
       }
     }
+  }
+}
 
-    &#{&}-horizontal {
-      #{$prefix}-symbol {
-        flex: 0 0 auto;
-      }
+#{$prefix}-group {
+  display: inline-flex;
+  align-content: stretch;
+  align-items: stretch;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  overflow-x: auto;
+  overflow-y: visible;
 
-      &:not(#{$prefix}-group-responsive) {
-        > #{$prefix}:nth-last-child(n + 2) {
-          border-top-right-radius: 0 !important;
-          border-bottom-right-radius: 0 !important;
-        }
+  &#{&}-horizontal {
+    > #{$prefix}-symbol {
+      flex: 0 0 auto;
+    }
+  }
 
-        > #{$prefix}:nth-child(n + 2) {
-          border-top-left-radius: 0 !important;
-          border-bottom-left-radius: 0 !important;
-          margin-left: $btn-border-width * -1;
-
-          &:not(:focus):not(.focus):not(:hover) {
-            border-left-color: $btn-group-separator-color;
-          }
-        }
-      }
+  &#{&}-horizontal:not(#{&}-responsive) {
+    > #{$prefix}:nth-last-child(n + 2) {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
     }
 
-    &#{&}-vertical {
-      flex-direction: column;
+    > #{$prefix}:nth-child(n + 2) {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+      margin-left: calc(var(--fw-btn-border-width) * -1);
+    }
+  }
 
-      > .btn-symbol {
+  &#{&}-vertical {
+    flex-direction: column;
+
+    > #{$prefix}-symbol {
+      width: auto;
+    }
+
+    > #{$prefix}:nth-last-child(n + 2) {
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+
+    > #{$prefix}:nth-child(n + 2) {
+      border-top-right-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+      margin-top: calc(var(--fw-btn-border-width) * -1);
+    }
+  }
+
+  &#{&}-responsive#{&}-horizontal {
+    @include on-breakpoint(nonmobile) {
+      > #{$prefix}-symbol {
         width: auto;
       }
+
+      > #{$prefix}:nth-last-child(n + 2) {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+
+      > #{$prefix}:nth-child(n + 2) {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        margin-left: calc(var(--fw-btn-border-width) * -1);
+      }
+    }
+  }
+
+  &#{&}-responsive {
+    @include on-breakpoint(mobile) {
+      width: 100%;
+      flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
 
       > #{$prefix}:nth-last-child(n + 2) {
         border-bottom-right-radius: 0 !important;
@@ -382,91 +517,178 @@ $prefix: '.btn';
       > #{$prefix}:nth-child(n + 2) {
         border-top-right-radius: 0 !important;
         border-top-left-radius: 0 !important;
-        margin-top: $btn-border-width * -1;
-
-        &:not(:focus):not(.focus):not(:hover) {
-          border-top-color: $btn-group-separator-color;
-        }
-      }
-    }
-
-    &#{&}-responsive {
-      @include on-breakpoint(nonmobile) {
-        &#{$prefix}-group-horizontal {
-          > .btn-symbol {
-            width: auto;
-          }
-
-          > #{$prefix}:nth-last-child(n + 2) {
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-          }
-
-          > #{$prefix}:nth-child(n + 2) {
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            margin-left: $btn-border-width * -1;
-
-            &:not(:focus):not(.focus):not(:hover) {
-              border-left-color: $btn-group-separator-color;
-            }
-          }
-        }
-      }
-      @include on-breakpoint(mobile) {
-        width: 100%;
-        flex-wrap: wrap;
-        display: flex;
-        flex-direction: column;
-
-        > #{$prefix}:nth-last-child(n + 2) {
-          border-bottom-right-radius: 0 !important;
-          border-bottom-left-radius: 0 !important;
-        }
-
-        > #{$prefix}:nth-child(n + 2) {
-          border-top-right-radius: 0 !important;
-          border-top-left-radius: 0 !important;
-          margin-top: $btn-border-width * -1;
-
-          &:not(:focus):not(.focus):not(:hover) {
-            border-top-color: $btn-group-separator-color;
-          }
-        }
+        margin-top: calc(var(--fw-btn-border-width) * -1);
       }
     }
   }
+}
 
-  @each $scheme, $properties in $_fwc-btn-schemes {
-    $custom-css: ();
+#{$prefix} {
+  @include type-set(
+    (
+      root-size: $body-font-size,
+      size: $btn-font-size,
+      weight: $btn-font-weight,
+      style: $btn-font-style,
+      font: $btn-font-family,
+      align: center,
+      case: $btn-text-transform,
+    )
+  );
+  // overflow:hidden;
+  padding: calc(
+      (
+          (var(--fw-btn-height) - (var(--fw-btn-border-width) * 2)) -
+            (#{calc-single-line()})
+        ) * 0.5
+    )
+    var(--fw-btn-padding-x);
+  min-height: var(--fw-btn-height);
+  column-gap: var(--fw-btn-gap);
+  border-color: var(--fw-btn-border-color);
+  border-style: solid;
+  border-width: var(--fw-btn-border-width);
+  color: var(--fw-btn-color);
+  background: var(--fw-btn-background);
+  border-radius: var(--fw-btn-border-radius);
+  transition-duration: $btn-transition-duration;
+  transition-timing-function: $btn-transition-duration;
+  transition-property: color, border, background, box-shadow;
+  width: auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-    @if str-index($scheme, '-glassy') {
-      $custom-css: (
-        backdrop-filter: blur(5px),
+  #{$prefix}-group > & {
+    min-width: 0;
+    flex: 1 1;
+    position: relative;
+    --fw-btn-box-shadow: none;
+
+    @at-root #{$prefix}-group-unite#{&} {
+      --fw-btn-box-shadow-hover: none;
+    }
+
+    &:is(:hover, :active, .active, :focus, .focus, .open) {
+      z-index: 1;
+    }
+  }
+
+  :is(.nav, .nav-block.nav-block-stretch, .nav > #{$prefix}-group) > & {
+    align-self: stretch;
+    --fw-btn-height: var(--fw-nav-height, #{rem($nav-height, $body-font-size)});
+  }
+
+  &:is(.no-radius, .no-radius > #{&}) {
+    --fw-btn-border-radius: 0em;
+  }
+
+  &#{$prefix}-symbol {
+    width: var(--fw-btn-height);
+    height: var(--fw-btn-height);
+    padding: 0;
+    flex: 0 0 auto;
+  }
+
+  &:is(
+      :hover,
+      :focus,
+      .focus,
+      #{$prefix}-group-unite:is(:hover, :focus, .focus) > #{&}
+    ) {
+    background: var(--fw-btn-background-hover, var(--fw-btn-background));
+    border-color: var(--fw-btn-border-color-hover, var(--fw-btn-border-color));
+    color: var(--fw-btn-color-hover, var(--fw-btn-color));
+  }
+
+  &:is(.active, #{$prefix}-group-unite:is(.active) > #{&}) {
+    background: var(--fw-btn-background-active);
+    border-color: var(--fw-btn-border-color-active);
+    color: var(--fw-btn-color-active);
+  }
+
+  &,
+  &:is(
+      :hover,
+      :focus,
+      .focus,
+      .active,
+      #{$prefix}-group-unite:is(:hover, :focus, .focus, .active) > #{&}
+    ) {
+    background-position: calc(var(--fw-btn-border-width) * -1)
+      calc(var(--fw-btn-border-width) * -1);
+    background-size: calc(100% + (var(--fw-btn-border-width) * 2))
+      calc(100% + (var(--fw-btn-border-width) * 2));
+  }
+}
+
+@each $scheme, $scheme-map in $fwc-btn-schemes {
+  $scheme-prefix: #{$prefix + '-' + $scheme};
+
+  $scheme-selector-state: ();
+  $scheme-selector-state: list.append($scheme-selector-state, #{$scheme-prefix}, comma);
+
+  @each $subscheme, $props in $scheme-map {
+    $scheme-selector-init: #{$scheme-prefix};
+
+    @if $subscheme != classic {
+      $scheme-selector-init: #{$scheme-prefix}-#{$subscheme};
+      $scheme-selector-state: list.append(
+        $scheme-selector-state,
+        $scheme-selector-init,
+        comma
       );
     }
-    @at-root %fwe-btn-#{$scheme} {
-      @if $scheme != 'link' {
-        &:hover,
-        &:focus,
-        &.focus,
-        &:active,
-        &.active {
-          @extend %fwe-btn-global-shadow-hover;
-        }
-      } @else if str-index($scheme, '-outline') {
-      } @else {
-        @extend %fwe-btn-global-shadow;
+
+    #{$scheme-selector-init} {
+      @each $property, $value in $props {
+        --fw-btn-#{$property}: #{$value};
       }
-
-      @include create-btn-schemes($properties, $scheme, $custom-css);
-
-      // @if str-index($scheme, '-gradient'){
-      //   background-origin:border-box;
-      // }
-    }
-    &#{&}-#{$scheme} {
-      @extend %fwe-btn-#{$scheme};
     }
   }
+
+  :is(#{$scheme-selector-state}) {
+    @each $property, $value in map-get($fwc-btn-schemes-hover, $scheme) {
+      --fw-btn-#{$property}-hover: #{$value};
+    }
+  }
+
+  :is(#{$scheme-selector-state}) {
+    @each $property, $value in map-get($fwc-btn-schemes-active, $scheme) {
+      --fw-btn-#{$property}-active: #{$value};
+    }
+  }
+}
+
+:is(#{$prefix}-large, #{$prefix}-large > #{$prefix}) {
+  --fw-btn-height: #{em($btn-height-large, $btn-font-size-large)};
+  --fw-btn-border-radius: #{$btn-border-radius-large};
+  @include type($btn-font-size-large, null, $body-font-size);
+}
+
+:is(#{$prefix}-small, #{$prefix}-small > #{$prefix}) {
+  --fw-btn-height: #{em($btn-height-small, $btn-font-size-small)};
+  --fw-btn-border-radius: #{$btn-border-radius-small};
+  @include type($btn-font-size-small, null, $body-font-size);
+}
+
+:is(#{$prefix}-round, #{$prefix}-round > #{$prefix}) {
+  --fw-btn-border-radius: 9999em;
+}
+
+:is(#{$prefix}-no-interaction, .disabled, [disabled], :disabled) {
+  --fw-btn-background-hover: var(--fw-btn-background);
+  --fw-btn-background-active: var(--fw-btn-background);
+  --fw-btn-border-color-hover: var(--fw-btn-border-color);
+  --fw-btn-border-color-active: var(--fw-btn-border-color);
+  --fw-btn-color-hover: var(--fw-btn-color);
+  --fw-btn-color-active: var(--fw-btn-color);
+  --fw-btn-box-shadow: none;
+  --fw-btn-box-shadow-hover: none;
 }

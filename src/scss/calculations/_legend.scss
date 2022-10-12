@@ -1,9 +1,0 @@
-$_fwc-legend-width: $legend-width;
-@if internal-is-convertable($legend-width) {
-  $_fwc-legend-width: rem($legend-width, $body-font-size);
-}
-
-$_fwc-legend-height: $legend-height;
-@if internal-is-convertable($legend-height) {
-  $_fwc-legend-height: rem($legend-height, $body-font-size);
-}

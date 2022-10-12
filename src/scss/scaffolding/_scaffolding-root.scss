@@ -1,24 +1,9 @@
 :root {
-  //prefix must not change here because these variables are affected by js
-  --fw-br-xxs: #{$br-xxs-max};
-  --fw-br-xs: #{$br-xs-max};
-  --fw-br-sm: #{$br-sm-max};
-  --fw-br-md: #{$br-md-max};
-  --fw-br-lg: #{$br-lg-max};
-
-  --fw-br-mobile-max: #{$mobile-br-max};
-
-  // FONT
-  --fw-font-primary: #{$brand-font-primary};
-  --fw-font-accent: #{$brand-font-secondary};
-  --fw-font-monospace: #{$brand-font-monospace};
-
-  //colour
-
-  @each $tag, $value in $_fwc-color-tags {
+  // COLOR
+  @each $tag, $value in $fwc-color-tags {
     --fw-color-#{$tag}: #{$value};
 
-    @each $slug, $slug-value in map-get($_fwc-color-variations, $tag) {
+    @each $slug, $slug-value in map-get($fwc-color-variations, $tag) {
       --fw-color-#{$tag}-#{$slug}: #{$slug-value};
     }
   }
@@ -28,4 +13,55 @@
 
   // GLOBAL html + body coloring
   @include dump-theme-colors(default);
+
+  // FONT
+  --fw-font-primary: #{$brand-font-primary};
+  --fw-font-accent: #{$brand-font-secondary};
+  --fw-font-monospace: #{$brand-font-monospace};
+
+  // breakpoionts
+  --fw-br-xxs: #{$br-xxs-max};
+  --fw-br-xs: #{$br-xs-max};
+  --fw-br-sm: #{$br-sm-max};
+  --fw-br-md: #{$br-md-max};
+  --fw-br-lg: #{$br-lg-max};
+
+  --fw-br-mobile-max: #{$mobile-br-max};
+
+  // GLOBAL UNITS
+  --fw-gutter-base: #{$gutter-base};
+  --fw-gutter-large: #{$gutter-large};
+  --fw-gutter-small: #{$gutter-small};
+  --fw-gutter-micro: #{$gutter-micro};
+
+  --fw-border-radius-base: #{$border-radius-base};
+  --fw-border-radius-large: #{$border-radius-large};
+  --fw-border-radius-small: #{$border-radius-small};
+  --fw-border-radius-micro: #{$border-radius-micro};
+
+  --fw-transition-duration-base: #{$transition-duration-base};
+  --fw-transition-duration-long: #{$transition-duration-long};
+  --fw-transition-duration-short: #{$transition-duration-short};
+  --fw-transition-timing: #{$var-transition-timing};
+
+  --fw-box-shadow-base: #{$box-shadow-base};
+  --fw-box-shadow-spicy: #{$box-shadow-spicy};
+  --fw-box-shadow-mild: #{$box-shadow-mild};
+
+  --fw-body-anchor-color: #{$body-anchor-color};
+  --fw-body-anchor-color-hover: #{$body-anchor-color-hover};
+
+  // @TODO ayuson mo nit tapos butones
+  --fw-body-font-size-base: #{$body-font-size};
+  --fw-body-font-size-small: #{$body-font-size-small};
+  --fw-body-font-size-large: #{$body-font-size-large};
+
+  --fw-body-line-height-base: #{$body-line-height};
+  --fw-body-line-height-compact: #{$body-line-height-compact};
+  --fw-body-line-height-expanded: #{$body-line-height-expanded};
+  --fw-body-line-height-constricted: 1;
+
+  --fw-body-font-size: var(--fw-body-font-size-base);
+  --fw-body-line-height: var(--fw-body-line-height-base);
+  --fw-body-text-gutter: #{rem($body-text-gutter, $body-font-size)};
 }

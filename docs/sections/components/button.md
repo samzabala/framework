@@ -152,7 +152,7 @@ NOTE if there are too much btns, there will be a scrollbar on the button group c
 ```html
 <div class="btn-group btn-group-vertical">
   <a href="#" class="btn btn-default">butt</a>
-  <a href="#" class="btn btn-default btn-disabled">butt</a>
+  <a href="#" class="btn btn-default disabled">butt</a>
   <a href="#" class="btn btn-default">butt</a>
   <a href="#" class="btn btn-default">butt</a>
   <a href="#" class="btn btn-default">butt</a>
@@ -225,28 +225,28 @@ If you want to allow the group to have no active bitches add **`.btn-group-toggl
 
 These helpers work on both `.btn` and `.btn-group`
 
-## **`.btn-disabled`**
+## **`.disabled`**
 
 Styles the button as disabled and also prevents it from doing shit
 
 ```html
-<a href="#" class="btn btn-disabled btn-default">Default</a>
-<a href="#" class="btn btn-disabled btn-primary">Primary</a>
-<a href="#" class="btn btn-disabled btn-secondary">secondary</a>
-<a href="#" class="btn btn-disabled btn-accent">accent</a>
-<a href="#" class="btn btn-disabled btn-neutral">neutral</a>
-<a href="#" class="btn btn-disabled btn-success">Success</a>
-<a href="#" class="btn btn-disabled btn-caution">caution</a>
-<a href="#" class="btn btn-disabled btn-error">error</a>
-<a href="#" class="btn btn-disabled btn-link">Link</a>
+<a href="#" class="btn disabled btn-default">Default</a>
+<a href="#" class="btn disabled btn-primary">Primary</a>
+<a href="#" class="btn disabled btn-secondary">secondary</a>
+<a href="#" class="btn disabled btn-accent">accent</a>
+<a href="#" class="btn disabled btn-neutral">neutral</a>
+<a href="#" class="btn disabled btn-success">Success</a>
+<a href="#" class="btn disabled btn-caution">caution</a>
+<a href="#" class="btn disabled btn-error">error</a>
+<a href="#" class="btn disabled btn-link">Link</a>
 ```
 
-![](../../images/btn-disabled.png)
+![](../../images/disabled.png)
 
 The whole group... DISABLED
 
 ```html
-<button class="btn-group btn-group-horizontal btn-disabled">
+<button class="btn-group btn-group-horizontal disabled">
   <span class="btn btn-default">Default</span>
   <span class="btn btn-primary">Primary</span>
   <span class="btn btn-secondary">secondary</span>
@@ -260,7 +260,7 @@ One of these bois are disabled... hmmm
 ```html
 <div class="btn-group btn-group-vertical>
 	<a href="#" class="btn btn-default">butt</a>
-	<a href="#" class="btn btn-default btn-disabled">butt</a>
+	<a href="#" class="btn btn-default disabled">butt</a>
 	<a href="#" class="btn btn-default">butt</a>
 	<a href="#" class="btn btn-default">butt</a>
 	<a href="#" class="btn btn-default">butt</a>

@@ -18,61 +18,29 @@
 
 .offset {
   & {
-    @include create-box-helper(#{&}, '', '', '', $gutter-base, 'for-offset-base');
-    @include create-box-helper(
-      #{&},
-      'negate',
-      '',
-      '',
-      ($gutter-base * -1),
-      'for-offset-base',
-      'negate'
-    );
+    @include create-box-helper(#{&}, '', '', '', $var-gutter-base);
+    @include create-box-helper(#{&}, 'negate', '', '', calc(#{$var-gutter-base} * -1));
   }
   &-large {
-    @include create-box-helper(#{&}, '', '', '', $gutter-large, 'for-offset-large');
-    @include create-box-helper(
-      #{&},
-      'negate',
-      '',
-      '',
-      ($gutter-large * -1),
-      'for-offset-large',
-      'negate'
-    );
+    @include create-box-helper(#{&}, '', '', '', $var-gutter-large);
+    @include create-box-helper(#{&}, 'negate', '', '', calc(#{$var-gutter-large} * -1));
   }
   &-small {
-    @include create-box-helper(#{&}, '', '', '', $gutter-small, 'for-offset-small');
-    @include create-box-helper(
-      #{&},
-      'negate',
-      '',
-      '',
-      ($gutter-small * -1),
-      'for-offset-small',
-      'negate'
-    );
+    @include create-box-helper(#{&}, '', '', '', $var-gutter-small);
+    @include create-box-helper(#{&}, 'negate', '', '', calc(#{$var-gutter-small} * -1));
   }
   &-micro {
-    @include create-box-helper(#{&}, '', '', '', $gutter-micro, 'for-offset-micro');
-    @include create-box-helper(
-      #{&},
-      'negate',
-      '',
-      '',
-      ($gutter-micro * -1),
-      'for-offset-micro',
-      'negate'
-    );
+    @include create-box-helper(#{&}, '', '', '', $var-gutter-micro);
+    @include create-box-helper(#{&}, 'negate', '', '', calc(#{$var-gutter-micro} * -1));
   }
   &-0 {
-    @include create-box-helper(#{&}, '', '', '', 0, 'for-offset');
+    @include create-box-helper(#{&}, '', '', '', 0);
   }
   &-auto {
-    @include create-box-helper(#{&}, '', '', '', auto, 'for-offset-auto');
+    @include create-box-helper(#{&}, '', '', '', auto);
   }
   &-flush {
-    @include create-box-helper(#{&}, '', '', '', 100%, 'for-offset-flush');
+    @include create-box-helper(#{&}, '', '', '', 100%);
   }
 }
 
@@ -82,13 +50,13 @@
   }
   @include dump-z-index-helpers(
     #{&},
-    $z-index-small-helper-multiplier,
-    $z-index-small-helper-max
+    $z-index-helper-multiplier-small,
+    $z-index-helper-max-small
   );
   @include dump-z-index-helpers(#{&}, $z-index-helper-multiplier, $z-index-helper-max);
   @include dump-z-index-helpers(
     #{&},
-    $z-index-large-helper-multiplier,
-    $z-index-large-helper-max
+    $z-index-helper-multiplier-large,
+    $z-index-helper-max-large
   );
 }

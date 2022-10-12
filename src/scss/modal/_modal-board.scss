@@ -1,185 +1,153 @@
-/*** MODAL BOARD ***/
-$global-prefix: '.modal';
-$prefix: '.modal-ui';
-$mode-wrapper-class: #{$prefix}-on-mode-board;
-$mode-class: #{$prefix}-mode-board;
+$mode-wrapper-class: #{$ui-prefix}-on-mode-board;
+$mode-class: #{$ui-prefix}-mode-board;
+
+:root {
+  // :where(#{$prefix})
+  --fw-modal-board-padding-spacer: #{$modal-board-padding-spacer};
+
+  --fw-modal-board-close-box-shadow: #{$modal-board-close-box-shadow};
+  --fw-modal-board-close-offset-y: #{$modal-board-close-offset-y};
+  --fw-modal-board-close-size: #{$modal-board-close-size};
+
+  @include on-breakpoint(mobile) {
+    --fw-modal-board-padding-spacer: #{$modal-board-padding-spacer-mobile};
+
+    --fw-modal-board-close-offset-y: #{$modal-board-close-offset-y-mobile};
+  }
+}
 
 [data-toggle-modal-board] {
   @include dump-styles(data-toggle);
 }
-
-#{$mode-class}#{$prefix} {
-  z-index: $z-index-modal-board;
+#{$prefix}#{$prefix}-board {
 }
-#{$mode-wrapper-class} {
-  #{$prefix}-wrapper {
-    @extend %fwe-modal-wrapper-background !optional;
 
-    @at-root #{$prefix}-align-right#{&} {
-      padding-left: $modal-board-padding-spacer;
-      #{$prefix}-popup,
-      #{$prefix}-button-wrapper {
+#{$mode-wrapper-class} {
+  --fw-modal-z-index: #{$z-index-modal-board};
+
+  #{$mode-class}#{$ui-prefix}-wrapper {
+    @at-root #{$ui-prefix}-align-right#{&} {
+      padding-left: var(--fw-modal-board-padding-spacer);
+
+      :is(#{$ui-prefix}-popup, #{$ui-prefix}-button-wrapper) {
         margin-left: auto;
       }
     }
-    @at-root #{$prefix}-align-left#{&} {
-      padding-right: $modal-board-padding-spacer;
-      #{$prefix}-popup,
-      #{$prefix}-button-wrapper {
+    @at-root #{$ui-prefix}-align-left#{&} {
+      padding-right: var(--fw-modal-board-padding-spacer);
+
+      :is(#{$ui-prefix}-popup, #{$ui-prefix}-button-wrapper) {
         margin-right: auto;
       }
     }
+  }
 
-    @include on-breakpoint(mobile) {
-      @at-root #{$prefix}-align-right#{&} {
-        padding-left: $modal-board-padding-spacer-mobile;
-      }
-      @at-root #{$prefix}-align-left#{&} {
-        padding-right: $modal-board-padding-spacer-mobile;
-      }
+  #{$mode-class}#{$ui-prefix}-button {
+    position: relative;
+    // z-index: 9;
+  }
+  #{$mode-class}#{$ui-prefix}-button-wrapper {
+    width: var(--fw-modal-width);
+    position: fixed;
+    z-index: 3;
+    justify-content: flex-start;
+    display: flex;
+    height: 0;
+    flex-wrap: nowrap;
+    overflow: visible;
+    top: 0;
+    max-width: calc(100% - var(--fw-modal-board-padding-spacer));
+    flex-direction: column;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      pointer-events: none;
+      flex: 0 0 auto;
+      height: var(--fw-modal-board-close-offset-y);
+      width: 0;
+      order: -99;
+    }
+
+    @at-root #{$ui-prefix}-align-right#{&} {
+      right: 0;
+      align-items: flex-start;
+    }
+
+    @at-root #{$ui-prefix}-align-left#{&} {
+      left: 0;
+      align-items: flex-end;
     }
   }
 
-  #{$mode-class}#{$prefix}-button {
-    &-wrapper {
-      position: fixed;
-      z-index: 3;
-      justify-content: flex-start;
-      display: flex;
-      height: 0;
-      flex-wrap: nowrap;
-      overflow: visible;
-      top: 0;
-      width: 100%;
-      max-width: calc(100% - #{$modal-board-padding-spacer});
-      flex-direction: column;
+  #{$mode-class}#{$ui-prefix}-button-default {
+    border: none;
+    outline: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--fw-modal-background);
+    box-shadow: var(--fw-modal-board-close-box-shadow);
+    padding: calc((var(--fw-modal-board-close-size) - 1em) * 0.5);
+    flex: 0 0 auto;
+    margin-bottom: 0.5em;
 
-      &:before {
-        content: '';
-        display: inline-block;
-        pointer-events: none;
-        flex: 0 0 auto;
-        height: $modal-board-close-offset-y;
-        width: 0;
-        order: -99;
-      }
-
-      @include on-breakpoint(mobile) {
-        max-width: calc(100% - #{$modal-board-padding-spacer-mobile});
-
-        &:before {
-          height: $modal-board-close-offset-y-mobile;
-        }
-      }
-
-      @at-root #{$prefix}-align-right#{&} {
-        right: 0;
-        align-items: flex-start;
-      }
-
-      @at-root #{$prefix}-align-left#{&} {
-        left: 0;
-        align-items: flex-end;
-      }
+    .symbol {
+      margin: auto;
     }
 
-    & {
-      position: relative;
-      z-index: 9;
+    @at-root #{$ui-prefix}-align-right#{&} {
+      left: 0;
+      transform: translateX(-50%);
+    }
 
-      &-default {
-        border: none;
-        outline: none;
-        font-size: $modal-board-close-button-font-size;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background: $modal-background;
-        box-shadow: $modal-board-close-box-shadow;
-        // width: $_fwc-board-close-width;
-        // height: $_fwc-board-close-height;
-        padding: calc((#{$_fwc-board-close-size} - 1em) * 0.5);
-        flex: 0 0 auto;
-        margin-bottom: 0.5em;
-
-        .symbol {
-          margin: auto;
-        }
-
-        .theme-inverse & {
-          background: $modal-background-inverse;
-        }
-
-        @at-root #{$prefix}-align-right#{&} {
-          left: 0;
-          transform: translateX(-50%);
-        }
-
-        @at-root #{$prefix}-align-left#{&} {
-          right: 0;
-          transform: translateX(50%);
-        }
-      }
+    @at-root #{$ui-prefix}-align-left#{&} {
+      right: 0;
+      transform: translateX(50%);
     }
   }
 
-  #{$mode-class}#{$prefix}-resize {
+  #{$mode-class}#{$ui-prefix}-resize {
     order: 99;
     &:hover {
       cursor: grab;
     }
   }
 
-  #{$mode-class}#{$prefix}-close {
+  #{$mode-class}#{$ui-prefix}-close {
     order: -99;
   }
 
-  #{$mode-class}#{$prefix}-popup {
+  #{$mode-class}#{$ui-prefix}-popup {
     @extend %fwe-modal-scroller !optional;
-    @extend %fwe-modal-popup-shadow !optional;
     height: 100%;
 
-    padding: $modal-board-padding-y calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-padding-x});
-
-    #{$global-prefix}-constricted &,
-    #{$global-prefix}-constricted-x & {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    #{$global-prefix}-constricted &,
-    #{$global-prefix}-constricted-y & {
-      padding-top: 0;
-      padding-bottom: 0;
+    @at-root :is(#{$ui-prefix}-align-right)#{&} {
+      padding-left: calc(
+        var(--fw-modal-padding-x) + (var(--fw-modal-board-close-size) * 0.5)
+      );
     }
 
-    @include on-breakpoint(nonmobile) {
-      #{$global-prefix}-expanded & {
-        padding: $modal-board-expanded-padding-y calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-expanded-padding-x});
-      }
-      #{$global-prefix}-compact & {
-        padding: $modal-board-compact-padding-y calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-compact-padding-x});
-      }
+    @at-root :is(#{$ui-prefix}-align-left)#{&} {
+      padding-right: calc(
+        var(--fw-modal-padding-x) + (var(--fw-modal-board-close-size) * 0.5)
+      );
     }
-
-    @include on-breakpoint(mobile) {
-      padding: $modal-board-padding-y-mobile calc((#{$_fwc-board-close-size} * 0.5) + #{$modal-board-padding-x-mobile});
-    }
-
-    &-content {
-      // flex: 1 1;
-      position: relative;
-    }
+  }
+  #{$mode-class}#{$ui-prefix}-popup-content {
+    // flex: 1 1;
+    position: relative;
   }
 }
 
-#{$mode-class}#{$prefix}-on-fullscreen {
-  #{$prefix}-button-wrapper {
-    width: auto !important;
-  }
+// #{$mode-class}#{$ui-prefix}-on-fullscreen {
+//   #{$ui-prefix}-button-wrapper {
+//     width: auto !important;
+//   }
 
-  #{$prefix}-resize {
-    display: none;
-  }
-}
+//   #{$ui-prefix}-resize {
+//     display: none;
+//   }
+// }

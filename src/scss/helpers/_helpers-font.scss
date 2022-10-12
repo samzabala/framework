@@ -23,16 +23,22 @@
 
   &-size {
     &-large {
-      font-size: rem($_fwc-body-size-large) !important;
+      --fw-body-font-size: #{$var-body-font-size-large} !important;
     }
+
     &-small {
-      font-size: rem($_fwc-body-size-small) !important;
+      --fw-body-font-size: #{$var-body-font-size-small} !important;
     }
+
     &-normalize {
-      font-size: 1rem !important;
+      --fw-body-font-size: #{$var-body-font-size-base} !important;
     }
     &-inherit {
-      font-size: inherit !important;
+      --fw-body-font-size: inherit !important;
+    }
+
+    @at-root :is(#{&}-large, #{&}-small, #{&}-normalize, #{&}-inherit) {
+      font-size: $var-body-font-size !important;
     }
   }
 

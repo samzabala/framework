@@ -5,30 +5,33 @@
       '',
       'border',
       'radius',
-      $border-radius-base,
-      'for-radius',
-      ''
+      $var-border-radius-base
     );
-    &-small {
-      @include create-corner-helper(
-        #{&},
-        '',
-        'border',
-        'radius',
-        $border-radius-small,
-        'for-radius',
-        'small'
-      );
-    }
     &-large {
       @include create-corner-helper(
         #{&},
         '',
         'border',
         'radius',
-        $border-radius-large,
-        'for-radius',
-        'large'
+        $var-border-radius-large
+      );
+    }
+    &-small {
+      @include create-corner-helper(
+        #{&},
+        '',
+        'border',
+        'radius',
+        $var-border-radius-small
+      );
+    }
+    &-micro {
+      @include create-corner-helper(
+        #{&},
+        '',
+        'border',
+        'radius',
+        $var-border-radius-micro
       );
     }
   }
@@ -39,5 +42,5 @@
 }
 
 .no-radius {
-  @include create-corner-helper(#{&}, '', 'border', 'radius', 0, 'for-no-radius', '');
+  @include create-corner-helper(#{&}, '', 'border', 'radius', 0rem);
 }

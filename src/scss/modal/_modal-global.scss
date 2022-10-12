@@ -1,11 +1,7 @@
-// [data-toggle-modal] {
-//   @include dump-styles(data-toggle);
-// }
-%fwe-modal {
-  & {
-    text-align: initial;
-  }
+$prefix: '.modal';
+$ui-prefix: #{$prefix}-ui;
 
+%fwe-modal {
   //ui block where scrolling is allowed
   &-scroller {
     overflow-y: scroll;
@@ -15,149 +11,150 @@
       @include dump-styles(no-scrollbar);
     }
   }
+}
 
-  //ui wrapper
-  &-wrapper {
-    position: fixed;
-    top: 0 !important;
-    left: 0 !important;
-    bottom: 0 !important;
-    min-height:100% !important;
-    height:auto !important;
-    width:100% !important;
-    &-background {
-      background: $modal-overlay-bg;
+:root {
+  // :where(#{$prefix})
+  --fw-modal-box-shadow: #{$modal-box-shadow};
+  --fw-modal-background: #{$modal-background};
+
+  --fw-modal-overlay-opacity: #{$modal-overlay-opacity};
+  --fw-modal-overlay-background: #{$modal-overlay-background};
+
+  --fw-modal-padding-x: #{$modal-padding-x};
+  --fw-modal-padding-y: #{$modal-padding-y};
+
+  --fw-modal-button-font-size: #{$modal-button-font-size};
+
+  --fw-modal-width: auto;
+  --fw-modal-z-index: auto;
+}
+
+#{$prefix} {
+  display: inline;
+  text-align: initial;
+
+  &:not(.active) {
+    @include dump-styles(hide-js-friendly);
+  }
+}
+
+#{$ui-prefix} {
+  z-index: var(--fw-modal-z-index);
+}
+
+:is(#{$ui-prefix}, #{$ui-prefix}-wrapper) {
+  position: fixed !important;
+}
+
+#{$ui-prefix}-wrapper {
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  min-height: 100% !important;
+  height: auto !important;
+  width: 100% !important;
+
+  #{$ui-prefix}-center-y & {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+#{$ui-prefix}-title {
+  margin-top: 0;
+}
+
+#{$ui-prefix}-close-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--fw-modal-overlay-background);
+  opacity: var(--fw-modal-overlay-opacity);
+}
+
+#{$ui-prefix}-button {
+}
+
+#{$ui-prefix}-button-default {
+  font-size: var(--fw-modal-button-font-size);
+}
+
+#{$ui-prefix}-popup {
+  width: var(--fw-modal-width);
+  backface-visibility: hidden;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  background: var(--fw-modal-background);
+  box-shadow: var(--fw-modal-box-shadow);
+  padding: var(--fw-modal-padding-y) var(--fw-modal-padding-x);
+
+  :is(#{$prefix}-constricted, #{$prefix}-constricted-x) & {
+    --fw-modal-padding-x: 0rem;
+  }
+
+  :is(#{$prefix}-constricted, #{$prefix}-constricted-y) & {
+    --fw-modal-padding-y: 0rem;
+  }
+
+  #{$prefix}-expanded & {
+    @include on-breakpoint(nonmobile) {
+      --fw-modal-padding-x: #{$modal-padding-x-expanded};
+      --fw-modal-padding-y: #{$modal-padding-y-expanded};
     }
   }
 
-  //duh
-  &-close-overlay {
+  #{$prefix}-compact & {
+    @include on-breakpoint(nonmobile) {
+      --fw-modal-padding-x: #{$modal-padding-x-compact};
+      --fw-modal-padding-y: #{$modal-padding-y-compact};
+    }
+  }
+}
+
+#{$ui-prefix}-on-fullscreen {
+  --fw-modal-z-index: #{$z-index-modal-fullscreen};
+  --fw-modal-width: 100% !important;
+
+  #{$ui-prefix}-wrapper {
+    padding: 0 !important;
+  }
+  #{$ui-prefix}-button-wrapper {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 10px;
+    top: 0;
+    z-index: 9;
+    padding: $var-gutter-small;
+  }
+  #{$ui-prefix}-close {
+    order: -99;
+  }
+  #{$ui-prefix}-button {
+    margin: 0 0 1em;
+  }
+
+  #{$ui-prefix}-popup {
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    border-radius: 0;
+    overflow-y: scroll;
   }
 
-  //content wrapper
-  &-popup {
-    backface-visibility: hidden;
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    background: $modal-background;
-
-    .theme-inverse & {
-      background: $modal-background-inverse;
-    }
-
-    &-shadow {
-      box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
-    }
-  }
-}
-$prefix: '.modal';
-.modal {
-  @extend %fwe-modal !optional;
-  &:not(.active) {
-    @include dump-styles(hide-js-friendly);
-  }
-
-  &-ui {
-    & {
-      position: fixed;
-    }
-    &-wrapper {
-      @extend %fwe-modal-wrapper !optional;
-    }
-
-    &-center-y &-wrapper {
-      display: flex;
-      flex-wrap:wrap;
-      align-items: center;
-    }
-
-    &-title {
-      margin-top: 0;
-    }
-
-    &-close-overlay {
-      @extend %fwe-modal-close-overlay !optional;
-    }
-
-    &-popup {
-      @extend %fwe-modal-popup !optional;
-      @extend %fwe-modal-popup-shadow !optional;
-    }
-
-    #{&}-on-fullscreen & {
-      &-wrapper {
-        padding: 0 !important;
-      }
-      &-button-wrapper {
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        right: 10px;
-        top: 0;
-        z-index: 9;
-        padding: $gutter-small;
-      }
-      &-close {
-        order: -99;
-      }
-      &-button {
-        margin: 0 0 1em;
-
-        &-default {
-          font-size: $modal-close-button-font-size;
-        }
-      }
-      &-popup {
-        width: 100% !important;
-        height: 100% !important;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-radius: 0;
-        overflow-y: scroll;
-        padding: $modal-fullscreen-padding-y $modal-fullscreen-padding-x;
-
-        #{$prefix}-constricted &,
-        #{$prefix}-constricted-x & {
-          padding-left: 0;
-          padding-right: 0;
-        }
-        #{$prefix}-constricted &,
-        #{$prefix}-constricted-y & {
-          padding-top: 0;
-          padding-bottom: 0;
-        }
-
-        @include on-breakpoint(nonmobile) {
-          #{$prefix}-expanded & {
-            padding: $modal-fullscreen-expanded-padding-y
-              $modal-fullscreen-expanded-padding-x;
-          }
-          #{$prefix}-compact & {
-            padding: $modal-fullscreen-compact-padding-y
-              $modal-fullscreen-compact-padding-x;
-          }
-        }
-
-        @include on-breakpoint(mobile) {
-          padding: $modal-fullscreen-padding-y-mobile $modal-fullscreen-padding-x-mobile;
-        }
-
-        &-content {
-          width:100%;
-          flex: 1 1;
-        }
-      }
-    }
+  #{$ui-prefix}-popup-content {
+    width: 100%;
+    flex: 1 1;
   }
 }

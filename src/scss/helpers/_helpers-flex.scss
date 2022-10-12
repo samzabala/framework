@@ -1,4 +1,3 @@
-/* FLEX */
 .inline-flex {
   display: inline-flex !important;
 
@@ -31,23 +30,27 @@
   display: flex !important;
 
   &-xs {
-    @include flex(false, xs, true);
+    @include br(xs) {
+      display: flex !important;
+    }
   }
 
   &-sm {
-    @include flex(false, sm, true);
+    @include br(sm) {
+      display: flex !important;
+    }
   }
 
   &-md {
-    @include flex(false, md, true);
+    @include br(md) {
+      display: flex !important;
+    }
   }
 
   &-lg {
-    @include flex(false, lg, true);
-  }
-
-  &-xl {
-    @include flex(false, xl, true);
+    @include br(lg) {
+      display: flex !important;
+    }
   }
 
   &-direction {

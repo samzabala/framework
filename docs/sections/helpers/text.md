@@ -29,7 +29,7 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
   line-height is set to inherit line-height.
 
-- **`.text-leading-whole`**
+- **`.text-leading-constricted`**
 
   line-height is set to 1. which means no line-height. just the same height as the font.
 
@@ -104,7 +104,7 @@ For color syntax, view [color declarations](../scaffolding/colors.md#helpers)
 
   [More info](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/)
 
-- **`.text-wrap-ellipsis-multiple`**
+- **`.text-wrap-ellipsis-multiline`**
 
   Allows multiple lines based on given `$body-ellipsis-multiple-factor`. 2 by default
 

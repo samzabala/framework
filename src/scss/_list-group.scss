@@ -1,52 +1,53 @@
-/*** LIST GROUPS ***/
 $prefix: '.list-group';
-#{$prefix},
-ul#{$prefix} {
-  margin-bottom: $_fwc-body-text-gutter-y;
+
+:root {
+  // :where(#{$prefix})
+  --fw-list-group-border-color: #{$list-group-border-color};
+  --fw-list-group-border-width: #{$list-group-border-width};
+  --fw-list-group-padding-x: #{em($list-group-padding-x, $body-font-size)};
+
+  --fw-list-group-item-height: #{em($list-group-item-height, $body-font-size)};
+
+  --fw-list-group-item-background-color: #{$list-group-item-background-color};
+  --fw-list-group-item-background-color-active: #{$list-group-item-background-color-active};
+  --fw-list-group-item-background-color-hover: #{$list-group-item-background-color-hover};
+  --fw-list-group-item-background-color-striped: #{$list-group-item-background-color-striped};
+}
+
+#{$prefix} {
   padding: 0;
 
   &#{$prefix}-striped {
-    & > li,
-    #{$prefix}-item {
+    & > :is(li, #{$prefix}-item) {
       &:nth-child(odd) {
-        background-color: $list-group-background-striped;
+        background-color: var(--fw-list-group-item-background-color-striped);
       }
     }
   }
 
-  @at-root & > li,
-    &-item {
+  > :is(li, #{$prefix}-item) {
     @include dump-styles(cf);
     font: inherit;
     margin: 0;
     display: block;
-    background-color: $list-group-background;
-    border-color: $list-group-border-color;
-    border-style: solid;
-    border-bottom-width: $list-group-border-width;
-    padding-top: calc(
-      (
-          #{$_fwc-list-group-height} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-        ) * 0.5
-    );
-    padding-bottom: calc(
-      (
-          #{$_fwc-list-group-height} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-        ) * 0.5
-    );
-    padding-left: $_fwc-list-group-gutter-x;
-    padding-right: $_fwc-list-group-gutter-x;
-
-    .theme-inverse & {
-      border-color: $list-group-border-color-inverse;
-    }
+    background-color: var(--fw-list-group-item-background-color);
+    border-bottom: var(--fw-list-group-border-width) solid
+      var(--fw-list-group-border-color);
+    padding: calc(
+        (
+            (var(--fw-list-group-item-height) - var(--fw-list-group-border-width)) -
+              (#{calc-single-line()})
+          ) * 0.5
+      )
+      var(--fw-list-group-padding-x);
 
     &#{$prefix}-item-no-interaction {
       pointer-events: none !important;
     }
 
     &:first-child {
-      border-top-width: $list-group-border-width;
+      border-top-width: var(--fw-list-group-border-width) solid
+        var(--fw-list-group-border-color);
     }
 
     &:before {
@@ -54,52 +55,30 @@ ul#{$prefix} {
     }
   }
 
-  @at-root &#{$prefix}-expanded {
-    > li,
-    #{$prefix}-item {
-      padding-top: calc(
-        (
-            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-          ) * 0.5
-      );
-      padding-bottom: calc(
-        (
-            #{$_fwc-list-group-height-expanded} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-          ) * 0.5
-      );
+  &#{$prefix}-expanded {
+    --fw-list-group-item-height: #{em($list-group-item-height-expanded, $body-font-size)};
+    --fw-body-line-height: #{$var-body-line-height-expanded};
+  }
+
+  &#{$prefix}-compact {
+    --fw-list-group-item-height: #{em($list-group-item-height-compact, $body-font-size)};
+    --fw-body-line-height: #{$var-body-line-height-compact};
+  }
+
+  &#{$prefix}-constricted {
+    --fw-list-group-item-height: #{calc-single-line()};
+    --fw-body-line-height: #{$var-body-line-height-constricted};
+  }
+
+  &:is(#{$prefix}-toggle) {
+    > :is(li, #{$prefix}-item) > :where(*) {
+      pointer-events: none;
     }
   }
 
-  @at-root &#{$prefix}-compact {
-    > li,
-    #{$prefix}-item {
-      padding-top: calc(
-        (
-            #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-          ) * 0.5
-      );
-      padding-bottom: calc(
-        (
-            #{$_fwc-list-group-height-compact} - #{$list-group-border-width} - #{$_fwc-body-single-line}
-          ) * 0.5
-      );
-    }
-  }
-
-  @at-root &#{$prefix}-constricted {
-    > li,
-    #{$prefix}-item {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-  }
-
-  &-interactive,
-  &-toggle {
-    > li,
-    #{$prefix}-item {
-      &,
-      & a {
+  &:is(#{$prefix}-interactive, #{$prefix}-toggle) {
+    > :is(li, #{$prefix}-item) {
+      > a {
         @include type-set(
           (
             color: inherit,
@@ -108,42 +87,34 @@ ul#{$prefix} {
         );
       }
 
-      &:hover,
-      &:focus,
-      &.focus {
-        background: $list-group-interactive-background-hover;
+      &:is(:hover, :focus, .focus) {
+        background: var(--fw-list-group-item-background-color-hover);
       }
 
-      &:active,
-      &.active {
-        background: $list-group-interactive-background-active;
+      &:is(:active, .active) {
+        background: var(--fw-list-group-item-background-color-active);
       }
     }
   }
 
-  &-toggle {
-    > li,
-    #{$prefix}-item {
-
-      > * {
-        pointer-events: none;
-      }
-    }
-  }
-
-  @at-root .dropdown #{$prefix} {
+  .dropdown & {
     margin-bottom: 0;
 
-    &:first-child:last-child {
-      border-radius: $dropdown-border-radius;
+    &:only-child {
+      border-radius: var(--fw-dropdown-border-radius, #{$dropdown-border-radius});
     }
 
-    > li,
-    #{$prefix}-item {
+    > :is(li, #{$prefix}-item) {
       > a {
         padding-top: 0;
         padding-bottom: 0;
       }
     }
   }
+}
+
+:is(.disabled, [disabled], :disabled) {
+  --fw-list-group-item-background-color-active: var(
+    --fw-list-group-item-background-color
+  );
 }

@@ -1,51 +1,75 @@
-/*** highlights ***/
+$fwc-highlight-schemes-color: (
+  default: (
+    background: $highlight-default-background,
+    color: $highlight-default-color,
+  ),
+  primary: (
+    background: $highlight-primary-background,
+    color: $highlight-primary-color,
+  ),
+  secondary: (
+    background: $highlight-secondary-background,
+    color: $highlight-secondary-color,
+  ),
+  accent: (
+    background: $highlight-accent-background,
+    color: $highlight-accent-color,
+  ),
+  neutral: (
+    background: $highlight-neutral-background,
+    color: $highlight-neutral-color,
+  ),
+  success: (
+    background: $highlight-success-background,
+    color: $highlight-success-color,
+  ),
+  caution: (
+    background: $highlight-caution-background,
+    color: $highlight-caution-color,
+  ),
+  error: (
+    background: $highlight-error-background,
+    color: $highlight-error-color,
+  ),
+);
+
 $prefix: '.highlight';
+
+:root {
+  // :where(#{$prefix})
+  --fw-highlight-border-radius: #{$highlight-border-radius};
+  --fw-highlight-height: #{em($highlight-height, $body-font-size)};
+  --fw-highlight-margin: #{em($highlight-margin, $body-font-size)};
+  --fw-highlight-padding-x: #{em($highlight-padding-x, $highlight-font-size)};
+
+  --fw-highlight-background: transparent;
+  --fw-highlight-color: inherit;
+}
+
 #{$prefix} {
   @include type-set(
     (
-      size: inherit,
-      leading: inherit,
       weight: $highlight-font-weight,
       style: $highlight-font-style,
       case: $highlight-text-transform,
-      decoration: get-anchor-dec(),
+      decoration: none,
       color: inherit,
     )
   );
-  padding-top: calc(((#{$_fwc-highlight-height} - (#{$_fwc-body-single-line})) * 0.5));
-  padding-bottom: calc(
-    ((#{$_fwc-highlight-height} - (#{$_fwc-body-single-line})) * 0.5)
-  );
-  padding-left: $_fwc-highlight-padding-x;
-  padding-right: $_fwc-highlight-padding-x;
-  margin-left: $_fwc-highlight-margin-x;
-  margin-top: $_fwc-highlight-margin-x;
-  border-radius: $highlight-border-radius;
+  padding: calc((var(--fw-highlight-height) - (#{calc-single-line()})) * 0.5)
+    var(--fw-highlight-padding-x);
+  margin-left: var(--fw-highlight-margin);
+  margin-top: var(--fw-highlight-margin);
+  border-radius: var(--fw-highlight-border-radius);
   // display: inline-flex;
   // align-items:center;
-  margin-bottom: 0.2em;
+  background: var(--fw-highlight-background);
+  color: var(--fw-highlight-color);
+}
 
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.focus,
-  &.active {
-    @include dump-styles(no-text-decoration-hover);
-    color: $highlight-color;
-  }
-
-  @each $tag, $properties in $_fwc-highlight-schemes-color {
-    &-#{$tag} {
-      background: map-get($properties, background);
-      &,
-      &:hover,
-      &:focus,
-      &:active,
-      &.focus,
-      &.active {
-        color: map-get($properties, color);
-      }
-    }
+@each $tag, $properties in $fwc-highlight-schemes-color {
+  #{$prefix}-#{$tag} {
+    --fw-highlight-background: #{map-get($properties, background)};
+    --fw-highlight-color: #{map-get($properties, color)};
   }
 }

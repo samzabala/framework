@@ -1,0 +1,17 @@
+:is(.theme-inverse, .theme-default),
+:where(html, body) {
+  color: $var-theme-color;
+  background-color: $var-theme-background;
+}
+:is(
+    :where(:root),
+    .theme-default,
+    .theme-inverse .theme-to-invert,
+    .theme-default .theme-to-inherit
+  ) {
+  @include dump-theme-colors(default);
+}
+
+:is(.theme-inverse, .theme-default .theme-to-invert, .theme-inverse .theme-to-inherit) {
+  @include dump-theme-colors(inverse);
+}

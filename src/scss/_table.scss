@@ -1,264 +1,266 @@
-/*** Tables ***/
-//internal vars
+$fwc-table-row-background: (
+  primary: (
+    normal: $table-row-primary-background,
+  ),
+  secondary: (
+    normal: $table-row-secondary-background,
+  ),
+  accent: (
+    normal: $table-row-accent-background,
+  ),
+  neutral: (
+    normal: $table-row-neutral-background,
+  ),
+  success: (
+    normal: $table-row-success-background,
+  ),
+  caution: (
+    normal: $table-row-caution-background,
+  ),
+  error: (
+    normal: $table-row-error-background,
+  ),
+  intensity-1: (
+    normal: $table-row-intensity-1-background,
+  ),
+  intensity-2: (
+    normal: $table-row-intensity-2-background,
+  ),
+  intensity-3: (
+    normal: $table-row-intensity-3-background,
+  ),
+  intensity-4: (
+    normal: $table-row-intensity-4-background,
+  ),
+  intensity-5: (
+    normal: $table-row-intensity-5-background,
+  ),
+);
+
+$fwc-table-cell-background: (
+  primary: (
+    normal: $table-cell-primary-background,
+  ),
+  secondary: (
+    normal: $table-cell-secondary-background,
+  ),
+  accent: (
+    normal: $table-cell-accent-background,
+  ),
+  neutral: (
+    normal: $table-cell-neutral-background,
+  ),
+  success: (
+    normal: $table-cell-success-background,
+  ),
+  caution: (
+    normal: $table-cell-caution-background,
+  ),
+  error: (
+    normal: $table-cell-error-background,
+  ),
+  intensity-1: (
+    normal: $table-cell-intensity-1-background,
+  ),
+  intensity-2: (
+    normal: $table-cell-intensity-2-background,
+  ),
+  intensity-3: (
+    normal: $table-cell-intensity-3-background,
+  ),
+  intensity-4: (
+    normal: $table-cell-intensity-4-background,
+  ),
+  intensity-5: (
+    normal: $table-cell-intensity-5-background,
+  ),
+);
 
 $prefix: '.table';
-#{$prefix} {
-  &-wrapper {
-    width: 100%;
-    display: block;
-    overflow-x: auto;
 
-    @at-root & .table,
-      & table {
+:root {
+  // :where(#{$prefix})
+  --fw-table-cell-border-color: #{$table-cell-border-color};
+  --fw-table-cell-border-width: #{$table-cell-border-width};
+  --fw-table-cell-padding-x: #{rem($table-cell-padding-x, $body-font-size)};
+
+  --fw-table-cell-height: #{em($table-cell-height, $body-font-size)};
+
+  //internal
+  --fw-table-cell-border-top-width: var(--fw-table-cell-border-width);
+  --fw-table-cell-border-right-width: 0;
+  --fw-table-cell-border-bottom-width: 0;
+  --fw-table-cell-border-left-width: 0;
+  --fw-table-cell-background: transparent;
+
+  --fw-table-cell-heading-height: #{em($table-cell-heading-height, $body-font-size)};
+
+  --fw-table-label-width: #{rem($table-label-width, $body-font-size)};
+  --fw-table-label-offset: #{rem($table-label-offset, $body-font-size)};
+  --fw-table-label-border-radius: #{$table-label-border-radius};
+
+  --fw-table-label-background: currentColor;
+
+  --fw-table-row-background: #{$table-row-background};
+}
+
+#{$prefix}-wrapper {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+
+  :is(:where(table), #{$prefix}) {
+    // white-space: nowrap;
+    width: auto;
+    min-width: 100%;
+    margin-bottom: 0;
+    table-layout: auto !important;
+
+    :is(.tag, .btn) {
       // white-space: nowrap;
-      width: auto;
-      min-width: 100%;
-      margin-bottom: 0;
-      table-layout: auto !important;
-
-      .tag,
-      .btn {
-        white-space: nowrap;
-      }
     }
   }
-  @at-root &,
-    table {
-    width: 100%;
-    display: table;
-    border-collapse: collapse;
-    text-align: inherit;
-    background: transparent;
+}
 
+:is(:where(table), :is(#{$prefix})) {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  text-align: inherit;
+  background: transparent;
+
+  &:not(#{$prefix}-fixed) {
     .text-wrap-ellipsis,
-    .text-wrap-ellipsis-multiple {
+    .text-wrap-ellipsis-multiline {
       width: 10rem;
       width: clamp(10rem, 25rem, 100%);
     }
+  }
 
-    &#{$prefix}-fixed {
-      table-layout: fixed !important;
-    }
+  &#{$prefix}-fixed {
+    table-layout: fixed !important;
   }
 }
 
-thead,
-tbody,
-tfoot,
-tr,
-#{$prefix}-row {
+:is(:where(thead, tbody, tfoot, tr), :is(#{$prefix}-row)) {
   width: 100%;
 }
 
-thead,
-tbody,
-tfoot {
+:where(thead, tbody, tfoot) {
   vertical-align: inherit;
   text-align: inherit;
 }
 
-tr,
-#{$prefix}-row {
+:is(:where(tr), :is(#{$prefix}-row)) {
   // height: 100%;
   display: table-row;
   vertical-align: inherit;
   text-align: inherit;
-  background: $table-row-background;
+  background: var(--fw-table-row-background);
 
-  .theme-inverse & {
-    background: $table-row-background-inverse;
+  &:last-child {
+    --fw-table-cell-border-bottom-width: var(--fw-table-cell-border-width);
   }
 
-  .alert &,
-  .theme-inverse .alert & {
-    background: transparent;
-  }
-}
-
-#{$prefix}-row {
-  @each $tag, $colors in $_fwc-table-row-background {
-    &-#{$tag} {
-      td,
-      #{$prefix}-cell {
-        background-color: map-get($colors, normal);
-
-        .theme-inverse & {
-          background-color: map-get($colors, inverse);
-        }
-
-        .alert &,
-        .theme-inverse .alert & {
-          background: map-get(map-get($_fwc-color-vars-variations, #{$tag}), alpha-2);
-        }
-      }
+  @each $tag, $colors in $fwc-table-row-background {
+    &#{$prefix}-row-#{$tag} {
+      --fw-table-row-background: #{map-get($colors, normal)};
     }
   }
 }
 
-th,
-td,
-#{$prefix}-cell,
-#{$prefix}-cell#{$prefix}-cell-heading {
+:is(:where(th, td), :is(#{$prefix}-cell)) {
   // vertical-align:middle;
   // height: 100%;
   // position: relative;
   vertical-align: inherit;
   text-align: inherit;
-  padding-left: $table-cell-gutter;
-  padding-right: $table-cell-gutter;
+
+  padding: calc((var(--fw-table-cell-height) - #{calc-single-line()}) * 0.5)
+    var(--fw-table-cell-padding-x);
   display: table-cell;
+  background-color: var(--fw-table-cell-background);
 
-  border-color: $table-cell-border-color;
+  border-color: var(--fw-table-cell-border-color);
   border-style: solid;
-  border-top-width: $table-cell-border-width;
 
-  .theme-inverse & {
-    border-color: $table-cell-border-color-inverse;
-  }
+  border-top-width: var(--fw-table-cell-border-top-width);
+  border-right-width: var(--fw-table-cell-border-right-width);
+  border-bottom-width: var(--fw-table-cell-border-bottom-width);
+  border-left-width: var(--fw-table-cell-border-left-width);
 
-  .alert &,
-  .theme-inverse .alert & {
-    border-color: currentColor;
-  }
-
-  tr:last-child &,
-  #{$prefix}-row:last-child & {
-    border-bottom-width: $table-cell-border-width;
-  }
-
-  &#{$prefix}-bordered,
-  #{$prefix}-bordered & {
-    border-color: $table-cell-border-color;
-    border-style: solid;
-    border-left-width: $table-cell-border-width;
-
-    .theme-inverse & {
-      border-color: $table-cell-border-color-inverse;
-    }
-
-    &:last-child {
-      border-right-width: $table-cell-border-width;
-    }
+  :is(#{$prefix}-bordered) &:last-child {
+    --fw-table-cell-border-right-width: var(--fw-table-cell-border-width);
   }
 }
 
-#{$prefix}-disabled {
-  @include dump-styles(disabled);
+:is(#{$prefix}-bordered) {
+  --fw-table-cell-border-left-width: var(--fw-table-cell-border-width);
 }
 
-th,
-#{$prefix}-cell#{$prefix}-cell-heading {
-  padding-top: calc(
-    (#{$_fwc-table-heading-height} - (#{$_fwc-body-single-line})) * 0.5
-  );
-  padding-bottom: calc(
-    (#{$_fwc-table-heading-height} - (#{$_fwc-body-single-line})) * 0.5
-  );
-  background: $table-heading-background;
-  // vertical-align:middle;
+:is(:where(th), #{$prefix}-cell#{$prefix}-cell-heading) {
+  --fw-table-cell-background: #{$table-cell-heading-background};
+  --fw-table-cell-height: var(--fw-table-cell-heading-height);
 
   @include type-set(
     (
-      color: $table-heading-color,
-      weight: $table-heading-font-weight,
-      style: $table-heading-font-style,
-      case: $table-heading-text-transform,
+      root-size: $body-font-size,
+      size: $table-cell-heading-font-size,
+      color: $table-cell-heading-color,
+      weight: $table-cell-heading-font-weight,
+      style: $table-cell-heading-font-style,
+      case: $table-cell-heading-text-transform,
     )
   );
-
-  .theme-inverse & {
-    background: $table-heading-background-inverse;
-    color: $table-heading-color-inverse;
-  }
-
-  .alert &,
-  .theme-inverse .alert & {
-    background: none;
-    color: inherit;
-  }
 }
 
-td,
+#{$prefix}-expanded {
+  --fw-table-cell-height: #{em($table-cell-height-expanded, $body-font-size)};
+  --fw-table-cell-heading-height: #{em(
+      $table-cell-heading-height-expanded,
+      $body-font-size
+    )};
+}
+
+#{$prefix}-compact {
+  --fw-table-cell-height: #{em($table-cell-height-compact, $body-font-size)};
+  --fw-table-cell-heading-height: #{em(
+      $table-cell-heading-height-compact,
+      $body-font-size
+    )};
+}
+
+#{$prefix}-constricted {
+  --fw-table-cell-height: #{calc-single-line()};
+  --fw-table-cell-heading-height: #{calc-single-line()};
+}
+
 #{$prefix}-cell {
-  padding-top: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
-  padding-bottom: calc((#{$_fwc-table-cell-height} - #{$_fwc-body-single-line}) * 0.5);
-
-  #{$prefix}-expanded & {
-    padding-top: calc(
-      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
-    );
-    padding-bottom: calc(
-      (#{$_fwc-table-expanded-cell-height} - #{$_fwc-body-single-line-expanded}) * 0.5
-    );
-    line-height: $_fwc-body-line-height * $body-line-height-expanded-factor;
-  }
-
-  #{$prefix}-compact & {
-    padding-top: calc(
-      (#{$_fwc-table-compact-cell-height} - #{$_fwc-body-single-line-compact}) * 0.5
-    );
-    padding-bottom: calc(
-      (#{$_fwc-table-compact-cell-height} - #{$_fwc-body-single-line-compact}) * 0.5
-    );
-    line-height: $_fwc-body-line-height * $body-line-height-compact-factor;
-  }
-
-  #{$prefix}-constricted & {
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 1;
+  @each $tag, $colors in $fwc-table-cell-background {
+    &-#{$tag} {
+      --fw-table-cell-background: #{map-get($colors, normal)};
+    }
   }
 }
 
 #{$prefix}-label {
-  width: $table-label-width;
-  height: calc(#{$_fwc-table-cell-height} - (#{$table-label-offset} * 2));
-  border-radius: $table-label-border-radius;
+  background-color: var(--fw-table-cell-background);
+  width: var(--fw-table-label-width);
+  height: calc(var(--fw-table-cell-height) - (var(--fw-table-label-offset) * 2));
+  border-radius: var(--fw-table-label-border-radius);
   display: inline-block;
   vertical-align: middle;
-  margin: #{$table-label-offset * -1} 0;
+  margin: calc(var(--fw-table-label-offset) * -1) 0;
 
-  #{$prefix}-expanded & {
-    height: calc(#{$_fwc-table-expanded-cell-height} - (#{$table-label-offset} * 2));
-  }
-
-  #{$prefix}-compact & {
-    height: calc(#{$_fwc-table-compact-cell-height} - (#{$table-label-offset} * 2));
-  }
-
-  #{$prefix}-constricted & {
-    height: 1em;
-  }
-
-  @each $tag, $color in $_fwc-brand-color-declarations-for-components {
+  @each $tag, $color in $fwc-brand-color-declarations-for-components {
     &-#{$tag} {
-      background-color: $color;
+      --fw-table-cell-background: #{$color};
     }
   }
 
-  &-intensity {
-    @for $i from 1 through length($_fwc-brand-color-intensity) {
-      &-#{$i} {
-        background-color: nth($_fwc-brand-color-intensity, $i);
-      }
-    }
-  }
-}
-
-#{$prefix}-cell {
-  @each $tag, $colors in $_fwc-table-cell-background {
-    @at-root td#{&}-#{$tag},
-      &#{&}-#{$tag} {
-      background-color: map-get($colors, normal);
-
-      .theme-inverse & {
-        background-color: map-get($colors, inverse);
-      }
-
-      .alert &,
-      .theme-inverse .alert & {
-        background: map-get(map-get($_fwc-color-vars-variations, #{$tag}), alpha-5);
-      }
+  @for $i from 1 through length($fwc-brand-color-intensity) {
+    &-intensity-#{$i} {
+      --fw-table-cell-background: #{nth($fwc-brand-color-intensity, $i)};
     }
   }
 }

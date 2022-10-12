@@ -87,22 +87,22 @@ Container for functions. Each [`.input`](../components/form.md) or [`.btn`](../c
     <div class="module-functions">
       <div class="module-function">
         <div class=" input-group input-group-horizontal input-group-responsive">
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 1</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
 
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 2</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
 
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 3</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
 
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 4</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
@@ -116,22 +116,22 @@ Container for functions. Each [`.input`](../components/form.md) or [`.btn`](../c
     <div class="module-functions">
       <div class="module-function">
         <div class=" input-group input-group-horizontal input-group-responsive">
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 1</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
 
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 2</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
 
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 3</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
 
-          <select class="input input-select">
+          <select class="input input-box-select">
             <option value="" selected="">Select 4</option>
             <option class="REPLACE" value="VAL">VAL</option>
           </select>
@@ -142,11 +142,11 @@ Container for functions. Each [`.input`](../components/form.md) or [`.btn`](../c
 </div>
 ```
 
-### **`.module-header-break`** and **`.module-footer-break`**
+### **`.module-end-break`**
 
 This allows either header or footer to break into flex row layout So you can display things beside the module functions or some shit
 
-![Module](../../images/module-header-break.png)
+![Module](../../images/module-end-break.png)
 
 # Module Grid
 

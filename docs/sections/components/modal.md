@@ -165,6 +165,8 @@ Function to run after the modal is ready but before it's displays
 
 ### **`data-modal-classes`** - `args.classes`
 
+DEPRECATED: add classes to the `.modal` instead.
+
 Defaults to `null`
 
 classes to add to the generated modal or `#fw-modal`

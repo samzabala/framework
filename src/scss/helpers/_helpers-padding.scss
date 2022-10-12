@@ -1,39 +1,18 @@
 .padding {
   & {
-    @include create-box-helper(#{&}, '', padding, '', $gutter-base, 'for-padding-base');
+    @include create-box-helper(#{&}, '', padding, '', $var-gutter-base);
   }
   &-large {
-    @include create-box-helper(
-      #{&},
-      '',
-      padding,
-      '',
-      $gutter-large,
-      'for-padding-large'
-    );
+    @include create-box-helper(#{&}, '', padding, '', $var-gutter-large);
   }
   &-small {
-    @include create-box-helper(
-      #{&},
-      '',
-      padding,
-      '',
-      $gutter-small,
-      'for-padding-small'
-    );
+    @include create-box-helper(#{&}, '', padding, '', $var-gutter-small);
   }
   &-micro {
-    @include create-box-helper(
-      #{&},
-      '',
-      padding,
-      '',
-      $gutter-micro,
-      'for-padding-micro'
-    );
+    @include create-box-helper(#{&}, '', padding, '', $var-gutter-micro);
   }
 }
 
 .no-padding {
-  @include create-box-helper(#{&}, '', padding, '', 0, 'for-no-padding');
+  @include create-box-helper(#{&}, '', padding, '', 0);
 }

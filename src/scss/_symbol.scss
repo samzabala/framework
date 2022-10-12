@@ -1,20 +1,123 @@
-/*** SYMBOLS ***/
 @import url(#{$symbol-font-path+'/import.css'});
 
-// @font-face {
-//     font-family: 'FW Icons';
-// 	src:
-// 	url('#{$symbol-font-path}/fw-icons.eot');
-// 	src:
-// 		url('#{$symbol-font-path}/fw-icons.eot?#iefix') format('embedded-opentype'),
-// 		url('#{$symbol-font-path}/fw-icons.woff2') format('woff2'),
-// 		url('#{$symbol-font-path}/fw-icons.ttf') format('truetype'),
-// 		url('#{$symbol-font-path}/fw-icons.svg#FWIconsRegular') format('svg')
-// 		url('#{$symbol-font-path}/fw-icons.otf') format('opentype'),
-// 		;
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
+$fwc-symbol-glyphs: (
+  1p21: 'e900',
+  play: 'e901',
+  pause: 'e902',
+  stop: 'e903',
+  square: 'e903',
+  square-outline: 'e904',
+  checkbox: 'e905',
+  checkbox-inverse: 'e906',
+  addbox: 'e907',
+  addbox-inverse: 'e908',
+  grid: 'e909',
+  list: 'e90a',
+  search: 'e90b',
+  plus: 'e90c',
+  minus: 'e90d',
+  check: 'e90e',
+  close: 'e90f',
+  thumbs-up: 'e910',
+  thumbs-up-inverse: 'e911',
+  thumbs-down: 'e912',
+  thumbs-down-inverse: 'e913',
+  star: 'e914',
+  star-half: 'e915',
+  star-stroke: 'e916',
+  kebab-vertical: 'e917',
+  kebab-horizontal: 'e918',
+  upload: 'e919',
+  download: 'e91a',
+  arrow-down: 'e91b',
+  arrow-up: 'e91c',
+  arrow-left: 'e91d',
+  arrow-right: 'e91e',
+  arrow-double-down: 'e91f',
+  arrow-double-up: 'e920',
+  arrow-double-left: 'e921',
+  arrow-double-right: 'e922',
+  arrow-tail-down: 'e923',
+  arrow-tail-up: 'e924',
+  arrow-tail-left: 'e925',
+  arrow-tail-right: 'e926',
+  caret-down: 'e927',
+  caret-up: 'e928',
+  caret-left: 'e929',
+  caret-right: 'e92a',
+  text-center: 'e92b',
+  text-left: 'e92c',
+  text-right: 'e92d',
+  text-justify: 'e92e',
+  map: 'e92f',
+  pin: 'e930',
+  bell: 'e931',
+  bell-active: 'e932',
+  hyperlink: 'e933',
+  dash: 'e934',
+  caution: 'e935',
+  error: 'e936',
+  info: 'e937',
+  success: 'e938',
+  stack: 'e939',
+  clap: 'e93a',
+  copy: 'e93b',
+  share: 'e93c',
+  filter: 'e93d',
+  chart: 'e93e',
+  segment: 'e93f',
+  user: 'e940',
+  user-add: 'e941',
+  user-remove: 'e942',
+  expand: 'e943',
+  collapse: 'e944',
+  expand-alt: 'e945',
+  collapse-alt: 'e946',
+  burger: 'e947',
+  fries: 'e948',
+  waffle: 'e949',
+  pencil: 'e94a',
+  edit: 'e94b',
+  delete: 'e94c',
+  robot: 'e94d',
+  file: 'e94e',
+  clipboard: 'e94f',
+  paperplane: 'e950',
+  timer: 'e951',
+  time: 'e952',
+  caution-inverse: 'e953',
+  error-inverse: 'e954',
+  info-inverse: 'e955',
+  success-inverse: 'e956',
+  phone: 'e957',
+  calendar: 'e958',
+  calendar-alt: 'e959',
+  paperclip: 'e95a',
+  envelope: 'e95b',
+  envelope-inverse: 'e95c',
+  cloud-upload: 'e95d',
+  cloud-download: 'e95e',
+  drag: 'e95f',
+  sync: 'e960',
+  sync-alt: 'e961',
+  invisible: 'e962',
+  visible: 'e963',
+  envelope-open: 'e964',
+  envelope-open-inverse: 'e965',
+  reply: 'e966',
+  users: 'e967',
+  users-add: 'e968',
+  users-remove: 'e969',
+  takoyaki: 'e970',
+  folder: 'e971',
+  folder-add: 'e972',
+  folder-remove: 'e973',
+  folder-open: 'e974',
+  folder-copy: 'e975',
+  window: 'e976',
+  window-success: 'e977',
+  window-error: 'e978',
+);
 
 $prefix: '.symbol';
 #{$prefix} {
@@ -46,8 +149,8 @@ $prefix: '.symbol';
     }
   }
 
-  @each $tag, $content in $_fwc-symbol-glyphs {
-    @include generate-symbol-styles(#{&}-#{$tag}) {
+  @each $tag, $content in $fwc-symbol-glyphs {
+    &:is(#{$prefix}-#{$tag}, :is(.open, .active) > #{$prefix}-#{$tag}-toggle) {
       &:before {
         content: unquote('"') + unquote(str-insert($content, '\\', 1)) + unquote('"');
       }

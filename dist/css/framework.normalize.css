@@ -1,87 +1,135 @@
-/* basic styling shits only bitch */ /* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+@charset "UTF-8";
+/* basic styling shits only bitch */
+/***
+    The new CSS reset - version 1.8.4 (last updated 14.2.2023)
+    but modified because it does minor uglee stuff sometimes
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(html,
+iframe, canvas,
+img, svg, video, audio,
+input, textarea, select, button,
+table, caption, tbody, tfoot, thead, tr, th, td):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
 }
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+/* Reset form elements while keeping essential ui styles */
+:where(input, textarea, select, option, button, optgroup) {
+  all: revert;
+  margin: unset;
+  -webkit-appearance: auto;
+     -moz-appearance: auto;
+          appearance: auto;
 }
 
-body {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: "";
-  content: none;
-}
-
-table {
+/* resets table styles nicely so html attribute features are still preserved */
+:where(table, caption, tbody, tfoot, thead, tr, th, td) {
+  margin: unset;
+  padding: unset;
+  border: unset;
+  background: unset;
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-a:hover,
-a:not([class]):hover {
-  text-decoration: none;
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+  cursor: revert;
 }
-[data-toggle] {
-  cursor: pointer;
-  -webkit-user-select: none !important; /* Safari 3.1+ */
-  -moz-user-select: none !important; /* Firefox 2+ */ /* IE 10+ */
-  user-select: none !important; /* Standard syntax */
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none;
 }
-[data-toggle] * {
-  pointer-events: none !important;
+
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
 }
-[disabled] {
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  -moz-appearance: revert;
+       appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::-moz-placeholder {
+  color: unset;
+}
+::placeholder {
+  color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+  content: initial;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:is([disabled], :disabled) {
   cursor: not-allowed !important;
   opacity: 0.5 !important;
 }
-[disabled] * {
-  pointer-events: none;
+:is([disabled], :disabled) * {
+  pointer-events: none !important;
 }
 :root {
-  --fw-br-xxs: 400px;
-  --fw-br-xs: 767px;
-  --fw-br-sm: 1199px;
-  --fw-br-md: 1599px;
-  --fw-br-lg: 1799px;
-  --fw-br-mobile-max: sm;
-  --fw-font-primary: Roboto, Helvetica, Arial, sans-serif;
-  --fw-font-accent: Georgia, Times, serif;
-  --fw-font-monospace: Courier New, Courier, monospace;
   --fw-color-base: #111111;
   --fw-color-base-alt: #1e1e1e;
   --fw-color-base-alpha-1: rgba(17, 17, 17, 0.1);
@@ -302,59 +350,73 @@ a:not([class]):hover {
   --fw-theme-color-contrast: var(--fw-color-base-alt);
   --fw-theme-background: var(--fw-color-background);
   --fw-theme-background-contrast: var(--fw-color-background-alt);
+  --fw-font-primary: Roboto, Helvetica, Arial, sans-serif;
+  --fw-font-accent: Georgia, Times, serif;
+  --fw-font-monospace: Courier New, Courier, monospace;
+  --fw-br-xxs: 400px;
+  --fw-br-xs: 767px;
+  --fw-br-sm: 1199px;
+  --fw-br-md: 1599px;
+  --fw-br-lg: 1799px;
+  --fw-br-mobile-max: sm;
+  --fw-gutter-base: 1.25rem;
+  --fw-gutter-large: 1.875rem;
+  --fw-gutter-small: 0.625rem;
+  --fw-gutter-micro: 0.3125rem;
+  --fw-border-radius-base: 0.75rem;
+  --fw-border-radius-large: 1.5rem;
+  --fw-border-radius-small: 0.375rem;
+  --fw-border-radius-micro: 0.1875rem;
+  --fw-transition-duration-base: 0.25s;
+  --fw-transition-duration-long: 0.5s;
+  --fw-transition-duration-short: 0.125s;
+  --fw-transition-timing: ease-in-out;
+  --fw-box-shadow-base: 0px 0px 10px -6px;
+  --fw-box-shadow-spicy: 0px 0px 20px -10px;
+  --fw-box-shadow-mild: 0px 0px 20px -5px;
+  --fw-body-anchor-color: var(--fw-color-primary);
+  --fw-body-anchor-color-hover: var(--fw-color-secondary);
+  --fw-body-font-size-base: 16px;
+  --fw-body-font-size-small: 12px;
+  --fw-body-font-size-large: 24px;
+  --fw-body-line-height-base: 1.5;
+  --fw-body-line-height-compact: 1.25;
+  --fw-body-line-height-expanded: 2;
+  --fw-body-line-height-constricted: 1;
+  --fw-body-font-size: var(--fw-body-font-size-base);
+  --fw-body-line-height: var(--fw-body-line-height-base);
+  --fw-body-text-gutter: var(--fw-gutter-base);
 }
 
-.body-no-scroll {
+:is(.body-no-scroll) {
   overflow: hidden !important;
 }
 
-.body-on-drag,
-.body-on-drag * {
+:is(.body-on-drag),
+:is(.body-on-drag) * {
   cursor: grabbing !important;
   -webkit-user-select: none !important; /* Safari 3.1+ */
   -moz-user-select: none !important; /* Firefox 2+ */ /* IE 10+ */
   user-select: none !important; /* Standard syntax */
 }
 
-*.theme-inverse,
-*.theme-default,
-:root,
-html,
-body {
-  color: var(--fw-theme-color);
-  background-color: var(--fw-theme-background);
-}
-
-*.theme-inverse,
-html.theme-inverse,
-.theme-inverse body {
-  --fw-theme-color: var(--fw-color-background);
-  --fw-theme-color-contrast: var(--fw-color-background-alt);
-  --fw-theme-background: var(--fw-color-base-alt);
-  --fw-theme-background-contrast: var(--fw-color-base);
-}
-
-*.theme-default {
-  --fw-theme-color: var(--fw-color-base);
-  --fw-theme-color-contrast: var(--fw-color-base-alt);
-  --fw-theme-background: var(--fw-color-background);
-  --fw-theme-background-contrast: var(--fw-color-background-alt);
-}
-
-/*** SCAFFOLDING ***/
-html {
-  scroll-behavior: smooth;
-}
-
 html,
 body {
   width: 100%;
   min-width: 320px;
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: var(--fw-body-font-size);
+  line-height: var(--fw-body-line-height);
   font-family: var(--fw-font-primary);
   font-weight: 400;
+  text-align: inital;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   min-height: 100vh;
+  accent-color: var(--fw-color-primary);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -400,28 +462,28 @@ body {
   color: var(--fw-color-background);
 }
 
-body {
-  text-align: left;
+:where(img, svg,
+input, textarea, fieldset, legend, select, button) {
+  max-width: 100%;
 }
 
-/* SUPER GLOBAL STYLE FIXES */
-img,
-svg {
-  max-width: 100%;
+:where(img, svg) {
   height: auto;
 }
 
-iframe,
-object,
-embed {
-  max-width: 100% !important;
+:where(fieldset) {
+  min-width: 0;
+  resize: none;
 }
 
-/* IE7 */
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* outlines look ugly eew */
+:where(*, :focus, :hover, :active) {
+  outline: none;
+}
+
+/* embed shits */
+:where(iframe, object, embed) {
+  max-width: 100% !important;
 }
 
 * {
@@ -430,66 +492,48 @@ embed {
   /* Firefox 25*/
 }
 
-input,
-textarea,
-fieldset,
-legend,
-select,
-option,
-button {
-  margin: 0;
+:is(.theme-inverse, .theme-default),
+:where(html, body) {
+  color: var(--fw-theme-color);
+  background-color: var(--fw-theme-background);
 }
 
-option,
-optgroup {
-  all: initial;
-  display: block;
-  font: inherit;
+:is(:where(:root),
+.theme-default,
+.theme-inverse .theme-to-invert,
+.theme-default .theme-to-inherit) {
+  --fw-theme-color: var(--fw-color-base);
+  --fw-theme-color-contrast: var(--fw-color-base-alt);
+  --fw-theme-background: var(--fw-color-background);
+  --fw-theme-background-contrast: var(--fw-color-background-alt);
 }
 
-input,
-textarea,
-fieldset,
-legend,
-select,
-button {
-  max-width: 100%;
+:is(.theme-inverse, .theme-default .theme-to-invert, .theme-inverse .theme-to-inherit) {
+  --fw-theme-color: var(--fw-color-background);
+  --fw-theme-color-contrast: var(--fw-color-background-alt);
+  --fw-theme-background: var(--fw-color-base-alt);
+  --fw-theme-background-contrast: var(--fw-color-base);
 }
 
-fieldset {
-  min-width: 0;
-  resize: none;
-}
-
-button {
-  outline: 0;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-}
-
-/*** TYPOGRAPHY ***/
-/* special */
-.special-primary {
-  font-size: 3.5em;
+:is(.special-primary) {
+  font-size: 3.5rem;
   line-height: 1;
   color: inherit;
   font-weight: 300;
   text-transform: none;
   font-style: normal;
-  margin-bottom: 0.1785714286em;
-  margin-top: 0.1785714286em;
+  margin-bottom: var(--fw-gutter-small);
+  margin-top: var(--fw-gutter-small);
   display: block;
 }
 @media (max-width: 1199px) {
-  .special-primary {
-    font-size: 3em;
+  :is(.special-primary) {
+    font-size: 3rem;
   }
 }
-.special-secondary {
-  font-size: 2.5em;
+
+:is(.special-secondary) {
+  font-size: 2.5rem;
   line-height: 1.25;
   color: inherit;
   font-weight: 300;
@@ -500,41 +544,31 @@ a {
   display: block;
 }
 @media (max-width: 1199px) {
-  .special-secondary {
-    font-size: 2em !important;
+  :is(.special-secondary) {
+    font-size: 2rem;
   }
 }
 
-.lead {
-  font-size: 1.5625em;
+:is(.lead) {
+  font-size: 1.5625rem;
   line-height: 1.25;
   color: inherit;
   font-weight: 300;
   text-transform: none;
   font-style: normal;
-  margin-bottom: 0.8em;
-  margin-top: 0.8em;
+  margin-bottom: var(--fw-gutter-base);
+  margin-top: var(--fw-gutter-base);
   display: block;
 }
 @media (max-width: 1199px) {
-  .lead {
-    font-size: 1.25em;
+  :is(.lead) {
+    font-size: 1.25rem;
   }
 }
 
 /* heading */
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
+:where(h1, h2, h3, h4, h5, h6),
+:is(.h1, .h2, .h3, .h4, .h5, .h6) {
   line-height: calc(1em + 10px);
   font-family: var(--fw-font-secondary);
   color: var(--fw-theme-color-contrast);
@@ -544,316 +578,233 @@ h6,
   display: block;
   -webkit-hyphens: auto;
           hyphens: auto;
-  margin-bottom: 0.625rem;
+  margin-bottom: var(--fw-gutter-small);
   margin-top: 1.5em;
 }
-.theme-inverse h1,
-.theme-inverse .h1,
-.theme-inverse h2,
-.theme-inverse .h2,
-.theme-inverse h3,
-.theme-inverse .h3,
-.theme-inverse h4,
-.theme-inverse .h4,
-.theme-inverse h5,
-.theme-inverse .h5,
-.theme-inverse h6,
-.theme-inverse .h6 {
-  color: var(--fw-theme-color-contrast);
-}
-.alert h1, .theme-inverse .alert h1,
-.alert .h1,
-.theme-inverse .alert .h1,
-.alert h2,
-.theme-inverse .alert h2,
-.alert .h2,
-.theme-inverse .alert .h2,
-.alert h3,
-.theme-inverse .alert h3,
-.alert .h3,
-.theme-inverse .alert .h3,
-.alert h4,
-.theme-inverse .alert h4,
-.alert .h4,
-.theme-inverse .alert .h4,
-.alert h5,
-.theme-inverse .alert h5,
-.alert .h5,
-.theme-inverse .alert .h5,
-.alert h6,
-.theme-inverse .alert h6,
-.alert .h6,
-.theme-inverse .alert .h6 {
+.alert :where(:where(h1, h2, h3, h4, h5, h6),
+:is(.h1, .h2, .h3, .h4, .h5, .h6)) {
   color: inherit;
 }
 
-h1,
-.h1 {
-  font-size: 2em;
+:where(h1),
+:is(.h1) {
+  font-size: 2rem;
 }
 
-h2,
-.h2 {
-  font-size: 1.75em;
+:where(h2),
+:is(.h2) {
+  font-size: 1.75rem;
 }
 
-h3,
-.h3 {
-  font-size: 1.5em;
+:where(h3),
+:is(.h3) {
+  font-size: 1.5rem;
 }
 
-h4,
-.h4 {
-  font-size: 1.25em;
+:where(h4),
+:is(.h4) {
+  font-size: 1.25rem;
 }
 
-h5,
-.h5 {
-  font-size: 1em;
+:where(h5),
+:is(.h5) {
+  font-size: 1rem;
 }
 
-h6,
-.h6 {
-  font-size: 0.875em;
+:where(h6),
+:is(.h6) {
+  font-size: 0.875rem;
 }
 
 /* OTHER SHIT */
-strong,
-b {
+:where(strong, b) {
   font-weight: 700;
 }
 
-em,
-i {
+:where(em, i) {
   font-style: italic;
 }
 
-a, a.disabled,
-.a,
-.a.disabled {
-  color: var(--fw-color-primary);
+:where(a) {
+  transition-duration: var(--fw-transition-duration-base);
+  transition-timing-function: ease-in-out;
+  transition-property: color;
+  transition: var(--fw-transition-duration-base) color ease-in-out;
+  text-decoration: none;
+  color: var(--fw-body-anchor-color);
 }
-a:hover, a:focus, a.focus,
-.a:hover,
-.a:focus,
-.a.focus {
+:where(a):where(:hover, :focus, .focus) {
   text-decoration: underline;
-  color: var(--fw-color-secondary);
+  color: var(--fw-body-anchor-color-hover);
+}
+:is(.disabled, [disabled], :disabled) {
+  --fw-body-anchor-color-hover: var(--fw-body-anchor-color);
 }
 
-p,
-.p,
-ul,
-ol,
-address,
-pre,
-dl {
-  margin-bottom: 1.25em;
+:where(p, ul, ol, address, pre, dl),
+:is(.p) {
+  margin-bottom: var(--fw-body-text-gutter);
   display: block;
 }
 
-li:nth-child(n+2),
-li ul,
-li ol,
-dl:nth-child(n+2),
-dt:nth-child(n+2) {
-  margin-top: 0.625em;
+:where(li, dl, dt):is(:nth-child(n+2)),
+:where(li) :where(ul, ol) {
+  margin-top: var(--fw-gutter-small);
 }
 
-ol,
-ul,
-dd {
-  padding-left: 1.5625em;
+:where(ol, ul, dd) {
+  padding-left: var(--fw-gutter-base);
 }
 
-ol.unstyled,
-ol.unstyled li, ol.inline,
-ol.inline li,
-ul.unstyled,
-ul.unstyled li,
-ul.inline,
-ul.inline li {
+:where(ol, ul) {
+  list-style-type: revert;
+}
+:where(ol, ul):is(.unstyled, .inline) :where(ul, ol, li) {
   padding-left: 0;
   margin-top: 0;
 }
-ol.unstyled li:before, ol.inline li:before, ol.style-none li:before,
-ul.unstyled li:before,
-ul.inline li:before,
-ul.style-none li:before {
+:where(ol, ul):is(.unstyled, .inline, .style-none) :is(li):before {
   content: none !important;
 }
-ol.inline li,
-ul.inline li {
+:where(ol, ul):is(.inline) :is(li) {
   display: inline-block;
 }
-ol.inline li:nth-child(n+2),
-ul.inline li:nth-child(n+2) {
+:where(ol, ul):is(.inline) :is(li):is(:nth-child(n+2)) {
   margin-left: 1em;
 }
-li {
-  list-style: none;
+:where(li) {
+  list-style-type: inherit;
   position: relative;
 }
-li:before {
-  position: absolute;
-  right: 100%;
+:where(li)::marker {
+  font-size: 1em;
+  color: var(--fw-color-primary);
 }
-.alert li:before {
+.alert :where(li)::marker {
   color: inherit;
   opacity: 0.5;
 }
 
-li ol,
-li ul {
+:where(li) :where(ol, ul) {
   margin-bottom: 0;
 }
 
-ul.style-disc li:before, ul > li:before {
-  content: "";
-  display: inline-block;
-  vertical-align: middle;
-  line-height: inherit;
-  width: 0.375em;
-  height: 0.375em;
-  color: var(--fw-color-primary);
-  background: currentColor;
-  margin-right: 1.1875em;
-  position: absolute;
-  top: 0.5625em;
-  border-radius: 50%;
+:where(ul):is(.style-disc) {
+  list-style-type: disc;
 }
-ul.style-circle li:before {
-  background: none !important;
-  border: 0.05em solid var(--fw-color-primary) !important;
+:where(ul):is(.style-circle) {
+  list-style-type: circle;
 }
-ul.style-square li:before {
-  border-radius: 0 !important;
+:where(ul):is(.style-square) {
+  list-style-type: square;
 }
 
-ol {
-  counter-reset: fwList;
+:where(ol):is(.style-decimal) {
+  list-style-type: decimal;
 }
-ol > li {
-  counter-increment: fwList;
+:where(ol):is(.style-decimal-leading-zero) {
+  list-style-type: decimal-leading-zero;
 }
-ol > li:before {
-  color: var(--fw-color-primary);
-  font-weight: 800;
-  top: 0;
-  margin-right: 1em;
+:where(ol):is(.style-lower-alpha) {
+  list-style-type: lower-alpha;
 }
-ol.style-decimal li, ol > li:before {
-  content: counter(fwList, decimal) !important;
+:where(ol):is(.style-lower-roman) {
+  list-style-type: lower-roman;
 }
-ol.style-decimal-leading-zero li:before {
-  content: counter(fwList, decimal-leading-zero) !important;
+:where(ol):is(.style-upper-alpha) {
+  list-style-type: upper-alpha;
 }
-ol.style-lower-alpha li:before {
-  content: counter(fwList, lower-alpha) !important;
-}
-ol.style-lower-roman li:before {
-  content: counter(fwList, lower-roman) !important;
-}
-ol.style-upper-alpha li:before {
-  content: counter(fwList, upper-alpha) !important;
-}
-ol.style-upper-roman li:before {
-  content: counter(fwList, upper-roman) !important;
+:where(ol):is(.style-upper-roman) {
+  list-style-type: upper-roman;
 }
 
-blockquote {
+:where(blockquote) {
   font-size: inherit;
   line-height: inherit;
   font-weight: 300;
   text-transform: none;
   font-style: normal;
-  padding-left: 0.625em;
-  margin-bottom: 1.25em;
-  margin-top: 1.25em;
-  padding-bottom: 0.625em;
-  padding-top: 0.625em;
+  padding-left: var(--fw-gutter-small);
+  padding-right: var(--fw-gutter-small);
+  margin-bottom: var(--fw-body-text-gutter);
+  margin-top: var(--fw-body-text-gutter);
+  padding-bottom: var(--fw-gutter-small);
+  padding-top: var(--fw-gutter-small);
   border-left: 4px solid var(--fw-theme-background-contrast);
 }
-blockquote > * {
+:where(blockquote) > :where(*) {
   font-size: inherit;
   line-height: inherit;
 }
-blockquote p:last-child {
+:where(blockquote) > :where(*):is(:last-child) {
   margin-bottom: 0;
 }
-.alert blockquote {
+.alert :where(blockquote) {
   border-left-color: currentColor;
 }
 
-pre,
-code,
-kbd,
-tt {
+:where(pre, code, kbd, tt) {
   font: inherit;
   font-family: var(--fw-font-monospace);
   color: inherit;
-  background: var(--fw-color-base-alpha-2);
+  background: var(--fw-color-neutral-alpha-2);
 }
 
-code,
-kbd,
-tt {
-  padding: 0.0390625em;
+:where(code, kbd, tt) {
+  padding: var(--fw-gutter-micro);
 }
 
-pre {
-  padding: 0.3125em;
+:where(pre) {
+  padding: var(--fw-gutter-small);
   overflow: auto;
 }
-pre * {
+:where(pre) * {
   border: 0;
   margin: 0;
   padding: 0;
 }
 
-cite {
-  font-size: 1em;
+:where(cite) {
+  font-size: 16px;
   font-weight: 300;
   font-style: italic;
 }
-blockquote cite {
+:where(blockquote) :where(cite) {
   display: block;
-  margin-top: 1.25em;
+  margin-top: var(--fw-body-text-gutter);
 }
 
 /* obscure fucks I can fuck with myself */
-q {
+:where(q) {
   font-style: italic;
 }
 
-del,
-strike {
+:where(del, strike) {
   text-decoration: line-through;
 }
 
-ins {
+:where(ins) {
   text-decoration: underline;
 }
 
-sup,
-sub {
+:where(sup, sub) {
   font-size: 0.75em;
 }
 
-sup {
+:where(sup) {
   vertical-align: top;
 }
 
-sub {
+:where(sub) {
   vertical-align: bottom;
 }
 
-var {
+:where(var) {
   font-style: italic;
-  font-family: "Georgia", Times, serif;
+  font-family: var(--fw-font-secondary);
 }
 
-hr {
+:where(hr) {
   display: block;
   border: 0;
   height: 0.0625rem;
@@ -861,16 +812,16 @@ hr {
   opacity: 0.2;
   width: 100%;
   flex: 1 1 auto;
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: var(--fw-body-text-gutter);
+  margin-bottom: var(--fw-body-text-gutter);
   margin-left: auto;
   margin-right: auto;
 }
 
-small {
-  font-size: 0.75em;
+:where(small) {
+  font-size: var(--fw-body-font-size-small);
 }
 
-big {
-  font-size: 1.5em;
+:where(big) {
+  font-size: var(--fw-body-font-size-large);
 }

@@ -1,37 +1,33 @@
-/*** LAYOUTING CONTAINERS AND SHIT ***/
-/* CONTAINER */
 $prefix: '.container';
-#{$prefix} {
-  &,
-  &-fluid {
-    @include dump-styles(cf);
-  }
-  & {
-    width: 100%;
-    padding-left: $container-gutter;
-    padding-right: $container-gutter;
-    margin: 0 auto;
-    max-width: $container-max-width;
-  }
 
-  &#{$prefix}-fluid {
-    max-width: none;
+:root {
+  // :where(#{$prefix})
+  --container-gutter: #{$container-gutter};
+  --container-max-width: #{$container-max-width};
+
+  @include on-breakpoint(mobile) {
+    --container-gutter: #{$container-gutter-mobile};
+    --container-max-width: #{$container-max-width-mobile};
+  }
+}
+
+#{$prefix} {
+  width: 100%;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  margin: 0 auto;
+  max-width: var(--container-max-width);
+
+  #{$prefix}-fluid {
+    --container-max-width: none;
   }
 
   @include on-breakpoint(nonmobile) {
-    &#{$prefix}-wide {
-      padding-left: $container-gutter-wide;
-      padding-right: $container-gutter-wide;
+    #{$prefix}-slim {
+      --container-gutter: #{$container-gutter-slim};
     }
-    &#{$prefix}-slim {
-      padding-left: $container-gutter-slim;
-      padding-right: $container-gutter-slim;
+    #{$prefix}-wide {
+      --container-gutter: #{$container-gutter-wide};
     }
-  }
-
-  @include on-breakpoint(mobile) {
-    padding-left: $container-gutter-mobile;
-    padding-right: $container-gutter-mobile;
-    max-width: $container-max-width-mobile;
   }
 }

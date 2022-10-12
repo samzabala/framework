@@ -1,23 +1,24 @@
-/*** input-blend (scaffolding) ***/
-$prefix: '.input';
+:root {
+  // :where(#{$prefix})
+}
 
-%fwe-form-input-blend {
-  &-global {
-    -webkit-appearance: none;
-    appearance: none;
-    font: inherit;
-    color: inherit;
-    display: inline-block;
-    resize: none;
-    background: transparent !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-style: solid;
-    border-width: 0 0 $input-border-width !important;
-    border-color: transparent;
-    box-shadow: none !important;
-    scrollbar-width: none !important;
-  }
+#{$prefix}-blend {
+  @extend %fwe-form-box-skeleton;
+  --fw-input-background-color: transparent !important;
+  --fw-input-background-color-focus: var(--fw-input-background-color) !important;
+  --fw-input-border-color: transparent;
+  --fw-input-border-color-focus: currentColor;
+  --fw-input-border-radius: 0em !important;
+  --fw-input-box-shadow: transparent;
+  --fw-input-box-shadow-focus: transparent;
+  --fw-input-padding-x: 0em;
+  --fw-input-padding-y: 0em;
+
+  resize: none;
+  border-width: 0 0 var(--fw-input-border-width) !important;
+  border-color: var(--fw-input-border-color);
+  scrollbar-width: none !important;
+  outline: none !important;
 
   //   decorations
   &[list]::-webkit-list-button,
@@ -26,27 +27,16 @@ $prefix: '.input';
     display: none !important;
   }
 
-  &-block {
+  @extend %fwe-form-box-skeleton-focus;
+
+  &#{$prefix}-block {
     width: 100%;
     display: block;
   }
 
-  &-hover {
-    border-color: currentColor;
-  }
-}
-
-#{$prefix} {
-  &-blend {
-    @extend %fwe-form-input-blend;
-    @extend %fwe-form-input-blend-global;
-
-    &#{$prefix}-block {
-      @extend %fwe-form-input-blend-block;
-    }
-    &:focus,
-    &.focus {
-      @extend %fwe-form-input-blend-hover;
+  &[multiple] {
+    option {
+      color: inherit;
     }
   }
 }

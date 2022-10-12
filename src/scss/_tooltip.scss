@@ -1,18 +1,34 @@
+$prefix: '.tooltip';
+
+:root {
+  // :where(#{$prefix})
+  --fw-tooltip-background: #{$tooltip-background};
+  --fw-tooltip-border-radius: #{$tooltip-border-radius};
+  --fw-tooltip-box-shadow: #{$tooltip-box-shadow};
+  --fw-tooltip-color: #{$tooltip-color};
+  --fw-tooltip-max-width: #{$tooltip-max-width};
+  --fw-tooltip-z-index: #{$z-index-tooltip};
+
+  --fw-tooltip-padding-x: #{$tooltip-padding-x};
+  --fw-tooltip-padding-y: #{$tooltip-padding-y};
+
+  --fw-tooltip-arrow-box-shadow: #{$tooltip-arrow-box-shadow};
+  --fw-tooltip-arrow-size: 1rem;
+  // 0.088388347648318
+}
+
 [data-toggle-tooltip-click],
 [data-toggle-tooltip-hover] {
   @include dump-styles(data-toggle);
 }
-$prefix: '.tooltip';
 #{$prefix} {
   @include create-popper-styles(
-    $tooltip-background,
-    $tooltip-background-inverse,
-    $tooltip-color,
-    $tooltip-color-inverse,
-    $tooltip-gutter-x,
-    $tooltip-gutter-y,
-    $tooltip-border-radius,
-    $tooltip-box-shadow
+    var(--fw-tooltip-background),
+    var(--fw-tooltip-color),
+    var(--fw-tooltip-padding-x),
+    var(--fw-tooltip-padding-y),
+    var(--fw-tooltip-border-radius),
+    var(--fw-tooltip-box-shadow)
   );
   z-index: $z-index-tooltip;
   pointer-events: none;
@@ -22,33 +38,22 @@ $prefix: '.tooltip';
   }
 
   &#{$prefix}-expanded {
-    @include create-popper-styles(
-      null,
-      null,
-      null,
-      null,
-      $tooltip-expanded-gutter-x,
-      $tooltip-expanded-gutter-y
-    );
+    --fw-tooltip-padding-x: #{$tooltip-padding-x-expanded};
+    --fw-tooltip-padding-y: #{$tooltip-padding-y-expanded};
   }
 
   &#{$prefix}-compact {
-    @include create-popper-styles(
-      null,
-      null,
-      null,
-      null,
-      $tooltip-compact-gutter-x,
-      $tooltip-compact-gutter-y
-    );
+    --fw-tooltip-padding-x: #{$tooltip-padding-x-compact};
+    --fw-tooltip-padding-y: #{$tooltip-padding-y-compact};
   }
 
   &#{$prefix}-constricted {
-    @include create-popper-styles(null, null, null, null, 0);
+    --fw-tooltip-padding-x: 0rem;
+    --fw-tooltip-padding-y: 0rem;
   }
 
   &:not(#{$prefix}-has-custom-width) {
-    max-width: $tooltip-max-width;
+    max-width: var(--fw-tooltip-max-width);
   }
 
   &#{&}-allow-interaction {
@@ -75,11 +80,18 @@ $prefix: '.tooltip';
   &:before {
     // background: blue;
     margin: auto;
-    box-shadow: $tooltip-arrow-box-shadow;
-    width: $_fwc-tooltip-point-px;
-    height: $_fwc-tooltip-point-px;
+    box-shadow: var(--fw-tooltip-arrow-box-shadow);
+    width: calc(var(--fw-tooltip-arrow-size) * 0.707107);
+    height: calc(var(--fw-tooltip-arrow-size) * 0.707107);
     transform-origin: center center;
     transform: rotate(45deg);
+
+    @supports (clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)) {
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      width: var(--fw-tooltip-arrow-size);
+      height: var(--fw-tooltip-arrow-size);
+      transform: none;
+    }
   }
 
   &-badge {
@@ -95,11 +107,15 @@ $prefix: '.tooltip';
     }
 
     &:before {
-      bottom: $tooltip-gutter-x * -0.5;
+      bottom: calc(var(--fw-tooltip-arrow-size) * -0.5);
     }
 
     #{$prefix}-badge {
-      top: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
+      top: calc(100% + (var(--fw-tooltip-arrow-size) * 0.5));
+      // top: calc(100% + (var(--fw-tooltip-arrow-size) * 1.41421356237) * 0.5);
+
+      @supports (clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)) {
+      }
     }
   }
   &#{&}-bottom {
@@ -110,11 +126,12 @@ $prefix: '.tooltip';
     }
 
     &:before {
-      top: $tooltip-gutter-x * -0.5;
+      top: calc(var(--fw-tooltip-arrow-size) * -0.5);
     }
 
     #{$prefix}-badge {
-      bottom: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
+      bottom: calc(100% + (var(--fw-tooltip-arrow-size) * 0.5));
+      // bottom: calc(100% + ((var(--fw-tooltip-arrow-size) * 1.41421356237) * 0.5));
     }
   }
 
@@ -126,11 +143,12 @@ $prefix: '.tooltip';
     }
 
     &:before {
-      left: $tooltip-gutter-x * -0.5;
+      left: calc(var(--fw-tooltip-arrow-size) * -0.5);
     }
 
     #{$prefix}-badge {
-      right: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
+      right: calc(100% + (var(--fw-tooltip-arrow-size) * 0.5));
+      // right: calc(100% + ((var(--fw-tooltip-arrow-size) * 1.41421356237) * 0.5));
     }
   }
 
@@ -142,11 +160,12 @@ $prefix: '.tooltip';
     }
 
     &:before {
-      right: $tooltip-gutter-x * -0.5;
+      right: calc(var(--fw-tooltip-arrow-size) * -0.5);
     }
 
     #{$prefix}-badge {
-      left: calc(100% + (#{$_fwc-gutter-hypotenus} * 0.5));
+      left: calc(100% + (var(--fw-tooltip-arrow-size) * 0.5));
+      // left: calc(100% + ((var(--fw-tooltip-arrow-size) * 1.41421356237) * 0.5));
     }
   }
 }

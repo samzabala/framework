@@ -193,18 +193,6 @@ class Modal extends FwComponent {
     return super.getProp('_mode');
   }
 
-  static containsHash(hash) {
-    const anId = hash.replace('#', ''); //just to be sure
-    const possibEl = document.getElementById(anId);
-    return possibEl && possibEl.parentNode.closest(`.${COMPONENT_CLASS}`);
-  }
-
-  static isHash(hash) {
-    const anId = hash.replace('#', ''); //just to be sure
-    const possibEl = document.getElementById(anId);
-    return possibEl && possibEl.classList.contains(COMPONENT_CLASS);
-  }
-
   get hasButtons() {
     return (
       this.args.close !== false ||
@@ -221,6 +209,7 @@ class Modal extends FwComponent {
         class="
           ${UIPrefix(COMPONENT_CLASS)}-close
           ${UIPrefix(COMPONENT_CLASS)}-button
+          ${this.UiModeClass}
           ${
             this.args.closeClasses
               ? this.args.closeClasses
@@ -237,6 +226,7 @@ class Modal extends FwComponent {
         class="
           ${UIPrefix(COMPONENT_CLASS)}-fullscreen
           ${UIPrefix(COMPONENT_CLASS)}-button
+          ${this.UiModeClass}
           ${
             this.args.closeClasses
               ? this.args.closeClasses
@@ -253,6 +243,7 @@ class Modal extends FwComponent {
         class="
           ${UIPrefix(COMPONENT_CLASS)}-resize
           ${UIPrefix(COMPONENT_CLASS)}-button
+          ${this.UiModeClass}
           ${
             this.args.resizeClasses
               ? this.args.resizeClasses
@@ -335,7 +326,6 @@ class Modal extends FwComponent {
       disableOverlay: true,
       width: mode !== BOARD_NAME ? null : '960px',
       callback: null,
-      classes: '',
       closeClasses: '',
       fullscreen: false, //@TODO: this shit
       fullscreenContentDisplay: 'block',
@@ -407,13 +397,6 @@ class Modal extends FwComponent {
             ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
             : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
             ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-callback`)
-            : this._customArgs.callback,
-        classes:
-          this.triggerer &&
-          this.triggerer.hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
-            ? this.triggerer.getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
-            : super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
-            ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-classes`)
             : this._customArgs.callback,
         close:
           this.triggerer &&
@@ -559,8 +542,7 @@ class Modal extends FwComponent {
         ${
           this.args.align ? `${UIPrefix(COMPONENT_CLASS)}-align-${this.args.align}` : ''
         }
-        ${this.args.centerY ? `${UIPrefix(COMPONENT_CLASS)}-center-y` : ''}
-        ${this.args.classes}`;
+        ${this.args.centerY ? `${UIPrefix(COMPONENT_CLASS)}-center-y` : ''}`;
       theUI.setAttribute('id', this.UIId);
 
       theUI.innerHTML = this._markup;
@@ -764,22 +746,10 @@ class Modal extends FwComponent {
         EVENT_AFTER_RESIZE,
         () => {
           //all
-          if (this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-popup`)) {
-            this.UIRoot.querySelector(
-              `.${UIPrefix(COMPONENT_CLASS)}-popup`
-            ).style.width = typeof width == 'string' ? width : `${width}px`;
-          }
-
-          //bboard
-          if (this.mode == 'board') {
-            if (
-              this.UIRoot.querySelector(`.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`)
-            ) {
-              this.UIRoot.querySelector(
-                `.${UIPrefix(COMPONENT_CLASS)}-button-wrapper`
-              ).style.width = typeof width == 'string' ? width : `${width}px`;
-            }
-          }
+          this.UIRoot.style.setProperty(
+            '--fw-modal-width',
+            typeof width == 'string' ? width : `${width}px`
+          );
           this.update();
         },
         element
@@ -876,9 +846,16 @@ class Modal extends FwComponent {
   static handleInit() {
     return () => {
       if (Settings.get('initializeModal')) {
-        const modal = new Modal();
+        let modal;
         const hash = window.location.hash;
-        if (Modal.isHash(hash)) {
+
+        if (FwComponent.isHash(hash, COMPONENT_CLASS)) {
+          modal = new Modal();
+        } else if (FwComponent.containsHash(hash, COMPONENT_CLASS)) {
+          modal = new Modal(FwComponent.containsHash(hash, COMPONENT_CLASS));
+        }
+
+        if (modal) {
           modal.create();
         }
       }
@@ -889,7 +866,11 @@ class Modal extends FwComponent {
     return () => {
       const modal = new Modal();
       const hash = window.location.hash;
-      if (Modal.isHash(hash) && !Modal.containsHash(hash)) {
+
+      if (
+        FwComponent.isHash(hash, COMPONENT_CLASS) ||
+        !FwComponent.containsHash(hash, COMPONENT_CLASS)
+      ) {
         modal.open();
       } else {
         modal.close();

@@ -1,9 +1,0 @@
-$_fwc-module-title-font-size: $module-title-font-size;
-@if internal-is-convertable($module-title-font-size) {
-  $_fwc-module-title-font-size: rem($module-title-font-size, $body-font-size);
-}
-
-$_fwc-module-grid-title-font-size: $module-grid-title-font-size;
-@if internal-is-convertable($module-grid-title-font-size) {
-  $_fwc-module-grid-title-font-size: rem($module-grid-title-font-size, $body-font-size);
-}

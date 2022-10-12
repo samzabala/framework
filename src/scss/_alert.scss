@@ -1,249 +1,244 @@
-/*** ALERT ***/
-[data-toggle-alert-close],
-[data-toggle-alert-close-all] {
+$fwc-alert-schemes: (
+  default: (
+    background: $alert-background-default,
+    border: $alert-border-default,
+    color: $alert-color-default,
+  ),
+  primary: (
+    background: $alert-background-primary,
+    border: $alert-border-primary,
+    color: $alert-color-primary,
+  ),
+  secondary: (
+    background: $alert-background-secondary,
+    border: $alert-border-secondary,
+    color: $alert-color-secondary,
+  ),
+  accent: (
+    background: $alert-background-accent,
+    border: $alert-border-accent,
+    color: $alert-color-accent,
+  ),
+  neutral: (
+    background: $alert-background-neutral,
+    border: $alert-border-neutral,
+    color: $alert-color-neutral,
+  ),
+  success: (
+    background: $alert-background-success,
+    border: $alert-border-success,
+    color: $alert-color-success,
+  ),
+  caution: (
+    background: $alert-background-caution,
+    border: $alert-border-caution,
+    color: $alert-color-caution,
+  ),
+  error: (
+    background: $alert-background-error,
+    border: $alert-border-error,
+    color: $alert-color-error,
+  ),
+);
+
+$prefix: '.alert';
+
+:root {
+  // :where(#{$prefix})
+  // --fw-alert-border-radius: #{$alert-border-radius};
+  --fw-alert-border-width: #{$alert-border-width};
+  --fw-alert-box-shadow: #{$alert-box-shadow};
+
+  --fw-alert-gutter-x: #{$alert-gutter-x};
+  --fw-alert-gutter-y: #{$alert-gutter-y};
+  --fw-alert-ends-gutter-y: #{$alert-ends-gutter-y};
+
+  --fw-alert-background: transparent;
+  --fw-alert-border-color: transparent;
+  --fw-alert-color: inherit;
+
+  --fw-alert-container-padding-x: #{$alert-container-padding-x};
+  --fw-alert-container-padding-y: #{$alert-container-padding-y};
+  --fw-alert-container-max-width: #{$alert-container-max-width};
+  --fw-alert-container-z-index: #{$z-index-alert-container};
+
+  @include on-breakpoint(mobile) {
+    --fw-alert-container-padding-x: #{$alert-container-padding-x-mobile};
+    --fw-alert-container-padding-y: #{$alert-container-padding-y-mobile};
+  }
+}
+
+:is([data-toggle-alert-close], [data-toggle-alert-close-all]) {
   @include dump-styles(data-toggle);
 }
 
-$prefix: '.alert';
+#{$prefix}-container {
+  z-index: var(--fw-alert-container-z-index);
+  padding-top: var(--fw-alert-container-padding-y);
+  padding-bottom: var(--fw-alert-container-padding-y);
+  padding-left: var(--fw-alert-container-padding-x);
+  padding-right: var(--fw-alert-container-padding-x);
+  max-width: var(--fw-alert-container-max-width);
+  border-color: var(--fw-alert-border-color);
+  color: var(--fw-alert-color);
+  background: var(--fw-alert-background);
+  position: fixed;
+  width: 100%;
+
+  &#{$prefix}-nav-offset {
+    @include dump-styles(nav-offset-sticky);
+  }
+
+  &#{$prefix}-top {
+    top: 0;
+  }
+
+  &#{$prefix}-bottom {
+    bottom: 0;
+  }
+
+  &#{$prefix}-left {
+    left: 0;
+  }
+
+  &#{$prefix}-right {
+    right: 0;
+  }
+}
+
 #{$prefix} {
-  // padding-right: calc(#{$alert-gutter-x} + 2em);
-  border: $alert-border-width solid transparent;
-  box-shadow: $alert-box-shadow;
+  border: var(--fw-alert-border-width, #{#{$alert-border-width}}) solid
+    var(--fw-alert-border-color, currentColor);
+  background-color: var(--fw-alert-background, transparent);
+  color: var(--fw-alert-color, inherit);
+  box-shadow: var(--fw-alert-box-shadow, #{$alert-box-shadow});
   position: relative;
   @include dump-styles(cf);
 
-  &-container {
-    position: fixed;
-    z-index: $z-index-alert-container;
-    padding: $alert-container-padding-y $alert-container-padding-x;
-    width: 100%;
-    max-width: $alert-container-max-width;
-
-    @include on-breakpoint(mobile) {
-      padding: $alert-container-padding-y-mobile $alert-container-padding-x-mobile;
-    }
-    &-nav-offset {
-      @include dump-styles(nav-offset-sticky);
-    }
-
-    &-top {
-      top: 0;
-    }
-
-    &-bottom {
-      bottom: 0;
-    }
-
-    &-left {
-      left: 0;
-    }
-
-    &-right {
-      right: 0;
-    }
-  }
-
-  &-small {
-    font-size: $body-font-size-small;
-  }
-
-  &-large {
-    font-size: $body-font-size-large;
-  }
-
-  a {
+  :where(a) {
     color: inherit;
     font-weight: $body-font-weight-bold;
   }
+}
 
-  &-close {
-    // position:absolute;
-    // top:$alert-gutter-y;
-    // right:$alert-gutter-x;
-    float: right;
-    color: inherit;
-    opacity: 0.8;
-    margin-left: 1em;
-    transition: $transition-duration-short opacity $transition-timing;
+#{$prefix}-small {
+  --fw-alert-gutter-x: #{$alert-gutter-x-small};
+  --fw-alert-gutter-y: #{$alert-gutter-y-small};
+  --fw-alert-ends-gutter-y: #{$alert-ends-gutter-y-small};
+  font-size: $var-body-font-size-small;
+}
 
-    &:hover {
-      opacity: 1;
-    }
+#{$prefix}-large {
+  --fw-alert-gutter-x: #{$alert-gutter-x-large};
+  --fw-alert-gutter-y: #{$alert-gutter-y-large};
+  --fw-alert-ends-gutter-y: #{$alert-ends-gutter-y-large};
+  font-size: $var-body-font-size-large;
+}
 
-    #{$prefix}-header &,
-    #{$prefix}-footer & {
-      vertical-align: middle;
-      font-size: 0.875em;
-    }
+@each $tag, $color in $fwc-alert-schemes {
+  #{$prefix}-#{$tag} {
+    --fw-alert-border-color: #{map-get($color, border)};
+    --fw-alert-color: #{map-get($color, color)};
+    --fw-alert-background: #{map-get($color, background)};
+  }
+}
+
+@at-root #{$prefix}-close {
+  // position:absolute;
+  // top:$alert-gutter-y;
+  // right:$alert-gutter-x;
+  float: right;
+  color: inherit;
+  opacity: 0.8;
+  margin-left: 1em;
+  transition-duration: $alert-close-transition-duration;
+  transition-timing-function: $alert-close-transition-timing;
+  transition-property: opacity;
+  transition: $alert-close-transition-duration opacity $alert-close-transition-timing;
+
+  &:is(:hover, :focus, .focus) {
+    opacity: 1;
   }
 
-  &-header,
-  &-content,
-  &-footer {
-    @at-root #{$prefix},
-      & {
-      padding-left: $alert-gutter-x;
-      padding-right: $alert-gutter-x;
-      @include dump-styles(cf);
-    }
-
-    @at-root #{$prefix}#{$prefix}-small,
-      #{$prefix}-small & {
-      padding-left: $alert-gutter-x-small;
-      padding-right: $alert-gutter-x-small;
-    }
-
-    @at-root #{$prefix}#{$prefix}-large,
-      #{$prefix}-large & {
-      padding-left: $alert-gutter-x-large;
-      padding-right: $alert-gutter-x-large;
-    }
+  :is(#{$prefix}-header, #{$prefix}-footer) & {
+    vertical-align: middle;
+    font-size: 0.875em;
   }
+}
 
-  &-content {
-    padding-top: $alert-gutter-y;
-    padding-bottom: $alert-gutter-y;
+:is(#{$prefix}, #{$prefix}-header, #{$prefix}-content, #{$prefix}-footer) {
+  padding-left: var(--fw-alert-gutter-x, #{$alert-gutter-x});
+  padding-right: var(--fw-alert-gutter-x, #{$alert-gutter-x});
+  @include dump-styles(cf);
+}
 
-    resize: none;
-    max-width: calc(100% + 20px);
-    width: auto;
-    -webkit-appearance: none;
-    display: block;
-    outline: none;
+:is(#{$prefix}, #{$prefix}-content) {
+  padding-top: var(--fw-alert-gutter-y, #{$alert-gutter-y});
+  padding-bottom: var(--fw-alert-gutter-y, #{$alert-gutter-y});
+}
 
-    @at-root #{$prefix},
-      & {
-      padding-top: $alert-gutter-y;
-      padding-bottom: $alert-gutter-y;
-    }
+#{$prefix}-content {
+  padding-top: var(--fw-alert-gutter-y, #{$alert-gutter-y});
+  padding-bottom: var(--fw-alert-gutter-y, #{$alert-gutter-y});
+  max-width: calc(100% + (var(--fw-alert-gutter-x, #{$alert-gutter-x}) * 2));
+  resize: none;
+  width: auto;
+  -webkit-appearance: none;
+  display: block;
+  outline: none;
+}
 
-    @at-root #{$prefix}#{$prefix}-small,
-      #{$prefix}-small & {
-      padding-top: $alert-gutter-y-small;
-      padding-bottom: $alert-gutter-y-small;
-    }
+:is(#{$prefix}-header, #{$prefix}-footer) {
+  padding-bottom: var(--fw-alert-ends-gutter-y);
+  padding-top: var(--fw-alert-ends-gutter-y);
+}
 
-    @at-root #{$prefix}#{$prefix}-large,
-      #{$prefix}-large & {
-      padding-top: $alert-gutter-y-large;
-      padding-bottom: $alert-gutter-y-large;
-    }
-  }
+#{$prefix},
+:is(#{$prefix}-header, #{$prefix}-content, #{$prefix}-footer):first-child {
+  border-top-left-radius: var(--fw-alert-border-radius, #{$alert-border-radius});
+  border-top-right-radius: var(--fw-alert-border-radius, #{$alert-border-radius});
+}
 
-  &-header,
-  &-footer {
-    padding-bottom: $alert-gutter-y-ends;
-    padding-top: $alert-gutter-y-ends;
+#{$prefix},
+:is(#{$prefix}-header, #{$prefix}-content, #{$prefix}-footer):last-child {
+  border-bottom-left-radius: var(--fw-alert-border-radius, #{$alert-border-radius});
+  border-bottom-right-radius: var(--fw-alert-border-radius, #{$alert-border-radius});
+}
+:is(#{$prefix}-header, #{$prefix}-content, #{$prefix}-footer) {
+  margin-left: calc(var(--fw-alert-gutter-x) * -1);
+  margin-right: calc(var(--fw-alert-gutter-x) * -1);
+}
 
-    #{$prefix}-small & {
-      padding-bottom: $alert-gutter-y-ends-small;
-      padding-top: $alert-gutter-y-ends-small;
-    }
+:is(#{$prefix}-header, #{$prefix}-content, #{$prefix}-footer):first-child {
+  margin-top: calc(var(--fw-alert-gutter-y) * -1);
+}
 
-    #{$prefix}-large & {
-      padding-bottom: $alert-gutter-y-ends-large;
-      padding-top: $alert-gutter-y-ends-large;
-    }
-  }
+:is(#{$prefix}-header, #{$prefix}-content, #{$prefix}-footer):last-child {
+  margin-bottom: calc(var(--fw-alert-gutter-y) * -1);
+}
 
-  &,
-  &-header:first-child,
-  &-content:first-child,
-  &-footer:first-child {
-    border-top-left-radius: $alert-border-radius;
-    border-top-right-radius: $alert-border-radius;
-  }
+#{$prefix}-header:nth-last-child(n + 2) {
+  border-bottom: var(--fw-alert-border-width, #{#{$alert-border-width}}) solid
+    var(--fw-alert-border-color);
+}
 
-  &,
-  &-header:last-child,
-  &-content:last-child,
-  &-footer:last-child {
-    border-bottom-left-radius: $alert-border-radius;
-    border-bottom-right-radius: $alert-border-radius;
-  }
+#{$prefix}-footer:nth-child(n + 2) {
+  border-top: var(--fw-alert-border-width, #{#{$alert-border-width}}) solid
+    var(--fw-alert-border-color);
+}
 
-  &-header,
-  &-content,
-  &-footer {
-    margin-left: $alert-gutter-x * -1;
-    margin-right: $alert-gutter-x * -1;
-
-    #{$prefix}-small & {
-      margin-left: $alert-gutter-x-small * -1;
-      margin-right: $alert-gutter-x-small * -1;
-    }
-
-    #{$prefix}-large & {
-      margin-left: $alert-gutter-x-large * -1;
-      margin-right: $alert-gutter-x-large * -1;
-    }
-  }
-
-  &-header:first-child,
-  &-content:first-child,
-  &-footer:first-child {
-    margin-top: $alert-gutter-y * -1;
-
-    #{$prefix}-small & {
-      margin-top: $alert-gutter-y-small * -1;
-    }
-
-    #{$prefix}-large & {
-      margin-top: $alert-gutter-y-large * -1;
-    }
-  }
-
-  &-header:last-child,
-  &-content:last-child,
-  &-footer:last-child {
-    margin-bottom: $alert-gutter-y * -1;
-
-    #{$prefix}-small & {
-      margin-bottom: $alert-gutter-y-small * -1;
-    }
-
-    #{$prefix}-large & {
-      margin-bottom: $alert-gutter-y-large * -1;
-    }
-  }
-
-  &-header:not(:last-child) {
-    border-bottom: $alert-border-width solid transparent;
-  }
-
-  &-footer:not(:first-child) {
-    border-top: $alert-border-width solid transparent;
-  }
-
-  &-title {
-    @include type-set(
-      (
-        size: 1em,
-        leading: inherit,
-        color: $alert-title-color,
-        case: $alert-title-text-transform,
-        weight: $alert-title-font-weight,
-        style: $alert-title-font-style,
-      )
-    );
-    margin: 0;
-    float: left;
-    max-width: 80%;
-  }
-
-  @each $tag, $color in $_fwc-alert-schemes {
-    &#{$prefix}-#{$tag} {
-      border-color: map-get($color, border);
-      color: map-get($color, color);
-      background-color: map-get($color, background);
-
-      #{$prefix}-header:not(:last-child) {
-        border-color: map-get($color, border);
-      }
-
-      #{$prefix}-footer:not(:first-child) {
-        border-color: map-get($color, border);
-      }
-    }
-  }
+#{$prefix}-title {
+  @include type-set(
+    (
+      leading: inherit,
+      size: 1em,
+      color: $alert-title-color,
+      case: $alert-title-text-transform,
+      weight: $alert-title-font-weight,
+      style: $alert-title-font-style,
+    )
+  );
+  margin: 0;
+  float: left;
+  max-width: 80%;
 }

@@ -1,3 +1,18 @@
+:root {
+  // :where(#{$prefix})
+  --fw-dropdown-background: #{$dropdown-background};
+  --fw-dropdown-border-radius: #{$dropdown-border-radius};
+  --fw-dropdown-box-shadow: #{$dropdown-box-shadow};
+  --fw-dropdown-color: #{$dropdown-color};
+  --fw-dropdown-width: #{$dropdown-width};
+  --fw-dropdown-z-index: #{$z-index-dropdown};
+
+  --fw-dropdown-padding-x: #{$dropdown-padding-x};
+  --fw-dropdown-padding-y: #{$dropdown-padding-y};
+
+  --fw-dropdown-active-color: #{$dropdown-active-color};
+}
+
 [data-toggle-dropdown] {
   @include dump-styles(data-toggle);
 }
@@ -5,54 +20,33 @@
 $prefix: '.dropdown';
 #{$prefix} {
   @include create-popper-styles(
-    $dropdown-background,
-    $dropdown-background-inverse,
-    $dropdown-color,
-    $dropdown-color-inverse,
-    $dropdown-gutter-x,
-    $dropdown-gutter-y,
-    $dropdown-border-radius,
-    $dropdown-box-shadow
+    var(--fw-dropdown-background),
+    var(--fw-dropdown-color),
+    var(--fw-dropdown-padding-x),
+    var(--fw-dropdown-padding-y),
+    var(--fw-dropdown-border-radius),
+    var(--fw-dropdown-box-shadow)
   );
-  width: $dropdown-width;
+  width: var(--fw-dropdown-width);
   display: none;
-  color: $nav-color;
   transform-origin: center center;
   transform-style: preserve-3d;
-  z-index: $z-index-dropdown;
+  z-index: var(--fw-dropdown-z-index);
+  overflow-y: auto;
 
   &#{$prefix}-expanded {
-    @include create-popper-styles(
-      null,
-      null,
-      null,
-      null,
-      $dropdown-expanded-gutter-x,
-      $dropdown-expanded-gutter-y
-    );
+    --fw-dropdown-gutter-x: #{$dropdown-padding-x-expanded};
+    --fw-dropdown-gutter-y: #{$dropdown-padding-y-expanded};
   }
 
   &#{$prefix}-compact {
-    @include create-popper-styles(
-      null,
-      null,
-      null,
-      null,
-      $dropdown-compact-gutter-x,
-      $dropdown-compact-gutter-y
-    );
+    --fw-dropdown-gutter-x: #{$dropdown-padding-x-compact};
+    --fw-dropdown-gutter-y: #{$dropdown-padding-y-compact};
   }
 
   &#{$prefix}-constricted {
-    @include create-popper-styles(null, null, null, null, 0);
-  }
-
-  &[data-dropdown-max-height] {
-    overflow-y: auto;
-  }
-
-  .theme-inverse & {
-    color: $nav-color-inverse;
+    --fw-dropdown-gutter-x: 0rem;
+    --fw-dropdown-gutter-y: 0rem;
   }
 
   &.open {
@@ -60,34 +54,25 @@ $prefix: '.dropdown';
   }
 
   &,
-  ul {
+  :where(ul, ol, li) {
     margin-bottom: 0;
     margin-top: 0;
+    list-style: none;
   }
 
-  li.active {
-    color: $dropdown-active-color;
+  :where(ul, ol) {
+    padding: 0;
   }
 
-  @at-root hr#{&}-separator {
-    margin: 0.5em 0;
-  }
-
-  // a,
-  // [data-toggle-dropdown] {
-  //   &:not(:hover,:focus){
-  //     color:inherit;
-  //   }
-  // }
-
-  &#{&}-bottom {
+  &#{$prefix}-bottom {
     bottom: 0;
+
     &-flush {
       bottom: 100%;
     }
   }
 
-  &#{&}-top {
+  &#{$prefix}-top {
     top: 0;
 
     &-flush {
@@ -95,21 +80,23 @@ $prefix: '.dropdown';
     }
   }
 
-  &#{&}-left {
+  &#{$prefix}-left {
     left: 0;
+
     &-flush {
       left: 100%;
     }
   }
 
-  &#{&}-right {
+  &#{$prefix}-right {
     right: 0;
+
     &-flush {
       right: 100%;
     }
   }
 
-  &#{&}-center {
+  &#{$prefix}-center {
     &-x {
       left: 50%;
       transform: translateX(-50%);
@@ -127,13 +114,16 @@ $prefix: '.dropdown';
     transform: none;
   }
 
-  li {
+  :where(li) {
+    &.active {
+      color: var(--fw-dropdown-active-color);
+    }
     &:before {
       content: none;
     }
   }
+}
 
-  // @include on-breakpoint(mobile) {
-  // 	max-width:100%;
-  // }
+@at-root hr#{$prefix}-separator {
+  margin: 0.5em 0;
 }

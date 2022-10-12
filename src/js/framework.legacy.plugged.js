@@ -1479,7 +1479,7 @@ this.jQuery && this.jQuery.noConflict();
       callback: inputTags.attr('data-tags-callback'),
       callbackOnKeyup: inputTags.attr('data-tags-callback-on-keyup'),
       callbackNameFilter: inputTags.attr('data-tags-callback-name-filter'),
-      multipleLines: inputTags.attr('data-tags-multiple-lines'),
+      multipleLines: inputTags.attr('data-tags-multiple-lines-lines'),
     };
 
     const defaults = {

@@ -1,0 +1,310 @@
+$sub-prefix: #{$prefix + '-box'};
+%fwe-form-box {
+  &-skeleton {
+    :is(&) {
+      padding: calc(
+          (
+              (var(--fw-input-height) - (var(--fw-input-border-width) * 2)) -
+                (#{calc-single-line()})
+            ) * 0.5
+        )
+        var(--fw-input-padding-x);
+      min-height: var(--fw-input-height);
+      border-color: var(--fw-input-border-color);
+      border-style: solid;
+      border-width: var(--fw-input-border-width);
+      color: var(--fw-input-color);
+      background-color: var(--fw-input-background-color);
+      border-radius: var(--fw-input-border-radius);
+    }
+
+    :is(&-focus) {
+      &:is(:focus, .focus, .active) {
+        border-color: var(--fw-input-border-color-focus);
+        color: var(--fw-input-color-focus);
+        background-color: var(--fw-input-background-color-focus);
+      }
+    }
+  }
+}
+
+:root {
+  // :where(#{$prefix})
+  --fw-input-box-select-padding-right: #{em(
+      $input-box-select-padding-right,
+      $input-font-size
+    )};
+
+  --fw-input-box-select-caret-color: #{$input-box-select-caret-color};
+  --fw-input-box-select-caret-height: #{em(
+      $input-box-select-caret-height,
+      $input-font-size
+    )};
+  --fw-input-box-select-caret-width: #{em(
+      $input-box-select-caret-width,
+      $input-font-size
+    )};
+
+  --fw-input-box-multiline-height-ratio: #{$input-box-multiline-height-ratio};
+}
+
+@at-root :is(#{$sub-prefix}, #{$prefix}-group) {
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: $var-body-line-height;
+  outline: none;
+  max-width: 100%;
+  box-shadow: var(--fw-input-box-shadow);
+
+  &:is(:focus, .focus, :active, .active) {
+    box-shadow: var(--fw-input-box-shadow-focus);
+  }
+
+  &#{$prefix}-block {
+    display: block;
+    width: 100%;
+
+    // > :is(#{$sub-prefix}) {
+    //   flex: 1 1;
+    // }
+
+    &-mobile {
+      @include on-breakpoint(mobile) {
+        display: block;
+        width: 100%;
+
+        // > :is(#{$sub-prefix}) {
+        //   flex: 1 1;
+        // }
+      }
+    }
+  }
+}
+
+#{$prefix}-group {
+  @extend %fwe-form-global-skeleton;
+  display: inline-flex;
+  align-content: stretch;
+  align-items: stretch;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow-x: auto;
+  overflow-y: visible;
+  width: max-content;
+
+  > .btn:not(.btn-symbol) {
+    width: auto;
+  }
+
+  &#{&}-horizontal {
+    > .btn-symbol {
+      flex: 0 0 auto;
+    }
+  }
+
+  &#{&}-horizontal:not(#{&}-responsive) {
+    > :is(#{$prefix}, .btn) {
+      &:nth-last-child(n + 2) {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+      &:nth-child(n + 2) {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        margin-left: calc(var(--fw-input-border-width) * -1);
+      }
+    }
+  }
+
+  &#{&}-vertical {
+    flex-direction: column;
+
+    > .btn-symbol {
+      width: auto;
+    }
+
+    > :is(#{$prefix}, .btn) {
+      &:nth-last-child(n + 2) {
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
+
+      &:nth-child(n + 2) {
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+        margin-top: calc(var(--fw-input-border-width) * -1);
+      }
+    }
+  }
+
+  &#{&}-responsive#{&}-horizontal {
+    @include on-breakpoint(nonmobile) {
+      > .btn-symbol {
+        width: auto;
+      }
+
+      > :is(#{$prefix}, .btn) {
+        &:nth-last-child(n + 2) {
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+
+        &:nth-child(n + 2) {
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+          margin-left: calc(var(--fw-input-border-width) * -1);
+        }
+      }
+    }
+  }
+  &#{&}-responsive {
+    @include on-breakpoint(mobile) {
+      width: 100%;
+      flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
+
+      > :is(#{$prefix}, .btn) {
+        &:nth-last-child(n + 2) {
+          border-bottom-right-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+
+        &:nth-child(n + 2) {
+          border-top-right-radius: 0 !important;
+          border-top-left-radius: 0 !important;
+          margin-top: calc(var(--fw-input-border-width) * -1);
+        }
+      }
+    }
+  }
+}
+
+:is(#{$sub-prefix}) {
+  @extend %fwe-form-box;
+  @extend %fwe-form-box-skeleton;
+  @include type-set(
+    (
+      weight: $input-font-weight,
+      style: $input-font-style,
+      font: $input-font-family,
+      align: inherit,
+      decoration: none,
+      case: $input-text-transform,
+    )
+  );
+  display: inline-block;
+
+  @extend %fwe-form-box-skeleton-focus;
+
+  :where(option) {
+    font: inherit;
+    outline: none;
+  }
+
+  //color
+  &:is([type='color']) {
+    min-width: 100px;
+    padding: 0.5em;
+  }
+
+  //file
+  &::-webkit-file-upload-button {
+    appearance: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    opacity: $input-placeholder-opacity;
+    background: none;
+    margin: 0 0.25em 0 0;
+    padding: 0;
+    // vertical-align:middle;
+    // display:flex;
+  }
+  // &::-webkit-file-upload-text {
+  // 	-webkit-appearance: none;
+  // }
+
+  @at-root #{$prefix}-group > :is(#{&}, .btn) {
+    min-width: 0;
+  }
+
+  #{$prefix}-group > & {
+    flex: 1 1;
+    position: relative;
+
+    &:is(:hover, :active, .active, :focus, .focus, .open) {
+      z-index: 1;
+    }
+  }
+
+  &#{$sub-prefix}-select {
+    &:not([multiple]) {
+      padding-right: calc(
+        var(--fw-input-box-select-padding-right) +
+          var(--fw-input-box-select-caret-width) + var(--fw-input-padding-x)
+      );
+      background-image: linear-gradient(
+          -130deg,
+          var(--fw-input-box-select-caret-color) 0%,
+          var(--fw-input-box-select-caret-color) 50%,
+          transparent 51%,
+          transparent 100%
+        ),
+        linear-gradient(
+          130deg,
+          var(--fw-input-box-select-caret-color) 0%,
+          var(--fw-input-box-select-caret-color) 50%,
+          transparent 51%,
+          transparent 100%
+        );
+      background-size: calc(var(--fw-input-box-select-caret-width) * 0.5)
+        var(--fw-input-box-select-caret-height);
+      background-position: calc(
+            100% -
+              (
+                var(--fw-input-padding-x) +
+                  (var(--fw-input-box-select-caret-width) * 0.5)
+              )
+          )
+          50%,
+        calc(100% - var(--fw-input-padding-x)) 50%;
+      background-repeat: no-repeat, no-repeat;
+    }
+  }
+  &:is([multiple], #{$sub-prefix}-multiline) {
+    vertical-align: top;
+    overflow-y: auto;
+    flex: 1 0 auto;
+    min-height: calc(
+      var(--fw-input-height) * var(--fw-input-box-multiline-height-ratio)
+    );
+
+    #{$prefix}-group > & {
+      resize: none;
+      max-height: 100%;
+    }
+
+    :where(option) {
+      padding-right: var(--fw-input-padding-x);
+      padding-left: var(--fw-input-padding-x);
+      margin-right: calc(var(--fw-input-padding-x) * -1);
+      margin-left: calc(var(--fw-input-padding-x) * -1);
+      color: inherit;
+    }
+  }
+  @at-root :is(.nav, .nav-block.nav-block-stretch, .nav > #{$prefix}-group)
+      > #{$prefix}#{&} {
+    align-self: stretch;
+  }
+}
+
+:is(#{$prefix}-large, #{$prefix}-large > #{$prefix}) {
+  --fw-input-box-multiline-height-ratio: #{$input-box-multiline-height-ratio-large};
+}
+
+:is(#{$prefix}-small, #{$prefix}-small > #{$prefix}) {
+  --fw-input-box-multiline-height-ratio: #{$input-box-multiline-height-ratio-small};
+}

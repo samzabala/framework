@@ -49,6 +49,6 @@ These are valid color classes for your boi
 
 ## Size classes
 
-`.zone` supports sizes by adding `zone-large` or `zone-small` to its classes
+`.zone` supports sizes by adding `zone-expanded` or `zone-compact` to its classes
 
 [Back to TOC](../../../readme.md)

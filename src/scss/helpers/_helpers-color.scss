@@ -1,7 +1,7 @@
 $prefix: '.color';
 #{$prefix} {
   // Theme
-  @each $color, $var in $_fwc-theme-colors-color {
+  @each $color, $var in $fwc-theme-colors-color {
     @include create-state-helper(#{&}-#{$color}, color, $var);
   }
 

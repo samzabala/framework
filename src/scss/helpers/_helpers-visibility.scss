@@ -63,33 +63,16 @@
 }
 
 .pointer-reference {
-  &:not(:hover):not(:focus):not(.focus):not(:active):not(.active):not(.open) .hide-idle,
-  &:hover .only-idle,
-  &:focus .only-idle,
-  &.focus .only-idle,
-  &:active .only-idle,
-  &.active .only-idle,
-  &.open .only-idle,
-  &:hover .only-not-hover,
-  &:hover .hide-hover,
-  &:not(:hover) .only-hover,
-  &:not(:hover) .hide-not-hover,
-  &:focus .only-not-focus,
-  &:focus .hide-focus,
-  &:not(:focus):not(.focus) .only-focus,
-  &:not(:focus):not(.focus) .hide-not-focus,
-  &.active .only-not-active,
-  &:active .only-not-active,
-  &.active .hide-active,
-  &:active .hide-active,
-  &:not(:active):not(.active) .only-active,
-  &:not(:active):not(.active) .hide-not-active,
-  &.active .only-not-toggle,
-  &.open .only-not-toggle,
-  &.active .hide-toggle,
-  &.open .hide-toggle,
-  &:not(.active):not(.open) .only-toggle,
-  &:not(.active):not(.open) .hide-not-toggle {
+  &:not(:is(:hover, :focus, .focus, :active, .active, .open)) .hide-idle,
+  &:is(:hover, :focus, .focus, :active, .active, .open) .only-idle,
+  &:hover :is(.only-not-hover, .hide-hover),
+  &:not(:hover) :is(.only-hover, .hide-not-hover),
+  &:is(:focus, .focus) :is(.only-not-focus, .hide-focus),
+  &:not(:is(:focus, .focus)) :is(.only-focus, .hide-not-focus),
+  &:is(:active, .active) :is(.only-not-active, .hide-active),
+  &:not(:is(:active, .active)) :is(.only-active, .hide-not-active),
+  &:is(.active, .open) :is(.only-not-toggle, .hide-toggle),
+  &:not(:is(.active, .open)) :is(.only-toggle, .hide-not-toggle) {
     @include dump-styles(hide-js-friendly);
   }
 }

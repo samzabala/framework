@@ -1,98 +1,61 @@
-/*** MODAL ***/
-$global-prefix: '.modal';
-$prefix: '.modal-ui';
-$mode-wrapper-class: #{$prefix}-on-mode-default;
-$mode-class: #{$prefix}-mode-default;
+$mode-wrapper-class: #{$ui-prefix}-on-mode-default;
+$mode-class: #{$ui-prefix}-mode-default;
+
+:root {
+  // :where(#{$prefix})
+  --fw-modal-default-border-radius: #{$modal-default-border-radius};
+  --fw-modal-default-gutter: #{$modal-default-gutter};
+
+  --fw-modal-default-close-offset: #{$modal-default-close-offset};
+
+  @include on-breakpoint(mobile) {
+    --fw-modal-default-gutter: #{$modal-default-gutter-mobile};
+
+    --fw-modal-default-close-offset-mobile: #{$modal-default-close-offset-mobile};
+  }
+}
 
 [data-toggle-modal-default] {
   @include dump-styles(data-toggle);
 }
 
-#{$mode-class}#{$prefix} {
-  z-index: $z-index-modal-default;
-}
-
 #{$mode-wrapper-class} {
-  #{$mode-class}#{$prefix}-wrapper {
-    @extend %fwe-modal-wrapper-background !optional;
+  --fw-modal-z-index: #{$z-index-modal-default};
+
+  #{$mode-class}#{$ui-prefix}-wrapper {
     @extend %fwe-modal-scroller !optional;
     @extend %fwe-modal-scroller-no-scrollbar !optional;
 
-    &:before,&:after {
-      content:"";
+    &:before,
+    &:after {
+      content: '';
       display: block;
-      width:100%;
+      width: 100%;
       flex: 0 0 auto;
-      height: $modal-gutter;
+      height: var(--fw-modal-default-gutter);
     }
 
-    padding: 0 $modal-gutter;
-
-    @include on-breakpoint(mobile) {
-      padding: 0 $modal-gutter-mobile;
-      &:before,&:after {
-        height: $modal-gutter-mobile;
-      }
-    }
+    padding: 0 var(--fw-modal-default-gutter);
   }
 
-  #{$mode-class}#{$prefix}-button {
-    &-wrapper {
-      display: flex;
-      position: absolute;
-      right: $modal-close-offset;
-      top: $modal-close-offset;
-      z-index: 9;
-
-      @include on-breakpoint(mobile) {
-        right: $modal-close-offset-mobile;
-        top: $modal-close-offset-mobile;
-      }
-    }
-
-    & {
-      margin-left: 1em;
-    }
-
-    &-default {
-      font-size: $modal-close-button-font-size;
-    }
+  #{$mode-class}#{$ui-prefix}-button {
+    margin-left: 1em;
   }
 
-  #{$mode-class}#{$prefix}-close {
-    & {
-      order: 99;
-    }
+  #{$mode-class}#{$ui-prefix}-button-wrapper {
+    display: flex;
+    position: absolute;
+    right: var(--fw-modal-default-close-offset);
+    top: var(--fw-modal-default-close-offset);
+    z-index: 9;
   }
 
-  #{$mode-class}#{$prefix}-popup {
-    border-radius: $modal-border-radius;
+  #{$mode-class}#{$ui-prefix}-close {
+    order: 99;
+  }
+
+  #{$mode-class}#{$ui-prefix}-popup {
+    border-radius: var(--fw-modal-default-border-radius);
     margin: auto;
-
-    padding: $modal-padding-y $modal-padding-x;
-
-    #{$global-prefix}-constricted &,
-    #{$global-prefix}-constricted-x & {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    #{$global-prefix}-constricted &,
-    #{$global-prefix}-constricted-y & {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    @include on-breakpoint(nonmobile) {
-      #{$global-prefix}-expanded & {
-        padding: $modal-expanded-padding-y $modal-expanded-padding-x;
-      }
-      #{$global-prefix}-compact & {
-        padding: $modal-compact-padding-y $modal-compact-padding-x;
-      }
-    }
-
-    @include on-breakpoint(mobile) {
-      padding: $modal-padding-y-mobile $modal-padding-x-mobile;
-    }
   }
 }

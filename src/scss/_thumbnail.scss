@@ -1,71 +1,37 @@
-/*** THUMBNAIL ***/
 $prefix: '.thumbnail';
+
+:root {
+  // :where(#{$prefix})
+  --fw-thumbnail-addon-offset-x: #{$thumbnail-addon-offset-x};
+  --fw-thumbnail-addon-offset-y: #{$thumbnail-addon-offset-y};
+  --fw-thumbnail-background: #{$thumbnail-background};
+
+  --fw-thumbnail-size: #{rem($thumbnail-size, $body-font-size)};
+  --fw-thumbnail-border-radius: #{$thumbnail-border-radius};
+}
+
 #{$prefix} {
-  background: $thumbnail-fallback-background;
-  @include aspect-ratio(
-    $thumbnail-size,
-    $thumbnail-size,
-    false,
-    false,
-    false,
-    true,
-    false
-  );
-  width: 1em;
+  background: var(--fw-thumbnail-background);
+  width: var(--fw-thumbnail-size);
   max-width: 100%;
+  position: relative;
   display: inline-block;
   vertical-align: middle;
-  line-height: inherit;
-  position: relative;
-  font-size: $_fwc-thumbnail-size;
+  @include type($thumbnail-font-size, null, $body-font-size);
 
-  &,
-  &:hover,
-  &:focus,
-  &.focus {
-    text-decoration: none;
-  }
-
-  &-text {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-
-    @include type-set(
-      (
-        size: $_fwc-thumbnail-font-size,
-        leading: $_fwc-thumbnail-line-height,
-        color: $thumbnail-color #{'!important'},
-        weight: $thumbnail-font-weight,
-        style: $thumbnail-font-style,
-        case: $thumbnail-text-transform,
-      )
-    );
-  }
-
-  &[class*='background-'] {
-    background-image: none;
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
   }
 
   &,
-  &-image {
-    @include dump-styles(fit-image-cover);
-    border-radius: $thumbnail-border-radius;
+  > :where(*) {
+    border-radius: var(--fw-thumbnail-border-radius);
   }
 
-  &-image {
-    position: absolute;
-  }
-
-  &-image,
-  img {
-    overflow: hidden;
-  }
-
-  > *,
-  img {
+  > :where(*) {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -73,52 +39,66 @@ $prefix: '.thumbnail';
     left: 0;
     margin: 0;
     overflow: hidden;
-  }
-
-  img {
     max-width: none;
-    border-radius: inherit;
-    overflow: hidden;
-    object-position: center center;
   }
 
-  .badge,
-  .tag {
+  :is(#{$prefix}-image, img, svg) {
+    object-position: center center;
+    object-fit: cover;
+  }
+
+  :is(.badge, .tag) {
     bottom: auto;
     right: auto;
     z-index: 2;
-    top: $thumbnail-addon-offset-x;
-    left: $thumbnail-addon-offset-y;
+    top: var(--fw-thumbnail-addon-offset-x);
+    left: var(--fw-thumbnail-addon-offset-y);
     transform: translate(-50%, -50%);
   }
 
-  &#{$prefix}-small {
-    font-size: $_fwc-thumbnail-small-size;
+  &,
+  &:is(:hover, :focus, .focus) {
+    text-decoration: none;
+  }
 
-    #{$prefix}-text {
-      font-size: $_fwc-thumbnail-small-font-size;
+  #{$prefix}-cluster & {
+    &:nth-last-child(n + 2) {
+      margin-right: calc(var(--fw-thumbnail-size) * -0.5);
     }
   }
+}
 
-  &#{$prefix}-micro {
-    font-size: $_fwc-thumbnail-micro-size;
+#{$prefix}-text {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 
-    #{$prefix}-text {
-      font-size: $_fwc-thumbnail-micro-font-size;
-    }
-  }
+  @include type-set(
+    (
+      size: 1em,
+      leading: 1,
+      color: $thumbnail-color,
+      weight: $thumbnail-font-weight,
+      style: $thumbnail-font-style,
+      case: $thumbnail-text-transform,
+    )
+  );
+}
 
-  &-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+#{$prefix}-small {
+  --fw-thumbnail-size: #{rem($thumbnail-size-small, $body-font-size)};
+  @include type($thumbnail-font-size-small, null, $body-font-size);
+}
 
-  &-cluster {
-    #{$prefix} {
-      &:nth-last-child(n + 2) {
-        margin-right: -0.5em;
-      }
-    }
-  }
+#{$prefix}-micro {
+  --fw-thumbnail-size: #{rem($thumbnail-size-micro, $body-font-size)};
+  @include type($thumbnail-font-size-micro, null, $body-font-size);
+}
+
+#{$prefix}-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

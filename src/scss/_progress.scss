@@ -1,160 +1,104 @@
-/*** PROGRESS BAR ***/
+/* Progress bar */
+$prefix: '.progress';
+
+:root {
+  // :where(#{$prefix})
+  --fw-progress-background-color: #{$progress-background-color};
+  --fw-progress-border-radius: #{$progress-border-radius};
+
+  --fw-progress-height: #{rem($progress-height, $body-font-size)};
+
+  --fw-progress-stripe-background-color: #{$progress-stripe-background-color};
+  --fw-progress-stripe-width: #{$progress-stripe-width};
+  --fw-progress-stripe-gap: #{$progress-stripe-gap};
+
+  --fw-progress-bar-background: #{$progress-bar-background};
+}
+
 @keyframes progress-bar-stripes {
   from {
-    background-position: 50px 0;
-  }
-  to {
     background-position: 0 0;
+  }
+
+  to {
+    background-position: calc(
+        (var(--fw-progress-stripe-width) + var(--fw-progress-stripe-gap)) * 2.83
+      )
+      0;
   }
 }
 
-/* Progress bar */
-$prefix: '.progress';
 #{$prefix} {
-  @at-root %fwe-progress {
-    & {
-      @include dump-styles(cf);
-      text-align: center;
-      width: 100%;
-      display: block;
-      overflow: hidden;
-      background-color: $progress-background-color;
-      border-radius: $progress-border-radius;
+  display: flex;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--fw-progress-background-color);
+  border-radius: var(--fw-progress-border-radius);
 
-      &.active {
-        @include gradient(
-          (
-            type: repeating-linear,
-            use-shorthand: false,
-            use-fallback: false,
-            colors: (
-              (color: $progress-background-stripe-color, offset: 0%),
-              (
-                color: $progress-background-stripe-color,
-                offset: $progress-background-stripe-width
-              ),
-              (color: transparent, offset: $progress-background-stripe-width),
-              (
-                color: transparent,
-                offset: $progress-background-stripe-width +
-                  $progress-background-stripe-gap
-              ),
-            ),
-          )
-        );
-        animation-name: progress-bar-stripes;
-        animation-duration: $progress-animation-duration;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
-
-      .theme-inverse & {
-        background-color: $progress-background-color-inverse;
-
-        &.active {
-          @include gradient(
-            (
-              type: repeating-linear,
-              use-shorthand: false,
-              use-fallback: false,
-              colors: (
-                (color: $progress-background-stripe-color-inverse, offset: 0%),
-                (
-                  color: $progress-background-stripe-color-inverse,
-                  offset: $progress-background-stripe-width
-                ),
-                (color: transparent, offset: $progress-background-stripe-width),
-                (
-                  color: transparent,
-                  offset: $progress-background-stripe-width +
-                    $progress-background-stripe-gap
-                ),
-              ),
-            )
-          );
-        }
-      }
-    }
-  }
-
-  & {
-    @extend %fwe-progress;
-  }
-  @at-root %fwe-progress-and-bar {
-    height: $_fwc-progress-height;
-    transition: $progress-transition-duration width $transition-timing;
-
-    &-small {
-      height: $_fwc-progress-height-small;
-    }
-    &-large {
-      height: $_fwc-progress-height-large;
-    }
-  }
-
-  &,
-  &-bar {
-    @extend %fwe-progress-and-bar;
-  }
-
-  &#{&}-small {
-    &,
-    #{$prefix}-bar {
-      @extend %fwe-progress-and-bar-small;
-    }
-  }
-
-  &#{&}-large {
-    &,
-    #{$prefix}-bar {
-      @extend %fwe-progress-and-bar-large;
-    }
-  }
-
-  @at-root %fwe-progress-bar {
-    float: left;
-
-    &-default {
-      background-color: $progress-bar-background-color;
-    }
-  }
-
-  &-bar {
-    @extend %fwe-progress-bar;
-    @extend %fwe-progress-bar-default;
-
-    @each $tag, $color in $_fwc-brand-color-declarations-for-components {
-      &-#{$tag} {
-        background-color: $color;
-      }
-    }
-
-    &-intensity {
-      @for $i from 1 through length($_fwc-brand-color-intensity) {
-        &-#{$i} {
-          background-color: nth($_fwc-brand-color-intensity, $i);
-        }
-      }
-    }
-  }
-
-  &-title {
-    @include type-set(
+  &.active {
+    @include gradient(
       (
-        size: $_fwc-progress-title-font-size,
-        leading: $_fwc-progress-title-line-height,
-        color: $progress-title-color,
-        weight: $progress-title-font-weight,
-        style: $progress-title-font-style,
-        case: $progress-title-text-transform,
+        angle: 45deg,
+        type: repeating-linear,
+        use-shorthand: false,
+        use-fallback: false,
+        colors: (
+          (color: var(--fw-progress-stripe-background-color), offset: 0%),
+          (
+            color: var(--fw-progress-stripe-background-color),
+            offset: var(--fw-progress-stripe-width)
+          ),
+          (color: transparent, offset: var(--fw-progress-stripe-width)),
+          (
+            color: transparent,
+            offset:
+              calc(var(--fw-progress-stripe-width) + var(--fw-progress-stripe-gap))
+          ),
+        ),
       )
     );
-    display: block;
-    margin-bottom: $_fwc-progress-title-margin-bottom;
-    margin-top: $_fwc-progress-title-margin-top;
+    // (var(--fw-progress-stripe-width) + var(--fw-progress-stripe-gap))
 
-    .theme-inverse & {
-      color: $progress-title-color-inverse;
-    }
+    background-size: calc(
+        (var(--fw-progress-stripe-width) + var(--fw-progress-stripe-gap)) * 2.83
+      )
+      var(--fw-progress-height);
+    // background-position: 0 0;
+    animation-name: progress-bar-stripes;
+    animation-duration: $progress-animation-duration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+  }
+}
+
+:is(#{$prefix}, #{$prefix}-bar) {
+  height: var(--fw-progress-height);
+  transition-duration: $progress-transition-duration;
+  transition-timing-function: $progress-transition-timing;
+  transition-property: width;
+}
+
+#{$prefix}-bar {
+  background: var(--fw-progress-bar-background);
+  flex: 0 0 auto;
+}
+
+#{$prefix}-small {
+  --fw-progress-height: #{rem($progress-height-small, $body-font-size)};
+}
+#{$prefix}-large {
+  --fw-progress-height: #{rem($progress-height-large, $body-font-size)};
+}
+
+@each $tag, $color in $fwc-brand-color-declarations-for-components {
+  #{$prefix}-bar-#{$tag} {
+    --fw-progress-bar-background: #{$color};
+  }
+}
+@for $i from 1 through length($fwc-brand-color-intensity) {
+  #{$prefix}-bar-intensity-#{$i} {
+    --fw-progress-bar-background: #{nth($fwc-brand-color-intensity, $i)};
   }
 }

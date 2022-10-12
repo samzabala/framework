@@ -1,23 +1,94 @@
-/*** Tags ***/
+$fwc-tag-schemes-color: (
+  default: (
+    background: $tag-default-background,
+    color: $tag-default-color,
+  ),
+  primary: (
+    background: $tag-primary-background,
+    color: $tag-primary-color,
+  ),
+  secondary: (
+    background: $tag-secondary-background,
+    color: $tag-secondary-color,
+  ),
+  accent: (
+    background: $tag-accent-background,
+    color: $tag-accent-color,
+  ),
+  neutral: (
+    background: $tag-neutral-background,
+    color: $tag-neutral-color,
+  ),
+  success: (
+    background: $tag-success-background,
+    color: $tag-success-color,
+  ),
+  caution: (
+    background: $tag-caution-background,
+    color: $tag-caution-color,
+  ),
+  error: (
+    background: $tag-error-background,
+    color: $tag-error-color,
+  ),
+  intensity-1: (
+    background: $tag-intensity-1-background,
+    color: $tag-intensity-1-color,
+  ),
+  intensity-2: (
+    background: $tag-intensity-2-background,
+    color: $tag-intensity-2-color,
+  ),
+  intensity-3: (
+    background: $tag-intensity-3-background,
+    color: $tag-intensity-3-color,
+  ),
+  intensity-4: (
+    background: $tag-intensity-4-background,
+    color: $tag-intensity-4-color,
+  ),
+  intensity-5: (
+    background: $tag-intensity-5-background,
+    color: $tag-intensity-5-color,
+  ),
+);
+
 $prefix: '.tag';
+
+:root {
+  // :where(#{$prefix})
+  --fw-tag-margin-x: #{em($tag-margin-x, $tag-font-size)};
+  --fw-tag-margin-y: #{em($tag-margin-y, $tag-font-size)};
+  --fw-tag-padding-x: #{em($tag-padding-x, $tag-font-size)};
+
+  --fw-tag-border-radius: #{$tag-border-radius};
+
+  --fw-tag-height: #{em($tag-height, $tag-font-size)};
+
+  --fw-tag-background: transparent;
+  --fw-tag-color: inherit;
+}
+
 #{$prefix} {
   @include type-set(
     (
-      decoration: get-anchor-dec(),
-      size: $_fwc-tag-font-size,
-      leading: $_fwc-tag-line-height,
+      root-size: $body-font-size,
+      size: $tag-font-size,
+      leading: 1,
       weight: $tag-font-weight,
       style: $tag-font-style,
       case: $tag-text-transform,
+      decoration: none,
+      white-space: nowrap,
     )
   );
-  padding-top: calc(((#{$_fwc-tag-height} - (#{$_fwc-tag-single-line})) * 0.5));
-  padding-bottom: calc(((#{$_fwc-tag-height} - (#{$_fwc-tag-single-line})) * 0.5));
-  padding-left: $_fwc-tag-gutter-x;
-  padding-right: $_fwc-tag-gutter-x;
-  border-radius: $tag-border-radius;
-  margin-top: $_fwc-tag-margin-y;
-  margin-bottom: $_fwc-tag-margin-y;
+  // white-space: nowrap;
+  color: var(--fw-tag-color);
+  background: var(--fw-tag-background);
+  padding: calc(((var(--fw-tag-height) - 1em) * 0.5)) var(--fw-tag-padding-x);
+  border-radius: var(--fw-tag-border-radius);
+  margin-top: var(--fw-tag-margin-y);
+  margin-bottom: var(--fw-tag-margin-y);
   // display: inline-flex;
   display: inline-block;
   align-items: center;
@@ -26,58 +97,24 @@ $prefix: '.tag';
   @include dump-styles(text-ellipsis-single);
 
   &:nth-child(n + 2) {
-    margin-left: $_fwc-tag-margin-x;
+    margin-left: var(--fw-tag-margin-x);
   }
 
-  &#{&}-large {
-    padding-top: calc(((#{$_fwc-tag-height-large} - (#{$_fwc-tag-single-line})) * 0.5));
-    padding-bottom: calc(
-      ((#{$_fwc-tag-height-large} - (#{$_fwc-tag-single-line})) * 0.5)
-    );
-    border-radius: $tag-border-radius-large;
+  & {
   }
+}
 
-  &#{&}-small {
-    padding-top: calc(((#{$_fwc-tag-height-small} - (#{$_fwc-tag-single-line})) * 0.5));
-    padding-bottom: calc(
-      ((#{$_fwc-tag-height-small} - (#{$_fwc-tag-single-line})) * 0.5)
-    );
-    border-radius: $tag-border-radius-small;
-  }
+#{$prefix}-large {
+  --fw-tag-height: #{em($tag-height-large, $tag-font-size)};
+}
 
-  a {
-    &,
-    &:hover,
-    &:focus,
-    &.focus {
-      text-decoration: inherit;
-      color: inherit;
-    }
-  }
-  &-text {
-    max-width: 10em;
-    @include dump-styles(text-ellipsis-single);
-  }
+#{$prefix}-small {
+  --fw-tag-height: #{em($tag-height-small, $tag-font-size)};
+}
 
-  &,
-  &:hover,
-  &:focus,
-  &.focus {
-    color: $tag-color;
-    @include dump-styles(no-text-decoration-hover);
-  }
-
-  @each $tag, $properties in $_fwc-tag-schemes-color {
-    &-#{$tag} {
-      background: map-get($properties, background);
-      &,
-      &:hover,
-      &:focus,
-      &:active,
-      &.focus,
-      &.active {
-        color: map-get($properties, color);
-      }
-    }
+@each $tag, $properties in $fwc-tag-schemes-color {
+  #{$prefix}-#{$tag} {
+    --fw-tag-background: #{map-get($properties, background)};
+    --fw-tag-color: #{map-get($properties, color)};
   }
 }

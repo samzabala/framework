@@ -1,222 +1,184 @@
-/*** TYPOGRAPHY ***/
-/* special */
-$prefix: '.special';
-#{$prefix} {
-  &-primary {
-    @include type-set(
-      (
-        size: $_fwc-special-primary-font-size,
-        leading: $_fwc-special-primary-line-height,
-        color: $special-primary-color,
-        weight: $special-primary-font-weight,
-        style: $special-primary-font-style,
-        case: $special-primary-text-transform,
-      )
-    );
-    margin-bottom: $_fwc-special-primary-gutter-y;
-    margin-top: $_fwc-special-primary-gutter-y;
-    display: block;
+$fwc-body-heading-size: (
+  $body-size-h1,
+  $body-size-h2,
+  $body-size-h3,
+  $body-size-h4,
+  $body-size-h5,
+  $body-size-h6
+);
 
-    @include on-breakpoint(mobile) {
-      font-size: $_fwc-special-primary-font-size-mobile;
-    }
-  }
-  &-secondary {
-    @include type-set(
-      (
-        size: $_fwc-special-secondary-font-size,
-        leading: $_fwc-special-secondary-line-height,
-        color: $special-secondary-color,
-        weight: $special-secondary-font-weight,
-        style: $special-secondary-font-style,
-        case: $special-secondary-text-transform,
-      )
-    );
-    margin-bottom: $_fwc-special-secondary-gutter-y;
-    margin-top: $_fwc-special-secondary-gutter-y;
-    display: block;
+:is(.special-primary) {
+  @include type-set(
+    (
+      root-size: $body-font-size,
+      size: $special-primary-font-size,
+      leading: $special-primary-line-height,
+      color: $special-primary-color,
+      weight: $special-primary-font-weight,
+      style: $special-primary-font-style,
+      case: $special-primary-text-transform,
+    )
+  );
+  margin-bottom: rem($special-primary-gutter-y, $body-font-size);
+  margin-top: rem($special-primary-gutter-y, $body-font-size);
+  display: block;
 
-    @include on-breakpoint(mobile) {
-      font-size: $_fwc-special-secondary-font-size-mobile !important;
-    }
+  @include on-breakpoint(mobile) {
+    @include type($special-primary-font-size-mobile, null, $body-font-size);
   }
 }
 
-.lead {
+:is(.special-secondary) {
   @include type-set(
     (
-      size: $_fwc-lead-font-size,
-      leading: $_fwc-lead-line-height,
+      root-size: $body-font-size,
+      size: $special-secondary-font-size,
+      leading: $special-secondary-line-height,
+      color: $special-secondary-color,
+      weight: $special-secondary-font-weight,
+      style: $special-secondary-font-style,
+      case: $special-secondary-text-transform,
+    )
+  );
+  margin-bottom: rem($special-secondary-gutter-y, $body-font-size);
+  margin-top: rem($special-secondary-gutter-y, $body-font-size);
+  display: block;
+
+  @include on-breakpoint(mobile) {
+    @include type($special-secondary-font-size-mobile, null, $body-font-size);
+  }
+}
+
+:is(.lead) {
+  @include type-set(
+    (
+      root-size: $body-font-size,
+      size: $lead-font-size,
+      leading: $lead-line-height,
       color: $lead-color,
       weight: $lead-font-weight,
       style: $lead-font-style,
       case: $lead-text-transform,
     )
   );
-  margin-bottom: $_fwc-lead-gutter-y;
-  margin-top: $_fwc-lead-gutter-y;
+  margin-bottom: rem($lead-gutter-y, $body-font-size);
+  margin-top: rem($lead-gutter-y, $body-font-size);
   display: block;
 
   @include on-breakpoint(mobile) {
-    font-size: $_fwc-lead-font-size-mobile;
+    @include type($lead-font-size-mobile, null, $body-font-size);
   }
 }
 
 /* heading */
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
+:where(h1, h2, h3, h4, h5, h6),
+:is(.h1, .h2, .h3, .h4, .h5, .h6) {
   @include type-set(
     (
       font: $body-heading-font-family,
       color: $body-heading-color,
       leading: $body-heading-line-height,
-      weight: $body-font-weight-bold,
+      weight: $body-heading-font-weight,
       style: $body-heading-font-style,
       case: $body-heading-text-transform,
     )
   );
   display: block;
   hyphens: auto;
-  margin-bottom: $_fwc-body-heading-gutter-bottom;
-  margin-top: $_fwc-body-heading-gutter-top;
+  margin-bottom: rem($body-heading-gutter-bottom, $body-font-size);
+  margin-top: rem($body-heading-gutter-top, $body-font-size);
 
-  // &:first-child {
-  // 	margin-top:0;
-  // }
-
-  .theme-inverse & {
-    color: $body-heading-color-inverse;
-  }
-
-  .alert &,
-  .theme-inverse .alert & {
+  @at-root .alert :where(&) {
     color: inherit;
   }
 }
 
-@for $i from 1 through length($_fwc-body-heading-size) {
-  h#{$i},
-  .h#{$i} {
-    font-size: nth($_fwc-body-heading-size, $i);
+@for $i from 1 through length($fwc-body-heading-size) {
+  :where(h#{$i}),
+  :is(.h#{$i}) {
+    @include type(nth($fwc-body-heading-size, $i), null, $body-font-size);
   }
 }
 
 /* OTHER SHIT */
 
-strong,
-b {
+:where(strong, b) {
   // font-family: '';
   font-weight: $body-font-weight-bold;
 }
-em,
-i {
+
+:where(em, i) {
   font-style: italic;
 }
 
-a,
-.a {
-  // transition: $transition-duration-base color $transition-timing;
+:where(a) {
+  transition-duration: $body-anchor-transition-duration;
+  transition-timing-function: $body-anchor-transition-timing;
+  transition-property: color;
+  transition: $body-anchor-transition-duration color $body-anchor-transition-timing;
+  text-decoration: $body-anchor-text-decoration;
+  color: var(--fw-body-anchor-color);
 
-  &,
-  &.disabled {
-    color: $body-anchor-color;
-  }
-
-  &:hover,
-  &:focus,
-  &.focus {
+  &:where(:hover, :focus, .focus) {
     text-decoration: $body-anchor-text-decoration-hover;
-    color: $body-anchor-color-hover;
+    color: var(--fw-body-anchor-color-hover);
+  }
 
-    // &,* {
-    // 	cursor: pointer;
-    // }
-
-    // * {
-    // 	text-decoration: inherit;
-    // 	text-decoration-color: currentColor;
-    // }
+  @at-root :is(.disabled, [disabled], :disabled) {
+    --fw-body-anchor-color-hover: var(--fw-body-anchor-color);
   }
 }
 
-a,
-a:not([class]) {
-  @include dump-styles(no-text-decoration);
-  &:hover {
-    @include dump-styles(no-text-decoration-hover);
-  }
-}
-
-p,
-.p,
-ul,
-ol,
-address,
-pre,
-dl {
-  margin-bottom: $_fwc-body-text-gutter-y;
+:where(p, ul, ol, address, pre, dl),
+:is(.p) {
+  margin-bottom: $var-body-text-gutter;
   display: block;
 }
 
-li:nth-child(n + 2),
-li ul,
-li ol,
-dl:nth-child(n + 2),
-dt:nth-child(n + 2) {
-  margin-top: $_fwc-body-list-gutter-y;
+:where(li, dl, dt):is(:nth-child(n + 2)),
+:where(li) :where(ul, ol) {
+  margin-top: em($body-list-margin-y, $body-font-size);
 }
 
-ol,
-ul,
-dd {
-  padding-left: $_fwc-body-list-offset;
+:where(ol, ul, dd) {
+  padding-left: em($body-list-offset, $body-font-size);
 }
-ol,
-ul {
-  &.unstyled,
-  &.inline {
-    &,
-    li {
+
+:where(ol, ul) {
+  list-style-type: revert;
+
+  &:is(.unstyled, .inline) {
+    :where(ul, ol, li) {
       padding-left: 0;
       margin-top: 0;
     }
   }
 
-  &.unstyled,
-  &.inline,
-  &.style-none {
-    li:before {
+  &:is(.unstyled, .inline, .style-none) {
+    :is(li):before {
       content: none !important;
     }
   }
 
-  &.inline {
-    li {
+  &:is(.inline) {
+    :is(li) {
       display: inline-block;
-      &:nth-child(n + 2) {
-        margin-left: $_fwc-body-list-offset-inline;
+      &:is(:nth-child(n + 2)) {
+        margin-left: rem($body-list-offset-inline, $body-font-size);
       }
     }
   }
 
-  @at-root li {
-    list-style: none;
+  @at-root :where(li) {
+    list-style-type: inherit;
     position: relative;
-    // margin-bottom: em(20px / $content-font-size);
 
-    &:before {
-      position: absolute;
-      right: 100%;
+    // margin-bottom: em(20px / $content-font-size);
+    // padding-left: calc(var(fw-body-list-offset) * -1);
+
+    &::marker {
+      font-size: 1em;
+      color: $body-list-bullet-color;
 
       .alert & {
         color: inherit;
@@ -225,123 +187,72 @@ ul {
     }
   }
 
-  li & {
+  :where(li) & {
     margin-bottom: 0;
   }
 }
 
-ul {
-  &.style-disc li,
-  & > li {
-    &:before {
-      content: '';
-      display: inline-block;
-      vertical-align: middle;
-      line-height: inherit;
-      width: $_fwc-body-list-bullet-size;
-      height: $_fwc-body-list-bullet-size;
-      color: $body-list-bullet-color;
-      background: currentColor;
-      margin-right: $_fwc-body-list-margin-right;
-      position: absolute;
-      top: $_fwc-body-list-top;
-      border-radius: $body-list-bullet-border-radius;
-    }
+:where(ul) {
+  // &,
+  &:is(.style-disc) {
+    list-style-type: disc;
   }
-
-  &.style {
-    &-circle {
-      li:before {
-        background: none !important;
-        border: 0.05em solid $body-list-bullet-color !important;
-      }
-    }
-    &-square {
-      li:before {
-        border-radius: 0 !important;
-      }
-    }
+  &:is(.style-circle) {
+    list-style-type: circle;
+  }
+  &:is(.style-square) {
+    list-style-type: square;
   }
 }
 
-ol {
-  counter-reset: fwList;
-
-  & > li {
-    counter-increment: fwList;
-    // padding-left: em(15px / $content-font-size);
-
-    &:before {
-      @include type-set(
-        (
-          color: $body-list-bullet-color,
-        )
-      );
-      font-weight: 800;
-      top: 0;
-      margin-right: 1em;
-    }
+:where(ol) {
+  &:is(.style-decimal) {
+    list-style-type: decimal;
   }
-  &.style-decimal li,
-  & > li:before {
-    content: counter(fwList, decimal) !important;
+  &:is(.style-decimal-leading-zero) {
+    list-style-type: decimal-leading-zero;
   }
-
-  &.style {
-    &-decimal-leading-zero {
-      li:before {
-        content: counter(fwList, decimal-leading-zero) !important;
-      }
-    }
-    &-lower-alpha {
-      li:before {
-        content: counter(fwList, lower-alpha) !important;
-      }
-    }
-    &-lower-roman {
-      li:before {
-        content: counter(fwList, lower-roman) !important;
-      }
-    }
-    &-upper-alpha {
-      li:before {
-        content: counter(fwList, upper-alpha) !important;
-      }
-    }
-    &-upper-roman {
-      li:before {
-        content: counter(fwList, upper-roman) !important;
-      }
-    }
+  &:is(.style-lower-alpha) {
+    list-style-type: lower-alpha;
+  }
+  &:is(.style-lower-roman) {
+    list-style-type: lower-roman;
+  }
+  &:is(.style-upper-alpha) {
+    list-style-type: upper-alpha;
+  }
+  &:is(.style-upper-roman) {
+    list-style-type: upper-roman;
   }
 }
 
-blockquote {
+:where(blockquote) {
   @include type-set(
     (
-      size: $_fwc-body-blockquote-font-size,
-      leading: $_fwc-body-blockquote-line-height,
+      root-size: $body-font-size,
+      size: $body-blockquote-font-size,
+      leading: $body-blockquote-line-height,
       weight: $body-blockquote-font-weight,
       style: $body-blockquote-font-style,
       case: $body-blockquote-text-transform,
     )
   );
 
-  padding-left: $_fwc-body-blockquote-gutter-x;
-
-  margin-bottom: $_fwc-body-blockquote-margin-y;
-  margin-top: $_fwc-body-blockquote-margin-y;
-  padding-bottom: $_fwc-body-blockquote-padding-y;
-  padding-top: $_fwc-body-blockquote-padding-y;
+  padding-left: rem($body-blockquote-padding-x, $body-font-size);
+  padding-right: rem($body-blockquote-padding-x, $body-font-size);
+  margin-bottom: rem($body-blockquote-margin-y, $body-font-size);
+  margin-top: rem($body-blockquote-margin-y, $body-font-size);
+  padding-bottom: rem($body-blockquote-padding-y, $body-font-size);
+  padding-top: rem($body-blockquote-padding-y, $body-font-size);
   border-left: $body-blockquote-border-width solid $body-blockquote-border-color;
 
-  & > * {
+  & > :where(*) {
     font-size: inherit;
     line-height: inherit;
-  }
 
-  p:last-child {
-    margin-bottom: 0;
+    &:is(:last-child) {
+      margin-bottom: 0;
+    }
   }
 
   .alert & {
@@ -350,6 +261,9 @@ blockquote {
 }
 
 %code-styles {
+}
+
+:where(pre, code, kbd, tt) {
   font: inherit;
   @include type-set(
     (
@@ -360,21 +274,12 @@ blockquote {
   background: $body-mono-background;
 }
 
-pre,
-code,
-kbd,
-tt {
-  @extend %code-styles;
+:where(code, kbd, tt) {
+  padding: rem($body-mono-inline-padding, $body-font-size);
 }
 
-code,
-kbd,
-tt {
-  padding: $_fwc-body-pre-padding * 0.125;
-}
-
-pre {
-  padding: $_fwc-body-pre-padding;
+:where(pre) {
+  padding: rem($body-mono-block-padding, $body-font-size);
   overflow: auto;
 
   * {
@@ -384,66 +289,65 @@ pre {
   }
 }
 
-cite {
+:where(cite) {
   @include type-set(
     (
-      size: $_fwc-body-cite-font-size,
+      size: $body-cite-font-size,
       weight: $body-cite-font-weight,
       style: $body-cite-font-style,
     )
   );
 
-  blockquote & {
+  :where(blockquote) & {
     display: block;
-    margin-top: $_fwc-body-text-gutter-y;
+    margin-top: $var-body-text-gutter;
   }
 }
 
 /* obscure fucks I can fuck with myself */
-q {
+:where(q) {
   font-style: italic;
 }
-del,
-strike {
+
+:where(del, strike) {
   text-decoration: line-through;
 }
 
-ins {
+:where(ins) {
   text-decoration: underline;
 }
-sup,
-sub {
+:where(sup, sub) {
   font-size: 0.75em;
 }
-sup {
+:where(sup) {
   vertical-align: top;
 }
-sub {
+:where(sub) {
   vertical-align: bottom;
 }
-var {
+:where(var) {
   font-style: italic;
-  font-family: font(a);
+  font-family: $var-font-secondary;
 }
 
-hr {
+:where(hr) {
   display: block;
   border: 0;
-  height: $_fwc-hr-height;
+  height: rem($hr-height, $body-font-size);
   background: $hr-color;
   opacity: 0.2;
   width: 100%;
   flex: 1 1 auto;
-  margin-top: $_fwc-hr-gutter-y;
-  margin-bottom: $_fwc-hr-gutter-y;
+  margin-top: rem($hr-gutter-y, $body-font-size);
+  margin-bottom: rem($hr-gutter-y, $body-font-size);
   margin-left: auto;
   margin-right: auto;
 }
 
-small {
-  font-size: $_fwc-body-size-small;
+:where(small) {
+  font-size: $var-body-font-size-small;
 }
 
-big {
-  font-size: $_fwc-body-size-large;
+:where(big) {
+  font-size: $var-body-font-size-large;
 }

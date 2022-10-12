@@ -1,53 +1,54 @@
-/*** NAVIGATION ***/
+$prefix: '.nav';
 
-// body {
-//   &.body-nav-sticky-offset {
-//     padding-top: $_fwc-nav-height;
-//   }
-// }
-.offset-nav-sticky {
-  @include dump-styles(nav-offset-sticky);
+:root {
+  // :where(#{$prefix})
+  --fw-nav-height: #{$nav-height};
+  --fw-nav-background: #{$nav-background};
+  --fw-nav-box-shadow: #{$nav-box-shadow};
+  --fw-nav-padding-x: #{rem($nav-padding-x, $body-font-size)};
+  --fw-nav-dropdown-background: #{$nav-dropdown-background};
+  --fw-nav-z-index: #{$z-index-nav};
+
+  --fw-nav-item-height: #{rem($nav-item-height, $body-font-size)};
+  --fw-nav-item-color-hover: #{$nav-item-color-hover};
+
+  --fw-nav-item-current-size: #{$nav-item-current-size};
+  --fw-nav-item-current-gradient-start: #{$nav-item-current-gradient-start};
+  --fw-nav-item-current-gradient-end: #{$nav-item-current-gradient-end};
+
+  --fw-nav-item-label-opacity: #{$nav-item-label-opacity};
+
+  --fw-nav-icon-width: #{rem($nav-icon-width, $body-font-size)};
+  --fw-nav-icon-height: #{rem($nav-icon-height, $body-font-size)};
 }
 
-$prefix: '.nav';
+:where(:root) {
+}
+
 #{$prefix} {
-  & {
-    min-height: $_fwc-nav-height;
-    background: $nav-background;
-    @include type-set(
-      (
-        size: $_fwc-nav-font-size,
-        leading: $_fwc-nav-line-height,
-        color: $nav-color,
-        weight: $nav-font-weight,
-        case: $nav-text-transform,
-        style: $nav-font-style,
-      )
-    );
-
-    .theme-inverse & {
-      background: $nav-background-inverse;
-      color: $nav-color-inverse;
-    }
-  }
-
-  a {
-    color: inherit;
-  }
+  height: var(--fw-nav-height);
+  background: var(--fw-nav-background);
+  @include type-set(
+    (
+      root-size: $body-font-size,
+      size: $nav-font-size,
+      color: $nav-color,
+      weight: $nav-font-weight,
+      case: $nav-text-transform,
+      style: $nav-font-style,
+    )
+  );
 
   &,
-  &-list {
-    @include flex();
+  :where(ul, ol, li) {
+    margin-bottom: 0;
+    margin-top: 0;
+    list-style: none;
     padding: 0;
-    margin: 0;
   }
 
-  &.accordion.open {
-    display: flex !important;
-  }
-
-  &.accordion.open {
-    display: flex;
+  :where(a) {
+    color: inherit;
   }
 
   &#{$prefix}-sticky {
@@ -55,30 +56,25 @@ $prefix: '.nav';
     top: 0;
     left: 0;
     right: 0;
-    box-shadow: $nav-drop-shadow;
-    z-index: $z-index-nav;
+    box-shadow: var(--fw-nav-box-shadow);
+    z-index: var(--fw-nav-z-index);
 
-    .theme-inverse & {
-      box-shadow: $nav-drop-shadow-inverse;
+    :is(html, body):has(#{&}) {
+      scroll-padding: var(--fw-nav-height);
     }
   }
 
   &#{$prefix}-vertical {
-    display: block;
     min-width: 100%;
     height: auto;
+    flex-direction: column;
 
-    #{$prefix}-list {
+    :is(
+        #{$prefix}-list,
+        :is(:is(#{$prefix}-list, .dropdown) > li, #{$prefix}-item) > a,
+        #{$prefix}-item-label
+      ) {
       display: block;
-    }
-
-    .dropdown li,
-    #{$prefix}-item,
-    #{$prefix}-list li {
-      > a,
-      > #{$prefix}-item-label {
-        display: block;
-      }
     }
 
     .dropdown {
@@ -89,200 +85,188 @@ $prefix: '.nav';
       box-shadow: none;
     }
   }
-  @at-root & .dropdown > li,
-    &-item,
-    &-list li {
-    margin: 0;
-    padding: 0;
+}
 
-    &:before {
-      content: none;
-    }
+:is(#{$prefix}, #{$prefix}-list, #{$prefix}:is(.accordion.open)) {
+  @include flex();
+}
 
+:is(:is(#{$prefix}-list, .dropdown) > li, #{$prefix}-item) {
+  > a {
+    padding-top: calc((var(--fw-nav-item-height) - (#{calc-single-line()})) * 0.5);
+    padding-bottom: calc((var(--fw-nav-item-height) - (#{calc-single-line()})) * 0.5);
+    display: block;
+  }
+
+  &:is(.current, .open, :hover, :focus) {
     > a {
-      padding-top: calc((#{$_fwc-nav-item-height} - (#{$_fwc-nav-single-line})) * 0.5);
-      padding-bottom: calc(
-        (#{$_fwc-nav-item-height} - (#{$_fwc-nav-single-line})) * 0.5
-      );
-      display: block;
-    }
-
-    &.current,
-    &.open,
-    &:hover,
-    &:focus {
-      > a {
-        color: $nav-color-hover;
-      }
+      color: var(--fw-nav-item-color-hover);
     }
   }
+}
 
-  &-block {
-    display: flex;
-    align-self: stretch;
-    align-items: center;
-    align-content: center;
-    position: relative;
+:is(
+    #{$prefix}-block,
+    :is(#{$prefix}-list, #{$prefix}-list > li) > a,
+    #{$prefix}-item-label > :where(*)
+  ) {
+  padding-right: var(--fw-nav-padding-x);
+  padding-left: var(--fw-nav-padding-x);
+}
 
-    // > * {
-    // 	max-width:100%;
-    // }
+#{$prefix}-block {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  align-content: center;
+  position: relative;
 
-    padding-right: $nav-padding-x;
-    padding-left: $nav-padding-x;
+  // > :where(*) {
+  // 	max-width:100%;
+  // }
 
-    &#{&}-stretch {
-      align-items: stretch;
-      align-content: stretch;
-    }
+  &#{$prefix}-block-stretch {
+    align-items: stretch;
+    align-content: stretch;
+  }
+}
+
+#{$prefix}-icon {
+  width: var(--fw-nav-icon-width);
+  height: var(--fw-nav-icon-height);
+  max-width: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: inherit;
+  text-align: center;
+
+  // .badge {
+  // 	position:absolute;
+  // 	right:0;
+  // 	transform: translateX(50%);
+  // 	top:0;
+  // }
+
+  &.symbol,
+  .symbol {
+    font-size: 1.25em;
   }
 
-  &-icon {
-    width: $_fwc-nav-icon-width;
-    height: $_fwc-nav-icon-height;
-    max-width: none;
+  + #{$prefix}-item-text {
+    margin-left: 0.5rem;
     display: inline-block;
     vertical-align: middle;
-    line-height: inherit;
-    text-align: center;
-
-    // .badge {
-    // 	position:absolute;
-    // 	right:0;
-    // 	transform: translateX(50%);
-    // 	top:0;
-    // }
-
-    .symbol {
-      font-size: 1.25em;
-    }
-
-    + #{$prefix}-item-text {
-      margin-left: 0.5rem;
-      display: inline-block;
-      vertical-align: middle;
-    }
   }
+}
 
-  #{$prefix}-item > a,
-  &-list > li > a,
-  #{$prefix}-item-label > * {
-    padding-left: $nav-padding-x;
-    padding-right: $nav-padding-x;
+#{$prefix}-item-label {
+  align-self: center;
+  opacity: var(--fw-nav-item-label-opacity);
+
+  #{$prefix}-vertical & {
+    align-self: stretch;
   }
+}
 
-  #{$prefix}-item-label {
-    align-self: center;
-    opacity: $nav-item-label-opacity;
+:is(#{$prefix}-list) > :is(#{$prefix}-item, li) {
+  > a {
+    @include type-set(
+      (
+        root-size: $body-font-size,
+        color: $nav-top-font-color,
+        size: $nav-top-font-size,
+        style: $nav-top-font-style,
+        weight: $nav-top-font-weight,
+        case: $nav-top-text-transform,
+      )
+    );
+    position: relative;
+    transition-duration: $nav-item-transition-duration;
+    transition-timing-function: $nav-item-transition-timing;
+    transition-property: all;
+    padding-top: calc((var(--fw-nav-height) - (#{calc-single-line()})) * 0.5);
+    padding-bottom: calc((var(--fw-nav-height) - (#{calc-single-line()})) * 0.5);
+    @include dump-styles(no-text-decoration);
 
-    #{$prefix}-vertical {
-      align-self: stretch;
+    &:is(:hover, :focus, .focus) {
+      @include dump-styles(no-text-decoration-hover);
     }
-  }
 
-  #{$prefix}-item,
-  &-list > li {
-    > a {
-      &:hover,
-      &:focus,
-      &.focus {
-        @include dump-styles(no-text-decoration-hover);
-      }
-    }
-
-    > a {
-      @include type-set(
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 0;
+      @include gradient(
         (
-          color: inherit,
-          decoration: get-anchor-dec(),
-          size: $_fwc-nav-top-font-size,
-          style: $nav-top-font-style,
-          weight: $nav-top-font-weight,
-          case: $nav-top-text-transform,
+          color1: var(--fw-nav-item-current-gradient-start),
+          color2: var(--fw-nav-item-current-gradient-end),
+          angle: 90deg,
+          use-shorthand: false,
         )
       );
-      position: relative;
-      transition: $transition-duration-short all $transition-timing;
-      padding-top: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
-      padding-bottom: calc((#{$_fwc-nav-height} - (#{$_fwc-nav-single-line})) * 0.5);
+      transition-duration: $nav-item-current-transition-duration;
+      transition-timing-function: $nav-item-current-transition-timing;
+      transition-property: height;
 
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        height: 0;
+      #{$prefix}-vertical & {
+        height: auto;
+        width: 0;
+        top: 0;
+        left: auto;
+        transition-property: width;
+
         @include gradient(
           (
-            color1: $nav-current-gradient-start,
-            color2: $nav-current-gradient-end,
-            angle: 90deg,
+            color1: var(--fw-nav-item-current-gradient-start),
+            color2: var(--fw-nav-item-current-gradient-end),
+            angle: 0deg,
             use-shorthand: false,
           )
         );
-        transition: $transition-duration-short height $transition-timing;
-
-        #{$prefix}-vertical & {
-          height: auto;
-          width: 0;
-          top: 0;
-          left: auto;
-          transition: $transition-duration-short width $transition-timing;
-
-          @include gradient(
-            (
-              color1: $nav-current-gradient-start,
-              color2: $nav-current-gradient-end,
-              angle: 0deg,
-              use-shorthand: false,
-            )
-          );
-        }
-      }
-    }
-    &:hover > a,
-    &.current > a,
-    & > a.open {
-      &:after {
-        height: $nav-current-size;
-
-        #{$prefix}-vertical & {
-          height: auto;
-          width: $nav-current-size;
-        }
       }
     }
   }
 
-  &-list ul,
-  .dropdown {
-    background: $nav-dropdown-background;
-    margin: auto;
-  }
+  &:is(:hover, .current, .open) > a,
+  & > a.open {
+    &:after {
+      height: var(--fw-nav-item-current-size);
 
-  @include on-breakpoint(mobile) {
-    &-list {
-      &#{&}-responsive {
-        display: block;
-        min-width: 100%;
-
-        .dropdown {
-          border-radius: 0;
-          // padding-left:0;
-          // padding-right:0;
-          width: auto;
-          position: static;
-          box-shadow: none;
-        }
+      #{$prefix}-vertical & {
+        height: auto;
+        width: var(--fw-nav-item-current-size);
       }
     }
+  }
+}
 
-    &-list > #{$prefix}-item,
-    &-list > li {
-      > a,
-      #{$prefix}-item-label {
-        display: block;
+#{$prefix}-list :is(ol, ul, .dropdown) {
+  background: var(--fw-nav-dropdown-background);
+  margin: auto;
+}
+
+#{$prefix}-list {
+  &#{&}-responsive {
+    @include on-breakpoint(mobile) {
+      display: block;
+      min-width: 100%;
+
+      .dropdown {
+        border-radius: 0;
+        // padding-left:0;
+        // padding-right:0;
+        width: auto;
+        position: static;
+        box-shadow: none;
+      }
+
+      > :is(#{$prefix}-item, li) {
+        > :is(a, #{$prefix}-item-label) {
+          display: block;
+        }
       }
     }
   }

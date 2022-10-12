@@ -1,241 +1,182 @@
-/*** input tags ***/
-$prefix: '.input';
+$sub-prefix: '.input-tags';
 
-#{$prefix} {
-  &-tags {
-    &-ui {
-      @extend %fwe-form-input-boxy !optional;
-      @extend %fwe-form-input-boxy-and-group !optional;
+:root {
+  // :where(#{$prefix})
+  --fw-input-tags-block-margin-x: #{em($input-tags-block-margin-x, $input-font-size)};
+  --fw-input-tags-block-margin-y: #{em($input-tags-block-margin-y, $input-font-size)};
+  --fw-input-tags-block-padding-x: #{em($input-tags-block-padding-x, $input-font-size)};
+  --fw-input-tags-block-padding-y: #{em($input-tags-block-padding-y, $input-font-size)};
+
+  --fw-input-tags-tag-background-color: var(
+    --fw-color-#{$input-tags-palette-tag}-#{$input-tags-palette-variation}
+  );
+  --fw-input-tags-tag-border-radius: #{$input-tags-tag-border-radius};
+  --fw-input-tags-tag-button-color-hover: var(--fw-color-#{$input-tags-palette-tag});
+}
+
+#{$sub-prefix} {
+  @extend %fwe-form-global-ui-control !optional;
+
+  &-ui {
+    & {
+      display: inline-flex;
+      max-width: 100% !important;
+      direction: ltr;
+      position: relative;
+      overflow: hidden;
+      @include dump-styles(no-scrollbar);
     }
 
-    & {
-      @extend %fwe-form-input-ui-control !optional;
+    // :is(#{$prefix}-blend) {
+    //   border: 0;
+    // }
 
-      &-ui {
-        display: inline-flex;
-        max-width: 100% !important;
-        direction: ltr;
-        position: relative;
+    &-wrapper {
+      flex: 1 1;
+      display: flex;
+      max-width: 100%;
+      gap: var(--fw-input-tags-block-margin-y) var(--fw-input-tags-block-margin-x);
+      margin: calc(var(--fw-input-tags-block-padding-y) * -1) 0
+        calc(var(--fw-input-tags-block-padding-y) * -1)
+        calc(var(--fw-input-tags-block-padding-x) * -0.5);
 
-        @include dump-styles(no-scrollbar);
-
-        &#{&}-single {
-          overflow-x: hidden;
-          overflow-y: hidden;
-        }
-
-        &#{&}-multiple {
-          @extend %fwe-form-input-boxy-multiple !optional;
-          // @extend %fwe-form-input-boxy-multiple-height !optional;
-          overflow: hidden;
-
-          &-line-break {
-          }
-        }
-
-        &-wrapper {
-          flex: 1 1;
-          display: flex;
-          max-width: 100%;
-
-          #{$prefix}-tags-ui & {
-            min-height: 100%;
-            margin-bottom: $_fwc-input-tags-padding-y * -1;
-            margin-top: ($_fwc-input-tags-padding-y + $_fwc-input-tags-gutter-y) * -1;
-            flex-direction: row-reverse;
-            direction: rtl;
-
-            @at-root #{$prefix}-small#{&} {
-              margin-bottom: $_fwc-input-tags-padding-y-small * -1;
-              margin-top: ($_fwc-input-tags-padding-y-small + $_fwc-input-tags-gutter-y) *
-                -1;
-            }
-
-            @at-root #{$prefix}-large#{&} {
-              margin-bottom: $_fwc-input-tags-padding-y-large * -1;
-              margin-top: ($_fwc-input-tags-padding-y-large + $_fwc-input-tags-gutter-y) *
-                -1;
-            }
-          }
-
-          #{$prefix}-tags-ui-multiple & {
-            flex-wrap: wrap;
-            align-self: flex-start;
-
-            @at-root #{$prefix}-tags-ui-multiple-break#{&} {
-              flex-direction: column;
-              flex-wrap: nowrap;
-              // align-items:flex-end,
-            }
-          }
-        }
-
-        &-tag,
-        &-input {
-          // @todo//ellipsis
-          display: flex;
-          align-items: center;
-          direction: ltr;
-          padding-top: $_fwc-input-tags-padding-y;
-          padding-bottom: $_fwc-input-tags-padding-y;
-          padding-left: $_fwc-input-tags-padding-x;
-          padding-right: $_fwc-input-tags-padding-x;
-          margin-top: $_fwc-input-tags-gutter-y;
-
-          #{$prefix}-small & {
-            padding-top: $_fwc-input-tags-padding-y-small;
-            padding-bottom: $_fwc-input-tags-padding-y-small;
-          }
-
-          #{$prefix}-large & {
-            padding-top: $_fwc-input-tags-padding-y-large;
-            padding-bottom: $_fwc-input-tags-padding-y-large;
-          }
-        }
-
-        &-tag {
-          max-width: 100%;
-          margin-right: $_fwc-input-tags-gutter-x;
-          background: var(
-            --fw-color-#{$input-tags-palette-tag}-#{$input-tags-palette-tag-slug}
-          );
-          border-radius: $input-tags-border-radius;
-
-          #{$prefix}-tags-ui-multiple-break & {
-            justify-content: space-between;
-          }
-
-          &-button {
-            vertical-align: middle;
-            color: inherit;
-            @extend %fwe-form-input-ui-button !optional;
-          }
-
-          &-text,
-          &-close {
-            &:hover,
-            &:focus,
-            &.focus {
-              color: var(--fw-color-#{$input-tags-palette-tag});
-            }
-          }
-
-          &-text {
-            @include dump-styles(text-ellipsis-single);
-            padding: 0;
-            margin: 0;
-            font: inherit;
-            cursor: text;
-
-            #{$prefix}-tags-ui-single &,
-            #{$prefix}-tags-ui-multiple:not(#{$prefix}-tags-ui-multiple-break) & {
-              max-width: 10em;
-            }
-          }
-
-          &-close {
-            margin: 0 0 0 0.25em;
-            // line-height: 1;
-            font-size: 0.75em;
-            padding: 0;
-            color: inherit;
-            opacity: 0.5;
-            cursor: pointer;
-
-            &:hover,
-            &:focus,
-            &.focus {
-              opacity: 1;
-            }
-          }
-
-          @each $tag, $color in $_fwc-brand-color-declarations-for-components {
-            #{$prefix}-#{$tag} & {
-              background: var(--fw-color-#{$tag}-#{$input-tags-palette-tag-slug});
-
-              &-text,
-              &-close {
-                &:hover,
-                &:focus,
-                &.focus {
-                  color: var(--fw-color-#{$tag}-dark);
-                }
-              }
-            }
-          }
-        }
-
-        &-input {
-          border: none;
-          -webkit-appearance: none;
-          background: none !important;
-          appearance: none;
-          outline: none;
-          white-space: nowrap;
-          padding-left: $_fwc-input-tags-padding-x;
-          display: block;
-
-          // &:empty:not(:focus):not(.focus):before {
-          //   opacity: $input-placeholder-opacity;
-          //   content: attr(data-placeholder) '\00A0';
-          //   display: block;
-          // }
-
-          &:first-child {
-            padding-left: 0;
-          }
-
-          &:last-child {
-            flex: 1 1 auto;
-
-            &:first-child {
-              width: 12em;
-            }
-          }
-
-          #{$prefix}-tags-ui-single & {
-            &:last-child {
-              min-width: 4em;
-
-              &:first-child {
-                width: 12em;
-              }
-            }
-          }
-
-          #{$prefix}-tags-ui-multiple & {
-            &:not(:focus):not(.focus) {
-              &:after {
-                top: 100%;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                content: '';
-                display: block;
-                position: absolute;
-              }
-            }
-            &:last-child {
-              width: 100%;
-
-              &,
-              &:first-child {
-                min-width: 100%;
-              }
-            }
-          }
-
-          &,
-          &:hover,
-          &:focus,
-          &.focus {
-            box-shadow: none;
-            background: transparent;
-            font: inherit;
-            color: inherit;
-          }
-        }
+      .input-blend & {
+        margin: 0;
       }
     }
+
+    &-single #{&}-wrapper {
+      flex-direction: row-reverse;
+      direction: rtl;
+      min-height: 100%;
+      margin-right: calc(var(--fw-input-tags-block-padding-x) * -1);
+    }
+    &-multiline #{&}-wrapper {
+      flex-wrap: wrap;
+      align-self: flex-start;
+    }
+
+    &-multiline-break #{&}-wrapper {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      // align-items:flex-end,
+    }
+
+    &-block {
+      // @todo//ellipsis
+      direction: ltr;
+      vertical-align: middle;
+      color: inherit;
+      padding: var(--fw-input-tags-block-padding-y) var(--fw-input-tags-block-padding-x);
+    }
+
+    // &-tag,
+    // &-input {
+    // }
+
+    &-tag {
+      display: flex;
+      max-width: 100%;
+      background-color: var(--fw-input-tags-tag-background-color);
+      border-radius: var(--fw-input-tags-tag-border-radius);
+
+      &:is(:hover, :focus, .focus) {
+        color: var(--fw-input-tags-tag-button-color-hover);
+      }
+    }
+
+    &-multiline-break #{&}-tag {
+      justify-content: space-between;
+    }
+
+    &-tag-button {
+      @extend %fwe-form-global-ui-reset !optional;
+      padding: 0;
+      margin: 0;
+    }
+
+    &-tag-text {
+      @include dump-styles(text-ellipsis-single);
+      margin-right: 0.5em;
+      cursor: text;
+    }
+
+    @at-root :is(#{&}-single, #{&}-multiline:not(#{&}-multiline-break)) & {
+      max-width: 10em;
+    }
+
+    &-tag-close {
+      font-size: 0.75em;
+      cursor: pointer;
+      opacity: 0.5;
+
+      &:is(:hover, :focus, .focus) {
+        opacity: 1;
+      }
+    }
+
+    &-input {
+      @extend %fwe-form-global-ui-reset !optional;
+      --fw-input-tags-block-margin-x: 0;
+      white-space: nowrap;
+      display: block;
+
+      &:is(:empty):not(:focus):not(.focus):before {
+        opacity: $input-placeholder-opacity;
+        content: attr(data-placeholder) '\00A0';
+        display: block;
+        pointer-events: none;
+      }
+
+      &:is(:first-child) {
+        padding-left: 0;
+      }
+
+      &:is(:last-child) {
+        flex: 1 1 auto;
+      }
+      // padding-right: 0;
+
+      &:is(:only-child) {
+        width: 12em;
+      }
+    }
+
+    &-single #{&}-input {
+      &:is(:last-child) {
+        min-width: 4em;
+      }
+
+      &:is(:last-child, :only-child) {
+        width: 12em;
+      }
+    }
+
+    &-multiline #{&}-input {
+      &:is(:last-child) {
+        width: 100%;
+      }
+
+      &:is(:last-child, :only-child) {
+        min-width: 100%;
+      }
+    }
+  }
+}
+
+:is(#{$prefix}-large, #{$prefix}-large > #{$prefix}) {
+  --fw-input-tags-block-padding-y: #{$input-tags-block-padding-y-large};
+}
+
+:is(#{$prefix}-small, #{$prefix}-small > #{$prefix}) {
+  --fw-input-tags-block-padding-y: #{$input-tags-block-padding-y-small};
+}
+
+@each $tag, $color in $fwc-brand-color-declarations-for-components {
+  #{$prefix}-#{$tag} {
+    --fw-input-tags-tag-background-color: var(
+      --fw-color-#{$tag}-#{$input-tags-palette-variation}
+    );
+    // --fw-input-tags-tag-button-color-hover: var(--fw-color-#{$tag});
   }
 }

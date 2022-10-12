@@ -10,9 +10,9 @@
     @import 'plugins/_reset';
     @import 'plugins/_shithole';
   //api
-    @import '_functions';
-    @import '_calculations';
-    @import '_mixins';
+    @import 'core/_functions';
+    @import 'core/_calculations';
+    @import 'core/_mixins';
   //to cascade
     @import '_scaffolding';
     @import '_typography';

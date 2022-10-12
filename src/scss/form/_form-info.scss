@@ -1,33 +1,16 @@
-/*** input ***/
-$prefix: '.input';
-#{$prefix} {
-  &-info {
-    @include type-set(
-      (
-        size: $_fwc-input-info-font-size,
-        leading: $_fwc-input-info-line-height,
-        color: $input-info-color,
-        weight: $input-info-font-weight,
-        style: $input-info-font-style,
-        case: $input-info-text-transform,
-      )
-    );
-    margin-top: $_fwc-input-info-gutter-y;
-    margin-bottom: $_fwc-input-info-gutter-y;
-    display: block;
-
-    order: 99;
-
-    #{$prefix}-wrapper-horizontal & {
-      width: calc(100% - #{$input-label-horizontal-width});
-      align-self: flex-end;
-      margin-left: auto;
-    }
-
-    #{$prefix}-wrapper-vertical & {
-      width: 100%;
-      align-self: flex-start;
-      margin-left: 0;
-    }
-  }
+#{$prefix}-info {
+  @include type-set(
+    (
+      root-size: $body-font-size,
+      size: $input-info-font-size,
+      color: $input-info-color,
+      weight: $input-info-font-weight,
+      style: $input-info-font-style,
+      case: $input-info-text-transform,
+    )
+  );
+  display: block;
+  order: 99;
+  width: 100%;
+  margin-top: 0.5em;
 }

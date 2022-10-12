@@ -14,7 +14,7 @@ Suppose you wanna have two blocks appear when the other disappears, this boi is 
   </div>
   <div class="switch-on">
     <div class="input-group input-large input-block input-group-horizontal">
-      <input type="text" class="input input-single-line" />
+      <input type="text" class="input input-box" />
       <button data-toggle-switch-off href="#switch-boi" class="btn btn-primary">
         Save
       </button>

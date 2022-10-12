@@ -168,7 +168,7 @@ class Tags extends FwComponent {
   }
 
   _scrollToUIInput() {
-    if (this.args.multipleLines || !this.UIInput) {
+    if (this.args.multiline || !this.UIInput) {
       return;
     }
 
@@ -187,8 +187,8 @@ class Tags extends FwComponent {
       width: null,
       filter: null,
       onKeyUp: null,
-      multipleLines: false,
-      multipleLinesBreak: false,
+      multiline: false,
+      multilineBreak: false,
       maxChar: {
         value: 0,
         parser: (value) => {
@@ -217,16 +217,14 @@ class Tags extends FwComponent {
         filter: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`)
           ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-filter`)
           : this._customArgs.filter,
-        multipleLines: super
+        multiline: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiline`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiline`)
+          : this._customArgs.multiline,
+        multilineBreak: super
           .UIEl()
-          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`)
-          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines`)
-          : this._customArgs.multipleLines,
-        multipleLinesBreak: super
-          .UIEl()
-          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
-          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiple-lines-break`)
-          : this._customArgs.multipleLinesBreak,
+          .hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiline-break`)
+          ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-multiline-break`)
+          : this._customArgs.multilineBreak,
         maxChar: super.UIEl().hasAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-char`)
           ? super.UIEl().getAttribute(`data-${ARG_ATTRIBUTE_NAME}-max-char`)
           : this._customArgs.maxChar,
@@ -317,7 +315,7 @@ class Tags extends FwComponent {
       fnToFilter =
         custFn ||
         (typeof this.args.filter === 'string'
-          ? eval(this.args.filter)
+          ? new Function(`return ${this.args.filter}`)() //eval(this.args.filter)
           : this.args.filter);
     } catch (err) {
       console.error(err);
@@ -331,11 +329,6 @@ class Tags extends FwComponent {
           return Tags.toVal(valueToFilter, false);
         })();
 
-        // turn to array ya bopi without the input tag string
-        // let toReturn = Tags.toArr(
-        //   eval(`${filterFnName}("${noInputValueToFilter}")`),
-        //   false
-        // );
         // console.log(noInputValueToFilter);
         let toReturn = Tags.toArr(fn(noInputValueToFilter), false);
 
@@ -347,7 +340,6 @@ class Tags extends FwComponent {
         // 	'\n\n\n no input field\n',noInputValueToFilter,Tags.toVal(valueToFilter,false),
         // 	'\n\n\n no input fieldas array\n'Tags.toArr(valueToFilter,false),
         // 	'\n\n\n string for eval\n', ( filterFnName +'("'+ noInputValueToFilter +'")'),
-        // 	'\n\n\neval\n',  eval(filterFnName +'("'+ noInputValueToFilter +'")'),
         // 	'whAT ETHE FUCK'
         // );
 
@@ -482,23 +474,21 @@ class Tags extends FwComponent {
             'class',
             `${Settings.get('uiClass')}
           ${Settings.get('uiJsClass')}
+          input input-box
+          ${
+            this.args.multiline
+              ? `input-box-multiline ${UIPrefix(COMPONENT_CLASS)}-multiline ${
+                  this.args.multilineBreak
+                    ? `${UIPrefix(COMPONENT_CLASS)}-multiline-break`
+                    : ''
+                }`
+              : `${UIPrefix(COMPONENT_CLASS)}-single`
+          }
           ${element
             .getAttribute('class')
             .toString()
             .replace(COMPONENT_CLASS, UIPrefix(COMPONENT_CLASS))}`
           );
-
-          theUI.container.classList.add(
-            this.args.multipleLines
-              ? `${UIPrefix(COMPONENT_CLASS)}-multiple`
-              : `${UIPrefix(COMPONENT_CLASS)}-single`
-          );
-
-          this.args.multipleLines &&
-            this.args.multipleLinesBreak &&
-            theUI.container.classList.add(
-              `${UIPrefix(COMPONENT_CLASS)}-multiple-break`
-            );
         }
 
         if (this.args.width) {
@@ -529,7 +519,10 @@ class Tags extends FwComponent {
           // theUI.input = document.createElement('input');
           theUI.input = document.createElement('span');
           theUI.wrapper.appendChild(theUI.input);
-          theUI.input.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-input`);
+          theUI.input.setAttribute(
+            'class',
+            `${UIPrefix(COMPONENT_CLASS)}-input ${UIPrefix(COMPONENT_CLASS)}-block`
+          );
           theUI.input.contentEditable = true;
           theUI.input = theUI.wrapper.querySelector(
             `.${UIPrefix(COMPONENT_CLASS)}-input`
@@ -560,7 +553,7 @@ class Tags extends FwComponent {
             if (typeof this.args.onKeyUp === 'string') {
               //attribute setup
               theUI.input.addEventListener('keyup', (event) => {
-                if (event) return eval(this.args.onKeyUp);
+                if (event) return new Function(`return ${this.args.onKeyUp}`)(); //eval(this.args.onKeyUp);
               });
             } else {
               //api setup
@@ -601,7 +594,10 @@ class Tags extends FwComponent {
               theUI.wrapper.appendChild(tagHtml);
             }
 
-            tagHtml.setAttribute('class', `${UIPrefix(COMPONENT_CLASS)}-tag`);
+            tagHtml.setAttribute(
+              'class',
+              `${UIPrefix(COMPONENT_CLASS)}-block ${UIPrefix(COMPONENT_CLASS)}-tag`
+            );
 
             tagHtml.innerHTML = `<button
               data-ui-i="${i}"

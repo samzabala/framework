@@ -6,10 +6,12 @@ More info on [form elements](https://www.w3schools.com/html/html_forms.asp)
 
 ## Form elements
 
-Although styles are reset, To normalize or basically allow the framework to style them items as basic as a hoe add **`.input`** to your input bitch boy
+Although styles are reset, To normalize or basically allow the framework to style them items as basic as a hoe add **`.input`** to your input/form bitch boy
 
 ```html
+<label class="input">you</label>
 <input type="checkbox" class="input" />
+<textarea class="input">bitch</textarea>
 ```
 
 ### Support
@@ -27,6 +29,10 @@ Although styles are reset, To normalize or basically allow the framework to styl
       <td>a little bit, or just use <a href="../components/button.md"><code>.btn</code></a></td>
     </tr>
     <tr>
+      <td><code>label</code></td>
+      <td>yes</td>
+    </tr>
+    <tr>
       <td><code>select</code></td>
       <td>yes</td>
     </tr>
@@ -40,7 +46,7 @@ Although styles are reset, To normalize or basically allow the framework to styl
     </tr>
     <tr>
       <td><code>input</code></td>
-      <td>yes, but depends</td>
+      <td>yes</td>
     </tr>
   </tbody>
 </table>
@@ -49,14 +55,14 @@ Although styles are reset, To normalize or basically allow the framework to styl
 
 These are further classes to add to `.input` to style the boy better dpending on the type of input it is
 
-### **`.input-single-line`**
+### **`.input-box`**
 
-![](../images/../../images/input-single-line.png)
+![](../images/../../images/input-box.png)
 
 This styles an input field as a field for single line input.... uuhhhhhh yea
 
 ```html
-<input type="text" class="input input-single-line" />
+<input type="text" class="input input-box" />
 ```
 
 #### Support
@@ -76,12 +82,16 @@ This styles an input field as a field for single line input.... uuhhhhhh yea
       <td>no</td>
     </tr>
     <tr>
+      <td><code>label</code></td>
+      <td>pls dont</td>
+    </tr>
+    <tr>
       <td><code>select</code></td>
-      <td>somewhat. just use <code>.input-select</code> instead</td>
+      <td>somewhat. just use <code>.input-box-select</code> instead</td>
     </tr>
     <tr>
       <td><code>textarea</code></td>
-      <td>yeah or just use <code>.input-multiple-line</code></td>
+      <td>yeah or just use <code>.input-box.input-box-multiline</code></td>
     </tr>
     <tr>
       <td><code>datalist</code></td>
@@ -171,25 +181,25 @@ This styles an input field as a field for single line input.... uuhhhhhh yea
   </tbody>
 </table>
 
-### **`.input-select`**
+### **`.input-box-select`**
 
-![](../images/../../images/input-select.png)
+![](../images/../../images/input-box-select.png)
 
 For a dropdown looking singlie line fuck...
 
-It styles it kinda like a `.input-single-line` but with a cute arrow :>
+It styles it kinda like a `.input-box` but with a cute arrow :>
 
-Adding `.input-select` to a `select[multiple].input` styles it like... it should, but nicely. basta
+Adding `.input-box-select` to a `select[multiple].input` styles it like... it should, but nicely. basta
 
 ```html
-<select class="input input-select" name="shits">
+<select class="input input-box-select" name="shits">
   <option value="1">Available option 1</option>
   <option value="2">Available option 2</option>
   <option value="3">Available option 3</option>
   <option value="4">Available option 4</option>
 </select>
 
-<select class="input input-select" name="other-shits" multiple>
+<select class="input input-box-select" name="other-shits" multiple>
   <option value="1">Available option 1</option>
   <option value="2">Available option 2</option>
   <option value="3">Available option 3</option>
@@ -212,6 +222,10 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
     <tr>
       <td><code>button</code></td>
       <td>no</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>pls dont</td>
     </tr>
     <tr>
       <td><code>select</code></td>
@@ -309,14 +323,16 @@ Adding `.input-select` to a `select[multiple].input` styles it like... it should
   </tbody>
 </table>
 
-### **`.input-multiple-line`**
+### **`input-box.input-box-multiline`**
 
-![](../images/../../images/input-multiple-line.png)
+![](../images/../../images/input-box-multiline.png)
 
 This styles an input field as a field for multiple line input.... uuhhhhhh yea
 
+Add to `.input-box` to make it tall as fuck
+
 ```html
-<textarea class="input input-multiple-line" name="message" rows="10" cols="30">
+<textarea class="input input-box input-box-multiline" name="message" rows="10" cols="30">
 The cat was playing in the garden.</textarea
 >
 ```
@@ -336,6 +352,10 @@ The cat was playing in the garden.</textarea
     <tr>
       <td><code>button</code></td>
       <td>no</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>pls dont</td>
     </tr>
     <tr>
       <td><code>select</code></td>
@@ -454,6 +474,10 @@ For inline shit or fields that dont necessarily accept text looking input like r
       <td>yes, or just use <a href="../components/button.md"><code>.btn</code></a></td>
     </tr>
     <tr>
+      <td><code>label</code></td>
+      <td>pls dont</td>
+    </tr>
+    <tr>
       <td><code>select</code></td>
       <td>yes</td>
     </tr>
@@ -568,6 +592,10 @@ makes boxy bois' border radius round
     <tr>
       <td><code>button</code></td>
       <td>yes, or just use <a href="../components/button.md"><code>.btn-round</code></a></td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td>i guess?</td>
     </tr>
     <tr>
       <td><code>select</code></td>
@@ -687,6 +715,10 @@ makes input fields blend in with ancestors' styles. May be bad for UX
       <td>yes but you will regret it if you don't know what u r doing</td>
     </tr>
     <tr>
+      <td><code>label</code></td>
+      <td>u dont have to</td>
+    </tr>
+    <tr>
       <td><code>select</code></td>
       <td>yes</td>
     </tr>
@@ -790,25 +822,25 @@ makes input fields blend in with ancestors' styles. May be bad for UX
 
 <input class="input input-inline" type="checkbox" name="" />
 
-<input class="input input-single-line" type="color" name="" />
+<input class="input input-blend" type="color" name="" />
 
 <input class="input input-calendar" type="date" name="" />
 
-<input class="input input-single-line" type="datetime-local" name="" />
+<input class="input input-blend" type="datetime-local" name="" />
 
-<input class="input input-single-line" type="email" name="" />
+<input class="input input-blend" type="email" name="" />
 
-<input class="input input-single-line" type="file" name="" />
+<input class="input input-blend" type="file" name="" />
 
-<input class="input input-single-line" type="hidden" name="" />
+<input class="input input-blend" type="hidden" name="" />
 
 <input class="input input-inline" type="image" data-src="" name="" />
 
-<input class="input input-single-line" type="month" name="" />
+<input class="input input-blend" type="month" name="" />
 
-<input class="input input-single-line" type="number" name="" />
+<input class="input input-blend" type="number" name="" />
 
-<input class="input input-single-line" type="password" name="" />
+<input class="input input-blend" type="password" name="" />
 
 <input class="input input-inline" type="radio" name="" />
 
@@ -816,34 +848,34 @@ makes input fields blend in with ancestors' styles. May be bad for UX
 
 <input class="input input-inline" type="reset" name="" />
 
-<input class="input input-single-line" type="search" name="" />
+<input class="input input-blend" type="search" name="" />
 
 <input class="input input-inline" type="submit" name="" />
 
-<input class="input input-single-line" type="tel" name="" />
+<input class="input input-blend" type="tel" name="" />
 
-<input class="input input-single-line" type="text" name="" />
+<input class="input input-blend" type="text" name="" />
 
-<input class="input input-single-line" type="time" name="" />
+<input class="input input-blend" type="time" name="" />
 
-<input class="input input-single-line" type="url" name="" />
+<input class="input input-blend" type="url" name="" />
 
-<input class="input input-single-line" type="week" name="" />
+<input class="input input-blend" type="week" name="" />
 
-<input class="input input-single-line" list="" name="" />
+<input class="input input-blend" list="" name="" />
 <datalist>
   <option value=""></option>
 </datalist>
 
-<select class="input input-select" name="">
+<select class="input input-blend" name="">
   <option value=""></option>
 </select>
 
-<select class="input input-select" multiple name="">
+<select class="input input-blend" multiple name="">
   <option value=""></option>
 </select>
 
-<textarea class="input input-multiple-line" name="" rows="" cols=""> </textarea>
+<textarea class="input input-blend" name="" rows="" cols=""> </textarea>
 ```
 
 # **`.input-label`**
@@ -851,27 +883,49 @@ makes input fields blend in with ancestors' styles. May be bad for UX
 To style a label, add class of `.input-label`
 
 ```html
-<label class="input-label" for="bitch">Basic Ass</label>
+<label class="input input-label" for="bitch">Basic Ass</label>
 <input
-  class="input input-single-line"
+  class="input input-box"
   id="bitch"
   name="bitch"
   placeholder="Basic Ass"
   type="text"
 />
 ```
+#### Support
+
+##### Non input tags
+
+<table>
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>do it support?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>label</code></td>
+      <td>fuck yea</td>
+    </tr>
+    <tr>
+      <td><code>everything else</code></td>
+      <td>fuck no dont do it hoe</td>
+    </tr>
+  </tbody>
+</table>
 
 # **`.input-info`**
 
 Add helper text along the field to help out the user `.input-info`
 
-![](../images/../../images/input-multiple-line.png)
+![](../images/../../images/input-box input-box-multiline.png)
 
 ```html
-<label class="input-label" for="message">Textarea + vertical wrapper</label>
+<label class="input input-label" for="message">Textarea + vertical wrapper</label>
 <textarea
   placeholder="git wrecked"
-  class="input input-multiple-line"
+  class="input input-box input-box-multiline"
   id="message"
 ></textarea>
 <span class="input-info"
@@ -884,13 +938,13 @@ Add helper text along the field to help out the user `.input-info`
 
 To group `.input` bois together
 
-NOTE this only works best for `.input-single-line` and or `.input-select` fields
+NOTE this only works best for `.input-box` and or `.input-box-select` fields
 
 `.btn` elements will work innit as well
 
 ```html
 <span class="input-group input-group-horizontal">
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -898,7 +952,7 @@ NOTE this only works best for `.input-single-line` and or `.input-select` fields
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -906,7 +960,7 @@ NOTE this only works best for `.input-single-line` and or `.input-select` fields
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -914,7 +968,7 @@ NOTE this only works best for `.input-single-line` and or `.input-select` fields
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-single-line input-secondary">
+  <select class="input input-box input-secondary">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -934,7 +988,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
 
 ```html
 <span class="input-group input-group-horizontal">
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -942,7 +996,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -950,7 +1004,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -958,7 +1012,7 @@ a `.btn-group` has to have either **`.input-group-horizontal`** or **`.input-gro
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -976,7 +1030,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
 
 ```html
 <span class="input-group input-group-vertical">
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -984,7 +1038,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -992,7 +1046,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -1000,7 +1054,7 @@ NOTE if there are too much inputs, there will be a scrollbar on the button group
     <option>Available option 5</option>
   </select>
 
-  <select class="input input-select">
+  <select class="input input-box-select">
     <option>Available option 1</option>
     <option>Available option 2</option>
     <option>Available option 3</option>
@@ -1037,25 +1091,25 @@ To set the wrapper to a full width block, add **`.input-wrapper-block`**
 ```html
 <h4>inline horizontal</h4>
 <p class="input-wrapper input-wrapper-horizontal">
-  <label class="input-label">Basic Ass</label>
-  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
+  <label class="input input-label">Basic Ass</label>
+  <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 
 <h4>block horizontal</h4>
 <p class="input-wrapper input-wrapper-horizontal input-wrapper-block">
-  <label class="input-label">Basic Ass</label>
-  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
+  <label class="input input-label">Basic Ass</label>
+  <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 
 <h4>inline vertical</h4>
 <p class="input-wrapper input-wrapper-vertical">
-  <label class="input-label">Basic Ass</label>
-  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
+  <label class="input input-label">Basic Ass</label>
+  <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 <h4>block vertical</h4>
 <p class="input-wrapper input-wrapper-vertical input-wrapper-block">
-  <label class="input-label">Basic Ass</label>
-  <input class="input input-single-line" placeholder="Basic Ass" type="text" />
+  <label class="input input-label">Basic Ass</label>
+  <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 ```
 
@@ -1118,7 +1172,7 @@ Fuck this shit bro whhyyy
 
 Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and `.input-wrapper`
 
-![](../../images/input-single-line.png)
+![](../../images/input-box.png)
 
 ### Non input tags
 
@@ -1162,7 +1216,7 @@ This works on either a `checkbox` or `radio`
 ```html
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label">
+  <span class="input input-label input-toggle-label">
     Test this fucker. do not use horizontal and vertical input classes with this shit or
     you dIE
   </span>
@@ -1170,7 +1224,7 @@ This works on either a `checkbox` or `radio`
 
 <div class="input-toggle p input-small">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label">
+  <span class="input input-label input-toggle-label">
     Test this fucker. do not use horizontal and vertical input classes with this shit or
     you dIE
   </span>
@@ -1178,7 +1232,7 @@ This works on either a `checkbox` or `radio`
 
 <div class="input-toggle p input-large">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label">
+  <span class="input input-label input-toggle-label">
     Test this fucker. do not use horizontal and vertical input classes with this shit or
     you dIE
   </span>
@@ -1186,54 +1240,54 @@ This works on either a `checkbox` or `radio`
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label input-primary">
+  <span class="input input-label input-toggle-label input-primary">
     Test this fucker primary
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label input-secondary">
+  <span class="input input-label input-toggle-label input-secondary">
     Test this fucker secondary
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label input-accent">
+  <span class="input input-label input-toggle-label input-accent">
     Test this fucker accent
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label input-success">
+  <span class="input input-label input-toggle-label input-success">
     Test this fucker success
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label input-caution">
+  <span class="input input-label input-toggle-label input-caution">
     Test this fucker caution
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label input-error">
+  <span class="input input-label input-toggle-label input-error">
     Test this fucker error
   </span>
 </div>
 
-<div class="input-toggle p input-disabled">
+<div class="input-toggle p disabled">
   <input type="checkbox" class="input" />
-  <span class="input-label input-toggle-label"> Test this fucker </span>
+  <span class="input input-label input-toggle-label"> Test this fucker </span>
 </div>
 
 <div class="input-toggle p input-toggle-reverse">
   <input type="checkbox" class="input " />
-  <span class="input-label input-toggle-label">
+  <span class="input input-label input-toggle-label">
     Test this fucker this one should have toggle on the other side of the text
   </span>
 </div>
@@ -1613,7 +1667,7 @@ Also supports [input color helpers](#input-colors)
 <input
   type="text"
   value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
-  class="input input-tags input-disabled"
+  class="input input-tags disabled"
 />
 ```
 
@@ -1693,7 +1747,7 @@ callback function after keyup on the input field. NOTE. the field is actually a 
 />
 ```
 
-**`data-tags-multiple-lines`** - `args.multipleLines`
+**`data-tags-multiline`** - `args.multiline`
 
 defaults to false
 
@@ -1704,11 +1758,11 @@ if enabled, allows floe of tags intoo multiple lines like a textarea
   type="text"
   value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
   class="input input-tags"
-  data-tags-multiple-lines="true"
+  data-tags-multiline="true"
 />
 ```
 
-**`data-tags-multiple-lines-break`** - `args.multipleLinesBreak`
+**`data-tags-multiline-break`** - `args.multilineBreak`
 
 defaults to false
 
@@ -1719,8 +1773,8 @@ if enabled, makes the tags occupy their own block widths. only works if set to m
   type="text"
   value="lil,stupid,ass,bitch,i,ain't,fuckin,with,u"
   class="input input-tags"
-  data-tags-multiple-lines="true"
-  data-tags-multiple-lines-break="true"
+  data-tags-multiline="true"
+  data-tags-multiline-break="true"
 />
 ```
 
@@ -1778,8 +1832,8 @@ Make a new boi by going `const formTags = new fw.Form.Tags(element,valueToRender
 	callback: null, //data-tags-callback
 	filter: null, //data-tags-filter
 	onKeyUp: null, //data-tags-on-keyup
-	multipleLines: false, //data-tags-multiple-lines
-	multipleLinesBreak: false, //data-tags-multiple-lines-break
+	multiline: false, //data-tags-multiline
+	multilineBreak: false, //data-tags-multiline-break
   maxChar: 0,
   maxCharSnip: false,
 }
