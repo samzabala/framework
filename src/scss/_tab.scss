@@ -67,7 +67,7 @@ $prefix: '.tab';
 
   &,
   &s,
-  > li {
+  &s > li {
     @extend %fwe-tab-all;
     padding: 0;
     margin: 0;
