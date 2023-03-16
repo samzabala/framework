@@ -1172,7 +1172,7 @@ class Modal extends FwComponent {
       );
     });
 
-    FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleHash(mode));
+    FwEvent.removeListener(window, EVENT_HASHCHANGE, Modal.handleHash());
   }
 }
 

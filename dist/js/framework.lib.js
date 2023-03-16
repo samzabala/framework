@@ -4486,7 +4486,7 @@
 
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$4, Modal.handleFullscreen(mode));
       });
-      FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Modal.handleHash(mode));
+      FwEvent.removeListener(window, EVENT_HASHCHANGE$1, Modal.handleHash());
     };
 
     _createClass(Modal, [{
