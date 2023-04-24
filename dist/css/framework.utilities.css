@@ -12959,11 +12959,9 @@
   cursor: ew-resize !important;
 }
 .cursor-grab, .cursor-grab-active:active {
-  cursor: -webkit-grab !important;
   cursor: grab !important;
 }
 .cursor-grabbing, .cursor-grabbing-active:active {
-  cursor: -webkit-grabbing !important;
   cursor: grabbing !important;
 }
 .cursor-help, .cursor-help-active:active {
@@ -13643,7 +13641,6 @@
   position: fixed !important;
 }
 .position-sticky {
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -20588,32 +20585,25 @@
   text-decoration: none !important;
 }
 .text-decoration-line-under {
-  -webkit-text-decoration-line: underline !important;
-          text-decoration-line: underline !important;
+  text-decoration-line: underline !important;
 }
 .text-decoration-line-through {
-  -webkit-text-decoration-line: line-through !important;
-          text-decoration-line: line-through !important;
+  text-decoration-line: line-through !important;
 }
 .text-decoration-line-over {
-  -webkit-text-decoration-line: overline !important;
-          text-decoration-line: overline !important;
+  text-decoration-line: overline !important;
 }
 .text-decoration-style-solid {
-  -webkit-text-decoration-style: solid !important;
-          text-decoration-style: solid !important;
+  text-decoration-style: solid !important;
 }
 .text-decoration-style-wavy {
-  -webkit-text-decoration-style: wavy !important;
-          text-decoration-style: wavy !important;
+  text-decoration-style: wavy !important;
 }
 .text-decoration-style-double {
-  -webkit-text-decoration-style: double !important;
-          text-decoration-style: double !important;
+  text-decoration-style: double !important;
 }
 .text-decoration-style-wavy {
-  -webkit-text-decoration-style: wavy !important;
-          text-decoration-style: wavy !important;
+  text-decoration-style: wavy !important;
 }
 .text-transform-uppercase {
   text-transform: uppercase !important;

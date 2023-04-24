@@ -52,7 +52,8 @@ table {
   border-spacing: 0;
 }
 
-a:hover {
+a:hover,
+a:not([class]):hover {
   text-decoration: none;
 }
 [data-toggle] {
@@ -309,7 +310,6 @@ a:hover {
 
 .body-on-drag,
 .body-on-drag * {
-  cursor: -webkit-grabbing !important;
   cursor: grabbing !important;
   -webkit-user-select: none !important; /* Safari 3.1+ */
   -moz-user-select: none !important; /* Firefox 2+ */ /* IE 10+ */
