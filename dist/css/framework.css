@@ -6921,15 +6921,6 @@ ul.list-group-toggle .list-group-item a {
   color: inherit;
   text-decoration: inherit;
 }
-.list-group-interactive > li > *,
-.list-group-interactive .list-group-item > *, .list-group-toggle > li > *,
-.list-group-toggle .list-group-item > *,
-ul.list-group-interactive > li > *,
-ul.list-group-interactive .list-group-item > *,
-ul.list-group-toggle > li > *,
-ul.list-group-toggle .list-group-item > * {
-  pointer-events: none;
-}
 .list-group-interactive > li:hover, .list-group-interactive > li:focus, .list-group-interactive > li.focus,
 .list-group-interactive .list-group-item:hover,
 .list-group-interactive .list-group-item:focus,
@@ -6965,6 +6956,12 @@ ul.list-group-toggle > li.active,
 ul.list-group-toggle .list-group-item:active,
 ul.list-group-toggle .list-group-item.active {
   background: var(--fw-color-primary-alpha-2);
+}
+.list-group-toggle > li > *,
+.list-group-toggle .list-group-item > *,
+ul.list-group-toggle > li > *,
+ul.list-group-toggle .list-group-item > * {
+  pointer-events: none;
 }
 .dropdown .list-group {
   margin-bottom: 0;
