@@ -104,6 +104,25 @@ $prefix: '.table';
   --fw-table-row-background: #{$table-row-background};
 }
 
+:is(:where(table), :is(#{$prefix})) {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  text-align: inherit;
+  background: transparent;
+
+  &:not(#{$prefix}-fixed) {
+    :is(.text-wrap-ellipsis,.text-wrap-ellipsis-multiline) {
+      width: 10rem;
+      width: clamp(10rem, 18rem, 25em);
+    }
+  }
+
+  &#{$prefix}-fixed {
+    table-layout: fixed !important;
+  }
+}
+
 #{$prefix}-wrapper {
   width: 100%;
   display: block;
@@ -119,26 +138,6 @@ $prefix: '.table';
     :is(.tag, .btn) {
       // white-space: nowrap;
     }
-  }
-}
-
-:is(:where(table), :is(#{$prefix})) {
-  width: 100%;
-  display: table;
-  border-collapse: collapse;
-  text-align: inherit;
-  background: transparent;
-
-  &:not(#{$prefix}-fixed) {
-    .text-wrap-ellipsis,
-    .text-wrap-ellipsis-multiline {
-      width: 10rem;
-      width: clamp(10rem, 25rem, 100%);
-    }
-  }
-
-  &#{$prefix}-fixed {
-    table-layout: fixed !important;
   }
 }
 

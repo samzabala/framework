@@ -372,8 +372,7 @@ $glassy-selector: '';
 $gradient-selector: '';
 $outline-selector: '';
 
-:root {
-  // :where(#{$prefix})
+:root { // :where(#{$prefix})
   --fw-btn-border-width: #{$btn-border-width};
   --fw-btn-box-shadow: #{$btn-box-shadow};
   --fw-btn-box-shadow-hover: #{$btn-box-shadow-hover};
@@ -444,6 +443,7 @@ $outline-selector: '';
   color: inherit;
   overflow-x: auto;
   overflow-y: visible;
+  width: max-content;
 
   &#{&}-horizontal {
     > #{$prefix}-symbol {
