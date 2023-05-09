@@ -14,3 +14,19 @@
   width: 100%;
   margin-top: 0.5em;
 }
+
+
+#{$prefix}-wrapper > & {
+}
+
+#{$prefix}-wrapper#{$prefix}-wrapper-horizontal > & {
+  grid-column: 2;
+}
+
+#{$prefix}-wrapper#{$prefix}-wrapper-horizontal#{$prefix}-wrapper-reverse > & {
+  grid-column: 1;
+}
+
+:is(.disabled, [disabled], :disabled) ~ & {
+  @include dump-styles(disabled);
+}

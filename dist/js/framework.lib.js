@@ -2513,7 +2513,7 @@
   var DATA_KEY$8 = Settings.get('prefix') + "_" + NAME$8;
   var EVENT_KEY$8 = "_" + DATA_KEY$8;
   var EVENT_CLICK$5 = "click" + EVENT_KEY$8;
-  var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
+  var EVENT_KEYDOWN$1 = "keydown" + EVENT_KEY$8;
   var EVENT_BLUR = "blur" + EVENT_KEY$8;
   var EVENT_PASTE = "paste" + EVENT_KEY$8;
   var EVENT_CHANGE$1 = "change" + EVENT_KEY$8;
@@ -3081,7 +3081,7 @@
       FwEvent.addListener(document.documentElement, EVENT_PASTE, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditablePaste());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableFocus());
       FwEvent.addListener(document.documentElement, EVENT_BLUR, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableBlur());
-      FwEvent.addListener(document.documentElement, EVENT_KEYDOWN, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableKeydown());
+      FwEvent.addListener(document.documentElement, EVENT_KEYDOWN$1, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-input", Tags.handleEditableKeydown());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-close", Tags.handleDelete());
       FwEvent.addListener(document.documentElement, EVENT_CLICK$5, "." + UIPrefix(COMPONENT_CLASS$8) + " ." + UIPrefix(COMPONENT_CLASS$8) + "-tag-text", Tags.handleEdit());
       if (Settings.get('initializeForm')) {
@@ -3093,7 +3093,7 @@
       FwEvent.removeListener(document.documentElement, EVENT_PASTE, Tags.handleEditablePaste());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEditableFocus());
       FwEvent.removeListener(document.documentElement, EVENT_BLUR, Tags.handleEditableBlur());
-      FwEvent.removeListener(document.documentElement, EVENT_KEYDOWN, Tags.handleEditableKeydown());
+      FwEvent.removeListener(document.documentElement, EVENT_KEYDOWN$1, Tags.handleEditableKeydown());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleDelete());
       FwEvent.removeListener(document.documentElement, EVENT_CLICK$5, Tags.handleEdit());
     };
@@ -3423,6 +3423,7 @@
   var DATA_KEY$5 = Settings.get('prefix') + "_" + NAME$5;
   var EVENT_KEY$5 = "_" + DATA_KEY$5;
   var EVENT_CLICK$3 = "click" + EVENT_KEY$5;
+  var EVENT_KEYDOWN = "keydown" + EVENT_KEY$5;
   var EVENT_MOUSEDOWN = "mousedown" + EVENT_KEY$5;
   // const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`;
 
@@ -3803,6 +3804,19 @@
         }
       };
     };
+    Modal.handleEscape = function handleEscape(mode) {
+      return function (e) {
+        if (e.key !== 'Escape') {
+          return;
+        }
+        if (!FwComponent.isDisabled(e.target)) {
+          if (Modal.current(mode).element) {
+            var modal = new Modal(Modal.current(mode).element, null, Modal.current(mode).args);
+            modal.destroy();
+          }
+        }
+      };
+    };
     Modal.handleToggleResizeMouseDown = function handleToggleResizeMouseDown(mode) {
       return function (e) {
         if (!FwComponent.isDisabled(e.target)) {
@@ -3881,6 +3895,7 @@
         var modeToggle = _classPrivateFieldLooseBase(Modal, _modeToggle)[_modeToggle](mode);
         FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "], *[data-toggle-" + modeToggle + "-open]", Modal.handleToggleOpen(mode));
         FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "-close]", Modal.handleToggleClose(mode));
+        FwEvent.addListener(null, EVENT_KEYDOWN, window, Modal.handleEscape(mode));
         FwEvent.addListener(document.documentElement, EVENT_CLICK$3, "*[data-toggle-" + modeToggle + "-resize]", Modal.handleToggleResizeClick(mode));
         FwEvent.addListener(window, EVENT_MOUSEDOWN, "*[data-toggle-" + modeToggle + "-resize]", Modal.handleToggleResizeMouseDown(mode));
 
@@ -3910,6 +3925,7 @@
       VALID_MODAL_MODES.forEach(function (mode) {
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleToggleOpen(mode));
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleToggleClose(mode));
+        FwEvent.addListener(window, EVENT_KEYDOWN, Modal.handleEscape(mode));
         FwEvent.removeListener(document.documentElement, EVENT_CLICK$3, Modal.handleToggleResizeClick(mode));
         FwEvent.addListener(window, EVENT_MOUSEDOWN, Modal.handleToggleResizeMouseDown(mode));
 

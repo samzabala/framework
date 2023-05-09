@@ -157,11 +157,13 @@ meter {
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
-:is(.disabled, [disabled], :disabled) {
+:is(.disabled, [disabled],
+:disabled) {
   cursor: not-allowed !important;
   opacity: 0.5 !important;
 }
-:is(.disabled, [disabled], :disabled) * {
+:is(.disabled, [disabled],
+:disabled) * {
   pointer-events: none !important;
 }
 :is(:is(.fit-image-cover) img, :is(.fit-image-contain) img) {
@@ -517,8 +519,7 @@ body {
   color: var(--fw-color-background);
 }
 
-:where(img, svg,
-input, textarea, fieldset, legend, select, button) {
+:where(img, svg, input, textarea, fieldset, legend, select, button) {
   max-width: 100%;
 }
 

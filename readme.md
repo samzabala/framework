@@ -150,6 +150,7 @@ Dependencies:
 * `input-multiple-line` => `input-box input-box-multiline` ****
 * `input-select` => `input-box input-box-select`
 * `input-label` => `input input-label`
+* `input-info` => `input input-info`
 
 * `module-header-break` => `module-end-break`
 * `module-footer-break` => `module-end-break`

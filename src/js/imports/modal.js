@@ -27,6 +27,8 @@ const DATA_KEY = `${Settings.get('prefix')}_${NAME}`;
 const EVENT_KEY = `_${DATA_KEY}`;
 const EVENT_CLICK = `click${EVENT_KEY}`;
 
+const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
+
 const EVENT_MOUSEDOWN = `mousedown${EVENT_KEY}`;
 // const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`;
 
@@ -914,6 +916,25 @@ class Modal extends FwComponent {
     };
   }
 
+  static handleEscape(mode) {
+    return (e) => {
+      if (e.key !== 'Escape') {
+        return;
+      }
+
+      if (!FwComponent.isDisabled(e.target)) {
+        if (Modal.current(mode).element) {
+          const modal = new Modal(
+            Modal.current(mode).element,
+            null,
+            Modal.current(mode).args
+          );
+          modal.destroy();
+        }
+      }
+    };
+  }
+
   static handleToggleResizeMouseDown(mode) {
     return (e) => {
       if (!FwComponent.isDisabled(e.target)) {
@@ -1054,6 +1075,8 @@ class Modal extends FwComponent {
         Modal.handleToggleClose(mode)
       );
 
+      FwEvent.addListener(null, EVENT_KEYDOWN, window, Modal.handleEscape(mode));
+
       FwEvent.addListener(
         document.documentElement,
         EVENT_CLICK,
@@ -1115,6 +1138,8 @@ class Modal extends FwComponent {
         EVENT_CLICK,
         Modal.handleToggleClose(mode)
       );
+
+      FwEvent.addListener(window, EVENT_KEYDOWN, Modal.handleEscape(mode));
 
       FwEvent.removeListener(
         document.documentElement,

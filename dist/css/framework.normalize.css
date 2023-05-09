@@ -122,11 +122,13 @@ meter {
   box-sizing: border-box;
 }
 
-:is([disabled], :disabled) {
+:is([disabled],
+:disabled) {
   cursor: not-allowed !important;
   opacity: 0.5 !important;
 }
-:is([disabled], :disabled) * {
+:is([disabled],
+:disabled) * {
   pointer-events: none !important;
 }
 :root {
@@ -462,8 +464,7 @@ body {
   color: var(--fw-color-background);
 }
 
-:where(img, svg,
-input, textarea, fieldset, legend, select, button) {
+:where(img, svg, input, textarea, fieldset, legend, select, button) {
   max-width: 100%;
 }
 

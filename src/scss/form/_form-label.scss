@@ -1,12 +1,11 @@
 $sub-prefix: '.input-label';
 
-:root {
-  // :where(#{$prefix})
-  --fw-input-box-shadow: none;
-  --fw-input-box-shadow-focus: none;
+:root { // :where(#{$prefix})
 }
 
 #{$sub-prefix} {
+  --fw-input-box-shadow: none;
+  --fw-input-box-shadow-focus: none;
   @include type-set(
     (
       root-size: $body-font-size,

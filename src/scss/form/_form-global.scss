@@ -211,9 +211,13 @@ $prefix: '.input';
       grid-template-columns: 1fr auto;
     }
 
+    > :where(*) {
+      grid-column: 2;
+    }
+
     > :is(
         :where(*):not(#{$prefix}),
-        #{$prefix}:has(~ :where(*):not(#{$prefix})),
+        :not(#{$prefix} ~ #{$prefix}),
         #{$prefix}:only-child
       ) {
       grid-column: span 2;
