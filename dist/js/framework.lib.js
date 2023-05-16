@@ -3759,7 +3759,7 @@
         if (Modal.isHash(hash) && !Modal.containsHash(hash)) {
           modal.open();
         } else {
-          modal.close();
+          modal.destroy();
         }
       };
     };
