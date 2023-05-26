@@ -107,11 +107,6 @@
         comma
       );
     }
-
-    // @each $j in $past-flex-increments {
-    @at-root :is(#{$selector-grow}, #{$selector-shrink}) {
-      flex: unset !important;
-    }
     @at-root :is(#{$selector-grow}) {
       flex-grow: #{$i} !important;
     }
