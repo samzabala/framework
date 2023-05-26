@@ -337,7 +337,9 @@ $fwc-body-heading-size: (
   background: $hr-color;
   opacity: 0.2;
   width: 100%;
-  flex: 1 1 auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  // // flex-basis: auto;
   margin-top: rem($hr-gutter-y, $body-font-size);
   margin-bottom: rem($hr-gutter-y, $body-font-size);
   margin-left: auto;

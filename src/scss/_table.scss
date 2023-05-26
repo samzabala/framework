@@ -112,7 +112,7 @@ $prefix: '.table';
   background: transparent;
 
   &:not(#{$prefix}-fixed) {
-    :is(.text-wrap-ellipsis,.text-wrap-ellipsis-multiline) {
+    :is(.text-wrap-ellipsis, .text-wrap-ellipsis-multiline) {
       width: 10rem;
       width: clamp(10rem, 18rem, 25em);
     }

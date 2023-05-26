@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 .inline-flex {
   display: inline-flex !important;
 
@@ -87,5 +89,34 @@
     flex-wrap: inherit !important;
   }
 
-  @include dump-flex-increments($flex-max);
+  @for $i from 0 through $flex-max {
+    $selector-grow: ();
+    $selector-shrink: ();
+
+    @for $shrink from 0 through $flex-max {
+      $selector-grow: list.append(
+        $selector-grow,
+        #{& + '-' + $i + '-' + $shrink},
+        comma
+      );
+    }
+    @for $grow from 0 through $flex-max {
+      $selector-shrink: list.append(
+        $selector-shrink,
+        #{& + '-' + $grow + '-' + $i},
+        comma
+      );
+    }
+
+    // @each $j in $past-flex-increments {
+    @at-root :is(#{$selector-grow}, #{$selector-shrink}) {
+      flex: unset !important;
+    }
+    @at-root :is(#{$selector-grow}) {
+      flex-grow: #{$i} !important;
+    }
+    @at-root :is(#{$selector-shrink}) {
+      flex-shrink: #{$i} !important;
+    }
+  }
 }

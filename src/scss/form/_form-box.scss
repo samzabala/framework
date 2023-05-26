@@ -9,7 +9,7 @@ $sub-prefix: #{$prefix + '-box'};
             ) * 0.5
         )
         var(--fw-input-padding-x);
-      min-height: var(--fw-input-height);
+      // min-height: var(--fw-input-height);
       border-color: var(--fw-input-border-color);
       border-style: solid;
       border-width: var(--fw-input-border-width);
@@ -61,21 +61,23 @@ $sub-prefix: #{$prefix + '-box'};
   }
 
   &#{$prefix}-block {
-    display: block;
+    display: flex;
     width: 100%;
 
     // > :is(#{$sub-prefix}) {
-    //   flex: 1 1;
+    //   flex-grow: 1;
+    //   flex-shrink: 1;
     // }
 
     &-mobile {
       @include on-breakpoint(mobile) {
-        display: block;
+        display: flex;
         width: 100%;
 
-        // > :is(#{$sub-prefix}) {
-        //   flex: 1 1;
-        // }
+        //   > :is(#{$sub-prefix}) {
+        //     flex-grow: 1;
+        //     flex-shrink: 1;
+        //   }
       }
     }
   }
@@ -100,7 +102,9 @@ $sub-prefix: #{$prefix + '-box'};
 
   &#{&}-horizontal {
     > .btn-symbol {
-      flex: 0 0 auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      // flex-basis: auto;
     }
   }
 
@@ -232,7 +236,8 @@ $sub-prefix: #{$prefix + '-box'};
   }
 
   #{$prefix}-group > & {
-    flex: 1 1;
+    flex-grow: 1;
+    flex-shrink: 1;
     position: relative;
 
     &:is(:hover, :active, .active, :focus, .focus, .open) {
@@ -277,7 +282,9 @@ $sub-prefix: #{$prefix + '-box'};
   &:is([multiple], #{$sub-prefix}-multiline) {
     vertical-align: top;
     overflow-y: auto;
-    flex: 1 0 auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    // flex-basis: auto;
     min-height: calc(
       var(--fw-input-height) * var(--fw-input-box-multiline-height-ratio)
     );

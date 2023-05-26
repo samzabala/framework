@@ -59,7 +59,9 @@ $prefix: '.toolbar';
 }
 
 #{$prefix}-tile {
-  flex: 0 0 auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  // flex-basis: auto;
   display: flex;
   align-self: center;
   justify-content: center;

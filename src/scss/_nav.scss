@@ -271,3 +271,16 @@ $prefix: '.nav';
     }
   }
 }
+
+.offset-nav {
+  & {
+    @include create-box-helper(#{&}, '', '', '', var(--fw-nav-height));
+    @include create-box-helper(
+      #{&},
+      'negate',
+      '',
+      '',
+      calc(#{var(--fw-nav-height)} * -1)
+    );
+  }
+}

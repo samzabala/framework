@@ -374,10 +374,6 @@
     }
   }
 
-  :is(&-nav-offset-sticky) {
-    top: var(--fw-nav-height, #{$nav-height}) !important;
-  }
-
   :is(&-disabled) {
     cursor: not-allowed !important;
     opacity: $global-disabled-opacity !important;
@@ -462,33 +458,6 @@
     }
     // }
     $z: $z + $multiplier;
-  }
-}
-
-@mixin dump-flex-increments($max: 1) {
-  @for $i from 0 through $max {
-    @for $j from 0 through $max {
-      // @each $j in $past-flex-increments {
-      @at-root #{& + '-' + $i + '-' + $i},
-        #{& + '-' + $i + '-' + $j} {
-        flex-grow: #{$i} !important;
-      }
-
-      @at-root #{& + '-' + $i + '-' + $i},
-        #{& + '-' + $j + '-' + $i} {
-        flex-shrink: #{$i} !important;
-      }
-
-      @at-root #{& + '-' + $j + '-' + $i},
-        #{& + '-' + $j + '-' + $j} {
-        flex-grow: #{$j} !important;
-      }
-
-      @at-root #{& + '-' + $i + '-' + $j},
-        #{& + '-' + $j + '-' + $j} {
-        flex-shrink: #{$j} !important;
-      }
-    }
   }
 }
 

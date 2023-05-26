@@ -155,6 +155,8 @@ $ui-prefix: #{$prefix}-ui;
 
   #{$ui-prefix}-popup-content {
     width: 100%;
-    flex: 1 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    // // flex-basis: auto;
   }
 }

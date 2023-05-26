@@ -230,7 +230,8 @@ $prefix: '.module';
 
       #{$prefix}-functions {
         margin-top: 0;
-        flex: 1 1;
+        flex-grow: 1;
+        flex-shrink: 1;
         text-align: right;
         margin-top: calc(var(--fw-module-gutter-between) * -0.5);
         margin-bottom: calc(var(--fw-module-gutter-between) * -0.5);

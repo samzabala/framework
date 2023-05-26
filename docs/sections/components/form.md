@@ -878,12 +878,12 @@ makes input fields blend in with ancestors' styles. May be bad for UX
 <textarea class="input input-blend" name="" rows="" cols=""> </textarea>
 ```
 
-# **`.input-label`**
+# **`.input input-label`**
 
-To style a label, add class of `.input-label`
+To style a label, add class of `.input input-label`
 
 ```html
-<label class="input input-label" for="bitch">Basic Ass</label>
+<label class="input input input-label" for="bitch">Basic Ass</label>
 <input
   class="input input-box"
   id="bitch"
@@ -915,20 +915,20 @@ To style a label, add class of `.input-label`
   </tbody>
 </table>
 
-# **`.input-info`**
+# **`.input input-info`**
 
-Add helper text along the field to help out the user `.input-info`
+Add helper text along the field to help out the user `.input input-info`
 
 ![](../images/../../images/input-box input-box-multiline.png)
 
 ```html
-<label class="input input-label" for="message">Textarea + vertical wrapper</label>
+<label class="input input input-label" for="message">Textarea + vertical wrapper</label>
 <textarea
   placeholder="git wrecked"
   class="input input-box input-box-multiline"
   id="message"
 ></textarea>
-<span class="input-info"
+<span class="input input-info"
   >A longer block of help text that breaks onto a new line and may extend beyond one
   line.</span
 >
@@ -1091,24 +1091,24 @@ To set the wrapper to a full width block, add **`.input-wrapper-block`**
 ```html
 <h4>inline horizontal</h4>
 <p class="input-wrapper input-wrapper-horizontal">
-  <label class="input input-label">Basic Ass</label>
+  <label class="input input input-label">Basic Ass</label>
   <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 
 <h4>block horizontal</h4>
 <p class="input-wrapper input-wrapper-horizontal input-wrapper-block">
-  <label class="input input-label">Basic Ass</label>
+  <label class="input input input-label">Basic Ass</label>
   <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 
 <h4>inline vertical</h4>
 <p class="input-wrapper input-wrapper-vertical">
-  <label class="input input-label">Basic Ass</label>
+  <label class="input input input-label">Basic Ass</label>
   <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 <h4>block vertical</h4>
 <p class="input-wrapper input-wrapper-vertical input-wrapper-block">
-  <label class="input input-label">Basic Ass</label>
+  <label class="input input input-label">Basic Ass</label>
   <input class="input input-box" placeholder="Basic Ass" type="text" />
 </p>
 ```
@@ -1120,8 +1120,8 @@ To set the wrapper to a full width block, add **`.input-wrapper-block`**
 ## Input colors
 
 To add feedback color the `.input`, add `.input-[color-tag]`.
-To add feedback color the `.input-label`, add `.input-[color-tag]`.
-Adding the color class on `.input-group` or `.input-wrapper` styles both the `.input-label` and `.input` within it
+To add feedback color the `.input input-label`, add `.input-[color-tag]`.
+Adding the color class on `.input-group` or `.input-wrapper` styles both the `.input input-label` and `.input` within it
 
 - **`.input-primary`**
 - **`.input-secondary`**
@@ -1170,7 +1170,7 @@ Fuck this shit bro whhyyy
 
 ### **`.input-large`** and **`.input-small`**
 
-Change em size. can be attached to `.input`, `.input-group`, `.input-label`, and `.input-wrapper`
+Change em size. can be attached to `.input`, `.input-group`, `.input input-label`, and `.input-wrapper`
 
 ![](../../images/input-box.png)
 
@@ -1216,7 +1216,7 @@ This works on either a `checkbox` or `radio`
 ```html
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label">
+  <span class="input input input-label input-toggle-label">
     Test this fucker. do not use horizontal and vertical input classes with this shit or
     you dIE
   </span>
@@ -1224,7 +1224,7 @@ This works on either a `checkbox` or `radio`
 
 <div class="input-toggle p input-small">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label">
+  <span class="input input input-label input-toggle-label">
     Test this fucker. do not use horizontal and vertical input classes with this shit or
     you dIE
   </span>
@@ -1232,7 +1232,7 @@ This works on either a `checkbox` or `radio`
 
 <div class="input-toggle p input-large">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label">
+  <span class="input input input-label input-toggle-label">
     Test this fucker. do not use horizontal and vertical input classes with this shit or
     you dIE
   </span>
@@ -1240,54 +1240,54 @@ This works on either a `checkbox` or `radio`
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label input-primary">
+  <span class="input input input-label input-toggle-label input-primary">
     Test this fucker primary
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label input-secondary">
+  <span class="input input input-label input-toggle-label input-secondary">
     Test this fucker secondary
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label input-accent">
+  <span class="input input input-label input-toggle-label input-accent">
     Test this fucker accent
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label input-success">
+  <span class="input input input-label input-toggle-label input-success">
     Test this fucker success
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label input-caution">
+  <span class="input input input-label input-toggle-label input-caution">
     Test this fucker caution
   </span>
 </div>
 
 <div class="input-toggle p">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label input-error">
+  <span class="input input input-label input-toggle-label input-error">
     Test this fucker error
   </span>
 </div>
 
 <div class="input-toggle p disabled">
   <input type="checkbox" class="input" />
-  <span class="input input-label input-toggle-label"> Test this fucker </span>
+  <span class="input input input-label input-toggle-label"> Test this fucker </span>
 </div>
 
 <div class="input-toggle p input-toggle-reverse">
   <input type="checkbox" class="input " />
-  <span class="input input-label input-toggle-label">
+  <span class="input input input-label input-toggle-label">
     Test this fucker this one should have toggle on the other side of the text
   </span>
 </div>

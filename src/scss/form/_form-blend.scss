@@ -12,13 +12,16 @@
   --fw-input-box-shadow: transparent;
   --fw-input-box-shadow-focus: transparent;
   --fw-input-padding-x: 0em;
-  --fw-input-padding-y: 0em;
 
   resize: none;
   border-width: 0 0 var(--fw-input-border-width) !important;
   border-color: var(--fw-input-border-color);
   scrollbar-width: none !important;
   outline: none !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  font: inherit;
+  line-height: inherit;
 
   //   decorations
   &[list]::-webkit-list-button,

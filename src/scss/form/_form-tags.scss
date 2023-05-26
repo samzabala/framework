@@ -32,7 +32,9 @@ $sub-prefix: '.input-tags';
     // }
 
     &-wrapper {
-      flex: 1 1;
+      flex-grow: 1;
+      flex-shrink: 1;
+      // // flex-basis: auto;
       display: flex;
       max-width: 100%;
       gap: var(--fw-input-tags-block-margin-y) var(--fw-input-tags-block-margin-x);
@@ -133,7 +135,9 @@ $sub-prefix: '.input-tags';
       }
 
       &:is(:last-child) {
-        flex: 1 1 auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+        // // flex-basis: auto;
       }
       // padding-right: 0;
 

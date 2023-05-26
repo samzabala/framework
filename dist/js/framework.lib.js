@@ -92,7 +92,7 @@
   }();
 
   //valid shits
-  var DisableClasses = ['table-row-disabled', 'tab-disabled', 'btn-disabled', 'input-disabled', 'disabled'];
+  var DisableClasses = ['disabled'];
 
   // @TODO push instead of hard coding to arrays because
 
@@ -3782,7 +3782,7 @@
         if (FwComponent.isHash(hash, COMPONENT_CLASS$5) || !FwComponent.containsHash(hash, COMPONENT_CLASS$5)) {
           modal.open();
         } else {
-          modal.close();
+          modal.destroy();
         }
       };
     };

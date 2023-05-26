@@ -155,6 +155,10 @@ Dependencies:
 * `module-header-break` => `module-end-break`
 * `module-footer-break` => `module-end-break`
 
+* `offset-nav-sticky` => `offset-nav-top`
+
+* `btn btn-group` => `btn-group`
+
 
 ## HTML ATTRIBUTES/ JS ARGUMENTS: Find and replace the following component attributes + JS arguments
 

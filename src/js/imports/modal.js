@@ -875,7 +875,7 @@ class Modal extends FwComponent {
       ) {
         modal.open();
       } else {
-        modal.close();
+        modal.destroy();
       }
     };
   }

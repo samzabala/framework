@@ -31,7 +31,9 @@ $mode-class: #{$ui-prefix}-mode-default;
       content: '';
       display: block;
       width: 100%;
-      flex: 0 0 auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      // flex-basis: auto;
       height: var(--fw-modal-default-gutter);
     }
 

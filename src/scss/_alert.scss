@@ -85,10 +85,6 @@ $prefix: '.alert';
   position: fixed;
   width: 100%;
 
-  &#{$prefix}-nav-offset {
-    @include dump-styles(nav-offset-sticky);
-  }
-
   &#{$prefix}-top {
     top: 0;
   }

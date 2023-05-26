@@ -11,7 +11,7 @@ $prefix: '.input';
   --fw-input-placeholder-opacity: #{$input-placeholder-opacity};
   --fw-input-placeholder-opacity-focus: #{$input-placeholder-opacity-focus};
 
-  --fw-input-height: #{em($input-height, $input-font-size)};
+  --fw-input-height: #{rem($input-height, $body-font-size)};
   --fw-input-border-radius: #{$input-border-radius};
 
   --fw-input-background-color: #{$input-background-color};
@@ -21,7 +21,7 @@ $prefix: '.input';
   --fw-input-border-color-focus: #{$input-border-color-focus};
 
   --fw-input-color: inherit;
-  // --fw-input-color-focus: inherit;
+  --fw-input-color-focus: inherit;
 
   --fw-input-wrapper-gap: #{$input-wrapper-gap};
   --fw-input-wrapper-padding-right: #{$input-wrapper-padding-right};
@@ -129,7 +129,9 @@ $prefix: '.input';
 
   #{$prefix}-group > & {
     max-width: 100%;
-    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    // flex-basis: auto;
     position: relative;
     --fw-input-box-shadow: none;
 
@@ -160,20 +162,23 @@ $prefix: '.input';
   #{$prefix}-#{$tag} {
     --fw-input-background-color: var(--fw-color-#{$tag}-#{$input-feedback-variation});
     --fw-input-border-color: #{$color};
-    --fw-input-border-color-focus: var(--fw-input-border-color);
     --fw-input-color: #{$color};
-    --fw-input-color-focus: var(--fw-input-color);
+
+    &:not(:is(.disabled, [disabled], :disabled)) {
+      --fw-input-border-color-focus: var(--fw-input-border-color);
+      --fw-input-color-focus: var(--fw-input-color);
+    }
   }
 }
 
 :is(#{$prefix}-large, #{$prefix}-large > #{$prefix}) {
-  --fw-input-height: #{em($input-height-large, $input-font-size-large)};
+  --fw-input-height: #{rem($input-height-large, $body-font-size)};
   --fw-input-border-radius: #{$input-border-radius-large};
   @include type($input-font-size-large, null, $body-font-size);
 }
 
 :is(#{$prefix}-small, #{$prefix}-small > #{$prefix}) {
-  --fw-input-height: #{em($input-height-small, $input-font-size-small)};
+  --fw-input-height: #{rem($input-height-small, $body-font-size)};
   --fw-input-border-radius: #{$input-border-radius-small};
   @include type($input-font-size-small, null, $body-font-size);
 }
@@ -185,9 +190,6 @@ $prefix: '.input';
 :is(.disabled, [disabled], :disabled) {
   --fw-input-box-shadow: none;
   --fw-input-box-shadow-focus: none;
-  --fw-input-border-color-focus: var(--fw-input-border-color);
-  --fw-input-color-focus: var(--fw-input-color);
-  --fw-input-background-color-focus: var(--fw-input-background-color);
 }
 
 #{$prefix}-wrapper {
@@ -197,7 +199,7 @@ $prefix: '.input';
   align-items: center;
   column-gap: var(--fw-input-wrapper-gap);
   padding-right: var(--fw-input-wrapper-padding-right);
-  min-height: var(--fw-input-height);
+  // min-height: var(--fw-input-height);
 
   > :where(*) {
     min-width: 0;

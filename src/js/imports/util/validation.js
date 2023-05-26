@@ -1,11 +1,5 @@
 //valid shits
-export const DisableClasses = [
-  'table-row-disabled',
-  'tab-disabled',
-  'btn-disabled',
-  'input-disabled',
-  'disabled',
-];
+export const DisableClasses = ['disabled'];
 
 // @TODO push instead of hard coding to arrays because
 

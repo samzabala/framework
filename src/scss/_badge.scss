@@ -14,7 +14,9 @@ $prefix: '.badge';
 #{$prefix} {
   display: inline-block;
   vertical-align: middle;
-  flex: 0 0 auto; //retain dimensions
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto; //retain dimensions
   line-height: inherit;
   width: var(--fw-badge-size);
   height: var(--fw-badge-size);

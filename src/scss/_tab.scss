@@ -141,7 +141,8 @@ $sub-prefix: '.tab';
     );
     margin-right: calc(var(--fw-tab-padding-x) * -1);
     margin-left: calc(var(--fw-tab-padding-x) * -1);
-    flex: 1 1;
+    flex-grow: 1;
+    flex-shrink: 1;
     align-self: stretch;
     @at-root :is(#{&}, #{&} a) {
       text-decoration: none;

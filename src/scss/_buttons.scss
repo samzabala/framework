@@ -372,26 +372,27 @@ $glassy-selector: '';
 $gradient-selector: '';
 $outline-selector: '';
 
-:root { // :where(#{$prefix})
+:root {
+  // :where(#{$prefix})
   --fw-btn-border-width: #{$btn-border-width};
   --fw-btn-box-shadow: #{$btn-box-shadow};
   --fw-btn-box-shadow-hover: #{$btn-box-shadow-hover};
   --fw-btn-gap: #{$btn-gap};
   --fw-btn-padding-x: #{em($btn-padding-x, $btn-font-size)};
 
-  --fw-btn-height: #{em($btn-height, $btn-font-size)};
+  --fw-btn-height: #{rem($btn-height, $body-font-size)};
   --fw-btn-border-radius: #{$btn-border-radius};
 
   --fw-btn-background: transparent;
   --fw-btn-border-color: transparent;
   --fw-btn-color: inherit;
 
-  // --fw-btn-background-active: var(--fw-btn-background);
-  // --fw-btn-background-hover: var(--fw-btn-background);
-  // --fw-btn-border-color-active: var(--fw-btn-border-color);
-  // --fw-btn-border-color-hover: var(--fw-btn-border-color);
-  // --fw-btn-color-active: var(--fw-btn-color);
-  // --fw-btn-color-hover: var(--fw-btn-color);
+  --fw-btn-background-active: var(--fw-btn-background);
+  --fw-btn-background-hover: var(--fw-btn-background);
+  --fw-btn-border-color-active: var(--fw-btn-border-color);
+  --fw-btn-border-color-hover: var(--fw-btn-border-color);
+  --fw-btn-color-active: var(--fw-btn-color);
+  --fw-btn-color-hover: var(--fw-btn-color);
 }
 
 @at-root :is(#{$prefix}, #{$prefix}-group) {
@@ -447,7 +448,9 @@ $outline-selector: '';
 
   &#{&}-horizontal {
     > #{$prefix}-symbol {
-      flex: 0 0 auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      // flex-basis: auto;
     }
   }
 
@@ -567,7 +570,9 @@ $outline-selector: '';
 
   #{$prefix}-group > & {
     min-width: 0;
-    flex: 1 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    // flex-basis: auto;
     position: relative;
     --fw-btn-box-shadow: none;
 
@@ -593,7 +598,9 @@ $outline-selector: '';
     width: var(--fw-btn-height);
     height: var(--fw-btn-height);
     padding: 0;
-    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    // flex-basis: auto;
   }
 
   &:is(
@@ -653,13 +660,17 @@ $outline-selector: '';
     }
   }
 
-  :is(#{$scheme-selector-state}) {
+  :is(#{$scheme-selector-state}):not(
+      :is(#{$prefix}-no-interaction, .disabled, [disabled], :disabled)
+    ) {
     @each $property, $value in map-get($fwc-btn-schemes-hover, $scheme) {
       --fw-btn-#{$property}-hover: #{$value};
     }
   }
 
-  :is(#{$scheme-selector-state}) {
+  :is(#{$scheme-selector-state}):not(
+      :is(#{$prefix}-no-interaction, .disabled, [disabled], :disabled)
+    ) {
     @each $property, $value in map-get($fwc-btn-schemes-active, $scheme) {
       --fw-btn-#{$property}-active: #{$value};
     }
@@ -667,13 +678,13 @@ $outline-selector: '';
 }
 
 :is(#{$prefix}-large, #{$prefix}-large > #{$prefix}) {
-  --fw-btn-height: #{em($btn-height-large, $btn-font-size-large)};
+  --fw-btn-height: #{rem($btn-height-large, $body-font-size)};
   --fw-btn-border-radius: #{$btn-border-radius-large};
   @include type($btn-font-size-large, null, $body-font-size);
 }
 
 :is(#{$prefix}-small, #{$prefix}-small > #{$prefix}) {
-  --fw-btn-height: #{em($btn-height-small, $btn-font-size-small)};
+  --fw-btn-height: #{rem($btn-height-small, $body-font-size)};
   --fw-btn-border-radius: #{$btn-border-radius-small};
   @include type($btn-font-size-small, null, $body-font-size);
 }
@@ -682,13 +693,7 @@ $outline-selector: '';
   --fw-btn-border-radius: 9999em;
 }
 
-:is(#{$prefix}-no-interaction, .disabled, [disabled], :disabled) {
-  --fw-btn-background-hover: var(--fw-btn-background);
-  --fw-btn-background-active: var(--fw-btn-background);
-  --fw-btn-border-color-hover: var(--fw-btn-border-color);
-  --fw-btn-border-color-active: var(--fw-btn-border-color);
-  --fw-btn-color-hover: var(--fw-btn-color);
-  --fw-btn-color-active: var(--fw-btn-color);
+:is(#{$prefix}-link, #{$prefix}-no-interaction, .disabled, [disabled], :disabled) {
   --fw-btn-box-shadow: none;
   --fw-btn-box-shadow-hover: none;
 }

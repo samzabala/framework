@@ -57,7 +57,9 @@ $sub-prefix: '.input-toggle';
     position: relative;
     z-index: 9;
     order: -1;
-    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    // flex-basis: auto;
     margin-top: min(
       calc((#{calc-single-line()} - var(--fw-input-toggle-node-height)) * 0.5),
       calc((var(--fw-input-toggle-node-height) - #{calc-single-line()}) * -0.5)
@@ -69,8 +71,9 @@ $sub-prefix: '.input-toggle';
     width: calc(100% - #{var(--fw-input-toggle-width)});
     padding-top: 0;
     padding-bottom: 0;
-    flex: 1 0 auto;
-    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    // flex-basis: auto;
   }
 }
 

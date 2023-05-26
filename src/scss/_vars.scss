@@ -740,15 +740,15 @@ $mobile-br-max: 'sm' !default;
 //////////////////////////////// GLOBAL UNITS
 
 $gutter-base: 1.25rem !default;
-$gutter-large: $gutter-base * 1.5 !default;
-$gutter-small: $gutter-base * 0.5 !default;
-$gutter-micro: $gutter-base * 0.25 !default;
+$gutter-large: calc(#{$var-gutter-base} * 1.5) !default;
+$gutter-small: calc(#{$var-gutter-base} * 0.5) !default;
+$gutter-micro: calc(#{$var-gutter-base} * 0.25) !default;
 
 // Border radius globals
 $border-radius-base: 0.75rem !default;
-$border-radius-large: $border-radius-base * 2 !default;
-$border-radius-small: $border-radius-base * 0.5 !default;
-$border-radius-micro: $border-radius-base * 0.25 !default;
+$border-radius-large: calc(#{$var-border-radius-base} * 2) !default;
+$border-radius-small: calc(#{$var-border-radius-base} * 0.5) !default;
+$border-radius-micro: calc(#{$var-border-radius-base} * 0.25) !default;
 
 // ANIMATION glbals
 $transition-duration-base: 0.25s !default;

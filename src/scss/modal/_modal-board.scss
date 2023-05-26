@@ -63,7 +63,9 @@ $mode-class: #{$ui-prefix}-mode-board;
       content: '';
       display: inline-block;
       pointer-events: none;
-      flex: 0 0 auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
       height: var(--fw-modal-board-close-offset-y);
       width: 0;
       order: -99;
@@ -91,7 +93,9 @@ $mode-class: #{$ui-prefix}-mode-board;
     background: var(--fw-modal-background);
     box-shadow: var(--fw-modal-board-close-box-shadow);
     padding: calc((var(--fw-modal-board-close-size) - 1em) * 0.5);
-    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    // flex-basis: auto;
     margin-bottom: 0.5em;
 
     .symbol {
@@ -137,7 +141,9 @@ $mode-class: #{$ui-prefix}-mode-board;
     }
   }
   #{$mode-class}#{$ui-prefix}-popup-content {
-    // flex: 1 1;
+    // flex-grow: 1;
+    // flex-shrink: 1;
+    // // flex-basis: auto;
     position: relative;
   }
 }
