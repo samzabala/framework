@@ -7,7 +7,7 @@ $fwc-body-heading-size: (
   $body-size-h6
 );
 
-:is(.special-primary) {
+.special-primary {
   @include type-set(
     (
       root-size: $body-font-size,
@@ -28,7 +28,7 @@ $fwc-body-heading-size: (
   }
 }
 
-:is(.special-secondary) {
+.special-secondary {
   @include type-set(
     (
       root-size: $body-font-size,
@@ -49,7 +49,7 @@ $fwc-body-heading-size: (
   }
 }
 
-:is(.lead) {
+.lead {
   @include type-set(
     (
       root-size: $body-font-size,
@@ -71,8 +71,7 @@ $fwc-body-heading-size: (
 }
 
 /* heading */
-:where(h1, h2, h3, h4, h5, h6),
-:is(.h1, .h2, .h3, .h4, .h5, .h6) {
+:is(:where(h1, h2, h3, h4, h5, h6),.h1, .h2, .h3, .h4, .h5, .h6) {
   @include type-set(
     (
       font: $body-heading-font-family,
@@ -94,8 +93,7 @@ $fwc-body-heading-size: (
 }
 
 @for $i from 1 through length($fwc-body-heading-size) {
-  :where(h#{$i}),
-  :is(.h#{$i}) {
+  :is(:where(h#{$i}),.h#{$i}) {
     @include type(nth($fwc-body-heading-size, $i), null, $body-font-size);
   }
 }
@@ -129,8 +127,7 @@ $fwc-body-heading-size: (
   }
 }
 
-:where(p, ul, ol, address, pre, dl),
-:is(.p) {
+:is(:where(p, ul, ol, address, pre, dl),.p) {
   margin-bottom: $var-body-text-gutter;
   display: block;
 }
@@ -258,9 +255,6 @@ $fwc-body-heading-size: (
   .alert & {
     border-left-color: currentColor;
   }
-}
-
-%code-styles {
 }
 
 :where(pre, code, kbd, tt) {

@@ -183,8 +183,8 @@ $prefix: '.input';
   @include type($input-font-size-small, null, $body-font-size);
 }
 
-#{&}-round {
-  --fw-input-border-radius: 9999em;
+:is(#{$prefix}-round, #{$prefix}-round > #{$prefix}) {
+  --fw-btn-border-radius: 9999em;
 }
 
 :is(.disabled, [disabled], :disabled) {
