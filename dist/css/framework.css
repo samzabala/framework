@@ -4883,6 +4883,14 @@ big {
   content: "\e978";
 }
 
+.symbol-sun:before, .active > .symbol-sun-toggle:before, .open > .symbol-sun-toggle:before {
+  content: "\e979";
+}
+
+.symbol-pin-alt:before, .active > .symbol-pin-alt-toggle:before, .open > .symbol-pin-alt-toggle:before {
+  content: "\e980";
+}
+
 /*** ASSET ***/
 .asset {
   max-width: 100%;
