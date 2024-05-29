@@ -82,7 +82,8 @@ $mode-class: #{$prefix}-mode-board;
         align-items: flex-end;
       }
     }
-
+  }
+  #{$prefix}-button {
     & {
       position: relative;
       z-index: 9;

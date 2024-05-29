@@ -9877,11 +9877,11 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   align-items: flex-end;
 }
 
-.modal-ui-on-mode-board .modal-ui-mode-board.modal-ui-button {
+.modal-ui-on-mode-board .modal-ui-button {
   position: relative;
   z-index: 9;
 }
-.modal-ui-on-mode-board .modal-ui-mode-board.modal-ui-button-default {
+.modal-ui-on-mode-board .modal-ui-button-default {
   border: none;
   outline: none;
   font-size: 1rem;
@@ -9896,18 +9896,18 @@ input[type=checkbox]:not(:checked) + .input-toggle-label:after, .input[type=chec
   flex: 0 0 auto;
   margin-bottom: 0.5em;
 }
-.modal-ui-on-mode-board .modal-ui-mode-board.modal-ui-button-default .symbol {
+.modal-ui-on-mode-board .modal-ui-button-default .symbol {
   margin: auto;
 }
-.theme-inverse .modal-ui-on-mode-board .modal-ui-mode-board.modal-ui-button-default {
+.theme-inverse .modal-ui-on-mode-board .modal-ui-button-default {
   background: var(--fw-theme-background);
 }
-.modal-ui-align-right.modal-ui-on-mode-board .modal-ui-mode-board.modal-ui-button-default {
+.modal-ui-align-right.modal-ui-on-mode-board .modal-ui-button-default {
   left: 0;
   transform: translateX(-50%);
 }
 
-.modal-ui-align-left.modal-ui-on-mode-board .modal-ui-mode-board.modal-ui-button-default {
+.modal-ui-align-left.modal-ui-on-mode-board .modal-ui-button-default {
   right: 0;
   transform: translateX(50%);
 }
